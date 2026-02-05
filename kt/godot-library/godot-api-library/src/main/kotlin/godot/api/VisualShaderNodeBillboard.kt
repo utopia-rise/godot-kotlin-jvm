@@ -50,7 +50,7 @@ public open class VisualShaderNodeBillboard : VisualShaderNode() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(745, scriptPtr)
+    createNativeObject(494, scriptPtr)
   }
 
   public final fun setBillboardType(billboardType: BillboardType): Unit {

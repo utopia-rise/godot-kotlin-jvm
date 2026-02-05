@@ -39,9 +39,9 @@ import kotlin.Unit
  * ([CompressedTexture2D]) first, so they can be loaded with better efficiency on the graphics card.
  */
 @GodotBaseType
-public open class ResourceFormatLoader : RefCounted() {
+public abstract class ResourceFormatLoader : RefCounted() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(568, scriptPtr)
+    createNativeObject(199, scriptPtr)
   }
 
   /**
@@ -156,14 +156,12 @@ public open class ResourceFormatLoader : RefCounted() {
    * The [cacheMode] property defines whether and how the cache should be used or updated when
    * loading the resource. See [CacheMode] for details.
    */
-  public open fun _load(
+  public abstract fun _load(
     path: String,
     originalPath: String,
     useSubThreads: Boolean,
     cacheMode: Int,
-  ): Any? {
-    throw NotImplementedError("ResourceFormatLoader::_load is not implemented.")
-  }
+  ): Any?
 
   public enum class CacheMode(
     `value`: Long,

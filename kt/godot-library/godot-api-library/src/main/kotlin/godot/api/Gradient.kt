@@ -51,7 +51,7 @@ public open class Gradient : Resource() {
 
   /**
    * The color space used to interpolate between points of the gradient. It does not affect the
-   * returned colors, which will always be in sRGB space.
+   * returned colors, which will always use nonlinear sRGB encoding.
    *
    * **Note:** This setting has no effect when [interpolationMode] is set to
    * [GRADIENT_INTERPOLATE_CONSTANT].
@@ -101,7 +101,7 @@ public open class Gradient : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(266, scriptPtr)
+    createNativeObject(660, scriptPtr)
   }
 
   /**

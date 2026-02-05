@@ -32,7 +32,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class Generic6DOFJoint3D : Joint3D() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(262, scriptPtr)
+    createNativeObject(590, scriptPtr)
   }
 
   public final fun setParamX(`param`: Param, `value`: Float): Unit {

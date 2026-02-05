@@ -99,7 +99,7 @@ public open class AnimationNode : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(16, scriptPtr)
+    createNativeObject(110, scriptPtr)
   }
 
   /**

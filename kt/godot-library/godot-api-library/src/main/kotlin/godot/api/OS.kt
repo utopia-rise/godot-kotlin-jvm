@@ -95,7 +95,7 @@ public object OS : Object() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(19)
+    getSingleton(11)
   }
 
   /**
@@ -966,7 +966,14 @@ public object OS : Object() {
   }
 
   /**
-   * Returns the command-line arguments passed to the engine.
+   * Returns the command-line arguments passed to the engine, excluding arguments processed by the
+   * engine, such as `--headless` and `--fullscreen`.
+   *
+   * ```
+   * # Godot has been executed with the following command:
+   * # godot --headless --verbose --scene my_scene.tscn --custom
+   * OS.get_cmdline_args() # Returns ["--scene", "my_scene.tscn", "--custom"]
+   * ```
    *
    * Command-line arguments can be written in any form, including both `--key value` and
    * `--key=value` forms so they can be properly parsed, as long as custom command-line arguments do
@@ -1030,13 +1037,13 @@ public object OS : Object() {
    *
    * ```
    * # Godot has been executed with the following command:
-   * # godot --fullscreen -- --level=2 --hardcore
+   * # godot --fullscreen --custom -- --level=2 --hardcore
    *
-   * OS.get_cmdline_args()      # Returns ["--fullscreen", "--level=2", "--hardcore"]
+   * OS.get_cmdline_args()      # Returns ["--custom"]
    * OS.get_cmdline_user_args() # Returns ["--level=2", "--hardcore"]
    * ```
    *
-   * To get all passed arguments, use [getCmdlineArgs].
+   * To get arguments passed before `--` or `++`, use [getCmdlineArgs].
    */
   @JvmStatic
   public final fun getCmdlineUserArgs(): PackedStringArray {

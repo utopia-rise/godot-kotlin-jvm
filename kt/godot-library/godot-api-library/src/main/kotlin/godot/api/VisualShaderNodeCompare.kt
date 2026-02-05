@@ -58,7 +58,7 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(754, scriptPtr)
+    createNativeObject(496, scriptPtr)
   }
 
   public final fun setComparisonType(type: ComparisonType): Unit {

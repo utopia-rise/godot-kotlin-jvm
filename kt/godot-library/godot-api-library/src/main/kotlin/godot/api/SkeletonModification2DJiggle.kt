@@ -139,7 +139,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(616, scriptPtr)
+    createNativeObject(857, scriptPtr)
   }
 
   /**

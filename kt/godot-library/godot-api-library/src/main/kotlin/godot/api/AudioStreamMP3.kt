@@ -25,6 +25,7 @@ import kotlin.Byte
 import kotlin.Double
 import kotlin.Int
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -132,7 +133,7 @@ public open class AudioStreamMP3 : AudioStream() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(85, scriptPtr)
+    createNativeObject(932, scriptPtr)
   }
 
   /**
@@ -283,6 +284,13 @@ public open class AudioStreamMP3 : AudioStream() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBarBeatsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _instantiatePlayback(): AudioStreamPlayback? {
+    throw NotImplementedError("AudioStreamMP3::_instantiatePlayback can't be called from the JVM.")
   }
 
   public companion object {

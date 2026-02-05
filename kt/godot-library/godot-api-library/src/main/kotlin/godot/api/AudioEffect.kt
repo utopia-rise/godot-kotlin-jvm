@@ -24,7 +24,7 @@ import kotlin.Unit
 @GodotBaseType
 public abstract class AudioEffect : Resource() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(46, scriptPtr)
+    createNativeObject(323, scriptPtr)
   }
 
   /**

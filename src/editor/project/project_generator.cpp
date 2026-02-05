@@ -7,11 +7,12 @@
 
 #include <core/config/project_settings.h>
 #include <core/io/dir_access.h>
+#include <core/io/file_access.h>
 
 constexpr const int permissions = FileAccess::UnixPermissionFlags::UNIX_READ_OTHER | FileAccess::UnixPermissionFlags::UNIX_WRITE_OTHER
-                                | FileAccess::UnixPermissionFlags::UNIX_READ_GROUP | FileAccess::UnixPermissionFlags::UNIX_WRITE_GROUP
-                                | FileAccess::UnixPermissionFlags::UNIX_READ_OWNER | FileAccess::UnixPermissionFlags::UNIX_WRITE_OWNER
-                                | FileAccess::UnixPermissionFlags::UNIX_EXECUTE_OWNER;
+                                  | FileAccess::UnixPermissionFlags::UNIX_READ_GROUP | FileAccess::UnixPermissionFlags::UNIX_WRITE_GROUP
+                                  | FileAccess::UnixPermissionFlags::UNIX_READ_OWNER | FileAccess::UnixPermissionFlags::UNIX_WRITE_OWNER
+                                  | FileAccess::UnixPermissionFlags::UNIX_EXECUTE_OWNER;
 
 void ProjectGenerator::generate_jvm_files(bool erase_existing) {
     JVM_LOG_INFO("Generating JVM project files...");

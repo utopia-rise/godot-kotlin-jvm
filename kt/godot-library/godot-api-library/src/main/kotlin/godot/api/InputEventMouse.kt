@@ -86,7 +86,7 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(308, scriptPtr)
+    createNativeObject(184, scriptPtr)
   }
 
   /**

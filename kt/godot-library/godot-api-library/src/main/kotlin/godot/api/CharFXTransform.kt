@@ -252,7 +252,7 @@ public open class CharFXTransform : RefCounted() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(147, scriptPtr)
+    createNativeObject(349, scriptPtr)
   }
 
   /**

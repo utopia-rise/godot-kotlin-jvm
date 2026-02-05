@@ -13,6 +13,7 @@ import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.Signal0
 import godot.core.Signal1
+import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.LONG
@@ -22,6 +23,7 @@ import godot.core.VariantParser.STRING
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import godot.core.Vector2i
+import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -109,7 +111,7 @@ public open class GraphNode : GraphElement() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(272, scriptPtr)
+    createNativeObject(81, scriptPtr)
   }
 
   public open fun _drawPort(
@@ -274,6 +276,24 @@ public open class GraphNode : GraphElement() {
   }
 
   /**
+   * Sets the custom metadata for the left (input) side of the slot with the given [slotIndex] to
+   * [value].
+   */
+  public final fun setSlotMetadataLeft(slotIndex: Int, `value`: Any?): Unit {
+    TransferContext.writeArguments(LONG to slotIndex.toLong(), ANY to value)
+    TransferContext.callMethod(ptr, MethodBindings.setSlotMetadataLeftPtr, NIL)
+  }
+
+  /**
+   * Returns the left (input) metadata of the slot with the given [slotIndex].
+   */
+  public final fun getSlotMetadataLeft(slotIndex: Int): Any? {
+    TransferContext.writeArguments(LONG to slotIndex.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.getSlotMetadataLeftPtr, ANY)
+    return (TransferContext.readReturnValue(ANY) as Any?)
+  }
+
+  /**
    * Returns `true` if right (output) side of the slot with the given [slotIndex] is enabled.
    */
   public final fun isSlotEnabledRight(slotIndex: Int): Boolean {
@@ -342,6 +362,24 @@ public open class GraphNode : GraphElement() {
     TransferContext.writeArguments(LONG to slotIndex.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getSlotCustomIconRightPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
+  }
+
+  /**
+   * Sets the custom metadata for the right (output) side of the slot with the given [slotIndex] to
+   * [value].
+   */
+  public final fun setSlotMetadataRight(slotIndex: Int, `value`: Any?): Unit {
+    TransferContext.writeArguments(LONG to slotIndex.toLong(), ANY to value)
+    TransferContext.callMethod(ptr, MethodBindings.setSlotMetadataRightPtr, NIL)
+  }
+
+  /**
+   * Returns the right (output) metadata of the slot with the given [slotIndex].
+   */
+  public final fun getSlotMetadataRight(slotIndex: Int): Any? {
+    TransferContext.writeArguments(LONG to slotIndex.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.getSlotMetadataRightPtr, ANY)
+    return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
   /**
@@ -518,6 +556,12 @@ public open class GraphNode : GraphElement() {
     internal val getSlotCustomIconLeftPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GraphNode", "get_slot_custom_icon_left", 3536238170)
 
+    internal val setSlotMetadataLeftPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphNode", "set_slot_metadata_left", 2152698145)
+
+    internal val getSlotMetadataLeftPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphNode", "get_slot_metadata_left", 4227898402)
+
     internal val isSlotEnabledRightPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GraphNode", "is_slot_enabled_right", 1116898809)
 
@@ -541,6 +585,12 @@ public open class GraphNode : GraphElement() {
 
     internal val getSlotCustomIconRightPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GraphNode", "get_slot_custom_icon_right", 3536238170)
+
+    internal val setSlotMetadataRightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphNode", "set_slot_metadata_right", 2152698145)
+
+    internal val getSlotMetadataRightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphNode", "get_slot_metadata_right", 4227898402)
 
     internal val isSlotDrawStyleboxPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GraphNode", "is_slot_draw_stylebox", 1116898809)

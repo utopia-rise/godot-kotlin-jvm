@@ -154,7 +154,7 @@ public open class Skeleton3D : Node3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(611, scriptPtr)
+    createNativeObject(31, scriptPtr)
   }
 
   /**
@@ -198,7 +198,7 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   * Returns the metadata for the bone at index [boneIdx] with [key].
+   * Returns the metadata with the given [key] for the bone at index [boneIdx].
    */
   public final fun getBoneMeta(boneIdx: Int, key: StringName): Any? {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), STRING_NAME to key)
@@ -216,7 +216,7 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   * Returns `true` if the bone at index [boneIdx] has metadata with the key [key].
+   * Returns `true` if the bone at index [boneIdx] has metadata with the given [key].
    */
   public final fun hasBoneMeta(boneIdx: Int, key: StringName): Boolean {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), STRING_NAME to key)
@@ -225,7 +225,7 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   * Sets the metadata for the bone at index [boneIdx], setting the [key] meta to [value].
+   * Sets the metadata with the given [key] to [value] for the bone at index [boneIdx].
    */
   public final fun setBoneMeta(
     boneIdx: Int,
@@ -680,19 +680,19 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   * Returns the metadata for the bone at index [boneIdx] with [key].
+   * Returns the metadata with the given [key] for the bone at index [boneIdx].
    */
   public final fun getBoneMeta(boneIdx: Int, key: String): Any? =
       getBoneMeta(boneIdx, key.asCachedStringName())
 
   /**
-   * Returns `true` if the bone at index [boneIdx] has metadata with the key [key].
+   * Returns `true` if the bone at index [boneIdx] has metadata with the given [key].
    */
   public final fun hasBoneMeta(boneIdx: Int, key: String): Boolean =
       hasBoneMeta(boneIdx, key.asCachedStringName())
 
   /**
-   * Sets the metadata for the bone at index [boneIdx], setting the [key] meta to [value].
+   * Sets the metadata with the given [key] to [value] for the bone at index [boneIdx].
    */
   public final fun setBoneMeta(
     boneIdx: Int,

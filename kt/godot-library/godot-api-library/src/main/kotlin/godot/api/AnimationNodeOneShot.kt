@@ -157,6 +157,17 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
     }
 
   /**
+   * If `true`, the sub-animation will abort if resumed with a reset after a prior interruption.
+   */
+  public final inline var abortOnReset: Boolean
+    @JvmName("abortOnResetProperty")
+    get() = isAbortedOnReset()
+    @JvmName("abortOnResetProperty")
+    set(`value`) {
+      setAbortOnReset(value)
+    }
+
+  /**
    * If `true`, the sub-animation will restart automatically after finishing.
    *
    * In other words, to start auto restarting, the animation must be played once with the
@@ -196,7 +207,7 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(26, scriptPtr)
+    createNativeObject(719, scriptPtr)
   }
 
   public final fun setFadeinTime(time: Double): Unit {
@@ -251,6 +262,17 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
   public final fun isLoopBrokenAtEnd(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isLoopBrokenAtEndPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setAbortOnReset(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(ptr, MethodBindings.setAbortOnResetPtr, NIL)
+  }
+
+  public final fun isAbortedOnReset(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isAbortedOnResetPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -384,6 +406,12 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
 
     internal val isLoopBrokenAtEndPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AnimationNodeOneShot", "is_loop_broken_at_end", 36873697)
+
+    internal val setAbortOnResetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_abort_on_reset", 2586408642)
+
+    internal val isAbortedOnResetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "is_aborted_on_reset", 36873697)
 
     internal val setAutorestartPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_autorestart", 2586408642)

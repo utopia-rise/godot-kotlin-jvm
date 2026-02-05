@@ -80,8 +80,8 @@ public open class CharacterBody2D : PhysicsBody2D() {
   /**
    * Current velocity vector in pixels per second, used and modified during calls to [moveAndSlide].
    *
-   * This property should not be set to a value multiplied by `delta`, because this happens
-   * internally in [moveAndSlide]. Otherwise, the simulation will run at an incorrect speed.
+   * **Note:** A common mistake is setting this property to the desired velocity multiplied by
+   * `delta`, which produces a motion vector in pixels.
    *
    * **Warning:**
    * Be careful when trying to modify a local
@@ -267,7 +267,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(148, scriptPtr)
+    createNativeObject(454, scriptPtr)
   }
 
   /**
@@ -305,8 +305,8 @@ public open class CharacterBody2D : PhysicsBody2D() {
    *
    * Current velocity vector in pixels per second, used and modified during calls to [moveAndSlide].
    *
-   * This property should not be set to a value multiplied by `delta`, because this happens
-   * internally in [moveAndSlide]. Otherwise, the simulation will run at an incorrect speed.
+   * **Note:** A common mistake is setting this property to the desired velocity multiplied by
+   * `delta`, which produces a motion vector in pixels.
    */
   @CoreTypeHelper
   public final fun velocityMutate(block: Vector2.() -> Unit): Vector2 = velocity.apply {
@@ -673,7 +673,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
    * Returns a [KinematicCollision2D], which contains information about a collision that occurred
    * during the last call to [moveAndSlide]. Since the body can collide several times in a single call
    * to [moveAndSlide], you must specify the index of the collision in the range 0 to
-   * ([getSlideCollisionCount] - 1).
+   * ([getSlideCollisionCount] - 1). See also [getLastSlideCollision].
    *
    * **Example:** Iterate through the collisions with a `for` loop:
    *
@@ -700,8 +700,9 @@ public open class CharacterBody2D : PhysicsBody2D() {
   }
 
   /**
-   * Returns a [KinematicCollision2D], which contains information about the latest collision that
-   * occurred during the last call to [moveAndSlide].
+   * Returns a [KinematicCollision2D] if a collision occurred. The returned value contains
+   * information about the latest collision that occurred during the last call to [moveAndSlide].
+   * Returns `null` if no collision occurred. See also [getSlideCollision].
    */
   public final fun getLastSlideCollision(): KinematicCollision2D? {
     TransferContext.writeArguments()

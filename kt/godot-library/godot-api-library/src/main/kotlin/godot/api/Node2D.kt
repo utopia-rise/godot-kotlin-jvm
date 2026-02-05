@@ -235,7 +235,7 @@ public open class Node2D : CanvasItem() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(404, scriptPtr)
+    createNativeObject(465, scriptPtr)
   }
 
   /**
@@ -414,7 +414,8 @@ public open class Node2D : CanvasItem() {
   }
 
   /**
-   * Applies a rotation to the node, in radians, starting from its current rotation.
+   * Applies a rotation to the node, in radians, starting from its current rotation. This is
+   * equivalent to `rotation += radians`.
    */
   public final fun rotate(radians: Float): Unit {
     TransferContext.writeArguments(DOUBLE to radians.toDouble())
@@ -442,7 +443,8 @@ public open class Node2D : CanvasItem() {
   }
 
   /**
-   * Translates the node by the given [offset] in local coordinates.
+   * Translates the node by the given [offset] in local coordinates. This is equivalent to
+   * `position += offset`.
    */
   public final fun translate(offset: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to offset)
@@ -532,7 +534,7 @@ public open class Node2D : CanvasItem() {
 
   /**
    * Rotates the node so that its local +X axis points towards the [point], which is expected to use
-   * global coordinates.
+   * global coordinates. This method is a combination of both [rotate] and [getAngleTo].
    *
    * [point] should not be the same as the node's position, otherwise the node always looks to the
    * right.
@@ -543,7 +545,7 @@ public open class Node2D : CanvasItem() {
   }
 
   /**
-   * Returns the angle between the node and the [point] in radians.
+   * Returns the angle between the node and the [point] in radians. See also [lookAt].
    *
    * [url=https://raw.githubusercontent.com/godotengine/godot-docs/master/img/node2d_get_angle_to.png]Illustration
    * of the returned angle.[/url]

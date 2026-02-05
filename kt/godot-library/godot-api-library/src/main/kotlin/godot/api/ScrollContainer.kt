@@ -173,8 +173,33 @@ public open class ScrollContainer : Container() {
       setDeadzone(value)
     }
 
+  /**
+   * The way which scroll hints (indicators that show that the content can still be scrolled in a
+   * certain direction) will be shown.
+   *
+   * **Note:** Hints won't be shown if the content can be scrolled both vertically and horizontally.
+   */
+  public final inline var scrollHintMode: ScrollHintMode
+    @JvmName("scrollHintModeProperty")
+    get() = getScrollHintMode()
+    @JvmName("scrollHintModeProperty")
+    set(`value`) {
+      setScrollHintMode(value)
+    }
+
+  /**
+   * If `true`, the scroll hint texture will be tiled instead of stretched. See [scrollHintMode].
+   */
+  public final inline var tileScrollHint: Boolean
+    @JvmName("tileScrollHintProperty")
+    get() = isScrollHintTiled()
+    @JvmName("tileScrollHintProperty")
+    set(`value`) {
+      setTileScrollHint(value)
+    }
+
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(594, scriptPtr)
+    createNativeObject(368, scriptPtr)
   }
 
   public final fun setHScroll(`value`: Int): Unit {
@@ -252,6 +277,28 @@ public open class ScrollContainer : Container() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDeadzonePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  public final fun setScrollHintMode(scrollHintMode: ScrollHintMode): Unit {
+    TransferContext.writeArguments(LONG to scrollHintMode.value)
+    TransferContext.callMethod(ptr, MethodBindings.setScrollHintModePtr, NIL)
+  }
+
+  public final fun getScrollHintMode(): ScrollHintMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getScrollHintModePtr, LONG)
+    return ScrollHintMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setTileScrollHint(tileScrollHint: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to tileScrollHint)
+    TransferContext.callMethod(ptr, MethodBindings.setTileScrollHintPtr, NIL)
+  }
+
+  public final fun isScrollHintTiled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isScrollHintTiledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFollowFocus(enabled: Boolean): Unit {
@@ -357,6 +404,38 @@ public open class ScrollContainer : Container() {
     }
   }
 
+  public enum class ScrollHintMode(
+    `value`: Long,
+  ) : GodotEnum {
+    /**
+     * Scroll hints will never be shown.
+     */
+    DISABLED(0),
+    /**
+     * Scroll hints will be shown at the top and bottom (if vertical), or left and right (if
+     * horizontal).
+     */
+    ALL(1),
+    /**
+     * Scroll hints will be shown at the top (if vertical), or the left (if horizontal).
+     */
+    TOP_AND_LEFT(2),
+    /**
+     * Scroll hints will be shown at the bottom (if horizontal), or the right (if horizontal).
+     */
+    BOTTOM_AND_RIGHT(3),
+    ;
+
+    public override val `value`: Long
+    init {
+      this.`value` = `value`
+    }
+
+    public companion object {
+      public fun from(`value`: Long): ScrollHintMode = entries.single { it.`value` == `value` }
+    }
+  }
+
   public companion object
 
   public object MethodBindings {
@@ -401,6 +480,18 @@ public open class ScrollContainer : Container() {
 
     internal val getDeadzonePtr: VoidPtr =
         TypeManager.getMethodBindPtr("ScrollContainer", "get_deadzone", 3905245786)
+
+    internal val setScrollHintModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScrollContainer", "set_scroll_hint_mode", 578158943)
+
+    internal val getScrollHintModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScrollContainer", "get_scroll_hint_mode", 246835423)
+
+    internal val setTileScrollHintPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScrollContainer", "set_tile_scroll_hint", 2586408642)
+
+    internal val isScrollHintTiledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScrollContainer", "is_scroll_hint_tiled", 2240911060)
 
     internal val setFollowFocusPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ScrollContainer", "set_follow_focus", 2586408642)

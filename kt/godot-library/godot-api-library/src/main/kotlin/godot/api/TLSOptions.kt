@@ -42,7 +42,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public open class TLSOptions internal constructor() : RefCounted() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(669, scriptPtr)
+    createNativeObject(151, scriptPtr)
   }
 
   /**

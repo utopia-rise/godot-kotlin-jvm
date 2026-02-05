@@ -97,7 +97,7 @@ public open class CameraFeed : RefCounted() {
     get() = getFormats()
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(134, scriptPtr)
+    createNativeObject(264, scriptPtr)
   }
 
   /**
@@ -213,6 +213,14 @@ public open class CameraFeed : RefCounted() {
   public final fun setYcbcrImage(ycbcrImage: Image?): Unit {
     TransferContext.writeArguments(OBJECT to ycbcrImage)
     TransferContext.callMethod(ptr, MethodBindings.setYcbcrImagePtr, NIL)
+  }
+
+  /**
+   * Sets Y and CbCr images for this feed.
+   */
+  public final fun setYcbcrImages(yImage: Image?, cbcrImage: Image?): Unit {
+    TransferContext.writeArguments(OBJECT to yImage, OBJECT to cbcrImage)
+    TransferContext.callMethod(ptr, MethodBindings.setYcbcrImagesPtr, NIL)
   }
 
   /**
@@ -362,6 +370,9 @@ public open class CameraFeed : RefCounted() {
 
     internal val setYcbcrImagePtr: VoidPtr =
         TypeManager.getMethodBindPtr("CameraFeed", "set_ycbcr_image", 532598488)
+
+    internal val setYcbcrImagesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CameraFeed", "set_ycbcr_images", 1986484629)
 
     internal val setExternalPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CameraFeed", "set_external", 3937882851)

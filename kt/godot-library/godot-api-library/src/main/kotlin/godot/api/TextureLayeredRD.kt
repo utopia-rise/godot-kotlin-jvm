@@ -24,6 +24,9 @@ import kotlin.jvm.JvmName
 /**
  * Base class for [Texture2DArrayRD], [TextureCubemapRD] and [TextureCubemapArrayRD]. Cannot be used
  * directly, but contains all the functions necessary for accessing the derived resource types.
+ *
+ * **Note:** [TextureLayeredRD] is intended for low-level usage with [RenderingDevice]. For most use
+ * cases, use [TextureLayered] instead.
  */
 @GodotBaseType
 public open class TextureLayeredRD internal constructor() : TextureLayered() {
@@ -39,7 +42,7 @@ public open class TextureLayeredRD internal constructor() : TextureLayered() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(692, scriptPtr)
+    createNativeObject(791, scriptPtr)
   }
 
   public final fun setTextureRdRid(textureRdRid: RID): Unit {

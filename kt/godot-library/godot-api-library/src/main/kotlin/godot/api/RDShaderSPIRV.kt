@@ -191,7 +191,7 @@ public open class RDShaderSPIRV : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(538, scriptPtr)
+    createNativeObject(277, scriptPtr)
   }
 
   /**

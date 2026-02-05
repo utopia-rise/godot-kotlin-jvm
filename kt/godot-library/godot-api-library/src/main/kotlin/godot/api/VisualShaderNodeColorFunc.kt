@@ -35,7 +35,7 @@ public open class VisualShaderNodeColorFunc : VisualShaderNode() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(750, scriptPtr)
+    createNativeObject(551, scriptPtr)
   }
 
   public final fun setFunction(func: Function): Unit {
@@ -85,7 +85,7 @@ public open class VisualShaderNodeColorFunc : VisualShaderNode() {
      */
     SEPIA(3),
     /**
-     * Converts color from linear color space to sRGB color space using the following formula:
+     * Converts color from linear encoding to nonlinear sRGB encoding using the following formula:
      *
      * ```
      * vec3 c = clamp(c, vec3(0.0), vec3(1.0));
@@ -103,7 +103,7 @@ public open class VisualShaderNodeColorFunc : VisualShaderNode() {
      */
     LINEAR_TO_SRGB(4),
     /**
-     * Converts color from sRGB color space to linear color space using the following formula:
+     * Converts color from nonlinear sRGB encoding to linear encoding using the following formula:
      *
      * ```
      * vec3 c = input;

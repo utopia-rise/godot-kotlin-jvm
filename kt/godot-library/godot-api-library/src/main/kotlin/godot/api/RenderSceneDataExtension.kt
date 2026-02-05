@@ -23,7 +23,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class RenderSceneDataExtension : RenderSceneData() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(563, scriptPtr)
+    createNativeObject(271, scriptPtr)
   }
 
   /**

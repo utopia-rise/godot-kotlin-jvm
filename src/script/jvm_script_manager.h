@@ -6,8 +6,6 @@
 
 // TODO: Transform this class into JarResource when moving to CPP reloading.
 class JvmScriptManager: public Object {
-    friend class Memory;
-
     HashMap<StringName, Ref<NamedScript>> named_scripts_map;
 
     HashMap<String, StringName> fqdn_to_name_map;

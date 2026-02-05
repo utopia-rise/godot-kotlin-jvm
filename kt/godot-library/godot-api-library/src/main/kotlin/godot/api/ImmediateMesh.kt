@@ -64,7 +64,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class ImmediateMesh : Mesh() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(295, scriptPtr)
+    createNativeObject(77, scriptPtr)
   }
 
   /**
@@ -94,6 +94,10 @@ public open class ImmediateMesh : Mesh() {
 
   /**
    * Set the tangent attribute that will be pushed with the next vertex.
+   *
+   * **Note:** Even though [tangent] is a [Plane], it does not directly represent the tangent plane.
+   * Its [Plane.x], [Plane.y], and [Plane.z] represent the tangent vector and [Plane.d] should be
+   * either `-1` or `1`. See also [Mesh.ARRAY_TANGENT].
    */
   public final fun surfaceSetTangent(tangent: Plane): Unit {
     TransferContext.writeArguments(PLANE to tangent)

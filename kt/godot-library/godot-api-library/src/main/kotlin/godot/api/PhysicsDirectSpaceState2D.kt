@@ -35,7 +35,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class PhysicsDirectSpaceState2D internal constructor() : Object() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(480, scriptPtr)
+    createNativeObject(53, scriptPtr)
   }
 
   /**
@@ -58,7 +58,7 @@ public open class PhysicsDirectSpaceState2D internal constructor() : Object() {
    * solid shapes. Therefore, they will not be detected.
    */
   @JvmOverloads
-  public final fun intersectPoint(parameters: PhysicsPointQueryParameters2D?, maxResults: Int = 32):
+  public final fun intersectPoint(parameters: PhysicsPointQueryParameters2D, maxResults: Int = 32):
       VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(OBJECT to parameters, LONG to maxResults.toLong())
     TransferContext.callMethod(ptr, MethodBindings.intersectPointPtr, ARRAY)
@@ -84,7 +84,7 @@ public open class PhysicsDirectSpaceState2D internal constructor() : Object() {
    *
    * If the ray did not intersect anything, then an empty dictionary is returned instead.
    */
-  public final fun intersectRay(parameters: PhysicsRayQueryParameters2D?): Dictionary<Any?, Any?> {
+  public final fun intersectRay(parameters: PhysicsRayQueryParameters2D): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(OBJECT to parameters)
     TransferContext.callMethod(ptr, MethodBindings.intersectRayPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
@@ -107,7 +107,7 @@ public open class PhysicsDirectSpaceState2D internal constructor() : Object() {
    * processing time.
    */
   @JvmOverloads
-  public final fun intersectShape(parameters: PhysicsShapeQueryParameters2D?, maxResults: Int = 32):
+  public final fun intersectShape(parameters: PhysicsShapeQueryParameters2D, maxResults: Int = 32):
       VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(OBJECT to parameters, LONG to maxResults.toLong())
     TransferContext.callMethod(ptr, MethodBindings.intersectShapePtr, ARRAY)
@@ -126,7 +126,7 @@ public open class PhysicsDirectSpaceState2D internal constructor() : Object() {
    * **Note:** Any [Shape2D]s that the shape is already colliding with e.g. inside of, will be
    * ignored. Use [collideShape] to determine the [Shape2D]s that the shape is already colliding with.
    */
-  public final fun castMotion(parameters: PhysicsShapeQueryParameters2D?): PackedFloat32Array {
+  public final fun castMotion(parameters: PhysicsShapeQueryParameters2D): PackedFloat32Array {
     TransferContext.writeArguments(OBJECT to parameters)
     TransferContext.callMethod(ptr, MethodBindings.castMotionPtr, PACKED_FLOAT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY) as PackedFloat32Array)
@@ -143,7 +143,7 @@ public open class PhysicsDirectSpaceState2D internal constructor() : Object() {
    * the physics space.
    */
   @JvmOverloads
-  public final fun collideShape(parameters: PhysicsShapeQueryParameters2D?, maxResults: Int = 32):
+  public final fun collideShape(parameters: PhysicsShapeQueryParameters2D, maxResults: Int = 32):
       VariantArray<Vector2> {
     TransferContext.writeArguments(OBJECT to parameters, LONG to maxResults.toLong())
     TransferContext.callMethod(ptr, MethodBindings.collideShapePtr, ARRAY)
@@ -171,7 +171,7 @@ public open class PhysicsDirectSpaceState2D internal constructor() : Object() {
    *
    * If the shape did not intersect anything, then an empty dictionary is returned instead.
    */
-  public final fun getRestInfo(parameters: PhysicsShapeQueryParameters2D?): Dictionary<Any?, Any?> {
+  public final fun getRestInfo(parameters: PhysicsShapeQueryParameters2D): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(OBJECT to parameters)
     TransferContext.callMethod(ptr, MethodBindings.getRestInfoPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)

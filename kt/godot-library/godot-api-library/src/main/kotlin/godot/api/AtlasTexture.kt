@@ -52,6 +52,8 @@ public open class AtlasTexture : Texture2D() {
    * The region used to draw the [atlas]. If either dimension of the region's size is `0`, the value
    * from [atlas] size will be used for that axis instead.
    *
+   * **Note:** The image size is always an integer, so the actual region size is rounded down.
+   *
    * **Warning:**
    * Be careful when trying to modify a local
    * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
@@ -102,7 +104,7 @@ public open class AtlasTexture : Texture2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(44, scriptPtr)
+    createNativeObject(815, scriptPtr)
   }
 
   /**
@@ -118,6 +120,8 @@ public open class AtlasTexture : Texture2D() {
    *
    * The region used to draw the [atlas]. If either dimension of the region's size is `0`, the value
    * from [atlas] size will be used for that axis instead.
+   *
+   * **Note:** The image size is always an integer, so the actual region size is rounded down.
    */
   @CoreTypeHelper
   public final fun regionMutate(block: Rect2.() -> Unit): Rect2 = region.apply {

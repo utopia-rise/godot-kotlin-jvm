@@ -28,6 +28,9 @@ import kotlin.jvm.JvmOverloads
  * The default use of [AcceptDialog] is to allow it to only be accepted or closed, with the same
  * result. However, the [signal confirmed] and [signal canceled] signals allow to make the two actions
  * different, and the [addButton] method allows to add custom buttons and actions.
+ *
+ * **Note:** [AcceptDialog] is invisible by default. To make it visible, call one of the `popup_*`
+ * methods from [Window] on the node, such as [Window.popupCenteredClamped].
  */
 @GodotBaseType
 public open class AcceptDialog : Window() {
@@ -88,8 +91,8 @@ public open class AcceptDialog : Window() {
     }
 
   /**
-   * If `true`, the dialog will be hidden when the `ui_cancel` action is pressed (by default, this
-   * action is bound to [KEY_ESCAPE]).
+   * If `true`, the dialog will be hidden when the `ui_close_dialog` action is pressed (by default,
+   * this action is bound to [kbd]Escape[/kbd], or [kbd]Cmd + W[/kbd] on macOS).
    */
   public final inline var dialogCloseOnEscape: Boolean
     @JvmName("dialogCloseOnEscapeProperty")
@@ -111,7 +114,7 @@ public open class AcceptDialog : Window() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(6, scriptPtr)
+    createNativeObject(114, scriptPtr)
   }
 
   /**

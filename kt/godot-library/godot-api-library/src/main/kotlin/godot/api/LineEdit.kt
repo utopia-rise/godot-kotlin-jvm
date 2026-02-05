@@ -165,7 +165,7 @@ public open class LineEdit : Control() {
     }
 
   /**
-   * Text alignment as defined in the [HorizontalAlignment] enum.
+   * The text's horizontal alignment.
    */
   public final inline var alignment: HorizontalAlignment
     @JvmName("alignmentProperty")
@@ -286,39 +286,6 @@ public open class LineEdit : Control() {
     }
 
   /**
-   * If `true`, the native virtual keyboard is enabled on platforms that support it.
-   */
-  public final inline var virtualKeyboardEnabled: Boolean
-    @JvmName("virtualKeyboardEnabledProperty")
-    get() = isVirtualKeyboardEnabled()
-    @JvmName("virtualKeyboardEnabledProperty")
-    set(`value`) {
-      setVirtualKeyboardEnabled(value)
-    }
-
-  /**
-   * If `true`, the native virtual keyboard is shown on focus events on platforms that support it.
-   */
-  public final inline var virtualKeyboardShowOnFocus: Boolean
-    @JvmName("virtualKeyboardShowOnFocusProperty")
-    get() = getVirtualKeyboardShowOnFocus()
-    @JvmName("virtualKeyboardShowOnFocusProperty")
-    set(`value`) {
-      setVirtualKeyboardShowOnFocus(value)
-    }
-
-  /**
-   * Specifies the type of virtual keyboard to show.
-   */
-  public final inline var virtualKeyboardType: VirtualKeyboardType
-    @JvmName("virtualKeyboardTypeProperty")
-    get() = getVirtualKeyboardType()
-    @JvmName("virtualKeyboardTypeProperty")
-    set(`value`) {
-      setVirtualKeyboardType(value)
-    }
-
-  /**
    * If `true`, the [LineEdit] will show a clear button if [text] is not empty, which can be used to
    * clear the text quickly.
    */
@@ -389,18 +356,6 @@ public open class LineEdit : Control() {
     }
 
   /**
-   * Sets the icon that will appear in the right end of the [LineEdit] if there's no [text], or
-   * always, if [clearButtonEnabled] is set to `false`.
-   */
-  public final inline var rightIcon: Texture2D?
-    @JvmName("rightIconProperty")
-    get() = getRightIcon()
-    @JvmName("rightIconProperty")
-    set(`value`) {
-      setRightIcon(value)
-    }
-
-  /**
    * If `true`, the [LineEdit] doesn't display decoration.
    */
   public final inline var flat: Boolean
@@ -431,6 +386,39 @@ public open class LineEdit : Control() {
     @JvmName("selectAllOnFocusProperty")
     set(`value`) {
       setSelectAllOnFocus(value)
+    }
+
+  /**
+   * If `true`, the native virtual keyboard is enabled on platforms that support it.
+   */
+  public final inline var virtualKeyboardEnabled: Boolean
+    @JvmName("virtualKeyboardEnabledProperty")
+    get() = isVirtualKeyboardEnabled()
+    @JvmName("virtualKeyboardEnabledProperty")
+    set(`value`) {
+      setVirtualKeyboardEnabled(value)
+    }
+
+  /**
+   * If `true`, the native virtual keyboard is shown on focus events on platforms that support it.
+   */
+  public final inline var virtualKeyboardShowOnFocus: Boolean
+    @JvmName("virtualKeyboardShowOnFocusProperty")
+    get() = getVirtualKeyboardShowOnFocus()
+    @JvmName("virtualKeyboardShowOnFocusProperty")
+    set(`value`) {
+      setVirtualKeyboardShowOnFocus(value)
+    }
+
+  /**
+   * Specifies the type of virtual keyboard to show.
+   */
+  public final inline var virtualKeyboardType: VirtualKeyboardType
+    @JvmName("virtualKeyboardTypeProperty")
+    get() = getVirtualKeyboardType()
+    @JvmName("virtualKeyboardTypeProperty")
+    set(`value`) {
+      setVirtualKeyboardType(value)
     }
 
   /**
@@ -527,8 +515,8 @@ public open class LineEdit : Control() {
     }
 
   /**
-   * Language code used for line-breaking and text shaping algorithms. If left empty, current locale
-   * is used instead.
+   * Language code used for line-breaking and text shaping algorithms. If left empty, the current
+   * locale is used instead.
    */
   public final inline var language: String
     @JvmName("languageProperty")
@@ -560,8 +548,42 @@ public open class LineEdit : Control() {
       setStructuredTextBidiOverrideOptions(value)
     }
 
+  /**
+   * Sets the icon that will appear in the right end of the [LineEdit] if there's no [text], or
+   * always, if [clearButtonEnabled] is set to `false`.
+   */
+  public final inline var rightIcon: Texture2D?
+    @JvmName("rightIconProperty")
+    get() = getRightIcon()
+    @JvmName("rightIconProperty")
+    set(`value`) {
+      setRightIcon(value)
+    }
+
+  /**
+   * Define the scaling behavior of the [rightIcon].
+   */
+  public final inline var iconExpandMode: ExpandMode
+    @JvmName("iconExpandModeProperty")
+    get() = getIconExpandMode()
+    @JvmName("iconExpandModeProperty")
+    set(`value`) {
+      setIconExpandMode(value)
+    }
+
+  /**
+   * Scale ratio of the icon when [iconExpandMode] is set to [EXPAND_MODE_FIT_TO_LINE_EDIT].
+   */
+  public final inline var rightIconScale: Float
+    @JvmName("rightIconScaleProperty")
+    get() = getRightIconScale()
+    @JvmName("rightIconScaleProperty")
+    set(`value`) {
+      setRightIconScale(value)
+    }
+
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(347, scriptPtr)
+    createNativeObject(361, scriptPtr)
   }
 
   /**
@@ -604,12 +626,14 @@ public open class LineEdit : Control() {
   }
 
   /**
-   * Allows entering edit mode whether the [LineEdit] is focused or not.
+   * Allows entering edit mode whether the [LineEdit] is focused or not. If [hideFocus] is `true`,
+   * the focused state will not be shown (see [Control.grabFocus]).
    *
    * See also [keepEditingOnTextSubmit].
    */
-  public final fun edit(): Unit {
-    TransferContext.writeArguments()
+  @JvmOverloads
+  public final fun edit(hideFocus: Boolean = false): Unit {
+    TransferContext.writeArguments(BOOL to hideFocus)
     TransferContext.callMethod(ptr, MethodBindings.editPtr, NIL)
   }
 
@@ -1217,6 +1241,28 @@ public open class LineEdit : Control() {
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
+  public final fun setIconExpandMode(mode: ExpandMode): Unit {
+    TransferContext.writeArguments(LONG to mode.value)
+    TransferContext.callMethod(ptr, MethodBindings.setIconExpandModePtr, NIL)
+  }
+
+  public final fun getIconExpandMode(): ExpandMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getIconExpandModePtr, LONG)
+    return ExpandMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setRightIconScale(scale: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to scale.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.setRightIconScalePtr, NIL)
+  }
+
+  public final fun getRightIconScale(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getRightIconScalePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
   public final fun setFlat(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setFlatPtr, NIL)
@@ -1436,6 +1482,33 @@ public open class LineEdit : Control() {
     }
   }
 
+  public enum class ExpandMode(
+    `value`: Long,
+  ) : GodotEnum {
+    /**
+     * Use the original size for the right icon.
+     */
+    ORIGINAL_SIZE(0),
+    /**
+     * Scale the right icon's size to match the size of the text.
+     */
+    FIT_TO_TEXT(1),
+    /**
+     * Scale the right icon to fit the LineEdit.
+     */
+    FIT_TO_LINE_EDIT(2),
+    ;
+
+    public override val `value`: Long
+    init {
+      this.`value` = `value`
+    }
+
+    public companion object {
+      public fun from(`value`: Long): ExpandMode = entries.single { it.`value` == `value` }
+    }
+  }
+
   public companion object
 
   public object MethodBindings {
@@ -1454,7 +1527,7 @@ public open class LineEdit : Control() {
     internal val getHorizontalAlignmentPtr: VoidPtr =
         TypeManager.getMethodBindPtr("LineEdit", "get_horizontal_alignment", 341400642)
 
-    internal val editPtr: VoidPtr = TypeManager.getMethodBindPtr("LineEdit", "edit", 3218959716)
+    internal val editPtr: VoidPtr = TypeManager.getMethodBindPtr("LineEdit", "edit", 107499316)
 
     internal val uneditPtr: VoidPtr = TypeManager.getMethodBindPtr("LineEdit", "unedit", 3218959716)
 
@@ -1701,6 +1774,18 @@ public open class LineEdit : Control() {
 
     internal val getRightIconPtr: VoidPtr =
         TypeManager.getMethodBindPtr("LineEdit", "get_right_icon", 255860311)
+
+    internal val setIconExpandModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "set_icon_expand_mode", 3019903192)
+
+    internal val getIconExpandModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "get_icon_expand_mode", 3273584435)
+
+    internal val setRightIconScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "set_right_icon_scale", 373806689)
+
+    internal val getRightIconScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "get_right_icon_scale", 1740695150)
 
     internal val setFlatPtr: VoidPtr =
         TypeManager.getMethodBindPtr("LineEdit", "set_flat", 2586408642)

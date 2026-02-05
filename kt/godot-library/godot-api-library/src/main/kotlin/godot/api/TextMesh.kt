@@ -74,7 +74,14 @@ public open class TextMesh : PrimitiveMesh() {
     }
 
   /**
-   * Font size of the [TextMesh]'s text.
+   * Font size of the [TextMesh]'s text. This property works in tandem with [pixelSize]. Higher
+   * values will result in a more detailed font, regardless of [curveStep] and [pixelSize]. Consider
+   * keeping this value below 63 (inclusive) for good performance, and adjust [pixelSize] as needed to
+   * enlarge text.
+   *
+   * **Note:** Changing this property will regenerate the mesh, which is a slow operation,
+   * especially with large font sizes and long texts. To change the text's size in real-time
+   * efficiently, change the node's [Node3D.scale] instead.
    */
   public final inline var fontSize: Int
     @JvmName("fontSizeProperty")
@@ -85,7 +92,8 @@ public open class TextMesh : PrimitiveMesh() {
     }
 
   /**
-   * Controls the text's horizontal alignment. Supports left, center, right, and fill, or justify.
+   * Controls the text's horizontal alignment. Supports left, center, right, and fill (also known as
+   * justify).
    */
   public final inline var horizontalAlignment: HorizontalAlignment
     @JvmName("horizontalAlignmentProperty")
@@ -154,7 +162,12 @@ public open class TextMesh : PrimitiveMesh() {
     }
 
   /**
-   * The size of one pixel's width on the text to scale it in 3D.
+   * The size of one pixel's width on the text to scale it in 3D. This property works in tandem with
+   * [fontSize].
+   *
+   * **Note:** Changing this property will regenerate the mesh, which is a slow operation,
+   * especially with large font sizes and long texts. To change the text's size in real-time
+   * efficiently, change the node's [Node3D.scale] instead.
    */
   public final inline var pixelSize: Float
     @JvmName("pixelSizeProperty")
@@ -165,7 +178,12 @@ public open class TextMesh : PrimitiveMesh() {
     }
 
   /**
-   * Step (in pixels) used to approximate Bézier curves.
+   * Step (in pixels) used to approximate Bézier curves. Lower values result in smoother curves, but
+   * is slower to generate and render. Consider adjusting this according to the font size and the
+   * typical viewing distance.
+   *
+   * **Note:** Changing this property will regenerate the mesh, which is a slow operation,
+   * especially with large font sizes and long texts.
    */
   public final inline var curveStep: Float
     @JvmName("curveStepProperty")
@@ -201,6 +219,9 @@ public open class TextMesh : PrimitiveMesh() {
   /**
    * The text drawing offset (in pixels).
    *
+   * **Note:** Changing this property will regenerate the mesh, which is a slow operation. To change
+   * the text's position in real-time efficiently, change the node's [Node3D.position] instead.
+   *
    * **Warning:**
    * Be careful when trying to modify a local
    * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
@@ -229,7 +250,8 @@ public open class TextMesh : PrimitiveMesh() {
     }
 
   /**
-   * Language code used for text shaping algorithms, if left empty current locale is used instead.
+   * Language code used for line-breaking and text shaping algorithms. If left empty, the current
+   * locale is used instead.
    */
   public final inline var language: String
     @JvmName("languageProperty")
@@ -262,7 +284,7 @@ public open class TextMesh : PrimitiveMesh() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(674, scriptPtr)
+    createNativeObject(841, scriptPtr)
   }
 
   /**
@@ -277,6 +299,9 @@ public open class TextMesh : PrimitiveMesh() {
    * ``````
    *
    * The text drawing offset (in pixels).
+   *
+   * **Note:** Changing this property will regenerate the mesh, which is a slow operation. To change
+   * the text's position in real-time efficiently, change the node's [Node3D.position] instead.
    */
   @CoreTypeHelper
   public final fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply {

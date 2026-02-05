@@ -1,0 +1,80 @@
+// THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
+    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+
+package godot.api
+
+import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
+import godot.common.interop.VoidPtr
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.OBJECT
+import kotlin.Long
+import kotlin.NotImplementedError
+import kotlin.Suppress
+import kotlin.Unit
+import kotlin.jvm.JvmName
+
+/**
+ * Object for storing OpenXR structure data that is passed when calling into OpenXR APIs.
+ */
+@GodotBaseType
+public open class OpenXRStructureBase : RefCounted() {
+  /**
+   * Setting another structure object here chains these structures together to extend the API
+   * functionality. Consult the OpenXR documentation for which structures can be used with a given API
+   * call.
+   */
+  public final inline var next: OpenXRStructureBase?
+    @JvmName("nextProperty")
+    get() = getNext()
+    @JvmName("nextProperty")
+    set(`value`) {
+      setNext(value)
+    }
+
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(898, scriptPtr)
+  }
+
+  public open fun _getHeader(next: Long): Long {
+    throw NotImplementedError("OpenXRStructureBase::_getHeader is not implemented.")
+  }
+
+  /**
+   * Returns the structure type (OpenXR `XrStructureType`) used for this structure.
+   */
+  public final fun getStructureType(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getStructureTypePtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setNext(entity: OpenXRStructureBase?): Unit {
+    TransferContext.writeArguments(OBJECT to entity)
+    TransferContext.callMethod(ptr, MethodBindings.setNextPtr, NIL)
+  }
+
+  public final fun getNext(): OpenXRStructureBase? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getNextPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT) as OpenXRStructureBase?)
+  }
+
+  public companion object
+
+  public object MethodBindings {
+    internal val getStructureTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRStructureBase", "get_structure_type", 2455072627)
+
+    internal val setNextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRStructureBase", "set_next", 334698771)
+
+    internal val getNextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRStructureBase", "get_next", 2798796760)
+  }
+}

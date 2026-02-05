@@ -119,10 +119,10 @@ fun ClassName.Companion.from(type: TypeGenerationTrait) = when {
     else -> ClassName(godotApiPackage, type.identifier)
 }
 
-fun TypeName.Companion.from(type: TypeGenerationTrait, genericParameters: List<TypeName> = emptyList()): TypeName {
+fun TypeName.Companion.from(type: TypeGenerationTrait, genericParameters: List<TypeName> = emptyList(), isNullable: Boolean? = null): TypeName {
     val className = type.className
 
-        return when {
+    return when {
         type.identifier.startsWith("Signal") && !type.identifier.endsWith("0") -> {
             val nonNullableGenericParameters = genericParameters.map { it.copy(nullable = false)} // We assume generic parameters are always non-nullable
             className.parameterizedBy(nonNullableGenericParameters)
@@ -137,7 +137,7 @@ fun TypeName.Companion.from(type: TypeGenerationTrait, genericParameters: List<T
         type.identifier == GodotTypes.array -> className.parameterizedBy(ANY.copy(nullable = true))
         type.identifier == GodotTypes.dictionary -> className.parameterizedBy(ANY.copy(nullable = true), ANY.copy(nullable = true))
         else -> className
-    }.copy(nullable = type.isNullable())
+    }.copy(nullable = isNullable ?: type.isNullable())
 }
 
 const val enumPrefix = "enum::"

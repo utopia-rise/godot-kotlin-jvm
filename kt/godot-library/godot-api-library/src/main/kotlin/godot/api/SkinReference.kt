@@ -35,7 +35,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class SkinReference internal constructor() : RefCounted() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(626, scriptPtr)
+    createNativeObject(706, scriptPtr)
   }
 
   /**

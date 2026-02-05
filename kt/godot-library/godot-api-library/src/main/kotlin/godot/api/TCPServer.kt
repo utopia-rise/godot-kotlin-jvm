@@ -11,12 +11,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
-import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -33,9 +30,9 @@ import kotlin.jvm.JvmOverloads
  * communication of any kind will be blocked by Android.
  */
 @GodotBaseType
-public open class TCPServer : RefCounted() {
+public open class TCPServer : SocketServer() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(668, scriptPtr)
+    createNativeObject(165, scriptPtr)
   }
 
   /**
@@ -59,24 +56,6 @@ public open class TCPServer : RefCounted() {
   }
 
   /**
-   * Returns `true` if a connection is available for taking.
-   */
-  public final fun isConnectionAvailable(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isConnectionAvailablePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
-  }
-
-  /**
-   * Returns `true` if the server is currently listening for connections.
-   */
-  public final fun isListening(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isListeningPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
-  }
-
-  /**
    * Returns the local port this server is listening to.
    */
   public final fun getLocalPort(): Int {
@@ -94,32 +73,16 @@ public open class TCPServer : RefCounted() {
     return (TransferContext.readReturnValue(OBJECT) as StreamPeerTCP?)
   }
 
-  /**
-   * Stops listening.
-   */
-  public final fun stop(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.stopPtr, NIL)
-  }
-
   public companion object
 
   public object MethodBindings {
     internal val listenPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TCPServer", "listen", 3167955072)
 
-    internal val isConnectionAvailablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TCPServer", "is_connection_available", 36873697)
-
-    internal val isListeningPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TCPServer", "is_listening", 36873697)
-
     internal val getLocalPortPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TCPServer", "get_local_port", 3905245786)
 
     internal val takeConnectionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TCPServer", "take_connection", 30545006)
-
-    internal val stopPtr: VoidPtr = TypeManager.getMethodBindPtr("TCPServer", "stop", 3218959716)
   }
 }

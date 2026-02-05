@@ -37,7 +37,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class SpriteFrames : Resource() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(646, scriptPtr)
+    createNativeObject(30, scriptPtr)
   }
 
   /**

@@ -257,7 +257,7 @@ public open class NavigationPolygon : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(397, scriptPtr)
+    createNativeObject(760, scriptPtr)
   }
 
   /**
@@ -611,11 +611,11 @@ public open class NavigationPolygon : Resource() {
     `value`: Long,
   ) : GodotEnum {
     /**
-     * Convex partitioning that yields navigation mesh with convex polygons.
+     * Convex partitioning that results in a navigation mesh with convex polygons.
      */
     CONVEX_PARTITION(0),
     /**
-     * Triangulation partitioning that yields navigation mesh with triangle polygons.
+     * Triangulation partitioning that results in a navigation mesh with triangle polygons.
      */
     TRIANGULATE(1),
     /**

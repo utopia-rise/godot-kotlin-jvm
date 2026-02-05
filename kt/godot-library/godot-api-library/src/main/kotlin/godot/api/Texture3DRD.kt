@@ -24,6 +24,9 @@ import kotlin.jvm.JvmName
 /**
  * This texture class allows you to use a 3D texture created directly on the [RenderingDevice] as a
  * texture for materials, meshes, etc.
+ *
+ * **Note:** [Texture3DRD] is intended for low-level usage with [RenderingDevice]. For most use
+ * cases, use [Texture3D] instead.
  */
 @GodotBaseType
 public open class Texture3DRD : Texture3D() {
@@ -39,7 +42,7 @@ public open class Texture3DRD : Texture3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(687, scriptPtr)
+    createNativeObject(787, scriptPtr)
   }
 
   public final fun setTextureRdRid(textureRdRid: RID): Unit {

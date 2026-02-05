@@ -39,15 +39,15 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class JSONRPC : Object() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(322, scriptPtr)
+    createNativeObject(935, scriptPtr)
   }
 
   /**
    * Registers a callback for the given method name.
    *
-   * - [name] The name that clients can use to access the callback.
+   * - [name]: The name that clients can use to access the callback.
    *
-   * - [callback] The callback which will handle the specific method.
+   * - [callback]: The callback which will handle the specified method.
    */
   public final fun setMethod(name: String, callback: Callable): Unit {
     TransferContext.writeArguments(STRING to name, CALLABLE to callback)

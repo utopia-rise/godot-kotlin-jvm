@@ -22,6 +22,9 @@ import kotlin.jvm.JvmName
 /**
  * This texture class allows you to use a 2D texture created directly on the [RenderingDevice] as a
  * texture for materials, meshes, etc.
+ *
+ * **Note:** [Texture2DRD] is intended for low-level usage with [RenderingDevice]. For most use
+ * cases, use [Texture2D] instead.
  */
 @GodotBaseType
 public open class Texture2DRD : Texture2D() {
@@ -37,7 +40,7 @@ public open class Texture2DRD : Texture2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(685, scriptPtr)
+    createNativeObject(792, scriptPtr)
   }
 
   public final fun setTextureRdRid(textureRdRid: RID): Unit {

@@ -104,7 +104,7 @@ public open class SkeletonProfile : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(623, scriptPtr)
+    createNativeObject(654, scriptPtr)
   }
 
   public final fun setRootBone(boneName: StringName): Unit {

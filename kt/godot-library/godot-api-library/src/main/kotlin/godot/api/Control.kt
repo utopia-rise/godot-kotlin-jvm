@@ -89,9 +89,10 @@ public infix fun Long.and(other: Control.SizeFlags): Long = this.and(other.flag)
  *
  * Only one [Control] node can be in focus. Only the node in focus will receive events. To get the
  * focus, call [grabFocus]. [Control] nodes lose focus when another node grabs it, or if you hide the
- * node in focus.
+ * node in focus. Focus will not be represented visually if gained via mouse/touch input, only
+ * appearing with keyboard/gamepad input (for accessibility), or via [grabFocus].
  *
- * Sets [mouseFilter] to [MOUSE_FILTER_IGNORE] to tell a [Control] node to ignore mouse or touch
+ * Set [mouseFilter] to [MOUSE_FILTER_IGNORE] to tell a [Control] node to ignore mouse or touch
  * events. You'll need it if you place an icon on top of a button.
  *
  * [Theme] resources change the control's appearance. The [theme] of a [Control] node affects all of
@@ -425,8 +426,9 @@ public open class Control : CanvasItem() {
 
   /**
    * By default, the node's pivot is its top-left corner. When you change its [rotation] or [scale],
-   * it will rotate or scale around this pivot. Set this property to [size] / 2 to pivot around the
-   * Control's center.
+   * it will rotate or scale around this pivot.
+   *
+   * The actual offset is the combined value of this property and [pivotOffsetRatio].
    *
    * **Warning:**
    * Be careful when trying to modify a local
@@ -442,6 +444,29 @@ public open class Control : CanvasItem() {
     @JvmName("pivotOffsetProperty")
     set(`value`) {
       setPivotOffset(value)
+    }
+
+  /**
+   * Same as [pivotOffset], but expressed as uniform vector, where `Vector2(0, 0)` is the top-left
+   * corner of this control, and `Vector2(1, 1)` is its bottom-right corner. Set this property to
+   * `Vector2(0.5, 0.5)` to pivot around this control's center.
+   *
+   * The actual offset is the combined value of this property and [pivotOffset].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
+  @CoreTypeLocalCopy
+  public final inline var pivotOffsetRatio: Vector2
+    @JvmName("pivotOffsetRatioProperty")
+    get() = getPivotOffsetRatio()
+    @JvmName("pivotOffsetRatioProperty")
+    set(`value`) {
+      setPivotOffsetRatio(value)
     }
 
   /**
@@ -877,7 +902,7 @@ public open class Control : CanvasItem() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(180, scriptPtr)
+    createNativeObject(95, scriptPtr)
   }
 
   /**
@@ -953,13 +978,38 @@ public open class Control : CanvasItem() {
    * ``````
    *
    * By default, the node's pivot is its top-left corner. When you change its [rotation] or [scale],
-   * it will rotate or scale around this pivot. Set this property to [size] / 2 to pivot around the
-   * Control's center.
+   * it will rotate or scale around this pivot.
+   *
+   * The actual offset is the combined value of this property and [pivotOffsetRatio].
    */
   @CoreTypeHelper
   public final fun pivotOffsetMutate(block: Vector2.() -> Unit): Vector2 = pivotOffset.apply {
      block(this)
      pivotOffset = this
+  }
+
+  /**
+   * This is a helper function for [pivotOffsetRatio] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = control.pivotOffsetRatio
+   * //Your changes
+   * control.pivotOffsetRatio = myCoreType
+   * ``````
+   *
+   * Same as [pivotOffset], but expressed as uniform vector, where `Vector2(0, 0)` is the top-left
+   * corner of this control, and `Vector2(1, 1)` is its bottom-right corner. Set this property to
+   * `Vector2(0.5, 0.5)` to pivot around this control's center.
+   *
+   * The actual offset is the combined value of this property and [pivotOffset].
+   */
+  @CoreTypeHelper
+  public final fun pivotOffsetRatioMutate(block: Vector2.() -> Unit): Vector2 =
+      pivotOffsetRatio.apply {
+     block(this)
+     pivotOffsetRatio = this
   }
 
   /**
@@ -1165,7 +1215,7 @@ public open class Control : CanvasItem() {
    * }
    * ```
    *
-   * **Example:** Usa a scene instance as a tooltip:
+   * **Example:** Use a scene instance as a tooltip:
    *
    * ```gdscript
    * //gdscript
@@ -1201,7 +1251,7 @@ public open class Control : CanvasItem() {
    * Override this method to return a human-readable description of the position of the child [node]
    * in the custom container, added to the [accessibilityName].
    */
-  public open fun _getAccessibilityContainerName(node: Node?): String {
+  public open fun _getAccessibilityContainerName(node: Node): String {
     throw NotImplementedError("Control::_getAccessibilityContainerName is not implemented.")
   }
 
@@ -1249,7 +1299,7 @@ public open class Control : CanvasItem() {
    *
    * **Note:** The [event]'s position is relative to this control's origin.
    */
-  public open fun _guiInput(event: InputEvent?): Unit {
+  public open fun _guiInput(event: InputEvent): Unit {
     throw NotImplementedError("Control::_guiInput is not implemented.")
   }
 
@@ -1476,6 +1526,11 @@ public open class Control : CanvasItem() {
     TransferContext.callMethod(ptr, MethodBindings.setPivotOffsetPtr, NIL)
   }
 
+  public final fun setPivotOffsetRatio(ratio: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to ratio)
+    TransferContext.callMethod(ptr, MethodBindings.setPivotOffsetRatioPtr, NIL)
+  }
+
   /**
    * Returns [offsetLeft] and [offsetTop]. See also [position].
    */
@@ -1530,6 +1585,22 @@ public open class Control : CanvasItem() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
+  public final fun getPivotOffsetRatio(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getPivotOffsetRatioPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+  }
+
+  /**
+   * Returns the combined value of [pivotOffset] and [pivotOffsetRatio], in pixels. The ratio is
+   * multiplied by the control's size.
+   */
+  public final fun getCombinedPivotOffset(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getCombinedPivotOffsetPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+  }
+
   public final fun getCustomMinimumSize(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCustomMinimumSizePtr, VECTOR2)
@@ -1555,12 +1626,17 @@ public open class Control : CanvasItem() {
    * Returns the position of this [Control] in global screen coordinates (i.e. taking window
    * position into account). Mostly useful for editor plugins.
    *
-   * Equals to [globalPosition] if the window is embedded (see [Viewport.guiEmbedSubwindows]).
+   * Equivalent to `get_screen_transform().origin` (see [CanvasItem.getScreenTransform]).
    *
    * **Example:** Show a popup at the mouse position:
    *
    * ```
-   * popup_menu.position = get_screen_position() + get_local_mouse_position()
+   * popup_menu.position = get_screen_position() +
+   * get_screen_transform().basis_xform(get_local_mouse_position())
+   *
+   * # The above code is equivalent to:
+   * popup_menu.position = get_screen_transform() * get_local_mouse_position()
+   *
    * popup_menu.reset_size()
    * popup_menu.popup()
    * ```
@@ -1638,9 +1714,14 @@ public open class Control : CanvasItem() {
 
   /**
    * Returns `true` if this is the current focused control. See [focusMode].
+   *
+   * If [ignoreHiddenFocus] is `true`, controls that have their focus hidden will always return
+   * `false`. Hidden focus happens automatically when controls gain focus via mouse input, or manually
+   * using [grabFocus] with `hide_focus` set to `true`.
    */
-  public final fun hasFocus(): Boolean {
-    TransferContext.writeArguments()
+  @JvmOverloads
+  public final fun hasFocus(ignoreHiddenFocus: Boolean = false): Boolean {
+    TransferContext.writeArguments(BOOL to ignoreHiddenFocus)
     TransferContext.callMethod(ptr, MethodBindings.hasFocusPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1648,11 +1729,16 @@ public open class Control : CanvasItem() {
   /**
    * Steal the focus from another control and become the focused control (see [focusMode]).
    *
+   * If [hideFocus] is `true`, the control will not visually show its focused state. Has no effect
+   * for [LineEdit] and [TextEdit] when [ProjectSettings.gui/common/showFocusStateOnPointerEvent] is
+   * set to `Control Supports Keyboard Input`, or for any control when it is set to `Always`.
+   *
    * **Note:** Using this method together with [Callable.callDeferred] makes it more reliable,
    * especially when called inside [Node.Ready].
    */
-  public final fun grabFocus(): Unit {
-    TransferContext.writeArguments()
+  @JvmOverloads
+  public final fun grabFocus(hideFocus: Boolean = false): Unit {
+    TransferContext.writeArguments(BOOL to hideFocus)
     TransferContext.callMethod(ptr, MethodBindings.grabFocusPtr, NIL)
   }
 
@@ -1773,7 +1859,7 @@ public open class Control : CanvasItem() {
    *
    * See also [getThemeIcon].
    */
-  public final fun addThemeIconOverride(name: StringName, texture: Texture2D?): Unit {
+  public final fun addThemeIconOverride(name: StringName, texture: Texture2D): Unit {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to texture)
     TransferContext.callMethod(ptr, MethodBindings.addThemeIconOverridePtr, NIL)
   }
@@ -1814,7 +1900,7 @@ public open class Control : CanvasItem() {
    * GetNode<Button>("MyButton").RemoveThemeStyleboxOverride("normal");
    * ```
    */
-  public final fun addThemeStyleboxOverride(name: StringName, stylebox: StyleBox?): Unit {
+  public final fun addThemeStyleboxOverride(name: StringName, stylebox: StyleBox): Unit {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to stylebox)
     TransferContext.callMethod(ptr, MethodBindings.addThemeStyleboxOverridePtr, NIL)
   }
@@ -1826,7 +1912,7 @@ public open class Control : CanvasItem() {
    *
    * See also [getThemeFont].
    */
-  public final fun addThemeFontOverride(name: StringName, font: Font?): Unit {
+  public final fun addThemeFontOverride(name: StringName, font: Font): Unit {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to font)
     TransferContext.callMethod(ptr, MethodBindings.addThemeFontOverridePtr, NIL)
   }
@@ -2710,7 +2796,7 @@ public open class Control : CanvasItem() {
    *
    * See also [getThemeIcon].
    */
-  public final fun addThemeIconOverride(name: String, texture: Texture2D?) =
+  public final fun addThemeIconOverride(name: String, texture: Texture2D) =
       addThemeIconOverride(name.asCachedStringName(), texture)
 
   /**
@@ -2749,7 +2835,7 @@ public open class Control : CanvasItem() {
    * GetNode<Button>("MyButton").RemoveThemeStyleboxOverride("normal");
    * ```
    */
-  public final fun addThemeStyleboxOverride(name: String, stylebox: StyleBox?) =
+  public final fun addThemeStyleboxOverride(name: String, stylebox: StyleBox) =
       addThemeStyleboxOverride(name.asCachedStringName(), stylebox)
 
   /**
@@ -2759,7 +2845,7 @@ public open class Control : CanvasItem() {
    *
    * See also [getThemeFont].
    */
-  public final fun addThemeFontOverride(name: String, font: Font?) =
+  public final fun addThemeFontOverride(name: String, font: Font) =
       addThemeFontOverride(name.asCachedStringName(), font)
 
   /**
@@ -3137,9 +3223,9 @@ public open class Control : CanvasItem() {
      */
     DISABLED(1),
     /**
-     * Allows the control to be receive mouse input, depending on the [mouseFilter]. This can be
-     * used to ignore the parent's [mouseBehaviorRecursive]. [getMouseFilterWithOverride] will return
-     * the [mouseFilter].
+     * Allows the control to receive mouse input, depending on the [mouseFilter]. This can be used
+     * to ignore the parent's [mouseBehaviorRecursive]. [getMouseFilterWithOverride] will return the
+     * [mouseFilter].
      */
     ENABLED(2),
     ;
@@ -3711,6 +3797,8 @@ public open class Control : CanvasItem() {
 
     /**
      * Sent when the node loses focus.
+     *
+     * This notification is sent in reversed order.
      */
     public final const val NOTIFICATION_FOCUS_EXIT: Long = 44
 
@@ -3840,6 +3928,9 @@ public open class Control : CanvasItem() {
     internal val setPivotOffsetPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Control", "set_pivot_offset", 743155724)
 
+    internal val setPivotOffsetRatioPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "set_pivot_offset_ratio", 743155724)
+
     internal val getBeginPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Control", "get_begin", 3341600327)
 
@@ -3862,6 +3953,12 @@ public open class Control : CanvasItem() {
 
     internal val getPivotOffsetPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Control", "get_pivot_offset", 3341600327)
+
+    internal val getPivotOffsetRatioPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "get_pivot_offset_ratio", 3341600327)
+
+    internal val getCombinedPivotOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "get_combined_pivot_offset", 3341600327)
 
     internal val getCustomMinimumSizePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Control", "get_custom_minimum_size", 3341600327)
@@ -3897,10 +3994,10 @@ public open class Control : CanvasItem() {
         TypeManager.getMethodBindPtr("Control", "get_focus_behavior_recursive", 2435707181)
 
     internal val hasFocusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "has_focus", 36873697)
+        TypeManager.getMethodBindPtr("Control", "has_focus", 3302206351)
 
     internal val grabFocusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "grab_focus", 3218959716)
+        TypeManager.getMethodBindPtr("Control", "grab_focus", 107499316)
 
     internal val releaseFocusPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Control", "release_focus", 3218959716)

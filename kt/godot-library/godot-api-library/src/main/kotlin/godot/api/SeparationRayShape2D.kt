@@ -54,7 +54,7 @@ public open class SeparationRayShape2D : Shape2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(597, scriptPtr)
+    createNativeObject(767, scriptPtr)
   }
 
   public final fun setLength(length: Float): Unit {

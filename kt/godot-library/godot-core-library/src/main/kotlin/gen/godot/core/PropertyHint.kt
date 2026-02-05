@@ -25,22 +25,25 @@ public enum class PropertyHint(
    *
    * Additionally, other keywords can be included: `"exp"` for exponential range editing,
    * `"radians_as_degrees"` for editing radian angles in degrees (the range values are also in
-   * degrees), `"degrees"` to hint at an angle and `"hide_slider"` to hide the slider.
+   * degrees), `"degrees"` to hint at an angle, `"prefer_slider"` to show the slider for integers,
+   * `"hide_control"` to hide the slider or up-down arrows, and `"suffix:px/s"` to display a suffix
+   * indicating the value's unit (e.g. `px/s` for pixels per second).
    */
   RANGE(1),
   /**
-   * Hints that an [int] or [String] property is an enumerated value to pick in a list specified via
-   * a hint string.
+   * Hints that an [int], [String], or [StringName] property is an enumerated value to pick in a
+   * list specified via a hint string.
    *
-   * The hint string is a comma separated list of names such as `"Hello,Something,Else"`.
-   * Whitespaces are **not** removed from either end of a name. For integer properties, the first name
-   * in the list has value 0, the next 1, and so on. Explicit values can also be specified by appending
-   * `:integer` to the name, e.g. `"Zero,One,Three:3,Four,Six:6"`.
+   * The hint string is a comma separated list of names such as `"Hello,Something,Else"`. Whitespace
+   * is **not** removed from either end of a name. For integer properties, the first name in the list
+   * has value 0, the next 1, and so on. Explicit values can also be specified by appending `:integer`
+   * to the name, e.g. `"Zero,One,Three:3,Four,Six:6"`.
    */
   ENUM(2),
   /**
-   * Hints that a [String] property can be an enumerated value to pick in a list specified via a
-   * hint string such as `"Hello,Something,Else"`.
+   * Hints that a [String] or [StringName] property can be an enumerated value to pick in a list
+   * specified via a hint string such as `"Hello,Something,Else"`. See [PROPERTY_HINT_ENUM] for
+   * details.
    *
    * Unlike [PROPERTY_HINT_ENUM], a property with this hint still accepts arbitrary values and can
    * be empty. The list of values serves to suggest possible values.
@@ -60,8 +63,8 @@ public enum class PropertyHint(
   /**
    * Hints that an [int] property is a bitmask with named bit flags.
    *
-   * The hint string is a comma separated list of names such as `"Bit0,Bit1,Bit2,Bit3"`. Whitespaces
-   * are **not** removed from either end of a name. The first name in the list has value 1, the next 2,
+   * The hint string is a comma separated list of names such as `"Bit0,Bit1,Bit2,Bit3"`. Whitespace
+   * is **not** removed from either end of a name. The first name in the list has value 1, the next 2,
    * then 4, 8, 16 and so on. Explicit values can also be specified by appending `:integer` to the
    * name, e.g. `"A:4,B:8,C:16"`. You can also combine several flags (`"A:4,B:8,AB:12,C:16"`).
    *
@@ -131,6 +134,11 @@ public enum class PropertyHint(
   /**
    * Hints that a [String] property is text with line breaks. Editing it will show a text input
    * field where line breaks can be typed.
+   *
+   * The hint string can be set to `"monospace"` to force the input field to use a monospaced font.
+   *
+   * If the hint string `"no_wrap"` is set, the input field will not wrap lines at boundaries,
+   * instead resorting to making the area scrollable.
    */
   MULTILINE_TEXT(18),
   /**

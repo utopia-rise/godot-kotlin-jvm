@@ -93,7 +93,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class MeshDataTool : RefCounted() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(361, scriptPtr)
+    createNativeObject(851, scriptPtr)
   }
 
   /**
@@ -199,6 +199,10 @@ public open class MeshDataTool : RefCounted() {
 
   /**
    * Sets the tangent of the given vertex.
+   *
+   * **Note:** Even though [tangent] is a [Plane], it does not directly represent the tangent plane.
+   * Its [Plane.x], [Plane.y], and [Plane.z] represent the tangent vector and [Plane.d] should be
+   * either `-1` or `1`. See also [Mesh.ARRAY_TANGENT].
    */
   public final fun setVertexTangent(idx: Int, tangent: Plane): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), PLANE to tangent)

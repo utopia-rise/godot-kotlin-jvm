@@ -30,23 +30,21 @@ import kotlin.Unit
  * support WAV (via [AudioStreamWAV]) and Ogg (via [AudioStreamOggVorbis]) file formats.
  */
 @GodotBaseType
-public open class AudioStream : Resource() {
+public abstract class AudioStream : Resource() {
   /**
    * Signal to be emitted to notify when the parameter list changed.
    */
   public val parameterListChanged: Signal0 by Signal0
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(81, scriptPtr)
+    createNativeObject(329, scriptPtr)
   }
 
   /**
    * Override this method to customize the returned value of [instantiatePlayback]. Should return a
    * new [AudioStreamPlayback] created when the stream is played (such as by an [AudioStreamPlayer]).
    */
-  public open fun _instantiatePlayback(): AudioStreamPlayback? {
-    throw NotImplementedError("AudioStream::_instantiatePlayback is not implemented.")
-  }
+  public abstract fun _instantiatePlayback(): AudioStreamPlayback?
 
   /**
    * Override this method to customize the name assigned to this audio stream. Unused by the engine.

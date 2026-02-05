@@ -62,7 +62,7 @@ public open class Font internal constructor() : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(224, scriptPtr)
+    createNativeObject(85, scriptPtr)
   }
 
   public final fun setFallbacks(fallbacks: VariantArray<Font>): Unit {
@@ -519,8 +519,8 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
-   * Returns `true`, if font supports given language
-   * ([url=https://en.wikipedia.org/wiki/ISO_639-1]ISO 639[/url] code).
+   * Returns `true` if the font supports the given language (as a
+   * [url=https://en.wikipedia.org/wiki/ISO_639-1]ISO 639[/url] code).
    */
   public final fun isLanguageSupported(language: String): Boolean {
     TransferContext.writeArguments(STRING to language)
@@ -529,8 +529,8 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
-   * Returns `true`, if font supports given script ([url=https://en.wikipedia.org/wiki/ISO_15924]ISO
-   * 15924[/url] code).
+   * Returns `true` if the font supports the given script (as a
+   * [url=https://en.wikipedia.org/wiki/ISO_15924]ISO 15924[/url] code).
    */
   public final fun isScriptSupported(script: String): Boolean {
     TransferContext.writeArguments(STRING to script)

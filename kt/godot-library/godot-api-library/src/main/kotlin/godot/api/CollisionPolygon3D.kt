@@ -30,8 +30,8 @@ import kotlin.jvm.JvmName
 
 /**
  * A node that provides a thickened polygon shape (a prism) to a [CollisionObject3D] parent and
- * allows to edit it. The polygon can be concave or convex. This can give a detection shape to an
- * [Area3D] or turn [PhysicsBody3D] into a solid object.
+ * allows it to be edited. The polygon can be concave or convex. This can give a detection shape to an
+ * [Area3D] or turn a [PhysicsBody3D] into a solid object.
  *
  * **Warning:** A non-uniformly scaled [CollisionShape3D] will likely not behave as expected. Make
  * sure to keep its scale the same on all axes and adjust its shape resource instead.
@@ -129,7 +129,7 @@ public open class CollisionPolygon3D : Node3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(159, scriptPtr)
+    createNativeObject(608, scriptPtr)
   }
 
   /**

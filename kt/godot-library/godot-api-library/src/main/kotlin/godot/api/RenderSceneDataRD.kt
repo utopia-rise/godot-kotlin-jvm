@@ -12,14 +12,16 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Object holds scene data related to rendering a single frame of a viewport.
+ * Object holds scene data related to rendering a single frame of a viewport. See also
+ * [RenderSceneData], [RenderData], and [RenderDataRD].
  *
- * **Note:** This is an internal rendering server object, do not instantiate this from script.
+ * **Note:** This is an internal rendering server object. Do not instantiate this class from a
+ * script.
  */
 @GodotBaseType
 public open class RenderSceneDataRD : RenderSceneData() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(564, scriptPtr)
+    createNativeObject(270, scriptPtr)
   }
 
   public companion object

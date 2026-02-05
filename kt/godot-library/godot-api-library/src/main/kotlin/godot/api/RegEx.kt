@@ -36,11 +36,14 @@ import kotlin.jvm.JvmStatic
  * more in-depth look, you can easily find various tutorials and detailed explanations on the Internet.
  *
  * To begin, the RegEx object needs to be compiled with the search pattern using [compile] before it
- * can be used.
+ * can be used. Alternatively, the static method [createFromString] can be used to create and compile a
+ * RegEx object in a single method call.
  *
  * ```
  * var regex = RegEx.new()
  * regex.compile("\\w-(\\d+)")
+ * # Shorthand to create and compile a regex (used in the examples below):
+ * var regex2 = RegEx.create_from_string("\\w-(\\d+)")
  * ```
  *
  * The search pattern must be escaped first for GDScript before it is escaped for the expression.
@@ -53,8 +56,7 @@ import kotlin.jvm.JvmStatic
  * [RegExMatch.getString] and [RegExMatch.getStart].
  *
  * ```
- * var regex = RegEx.new()
- * regex.compile("\\w-(\\d+)")
+ * var regex = RegEx.create_from_string("\\w-(\\d+)")
  * var result = regex.search("abc n-0123")
  * if result:
  * 	print(result.get_string()) # Prints "n-0123"
@@ -69,8 +71,7 @@ import kotlin.jvm.JvmStatic
  * with a match.
  *
  * ```
- * var regex = RegEx.new()
- * regex.compile("d(?<digit>[0-9]+)|x(?<digit>[0-9a-f]+)")
+ * var regex = RegEx.create_from_string("d(?<digit>[0-9]+)|x(?<digit>[0-9a-f]+)")
  * var result = regex.search("the number is x2f")
  * if result:
  * 	print(result.get_string("digit")) # Prints "2f"
@@ -88,8 +89,7 @@ import kotlin.jvm.JvmStatic
  * **Example:** Split a string using a RegEx:
  *
  * ```
- * var regex = RegEx.new()
- * regex.compile("\\S+") # Negated whitespace character class.
+ * var regex = RegEx.create_from_string("\\S+") # Negated whitespace character class.
  * var results = []
  * for result in regex.search_all("One  Two \n\tThree"):
  * 	results.push_back(result.get_string())
@@ -105,7 +105,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public open class RegEx : RefCounted() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(551, scriptPtr)
+    createNativeObject(43, scriptPtr)
   }
 
   /**

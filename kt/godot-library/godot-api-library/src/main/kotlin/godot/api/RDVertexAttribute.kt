@@ -23,6 +23,22 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class RDVertexAttribute : RefCounted() {
   /**
+   * The index of the buffer in the vertex buffer array to bind this vertex attribute. When set to
+   * `-1`, it defaults to the index of the attribute.
+   *
+   * **Note:** You cannot mix binding explicitly assigned attributes with implicitly assigned ones
+   * (i.e. `-1`). Either all attributes must have their binding set to `-1`, or all must have explicit
+   * bindings.
+   */
+  public final inline var binding: Long
+    @JvmName("bindingProperty")
+    get() = getBinding()
+    @JvmName("bindingProperty")
+    set(`value`) {
+      setBinding(value)
+    }
+
+  /**
    * The location in the shader that this attribute is bound to.
    */
   public final inline var location: Long
@@ -79,7 +95,18 @@ public open class RDVertexAttribute : RefCounted() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(543, scriptPtr)
+    createNativeObject(285, scriptPtr)
+  }
+
+  public final fun setBinding(pMember: Long): Unit {
+    TransferContext.writeArguments(LONG to pMember)
+    TransferContext.callMethod(ptr, MethodBindings.setBindingPtr, NIL)
+  }
+
+  public final fun getBinding(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getBindingPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setLocation(pMember: Long): Unit {
@@ -140,6 +167,12 @@ public open class RDVertexAttribute : RefCounted() {
   public companion object
 
   public object MethodBindings {
+    internal val setBindingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDVertexAttribute", "set_binding", 1286410249)
+
+    internal val getBindingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDVertexAttribute", "get_binding", 3905245786)
+
     internal val setLocationPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RDVertexAttribute", "set_location", 1286410249)
 

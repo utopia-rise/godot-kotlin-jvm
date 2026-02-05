@@ -12,17 +12,16 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
 import godot.core.NodePath
-import godot.core.PackedStringArray
 import godot.core.Signal1
 import godot.core.Signal2
 import godot.core.StringName
+import godot.core.VariantArray
+import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
-import godot.core.VariantParser.PACKED_STRING_ARRAY
-import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
 import godot.core.asCachedNodePath
 import godot.core.asCachedStringName
@@ -56,7 +55,7 @@ public open class AnimationPlayer : AnimationMixer() {
   /**
    * Emitted when [currentAnimation] changes.
    */
-  public val currentAnimationChanged: Signal1<String> by Signal1
+  public val currentAnimationChanged: Signal1<StringName> by Signal1
 
   /**
    * Emitted when a queued animation plays after the previous animation finished. See also
@@ -76,7 +75,7 @@ public open class AnimationPlayer : AnimationMixer() {
    * not saved in the scene. This property is mainly used to get the currently playing animation, and
    * internally for animation playback tracks. For more information, see [Animation].
    */
-  public final inline var currentAnimation: String
+  public final inline var currentAnimation: StringName
     @JvmName("currentAnimationProperty")
     get() = getCurrentAnimation()
     @JvmName("currentAnimationProperty")
@@ -88,7 +87,7 @@ public open class AnimationPlayer : AnimationMixer() {
    * If playing, the current animation's key, otherwise, the animation last played. When set, this
    * changes the animation, but will not play it unless already playing. See also [currentAnimation].
    */
-  public final inline var assignedAnimation: String
+  public final inline var assignedAnimation: StringName
     @JvmName("assignedAnimationProperty")
     get() = getAssignedAnimation()
     @JvmName("assignedAnimationProperty")
@@ -99,7 +98,7 @@ public open class AnimationPlayer : AnimationMixer() {
   /**
    * The key of the animation to play when the scene loads.
    */
-  public final inline var autoplay: String
+  public final inline var autoplay: StringName
     @JvmName("autoplayProperty")
     get() = getAutoplay()
     @JvmName("autoplayProperty")
@@ -215,7 +214,7 @@ public open class AnimationPlayer : AnimationMixer() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(36, scriptPtr)
+    createNativeObject(104, scriptPtr)
   }
 
   /**
@@ -502,26 +501,43 @@ public open class AnimationPlayer : AnimationMixer() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setCurrentAnimation(animation: String): Unit {
-    TransferContext.writeArguments(STRING to animation)
+  /**
+   * Returns `true` if the an animation is currently active. An animation is active if it was played
+   * by calling [play] and was not finished yet, or was stopped by calling [stop].
+   *
+   * This can be used to check whether an animation is currently paused or stopped.
+   *
+   * ```
+   * var is_paused = not is_playing() and is_animation_active()
+   * var is_stopped = not is_playing() and not is_animation_active()
+   * ```
+   */
+  public final fun isAnimationActive(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isAnimationActivePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setCurrentAnimation(animation: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to animation)
     TransferContext.callMethod(ptr, MethodBindings.setCurrentAnimationPtr, NIL)
   }
 
-  public final fun getCurrentAnimation(): String {
+  public final fun getCurrentAnimation(): StringName {
     TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCurrentAnimationPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    TransferContext.callMethod(ptr, MethodBindings.getCurrentAnimationPtr, STRING_NAME)
+    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
-  public final fun setAssignedAnimation(animation: String): Unit {
-    TransferContext.writeArguments(STRING to animation)
+  public final fun setAssignedAnimation(animation: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to animation)
     TransferContext.callMethod(ptr, MethodBindings.setAssignedAnimationPtr, NIL)
   }
 
-  public final fun getAssignedAnimation(): String {
+  public final fun getAssignedAnimation(): StringName {
     TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getAssignedAnimationPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    TransferContext.callMethod(ptr, MethodBindings.getAssignedAnimationPtr, STRING_NAME)
+    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
   /**
@@ -539,10 +555,10 @@ public open class AnimationPlayer : AnimationMixer() {
   /**
    * Returns a list of the animation keys that are currently queued to play.
    */
-  public final fun getQueue(): PackedStringArray {
+  public final fun getQueue(): VariantArray<StringName> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getQueuePtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
+    TransferContext.callMethod(ptr, MethodBindings.getQueuePtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<StringName>)
   }
 
   /**
@@ -577,15 +593,15 @@ public open class AnimationPlayer : AnimationMixer() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setAutoplay(name: String): Unit {
-    TransferContext.writeArguments(STRING to name)
+  public final fun setAutoplay(name: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(ptr, MethodBindings.setAutoplayPtr, NIL)
   }
 
-  public final fun getAutoplay(): String {
+  public final fun getAutoplay(): StringName {
     TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getAutoplayPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    TransferContext.callMethod(ptr, MethodBindings.getAutoplayPtr, STRING_NAME)
+    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
   public final fun setMovieQuitOnFinishEnabled(enabled: Boolean): Unit {
@@ -905,6 +921,12 @@ public open class AnimationPlayer : AnimationMixer() {
   ) =
       playWithCapture(name.asCachedStringName(), duration, customBlend, customSpeed, fromEnd, transType, easeType)
 
+  public final fun setCurrentAnimation(animation: String) =
+      setCurrentAnimation(animation.asCachedStringName())
+
+  public final fun setAssignedAnimation(animation: String) =
+      setAssignedAnimation(animation.asCachedStringName())
+
   /**
    * Queues an animation for playback once the current animation and all previously queued
    * animations are done.
@@ -913,6 +935,8 @@ public open class AnimationPlayer : AnimationMixer() {
    * unless the looped animation is stopped somehow.
    */
   public final fun queue(name: String) = queue(name.asCachedStringName())
+
+  public final fun setAutoplay(name: String) = setAutoplay(name.asCachedStringName())
 
   /**
    * Changes the start and end markers of the section being played. The current playback position
@@ -1041,23 +1065,26 @@ public open class AnimationPlayer : AnimationMixer() {
     internal val isPlayingPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AnimationPlayer", "is_playing", 36873697)
 
+    internal val isAnimationActivePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationPlayer", "is_animation_active", 36873697)
+
     internal val setCurrentAnimationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationPlayer", "set_current_animation", 83702148)
+        TypeManager.getMethodBindPtr("AnimationPlayer", "set_current_animation", 3304788590)
 
     internal val getCurrentAnimationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationPlayer", "get_current_animation", 201670096)
+        TypeManager.getMethodBindPtr("AnimationPlayer", "get_current_animation", 2002593661)
 
     internal val setAssignedAnimationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationPlayer", "set_assigned_animation", 83702148)
+        TypeManager.getMethodBindPtr("AnimationPlayer", "set_assigned_animation", 3304788590)
 
     internal val getAssignedAnimationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationPlayer", "get_assigned_animation", 201670096)
+        TypeManager.getMethodBindPtr("AnimationPlayer", "get_assigned_animation", 2002593661)
 
     internal val queuePtr: VoidPtr =
         TypeManager.getMethodBindPtr("AnimationPlayer", "queue", 3304788590)
 
     internal val getQueuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationPlayer", "get_queue", 2981934095)
+        TypeManager.getMethodBindPtr("AnimationPlayer", "get_queue", 2915620761)
 
     internal val clearQueuePtr: VoidPtr =
         TypeManager.getMethodBindPtr("AnimationPlayer", "clear_queue", 3218959716)
@@ -1072,10 +1099,10 @@ public open class AnimationPlayer : AnimationMixer() {
         TypeManager.getMethodBindPtr("AnimationPlayer", "get_playing_speed", 1740695150)
 
     internal val setAutoplayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationPlayer", "set_autoplay", 83702148)
+        TypeManager.getMethodBindPtr("AnimationPlayer", "set_autoplay", 3304788590)
 
     internal val getAutoplayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationPlayer", "get_autoplay", 201670096)
+        TypeManager.getMethodBindPtr("AnimationPlayer", "get_autoplay", 2002593661)
 
     internal val setMovieQuitOnFinishEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AnimationPlayer", "set_movie_quit_on_finish_enabled", 2586408642)

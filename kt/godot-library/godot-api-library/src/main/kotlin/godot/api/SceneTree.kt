@@ -277,7 +277,7 @@ public open class SceneTree : MainLoop() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(586, scriptPtr)
+    createNativeObject(33, scriptPtr)
   }
 
   public final fun getRoot(): Window? {
@@ -435,10 +435,10 @@ public open class SceneTree : MainLoop() {
     processAlways: Boolean = true,
     processInPhysics: Boolean = false,
     ignoreTimeScale: Boolean = false,
-  ): SceneTreeTimer? {
+  ): SceneTreeTimer {
     TransferContext.writeArguments(DOUBLE to timeSec, BOOL to processAlways, BOOL to processInPhysics, BOOL to ignoreTimeScale)
     TransferContext.callMethod(ptr, MethodBindings.createTimerPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as SceneTreeTimer?)
+    return (TransferContext.readReturnValue(OBJECT) as SceneTreeTimer)
   }
 
   /**
@@ -449,10 +449,10 @@ public open class SceneTree : MainLoop() {
    * until there is nothing left to animate. If you want the [Tween] to be automatically killed when
    * the [Node] is freed, use [Node.createTween] or [Tween.bindNode].
    */
-  public final fun createTween(): Tween? {
+  public final fun createTween(): Tween {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.createTweenPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Tween?)
+    return (TransferContext.readReturnValue(OBJECT) as Tween)
   }
 
   /**
@@ -515,7 +515,7 @@ public open class SceneTree : MainLoop() {
    * Queues the given [obj] to be deleted, calling its [Object.free] at the end of the current
    * frame. This method is similar to [Node.queueFree].
    */
-  public final fun queueDelete(obj: Object?): Unit {
+  public final fun queueDelete(obj: Object): Unit {
     TransferContext.writeArguments(OBJECT to obj)
     TransferContext.callMethod(ptr, MethodBindings.queueDeletePtr, NIL)
   }
@@ -682,7 +682,7 @@ public open class SceneTree : MainLoop() {
    * Returns [OK] on success, [ERR_CANT_OPEN] if the [path] cannot be loaded into a [PackedScene],
    * or [ERR_CANT_CREATE] if that scene cannot be instantiated.
    *
-   * **Note:** See [changeSceneToPacked] for details on the order of operations.
+   * **Note:** See [changeSceneToNode] for details on the order of operations.
    */
   public final fun changeSceneToFile(path: String): Error {
     TransferContext.writeArguments(STRING to path)
@@ -696,24 +696,43 @@ public open class SceneTree : MainLoop() {
    * Returns [OK] on success, [ERR_CANT_CREATE] if the scene cannot be instantiated, or
    * [ERR_INVALID_PARAMETER] if the scene is invalid.
    *
-   * **Note:** Operations happen in the following order when [changeSceneToPacked] is called:
+   * **Note:** See [changeSceneToNode] for details on the order of operations.
+   */
+  public final fun changeSceneToPacked(packedScene: PackedScene): Error {
+    TransferContext.writeArguments(OBJECT to packedScene)
+    TransferContext.callMethod(ptr, MethodBindings.changeSceneToPackedPtr, LONG)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Changes the running scene to the provided [Node]. Useful when you want to set up the new scene
+   * before changing.
+   *
+   * Returns [OK] on success, [ERR_INVALID_PARAMETER] if the [node] is `null`, or [ERR_UNCONFIGURED]
+   * if the [node] is already inside the scene tree.
+   *
+   * **Note:** Operations happen in the following order when [changeSceneToNode] is called:
    *
    * 1. The current scene node is immediately removed from the tree. From that point, [Node.getTree]
-   * called on the current (outgoing) scene will return `null`. [currentScene] will be `null`, too,
+   * called on the current (outgoing) scene will return `null`. [currentScene] will be `null` too,
    * because the new scene is not available yet.
    *
    * 2. At the end of the frame, the formerly current scene, already removed from the tree, will be
-   * deleted (freed from memory) and then the new scene will be instantiated and added to the tree.
-   * [Node.getTree] and [currentScene] will be back to working as usual.
+   * deleted (freed from memory) and then the new scene node will be added to the tree. [Node.getTree]
+   * and [currentScene] will be back to working as usual.
    *
    * This ensures that both scenes aren't running at the same time, while still freeing the previous
    * scene in a safe way similar to [Node.queueFree].
    *
    * If you want to reliably access the new scene, await the [signal scene_changed] signal.
+   *
+   * **Warning:** After using this method, the [SceneTree] will take ownership of the node and will
+   * free it automatically when changing scene again. Any references you had to that node will become
+   * invalid.
    */
-  public final fun changeSceneToPacked(packedScene: PackedScene?): Error {
-    TransferContext.writeArguments(OBJECT to packedScene)
-    TransferContext.callMethod(ptr, MethodBindings.changeSceneToPackedPtr, LONG)
+  public final fun changeSceneToNode(node: Node): Error {
+    TransferContext.writeArguments(OBJECT to node)
+    TransferContext.callMethod(ptr, MethodBindings.changeSceneToNodePtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -1083,6 +1102,9 @@ public open class SceneTree : MainLoop() {
 
     internal val changeSceneToPackedPtr: VoidPtr =
         TypeManager.getMethodBindPtr("SceneTree", "change_scene_to_packed", 107349098)
+
+    internal val changeSceneToNodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SceneTree", "change_scene_to_node", 2584678054)
 
     internal val reloadCurrentScenePtr: VoidPtr =
         TypeManager.getMethodBindPtr("SceneTree", "reload_current_scene", 166280745)

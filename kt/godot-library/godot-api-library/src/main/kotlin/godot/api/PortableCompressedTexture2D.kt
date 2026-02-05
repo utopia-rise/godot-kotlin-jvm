@@ -48,7 +48,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public open class PortableCompressedTexture2D : Texture2D() {
   /**
-   * Allow overriding the texture size (for 2D only).
+   * Allows overriding the texture's size (for 2D only).
    *
    * **Warning:**
    * Be careful when trying to modify a local
@@ -67,13 +67,11 @@ public open class PortableCompressedTexture2D : Texture2D() {
     }
 
   /**
-   * When running on the editor, this class will keep the source compressed data in memory.
-   * Otherwise, the source compressed data is lost after loading and the resource can't be re saved.
+   * If `true`, when running in the editor, this texture will keep the source-compressed data in
+   * memory, allowing the data to persist after loading. Otherwise, the source-compressed data is lost
+   * after loading and the texture can't be re-saved.
    *
-   * This flag allows to keep the compressed data in memory if you intend it to persist after
-   * loading.
-   *
-   * **Note:** This must be set before [createFromImage] to take effect.
+   * **Note:** This property must be set before [createFromImage] for this to work.
    */
   public final inline var keepCompressedBuffer: Boolean
     @JvmName("keepCompressedBufferProperty")
@@ -84,7 +82,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(519, scriptPtr)
+    createNativeObject(46, scriptPtr)
   }
 
   /**
@@ -98,7 +96,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
    * portablecompressedtexture2d.sizeOverride = myCoreType
    * ``````
    *
-   * Allow overriding the texture size (for 2D only).
+   * Allows overriding the texture's size (for 2D only).
    */
   @CoreTypeHelper
   public final fun sizeOverrideMutate(block: Vector2.() -> Unit): Vector2 = sizeOverride.apply {
@@ -170,7 +168,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
    * Sets the compressor parameters for Basis Universal compression. See also the settings in
    * [ResourceImporterTexture].
    *
-   * **Note:** This must be set before [createFromImage] to take effect.
+   * **Note:** This method must be called before [createFromImage] for this to work.
    */
   public final fun setBasisuCompressorParams(uastcLevel: Int, rdoQualityLoss: Float): Unit {
     TransferContext.writeArguments(LONG to uastcLevel.toLong(), DOUBLE to rdoQualityLoss.toDouble())
@@ -215,8 +213,8 @@ public open class PortableCompressedTexture2D : Texture2D() {
 
   public companion object {
     /**
-     * Overrides the flag globally for all textures of this type. This is used primarily by the
-     * editor.
+     * If [keep] is `true`, overrides the flag globally for all textures of this type. This is used
+     * primarily by the editor.
      */
     @JvmStatic
     public final fun setKeepAllCompressedBuffers(keep: Boolean): Unit {
@@ -225,7 +223,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
     }
 
     /**
-     * Return whether the flag is overridden for all textures of this type.
+     * Returns `true` if the flag is overridden for all textures of this type.
      */
     @JvmStatic
     public final fun isKeepingAllCompressedBuffers(): Boolean {

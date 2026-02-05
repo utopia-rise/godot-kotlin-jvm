@@ -19,7 +19,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class StandardMaterial3D : BaseMaterial3D() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(647, scriptPtr)
+    createNativeObject(835, scriptPtr)
   }
 
   public companion object

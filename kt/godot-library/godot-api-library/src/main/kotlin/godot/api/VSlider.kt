@@ -19,7 +19,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VSlider : Slider() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(728, scriptPtr)
+    createNativeObject(392, scriptPtr)
   }
 
   public companion object

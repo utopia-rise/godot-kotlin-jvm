@@ -6,33 +6,39 @@
 
 package godot.api
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.PackedInt32Array
 import godot.core.Signal0
 import godot.core.Signal1
+import godot.core.VariantArray
+import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
+import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmOverloads
 
 /**
- * A container that accepts only two child controls, then arranges them horizontally or vertically
- * and creates a divisor between them. The divisor can be dragged around to change the size relation
- * between the child controls.
+ * A container that arranges child controls horizontally or vertically and creates grabbers between
+ * them. The grabbers can be dragged around to change the size relations between the child controls.
  */
 @GodotBaseType
 public open class SplitContainer : Container() {
   /**
-   * Emitted when the dragger is dragged by user.
+   * Emitted when any dragger is dragged by user.
    */
   public val dragged: Signal1<Long> by Signal1
 
@@ -47,20 +53,39 @@ public open class SplitContainer : Container() {
   public val dragEnded: Signal0 by Signal0
 
   /**
-   * The initial offset of the splitting between the two [Control]s, with `0` being at the end of
-   * the first [Control].
+   * Offsets for each dragger in pixels. Each one is the offset of the split between the [Control]
+   * nodes before and after the dragger, with `0` being the default position. The default position is
+   * based on the [Control] nodes expand flags and minimum sizes. See [Control.sizeFlagsHorizontal],
+   * [Control.sizeFlagsVertical], and [Control.sizeFlagsStretchRatio].
+   *
+   * If none of the [Control] nodes before the dragger are expanded, the default position will be at
+   * the start of the [SplitContainer]. If none of the [Control] nodes after the dragger are expanded,
+   * the default position will be at the end of the [SplitContainer]. If the dragger is in between
+   * expanded [Control] nodes, the default position will be in the middle, based on the
+   * [Control.sizeFlagsStretchRatio]s and minimum sizes.
+   *
+   * **Note:** If the split offsets cause [Control] nodes to overlap, the first split will take
+   * priority when resolving the positions.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
-  public final inline var splitOffset: Int
-    @JvmName("splitOffsetProperty")
-    get() = getSplitOffset()
-    @JvmName("splitOffsetProperty")
+  @CoreTypeLocalCopy
+  public final inline var splitOffsets: PackedInt32Array
+    @JvmName("splitOffsetsProperty")
+    get() = getSplitOffsets()
+    @JvmName("splitOffsetsProperty")
     set(`value`) {
-      setSplitOffset(value)
+      setSplitOffsets(value)
     }
 
   /**
-   * If `true`, the dragger will be disabled and the children will be sized as if the [splitOffset]
-   * was `0`.
+   * If `true`, the draggers will be disabled and the children will be sized as if all
+   * [splitOffsets] were `0`.
    */
   public final inline var collapsed: Boolean
     @JvmName("collapsedProperty")
@@ -168,27 +193,101 @@ public open class SplitContainer : Container() {
       setDragAreaHighlightInEditor(value)
     }
 
+  /**
+   * The first element of [splitOffsets].
+   */
+  public final inline var splitOffset: Int
+    @JvmName("splitOffsetProperty")
+    get() = getSplitOffset()
+    @JvmName("splitOffsetProperty")
+    set(`value`) {
+      setSplitOffset(value)
+    }
+
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(635, scriptPtr)
-  }
-
-  public final fun setSplitOffset(offset: Int): Unit {
-    TransferContext.writeArguments(LONG to offset.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setSplitOffsetPtr, NIL)
-  }
-
-  public final fun getSplitOffset(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSplitOffsetPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    createNativeObject(347, scriptPtr)
   }
 
   /**
-   * Clamps the [splitOffset] value to not go outside the currently possible minimal and maximum
-   * values.
+   * This is a helper function for [splitOffsets] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = splitcontainer.splitOffsets
+   * //Your changes
+   * splitcontainer.splitOffsets = myCoreType
+   * ``````
+   *
+   * Offsets for each dragger in pixels. Each one is the offset of the split between the [Control]
+   * nodes before and after the dragger, with `0` being the default position. The default position is
+   * based on the [Control] nodes expand flags and minimum sizes. See [Control.sizeFlagsHorizontal],
+   * [Control.sizeFlagsVertical], and [Control.sizeFlagsStretchRatio].
+   *
+   * If none of the [Control] nodes before the dragger are expanded, the default position will be at
+   * the start of the [SplitContainer]. If none of the [Control] nodes after the dragger are expanded,
+   * the default position will be at the end of the [SplitContainer]. If the dragger is in between
+   * expanded [Control] nodes, the default position will be in the middle, based on the
+   * [Control.sizeFlagsStretchRatio]s and minimum sizes.
+   *
+   * **Note:** If the split offsets cause [Control] nodes to overlap, the first split will take
+   * priority when resolving the positions.
    */
-  public final fun clampSplitOffset(): Unit {
+  @CoreTypeHelper
+  public final fun splitOffsetsMutate(block: PackedInt32Array.() -> Unit): PackedInt32Array =
+      splitOffsets.apply {
+     block(this)
+     splitOffsets = this
+  }
+
+  /**
+   * This is a helper function for [splitOffsets] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * Offsets for each dragger in pixels. Each one is the offset of the split between the [Control]
+   * nodes before and after the dragger, with `0` being the default position. The default position is
+   * based on the [Control] nodes expand flags and minimum sizes. See [Control.sizeFlagsHorizontal],
+   * [Control.sizeFlagsVertical], and [Control.sizeFlagsStretchRatio].
+   *
+   * If none of the [Control] nodes before the dragger are expanded, the default position will be at
+   * the start of the [SplitContainer]. If none of the [Control] nodes after the dragger are expanded,
+   * the default position will be at the end of the [SplitContainer]. If the dragger is in between
+   * expanded [Control] nodes, the default position will be in the middle, based on the
+   * [Control.sizeFlagsStretchRatio]s and minimum sizes.
+   *
+   * **Note:** If the split offsets cause [Control] nodes to overlap, the first split will take
+   * priority when resolving the positions.
+   */
+  @CoreTypeHelper
+  public final fun splitOffsetsMutateEach(block: (index: Int, `value`: Int) -> Unit):
+      PackedInt32Array = splitOffsets.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     splitOffsets = this
+  }
+
+  public final fun setSplitOffsets(offsets: PackedInt32Array): Unit {
+    TransferContext.writeArguments(PACKED_INT_32_ARRAY to offsets)
+    TransferContext.callMethod(ptr, MethodBindings.setSplitOffsetsPtr, NIL)
+  }
+
+  public final fun getSplitOffsets(): PackedInt32Array {
     TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getSplitOffsetsPtr, PACKED_INT_32_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
+  }
+
+  /**
+   * Clamps the [splitOffsets] values to ensure they are within valid ranges and do not overlap with
+   * each other. When overlaps occur, this method prioritizes one split offset (at index
+   * [priorityIndex]) by clamping any overlapping split offsets to it.
+   */
+  @JvmOverloads
+  public final fun clampSplitOffset(priorityIndex: Int = 0): Unit {
+    TransferContext.writeArguments(LONG to priorityIndex.toLong())
     TransferContext.callMethod(ptr, MethodBindings.clampSplitOffsetPtr, NIL)
   }
 
@@ -281,6 +380,40 @@ public open class SplitContainer : Container() {
   }
 
   /**
+   * Returns an [Array] of the drag area [Control]s. These are the interactable [Control] nodes
+   * between each child. For example, this can be used to add a pre-configured button to a drag area
+   * [Control] so that it rides along with the split bar. Try setting the [Button] anchors to `center`
+   * prior to the [Node.reparent] call.
+   *
+   * ```
+   * $BarnacleButton.reparent($SplitContainer.get_drag_area_controls()[0])
+   * ```
+   *
+   * **Note:** The drag area [Control]s are drawn over the [SplitContainer]'s children, so
+   * [CanvasItem] draw objects called from a drag area and children added to it will also appear over
+   * the [SplitContainer]'s children. Try setting [Control.mouseFilter] of custom children to
+   * [Control.MOUSE_FILTER_IGNORE] to prevent blocking the mouse from dragging if desired.
+   *
+   * **Warning:** These are required internal nodes, removing or freeing them may cause a crash.
+   */
+  public final fun getDragAreaControls(): VariantArray<Control> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getDragAreaControlsPtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Control>)
+  }
+
+  public final fun setTouchDraggerEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(ptr, MethodBindings.setTouchDraggerEnabledPtr, NIL)
+  }
+
+  public final fun isTouchDraggerEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isTouchDraggerEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
    * Returns the drag area [Control]. For example, you can move a pre-configured button into the
    * drag area [Control] so that it rides along with the split bar. Try setting the [Button] anchors to
    * `center` prior to the `reparent()` call.
@@ -302,15 +435,15 @@ public open class SplitContainer : Container() {
     return (TransferContext.readReturnValue(OBJECT) as Control?)
   }
 
-  public final fun setTouchDraggerEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.setTouchDraggerEnabledPtr, NIL)
+  public final fun setSplitOffset(offset: Int): Unit {
+    TransferContext.writeArguments(LONG to offset.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.setSplitOffsetPtr, NIL)
   }
 
-  public final fun isTouchDraggerEnabled(): Boolean {
+  public final fun getSplitOffset(): Int {
     TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isTouchDraggerEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    TransferContext.callMethod(ptr, MethodBindings.getSplitOffsetPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public enum class DraggerVisibility(
@@ -351,14 +484,14 @@ public open class SplitContainer : Container() {
   public companion object
 
   public object MethodBindings {
-    internal val setSplitOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SplitContainer", "set_split_offset", 1286410249)
+    internal val setSplitOffsetsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SplitContainer", "set_split_offsets", 3614634198)
 
-    internal val getSplitOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SplitContainer", "get_split_offset", 3905245786)
+    internal val getSplitOffsetsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SplitContainer", "get_split_offsets", 1930428628)
 
     internal val clampSplitOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SplitContainer", "clamp_split_offset", 3218959716)
+        TypeManager.getMethodBindPtr("SplitContainer", "clamp_split_offset", 1995695955)
 
     internal val setCollapsedPtr: VoidPtr =
         TypeManager.getMethodBindPtr("SplitContainer", "set_collapsed", 2586408642)
@@ -408,13 +541,22 @@ public open class SplitContainer : Container() {
     internal val isDragAreaHighlightInEditorEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("SplitContainer", "is_drag_area_highlight_in_editor_enabled", 36873697)
 
-    internal val getDragAreaControlPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SplitContainer", "get_drag_area_control", 829782337)
+    internal val getDragAreaControlsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SplitContainer", "get_drag_area_controls", 2915620761)
 
     internal val setTouchDraggerEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("SplitContainer", "set_touch_dragger_enabled", 2586408642)
 
     internal val isTouchDraggerEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("SplitContainer", "is_touch_dragger_enabled", 36873697)
+
+    internal val getDragAreaControlPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SplitContainer", "get_drag_area_control", 829782337)
+
+    internal val setSplitOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SplitContainer", "set_split_offset", 1286410249)
+
+    internal val getSplitOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SplitContainer", "get_split_offset", 3905245786)
   }
 }

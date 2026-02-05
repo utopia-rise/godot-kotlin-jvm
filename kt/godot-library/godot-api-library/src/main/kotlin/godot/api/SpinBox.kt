@@ -145,6 +145,19 @@ public open class SpinBox : Range() {
     }
 
   /**
+   * If `true`, the value will be rounded to a multiple of [customArrowStep] when interacting with
+   * the arrow buttons. Otherwise, increments the value by [customArrowStep] and then rounds it
+   * according to [Range.step].
+   */
+  public final inline var customArrowRound: Boolean
+    @JvmName("customArrowRoundProperty")
+    get() = isCustomArrowRounding()
+    @JvmName("customArrowRoundProperty")
+    set(`value`) {
+      setCustomArrowRound(value)
+    }
+
+  /**
    * If `true`, the [SpinBox] will select the whole text when the [LineEdit] gains focus. Clicking
    * the up and down arrows won't trigger this behavior.
    */
@@ -157,7 +170,7 @@ public open class SpinBox : Range() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(634, scriptPtr)
+    createNativeObject(353, scriptPtr)
   }
 
   public final fun setHorizontalAlignment(alignment: HorizontalAlignment): Unit {
@@ -207,6 +220,17 @@ public open class SpinBox : Range() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCustomArrowStepPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
+  }
+
+  public final fun setCustomArrowRound(round: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to round)
+    TransferContext.callMethod(ptr, MethodBindings.setCustomArrowRoundPtr, NIL)
+  }
+
+  public final fun isCustomArrowRounding(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isCustomArrowRoundingPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun isEditable(): Boolean {
@@ -289,6 +313,12 @@ public open class SpinBox : Range() {
 
     internal val getCustomArrowStepPtr: VoidPtr =
         TypeManager.getMethodBindPtr("SpinBox", "get_custom_arrow_step", 1740695150)
+
+    internal val setCustomArrowRoundPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpinBox", "set_custom_arrow_round", 2586408642)
+
+    internal val isCustomArrowRoundingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpinBox", "is_custom_arrow_rounding", 36873697)
 
     internal val isEditablePtr: VoidPtr =
         TypeManager.getMethodBindPtr("SpinBox", "is_editable", 36873697)

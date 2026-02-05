@@ -26,17 +26,17 @@ import kotlin.Unit
 @GodotBaseType
 public open class SubtweenTweener : Tweener() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(664, scriptPtr)
+    createNativeObject(333, scriptPtr)
   }
 
   /**
    * Sets the time in seconds after which the [SubtweenTweener] will start running the subtween. By
    * default there's no delay.
    */
-  public final fun setDelay(delay: Double): SubtweenTweener? {
+  public final fun setDelay(delay: Double): SubtweenTweener {
     TransferContext.writeArguments(DOUBLE to delay)
     TransferContext.callMethod(ptr, MethodBindings.setDelayPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as SubtweenTweener?)
+    return (TransferContext.readReturnValue(OBJECT) as SubtweenTweener)
   }
 
   public companion object

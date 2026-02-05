@@ -32,7 +32,7 @@ import kotlin.jvm.JvmOverloads
  * also started automatically if [autostart] is `true`.
  *
  * Without requiring much code, a timer node can be added and configured in the editor. The [signal
- * timeout] signal it emits can also be connected through the Node dock in the editor:
+ * timeout] signal it emits can also be connected through the Signals dock in the editor:
  *
  * ```
  * func _on_timer_timeout():
@@ -141,7 +141,7 @@ public open class Timer : Node() {
     get() = getTimeLeft()
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(707, scriptPtr)
+    createNativeObject(409, scriptPtr)
   }
 
   public final fun setWaitTime(timeSec: Double): Unit {

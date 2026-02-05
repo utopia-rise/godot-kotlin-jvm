@@ -105,7 +105,7 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(475, scriptPtr)
+    createNativeObject(56, scriptPtr)
   }
 
   /**
@@ -212,7 +212,7 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
   /**
    * Adds a body to the list of bodies that this body can't collide with.
    */
-  public final fun addCollisionExceptionWith(body: Node?): Unit {
+  public final fun addCollisionExceptionWith(body: Node): Unit {
     TransferContext.writeArguments(OBJECT to body)
     TransferContext.callMethod(ptr, MethodBindings.addCollisionExceptionWithPtr, NIL)
   }
@@ -220,7 +220,7 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
   /**
    * Removes a body from the list of bodies that this body can't collide with.
    */
-  public final fun removeCollisionExceptionWith(body: Node?): Unit {
+  public final fun removeCollisionExceptionWith(body: Node): Unit {
     TransferContext.writeArguments(OBJECT to body)
     TransferContext.callMethod(ptr, MethodBindings.removeCollisionExceptionWithPtr, NIL)
   }

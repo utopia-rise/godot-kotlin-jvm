@@ -101,7 +101,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class AESContext : RefCounted() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(2, scriptPtr)
+    createNativeObject(154, scriptPtr)
   }
 
   /**
@@ -165,11 +165,11 @@ public open class AESContext : RefCounted() {
      */
     ECB_DECRYPT(1),
     /**
-     * AES cipher blocker chaining encryption mode.
+     * AES cipher block chaining encryption mode.
      */
     CBC_ENCRYPT(2),
     /**
-     * AES cipher blocker chaining decryption mode.
+     * AES cipher block chaining decryption mode.
      */
     CBC_DECRYPT(3),
     /**

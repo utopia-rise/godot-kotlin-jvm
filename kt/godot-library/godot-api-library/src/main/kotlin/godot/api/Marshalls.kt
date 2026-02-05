@@ -29,7 +29,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public object Marshalls : Object() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(14)
+    getSingleton(0)
   }
 
   /**

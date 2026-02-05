@@ -59,7 +59,7 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(756, scriptPtr)
+    createNativeObject(523, scriptPtr)
   }
 
   public final fun setSource(`value`: Source): Unit {
@@ -132,7 +132,8 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
      */
     TYPE_DATA(0),
     /**
-     * Adds `source_color` as hint to the uniform declaration for proper sRGB to linear conversion.
+     * Adds `source_color` as hint to the uniform declaration for proper conversion from nonlinear
+     * sRGB encoding to linear encoding.
      */
     TYPE_COLOR(1),
     /**

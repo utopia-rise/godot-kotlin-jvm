@@ -123,7 +123,7 @@ public open class FileAccess internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(217, scriptPtr)
+    createNativeObject(139, scriptPtr)
   }
 
   /**
@@ -179,8 +179,8 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Changes the file reading/writing cursor to the specified position (in bytes from the beginning
-   * of the file). This changes the value returned by [getPosition].
+   * Sets the file cursor to the specified position in bytes, from the beginning of the file. This
+   * changes the value returned by [getPosition].
    */
   public final fun seek(position: Long): Unit {
     TransferContext.writeArguments(LONG to position)
@@ -188,11 +188,11 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Changes the file reading/writing cursor to the specified position (in bytes from the end of the
-   * file). This changes the value returned by [getPosition].
+   * Sets the file cursor to the specified position in bytes, from the end of the file. This changes
+   * the value returned by [getPosition].
    *
-   * **Note:** This is an offset, so you should use negative numbers or the file cursor will be at
-   * the end of the file.
+   * **Note:** This is an offset, so you should use negative numbers otherwise the file cursor will
+   * be at the end of the file.
    */
   @JvmOverloads
   public final fun seekEnd(position: Long = 0): Unit {
@@ -390,13 +390,9 @@ public open class FileAccess internal constructor() : RefCounted() {
   /**
    * Returns the whole file as a [String]. Text is interpreted as being UTF-8 encoded. This ignores
    * the file cursor and does not affect it.
-   *
-   * If [skipCr] is `true`, carriage return characters (`\r`, CR) will be ignored when parsing the
-   * UTF-8, so that only line feed characters (`\n`, LF) represent a new line (Unix convention).
    */
-  @JvmOverloads
-  public final fun getAsText(skipCr: Boolean = false): String {
-    TransferContext.writeArguments(BOOL to skipCr)
+  public final fun getAsText(): String {
+    TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAsTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -634,9 +630,9 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Store the given [PackedStringArray] in the file as a line formatted in the CSV (Comma-Separated
-   * Values) format. You can pass a different delimiter [delim] to use other than the default `","`
-   * (comma). This delimiter must be one-character long.
+   * Stores the given [PackedStringArray] in the file as a line formatted in the CSV
+   * (Comma-Separated Values) format. You can pass a different delimiter [delim] to use other than the
+   * default `","` (comma). This delimiter must be one-character long.
    *
    * Text will be encoded as UTF-8. Returns `true` if the operation is successful.
    *
@@ -747,8 +743,8 @@ public open class FileAccess internal constructor() : RefCounted() {
      */
     READ(1),
     /**
-     * Opens the file for write operations. The file is created if it does not exist, and truncated
-     * if it does.
+     * Opens the file for write operations. If the file exists, it is truncated to zero length and
+     * its contents are cleared. Otherwise, it is created.
      *
      * **Note:** When creating a file it must be in an already existing directory. To recursively
      * create directories for a file path, see [DirAccess.makeDirRecursive].
@@ -760,8 +756,9 @@ public open class FileAccess internal constructor() : RefCounted() {
      */
     READ_WRITE(3),
     /**
-     * Opens the file for read and write operations. The file is created if it does not exist, and
-     * truncated if it does. The file cursor is positioned at the beginning of the file.
+     * Opens the file for read and write operations. If the file exists, it is truncated to zero
+     * length and its contents are cleared. Otherwise, it is created. The file cursor is positioned at
+     * the beginning of the file.
      *
      * **Note:** When creating a file it must be in an already existing directory. To recursively
      * create directories for a file path, see [DirAccess.makeDirRecursive].
@@ -1022,12 +1019,12 @@ public open class FileAccess internal constructor() : RefCounted() {
     @JvmOverloads
     @JvmStatic
     public final fun createTemp(
-      modeFlags: Int,
+      modeFlags: ModeFlags,
       prefix: String = "",
       extension: String = "",
       keep: Boolean = false,
     ): FileAccess? {
-      TransferContext.writeArguments(LONG to modeFlags.toLong(), STRING to prefix, STRING to extension, BOOL to keep)
+      TransferContext.writeArguments(LONG to modeFlags.value, STRING to prefix, STRING to extension, BOOL to keep)
       TransferContext.callMethod(0, MethodBindings.createTempPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT) as FileAccess?)
     }
@@ -1120,7 +1117,7 @@ public open class FileAccess internal constructor() : RefCounted() {
     }
 
     /**
-     * Returns file size in bytes, or `-1` on error.
+     * Returns the size of the file at the given path, in bytes, or `-1` on error.
      */
     @JvmStatic
     public final fun getSize(`file`: String): Long {
@@ -1130,7 +1127,7 @@ public open class FileAccess internal constructor() : RefCounted() {
     }
 
     /**
-     * Returns file UNIX permissions.
+     * Returns the UNIX permissions of the file at the given path.
      *
      * **Note:** This method is implemented on iOS, Linux/BSD, and macOS.
      */
@@ -1154,7 +1151,7 @@ public open class FileAccess internal constructor() : RefCounted() {
     }
 
     /**
-     * Returns `true`, if file `hidden` attribute is set.
+     * Returns `true` if the **hidden** attribute is set on the file at the given path.
      *
      * **Note:** This method is implemented on iOS, BSD, macOS, and Windows.
      */
@@ -1190,7 +1187,7 @@ public open class FileAccess internal constructor() : RefCounted() {
     }
 
     /**
-     * Returns `true`, if file `read only` attribute is set.
+     * Returns `true` if the **read only** attribute is set on the file at the given path.
      *
      * **Note:** This method is implemented on iOS, BSD, macOS, and Windows.
      */
@@ -1199,6 +1196,135 @@ public open class FileAccess internal constructor() : RefCounted() {
       TransferContext.writeArguments(STRING to file)
       TransferContext.callMethod(0, MethodBindings.getReadOnlyAttributePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL) as Boolean)
+    }
+
+    /**
+     * Reads the file extended attribute with name [attributeName] as a byte array.
+     *
+     * **Note:** This method is implemented on Linux, macOS, and Windows.
+     *
+     * **Note:** Extended attributes support depends on the file system. Attributes will be lost
+     * when the file is moved between incompatible file systems.
+     *
+     * **Note:** On Linux, only "user" namespace attributes are accessible, namespace prefix should
+     * not be included.
+     *
+     * **Note:** On Windows, alternate data streams are used to store extended attributes.
+     */
+    @JvmStatic
+    public final fun getExtendedAttribute(`file`: String, attributeName: String): PackedByteArray {
+      TransferContext.writeArguments(STRING to file, STRING to attributeName)
+      TransferContext.callMethod(0, MethodBindings.getExtendedAttributePtr, PACKED_BYTE_ARRAY)
+      return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
+    }
+
+    /**
+     * Reads the file extended attribute with name [attributeName] as a UTF-8 encoded string.
+     *
+     * **Note:** This method is implemented on Linux, macOS, and Windows.
+     *
+     * **Note:** Extended attributes support depends on the file system. Attributes will be lost
+     * when the file is moved between incompatible file systems.
+     *
+     * **Note:** On Linux, only "user" namespace attributes are accessible, namespace prefix should
+     * not be included.
+     *
+     * **Note:** On Windows, alternate data streams are used to store extended attributes.
+     */
+    @JvmStatic
+    public final fun getExtendedAttributeString(`file`: String, attributeName: String): String {
+      TransferContext.writeArguments(STRING to file, STRING to attributeName)
+      TransferContext.callMethod(0, MethodBindings.getExtendedAttributeStringPtr, STRING)
+      return (TransferContext.readReturnValue(STRING) as String)
+    }
+
+    /**
+     * Writes file extended attribute with name [attributeName] as a byte array.
+     *
+     * **Note:** This method is implemented on Linux, macOS, and Windows.
+     *
+     * **Note:** Extended attributes support depends on the file system. Attributes will be lost
+     * when the file is moved between incompatible file systems.
+     *
+     * **Note:** On Linux, only "user" namespace attributes are accessible, namespace prefix should
+     * not be included.
+     *
+     * **Note:** On Windows, alternate data streams are used to store extended attributes.
+     */
+    @JvmStatic
+    public final fun setExtendedAttribute(
+      `file`: String,
+      attributeName: String,
+      `data`: PackedByteArray,
+    ): Error {
+      TransferContext.writeArguments(STRING to file, STRING to attributeName, PACKED_BYTE_ARRAY to data)
+      TransferContext.callMethod(0, MethodBindings.setExtendedAttributePtr, LONG)
+      return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    }
+
+    /**
+     * Writes file extended attribute with name [attributeName] as a UTF-8 encoded string.
+     *
+     * **Note:** This method is implemented on Linux, macOS, and Windows.
+     *
+     * **Note:** Extended attributes support depends on the file system. Attributes will be lost
+     * when the file is moved between incompatible file systems.
+     *
+     * **Note:** On Linux, only "user" namespace attributes are accessible, namespace prefix should
+     * not be included.
+     *
+     * **Note:** On Windows, alternate data streams are used to store extended attributes.
+     */
+    @JvmStatic
+    public final fun setExtendedAttributeString(
+      `file`: String,
+      attributeName: String,
+      `data`: String,
+    ): Error {
+      TransferContext.writeArguments(STRING to file, STRING to attributeName, STRING to data)
+      TransferContext.callMethod(0, MethodBindings.setExtendedAttributeStringPtr, LONG)
+      return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    }
+
+    /**
+     * Removes file extended attribute with name [attributeName].
+     *
+     * **Note:** This method is implemented on Linux, macOS, and Windows.
+     *
+     * **Note:** Extended attributes support depends on the file system. Attributes will be lost
+     * when the file is moved between incompatible file systems.
+     *
+     * **Note:** On Linux, only "user" namespace attributes are accessible, namespace prefix should
+     * not be included.
+     *
+     * **Note:** On Windows, alternate data streams are used to store extended attributes.
+     */
+    @JvmStatic
+    public final fun removeExtendedAttribute(`file`: String, attributeName: String): Error {
+      TransferContext.writeArguments(STRING to file, STRING to attributeName)
+      TransferContext.callMethod(0, MethodBindings.removeExtendedAttributePtr, LONG)
+      return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    }
+
+    /**
+     * Returns a list of file extended attributes.
+     *
+     * **Note:** This method is implemented on Linux, macOS, and Windows.
+     *
+     * **Note:** Extended attributes support depends on the file system. Attributes will be lost
+     * when the file is moved between incompatible file systems.
+     *
+     * **Note:** On Linux, only "user" namespace attributes are accessible, namespace prefix should
+     * not be included.
+     *
+     * **Note:** On Windows, alternate data streams are used to store extended attributes.
+     */
+    @JvmStatic
+    public final fun getExtendedAttributesList(`file`: String): PackedStringArray {
+      TransferContext.writeArguments(STRING to file)
+      TransferContext.callMethod(0, MethodBindings.getExtendedAttributesListPtr,
+          PACKED_STRING_ARRAY)
+      return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
     }
   }
 
@@ -1218,7 +1344,7 @@ public open class FileAccess internal constructor() : RefCounted() {
         TypeManager.getMethodBindPtr("FileAccess", "get_open_error", 166280745)
 
     internal val createTempPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "create_temp", 3075606245)
+        TypeManager.getMethodBindPtr("FileAccess", "create_temp", 171914364)
 
     internal val getFileAsBytesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("FileAccess", "get_file_as_bytes", 659035735)
@@ -1287,7 +1413,7 @@ public open class FileAccess internal constructor() : RefCounted() {
         TypeManager.getMethodBindPtr("FileAccess", "get_csv_line", 2358116058)
 
     internal val getAsTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_as_text", 1162154673)
+        TypeManager.getMethodBindPtr("FileAccess", "get_as_text", 201670096)
 
     internal val getMd5Ptr: VoidPtr =
         TypeManager.getMethodBindPtr("FileAccess", "get_md5", 1703090593)
@@ -1383,5 +1509,23 @@ public open class FileAccess internal constructor() : RefCounted() {
 
     internal val getReadOnlyAttributePtr: VoidPtr =
         TypeManager.getMethodBindPtr("FileAccess", "get_read_only_attribute", 2323990056)
+
+    internal val getExtendedAttributePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileAccess", "get_extended_attribute", 955893464)
+
+    internal val getExtendedAttributeStringPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileAccess", "get_extended_attribute_string", 1218461987)
+
+    internal val setExtendedAttributePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileAccess", "set_extended_attribute", 2643421469)
+
+    internal val setExtendedAttributeStringPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileAccess", "set_extended_attribute_string", 699024349)
+
+    internal val removeExtendedAttributePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileAccess", "remove_extended_attribute", 852856452)
+
+    internal val getExtendedAttributesListPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileAccess", "get_extended_attributes_list", 3538744774)
   }
 }

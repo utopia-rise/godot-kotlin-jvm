@@ -67,7 +67,7 @@ public open class XRHandTracker : XRPositionalTracker() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(884, scriptPtr)
+    createNativeObject(235, scriptPtr)
   }
 
   public final fun setHasTrackingData(hasData: Boolean): Unit {

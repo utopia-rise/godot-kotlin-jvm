@@ -23,7 +23,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class CheckButton : Button() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(151, scriptPtr)
+    createNativeObject(388, scriptPtr)
   }
 
   public companion object

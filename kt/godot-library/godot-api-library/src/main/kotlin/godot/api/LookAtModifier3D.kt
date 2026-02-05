@@ -114,6 +114,19 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     }
 
   /**
+   * The relative option. If `true`, the rotation is applied relative to the pose. If `false`, the
+   * rotation is applied relative to the rest. It means to replace the current pose with the
+   * [LookAtModifier3D]'s result.
+   */
+  public final inline var relative: Boolean
+    @JvmName("relativeProperty")
+    get() = isRelative()
+    @JvmName("relativeProperty")
+    set(`value`) {
+      setRelative(value)
+    }
+
+  /**
    * This value determines from what origin is retrieved for use in the calculation of the forward
    * vector.
    */
@@ -272,7 +285,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     }
 
   /**
-   * The limit angle of the primary rotation when [symmetryLimitation] is `true`.
+   * The limit angle of the primary rotation when [symmetryLimitation] is `true`, in radians.
    */
   public final inline var primaryLimitAngle: Float
     @JvmName("primaryLimitAngleProperty")
@@ -298,7 +311,8 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     }
 
   /**
-   * The limit angle of positive side of the primary rotation when [symmetryLimitation] is `false`.
+   * The limit angle of positive side of the primary rotation when [symmetryLimitation] is `false`,
+   * in radians.
    */
   public final inline var primaryPositiveLimitAngle: Float
     @JvmName("primaryPositiveLimitAngleProperty")
@@ -320,7 +334,8 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     }
 
   /**
-   * The limit angle of negative side of the primary rotation when [symmetryLimitation] is `false`.
+   * The limit angle of negative side of the primary rotation when [symmetryLimitation] is `false`,
+   * in radians.
    */
   public final inline var primaryNegativeLimitAngle: Float
     @JvmName("primaryNegativeLimitAngleProperty")
@@ -342,7 +357,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     }
 
   /**
-   * The limit angle of the secondary rotation when [symmetryLimitation] is `true`.
+   * The limit angle of the secondary rotation when [symmetryLimitation] is `true`, in radians.
    */
   public final inline var secondaryLimitAngle: Float
     @JvmName("secondaryLimitAngleProperty")
@@ -365,7 +380,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
 
   /**
    * The limit angle of positive side of the secondary rotation when [symmetryLimitation] is
-   * `false`.
+   * `false`, in radians.
    */
   public final inline var secondaryPositiveLimitAngle: Float
     @JvmName("secondaryPositiveLimitAngleProperty")
@@ -388,7 +403,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
 
   /**
    * The limit angle of negative side of the secondary rotation when [symmetryLimitation] is
-   * `false`.
+   * `false`, in radians.
    */
   public final inline var secondaryNegativeLimitAngle: Float
     @JvmName("secondaryNegativeLimitAngleProperty")
@@ -410,7 +425,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(350, scriptPtr)
+    createNativeObject(614, scriptPtr)
   }
 
   /**
@@ -498,6 +513,17 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
   public final fun isUsingSecondaryRotation(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isUsingSecondaryRotationPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setRelative(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(ptr, MethodBindings.setRelativePtr, NIL)
+  }
+
+  public final fun isRelative(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isRelativePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -867,6 +893,12 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
 
     internal val isUsingSecondaryRotationPtr: VoidPtr =
         TypeManager.getMethodBindPtr("LookAtModifier3D", "is_using_secondary_rotation", 36873697)
+
+    internal val setRelativePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_relative", 2586408642)
+
+    internal val isRelativePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "is_relative", 36873697)
 
     internal val setOriginSafeMarginPtr: VoidPtr =
         TypeManager.getMethodBindPtr("LookAtModifier3D", "set_origin_safe_margin", 373806689)

@@ -8,13 +8,44 @@ package godot.api
 
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
+import kotlin.Boolean
+import kotlin.Double
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
 @GodotBaseType
 public open class AudioStreamPlaybackPlaylist internal constructor() : AudioStreamPlayback() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(91, scriptPtr)
+    createNativeObject(940, scriptPtr)
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _start(fromPos: Double): Unit {
+    throw NotImplementedError("AudioStreamPlaybackPlaylist::_start can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _stop(): Unit {
+    throw NotImplementedError("AudioStreamPlaybackPlaylist::_stop can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _isPlaying(): Boolean {
+    throw NotImplementedError("AudioStreamPlaybackPlaylist::_isPlaying can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _getPlaybackPosition(): Double {
+    throw NotImplementedError("AudioStreamPlaybackPlaylist::_getPlaybackPosition can't be called from the JVM.")
   }
 
   public companion object

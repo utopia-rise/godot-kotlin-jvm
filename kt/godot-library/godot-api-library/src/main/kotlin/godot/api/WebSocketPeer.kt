@@ -35,8 +35,9 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * This class represents WebSocket connection, and can be used as a WebSocket client (RFC
- * 6455-compliant) or as a remote peer of a WebSocket server.
+ * This class represents WebSocket connection, and can be used as a WebSocket client
+ * ([url=https://datatracker.ietf.org/doc/html/rfc6455]RFC 6455[/url]-compliant) or as a remote peer of
+ * a WebSocket server.
  *
  * You can send WebSocket binary frames using [PacketPeer.putPacket], and WebSocket text frames
  * using [send] (prefer text frames when interacting with text-based API). You can check the frame type
@@ -166,7 +167,7 @@ public open class WebSocketPeer : PacketPeer() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(864, scriptPtr)
+    createNativeObject(8, scriptPtr)
   }
 
   /**
@@ -325,12 +326,17 @@ public open class WebSocketPeer : PacketPeer() {
   }
 
   /**
-   * Closes this WebSocket connection. [code] is the status code for the closure (see RFC 6455
-   * section 7.4 for a list of valid status codes). [reason] is the human readable reason for closing
-   * the connection (can be any UTF-8 string that's smaller than 123 bytes). If [code] is negative, the
-   * connection will be closed immediately without notifying the remote peer.
+   * Closes this WebSocket connection.
    *
-   * **Note:** To achieve a clean close, you will need to keep polling until [STATE_CLOSED] is
+   * [code] is the status code for the closure (see
+   * [url=https://datatracker.ietf.org/doc/html/rfc6455#section-7.4.1]RFC 6455 section 7.4[/url] for a
+   * list of valid status codes). If [code] is negative, the connection will be closed immediately
+   * without notifying the remote peer.
+   *
+   * [reason] is the human-readable reason for closing the connection. It can be any UTF-8 string
+   * that's smaller than 123 bytes.
+   *
+   * **Note:** To achieve a clean closure, you will need to keep polling until [STATE_CLOSED] is
    * reached.
    *
    * **Note:** The Web export might not support all status codes. Please refer to browser-specific

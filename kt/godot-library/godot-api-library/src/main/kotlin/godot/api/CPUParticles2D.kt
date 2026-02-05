@@ -335,6 +335,28 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
+   * The ring's inner radius if [emissionShape] is set to [EMISSION_SHAPE_RING].
+   */
+  public final inline var emissionRingInnerRadius: Float
+    @JvmName("emissionRingInnerRadiusProperty")
+    get() = getEmissionRingInnerRadius()
+    @JvmName("emissionRingInnerRadiusProperty")
+    set(`value`) {
+      setEmissionRingInnerRadius(value)
+    }
+
+  /**
+   * The ring's outer radius if [emissionShape] is set to [EMISSION_SHAPE_RING].
+   */
+  public final inline var emissionRingRadius: Float
+    @JvmName("emissionRingRadiusProperty")
+    get() = getEmissionRingRadius()
+    @JvmName("emissionRingRadiusProperty")
+    set(`value`) {
+      setEmissionRingRadius(value)
+    }
+
+  /**
    * Align Y axis of particle with the direction of its velocity.
    */
   public final inline var particleFlagAlignY: Boolean
@@ -871,7 +893,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(117, scriptPtr)
+    createNativeObject(463, scriptPtr)
   }
 
   /**
@@ -1417,6 +1439,28 @@ public open class CPUParticles2D : Node2D() {
     return (TransferContext.readReturnValue(PACKED_COLOR_ARRAY) as PackedColorArray)
   }
 
+  public final fun setEmissionRingInnerRadius(innerRadius: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to innerRadius.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.setEmissionRingInnerRadiusPtr, NIL)
+  }
+
+  public final fun getEmissionRingInnerRadius(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getEmissionRingInnerRadiusPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  public final fun setEmissionRingRadius(radius: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to radius.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.setEmissionRingRadiusPtr, NIL)
+  }
+
+  public final fun getEmissionRingRadius(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getEmissionRingRadiusPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
   public final fun getGravity(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGravityPtr, VECTOR2)
@@ -1630,9 +1674,13 @@ public open class CPUParticles2D : Node2D() {
      */
     DIRECTED_POINTS(5),
     /**
+     * Particles will be emitted in the area of a ring parameterized by its outer and inner radius.
+     */
+    RING(6),
+    /**
      * Represents the size of the [EmissionShape] enum.
      */
-    MAX(6),
+    MAX(7),
     ;
 
     public override val `value`: Long
@@ -1839,6 +1887,18 @@ public open class CPUParticles2D : Node2D() {
 
     internal val getEmissionColorsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CPUParticles2D", "get_emission_colors", 1392750486)
+
+    internal val setEmissionRingInnerRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles2D", "set_emission_ring_inner_radius", 373806689)
+
+    internal val getEmissionRingInnerRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles2D", "get_emission_ring_inner_radius", 1740695150)
+
+    internal val setEmissionRingRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles2D", "set_emission_ring_radius", 373806689)
+
+    internal val getEmissionRingRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles2D", "get_emission_ring_radius", 1740695150)
 
     internal val getGravityPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CPUParticles2D", "get_gravity", 3341600327)

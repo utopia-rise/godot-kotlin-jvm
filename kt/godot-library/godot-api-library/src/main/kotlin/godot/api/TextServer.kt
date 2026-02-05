@@ -110,7 +110,7 @@ public infix fun Long.and(other: TextServer.FontStyle): Long = this.and(other.fl
 @GodotBaseType
 public open class TextServer internal constructor() : RefCounted() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(676, scriptPtr)
+    createNativeObject(25, scriptPtr)
   }
 
   /**
@@ -191,6 +191,15 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
+   * Returns `true` if the locale requires text server support data for line/word breaking.
+   */
+  public final fun isLocaleUsingSupportData(locale: String): Boolean {
+    TransferContext.writeArguments(STRING to locale)
+    TransferContext.callMethod(ptr, MethodBindings.isLocaleUsingSupportDataPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
    * Returns `true` if locale is right-to-left.
    */
   public final fun isLocaleRightToLeft(locale: String): Boolean {
@@ -200,7 +209,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Converts readable feature, variation, script, or language name to OpenType tag.
+   * Converts the given readable name of a feature, variation, script, or language to an OpenType
+   * tag.
    */
   public final fun nameToTag(name: String): Long {
     TransferContext.writeArguments(STRING to name)
@@ -209,7 +219,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Converts OpenType tag to readable feature, variation, script, or language name.
+   * Converts the given OpenType tag to the readable name of a feature, variation, script, or
+   * language.
    */
   public final fun tagToName(tag: Long): String {
     TransferContext.writeArguments(LONG to tag)
@@ -604,7 +615,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns `true`, if color modulation is applied when drawing colored glyphs.
+   * Returns `true` if color modulation is applied when drawing the font's colored glyphs.
    */
   public final fun fontIsModulateColorGlyphs(fontRid: RID): Boolean {
     TransferContext.writeArguments(_RID to fontRid)
@@ -1442,8 +1453,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns `true`, if font supports given language
-   * ([url=https://en.wikipedia.org/wiki/ISO_639-1]ISO 639[/url] code).
+   * Returns `true` if the font supports the given language (as a
+   * [url=https://en.wikipedia.org/wiki/ISO_639-1]ISO 639[/url] code).
    */
   public final fun fontIsLanguageSupported(fontRid: RID, language: String): Boolean {
     TransferContext.writeArguments(_RID to fontRid, STRING to language)
@@ -1491,7 +1502,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns `true`, if font supports given script (ISO 15924 code).
+   * Returns `true` if the font supports the given script (as a
+   * [url=https://en.wikipedia.org/wiki/ISO_15924]ISO 15924[/url] code).
    */
   public final fun fontIsScriptSupported(fontRid: RID, script: String): Boolean {
     TransferContext.writeArguments(_RID to fontRid, STRING to script)
@@ -1575,7 +1587,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Deprecated. This method always returns `1.0`.
+   * This method does nothing and always returns `1.0`.
    */
   public final fun fontGetGlobalOversampling(): Double {
     TransferContext.writeArguments()
@@ -1584,7 +1596,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Deprecated. This method does nothing.
+   * This method does nothing.
    */
   public final fun fontSetGlobalOversampling(oversampling: Double): Unit {
     TransferContext.writeArguments(DOUBLE to oversampling)
@@ -1639,6 +1651,15 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun shapedTextClear(rid: RID): Unit {
     TransferContext.writeArguments(_RID to rid)
     TransferContext.callMethod(ptr, MethodBindings.shapedTextClearPtr, NIL)
+  }
+
+  /**
+   * Duplicates shaped text buffer.
+   */
+  public final fun shapedTextDuplicate(rid: RID): RID {
+    TransferContext.writeArguments(_RID to rid)
+    TransferContext.callMethod(ptr, MethodBindings.shapedTextDuplicatePtr, _RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -1850,6 +1871,15 @@ public open class TextServer internal constructor() : RefCounted() {
   ): Boolean {
     TransferContext.writeArguments(_RID to shaped, ANY to key, VECTOR2 to size, LONG to inlineAlign.value, DOUBLE to baseline)
     TransferContext.callMethod(ptr, MethodBindings.shapedTextResizeObjectPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Returns `true` if an object with [key] is embedded in this shaped text buffer.
+   */
+  public final fun shapedTextHasObject(shaped: RID, key: Any?): Boolean {
+    TransferContext.writeArguments(_RID to shaped, ANY to key)
+    TransferContext.callMethod(ptr, MethodBindings.shapedTextHasObjectPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -2469,9 +2499,10 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Converts a number from the Western Arabic (0..9) to the numeral systems used in [language].
+   * Converts a number from Western Arabic (0..9) to the numeral system used in the given
+   * [language].
    *
-   * If [language] is omitted, the active locale will be used.
+   * If [language] is an empty string, the active locale will be used.
    */
   @JvmOverloads
   public final fun formatNumber(number: String, language: String = ""): String {
@@ -2481,7 +2512,10 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Converts [number] from the numeral systems used in [language] to Western Arabic (0..9).
+   * Converts [number] from the numeral system used in the given [language] to Western Arabic
+   * (0..9).
+   *
+   * If [language] is an empty string, the active locale will be used.
    */
   @JvmOverloads
   public final fun parseNumber(number: String, language: String = ""): String {
@@ -2491,7 +2525,9 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns percent sign used in the [language].
+   * Returns the percent sign used in the given [language].
+   *
+   * If [language] is an empty string, the active locale will be used.
    */
   @JvmOverloads
   public final fun percentSign(language: String = ""): String {
@@ -2620,7 +2656,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the string converted to uppercase.
+   * Returns the string converted to `UPPERCASE`.
    *
    * **Note:** Casing is locale dependent and context sensitive if server support
    * [FEATURE_CONTEXT_SENSITIVE_CASE_CONVERSION] feature (supported by [TextServerAdvanced]).
@@ -2635,7 +2671,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the string converted to lowercase.
+   * Returns the string converted to `lowercase`.
    *
    * **Note:** Casing is locale dependent and context sensitive if server support
    * [FEATURE_CONTEXT_SENSITIVE_CASE_CONVERSION] feature (supported by [TextServerAdvanced]).
@@ -2650,7 +2686,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the string converted to title case.
+   * Returns the string converted to `Title Case`.
    *
    * **Note:** Casing is locale dependent and context sensitive if server support
    * [FEATURE_CONTEXT_SENSITIVE_CASE_CONVERSION] feature (supported by [TextServerAdvanced]).
@@ -3178,6 +3214,13 @@ public open class TextServer internal constructor() : RefCounted() {
        */
       @JvmField
       public val OVERRUN_JUSTIFICATION_AWARE: TextOverrunFlag = TextOverrunFlag(16)
+
+      /**
+       * Determines whether the ellipsis should be added regardless of the string length, otherwise
+       * it is added only if the string is 6 characters or longer.
+       */
+      @JvmField
+      public val OVERRUN_SHORT_STRING_ELLIPSIS: TextOverrunFlag = TextOverrunFlag(32)
     }
   }
 
@@ -3665,6 +3708,9 @@ public open class TextServer internal constructor() : RefCounted() {
     internal val getSupportDataPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "get_support_data", 2362200018)
 
+    internal val isLocaleUsingSupportDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "is_locale_using_support_data", 3927539163)
+
     internal val isLocaleRightToLeftPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "is_locale_right_to_left", 3927539163)
 
@@ -4066,6 +4112,9 @@ public open class TextServer internal constructor() : RefCounted() {
     internal val shapedTextClearPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "shaped_text_clear", 2722037293)
 
+    internal val shapedTextDuplicatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "shaped_text_duplicate", 41030802)
+
     internal val shapedTextSetDirectionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "shaped_text_set_direction", 1551430183)
 
@@ -4122,6 +4171,9 @@ public open class TextServer internal constructor() : RefCounted() {
 
     internal val shapedTextResizeObjectPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "shaped_text_resize_object", 790361552)
+
+    internal val shapedTextHasObjectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "shaped_text_has_object", 2360964694)
 
     internal val shapedGetTextPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "shaped_get_text", 642473191)

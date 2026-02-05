@@ -251,6 +251,10 @@ public open class Node : Object() {
    * **Note:** In the editor, nodes not owned by the scene root are usually not displayed in the
    * Scene dock, and will **not** be saved. To prevent this, remember to set the owner after calling
    * [addChild].
+   *
+   * **Note:** The owner needs to be the current scene root. See
+   * [url=$DOCS_URL/tutorials/plugins/running_code_in_the_editor.html#instancing-scenes]Instancing
+   * scenes[/url] in the documentation for more information.
    */
   public final inline var owner: Node?
     @JvmName("ownerProperty")
@@ -392,7 +396,7 @@ public open class Node : Object() {
   /**
    * Defines if any text should automatically change to its translated version depending on the
    * current locale (for nodes such as [Label], [RichTextLabel], [Window], etc.). Also decides if the
-   * node's strings should be parsed for POT generation.
+   * node's strings should be parsed for translation template generation.
    *
    * **Note:** For the root node, auto translate mode can also be set via
    * [ProjectSettings.internationalization/rendering/rootNodeAutoTranslate].
@@ -639,7 +643,7 @@ public open class Node : Object() {
       arg8, arg9)
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(403, scriptPtr)
+    createNativeObject(65, scriptPtr)
   }
 
   /**
@@ -793,7 +797,7 @@ public open class Node : Object() {
    * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not
    * an orphan).
    */
-  public open fun _input(event: InputEvent?): Unit {
+  public open fun _input(event: InputEvent): Unit {
     throw NotImplementedError("Node::_input is not implemented.")
   }
 
@@ -814,7 +818,7 @@ public open class Node : Object() {
    * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not
    * orphan).
    */
-  public open fun _shortcutInput(event: InputEvent?): Unit {
+  public open fun _shortcutInput(event: InputEvent): Unit {
     throw NotImplementedError("Node::_shortcutInput is not implemented.")
   }
 
@@ -837,7 +841,7 @@ public open class Node : Object() {
    * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not
    * an orphan).
    */
-  public open fun _unhandledInput(event: InputEvent?): Unit {
+  public open fun _unhandledInput(event: InputEvent): Unit {
     throw NotImplementedError("Node::_unhandledInput is not implemented.")
   }
 
@@ -863,7 +867,7 @@ public open class Node : Object() {
    * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not
    * an orphan).
    */
-  public open fun _unhandledKeyInput(event: InputEvent?): Unit {
+  public open fun _unhandledKeyInput(event: InputEvent): Unit {
     throw NotImplementedError("Node::_unhandledKeyInput is not implemented.")
   }
 
@@ -890,7 +894,7 @@ public open class Node : Object() {
    * `internal` parameter).
    */
   @JvmOverloads
-  public final fun addSibling(sibling: Node?, forceReadableName: Boolean = false): Unit {
+  public final fun addSibling(sibling: Node, forceReadableName: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to sibling, BOOL to forceReadableName)
     TransferContext.callMethod(ptr, MethodBindings.addSiblingPtr, NIL)
   }
@@ -955,7 +959,7 @@ public open class Node : Object() {
    */
   @JvmOverloads
   public final fun addChild(
-    node: Node?,
+    node: Node,
     forceReadableName: Boolean = false,
     `internal`: InternalMode = Node.InternalMode.DISABLED,
   ): Unit {
@@ -970,7 +974,7 @@ public open class Node : Object() {
    * **Note:** When this node is inside the tree, this method sets the [owner] of the removed [node]
    * (or its descendants) to `null`, if their [owner] is no longer an ancestor (see [isAncestorOf]).
    */
-  public final fun removeChild(node: Node?): Unit {
+  public final fun removeChild(node: Node): Unit {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(ptr, MethodBindings.removeChildPtr, NIL)
   }
@@ -984,7 +988,7 @@ public open class Node : Object() {
    * [Node2D], [Node3D] and [Control] support this argument (but [Control] keeps only position).
    */
   @JvmOverloads
-  public final fun reparent(newParent: Node?, keepGlobalTransform: Boolean = true): Unit {
+  public final fun reparent(newParent: Node, keepGlobalTransform: Boolean = true): Unit {
     TransferContext.writeArguments(OBJECT to newParent, BOOL to keepGlobalTransform)
     TransferContext.callMethod(ptr, MethodBindings.reparentPtr, NIL)
   }
@@ -1306,7 +1310,7 @@ public open class Node : Object() {
   /**
    * Returns `true` if the given [node] is a direct or indirect child of this node.
    */
-  public final fun isAncestorOf(node: Node?): Boolean {
+  public final fun isAncestorOf(node: Node): Boolean {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(ptr, MethodBindings.isAncestorOfPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
@@ -1316,7 +1320,7 @@ public open class Node : Object() {
    * Returns `true` if the given [node] occurs later in the scene hierarchy than this node. A node
    * occurring later is usually processed last.
    */
-  public final fun isGreaterThan(node: Node?): Boolean {
+  public final fun isGreaterThan(node: Node): Boolean {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(ptr, MethodBindings.isGreaterThanPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
@@ -1344,7 +1348,7 @@ public open class Node : Object() {
    * than a normal relative path, due to the addition of the unique node's name.
    */
   @JvmOverloads
-  public final fun getPathTo(node: Node?, useUniquePath: Boolean = false): NodePath {
+  public final fun getPathTo(node: Node, useUniquePath: Boolean = false): NodePath {
     TransferContext.writeArguments(OBJECT to node, BOOL to useUniquePath)
     TransferContext.callMethod(ptr, MethodBindings.getPathToPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
@@ -1356,7 +1360,7 @@ public open class Node : Object() {
    * [SceneTree].
    *
    * If [persistent] is `true`, the group will be stored when saved inside a [PackedScene]. All
-   * groups created and displayed in the Node dock are persistent.
+   * groups created and displayed in the Groups dock are persistent.
    *
    * **Note:** To improve performance, the order of group names is *not* guaranteed and may vary
    * between project runs. Therefore, do not rely on the group order.
@@ -1398,7 +1402,7 @@ public open class Node : Object() {
    * notifications sent through [propagateNotification] is affected by tree order. [CanvasItem] nodes
    * are also rendered in tree order. See also [processPriority].
    */
-  public final fun moveChild(childNode: Node?, toIndex: Int): Unit {
+  public final fun moveChild(childNode: Node, toIndex: Int): Unit {
     TransferContext.writeArguments(OBJECT to childNode, LONG to toIndex.toLong())
     TransferContext.callMethod(ptr, MethodBindings.moveChildPtr, NIL)
   }
@@ -2103,19 +2107,23 @@ public open class Node : Object() {
    * **Note:** The method can still be used when the node is not inside [SceneTree]. It can fail in
    * an unlikely case of using a custom [MainLoop].
    */
-  public final fun createTween(): Tween? {
+  public final fun createTween(): Tween {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.createTweenPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Tween?)
+    return (TransferContext.readReturnValue(OBJECT) as Tween)
   }
 
   /**
    * Duplicates the node, returning a new node with all of its properties, signals, groups, and
-   * children copied from the original. The behavior can be tweaked through the [flags] (see
-   * [DuplicateFlags]). Internal nodes are not duplicated.
+   * children copied from the original, recursively. The behavior can be tweaked through the [flags]
+   * (see [DuplicateFlags]). Internal nodes are not duplicated.
    *
    * **Note:** For nodes with a [Script] attached, if [Object.Init] has been defined with required
    * parameters, the duplicated node will not have a [Script].
+   *
+   * **Note:** By default, this method will duplicate only properties marked for serialization (i.e.
+   * using [@GlobalScope.PROPERTY_USAGE_STORAGE], or in GDScript, [annotation @GDScript.@export]). If
+   * you want to duplicate all properties, use [DUPLICATE_INTERNAL_STATE].
    */
   @JvmOverloads
   public final fun duplicate(flags: Int = 15): Node? {
@@ -2134,7 +2142,7 @@ public open class Node : Object() {
    * memory leaks, store a reference to the node in a variable, or use [Object.free].
    */
   @JvmOverloads
-  public final fun replaceBy(node: Node?, keepGroups: Boolean = false): Unit {
+  public final fun replaceBy(node: Node, keepGroups: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to node, BOOL to keepGroups)
     TransferContext.callMethod(ptr, MethodBindings.replaceByPtr, NIL)
   }
@@ -2163,7 +2171,7 @@ public open class Node : Object() {
    * dock, even if their [owner] is not the scene root. This method is intended to be used in editor
    * plugins and tools, but it also works in release builds. See also [isEditableInstance].
    */
-  public final fun setEditableInstance(node: Node?, isEditable: Boolean): Unit {
+  public final fun setEditableInstance(node: Node, isEditable: Boolean): Unit {
     TransferContext.writeArguments(OBJECT to node, BOOL to isEditable)
     TransferContext.callMethod(ptr, MethodBindings.setEditableInstancePtr, NIL)
   }
@@ -2631,7 +2639,7 @@ public open class Node : Object() {
    * [SceneTree].
    *
    * If [persistent] is `true`, the group will be stored when saved inside a [PackedScene]. All
-   * groups created and displayed in the Node dock are persistent.
+   * groups created and displayed in the Groups dock are persistent.
    *
    * **Note:** To improve performance, the order of group names is *not* guaranteed and may vary
    * between project runs. Therefore, do not rely on the group order.
@@ -2977,6 +2985,20 @@ public open class Node : Object() {
      * reuses [PackedScene.instantiate] as the base for the duplicated node and its children.
      */
     USE_INSTANTIATION(8),
+    /**
+     * Duplicate also non-serializable variables (i.e. without
+     * [@GlobalScope.PROPERTY_USAGE_STORAGE]).
+     */
+    INTERNAL_STATE(16),
+    /**
+     * Duplicate using default flags. This constant is useful to add or remove a single flag.
+     *
+     * ```
+     * # Duplicate non-exported variables.
+     * var dupe = duplicate(DUPLICATE_DEFAULT | DUPLICATE_INTERNAL_STATE)
+     * ```
+     */
+    DEFAULT(15),
     ;
 
     public override val `value`: Long
@@ -3033,8 +3055,8 @@ public open class Node : Object() {
     /**
      * Never automatically translate. This is the inverse of [AUTO_TRANSLATE_MODE_ALWAYS].
      *
-     * String parsing for POT generation will be skipped for this node and children that are set to
-     * [AUTO_TRANSLATE_MODE_INHERIT].
+     * String parsing for translation template generation will be skipped for this node and children
+     * that are set to [AUTO_TRANSLATE_MODE_INHERIT].
      */
     DISABLED(2),
     ;
@@ -3061,6 +3083,8 @@ public open class Node : Object() {
      * Notification received when the node is about to exit a [SceneTree]. See [_exitTree].
      *
      * This notification is received *after* the related [signal tree_exiting] signal.
+     *
+     * This notification is sent in reversed order.
      */
     public final const val NOTIFICATION_EXIT_TREE: Long = 11
 
@@ -3320,7 +3344,7 @@ public open class Node : Object() {
      * Notification received from the OS when an update of the Input Method Engine occurs (e.g.
      * change of IME cursor position or composition string).
      *
-     * Implemented only on macOS.
+     * Implemented on desktop and web platforms.
      */
     public final const val NOTIFICATION_OS_IME_UPDATE: Long = 2013
 
@@ -3377,7 +3401,7 @@ public open class Node : Object() {
     /**
      * Prints all orphan nodes (nodes outside the [SceneTree]). Useful for debugging.
      *
-     * **Note:** This method only works in debug builds. Does nothing in a project exported in
+     * **Note:** This method only works in debug builds. It does nothing in a project exported in
      * release mode.
      */
     @JvmStatic

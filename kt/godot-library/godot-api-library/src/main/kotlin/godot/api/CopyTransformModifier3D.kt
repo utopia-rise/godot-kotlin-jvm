@@ -55,6 +55,9 @@ public infix fun Long.and(other: CopyTransformModifier3D.AxisFlag): Long = this.
  * **Not Relative + Not Additive:**
  *
  * - Extract reference pose absolutely and the apply bone's pose is replaced with it.
+ *
+ * **Note:** Relative option is available only in the case [BoneConstraint3D.getReferenceType] is
+ * [BoneConstraint3D.REFERENCE_TYPE_BONE]. See also [BoneConstraint3D.ReferenceType].
  */
 @GodotBaseType
 public open class CopyTransformModifier3D : BoneConstraint3D() {
@@ -70,7 +73,7 @@ public open class CopyTransformModifier3D : BoneConstraint3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(184, scriptPtr)
+    createNativeObject(645, scriptPtr)
   }
 
   /**

@@ -24,8 +24,6 @@ import kotlin.Unit
  * This is a reentrant mutex, meaning that it can be locked multiple times by one thread, provided
  * it also unlocks it as many times.
  *
- * **Warning:** Mutexes must be used carefully to avoid deadlocks.
- *
  * **Warning:** To ensure proper cleanup without crashes or deadlocks, the following conditions must
  * be met:
  *
@@ -38,7 +36,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class Mutex : RefCounted() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(381, scriptPtr)
+    createNativeObject(136, scriptPtr)
   }
 
   /**
@@ -69,7 +67,7 @@ public open class Mutex : RefCounted() {
    * **Note:** If a thread called [lock] or [tryLock] multiple times while already having ownership
    * of the mutex, it must also call [unlock] the same number of times in order to unlock it correctly.
    *
-   * **Warning:** Calling [unlock] more times that [lock] on a given thread, thus ending up trying
+   * **Warning:** Calling [unlock] more times than [lock] on a given thread, thus ending up trying
    * to unlock a non-locked mutex, is wrong and may causes crashes or deadlocks.
    */
   public final fun unlock(): Unit {

@@ -65,6 +65,13 @@ public open class Window : Viewport() {
   public val windowInput: Signal1<InputEvent> by Signal1
 
   /**
+   * Emitted when the mouse event is received by the custom decoration area defined by
+   * [nonclientArea], and normal input to the window is blocked (such as when it has an exclusive child
+   * opened). [event]'s position is in the embedder's coordinate system.
+   */
+  public val nonclientWindowInput: Signal1<InputEvent> by Signal1
+
+  /**
    * Emitted when files are dragged from the OS file manager and dropped in the game window. The
    * argument is a list of file paths.
    *
@@ -218,7 +225,8 @@ public open class Window : Viewport() {
     }
 
   /**
-   * The window's size in pixels.
+   * The window's size in pixels. See also [contentScaleSize], which doesn't set the window's
+   * physical size but affects how scaling works relative to the current [contentScaleMode].
    *
    * **Warning:**
    * Be careful when trying to modify a local
@@ -245,6 +253,27 @@ public open class Window : Viewport() {
     @JvmName("currentScreenProperty")
     set(`value`) {
       setCurrentScreen(value)
+    }
+
+  /**
+   * If set, defines the window's custom decoration area which will receive mouse input, even if
+   * normal input to the window is blocked (such as when it has an exclusive child opened). See also
+   * [signal nonclient_window_input].
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
+  @CoreTypeLocalCopy
+  public final inline var nonclientArea: Rect2i
+    @JvmName("nonclientAreaProperty")
+    get() = getNonclientArea()
+    @JvmName("nonclientAreaProperty")
+    set(`value`) {
+      setNonclientArea(value)
     }
 
   /**
@@ -623,8 +652,21 @@ public open class Window : Viewport() {
     }
 
   /**
-   * Base size of the content (i.e. nodes that are drawn inside the window). If non-zero, [Window]'s
-   * content will be scaled when the window is resized to a different size.
+   * The content's base size in "virtual" pixels. Not to be confused with [size], which sets the
+   * actual window's physical size in pixels. If set to a value greater than `0` and [contentScaleMode]
+   * is set to a value other than [CONTENT_SCALE_MODE_DISABLED], the [Window]'s content will be scaled
+   * when the window is resized to a different size. Higher values will make the content appear
+   * *smaller*, as it will be able to fit more of the project in view. On the root [Window], this is
+   * set to match [ProjectSettings.display/window/size/viewportWidth] and
+   * [ProjectSettings.display/window/size/viewportHeight] by default.
+   *
+   * For example, when using [CONTENT_SCALE_MODE_CANVAS_ITEMS] and [contentScaleSize] set to
+   * `Vector2i(1280, 720)`, using a window size of `2560×1440` will make 2D elements appear at double
+   * their original size, as the content is scaled by a factor of `2.0` (`2560.0 / 1280.0 = 2.0`,
+   * `1440.0 / 720.0 = 2.0`).
+   *
+   * See [url=$DOCS_URL/tutorials/rendering/multiple_resolutions.html#base-size]the Base size
+   * section of the Multiple resolutions documentation[/url] for details.
    *
    * **Warning:**
    * Be careful when trying to modify a local
@@ -752,7 +794,7 @@ public open class Window : Viewport() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(866, scriptPtr)
+    createNativeObject(7, scriptPtr)
   }
 
   /**
@@ -792,12 +834,34 @@ public open class Window : Viewport() {
    * window.size = myCoreType
    * ``````
    *
-   * The window's size in pixels.
+   * The window's size in pixels. See also [contentScaleSize], which doesn't set the window's
+   * physical size but affects how scaling works relative to the current [contentScaleMode].
    */
   @CoreTypeHelper
   public final fun sizeMutate(block: Vector2i.() -> Unit): Vector2i = size.apply {
      block(this)
      size = this
+  }
+
+  /**
+   * This is a helper function for [nonclientArea] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = window.nonclientArea
+   * //Your changes
+   * window.nonclientArea = myCoreType
+   * ``````
+   *
+   * If set, defines the window's custom decoration area which will receive mouse input, even if
+   * normal input to the window is blocked (such as when it has an exclusive child opened). See also
+   * [signal nonclient_window_input].
+   */
+  @CoreTypeHelper
+  public final fun nonclientAreaMutate(block: Rect2i.() -> Unit): Rect2i = nonclientArea.apply {
+     block(this)
+     nonclientArea = this
   }
 
   /**
@@ -965,8 +1029,21 @@ public open class Window : Viewport() {
    * window.contentScaleSize = myCoreType
    * ``````
    *
-   * Base size of the content (i.e. nodes that are drawn inside the window). If non-zero, [Window]'s
-   * content will be scaled when the window is resized to a different size.
+   * The content's base size in "virtual" pixels. Not to be confused with [size], which sets the
+   * actual window's physical size in pixels. If set to a value greater than `0` and [contentScaleMode]
+   * is set to a value other than [CONTENT_SCALE_MODE_DISABLED], the [Window]'s content will be scaled
+   * when the window is resized to a different size. Higher values will make the content appear
+   * *smaller*, as it will be able to fit more of the project in view. On the root [Window], this is
+   * set to match [ProjectSettings.display/window/size/viewportWidth] and
+   * [ProjectSettings.display/window/size/viewportHeight] by default.
+   *
+   * For example, when using [CONTENT_SCALE_MODE_CANVAS_ITEMS] and [contentScaleSize] set to
+   * `Vector2i(1280, 720)`, using a window size of `2560×1440` will make 2D elements appear at double
+   * their original size, as the content is scaled by a factor of `2.0` (`2560.0 / 1280.0 = 2.0`,
+   * `1440.0 / 720.0 = 2.0`).
+   *
+   * See [url=$DOCS_URL/tutorials/rendering/multiple_resolutions.html#base-size]the Base size
+   * section of the Multiple resolutions documentation[/url] for details.
    */
   @CoreTypeHelper
   public final fun contentScaleSizeMutate(block: Vector2i.() -> Unit): Vector2i =
@@ -1028,8 +1105,8 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Centers a native window on the current screen and an embedded window on its embedder
-   * [Viewport].
+   * Centers the window in the current screen. If the window is embedded, it is centered in the
+   * embedder [Viewport] instead.
    */
   public final fun moveToCenter(): Unit {
     TransferContext.writeArguments()
@@ -1365,6 +1442,17 @@ public open class Window : Viewport() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getContentScaleStretchPtr, LONG)
     return ContentScaleStretch.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setNonclientArea(area: Rect2i): Unit {
+    TransferContext.writeArguments(RECT2I to area)
+    TransferContext.callMethod(ptr, MethodBindings.setNonclientAreaPtr, NIL)
+  }
+
+  public final fun getNonclientArea(): Rect2i {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getNonclientAreaPtr, RECT2I)
+    return (TransferContext.readReturnValue(RECT2I) as Rect2i)
   }
 
   public final fun setKeepTitleVisible(titleVisible: Boolean): Unit {
@@ -2524,7 +2612,7 @@ public open class Window : Viewport() {
     `value`: Long,
   ) : GodotEnum {
     /**
-     * The content will not be scaled to match the [Window]'s size.
+     * The content will not be scaled to match the [Window]'s size ([contentScaleSize] is ignored).
      */
     DISABLED(0),
     /**
@@ -2890,6 +2978,12 @@ public open class Window : Viewport() {
 
     internal val getContentScaleStretchPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Window", "get_content_scale_stretch", 536857316)
+
+    internal val setNonclientAreaPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "set_nonclient_area", 1763793166)
+
+    internal val getNonclientAreaPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "get_nonclient_area", 410525958)
 
     internal val setKeepTitleVisiblePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Window", "set_keep_title_visible", 2586408642)

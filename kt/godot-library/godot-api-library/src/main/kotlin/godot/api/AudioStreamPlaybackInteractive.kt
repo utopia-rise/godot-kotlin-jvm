@@ -15,8 +15,11 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING_NAME
 import godot.core.asCachedStringName
+import kotlin.Boolean
+import kotlin.Double
 import kotlin.Int
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -28,7 +31,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class AudioStreamPlaybackInteractive internal constructor() : AudioStreamPlayback() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(89, scriptPtr)
+    createNativeObject(938, scriptPtr)
   }
 
   /**
@@ -62,6 +65,34 @@ public open class AudioStreamPlaybackInteractive internal constructor() : AudioS
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCurrentClipIndexPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _start(fromPos: Double): Unit {
+    throw NotImplementedError("AudioStreamPlaybackInteractive::_start can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _stop(): Unit {
+    throw NotImplementedError("AudioStreamPlaybackInteractive::_stop can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _isPlaying(): Boolean {
+    throw NotImplementedError("AudioStreamPlaybackInteractive::_isPlaying can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _getPlaybackPosition(): Double {
+    throw NotImplementedError("AudioStreamPlaybackInteractive::_getPlaybackPosition can't be called from the JVM.")
   }
 
   /**

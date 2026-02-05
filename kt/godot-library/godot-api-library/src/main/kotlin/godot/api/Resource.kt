@@ -136,7 +136,7 @@ public open class Resource : RefCounted() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(567, scriptPtr)
+    createNativeObject(201, scriptPtr)
   }
 
   /**
@@ -378,10 +378,8 @@ public open class Resource : RefCounted() {
   }
 
   /**
-   * Duplicates this resource, deeply, like [duplicate]`(true)`, with extra control over how
-   * subresources are handled.
-   *
-   * [deepSubresourcesMode] must be one of the values from [DeepDuplicateMode].
+   * Duplicates this resource, deeply, like [duplicate] when passing `true`, with extra control over
+   * how subresources are handled.
    */
   @JvmOverloads
   public final fun duplicateDeep(deepSubresourcesMode: DeepDuplicateMode =

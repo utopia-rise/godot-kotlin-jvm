@@ -51,7 +51,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class TextServerDummy : TextServerExtension() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(678, scriptPtr)
+    createNativeObject(209, scriptPtr)
   }
 
   /**
@@ -539,6 +539,13 @@ public open class TextServerDummy : TextServerExtension() {
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
+  public override fun _shapedTextDuplicate(shaped: RID): RID {
+    throw NotImplementedError("TextServerDummy::_shapedTextDuplicate can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
   public override fun _shapedTextAddString(
     shaped: RID,
     text: String,
@@ -576,6 +583,13 @@ public open class TextServerDummy : TextServerExtension() {
     baseline: Double,
   ): Boolean {
     throw NotImplementedError("TextServerDummy::_shapedTextResizeObject can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _shapedTextHasObject(shaped: RID, key: Any?): Boolean {
+    throw NotImplementedError("TextServerDummy::_shapedTextHasObject can't be called from the JVM.")
   }
 
   /**

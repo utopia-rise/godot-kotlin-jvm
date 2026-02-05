@@ -284,7 +284,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(471, scriptPtr)
+    createNativeObject(58, scriptPtr)
   }
 
   /**
@@ -392,7 +392,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    * [customIntegrator] property allows you to disable the standard force integration and do fully
    * custom force integration for a body.
    */
-  public open fun _integrateForces(state: PhysicsDirectBodyState3D?): Unit {
+  public open fun _integrateForces(state: PhysicsDirectBodyState3D): Unit {
     throw NotImplementedError("PhysicalBone3D::_integrateForces is not implemented.")
   }
 

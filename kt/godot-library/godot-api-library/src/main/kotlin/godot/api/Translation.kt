@@ -27,9 +27,12 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * [Translation]s are resources that can be loaded and unloaded on demand. They map a collection of
- * strings to their individual translations, and they also provide convenience methods for
- * pluralization.
+ * [Translation] maps a collection of strings to their individual translations, and also provides
+ * convenience methods for pluralization.
+ *
+ * A [Translation] consists of messages. A message is identified by its context and untranslated
+ * string. Unlike [url=https://www.gnu.org/software/gettext/]gettext[/url], using an empty context
+ * string in Godot means not using any context.
  */
 @GodotBaseType
 public open class Translation : Resource() {
@@ -44,8 +47,24 @@ public open class Translation : Resource() {
       setLocale(value)
     }
 
+  /**
+   * The plural rules string to enforce. See
+   * [url=https://www.gnu.org/software/gettext/manual/html_node/Plural-forms.html]GNU gettext[/url] for
+   * examples and more info.
+   *
+   * If empty or invalid, default plural rules from [TranslationServer.getPluralRules] are used. The
+   * English plural rules are used as a fallback.
+   */
+  public final inline var pluralRulesOverride: String
+    @JvmName("pluralRulesOverrideProperty")
+    get() = getPluralRulesOverride()
+    @JvmName("pluralRulesOverrideProperty")
+    set(`value`) {
+      setPluralRulesOverride(value)
+    }
+
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(710, scriptPtr)
+    createNativeObject(144, scriptPtr)
   }
 
   /**
@@ -98,10 +117,6 @@ public open class Translation : Resource() {
    *
    * An additional context could be used to specify the translation context or differentiate
    * polysemic words.
-   *
-   * **Note:** Plurals are only supported in
-   * [url=$DOCS_URL/tutorials/i18n/localization_using_gettext.html]gettext-based translations
-   * (PO)[/url], not CSV.
    */
   public final fun addPluralMessage(
     srcMessage: StringName,
@@ -153,7 +168,24 @@ public open class Translation : Resource() {
   }
 
   /**
-   * Returns all the messages (keys).
+   * Returns the keys of all messages, that is, the context and untranslated strings of each
+   * message.
+   *
+   * **Note:** If a message does not use a context, the corresponding element is the untranslated
+   * string. Otherwise, the corresponding element is the context and untranslated string separated by
+   * the EOT character (`U+0004`). This is done for compatibility purposes.
+   *
+   * ```
+   * for key in translation.get_message_list():
+   * 	var p = key.find("\u0004")
+   * 	if p == -1:
+   * 		var untranslated = key
+   * 		print("Message &#37;s" &#37; untranslated)
+   * 	else:
+   * 		var context = key.substr(0, p)
+   * 		var untranslated = key.substr(p + 1)
+   * 		print("Message &#37;s with context &#37;s" &#37; [untranslated, context])
+   * ```
    */
   public final fun getMessageList(): PackedStringArray {
     TransferContext.writeArguments()
@@ -162,7 +194,7 @@ public open class Translation : Resource() {
   }
 
   /**
-   * Returns all the messages (translated text).
+   * Returns all the translated strings.
    */
   public final fun getTranslatedMessageList(): PackedStringArray {
     TransferContext.writeArguments()
@@ -177,6 +209,17 @@ public open class Translation : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMessageCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  public final fun setPluralRulesOverride(rules: String): Unit {
+    TransferContext.writeArguments(STRING to rules)
+    TransferContext.callMethod(ptr, MethodBindings.setPluralRulesOverridePtr, NIL)
+  }
+
+  public final fun getPluralRulesOverride(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getPluralRulesOverridePtr, STRING)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -197,10 +240,6 @@ public open class Translation : Resource() {
    *
    * An additional context could be used to specify the translation context or differentiate
    * polysemic words.
-   *
-   * **Note:** Plurals are only supported in
-   * [url=$DOCS_URL/tutorials/i18n/localization_using_gettext.html]gettext-based translations
-   * (PO)[/url], not CSV.
    */
   public final fun addPluralMessage(
     srcMessage: String,
@@ -271,5 +310,11 @@ public open class Translation : Resource() {
 
     internal val getMessageCountPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Translation", "get_message_count", 3905245786)
+
+    internal val setPluralRulesOverridePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Translation", "set_plural_rules_override", 83702148)
+
+    internal val getPluralRulesOverridePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Translation", "get_plural_rules_override", 201670096)
   }
 }

@@ -269,7 +269,7 @@ public open class GraphEdit : Control() {
     }
 
   /**
-   * [Dictionary] of human readable port type names.
+   * [Dictionary] of human-readable port type names.
    */
   public final inline var typeNames: Dictionary<Any?, Any?>
     @JvmName("typeNamesProperty")
@@ -492,7 +492,7 @@ public open class GraphEdit : Control() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(269, scriptPtr)
+    createNativeObject(342, scriptPtr)
   }
 
   /**
@@ -856,7 +856,7 @@ public open class GraphEdit : Control() {
 
   /**
    * Disallows to disconnect nodes when dragging from the right port of the [GraphNode]'s slot if it
-   * has the specified type. Use this to disable disconnection previously allowed with
+   * has the specified type. Use this to disable a disconnection previously allowed with
    * [addValidRightDisconnectType].
    */
   public final fun removeValidRightDisconnectType(type: Int): Unit {
@@ -875,7 +875,7 @@ public open class GraphEdit : Control() {
 
   /**
    * Disallows to disconnect nodes when dragging from the left port of the [GraphNode]'s slot if it
-   * has the specified type. Use this to disable disconnection previously allowed with
+   * has the specified type. Use this to disable a disconnection previously allowed with
    * [addValidLeftDisconnectType].
    */
   public final fun removeValidLeftDisconnectType(type: Int): Unit {

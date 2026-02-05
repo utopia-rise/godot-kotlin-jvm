@@ -35,12 +35,12 @@ import kotlin.jvm.JvmName
  * noticeable stutter.
  *
  * **Note:** When using a [Viewport] with [Viewport.useHdr2d] set to `true`, the returned texture
- * will be an HDR image encoded in linear space. This may look darker than normal when displayed
- * directly on screen. To convert to gamma space, you can do the following:
+ * will be an HDR image that uses linear encoding. This may look darker than normal when displayed
+ * directly on screen. To convert to nonlinear sRGB encoding, you can do the following:
  *
  * ```
  * img.convert(Image.FORMAT_RGBA8)
- * imb.linear_to_srgb()
+ * img.linear_to_srgb()
  * ```
  *
  * **Note:** Some nodes such as [Decal], [Light3D], and [PointLight2D] do not support using
@@ -68,7 +68,7 @@ public open class ViewportTexture : Texture2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(737, scriptPtr)
+    createNativeObject(413, scriptPtr)
   }
 
   public final fun setViewportPathInScene(path: NodePath): Unit {

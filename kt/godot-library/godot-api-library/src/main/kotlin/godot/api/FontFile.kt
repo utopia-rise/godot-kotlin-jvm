@@ -377,7 +377,7 @@ public open class FontFile : Font() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(225, scriptPtr)
+    createNativeObject(785, scriptPtr)
   }
 
   /**

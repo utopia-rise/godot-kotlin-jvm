@@ -1,0 +1,120 @@
+// THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
+    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+
+package godot.api
+
+import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
+import godot.common.interop.VoidPtr
+import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.NIL
+import kotlin.Boolean
+import kotlin.Suppress
+import kotlin.Unit
+import kotlin.jvm.JvmName
+
+/**
+ * This class implements the
+ * [url=https://registry.khronos.org/OpenXR/specs/1.1/html/xrspec.html#XR_EXT_frame_synthesis]OpenXR
+ * Frame synthesis extension[/url]. When enabled in the project settings and supported by the XR
+ * runtime in use, frame synthesis uses advanced reprojection techniques to inject additional frames so
+ * that your XR experience hits the full frame rate of the device.
+ */
+@GodotBaseType
+public open class OpenXRFrameSynthesisExtension : OpenXRExtensionWrapper() {
+  /**
+   * Enable frame synthesis. When `true` motion vector and depth data is provided to the XR runtime.
+   */
+  public final inline var enabled: Boolean
+    @JvmName("enabledProperty")
+    get() = isEnabled()
+    @JvmName("enabledProperty")
+    set(`value`) {
+      setEnabled(value)
+    }
+
+  /**
+   * If `true` this informs the XR runtime we will be providing frames at a greatly reduced rate.
+   * Enable this when you expect your application to run at low framerates and wish to inject multiple
+   * reprojected frames.
+   */
+  public final inline var relaxFrameInterval: Boolean
+    @JvmName("relaxFrameIntervalProperty")
+    get() = getRelaxFrameInterval()
+    @JvmName("relaxFrameIntervalProperty")
+    set(`value`) {
+      setRelaxFrameInterval(value)
+    }
+
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(216, scriptPtr)
+  }
+
+  /**
+   * Returns `true` if frame synthesis is enabled in the project settings and the current XR runtime
+   * supports frame synthesis. The value returned will only be valid once OpenXR has been initialized.
+   */
+  public final fun isAvailable(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isAvailablePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun isEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setEnabled(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(ptr, MethodBindings.setEnabledPtr, NIL)
+  }
+
+  public final fun getRelaxFrameInterval(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getRelaxFrameIntervalPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setRelaxFrameInterval(relaxFrameInterval: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to relaxFrameInterval)
+    TransferContext.callMethod(ptr, MethodBindings.setRelaxFrameIntervalPtr, NIL)
+  }
+
+  /**
+   * Queues the next frame to be skipped when supplying motion vector and depth data. Call this
+   * after teleporting your player or a similar action has moved the player to prevent incorrect
+   * reprojection results due to this movement.
+   */
+  public final fun skipNextFrame(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.skipNextFramePtr, NIL)
+  }
+
+  public companion object
+
+  public object MethodBindings {
+    internal val isAvailablePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRFrameSynthesisExtension", "is_available", 36873697)
+
+    internal val isEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRFrameSynthesisExtension", "is_enabled", 36873697)
+
+    internal val setEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRFrameSynthesisExtension", "set_enabled", 2586408642)
+
+    internal val getRelaxFrameIntervalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRFrameSynthesisExtension", "get_relax_frame_interval", 36873697)
+
+    internal val setRelaxFrameIntervalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRFrameSynthesisExtension", "set_relax_frame_interval", 2586408642)
+
+    internal val skipNextFramePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRFrameSynthesisExtension", "skip_next_frame", 3218959716)
+  }
+}

@@ -431,7 +431,7 @@ public open class Camera2D : Node2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(129, scriptPtr)
+    createNativeObject(435, scriptPtr)
   }
 
   /**
@@ -785,6 +785,8 @@ public open class Camera2D : Node2D() {
 
   /**
    * Aligns the camera to the tracked node.
+   *
+   * **Note:** Calling [forceUpdateScroll] after this method is not required.
    */
   public final fun align(): Unit {
     TransferContext.writeArguments()

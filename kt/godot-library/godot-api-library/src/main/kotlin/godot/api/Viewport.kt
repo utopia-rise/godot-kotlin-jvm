@@ -260,18 +260,18 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * If `true`, uses a fast post-processing filter to make banding significantly less visible. If
-   * [useHdr2d] is `false`, 2D rendering is *not* affected by debanding unless the
-   * [Environment.backgroundMode] is [Environment.BG_CANVAS]. If [useHdr2d] is `true`, debanding will
-   * only be applied if this is the root [Viewport] and will affect all 2D and 3D rendering, including
-   * canvas items.
+   * When using the Mobile or Forward+ renderers, set [useDebanding] to enable or disable the
+   * debanding feature of this [Viewport]. If [useHdr2d] is `false`, 2D rendering is *not* affected by
+   * debanding unless the [Environment.backgroundMode] is [Environment.BG_CANVAS]. If [useHdr2d] is
+   * `true`, debanding will only be applied if this is the root [Viewport] and will affect all 2D and
+   * 3D rendering, including canvas items.
    *
-   * In some cases, debanding may introduce a slightly noticeable dithering pattern. It's
-   * recommended to enable debanding only when actually needed since the dithering pattern will make
-   * lossless-compressed screenshots larger.
+   * [useDebanding] has no effect when using the Compatibility rendering method. The Mobile renderer
+   * can also use material debanding, which can be set with [RenderingServer.materialSetUseDebanding]
+   * or configured with [ProjectSettings.rendering/antiAliasing/quality/useDebanding].
    *
-   * See also [ProjectSettings.rendering/antiAliasing/quality/useDebanding] and
-   * [RenderingServer.viewportSetUseDebanding].
+   * See also [ProjectSettings.rendering/antiAliasing/quality/useDebanding],
+   * [RenderingServer.materialSetUseDebanding], and [RenderingServer.viewportSetUseDebanding].
    */
   public final inline var useDebanding: Boolean
     @JvmName("useDebandingProperty")
@@ -337,15 +337,13 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * If `true`, 2D rendering will use a high dynamic range (HDR) format framebuffer matching the bit
-   * depth of the 3D framebuffer. When using the Forward+ or Compatibility renderer, this will be an
-   * `RGBA16` framebuffer. When using the Mobile renderer, it will be an `RGB10_A2` framebuffer.
-   *
-   * Additionally, 2D rendering will take place in linear color space and will be converted to sRGB
-   * space immediately before blitting to the screen (if the Viewport is attached to the screen).
+   * If `true`, 2D rendering will use a high dynamic range (HDR) `RGBA16` format framebuffer.
+   * Additionally, 2D rendering will be performed on linear values and will be converted using the
+   * appropriate transfer function immediately before blitting to the screen (if the Viewport is
+   * attached to the screen).
    *
    * Practically speaking, this means that the end result of the Viewport will not be clamped to the
-   * `0-1` range and can be used in 3D rendering without color space adjustments. This allows 2D
+   * `0-1` range and can be used in 3D rendering without color encoding adjustments. This allows 2D
    * rendering to take advantage of effects requiring high dynamic range (e.g. 2D glow) as well as
    * substantially improves the appearance of effects requiring highly detailed gradients.
    */
@@ -534,7 +532,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * Sets the default filter mode used by [CanvasItem]s in this Viewport.
+   * The default filter mode used by [CanvasItem] nodes in this viewport.
    */
   public final inline var canvasItemDefaultTextureFilter: DefaultCanvasItemTextureFilter
     @JvmName("canvasItemDefaultTextureFilterProperty")
@@ -545,7 +543,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * Sets the default repeat mode used by [CanvasItem]s in this Viewport.
+   * The default repeat mode used by [CanvasItem] nodes in this viewport.
    */
   public final inline var canvasItemDefaultTextureRepeat: DefaultCanvasItemTextureRepeat
     @JvmName("canvasItemDefaultTextureRepeatProperty")
@@ -660,6 +658,17 @@ public open class Viewport internal constructor() : Node() {
     @JvmName("guiEmbedSubwindowsProperty")
     set(`value`) {
       setEmbeddingSubwindows(value)
+    }
+
+  /**
+   * The minimum distance the mouse cursor must move while pressed before a drag operation begins.
+   */
+  public final inline var guiDragThreshold: Int
+    @JvmName("guiDragThresholdProperty")
+    get() = getDragThreshold()
+    @JvmName("guiDragThresholdProperty")
+    set(`value`) {
+      setDragThreshold(value)
     }
 
   /**
@@ -807,6 +816,9 @@ public open class Viewport internal constructor() : Node() {
 
   /**
    * The rendering layers in which this [Viewport] renders [CanvasItem] nodes.
+   *
+   * **Note:** A [CanvasItem] does not inherit its parents' visibility layers. See
+   * [CanvasItem.visibilityLayer]'s description for details.
    */
   public final inline var canvasCullMask: Long
     @JvmName("canvasCullMaskProperty")
@@ -842,7 +854,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(736, scriptPtr)
+    createNativeObject(417, scriptPtr)
   }
 
   /**
@@ -1141,8 +1153,8 @@ public open class Viewport internal constructor() : Node() {
    * }
    * ```
    *
-   * **Note:** When [useHdr2d] is `true` the returned texture will be an HDR image encoded in linear
-   * space.
+   * **Note:** When [useHdr2d] is `true` the returned texture will be an HDR image using linear
+   * encoding.
    */
   public final fun getTexture(): ViewportTexture? {
     TransferContext.writeArguments()
@@ -1233,7 +1245,7 @@ public open class Viewport internal constructor() : Node() {
    * for physics object picking.
    */
   @JvmOverloads
-  public final fun pushInput(event: InputEvent?, inLocalCoords: Boolean = false): Unit {
+  public final fun pushInput(event: InputEvent, inLocalCoords: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to event, BOOL to inLocalCoords)
     TransferContext.callMethod(ptr, MethodBindings.pushInputPtr, NIL)
   }
@@ -1264,7 +1276,7 @@ public open class Viewport internal constructor() : Node() {
    * **Note:** This method doesn't propagate input events to embedded [Window]s or [SubViewport]s.
    */
   @JvmOverloads
-  public final fun pushUnhandledInput(event: InputEvent?, inLocalCoords: Boolean = false): Unit {
+  public final fun pushUnhandledInput(event: InputEvent, inLocalCoords: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to event, BOOL to inLocalCoords)
     TransferContext.callMethod(ptr, MethodBindings.pushUnhandledInputPtr, NIL)
   }
@@ -1350,7 +1362,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   * Returns the drag data human-readable description.
+   * Returns the human-readable description of the drag data, used for assistive apps.
    */
   public final fun guiGetDragDescription(): String {
     TransferContext.writeArguments()
@@ -1359,7 +1371,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   * Sets the drag data human-readable description.
+   * Sets the human-readable description of the drag data to [description], used for assistive apps.
    */
   public final fun guiSetDragDescription(description: String): Unit {
     TransferContext.writeArguments(STRING to description)
@@ -1510,7 +1522,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   * Stops the input from propagating further down the [SceneTree].
+   * Stops the input from propagating further up the [SceneTree].
    *
    * **Note:** This does not affect the methods in [Input], only the way events are propagated.
    */
@@ -1577,6 +1589,17 @@ public open class Viewport internal constructor() : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getEmbeddedSubwindowsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Window>)
+  }
+
+  public final fun setDragThreshold(threshold: Int): Unit {
+    TransferContext.writeArguments(LONG to threshold.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.setDragThresholdPtr, NIL)
+  }
+
+  public final fun getDragThreshold(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getDragThresholdPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setCanvasCullMask(mask: Long): Unit {
@@ -1675,6 +1698,11 @@ public open class Viewport internal constructor() : Node() {
 
   /**
    * Returns the currently active 2D camera. Returns `null` if there are no active cameras.
+   *
+   * **Note:** If called while the *Camera Override* system is active in editor, this will return
+   * the internally managed override camera. It is therefore advised to avoid caching the return value,
+   * or to check that the cached value is still a valid instance and is the current camera before use.
+   * See [@GlobalScope.isInstanceValid] and [Camera2D.isCurrent].
    */
   public final fun getCamera2d(): Camera2D? {
     TransferContext.writeArguments()
@@ -1725,7 +1753,12 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   * Returns the currently active 3D camera.
+   * Returns the currently active 3D camera. Returns `null` if there are no active cameras.
+   *
+   * **Note:** If called while the *Camera Override* system is active in editor, this will return
+   * the internally managed override camera. It is therefore advised to avoid caching the return value,
+   * or to check that the cached value is a valid instance and is the current camera before use. See
+   * [@GlobalScope.isInstanceValid] and [Camera3D.current].
    */
   public final fun getCamera3d(): Camera3D? {
     TransferContext.writeArguments()
@@ -2286,6 +2319,10 @@ public open class Viewport internal constructor() : Node() {
     /**
      * Draws the probes used for signed distance field global illumination (SDFGI).
      *
+     * When in the editor, left-clicking a probe will display additional bright dots that show its
+     * occlusion information. A white dot means the light is not occluded at all at the dot's position,
+     * while a red dot means the light is fully occluded. Intermediate values are possible.
+     *
      * Does nothing if the current environment's [Environment.sdfgiEnabled] is `false`.
      *
      * **Note:** Only supported when using the Forward+ rendering method.
@@ -2830,6 +2867,12 @@ public open class Viewport internal constructor() : Node() {
 
     internal val getEmbeddedSubwindowsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Viewport", "get_embedded_subwindows", 3995934104)
+
+    internal val setDragThresholdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "set_drag_threshold", 1286410249)
+
+    internal val getDragThresholdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "get_drag_threshold", 3905245786)
 
     internal val setCanvasCullMaskPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Viewport", "set_canvas_cull_mask", 1286410249)

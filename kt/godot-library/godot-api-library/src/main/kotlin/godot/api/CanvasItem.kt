@@ -223,6 +223,14 @@ public open class CanvasItem internal constructor() : Node() {
    * The rendering layer in which this [CanvasItem] is rendered by [Viewport] nodes. A [Viewport]
    * will render a [CanvasItem] if it and all its parents share a layer with the [Viewport]'s canvas
    * cull mask.
+   *
+   * **Note:** A [CanvasItem] does not inherit its parents' visibility layers. This means that if a
+   * parent [CanvasItem] does not have all the same layers as its child, the child may not be visible
+   * even if both the parent and child have [visible] set to `true`. For example, if a parent has layer
+   * 1 and a child has layer 2, the child will not be visible in a [Viewport] with the canvas cull mask
+   * set to layer 1 or 2 (see [Viewport.canvasCullMask]). To ensure that both the parent and child are
+   * visible, the parent must have both layers 1 and 2, or the child must have [topLevel] set to
+   * `true`.
    */
   public final inline var visibilityLayer: Long
     @JvmName("visibilityLayerProperty")
@@ -333,7 +341,7 @@ public open class CanvasItem internal constructor() : Node() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(138, scriptPtr)
+    createNativeObject(97, scriptPtr)
   }
 
   /**
@@ -659,9 +667,40 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
+   * Draws an unfilled elliptical arc between the given angles with a uniform [color] and [width]
+   * and optional antialiasing (supported only for positive [width]). The larger the value of
+   * [pointCount], the smoother the curve. For circular arcs, see [drawArc]. See also [drawEllipse].
+   *
+   * If [width] is negative, it will be ignored and the arc will be drawn using
+   * [RenderingServer.PRIMITIVE_LINE_STRIP]. This means that when the CanvasItem is scaled, the arc
+   * will remain thin. If this behavior is not desired, then pass a positive [width] like `1.0`.
+   *
+   * The arc is drawn from [startAngle] towards the value of [endAngle] so in clockwise direction if
+   * `start_angle < end_angle` and counter-clockwise otherwise. Passing the same angles but in reversed
+   * order will produce the same arc. If absolute difference of [startAngle] and [endAngle] is greater
+   * than [@GDScript.TAU] radians, then a full ellipse is drawn (i.e. arc will not overlap itself).
+   */
+  @JvmOverloads
+  public final fun drawEllipseArc(
+    center: Vector2,
+    major: Float,
+    minor: Float,
+    startAngle: Float,
+    endAngle: Float,
+    pointCount: Int,
+    color: Color,
+    width: Float = -1.0f,
+    antialiased: Boolean = false,
+  ): Unit {
+    TransferContext.writeArguments(VECTOR2 to center, DOUBLE to major.toDouble(), DOUBLE to minor.toDouble(), DOUBLE to startAngle.toDouble(), DOUBLE to endAngle.toDouble(), LONG to pointCount.toLong(), COLOR to color, DOUBLE to width.toDouble(), BOOL to antialiased)
+    TransferContext.callMethod(ptr, MethodBindings.drawEllipseArcPtr, NIL)
+  }
+
+  /**
    * Draws an unfilled arc between the given angles with a uniform [color] and [width] and optional
    * antialiasing (supported only for positive [width]). The larger the value of [pointCount], the
-   * smoother the curve. [center] is defined in local space. See also [drawCircle].
+   * smoother the curve. [center] is defined in local space. For elliptical arcs, see [drawEllipseArc].
+   * See also [drawCircle].
    *
    * If [width] is negative, it will be ignored and the arc will be drawn using
    * [RenderingServer.PRIMITIVE_LINE_STRIP]. This means that when the CanvasItem is scaled, the arc
@@ -765,8 +804,8 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws a circle, with [position] defined in local space. See also [drawArc], [drawPolyline], and
-   * [drawPolygon].
+   * Draws a circle, with [position] defined in local space. See also [drawEllipse], [drawArc],
+   * [drawPolyline], and [drawPolygon].
    *
    * If [filled] is `true`, the circle will be filled with the [color] specified. If [filled] is
    * `false`, the circle will be drawn as a stroke with the [color] and [width] specified.
@@ -794,11 +833,46 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
+   * Draws an ellipse with semi-major axis [major] and semi-minor axis [minor]. See also
+   * [drawCircle], [drawEllipseArc], [drawPolyline], and [drawPolygon].
+   *
+   * If [filled] is `true`, the ellipse will be filled with the [color] specified. If [filled] is
+   * `false`, the ellipse will be drawn as a stroke with the [color] and [width] specified.
+   *
+   * If [width] is negative, then two-point primitives will be drawn instead of four-point ones.
+   * This means that when the CanvasItem is scaled, the lines will remain thin. If this behavior is not
+   * desired, then pass a positive [width] like `1.0`.
+   *
+   * If [antialiased] is `true`, half transparent "feathers" will be attached to the boundary,
+   * making outlines smooth.
+   *
+   * **Note:** [width] is only effective if [filled] is `false`.
+   */
+  @JvmOverloads
+  public final fun drawEllipse(
+    position: Vector2,
+    major: Float,
+    minor: Float,
+    color: Color,
+    filled: Boolean = true,
+    width: Float = -1.0f,
+    antialiased: Boolean = false,
+  ): Unit {
+    TransferContext.writeArguments(VECTOR2 to position, DOUBLE to major.toDouble(), DOUBLE to minor.toDouble(), COLOR to color, BOOL to filled, DOUBLE to width.toDouble(), BOOL to antialiased)
+    TransferContext.callMethod(ptr, MethodBindings.drawEllipsePtr, NIL)
+  }
+
+  /**
    * Draws a texture at a given position. The [position] is defined in local space.
+   *
+   * **Note:** Styleboxes, textures, and meshes stored only inside local variables should **not** be
+   * used with this method in GDScript, because the drawing operation doesn't begin immediately once
+   * this method is called. In GDScript, when the function with the local variables ends, the local
+   * variables get destroyed before the rendering takes place.
    */
   @JvmOverloads
   public final fun drawTexture(
-    texture: Texture2D?,
+    texture: Texture2D,
     position: Vector2,
     modulate: Color = Color(Color(1, 1, 1, 1)),
   ): Unit {
@@ -810,10 +884,15 @@ public open class CanvasItem internal constructor() : Node() {
    * Draws a textured rectangle at a given position, optionally modulated by a color. The [rect] is
    * defined in local space. If [transpose] is `true`, the texture will have its X and Y coordinates
    * swapped. See also [drawRect] and [drawTextureRectRegion].
+   *
+   * **Note:** Styleboxes, textures, and meshes stored only inside local variables should **not** be
+   * used with this method in GDScript, because the drawing operation doesn't begin immediately once
+   * this method is called. In GDScript, when the function with the local variables ends, the local
+   * variables get destroyed before the rendering takes place.
    */
   @JvmOverloads
   public final fun drawTextureRect(
-    texture: Texture2D?,
+    texture: Texture2D,
     rect: Rect2,
     tile: Boolean,
     modulate: Color = Color(Color(1, 1, 1, 1)),
@@ -827,10 +906,15 @@ public open class CanvasItem internal constructor() : Node() {
    * Draws a textured rectangle from a texture's region (specified by [srcRect]) at a given position
    * in local space, optionally modulated by a color. If [transpose] is `true`, the texture will have
    * its X and Y coordinates swapped. See also [drawTextureRect].
+   *
+   * **Note:** Styleboxes, textures, and meshes stored only inside local variables should **not** be
+   * used with this method in GDScript, because the drawing operation doesn't begin immediately once
+   * this method is called. In GDScript, when the function with the local variables ends, the local
+   * variables get destroyed before the rendering takes place.
    */
   @JvmOverloads
   public final fun drawTextureRectRegion(
-    texture: Texture2D?,
+    texture: Texture2D,
     rect: Rect2,
     srcRect: Rect2,
     modulate: Color = Color(Color(1, 1, 1, 1)),
@@ -852,10 +936,15 @@ public open class CanvasItem internal constructor() : Node() {
    *
    * Value of the [pixelRange] should the same that was used during distance field texture
    * generation.
+   *
+   * **Note:** Styleboxes, textures, and meshes stored only inside local variables should **not** be
+   * used with this method in GDScript, because the drawing operation doesn't begin immediately once
+   * this method is called. In GDScript, when the function with the local variables ends, the local
+   * variables get destroyed before the rendering takes place.
    */
   @JvmOverloads
   public final fun drawMsdfTextureRectRegion(
-    texture: Texture2D?,
+    texture: Texture2D,
     rect: Rect2,
     srcRect: Rect2,
     modulate: Color = Color(Color(1, 1, 1, 1)),
@@ -880,10 +969,15 @@ public open class CanvasItem internal constructor() : Node() {
    * dst.b = texture.b * modulate.b * modulate.a + dst.b * (1.0 - texture.b * modulate.a);
    * dst.a = modulate.a + dst.a * (1.0 - modulate.a);
    * ```
+   *
+   * **Note:** Styleboxes, textures, and meshes stored only inside local variables should **not** be
+   * used with this method in GDScript, because the drawing operation doesn't begin immediately once
+   * this method is called. In GDScript, when the function with the local variables ends, the local
+   * variables get destroyed before the rendering takes place.
    */
   @JvmOverloads
   public final fun drawLcdTextureRectRegion(
-    texture: Texture2D?,
+    texture: Texture2D,
     rect: Rect2,
     srcRect: Rect2,
     modulate: Color = Color(Color(1, 1, 1, 1)),
@@ -894,8 +988,13 @@ public open class CanvasItem internal constructor() : Node() {
 
   /**
    * Draws a styled rectangle. The [rect] is defined in local space.
+   *
+   * **Note:** Styleboxes, textures, and meshes stored only inside local variables should **not** be
+   * used with this method in GDScript, because the drawing operation doesn't begin immediately once
+   * this method is called. In GDScript, when the function with the local variables ends, the local
+   * variables get destroyed before the rendering takes place.
    */
-  public final fun drawStyleBox(styleBox: StyleBox?, rect: Rect2): Unit {
+  public final fun drawStyleBox(styleBox: StyleBox, rect: Rect2): Unit {
     TransferContext.writeArguments(OBJECT to styleBox, RECT2 to rect)
     TransferContext.callMethod(ptr, MethodBindings.drawStyleBoxPtr, NIL)
   }
@@ -905,6 +1004,11 @@ public open class CanvasItem internal constructor() : Node() {
    * and 4 points for a quad. If 0 points or more than 4 points are specified, nothing will be drawn
    * and an error message will be printed. The [points] array is defined in local space. See also
    * [drawLine], [drawPolyline], [drawPolygon], and [drawRect].
+   *
+   * **Note:** Styleboxes, textures, and meshes stored only inside local variables should **not** be
+   * used with this method in GDScript, because the drawing operation doesn't begin immediately once
+   * this method is called. In GDScript, when the function with the local variables ends, the local
+   * variables get destroyed before the rendering takes place.
    */
   @JvmOverloads
   public final fun drawPrimitive(
@@ -926,6 +1030,11 @@ public open class CanvasItem internal constructor() : Node() {
    * **Note:** If you frequently redraw the same polygon with a large number of vertices, consider
    * pre-calculating the triangulation with [Geometry2D.triangulatePolygon] and using [drawMesh],
    * [drawMultimesh], or [RenderingServer.canvasItemAddTriangleArray].
+   *
+   * **Note:** Styleboxes, textures, and meshes stored only inside local variables should **not** be
+   * used with this method in GDScript, because the drawing operation doesn't begin immediately once
+   * this method is called. In GDScript, when the function with the local variables ends, the local
+   * variables get destroyed before the rendering takes place.
    */
   @JvmOverloads
   public final fun drawPolygon(
@@ -946,6 +1055,11 @@ public open class CanvasItem internal constructor() : Node() {
    * **Note:** If you frequently redraw the same polygon with a large number of vertices, consider
    * pre-calculating the triangulation with [Geometry2D.triangulatePolygon] and using [drawMesh],
    * [drawMultimesh], or [RenderingServer.canvasItemAddTriangleArray].
+   *
+   * **Note:** Styleboxes, textures, and meshes stored only inside local variables should **not** be
+   * used with this method in GDScript, because the drawing operation doesn't begin immediately once
+   * this method is called. In GDScript, when the function with the local variables ends, the local
+   * variables get destroyed before the rendering takes place.
    */
   @JvmOverloads
   public final fun drawColoredPolygon(
@@ -969,31 +1083,21 @@ public open class CanvasItem internal constructor() : Node() {
    *
    * ```gdscript
    * //gdscript
-   * # If using this method in a script that redraws constantly, move the
-   * # `default_font` declaration to a member variable assigned in `_ready()`
-   * # so the Control is only created once.
-   * var default_font = ThemeDB.fallback_font
-   * var default_font_size = ThemeDB.fallback_font_size
-   * draw_string(default_font, Vector2(64, 64), "Hello world", HORIZONTAL_ALIGNMENT_LEFT, -1,
-   * default_font_size)
+   * draw_string(ThemeDB.fallback_font, Vector2(64, 64), "Hello world",
+   * HORIZONTAL_ALIGNMENT_LEFT, -1, ThemeDB.fallback_font_size)
    * ```
    *
    * ```csharp
    * //csharp
-   * // If using this method in a script that redraws constantly, move the
-   * // `default_font` declaration to a member variable assigned in `_Ready()`
-   * // so the Control is only created once.
-   * Font defaultFont = ThemeDB.FallbackFont;
-   * int defaultFontSize = ThemeDB.FallbackFontSize;
-   * DrawString(defaultFont, new Vector2(64, 64), "Hello world", HORIZONTAL_ALIGNMENT_LEFT, -1,
-   * defaultFontSize);
+   * DrawString(ThemeDB.FallbackFont, new Vector2(64, 64), "Hello world",
+   * HorizontalAlignment.Left, -1, ThemeDB.FallbackFontSize);
    * ```
    *
    * See also [Font.drawString].
    */
   @JvmOverloads
   public final fun drawString(
-    font: Font?,
+    font: Font,
     pos: Vector2,
     text: String,
     alignment: HorizontalAlignment = HorizontalAlignment.LEFT,
@@ -1018,7 +1122,7 @@ public open class CanvasItem internal constructor() : Node() {
    */
   @JvmOverloads
   public final fun drawMultilineString(
-    font: Font?,
+    font: Font,
     pos: Vector2,
     text: String,
     alignment: HorizontalAlignment = HorizontalAlignment.LEFT,
@@ -1045,7 +1149,7 @@ public open class CanvasItem internal constructor() : Node() {
    */
   @JvmOverloads
   public final fun drawStringOutline(
-    font: Font?,
+    font: Font,
     pos: Vector2,
     text: String,
     alignment: HorizontalAlignment = HorizontalAlignment.LEFT,
@@ -1071,7 +1175,7 @@ public open class CanvasItem internal constructor() : Node() {
    */
   @JvmOverloads
   public final fun drawMultilineStringOutline(
-    font: Font?,
+    font: Font,
     pos: Vector2,
     text: String,
     alignment: HorizontalAlignment = HorizontalAlignment.LEFT,
@@ -1097,7 +1201,7 @@ public open class CanvasItem internal constructor() : Node() {
    */
   @JvmOverloads
   public final fun drawChar(
-    font: Font?,
+    font: Font,
     pos: Vector2,
     char: String,
     fontSize: Int = 16,
@@ -1115,7 +1219,7 @@ public open class CanvasItem internal constructor() : Node() {
    */
   @JvmOverloads
   public final fun drawCharOutline(
-    font: Font?,
+    font: Font,
     pos: Vector2,
     char: String,
     fontSize: Int = 16,
@@ -1130,10 +1234,15 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Draws a [Mesh] in 2D, using the provided texture. See [MeshInstance2D] for related
    * documentation. The [transform] is defined in local space.
+   *
+   * **Note:** Styleboxes, textures, and meshes stored only inside local variables should **not** be
+   * used with this method in GDScript, because the drawing operation doesn't begin immediately once
+   * this method is called. In GDScript, when the function with the local variables ends, the local
+   * variables get destroyed before the rendering takes place.
    */
   @JvmOverloads
   public final fun drawMesh(
-    mesh: Mesh?,
+    mesh: Mesh,
     texture: Texture2D?,
     transform: Transform2D = Transform2D(),
     modulate: Color = Color(Color(1, 1, 1, 1)),
@@ -1145,8 +1254,13 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Draws a [MultiMesh] in 2D with the provided texture. See [MultiMeshInstance2D] for related
    * documentation.
+   *
+   * **Note:** Styleboxes, textures, and meshes stored only inside local variables should **not** be
+   * used with this method in GDScript, because the drawing operation doesn't begin immediately once
+   * this method is called. In GDScript, when the function with the local variables ends, the local
+   * variables get destroyed before the rendering takes place.
    */
-  public final fun drawMultimesh(multimesh: MultiMesh?, texture: Texture2D?): Unit {
+  public final fun drawMultimesh(multimesh: MultiMesh, texture: Texture2D?): Unit {
     TransferContext.writeArguments(OBJECT to multimesh, OBJECT to texture)
     TransferContext.callMethod(ptr, MethodBindings.drawMultimeshPtr, NIL)
   }
@@ -1273,7 +1387,8 @@ public open class CanvasItem internal constructor() : Node() {
    * Returns the transform of this [CanvasItem] in global screen coordinates (i.e. taking window
    * position into account). Mostly useful for editor plugins.
    *
-   * Equals to [getGlobalTransform] if the window is embedded (see [Viewport.guiEmbedSubwindows]).
+   * Equivalent to [getGlobalTransformWithCanvas] if the window is embedded (see
+   * [Viewport.guiEmbedSubwindows]).
    */
   public final fun getScreenTransform(): Transform2D {
     TransferContext.writeArguments()
@@ -1406,7 +1521,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * If `true`, the node will receive [NOTIFICATION_TRANSFORM_CHANGED] whenever global transform
+   * If `true`, the node will receive [NOTIFICATION_TRANSFORM_CHANGED] whenever its global transform
    * changes.
    *
    * **Note:** Many canvas items such as [Camera2D] or [Light2D] automatically enable this in order
@@ -1459,10 +1574,10 @@ public open class CanvasItem internal constructor() : Node() {
    * Returns a copy of the given [event] with its coordinates converted from global space to this
    * [CanvasItem]'s local space. If not possible, returns the same [InputEvent] unchanged.
    */
-  public final fun makeInputLocal(event: InputEvent?): InputEvent? {
+  public final fun makeInputLocal(event: InputEvent): InputEvent {
     TransferContext.writeArguments(OBJECT to event)
     TransferContext.callMethod(ptr, MethodBindings.makeInputLocalPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as InputEvent?)
+    return (TransferContext.readReturnValue(OBJECT) as InputEvent)
   }
 
   public final fun setVisibilityLayer(layer: Long): Unit {
@@ -1742,6 +1857,8 @@ public open class CanvasItem internal constructor() : Node() {
 
     /**
      * The [CanvasItem] has exited the canvas.
+     *
+     * This notification is sent in reversed order.
      */
     public final const val NOTIFICATION_EXIT_CANVAS: Long = 33
 
@@ -1835,6 +1952,9 @@ public open class CanvasItem internal constructor() : Node() {
     internal val drawPolylineColorsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CanvasItem", "draw_polyline_colors", 2311979562)
 
+    internal val drawEllipseArcPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasItem", "draw_ellipse_arc", 936174114)
+
     internal val drawArcPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CanvasItem", "draw_arc", 4140652635)
 
@@ -1849,6 +1969,9 @@ public open class CanvasItem internal constructor() : Node() {
 
     internal val drawCirclePtr: VoidPtr =
         TypeManager.getMethodBindPtr("CanvasItem", "draw_circle", 3153026596)
+
+    internal val drawEllipsePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasItem", "draw_ellipse", 3790774806)
 
     internal val drawTexturePtr: VoidPtr =
         TypeManager.getMethodBindPtr("CanvasItem", "draw_texture", 520200117)

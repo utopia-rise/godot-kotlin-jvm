@@ -74,11 +74,11 @@ public open class DPITexture : Texture2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(196, scriptPtr)
+    createNativeObject(794, scriptPtr)
   }
 
   /**
-   * Sets SVG source code.
+   * Sets this SVG texture's source code.
    */
   public final fun setSource(source: String): Unit {
     TransferContext.writeArguments(STRING to source)
@@ -86,7 +86,7 @@ public open class DPITexture : Texture2D() {
   }
 
   /**
-   * Returns SVG source code.
+   * Returns this SVG texture's source code.
    */
   public final fun getSource(): String {
     TransferContext.writeArguments()
@@ -161,8 +161,8 @@ public open class DPITexture : Texture2D() {
 
   public companion object {
     /**
-     * Creates a new [DPITexture] and initializes it by allocating and setting the SVG data from
-     * string.
+     * Creates a new [DPITexture] and initializes it by allocating and setting the SVG data to
+     * [source].
      */
     @JvmOverloads
     @JvmStatic

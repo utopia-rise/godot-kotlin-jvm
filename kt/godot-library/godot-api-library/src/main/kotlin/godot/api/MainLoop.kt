@@ -88,7 +88,7 @@ public open class MainLoop : Object() {
   public val onRequestPermissionsResult: Signal2<String, Boolean> by Signal2
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(351, scriptPtr)
+    createNativeObject(145, scriptPtr)
   }
 
   /**
@@ -177,7 +177,7 @@ public open class MainLoop : Object() {
      * Notification received from the OS when an update of the Input Method Engine occurs (e.g.
      * change of IME cursor position or composition string).
      *
-     * Specific to the macOS platform.
+     * Implemented on desktop and web platforms.
      */
     public final const val NOTIFICATION_OS_IME_UPDATE: Long = 2013
 

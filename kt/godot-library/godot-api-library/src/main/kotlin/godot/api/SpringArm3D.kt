@@ -34,7 +34,7 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class SpringArm3D : Node3D() {
   /**
-   * The layers against which the collision check shall be done. See
+   * The layers against which the collision check will be done. See
    * [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision
    * layers and masks[/url] in the documentation for more information.
    */
@@ -94,7 +94,7 @@ public open class SpringArm3D : Node3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(637, scriptPtr)
+    createNativeObject(618, scriptPtr)
   }
 
   /**

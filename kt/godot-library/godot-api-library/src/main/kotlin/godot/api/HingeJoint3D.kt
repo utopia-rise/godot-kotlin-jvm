@@ -30,7 +30,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class HingeJoint3D : Joint3D() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(287, scriptPtr)
+    createNativeObject(593, scriptPtr)
   }
 
   /**

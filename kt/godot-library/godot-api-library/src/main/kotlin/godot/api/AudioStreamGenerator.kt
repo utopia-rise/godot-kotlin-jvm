@@ -17,6 +17,7 @@ import godot.core.VariantParser.NIL
 import kotlin.Double
 import kotlin.Float
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -146,7 +147,7 @@ public open class AudioStreamGenerator : AudioStream() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(82, scriptPtr)
+    createNativeObject(318, scriptPtr)
   }
 
   public final fun setMixRate(hz: Float): Unit {
@@ -180,6 +181,13 @@ public open class AudioStreamGenerator : AudioStream() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBufferLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _instantiatePlayback(): AudioStreamPlayback? {
+    throw NotImplementedError("AudioStreamGenerator::_instantiatePlayback can't be called from the JVM.")
   }
 
   public enum class AudioStreamGeneratorMixRate(

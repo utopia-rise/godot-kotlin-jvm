@@ -334,7 +334,7 @@ public open class Area2D : CollisionObject2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(39, scriptPtr)
+    createNativeObject(452, scriptPtr)
   }
 
   /**
@@ -591,7 +591,7 @@ public open class Area2D : CollisionObject2D() {
    * not physics bodies themselves, they register their tiles with collision shapes as a virtual
    * physics body.
    */
-  public final fun overlapsBody(body: Node?): Boolean {
+  public final fun overlapsBody(body: Node): Boolean {
     TransferContext.writeArguments(OBJECT to body)
     TransferContext.callMethod(ptr, MethodBindings.overlapsBodyPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
@@ -604,7 +604,7 @@ public open class Area2D : CollisionObject2D() {
    * list of overlaps is updated once per frame and before the physics step. Consider using signals
    * instead.
    */
-  public final fun overlapsArea(area: Node?): Boolean {
+  public final fun overlapsArea(area: Node): Boolean {
     TransferContext.writeArguments(OBJECT to area)
     TransferContext.callMethod(ptr, MethodBindings.overlapsAreaPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)

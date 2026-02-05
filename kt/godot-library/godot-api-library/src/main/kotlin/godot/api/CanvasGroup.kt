@@ -22,12 +22,12 @@ import kotlin.jvm.JvmName
 
 /**
  * Child [CanvasItem] nodes of a [CanvasGroup] are drawn as a single object. It allows to e.g. draw
- * overlapping translucent 2D nodes without blending (set [CanvasItem.selfModulate] property of
- * [CanvasGroup] to achieve this effect).
+ * overlapping translucent 2D nodes without causing the overlapping sections to be more opaque than
+ * intended (set the [CanvasItem.selfModulate] property on the [CanvasGroup] to achieve this effect).
  *
  * **Note:** The [CanvasGroup] uses a custom shader to read from the backbuffer to draw its
- * children. Assigning a [Material] to the [CanvasGroup] overrides the builtin shader. To duplicate the
- * behavior of the builtin shader in a custom [Shader] use the following:
+ * children. Assigning a [Material] to the [CanvasGroup] overrides the built-in shader. To duplicate
+ * the behavior of the built-in shader in a custom [Shader], use the following:
  *
  * ```
  * shader_type canvas_item;
@@ -97,7 +97,7 @@ public open class CanvasGroup : Node2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(137, scriptPtr)
+    createNativeObject(464, scriptPtr)
   }
 
   public final fun setFitMargin(fitMargin: Float): Unit {

@@ -244,7 +244,7 @@ public open class GLTFNode : Resource() {
 
   /**
    * If `true`, the GLTF node is visible. If `false`, the GLTF node is not visible. This is
-   * translated to the [Node3D.visible] property in the Godot scene, and is exported to
+   * converted to the [Node3D.visible] property in the Godot scene, and is exported to
    * `KHR_node_visibility` when `false`.
    */
   public final inline var visible: Boolean
@@ -256,7 +256,7 @@ public open class GLTFNode : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(240, scriptPtr)
+    createNativeObject(733, scriptPtr)
   }
 
   /**

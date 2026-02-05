@@ -13,6 +13,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
+import godot.core.GodotEnum
 import godot.core.PackedByteArray
 import godot.core.PackedInt32Array
 import godot.core.StringName
@@ -327,12 +328,22 @@ public open class GLTFState : Resource() {
       setAnimations(value)
     }
 
-  public final inline var handleBinaryImage: Int
-    @JvmName("handleBinaryImageProperty")
-    get() = getHandleBinaryImage()
-    @JvmName("handleBinaryImageProperty")
+  /**
+   * When importing a glTF file with unimported raw binary images embedded inside of binary blob
+   * buffers, in data URIs, or separate files not imported by Godot, this controls how the images are
+   * handled. Images can be discarded, saved as separate files, or embedded in the scene lossily or
+   * losslessly. See [HandleBinaryImageMode] for options.
+   *
+   * This property does nothing for image files in the `res://` folder imported by Godot, as those
+   * are handled by Godot's image importer directly, and then the Godot scene generated from the glTF
+   * file will use the images as Godot imported them.
+   */
+  public final inline var handleBinaryImageMode: HandleBinaryImageMode
+    @JvmName("handleBinaryImageModeProperty")
+    get() = getHandleBinaryImageMode()
+    @JvmName("handleBinaryImageModeProperty")
     set(`value`) {
-      setHandleBinaryImage(value)
+      setHandleBinaryImageMode(value)
     }
 
   /**
@@ -346,8 +357,16 @@ public open class GLTFState : Resource() {
       setBakeFps(value)
     }
 
+  public final inline var handleBinaryImage: Int
+    @JvmName("handleBinaryImageProperty")
+    get() = getHandleBinaryImage()
+    @JvmName("handleBinaryImageProperty")
+    set(`value`) {
+      setHandleBinaryImage(value)
+    }
+
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(247, scriptPtr)
+    createNativeObject(737, scriptPtr)
   }
 
   /**
@@ -620,8 +639,8 @@ public open class GLTFState : Resource() {
    * Returns the number of [AnimationPlayer] nodes in this [GLTFState]. These nodes are only used
    * during the export process when converting Godot [AnimationPlayer] nodes to glTF animations.
    */
-  public final fun getAnimationPlayersCount(idx: Int): Int {
-    TransferContext.writeArguments(LONG to idx.toLong())
+  public final fun getAnimationPlayersCount(animPlayerIndex: Int): Int {
+    TransferContext.writeArguments(LONG to animPlayerIndex.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getAnimationPlayersCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -630,8 +649,8 @@ public open class GLTFState : Resource() {
    * Returns the [AnimationPlayer] node with the given index. These nodes are only used during the
    * export process when converting Godot [AnimationPlayer] nodes to glTF animations.
    */
-  public final fun getAnimationPlayer(idx: Int): AnimationPlayer? {
-    TransferContext.writeArguments(LONG to idx.toLong())
+  public final fun getAnimationPlayer(animPlayerIndex: Int): AnimationPlayer? {
+    TransferContext.writeArguments(LONG to animPlayerIndex.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getAnimationPlayerPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as AnimationPlayer?)
   }
@@ -901,8 +920,8 @@ public open class GLTFState : Resource() {
    * node will have a corresponding [GLTFNode]. If there is no scene node for this [GLTFNode] index,
    * `null` is returned.
    */
-  public final fun getSceneNode(idx: Int): Node? {
-    TransferContext.writeArguments(LONG to idx.toLong())
+  public final fun getSceneNode(gltfNodeIndex: Int): Node? {
+    TransferContext.writeArguments(LONG to gltfNodeIndex.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getSceneNodePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Node?)
   }
@@ -947,15 +966,15 @@ public open class GLTFState : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.setAdditionalDataPtr, NIL)
   }
 
-  public final fun getHandleBinaryImage(): Int {
+  public final fun getHandleBinaryImageMode(): HandleBinaryImageMode {
     TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getHandleBinaryImagePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    TransferContext.callMethod(ptr, MethodBindings.getHandleBinaryImageModePtr, LONG)
+    return HandleBinaryImageMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setHandleBinaryImage(method: Int): Unit {
-    TransferContext.writeArguments(LONG to method.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setHandleBinaryImagePtr, NIL)
+  public final fun setHandleBinaryImageMode(method: HandleBinaryImageMode): Unit {
+    TransferContext.writeArguments(LONG to method.value)
+    TransferContext.callMethod(ptr, MethodBindings.setHandleBinaryImageModePtr, NIL)
   }
 
   public final fun setBakeFps(`value`: Double): Unit {
@@ -967,6 +986,27 @@ public open class GLTFState : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBakeFpsPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
+  }
+
+  /**
+   * Deprecated untyped alias for [handleBinaryImageMode]. When importing a glTF file with
+   * unimported raw binary images embedded inside of binary blob buffers, in data URIs, or separate
+   * files not imported by Godot, this controls how the images are handled.
+   */
+  public final fun getHandleBinaryImage(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getHandleBinaryImagePtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  /**
+   * Deprecated untyped alias for [handleBinaryImageMode]. When importing a glTF file with
+   * unimported raw binary images embedded inside of binary blob buffers, in data URIs, or separate
+   * files not imported by Godot, this controls how the images are handled.
+   */
+  public final fun setHandleBinaryImage(method: Int): Unit {
+    TransferContext.writeArguments(LONG to method.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.setHandleBinaryImagePtr, NIL)
   }
 
   /**
@@ -989,6 +1029,54 @@ public open class GLTFState : Resource() {
    */
   public final fun setAdditionalData(extensionName: String, additionalData: Any?) =
       setAdditionalData(extensionName.asCachedStringName(), additionalData)
+
+  public enum class HandleBinaryImageMode(
+    `value`: Long,
+  ) : GodotEnum {
+    /**
+     * When importing a glTF file with embedded binary images, discards all images and uses
+     * untextured materials in their place. Images stored as separate files in the `res://` folder are
+     * not affected by this; those will be used as Godot imported them.
+     */
+    DISCARD_TEXTURES(0),
+    /**
+     * When importing a glTF file with embedded binary images, extracts them and saves them to their
+     * own files. This allows the image to be imported by Godot's image importer, which can then have
+     * their import options customized by the user, including optionally compressing the image to VRAM
+     * texture formats.
+     *
+     * This will save the images's bytes exactly as-is, without recompression. For image formats
+     * supplied by glTF extensions, the file will have a filename ending with the file extension
+     * supplied by [GLTFDocumentExtension.GetImageFileExtension] of the extension class.
+     *
+     * **Note:** This option is editor-only. At runtime, this acts the same as
+     * [HANDLE_BINARY_IMAGE_MODE_EMBED_AS_UNCOMPRESSED].
+     */
+    EXTRACT_TEXTURES(1),
+    /**
+     * When importing a glTF file with embedded binary images, embeds textures VRAM compressed with
+     * Basis Universal into the generated scene. Images stored as separate files in the `res://` folder
+     * are not affected by this; those will be used as Godot imported them.
+     */
+    EMBED_AS_BASISU(2),
+    /**
+     * When importing a glTF file with embedded binary images, embeds textures compressed losslessly
+     * into the generated scene. Images stored as separate files in the `res://` folder are not
+     * affected by this; those will be used as Godot imported them.
+     */
+    EMBED_AS_UNCOMPRESSED(3),
+    ;
+
+    public override val `value`: Long
+    init {
+      this.`value` = `value`
+    }
+
+    public companion object {
+      public fun from(`value`: Long): HandleBinaryImageMode =
+          entries.single { it.`value` == `value` }
+    }
+  }
 
   public companion object {
     /**
@@ -1024,19 +1112,19 @@ public open class GLTFState : Resource() {
         TypeManager.getMethodBindPtr("GLTFState", "append_gltf_node", 3562288551)
 
     internal val getJsonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_json", 2382534195)
+        TypeManager.getMethodBindPtr("GLTFState", "get_json", 3102165223)
 
     internal val setJsonPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFState", "set_json", 4155329257)
 
     internal val getMajorVersionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_major_version", 2455072627)
+        TypeManager.getMethodBindPtr("GLTFState", "get_major_version", 3905245786)
 
     internal val setMajorVersionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFState", "set_major_version", 1286410249)
 
     internal val getMinorVersionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_minor_version", 2455072627)
+        TypeManager.getMethodBindPtr("GLTFState", "get_minor_version", 3905245786)
 
     internal val setMinorVersionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFState", "set_minor_version", 1286410249)
@@ -1048,67 +1136,67 @@ public open class GLTFState : Resource() {
         TypeManager.getMethodBindPtr("GLTFState", "set_copyright", 83702148)
 
     internal val getGlbDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_glb_data", 2115431945)
+        TypeManager.getMethodBindPtr("GLTFState", "get_glb_data", 2362200018)
 
     internal val setGlbDataPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFState", "set_glb_data", 2971499966)
 
     internal val getUseNamedSkinBindsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_use_named_skin_binds", 2240911060)
+        TypeManager.getMethodBindPtr("GLTFState", "get_use_named_skin_binds", 36873697)
 
     internal val setUseNamedSkinBindsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFState", "set_use_named_skin_binds", 2586408642)
 
     internal val getNodesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_nodes", 2915620761)
+        TypeManager.getMethodBindPtr("GLTFState", "get_nodes", 3995934104)
 
     internal val setNodesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFState", "set_nodes", 381264803)
 
     internal val getBuffersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_buffers", 2915620761)
+        TypeManager.getMethodBindPtr("GLTFState", "get_buffers", 3995934104)
 
     internal val setBuffersPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFState", "set_buffers", 381264803)
 
     internal val getBufferViewsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_buffer_views", 2915620761)
+        TypeManager.getMethodBindPtr("GLTFState", "get_buffer_views", 3995934104)
 
     internal val setBufferViewsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFState", "set_buffer_views", 381264803)
 
     internal val getAccessorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_accessors", 2915620761)
+        TypeManager.getMethodBindPtr("GLTFState", "get_accessors", 3995934104)
 
     internal val setAccessorsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFState", "set_accessors", 381264803)
 
     internal val getMeshesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_meshes", 2915620761)
+        TypeManager.getMethodBindPtr("GLTFState", "get_meshes", 3995934104)
 
     internal val setMeshesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFState", "set_meshes", 381264803)
 
     internal val getAnimationPlayersCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_animation_players_count", 3744713108)
+        TypeManager.getMethodBindPtr("GLTFState", "get_animation_players_count", 923996154)
 
     internal val getAnimationPlayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_animation_player", 925043400)
+        TypeManager.getMethodBindPtr("GLTFState", "get_animation_player", 1550200483)
 
     internal val getMaterialsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_materials", 2915620761)
+        TypeManager.getMethodBindPtr("GLTFState", "get_materials", 3995934104)
 
     internal val setMaterialsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFState", "set_materials", 381264803)
 
     internal val getSceneNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_scene_name", 2841200299)
+        TypeManager.getMethodBindPtr("GLTFState", "get_scene_name", 201670096)
 
     internal val setSceneNamePtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFState", "set_scene_name", 83702148)
 
     internal val getBasePathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_base_path", 2841200299)
+        TypeManager.getMethodBindPtr("GLTFState", "get_base_path", 201670096)
 
     internal val setBasePathPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFState", "set_base_path", 83702148)
@@ -1120,105 +1208,111 @@ public open class GLTFState : Resource() {
         TypeManager.getMethodBindPtr("GLTFState", "set_filename", 83702148)
 
     internal val getRootNodesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_root_nodes", 969006518)
+        TypeManager.getMethodBindPtr("GLTFState", "get_root_nodes", 1930428628)
 
     internal val setRootNodesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFState", "set_root_nodes", 3614634198)
 
     internal val getTexturesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_textures", 2915620761)
+        TypeManager.getMethodBindPtr("GLTFState", "get_textures", 3995934104)
 
     internal val setTexturesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFState", "set_textures", 381264803)
 
     internal val getTextureSamplersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_texture_samplers", 2915620761)
+        TypeManager.getMethodBindPtr("GLTFState", "get_texture_samplers", 3995934104)
 
     internal val setTextureSamplersPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFState", "set_texture_samplers", 381264803)
 
     internal val getImagesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_images", 2915620761)
+        TypeManager.getMethodBindPtr("GLTFState", "get_images", 3995934104)
 
     internal val setImagesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFState", "set_images", 381264803)
 
     internal val getSkinsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_skins", 2915620761)
+        TypeManager.getMethodBindPtr("GLTFState", "get_skins", 3995934104)
 
     internal val setSkinsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFState", "set_skins", 381264803)
 
     internal val getCamerasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_cameras", 2915620761)
+        TypeManager.getMethodBindPtr("GLTFState", "get_cameras", 3995934104)
 
     internal val setCamerasPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFState", "set_cameras", 381264803)
 
     internal val getLightsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_lights", 2915620761)
+        TypeManager.getMethodBindPtr("GLTFState", "get_lights", 3995934104)
 
     internal val setLightsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFState", "set_lights", 381264803)
 
     internal val getUniqueNamesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_unique_names", 2915620761)
+        TypeManager.getMethodBindPtr("GLTFState", "get_unique_names", 3995934104)
 
     internal val setUniqueNamesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFState", "set_unique_names", 381264803)
 
     internal val getUniqueAnimationNamesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_unique_animation_names", 2915620761)
+        TypeManager.getMethodBindPtr("GLTFState", "get_unique_animation_names", 3995934104)
 
     internal val setUniqueAnimationNamesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFState", "set_unique_animation_names", 381264803)
 
     internal val getSkeletonsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_skeletons", 2915620761)
+        TypeManager.getMethodBindPtr("GLTFState", "get_skeletons", 3995934104)
 
     internal val setSkeletonsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFState", "set_skeletons", 381264803)
 
     internal val getCreateAnimationsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_create_animations", 2240911060)
+        TypeManager.getMethodBindPtr("GLTFState", "get_create_animations", 36873697)
 
     internal val setCreateAnimationsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFState", "set_create_animations", 2586408642)
 
     internal val getImportAsSkeletonBonesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_import_as_skeleton_bones", 2240911060)
+        TypeManager.getMethodBindPtr("GLTFState", "get_import_as_skeleton_bones", 36873697)
 
     internal val setImportAsSkeletonBonesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFState", "set_import_as_skeleton_bones", 2586408642)
 
     internal val getAnimationsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_animations", 2915620761)
+        TypeManager.getMethodBindPtr("GLTFState", "get_animations", 3995934104)
 
     internal val setAnimationsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFState", "set_animations", 381264803)
 
     internal val getSceneNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_scene_node", 4253421667)
+        TypeManager.getMethodBindPtr("GLTFState", "get_scene_node", 539202265)
 
     internal val getNodeIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_node_index", 1205807060)
+        TypeManager.getMethodBindPtr("GLTFState", "get_node_index", 3810805390)
 
     internal val getAdditionalDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_additional_data", 2138907829)
+        TypeManager.getMethodBindPtr("GLTFState", "get_additional_data", 2760726917)
 
     internal val setAdditionalDataPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFState", "set_additional_data", 3776071444)
 
-    internal val getHandleBinaryImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_handle_binary_image", 2455072627)
+    internal val getHandleBinaryImageModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFState", "get_handle_binary_image_mode", 1363384196)
 
-    internal val setHandleBinaryImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_handle_binary_image", 1286410249)
+    internal val setHandleBinaryImageModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFState", "set_handle_binary_image_mode", 854676334)
 
     internal val setBakeFpsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFState", "set_bake_fps", 373806689)
 
     internal val getBakeFpsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFState", "get_bake_fps", 1740695150)
+
+    internal val getHandleBinaryImagePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFState", "get_handle_binary_image", 3905245786)
+
+    internal val setHandleBinaryImagePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFState", "set_handle_binary_image", 1286410249)
   }
 }

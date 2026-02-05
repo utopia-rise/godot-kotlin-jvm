@@ -116,7 +116,7 @@ public infix fun Long.and(other: RenderingDevice.DrawFlags): Long = this.and(oth
 @GodotBaseType
 public open class RenderingDevice internal constructor() : Object() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(565, scriptPtr)
+    createNativeObject(42, scriptPtr)
   }
 
   /**
@@ -147,6 +147,8 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    * Creates a shared texture using the specified [view] and the texture information from
    * [withTexture].
+   *
+   * This will be freed automatically when the [withTexture] is freed.
    */
   public final fun textureCreateShared(view: RDTextureView?, withTexture: RID): RID {
     TransferContext.writeArguments(OBJECT to view, _RID to withTexture)
@@ -163,6 +165,8 @@ public open class RenderingDevice internal constructor() : Object() {
    * For 2D textures (which only have one layer), [layer] must be `0`.
    *
    * **Note:** Layer slicing is only supported for 2D texture arrays, not 3D textures or cubemaps.
+   *
+   * This will be freed automatically when the [withTexture] is freed.
    */
   @JvmOverloads
   public final fun textureCreateSharedFromSlice(
@@ -507,6 +511,8 @@ public open class RenderingDevice internal constructor() : Object() {
    *
    * Once finished with your RID, you will want to free the RID using the RenderingDevice's
    * [freeRid] method.
+   *
+   * This will be freed automatically when any of the [textures] is freed.
    */
   @JvmOverloads
   public final fun framebufferCreate(
@@ -524,6 +530,8 @@ public open class RenderingDevice internal constructor() : Object() {
    *
    * Once finished with your RID, you will want to free the RID using the RenderingDevice's
    * [freeRid] method.
+   *
+   * This will be freed automatically when any of the [textures] is freed.
    */
   @JvmOverloads
   public final fun framebufferCreateMultipass(
@@ -627,6 +635,11 @@ public open class RenderingDevice internal constructor() : Object() {
   /**
    * Creates a vertex array based on the specified buffers. Optionally, [offsets] (in bytes) may be
    * defined for each buffer.
+   *
+   * Once finished with your RID, you will want to free the RID using the RenderingDevice's
+   * [freeRid] method.
+   *
+   * This will be freed automatically when any of the [srcBuffers] is freed.
    */
   @JvmOverloads
   public final fun vertexArrayCreate(
@@ -664,6 +677,8 @@ public open class RenderingDevice internal constructor() : Object() {
    *
    * Once finished with your RID, you will want to free the RID using the RenderingDevice's
    * [freeRid] method.
+   *
+   * This will be freed automatically when the [indexBuffer] is freed.
    */
   public final fun indexArrayCreate(
     indexBuffer: RID,
@@ -820,6 +835,9 @@ public open class RenderingDevice internal constructor() : Object() {
    *
    * Once finished with your RID, you will want to free the RID using the RenderingDevice's
    * [freeRid] method.
+   *
+   * This will be freed automatically when the [shader] or any of the RIDs in the [uniforms] is
+   * freed.
    */
   public final fun uniformSetCreate(
     uniforms: VariantArray<RDUniform>,
@@ -979,6 +997,8 @@ public open class RenderingDevice internal constructor() : Object() {
    *
    * Once finished with your RID, you will want to free the RID using the RenderingDevice's
    * [freeRid] method.
+   *
+   * This will be freed automatically when the [shader] is freed.
    */
   @JvmOverloads
   public final fun renderPipelineCreate(
@@ -1015,6 +1035,8 @@ public open class RenderingDevice internal constructor() : Object() {
    *
    * Once finished with your RID, you will want to free the RID using the RenderingDevice's
    * [freeRid] method.
+   *
+   * This will be freed automatically when the [shader] is freed.
    */
   @JvmOverloads
   public final fun computePipelineCreate(shader: RID,
@@ -1220,6 +1242,23 @@ public open class RenderingDevice internal constructor() : Object() {
   public final fun drawListBindVertexArray(drawList: Long, vertexArray: RID): Unit {
     TransferContext.writeArguments(LONG to drawList, _RID to vertexArray)
     TransferContext.callMethod(ptr, MethodBindings.drawListBindVertexArrayPtr, NIL)
+  }
+
+  /**
+   * Binds a set of [vertexBuffers] directly to the specified [drawList] using [vertexFormat]
+   * without creating a vertex array RID. Provide the number of vertices in [vertexCount]; optional
+   * per-buffer byte [offsets] may also be supplied.
+   */
+  @JvmOverloads
+  public final fun drawListBindVertexBuffersFormat(
+    drawList: Long,
+    vertexFormat: Long,
+    vertexCount: Long,
+    vertexBuffers: VariantArray<RID>,
+    offsets: PackedInt64Array = PackedInt64Array(),
+  ): Unit {
+    TransferContext.writeArguments(LONG to drawList, LONG to vertexFormat, LONG to vertexCount, ARRAY to vertexBuffers, PACKED_INT_64_ARRAY to offsets)
+    TransferContext.callMethod(ptr, MethodBindings.drawListBindVertexBuffersFormatPtr, NIL)
   }
 
   /**
@@ -1977,6 +2016,8 @@ public open class RenderingDevice internal constructor() : Object() {
      *
      * - Vulkan: `VkQueue`.
      *
+     * - D3D12: `ID3D12CommandQueue`.
+     *
      * - Metal: `MTLCommandQueue`.
      */
     COMMAND_QUEUE(3),
@@ -1988,6 +2029,8 @@ public open class RenderingDevice internal constructor() : Object() {
     QUEUE_FAMILY(4),
     /**
      * - Vulkan: `VkImage`.
+     *
+     * - D3D12: `ID3D12Resource`.
      */
     TEXTURE(5),
     /**
@@ -2140,7 +2183,7 @@ public open class RenderingDevice internal constructor() : Object() {
     R8_SINT(13),
     /**
      * 8-bit-per-channel unsigned floating-point red channel data format with normalized value and
-     * non-linear sRGB encoding. Values are in the `[0.0, 1.0]` range.
+     * nonlinear sRGB encoding. Values are in the `[0.0, 1.0]` range.
      */
     R8_SRGB(14),
     /**
@@ -2175,7 +2218,7 @@ public open class RenderingDevice internal constructor() : Object() {
     R8G8_SINT(20),
     /**
      * 8-bit-per-channel unsigned floating-point red/green channel data format with normalized value
-     * and non-linear sRGB encoding. Values are in the `[0.0, 1.0]` range.
+     * and nonlinear sRGB encoding. Values are in the `[0.0, 1.0]` range.
      */
     R8G8_SRGB(21),
     /**
@@ -2210,7 +2253,7 @@ public open class RenderingDevice internal constructor() : Object() {
     R8G8B8_SINT(27),
     /**
      * 8-bit-per-channel unsigned floating-point red/green/blue channel data format with normalized
-     * value and non-linear sRGB encoding. Values are in the `[0.0, 1.0]` range.
+     * value and nonlinear sRGB encoding. Values are in the `[0.0, 1.0]` range.
      */
     R8G8B8_SRGB(28),
     /**
@@ -2245,7 +2288,7 @@ public open class RenderingDevice internal constructor() : Object() {
     B8G8R8_SINT(34),
     /**
      * 8-bit-per-channel unsigned floating-point blue/green/red data format with normalized value
-     * and non-linear sRGB encoding. Values are in the `[0.0, 1.0]` range.
+     * and nonlinear sRGB encoding. Values are in the `[0.0, 1.0]` range.
      */
     B8G8R8_SRGB(35),
     /**
@@ -2280,7 +2323,7 @@ public open class RenderingDevice internal constructor() : Object() {
     R8G8B8A8_SINT(41),
     /**
      * 8-bit-per-channel unsigned floating-point red/green/blue/alpha channel data format with
-     * normalized value and non-linear sRGB encoding. Values are in the `[0.0, 1.0]` range.
+     * normalized value and nonlinear sRGB encoding. Values are in the `[0.0, 1.0]` range.
      */
     R8G8B8A8_SRGB(42),
     /**
@@ -2315,7 +2358,7 @@ public open class RenderingDevice internal constructor() : Object() {
     B8G8R8A8_SINT(48),
     /**
      * 8-bit-per-channel unsigned floating-point blue/green/red/alpha channel data format with
-     * normalized value and non-linear sRGB encoding. Values are in the `[0.0, 1.0]` range.
+     * normalized value and nonlinear sRGB encoding. Values are in the `[0.0, 1.0]` range.
      */
     B8G8R8A8_SRGB(49),
     /**
@@ -2352,7 +2395,7 @@ public open class RenderingDevice internal constructor() : Object() {
     A8B8G8R8_SINT_PACK32(55),
     /**
      * 8-bit-per-channel unsigned floating-point alpha/red/green/blue channel data format with
-     * normalized value and non-linear sRGB encoding, packed in 32 bits. Values are in the `[0.0, 1.0]`
+     * normalized value and nonlinear sRGB encoding, packed in 32 bits. Values are in the `[0.0, 1.0]`
      * range.
      */
     A8B8G8R8_SRGB_PACK32(56),
@@ -2742,8 +2785,8 @@ public open class RenderingDevice internal constructor() : Object() {
     BC1_RGB_UNORM_BLOCK(130),
     /**
      * VRAM-compressed unsigned red/green/blue channel data format with normalized value and
-     * non-linear sRGB encoding. Values are in the `[0.0, 1.0]` range. The format's precision is 5 bits
-     * of red channel, 6 bits of green channel and 5 bits of blue channel. Using BC1 texture
+     * nonlinear sRGB encoding. Values are in the `[0.0, 1.0]` range. The format's precision is 5 bits
+     * of red channel, 6 bits of green channel, and 5 bits of blue channel. Using BC1 texture
      * compression (also known as S3TC DXT1).
      */
     BC1_RGB_SRGB_BLOCK(131),
@@ -2756,8 +2799,8 @@ public open class RenderingDevice internal constructor() : Object() {
     BC1_RGBA_UNORM_BLOCK(132),
     /**
      * VRAM-compressed unsigned red/green/blue/alpha channel data format with normalized value and
-     * non-linear sRGB encoding. Values are in the `[0.0, 1.0]` range. The format's precision is 5 bits
-     * of red channel, 6 bits of green channel, 5 bits of blue channel and 1 bit of alpha channel.
+     * nonlinear sRGB encoding. Values are in the `[0.0, 1.0]` range. The format's precision is 5 bits
+     * of red channel, 6 bits of green channel, 5 bits of blue channel, and 1 bit of alpha channel.
      * Using BC1 texture compression (also known as S3TC DXT1).
      */
     BC1_RGBA_SRGB_BLOCK(133),
@@ -2770,8 +2813,8 @@ public open class RenderingDevice internal constructor() : Object() {
     BC2_UNORM_BLOCK(134),
     /**
      * VRAM-compressed unsigned red/green/blue/alpha channel data format with normalized value and
-     * non-linear sRGB encoding. Values are in the `[0.0, 1.0]` range. The format's precision is 5 bits
-     * of red channel, 6 bits of green channel, 5 bits of blue channel and 4 bits of alpha channel.
+     * nonlinear sRGB encoding. Values are in the `[0.0, 1.0]` range. The format's precision is 5 bits
+     * of red channel, 6 bits of green channel, 5 bits of blue channel, and 4 bits of alpha channel.
      * Using BC2 texture compression (also known as S3TC DXT3).
      */
     BC2_SRGB_BLOCK(135),
@@ -2784,8 +2827,8 @@ public open class RenderingDevice internal constructor() : Object() {
     BC3_UNORM_BLOCK(136),
     /**
      * VRAM-compressed unsigned red/green/blue/alpha channel data format with normalized value and
-     * non-linear sRGB encoding. Values are in the `[0.0, 1.0]` range. The format's precision is 5 bits
-     * of red channel, 6 bits of green channel, 5 bits of blue channel and 8 bits of alpha channel.
+     * nonlinear sRGB encoding. Values are in the `[0.0, 1.0]` range. The format's precision is 5 bits
+     * of red channel, 6 bits of green channel, 5 bits of blue channel, and 8 bits of alpha channel.
      * Using BC3 texture compression (also known as S3TC DXT5).
      */
     BC3_SRGB_BLOCK(137),
@@ -2833,9 +2876,9 @@ public open class RenderingDevice internal constructor() : Object() {
     BC7_UNORM_BLOCK(144),
     /**
      * VRAM-compressed unsigned red/green/blue/alpha channel data format with normalized value and
-     * non-linear sRGB encoding. Values are in the `[0.0, 1.0]` range. The format's precision is
-     * between 4 and 7 bits for the red/green/blue channels and between 0 and 8 bits for the alpha
-     * channel. Also known as BPTC LDR.
+     * nonlinear sRGB encoding. Values are in the `[0.0, 1.0]` range. The format's precision is between
+     * 4 and 7 bits for the red/green/blue channels and between 0 and 8 bits for the alpha channel.
+     * Also known as BPTC LDR.
      */
     BC7_SRGB_BLOCK(145),
     /**
@@ -2845,7 +2888,7 @@ public open class RenderingDevice internal constructor() : Object() {
     ETC2_R8G8B8_UNORM_BLOCK(146),
     /**
      * VRAM-compressed unsigned red/green/blue channel data format with normalized value and
-     * non-linear sRGB encoding. Values are in the `[0.0, 1.0]` range. Using ETC2 texture compression.
+     * nonlinear sRGB encoding. Values are in the `[0.0, 1.0]` range. Using ETC2 texture compression.
      */
     ETC2_R8G8B8_SRGB_BLOCK(147),
     /**
@@ -2856,7 +2899,7 @@ public open class RenderingDevice internal constructor() : Object() {
     ETC2_R8G8B8A1_UNORM_BLOCK(148),
     /**
      * VRAM-compressed unsigned red/green/blue/alpha channel data format with normalized value and
-     * non-linear sRGB encoding. Values are in the `[0.0, 1.0]` range. Red/green/blue use 8 bit of
+     * nonlinear sRGB encoding. Values are in the `[0.0, 1.0]` range. Red/green/blue use 8 bit of
      * precision each, with alpha using 1 bit of precision. Using ETC2 texture compression.
      */
     ETC2_R8G8B8A1_SRGB_BLOCK(149),
@@ -2868,7 +2911,7 @@ public open class RenderingDevice internal constructor() : Object() {
     ETC2_R8G8B8A8_UNORM_BLOCK(150),
     /**
      * VRAM-compressed unsigned red/green/blue/alpha channel data format with normalized value and
-     * non-linear sRGB encoding. Values are in the `[0.0, 1.0]` range. Red/green/blue use 8 bits of
+     * nonlinear sRGB encoding. Values are in the `[0.0, 1.0]` range. Red/green/blue use 8 bits of
      * precision each, with alpha using 8 bits of precision. Using ETC2 texture compression.
      */
     ETC2_R8G8B8A8_SRGB_BLOCK(151),
@@ -2898,7 +2941,7 @@ public open class RenderingDevice internal constructor() : Object() {
      */
     ASTC_4x4_UNORM_BLOCK(156),
     /**
-     * VRAM-compressed unsigned floating-point data format with normalized value and non-linear sRGB
+     * VRAM-compressed unsigned floating-point data format with normalized value and nonlinear sRGB
      * encoding, packed in 4×4 blocks (highest quality). Values are in the `[0.0, 1.0]` range. Using
      * ASTC compression.
      */
@@ -2909,7 +2952,7 @@ public open class RenderingDevice internal constructor() : Object() {
      */
     ASTC_5x4_UNORM_BLOCK(158),
     /**
-     * VRAM-compressed unsigned floating-point data format with normalized value and non-linear sRGB
+     * VRAM-compressed unsigned floating-point data format with normalized value and nonlinear sRGB
      * encoding, packed in 5×4 blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression.
      */
     ASTC_5x4_SRGB_BLOCK(159),
@@ -2919,7 +2962,7 @@ public open class RenderingDevice internal constructor() : Object() {
      */
     ASTC_5x5_UNORM_BLOCK(160),
     /**
-     * VRAM-compressed unsigned floating-point data format with normalized value and non-linear sRGB
+     * VRAM-compressed unsigned floating-point data format with normalized value and nonlinear sRGB
      * encoding, packed in 5×5 blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression.
      */
     ASTC_5x5_SRGB_BLOCK(161),
@@ -2929,7 +2972,7 @@ public open class RenderingDevice internal constructor() : Object() {
      */
     ASTC_6x5_UNORM_BLOCK(162),
     /**
-     * VRAM-compressed unsigned floating-point data format with normalized value and non-linear sRGB
+     * VRAM-compressed unsigned floating-point data format with normalized value and nonlinear sRGB
      * encoding, packed in 6×5 blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression.
      */
     ASTC_6x5_SRGB_BLOCK(163),
@@ -2939,7 +2982,7 @@ public open class RenderingDevice internal constructor() : Object() {
      */
     ASTC_6x6_UNORM_BLOCK(164),
     /**
-     * VRAM-compressed unsigned floating-point data format with normalized value and non-linear sRGB
+     * VRAM-compressed unsigned floating-point data format with normalized value and nonlinear sRGB
      * encoding, packed in 6×6 blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression.
      */
     ASTC_6x6_SRGB_BLOCK(165),
@@ -2949,7 +2992,7 @@ public open class RenderingDevice internal constructor() : Object() {
      */
     ASTC_8x5_UNORM_BLOCK(166),
     /**
-     * VRAM-compressed unsigned floating-point data format with normalized value and non-linear sRGB
+     * VRAM-compressed unsigned floating-point data format with normalized value and nonlinear sRGB
      * encoding, packed in 8×5 blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression.
      */
     ASTC_8x5_SRGB_BLOCK(167),
@@ -2959,7 +3002,7 @@ public open class RenderingDevice internal constructor() : Object() {
      */
     ASTC_8x6_UNORM_BLOCK(168),
     /**
-     * VRAM-compressed unsigned floating-point data format with normalized value and non-linear sRGB
+     * VRAM-compressed unsigned floating-point data format with normalized value and nonlinear sRGB
      * encoding, packed in 8×6 blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression.
      */
     ASTC_8x6_SRGB_BLOCK(169),
@@ -2969,7 +3012,7 @@ public open class RenderingDevice internal constructor() : Object() {
      */
     ASTC_8x8_UNORM_BLOCK(170),
     /**
-     * VRAM-compressed unsigned floating-point data format with normalized value and non-linear sRGB
+     * VRAM-compressed unsigned floating-point data format with normalized value and nonlinear sRGB
      * encoding, packed in 8×8 blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression.
      */
     ASTC_8x8_SRGB_BLOCK(171),
@@ -2979,7 +3022,7 @@ public open class RenderingDevice internal constructor() : Object() {
      */
     ASTC_10x5_UNORM_BLOCK(172),
     /**
-     * VRAM-compressed unsigned floating-point data format with normalized value and non-linear sRGB
+     * VRAM-compressed unsigned floating-point data format with normalized value and nonlinear sRGB
      * encoding, packed in 10×5 blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression.
      */
     ASTC_10x5_SRGB_BLOCK(173),
@@ -2989,7 +3032,7 @@ public open class RenderingDevice internal constructor() : Object() {
      */
     ASTC_10x6_UNORM_BLOCK(174),
     /**
-     * VRAM-compressed unsigned floating-point data format with normalized value and non-linear sRGB
+     * VRAM-compressed unsigned floating-point data format with normalized value and nonlinear sRGB
      * encoding, packed in 10×6 blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression.
      */
     ASTC_10x6_SRGB_BLOCK(175),
@@ -2999,7 +3042,7 @@ public open class RenderingDevice internal constructor() : Object() {
      */
     ASTC_10x8_UNORM_BLOCK(176),
     /**
-     * VRAM-compressed unsigned floating-point data format with normalized value and non-linear sRGB
+     * VRAM-compressed unsigned floating-point data format with normalized value and nonlinear sRGB
      * encoding, packed in 10×8 blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression.
      */
     ASTC_10x8_SRGB_BLOCK(177),
@@ -3009,7 +3052,7 @@ public open class RenderingDevice internal constructor() : Object() {
      */
     ASTC_10x10_UNORM_BLOCK(178),
     /**
-     * VRAM-compressed unsigned floating-point data format with normalized value and non-linear sRGB
+     * VRAM-compressed unsigned floating-point data format with normalized value and nonlinear sRGB
      * encoding, packed in 10×10 blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression.
      */
     ASTC_10x10_SRGB_BLOCK(179),
@@ -3019,7 +3062,7 @@ public open class RenderingDevice internal constructor() : Object() {
      */
     ASTC_12x10_UNORM_BLOCK(180),
     /**
-     * VRAM-compressed unsigned floating-point data format with normalized value and non-linear sRGB
+     * VRAM-compressed unsigned floating-point data format with normalized value and nonlinear sRGB
      * encoding, packed in 12×10 blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression.
      */
     ASTC_12x10_SRGB_BLOCK(181),
@@ -3029,7 +3072,7 @@ public open class RenderingDevice internal constructor() : Object() {
      */
     ASTC_12x12_UNORM_BLOCK(182),
     /**
-     * VRAM-compressed unsigned floating-point data format with normalized value and non-linear sRGB
+     * VRAM-compressed unsigned floating-point data format with normalized value and nonlinear sRGB
      * encoding, packed in 12 blocks (lowest quality). Values are in the `[0.0, 1.0]` range. Using ASTC
      * compression.
      */
@@ -3525,6 +3568,12 @@ public open class RenderingDevice internal constructor() : Object() {
       public val DEPTH_STENCIL_ATTACHMENT: TextureUsageBits = TextureUsageBits(4)
 
       /**
+       * Texture can be used as a depth/stencil resolve attachment in a framebuffer.
+       */
+      @JvmField
+      public val DEPTH_RESOLVE_ATTACHMENT: TextureUsageBits = TextureUsageBits(4096)
+
+      /**
        * Texture can be used as a
        * [url=https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storageimage]storage
        * image[/url].
@@ -3957,9 +4006,29 @@ public open class RenderingDevice internal constructor() : Object() {
      */
     INPUT_ATTACHMENT(9),
     /**
+     * Same as UNIFORM_TYPE_UNIFORM_BUFFER but for buffers created with
+     * BUFFER_CREATION_DYNAMIC_PERSISTENT_BIT.
+     *
+     * **Note:** This flag is not available to GD users due to being too dangerous (i.e. wrong usage
+     * can result in visual glitches).
+     *
+     * It's exposed in case GD users receive a buffer created with such flag from Godot.
+     */
+    UNIFORM_BUFFER_DYNAMIC(10),
+    /**
+     * Same as UNIFORM_TYPE_STORAGE_BUFFER but for buffers created with
+     * BUFFER_CREATION_DYNAMIC_PERSISTENT_BIT.
+     *
+     * **Note:** This flag is not available to GD users due to being too dangerous (i.e. wrong usage
+     * can result in visual glitches).
+     *
+     * It's exposed in case GD users receive a buffer created with such flag from Godot.
+     */
+    STORAGE_BUFFER_DYNAMIC(11),
+    /**
      * Represents the size of the [UniformType] enum.
      */
-    MAX(10),
+    MAX(12),
     ;
 
     public override val `value`: Long
@@ -5411,6 +5480,9 @@ public open class RenderingDevice internal constructor() : Object() {
 
     internal val drawListBindVertexArrayPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingDevice", "draw_list_bind_vertex_array", 4040184819)
+
+    internal val drawListBindVertexBuffersFormatPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "draw_list_bind_vertex_buffers_format", 2008628980)
 
     internal val drawListBindIndexArrayPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingDevice", "draw_list_bind_index_array", 4040184819)

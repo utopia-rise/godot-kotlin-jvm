@@ -196,7 +196,7 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(494, scriptPtr)
+    createNativeObject(257, scriptPtr)
   }
 
   /**

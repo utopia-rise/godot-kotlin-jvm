@@ -57,7 +57,7 @@ public object GDExtensionManager : Object() {
   public val extensionUnloading: Signal1<GDExtension> by Signal1
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(6)
+    getSingleton(26)
   }
 
   /**
@@ -168,6 +168,9 @@ public object GDExtensionManager : Object() {
   public object MethodBindings {
     internal val loadExtensionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GDExtensionManager", "load_extension", 4024158731)
+
+    internal val loadExtensionFromFunctionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GDExtensionManager", "load_extension_from_function", 1565094761)
 
     internal val reloadExtensionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GDExtensionManager", "reload_extension", 4024158731)

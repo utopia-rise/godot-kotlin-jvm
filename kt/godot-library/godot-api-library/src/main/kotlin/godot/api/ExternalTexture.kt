@@ -56,7 +56,7 @@ public open class ExternalTexture : Texture2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(213, scriptPtr)
+    createNativeObject(811, scriptPtr)
   }
 
   /**

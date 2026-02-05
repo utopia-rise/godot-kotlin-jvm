@@ -63,8 +63,20 @@ public open class MissingNode : Node() {
       setRecordingProperties(value)
     }
 
+  /**
+   * If `true`, allows new signals to be connected to along with existing ones. If `false`, only
+   * existing signals can be connected to, and new signals cannot be added.
+   */
+  public final inline var recordingSignals: Boolean
+    @JvmName("recordingSignalsProperty")
+    get() = isRecordingSignals()
+    @JvmName("recordingSignalsProperty")
+    set(`value`) {
+      setRecordingSignals(value)
+    }
+
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(367, scriptPtr)
+    createNativeObject(223, scriptPtr)
   }
 
   public final fun setOriginalClass(name: String): Unit {
@@ -100,6 +112,17 @@ public open class MissingNode : Node() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
+  public final fun setRecordingSignals(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(ptr, MethodBindings.setRecordingSignalsPtr, NIL)
+  }
+
+  public final fun isRecordingSignals(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isRecordingSignalsPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
   public companion object
 
   public object MethodBindings {
@@ -120,5 +143,11 @@ public open class MissingNode : Node() {
 
     internal val isRecordingPropertiesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("MissingNode", "is_recording_properties", 36873697)
+
+    internal val setRecordingSignalsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MissingNode", "set_recording_signals", 2586408642)
+
+    internal val isRecordingSignalsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MissingNode", "is_recording_signals", 36873697)
   }
 }

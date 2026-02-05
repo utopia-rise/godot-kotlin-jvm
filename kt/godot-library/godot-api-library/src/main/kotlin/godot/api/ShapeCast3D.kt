@@ -194,7 +194,7 @@ public open class ShapeCast3D : Node3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(608, scriptPtr)
+    createNativeObject(606, scriptPtr)
   }
 
   /**
@@ -422,7 +422,7 @@ public open class ShapeCast3D : Node3D() {
   /**
    * Adds a collision exception so the shape does not report collisions with the specified node.
    */
-  public final fun addException(node: CollisionObject3D?): Unit {
+  public final fun addException(node: CollisionObject3D): Unit {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(ptr, MethodBindings.addExceptionPtr, NIL)
   }
@@ -438,7 +438,7 @@ public open class ShapeCast3D : Node3D() {
   /**
    * Removes a collision exception so the shape does report collisions with the specified node.
    */
-  public final fun removeException(node: CollisionObject3D?): Unit {
+  public final fun removeException(node: CollisionObject3D): Unit {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(ptr, MethodBindings.removeExceptionPtr, NIL)
   }

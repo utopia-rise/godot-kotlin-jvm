@@ -52,9 +52,8 @@ public open class Path3D : Node3D() {
     }
 
   /**
-   * The custom color to use to draw the shape in the editor.
-   *
-   * If set to `Color(0.0, 0.0, 0.0)` (by default), the color set in EditorSettings is used.
+   * The custom color used to draw the path in the editor. If set to [Color.BLACK] (as by default),
+   * the color set in [ProjectSettings.debug/shapes/paths/geometryColor] is used.
    *
    * **Warning:**
    * Be careful when trying to modify a local
@@ -73,7 +72,7 @@ public open class Path3D : Node3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(466, scriptPtr)
+    createNativeObject(603, scriptPtr)
   }
 
   /**
@@ -87,9 +86,8 @@ public open class Path3D : Node3D() {
    * path3d.debugCustomColor = myCoreType
    * ``````
    *
-   * The custom color to use to draw the shape in the editor.
-   *
-   * If set to `Color(0.0, 0.0, 0.0)` (by default), the color set in EditorSettings is used.
+   * The custom color used to draw the path in the editor. If set to [Color.BLACK] (as by default),
+   * the color set in [ProjectSettings.debug/shapes/paths/geometryColor] is used.
    */
   @CoreTypeHelper
   public final fun debugCustomColorMutate(block: Color.() -> Unit): Color = debugCustomColor.apply {

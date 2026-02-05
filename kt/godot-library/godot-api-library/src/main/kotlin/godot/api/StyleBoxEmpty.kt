@@ -21,7 +21,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class StyleBoxEmpty : StyleBox() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(658, scriptPtr)
+    createNativeObject(781, scriptPtr)
   }
 
   /**

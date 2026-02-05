@@ -72,6 +72,10 @@ jobs:
       - name: Setup python and scons
         uses: ./.github/actions/godot-deps
 
+      - name: Download Direct3D SDK components
+        run: |
+          python ./misc/scripts/install_d3d12_sdk_windows.py
+
       - name: Setup MSVC problem matcher
         uses: ammaraskar/msvc-problem-matcher@master
 

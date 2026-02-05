@@ -107,7 +107,7 @@ public open class AnimatedTexture : Texture2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(12, scriptPtr)
+    createNativeObject(793, scriptPtr)
   }
 
   public final fun setFrames(frames: Int): Unit {

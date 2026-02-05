@@ -28,7 +28,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class LightmapProbe : Node3D() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(343, scriptPtr)
+    createNativeObject(674, scriptPtr)
   }
 
   public companion object

@@ -42,7 +42,7 @@ public open class AimModifier3D : BoneConstraint3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(7, scriptPtr)
+    createNativeObject(643, scriptPtr)
   }
 
   /**
@@ -118,6 +118,28 @@ public open class AimModifier3D : BoneConstraint3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
+  /**
+   * Sets relative option in the setting at [index] to [enabled].
+   *
+   * If sets [enabled] to `true`, the rotation is applied relative to the pose.
+   *
+   * If sets [enabled] to `false`, the rotation is applied relative to the rest. It means to replace
+   * the current pose with the [AimModifier3D]'s result.
+   */
+  public final fun setRelative(index: Int, enabled: Boolean): Unit {
+    TransferContext.writeArguments(LONG to index.toLong(), BOOL to enabled)
+    TransferContext.callMethod(ptr, MethodBindings.setRelativePtr, NIL)
+  }
+
+  /**
+   * Returns `true` if the relative option is enabled in the setting at [index].
+   */
+  public final fun isRelative(index: Int): Boolean {
+    TransferContext.writeArguments(LONG to index.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.isRelativePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
   public companion object
 
   public object MethodBindings {
@@ -144,5 +166,11 @@ public open class AimModifier3D : BoneConstraint3D() {
 
     internal val isUsingSecondaryRotationPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AimModifier3D", "is_using_secondary_rotation", 1116898809)
+
+    internal val setRelativePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AimModifier3D", "set_relative", 300928843)
+
+    internal val isRelativePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AimModifier3D", "is_relative", 1116898809)
   }
 }

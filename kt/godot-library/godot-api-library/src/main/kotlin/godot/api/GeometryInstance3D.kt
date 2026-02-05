@@ -92,7 +92,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
     }
 
   /**
-   * The selected shadow casting flag.
+   * The mode used to cast shadows from this instance.
    */
   public final inline var castShadow: ShadowCastingSetting
     @JvmName("castShadowProperty")
@@ -287,7 +287,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(265, scriptPtr)
+    createNativeObject(703, scriptPtr)
   }
 
   /**

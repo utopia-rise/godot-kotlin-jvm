@@ -44,7 +44,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class XRInterfaceExtension : XRInterface() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(886, scriptPtr)
+    createNativeObject(234, scriptPtr)
   }
 
   /**
@@ -225,7 +225,7 @@ public open class XRInterfaceExtension : XRInterface() {
   }
 
   /**
-   * Returns an [XRInterface.TrackingStatus] specifying the current status of our tracking.
+   * Returns the current status of our tracking.
    */
   public open fun _getTrackingStatus(): XRInterface.TrackingStatus {
     throw NotImplementedError("XRInterfaceExtension::_getTrackingStatus is not implemented.")

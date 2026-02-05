@@ -608,7 +608,7 @@ public open class NavigationAgent3D : Node() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(384, scriptPtr)
+    createNativeObject(586, scriptPtr)
   }
 
   /**

@@ -211,8 +211,8 @@ public open class Button : BaseButton() {
     }
 
   /**
-   * Language code used for line-breaking and text shaping algorithms, if left empty current locale
-   * is used instead.
+   * Language code used for line-breaking and text shaping algorithms. If left empty, the current
+   * locale is used instead.
    */
   public final inline var language: String
     @JvmName("languageProperty")
@@ -223,7 +223,7 @@ public open class Button : BaseButton() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(115, scriptPtr)
+    createNativeObject(402, scriptPtr)
   }
 
   public final fun setText(text: String): Unit {

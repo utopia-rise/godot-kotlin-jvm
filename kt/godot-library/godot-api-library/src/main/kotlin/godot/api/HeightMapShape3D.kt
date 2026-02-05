@@ -27,13 +27,19 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A 3D heightmap shape, intended for use in physics. Usually used to provide a shape for a
- * [CollisionShape3D]. This type is most commonly used for terrain with vertices placed in a fixed
- * width grid. Due to the nature of the heightmap, it cannot be used to model overhangs or caves, which
- * would require multiple vertices at the same vertical location. Holes can be punched through the
- * collision by assigning [@GDScript.NAN] to the height of the desired vertices (this is supported in
- * both GodotPhysics3D and Jolt Physics). You could then insert meshes with their own separate
- * collision to provide overhangs, caves, and so on.
+ * A 3D heightmap shape, intended for use in physics to provide a shape for a [CollisionShape3D].
+ * This type is most commonly used for terrain with vertices placed in a fixed-width grid.
+ *
+ * The heightmap is represented as a 2D grid of height values, which represent the position of grid
+ * points on the Y axis. Grid points are spaced 1 unit apart on the X and Z axes, and the grid is
+ * centered on the origin of the [CollisionShape3D] node. Internally, each grid square is divided into
+ * two triangles.
+ *
+ * Due to the nature of the heightmap, it cannot be used to model overhangs or caves, which would
+ * require multiple vertices at the same vertical location. Holes can be punched through the collision
+ * by assigning [@GDScript.NAN] to the height of the desired vertices (this is supported in both
+ * GodotPhysics3D and Jolt Physics). You could then insert meshes with their own separate collision to
+ * provide overhangs, caves, and so on.
  *
  * **Performance:** [HeightMapShape3D] is faster to check collisions against than
  * [ConcavePolygonShape3D], but it is significantly slower than primitive shapes like [BoxShape3D].
@@ -51,11 +57,18 @@ import kotlin.jvm.JvmName
  *
  * update_map_data_from_image(heightmap_image, height_min, height_max)
  * ```
+ *
+ * **Note:** If you need to use a spacing different than 1 unit, you can adjust the [Node3D.scale]
+ * of the shape. However, keep in mind that GodotPhysics3D does not support non-uniform scaling: you'll
+ * need to scale the Y axis by the same amount as the X and Z axes, which means the values in [mapData]
+ * will need to be pre-scaled by the inverse of that scale. Also note that GodotPhysics3D does not
+ * support scaling at all for dynamic bodies (that is, non-frozen [RigidBody3D] nodes); to use a scaled
+ * [HeightMapShape3D] with those, you will need to use Jolt Physics.
  */
 @GodotBaseType
 public open class HeightMapShape3D : Shape3D() {
   /**
-   * Number of vertices in the width of the height map. Changing this will resize the [mapData].
+   * Number of vertices in the width of the heightmap. Changing this will resize the [mapData].
    */
   public final inline var mapWidth: Int
     @JvmName("mapWidthProperty")
@@ -66,7 +79,7 @@ public open class HeightMapShape3D : Shape3D() {
     }
 
   /**
-   * Number of vertices in the depth of the height map. Changing this will resize the [mapData].
+   * Number of vertices in the depth of the heightmap. Changing this will resize the [mapData].
    */
   public final inline var mapDepth: Int
     @JvmName("mapDepthProperty")
@@ -77,7 +90,7 @@ public open class HeightMapShape3D : Shape3D() {
     }
 
   /**
-   * Height map data. The array's size must be equal to [mapWidth] multiplied by [mapDepth].
+   * Heightmap data. The array's size must be equal to [mapWidth] multiplied by [mapDepth].
    *
    * **Warning:**
    * Be careful when trying to modify a local
@@ -96,7 +109,7 @@ public open class HeightMapShape3D : Shape3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(286, scriptPtr)
+    createNativeObject(824, scriptPtr)
   }
 
   /**
@@ -110,7 +123,7 @@ public open class HeightMapShape3D : Shape3D() {
    * heightmapshape3d.mapData = myCoreType
    * ``````
    *
-   * Height map data. The array's size must be equal to [mapWidth] multiplied by [mapDepth].
+   * Heightmap data. The array's size must be equal to [mapWidth] multiplied by [mapDepth].
    */
   @CoreTypeHelper
   public final fun mapDataMutate(block: PackedFloat32Array.() -> Unit): PackedFloat32Array =
@@ -124,7 +137,7 @@ public open class HeightMapShape3D : Shape3D() {
    * Allow to directly modify each element of the local copy of the property and assign it back to
    * the Object.
    *
-   * Height map data. The array's size must be equal to [mapWidth] multiplied by [mapDepth].
+   * Heightmap data. The array's size must be equal to [mapWidth] multiplied by [mapDepth].
    */
   @CoreTypeHelper
   public final fun mapDataMutateEach(block: (index: Int, `value`: Float) -> Unit):

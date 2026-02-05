@@ -15,6 +15,9 @@ import kotlin.Unit
 /**
  * [Popup] is a base class for contextual windows and panels with fixed position. It's a modal by
  * default (see [Window.popupWindow]) and provides methods for implementing custom popup behavior.
+ *
+ * **Note:** [Popup] is invisible by default. To make it visible, call one of the `popup_*` methods
+ * from [Window] on the node, such as [Window.popupCenteredClamped].
  */
 @GodotBaseType
 public open class Popup : Window() {
@@ -24,7 +27,7 @@ public open class Popup : Window() {
   public val popupHide: Signal0 by Signal0
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(516, scriptPtr)
+    createNativeObject(391, scriptPtr)
   }
 
   public companion object

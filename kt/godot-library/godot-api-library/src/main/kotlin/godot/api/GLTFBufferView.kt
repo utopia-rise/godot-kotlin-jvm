@@ -10,18 +10,22 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.Dictionary
 import godot.core.PackedByteArray
 import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.DICTIONARY
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
+import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * GLTFBufferView is a data structure representing a glTF `bufferView` that would be found in the
@@ -110,7 +114,7 @@ public open class GLTFBufferView : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(233, scriptPtr)
+    createNativeObject(728, scriptPtr)
   }
 
   /**
@@ -122,6 +126,15 @@ public open class GLTFBufferView : Resource() {
     TransferContext.writeArguments(OBJECT to state)
     TransferContext.callMethod(ptr, MethodBindings.loadBufferViewDataPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
+  }
+
+  /**
+   * Serializes this GLTFBufferView instance into a [Dictionary].
+   */
+  public final fun toDictionary(): Dictionary<Any?, Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.toDictionaryPtr, DICTIONARY)
+    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   public final fun getBuffer(): Int {
@@ -190,11 +203,27 @@ public open class GLTFBufferView : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.setVertexAttributesPtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    /**
+     * Creates a new GLTFBufferView instance by parsing the given [Dictionary].
+     */
+    @JvmStatic
+    public final fun fromDictionary(dictionary: Dictionary<Any?, Any?>): GLTFBufferView? {
+      TransferContext.writeArguments(DICTIONARY to dictionary)
+      TransferContext.callMethod(0, MethodBindings.fromDictionaryPtr, OBJECT)
+      return (TransferContext.readReturnValue(OBJECT) as GLTFBufferView?)
+    }
+  }
 
   public object MethodBindings {
     internal val loadBufferViewDataPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFBufferView", "load_buffer_view_data", 3945446907)
+
+    internal val fromDictionaryPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFBufferView", "from_dictionary", 2594413512)
+
+    internal val toDictionaryPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFBufferView", "to_dictionary", 3102165223)
 
     internal val getBufferPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFBufferView", "get_buffer", 3905245786)

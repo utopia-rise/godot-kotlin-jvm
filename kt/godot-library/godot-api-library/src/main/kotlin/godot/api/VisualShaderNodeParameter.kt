@@ -14,6 +14,7 @@ import godot.core.GodotEnum
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
+import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -49,8 +50,20 @@ public open class VisualShaderNodeParameter internal constructor() : VisualShade
       setQualifier(value)
     }
 
+  /**
+   * The index within 0-15 range, which is used to avoid clashes when shader used on multiple
+   * materials.
+   */
+  public final inline var instanceIndex: Int
+    @JvmName("instanceIndexProperty")
+    get() = getInstanceIndex()
+    @JvmName("instanceIndexProperty")
+    set(`value`) {
+      setInstanceIndex(value)
+    }
+
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(787, scriptPtr)
+    createNativeObject(522, scriptPtr)
   }
 
   public final fun setParameterName(name: String): Unit {
@@ -75,6 +88,17 @@ public open class VisualShaderNodeParameter internal constructor() : VisualShade
     return Qualifier.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
+  public final fun setInstanceIndex(instanceIndex: Int): Unit {
+    TransferContext.writeArguments(LONG to instanceIndex.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.setInstanceIndexPtr, NIL)
+  }
+
+  public final fun getInstanceIndex(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getInstanceIndexPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
   public enum class Qualifier(
     `value`: Long,
   ) : GodotEnum {
@@ -91,9 +115,14 @@ public open class VisualShaderNodeParameter internal constructor() : VisualShade
      */
     INSTANCE(2),
     /**
+     * The parameter will be tied to the node with attached [ShaderMaterial] using this shader.
+     * Enables setting a [instanceIndex] property.
+     */
+    INSTANCE_INDEX(3),
+    /**
      * Represents the size of the [Qualifier] enum.
      */
-    MAX(3),
+    MAX(4),
     ;
 
     public override val `value`: Long
@@ -120,5 +149,11 @@ public open class VisualShaderNodeParameter internal constructor() : VisualShade
 
     internal val getQualifierPtr: VoidPtr =
         TypeManager.getMethodBindPtr("VisualShaderNodeParameter", "get_qualifier", 3558406205)
+
+    internal val setInstanceIndexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeParameter", "set_instance_index", 1286410249)
+
+    internal val getInstanceIndexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNodeParameter", "get_instance_index", 3905245786)
   }
 }

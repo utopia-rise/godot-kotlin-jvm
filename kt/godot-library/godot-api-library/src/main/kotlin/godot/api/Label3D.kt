@@ -427,8 +427,8 @@ public open class Label3D : GeometryInstance3D() {
     }
 
   /**
-   * Language code used for line-breaking and text shaping algorithms, if left empty current locale
-   * is used instead.
+   * Language code used for line-breaking and text shaping algorithms. If left empty, the current
+   * locale is used instead.
    */
   public final inline var language: String
     @JvmName("languageProperty")
@@ -461,7 +461,7 @@ public open class Label3D : GeometryInstance3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(336, scriptPtr)
+    createNativeObject(687, scriptPtr)
   }
 
   /**

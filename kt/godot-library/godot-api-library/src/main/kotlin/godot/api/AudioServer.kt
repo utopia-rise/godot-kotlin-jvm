@@ -10,8 +10,10 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.Error
 import godot.core.GodotEnum
 import godot.core.PackedStringArray
+import godot.core.PackedVector2Array
 import godot.core.Signal0
 import godot.core.Signal3
 import godot.core.StringName
@@ -21,6 +23,7 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_STRING_ARRAY
+import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
 import godot.core.asCachedStringName
@@ -115,7 +118,7 @@ public object AudioServer : Object() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(0)
+    getSingleton(24)
   }
 
   @JvmStatic
@@ -596,6 +599,56 @@ public object AudioServer : Object() {
   }
 
   /**
+   * If [active] is `true`, starts the microphone input stream specified by [inputDevice] or returns
+   * an error if it failed.
+   *
+   * If [active] is `false`, stops the input stream if it is running.
+   */
+  @JvmStatic
+  public final fun setInputDeviceActive(active: Boolean): Error {
+    TransferContext.writeArguments(BOOL to active)
+    TransferContext.callMethod(ptr, MethodBindings.setInputDeviceActivePtr, LONG)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Returns the number of frames available to read using [getInputFrames].
+   */
+  @JvmStatic
+  public final fun getInputFramesAvailable(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getInputFramesAvailablePtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  /**
+   * Returns the absolute size of the microphone input buffer. This is set to a multiple of the
+   * audio latency and can be used to estimate the minimum rate at which the frames need to be fetched.
+   */
+  @JvmStatic
+  public final fun getInputBufferLengthFrames(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getInputBufferLengthFramesPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  /**
+   * Returns a [PackedVector2Array] containing exactly [frames] audio samples from the internal
+   * microphone buffer if available, otherwise returns an empty [PackedVector2Array].
+   *
+   * The buffer is filled at the rate of [getInputMixRate] frames per second when
+   * [setInputDeviceActive] has successfully been set to `true`.
+   *
+   * The samples are signed floating-point PCM values between `-1` and `1`.
+   */
+  @JvmStatic
+  public final fun getInputFrames(frames: Int): PackedVector2Array {
+    TransferContext.writeArguments(LONG to frames.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.getInputFramesPtr, PACKED_VECTOR2_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
+  }
+
+  /**
    * Overwrites the currently used [AudioBusLayout].
    */
   @JvmStatic
@@ -879,6 +932,18 @@ public object AudioServer : Object() {
 
     internal val setInputDevicePtr: VoidPtr =
         TypeManager.getMethodBindPtr("AudioServer", "set_input_device", 83702148)
+
+    internal val setInputDeviceActivePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioServer", "set_input_device_active", 1413768114)
+
+    internal val getInputFramesAvailablePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioServer", "get_input_frames_available", 2455072627)
+
+    internal val getInputBufferLengthFramesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioServer", "get_input_buffer_length_frames", 2455072627)
+
+    internal val getInputFramesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioServer", "get_input_frames", 2649534757)
 
     internal val setBusLayoutPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AudioServer", "set_bus_layout", 3319058824)

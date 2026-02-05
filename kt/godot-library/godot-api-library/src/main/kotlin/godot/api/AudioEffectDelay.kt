@@ -174,7 +174,7 @@ public open class AudioEffectDelay : AudioEffect() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(53, scriptPtr)
+    createNativeObject(300, scriptPtr)
   }
 
   public final fun setDry(amount: Float): Unit {

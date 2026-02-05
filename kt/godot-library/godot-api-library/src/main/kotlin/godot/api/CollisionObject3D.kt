@@ -158,7 +158,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(157, scriptPtr)
+    createNativeObject(624, scriptPtr)
   }
 
   /**
@@ -170,8 +170,8 @@ public open class CollisionObject3D internal constructor() : Node3D() {
    * [collisionLayer] bit to be set.
    */
   public open fun _inputEvent(
-    camera: Camera3D?,
-    event: InputEvent?,
+    camera: Camera3D,
+    event: InputEvent,
     eventPosition: Vector3,
     normal: Vector3,
     shapeIdx: Int,
@@ -384,7 +384,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   /**
    * Adds a [Shape3D] to the shape owner.
    */
-  public final fun shapeOwnerAddShape(ownerId: Long, shape: Shape3D?): Unit {
+  public final fun shapeOwnerAddShape(ownerId: Long, shape: Shape3D): Unit {
     TransferContext.writeArguments(LONG to ownerId, OBJECT to shape)
     TransferContext.callMethod(ptr, MethodBindings.shapeOwnerAddShapePtr, NIL)
   }

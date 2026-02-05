@@ -147,7 +147,7 @@ public open class Sprite3D : SpriteBase3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(644, scriptPtr)
+    createNativeObject(688, scriptPtr)
   }
 
   /**

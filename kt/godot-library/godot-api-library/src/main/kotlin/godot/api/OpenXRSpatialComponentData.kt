@@ -1,0 +1,67 @@
+// THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
+    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+
+package godot.api
+
+import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
+import godot.common.interop.VoidPtr
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.NIL
+import kotlin.Long
+import kotlin.NotImplementedError
+import kotlin.Suppress
+import kotlin.Unit
+
+/**
+ * Object for storing OpenXR spatial entity component data.
+ */
+@GodotBaseType
+public open class OpenXRSpatialComponentData : RefCounted() {
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(889, scriptPtr)
+  }
+
+  /**
+   * Set the expected capacity as provided by the spatial entities query system. Buffers should be
+   * initialized with the correct storage.
+   */
+  public open fun _setCapacity(capacity: Long): Unit {
+    throw NotImplementedError("OpenXRSpatialComponentData::_setCapacity is not implemented.")
+  }
+
+  /**
+   * Return the component type for the component we store data for.
+   */
+  public open fun _getComponentType(): Long {
+    throw NotImplementedError("OpenXRSpatialComponentData::_getComponentType is not implemented.")
+  }
+
+  /**
+   * Return a pointer to the structure data that will be submitted along with the snapshot query.
+   * This pointer must remain valid as long as this object is instantiated.
+   */
+  public open fun _getStructureData(next: Long): Long {
+    throw NotImplementedError("OpenXRSpatialComponentData::_getStructureData is not implemented.")
+  }
+
+  /**
+   * Set the expected capacity as provided by the spatial entities query system. Buffers should be
+   * initialized with the correct storage.
+   */
+  public final fun setCapacity(capacity: Long): Unit {
+    TransferContext.writeArguments(LONG to capacity)
+    TransferContext.callMethod(ptr, MethodBindings.setCapacityPtr, NIL)
+  }
+
+  public companion object
+
+  public object MethodBindings {
+    internal val setCapacityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRSpatialComponentData", "set_capacity", 1286410249)
+  }
+}

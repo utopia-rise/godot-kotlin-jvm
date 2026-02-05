@@ -7,7 +7,15 @@
 package godot.api
 
 import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.StringName
+import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
+import kotlin.Boolean
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -21,10 +29,28 @@ import kotlin.Unit
 @GodotBaseType
 public open class JNISingleton : Object() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(320, scriptPtr)
+    createNativeObject(865, scriptPtr)
   }
+
+  /**
+   * Returns `true` if the given [method] name exists in the JNISingleton's Java methods.
+   */
+  public final fun hasJavaMethod(method: StringName): Boolean {
+    TransferContext.writeArguments(STRING_NAME to method)
+    TransferContext.callMethod(ptr, MethodBindings.hasJavaMethodPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Returns `true` if the given [method] name exists in the JNISingleton's Java methods.
+   */
+  public final fun hasJavaMethod(method: String): Boolean =
+      hasJavaMethod(method.asCachedStringName())
 
   public companion object
 
-  public object MethodBindings
+  public object MethodBindings {
+    internal val hasJavaMethodPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("JNISingleton", "has_java_method", 2619796661)
+  }
 }

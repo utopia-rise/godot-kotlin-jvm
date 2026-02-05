@@ -104,7 +104,7 @@ public open class SpringBoneCollision3D : Node3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(638, scriptPtr)
+    createNativeObject(650, scriptPtr)
   }
 
   /**

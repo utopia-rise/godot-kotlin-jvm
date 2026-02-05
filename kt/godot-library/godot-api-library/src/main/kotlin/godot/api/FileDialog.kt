@@ -12,11 +12,13 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.Callable
 import godot.core.Dictionary
 import godot.core.GodotEnum
 import godot.core.PackedStringArray
 import godot.core.Signal1
 import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.CALLABLE
 import godot.core.VariantParser.DICTIONARY
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -32,11 +34,15 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * [FileDialog] is a preset dialog used to choose files and directories in the filesystem. It
  * supports filter masks. [FileDialog] automatically sets its window title according to the [fileMode].
  * If you want to use a custom title, disable this by setting [modeOverridesTitle] to `false`.
+ *
+ * **Note:** [FileDialog] is invisible by default. To make it visible, call one of the `popup_*`
+ * methods from [Window] on the node, such as [Window.popupCenteredClamped].
  */
 @GodotBaseType
 public open class FileDialog : ConfirmationDialog() {
@@ -128,7 +134,7 @@ public open class FileDialog : ConfirmationDialog() {
    * `*.png,*.jpg,*.jpeg;Image Files;image/png,image/jpeg`. The description text of the filter is
    * optional and can be omitted. Both file extensions and MIME type should be always set.
    *
-   * **Note:** Embedded file dialog and Windows file dialog support only file extensions, while
+   * **Note:** Embedded file dialogs and Windows file dialogs support only file extensions, while
    * Android, Linux, and macOS file dialogs also support MIME types.
    *
    * **Warning:**
@@ -193,6 +199,8 @@ public open class FileDialog : ConfirmationDialog() {
    *
    * **Note:** Native dialogs are isolated from the base process, file dialog properties can't be
    * modified once the dialog is shown.
+   *
+   * **Note:** This property is ignored in [EditorFileDialog].
    */
   public final inline var useNativeDialog: Boolean
     @JvmName("useNativeDialogProperty")
@@ -248,7 +256,8 @@ public open class FileDialog : ConfirmationDialog() {
 
   /**
    * If `true`, shows the button for creating new directories (when using [FILE_MODE_OPEN_DIR],
-   * [FILE_MODE_OPEN_ANY], or [FILE_MODE_SAVE_FILE]).
+   * [FILE_MODE_OPEN_ANY], or [FILE_MODE_SAVE_FILE]), and the context menu will have the "New
+   * Folder..." option.
    */
   public final inline var folderCreationEnabled: Boolean
     @JvmName("folderCreationEnabledProperty")
@@ -292,6 +301,29 @@ public open class FileDialog : ConfirmationDialog() {
     }
 
   /**
+   * If `true`, the [FileDialog] will warn the user before overwriting files in save mode.
+   */
+  public final inline var overwriteWarningEnabled: Boolean
+    @JvmName("overwriteWarningEnabledProperty")
+    get() = isCustomizationFlagEnabled(FileDialog.Customization.OVERWRITE_WARNING)
+    @JvmName("overwriteWarningEnabledProperty")
+    set(`value`) {
+      setCustomizationFlagEnabled(FileDialog.Customization.OVERWRITE_WARNING, value)
+    }
+
+  /**
+   * If `true`, the context menu will show the "Delete" option, which allows moving files and
+   * folders to trash.
+   */
+  public final inline var deletingEnabled: Boolean
+    @JvmName("deletingEnabledProperty")
+    get() = isCustomizationFlagEnabled(FileDialog.Customization.DELETE)
+    @JvmName("deletingEnabledProperty")
+    set(`value`) {
+      setCustomizationFlagEnabled(FileDialog.Customization.DELETE, value)
+    }
+
+  /**
    * The current working directory of the file dialog.
    *
    * **Note:** For native file dialogs, this property is only treated as a hint and may not be
@@ -328,7 +360,7 @@ public open class FileDialog : ConfirmationDialog() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(218, scriptPtr)
+    createNativeObject(86, scriptPtr)
   }
 
   /**
@@ -346,7 +378,7 @@ public open class FileDialog : ConfirmationDialog() {
    * `*.png,*.jpg,*.jpeg;Image Files;image/png,image/jpeg`. The description text of the filter is
    * optional and can be omitted. Both file extensions and MIME type should be always set.
    *
-   * **Note:** Embedded file dialog and Windows file dialog support only file extensions, while
+   * **Note:** Embedded file dialogs and Windows file dialogs support only file extensions, while
    * Android, Linux, and macOS file dialogs also support MIME types.
    */
   @CoreTypeHelper
@@ -365,7 +397,7 @@ public open class FileDialog : ConfirmationDialog() {
    * `*.png,*.jpg,*.jpeg;Image Files;image/png,image/jpeg`. The description text of the filter is
    * optional and can be omitted. Both file extensions and MIME type should be always set.
    *
-   * **Note:** Embedded file dialog and Windows file dialog support only file extensions, while
+   * **Note:** Embedded file dialogs and Windows file dialogs support only file extensions, while
    * Android, Linux, and macOS file dialogs also support MIME types.
    */
   @CoreTypeHelper
@@ -387,18 +419,25 @@ public open class FileDialog : ConfirmationDialog() {
   }
 
   /**
-   * Adds a comma-separated file name [filter] option to the [FileDialog] with an optional
-   * [description], which restricts what files can be picked.
+   * Adds a comma-separated file extension [filter] and comma-separated MIME type [mimeType] option
+   * to the [FileDialog] with an optional [description], which restricts what files can be picked.
    *
    * A [filter] should be of the form `"filename.extension"`, where filename and extension can be
    * `*` to match any string. Filters starting with `.` (i.e. empty filenames) are not allowed.
    *
-   * For example, a [filter] of `"*.png, *.jpg"` and a [description] of `"Images"` results in filter
-   * text "Images (*.png, *.jpg)".
+   * For example, a [filter] of `"*.png, *.jpg"`, a [mimeType] of `image/png, image/jpeg`, and a
+   * [description] of `"Images"` results in filter text "Images (*.png, *.jpg)".
+   *
+   * **Note:** Embedded file dialogs and Windows file dialogs support only file extensions, while
+   * Android, Linux, and macOS file dialogs also support MIME types.
    */
   @JvmOverloads
-  public final fun addFilter(filter: String, description: String = ""): Unit {
-    TransferContext.writeArguments(STRING to filter, STRING to description)
+  public final fun addFilter(
+    filter: String,
+    description: String = "",
+    mimeType: String = "",
+  ): Unit {
+    TransferContext.writeArguments(STRING to filter, STRING to description, STRING to mimeType)
     TransferContext.callMethod(ptr, MethodBindings.addFilterPtr, NIL)
   }
 
@@ -658,8 +697,8 @@ public open class FileDialog : ConfirmationDialog() {
   }
 
   /**
-   * Toggles the specified customization [flag], allowing to customize features available in this
-   * [FileDialog]. See [Customization] for options.
+   * Sets the specified customization [flag], allowing to customize the features available in this
+   * [FileDialog].
    */
   public final fun setCustomizationFlagEnabled(flag: Customization, enabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to flag.value, BOOL to enabled)
@@ -684,7 +723,16 @@ public open class FileDialog : ConfirmationDialog() {
   }
 
   /**
-   * Invalidate and update the current dialog content list.
+   * Shows the [FileDialog] using the default size and position for file dialogs, and selects the
+   * file name if there is a current file.
+   */
+  public final fun popupFileDialog(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.popupFileDialogPtr, NIL)
+  }
+
+  /**
+   * Invalidates and updates this dialog's content list.
    *
    * **Note:** This method does nothing on native file dialogs.
    */
@@ -827,6 +875,19 @@ public open class FileDialog : ConfirmationDialog() {
      * Equivalent to [layoutToggleEnabled].
      */
     LAYOUT(6),
+    /**
+     * If enabled, the [FileDialog] will warn the user before overwriting files in save mode.
+     *
+     * Equivalent to [overwriteWarningEnabled].
+     */
+    OVERWRITE_WARNING(7),
+    /**
+     * If enabled, the context menu will show the "Delete" option, which allows moving files and
+     * folders to trash.
+     *
+     * Equivalent to [deletingEnabled].
+     */
+    DELETE(8),
     ;
 
     public override val `value`: Long
@@ -839,14 +900,107 @@ public open class FileDialog : ConfirmationDialog() {
     }
   }
 
-  public companion object
+  public companion object {
+    /**
+     * Sets the list of favorite directories, which is shared by all [FileDialog] nodes. Useful to
+     * restore the list of favorites saved with [getFavoriteList]. This method can be called only from
+     * the main thread.
+     *
+     * **Note:** [FileDialog] will update its internal [ItemList] of favorites when its visibility
+     * changes. Be sure to call this method earlier if you want your changes to have effect.
+     */
+    @JvmStatic
+    public final fun setFavoriteList(favorites: PackedStringArray): Unit {
+      TransferContext.writeArguments(PACKED_STRING_ARRAY to favorites)
+      TransferContext.callMethod(0, MethodBindings.setFavoriteListPtr, NIL)
+    }
+
+    /**
+     * Returns the list of favorite directories, which is shared by all [FileDialog] nodes. Useful
+     * to store the list of favorites between project sessions. This method can be called only from the
+     * main thread.
+     */
+    @JvmStatic
+    public final fun getFavoriteList(): PackedStringArray {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(0, MethodBindings.getFavoriteListPtr, PACKED_STRING_ARRAY)
+      return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
+    }
+
+    /**
+     * Sets the list of recent directories, which is shared by all [FileDialog] nodes. Useful to
+     * restore the list of recents saved with [setRecentList]. This method can be called only from the
+     * main thread.
+     *
+     * **Note:** [FileDialog] will update its internal [ItemList] of recent directories when its
+     * visibility changes. Be sure to call this method earlier if you want your changes to have effect.
+     */
+    @JvmStatic
+    public final fun setRecentList(recents: PackedStringArray): Unit {
+      TransferContext.writeArguments(PACKED_STRING_ARRAY to recents)
+      TransferContext.callMethod(0, MethodBindings.setRecentListPtr, NIL)
+    }
+
+    /**
+     * Returns the list of recent directories, which is shared by all [FileDialog] nodes. Useful to
+     * store the list of recents between project sessions. This method can be called only from the main
+     * thread.
+     */
+    @JvmStatic
+    public final fun getRecentList(): PackedStringArray {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(0, MethodBindings.getRecentListPtr, PACKED_STRING_ARRAY)
+      return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
+    }
+
+    /**
+     * Sets the callback used by the [FileDialog] nodes to get a file icon, when [DISPLAY_LIST] mode
+     * is used. The callback should take a single [String] argument (file path), and return a
+     * [Texture2D]. If an invalid texture is returned, the [theme_item file] icon will be used instead.
+     */
+    @JvmStatic
+    public final fun setGetIconCallback(callback: Callable): Unit {
+      TransferContext.writeArguments(CALLABLE to callback)
+      TransferContext.callMethod(0, MethodBindings.setGetIconCallbackPtr, NIL)
+    }
+
+    /**
+     * Sets the callback used by the [FileDialog] nodes to get a file icon, when
+     * [DISPLAY_THUMBNAILS] mode is used. The callback should take a single [String] argument (file
+     * path), and return a [Texture2D]. If an invalid texture is returned, the [theme_item
+     * file_thumbnail] icon will be used instead.
+     *
+     * Thumbnails are usually more complex and may take a while to load. To avoid stalling the
+     * application, you can use [ImageTexture] to asynchronously create the thumbnail.
+     *
+     * ```
+     * func _ready():
+     * 	FileDialog.set_get_thumbnail_callback(thumbnail_method)
+     *
+     * func thumbnail_method(path):
+     * 	var image_texture = ImageTexture.new()
+     * 	make_thumbnail_async(path, image_texture)
+     * 	return image_texture
+     *
+     * func make_thumbnail_async(path, image_texture):
+     * 	var thumbnail_texture = await generate_thumbnail(path) # Some method that generates a
+     * thumbnail.
+     * 	image_texture.set_image(thumbnail_texture.get_image())
+     * ```
+     */
+    @JvmStatic
+    public final fun setGetThumbnailCallback(callback: Callable): Unit {
+      TransferContext.writeArguments(CALLABLE to callback)
+      TransferContext.callMethod(0, MethodBindings.setGetThumbnailCallbackPtr, NIL)
+    }
+  }
 
   public object MethodBindings {
     internal val clearFiltersPtr: VoidPtr =
         TypeManager.getMethodBindPtr("FileDialog", "clear_filters", 3218959716)
 
     internal val addFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "add_filter", 3388804757)
+        TypeManager.getMethodBindPtr("FileDialog", "add_filter", 914921954)
 
     internal val setFiltersPtr: VoidPtr =
         TypeManager.getMethodBindPtr("FileDialog", "set_filters", 4015028928)
@@ -967,6 +1121,27 @@ public open class FileDialog : ConfirmationDialog() {
 
     internal val deselectAllPtr: VoidPtr =
         TypeManager.getMethodBindPtr("FileDialog", "deselect_all", 3218959716)
+
+    internal val setFavoriteListPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "set_favorite_list", 4015028928)
+
+    internal val getFavoriteListPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "get_favorite_list", 2981934095)
+
+    internal val setRecentListPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "set_recent_list", 4015028928)
+
+    internal val getRecentListPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "get_recent_list", 2981934095)
+
+    internal val setGetIconCallbackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "set_get_icon_callback", 1611583062)
+
+    internal val setGetThumbnailCallbackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "set_get_thumbnail_callback", 1611583062)
+
+    internal val popupFileDialogPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "popup_file_dialog", 3218959716)
 
     internal val invalidatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("FileDialog", "invalidate", 3218959716)

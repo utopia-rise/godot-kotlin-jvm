@@ -20,6 +20,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -585,7 +586,7 @@ public open class AudioStreamPlaylist : AudioStream() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(98, scriptPtr)
+    createNativeObject(941, scriptPtr)
   }
 
   public final fun setStreamCount(streamCount: Int): Unit {
@@ -656,6 +657,13 @@ public open class AudioStreamPlaylist : AudioStream() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.hasLoopPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _instantiatePlayback(): AudioStreamPlayback? {
+    throw NotImplementedError("AudioStreamPlaylist::_instantiatePlayback can't be called from the JVM.")
   }
 
   public companion object {

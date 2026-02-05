@@ -24,14 +24,16 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Abstract scene data object, exists for the duration of rendering a single viewport.
+ * Abstract scene data object, exists for the duration of rendering a single viewport. See also
+ * [RenderSceneDataRD], [RenderData], and [RenderDataRD].
  *
- * **Note:** This is an internal rendering server object, do not instantiate this from script.
+ * **Note:** This is an internal rendering server object. Do not instantiate this class from a
+ * script.
  */
 @GodotBaseType
 public open class RenderSceneData internal constructor() : Object() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(562, scriptPtr)
+    createNativeObject(273, scriptPtr)
   }
 
   /**

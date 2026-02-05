@@ -193,10 +193,6 @@ Script* KotlinLanguage::create_script() const {
     return memnew(KotlinScript);
 }
 
-bool KotlinLanguage::has_named_classes() const {
-    return false;
-}
-
 bool KotlinLanguage::supports_builtin_mode() const {
     return false;
 }

@@ -156,7 +156,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(534, scriptPtr)
+    createNativeObject(283, scriptPtr)
   }
 
   public final fun setEnableDepthClamp(pMember: Boolean): Unit {

@@ -34,7 +34,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class ResourcePreloader : Node() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(572, scriptPtr)
+    createNativeObject(407, scriptPtr)
   }
 
   /**

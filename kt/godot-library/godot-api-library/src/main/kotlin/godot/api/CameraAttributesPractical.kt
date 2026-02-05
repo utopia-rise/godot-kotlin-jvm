@@ -160,7 +160,7 @@ public open class CameraAttributesPractical : CameraAttributes() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(133, scriptPtr)
+    createNativeObject(818, scriptPtr)
   }
 
   public final fun setDofBlurFarEnabled(enabled: Boolean): Unit {

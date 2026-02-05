@@ -160,7 +160,28 @@ public class PropertyUsageFlags(
     public val NIL_IS_VARIANT: PropertyUsageFlags = PropertyUsageFlags(131072)
 
     /**
-     * The property is an array.
+     * The property is the element count of a property array, i.e. a list of groups of related
+     * properties. Properties defined with this usage also need a specific `class_name` field in the
+     * form of `label,prefix`. The field may also include additional comma-separated options:
+     *
+     * - `page_size=N`: Overrides
+     * [EditorSettings.interface/inspector/maxArrayDictionaryItemsPerPage] for this array.
+     *
+     * - `add_button_text=text`: The text displayed by the "Add Element" button.
+     *
+     * - `static`: The elements can't be re-arranged.
+     *
+     * - `const`: New elements can't be added.
+     *
+     * - `numbered`: An index will appear next to each element.
+     *
+     * - `unfoldable`: The array can't be folded.
+     *
+     * - `swap_method=method_name`: The method that will be called when two elements switch places.
+     * The method should take 2 [int] parameters, which will be indices of the elements being swapped.
+     *
+     * Note that making a full-fledged property array requires boilerplate code involving
+     * [Object.GetPropertyList].
      */
     @JvmField
     public val ARRAY: PropertyUsageFlags = PropertyUsageFlags(262144)

@@ -115,7 +115,7 @@ public open class Object : KtObject() {
   public val propertyListChanged: Signal0 by Signal0
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(0, scriptPtr)
+    createNativeObject(1, scriptPtr)
   }
 
   /**
@@ -654,6 +654,9 @@ public open class Object : KtObject() {
    * node.CallDeferred(Node3D.MethodName.Rotate, new Vector3(1f, 0f, 0f), 1.571f);
    * ```
    *
+   * For methods that are deferred from the same thread, the order of execution at idle time is
+   * identical to the order in which [code skip-lint]call_deferred[/code] was called.
+   *
    * See also [Callable.callDeferred].
    *
    * **Note:** In C#, [method] must be in snake_case when referring to built-in Godot methods.
@@ -784,7 +787,7 @@ public open class Object : KtObject() {
   /**
    * Returns the list of existing signals as an [Array] of dictionaries.
    *
-   * **Note:** Due of the implementation, each [Dictionary] is formatted very similarly to the
+   * **Note:** Due to the implementation, each [Dictionary] is formatted very similarly to the
    * returned values of [getMethodList].
    */
   public final fun getSignalList(): VariantArray<Dictionary<Any?, Any?>> {
@@ -840,7 +843,7 @@ public open class Object : KtObject() {
    * **Note:** In GDScript, it is generally recommended to connect signals with [Signal.connect]
    * instead.
    *
-   * **Note:** This operation (and all other signal related operations) is thread-safe.
+   * **Note:** This method, and all other signal-related methods, are thread-safe.
    */
   @JvmOverloads
   public final fun connect(
@@ -1300,6 +1303,9 @@ public open class Object : KtObject() {
    * node.CallDeferred(Node3D.MethodName.Rotate, new Vector3(1f, 0f, 0f), 1.571f);
    * ```
    *
+   * For methods that are deferred from the same thread, the order of execution at idle time is
+   * identical to the order in which [code skip-lint]call_deferred[/code] was called.
+   *
    * See also [Callable.callDeferred].
    *
    * **Note:** In C#, [method] must be in snake_case when referring to built-in Godot methods.
@@ -1435,7 +1441,7 @@ public open class Object : KtObject() {
    * **Note:** In GDScript, it is generally recommended to connect signals with [Signal.connect]
    * instead.
    *
-   * **Note:** This operation (and all other signal related operations) is thread-safe.
+   * **Note:** This method, and all other signal-related methods, are thread-safe.
    */
   @JvmOverloads
   public final fun connect(
@@ -1538,8 +1544,11 @@ public open class Object : KtObject() {
     DEFERRED(1),
     /**
      * Persisting connections are stored when the object is serialized (such as when using
-     * [PackedScene.pack]). In the editor, connections created through the Node dock are always
+     * [PackedScene.pack]). In the editor, connections created through the Signals dock are always
      * persisting.
+     *
+     * **Note:** Connections to lambda functions (that is, when the function code is embedded in the
+     * [connect] call) cannot be made persistent.
      */
     PERSIST(2),
     /**
@@ -1553,9 +1562,20 @@ public open class Object : KtObject() {
      */
     REFERENCE_COUNTED(8),
     /**
-     * The source object is automatically bound when a [PackedScene] is instantiated. If this flag
-     * bit is enabled, the source object will be appended right after the original arguments of the
-     * signal.
+     * On signal emission, the source object is automatically appended after the original arguments
+     * of the signal, regardless of the connected [Callable]'s unbinds which affect only the original
+     * arguments of the signal (see [Callable.unbind], [Callable.getUnboundArgumentsCount]).
+     *
+     * ```
+     * extends Object
+     *
+     * signal test_signal
+     *
+     * func test():
+     * 	print(self) # Prints e.g. <Object#35332818393>
+     * 	test_signal.connect(prints.unbind(1), CONNECT_APPEND_SOURCE_OBJECT)
+     * 	test_signal.emit("emit_arg_1", "emit_arg_2") # Prints emit_arg_1 <Object#35332818393>
+     * ```
      */
     APPEND_SOURCE_OBJECT(16),
     ;
@@ -1580,6 +1600,8 @@ public open class Object : KtObject() {
     /**
      * Notification received when the object is about to be deleted. Can be used like destructors in
      * object-oriented programming languages.
+     *
+     * This notification is sent in reversed order.
      */
     public final const val NOTIFICATION_PREDELETE: Long = 1
 

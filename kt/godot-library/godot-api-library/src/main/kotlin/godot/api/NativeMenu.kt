@@ -132,6 +132,29 @@ public object NativeMenu : Object() {
   }
 
   /**
+   * Returns the text of the system menu item.
+   *
+   * **Note:** This method is implemented on macOS.
+   */
+  @JvmStatic
+  public final fun getSystemMenuText(menuId: SystemMenus): String {
+    TransferContext.writeArguments(LONG to menuId.value)
+    TransferContext.callMethod(ptr, MethodBindings.getSystemMenuTextPtr, STRING)
+    return (TransferContext.readReturnValue(STRING) as String)
+  }
+
+  /**
+   * Sets the text of the system menu item.
+   *
+   * **Note:** This method is implemented on macOS.
+   */
+  @JvmStatic
+  public final fun setSystemMenuText(menuId: SystemMenus, name: String): Unit {
+    TransferContext.writeArguments(LONG to menuId.value, STRING to name)
+    TransferContext.callMethod(ptr, MethodBindings.setSystemMenuTextPtr, NIL)
+  }
+
+  /**
    * Creates a new global menu object.
    *
    * **Note:** This method is implemented on macOS and Windows.
@@ -1233,6 +1256,12 @@ public object NativeMenu : Object() {
 
     internal val getSystemMenuNamePtr: VoidPtr =
         TypeManager.getMethodBindPtr("NativeMenu", "get_system_menu_name", 1281499290)
+
+    internal val getSystemMenuTextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NativeMenu", "get_system_menu_text", 1281499290)
+
+    internal val setSystemMenuTextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NativeMenu", "set_system_menu_text", 3925225603)
 
     internal val createMenuPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NativeMenu", "create_menu", 529393457)

@@ -805,6 +805,8 @@ class Color : Comparable<Color>, CoreType {
             return -1
         }
 
+        val namedColorCount = namedColors.size
+
         internal fun named(name: String): Color {
             val idx: Int = findNamedColor(name)
             return if (idx == -1) {

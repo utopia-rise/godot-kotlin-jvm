@@ -12,12 +12,16 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.Dictionary
 import godot.core.GodotEnum
 import godot.core.PackedFloat64Array
 import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.DICTIONARY
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
+import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_FLOAT_64_ARRAY
+import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -25,6 +29,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 /**
  * GLTFAccessor is a data structure representing a glTF `accessor` that would be found in the
@@ -227,7 +232,7 @@ public open class GLTFAccessor : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(231, scriptPtr)
+    createNativeObject(730, scriptPtr)
   }
 
   /**
@@ -300,6 +305,15 @@ public open class GLTFAccessor : Resource() {
          this[index] = value
      }
      max = this
+  }
+
+  /**
+   * Serializes this GLTFAccessor instance into a [Dictionary].
+   */
+  public final fun toDictionary(): Dictionary<Any?, Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.toDictionaryPtr, DICTIONARY)
+    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   public final fun getBufferView(): Int {
@@ -607,9 +621,25 @@ public open class GLTFAccessor : Resource() {
     }
   }
 
-  public companion object
+  public companion object {
+    /**
+     * Creates a new GLTFAccessor instance by parsing the given [Dictionary].
+     */
+    @JvmStatic
+    public final fun fromDictionary(dictionary: Dictionary<Any?, Any?>): GLTFAccessor? {
+      TransferContext.writeArguments(DICTIONARY to dictionary)
+      TransferContext.callMethod(0, MethodBindings.fromDictionaryPtr, OBJECT)
+      return (TransferContext.readReturnValue(OBJECT) as GLTFAccessor?)
+    }
+  }
 
   public object MethodBindings {
+    internal val fromDictionaryPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFAccessor", "from_dictionary", 3495091019)
+
+    internal val toDictionaryPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFAccessor", "to_dictionary", 3102165223)
+
     internal val getBufferViewPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFAccessor", "get_buffer_view", 3905245786)
 

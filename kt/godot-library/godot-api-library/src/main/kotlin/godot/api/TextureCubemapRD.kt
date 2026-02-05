@@ -14,11 +14,14 @@ import kotlin.Unit
 /**
  * This texture class allows you to use a cubemap texture created directly on the [RenderingDevice]
  * as a texture for materials, meshes, etc.
+ *
+ * **Note:** [TextureCubemapRD] is intended for low-level usage with [RenderingDevice]. For most use
+ * cases, use [Cubemap] instead.
  */
 @GodotBaseType
 public open class TextureCubemapRD : TextureLayeredRD() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(690, scriptPtr)
+    createNativeObject(789, scriptPtr)
   }
 
   public companion object

@@ -27,16 +27,14 @@ import kotlin.jvm.JvmName
 
 /**
  * A container that can be expanded/collapsed, with a title that can be filled with controls, such
- * as buttons.
+ * as buttons. This is also called an accordion.
  *
- * The title can be positioned at the top or bottom of the container.
+ * The title can be positioned at the top or bottom of the container. The container can be expanded
+ * or collapsed by clicking the title or by pressing `ui_accept` when focused. Child control nodes are
+ * hidden when the container is collapsed. Ignores non-control children.
  *
- * The container can be expanded or collapsed by clicking the title or by pressing `ui_accept` when
- * focused.
- *
- * Child control nodes are hidden when the container is collapsed. Ignores non-control children.
- *
- * Can allow grouping with other FoldableContainers, check [foldableGroup] and [FoldableGroup].
+ * A FoldableContainer can be grouped with other FoldableContainers so that only one of them can be
+ * opened at a time; see [foldableGroup] and [FoldableGroup].
  */
 @GodotBaseType
 public open class FoldableContainer : Container() {
@@ -124,7 +122,8 @@ public open class FoldableContainer : Container() {
     }
 
   /**
-   * Language code used for text shaping algorithms. If left empty, current locale is used instead.
+   * Language code used for text shaping algorithms. If left empty, the current locale is used
+   * instead.
    */
   public final inline var language: String
     @JvmName("languageProperty")
@@ -135,7 +134,7 @@ public open class FoldableContainer : Container() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(222, scriptPtr)
+    createNativeObject(340, scriptPtr)
   }
 
   /**

@@ -48,7 +48,8 @@ public open class InputEventKey : InputEventWithModifiers() {
 
   /**
    * Latin label printed on the key in the current keyboard layout, which corresponds to one of the
-   * [Key] constants.
+   * [Key] constants. Key codes are meant for shortcuts expressed with a standard Latin keyboard, such
+   * as [kbd]Ctrl + S[/kbd] for a "Save" shortcut.
    *
    * To get a human-readable representation of the [InputEventKey], use
    * `OS.get_keycode_string(event.keycode)` where `event` is the [InputEventKey].
@@ -75,17 +76,21 @@ public open class InputEventKey : InputEventWithModifiers() {
 
   /**
    * Represents the physical location of a key on the 101/102-key US QWERTY keyboard, which
-   * corresponds to one of the [Key] constants.
+   * corresponds to one of the [Key] constants. Physical key codes meant for game input, such as WASD
+   * movement, where only the location of the keys is important.
    *
    * To get a human-readable representation of the [InputEventKey], use [OS.getKeycodeString] in
-   * combination with [DisplayServer.keyboardGetKeycodeFromPhysical]:
+   * combination with [DisplayServer.keyboardGetKeycodeFromPhysical] or
+   * [DisplayServer.keyboardGetLabelFromPhysical]:
    *
    * ```gdscript
    * //gdscript
    * func _input(event):
    * 	if event is InputEventKey:
    * 		var keycode = DisplayServer.keyboard_get_keycode_from_physical(event.physical_keycode)
+   * 		var label = DisplayServer.keyboard_get_label_from_physical(event.physical_keycode)
    * 		print(OS.get_keycode_string(keycode))
+   * 		print(OS.get_keycode_string(label))
    * ```
    *
    * ```csharp
@@ -95,7 +100,9 @@ public open class InputEventKey : InputEventWithModifiers() {
    * 	if (@event is InputEventKey inputEventKey)
    * 	{
    * 		var keycode = DisplayServer.KeyboardGetKeycodeFromPhysical(inputEventKey.PhysicalKeycode);
+   * 		var label = DisplayServer.KeyboardGetLabelFromPhysical(inputEventKey.PhysicalKeycode);
    * 		GD.Print(OS.GetKeycodeString(keycode));
+   * 		GD.Print(OS.GetKeycodeString(label));
    * 	}
    * }
    * ```
@@ -110,7 +117,8 @@ public open class InputEventKey : InputEventWithModifiers() {
 
   /**
    * Represents the localized label printed on the key in the current keyboard layout, which
-   * corresponds to one of the [Key] constants or any valid Unicode character.
+   * corresponds to one of the [Key] constants or any valid Unicode character. Key labels are meant for
+   * key prompts.
    *
    * For keyboard layouts with a single label on the key, it is equivalent to [keycode].
    *
@@ -140,7 +148,11 @@ public open class InputEventKey : InputEventWithModifiers() {
   /**
    * The key Unicode character code (when relevant), shifted by modifier keys. Unicode character
    * codes for composite characters and complex scripts may not be available unless IME input mode is
-   * active. See [Window.setImeActive] for more information.
+   * active. See [Window.setImeActive] for more information. Unicode character codes are meant for text
+   * input.
+   *
+   * **Note:** This property is set by the engine only for a pressed event. If the event is sent by
+   * an IME or a virtual keyboard, no corresponding key released event is sent.
    */
   public final inline var unicode: Long
     @JvmName("unicodeProperty")
@@ -181,7 +193,7 @@ public open class InputEventKey : InputEventWithModifiers() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(305, scriptPtr)
+    createNativeObject(186, scriptPtr)
   }
 
   public final fun setPressed(pressed: Boolean): Unit {

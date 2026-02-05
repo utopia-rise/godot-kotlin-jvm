@@ -36,32 +36,26 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public abstract class AudioStreamPlayback : RefCounted() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(88, scriptPtr)
+    createNativeObject(328, scriptPtr)
   }
 
   /**
    * Override this method to customize what happens when the playback starts at the given position,
    * such as by calling [AudioStreamPlayer.play].
    */
-  public open fun _start(fromPos: Double): Unit {
-    throw NotImplementedError("AudioStreamPlayback::_start is not implemented.")
-  }
+  public abstract fun _start(fromPos: Double): Unit
 
   /**
    * Override this method to customize what happens when the playback is stopped, such as by calling
    * [AudioStreamPlayer.stop].
    */
-  public open fun _stop(): Unit {
-    throw NotImplementedError("AudioStreamPlayback::_stop is not implemented.")
-  }
+  public abstract fun _stop(): Unit
 
   /**
    * Overridable method. Should return `true` if this playback is active and playing its audio
    * stream.
    */
-  public open fun _isPlaying(): Boolean {
-    throw NotImplementedError("AudioStreamPlayback::_isPlaying is not implemented.")
-  }
+  public abstract fun _isPlaying(): Boolean
 
   /**
    * Overridable method. Should return how many times this audio stream has looped. Most built-in
@@ -74,9 +68,7 @@ public abstract class AudioStreamPlayback : RefCounted() {
   /**
    * Overridable method. Should return the current progress along the audio stream, in seconds.
    */
-  public open fun _getPlaybackPosition(): Double {
-    throw NotImplementedError("AudioStreamPlayback::_getPlaybackPosition is not implemented.")
-  }
+  public abstract fun _getPlaybackPosition(): Double
 
   /**
    * Override this method to customize what happens when seeking this audio stream at the given

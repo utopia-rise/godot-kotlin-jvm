@@ -50,7 +50,7 @@ public open class ShaderMaterial : Material() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(604, scriptPtr)
+    createNativeObject(468, scriptPtr)
   }
 
   public final fun setShader(shader: Shader?): Unit {
@@ -72,9 +72,10 @@ public open class ShaderMaterial : Material() {
    *
    * **Note:** Changes to the shader uniform will be effective on all instances using this
    * [ShaderMaterial]. To prevent this, use per-instance uniforms with
-   * [GeometryInstance3D.setInstanceShaderParameter] or duplicate the [ShaderMaterial] resource using
-   * [Resource.duplicate]. Per-instance uniforms allow for better shader reuse and are therefore
-   * faster, so they should be preferred over duplicating the [ShaderMaterial] when possible.
+   * [CanvasItem.setInstanceShaderParameter], [GeometryInstance3D.setInstanceShaderParameter] or
+   * duplicate the [ShaderMaterial] resource using [Resource.duplicate]. Per-instance uniforms allow
+   * for better shader reuse and are therefore faster, so they should be preferred over duplicating the
+   * [ShaderMaterial] when possible.
    */
   public final fun setShaderParameter(`param`: StringName, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to param, ANY to value)
@@ -112,9 +113,10 @@ public open class ShaderMaterial : Material() {
    *
    * **Note:** Changes to the shader uniform will be effective on all instances using this
    * [ShaderMaterial]. To prevent this, use per-instance uniforms with
-   * [GeometryInstance3D.setInstanceShaderParameter] or duplicate the [ShaderMaterial] resource using
-   * [Resource.duplicate]. Per-instance uniforms allow for better shader reuse and are therefore
-   * faster, so they should be preferred over duplicating the [ShaderMaterial] when possible.
+   * [CanvasItem.setInstanceShaderParameter], [GeometryInstance3D.setInstanceShaderParameter] or
+   * duplicate the [ShaderMaterial] resource using [Resource.duplicate]. Per-instance uniforms allow
+   * for better shader reuse and are therefore faster, so they should be preferred over duplicating the
+   * [ShaderMaterial] when possible.
    */
   public final fun setShaderParameter(`param`: String, `value`: Any?) =
       setShaderParameter(param.asCachedStringName(), value)

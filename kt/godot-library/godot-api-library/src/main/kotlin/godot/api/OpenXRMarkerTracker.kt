@@ -1,0 +1,178 @@
+// THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
+    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+
+package godot.api
+
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
+import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
+import godot.common.interop.VoidPtr
+import godot.core.VariantCaster.ANY
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.VECTOR2
+import godot.core.Vector2
+import kotlin.Any
+import kotlin.Long
+import kotlin.Suppress
+import kotlin.Unit
+import kotlin.jvm.JvmName
+
+/**
+ * Spatial entity tracker for our OpenXR spatial entity marker tracking extension. These trackers
+ * identify entities in our real space detected by a visual marker such as a QRCode or Aruco code, and
+ * map their location to our virtual space.
+ */
+@GodotBaseType
+public open class OpenXRMarkerTracker : OpenXRSpatialEntityTracker() {
+  /**
+   * The bounds size for this marker.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
+  @CoreTypeLocalCopy
+  public final inline var boundsSize: Vector2
+    @JvmName("boundsSizeProperty")
+    get() = getBoundsSize()
+    @JvmName("boundsSizeProperty")
+    set(`value`) {
+      setBoundsSize(value)
+    }
+
+  /**
+   * The type of marker.
+   */
+  public final inline var markerType: OpenXRSpatialComponentMarkerList.MarkerType
+    @JvmName("markerTypeProperty")
+    get() = getMarkerType()
+    @JvmName("markerTypeProperty")
+    set(`value`) {
+      setMarkerType(value)
+    }
+
+  /**
+   * The marker ID for this marker, this is only returned for Aruco and April Tag markers. Call
+   * [getMarkerData] for QRCode markers.
+   */
+  public final inline var markerId: Long
+    @JvmName("markerIdProperty")
+    get() = getMarkerId()
+    @JvmName("markerIdProperty")
+    set(`value`) {
+      setMarkerId(value)
+    }
+
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(899, scriptPtr)
+  }
+
+  /**
+   * This is a helper function for [boundsSize] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = openxrmarkertracker.boundsSize
+   * //Your changes
+   * openxrmarkertracker.boundsSize = myCoreType
+   * ``````
+   *
+   * The bounds size for this marker.
+   */
+  @CoreTypeHelper
+  public final fun boundsSizeMutate(block: Vector2.() -> Unit): Vector2 = boundsSize.apply {
+     block(this)
+     boundsSize = this
+  }
+
+  public final fun setBoundsSize(boundsSize: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to boundsSize)
+    TransferContext.callMethod(ptr, MethodBindings.setBoundsSizePtr, NIL)
+  }
+
+  public final fun getBoundsSize(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getBoundsSizePtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+  }
+
+  public final fun setMarkerType(markerType: OpenXRSpatialComponentMarkerList.MarkerType): Unit {
+    TransferContext.writeArguments(LONG to markerType.value)
+    TransferContext.callMethod(ptr, MethodBindings.setMarkerTypePtr, NIL)
+  }
+
+  public final fun getMarkerType(): OpenXRSpatialComponentMarkerList.MarkerType {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getMarkerTypePtr, LONG)
+    return OpenXRSpatialComponentMarkerList.MarkerType.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setMarkerId(markerId: Long): Unit {
+    TransferContext.writeArguments(LONG to markerId)
+    TransferContext.callMethod(ptr, MethodBindings.setMarkerIdPtr, NIL)
+  }
+
+  public final fun getMarkerId(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getMarkerIdPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Sets the marker data for this marker.
+   *
+   * **Note:** This should only be set by marker discovery logic.
+   */
+  public final fun setMarkerData(markerData: Any?): Unit {
+    TransferContext.writeArguments(ANY to markerData)
+    TransferContext.callMethod(ptr, MethodBindings.setMarkerDataPtr, NIL)
+  }
+
+  /**
+   * Returns the marker data for this marker. This can return a [String] or [PackedByteArray]. Only
+   * applicable to QR Code based markers.
+   */
+  public final fun getMarkerData(): Any? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getMarkerDataPtr, ANY)
+    return (TransferContext.readReturnValue(ANY) as Any?)
+  }
+
+  public companion object
+
+  public object MethodBindings {
+    internal val setBoundsSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRMarkerTracker", "set_bounds_size", 743155724)
+
+    internal val getBoundsSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRMarkerTracker", "get_bounds_size", 3341600327)
+
+    internal val setMarkerTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRMarkerTracker", "set_marker_type", 2156241362)
+
+    internal val getMarkerTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRMarkerTracker", "get_marker_type", 612702862)
+
+    internal val setMarkerIdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRMarkerTracker", "set_marker_id", 1286410249)
+
+    internal val getMarkerIdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRMarkerTracker", "get_marker_id", 3905245786)
+
+    internal val setMarkerDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRMarkerTracker", "set_marker_data", 1114965689)
+
+    internal val getMarkerDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRMarkerTracker", "get_marker_data", 1214101251)
+  }
+}

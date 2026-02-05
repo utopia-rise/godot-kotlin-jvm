@@ -91,7 +91,7 @@ public object NavigationServer3D : Object() {
   public val avoidanceDebugChanged: Signal0 by Signal0
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(18)
+    getSingleton(12)
   }
 
   /**

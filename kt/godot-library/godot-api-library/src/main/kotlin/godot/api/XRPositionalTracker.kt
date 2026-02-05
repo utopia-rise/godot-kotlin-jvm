@@ -109,7 +109,7 @@ public open class XRPositionalTracker : XRTracker() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(890, scriptPtr)
+    createNativeObject(240, scriptPtr)
   }
 
   public final fun getTrackerProfile(): String {

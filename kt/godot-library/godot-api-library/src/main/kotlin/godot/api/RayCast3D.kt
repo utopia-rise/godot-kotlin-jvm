@@ -188,7 +188,7 @@ public open class RayCast3D : Node3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(547, scriptPtr)
+    createNativeObject(607, scriptPtr)
   }
 
   /**
@@ -379,7 +379,7 @@ public open class RayCast3D : Node3D() {
   /**
    * Adds a collision exception so the ray does not report collisions with the specified [node].
    */
-  public final fun addException(node: CollisionObject3D?): Unit {
+  public final fun addException(node: CollisionObject3D): Unit {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(ptr, MethodBindings.addExceptionPtr, NIL)
   }
@@ -395,7 +395,7 @@ public open class RayCast3D : Node3D() {
   /**
    * Removes a collision exception so the ray can report collisions with the specified [node].
    */
-  public final fun removeException(node: CollisionObject3D?): Unit {
+  public final fun removeException(node: CollisionObject3D): Unit {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(ptr, MethodBindings.removeExceptionPtr, NIL)
   }

@@ -38,7 +38,7 @@ public open class Container : Control() {
   public val sortChildren: Signal0 by Signal0
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(179, scriptPtr)
+    createNativeObject(385, scriptPtr)
   }
 
   /**
@@ -78,7 +78,7 @@ public open class Container : Control() {
    * Fit a child control in a given rect. This is mainly a helper for creating custom container
    * classes.
    */
-  public final fun fitChildInRect(child: Control?, rect: Rect2): Unit {
+  public final fun fitChildInRect(child: Control, rect: Rect2): Unit {
     TransferContext.writeArguments(OBJECT to child, RECT2 to rect)
     TransferContext.callMethod(ptr, MethodBindings.fitChildInRectPtr, NIL)
   }
