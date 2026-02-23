@@ -175,8 +175,33 @@ fun Exec.setupTestExecution(executableProvider: () -> String) {
     val testOutputFile = File("${projectDir}/test_output.txt")
     this.standardOutput = testOutputFile.outputStream()
     this.errorOutput = testOutputFile.outputStream()
+    this.isIgnoreExitValue = true
+    workingDir = projectDir
 
-    this.doLast {
+    val originalExecutable = File(executableProvider())
+    val copiedExecutable = projectDir.resolve(originalExecutable.name)
+    originalExecutable.copyTo(copiedExecutable, overwrite = true)
+    copiedExecutable.setExecutable(true)
+
+    doFirst {
+        if (HostManager.hostIsMingw) {
+            this@setupTestExecution.commandLine(
+                "cmd",
+                "/c",
+                "${copiedExecutable.path.replace(" ", "\\ ")} -s --headless addons/gut/gut_cmdln.gd",
+            )
+        } else {
+            this@setupTestExecution.commandLine(
+                "bash",
+                "-c",
+                "${copiedExecutable.path.replace(" ", "\\ ")} -s --headless addons/gut/gut_cmdln.gd",
+            )
+        }
+    }
+
+    doLast {
+        copiedExecutable.delete()
+
         val testOutput = testOutputFile.readText()
         val outputLines = testOutput.split("\n")
 
@@ -201,24 +226,6 @@ fun Exec.setupTestExecution(executableProvider: () -> String) {
         println(testOutput)
 
         error?.let { throw it }
-    }
-
-    this.isIgnoreExitValue = true
-
-    doFirst {
-        if (HostManager.hostIsMingw) {
-            this@setupTestExecution.commandLine(
-                "cmd",
-                "/c",
-                "${executableProvider().replace(" ", "\\ ")} -s --headless --path $projectDir addons/gut/gut_cmdln.gd",
-            )
-        } else {
-            this@setupTestExecution.commandLine(
-                "bash",
-                "-c",
-                "${executableProvider().replace(" ", "\\ ")} -s --headless --path $projectDir addons/gut/gut_cmdln.gd",
-            )
-        }
     }
 }
 
