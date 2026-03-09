@@ -1,0 +1,4 @@
+jdk:
+  - openjdk21
+install:
+   - cd kt && ./gradlew clean install
