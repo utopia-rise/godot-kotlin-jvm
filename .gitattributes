@@ -1,2 +1,6 @@
-kt/godot-api-library/src/main/kotlin/godot/api/*.kt    linguist-generated=true
-harness/tests/.godot/**/*    linguist-generated=true
+#
+# https://help.github.com/articles/dealing-with-line-endings/
+#
+# These are explicitly windows files and should use crlf
+*.bat           text eol=crlf
+

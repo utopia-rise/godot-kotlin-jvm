@@ -1,1 +1,0 @@
-The publishing process is the same as it is for regular JVM libraries.

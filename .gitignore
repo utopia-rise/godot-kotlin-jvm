@@ -1,12 +1,7 @@
-/cmake-build-debug
-/cmake-build-release
-/build
-**/.idea
+# Ignore Gradle project-specific cache directory
+.gradle
+.kotlin
+.intellijPlatform
 
-*.obj
-*.o
-*.d
-__pycache__
-libprotobuf/
-
-**/*.DS_Store
+# Ignore Gradle build output directory
+build
