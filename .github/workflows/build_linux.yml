@@ -4,43 +4,44 @@ on:
     inputs:
       godot-version:
         type: string
+      build-test-templates:
+        type: boolean
+        default: true
 
 concurrency:
   group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-linux_build
   cancel-in-progress: true
 
 jobs:
+  setup-matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - id: set-matrix
+        run: |
+          MATRIX='{"include":[
+            {"name":"Build editor release x86_64 (target=editor)","cache-name":"editor_release_linux_x86_64","target":"editor","scons-flags":""},
+            {"name":"Build editor debug (target=editor, debug_symbols=true )","cache-name":"editor_debug_linux_x86_64","target":"editor","scons-flags":"debug_symbols=true"},
+            {"name":"Build editor dev (target=editor, dev_build=yes, debug_symbols=true )","cache-name":"editor_dev_linux_x86_64","target":"editor","scons-flags":"dev_build=yes debug_symbols=true"},
+            {"name":"Build release template x86_64","cache-name":"export_template_release_linux_x86_64","target":"template_release","scons-flags":""},
+            {"name":"Build debug template x86_64","cache-name":"export_template_debug_linux_x86_64","target":"template_debug","scons-flags":""}
+          ]}'
+          if [ "${{ inputs.build-test-templates }}" == "true" ]; then
+            MATRIX=$(echo "$MATRIX" | jq -c '.include += [
+              {"name":"Build release template x86_64 (test)","cache-name":"export_template_test_release_linux_x86_64","target":"template_release","scons-flags":"disable_path_overrides=no"},
+              {"name":"Build debug template x86_64 (test)","cache-name":"export_template_test_debug_linux_x86_64","target":"template_debug","scons-flags":"disable_path_overrides=no"}
+            ]')
+          fi
+          echo "matrix=$(echo $MATRIX | jq -c '.')" >> $GITHUB_OUTPUT
+
   build-linux:
+    needs: setup-matrix
     runs-on: ubuntu-22.04 # use the oldest ubuntu version still available to github actions for the best backwards compatibility
     name: ${{ matrix.name }}
     strategy:
       fail-fast: false
-      matrix:
-        include:
-          - name: Build editor release x86_64 (target=editor)
-            cache-name: editor_release_linux_x86_64
-            target: editor
-            scons-flags: ''
-
-          - name: Build editor debug (target=editor, debug_symbols=true )
-            cache-name: editor_debug_linux_x86_64
-            target: editor
-            scons-flags: debug_symbols=true
-
-          - name: Build editor dev (target=editor, dev_build=yes, debug_symbols=true )
-            cache-name: editor_dev_linux_x86_64
-            target: editor
-            scons-flags: dev_build=yes debug_symbols=true
-
-          - name: Build release template x86_64
-            cache-name: export_template_release_linux_x86_64
-            target: template_release
-            scons-flags: ''
-
-          - name: Build debug template x86_64
-            cache-name: export_template_debug_linux_x86_64
-            target: template_debug
-            scons-flags: ''
+      matrix: ${{ fromJson(needs.setup-matrix.outputs.matrix) }}
 
     steps:
       - name: Maximize build space

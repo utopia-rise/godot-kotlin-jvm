@@ -1,6 +1,4 @@
 import org.jetbrains.kotlin.konan.target.HostManager
-import java.io.ByteArrayOutputStream
-import java.io.OutputStream
 
 plugins {
     // no need to apply kotlin jvm plugin. Our plugin already applies the correct version for you
@@ -148,13 +146,15 @@ tasks {
         val executable = projectDir
             .resolve("export")
             .listFiles()
+            ?.also {
+                println("Test executables: [${it.joinToString()}]")
+                it.forEach { file -> file.setExecutable(true) }
+            }
             ?.firstOrNull { file ->
                 listOf("exe", "x86_64", "app")
                     .any { executableExtensions -> file.name.contains(executableExtensions) }
-            }?.also {
-                println("Test executables: $it")
-                it.setExecutable(true)
-            }?.let { executable ->
+            }
+            ?.let { executable ->
                 if (executable.name.contains("app")) {
                     executable.resolve("Contents/MacOS").listFiles()?.firstOrNull()
                 } else {
@@ -172,60 +172,12 @@ tasks {
 fun Exec.setupTestExecution(executableProvider: () -> String) {
     var didAllTestsPass = false
     var isJvmClosed = false
-    val inMemoryOutput = ByteArrayOutputStream()
-    val teeStream = object : OutputStream() {
-        override fun write(b: Int) {
-            inMemoryOutput.write(b)
-            System.out.write(b)
-        }
+    val testOutputFile = File("${projectDir}/test_output.txt")
+    this.standardOutput = testOutputFile.outputStream()
+    this.errorOutput = testOutputFile.outputStream()
 
-        override fun write(b: ByteArray, off: Int, len: Int) {
-            inMemoryOutput.write(b, off, len)
-            System.out.write(b, off, len)
-        }
-
-        override fun flush() {
-            inMemoryOutput.flush()
-            System.out.flush()
-        }
-    }
-    standardOutput = teeStream
-    errorOutput = teeStream
-    isIgnoreExitValue = true
-    workingDir = projectDir
-
-    val originalExecutable = File(executableProvider())
-    val copiedExecutable = projectDir.resolve(originalExecutable.name)
-    originalExecutable.copyTo(copiedExecutable, overwrite = true)
-    copiedExecutable.setExecutable(true)
-
-    doFirst {
-        if (HostManager.hostIsMingw) {
-            this@setupTestExecution.commandLine(
-                "cmd",
-                "/c",
-                "${copiedExecutable.path.replace(" ", "\\ ")} -s --headless addons/gut/gut_cmdln.gd",
-            )
-        } else {
-            this@setupTestExecution.commandLine(
-                "bash",
-                "-c",
-                "${copiedExecutable.path.replace(" ", "\\ ")} -s --headless addons/gut/gut_cmdln.gd",
-            )
-        }
-    }
-
-    doLast {
-        standardOutput = System.out
-        errorOutput = System.err
-
-        teeStream.flush()
-        inMemoryOutput.close()
-
-        copiedExecutable.delete()
-
-
-        val testOutput = inMemoryOutput.toString(Charsets.UTF_8.name())
+    this.doLast {
+        val testOutput = testOutputFile.readText()
         val outputLines = testOutput.split("\n")
 
         outputLines.forEach { line ->
@@ -240,9 +192,32 @@ fun Exec.setupTestExecution(executableProvider: () -> String) {
             }
         }
 
-        when {
-            !didAllTestsPass -> throw Exception("ERROR: Some assertions failed")
-            !isJvmClosed -> throw Exception("ERROR: JVM has not closed properly")
+        val error = when {
+            !didAllTestsPass -> Exception("ERROR: Some assertions failed")
+            !isJvmClosed -> Exception("ERROR: JVM has not closed properly")
+            else -> null
+        }
+
+        println(testOutput)
+
+        error?.let { throw it }
+    }
+
+    this.isIgnoreExitValue = true
+
+    doFirst {
+        if (HostManager.hostIsMingw) {
+            this@setupTestExecution.commandLine(
+                "cmd",
+                "/c",
+                "${executableProvider().replace(" ", "\\ ")} -s --headless --path $projectDir addons/gut/gut_cmdln.gd",
+            )
+        } else {
+            this@setupTestExecution.commandLine(
+                "bash",
+                "-c",
+                "${executableProvider().replace(" ", "\\ ")} -s --headless --path $projectDir addons/gut/gut_cmdln.gd",
+            )
         }
     }
 }

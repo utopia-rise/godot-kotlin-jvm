@@ -65,6 +65,7 @@ jobs:
       - setup-build-variables
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
+      build-test-templates: false
 
   build-macos:
     name: 🍎 Build macOS
@@ -73,6 +74,7 @@ jobs:
       - setup-build-variables
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
+      build-test-templates: false
 
   build-windows:
     name: 🪟 Build Windows
@@ -81,6 +83,7 @@ jobs:
       - setup-build-variables
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
+      build-test-templates: false
 
   assemble-android:
     name: 🤖 Assemble android
@@ -103,6 +106,7 @@ jobs:
       godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       build-version: ${{ needs.setup-build-variables.outputs['build-version'] }}
+      build-test-templates: false
 
   assemble-ios:
     name: 🍏 Assemble ios

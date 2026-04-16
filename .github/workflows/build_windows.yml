@@ -4,6 +4,9 @@ on:
     inputs:
       godot-version:
         type: string
+      build-test-templates:
+        type: boolean
+        default: true
 
 env:
   SCONS_CACHE_MSVC_CONFIG: true
@@ -13,43 +16,36 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  setup-matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - id: set-matrix
+        run: |
+          MATRIX='{"include":[
+            {"name":"Build editor release (target=editor)","cache-name":"editor_release_windows_x86_64","target":"editor","should-clean":true,"scons-flags":""},
+            {"name":"Build editor debug (target=editor, debug_symbols=true )","cache-name":"editor_debug_windows_x86_64","target":"editor","should-clean":false,"scons-flags":"debug_symbols=true"},
+            {"name":"Build editor dev (target=editor, dev_build=yes, debug_symbols=true )","cache-name":"editor_dev_windows_x86_64","target":"editor","should-clean":false,"scons-flags":"dev_build=yes debug_symbols=true"},
+            {"name":"Build release template","cache-name":"export_template_release_windows_x86_64","target":"template_release","should-clean":true,"scons-flags":""},
+            {"name":"Build debug template","cache-name":"export_template_debug_windows_x86_64","target":"template_debug","should-clean":false,"scons-flags":""}
+          ]}'
+          if [ "${{ inputs.build-test-templates }}" == "true" ]; then
+            MATRIX=$(echo "$MATRIX" | jq -c '.include += [
+              {"name":"Build release template (test)","cache-name":"export_template_test_release_windows_x86_64","target":"template_release","should-clean":true,"scons-flags":"disable_path_overrides=no"},
+              {"name":"Build debug template (test)","cache-name":"export_template_test_debug_windows_x86_64","target":"template_debug","should-clean":false,"scons-flags":"disable_path_overrides=no"}
+            ]')
+          fi
+          echo "matrix=$(echo $MATRIX | jq -c '.')" >> $GITHUB_OUTPUT
+
   build-windows:
+    needs: setup-matrix
     # Windows 10 with latest image
     runs-on: windows-latest
     name: ${{ matrix.name }}
     strategy:
       fail-fast: false
-      matrix:
-        include:
-          - name: Build editor release (target=editor)
-            cache-name: editor_release_windows_x86_64
-            target: editor
-            should-clean: true
-            scons-flags: ''
-
-          - name: Build editor debug (target=editor, debug_symbols=true )
-            cache-name: editor_debug_windows_x86_64
-            target: editor
-            should-clean: false
-            scons-flags: debug_symbols=true
-
-          - name: Build editor dev (target=editor, dev_build=yes, debug_symbols=true )
-            cache-name: editor_dev_windows_x86_64
-            target: editor
-            should-clean: false
-            scons-flags: dev_build=yes debug_symbols=true
-
-          - name: Build release template
-            cache-name: export_template_release_windows_x86_64
-            target: template_release
-            should-clean: true
-            scons-flags: ''
-
-          - name: Build debug template
-            cache-name: export_template_debug_windows_x86_64
-            target: template_debug
-            should-clean: false
-            scons-flags: ''
+      matrix: ${{ fromJson(needs.setup-matrix.outputs.matrix) }}
 
     steps:
       - name: Clone Godot Engine
