@@ -76,9 +76,13 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public object PhysicsServer3D : Object() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(23)
+    getSingleton(8)
   }
 
+  /**
+   * Creates a 3D world boundary shape in the physics server, and returns the [RID] that identifies
+   * it. Use [shapeSetData] to set the shape's normal direction and distance properties.
+   */
   @JvmStatic
   public final fun worldBoundaryShapeCreate(): RID {
     TransferContext.writeArguments()
@@ -86,6 +90,10 @@ public object PhysicsServer3D : Object() {
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
+  /**
+   * Creates a 3D separation ray shape in the physics server, and returns the [RID] that identifies
+   * it. Use [shapeSetData] to set the shape's `length` and `slide_on_slope` properties.
+   */
   @JvmStatic
   public final fun separationRayShapeCreate(): RID {
     TransferContext.writeArguments()
@@ -93,6 +101,10 @@ public object PhysicsServer3D : Object() {
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
+  /**
+   * Creates a 3D sphere shape in the physics server, and returns the [RID] that identifies it. Use
+   * [shapeSetData] to set the sphere's radius.
+   */
   @JvmStatic
   public final fun sphereShapeCreate(): RID {
     TransferContext.writeArguments()
@@ -100,6 +112,10 @@ public object PhysicsServer3D : Object() {
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
+  /**
+   * Creates a 3D box shape in the physics server, and returns the [RID] that identifies it. Use
+   * [shapeSetData] to set the box's half-extents.
+   */
   @JvmStatic
   public final fun boxShapeCreate(): RID {
     TransferContext.writeArguments()
@@ -107,6 +123,10 @@ public object PhysicsServer3D : Object() {
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
+  /**
+   * Creates a 3D capsule shape in the physics server, and returns the [RID] that identifies it. Use
+   * [shapeSetData] to set the capsule's height and radius.
+   */
   @JvmStatic
   public final fun capsuleShapeCreate(): RID {
     TransferContext.writeArguments()
@@ -114,6 +134,10 @@ public object PhysicsServer3D : Object() {
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
+  /**
+   * Creates a 3D cylinder shape in the physics server, and returns the [RID] that identifies it.
+   * Use [shapeSetData] to set the cylinder's height and radius.
+   */
   @JvmStatic
   public final fun cylinderShapeCreate(): RID {
     TransferContext.writeArguments()
@@ -121,6 +145,10 @@ public object PhysicsServer3D : Object() {
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
+  /**
+   * Creates a 3D convex polygon shape in the physics server, and returns the [RID] that identifies
+   * it. Use [shapeSetData] to set the convex polygon's points.
+   */
   @JvmStatic
   public final fun convexPolygonShapeCreate(): RID {
     TransferContext.writeArguments()
@@ -128,6 +156,10 @@ public object PhysicsServer3D : Object() {
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
+  /**
+   * Creates a 3D concave polygon shape in the physics server, and returns the [RID] that identifies
+   * it. Use [shapeSetData] to set the concave polygon's triangles.
+   */
   @JvmStatic
   public final fun concavePolygonShapeCreate(): RID {
     TransferContext.writeArguments()
@@ -135,6 +167,10 @@ public object PhysicsServer3D : Object() {
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
+  /**
+   * Creates a 3D heightmap shape in the physics server, and returns the [RID] that identifies it.
+   * Use [shapeSetData] to set the heightmap's data.
+   */
   @JvmStatic
   public final fun heightmapShapeCreate(): RID {
     TransferContext.writeArguments()
@@ -142,6 +178,14 @@ public object PhysicsServer3D : Object() {
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
+  /**
+   * Creates a custom shape in the physics server, and returns the [RID] that identifies it. Use
+   * [shapeSetData] to set the shape's data.
+   *
+   * **Note:** Custom shapes are not supported by the built-in physics servers, so calling this
+   * method always produces an error when using Godot Physics or Jolt Physics. Custom physics servers
+   * implemented as GDExtensions may support a custom shape.
+   */
   @JvmStatic
   public final fun customShapeCreate(): RID {
     TransferContext.writeArguments()
@@ -150,8 +194,41 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets the shape data that defines its shape and size. The data to be passed depends on the kind
-   * of shape created [shapeGetType].
+   * Sets the shape data that configures the shape. The [data] to be passed depends on the shape's
+   * type (see [shapeGetType]):
+   *
+   * - [SHAPE_WORLD_BOUNDARY]: a [Plane],
+   *
+   * - [SHAPE_SEPARATION_RAY]: a dictionary containing the key `"length"` with a [float] value and
+   * the key `"slide_on_slope"` with a [bool] value,
+   *
+   * - [SHAPE_SPHERE]: a [float] that is the radius of the sphere,
+   *
+   * - [SHAPE_BOX]: a [Vector3] containing the half-extents of the box,
+   *
+   * - [SHAPE_CAPSULE]: a dictionary containing the keys `"height"` and `"radius"` with [float]
+   * values,
+   *
+   * - [SHAPE_CYLINDER]: a dictionary containing the keys `"height"` and `"radius"` with [float]
+   * values,
+   *
+   * - [SHAPE_CONVEX_POLYGON]: a [PackedVector3Array] of points defining a convex polygon (the shape
+   * will be the convex hull of the points),
+   *
+   * - [SHAPE_CONCAVE_POLYGON]: a dictionary containing the key `"faces"` with a
+   * [PackedVector3Array] value (with a length divisible by 3, so that each 3-tuple of points forms a
+   * face) and the key `"backface_collision"` with a [bool] value,
+   *
+   * - [SHAPE_HEIGHTMAP]: a dictionary containing the keys `"width"` and `"depth"` with [int]
+   * values, and the key `"heights"` with a value that is a packed array of [float]s of length `width *
+   * depth` (that is a [PackedFloat32Array], or a [PackedFloat64Array] if Godot was compiled with the
+   * `precision=double` option), and optionally the keys `"min_height"` and `"max_height"` with [float]
+   * values,
+   *
+   * - [SHAPE_SOFT_BODY]: the input [data] is ignored and this method has no effect,
+   *
+   * - [SHAPE_CUSTOM]: the input [data] is interpreted by a custom physics server, if it supports
+   * custom shapes.
    */
   @JvmStatic
   public final fun shapeSetData(shape: RID, `data`: Any?): Unit {
@@ -171,7 +248,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Returns the type of shape.
+   * Returns the shape's type.
    */
   @JvmStatic
   public final fun shapeGetType(shape: RID): ShapeType {
@@ -181,7 +258,9 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Returns the shape data.
+   * Returns the shape data that configures the shape, such as the half-extents of a box or the
+   * triangles of a concave (trimesh) shape. See [shapeSetData] for the precise format of this data in
+   * each case.
    */
   @JvmStatic
   public final fun shapeGetData(shape: RID): Any? {
@@ -1213,7 +1292,7 @@ public object PhysicsServer3D : Object() {
   @JvmStatic
   public final fun bodyTestMotion(
     body: RID,
-    parameters: PhysicsTestMotionParameters3D?,
+    parameters: PhysicsTestMotionParameters3D,
     result: PhysicsTestMotionResult3D? = null,
   ): Boolean {
     TransferContext.writeArguments(_RID to body, OBJECT to parameters, OBJECT to result)
@@ -1248,7 +1327,7 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun softBodyUpdateRenderingServer(body: RID,
-      renderingServerHandler: PhysicsServer3DRenderingServerHandler?): Unit {
+      renderingServerHandler: PhysicsServer3DRenderingServerHandler): Unit {
     TransferContext.writeArguments(_RID to body, OBJECT to renderingServerHandler)
     TransferContext.callMethod(ptr, MethodBindings.softBodyUpdateRenderingServerPtr, NIL)
   }
@@ -2439,49 +2518,50 @@ public object PhysicsServer3D : Object() {
     `value`: Long,
   ) : GodotEnum {
     /**
-     * The [Shape3D] is a [WorldBoundaryShape3D].
+     * Constant for creating a world boundary shape (used by the [WorldBoundaryShape3D] resource).
      */
     WORLD_BOUNDARY(0),
     /**
-     * The [Shape3D] is a [SeparationRayShape3D].
+     * Constant for creating a separation ray shape (used by the [SeparationRayShape3D] resource).
      */
     SEPARATION_RAY(1),
     /**
-     * The [Shape3D] is a [SphereShape3D].
+     * Constant for creating a sphere shape (used by the [SphereShape3D] resource).
      */
     SPHERE(2),
     /**
-     * The [Shape3D] is a [BoxShape3D].
+     * Constant for creating a box shape (used by the [BoxShape3D] resource).
      */
     BOX(3),
     /**
-     * The [Shape3D] is a [CapsuleShape3D].
+     * Constant for creating a capsule shape (used by the [CapsuleShape3D] resource).
      */
     CAPSULE(4),
     /**
-     * The [Shape3D] is a [CylinderShape3D].
+     * Constant for creating a cylinder shape (used by the [CylinderShape3D] resource).
      */
     CYLINDER(5),
     /**
-     * The [Shape3D] is a [ConvexPolygonShape3D].
+     * Constant for creating a convex polygon shape (used by the [ConvexPolygonShape3D] resource).
      */
     CONVEX_POLYGON(6),
     /**
-     * The [Shape3D] is a [ConcavePolygonShape3D].
+     * Constant for creating a concave polygon (trimesh) shape (used by the [ConcavePolygonShape3D]
+     * resource).
      */
     CONCAVE_POLYGON(7),
     /**
-     * The [Shape3D] is a [HeightMapShape3D].
+     * Constant for creating a heightmap shape (used by the [HeightMapShape3D] resource).
      */
     HEIGHTMAP(8),
     /**
-     * The [Shape3D] is used internally for a soft body. Any attempt to create this kind of shape
+     * Constant used internally for a soft body shape. Any attempt to create this kind of shape
      * results in an error.
      */
     SOFT_BODY(9),
     /**
-     * This constant is used internally by the engine. Any attempt to create this kind of shape
-     * results in an error.
+     * Constant used internally for a custom shape. Any attempt to create this kind of shape results
+     * in an error when using Godot Physics or Jolt Physics.
      */
     CUSTOM(10),
     ;

@@ -31,7 +31,7 @@ import kotlin.jvm.JvmOverloads
 public open class AudioEffectSpectrumAnalyzerInstance internal constructor() : AudioEffectInstance()
     {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(74, scriptPtr)
+    createNativeObject(102, scriptPtr)
   }
 
   /**

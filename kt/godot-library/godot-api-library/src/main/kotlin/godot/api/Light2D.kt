@@ -224,7 +224,7 @@ public open class Light2D internal constructor() : Node2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(338, scriptPtr)
+    createNativeObject(442, scriptPtr)
   }
 
   /**

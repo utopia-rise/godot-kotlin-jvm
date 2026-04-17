@@ -44,7 +44,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public abstract class Texture2D : Texture() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(682, scriptPtr)
+    createNativeObject(24, scriptPtr)
   }
 
   /**

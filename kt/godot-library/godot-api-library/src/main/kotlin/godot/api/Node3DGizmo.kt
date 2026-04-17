@@ -21,7 +21,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class Node3DGizmo internal constructor() : RefCounted() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(406, scriptPtr)
+    createNativeObject(708, scriptPtr)
   }
 
   public companion object

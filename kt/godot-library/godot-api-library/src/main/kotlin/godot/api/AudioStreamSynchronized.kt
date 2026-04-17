@@ -18,6 +18,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -41,7 +42,7 @@ public open class AudioStreamSynchronized : AudioStream() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(101, scriptPtr)
+    createNativeObject(937, scriptPtr)
   }
 
   public final fun setStreamCount(streamCount: Int): Unit {
@@ -87,6 +88,13 @@ public open class AudioStreamSynchronized : AudioStream() {
     TransferContext.writeArguments(LONG to streamIndex.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getSyncStreamVolumePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _instantiatePlayback(): AudioStreamPlayback? {
+    throw NotImplementedError("AudioStreamSynchronized::_instantiatePlayback can't be called from the JVM.")
   }
 
   public companion object {

@@ -226,7 +226,7 @@ public object RenderingServer : Object() {
   public final const val PARTICLES_EMIT_FLAG_CUSTOM: Long = 16
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(26)
+    getSingleton(6)
   }
 
   /**
@@ -298,7 +298,8 @@ public object RenderingServer : Object() {
    *
    * **Note:** If using only the rendering device renderer, it's recommend to use
    * [RenderingDevice.textureCreateFromExtension] together with [RenderingServer.textureRdCreate],
-   * rather than this method. It will give you much more control over the texture's format and usage.
+   * rather than this method. This way, the texture's format and usage can be controlled more
+   * effectively.
    */
   @JvmOverloads
   @JvmStatic
@@ -498,6 +499,12 @@ public object RenderingServer : Object() {
   /**
    * Creates a new texture object based on a texture created directly on the [RenderingDevice]. If
    * the texture contains layers, [layerType] is used to define the layer type.
+   *
+   * Once finished with your RID, you will want to free the RID using the RenderingServer's
+   * [freeRid] method.
+   *
+   * **Note:** The RenderingServer's [freeRid] won't free the underlying [rdTexture], you will want
+   * to free the [rdTexture] using [RenderingDevice.freeRid].
    */
   @JvmOverloads
   @JvmStatic
@@ -510,6 +517,9 @@ public object RenderingServer : Object() {
 
   /**
    * Returns a texture [RID] that can be used with [RenderingDevice].
+   *
+   * [srgb] should be `true` when the texture uses nonlinear sRGB encoding and `false` when the
+   * texture uses linear encoding.
    */
   @JvmOverloads
   @JvmStatic
@@ -522,6 +532,9 @@ public object RenderingServer : Object() {
   /**
    * Returns the internal graphics handle for this texture object. For use when communicating with
    * third-party APIs mostly with GDExtension.
+   *
+   * [srgb] should be `true` when the texture uses nonlinear sRGB encoding and `false` when the
+   * texture uses linear encoding.
    *
    * **Note:** This function returns a `uint64_t` which internally maps to a `GLuint` (OpenGL) or
    * `VkImage` (Vulkan).
@@ -698,6 +711,22 @@ public object RenderingServer : Object() {
   public final fun materialSetNextPass(material: RID, nextMaterial: RID): Unit {
     TransferContext.writeArguments(_RID to material, _RID to nextMaterial)
     TransferContext.callMethod(ptr, MethodBindings.materialSetNextPassPtr, NIL)
+  }
+
+  /**
+   * When using the Mobile renderer, [materialSetUseDebanding] can be used to enable or disable the
+   * debanding feature of 3D materials ([BaseMaterial3D] and [ShaderMaterial]).
+   *
+   * [materialSetUseDebanding] has no effect when using the Compatibility or Forward+ renderer. In
+   * Forward+, [Viewport] debanding can be used instead.
+   *
+   * See also [ProjectSettings.rendering/antiAliasing/quality/useDebanding] and
+   * [RenderingServer.viewportSetUseDebanding].
+   */
+  @JvmStatic
+  public final fun materialSetUseDebanding(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(ptr, MethodBindings.materialSetUseDebandingPtr, NIL)
   }
 
   @JvmOverloads
@@ -1381,6 +1410,19 @@ public object RenderingServer : Object() {
   }
 
   /**
+   * Prevents physics interpolation for all instances during the current physics tick.
+   *
+   * This is useful when moving all instances to new locations, to give instantaneous changes rather
+   * than interpolation from the previous locations.
+   */
+  @JvmStatic
+  public final fun multimeshInstancesResetPhysicsInterpolation(multimesh: RID): Unit {
+    TransferContext.writeArguments(_RID to multimesh)
+    TransferContext.callMethod(ptr, MethodBindings.multimeshInstancesResetPhysicsInterpolationPtr,
+        NIL)
+  }
+
+  /**
    * Creates a skeleton and adds it to the RenderingServer. It can be accessed with the RID that is
    * returned. This RID will be used in all `skeleton_*` RenderingServer functions.
    *
@@ -1893,9 +1935,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the resolution to use when rendering the specified reflection probe. The [resolution] is
-   * specified for each cubemap face: for instance, specifying `512` will allocate 6 faces of 512×512
-   * each (plus mipmaps for roughness levels).
+   * Deprecated. This method does nothing.
    */
   @JvmStatic
   public final fun reflectionProbeSetResolution(probe: RID, resolution: Int): Unit {
@@ -3547,15 +3587,13 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * If `true`, 2D rendering will use a high dynamic range (HDR) format framebuffer matching the bit
-   * depth of the 3D framebuffer. When using the Forward+ or Compatibility renderer, this will be an
-   * `RGBA16` framebuffer. When using the Mobile renderer, it will be an `RGB10_A2` framebuffer.
-   *
-   * Additionally, 2D rendering will take place in linear color space and will be converted to sRGB
-   * space immediately before blitting to the screen (if the Viewport is attached to the screen).
+   * If `true`, 2D rendering will use a high dynamic range (HDR) `RGBA16` format framebuffer.
+   * Additionally, 2D rendering will be performed on linear values and will be converted using the
+   * appropriate transfer function immediately before blitting to the screen (if the Viewport is
+   * attached to the screen).
    *
    * Practically speaking, this means that the end result of the Viewport will not be clamped to the
-   * `0-1` range and can be used in 3D rendering without color space adjustments. This allows 2D
+   * `0-1` range and can be used in 3D rendering without color encoding adjustments. This allows 2D
    * rendering to take advantage of effects requiring high dynamic range (e.g. 2D glow) as well as
    * substantially improves the appearance of effects requiring highly detailed gradients. This setting
    * has the same effect as [Viewport.useHdr2d].
@@ -3807,7 +3845,7 @@ public object RenderingServer : Object() {
    * light, while the irradiance map is used to render ambient light. See also
    * [environmentBakePanorama].
    *
-   * **Note:** The image is saved in linear color space without any tonemapping performed, which
+   * **Note:** The image is saved using linear encoding without any tonemapping performed, which
    * means it will look too dark if viewed directly in an image editor. [energy] values above `1.0` can
    * be used to brighten the resulting image.
    *
@@ -4055,6 +4093,15 @@ public object RenderingServer : Object() {
   }
 
   /**
+   * See [Environment.tonemapAgxContrast] for more details.
+   */
+  @JvmStatic
+  public final fun environmentSetTonemapAgxContrast(env: RID, agxContrast: Float): Unit {
+    TransferContext.writeArguments(_RID to env, DOUBLE to agxContrast.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.environmentSetTonemapAgxContrastPtr, NIL)
+  }
+
+  /**
    * Sets the values to be used with the "adjustments" post-process effect. See [Environment] for
    * more details.
    */
@@ -4209,6 +4256,16 @@ public object RenderingServer : Object() {
     TransferContext.callMethod(ptr, MethodBindings.environmentGlowSetUseBicubicUpscalePtr, NIL)
   }
 
+  /**
+   * Sets whether screen-space reflections will be rendered at full or half size. Half size is
+   * faster, but may look pixelated or cause flickering.
+   */
+  @JvmStatic
+  public final fun environmentSetSsrHalfSize(halfSize: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to halfSize)
+    TransferContext.callMethod(ptr, MethodBindings.environmentSetSsrHalfSizePtr, NIL)
+  }
+
   @JvmStatic
   public final fun environmentSetSsrRoughnessQuality(quality: EnvironmentSSRRoughnessQuality):
       Unit {
@@ -4312,7 +4369,7 @@ public object RenderingServer : Object() {
    * render reflected light, while the irradiance map is used to render ambient light. See also
    * [skyBakePanorama].
    *
-   * **Note:** The image is saved in linear color space without any tonemapping performed, which
+   * **Note:** The image is saved using linear encoding without any tonemapping performed, which
    * means it will look too dark if viewed directly in an image editor.
    *
    * **Note:** [size] should be a 2:1 aspect ratio for the generated panorama to have square pixels.
@@ -5370,6 +5427,24 @@ public object RenderingServer : Object() {
   ): Unit {
     TransferContext.writeArguments(_RID to item, VECTOR2 to pos, DOUBLE to radius.toDouble(), COLOR to color, BOOL to antialiased)
     TransferContext.callMethod(ptr, MethodBindings.canvasItemAddCirclePtr, NIL)
+  }
+
+  /**
+   * Draws an ellipse with semi-major axis [major] and semi-minor axis [minor] on the [CanvasItem]
+   * pointed to by the [item] [RID]. See also [CanvasItem.drawEllipse].
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun canvasItemAddEllipse(
+    item: RID,
+    pos: Vector2,
+    major: Float,
+    minor: Float,
+    color: Color,
+    antialiased: Boolean = false,
+  ): Unit {
+    TransferContext.writeArguments(_RID to item, VECTOR2 to pos, DOUBLE to major.toDouble(), DOUBLE to minor.toDouble(), COLOR to color, BOOL to antialiased)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemAddEllipsePtr, NIL)
   }
 
   /**
@@ -6503,10 +6578,28 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets a boot image. The color defines the background color. If [scale] is `true`, the image will
-   * be scaled to fit the screen size. If [useFilter] is `true`, the image will be scaled with linear
-   * interpolation. If [useFilter] is `false`, the image will be scaled with nearest-neighbor
-   * interpolation.
+   * Sets a boot image. The [color] defines the background color. The value of [stretchMode]
+   * indicates how the image will be stretched (see [SplashStretchMode] for possible values). If
+   * [useFilter] is `true`, the image will be scaled with linear interpolation. If [useFilter] is
+   * `false`, the image will be scaled with nearest-neighbor interpolation.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun setBootImageWithStretch(
+    image: Image?,
+    color: Color,
+    stretchMode: SplashStretchMode,
+    useFilter: Boolean = true,
+  ): Unit {
+    TransferContext.writeArguments(OBJECT to image, COLOR to color, LONG to stretchMode.value, BOOL to useFilter)
+    TransferContext.callMethod(ptr, MethodBindings.setBootImageWithStretchPtr, NIL)
+  }
+
+  /**
+   * Sets a boot image. The [color] defines the background color. The value of [scale] indicates if
+   * the image will be scaled to fit the screen size. If [useFilter] is `true`, the image will be
+   * scaled with linear interpolation. If [useFilter] is `false`, the image will be scaled with
+   * nearest-neighbor interpolation.
    */
   @JvmOverloads
   @JvmStatic
@@ -8737,6 +8830,10 @@ public object RenderingServer : Object() {
      * Draws SDFGI probe data. This is the data structure that is used to give indirect lighting
      * dynamic objects moving within the scene.
      *
+     * When in the editor, left-clicking a probe will display additional bright dots that show its
+     * occlusion information. A white dot means the light is not occluded at all at the dot's position,
+     * while a red dot means the light is fully occluded. Intermediate values are possible.
+     *
      * **Note:** Only supported when using the Forward+ rendering method.
      */
     SDFGI_PROBES(17),
@@ -9203,12 +9300,9 @@ public object RenderingServer : Object() {
      */
     ACES(3),
     /**
-     * Uses a film-like tonemapping curve and desaturates bright values for a more realistic
-     * appearance. Better than other tonemappers at maintaining the hue of colors as they become
-     * brighter. The slowest tonemapping option.
-     *
-     * **Note:** [Environment.tonemapWhite] is fixed at a value of `16.29`, which makes
-     * [ENV_TONE_MAPPER_AGX] unsuitable for use with the Mobile rendering method.
+     * Uses an adjustable film-like tonemapping curve and desaturates bright values for a more
+     * realistic appearance. Better than other tonemappers at maintaining the hue of colors as they
+     * become brighter. The slowest tonemapping option.
      */
     AGX(4),
     ;
@@ -10394,6 +10488,45 @@ public object RenderingServer : Object() {
     }
   }
 
+  public enum class SplashStretchMode(
+    `value`: Long,
+  ) : GodotEnum {
+    /**
+     * No stretching is applied.
+     */
+    DISABLED(0),
+    /**
+     * Stretches image to fullscreen while preserving aspect ratio.
+     */
+    KEEP(1),
+    /**
+     * Stretches the height of the image based on the width of the screen.
+     */
+    KEEP_WIDTH(2),
+    /**
+     * Stretches the width of the image based on the height of the screen.
+     */
+    KEEP_HEIGHT(3),
+    /**
+     * Stretches the image to cover the entire screen while preserving aspect ratio.
+     */
+    COVER(4),
+    /**
+     * Stretches the image to cover the entire screen but doesn't preserve aspect ratio.
+     */
+    IGNORE(5),
+    ;
+
+    public override val `value`: Long
+    init {
+      this.`value` = `value`
+    }
+
+    public companion object {
+      public fun from(`value`: Long): SplashStretchMode = entries.single { it.`value` == `value` }
+    }
+  }
+
   public enum class Features(
     `value`: Long,
   ) : GodotEnum {
@@ -10522,6 +10655,9 @@ public object RenderingServer : Object() {
 
     internal val materialSetNextPassPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "material_set_next_pass", 395945892)
+
+    internal val materialSetUseDebandingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "material_set_use_debanding", 2586408642)
 
     internal val meshCreateFromSurfacesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "mesh_create_from_surfaces", 4291747531)
@@ -10684,6 +10820,9 @@ public object RenderingServer : Object() {
 
     internal val multimeshInstanceResetPhysicsInterpolationPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "multimesh_instance_reset_physics_interpolation", 3411492887)
+
+    internal val multimeshInstancesResetPhysicsInterpolationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_instances_reset_physics_interpolation", 2722037293)
 
     internal val skeletonCreatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "skeleton_create", 529393457)
@@ -11375,6 +11514,9 @@ public object RenderingServer : Object() {
     internal val environmentSetTonemapPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "environment_set_tonemap", 2914312638)
 
+    internal val environmentSetTonemapAgxContrastPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_tonemap_agx_contrast", 1794382983)
+
     internal val environmentSetAdjustmentPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "environment_set_adjustment", 876799838)
 
@@ -11398,6 +11540,9 @@ public object RenderingServer : Object() {
 
     internal val environmentGlowSetUseBicubicUpscalePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "environment_glow_set_use_bicubic_upscale", 2586408642)
+
+    internal val environmentSetSsrHalfSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_ssr_half_size", 2586408642)
 
     internal val environmentSetSsrRoughnessQualityPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "environment_set_ssr_roughness_quality", 1190026788)
@@ -11663,6 +11808,9 @@ public object RenderingServer : Object() {
     internal val canvasItemAddCirclePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_add_circle", 333077949)
 
+    internal val canvasItemAddEllipsePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_add_ellipse", 4188642757)
+
     internal val canvasItemAddTextureRectPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_add_texture_rect", 324864032)
 
@@ -11926,6 +12074,9 @@ public object RenderingServer : Object() {
 
     internal val getWhiteTexturePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "get_white_texture", 529393457)
+
+    internal val setBootImageWithStretchPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "set_boot_image_with_stretch", 1104470771)
 
     internal val setBootImagePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "set_boot_image", 3759744527)

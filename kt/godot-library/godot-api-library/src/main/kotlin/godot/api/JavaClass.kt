@@ -11,11 +11,16 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
+import godot.core.StringName
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
+import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
+import godot.core.VariantParser.STRING_NAME
+import godot.core.asCachedStringName
 import kotlin.Any
+import kotlin.Boolean
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -30,7 +35,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class JavaClass : RefCounted() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(323, scriptPtr)
+    createNativeObject(864, scriptPtr)
   }
 
   /**
@@ -61,6 +66,21 @@ public open class JavaClass : RefCounted() {
     return (TransferContext.readReturnValue(OBJECT) as JavaClass?)
   }
 
+  /**
+   * Returns `true` if the given [method] name exists in the object's Java methods.
+   */
+  public final fun hasJavaMethod(method: StringName): Boolean {
+    TransferContext.writeArguments(STRING_NAME to method)
+    TransferContext.callMethod(ptr, MethodBindings.hasJavaMethodPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Returns `true` if the given [method] name exists in the object's Java methods.
+   */
+  public final fun hasJavaMethod(method: String): Boolean =
+      hasJavaMethod(method.asCachedStringName())
+
   public companion object
 
   public object MethodBindings {
@@ -72,5 +92,8 @@ public open class JavaClass : RefCounted() {
 
     internal val getJavaParentClassPtr: VoidPtr =
         TypeManager.getMethodBindPtr("JavaClass", "get_java_parent_class", 541536347)
+
+    internal val hasJavaMethodPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("JavaClass", "has_java_method", 2619796661)
   }
 }

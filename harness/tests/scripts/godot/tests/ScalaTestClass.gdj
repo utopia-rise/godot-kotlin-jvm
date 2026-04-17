@@ -12,8 +12,7 @@ supertypes = [
 	godot.common.interop.NativePointer
 ]
 signals = [
-    test_signal,
-	test_signal2
+    
 ]
 properties = [
     exported_int,
@@ -31,6 +30,5 @@ properties = [
 functions = [
     greeting,
 	_ready,
-	connect_and_trigger_signal,
 	signal_callback
 ]

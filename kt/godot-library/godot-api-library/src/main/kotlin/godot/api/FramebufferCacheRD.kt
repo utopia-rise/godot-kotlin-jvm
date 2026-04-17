@@ -21,14 +21,14 @@ import kotlin.Unit
 import kotlin.jvm.JvmStatic
 
 /**
- * Framebuffer cache manager for Rendering Device based renderers. Provides a way to create a
+ * Framebuffer cache manager for [RenderingDevice]-based renderers. Provides a way to create a
  * framebuffer and reuse it in subsequent calls for as long as the used textures exists. Framebuffers
  * will automatically be cleaned up when dependent objects are freed.
  */
 @GodotBaseType
 public open class FramebufferCacheRD : Object() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(227, scriptPtr)
+    createNativeObject(266, scriptPtr)
   }
 
   public companion object {

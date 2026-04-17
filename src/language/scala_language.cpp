@@ -150,10 +150,6 @@ Script* ScalaLanguage::create_script() const {
     return memnew(ScalaScript);
 }
 
-bool ScalaLanguage::has_named_classes() const {
-    return false;
-}
-
 bool ScalaLanguage::supports_builtin_mode() const {
     return false;
 }

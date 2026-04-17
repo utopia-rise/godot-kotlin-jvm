@@ -11,7 +11,6 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
-import godot.core.GodotEnum
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -33,9 +32,9 @@ import kotlin.jvm.JvmOverloads
  * communication of any kind will be blocked by Android.
  */
 @GodotBaseType
-public open class StreamPeerTCP : StreamPeer() {
+public open class StreamPeerTCP : StreamPeerSocket() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(655, scriptPtr)
+    createNativeObject(166, scriptPtr)
   }
 
   /**
@@ -60,24 +59,6 @@ public open class StreamPeerTCP : StreamPeer() {
     TransferContext.writeArguments(STRING to host, LONG to port.toLong())
     TransferContext.callMethod(ptr, MethodBindings.connectToHostPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
-  }
-
-  /**
-   * Poll the socket, updating its state. See [getStatus].
-   */
-  public final fun poll(): Error {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.pollPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
-  }
-
-  /**
-   * Returns the status of the connection.
-   */
-  public final fun getStatus(): Status {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getStatusPtr, LONG)
-    return Status.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -108,14 +89,6 @@ public open class StreamPeerTCP : StreamPeer() {
   }
 
   /**
-   * Disconnects from host.
-   */
-  public final fun disconnectFromHost(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.disconnectFromHostPtr, NIL)
-  }
-
-  /**
    * If [enabled] is `true`, packets will be sent immediately. If [enabled] is `false` (the
    * default), packet transfers will be delayed and combined using
    * [url=https://en.wikipedia.org/wiki/Nagle&#37;27s_algorithm]Nagle's algorithm[/url].
@@ -128,37 +101,6 @@ public open class StreamPeerTCP : StreamPeer() {
     TransferContext.callMethod(ptr, MethodBindings.setNoDelayPtr, NIL)
   }
 
-  public enum class Status(
-    `value`: Long,
-  ) : GodotEnum {
-    /**
-     * The initial status of the [StreamPeerTCP]. This is also the status after disconnecting.
-     */
-    NONE(0),
-    /**
-     * A status representing a [StreamPeerTCP] that is connecting to a host.
-     */
-    CONNECTING(1),
-    /**
-     * A status representing a [StreamPeerTCP] that is connected to a host.
-     */
-    CONNECTED(2),
-    /**
-     * A status representing a [StreamPeerTCP] in error state.
-     */
-    ERROR(3),
-    ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
-    public companion object {
-      public fun from(`value`: Long): Status = entries.single { it.`value` == `value` }
-    }
-  }
-
   public companion object
 
   public object MethodBindings {
@@ -168,11 +110,6 @@ public open class StreamPeerTCP : StreamPeer() {
     internal val connectToHostPtr: VoidPtr =
         TypeManager.getMethodBindPtr("StreamPeerTCP", "connect_to_host", 993915709)
 
-    internal val pollPtr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeerTCP", "poll", 166280745)
-
-    internal val getStatusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerTCP", "get_status", 859471121)
-
     internal val getConnectedHostPtr: VoidPtr =
         TypeManager.getMethodBindPtr("StreamPeerTCP", "get_connected_host", 201670096)
 
@@ -181,9 +118,6 @@ public open class StreamPeerTCP : StreamPeer() {
 
     internal val getLocalPortPtr: VoidPtr =
         TypeManager.getMethodBindPtr("StreamPeerTCP", "get_local_port", 3905245786)
-
-    internal val disconnectFromHostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerTCP", "disconnect_from_host", 3218959716)
 
     internal val setNoDelayPtr: VoidPtr =
         TypeManager.getMethodBindPtr("StreamPeerTCP", "set_no_delay", 2586408642)

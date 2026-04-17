@@ -25,7 +25,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class Logger : RefCounted() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(349, scriptPtr)
+    createNativeObject(134, scriptPtr)
   }
 
   /**
@@ -39,12 +39,17 @@ public open class Logger : RefCounted() {
    * release builds as well, you need to enable
    * [ProjectSettings.debug/settings/gdscript/alwaysTrackCallStacks].
    *
-   * **Warning:** This function may be called from multiple different threads, so you may need to do
-   * your own locking.
+   * **Warning:** This method will be called from threads other than the main thread, possibly at
+   * the same time, so you will need to have some kind of thread-safety in your implementation of it,
+   * like a [Mutex].
    *
    * **Note:** [scriptBacktraces] will not contain any captured variables, due to its prohibitively
    * high cost. To get those you will need to capture the backtraces yourself, from within the [Logger]
    * virtual methods, using [Engine.captureScriptBacktraces].
+   *
+   * **Note:** Logging errors from this method using functions like [@GlobalScope.pushError] or
+   * [@GlobalScope.pushWarning] is not supported, as it could cause infinite recursion. These errors
+   * will only show up in the console output.
    */
   public open fun _logError(
     function: String,
@@ -63,8 +68,13 @@ public open class Logger : RefCounted() {
    * Called when a message is logged. If [error] is `true`, then this message was meant to be sent
    * to `stderr`.
    *
-   * **Warning:** This function may be called from multiple different threads, so you may need to do
-   * your own locking.
+   * **Warning:** This method will be called from threads other than the main thread, possibly at
+   * the same time, so you will need to have some kind of thread-safety in your implementation of it,
+   * like a [Mutex].
+   *
+   * **Note:** Logging another message from this method using functions like [@GlobalScope.print] is
+   * not supported, as it could cause infinite recursion. These messages will only show up in the
+   * console output.
    */
   public open fun _logMessage(message: String, error: Boolean): Unit {
     throw NotImplementedError("Logger::_logMessage is not implemented.")

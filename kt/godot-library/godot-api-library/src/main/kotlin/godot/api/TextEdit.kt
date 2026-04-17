@@ -231,28 +231,6 @@ public open class TextEdit : Control() {
     }
 
   /**
-   * If `true`, the native virtual keyboard is enabled on platforms that support it.
-   */
-  public final inline var virtualKeyboardEnabled: Boolean
-    @JvmName("virtualKeyboardEnabledProperty")
-    get() = isVirtualKeyboardEnabled()
-    @JvmName("virtualKeyboardEnabledProperty")
-    set(`value`) {
-      setVirtualKeyboardEnabled(value)
-    }
-
-  /**
-   * If `true`, the native virtual keyboard is shown on focus events on platforms that support it.
-   */
-  public final inline var virtualKeyboardShowOnFocus: Boolean
-    @JvmName("virtualKeyboardShowOnFocusProperty")
-    get() = getVirtualKeyboardShowOnFocus()
-    @JvmName("virtualKeyboardShowOnFocusProperty")
-    set(`value`) {
-      setVirtualKeyboardShowOnFocus(value)
-    }
-
-  /**
    * If `false`, using middle mouse button to paste clipboard will be disabled.
    *
    * **Note:** This method is only implemented on Linux.
@@ -320,6 +298,28 @@ public open class TextEdit : Control() {
     @JvmName("tabInputModeProperty")
     set(`value`) {
       setTabInputMode(value)
+    }
+
+  /**
+   * If `true`, the native virtual keyboard is enabled on platforms that support it.
+   */
+  public final inline var virtualKeyboardEnabled: Boolean
+    @JvmName("virtualKeyboardEnabledProperty")
+    get() = isVirtualKeyboardEnabled()
+    @JvmName("virtualKeyboardEnabledProperty")
+    set(`value`) {
+      setVirtualKeyboardEnabled(value)
+    }
+
+  /**
+   * If `true`, the native virtual keyboard is shown on focus events on platforms that support it.
+   */
+  public final inline var virtualKeyboardShowOnFocus: Boolean
+    @JvmName("virtualKeyboardShowOnFocusProperty")
+    get() = getVirtualKeyboardShowOnFocus()
+    @JvmName("virtualKeyboardShowOnFocusProperty")
+    set(`value`) {
+      setVirtualKeyboardShowOnFocus(value)
     }
 
   /**
@@ -633,8 +633,8 @@ public open class TextEdit : Control() {
     }
 
   /**
-   * Language code used for line-breaking and text shaping algorithms, if left empty current locale
-   * is used instead.
+   * Language code used for line-breaking and text shaping algorithms. If left empty, the current
+   * locale is used instead.
    */
   public final inline var language: String
     @JvmName("languageProperty")
@@ -667,7 +667,7 @@ public open class TextEdit : Control() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(672, scriptPtr)
+    createNativeObject(28, scriptPtr)
   }
 
   /**

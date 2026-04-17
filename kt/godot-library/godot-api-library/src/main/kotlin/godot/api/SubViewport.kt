@@ -116,7 +116,7 @@ public open class SubViewport : Viewport() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(662, scriptPtr)
+    createNativeObject(414, scriptPtr)
   }
 
   /**

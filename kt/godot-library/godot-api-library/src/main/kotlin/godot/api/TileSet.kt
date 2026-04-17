@@ -127,7 +127,7 @@ public open class TileSet : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(702, scriptPtr)
+    createNativeObject(20, scriptPtr)
   }
 
   /**

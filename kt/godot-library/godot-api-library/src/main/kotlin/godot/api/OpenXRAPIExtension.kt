@@ -47,7 +47,19 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public open class OpenXRAPIExtension : RefCounted() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(419, scriptPtr)
+    createNativeObject(61, scriptPtr)
+  }
+
+  /**
+   * Returns the version of OpenXR that was initialized. Only valid after the OpenXR instance has
+   * been created. See
+   * [url=https://registry.khronos.org/OpenXR/specs/1.1/html/xrspec.html#XR_MAKE_VERSION]XR_MAKE_VERSION[/url]
+   * for how the version is calculated.
+   */
+  public final fun getOpenxrVersion(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getOpenxrVersionPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -62,7 +74,7 @@ public open class OpenXRAPIExtension : RefCounted() {
   }
 
   /**
-   * Returns the id of the system, which is an
+   * Returns the ID of the system, which is an
    * [url=https://registry.khronos.org/OpenXR/specs/1.0/man/html/XrSystemId.html]XrSystemId[/url] cast
    * to an integer.
    */
@@ -261,6 +273,9 @@ public open class OpenXRAPIExtension : RefCounted() {
 
   /**
    * Registers the given extension as a composition layer provider.
+   *
+   * **Note:** This cannot be called after the OpenXR session has started. However, it can be called
+   * in [OpenXRExtensionWrapper.OnSessionCreated].
    */
   public final fun registerCompositionLayerProvider(extension: OpenXRExtensionWrapper?): Unit {
     TransferContext.writeArguments(OBJECT to extension)
@@ -269,6 +284,8 @@ public open class OpenXRAPIExtension : RefCounted() {
 
   /**
    * Unregisters the given extension as a composition layer provider.
+   *
+   * **Note:** This cannot be called while the OpenXR session is still running.
    */
   public final fun unregisterCompositionLayerProvider(extension: OpenXRExtensionWrapper?): Unit {
     TransferContext.writeArguments(OBJECT to extension)
@@ -277,6 +294,9 @@ public open class OpenXRAPIExtension : RefCounted() {
 
   /**
    * Registers the given extension as a provider of additional data structures to projections views.
+   *
+   * **Note:** This cannot be called after the OpenXR session has started. However, it can be called
+   * in [OpenXRExtensionWrapper.OnSessionCreated].
    */
   public final fun registerProjectionViewsExtension(extension: OpenXRExtensionWrapper?): Unit {
     TransferContext.writeArguments(OBJECT to extension)
@@ -286,6 +306,8 @@ public open class OpenXRAPIExtension : RefCounted() {
   /**
    * Unregisters the given extension as a provider of additional data structures to projections
    * views.
+   *
+   * **Note:** This cannot be called while the OpenXR session is still running.
    */
   public final fun unregisterProjectionViewsExtension(extension: OpenXRExtensionWrapper?): Unit {
     TransferContext.writeArguments(OBJECT to extension)
@@ -297,6 +319,9 @@ public open class OpenXRAPIExtension : RefCounted() {
    * [OpenXRExtensionWrapper.SetFrameWaitInfoAndGetNextPointer],
    * [OpenXRExtensionWrapper.SetViewLocateInfoAndGetNextPointer], or
    * [OpenXRExtensionWrapper.SetFrameEndInfoAndGetNextPointer] virtual methods.
+   *
+   * **Note:** This cannot be called after the OpenXR session has started. However, it can be called
+   * in [OpenXRExtensionWrapper.OnSessionCreated].
    */
   public final fun registerFrameInfoExtension(extension: OpenXRExtensionWrapper?): Unit {
     TransferContext.writeArguments(OBJECT to extension)
@@ -305,6 +330,8 @@ public open class OpenXRAPIExtension : RefCounted() {
 
   /**
    * Unregisters the given extension as modifying frame info.
+   *
+   * **Note:** This cannot be called while the OpenXR session is still running.
    */
   public final fun unregisterFrameInfoExtension(extension: OpenXRExtensionWrapper?): Unit {
     TransferContext.writeArguments(OBJECT to extension)
@@ -464,6 +491,15 @@ public open class OpenXRAPIExtension : RefCounted() {
     return OpenXRAlphaBlendModeSupport.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
+  /**
+   * Request the recommended resolution from the OpenXR runtime and update the main swapchain size
+   * if it has changed.
+   */
+  public final fun updateMainSwapchainSize(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.updateMainSwapchainSizePtr, NIL)
+  }
+
   public enum class OpenXRAlphaBlendModeSupport(
     `value`: Long,
   ) : GodotEnum {
@@ -505,6 +541,9 @@ public open class OpenXRAPIExtension : RefCounted() {
   }
 
   public object MethodBindings {
+    internal val getOpenxrVersionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_openxr_version", 2455072627)
+
     internal val getInstancePtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_instance", 2455072627)
 
@@ -639,5 +678,8 @@ public open class OpenXRAPIExtension : RefCounted() {
 
     internal val isEnvironmentBlendModeAlphaSupportedPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRAPIExtension", "is_environment_blend_mode_alpha_supported", 1579290861)
+
+    internal val updateMainSwapchainSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "update_main_swapchain_size", 3218959716)
   }
 }

@@ -163,10 +163,6 @@ Script* JavaLanguage::create_script() const {
     return memnew(JavaScript);
 }
 
-bool JavaLanguage::has_named_classes() const {
-    return false;
-}
-
 bool JavaLanguage::supports_builtin_mode() const {
     return false;
 }

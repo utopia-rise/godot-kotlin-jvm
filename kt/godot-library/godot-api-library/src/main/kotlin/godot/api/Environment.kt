@@ -38,9 +38,11 @@ import kotlin.jvm.JvmName
  *
  * - Depth of Field Blur
  *
+ * - Auto Exposure
+ *
  * - Glow
  *
- * - Tonemap (Auto Exposure)
+ * - Tonemap
  *
  * - Adjustments
  */
@@ -268,11 +270,13 @@ public open class Environment : Resource() {
 
   /**
    * The white reference value for tonemapping, which indicates where bright white is located in the
-   * scale of values provided to the tonemapper. For photorealistic lighting, recommended values are
-   * between `6.0` and `8.0`. Higher values result in less blown out highlights, but may make the scene
-   * appear lower contrast. See also [tonemapExposure].
+   * scale of values provided to the tonemapper. For photorealistic lighting, it is recommended to set
+   * [tonemapWhite] to at least `6.0`. Higher values result in less blown out highlights, but may make
+   * the scene appear lower contrast. [tonemapAgxWhite] will be used instead when using the
+   * [TONE_MAPPER_AGX] tonemapper. See also [tonemapExposure].
    *
-   * **Note:** [tonemapWhite] is ignored when using [TONE_MAPPER_LINEAR] or [TONE_MAPPER_AGX].
+   * **Note:** [tonemapWhite] must be set to `2.0` or lower on the Mobile renderer to produce bright
+   * images.
    */
   public final inline var tonemapWhite: Float
     @JvmName("tonemapWhiteProperty")
@@ -280,6 +284,37 @@ public open class Environment : Resource() {
     @JvmName("tonemapWhiteProperty")
     set(`value`) {
       setTonemapWhite(value)
+    }
+
+  /**
+   * The white reference value for tonemapping, which indicates where bright white is located in the
+   * scale of values provided to the tonemapper. For photorealistic lighting, it is recommended to set
+   * [tonemapAgxWhite] to at least `6.0`. Higher values result in less blown out highlights, but may
+   * make the scene appear lower contrast. [tonemapAgxWhite] is the same as [tonemapWhite], but is only
+   * effective with the [TONE_MAPPER_AGX] tonemapper. See also [tonemapExposure].
+   *
+   * **Note:** When using the Mobile renderer with [Viewport.useHdr2d] disabled, [tonemapAgxWhite]
+   * is ignored and a white value of `2.0` will always be used instead.
+   */
+  public final inline var tonemapAgxWhite: Float
+    @JvmName("tonemapAgxWhiteProperty")
+    get() = getTonemapAgxWhite()
+    @JvmName("tonemapAgxWhiteProperty")
+    set(`value`) {
+      setTonemapAgxWhite(value)
+    }
+
+  /**
+   * Increasing [tonemapAgxContrast] will make dark values darker and bright values brighter.
+   * Produces a higher quality result than [adjustmentContrast] without any additional performance
+   * cost, but is only available when using the [TONE_MAPPER_AGX] tonemapper.
+   */
+  public final inline var tonemapAgxContrast: Float
+    @JvmName("tonemapAgxContrastProperty")
+    get() = getTonemapAgxContrast()
+    @JvmName("tonemapAgxContrastProperty")
+    set(`value`) {
+      setTonemapAgxContrast(value)
     }
 
   /**
@@ -355,7 +390,8 @@ public open class Environment : Resource() {
    * job at displaying ambient occlusion on large static objects. Godot uses a form of SSAO called
    * Adaptive Screen Space Ambient Occlusion which is itself a form of Horizon Based Ambient Occlusion.
    *
-   * **Note:** SSAO is only supported in the Forward+ rendering method, not Mobile or Compatibility.
+   * **Note:** SSAO is only supported in the Forward+ and Compatibility rendering methods, not
+   * Mobile.
    */
   public final inline var ssaoEnabled: Boolean
     @JvmName("ssaoEnabledProperty")
@@ -719,8 +755,8 @@ public open class Environment : Resource() {
     }
 
   /**
-   * If `true`, the glow effect is enabled. This simulates real world eye/camera behavior where
-   * bright pixels bleed onto surrounding pixels.
+   * If `true`, the glow effect is enabled. This simulates real world atmosphere and eye/camera
+   * behavior by causing bright pixels to bleed onto surrounding pixels.
    *
    * **Note:** When using the Mobile rendering method, glow looks different due to the lower dynamic
    * range available in the Mobile rendering method.
@@ -754,9 +790,9 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The overall brightness multiplier of the glow effect. When using the Mobile rendering method
-   * (which only supports a lower dynamic range up to `2.0`), this should be increased to `1.5` to
-   * compensate.
+   * The overall brightness multiplier that is applied to the glow effect just before it is blended
+   * with the scene. When using the Mobile rendering method (which only supports a lower dynamic range
+   * up to `2.0`), this should be increased to `1.5` to compensate.
    */
   public final inline var glowIntensity: Float
     @JvmName("glowIntensityProperty")
@@ -767,8 +803,8 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The strength of the glow effect. This applies as the glow is blurred across the screen and
-   * increases the distance and intensity of the blur. When using the Mobile rendering method, this
+   * The strength that is used when blurring across the screen to generate the glow effect. This
+   * affects the distance and intensity of the blur. When using the Mobile rendering method, this
    * should be increased to compensate for the lower dynamic range.
    *
    * **Note:** [glowStrength] has no effect when using the Compatibility rendering method, due to
@@ -813,8 +849,8 @@ public open class Environment : Resource() {
   /**
    * The glow blending mode.
    *
-   * **Note:** [glowBlendMode] has no effect when using the Compatibility rendering method, due to
-   * this rendering method using a simpler glow implementation optimized for low-end devices.
+   * **Note:** The Compatibility renderer always uses [GLOW_BLEND_MODE_SCREEN] and [glowBlendMode]
+   * will have no effect.
    */
   public final inline var glowBlendMode: GlowBlendMode
     @JvmName("glowBlendModeProperty")
@@ -839,7 +875,9 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The bleed scale of the HDR glow.
+   * Smooths the transition between values that are below and above [glowHdrThreshold] by reducing
+   * the amount of glow generated by values that are close to [glowHdrThreshold]. Values above
+   * `glow_hdr_threshold + glow_hdr_scale` will not have glow reduced in this way.
    */
   public final inline var glowHdrScale: Float
     @JvmName("glowHdrScaleProperty")
@@ -1307,8 +1345,9 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The global brightness value of the rendered scene. Effective only if [adjustmentEnabled] is
-   * `true`.
+   * Applies a simple brightness adjustment to the rendered image after tonemaping. To adjust scene
+   * brightness use [tonemapExposure] instead, which is applied before tonemapping and thus less prone
+   * to issues with bright colors. Effective only if [adjustmentEnabled] is `true`.
    */
   public final inline var adjustmentBrightness: Float
     @JvmName("adjustmentBrightnessProperty")
@@ -1319,8 +1358,10 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The global contrast value of the rendered scene (default value is 1). Effective only if
-   * [adjustmentEnabled] is `true`.
+   * Increasing [adjustmentContrast] will make dark values darker and bright values brighter. This
+   * simple adjustment is applied to the rendered image after tonemaping. When set to a value greater
+   * than `1.0`, [adjustmentContrast] is prone to clipping colors that become too bright or too dark.
+   * Effective only if [adjustmentEnabled] is `true`.
    */
   public final inline var adjustmentContrast: Float
     @JvmName("adjustmentContrastProperty")
@@ -1331,8 +1372,9 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The global color saturation value of the rendered scene (default value is 1). Effective only if
-   * [adjustmentEnabled] is `true`.
+   * Applies a simple saturation adjustment to the rendered image after tonemaping. When
+   * [adjustmentSaturation] is set to `0.0`, the rendered image will be fully converted to a grayscale
+   * image. Effective only if [adjustmentEnabled] is `true`.
    */
   public final inline var adjustmentSaturation: Float
     @JvmName("adjustmentSaturationProperty")
@@ -1356,7 +1398,7 @@ public open class Environment : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(211, scriptPtr)
+    createNativeObject(701, scriptPtr)
   }
 
   /**
@@ -1666,6 +1708,28 @@ public open class Environment : Resource() {
   public final fun getTonemapWhite(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTonemapWhitePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  public final fun setTonemapAgxWhite(white: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to white.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.setTonemapAgxWhitePtr, NIL)
+  }
+
+  public final fun getTonemapAgxWhite(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getTonemapAgxWhitePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  public final fun setTonemapAgxContrast(contrast: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to contrast.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.setTonemapAgxContrastPtr, NIL)
+  }
+
+  public final fun getTonemapAgxContrast(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getTonemapAgxContrastPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -2642,12 +2706,9 @@ public open class Environment : Resource() {
      */
     ACES(3),
     /**
-     * Uses a film-like tonemapping curve and desaturates bright values for a more realistic
-     * appearance. Better than other tonemappers at maintaining the hue of colors as they become
-     * brighter. The slowest tonemapping option.
-     *
-     * **Note:** [tonemapWhite] is fixed at a value of `16.29`, which makes [TONE_MAPPER_AGX]
-     * unsuitable for use with the Mobile rendering method.
+     * Uses an adjustable film-like tonemapping curve and desaturates bright values for a more
+     * realistic appearance. Better than other tonemappers at maintaining the hue of colors as they
+     * become brighter. The slowest tonemapping option.
      */
     AGX(4),
     ;
@@ -2666,28 +2727,35 @@ public open class Environment : Resource() {
     `value`: Long,
   ) : GodotEnum {
     /**
-     * Additive glow blending mode. Mostly used for particles, glows (bloom), lens flare, bright
-     * sources.
+     * Adds the glow effect to the scene.
      */
     ADDITIVE(0),
     /**
-     * Screen glow blending mode. Increases brightness, used frequently with bloom.
+     * Adds the glow effect to the scene after modifying the glow influence based on the scene
+     * value; dark values will be highly influenced by glow and bright values will not be influenced by
+     * glow. This approach avoids bright values becoming overly bright from the glow effect.
+     * [tonemapWhite] is used to determine the maximum scene value where the glow should have no
+     * influence. When [tonemapMode] is set to [TONE_MAPPER_LINEAR], a value of `1.0` will be used as
+     * the maximum scene value.
      */
     SCREEN(1),
     /**
-     * Soft light glow blending mode. Modifies contrast, exposes shadows and highlights (vivid
-     * bloom).
+     * Adds the glow effect to the tonemapped image after modifying the glow influence based on the
+     * image value; dark values and bright values will not be influenced by glow and mid-range values
+     * will be highly influenced by glow. This approach avoids bright values becoming overly bright
+     * from the glow effect. The glow will have the largest influence on image values of `0.25` and
+     * will have no influence when applied to image values greater than `1.0`.
      */
     SOFTLIGHT(2),
     /**
-     * Replace glow blending mode. Replaces all pixels' color by the glow value. This can be used to
-     * simulate a full-screen blur effect by tweaking the glow parameters to match the original image's
-     * brightness.
+     * Replaces all pixels' color by the glow effect. This can be used to simulate a full-screen
+     * blur effect by tweaking the glow parameters to match the original image's brightness or to
+     * preview glow configuration in the editor.
      */
     REPLACE(3),
     /**
-     * Mixes the glow with the underlying color to avoid increasing brightness as much while still
-     * maintaining a glow effect.
+     * Mixes the glow image with the scene image. Best used with [glowBloom] to avoid darkening the
+     * scene.
      */
     MIX(4),
     ;
@@ -2863,6 +2931,18 @@ public open class Environment : Resource() {
 
     internal val getTonemapWhitePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Environment", "get_tonemap_white", 1740695150)
+
+    internal val setTonemapAgxWhitePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_tonemap_agx_white", 373806689)
+
+    internal val getTonemapAgxWhitePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_tonemap_agx_white", 1740695150)
+
+    internal val setTonemapAgxContrastPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_tonemap_agx_contrast", 373806689)
+
+    internal val getTonemapAgxContrastPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_tonemap_agx_contrast", 1740695150)
 
     internal val setSsrEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Environment", "set_ssr_enabled", 2586408642)

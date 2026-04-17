@@ -1163,7 +1163,7 @@ public open class ParticleProcessMaterial : Material() {
    *
    * **Note:** [alphaCurve] multiplies the particle mesh's vertex colors. To have a visible effect
    * on a [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a
-   * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
+   * [ShaderMaterial], `ALPHA *= COLOR.a;` must be inserted in the shader's `fragment()` function.
    * Otherwise, [alphaCurve] will have no visible effect.
    */
   public final inline var alphaCurve: Texture2D?
@@ -1684,7 +1684,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(464, scriptPtr)
+    createNativeObject(855, scriptPtr)
   }
 
   /**

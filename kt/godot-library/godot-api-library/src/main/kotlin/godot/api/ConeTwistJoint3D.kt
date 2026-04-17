@@ -96,7 +96,7 @@ public open class ConeTwistJoint3D : Joint3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(176, scriptPtr)
+    createNativeObject(591, scriptPtr)
   }
 
   /**

@@ -17,13 +17,15 @@ import kotlin.Unit
  * lightmappers. LightmapperRD uses compute shaders to bake lightmaps, so it does not require CUDA or
  * OpenCL libraries to be installed to be usable.
  *
- * **Note:** Only usable when using the RenderingDevice backend (Forward+ or Mobile renderers), not
- * Compatibility.
+ * **Note:** This lightmapper requires the GPU to support the [RenderingDevice] backend (Forward+
+ * and Mobile renderers). When using the Compatibility renderer, baking will use a temporary
+ * [RenderingDevice]. Support for [RenderingDevice] is not required to *render* lightmaps that were
+ * already baked beforehand.
  */
 @GodotBaseType
 public open class LightmapperRD : Lightmapper() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(345, scriptPtr)
+    createNativeObject(934, scriptPtr)
   }
 
   public companion object

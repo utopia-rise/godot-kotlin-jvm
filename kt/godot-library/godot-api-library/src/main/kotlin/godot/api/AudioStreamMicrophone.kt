@@ -8,6 +8,7 @@ package godot.api
 
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -23,7 +24,14 @@ import kotlin.Unit
 @GodotBaseType
 public open class AudioStreamMicrophone : AudioStream() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(86, scriptPtr)
+    createNativeObject(326, scriptPtr)
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _instantiatePlayback(): AudioStreamPlayback? {
+    throw NotImplementedError("AudioStreamMicrophone::_instantiatePlayback can't be called from the JVM.")
   }
 
   public companion object

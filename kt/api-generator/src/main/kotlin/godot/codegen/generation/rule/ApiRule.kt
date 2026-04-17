@@ -15,6 +15,7 @@ import godot.codegen.generation.task.FileTask
 import godot.codegen.models.traits.GenerationType
 import godot.codegen.models.ApiType
 import godot.codegen.models.EnumValue
+import godot.codegen.models.NativeStructure
 import godot.codegen.models.enriched.EnrichedClass
 import godot.codegen.models.enriched.EnrichedMethod
 import godot.codegen.models.enriched.EnrichedNativeStructure
@@ -81,6 +82,14 @@ class EnrichedCoreRule : GodotApiRule<ApiTask>() {
             nativeStructureMap[it.identifier + "*"] = it
             nativeStructureMap["const " + it.identifier + "*"] = it
         }
+
+        //TODO: clean this
+        nativeStructureMap["const GDExtensionInitializationFunction*"] = EnrichedNativeStructure(
+            NativeStructure(
+                "GDExtensionInitializationFunction",
+                ""
+            )
+        )
 
         context.coreTypeMap += coreTypes
         context.globalEnumMap += globalEnumMap

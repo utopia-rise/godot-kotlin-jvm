@@ -47,7 +47,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public object ResourceLoader : Object() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(27)
+    getSingleton(5)
   }
 
   /**

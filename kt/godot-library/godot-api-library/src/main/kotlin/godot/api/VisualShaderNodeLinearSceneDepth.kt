@@ -17,7 +17,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeLinearSceneDepth : VisualShaderNode() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(782, scriptPtr)
+    createNativeObject(505, scriptPtr)
   }
 
   public companion object

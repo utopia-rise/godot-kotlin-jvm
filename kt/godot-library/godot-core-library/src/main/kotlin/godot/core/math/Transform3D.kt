@@ -59,11 +59,11 @@ class Transform3D(
         inline val IDENTITY: Transform3D
             get() = Transform3D(Basis(1, 0, 0, 0, 1, 0, 0, 0, 1), Vector3(0, 0, 0))
         inline val FLIP_X: Transform3D
-            get() = Transform3D(Basis(-1, 0, 0, 0, 1, 0, 0, 0, 1), Vector3(0, 0, 0))
+            get() = Transform3D(Basis.FLIP_X)
         inline val FLIP_Y: Transform3D
-            get() = Transform3D(Basis(1, 0, 0, 0, -1, 0, 0, 0, 1), Vector3(0, 0, 0))
+            get() = Transform3D(Basis.FLIP_Y)
         inline val FLIP_Z: Transform3D
-            get() = Transform3D(Basis(1, 0, 0, 0, 1, 0, 0, 0, -1), Vector3(0, 0, 0))
+            get() = Transform3D(Basis.FLIP_Z)
     }
 
 
@@ -159,7 +159,7 @@ class Transform3D(
      * The up axis (+Y) points as close to the [up] vector as possible while staying perpendicular to the forward axis. The resulting transform is orthonormalized. The existing rotation, scale, and skew information from the original transform is discarded. The [target] and [up] vectors cannot be zero, cannot be parallel to each other, and are defined in global/parent space.
      * If [useModelFront] is true, the +Z axis (asset front) is treated as forward (implies +X is left) and points toward the [target] position. By default, the -Z axis (camera forward) is treated as forward (implies +X is right).
      */
-    fun lookingAt(target: Vector3, up: Vector3 = Vector3(0, 1, 0), useModelFront: Boolean = false): Transform3D {
+    fun lookingAt(target: Vector3, up: Vector3 = Vector3.UP, useModelFront: Boolean = false): Transform3D {
         val t = Transform3D(this._basis, this._origin)
         t.setLookAt(_origin, target, up, useModelFront)
         return t

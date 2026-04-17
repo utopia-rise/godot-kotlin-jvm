@@ -26,7 +26,7 @@ import kotlin.Unit
 @GodotBaseType
 public abstract class ScriptLanguageExtension : ScriptLanguage() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(592, scriptPtr)
+    createNativeObject(193, scriptPtr)
   }
 
   public abstract fun _getName(): String
@@ -75,7 +75,9 @@ public abstract class ScriptLanguageExtension : ScriptLanguage() {
 
   public abstract fun _createScript(): Object?
 
-  public abstract fun _hasNamedClasses(): Boolean
+  public open fun _hasNamedClasses(): Boolean {
+    throw NotImplementedError("ScriptLanguageExtension::_hasNamedClasses is not implemented.")
+  }
 
   public abstract fun _supportsBuiltinMode(): Boolean
 

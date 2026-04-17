@@ -52,7 +52,7 @@ public open class OpenXRRenderModelExtension : OpenXRExtensionWrapper() {
   public val renderModelTopLevelPathChanged: Signal1<RID> by Signal1
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(444, scriptPtr)
+    createNativeObject(214, scriptPtr)
   }
 
   /**

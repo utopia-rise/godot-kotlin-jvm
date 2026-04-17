@@ -96,7 +96,7 @@ public open class OpenXRHand : Node3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(435, scriptPtr)
+    createNativeObject(907, scriptPtr)
   }
 
   public final fun setHand(hand: Hands): Unit {

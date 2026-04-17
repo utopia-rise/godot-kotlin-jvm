@@ -82,6 +82,21 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
     }
 
   /**
+   * If `true`, the solver retrieves the bone axis from the bone pose every frame.
+   *
+   * If `false`, the solver retrieves the bone axis from the bone rest and caches it, which
+   * increases performance slightly, but position changes in the bone pose made before processing this
+   * [SpringBoneSimulator3D] are ignored.
+   */
+  public final inline var mutableBoneAxes: Boolean
+    @JvmName("mutableBoneAxesProperty")
+    get() = areBoneAxesMutable()
+    @JvmName("mutableBoneAxesProperty")
+    set(`value`) {
+      setMutableBoneAxes(value)
+    }
+
+  /**
    * The number of settings.
    */
   public final inline var settingCount: Int
@@ -93,7 +108,7 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(642, scriptPtr)
+    createNativeObject(651, scriptPtr)
   }
 
   /**
@@ -190,12 +205,11 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
   }
 
   /**
-   * If [enabled] is `true`, the end bone is extended to have the tail.
+   * If [enabled] is `true`, the end bone is extended to have a tail.
    *
-   * The extended tail config is allocated to the last element in the joint list.
-   *
-   * In other words, if you set [enabled] is `false`, the config of last element in the joint list
-   * has no effect in the simulated result.
+   * The extended tail config is allocated to the last element in the joint list. In other words, if
+   * you set [enabled] to `false`, the config of the last element in the joint list has no effect in
+   * the simulated result.
    */
   public final fun setExtendEndBone(index: Int, enabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), BOOL to enabled)
@@ -203,7 +217,7 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
   }
 
   /**
-   * Returns `true` if the end bone is extended to have the tail.
+   * Returns `true` if the end bone is extended to have a tail.
    */
   public final fun isEndBoneExtended(index: Int): Boolean {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -214,18 +228,20 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
   /**
    * Sets the end bone tail direction of the bone chain when [isEndBoneExtended] is `true`.
    */
-  public final fun setEndBoneDirection(index: Int, boneDirection: BoneDirection): Unit {
+  public final fun setEndBoneDirection(index: Int, boneDirection: SkeletonModifier3D.BoneDirection):
+      Unit {
     TransferContext.writeArguments(LONG to index.toLong(), LONG to boneDirection.value)
     TransferContext.callMethod(ptr, MethodBindings.setEndBoneDirectionPtr, NIL)
   }
 
   /**
-   * Returns the end bone's tail direction of the bone chain when [isEndBoneExtended] is `true`.
+   * Returns the tail direction of the end bone of the bone chain when [isEndBoneExtended] is
+   * `true`.
    */
-  public final fun getEndBoneDirection(index: Int): BoneDirection {
+  public final fun getEndBoneDirection(index: Int): SkeletonModifier3D.BoneDirection {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getEndBoneDirectionPtr, LONG)
-    return BoneDirection.from(TransferContext.readReturnValue(LONG) as Long)
+    return SkeletonModifier3D.BoneDirection.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -237,7 +253,7 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
   }
 
   /**
-   * Returns the end bone's tail length of the bone chain when [isEndBoneExtended] is `true`.
+   * Returns the end bone tail length of the bone chain when [isEndBoneExtended] is `true`.
    */
   public final fun getEndBoneLength(index: Int): Float {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -347,12 +363,12 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * joint. The value is cached in each joint setting in the joint list.
    *
    * The axes are based on the [Skeleton3D.getBoneRest]'s space, if [axis] is
-   * [ROTATION_AXIS_CUSTOM], you can specify any axis.
+   * [SkeletonModifier3D.ROTATION_AXIS_CUSTOM], you can specify any axis.
    *
    * **Note:** The rotation axis vector and the forward vector shouldn't be colinear to avoid
    * unintended rotation since [SpringBoneSimulator3D] does not factor in twisting forces.
    */
-  public final fun setRotationAxis(index: Int, axis: RotationAxis): Unit {
+  public final fun setRotationAxis(index: Int, axis: SkeletonModifier3D.RotationAxis): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), LONG to axis.value)
     TransferContext.callMethod(ptr, MethodBindings.setRotationAxisPtr, NIL)
   }
@@ -360,10 +376,10 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
   /**
    * Returns the rotation axis of the bone chain.
    */
-  public final fun getRotationAxis(index: Int): RotationAxis {
+  public final fun getRotationAxis(index: Int): SkeletonModifier3D.RotationAxis {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getRotationAxisPtr, LONG)
-    return RotationAxis.from(TransferContext.readReturnValue(LONG) as Long)
+    return SkeletonModifier3D.RotationAxis.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -373,7 +389,8 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * This vector is normalized by an internal process and represents the axis around which the bone
    * chain can rotate.
    *
-   * If the vector length is `0`, it is considered synonymous with [ROTATION_AXIS_ALL].
+   * If the vector length is `0`, it is considered synonymous with
+   * [SkeletonModifier3D.ROTATION_AXIS_ALL].
    */
   public final fun setRotationAxisVector(index: Int, vector: Vector3): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), VECTOR3 to vector)
@@ -385,7 +402,8 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * which the bone chain can rotate. It is determined based on the rotation axis set for the bone
    * chain.
    *
-   * If [getRotationAxis] is [ROTATION_AXIS_ALL], this method returns `Vector3(0, 0, 0)`.
+   * If [getRotationAxis] is [SkeletonModifier3D.ROTATION_AXIS_ALL], this method returns `Vector3(0,
+   * 0, 0)`.
    */
   public final fun getRotationAxisVector(index: Int): Vector3 {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -607,7 +625,7 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * `true`.
    *
    * The axes are based on the [Skeleton3D.getBoneRest]'s space, if [axis] is
-   * [ROTATION_AXIS_CUSTOM], you can specify any axis.
+   * [SkeletonModifier3D.ROTATION_AXIS_CUSTOM], you can specify any axis.
    *
    * **Note:** The rotation axis and the forward vector shouldn't be colinear to avoid unintended
    * rotation since [SpringBoneSimulator3D] does not factor in twisting forces.
@@ -615,7 +633,7 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
   public final fun setJointRotationAxis(
     index: Int,
     joint: Int,
-    axis: RotationAxis,
+    axis: SkeletonModifier3D.RotationAxis,
   ): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), LONG to joint.toLong(), LONG to axis.value)
     TransferContext.callMethod(ptr, MethodBindings.setJointRotationAxisPtr, NIL)
@@ -624,10 +642,10 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
   /**
    * Returns the rotation axis at [joint] in the bone chain's joint list.
    */
-  public final fun getJointRotationAxis(index: Int, joint: Int): RotationAxis {
+  public final fun getJointRotationAxis(index: Int, joint: Int): SkeletonModifier3D.RotationAxis {
     TransferContext.writeArguments(LONG to index.toLong(), LONG to joint.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getJointRotationAxisPtr, LONG)
-    return RotationAxis.from(TransferContext.readReturnValue(LONG) as Long)
+    return SkeletonModifier3D.RotationAxis.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -636,7 +654,8 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * This vector is normalized by an internal process and represents the axis around which the bone
    * chain can rotate.
    *
-   * If the vector length is `0`, it is considered synonymous with [ROTATION_AXIS_ALL].
+   * If the vector length is `0`, it is considered synonymous with
+   * [SkeletonModifier3D.ROTATION_AXIS_ALL].
    */
   public final fun setJointRotationAxisVector(
     index: Int,
@@ -652,7 +671,8 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * represents the axis around which the joint can rotate. It is determined based on the rotation axis
    * set for the joint.
    *
-   * If [getJointRotationAxis] is [ROTATION_AXIS_ALL], this method returns `Vector3(0, 0, 0)`.
+   * If [getJointRotationAxis] is [SkeletonModifier3D.ROTATION_AXIS_ALL], this method returns
+   * `Vector3(0, 0, 0)`.
    */
   public final fun getJointRotationAxisVector(index: Int, joint: Int): Vector3 {
     TransferContext.writeArguments(LONG to index.toLong(), LONG to joint.toLong())
@@ -914,6 +934,17 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
+  public final fun setMutableBoneAxes(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(ptr, MethodBindings.setMutableBoneAxesPtr, NIL)
+  }
+
+  public final fun areBoneAxesMutable(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.areBoneAxesMutablePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
   /**
    * Resets a simulating state with respect to the current bone pose.
    *
@@ -952,49 +983,6 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
     nodePath: String,
   ) = setCollisionPath(index, collision, nodePath.asCachedNodePath())
 
-  public enum class BoneDirection(
-    `value`: Long,
-  ) : GodotEnum {
-    /**
-     * Enumerated value for the +X axis.
-     */
-    PLUS_X(0),
-    /**
-     * Enumerated value for the -X axis.
-     */
-    MINUS_X(1),
-    /**
-     * Enumerated value for the +Y axis.
-     */
-    PLUS_Y(2),
-    /**
-     * Enumerated value for the -Y axis.
-     */
-    MINUS_Y(3),
-    /**
-     * Enumerated value for the +Z axis.
-     */
-    PLUS_Z(4),
-    /**
-     * Enumerated value for the -Z axis.
-     */
-    MINUS_Z(5),
-    /**
-     * Enumerated value for the axis from a parent bone to the child bone.
-     */
-    FROM_PARENT(6),
-    ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
-    public companion object {
-      public fun from(`value`: Long): BoneDirection = entries.single { it.`value` == `value` }
-    }
-  }
-
   public enum class CenterFrom(
     `value`: Long,
   ) : GodotEnum {
@@ -1024,41 +1012,6 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
 
     public companion object {
       public fun from(`value`: Long): CenterFrom = entries.single { it.`value` == `value` }
-    }
-  }
-
-  public enum class RotationAxis(
-    `value`: Long,
-  ) : GodotEnum {
-    /**
-     * Enumerated value for the rotation of the X axis.
-     */
-    X(0),
-    /**
-     * Enumerated value for the rotation of the Y axis.
-     */
-    Y(1),
-    /**
-     * Enumerated value for the rotation of the Z axis.
-     */
-    Z(2),
-    /**
-     * Enumerated value for the unconstrained rotation.
-     */
-    ALL(3),
-    /**
-     * Enumerated value for an optional rotation axis. See also [setJointRotationAxisVector].
-     */
-    CUSTOM(4),
-    ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
-    public companion object {
-      public fun from(`value`: Long): RotationAxis = entries.single { it.`value` == `value` }
     }
   }
 
@@ -1096,10 +1049,10 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
         TypeManager.getMethodBindPtr("SpringBoneSimulator3D", "is_end_bone_extended", 1116898809)
 
     internal val setEndBoneDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpringBoneSimulator3D", "set_end_bone_direction", 204796492)
+        TypeManager.getMethodBindPtr("SpringBoneSimulator3D", "set_end_bone_direction", 2838484201)
 
     internal val getEndBoneDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpringBoneSimulator3D", "get_end_bone_direction", 2438315700)
+        TypeManager.getMethodBindPtr("SpringBoneSimulator3D", "get_end_bone_direction", 1843036459)
 
     internal val setEndBoneLengthPtr: VoidPtr =
         TypeManager.getMethodBindPtr("SpringBoneSimulator3D", "set_end_bone_length", 1602489585)
@@ -1138,10 +1091,10 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
         TypeManager.getMethodBindPtr("SpringBoneSimulator3D", "get_radius", 2339986948)
 
     internal val setRotationAxisPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpringBoneSimulator3D", "set_rotation_axis", 3534169209)
+        TypeManager.getMethodBindPtr("SpringBoneSimulator3D", "set_rotation_axis", 1539703856)
 
     internal val getRotationAxisPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpringBoneSimulator3D", "get_rotation_axis", 748837671)
+        TypeManager.getMethodBindPtr("SpringBoneSimulator3D", "get_rotation_axis", 2844851118)
 
     internal val setRotationAxisVectorPtr: VoidPtr =
         TypeManager.getMethodBindPtr("SpringBoneSimulator3D", "set_rotation_axis_vector", 1530502735)
@@ -1219,10 +1172,10 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
         TypeManager.getMethodBindPtr("SpringBoneSimulator3D", "get_joint_bone", 3175239445)
 
     internal val setJointRotationAxisPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpringBoneSimulator3D", "set_joint_rotation_axis", 4224018032)
+        TypeManager.getMethodBindPtr("SpringBoneSimulator3D", "set_joint_rotation_axis", 1391134969)
 
     internal val getJointRotationAxisPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpringBoneSimulator3D", "get_joint_rotation_axis", 2488679199)
+        TypeManager.getMethodBindPtr("SpringBoneSimulator3D", "get_joint_rotation_axis", 3312594080)
 
     internal val setJointRotationAxisVectorPtr: VoidPtr =
         TypeManager.getMethodBindPtr("SpringBoneSimulator3D", "set_joint_rotation_axis_vector", 2866752138)
@@ -1304,6 +1257,12 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
 
     internal val getExternalForcePtr: VoidPtr =
         TypeManager.getMethodBindPtr("SpringBoneSimulator3D", "get_external_force", 3360562783)
+
+    internal val setMutableBoneAxesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpringBoneSimulator3D", "set_mutable_bone_axes", 2586408642)
+
+    internal val areBoneAxesMutablePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpringBoneSimulator3D", "are_bone_axes_mutable", 36873697)
 
     internal val resetPtr: VoidPtr =
         TypeManager.getMethodBindPtr("SpringBoneSimulator3D", "reset", 3218959716)

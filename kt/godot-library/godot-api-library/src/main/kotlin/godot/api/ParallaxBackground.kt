@@ -144,7 +144,7 @@ public open class ParallaxBackground : CanvasLayer() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(462, scriptPtr)
+    createNativeObject(424, scriptPtr)
   }
 
   /**

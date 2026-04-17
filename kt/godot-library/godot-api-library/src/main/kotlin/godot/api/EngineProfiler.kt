@@ -25,7 +25,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class EngineProfiler : RefCounted() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(210, scriptPtr)
+    createNativeObject(115, scriptPtr)
   }
 
   /**

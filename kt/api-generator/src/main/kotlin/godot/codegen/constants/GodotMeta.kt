@@ -27,6 +27,10 @@ object GodotMeta {
         const val double = "double"
     }
 
+    object Object {
+        const val required = "required"
+    }
+
     object CastLiterals {
         const val none = ""
         const val toLong = ".toLong()"
@@ -36,27 +40,30 @@ object GodotMeta {
     }
 
     private val metaInformations = mapOf(
-        Int.int8 to MetaInformation(INT, LONG, CastLiterals.toLong, CastLiterals.toInt),
-        Int.int16 to MetaInformation(INT, LONG, CastLiterals.toLong, CastLiterals.toInt),
-        Int.int32 to MetaInformation(INT, LONG, CastLiterals.toLong, CastLiterals.toInt),
-        Int.int64 to MetaInformation(LONG, LONG, CastLiterals.none, CastLiterals.none),
+        Int.int8 to MetaInformation(INT, LONG, CastLiterals.toLong, CastLiterals.toInt, false),
+        Int.int16 to MetaInformation(INT, LONG, CastLiterals.toLong, CastLiterals.toInt, false),
+        Int.int32 to MetaInformation(INT, LONG, CastLiterals.toLong, CastLiterals.toInt, false),
+        Int.int64 to MetaInformation(LONG, LONG, CastLiterals.none, CastLiterals.none, false),
 
-        Int.uint8 to MetaInformation(INT, LONG, CastLiterals.toLong, CastLiterals.toInt),
-        Int.uint16 to MetaInformation(INT, LONG, CastLiterals.toLong, CastLiterals.toInt),
-        Int.uint32 to MetaInformation(LONG, LONG, CastLiterals.none, CastLiterals.none),
-        Int.uint64 to MetaInformation(LONG, LONG, CastLiterals.none, CastLiterals.none),
+        Int.uint8 to MetaInformation(INT, LONG, CastLiterals.toLong, CastLiterals.toInt, false),
+        Int.uint16 to MetaInformation(INT, LONG, CastLiterals.toLong, CastLiterals.toInt, false),
+        Int.uint32 to MetaInformation(LONG, LONG, CastLiterals.none, CastLiterals.none, false),
+        Int.uint64 to MetaInformation(LONG, LONG, CastLiterals.none, CastLiterals.none, false),
 
-        Int.char32 to MetaInformation(LONG, LONG, CastLiterals.none, CastLiterals.none),
+        Int.char32 to MetaInformation(LONG, LONG, CastLiterals.none, CastLiterals.none, false),
 
-        Float.float to MetaInformation(FLOAT, DOUBLE, CastLiterals.toDouble, CastLiterals.toFloat),
-        Float.double to MetaInformation(DOUBLE, DOUBLE, CastLiterals.none, CastLiterals.none)
+        Float.float to MetaInformation(FLOAT, DOUBLE, CastLiterals.toDouble, CastLiterals.toFloat, false),
+        Float.double to MetaInformation(DOUBLE, DOUBLE, CastLiterals.none, CastLiterals.none, false),
+
+        Object.required to MetaInformation(null, null, null, null, false)
     )
 
     data class MetaInformation(
-        val castedType: ClassName,
-        val bufferType: ClassName,
-        val toBufferCastMethodLiteral: String,
-        val fromBufferCastMethodLiteral: String
+        val castedType: ClassName?,
+        val bufferType: ClassName?,
+        val toBufferCastMethodLiteral: String?,
+        val fromBufferCastMethodLiteral: String?,
+        val isNullable: Boolean,
     )
 
     operator fun get(meta: String) = metaInformations[meta] ?: throw MetaNotFoundException(meta)

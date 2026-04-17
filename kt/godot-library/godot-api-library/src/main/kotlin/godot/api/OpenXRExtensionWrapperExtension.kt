@@ -18,7 +18,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class OpenXRExtensionWrapperExtension : OpenXRExtensionWrapper() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(432, scriptPtr)
+    createNativeObject(218, scriptPtr)
   }
 
   public companion object

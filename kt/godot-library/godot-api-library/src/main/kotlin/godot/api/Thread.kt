@@ -32,10 +32,8 @@ import kotlin.jvm.JvmStatic
  * A unit of execution in a process. Can run methods on [Object]s simultaneously. The use of
  * synchronization via [Mutex] or [Semaphore] is advised if working with shared objects.
  *
- * **Warning:**
- *
- * To ensure proper cleanup without crashes or deadlocks, when a [Thread]'s reference count reaches
- * zero and it is therefore destroyed, the following conditions must be met:
+ * **Warning:** To ensure proper cleanup without crashes or deadlocks, when a [Thread]'s reference
+ * count reaches zero and it is therefore destroyed, the following conditions must be met:
  *
  * - It must not have any [Mutex] objects locked.
  *
@@ -46,7 +44,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public open class Thread : RefCounted() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(697, scriptPtr)
+    createNativeObject(137, scriptPtr)
   }
 
   /**
@@ -172,6 +170,18 @@ public open class Thread : RefCounted() {
       TransferContext.writeArguments(BOOL to enabled)
       TransferContext.callMethod(0, MethodBindings.setThreadSafetyChecksEnabledPtr, NIL)
     }
+
+    /**
+     * Returns `true` if the thread this method was called from is the main thread.
+     *
+     * **Note:** This is a static method and isn't associated with a specific [Thread] object.
+     */
+    @JvmStatic
+    public final fun isMainThread(): Boolean {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(0, MethodBindings.isMainThreadPtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL) as Boolean)
+    }
   }
 
   public object MethodBindings {
@@ -189,5 +199,8 @@ public open class Thread : RefCounted() {
 
     internal val setThreadSafetyChecksEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Thread", "set_thread_safety_checks_enabled", 2586408642)
+
+    internal val isMainThreadPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Thread", "is_main_thread", 2240911060)
   }
 }

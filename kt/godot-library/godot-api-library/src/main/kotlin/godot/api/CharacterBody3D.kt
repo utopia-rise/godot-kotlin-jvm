@@ -93,8 +93,8 @@ public open class CharacterBody3D : PhysicsBody3D() {
    * Current velocity vector (typically meters per second), used and modified during calls to
    * [moveAndSlide].
    *
-   * This property should not be set to a value multiplied by `delta`, because this happens
-   * internally in [moveAndSlide]. Otherwise, the simulation will run at an incorrect speed.
+   * **Note:** A common mistake is setting this property to the desired velocity multiplied by
+   * `delta`, which produces a motion vector (typically in meters).
    *
    * **Warning:**
    * Be careful when trying to modify a local
@@ -268,7 +268,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(149, scriptPtr)
+    createNativeObject(619, scriptPtr)
   }
 
   /**
@@ -307,8 +307,8 @@ public open class CharacterBody3D : PhysicsBody3D() {
    * Current velocity vector (typically meters per second), used and modified during calls to
    * [moveAndSlide].
    *
-   * This property should not be set to a value multiplied by `delta`, because this happens
-   * internally in [moveAndSlide]. Otherwise, the simulation will run at an incorrect speed.
+   * **Note:** A common mistake is setting this property to the desired velocity multiplied by
+   * `delta`, which produces a motion vector (typically in meters).
    */
   @CoreTypeHelper
   public final fun velocityMutate(block: Vector3.() -> Unit): Vector3 = velocity.apply {
@@ -683,7 +683,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
    * Returns a [KinematicCollision3D], which contains information about a collision that occurred
    * during the last call to [moveAndSlide]. Since the body can collide several times in a single call
    * to [moveAndSlide], you must specify the index of the collision in the range 0 to
-   * ([getSlideCollisionCount] - 1).
+   * ([getSlideCollisionCount] - 1). See also [getLastSlideCollision].
    */
   public final fun getSlideCollision(slideIdx: Int): KinematicCollision3D? {
     TransferContext.writeArguments(LONG to slideIdx.toLong())
@@ -692,8 +692,9 @@ public open class CharacterBody3D : PhysicsBody3D() {
   }
 
   /**
-   * Returns a [KinematicCollision3D], which contains information about the latest collision that
-   * occurred during the last call to [moveAndSlide].
+   * Returns a [KinematicCollision3D] if a collision occurred. The returned value contains
+   * information about the latest collision that occurred during the last call to [moveAndSlide].
+   * Returns `null` if no collision occurred. See also [getSlideCollision].
    */
   public final fun getLastSlideCollision(): KinematicCollision3D? {
     TransferContext.writeArguments()

@@ -74,6 +74,21 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
     }
 
   /**
+   * If enabled, the OpenXR swapchain will be created with the
+   * `XR_SWAPCHAIN_CREATE_PROTECTED_CONTENT_BIT` flag, which will protect its contents from CPU access.
+   *
+   * When used with an Android Surface, this may allow DRM content to be presented, and will only
+   * take effect when the Surface is first created; later changes to this property will have no effect.
+   */
+  public final inline var protectedContent: Boolean
+    @JvmName("protectedContentProperty")
+    get() = isProtectedContent()
+    @JvmName("protectedContentProperty")
+    set(`value`) {
+      setProtectedContent(value)
+    }
+
+  /**
    * The size of the Android surface to create if [useAndroidSurface] is enabled.
    *
    * **Warning:**
@@ -299,7 +314,7 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(426, scriptPtr)
+    createNativeObject(911, scriptPtr)
   }
 
   /**
@@ -435,6 +450,17 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isNativelySupportedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun isProtectedContent(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isProtectedContentPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setProtectedContent(protectedContent: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to protectedContent)
+    TransferContext.callMethod(ptr, MethodBindings.setProtectedContentPtr, NIL)
   }
 
   public final fun setMinFilter(mode: Filter): Unit {
@@ -746,6 +772,12 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
 
     internal val isNativelySupportedPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "is_natively_supported", 36873697)
+
+    internal val isProtectedContentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "is_protected_content", 36873697)
+
+    internal val setProtectedContentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "set_protected_content", 2586408642)
 
     internal val setMinFilterPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "set_min_filter", 3653437593)

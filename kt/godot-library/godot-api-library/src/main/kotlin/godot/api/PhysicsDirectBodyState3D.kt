@@ -201,7 +201,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(478, scriptPtr)
+    createNativeObject(54, scriptPtr)
   }
 
   /**
@@ -677,10 +677,10 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * Returns the current state of the space, useful for queries.
    */
-  public final fun getSpaceState(): PhysicsDirectSpaceState3D? {
+  public final fun getSpaceState(): PhysicsDirectSpaceState3D {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSpaceStatePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as PhysicsDirectSpaceState3D?)
+    return (TransferContext.readReturnValue(OBJECT) as PhysicsDirectSpaceState3D)
   }
 
   public companion object

@@ -336,7 +336,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(97, scriptPtr)
+    createNativeObject(850, scriptPtr)
   }
 
   public final fun setStream(stream: AudioStream?): Unit {

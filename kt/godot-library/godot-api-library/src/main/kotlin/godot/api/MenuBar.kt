@@ -95,8 +95,8 @@ public open class MenuBar : Control() {
     }
 
   /**
-   * Language code used for line-breaking and text shaping algorithms, if left empty current locale
-   * is used instead.
+   * Language code used for line-breaking and text shaping algorithms. If left empty, the current
+   * locale is used instead.
    */
   public final inline var language: String
     @JvmName("languageProperty")
@@ -107,7 +107,7 @@ public open class MenuBar : Control() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(357, scriptPtr)
+    createNativeObject(355, scriptPtr)
   }
 
   public final fun setSwitchOnHover(enable: Boolean): Unit {
@@ -141,7 +141,7 @@ public open class MenuBar : Control() {
   }
 
   /**
-   * Returns `true`, if system global menu is supported and used by this [MenuBar].
+   * Returns `true` if the current system's global menu is supported and used by this [MenuBar].
    */
   public final fun isNativeMenu(): Boolean {
     TransferContext.writeArguments()
@@ -245,7 +245,7 @@ public open class MenuBar : Control() {
   }
 
   /**
-   * Returns `true`, if menu item is disabled.
+   * Returns `true` if the menu item is disabled.
    */
   public final fun isMenuDisabled(menu: Int): Boolean {
     TransferContext.writeArguments(LONG to menu.toLong())
@@ -262,7 +262,7 @@ public open class MenuBar : Control() {
   }
 
   /**
-   * Returns `true`, if menu item is hidden.
+   * Returns `true` if the menu item is hidden.
    */
   public final fun isMenuHidden(menu: Int): Boolean {
     TransferContext.writeArguments(LONG to menu.toLong())

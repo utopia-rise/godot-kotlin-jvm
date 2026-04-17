@@ -34,6 +34,9 @@ import kotlin.jvm.JvmName
  * //csharp
  * GetCancelButton().Pressed += OnCanceled;
  * ```
+ *
+ * **Note:** [AcceptDialog] is invisible by default. To make it visible, call one of the `popup_*`
+ * methods from [Window] on the node, such as [Window.popupCenteredClamped].
  */
 @GodotBaseType
 public open class ConfirmationDialog : AcceptDialog() {
@@ -49,7 +52,7 @@ public open class ConfirmationDialog : AcceptDialog() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(178, scriptPtr)
+    createNativeObject(358, scriptPtr)
   }
 
   /**

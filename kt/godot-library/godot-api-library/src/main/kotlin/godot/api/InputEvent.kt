@@ -54,7 +54,7 @@ public open class InputEvent internal constructor() : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(299, scriptPtr)
+    createNativeObject(189, scriptPtr)
   }
 
   public final fun setDevice(device: Int): Unit {
@@ -241,10 +241,10 @@ public open class InputEvent internal constructor() : Resource() {
    * [InputEventPanGesture].
    */
   @JvmOverloads
-  public final fun xformedBy(xform: Transform2D, localOfs: Vector2 = Vector2(0, 0)): InputEvent? {
+  public final fun xformedBy(xform: Transform2D, localOfs: Vector2 = Vector2(0, 0)): InputEvent {
     TransferContext.writeArguments(TRANSFORM2D to xform, VECTOR2 to localOfs)
     TransferContext.callMethod(ptr, MethodBindings.xformedByPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as InputEvent?)
+    return (TransferContext.readReturnValue(OBJECT) as InputEvent)
   }
 
   /**

@@ -82,6 +82,28 @@ public open class LinkButton : BaseButton() {
     }
 
   /**
+   * Sets the clipping behavior when the text exceeds the node's bounding rectangle.
+   */
+  public final inline var textOverrunBehavior: TextServer.OverrunBehavior
+    @JvmName("textOverrunBehaviorProperty")
+    get() = getTextOverrunBehavior()
+    @JvmName("textOverrunBehaviorProperty")
+    set(`value`) {
+      setTextOverrunBehavior(value)
+    }
+
+  /**
+   * Ellipsis character used for text clipping.
+   */
+  public final inline var ellipsisChar: String
+    @JvmName("ellipsisCharProperty")
+    get() = getEllipsisChar()
+    @JvmName("ellipsisCharProperty")
+    set(`value`) {
+      setEllipsisChar(value)
+    }
+
+  /**
    * Base text writing direction.
    */
   public final inline var textDirection: Control.TextDirection
@@ -93,8 +115,8 @@ public open class LinkButton : BaseButton() {
     }
 
   /**
-   * Language code used for line-breaking and text shaping algorithms, if left empty current locale
-   * is used instead.
+   * Language code used for line-breaking and text shaping algorithms. If left empty, the current
+   * locale is used instead.
    */
   public final inline var language: String
     @JvmName("languageProperty")
@@ -127,7 +149,7 @@ public open class LinkButton : BaseButton() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(348, scriptPtr)
+    createNativeObject(387, scriptPtr)
   }
 
   public final fun setText(text: String): Unit {
@@ -138,6 +160,28 @@ public open class LinkButton : BaseButton() {
   public final fun getText(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextPtr, STRING)
+    return (TransferContext.readReturnValue(STRING) as String)
+  }
+
+  public final fun setTextOverrunBehavior(overrunBehavior: TextServer.OverrunBehavior): Unit {
+    TransferContext.writeArguments(LONG to overrunBehavior.value)
+    TransferContext.callMethod(ptr, MethodBindings.setTextOverrunBehaviorPtr, NIL)
+  }
+
+  public final fun getTextOverrunBehavior(): TextServer.OverrunBehavior {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getTextOverrunBehaviorPtr, LONG)
+    return TextServer.OverrunBehavior.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setEllipsisChar(char: String): Unit {
+    TransferContext.writeArguments(STRING to char)
+    TransferContext.callMethod(ptr, MethodBindings.setEllipsisCharPtr, NIL)
+  }
+
+  public final fun getEllipsisChar(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getEllipsisCharPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -243,6 +287,18 @@ public open class LinkButton : BaseButton() {
 
     internal val getTextPtr: VoidPtr =
         TypeManager.getMethodBindPtr("LinkButton", "get_text", 201670096)
+
+    internal val setTextOverrunBehaviorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LinkButton", "set_text_overrun_behavior", 1008890932)
+
+    internal val getTextOverrunBehaviorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LinkButton", "get_text_overrun_behavior", 3779142101)
+
+    internal val setEllipsisCharPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LinkButton", "set_ellipsis_char", 83702148)
+
+    internal val getEllipsisCharPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LinkButton", "get_ellipsis_char", 201670096)
 
     internal val setTextDirectionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("LinkButton", "set_text_direction", 119160795)

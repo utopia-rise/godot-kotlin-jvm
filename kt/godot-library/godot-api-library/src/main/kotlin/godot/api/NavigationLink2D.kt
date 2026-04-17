@@ -146,7 +146,7 @@ public open class NavigationLink2D : Node2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(385, scriptPtr)
+    createNativeObject(756, scriptPtr)
   }
 
   /**

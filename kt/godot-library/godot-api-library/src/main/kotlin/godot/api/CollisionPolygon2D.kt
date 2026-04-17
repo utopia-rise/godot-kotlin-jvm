@@ -30,8 +30,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A node that provides a polygon shape to a [CollisionObject2D] parent and allows to edit it. The
- * polygon can be concave or convex. This can give a detection shape to an [Area2D], turn
+ * A node that provides a polygon shape to a [CollisionObject2D] parent and allows it to be edited.
+ * The polygon can be concave or convex. This can give a detection shape to an [Area2D], turn a
  * [PhysicsBody2D] into a solid object, or give a hollow shape to a [StaticBody2D].
  *
  * **Warning:** A non-uniformly scaled [CollisionPolygon2D] will likely not behave as expected. Make
@@ -113,7 +113,7 @@ public open class CollisionPolygon2D : Node2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(158, scriptPtr)
+    createNativeObject(450, scriptPtr)
   }
 
   /**

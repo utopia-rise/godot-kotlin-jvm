@@ -26,16 +26,25 @@ import kotlin.Unit
 @GodotBaseType
 public open class OpenXRInteractionProfileMetadata : Object() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(441, scriptPtr)
+    createNativeObject(920, scriptPtr)
   }
 
   /**
-   * Allows for renaming old interaction profile paths to new paths to maintain backwards
-   * compatibility with older action maps.
+   * Allows for renaming old interaction profile paths to new paths in order to load and process
+   * older action maps.
    */
   public final fun registerProfileRename(oldName: String, newName: String): Unit {
     TransferContext.writeArguments(STRING to oldName, STRING to newName)
     TransferContext.callMethod(ptr, MethodBindings.registerProfileRenamePtr, NIL)
+  }
+
+  /**
+   * Allows for renaming old input/output paths to new paths in order to load and process older
+   * action maps.
+   */
+  public final fun registerPathRename(oldName: String, newName: String): Unit {
+    TransferContext.writeArguments(STRING to oldName, STRING to newName)
+    TransferContext.callMethod(ptr, MethodBindings.registerPathRenamePtr, NIL)
   }
 
   /**
@@ -44,7 +53,7 @@ public open class OpenXRInteractionProfileMetadata : Object() {
    * paths, for instance a haptic vest extension might register `/user/body/vest`.
    *
    * [displayName] is the name shown to the user. [openxrPath] is the top level path being
-   * registered. [openxrExtensionName] is optional and ensures the top level path is only used if the
+   * registered. [openxrExtensionNames] is optional and ensures the top level path is only used if the
    * specified extension is available/enabled.
    *
    * When a top level path ends up being bound by OpenXR, an [XRPositionalTracker] is instantiated
@@ -53,9 +62,9 @@ public open class OpenXRInteractionProfileMetadata : Object() {
   public final fun registerTopLevelPath(
     displayName: String,
     openxrPath: String,
-    openxrExtensionName: String,
+    openxrExtensionNames: String,
   ): Unit {
-    TransferContext.writeArguments(STRING to displayName, STRING to openxrPath, STRING to openxrExtensionName)
+    TransferContext.writeArguments(STRING to displayName, STRING to openxrPath, STRING to openxrExtensionNames)
     TransferContext.callMethod(ptr, MethodBindings.registerTopLevelPathPtr, NIL)
   }
 
@@ -65,16 +74,16 @@ public open class OpenXRInteractionProfileMetadata : Object() {
    * profile).
    *
    * [displayName] is the description shown to the user. [openxrPath] is the interaction profile
-   * path being registered. [openxrExtensionName] optionally restricts this profile to the given
+   * path being registered. [openxrExtensionNames] optionally restricts this profile to the given
    * extension being enabled/available. If the extension is not available, the profile and all related
    * entries used in an action map are filtered out.
    */
   public final fun registerInteractionProfile(
     displayName: String,
     openxrPath: String,
-    openxrExtensionName: String,
+    openxrExtensionNames: String,
   ): Unit {
-    TransferContext.writeArguments(STRING to displayName, STRING to openxrPath, STRING to openxrExtensionName)
+    TransferContext.writeArguments(STRING to displayName, STRING to openxrPath, STRING to openxrExtensionNames)
     TransferContext.callMethod(ptr, MethodBindings.registerInteractionProfilePtr, NIL)
   }
 
@@ -83,7 +92,7 @@ public open class OpenXRInteractionProfileMetadata : Object() {
    * previously have been registered using [registerInteractionProfile]. [displayName] is the
    * description shown to the user. [toplevelPath] specifies the bind path this input/output can be
    * bound to (e.g. `/user/hand/left` or `/user/hand/right`). [openxrPath] is the action input/output
-   * being registered (e.g. `/user/hand/left/input/aim/pose`). [openxrExtensionName] restricts this
+   * being registered (e.g. `/user/hand/left/input/aim/pose`). [openxrExtensionNames] restricts this
    * input/output to an enabled/available extension, this doesn't need to repeat the extension on the
    * profile but relates to overlapping extension (e.g. `XR_EXT_palm_pose` that introduces
    * `…/input/palm_ext/pose` input paths). [actionType] defines the type of input or output provided by
@@ -94,10 +103,10 @@ public open class OpenXRInteractionProfileMetadata : Object() {
     displayName: String,
     toplevelPath: String,
     openxrPath: String,
-    openxrExtensionName: String,
+    openxrExtensionNames: String,
     actionType: OpenXRAction.ActionType,
   ): Unit {
-    TransferContext.writeArguments(STRING to interactionProfile, STRING to displayName, STRING to toplevelPath, STRING to openxrPath, STRING to openxrExtensionName, LONG to actionType.value)
+    TransferContext.writeArguments(STRING to interactionProfile, STRING to displayName, STRING to toplevelPath, STRING to openxrPath, STRING to openxrExtensionNames, LONG to actionType.value)
     TransferContext.callMethod(ptr, MethodBindings.registerIoPathPtr, NIL)
   }
 
@@ -106,6 +115,9 @@ public open class OpenXRInteractionProfileMetadata : Object() {
   public object MethodBindings {
     internal val registerProfileRenamePtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRInteractionProfileMetadata", "register_profile_rename", 3186203200)
+
+    internal val registerPathRenamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRInteractionProfileMetadata", "register_path_rename", 3186203200)
 
     internal val registerTopLevelPathPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRInteractionProfileMetadata", "register_top_level_path", 254767734)

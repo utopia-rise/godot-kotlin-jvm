@@ -28,7 +28,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class CallbackTweener : Tweener() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(128, scriptPtr)
+    createNativeObject(335, scriptPtr)
   }
 
   /**
@@ -41,10 +41,10 @@ public open class CallbackTweener : Tweener() {
    * tween.tween_callback(queue_free).set_delay(2)
    * ```
    */
-  public final fun setDelay(delay: Double): CallbackTweener? {
+  public final fun setDelay(delay: Double): CallbackTweener {
     TransferContext.writeArguments(DOUBLE to delay)
     TransferContext.callMethod(ptr, MethodBindings.setDelayPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as CallbackTweener?)
+    return (TransferContext.readReturnValue(OBJECT) as CallbackTweener)
   }
 
   public companion object

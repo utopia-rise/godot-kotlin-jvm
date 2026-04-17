@@ -434,7 +434,7 @@ public open class Area3D : CollisionObject3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(40, scriptPtr)
+    createNativeObject(610, scriptPtr)
   }
 
   /**
@@ -724,7 +724,7 @@ public open class Area3D : CollisionObject3D() {
    * not physics body themselves, they register their tiles with collision shapes as a virtual physics
    * body.
    */
-  public final fun overlapsBody(body: Node?): Boolean {
+  public final fun overlapsBody(body: Node): Boolean {
     TransferContext.writeArguments(OBJECT to body)
     TransferContext.callMethod(ptr, MethodBindings.overlapsBodyPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
@@ -736,7 +736,7 @@ public open class Area3D : CollisionObject3D() {
    * **Note:** The result of this test is not immediate after moving objects. For performance, list
    * of overlaps is updated once per frame and before the physics step. Consider using signals instead.
    */
-  public final fun overlapsArea(area: Node?): Boolean {
+  public final fun overlapsArea(area: Node): Boolean {
     TransferContext.writeArguments(OBJECT to area)
     TransferContext.callMethod(ptr, MethodBindings.overlapsAreaPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)

@@ -29,7 +29,7 @@ import kotlin.Unit
 @GodotBaseType
 public abstract class PhysicsDirectSpaceState3DExtension : PhysicsDirectSpaceState3D() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(483, scriptPtr)
+    createNativeObject(249, scriptPtr)
   }
 
   public abstract fun _getClosestPointToObjectVolume(`object`: RID, point: Vector3): Vector3

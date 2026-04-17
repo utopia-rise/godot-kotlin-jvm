@@ -26,9 +26,9 @@ jobs:
       - run: |
           echo "Setup done"
     outputs: # defined here explicitly, so it only needs to be defined here. All other workflows can just reference it
-      godot-kotlin-jvm-version: "0.14.3-4.5.1"
-      godot-version: "4.5.1-stable"
-      build-version: "0.14.3"
+      godot-kotlin-jvm-version: "0.15.0-4.6"
+      godot-version: "4.6-stable"
+      build-version: "0.15.0"
       jvm-version: "17"
 
   build-jvm:
@@ -65,6 +65,7 @@ jobs:
       - setup-build-variables
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
+      build-test-templates: false
 
   build-macos:
     name: 🍎 Build macOS
@@ -73,6 +74,7 @@ jobs:
       - setup-build-variables
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
+      build-test-templates: false
 
   build-windows:
     name: 🪟 Build Windows
@@ -81,6 +83,7 @@ jobs:
       - setup-build-variables
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
+      build-test-templates: false
 
   assemble-android:
     name: 🤖 Assemble android
@@ -103,6 +106,7 @@ jobs:
       godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       build-version: ${{ needs.setup-build-variables.outputs['build-version'] }}
+      build-test-templates: false
 
   assemble-ios:
     name: 🍏 Assemble ios

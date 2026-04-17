@@ -48,13 +48,16 @@ import kotlin.jvm.JvmStatic
  * An [Image] cannot be assigned to a texture property of an object directly (such as
  * [Sprite2D.texture]), and has to be converted manually to an [ImageTexture] first.
  *
+ * **Note:** Methods that modify the image data cannot be used on VRAM-compressed images. Use
+ * [decompress] to convert the image to an uncompressed format first.
+ *
  * **Note:** The maximum image size is 16384×16384 pixels due to graphics hardware limitations.
  * Larger images may fail to import.
  */
 @GodotBaseType
 public open class Image : Resource() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(289, scriptPtr)
+    createNativeObject(191, scriptPtr)
   }
 
   /**
@@ -329,9 +332,6 @@ public open class Image : Resource() {
    * Saves the image as an EXR file to [path]. If [grayscale] is `true` and the image has only one
    * channel, it will be saved explicitly as monochrome rather than one red channel. This function will
    * return [ERR_UNAVAILABLE] if Godot was compiled without the TinyEXR module.
-   *
-   * **Note:** The TinyEXR module is disabled in non-editor builds, which means [saveExr] will
-   * return [ERR_UNAVAILABLE] when it is called from an exported project.
    */
   @JvmOverloads
   public final fun saveExr(path: String, grayscale: Boolean = false): Error {
@@ -344,9 +344,6 @@ public open class Image : Resource() {
    * Saves the image as an EXR file to a byte array. If [grayscale] is `true` and the image has only
    * one channel, it will be saved explicitly as monochrome rather than one red channel. This function
    * will return an empty byte array if Godot was compiled without the TinyEXR module.
-   *
-   * **Note:** The TinyEXR module is disabled in non-editor builds, which means [saveExrToBuffer]
-   * will return an empty byte array when it is called from an exported project.
    */
   @JvmOverloads
   public final fun saveExrToBuffer(grayscale: Boolean = false): PackedByteArray {
@@ -452,13 +449,18 @@ public open class Image : Resource() {
   }
 
   /**
-   * Compresses the image to use less memory. Can not directly access pixel data while the image is
-   * compressed. Returns error if the chosen compression mode is not available.
+   * Compresses the image with a VRAM-compressed format to use less memory. Can not directly access
+   * pixel data while the image is compressed. Returns error if the chosen compression mode is not
+   * available.
    *
    * The [source] parameter helps to pick the best compression method for DXT and ETC2 formats. It
    * is ignored for ASTC compression.
    *
-   * For ASTC compression, the [astcFormat] parameter must be supplied.
+   * The [astcFormat] parameter is only taken into account when using ASTC compression; it is
+   * ignored for all other formats.
+   *
+   * **Note:** [compress] is only supported in editor builds. When run in an exported project, this
+   * method always returns [ERR_UNAVAILABLE].
    */
   @JvmOverloads
   public final fun compress(
@@ -472,14 +474,19 @@ public open class Image : Resource() {
   }
 
   /**
-   * Compresses the image to use less memory. Can not directly access pixel data while the image is
-   * compressed. Returns error if the chosen compression mode is not available.
+   * Compresses the image with a VRAM-compressed format to use less memory. Can not directly access
+   * pixel data while the image is compressed. Returns error if the chosen compression mode is not
+   * available.
    *
    * This is an alternative to [compress] that lets the user supply the channels used in order for
    * the compressor to pick the best DXT and ETC2 formats. For other formats (non DXT or ETC2), this
    * argument is ignored.
    *
-   * For ASTC compression, the [astcFormat] parameter must be supplied.
+   * The [astcFormat] parameter is only taken into account when using ASTC compression; it is
+   * ignored for all other formats.
+   *
+   * **Note:** [compressFromChannels] is only supported in editor builds. When run in an exported
+   * project, this method always returns [ERR_UNAVAILABLE].
    */
   @JvmOverloads
   public final fun compressFromChannels(
@@ -493,11 +500,10 @@ public open class Image : Resource() {
   }
 
   /**
-   * Decompresses the image if it is VRAM compressed in a supported format. Returns [OK] if the
-   * format is supported, otherwise [ERR_UNAVAILABLE].
-   *
-   * **Note:** The following formats can be decompressed: DXT, RGTC, BPTC. The formats ETC1 and ETC2
-   * are not supported.
+   * Decompresses the image if it is VRAM-compressed in a supported format. This increases memory
+   * utilization, but allows modifying the image. Returns [OK] if the format is supported, otherwise
+   * [ERR_UNAVAILABLE]. All VRAM-compressed formats supported by Godot can be decompressed with this
+   * method, except [FORMAT_ETC2_R11S], [FORMAT_ETC2_RG11S], and [FORMAT_ETC2_RGB8A1].
    */
   public final fun decompress(): Error {
     TransferContext.writeArguments()
@@ -549,8 +555,12 @@ public open class Image : Resource() {
   }
 
   /**
-   * Converts the raw data from the sRGB colorspace to a linear scale. Only works on images with
-   * [FORMAT_RGB8] or [FORMAT_RGBA8] formats.
+   * Converts the raw data from nonlinear sRGB encoding to linear encoding using a lookup table.
+   * Only works on images with [FORMAT_RGB8] or [FORMAT_RGBA8] formats.
+   *
+   * **Note:** The 8-bit formats required by this method are not suitable for storing linearly
+   * encoded values; a significant amount of color information will be lost in darker values. To
+   * maintain image quality, this method should not be used.
    */
   public final fun srgbToLinear(): Unit {
     TransferContext.writeArguments()
@@ -558,8 +568,8 @@ public open class Image : Resource() {
   }
 
   /**
-   * Converts the entire image from the linear colorspace to the sRGB colorspace. Only works on
-   * images with [FORMAT_RGB8] or [FORMAT_RGBA8] formats.
+   * Converts the entire image from linear encoding to nonlinear sRGB encoding by using a lookup
+   * table. Only works on images with [FORMAT_RGB8] or [FORMAT_RGBA8] formats.
    */
   public final fun linearToSrgb(): Unit {
     TransferContext.writeArguments()
@@ -577,7 +587,8 @@ public open class Image : Resource() {
   }
 
   /**
-   * Converts a standard RGBE (Red Green Blue Exponent) image to an sRGB image.
+   * Converts a standard linear RGBE (Red Green Blue Exponent) image to an image that uses nonlinear
+   * sRGB encoding.
    */
   public final fun rgbeToSrgb(): Image? {
     TransferContext.writeArguments()
@@ -596,7 +607,8 @@ public open class Image : Resource() {
   }
 
   /**
-   * Compute image metrics on the current image and the compared image.
+   * Compute image metrics on the current image and the compared image. This can be used to
+   * calculate the similarity between two images.
    *
    * The dictionary contains `max`, `mean`, `mean_squared`, `root_mean_squared` and `peak_snr`.
    */
@@ -763,6 +775,13 @@ public open class Image : Resource() {
    *
    * This is the same as [setPixel], but with a [Vector2i] argument instead of two integer
    * arguments.
+   *
+   * **Note:** Depending on the image's format, the color set here may be clamped or lose precision.
+   * Do not assume the color returned by [getPixelv] to be identical to the one set here; any
+   * comparisons will likely need to use an approximation like [Color.isEqualApprox].
+   *
+   * **Note:** On grayscale image formats, only the red channel of [color] is used (and alpha if
+   * relevant). The green and blue channels are ignored.
    */
   public final fun setPixelv(point: Vector2i, color: Color): Unit {
     TransferContext.writeArguments(VECTOR2I to point, COLOR to color)
@@ -792,6 +811,13 @@ public open class Image : Resource() {
    *
    * This is the same as [setPixelv], but with a two integer arguments instead of a [Vector2i]
    * argument.
+   *
+   * **Note:** Depending on the image's format, the color set here may be clamped or lose precision.
+   * Do not assume the color returned by [getPixel] to be identical to the one set here; any
+   * comparisons will likely need to use an approximation like [Color.isEqualApprox].
+   *
+   * **Note:** On grayscale image formats, only the red channel of [color] is used (and alpha if
+   * relevant). The green and blue channels are ignored.
    */
   public final fun setPixel(
     x: Int,
@@ -903,6 +929,15 @@ public open class Image : Resource() {
   }
 
   /**
+   * Loads an image from the binary contents of an OpenEXR file.
+   */
+  public final fun loadExrFromBuffer(buffer: PackedByteArray): Error {
+    TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
+    TransferContext.callMethod(ptr, MethodBindings.loadExrFromBufferPtr, LONG)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
    * Loads an image from the UTF-8 binary contents of an **uncompressed** SVG file (**.svg**).
    *
    * **Note:** Beware when using compressed SVG files (like **.svgz**), they need to be
@@ -955,14 +990,14 @@ public open class Image : Resource() {
     /**
      * OpenGL texture format `RGB` with three components, each with a bitdepth of 8.
      *
-     * **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is
+     * **Note:** When creating an [ImageTexture], a nonlinear sRGB to linear encoding conversion is
      * performed.
      */
     RGB8(4),
     /**
      * OpenGL texture format `RGBA` with four components, each with a bitdepth of 8.
      *
-     * **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is
+     * **Note:** When creating an [ImageTexture], a nonlinear sRGB to linear encoding conversion is
      * performed.
      */
     RGBA8(5),
@@ -1024,7 +1059,7 @@ public open class Image : Resource() {
      * uses Block Compression 1, and is the smallest variation of S3TC, only providing 1 bit of alpha
      * and color data being premultiplied with alpha.
      *
-     * **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is
+     * **Note:** When creating an [ImageTexture], a nonlinear sRGB to linear encoding conversion is
      * performed.
      */
     DXT1(17),
@@ -1033,7 +1068,7 @@ public open class Image : Resource() {
      * uses Block Compression 2, and color data is interpreted as not having been premultiplied by
      * alpha. Well suited for images with sharp alpha transitions between translucent and opaque areas.
      *
-     * **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is
+     * **Note:** When creating an [ImageTexture], a nonlinear sRGB to linear encoding conversion is
      * performed.
      */
     DXT3(18),
@@ -1043,7 +1078,7 @@ public open class Image : Resource() {
      * bits of DXT1-encoded color data. Color data is not premultiplied by alpha, same as DXT3. DXT5
      * generally produces superior results for transparent gradients compared to DXT3.
      *
-     * **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is
+     * **Note:** When creating an [ImageTexture], a nonlinear sRGB to linear encoding conversion is
      * performed.
      */
     DXT5(19),
@@ -1066,7 +1101,7 @@ public open class Image : Resource() {
      * [url=https://www.khronos.org/opengl/wiki/BPTC_Texture_Compression]BPTC[/url] compression with
      * unsigned normalized RGBA components.
      *
-     * **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is
+     * **Note:** When creating an [ImageTexture], a nonlinear sRGB to linear encoding conversion is
      * performed.
      */
     BPTC_RGBA(22),
@@ -1115,7 +1150,7 @@ public open class Image : Resource() {
      * Compression format 2[/url] (`RGB8` variant), which is a follow-up of ETC1 and compresses RGB888
      * data.
      *
-     * **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is
+     * **Note:** When creating an [ImageTexture], a nonlinear sRGB to linear encoding conversion is
      * performed.
      */
     ETC2_RGB8(30),
@@ -1124,7 +1159,7 @@ public open class Image : Resource() {
      * Compression format 2[/url] (`RGBA8`variant), which compresses RGBA8888 data with full alpha
      * support.
      *
-     * **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is
+     * **Note:** When creating an [ImageTexture], a nonlinear sRGB to linear encoding conversion is
      * performed.
      */
     ETC2_RGBA8(31),
@@ -1133,7 +1168,7 @@ public open class Image : Resource() {
      * Compression format 2[/url] (`RGB8_PUNCHTHROUGH_ALPHA1` variant), which compresses RGBA data to
      * make alpha either fully transparent or fully opaque.
      *
-     * **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is
+     * **Note:** When creating an [ImageTexture], a nonlinear sRGB to linear encoding conversion is
      * performed.
      */
     ETC2_RGB8A1(32),
@@ -1168,9 +1203,93 @@ public open class Image : Resource() {
      */
     ASTC_8x8_HDR(38),
     /**
+     * OpenGL texture format `GL_R16` where there's one component, a 16-bit unsigned normalized
+     * integer value. Since the value is normalized, each component is clamped between `0.0` and `1.0`
+     * (inclusive).
+     *
+     * **Note:** Due to limited hardware support, it is mainly recommended to be used on desktop or
+     * console devices. It may be unsupported on mobile or web, and will consequently be converted to
+     * [FORMAT_RF].
+     */
+    R16(39),
+    /**
+     * OpenGL texture format `GL_RG16` where there are two components, each a 16-bit unsigned
+     * normalized integer value. Since the value is normalized, each component is clamped between `0.0`
+     * and `1.0` (inclusive).
+     *
+     * **Note:** Due to limited hardware support, it is mainly recommended to be used on desktop or
+     * console devices. It may be unsupported on mobile or web, and will consequently be converted to
+     * [FORMAT_RGF].
+     */
+    RG16(40),
+    /**
+     * OpenGL texture format `GL_RGB16` where there are three components, each a 16-bit unsigned
+     * normalized integer value. Since the value is normalized, each component is clamped between `0.0`
+     * and `1.0` (inclusive).
+     *
+     * **Note:** Due to limited hardware support, it is mainly recommended to be used on desktop or
+     * console devices. It may be unsupported on mobile or web, and will consequently be converted to
+     * [FORMAT_RGBF].
+     */
+    RGB16(41),
+    /**
+     * OpenGL texture format `GL_RGBA16` where there are four components, each a 16-bit unsigned
+     * normalized integer value. Since the value is normalized, each component is clamped between `0.0`
+     * and `1.0` (inclusive).
+     *
+     * **Note:** Due to limited hardware support, it is mainly recommended to be used on desktop or
+     * console devices. It may be unsupported on mobile or web, and will consequently be converted to
+     * [FORMAT_RGBAF].
+     */
+    RGBA16(42),
+    /**
+     * OpenGL texture format `GL_R16UI` where there's one component, a 16-bit unsigned integer
+     * value. Each component is clamped between `0` and `65535` (inclusive).
+     *
+     * **Note:** When used in a shader, the texture requires usage of `usampler` samplers.
+     * Additionally, it only supports nearest-neighbor filtering under the Compatibility renderer.
+     *
+     * **Note:** When sampling using [Image.getPixel], returned [Color]s have to be divided by
+     * `65535` to get the correct color value.
+     */
+    R16I(43),
+    /**
+     * OpenGL texture format `GL_RG16UI` where there are two components, each a 16-bit unsigned
+     * integer value. Each component is clamped between `0` and `65535` (inclusive).
+     *
+     * **Note:** When used in a shader, the texture requires usage of `usampler` samplers.
+     * Additionally, it only supports nearest-neighbor filtering under the Compatibility renderer.
+     *
+     * **Note:** When sampling using [Image.getPixel], returned [Color]s have to be divided by
+     * `65535` to get the correct color value.
+     */
+    RG16I(44),
+    /**
+     * OpenGL texture format `GL_RGB16UI` where there are three components, each a 16-bit unsigned
+     * integer value. Each component is clamped between `0` and `65535` (inclusive).
+     *
+     * **Note:** When used in a shader, the texture requires usage of `usampler` samplers.
+     * Additionally, it only supports nearest-neighbor filtering under the Compatibility renderer.
+     *
+     * **Note:** When sampling using [Image.getPixel], returned [Color]s have to be divided by
+     * `65535` to get the correct color value.
+     */
+    RGB16I(45),
+    /**
+     * OpenGL texture format `GL_RGBA16UI` where there are four components, each a 16-bit unsigned
+     * integer value. Each component is clamped between `0` and `65535` (inclusive).
+     *
+     * **Note:** When used in a shader, the texture requires usage of `usampler` samplers.
+     * Additionally, it only supports nearest-neighbor filtering under the Compatibility renderer.
+     *
+     * **Note:** When sampling using [Image.getPixel], returned [Color]s have to be divided by
+     * `65535` to get the correct color value.
+     */
+    RGBA16I(46),
+    /**
      * Represents the size of the [Format] enum.
      */
-    MAX(39),
+    MAX(47),
     ;
 
     public override val `value`: Long
@@ -1239,15 +1358,16 @@ public open class Image : Resource() {
     `value`: Long,
   ) : GodotEnum {
     /**
-     * Image does not have alpha.
+     * Image is fully opaque. It does not store alpha data.
      */
     NONE(0),
     /**
-     * Image stores alpha in a single bit.
+     * Image stores either fully opaque or fully transparent pixels. Also known as punchthrough
+     * alpha.
      */
     BIT(1),
     /**
-     * Image uses alpha.
+     * Image stores alpha data with values varying between `0.0` and `1.0`.
      */
     BLEND(2),
     ;
@@ -1348,7 +1468,7 @@ public open class Image : Resource() {
      */
     GENERIC(0),
     /**
-     * Source texture (before compression) is in sRGB space.
+     * Source texture (before compression) uses nonlinear sRGB encoding.
      */
     SRGB(1),
     /**
@@ -1404,7 +1524,7 @@ public open class Image : Resource() {
 
     /**
      * Creates an empty image of the given size and format. If [useMipmaps] is `true`, generates
-     * mipmaps for this image. See the [generateMipmaps].
+     * mipmaps for this image (see [generateMipmaps]).
      */
     @JvmStatic
     public final fun create(
@@ -1420,7 +1540,7 @@ public open class Image : Resource() {
 
     /**
      * Creates an empty image of the given size and format. If [useMipmaps] is `true`, generates
-     * mipmaps for this image. See the [generateMipmaps].
+     * mipmaps for this image (see [generateMipmaps]).
      */
     @JvmStatic
     public final fun createEmpty(
@@ -1665,6 +1785,9 @@ public open class Image : Resource() {
 
     internal val loadDdsFromBufferPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Image", "load_dds_from_buffer", 680677267)
+
+    internal val loadExrFromBufferPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Image", "load_exr_from_buffer", 680677267)
 
     internal val loadSvgFromBufferPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Image", "load_svg_from_buffer", 311853421)

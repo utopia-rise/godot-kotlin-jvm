@@ -28,7 +28,7 @@ import kotlin.Unit
 @GodotBaseType
 public abstract class PhysicsDirectBodyState2DExtension : PhysicsDirectBodyState2D() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(477, scriptPtr)
+    createNativeObject(260, scriptPtr)
   }
 
   /**
@@ -273,7 +273,7 @@ public abstract class PhysicsDirectBodyState2DExtension : PhysicsDirectBodyState
   /**
    * Overridable version of [PhysicsDirectBodyState2D.getSpaceState].
    */
-  public abstract fun _getSpaceState(): PhysicsDirectSpaceState2D?
+  public abstract fun _getSpaceState(): PhysicsDirectSpaceState2D
 
   public companion object
 

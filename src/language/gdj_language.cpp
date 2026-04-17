@@ -74,10 +74,6 @@ bool GdjLanguage::handles_global_class_type(const String& p_type) const {
     return p_type == GODOT_JVM_SCRIPT_NAME;
 }
 
-bool GdjLanguage::has_named_classes() const {
-    return true;
-}
-
 bool GdjLanguage::supports_builtin_mode() const {
     return false;
 }

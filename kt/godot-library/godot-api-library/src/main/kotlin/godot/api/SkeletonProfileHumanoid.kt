@@ -15,7 +15,7 @@ import kotlin.Unit
  * A [SkeletonProfile] as a preset that is optimized for the human form. This exists for
  * standardization, so all parameters are read-only.
  *
- * A humanoid skeleton profile contains 54 bones divided in 4 groups: `"Body"`, `"Face"`,
+ * A humanoid skeleton profile contains 56 bones divided into 4 groups: `"Body"`, `"Face"`,
  * `"LeftHand"`, and `"RightHand"`. It is structured as follows:
  *
  * [codeblock lang=text]
@@ -137,7 +137,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class SkeletonProfileHumanoid : SkeletonProfile() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(624, scriptPtr)
+    createNativeObject(777, scriptPtr)
   }
 
   public companion object

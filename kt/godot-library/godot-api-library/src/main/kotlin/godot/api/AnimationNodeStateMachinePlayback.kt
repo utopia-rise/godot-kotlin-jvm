@@ -62,7 +62,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
   public val stateFinished: Signal1<StringName> by Signal1
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(29, scriptPtr)
+    createNativeObject(105, scriptPtr)
   }
 
   /**
@@ -162,6 +162,46 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
   }
 
   /**
+   * Returns the playback position of the node from [getFadingFromNode]. Returns `0` if no animation
+   * fade is occurring.
+   */
+  public final fun getFadingFromPlayPosition(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getFadingFromPlayPositionPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  /**
+   * Returns the playback state length of the node from [getFadingFromNode]. Returns `0` if no
+   * animation fade is occurring.
+   */
+  public final fun getFadingFromLength(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getFadingFromLengthPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  /**
+   * Returns the playback position of the current fade animation. Returns `0` if no animation fade
+   * is occurring.
+   */
+  public final fun getFadingPosition(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getFadingPositionPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  /**
+   * Returns the length of the current fade animation. Returns `0` if no animation fade is
+   * occurring.
+   */
+  public final fun getFadingLength(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getFadingLengthPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  /**
    * Returns the current travel path as computed internally by the A* algorithm.
    */
   public final fun getTravelPath(): VariantArray<StringName> {
@@ -221,6 +261,18 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
 
     internal val getFadingFromNodePtr: VoidPtr =
         TypeManager.getMethodBindPtr("AnimationNodeStateMachinePlayback", "get_fading_from_node", 2002593661)
+
+    internal val getFadingFromPlayPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeStateMachinePlayback", "get_fading_from_play_position", 1740695150)
+
+    internal val getFadingFromLengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeStateMachinePlayback", "get_fading_from_length", 1740695150)
+
+    internal val getFadingPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeStateMachinePlayback", "get_fading_position", 1740695150)
+
+    internal val getFadingLengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeStateMachinePlayback", "get_fading_length", 1740695150)
 
     internal val getTravelPathPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AnimationNodeStateMachinePlayback", "get_travel_path", 3995934104)

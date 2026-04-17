@@ -34,7 +34,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class ScriptBacktrace : RefCounted() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(589, scriptPtr)
+    createNativeObject(195, scriptPtr)
   }
 
   /**

@@ -148,7 +148,7 @@ public open class TextLine : RefCounted() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(673, scriptPtr)
+    createNativeObject(27, scriptPtr)
   }
 
   /**
@@ -157,6 +157,15 @@ public open class TextLine : RefCounted() {
   public final fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
+  }
+
+  /**
+   * Duplicates this [TextLine].
+   */
+  public final fun duplicate(): TextLine? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.duplicatePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT) as TextLine?)
   }
 
   public final fun setDirection(direction: TextServer.Direction): Unit {
@@ -268,6 +277,15 @@ public open class TextLine : RefCounted() {
   ): Boolean {
     TransferContext.writeArguments(ANY to key, VECTOR2 to size, LONG to inlineAlign.value, DOUBLE to baseline.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.resizeObjectPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Returns `true` if an object with [key] is embedded in this line.
+   */
+  public final fun hasObject(key: Any?): Boolean {
+    TransferContext.writeArguments(ANY to key)
+    TransferContext.callMethod(ptr, MethodBindings.hasObjectPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -465,6 +483,9 @@ public open class TextLine : RefCounted() {
   public object MethodBindings {
     internal val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("TextLine", "clear", 3218959716)
 
+    internal val duplicatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextLine", "duplicate", 1912703884)
+
     internal val setDirectionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextLine", "set_direction", 1418190634)
 
@@ -503,6 +524,9 @@ public open class TextLine : RefCounted() {
 
     internal val resizeObjectPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextLine", "resize_object", 2095776372)
+
+    internal val hasObjectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextLine", "has_object", 77467830)
 
     internal val setWidthPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextLine", "set_width", 373806689)

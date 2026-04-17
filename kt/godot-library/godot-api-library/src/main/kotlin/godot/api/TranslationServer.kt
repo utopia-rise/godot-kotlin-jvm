@@ -12,6 +12,8 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.PackedStringArray
 import godot.core.StringName
+import godot.core.VariantArray
+import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -56,7 +58,7 @@ public object TranslationServer : Object() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(33)
+    getSingleton(3)
   }
 
   /**
@@ -190,6 +192,16 @@ public object TranslationServer : Object() {
   }
 
   /**
+   * Returns the default plural rules for the [locale].
+   */
+  @JvmStatic
+  public final fun getPluralRules(locale: String): String {
+    TransferContext.writeArguments(STRING to locale)
+    TransferContext.callMethod(ptr, MethodBindings.getPluralRulesPtr, STRING)
+    return (TransferContext.readReturnValue(STRING) as String)
+  }
+
+  /**
    * Returns the current locale's translation for the given message and context.
    *
    * **Note:** This method always uses the main translation domain.
@@ -252,6 +264,51 @@ public object TranslationServer : Object() {
   }
 
   /**
+   * Returns all available [Translation] instances in the main translation domain as added by
+   * [addTranslation].
+   */
+  @JvmStatic
+  public final fun getTranslations(): VariantArray<Translation> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getTranslationsPtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Translation>)
+  }
+
+  /**
+   * Returns the [Translation] instances in the main translation domain that match [locale] (see
+   * [compareLocales]). If [exact] is `true`, only instances whose locale exactly equals [locale] will
+   * be returned.
+   */
+  @JvmStatic
+  public final fun findTranslations(locale: String, exact: Boolean): VariantArray<Translation> {
+    TransferContext.writeArguments(STRING to locale, BOOL to exact)
+    TransferContext.callMethod(ptr, MethodBindings.findTranslationsPtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Translation>)
+  }
+
+  /**
+   * Returns `true` if there are any [Translation] instances in the main translation domain that
+   * match [locale] (see [compareLocales]). If [exact] is `true`, only instances whose locale exactly
+   * equals [locale] are considered.
+   */
+  @JvmStatic
+  public final fun hasTranslationForLocale(locale: String, exact: Boolean): Boolean {
+    TransferContext.writeArguments(STRING to locale, BOOL to exact)
+    TransferContext.callMethod(ptr, MethodBindings.hasTranslationForLocalePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Returns `true` if the main translation domain contains the given [translation].
+   */
+  @JvmStatic
+  public final fun hasTranslation(translation: Translation?): Boolean {
+    TransferContext.writeArguments(OBJECT to translation)
+    TransferContext.callMethod(ptr, MethodBindings.hasTranslationPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
    * Returns `true` if a translation domain with the specified name exists.
    */
   @JvmStatic
@@ -300,6 +357,36 @@ public object TranslationServer : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLoadedLocalesPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
+  }
+
+  /**
+   * Converts a number from Western Arabic (0..9) to the numeral system used in the given [locale].
+   */
+  @JvmStatic
+  public final fun formatNumber(number: String, locale: String): String {
+    TransferContext.writeArguments(STRING to number, STRING to locale)
+    TransferContext.callMethod(ptr, MethodBindings.formatNumberPtr, STRING)
+    return (TransferContext.readReturnValue(STRING) as String)
+  }
+
+  /**
+   * Returns the percent sign used in the given [locale].
+   */
+  @JvmStatic
+  public final fun getPercentSign(locale: String): String {
+    TransferContext.writeArguments(STRING to locale)
+    TransferContext.callMethod(ptr, MethodBindings.getPercentSignPtr, STRING)
+    return (TransferContext.readReturnValue(STRING) as String)
+  }
+
+  /**
+   * Converts [number] from the numeral system used in the given [locale] to Western Arabic (0..9).
+   */
+  @JvmStatic
+  public final fun parseNumber(number: String, locale: String): String {
+    TransferContext.writeArguments(STRING to number, STRING to locale)
+    TransferContext.callMethod(ptr, MethodBindings.parseNumberPtr, STRING)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   @JvmStatic
@@ -431,6 +518,9 @@ public object TranslationServer : Object() {
     internal val getLocaleNamePtr: VoidPtr =
         TypeManager.getMethodBindPtr("TranslationServer", "get_locale_name", 3135753539)
 
+    internal val getPluralRulesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TranslationServer", "get_plural_rules", 3135753539)
+
     internal val translatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("TranslationServer", "translate", 1829228469)
 
@@ -446,6 +536,18 @@ public object TranslationServer : Object() {
     internal val getTranslationObjectPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TranslationServer", "get_translation_object", 2065240175)
 
+    internal val getTranslationsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TranslationServer", "get_translations", 3995934104)
+
+    internal val findTranslationsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TranslationServer", "find_translations", 2109650934)
+
+    internal val hasTranslationForLocalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TranslationServer", "has_translation_for_locale", 2034713381)
+
+    internal val hasTranslationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TranslationServer", "has_translation", 2696976312)
+
     internal val hasDomainPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TranslationServer", "has_domain", 2619796661)
 
@@ -460,6 +562,15 @@ public object TranslationServer : Object() {
 
     internal val getLoadedLocalesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TranslationServer", "get_loaded_locales", 1139954409)
+
+    internal val formatNumberPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TranslationServer", "format_number", 315676799)
+
+    internal val getPercentSignPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TranslationServer", "get_percent_sign", 3135753539)
+
+    internal val parseNumberPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TranslationServer", "parse_number", 315676799)
 
     internal val isPseudolocalizationEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TranslationServer", "is_pseudolocalization_enabled", 36873697)

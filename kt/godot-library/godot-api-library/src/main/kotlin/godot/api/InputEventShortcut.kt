@@ -36,7 +36,7 @@ public open class InputEventShortcut : InputEvent() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(314, scriptPtr)
+    createNativeObject(185, scriptPtr)
   }
 
   public final fun setShortcut(shortcut: Shortcut?): Unit {

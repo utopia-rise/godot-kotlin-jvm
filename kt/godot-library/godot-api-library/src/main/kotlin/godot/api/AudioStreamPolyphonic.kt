@@ -14,6 +14,7 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Int
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -42,7 +43,7 @@ public open class AudioStreamPolyphonic : AudioStream() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(99, scriptPtr)
+    createNativeObject(773, scriptPtr)
   }
 
   public final fun setPolyphony(voices: Int): Unit {
@@ -54,6 +55,13 @@ public open class AudioStreamPolyphonic : AudioStream() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPolyphonyPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _instantiatePlayback(): AudioStreamPlayback? {
+    throw NotImplementedError("AudioStreamPolyphonic::_instantiatePlayback can't be called from the JVM.")
   }
 
   public companion object

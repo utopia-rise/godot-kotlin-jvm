@@ -65,6 +65,10 @@ public open class MeshInstance3D : GeometryInstance3D() {
 
   /**
    * [NodePath] to the [Skeleton3D] associated with the instance.
+   *
+   * **Note:** The default value of this property has changed in Godot 4.6. Enable
+   * [ProjectSettings.animation/compatibility/defaultParentSkeletonInMeshInstance3d] if the old
+   * behavior is needed for compatibility.
    */
   public final inline var skeleton: NodePath
     @JvmName("skeletonProperty")
@@ -75,7 +79,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(363, scriptPtr)
+    createNativeObject(698, scriptPtr)
   }
 
   public final fun setMesh(mesh: Mesh?): Unit {

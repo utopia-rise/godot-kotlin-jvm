@@ -51,7 +51,7 @@ public open class AStar2D : RefCounted() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(3, scriptPtr)
+    createNativeObject(128, scriptPtr)
   }
 
   /**
@@ -397,8 +397,10 @@ public open class AStar2D : RefCounted() {
    * Returns an array with the points that are in the path found by AStar2D between the given
    * points. The array is ordered from the starting point to the ending point of the path.
    *
-   * If there is no valid path to the target, and [allowPartialPath] is `true`, returns a path to
-   * the point closest to the target that can be reached.
+   * If [fromId] point is disabled, returns an empty array (even if `from_id == to_id`).
+   *
+   * If [fromId] point is not disabled, there is no valid path to the target, and [allowPartialPath]
+   * is `true`, returns a path to the point closest to the target that can be reached.
    *
    * **Note:** This method is not thread-safe; it can only be used from a single [Thread] at a given
    * time. Consider using [Mutex] to ensure exclusive access to one thread to avoid race conditions.
@@ -421,8 +423,10 @@ public open class AStar2D : RefCounted() {
    * Returns an array with the IDs of the points that form the path found by AStar2D between the
    * given points. The array is ordered from the starting point to the ending point of the path.
    *
-   * If there is no valid path to the target, and [allowPartialPath] is `true`, returns a path to
-   * the point closest to the target that can be reached.
+   * If [fromId] point is disabled, returns an empty array (even if `from_id == to_id`).
+   *
+   * If [fromId] point is not disabled, there is no valid path to the target, and [allowPartialPath]
+   * is `true`, returns a path to the point closest to the target that can be reached.
    *
    * **Note:** When [allowPartialPath] is `true` and [toId] is disabled the search may take an
    * unusually long time to finish.

@@ -67,7 +67,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(24, scriptPtr)
+    createNativeObject(107, scriptPtr)
   }
 
   /**

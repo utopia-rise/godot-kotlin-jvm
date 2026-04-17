@@ -130,7 +130,7 @@ public object DisplayServer : Object() {
   public final const val INVALID_INDICATOR_ID: Long = -1
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(3)
+    getSingleton(23)
   }
 
   /**
@@ -1289,10 +1289,10 @@ public object DisplayServer : Object() {
     volume: Int = 50,
     pitch: Float = 1.0f,
     rate: Float = 1.0f,
-    utteranceId: Int = 0,
+    utteranceId: Long = 0,
     interrupt: Boolean = false,
   ): Unit {
-    TransferContext.writeArguments(STRING to text, STRING to voice, LONG to volume.toLong(), DOUBLE to pitch.toDouble(), DOUBLE to rate.toDouble(), LONG to utteranceId.toLong(), BOOL to interrupt)
+    TransferContext.writeArguments(STRING to text, STRING to voice, LONG to volume.toLong(), DOUBLE to pitch.toDouble(), DOUBLE to rate.toDouble(), LONG to utteranceId, BOOL to interrupt)
     TransferContext.callMethod(ptr, MethodBindings.ttsSpeakPtr, NIL)
   }
 
@@ -1403,8 +1403,8 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets the [callable] that should be called when system theme settings are changed. Callback
-   * method should have zero arguments.
+   * Sets the callback that should be called when the system's theme settings are changed.
+   * [callable] should accept zero arguments.
    *
    * **Note:** This method is implemented on Android, iOS, macOS, Windows, and Linux (X11/Wayland).
    */
@@ -1597,7 +1597,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns index of the primary screen.
+   * Returns the index of the primary screen.
    *
    * **Note:** This method is implemented on Linux/X11, macOS, and Windows. On other platforms, this
    * method always returns `0`.
@@ -1793,8 +1793,9 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the current refresh rate of the specified screen. Returns `-1.0` if [screen] is invalid
-   * or the [DisplayServer] fails to find the refresh rate for the specified screen.
+   * Returns the current refresh rate of the specified screen. When V-Sync is enabled, this returns
+   * the maximum framerate the project can effectively reach. Returns `-1.0` if [screen] is invalid or
+   * the [DisplayServer] fails to find the refresh rate for the specified screen.
    *
    * To fallback to a default refresh rate if the method fails, try:
    *
@@ -1819,14 +1820,15 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns color of the display pixel at the [position].
+   * Returns the color of the pixel at the given screen [position]. On multi-monitor setups, the
+   * screen position is relative to the virtual desktop area.
    *
    * **Note:** This method is implemented on Linux (X11, excluding XWayland), macOS, and Windows. On
-   * other platforms, this method always returns [Color].
+   * other platforms, this method always returns `Color(0, 0, 0, 1)`.
    *
    * **Note:** On macOS, this method requires the "Screen Recording" permission. If permission is
-   * not granted, this method returns a screenshot that will only contain the desktop wallpaper, the
-   * current application's window, and other related UI elements.
+   * not granted, this method returns a color from a screenshot that will not include other application
+   * windows or OS elements not related to the application.
    */
   @JvmStatic
   public final fun screenGetPixel(position: Vector2i): Color {
@@ -2576,7 +2578,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns `true`, if double-click on a window title should maximize it.
+   * Returns `true` if double-clicking on a window's title should maximize it.
    *
    * **Note:** This method is implemented only on macOS.
    */
@@ -2588,7 +2590,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns `true`, if double-click on a window title should minimize it.
+   * Returns `true` if double-clicking on a window's title should minimize it.
    *
    * **Note:** This method is implemented only on macOS.
    */
@@ -2626,6 +2628,17 @@ public object DisplayServer : Object() {
   public final fun windowStartResize(edge: WindowResizeEdge, windowId: Int = 0): Unit {
     TransferContext.writeArguments(LONG to edge.value, LONG to windowId.toLong())
     TransferContext.callMethod(ptr, MethodBindings.windowStartResizePtr, NIL)
+  }
+
+  /**
+   * Sets the background color of the root window.
+   *
+   * **Note:** This method is implemented only on Android.
+   */
+  @JvmStatic
+  public final fun windowSetColor(color: Color): Unit {
+    TransferContext.writeArguments(COLOR to color)
+    TransferContext.callMethod(ptr, MethodBindings.windowSetColorPtr, NIL)
   }
 
   /**
@@ -2674,9 +2687,9 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on Linux, macOS, and Windows.
    *
-   * **Note:** Accessibility debugging tools, such as Accessibility Insights for Windows, macOS
-   * Accessibility Inspector, or AT-SPI Browser do not count as assistive apps and will not affect this
-   * value. To test your app with these tools, set
+   * **Note:** Accessibility debugging tools, such as Accessibility Insights for Windows,
+   * Accessibility Inspector (macOS), or AT-SPI Browser (Linux/BSD), do not count as assistive apps and
+   * will not affect this value. To test your project with these tools, set
    * [ProjectSettings.accessibility/general/accessibilitySupport] to `1`.
    */
   @JvmStatic
@@ -2721,6 +2734,9 @@ public object DisplayServer : Object() {
    * Creates a new, empty accessibility sub-element from the shaped text buffer. Sub-elements are
    * freed automatically when the parent element is freed, or can be freed early using the
    * [accessibilityFreeElement] method.
+   *
+   * If [isLastLine] is `true`, no trailing newline is appended to the text content. Set to `true`
+   * for the last line in multi-line text fields and for single-line text fields.
    */
   @JvmOverloads
   @JvmStatic
@@ -2729,8 +2745,9 @@ public object DisplayServer : Object() {
     shapedText: RID,
     minHeight: Float,
     insertPos: Int = -1,
+    isLastLine: Boolean = false,
   ): RID {
-    TransferContext.writeArguments(_RID to parentRid, _RID to shapedText, DOUBLE to minHeight.toDouble(), LONG to insertPos.toLong())
+    TransferContext.writeArguments(_RID to parentRid, _RID to shapedText, DOUBLE to minHeight.toDouble(), LONG to insertPos.toLong(), BOOL to isLastLine)
     TransferContext.callMethod(ptr, MethodBindings.accessibilityCreateSubTextEditElementsPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -2746,8 +2763,8 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Frees an object created by [accessibilityCreateElement], [accessibilityCreateSubElement], or
-   * [accessibilityCreateSubTextEditElements].
+   * Frees the accessibility element [id] created by [accessibilityCreateElement],
+   * [accessibilityCreateSubElement], or [accessibilityCreateSubTextEditElements].
    */
   @JvmStatic
   public final fun accessibilityFreeElement(id: RID): Unit {
@@ -2756,7 +2773,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets the metadata of the accessibility element.
+   * Sets the metadata of the accessibility element [id] to [meta].
    */
   @JvmStatic
   public final fun accessibilityElementSetMeta(id: RID, meta: Any?): Unit {
@@ -2765,7 +2782,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the metadata of the accessibility element.
+   * Returns the metadata of the accessibility element [id].
    */
   @JvmStatic
   public final fun accessibilityElementGetMeta(id: RID): Any? {
@@ -3495,10 +3512,10 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the on-screen keyboard's height in pixels. Returns 0 if there is no keyboard or if it
+   * Returns the on-screen keyboard's height in pixels. Returns `0` if there is no keyboard or if it
    * is currently hidden.
    *
-   * **Note:** On Android 7 and 8, the keyboard height may return 0 the first time the keyboard is
+   * **Note:** On Android 7 and 8, the keyboard height may return `0` the first time the keyboard is
    * opened in non-immersive mode. This behavior does not occur in immersive mode.
    */
   @JvmStatic
@@ -3522,9 +3539,9 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets the [callable] that should be called when hardware keyboard is connected/disconnected.
-   * [callable] should accept a single [bool] parameter indicating whether the keyboard is connected
-   * (true) or disconnected (false).
+   * Sets the callback that should be called when a hardware keyboard is connected or disconnected.
+   * [callable] should accept a single [bool] argument indicating whether the keyboard has been
+   * connected (`true`) or disconnected (`false`).
    *
    * **Note:** This method is only implemented on Android.
    */
@@ -3563,6 +3580,8 @@ public object DisplayServer : Object() {
    * display correctly. Optionally, [hotspot] can be set to offset the image's position relative to the
    * click point. By default, [hotspot] is set to the top-left corner of the image. See also
    * [cursorSetShape].
+   *
+   * **Note:** On Web, calling this method every frame can cause the cursor to flicker.
    */
   @JvmOverloads
   @JvmStatic
@@ -3658,7 +3677,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** [currentDirectory] might be ignored.
    *
-   * **Note:** Embedded file dialog and Windows file dialog support only file extensions, while
+   * **Note:** Embedded file dialogs and Windows file dialogs support only file extensions, while
    * Android, Linux, and macOS file dialogs also support MIME types.
    *
    * **Note:** On Android and Linux, [showHidden] is ignored.
@@ -3668,6 +3687,29 @@ public object DisplayServer : Object() {
    * **Note:** On macOS, sandboxed apps will save security-scoped bookmarks to retain access to the
    * opened folders across multiple sessions. Use [OS.getGrantedPermissions] to get a list of saved
    * bookmarks.
+   *
+   * **Note:** On Android, this method uses the Android Storage Access Framework (SAF).
+   *
+   * The file picker returns a URI instead of a filesystem path. This URI can be passed directly to
+   * [FileAccess] to perform read/write operations.
+   *
+   * When using [FILE_DIALOG_MODE_OPEN_DIR], it returns a tree URI that grants full access to the
+   * selected directory. File operations inside this directory can be performed by passing a path on
+   * the form `treeUri#relative/path/to/file` to [FileAccess].
+   *
+   * To avoid opening the file picker again after each app restart, you can take persistable URI
+   * permission as follows:
+   *
+   * ```gdscript
+   * //gdscript
+   * val uri = "content://com.android..." # URI of the selected file or folder.
+   * val persist = true # Set to false to release the persistable permission.
+   * var android_runtime = Engine.get_singleton("AndroidRuntime")
+   * android_runtime.updatePersistableUriPermission(uri, persist)
+   * ```
+   *
+   * The persistable URI permission remains valid across app restarts as long as the directory is
+   * not moved, renamed, or deleted.
    */
   @JvmOverloads
   @JvmStatic
@@ -3712,7 +3754,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** [currentDirectory] might be ignored.
    *
-   * **Note:** Embedded file dialog and Windows file dialog support only file extensions, while
+   * **Note:** Embedded file dialogs and Windows file dialogs support only file extensions, while
    * Android, Linux, and macOS file dialogs also support MIME types.
    *
    * **Note:** On Linux (X11), [showHidden] is ignored.
@@ -4181,7 +4223,13 @@ public object DisplayServer : Object() {
     HIDPI(12),
     /**
      * Display server supports changing the window icon (usually displayed in the top-left corner).
-     * **Windows, macOS, Linux (X11)**
+     * **Windows, macOS, Linux (X11/Wayland)**
+     *
+     * **Note:** Use on Wayland requires the compositor to implement the
+     * [url=https://wayland.app/protocols/xdg-toplevel-icon-v1#xdg_toplevel_icon_v1]xdg_toplevel_icon_v1[/url]
+     * protocol, which not all compositors do. See
+     * [url=https://wayland.app/protocols/xdg-toplevel-icon-v1#compositor-support]xdg_toplevel_icon_v1#compositor-support[/url]
+     * for more information on individual compositor support.
      */
     ICON(13),
     /**
@@ -4530,7 +4578,7 @@ public object DisplayServer : Object() {
      */
     FLAG_HIDDEN(0),
     /**
-     * Element is support multiple item selection.
+     * Element supports multiple item selection.
      */
     FLAG_MULTISELECTABLE(1),
     /**
@@ -5242,7 +5290,7 @@ public object DisplayServer : Object() {
      */
     MAXIMIZE_DISABLED(12),
     /**
-     * Max value of the [WindowFlags].
+     * Represents the size of the [WindowFlags] enum.
      */
     MAX(13),
     ;
@@ -5300,7 +5348,7 @@ public object DisplayServer : Object() {
      */
     TITLEBAR_CHANGE(7),
     /**
-     * Sent when the window has been forcibly closed by the Display Server. The window shall
+     * Sent when the window has been forcibly closed by the display server. The window will
      * immediately hide and clean any internal rendering references.
      *
      * **Note:** This flag is implemented only on Linux (Wayland).
@@ -5968,6 +6016,9 @@ public object DisplayServer : Object() {
     internal val windowStartResizePtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "window_start_resize", 4009722312)
 
+    internal val windowSetColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "window_set_color", 2920490490)
+
     internal val accessibilityShouldIncreaseContrastPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "accessibility_should_increase_contrast", 3905245786)
 
@@ -5987,7 +6038,7 @@ public object DisplayServer : Object() {
         TypeManager.getMethodBindPtr("DisplayServer", "accessibility_create_sub_element", 1949948826)
 
     internal val accessibilityCreateSubTextEditElementsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_create_sub_text_edit_elements", 3328635351)
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_create_sub_text_edit_elements", 2702009895)
 
     internal val accessibilityHasElementPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "accessibility_has_element", 4155700596)

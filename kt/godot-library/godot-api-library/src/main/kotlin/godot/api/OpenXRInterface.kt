@@ -139,8 +139,8 @@ public open class OpenXRInterface : XRInterface() {
     }
 
   /**
-   * Set foveation level from 0 (off) to 3 (high), the interface must be initialized before this is
-   * accessible.
+   * The foveation level, from `0` (off) to `3` (high). The interface must be initialized before
+   * this is accessible.
    *
    * **Note:** Only works on the Compatibility renderer.
    */
@@ -153,8 +153,9 @@ public open class OpenXRInterface : XRInterface() {
     }
 
   /**
-   * Enable dynamic foveation adjustment, the interface must be initialized before this is
-   * accessible. If enabled foveation will automatically adjusted between low and [foveationLevel].
+   * If `true`, enables dynamic foveation adjustment. The interface must be initialized before this
+   * is accessible. If enabled, foveation will automatically be adjusted between low and
+   * [foveationLevel].
    *
    * **Note:** Only works on the Compatibility renderer.
    */
@@ -197,7 +198,7 @@ public open class OpenXRInterface : XRInterface() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(442, scriptPtr)
+    createNativeObject(925, scriptPtr)
   }
 
   /**
@@ -232,11 +233,11 @@ public open class OpenXRInterface : XRInterface() {
   }
 
   /**
-   * Returns `true` if OpenXR's foveation extension is supported, the interface must be initialized
+   * Returns `true` if OpenXR's foveation extension is supported. The interface must be initialized
    * before this returns a valid value.
    *
-   * **Note:** This feature is only available on the Compatibility renderer and currently only
-   * available on some stand alone headsets. For Vulkan set [Viewport.vrsMode] to `VRS_XR` on desktop.
+   * **Note:** When using the Vulkan rendering driver, [Viewport.vrsMode] must be set to
+   * [Viewport.VRS_XR] to support foveation.
    */
   public final fun isFoveationSupported(): Boolean {
     TransferContext.writeArguments()
@@ -293,8 +294,8 @@ public open class OpenXRInterface : XRInterface() {
   }
 
   /**
-   * Returns display refresh rates supported by the current HMD. Only returned if this feature is
-   * supported by the OpenXR runtime and after the interface has been initialized.
+   * Returns a list of display refresh rates supported by the current HMD. Only returned if this
+   * feature is supported by the OpenXR runtime and after the interface has been initialized.
    */
   public final fun getAvailableDisplayRefreshRates(): VariantArray<Any?> {
     TransferContext.writeArguments()
@@ -511,7 +512,7 @@ public open class OpenXRInterface : XRInterface() {
      */
     LOSS_PENDING(7),
     /**
-     * The OpenXR instance is about to be destroyed and we're existing. [signal instance_exiting] is
+     * The OpenXR instance is about to be destroyed and we're exiting. [signal instance_exiting] is
      * emitted when we change to this state.
      */
     EXITING(8),

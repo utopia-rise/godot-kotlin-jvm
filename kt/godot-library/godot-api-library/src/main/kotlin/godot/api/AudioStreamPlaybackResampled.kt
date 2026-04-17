@@ -11,14 +11,17 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.VariantParser.NIL
+import kotlin.Boolean
+import kotlin.Double
 import kotlin.Float
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
 @GodotBaseType
 public abstract class AudioStreamPlaybackResampled : AudioStreamPlayback() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(93, scriptPtr)
+    createNativeObject(327, scriptPtr)
   }
 
   public abstract fun _getStreamSamplingRate(): Float
@@ -26,6 +29,34 @@ public abstract class AudioStreamPlaybackResampled : AudioStreamPlayback() {
   public final fun beginResample(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.beginResamplePtr, NIL)
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _start(fromPos: Double): Unit {
+    throw NotImplementedError("AudioStreamPlaybackResampled::_start can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _stop(): Unit {
+    throw NotImplementedError("AudioStreamPlaybackResampled::_stop can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _isPlaying(): Boolean {
+    throw NotImplementedError("AudioStreamPlaybackResampled::_isPlaying can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _getPlaybackPosition(): Double {
+    throw NotImplementedError("AudioStreamPlaybackResampled::_getPlaybackPosition can't be called from the JVM.")
   }
 
   public companion object

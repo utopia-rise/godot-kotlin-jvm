@@ -159,7 +159,7 @@ public open class NoiseTexture3D : Texture3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(409, scriptPtr)
+    createNativeObject(928, scriptPtr)
   }
 
   public final fun setWidth(width: Int): Unit {

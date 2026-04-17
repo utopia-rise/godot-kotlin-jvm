@@ -286,7 +286,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    *
    * See [freezeMode] to set the body's behavior when frozen.
    *
-   * For a body that is always frozen, use [StaticBody2D] or [AnimatableBody2D] instead.
+   * **Note:** For a body that is always frozen, use [StaticBody2D] or [AnimatableBody2D] instead.
    */
   public final inline var freeze: Boolean
     @JvmName("freezeProperty")
@@ -297,9 +297,9 @@ public open class RigidBody2D : PhysicsBody2D() {
     }
 
   /**
-   * The body's freeze mode. Can be used to set the body's behavior when [freeze] is enabled.
+   * The body's freeze mode. Determines the body's behavior when [freeze] is `true`.
    *
-   * For a body that is always frozen, use [StaticBody2D] or [AnimatableBody2D] instead.
+   * **Note:** For a body that is always frozen, use [StaticBody2D] or [AnimatableBody2D] instead.
    */
   public final inline var freezeMode: FreezeMode
     @JvmName("freezeModeProperty")
@@ -493,7 +493,7 @@ public open class RigidBody2D : PhysicsBody2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(579, scriptPtr)
+    createNativeObject(37, scriptPtr)
   }
 
   /**
@@ -569,7 +569,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    * [customIntegrator] property allows you to disable the standard force integration and do fully
    * custom force integration for a body.
    */
-  public open fun _integrateForces(state: PhysicsDirectBodyState2D?): Unit {
+  public open fun _integrateForces(state: PhysicsDirectBodyState2D): Unit {
     throw NotImplementedError("RigidBody2D::_integrateForces is not implemented.")
   }
 

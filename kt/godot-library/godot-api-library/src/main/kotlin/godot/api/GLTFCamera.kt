@@ -94,7 +94,7 @@ public open class GLTFCamera : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(234, scriptPtr)
+    createNativeObject(727, scriptPtr)
   }
 
   /**

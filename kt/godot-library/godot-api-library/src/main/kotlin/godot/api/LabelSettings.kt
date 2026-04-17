@@ -203,7 +203,7 @@ public open class LabelSettings : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(337, scriptPtr)
+    createNativeObject(400, scriptPtr)
   }
 
   /**

@@ -15,7 +15,7 @@ signals = [
     
 ]
 properties = [
-    
+    default_constructor_has_been_called
 ]
 functions = [
     

@@ -57,7 +57,7 @@ public open class Shape2D internal constructor() : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(605, scriptPtr)
+    createNativeObject(256, scriptPtr)
   }
 
   public final fun setCustomSolverBias(bias: Float): Unit {
@@ -79,7 +79,7 @@ public open class Shape2D internal constructor() : Resource() {
    */
   public final fun collide(
     localXform: Transform2D,
-    withShape: Shape2D?,
+    withShape: Shape2D,
     shapeXform: Transform2D,
   ): Boolean {
     TransferContext.writeArguments(TRANSFORM2D to localXform, OBJECT to withShape, TRANSFORM2D to shapeXform)
@@ -98,7 +98,7 @@ public open class Shape2D internal constructor() : Resource() {
   public final fun collideWithMotion(
     localXform: Transform2D,
     localMotion: Vector2,
-    withShape: Shape2D?,
+    withShape: Shape2D,
     shapeXform: Transform2D,
     shapeMotion: Vector2,
   ): Boolean {
@@ -123,7 +123,7 @@ public open class Shape2D internal constructor() : Resource() {
    */
   public final fun collideAndGetContacts(
     localXform: Transform2D,
-    withShape: Shape2D?,
+    withShape: Shape2D,
     shapeXform: Transform2D,
   ): PackedVector2Array {
     TransferContext.writeArguments(TRANSFORM2D to localXform, OBJECT to withShape, TRANSFORM2D to shapeXform)
@@ -151,7 +151,7 @@ public open class Shape2D internal constructor() : Resource() {
   public final fun collideWithMotionAndGetContacts(
     localXform: Transform2D,
     localMotion: Vector2,
-    withShape: Shape2D?,
+    withShape: Shape2D,
     shapeXform: Transform2D,
     shapeMotion: Vector2,
   ): PackedVector2Array {

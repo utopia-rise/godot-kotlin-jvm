@@ -27,7 +27,7 @@ void GodotKotlinJvmEditor::on_menu_option_pressed(int option_id) {
 
 void GodotKotlinJvmEditor::on_generate_project(bool erase_existing) {
     ProjectGenerator::generate_jvm_files(erase_existing);
-    get_editor_interface()->get_resource_file_system()->scan();
+    get_editor_interface()->get_resource_filesystem()->scan();
     project_dialog->hide();
 }
 
@@ -120,7 +120,7 @@ void GodotKotlinJvmEditor::_notification(int notification) {
             editor_base_control->add_child(about_dialog);
             editor_base_control->add_child(project_dialog);
 
-            get_editor_interface()->get_resource_file_system()->connect(
+            get_editor_interface()->get_resource_filesystem()->connect(
               SNAME("filesystem_changed"),
               callable_mp(this, &GodotKotlinJvmEditor::on_filesystem_change)
             );
@@ -142,7 +142,7 @@ void GodotKotlinJvmEditor::_notification(int notification) {
 
                 if (GradleTaskRunner::get_instance().is_task_terminated()) {
                     task_dialog->stop();
-                    get_editor_interface()->get_resource_file_system()->scan_changes();
+                    get_editor_interface()->get_resource_filesystem()->scan_changes();
                     JVM_LOG_INFO("Gradle Task terminated");
                 }
             }

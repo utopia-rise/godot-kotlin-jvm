@@ -69,7 +69,7 @@ public open class SkeletonModifier3D : Node3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(622, scriptPtr)
+    createNativeObject(657, scriptPtr)
   }
 
   /**
@@ -80,6 +80,10 @@ public open class SkeletonModifier3D : Node3D() {
    * [Skeleton3D] automatically applies influence to all bone poses set by the modifier.
    *
    * [delta] is passed from parent [Skeleton3D]. See also [Skeleton3D.advance].
+   *
+   * **Note:** This method may be called outside [Node.Process] and [Node.PhysicsProcess] with
+   * [delta] is `0.0`, since the modification should be processed immediately after initialization of
+   * the [Skeleton3D].
    */
   public open fun _processModificationWithDelta(delta: Double): Unit {
     throw NotImplementedError("SkeletonModifier3D::_processModificationWithDelta is not implemented.")
@@ -104,15 +108,15 @@ public open class SkeletonModifier3D : Node3D() {
   }
 
   /**
-   * Called when bone name and index need to be validated such as the timing of the entering tree or
-   * changing skeleton.
+   * Called when bone names and indices need to be validated, such as when entering the scene tree
+   * or changing skeleton.
    */
   public open fun _validateBoneNames(): Unit {
     throw NotImplementedError("SkeletonModifier3D::_validateBoneNames is not implemented.")
   }
 
   /**
-   * Get parent [Skeleton3D] node if found.
+   * Returns the parent [Skeleton3D] node if it exists. Otherwise, returns `null`.
    */
   public final fun getSkeleton(): Skeleton3D? {
     TransferContext.writeArguments()
@@ -178,6 +182,131 @@ public open class SkeletonModifier3D : Node3D() {
 
     public companion object {
       public fun from(`value`: Long): BoneAxis = entries.single { it.`value` == `value` }
+    }
+  }
+
+  public enum class BoneDirection(
+    `value`: Long,
+  ) : GodotEnum {
+    /**
+     * Enumerated value for the +X axis.
+     */
+    PLUS_X(0),
+    /**
+     * Enumerated value for the -X axis.
+     */
+    MINUS_X(1),
+    /**
+     * Enumerated value for the +Y axis.
+     */
+    PLUS_Y(2),
+    /**
+     * Enumerated value for the -Y axis.
+     */
+    MINUS_Y(3),
+    /**
+     * Enumerated value for the +Z axis.
+     */
+    PLUS_Z(4),
+    /**
+     * Enumerated value for the -Z axis.
+     */
+    MINUS_Z(5),
+    /**
+     * Enumerated value for the axis from a parent bone to the child bone.
+     */
+    FROM_PARENT(6),
+    ;
+
+    public override val `value`: Long
+    init {
+      this.`value` = `value`
+    }
+
+    public companion object {
+      public fun from(`value`: Long): BoneDirection = entries.single { it.`value` == `value` }
+    }
+  }
+
+  public enum class SecondaryDirection(
+    `value`: Long,
+  ) : GodotEnum {
+    /**
+     * Enumerated value for the case when the axis is undefined.
+     */
+    NONE(0),
+    /**
+     * Enumerated value for the +X axis.
+     */
+    PLUS_X(1),
+    /**
+     * Enumerated value for the -X axis.
+     */
+    MINUS_X(2),
+    /**
+     * Enumerated value for the +Y axis.
+     */
+    PLUS_Y(3),
+    /**
+     * Enumerated value for the -Y axis.
+     */
+    MINUS_Y(4),
+    /**
+     * Enumerated value for the +Z axis.
+     */
+    PLUS_Z(5),
+    /**
+     * Enumerated value for the -Z axis.
+     */
+    MINUS_Z(6),
+    /**
+     * Enumerated value for an optional axis.
+     */
+    CUSTOM(7),
+    ;
+
+    public override val `value`: Long
+    init {
+      this.`value` = `value`
+    }
+
+    public companion object {
+      public fun from(`value`: Long): SecondaryDirection = entries.single { it.`value` == `value` }
+    }
+  }
+
+  public enum class RotationAxis(
+    `value`: Long,
+  ) : GodotEnum {
+    /**
+     * Enumerated value for the rotation of the X axis.
+     */
+    X(0),
+    /**
+     * Enumerated value for the rotation of the Y axis.
+     */
+    Y(1),
+    /**
+     * Enumerated value for the rotation of the Z axis.
+     */
+    Z(2),
+    /**
+     * Enumerated value for the unconstrained rotation.
+     */
+    ALL(3),
+    /**
+     * Enumerated value for an optional rotation axis.
+     */
+    CUSTOM(4),
+    ;
+
+    public override val `value`: Long
+    init {
+      this.`value` = `value`
+    }
+
+    public companion object {
+      public fun from(`value`: Long): RotationAxis = entries.single { it.`value` == `value` }
     }
   }
 

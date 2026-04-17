@@ -55,16 +55,16 @@ public open class TabBar : Control() {
   public val tabClicked: Signal1<Long> by Signal1
 
   /**
-   * Emitted when a tab is right-clicked. [selectWithRmb] must be enabled.
+   * Emitted when a tab is right-clicked.
    */
   public val tabRmbClicked: Signal1<Long> by Signal1
 
   /**
-   * Emitted when a tab's close button is pressed or when middle-clicking on a tab, if
-   * [closeWithMiddleMouse] is enabled.
+   * Emitted when a tab's close button is pressed or, if [closeWithMiddleMouse] is `true`, when
+   * middle-clicking on a tab.
    *
-   * **Note:** Tabs are not removed automatically once the close button is pressed, this behavior
-   * needs to be programmed manually. For example:
+   * **Note:** Tabs are not removed automatically; this behavior needs to be coded manually. For
+   * example:
    *
    * ```gdscript
    * //gdscript
@@ -106,7 +106,7 @@ public open class TabBar : Control() {
     }
 
   /**
-   * The position at which tabs will be placed.
+   * The horizontal alignment of the tabs.
    */
   public final inline var tabAlignment: AlignmentMode
     @JvmName("tabAlignmentProperty")
@@ -129,7 +129,7 @@ public open class TabBar : Control() {
     }
 
   /**
-   * If `true`, middle clicking on the mouse will fire the [signal tab_close_pressed] signal.
+   * If `true`, middle-clicking on a tab will emit the [signal tab_close_pressed] signal.
    */
   public final inline var closeWithMiddleMouse: Boolean
     @JvmName("closeWithMiddleMouseProperty")
@@ -181,6 +181,19 @@ public open class TabBar : Control() {
     @JvmName("dragToRearrangeEnabledProperty")
     set(`value`) {
       setDragToRearrangeEnabled(value)
+    }
+
+  /**
+   * If `true`, hovering over a tab while dragging something will switch to that tab. Does not have
+   * effect when hovering another tab to rearrange. The delay for when this happens is dictated by
+   * [theme_item hover_switch_wait_msec].
+   */
+  public final inline var switchOnDragHover: Boolean
+    @JvmName("switchOnDragHoverProperty")
+    get() = getSwitchOnDragHover()
+    @JvmName("switchOnDragHoverProperty")
+    set(`value`) {
+      setSwitchOnDragHover(value)
     }
 
   /**
@@ -243,7 +256,7 @@ public open class TabBar : Control() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(670, scriptPtr)
+    createNativeObject(378, scriptPtr)
   }
 
   public final fun setTabCount(count: Int): Unit {
@@ -353,8 +366,8 @@ public open class TabBar : Control() {
   }
 
   /**
-   * Sets language code of tab title used for line-breaking and text shaping algorithms, if left
-   * empty current locale is used instead.
+   * Sets the language code of the title for the tab at index [tabIdx] to [language]. This is used
+   * for line-breaking and text shaping algorithms. If [language] is empty, the current locale is used.
    */
   public final fun setTabLanguage(tabIdx: Int, language: String): Unit {
     TransferContext.writeArguments(LONG to tabIdx.toLong(), STRING to language)
@@ -627,6 +640,17 @@ public open class TabBar : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
+  public final fun setSwitchOnDragHover(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(ptr, MethodBindings.setSwitchOnDragHoverPtr, NIL)
+  }
+
+  public final fun getSwitchOnDragHover(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getSwitchOnDragHoverPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
   public final fun setTabsRearrangeGroup(groupId: Int): Unit {
     TransferContext.writeArguments(LONG to groupId.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setTabsRearrangeGroupPtr, NIL)
@@ -683,15 +707,15 @@ public open class TabBar : Control() {
     `value`: Long,
   ) : GodotEnum {
     /**
-     * Places tabs to the left.
+     * Aligns tabs to the left.
      */
     LEFT(0),
     /**
-     * Places tabs in the middle.
+     * Aligns tabs in the middle.
      */
     CENTER(1),
     /**
-     * Places tabs to the right.
+     * Aligns tabs to the right.
      */
     RIGHT(2),
     /**
@@ -890,6 +914,12 @@ public open class TabBar : Control() {
 
     internal val getDragToRearrangeEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TabBar", "get_drag_to_rearrange_enabled", 36873697)
+
+    internal val setSwitchOnDragHoverPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TabBar", "set_switch_on_drag_hover", 2586408642)
+
+    internal val getSwitchOnDragHoverPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TabBar", "get_switch_on_drag_hover", 36873697)
 
     internal val setTabsRearrangeGroupPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TabBar", "set_tabs_rearrange_group", 1286410249)

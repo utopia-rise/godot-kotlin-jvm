@@ -1,0 +1,161 @@
+// THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
+    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+
+package godot.api
+
+import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
+import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
+import godot.core.PackedInt64Array
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.PACKED_INT_64_ARRAY
+import kotlin.Long
+import kotlin.Suppress
+import kotlin.Unit
+import kotlin.jvm.JvmName
+
+/**
+ * Configuration header for Aruco markers. Pass this to
+ * [OpenXRSpatialEntityExtension.createSpatialContext] to create a spatial context that can detect
+ * Aruco markers.
+ */
+@GodotBaseType
+public open class OpenXRSpatialCapabilityConfigurationAruco :
+    OpenXRSpatialCapabilityConfigurationBaseHeader() {
+  /**
+   * Dictionary to use to decode Aruco markers.
+   *
+   * **Note:** Must be set before using this configuration to create a spatial context.
+   */
+  public final inline var arucoDict: ArucoDict
+    @JvmName("arucoDictProperty")
+    get() = getArucoDict()
+    @JvmName("arucoDictProperty")
+    set(`value`) {
+      setArucoDict(value)
+    }
+
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(893, scriptPtr)
+  }
+
+  /**
+   * Returns the components enabled by this configuration.
+   *
+   * **Note:** Only valid after this configuration was used to create a spatial context.
+   */
+  public final fun getEnabledComponents(): PackedInt64Array {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getEnabledComponentsPtr, PACKED_INT_64_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY) as PackedInt64Array)
+  }
+
+  public final fun setArucoDict(arucoDict: ArucoDict): Unit {
+    TransferContext.writeArguments(LONG to arucoDict.value)
+    TransferContext.callMethod(ptr, MethodBindings.setArucoDictPtr, NIL)
+  }
+
+  public final fun getArucoDict(): ArucoDict {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getArucoDictPtr, LONG)
+    return ArucoDict.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public enum class ArucoDict(
+    `value`: Long,
+  ) : GodotEnum {
+    /**
+     * 4 by 4 pixel Aruco marker dictionary with 50 IDs.
+     */
+    ARUCO_DICT_4X4_50(1),
+    /**
+     * 4 by 4 pixel Aruco marker dictionary with 100 IDs.
+     */
+    ARUCO_DICT_4X4_100(2),
+    /**
+     * 4 by 4 pixel Aruco marker dictionary with 250 IDs.
+     */
+    ARUCO_DICT_4X4_250(3),
+    /**
+     * 4 by 4 pixel Aruco marker dictionary with 1000 IDs.
+     */
+    ARUCO_DICT_4X4_1000(4),
+    /**
+     * 5 by 5 pixel Aruco marker dictionary with 50 IDs.
+     */
+    ARUCO_DICT_5X5_50(5),
+    /**
+     * 5 by 5 pixel Aruco marker dictionary with 100 IDs.
+     */
+    ARUCO_DICT_5X5_100(6),
+    /**
+     * 5 by 5 pixel Aruco marker dictionary with 250 IDs.
+     */
+    ARUCO_DICT_5X5_250(7),
+    /**
+     * 5 by 5 pixel Aruco marker dictionary with 1000 IDs.
+     */
+    ARUCO_DICT_5X5_1000(8),
+    /**
+     * 6 by 6 pixel Aruco marker dictionary with 50 IDs.
+     */
+    ARUCO_DICT_6X6_50(9),
+    /**
+     * 6 by 6 pixel Aruco marker dictionary with 100 IDs.
+     */
+    ARUCO_DICT_6X6_100(10),
+    /**
+     * 6 by 6 pixel Aruco marker dictionary with 250 IDs.
+     */
+    ARUCO_DICT_6X6_250(11),
+    /**
+     * 6 by 6 pixel Aruco marker dictionary with 1000 IDs.
+     */
+    ARUCO_DICT_6X6_1000(12),
+    /**
+     * 7 by 7 pixel Aruco marker dictionary with 50 IDs.
+     */
+    ARUCO_DICT_7X7_50(13),
+    /**
+     * 7 by 7 pixel Aruco marker dictionary with 100 IDs.
+     */
+    ARUCO_DICT_7X7_100(14),
+    /**
+     * 7 by 7 pixel Aruco marker dictionary with 250 IDs.
+     */
+    ARUCO_DICT_7X7_250(15),
+    /**
+     * 7 by 7 pixel Aruco marker dictionary with 1000 IDs.
+     */
+    ARUCO_DICT_7X7_1000(16),
+    ;
+
+    public override val `value`: Long
+    init {
+      this.`value` = `value`
+    }
+
+    public companion object {
+      public fun from(`value`: Long): ArucoDict = entries.single { it.`value` == `value` }
+    }
+  }
+
+  public companion object
+
+  public object MethodBindings {
+    internal val getEnabledComponentsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRSpatialCapabilityConfigurationAruco", "get_enabled_components", 235988956)
+
+    internal val setArucoDictPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRSpatialCapabilityConfigurationAruco", "set_aruco_dict", 2268055963)
+
+    internal val getArucoDictPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRSpatialCapabilityConfigurationAruco", "get_aruco_dict", 1080386209)
+  }
+}

@@ -40,7 +40,7 @@ import kotlin.Unit
 @GodotBaseType
 public abstract class TextServerExtension : TextServer() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(679, scriptPtr)
+    createNativeObject(210, scriptPtr)
   }
 
   /**
@@ -104,6 +104,13 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
+   * Returns `true` if the locale requires text server support data for line/word breaking.
+   */
+  public open fun _isLocaleUsingSupportData(locale: String): Boolean {
+    throw NotImplementedError("TextServerExtension::_isLocaleUsingSupportData is not implemented.")
+  }
+
+  /**
    * Returns `true` if locale is right-to-left.
    */
   public open fun _isLocaleRightToLeft(locale: String): Boolean {
@@ -111,14 +118,16 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * Converts readable feature, variation, script, or language name to OpenType tag.
+   * Converts the given readable name of a feature, variation, script, or language to an OpenType
+   * tag.
    */
   public open fun _nameToTag(name: String): Long {
     throw NotImplementedError("TextServerExtension::_nameToTag is not implemented.")
   }
 
   /**
-   * Converts OpenType tag to readable feature, variation, script, or language name.
+   * Converts the given OpenType tag to the readable name of a feature, variation, script, or
+   * language.
    */
   public open fun _tagToName(tag: Long): String {
     throw NotImplementedError("TextServerExtension::_tagToName is not implemented.")
@@ -408,7 +417,7 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * Returns `true`, if color modulation is applied when drawing colored glyphs.
+   * Returns `true` if color modulation is applied when drawing the font's colored glyphs.
    */
   public open fun _fontIsModulateColorGlyphs(fontRid: RID): Boolean {
     throw NotImplementedError("TextServerExtension::_fontIsModulateColorGlyphs is not implemented.")
@@ -996,8 +1005,8 @@ public abstract class TextServerExtension : TextServer() {
   ): Unit
 
   /**
-   * Returns `true`, if font supports given language
-   * ([url=https://en.wikipedia.org/wiki/ISO_639-1]ISO 639[/url] code).
+   * Returns `true` if the font supports the given language (as a
+   * [url=https://en.wikipedia.org/wiki/ISO_639-1]ISO 639[/url] code).
    */
   public open fun _fontIsLanguageSupported(fontRid: RID, language: String): Boolean {
     throw NotImplementedError("TextServerExtension::_fontIsLanguageSupported is not implemented.")
@@ -1036,7 +1045,8 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * Returns `true`, if font supports given script (ISO 15924 code).
+   * Returns `true` if the font supports the given script (as a
+   * [url=https://en.wikipedia.org/wiki/ISO_15924]ISO 15924[/url] code).
    */
   public open fun _fontIsScriptSupported(fontRid: RID, script: String): Boolean {
     throw NotImplementedError("TextServerExtension::_fontIsScriptSupported is not implemented.")
@@ -1165,6 +1175,11 @@ public abstract class TextServerExtension : TextServer() {
    * Clears text buffer (removes text and inline objects).
    */
   public abstract fun _shapedTextClear(shaped: RID): Unit
+
+  /**
+   * Duplicates shaped text buffer.
+   */
+  public abstract fun _shapedTextDuplicate(shaped: RID): RID
 
   /**
    * Sets desired text direction. If set to [TextServer.DIRECTION_AUTO], direction will be detected
@@ -1324,6 +1339,11 @@ public abstract class TextServerExtension : TextServer() {
     inlineAlign: InlineAlignment,
     baseline: Double,
   ): Boolean
+
+  /**
+   * Returns `true` if an object with [key] is embedded in this shaped text buffer.
+   */
+  public abstract fun _shapedTextHasObject(shaped: RID, key: Any?): Boolean
 
   /**
    * Returns the text buffer source text, including object replacement characters.
@@ -1730,21 +1750,27 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * Converts a number from the Western Arabic (0..9) to the numeral systems used in [language].
+   * Converts a number from Western Arabic (0..9) to the numeral system used in the given
+   * [language].
+   *
+   * If [language] is an empty string, the active locale will be used.
    */
   public open fun _formatNumber(number: String, language: String): String {
     throw NotImplementedError("TextServerExtension::_formatNumber is not implemented.")
   }
 
   /**
-   * Converts [number] from the numeral systems used in [language] to Western Arabic (0..9).
+   * Converts [number] from the numeral system used in the given [language] to Western Arabic
+   * (0..9).
+   *
+   * If [language] is an empty string, the active locale will be used.
    */
   public open fun _parseNumber(number: String, language: String): String {
     throw NotImplementedError("TextServerExtension::_parseNumber is not implemented.")
   }
 
   /**
-   * Returns percent sign used in the [language].
+   * Returns percent sign used in the given [language].
    */
   public open fun _percentSign(language: String): String {
     throw NotImplementedError("TextServerExtension::_percentSign is not implemented.")
@@ -1803,21 +1829,21 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * Returns the string converted to uppercase.
+   * Returns the string converted to `UPPERCASE`.
    */
   public open fun _stringToUpper(string: String, language: String): String {
     throw NotImplementedError("TextServerExtension::_stringToUpper is not implemented.")
   }
 
   /**
-   * Returns the string converted to lowercase.
+   * Returns the string converted to `lowercase`.
    */
   public open fun _stringToLower(string: String, language: String): String {
     throw NotImplementedError("TextServerExtension::_stringToLower is not implemented.")
   }
 
   /**
-   * Returns the string converted to title case.
+   * Returns the string converted to `Title Case`.
    */
   public open fun _stringToTitle(string: String, language: String): String {
     throw NotImplementedError("TextServerExtension::_stringToTitle is not implemented.")

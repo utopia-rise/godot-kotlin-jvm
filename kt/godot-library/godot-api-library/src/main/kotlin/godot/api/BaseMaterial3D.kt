@@ -147,7 +147,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * Determines which comparison operator is used when testing depth. See [DepthTest].
+   * Determines which comparison operator is used when testing depth.
    *
    * **Note:** Changing [depthTest] to a non-default value only has a visible effect when used on a
    * transparent material, or a material that has [depthDrawMode] set to [DEPTH_DRAW_DISABLED].
@@ -247,9 +247,9 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * If `true`, vertex colors are considered to be stored in sRGB color space and are converted to
-   * linear color space during rendering. If `false`, vertex colors are considered to be stored in
-   * linear color space and are rendered as-is. See also [albedoTextureForceSrgb].
+   * If `true`, vertex colors are considered to be stored in nonlinear sRGB encoding and are
+   * converted to linear encoding during rendering. If `false`, vertex colors are considered to be
+   * stored in linear encoding and are rendered as-is. See also [albedoTextureForceSrgb].
    *
    * **Note:** Only effective when using the Forward+ and Mobile rendering methods, not
    * Compatibility.
@@ -299,8 +299,8 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * If `true`, forces a conversion of the [albedoTexture] from sRGB color space to linear color
-   * space. See also [vertexColorIsSrgb].
+   * If `true`, forces a conversion of the [albedoTexture] from nonlinear sRGB encoding to linear
+   * encoding. See also [vertexColorIsSrgb].
    *
    * This should only be enabled when needed (typically when using a [ViewportTexture] as
    * [albedoTexture]). If [albedoTextureForceSrgb] is `true` when it shouldn't be, the texture will
@@ -1775,7 +1775,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * The stencil effect mode. See [StencilMode].
+   * The stencil effect mode.
    */
   public final inline var stencilMode: StencilMode
     @JvmName("stencilModeProperty")
@@ -1786,7 +1786,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * The flags dictating how the stencil operation behaves. See [StencilFlags].
+   * The flags dictating how the stencil operation behaves.
    */
   public final inline var stencilFlags: Int
     @JvmName("stencilFlagsProperty")
@@ -1797,7 +1797,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * The comparison operator to use for stencil masking operations. See [StencilCompare].
+   * The comparison operator to use for stencil masking operations.
    */
   public final inline var stencilCompare: StencilCompare
     @JvmName("stencilCompareProperty")
@@ -1849,7 +1849,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(105, scriptPtr)
+    createNativeObject(836, scriptPtr)
   }
 
   /**
@@ -2389,10 +2389,10 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   /**
-   * If `true`, enables the specified flag. Flags are optional behavior that can be turned on and
-   * off. Only one flag can be enabled at a time with this function, the flag enumerators cannot be
-   * bit-masked together to enable or disable multiple flags at once. Flags can also be enabled by
-   * setting the corresponding member to `true`.
+   * If [enable] is `true`, enables the specified [flag]. Flags are optional behavior that can be
+   * turned on and off. Only one flag can be enabled at a time with this function, the flag enumerators
+   * cannot be bit-masked together to enable or disable multiple flags at once. Flags can also be
+   * enabled by setting their corresponding property to `true`.
    */
   public final fun setFlag(flag: Flags, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to flag.value, BOOL to enable)
@@ -2400,7 +2400,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   /**
-   * Returns `true` if the specified flag is enabled.
+   * Returns `true` if the specified [flag] is enabled.
    */
   public final fun getFlag(flag: Flags): Boolean {
     TransferContext.writeArguments(LONG to flag.value)
@@ -2420,9 +2420,9 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   /**
-   * If `true`, enables the specified [Feature]. Many features that are available in
-   * [BaseMaterial3D]s need to be enabled before use. This way the cost for using the feature is only
-   * incurred when specified. Features can also be enabled by setting the corresponding member to
+   * If [enable] is `true`, enables the specified [feature]. Many features that are available in
+   * [BaseMaterial3D] need to be enabled before use. This way, the cost for using the feature is only
+   * incurred when specified. Features can also be enabled by setting their corresponding property to
    * `true`.
    */
   public final fun setFeature(feature: Feature, enable: Boolean): Unit {
@@ -2431,7 +2431,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   /**
-   * Returns `true`, if the specified [Feature] is enabled.
+   * Returns `true` if the specified [feature] is enabled.
    */
   public final fun getFeature(feature: Feature): Boolean {
     TransferContext.writeArguments(LONG to feature.value)
@@ -2448,7 +2448,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   /**
-   * Returns the [Texture2D] associated with the specified [TextureParam].
+   * Returns the [Texture2D] associated with the specified texture [param].
    */
   public final fun getTexture(`param`: TextureParam): Texture2D? {
     TransferContext.writeArguments(LONG to param.value)
@@ -3423,8 +3423,8 @@ public open class BaseMaterial3D internal constructor() : Material() {
      */
     ALBEDO_FROM_VERTEX_COLOR(1),
     /**
-     * Vertex colors are considered to be stored in sRGB color space and are converted to linear
-     * color space during rendering. See also [vertexColorIsSrgb].
+     * Vertex colors are considered to be stored in nonlinear sRGB encoding and are converted to
+     * linear encoding during rendering. See also [vertexColorIsSrgb].
      *
      * **Note:** Only effective when using the Forward+ and Mobile rendering methods.
      */
@@ -3468,7 +3468,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
      */
     EMISSION_ON_UV2(11),
     /**
-     * Forces the shader to convert albedo from sRGB space to linear space. See also
+     * Forces the shader to convert albedo from nonlinear sRGB encoding to linear encoding. See also
      * [albedoTextureForceSrgb].
      */
     ALBEDO_TEXTURE_FORCE_SRGB(12),
@@ -3785,7 +3785,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   ) : GodotEnum {
     /**
      * The material will only be rendered where it passes a stencil comparison with existing stencil
-     * buffer values. See [StencilCompare].
+     * buffer values.
      */
     READ(1),
     /**

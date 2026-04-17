@@ -48,7 +48,7 @@ public open class BoxShape3D : Shape3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(114, scriptPtr)
+    createNativeObject(827, scriptPtr)
   }
 
   /**

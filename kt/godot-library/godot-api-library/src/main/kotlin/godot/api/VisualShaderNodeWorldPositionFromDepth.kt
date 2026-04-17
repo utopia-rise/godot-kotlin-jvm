@@ -18,7 +18,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeWorldPositionFromDepth : VisualShaderNode() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(854, scriptPtr)
+    createNativeObject(504, scriptPtr)
   }
 
   public companion object

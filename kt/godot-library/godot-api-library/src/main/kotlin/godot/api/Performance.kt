@@ -12,6 +12,7 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Callable
 import godot.core.GodotEnum
+import godot.core.PackedInt32Array
 import godot.core.StringName
 import godot.core.VariantArray
 import godot.core.VariantCaster.ANY
@@ -21,6 +22,7 @@ import godot.core.VariantParser.CALLABLE
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
+import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.VariantParser.STRING_NAME
 import godot.core.asCachedStringName
 import kotlin.Any
@@ -53,7 +55,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public object Performance : Object() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(20)
+    getSingleton(10)
   }
 
   /**
@@ -150,8 +152,9 @@ public object Performance : Object() {
     id: StringName,
     callable: Callable,
     arguments: VariantArray<Any?> = godot.core.variantArrayOf(),
+    type: MonitorType = Performance.MonitorType.QUANTITY,
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to id, CALLABLE to callable, ARRAY to arguments)
+    TransferContext.writeArguments(STRING_NAME to id, CALLABLE to callable, ARRAY to arguments, LONG to type.value)
     TransferContext.callMethod(ptr, MethodBindings.addCustomMonitorPtr, NIL)
   }
 
@@ -205,6 +208,16 @@ public object Performance : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCustomMonitorNamesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<StringName>)
+  }
+
+  /**
+   * Returns the [MonitorType] values of active custom monitors in an [Array].
+   */
+  @JvmStatic
+  public final fun getCustomMonitorTypes(): PackedInt32Array {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getCustomMonitorTypesPtr, PACKED_INT_32_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   /**
@@ -277,7 +290,8 @@ public object Performance : Object() {
     id: String,
     callable: Callable,
     arguments: VariantArray<Any?> = godot.core.variantArrayOf(),
-  ) = addCustomMonitor(id.asCachedStringName(), callable, arguments)
+    type: MonitorType = Performance.MonitorType.QUANTITY,
+  ) = addCustomMonitor(id.asCachedStringName(), callable, arguments, type)
 
   /**
    * Removes the custom monitor with given [id]. Prints an error if the given [id] is already
@@ -349,6 +363,9 @@ public object Performance : Object() {
     /**
      * Number of orphan nodes, i.e. nodes which are not parented to a node of the scene tree. *Lower
      * is better.*
+     *
+     * **Note:** This is only available in debug mode and will always return `0` when used in a
+     * project exported in release mode.
      */
     OBJECT_ORPHAN_NODE_COUNT(10),
     /**
@@ -415,7 +432,7 @@ public object Performance : Object() {
     AUDIO_OUTPUT_LATENCY(23),
     /**
      * Number of active navigation maps in [NavigationServer2D] and [NavigationServer3D]. This also
-     * includes the two empty default navigation maps created by World2D and World3D.
+     * includes the empty default navigation maps created by [World2D] and [World3D] instances.
      */
     NAVIGATION_ACTIVE_MAPS(24),
     /**
@@ -486,8 +503,8 @@ public object Performance : Object() {
      */
     PIPELINE_COMPILATIONS_SPECIALIZATION(38),
     /**
-     * Number of active navigation maps in the [NavigationServer2D]. This also includes the two
-     * empty default navigation maps created by World2D.
+     * Number of active navigation maps in the [NavigationServer2D]. This also includes the empty
+     * default navigation maps created by [World2D] instances.
      */
     NAVIGATION_2D_ACTIVE_MAPS(39),
     /**
@@ -529,8 +546,8 @@ public object Performance : Object() {
      */
     NAVIGATION_2D_OBSTACLE_COUNT(48),
     /**
-     * Number of active navigation maps in the [NavigationServer3D]. This also includes the two
-     * empty default navigation maps created by World3D.
+     * Number of active navigation maps in the [NavigationServer3D]. This also includes the empty
+     * default navigation maps created by [World3D] instances.
      */
     NAVIGATION_3D_ACTIVE_MAPS(49),
     /**
@@ -587,12 +604,46 @@ public object Performance : Object() {
     }
   }
 
+  public enum class MonitorType(
+    `value`: Long,
+  ) : GodotEnum {
+    /**
+     * Monitor output is formatted as an integer value.
+     */
+    QUANTITY(0),
+    /**
+     * Monitor output is formatted as computer memory. Submitted values should represent a number of
+     * bytes.
+     */
+    MEMORY(1),
+    /**
+     * Monitor output is formatted as time in milliseconds. Submitted values should represent a time
+     * in seconds (not milliseconds).
+     */
+    TIME(2),
+    /**
+     * Monitor output is formatted as a percentage. Submitted values should represent a fractional
+     * value rather than the percentage directly, e.g. `0.5` for `50.00&#37;`.
+     */
+    PERCENTAGE(3),
+    ;
+
+    public override val `value`: Long
+    init {
+      this.`value` = `value`
+    }
+
+    public companion object {
+      public fun from(`value`: Long): MonitorType = entries.single { it.`value` == `value` }
+    }
+  }
+
   public object MethodBindings {
     internal val getMonitorPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Performance", "get_monitor", 1943275655)
 
     internal val addCustomMonitorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Performance", "add_custom_monitor", 4099036814)
+        TypeManager.getMethodBindPtr("Performance", "add_custom_monitor", 3655788610)
 
     internal val removeCustomMonitorPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Performance", "remove_custom_monitor", 3304788590)
@@ -608,5 +659,8 @@ public object Performance : Object() {
 
     internal val getCustomMonitorNamesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Performance", "get_custom_monitor_names", 2915620761)
+
+    internal val getCustomMonitorTypesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Performance", "get_custom_monitor_types", 969006518)
   }
 }

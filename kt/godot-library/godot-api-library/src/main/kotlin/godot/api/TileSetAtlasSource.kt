@@ -140,7 +140,7 @@ public open class TileSetAtlasSource : TileSetSource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(703, scriptPtr)
+    createNativeObject(19, scriptPtr)
   }
 
   /**
@@ -573,7 +573,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   }
 
   /**
-   * If [useTexturePadding] is `false`, returns [texture]. Otherwise, returns and internal
+   * If [useTexturePadding] is `false`, returns [texture]. Otherwise, returns an internal
    * [ImageTexture] created that includes the padding.
    */
   public final fun getRuntimeTexture(): Texture2D? {

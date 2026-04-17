@@ -38,7 +38,7 @@ public object ResourceUID : Object() {
   public final const val INVALID_ID: Long = -1
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(29)
+    getSingleton(25)
   }
 
   /**
@@ -164,8 +164,8 @@ public object ResourceUID : Object() {
   }
 
   /**
-   * Returns a path, converting [pathOrUid] if necessary. Prints an error if provided an invalid
-   * UID.
+   * Returns a path, converting [pathOrUid] if necessary. Fails and returns an empty string if an
+   * invalid UID is provided.
    */
   @JvmStatic
   public final fun ensurePath(pathOrUid: String): String {

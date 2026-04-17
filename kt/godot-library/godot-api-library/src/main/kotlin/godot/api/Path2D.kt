@@ -37,7 +37,7 @@ public open class Path2D : Node2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(465, scriptPtr)
+    createNativeObject(771, scriptPtr)
   }
 
   public final fun setCurve(curve: Curve2D?): Unit {

@@ -210,7 +210,9 @@ public open class TileMapLayer : Node2D() {
    * **Note:** As quadrants are created according to the map's coordinate system, the quadrant's
    * "square shape" might not look like square in the [TileMapLayer]'s local coordinate system.
    *
-   * **Note:** This impacts the value returned by [getCoordsForBodyRid].
+   * **Note:** This impacts the value returned by [getCoordsForBodyRid]. Higher values will make
+   * that function less precise. To get the exact cell coordinates, you need to set
+   * [physicsQuadrantSize] to `1`, which disables physics chunking.
    */
   public final inline var physicsQuadrantSize: Int
     @JvmName("physicsQuadrantSizeProperty")
@@ -244,7 +246,7 @@ public open class TileMapLayer : Node2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(700, scriptPtr)
+    createNativeObject(22, scriptPtr)
   }
 
   /**
@@ -593,6 +595,10 @@ public open class TileMapLayer : Node2D() {
    * Returns the coordinates of the physics quadrant (see [physicsQuadrantSize]) for given physics
    * body [RID]. Such an [RID] can be retrieved from [KinematicCollision2D.getColliderRid], when
    * colliding with a tile.
+   *
+   * **Note:** Higher values of [physicsQuadrantSize] will make this function less precise. To get
+   * the exact cell coordinates, you need to set [physicsQuadrantSize] to `1`, which disables physics
+   * chunking.
    */
   public final fun getCoordsForBodyRid(body: RID): Vector2i {
     TransferContext.writeArguments(_RID to body)

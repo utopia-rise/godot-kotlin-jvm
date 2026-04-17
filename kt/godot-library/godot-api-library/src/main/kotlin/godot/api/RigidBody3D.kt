@@ -298,7 +298,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    *
    * See [freezeMode] to set the body's behavior when frozen.
    *
-   * For a body that is always frozen, use [StaticBody3D] or [AnimatableBody3D] instead.
+   * **Note:** For a body that is always frozen, use [StaticBody3D] or [AnimatableBody3D] instead.
    */
   public final inline var freeze: Boolean
     @JvmName("freezeProperty")
@@ -309,9 +309,9 @@ public open class RigidBody3D : PhysicsBody3D() {
     }
 
   /**
-   * The body's freeze mode. Can be used to set the body's behavior when [freeze] is enabled.
+   * The body's freeze mode. Determines the body's behavior when [freeze] is `true`.
    *
-   * For a body that is always frozen, use [StaticBody3D] or [AnimatableBody3D] instead.
+   * **Note:** For a body that is always frozen, use [StaticBody3D] or [AnimatableBody3D] instead.
    */
   public final inline var freezeMode: FreezeMode
     @JvmName("freezeModeProperty")
@@ -521,7 +521,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(580, scriptPtr)
+    createNativeObject(36, scriptPtr)
   }
 
   /**
@@ -687,7 +687,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    * [customIntegrator] property allows you to disable the standard force integration and do fully
    * custom force integration for a body.
    */
-  public open fun _integrateForces(state: PhysicsDirectBodyState3D?): Unit {
+  public open fun _integrateForces(state: PhysicsDirectBodyState3D): Unit {
     throw NotImplementedError("RigidBody3D::_integrateForces is not implemented.")
   }
 

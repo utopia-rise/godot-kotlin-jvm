@@ -32,6 +32,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * ImporterMesh is a type of [Resource] analogous to [ArrayMesh]. It contains vertex array-based
@@ -46,7 +47,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class ImporterMesh : Resource() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(296, scriptPtr)
+    createNativeObject(76, scriptPtr)
   }
 
   /**
@@ -314,7 +315,18 @@ public open class ImporterMesh : Resource() {
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
-  public companion object
+  public companion object {
+    /**
+     * Converts the given [Mesh] into an [ImporterMesh] by copying all its surfaces, blend shapes,
+     * materials, and metadata into a new [ImporterMesh] object.
+     */
+    @JvmStatic
+    public final fun fromMesh(mesh: Mesh?): ImporterMesh? {
+      TransferContext.writeArguments(OBJECT to mesh)
+      TransferContext.callMethod(0, MethodBindings.fromMeshPtr, OBJECT)
+      return (TransferContext.readReturnValue(OBJECT) as ImporterMesh?)
+    }
+  }
 
   public object MethodBindings {
     internal val addBlendShapePtr: VoidPtr =
@@ -376,6 +388,9 @@ public open class ImporterMesh : Resource() {
 
     internal val getMeshPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ImporterMesh", "get_mesh", 1457573577)
+
+    internal val fromMeshPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ImporterMesh", "from_mesh", 283226343)
 
     internal val clearPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ImporterMesh", "clear", 3218959716)

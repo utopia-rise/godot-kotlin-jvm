@@ -82,7 +82,7 @@ public open class SubViewportContainer : Container() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(663, scriptPtr)
+    createNativeObject(348, scriptPtr)
   }
 
   /**
@@ -90,7 +90,7 @@ public open class SubViewportContainer : Container() {
    * to [SubViewport] children. Propagation doesn't happen if it returns `false`. If the function is
    * not implemented, all events are propagated to SubViewports.
    */
-  public open fun _propagateInputEvent(event: InputEvent?): Boolean {
+  public open fun _propagateInputEvent(event: InputEvent): Boolean {
     throw NotImplementedError("SubViewportContainer::_propagateInputEvent is not implemented.")
   }
 

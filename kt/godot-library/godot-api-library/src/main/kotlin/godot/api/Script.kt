@@ -58,7 +58,7 @@ public open class Script internal constructor() : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(588, scriptPtr)
+    createNativeObject(197, scriptPtr)
   }
 
   /**
@@ -195,7 +195,7 @@ public open class Script internal constructor() : Resource() {
   }
 
   /**
-   * Returns the list of user signals defined in this [Script].
+   * Returns the list of signals defined in this [Script].
    *
    * **Note:** The dictionaries returned by this method are formatted identically to those returned
    * by [Object.getSignalList].

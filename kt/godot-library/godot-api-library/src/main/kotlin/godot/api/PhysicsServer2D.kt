@@ -75,7 +75,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public object PhysicsServer2D : Object() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(21)
+    getSingleton(9)
   }
 
   /**
@@ -1312,7 +1312,7 @@ public object PhysicsServer2D : Object() {
   @JvmStatic
   public final fun bodyTestMotion(
     body: RID,
-    parameters: PhysicsTestMotionParameters2D?,
+    parameters: PhysicsTestMotionParameters2D,
     result: PhysicsTestMotionResult2D? = null,
   ): Boolean {
     TransferContext.writeArguments(_RID to body, OBJECT to parameters, OBJECT to result)

@@ -224,7 +224,7 @@ public open class GridMap : Node3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(274, scriptPtr)
+    createNativeObject(80, scriptPtr)
   }
 
   /**

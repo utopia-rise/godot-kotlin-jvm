@@ -58,7 +58,7 @@ public open class PacketPeerStream : PacketPeer() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(456, scriptPtr)
+    createNativeObject(160, scriptPtr)
   }
 
   public final fun setStreamPeer(peer: StreamPeer?): Unit {

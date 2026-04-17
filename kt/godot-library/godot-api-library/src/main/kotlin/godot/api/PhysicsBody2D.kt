@@ -33,7 +33,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(474, scriptPtr)
+    createNativeObject(57, scriptPtr)
   }
 
   /**
@@ -117,7 +117,7 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
   /**
    * Adds a body to the list of bodies that this body can't collide with.
    */
-  public final fun addCollisionExceptionWith(body: Node?): Unit {
+  public final fun addCollisionExceptionWith(body: Node): Unit {
     TransferContext.writeArguments(OBJECT to body)
     TransferContext.callMethod(ptr, MethodBindings.addCollisionExceptionWithPtr, NIL)
   }
@@ -125,7 +125,7 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
   /**
    * Removes a body from the list of bodies that this body can't collide with.
    */
-  public final fun removeCollisionExceptionWith(body: Node?): Unit {
+  public final fun removeCollisionExceptionWith(body: Node): Unit {
     TransferContext.writeArguments(OBJECT to body)
     TransferContext.callMethod(ptr, MethodBindings.removeCollisionExceptionWithPtr, NIL)
   }

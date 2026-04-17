@@ -40,7 +40,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class CompressedTexture2DArray : CompressedTextureLayered() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(171, scriptPtr)
+    createNativeObject(801, scriptPtr)
   }
 
   public companion object

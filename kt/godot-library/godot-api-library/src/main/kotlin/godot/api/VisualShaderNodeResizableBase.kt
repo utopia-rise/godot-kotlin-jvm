@@ -44,7 +44,7 @@ public open class VisualShaderNodeResizableBase internal constructor() : VisualS
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(804, scriptPtr)
+    createNativeObject(577, scriptPtr)
   }
 
   /**

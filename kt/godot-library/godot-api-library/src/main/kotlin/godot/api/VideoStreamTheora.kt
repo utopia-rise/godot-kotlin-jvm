@@ -8,6 +8,7 @@ package godot.api
 
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -21,7 +22,14 @@ import kotlin.Unit
 @GodotBaseType
 public open class VideoStreamTheora : VideoStream() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(735, scriptPtr)
+    createNativeObject(872, scriptPtr)
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _instantiatePlayback(): VideoStreamPlayback? {
+    throw NotImplementedError("VideoStreamTheora::_instantiatePlayback can't be called from the JVM.")
   }
 
   public companion object

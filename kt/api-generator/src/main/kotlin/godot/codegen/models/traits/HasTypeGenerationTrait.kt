@@ -5,9 +5,11 @@ import com.squareup.kotlinpoet.TypeName
 interface HasTypeGenerationTrait {
     val type: TypeGenerationTrait
     val genericParameters: List<TypeName>
+    val nullable: Boolean
+        get() = type.isNullable()
 
-    fun getClassName() = type.className
-    fun getTypeName() = TypeName.from(type, genericParameters)
+    fun getClassName(): TypeName = type.className
+    fun getTypeName() = TypeName.from(type, genericParameters, nullable)
 }
 
 

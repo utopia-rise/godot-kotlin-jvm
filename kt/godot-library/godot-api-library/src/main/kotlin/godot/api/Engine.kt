@@ -84,18 +84,27 @@ public object Engine : Object() {
     }
 
   /**
-   * The number of fixed iterations per second. This controls how often physics simulation and
-   * [Node.PhysicsProcess] methods are run. This value should generally always be set to `60` or above,
-   * as Godot doesn't interpolate the physics step. As a result, values lower than `60` will look
-   * stuttery. This value can be increased to make input more reactive or work around collision
-   * tunneling issues, but keep in mind doing so will increase CPU usage. See also [maxFps] and
-   * [ProjectSettings.physics/common/physicsTicksPerSecond].
+   * The number of fixed iterations per second. This controls how often physics simulation and the
+   * [Node.PhysicsProcess] method are run.
+   *
+   * CPU usage scales approximately with the physics tick rate. However, at very low tick rates
+   * (usually below 30), physics behavior can break down. Input can also become less responsive at low
+   * tick rates as there can be a gap between input being registered, and the response on the next
+   * physics tick. High tick rates give more accurate physics simulation, particularly for fast moving
+   * objects. For example, racing games may benefit from increasing the tick rate above the default 60.
+   *
+   * See also [maxFps] and [ProjectSettings.physics/common/physicsTicksPerSecond].
    *
    * **Note:** Only [maxPhysicsStepsPerFrame] physics ticks may be simulated per rendered frame at
    * most. If more physics ticks have to be simulated per rendered frame to keep up with rendering, the
    * project will appear to slow down (even if `delta` is used consistently in physics calculations).
    * Therefore, it is recommended to also increase [maxPhysicsStepsPerFrame] if increasing
    * [physicsTicksPerSecond] significantly above its default value.
+   *
+   * **Note:** Consider enabling [url=$DOCS_URL/tutorials/physics/interpolation/index.html]physics
+   * interpolation[/url] if you change [physicsTicksPerSecond] to a value that is not a multiple of
+   * `60`. Using physics interpolation will avoid jittering when the monitor refresh rate and physics
+   * update rate don't exactly match.
    */
   @JvmStatic
   public final inline var physicsTicksPerSecond: Int
@@ -133,14 +142,16 @@ public object Engine : Object() {
    * heat, noise emissions, and improves battery life.
    *
    * If [ProjectSettings.display/window/vsync/vsyncMode] is **Enabled** or **Adaptive**, the setting
-   * takes precedence and the max FPS number cannot exceed the monitor's refresh rate.
+   * takes precedence and the max FPS number cannot exceed the monitor's refresh rate. See also
+   * [DisplayServer.screenGetRefreshRate].
    *
    * If [ProjectSettings.display/window/vsync/vsyncMode] is **Enabled**, on monitors with variable
    * refresh rate enabled (G-Sync/FreeSync), using an FPS limit a few frames lower than the monitor's
    * refresh rate will [url=https://blurbusters.com/howto-low-lag-vsync-on/]reduce input lag while
-   * avoiding tearing[/url].
-   *
-   * See also [physicsTicksPerSecond] and [ProjectSettings.application/run/maxFps].
+   * avoiding tearing[/url]. At higher refresh rates, the difference between the FPS limit and the
+   * monitor refresh rate should be increased to ensure frames to account for timing inaccuracies. The
+   * optimal formula for the FPS limit value in this scenario is `r - (r * r) / 3600.0`, where `r` is
+   * the monitor's refresh rate.
    *
    * **Note:** The actual number of frames per second may still be below this value if the CPU or
    * GPU cannot keep up with the project's logic and rendering.
@@ -207,7 +218,7 @@ public object Engine : Object() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(4)
+    getSingleton(2)
   }
 
   @JvmStatic

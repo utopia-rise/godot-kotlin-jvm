@@ -70,11 +70,10 @@ public open class VoxelGI : VisualInstance3D() {
     }
 
   /**
-   * The size of the area covered by the [VoxelGI]. If you make the size larger without increasing
-   * the subdivisions with [subdiv], the size of each cell will increase and result in lower detailed
-   * lighting.
+   * The size of the area covered by the [VoxelGI]. This must be `1.0` or greater on each axis.
    *
-   * **Note:** Size is clamped to 1.0 unit or more on each axis.
+   * **Note:** If you make the size larger without increasing the number of subdivisions with
+   * [subdiv], the size of each cell will increase and result in less detailed lighting.
    *
    * **Warning:**
    * Be careful when trying to modify a local
@@ -118,7 +117,7 @@ public open class VoxelGI : VisualInstance3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(855, scriptPtr)
+    createNativeObject(680, scriptPtr)
   }
 
   /**
@@ -132,11 +131,10 @@ public open class VoxelGI : VisualInstance3D() {
    * voxelgi.size = myCoreType
    * ``````
    *
-   * The size of the area covered by the [VoxelGI]. If you make the size larger without increasing
-   * the subdivisions with [subdiv], the size of each cell will increase and result in lower detailed
-   * lighting.
+   * The size of the area covered by the [VoxelGI]. This must be `1.0` or greater on each axis.
    *
-   * **Note:** Size is clamped to 1.0 unit or more on each axis.
+   * **Note:** If you make the size larger without increasing the number of subdivisions with
+   * [subdiv], the size of each cell will increase and result in less detailed lighting.
    */
   @CoreTypeHelper
   public final fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply {

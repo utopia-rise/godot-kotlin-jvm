@@ -188,7 +188,7 @@ public open class MultiMesh : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(372, scriptPtr)
+    createNativeObject(604, scriptPtr)
   }
 
   /**
@@ -419,6 +419,18 @@ public open class MultiMesh : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.resetInstancePhysicsInterpolationPtr, NIL)
   }
 
+  /**
+   * When using *physics interpolation*, this function allows you to prevent interpolation for all
+   * instances in the current physics tick.
+   *
+   * This allows you to move all instances instantaneously, and should usually be used when
+   * initially placing instances to prevent graphical glitches.
+   */
+  public final fun resetInstancesPhysicsInterpolation(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.resetInstancesPhysicsInterpolationPtr, NIL)
+  }
+
   public final fun setCustomAabb(aabb: AABB): Unit {
     TransferContext.writeArguments(godot.core.VariantParser.AABB to aabb)
     TransferContext.callMethod(ptr, MethodBindings.setCustomAabbPtr, NIL)
@@ -587,6 +599,9 @@ public open class MultiMesh : Resource() {
 
     internal val resetInstancePhysicsInterpolationPtr: VoidPtr =
         TypeManager.getMethodBindPtr("MultiMesh", "reset_instance_physics_interpolation", 1286410249)
+
+    internal val resetInstancesPhysicsInterpolationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiMesh", "reset_instances_physics_interpolation", 3218959716)
 
     internal val setCustomAabbPtr: VoidPtr =
         TypeManager.getMethodBindPtr("MultiMesh", "set_custom_aabb", 259215842)

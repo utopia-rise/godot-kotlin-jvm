@@ -84,7 +84,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class Cubemap : ImageTextureLayered() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(187, scriptPtr)
+    createNativeObject(807, scriptPtr)
   }
 
   /**

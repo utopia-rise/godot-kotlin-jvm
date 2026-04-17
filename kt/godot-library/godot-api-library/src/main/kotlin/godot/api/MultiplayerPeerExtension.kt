@@ -24,7 +24,7 @@ import kotlin.Unit
 @GodotBaseType
 public abstract class MultiplayerPeerExtension : MultiplayerPeer() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(378, scriptPtr)
+    createNativeObject(411, scriptPtr)
   }
 
   /**

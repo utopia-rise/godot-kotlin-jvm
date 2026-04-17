@@ -33,7 +33,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class PropertyTweener : Tweener() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(525, scriptPtr)
+    createNativeObject(337, scriptPtr)
   }
 
   /**
@@ -54,10 +54,10 @@ public open class PropertyTweener : Tweener() {
    * Vector2(100.0f, 100.0f));
    * ```
    */
-  public final fun from(`value`: Any?): PropertyTweener? {
+  public final fun from(`value`: Any?): PropertyTweener {
     TransferContext.writeArguments(ANY to value)
     TransferContext.callMethod(ptr, MethodBindings.fromPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as PropertyTweener?)
+    return (TransferContext.readReturnValue(OBJECT) as PropertyTweener)
   }
 
   /**
@@ -77,10 +77,10 @@ public open class PropertyTweener : Tweener() {
    * tween.TweenProperty(this, "position", new Vector2(200.0f, 100.0f), 1.0f).FromCurrent();
    * ```
    */
-  public final fun fromCurrent(): PropertyTweener? {
+  public final fun fromCurrent(): PropertyTweener {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.fromCurrentPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as PropertyTweener?)
+    return (TransferContext.readReturnValue(OBJECT) as PropertyTweener)
   }
 
   /**
@@ -100,30 +100,30 @@ public open class PropertyTweener : Tweener() {
    * tween.TweenProperty(this, "position", Vector2.Right * 100.0f, 1.0f).AsRelative();
    * ```
    */
-  public final fun asRelative(): PropertyTweener? {
+  public final fun asRelative(): PropertyTweener {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.asRelativePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as PropertyTweener?)
+    return (TransferContext.readReturnValue(OBJECT) as PropertyTweener)
   }
 
   /**
    * Sets the type of used transition from [Tween.TransitionType]. If not set, the default
    * transition is used from the [Tween] that contains this Tweener.
    */
-  public final fun setTrans(trans: Tween.TransitionType): PropertyTweener? {
+  public final fun setTrans(trans: Tween.TransitionType): PropertyTweener {
     TransferContext.writeArguments(LONG to trans.value)
     TransferContext.callMethod(ptr, MethodBindings.setTransPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as PropertyTweener?)
+    return (TransferContext.readReturnValue(OBJECT) as PropertyTweener)
   }
 
   /**
    * Sets the type of used easing from [Tween.EaseType]. If not set, the default easing is used from
    * the [Tween] that contains this Tweener.
    */
-  public final fun setEase(ease: Tween.EaseType): PropertyTweener? {
+  public final fun setEase(ease: Tween.EaseType): PropertyTweener {
     TransferContext.writeArguments(LONG to ease.value)
     TransferContext.callMethod(ptr, MethodBindings.setEasePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as PropertyTweener?)
+    return (TransferContext.readReturnValue(OBJECT) as PropertyTweener)
   }
 
   /**
@@ -167,20 +167,20 @@ public open class PropertyTweener : Tweener() {
    * }
    * ```
    */
-  public final fun setCustomInterpolator(interpolatorMethod: Callable): PropertyTweener? {
+  public final fun setCustomInterpolator(interpolatorMethod: Callable): PropertyTweener {
     TransferContext.writeArguments(CALLABLE to interpolatorMethod)
     TransferContext.callMethod(ptr, MethodBindings.setCustomInterpolatorPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as PropertyTweener?)
+    return (TransferContext.readReturnValue(OBJECT) as PropertyTweener)
   }
 
   /**
    * Sets the time in seconds after which the [PropertyTweener] will start interpolating. By default
    * there's no delay.
    */
-  public final fun setDelay(delay: Double): PropertyTweener? {
+  public final fun setDelay(delay: Double): PropertyTweener {
     TransferContext.writeArguments(DOUBLE to delay)
     TransferContext.callMethod(ptr, MethodBindings.setDelayPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as PropertyTweener?)
+    return (TransferContext.readReturnValue(OBJECT) as PropertyTweener)
   }
 
   public companion object

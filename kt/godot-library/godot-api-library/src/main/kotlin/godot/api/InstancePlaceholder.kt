@@ -37,7 +37,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class InstancePlaceholder internal constructor() : Node() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(317, scriptPtr)
+    createNativeObject(222, scriptPtr)
   }
 
   /**

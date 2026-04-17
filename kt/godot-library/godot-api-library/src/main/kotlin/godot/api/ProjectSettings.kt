@@ -64,7 +64,7 @@ public object ProjectSettings : Object() {
   public val settingsChanged: Signal0 by Signal0
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(25)
+    getSingleton(7)
   }
 
   /**
@@ -427,6 +427,29 @@ public object ProjectSettings : Object() {
   }
 
   /**
+   * Gets an array of the settings which have been changed since the last save. Note that internally
+   * `changed_settings` is cleared after a successful save, so generally the most appropriate place to
+   * use this method is when processing [signal settings_changed].
+   */
+  @JvmStatic
+  public final fun getChangedSettings(): PackedStringArray {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getChangedSettingsPtr, PACKED_STRING_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
+  }
+
+  /**
+   * Checks if any settings with the prefix [settingPrefix] exist in the set of changed settings.
+   * See also [getChangedSettings].
+   */
+  @JvmStatic
+  public final fun checkChangedSettingsInGroup(settingPrefix: String): Boolean {
+    TransferContext.writeArguments(STRING to settingPrefix)
+    TransferContext.callMethod(ptr, MethodBindings.checkChangedSettingsInGroupPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
    * Similar to [getSetting], but applies feature tag overrides if any exists and is valid.
    *
    * **Example:** If the setting override `"application/config/name.windows"` exists, and the
@@ -513,5 +536,11 @@ public object ProjectSettings : Object() {
 
     internal val saveCustomPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ProjectSettings", "save_custom", 166001499)
+
+    internal val getChangedSettingsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ProjectSettings", "get_changed_settings", 1139954409)
+
+    internal val checkChangedSettingsInGroupPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ProjectSettings", "check_changed_settings_in_group", 3927539163)
   }
 }

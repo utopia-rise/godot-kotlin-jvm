@@ -16,7 +16,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class ScriptLanguage internal constructor() : Object() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(591, scriptPtr)
+    createNativeObject(196, scriptPtr)
   }
 
   public enum class ScriptNameCasing(

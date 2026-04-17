@@ -18,7 +18,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class AudioEffectBandLimitFilter : AudioEffectFilter() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(48, scriptPtr)
+    createNativeObject(310, scriptPtr)
   }
 
   public companion object

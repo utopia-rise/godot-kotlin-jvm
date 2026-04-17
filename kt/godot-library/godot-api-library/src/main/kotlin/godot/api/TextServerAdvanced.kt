@@ -35,7 +35,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class TextServerAdvanced : TextServerExtension() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(677, scriptPtr)
+    createNativeObject(226, scriptPtr)
   }
 
   /**
@@ -523,6 +523,13 @@ public open class TextServerAdvanced : TextServerExtension() {
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
+  public override fun _shapedTextDuplicate(shaped: RID): RID {
+    throw NotImplementedError("TextServerAdvanced::_shapedTextDuplicate can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
   public override fun _shapedTextAddString(
     shaped: RID,
     text: String,
@@ -560,6 +567,13 @@ public open class TextServerAdvanced : TextServerExtension() {
     baseline: Double,
   ): Boolean {
     throw NotImplementedError("TextServerAdvanced::_shapedTextResizeObject can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _shapedTextHasObject(shaped: RID, key: Any?): Boolean {
+    throw NotImplementedError("TextServerAdvanced::_shapedTextHasObject can't be called from the JVM.")
   }
 
   /**

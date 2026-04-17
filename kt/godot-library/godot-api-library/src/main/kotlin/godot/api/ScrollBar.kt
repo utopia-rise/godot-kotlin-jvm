@@ -43,7 +43,7 @@ public open class ScrollBar internal constructor() : Range() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(593, scriptPtr)
+    createNativeObject(398, scriptPtr)
   }
 
   public final fun setCustomStep(step: Float): Unit {

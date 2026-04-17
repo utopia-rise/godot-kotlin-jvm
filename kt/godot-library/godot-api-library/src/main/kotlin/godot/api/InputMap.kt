@@ -37,7 +37,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public object InputMap : Object() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(11)
+    getSingleton(17)
   }
 
   /**
@@ -114,7 +114,7 @@ public object InputMap : Object() {
    * Adds an [InputEvent] to an action. This [InputEvent] will trigger the action.
    */
   @JvmStatic
-  public final fun actionAddEvent(action: StringName, event: InputEvent?): Unit {
+  public final fun actionAddEvent(action: StringName, event: InputEvent): Unit {
     TransferContext.writeArguments(STRING_NAME to action, OBJECT to event)
     TransferContext.callMethod(ptr, MethodBindings.actionAddEventPtr, NIL)
   }
@@ -123,7 +123,7 @@ public object InputMap : Object() {
    * Returns `true` if the action has the given [InputEvent] associated with it.
    */
   @JvmStatic
-  public final fun actionHasEvent(action: StringName, event: InputEvent?): Boolean {
+  public final fun actionHasEvent(action: StringName, event: InputEvent): Boolean {
     TransferContext.writeArguments(STRING_NAME to action, OBJECT to event)
     TransferContext.callMethod(ptr, MethodBindings.actionHasEventPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
@@ -133,7 +133,7 @@ public object InputMap : Object() {
    * Removes an [InputEvent] from an action.
    */
   @JvmStatic
-  public final fun actionEraseEvent(action: StringName, event: InputEvent?): Unit {
+  public final fun actionEraseEvent(action: StringName, event: InputEvent): Unit {
     TransferContext.writeArguments(STRING_NAME to action, OBJECT to event)
     TransferContext.callMethod(ptr, MethodBindings.actionEraseEventPtr, NIL)
   }
@@ -172,7 +172,7 @@ public object InputMap : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun eventIsAction(
-    event: InputEvent?,
+    event: InputEvent,
     action: StringName,
     exactMatch: Boolean = false,
   ): Boolean {
@@ -237,21 +237,21 @@ public object InputMap : Object() {
    * Adds an [InputEvent] to an action. This [InputEvent] will trigger the action.
    */
   @JvmStatic
-  public final fun actionAddEvent(action: String, event: InputEvent?) =
+  public final fun actionAddEvent(action: String, event: InputEvent) =
       actionAddEvent(action.asCachedStringName(), event)
 
   /**
    * Returns `true` if the action has the given [InputEvent] associated with it.
    */
   @JvmStatic
-  public final fun actionHasEvent(action: String, event: InputEvent?): Boolean =
+  public final fun actionHasEvent(action: String, event: InputEvent): Boolean =
       actionHasEvent(action.asCachedStringName(), event)
 
   /**
    * Removes an [InputEvent] from an action.
    */
   @JvmStatic
-  public final fun actionEraseEvent(action: String, event: InputEvent?) =
+  public final fun actionEraseEvent(action: String, event: InputEvent) =
       actionEraseEvent(action.asCachedStringName(), event)
 
   /**
@@ -283,7 +283,7 @@ public object InputMap : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun eventIsAction(
-    event: InputEvent?,
+    event: InputEvent,
     action: String,
     exactMatch: Boolean = false,
   ): Boolean = eventIsAction(event, action.asCachedStringName(), exactMatch)

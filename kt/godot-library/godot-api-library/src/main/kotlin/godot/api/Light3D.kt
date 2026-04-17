@@ -90,8 +90,8 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     }
 
   /**
-   * The light's color in the nonlinear sRGB color space. An *overbright* color can be used to
-   * achieve a result equivalent to increasing the light's [lightEnergy].
+   * The light's color in nonlinear sRGB encoding. An *overbright* color can be used to achieve a
+   * result equivalent to increasing the light's [lightEnergy].
    *
    * **Warning:**
    * Be careful when trying to modify a local
@@ -441,7 +441,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(339, scriptPtr)
+    createNativeObject(686, scriptPtr)
   }
 
   /**
@@ -455,8 +455,8 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    * light3d.lightColor = myCoreType
    * ``````
    *
-   * The light's color in the nonlinear sRGB color space. An *overbright* color can be used to
-   * achieve a result equivalent to increasing the light's [lightEnergy].
+   * The light's color in nonlinear sRGB encoding. An *overbright* color can be used to achieve a
+   * result equivalent to increasing the light's [lightEnergy].
    */
   @CoreTypeHelper
   public final fun lightColorMutate(block: Color.() -> Unit): Color = lightColor.apply {

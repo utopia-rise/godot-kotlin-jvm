@@ -57,7 +57,7 @@ public open class XRHandModifier3D : SkeletonModifier3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(883, scriptPtr)
+    createNativeObject(626, scriptPtr)
   }
 
   public final fun setHandTracker(trackerName: StringName): Unit {

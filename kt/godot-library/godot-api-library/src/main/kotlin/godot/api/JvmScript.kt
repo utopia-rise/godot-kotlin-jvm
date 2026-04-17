@@ -18,7 +18,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class JvmScript internal constructor() : Script() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(331, scriptPtr)
+    createNativeObject(231, scriptPtr)
   }
 
   public final fun new(): Any? {

@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.Color
 import godot.core.Dictionary
 import godot.core.GodotEnum
 import godot.core.JoyAxis
@@ -22,6 +23,7 @@ import godot.core.StringName
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DICTIONARY
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -125,7 +127,7 @@ public object Input : Object() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(10)
+    getSingleton(18)
   }
 
   /**
@@ -306,7 +308,7 @@ public object Input : Object() {
   @JvmStatic
   public final fun isActionJustPressedByEvent(
     action: StringName,
-    event: InputEvent?,
+    event: InputEvent,
     exactMatch: Boolean = false,
   ): Boolean {
     TransferContext.writeArguments(STRING_NAME to action, OBJECT to event, BOOL to exactMatch)
@@ -331,7 +333,7 @@ public object Input : Object() {
   @JvmStatic
   public final fun isActionJustReleasedByEvent(
     action: StringName,
-    event: InputEvent?,
+    event: InputEvent,
     exactMatch: Boolean = false,
   ): Boolean {
     TransferContext.writeArguments(STRING_NAME to action, OBJECT to event, BOOL to exactMatch)
@@ -740,6 +742,33 @@ public object Input : Object() {
   }
 
   /**
+   * Sets the joypad's LED light, if available, to the specified color. See also [hasJoyLight].
+   *
+   * **Note:** There is no way to get the color of the light from a joypad. If you need to know the
+   * assigned color, store it separately.
+   *
+   * **Note:** This feature is only supported on Windows, Linux, and macOS.
+   */
+  @JvmStatic
+  public final fun setJoyLight(device: Int, color: Color): Unit {
+    TransferContext.writeArguments(LONG to device.toLong(), COLOR to color)
+    TransferContext.callMethod(ptr, MethodBindings.setJoyLightPtr, NIL)
+  }
+
+  /**
+   * Returns `true` if the joypad has an LED light that can change colors and/or brightness. See
+   * also [setJoyLight].
+   *
+   * **Note:** This feature is only supported on Windows, Linux, and macOS.
+   */
+  @JvmStatic
+  public final fun hasJoyLight(device: Int): Boolean {
+    TransferContext.writeArguments(LONG to device.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.hasJoyLightPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
    * Returns the last mouse velocity. To provide a precise and jitter-free velocity, mouse velocity
    * is only calculated every 0.1s. Therefore, mouse velocity will lag mouse movements.
    */
@@ -911,7 +940,7 @@ public object Input : Object() {
    * between active windows.
    */
   @JvmStatic
-  public final fun parseInputEvent(event: InputEvent?): Unit {
+  public final fun parseInputEvent(event: InputEvent): Unit {
     TransferContext.writeArguments(OBJECT to event)
     TransferContext.callMethod(ptr, MethodBindings.parseInputEventPtr, NIL)
   }
@@ -1055,7 +1084,7 @@ public object Input : Object() {
   @JvmStatic
   public final fun isActionJustPressedByEvent(
     action: String,
-    event: InputEvent?,
+    event: InputEvent,
     exactMatch: Boolean = false,
   ): Boolean = isActionJustPressedByEvent(action.asCachedStringName(), event, exactMatch)
 
@@ -1076,7 +1105,7 @@ public object Input : Object() {
   @JvmStatic
   public final fun isActionJustReleasedByEvent(
     action: String,
-    event: InputEvent?,
+    event: InputEvent,
     exactMatch: Boolean = false,
   ): Boolean = isActionJustReleasedByEvent(action.asCachedStringName(), event, exactMatch)
 
@@ -1410,6 +1439,12 @@ public object Input : Object() {
 
     internal val setGyroscopePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Input", "set_gyroscope", 3460891852)
+
+    internal val setJoyLightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "set_joy_light", 2878471219)
+
+    internal val hasJoyLightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "has_joy_light", 1116898809)
 
     internal val getLastMouseVelocityPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Input", "get_last_mouse_velocity", 1497962370)

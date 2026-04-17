@@ -1,0 +1,75 @@
+// THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
+    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
+    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+
+package godot.api
+
+import godot.`annotation`.GodotBaseType
+import godot.`internal`.memory.TransferContext
+import godot.`internal`.reflection.TypeManager
+import godot.common.interop.VoidPtr
+import godot.core.PackedInt32Array
+import godot.core.PackedVector2Array
+import godot.core.RID
+import godot.core.Transform3D
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.PACKED_INT_32_ARRAY
+import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
+import godot.core.VariantParser.TRANSFORM3D
+import godot.core.VariantParser._RID
+import kotlin.Long
+import kotlin.Suppress
+import kotlin.Unit
+
+/**
+ * Object for storing the queries 2D mesh result data when calling
+ * [OpenXRSpatialEntityExtension.querySnapshot].
+ */
+@GodotBaseType
+public open class OpenXRSpatialComponentMesh2DList : OpenXRSpatialComponentData() {
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(885, scriptPtr)
+  }
+
+  /**
+   * Returns the transform for positioning our mesh for the entity at this [index].
+   */
+  public final fun getTransform(index: Long): Transform3D {
+    TransferContext.writeArguments(LONG to index)
+    TransferContext.callMethod(ptr, MethodBindings.getTransformPtr, TRANSFORM3D)
+    return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
+  }
+
+  /**
+   * Returns the mesh vertices for the entity at this [index].
+   */
+  public final fun getVertices(snapshot: RID, index: Long): PackedVector2Array {
+    TransferContext.writeArguments(_RID to snapshot, LONG to index)
+    TransferContext.callMethod(ptr, MethodBindings.getVerticesPtr, PACKED_VECTOR2_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
+  }
+
+  /**
+   * Returns the mesh indices for the entity at this [index].
+   */
+  public final fun getIndices(snapshot: RID, index: Long): PackedInt32Array {
+    TransferContext.writeArguments(_RID to snapshot, LONG to index)
+    TransferContext.callMethod(ptr, MethodBindings.getIndicesPtr, PACKED_INT_32_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
+  }
+
+  public companion object
+
+  public object MethodBindings {
+    internal val getTransformPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRSpatialComponentMesh2DList", "get_transform", 1965739696)
+
+    internal val getVerticesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRSpatialComponentMesh2DList", "get_vertices", 110850971)
+
+    internal val getIndicesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRSpatialComponentMesh2DList", "get_indices", 3393655756)
+  }
+}

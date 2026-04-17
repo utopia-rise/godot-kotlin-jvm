@@ -168,7 +168,7 @@ public open class ShapeCast2D : Node2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(607, scriptPtr)
+    createNativeObject(448, scriptPtr)
   }
 
   /**
@@ -363,7 +363,7 @@ public open class ShapeCast2D : Node2D() {
   /**
    * Adds a collision exception so the shape does not report collisions with the specified node.
    */
-  public final fun addException(node: CollisionObject2D?): Unit {
+  public final fun addException(node: CollisionObject2D): Unit {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(ptr, MethodBindings.addExceptionPtr, NIL)
   }
@@ -379,7 +379,7 @@ public open class ShapeCast2D : Node2D() {
   /**
    * Removes a collision exception so the shape does report collisions with the specified node.
    */
-  public final fun removeException(node: CollisionObject2D?): Unit {
+  public final fun removeException(node: CollisionObject2D): Unit {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(ptr, MethodBindings.removeExceptionPtr, NIL)
   }

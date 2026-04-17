@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.StringName
+import godot.core.VariantArray
+import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -192,7 +194,7 @@ public open class TranslationDomain : RefCounted() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(711, scriptPtr)
+    createNativeObject(143, scriptPtr)
   }
 
   /**
@@ -227,6 +229,46 @@ public open class TranslationDomain : RefCounted() {
   public final fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
+  }
+
+  /**
+   * Returns all available [Translation] instances as added by [addTranslation].
+   */
+  public final fun getTranslations(): VariantArray<Translation> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getTranslationsPtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Translation>)
+  }
+
+  /**
+   * Returns `true` if there are any [Translation] instances that match [locale] (see
+   * [TranslationServer.compareLocales]). If [exact] is `true`, only instances whose locale exactly
+   * equals [locale] are considered.
+   */
+  public final fun hasTranslationForLocale(locale: String, exact: Boolean): Boolean {
+    TransferContext.writeArguments(STRING to locale, BOOL to exact)
+    TransferContext.callMethod(ptr, MethodBindings.hasTranslationForLocalePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Returns `true` if this translation domain contains the given [translation].
+   */
+  public final fun hasTranslation(translation: Translation?): Boolean {
+    TransferContext.writeArguments(OBJECT to translation)
+    TransferContext.callMethod(ptr, MethodBindings.hasTranslationPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Returns the [Translation] instances that match [locale] (see
+   * [TranslationServer.compareLocales]). If [exact] is `true`, only instances whose locale exactly
+   * equals [locale] will be returned.
+   */
+  public final fun findTranslations(locale: String, exact: Boolean): VariantArray<Translation> {
+    TransferContext.writeArguments(STRING to locale, BOOL to exact)
+    TransferContext.callMethod(ptr, MethodBindings.findTranslationsPtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Translation>)
   }
 
   /**
@@ -441,6 +483,18 @@ public open class TranslationDomain : RefCounted() {
 
     internal val clearPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TranslationDomain", "clear", 3218959716)
+
+    internal val getTranslationsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TranslationDomain", "get_translations", 3995934104)
+
+    internal val hasTranslationForLocalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TranslationDomain", "has_translation_for_locale", 2034713381)
+
+    internal val hasTranslationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TranslationDomain", "has_translation", 2696976312)
+
+    internal val findTranslationsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TranslationDomain", "find_translations", 2109650934)
 
     internal val translatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("TranslationDomain", "translate", 1829228469)

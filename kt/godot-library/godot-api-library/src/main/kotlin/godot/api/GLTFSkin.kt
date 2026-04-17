@@ -156,7 +156,7 @@ public open class GLTFSkin : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(245, scriptPtr)
+    createNativeObject(944, scriptPtr)
   }
 
   /**

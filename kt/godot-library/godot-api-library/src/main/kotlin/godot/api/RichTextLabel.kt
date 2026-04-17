@@ -265,7 +265,8 @@ public open class RichTextLabel : Control() {
     }
 
   /**
-   * Controls the text's horizontal alignment. Supports left, center, right, and fill, or justify.
+   * Controls the text's horizontal alignment. Supports left, center, right, and fill (also known as
+   * justify).
    */
   public final inline var horizontalAlignment: HorizontalAlignment
     @JvmName("horizontalAlignmentProperty")
@@ -468,8 +469,8 @@ public open class RichTextLabel : Control() {
     }
 
   /**
-   * Language code used for line-breaking and text shaping algorithms, if left empty current locale
-   * is used instead.
+   * Language code used for line-breaking and text shaping algorithms. If left empty, the current
+   * locale is used instead.
    */
   public final inline var language: String
     @JvmName("languageProperty")
@@ -502,7 +503,7 @@ public open class RichTextLabel : Control() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(578, scriptPtr)
+    createNativeObject(38, scriptPtr)
   }
 
   /**
@@ -854,8 +855,8 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds a [code skip-lint][u][/code] tag to the tag stack. If [color] alpha value is zero, current
-   * font color with alpha multiplied by [theme_item underline_alpha] is used.
+   * Adds a [code skip-lint][u][/code] tag to the tag stack. If [color]'s alpha value is `0.0`, the
+   * current font's color with its alpha multiplied by [theme_item underline_alpha] is used.
    */
   @JvmOverloads
   public final fun pushUnderline(color: Color = Color(Color(0, 0, 0, 0))): Unit {
@@ -864,8 +865,8 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds a [code skip-lint][s][/code] tag to the tag stack. If [color] alpha value is zero, current
-   * font color with alpha multiplied by [theme_item strikethrough_alpha] is used.
+   * Adds a [code skip-lint][s][/code] tag to the tag stack. If [color]'s alpha value is `0.0`, the
+   * current font's color with its alpha multiplied by [theme_item strikethrough_alpha] is used.
    */
   @JvmOverloads
   public final fun pushStrikethrough(color: Color = Color(Color(0, 0, 0, 0))): Unit {

@@ -162,7 +162,7 @@ public open class CollisionObject2D internal constructor() : Node2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(156, scriptPtr)
+    createNativeObject(457, scriptPtr)
   }
 
   /**
@@ -173,8 +173,8 @@ public open class CollisionObject2D internal constructor() : Node2D() {
    * bit to be set.
    */
   public open fun _inputEvent(
-    viewport: Viewport?,
-    event: InputEvent?,
+    viewport: Viewport,
+    event: InputEvent,
     shapeIdx: Int,
   ): Unit {
     throw NotImplementedError("CollisionObject2D::_inputEvent is not implemented.")
@@ -429,7 +429,7 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   /**
    * Adds a [Shape2D] to the shape owner.
    */
-  public final fun shapeOwnerAddShape(ownerId: Long, shape: Shape2D?): Unit {
+  public final fun shapeOwnerAddShape(ownerId: Long, shape: Shape2D): Unit {
     TransferContext.writeArguments(LONG to ownerId, OBJECT to shape)
     TransferContext.callMethod(ptr, MethodBindings.shapeOwnerAddShapePtr, NIL)
   }

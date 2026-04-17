@@ -74,7 +74,7 @@ public open class AnimationTree : AnimationMixer() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(38, scriptPtr)
+    createNativeObject(331, scriptPtr)
   }
 
   public final fun setTreeRoot(animationNode: AnimationRootNode?): Unit {

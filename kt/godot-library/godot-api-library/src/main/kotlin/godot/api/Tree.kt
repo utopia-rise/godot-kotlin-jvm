@@ -248,6 +248,18 @@ public open class Tree : Control() {
     }
 
   /**
+   * If `true`, tree items will unfold when hovered over during a drag-and-drop. The delay for when
+   * this happens is dictated by [theme_item dragging_unfold_wait_msec].
+   */
+  public final inline var enableDragUnfolding: Boolean
+    @JvmName("enableDragUnfoldingProperty")
+    get() = isDragUnfoldingEnabled()
+    @JvmName("enableDragUnfoldingProperty")
+    set(`value`) {
+      setEnableDragUnfolding(value)
+    }
+
+  /**
    * If `true`, the tree's root is hidden.
    */
   public final inline var hideRoot: Boolean
@@ -285,6 +297,18 @@ public open class Tree : Control() {
     }
 
   /**
+   * If `true`, tree items with no tooltip assigned display their text as their tooltip. See also
+   * [TreeItem.getTooltipText] and [TreeItem.getButtonTooltipText].
+   */
+  public final inline var autoTooltip: Boolean
+    @JvmName("autoTooltipProperty")
+    get() = isAutoTooltipEnabled()
+    @JvmName("autoTooltipProperty")
+    set(`value`) {
+      setAutoTooltip(value)
+    }
+
+  /**
    * If `true`, enables horizontal scrolling.
    */
   public final inline var scrollHorizontalEnabled: Boolean
@@ -307,19 +331,30 @@ public open class Tree : Control() {
     }
 
   /**
-   * If `true`, tree items with no tooltip assigned display their text as their tooltip. See also
-   * [TreeItem.getTooltipText] and [TreeItem.getButtonTooltipText].
+   * The way which scroll hints (indicators that show that the content can still be scrolled in a
+   * certain direction) will be shown.
    */
-  public final inline var autoTooltip: Boolean
-    @JvmName("autoTooltipProperty")
-    get() = isAutoTooltipEnabled()
-    @JvmName("autoTooltipProperty")
+  public final inline var scrollHintMode: ScrollHintMode
+    @JvmName("scrollHintModeProperty")
+    get() = getScrollHintMode()
+    @JvmName("scrollHintModeProperty")
     set(`value`) {
-      setAutoTooltip(value)
+      setScrollHintMode(value)
+    }
+
+  /**
+   * If `true`, the scroll hint texture will be tiled instead of stretched. See [scrollHintMode].
+   */
+  public final inline var tileScrollHint: Boolean
+    @JvmName("tileScrollHintProperty")
+    get() = isScrollHintTiled()
+    @JvmName("tileScrollHintProperty")
+    set(`value`) {
+      setTileScrollHint(value)
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(713, scriptPtr)
+    createNativeObject(16, scriptPtr)
   }
 
   /**
@@ -693,6 +728,23 @@ public open class Tree : Control() {
   }
 
   /**
+   * Sets the column title's tooltip text.
+   */
+  public final fun setColumnTitleTooltipText(column: Int, tooltipText: String): Unit {
+    TransferContext.writeArguments(LONG to column.toLong(), STRING to tooltipText)
+    TransferContext.callMethod(ptr, MethodBindings.setColumnTitleTooltipTextPtr, NIL)
+  }
+
+  /**
+   * Returns the column title's tooltip text.
+   */
+  public final fun getColumnTitleTooltipText(column: Int): String {
+    TransferContext.writeArguments(LONG to column.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.getColumnTitleTooltipTextPtr, STRING)
+    return (TransferContext.readReturnValue(STRING) as String)
+  }
+
+  /**
    * Sets the column title alignment. Note that [@GlobalScope.HORIZONTAL_ALIGNMENT_FILL] is not
    * supported for column titles.
    */
@@ -728,8 +780,8 @@ public open class Tree : Control() {
   }
 
   /**
-   * Sets language code of column title used for line-breaking and text shaping algorithms, if left
-   * empty current locale is used instead.
+   * Sets the language code of the given [column]'s title to [language]. This is used for
+   * line-breaking and text shaping algorithms. If [language] is empty, the current locale is used.
    */
   public final fun setColumnTitleLanguage(column: Int, language: String): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), STRING to language)
@@ -785,6 +837,28 @@ public open class Tree : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
+  public final fun setScrollHintMode(scrollHintMode: ScrollHintMode): Unit {
+    TransferContext.writeArguments(LONG to scrollHintMode.value)
+    TransferContext.callMethod(ptr, MethodBindings.setScrollHintModePtr, NIL)
+  }
+
+  public final fun getScrollHintMode(): ScrollHintMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getScrollHintModePtr, LONG)
+    return ScrollHintMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setTileScrollHint(tileScrollHint: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to tileScrollHint)
+    TransferContext.callMethod(ptr, MethodBindings.setTileScrollHintPtr, NIL)
+  }
+
+  public final fun isScrollHintTiled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isScrollHintTiledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
   public final fun setHideFolding(hide: Boolean): Unit {
     TransferContext.writeArguments(BOOL to hide)
     TransferContext.callMethod(ptr, MethodBindings.setHideFoldingPtr, NIL)
@@ -804,6 +878,17 @@ public open class Tree : Control() {
   public final fun isRecursiveFoldingEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isRecursiveFoldingEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setEnableDragUnfolding(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(ptr, MethodBindings.setEnableDragUnfoldingPtr, NIL)
+  }
+
+  public final fun isDragUnfoldingEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isDragUnfoldingEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -939,6 +1024,37 @@ public open class Tree : Control() {
     }
   }
 
+  public enum class ScrollHintMode(
+    `value`: Long,
+  ) : GodotEnum {
+    /**
+     * Scroll hints will never be shown.
+     */
+    DISABLED(0),
+    /**
+     * Scroll hints will be shown at the top and bottom.
+     */
+    BOTH(1),
+    /**
+     * Only the top scroll hint will be shown.
+     */
+    TOP(2),
+    /**
+     * Only the bottom scroll hint will be shown.
+     */
+    BOTTOM(3),
+    ;
+
+    public override val `value`: Long
+    init {
+      this.`value` = `value`
+    }
+
+    public companion object {
+      public fun from(`value`: Long): ScrollHintMode = entries.single { it.`value` == `value` }
+    }
+  }
+
   public companion object
 
   public object MethodBindings {
@@ -1051,6 +1167,12 @@ public open class Tree : Control() {
     internal val getColumnTitlePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Tree", "get_column_title", 844755477)
 
+    internal val setColumnTitleTooltipTextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Tree", "set_column_title_tooltip_text", 501894301)
+
+    internal val getColumnTitleTooltipTextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Tree", "get_column_title_tooltip_text", 844755477)
+
     internal val setColumnTitleAlignmentPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Tree", "set_column_title_alignment", 3276431499)
 
@@ -1087,6 +1209,18 @@ public open class Tree : Control() {
     internal val isVScrollEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Tree", "is_v_scroll_enabled", 36873697)
 
+    internal val setScrollHintModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Tree", "set_scroll_hint_mode", 415911924)
+
+    internal val getScrollHintModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Tree", "get_scroll_hint_mode", 553087187)
+
+    internal val setTileScrollHintPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Tree", "set_tile_scroll_hint", 2586408642)
+
+    internal val isScrollHintTiledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Tree", "is_scroll_hint_tiled", 2240911060)
+
     internal val setHideFoldingPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Tree", "set_hide_folding", 2586408642)
 
@@ -1098,6 +1232,12 @@ public open class Tree : Control() {
 
     internal val isRecursiveFoldingEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Tree", "is_recursive_folding_enabled", 36873697)
+
+    internal val setEnableDragUnfoldingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Tree", "set_enable_drag_unfolding", 2586408642)
+
+    internal val isDragUnfoldingEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Tree", "is_drag_unfolding_enabled", 36873697)
 
     internal val setDropModeFlagsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Tree", "set_drop_mode_flags", 1286410249)

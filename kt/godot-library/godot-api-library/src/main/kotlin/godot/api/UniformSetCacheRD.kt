@@ -21,14 +21,14 @@ import kotlin.Unit
 import kotlin.jvm.JvmStatic
 
 /**
- * Uniform set cache manager for Rendering Device based renderers. Provides a way to create a
+ * Uniform set cache manager for [RenderingDevice]-based renderers. Provides a way to create a
  * uniform set and reuse it in subsequent calls for as long as the uniform set exists. Uniform set will
  * automatically be cleaned up when dependent objects are freed.
  */
 @GodotBaseType
 public open class UniformSetCacheRD : Object() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(723, scriptPtr)
+    createNativeObject(265, scriptPtr)
   }
 
   public companion object {

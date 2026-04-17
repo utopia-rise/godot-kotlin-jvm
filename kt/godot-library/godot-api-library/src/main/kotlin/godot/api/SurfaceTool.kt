@@ -92,7 +92,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class SurfaceTool : RefCounted() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(665, scriptPtr)
+    createNativeObject(29, scriptPtr)
   }
 
   /**
@@ -184,6 +184,10 @@ public open class SurfaceTool : RefCounted() {
    * Specifies a tangent to use for the *next* vertex. If every vertex needs to have this
    * information set and you fail to submit it for the first vertex, this information may not be used
    * at all.
+   *
+   * **Note:** Even though [tangent] is a [Plane], it does not directly represent the tangent plane.
+   * Its [Plane.x], [Plane.y], and [Plane.z] represent the tangent vector and [Plane.d] should be
+   * either `-1` or `1`. See also [Mesh.ARRAY_TANGENT].
    */
   public final fun setTangent(tangent: Plane): Unit {
     TransferContext.writeArguments(PLANE to tangent)

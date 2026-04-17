@@ -59,7 +59,7 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(814, scriptPtr)
+    createNativeObject(531, scriptPtr)
   }
 
   public final fun setSource(`value`: Source): Unit {
@@ -157,7 +157,8 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
      */
     TYPE_DATA(0),
     /**
-     * Adds `source_color` as hint to the uniform declaration for proper sRGB to linear conversion.
+     * Adds `source_color` as hint to the uniform declaration for proper conversion from nonlinear
+     * sRGB encoding to linear encoding.
      */
     TYPE_COLOR(1),
     /**

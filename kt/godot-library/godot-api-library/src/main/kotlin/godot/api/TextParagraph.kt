@@ -196,7 +196,7 @@ public open class TextParagraph : RefCounted() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(675, scriptPtr)
+    createNativeObject(26, scriptPtr)
   }
 
   /**
@@ -205,6 +205,15 @@ public open class TextParagraph : RefCounted() {
   public final fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
+  }
+
+  /**
+   * Duplicates this [TextParagraph].
+   */
+  public final fun duplicate(): TextParagraph? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.duplicatePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT) as TextParagraph?)
   }
 
   public final fun setDirection(direction: TextServer.Direction): Unit {
@@ -352,6 +361,15 @@ public open class TextParagraph : RefCounted() {
   ): Boolean {
     TransferContext.writeArguments(ANY to key, VECTOR2 to size, LONG to inlineAlign.value, DOUBLE to baseline.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.resizeObjectPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Returns `true` if an object with [key] is embedded in this shaped text buffer.
+   */
+  public final fun hasObject(key: Any?): Boolean {
+    TransferContext.writeArguments(ANY to key)
+    TransferContext.callMethod(ptr, MethodBindings.hasObjectPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -735,6 +753,9 @@ public open class TextParagraph : RefCounted() {
     internal val clearPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextParagraph", "clear", 3218959716)
 
+    internal val duplicatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextParagraph", "duplicate", 3607706709)
+
     internal val setDirectionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextParagraph", "set_direction", 1418190634)
 
@@ -785,6 +806,9 @@ public open class TextParagraph : RefCounted() {
 
     internal val resizeObjectPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextParagraph", "resize_object", 2095776372)
+
+    internal val hasObjectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextParagraph", "has_object", 77467830)
 
     internal val setAlignmentPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextParagraph", "set_alignment", 2312603777)

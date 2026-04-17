@@ -50,7 +50,7 @@ jobs:
       - name: Download windows x86_64 ${{ matrix.jvm-target }} export template
         uses: actions/download-artifact@v4
         with:
-          name: export_template_${{ matrix.jvm-target }}_windows_x86_64
+          name: export_template_test_${{ matrix.jvm-target }}_windows_x86_64
           path: "./"
 
       - name: Prepare export

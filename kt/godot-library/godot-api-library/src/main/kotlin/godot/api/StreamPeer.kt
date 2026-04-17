@@ -55,7 +55,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(651, scriptPtr)
+    createNativeObject(172, scriptPtr)
   }
 
   /**
@@ -80,10 +80,9 @@ public open class StreamPeer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns a chunk data with the received bytes. The number of bytes to be received can be
-   * requested in the [bytes] argument. If not enough bytes are available, the function will block
-   * until the desired amount is received. This function returns two values, an [Error] code and a data
-   * array.
+   * Returns a chunk data with the received bytes, as an [Array] containing two elements: an [Error]
+   * constant and a [PackedByteArray]. [bytes] is the number of bytes to be received. If not enough
+   * bytes are available, the function will block until the desired amount is received.
    */
   public final fun getData(bytes: Int): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to bytes.toLong())
@@ -92,9 +91,9 @@ public open class StreamPeer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns a chunk data with the received bytes. The number of bytes to be received can be
-   * requested in the [bytes] argument. If not enough bytes are available, the function will return how
-   * many were actually received. This function returns two values: an [Error] code and a data array.
+   * Returns a chunk data with the received bytes, as an [Array] containing two elements: an [Error]
+   * constant and a [PackedByteArray]. [bytes] is the number of bytes to be received. If not enough
+   * bytes are available, the function will return how many were actually received.
    */
   public final fun getPartialData(bytes: Int): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to bytes.toLong())

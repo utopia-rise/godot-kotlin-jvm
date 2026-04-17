@@ -12,7 +12,6 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
-import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -23,7 +22,7 @@ import kotlin.jvm.JvmName
  * as resource types to play back videos in [VideoStreamPlayer].
  */
 @GodotBaseType
-public open class VideoStream : Resource() {
+public abstract class VideoStream : Resource() {
   /**
    * The video file path or URI that this [VideoStream] resource handles.
    *
@@ -39,16 +38,14 @@ public open class VideoStream : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(732, scriptPtr)
+    createNativeObject(359, scriptPtr)
   }
 
   /**
    * Called when the video starts playing, to initialize and return a subclass of
    * [VideoStreamPlayback].
    */
-  public open fun _instantiatePlayback(): VideoStreamPlayback? {
-    throw NotImplementedError("VideoStream::_instantiatePlayback is not implemented.")
-  }
+  public abstract fun _instantiatePlayback(): VideoStreamPlayback?
 
   public final fun setFile(`file`: String): Unit {
     TransferContext.writeArguments(STRING to file)

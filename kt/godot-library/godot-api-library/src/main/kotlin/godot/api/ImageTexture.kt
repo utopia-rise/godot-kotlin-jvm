@@ -20,6 +20,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmStatic
 
 /**
@@ -64,8 +65,12 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public open class ImageTexture : Texture2D() {
+  public final inline val image: Image?
+    @JvmName("imageProperty")
+    get() = getImage()
+
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(292, scriptPtr)
+    createNativeObject(816, scriptPtr)
   }
 
   /**

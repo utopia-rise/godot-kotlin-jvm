@@ -71,7 +71,7 @@ public abstract class Material : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(356, scriptPtr)
+    createNativeObject(220, scriptPtr)
   }
 
   /**

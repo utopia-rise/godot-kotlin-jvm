@@ -213,6 +213,29 @@ public open class ItemList : Control() {
     }
 
   /**
+   * The way which scroll hints (indicators that show that the content can still be scrolled in a
+   * certain direction) will be shown.
+   */
+  public final inline var scrollHintMode: ScrollHintMode
+    @JvmName("scrollHintModeProperty")
+    get() = getScrollHintMode()
+    @JvmName("scrollHintModeProperty")
+    set(`value`) {
+      setScrollHintMode(value)
+    }
+
+  /**
+   * If `true`, the scroll hint texture will be tiled instead of stretched. See [scrollHintMode].
+   */
+  public final inline var tileScrollHint: Boolean
+    @JvmName("tileScrollHintProperty")
+    get() = isScrollHintTiled()
+    @JvmName("tileScrollHintProperty")
+    set(`value`) {
+      setTileScrollHint(value)
+    }
+
+  /**
    * The number of items currently in the list.
    */
   public final inline var itemCount: Int
@@ -309,7 +332,7 @@ public open class ItemList : Control() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(319, scriptPtr)
+    createNativeObject(73, scriptPtr)
   }
 
   /**
@@ -413,8 +436,8 @@ public open class ItemList : Control() {
   }
 
   /**
-   * Sets language code of item's text used for line-breaking and text shaping algorithms, if left
-   * empty current locale is used instead.
+   * Sets the language code of the text for the item at the given index to [language]. This is used
+   * for line-breaking and text shaping algorithms. If [language] is empty, the current locale is used.
    */
   public final fun setItemLanguage(idx: Int, language: String): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), STRING to language)
@@ -925,6 +948,28 @@ public open class ItemList : Control() {
     return (TransferContext.readReturnValue(OBJECT) as HScrollBar?)
   }
 
+  public final fun setScrollHintMode(scrollHintMode: ScrollHintMode): Unit {
+    TransferContext.writeArguments(LONG to scrollHintMode.value)
+    TransferContext.callMethod(ptr, MethodBindings.setScrollHintModePtr, NIL)
+  }
+
+  public final fun getScrollHintMode(): ScrollHintMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getScrollHintModePtr, LONG)
+    return ScrollHintMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setTileScrollHint(tileScrollHint: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to tileScrollHint)
+    TransferContext.callMethod(ptr, MethodBindings.setTileScrollHintPtr, NIL)
+  }
+
+  public final fun isScrollHintTiled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isScrollHintTiledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
   public final fun setTextOverrunBehavior(overrunBehavior: TextServer.OverrunBehavior): Unit {
     TransferContext.writeArguments(LONG to overrunBehavior.value)
     TransferContext.callMethod(ptr, MethodBindings.setTextOverrunBehaviorPtr, NIL)
@@ -1004,6 +1049,37 @@ public open class ItemList : Control() {
 
     public companion object {
       public fun from(`value`: Long): SelectMode = entries.single { it.`value` == `value` }
+    }
+  }
+
+  public enum class ScrollHintMode(
+    `value`: Long,
+  ) : GodotEnum {
+    /**
+     * Scroll hints will never be shown.
+     */
+    DISABLED(0),
+    /**
+     * Scroll hints will be shown at the top and bottom.
+     */
+    BOTH(1),
+    /**
+     * Only the top scroll hint will be shown.
+     */
+    TOP(2),
+    /**
+     * Only the bottom scroll hint will be shown.
+     */
+    BOTTOM(3),
+    ;
+
+    public override val `value`: Long
+    init {
+      this.`value` = `value`
+    }
+
+    public companion object {
+      public fun from(`value`: Long): ScrollHintMode = entries.single { it.`value` == `value` }
     }
   }
 
@@ -1232,6 +1308,18 @@ public open class ItemList : Control() {
 
     internal val getHScrollBarPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ItemList", "get_h_scroll_bar", 4004517983)
+
+    internal val setScrollHintModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "set_scroll_hint_mode", 2917787337)
+
+    internal val getScrollHintModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "get_scroll_hint_mode", 2522227939)
+
+    internal val setTileScrollHintPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "set_tile_scroll_hint", 2586408642)
+
+    internal val isScrollHintTiledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "is_scroll_hint_tiled", 2240911060)
 
     internal val setTextOverrunBehaviorPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ItemList", "set_text_overrun_behavior", 1008890932)

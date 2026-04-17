@@ -423,7 +423,7 @@ public open class Node3D : Node() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(405, scriptPtr)
+    createNativeObject(64, scriptPtr)
   }
 
   /**
@@ -1385,6 +1385,8 @@ public open class Node3D : Node() {
     /**
      * Notification received when this node is unregistered from the current [World3D] (see
      * [getWorld3d]).
+     *
+     * This notification is sent in reversed order.
      */
     public final const val NOTIFICATION_EXIT_WORLD: Long = 42
 

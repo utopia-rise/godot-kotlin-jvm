@@ -10,10 +10,14 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
+import godot.core.NodePath
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
+import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.STRING
+import godot.core.asCachedNodePath
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
@@ -29,7 +33,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class BoneConstraint3D : SkeletonModifier3D() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(109, scriptPtr)
+    createNativeObject(646, scriptPtr)
   }
 
   /**
@@ -84,6 +88,23 @@ public open class BoneConstraint3D : SkeletonModifier3D() {
   }
 
   /**
+   * Sets the reference target type of the setting at [index] to [type]. See also [ReferenceType].
+   */
+  public final fun setReferenceType(index: Int, type: ReferenceType): Unit {
+    TransferContext.writeArguments(LONG to index.toLong(), LONG to type.value)
+    TransferContext.callMethod(ptr, MethodBindings.setReferenceTypePtr, NIL)
+  }
+
+  /**
+   * Returns the reference target type of the setting at [index]. See also [ReferenceType].
+   */
+  public final fun getReferenceType(index: Int): ReferenceType {
+    TransferContext.writeArguments(LONG to index.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.getReferenceTypePtr, LONG)
+    return ReferenceType.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
    * Sets the reference bone of the setting at [index] to [boneName].
    *
    * This bone will be only referenced and not modified by this modifier.
@@ -126,6 +147,27 @@ public open class BoneConstraint3D : SkeletonModifier3D() {
   }
 
   /**
+   * Sets the reference node path of the setting at [index] to [node].
+   *
+   * This node will be only referenced and not modified by this modifier.
+   */
+  public final fun setReferenceNode(index: Int, node: NodePath): Unit {
+    TransferContext.writeArguments(LONG to index.toLong(), NODE_PATH to node)
+    TransferContext.callMethod(ptr, MethodBindings.setReferenceNodePtr, NIL)
+  }
+
+  /**
+   * Returns the reference node path of the setting at [index].
+   *
+   * This node will be only referenced and not modified by this modifier.
+   */
+  public final fun getReferenceNode(index: Int): NodePath {
+    TransferContext.writeArguments(LONG to index.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.getReferenceNodePtr, NODE_PATH)
+    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
+  }
+
+  /**
    * Sets the number of settings in the modifier.
    */
   public final fun setSettingCount(count: Int): Unit {
@@ -150,6 +192,40 @@ public open class BoneConstraint3D : SkeletonModifier3D() {
     TransferContext.callMethod(ptr, MethodBindings.clearSettingPtr, NIL)
   }
 
+  /**
+   * Sets the reference node path of the setting at [index] to [node].
+   *
+   * This node will be only referenced and not modified by this modifier.
+   */
+  public final fun setReferenceNode(index: Int, node: String) =
+      setReferenceNode(index, node.asCachedNodePath())
+
+  public enum class ReferenceType(
+    `value`: Long,
+  ) : GodotEnum {
+    /**
+     * The reference target is a bone. In this case, the reference target spaces is local space.
+     */
+    BONE(0),
+    /**
+     * The reference target is a [Node3D]. In this case, the reference target spaces is model space.
+     *
+     * In other words, the reference target's coordinates are treated as if it were placed directly
+     * under [Skeleton3D] which parent of the [BoneConstraint3D].
+     */
+    NODE(1),
+    ;
+
+    public override val `value`: Long
+    init {
+      this.`value` = `value`
+    }
+
+    public companion object {
+      public fun from(`value`: Long): ReferenceType = entries.single { it.`value` == `value` }
+    }
+  }
+
   public companion object
 
   public object MethodBindings {
@@ -171,6 +247,12 @@ public open class BoneConstraint3D : SkeletonModifier3D() {
     internal val getApplyBonePtr: VoidPtr =
         TypeManager.getMethodBindPtr("BoneConstraint3D", "get_apply_bone", 923996154)
 
+    internal val setReferenceTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BoneConstraint3D", "set_reference_type", 1830520418)
+
+    internal val getReferenceTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BoneConstraint3D", "get_reference_type", 3456416152)
+
     internal val setReferenceBoneNamePtr: VoidPtr =
         TypeManager.getMethodBindPtr("BoneConstraint3D", "set_reference_bone_name", 501894301)
 
@@ -182,6 +264,12 @@ public open class BoneConstraint3D : SkeletonModifier3D() {
 
     internal val getReferenceBonePtr: VoidPtr =
         TypeManager.getMethodBindPtr("BoneConstraint3D", "get_reference_bone", 923996154)
+
+    internal val setReferenceNodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BoneConstraint3D", "set_reference_node", 2761262315)
+
+    internal val getReferenceNodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BoneConstraint3D", "get_reference_node", 408788394)
 
     internal val setSettingCountPtr: VoidPtr =
         TypeManager.getMethodBindPtr("BoneConstraint3D", "set_setting_count", 1286410249)

@@ -1,7 +1,7 @@
 #ifndef GODOT_JVM_KOTLIN_BINDING_MANAGER_H
 #define GODOT_JVM_KOTLIN_BINDING_MANAGER_H
 
-#include <core/extension/gdextension_interface.h>
+#include <core/extension/gdextension_interface.gen.h>
 #include <core/object/object.h>
 #include "kotlin_binding.h"
 

@@ -20,7 +20,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeFaceForward : VisualShaderNodeVectorBase() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(766, scriptPtr)
+    createNativeObject(542, scriptPtr)
   }
 
   public companion object

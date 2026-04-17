@@ -26,6 +26,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -67,7 +68,7 @@ public open class AudioStreamInteractive : AudioStream() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(84, scriptPtr)
+    createNativeObject(939, scriptPtr)
   }
 
   public final fun setClipCount(clipCount: Int): Unit {
@@ -287,6 +288,13 @@ public open class AudioStreamInteractive : AudioStream() {
     TransferContext.writeArguments(LONG to fromClip.toLong(), LONG to toClip.toLong())
     TransferContext.callMethod(ptr, MethodBindings.isTransitionHoldingPreviousPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _instantiatePlayback(): AudioStreamPlayback? {
+    throw NotImplementedError("AudioStreamInteractive::_instantiatePlayback can't be called from the JVM.")
   }
 
   /**

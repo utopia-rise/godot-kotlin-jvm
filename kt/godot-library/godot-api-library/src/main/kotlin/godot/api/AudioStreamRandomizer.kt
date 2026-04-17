@@ -19,6 +19,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -42,7 +43,12 @@ public open class AudioStreamRandomizer : AudioStream() {
     }
 
   /**
-   * The intensity of random pitch variation. A value of 1 means no variation.
+   * The largest possible frequency multiplier of the random pitch variation. Pitch will be randomly
+   * chosen within a range of [code skip-lint]1.0 / random_pitch[/code] and [code
+   * skip-lint]random_pitch[/code]. A value of `1.0` means no variation. A value of `2.0` means pitch
+   * will be randomized between double and half.
+   *
+   * **Note:** Setting this property also sets [randomPitchSemitones].
    */
   public final inline var randomPitch: Float
     @JvmName("randomPitchProperty")
@@ -53,7 +59,23 @@ public open class AudioStreamRandomizer : AudioStream() {
     }
 
   /**
-   * The intensity of random volume variation. A value of 0 means no variation.
+   * The largest possible distance, in semitones, of the random pitch variation. A value of `0.0`
+   * means no variation.
+   *
+   * **Note:** Setting this property also sets [randomPitch].
+   */
+  public final inline var randomPitchSemitones: Float
+    @JvmName("randomPitchSemitonesProperty")
+    get() = getRandomPitchSemitones()
+    @JvmName("randomPitchSemitonesProperty")
+    set(`value`) {
+      setRandomPitchSemitones(value)
+    }
+
+  /**
+   * The intensity of random volume variation. Volume will be increased or decreased by a random
+   * value up to [code skip-lint]random_volume_offset_db[/code]. A value of `0.0` means no variation. A
+   * value of `3.0` means volume will be randomized between `-3.0 dB` and `+3.0 dB`.
    */
   public final inline var randomVolumeOffsetDb: Float
     @JvmName("randomVolumeOffsetDbProperty")
@@ -75,7 +97,7 @@ public open class AudioStreamRandomizer : AudioStream() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(100, scriptPtr)
+    createNativeObject(99, scriptPtr)
   }
 
   /**
@@ -165,6 +187,17 @@ public open class AudioStreamRandomizer : AudioStream() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
+  public final fun setRandomPitchSemitones(semitones: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to semitones.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.setRandomPitchSemitonesPtr, NIL)
+  }
+
+  public final fun getRandomPitchSemitones(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getRandomPitchSemitonesPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
   public final fun setRandomVolumeOffsetDb(dbOffset: Float): Unit {
     TransferContext.writeArguments(DOUBLE to dbOffset.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setRandomVolumeOffsetDbPtr, NIL)
@@ -185,6 +218,13 @@ public open class AudioStreamRandomizer : AudioStream() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getPlaybackModePtr, LONG)
     return PlaybackMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _instantiatePlayback(): AudioStreamPlayback? {
+    throw NotImplementedError("AudioStreamRandomizer::_instantiatePlayback can't be called from the JVM.")
   }
 
   public enum class PlaybackMode(
@@ -253,6 +293,12 @@ public open class AudioStreamRandomizer : AudioStream() {
 
     internal val getRandomPitchPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AudioStreamRandomizer", "get_random_pitch", 1740695150)
+
+    internal val setRandomPitchSemitonesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamRandomizer", "set_random_pitch_semitones", 373806689)
+
+    internal val getRandomPitchSemitonesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamRandomizer", "get_random_pitch_semitones", 1740695150)
 
     internal val setRandomVolumeOffsetDbPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AudioStreamRandomizer", "set_random_volume_offset_db", 373806689)

@@ -82,7 +82,9 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
     }
 
   /**
-   * If [useCustomTimeline] is `true`, offset the start position of the animation.
+   * The length of the custom timeline.
+   *
+   * If [stretchTimeScale] is `true`, scales the animation to this length.
    */
   public final inline var timelineLength: Double
     @JvmName("timelineLengthProperty")
@@ -138,7 +140,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(19, scriptPtr)
+    createNativeObject(718, scriptPtr)
   }
 
   public final fun setAnimation(name: StringName): Unit {

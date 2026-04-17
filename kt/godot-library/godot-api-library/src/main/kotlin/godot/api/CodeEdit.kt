@@ -195,6 +195,17 @@ public open class CodeEdit : TextEdit() {
     }
 
   /**
+   * The minimum width in digits reserved for the line number gutter.
+   */
+  public final inline var guttersLineNumbersMinDigits: Int
+    @JvmName("guttersLineNumbersMinDigitsProperty")
+    get() = getLineNumbersMinDigits()
+    @JvmName("guttersLineNumbersMinDigitsProperty")
+    set(`value`) {
+      setLineNumbersMinDigits(value)
+    }
+
+  /**
    * If `true`, the fold gutter is drawn. In this gutter, the [theme_item can_fold_code_region] icon
    * is drawn for each foldable line (see [canFoldLine]) and the [theme_item folded_code_region] icon
    * is drawn for each folded line (see [isLineFolded]). These icons can be clicked to toggle the fold
@@ -340,7 +351,7 @@ public open class CodeEdit : TextEdit() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(154, scriptPtr)
+    createNativeObject(96, scriptPtr)
   }
 
   /**
@@ -686,6 +697,17 @@ public open class CodeEdit : TextEdit() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isLineNumbersZeroPaddedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setLineNumbersMinDigits(count: Int): Unit {
+    TransferContext.writeArguments(LONG to count.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.setLineNumbersMinDigitsPtr, NIL)
+  }
+
+  public final fun getLineNumbersMinDigits(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getLineNumbersMinDigitsPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setDrawFoldGutter(enable: Boolean): Unit {
@@ -1501,6 +1523,12 @@ public open class CodeEdit : TextEdit() {
 
     internal val isLineNumbersZeroPaddedPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CodeEdit", "is_line_numbers_zero_padded", 36873697)
+
+    internal val setLineNumbersMinDigitsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CodeEdit", "set_line_numbers_min_digits", 1286410249)
+
+    internal val getLineNumbersMinDigitsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CodeEdit", "get_line_numbers_min_digits", 3905245786)
 
     internal val setDrawFoldGutterPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CodeEdit", "set_draw_fold_gutter", 2586408642)

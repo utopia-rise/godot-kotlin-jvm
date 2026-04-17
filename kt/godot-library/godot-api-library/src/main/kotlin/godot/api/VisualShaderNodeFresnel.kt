@@ -18,7 +18,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeFresnel : VisualShaderNode() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(772, scriptPtr)
+    createNativeObject(500, scriptPtr)
   }
 
   public companion object

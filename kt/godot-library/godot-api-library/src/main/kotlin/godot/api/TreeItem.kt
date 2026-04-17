@@ -104,7 +104,7 @@ public open class TreeItem internal constructor() : Object() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(714, scriptPtr)
+    createNativeObject(15, scriptPtr)
   }
 
   /**
@@ -342,8 +342,8 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Sets language code of item's text used for line-breaking and text shaping algorithms, if left
-   * empty current locale is used instead.
+   * Sets the language code of the given [column]'s text to [language]. This is used for
+   * line-breaking and text shaping algorithms. If [language] is empty, the current locale is used.
    */
   public final fun setLanguage(column: Int, language: String): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), STRING to language)
@@ -567,6 +567,25 @@ public open class TreeItem internal constructor() : Object() {
     return (TransferContext.readReturnValue(CALLABLE) as Callable)
   }
 
+  /**
+   * Sets the given column's custom [StyleBox] used to draw the background.
+   *
+   * **Note:** If a custom background color is set, the [StyleBox] will be drawn in front of it.
+   */
+  public final fun setCustomStylebox(column: Int, stylebox: StyleBox?): Unit {
+    TransferContext.writeArguments(LONG to column.toLong(), OBJECT to stylebox)
+    TransferContext.callMethod(ptr, MethodBindings.setCustomStyleboxPtr, NIL)
+  }
+
+  /**
+   * Returns the given column's custom [StyleBox] used to draw the background.
+   */
+  public final fun getCustomStylebox(column: Int): StyleBox? {
+    TransferContext.writeArguments(LONG to column.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.getCustomStyleboxPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT) as StyleBox?)
+  }
+
   public final fun setCollapsed(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setCollapsedPtr, NIL)
@@ -757,6 +776,8 @@ public open class TreeItem internal constructor() : Object() {
 
   /**
    * Sets the given column's custom background color and whether to just use it as an outline.
+   *
+   * **Note:** If a custom [StyleBox] is set, the background color will be drawn behind it.
    */
   @JvmOverloads
   public final fun setCustomBgColor(
@@ -1444,6 +1465,12 @@ public open class TreeItem internal constructor() : Object() {
 
     internal val getCustomDrawCallbackPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TreeItem", "get_custom_draw_callback", 1317077508)
+
+    internal val setCustomStyleboxPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "set_custom_stylebox", 1433009359)
+
+    internal val getCustomStyleboxPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "get_custom_stylebox", 3362509644)
 
     internal val setCollapsedPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TreeItem", "set_collapsed", 2586408642)

@@ -82,8 +82,9 @@ public open class ColorPicker : VBoxContainer() {
     }
 
   /**
-   * If `true`, shows an intensity slider. The intensity is applied as follows: multiply the color
-   * by `2 ** intensity` in linear RGB space, and then convert it back to sRGB.
+   * If `true`, shows an intensity slider. The intensity is applied as follows: convert the color to
+   * linear encoding, multiply it by `2 ** intensity`, and then convert it back to nonlinear sRGB
+   * encoding.
    */
   public final inline var editIntensity: Boolean
     @JvmName("editIntensityProperty")
@@ -195,7 +196,7 @@ public open class ColorPicker : VBoxContainer() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(163, scriptPtr)
+    createNativeObject(352, scriptPtr)
   }
 
   /**

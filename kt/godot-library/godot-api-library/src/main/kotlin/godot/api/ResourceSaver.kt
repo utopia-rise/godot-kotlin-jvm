@@ -44,7 +44,7 @@ public infix fun Long.and(other: ResourceSaver.SaverFlags): Long = this.and(othe
 @GodotBaseType
 public object ResourceSaver : Object() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(28)
+    getSingleton(4)
   }
 
   /**
@@ -61,7 +61,7 @@ public object ResourceSaver : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun save(
-    resource: Resource?,
+    resource: Resource,
     path: String = "",
     flags: SaverFlags = ResourceSaver.SaverFlags.FLAG_NONE,
   ): Error {

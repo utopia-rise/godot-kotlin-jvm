@@ -101,7 +101,7 @@ public open class TabContainer : Container() {
     }
 
   /**
-   * The position of the tab bar.
+   * The horizontal alignment of the tabs.
    */
   public final inline var tabsPosition: TabPosition
     @JvmName("tabsPositionProperty")
@@ -144,6 +144,18 @@ public open class TabContainer : Container() {
     @JvmName("allTabsInFrontProperty")
     set(`value`) {
       setAllTabsInFront(value)
+    }
+
+  /**
+   * If `true`, hovering over a tab while dragging something will switch to that tab. Does not have
+   * effect when hovering another tab to rearrange.
+   */
+  public final inline var switchOnDragHover: Boolean
+    @JvmName("switchOnDragHoverProperty")
+    get() = getSwitchOnDragHover()
+    @JvmName("switchOnDragHoverProperty")
+    set(`value`) {
+      setSwitchOnDragHover(value)
     }
 
   /**
@@ -209,7 +221,7 @@ public open class TabContainer : Container() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(671, scriptPtr)
+    createNativeObject(379, scriptPtr)
   }
 
   /**
@@ -534,6 +546,17 @@ public open class TabContainer : Container() {
     return (TransferContext.readReturnValue(OBJECT) as Popup?)
   }
 
+  public final fun setSwitchOnDragHover(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(ptr, MethodBindings.setSwitchOnDragHoverPtr, NIL)
+  }
+
+  public final fun getSwitchOnDragHover(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getSwitchOnDragHoverPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
   public final fun setDragToRearrangeEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setDragToRearrangeEnabledPtr, NIL)
@@ -735,6 +758,12 @@ public open class TabContainer : Container() {
 
     internal val getPopupPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TabContainer", "get_popup", 111095082)
+
+    internal val setSwitchOnDragHoverPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TabContainer", "set_switch_on_drag_hover", 2586408642)
+
+    internal val getSwitchOnDragHoverPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TabContainer", "get_switch_on_drag_hover", 36873697)
 
     internal val setDragToRearrangeEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TabContainer", "set_drag_to_rearrange_enabled", 2586408642)

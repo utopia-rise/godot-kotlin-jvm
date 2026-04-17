@@ -23,8 +23,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A node that provides a [Shape3D] to a [CollisionObject3D] parent and allows to edit it. This can
- * give a detection shape to an [Area3D] or turn a [PhysicsBody3D] into a solid object.
+ * A node that provides a [Shape3D] to a [CollisionObject3D] parent and allows it to be edited. This
+ * can give a detection shape to an [Area3D] or turn a [PhysicsBody3D] into a solid object.
  *
  * **Warning:** A non-uniformly scaled [CollisionShape3D] will likely not behave as expected. Make
  * sure to keep its scale the same on all axes and adjust its [shape] resource instead.
@@ -91,7 +91,7 @@ public open class CollisionShape3D : Node3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(161, scriptPtr)
+    createNativeObject(609, scriptPtr)
   }
 
   /**

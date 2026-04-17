@@ -17,7 +17,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class AudioEffectHighShelfFilter : AudioEffectFilter() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(62, scriptPtr)
+    createNativeObject(308, scriptPtr)
   }
 
   public companion object

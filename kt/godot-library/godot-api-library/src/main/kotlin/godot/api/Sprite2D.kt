@@ -225,7 +225,7 @@ public open class Sprite2D : Node2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(643, scriptPtr)
+    createNativeObject(461, scriptPtr)
   }
 
   /**
@@ -356,11 +356,9 @@ public open class Sprite2D : Node2D() {
   }
 
   /**
-   * Returns `true`, if the pixel at the given position is opaque and `false` in other case. The
-   * position is in local coordinates.
-   *
-   * **Note:** It also returns `false`, if the sprite's texture is `null` or if the given position
-   * is invalid.
+   * Returns `true` if the pixel at the given position is opaque, `false` otherwise. Also returns
+   * `false` if the given position is out of bounds or this sprite's [texture] is `null`. [pos] is in
+   * local coordinates.
    */
   public final fun isPixelOpaque(pos: Vector2): Boolean {
     TransferContext.writeArguments(VECTOR2 to pos)

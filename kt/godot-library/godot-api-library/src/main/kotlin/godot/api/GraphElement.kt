@@ -139,8 +139,20 @@ public open class GraphElement : Container() {
       setSelected(value)
     }
 
+  /**
+   * If `true`, [PopupMenu]s that are descendants of the GraphElement are scaled with the
+   * [GraphEdit] zoom.
+   */
+  public final inline var scalingMenus: Boolean
+    @JvmName("scalingMenusProperty")
+    get() = isScalingMenus()
+    @JvmName("scalingMenusProperty")
+    set(`value`) {
+      setScalingMenus(value)
+    }
+
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(270, scriptPtr)
+    createNativeObject(344, scriptPtr)
   }
 
   /**
@@ -206,6 +218,17 @@ public open class GraphElement : Container() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
+  public final fun setScalingMenus(scalingMenus: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to scalingMenus)
+    TransferContext.callMethod(ptr, MethodBindings.setScalingMenusPtr, NIL)
+  }
+
+  public final fun isScalingMenus(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isScalingMenusPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
   public final fun setPositionOffset(offset: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to offset)
     TransferContext.callMethod(ptr, MethodBindings.setPositionOffsetPtr, NIL)
@@ -243,6 +266,12 @@ public open class GraphElement : Container() {
 
     internal val isSelectedPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GraphElement", "is_selected", 2240911060)
+
+    internal val setScalingMenusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphElement", "set_scaling_menus", 2586408642)
+
+    internal val isScalingMenusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphElement", "is_scaling_menus", 36873697)
 
     internal val setPositionOffsetPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GraphElement", "set_position_offset", 743155724)

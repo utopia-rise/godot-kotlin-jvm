@@ -219,7 +219,7 @@ public open class Parallax2D : Node2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(461, scriptPtr)
+    createNativeObject(426, scriptPtr)
   }
 
   /**

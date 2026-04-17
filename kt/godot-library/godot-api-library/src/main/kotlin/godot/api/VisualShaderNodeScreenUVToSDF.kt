@@ -18,7 +18,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeScreenUVToSDF : VisualShaderNode() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(810, scriptPtr)
+    createNativeObject(483, scriptPtr)
   }
 
   public companion object

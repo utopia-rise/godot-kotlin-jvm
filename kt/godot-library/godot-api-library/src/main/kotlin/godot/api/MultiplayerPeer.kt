@@ -90,7 +90,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(377, scriptPtr)
+    createNativeObject(212, scriptPtr)
   }
 
   public final fun setTransferChannel(channel: Int): Unit {

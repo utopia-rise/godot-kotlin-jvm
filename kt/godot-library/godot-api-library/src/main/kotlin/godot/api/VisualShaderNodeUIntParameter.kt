@@ -50,7 +50,7 @@ public open class VisualShaderNodeUIntParameter : VisualShaderNodeParameter() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(834, scriptPtr)
+    createNativeObject(518, scriptPtr)
   }
 
   public final fun setDefaultValueEnabled(enabled: Boolean): Unit {

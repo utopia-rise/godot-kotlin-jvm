@@ -56,13 +56,17 @@ import kotlin.jvm.JvmOverloads
  * registered. You can adjust the timeout duration by changing
  * [ProjectSettings.gui/timers/incrementalSearchMaxIntervalMsec].
  *
+ * **Note:** [PopupMenu] is invisible by default. To make it visible, call one of the `popup_*`
+ * methods from [Window] on the node, such as [Window.popupCenteredClamped].
+ *
  * **Note:** The ID values used for items are limited to 32 bits, not full 64 bits of [int]. This
  * has a range of `-2^32` to `2^32 - 1`, i.e. `-2147483648` to `2147483647`.
  */
 @GodotBaseType
 public open class PopupMenu : Popup() {
   /**
-   * Emitted when an item of some [id] is pressed or its accelerator is activated.
+   * Emitted when an item of some [id] is pressed. Also emitted when its accelerator is activated on
+   * macOS.
    *
    * **Note:** If [id] is negative (either explicitly or due to overflow), this will return the
    * corresponding index instead.
@@ -76,7 +80,8 @@ public open class PopupMenu : Popup() {
   public val idFocused: Signal1<Long> by Signal1
 
   /**
-   * Emitted when an item of some [index] is pressed or its accelerator is activated.
+   * Emitted when an item of some [index] is pressed. Also emitted when its accelerator is activated
+   * on macOS.
    */
   public val indexPressed: Signal1<Long> by Signal1
 
@@ -122,6 +127,14 @@ public open class PopupMenu : Popup() {
    * Sets the delay time in seconds for the submenu item to popup on mouse hovering. If the popup
    * menu is added as a child of another (acting as a submenu), it will inherit the delay time of the
    * parent menu item.
+   *
+   * **Note:** If the mouse is exiting a submenu item with an open submenu and enters a different
+   * submenu item, the submenu popup delay time is affected by the direction of the mouse movement
+   * toward the open submenu. If the mouse is moving toward the submenu, the open submenu will wait
+   * approximately `0.5` seconds before closing, which then allows the hovered submenu item to open.
+   * This additional delay allows the mouse time to move to the open submenu across other menu items
+   * without prematurely closing. If the mouse is not moving toward the open submenu, for example in a
+   * downward direction, the open submenu will close immediately.
    */
   public final inline var submenuPopupDelay: Float
     @JvmName("submenuPopupDelayProperty")
@@ -169,6 +182,28 @@ public open class PopupMenu : Popup() {
     }
 
   /**
+   * If `true`, shrinks [PopupMenu] to minimum height when it's shown.
+   */
+  public final inline var shrinkHeight: Boolean
+    @JvmName("shrinkHeightProperty")
+    get() = getShrinkHeight()
+    @JvmName("shrinkHeightProperty")
+    set(`value`) {
+      setShrinkHeight(value)
+    }
+
+  /**
+   * If `true`, shrinks [PopupMenu] to minimum width when it's shown.
+   */
+  public final inline var shrinkWidth: Boolean
+    @JvmName("shrinkWidthProperty")
+    get() = getShrinkWidth()
+    @JvmName("shrinkWidthProperty")
+    set(`value`) {
+      setShrinkWidth(value)
+    }
+
+  /**
    * The number of items currently in the list.
    */
   public final inline var itemCount: Int
@@ -180,7 +215,7 @@ public open class PopupMenu : Popup() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(517, scriptPtr)
+    createNativeObject(47, scriptPtr)
   }
 
   /**
@@ -553,8 +588,8 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Sets language code of item's text used for line-breaking and text shaping algorithms, if left
-   * empty current locale is used instead.
+   * Sets the language code of the text for the item at the given index to [language]. This is used
+   * for line-breaking and text shaping algorithms. If [language] is empty, the current locale is used.
    */
   public final fun setItemLanguage(index: Int, language: String): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), STRING to language)
@@ -1145,6 +1180,28 @@ public open class PopupMenu : Popup() {
     return NativeMenu.SystemMenus.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
+  public final fun setShrinkHeight(shrink: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to shrink)
+    TransferContext.callMethod(ptr, MethodBindings.setShrinkHeightPtr, NIL)
+  }
+
+  public final fun getShrinkHeight(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getShrinkHeightPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setShrinkWidth(shrink: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to shrink)
+    TransferContext.callMethod(ptr, MethodBindings.setShrinkWidthPtr, NIL)
+  }
+
+  public final fun getShrinkWidth(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getShrinkWidthPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
   public companion object
 
   public object MethodBindings {
@@ -1413,5 +1470,17 @@ public open class PopupMenu : Popup() {
 
     internal val getSystemMenuPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PopupMenu", "get_system_menu", 1222557358)
+
+    internal val setShrinkHeightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PopupMenu", "set_shrink_height", 2586408642)
+
+    internal val getShrinkHeightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PopupMenu", "get_shrink_height", 36873697)
+
+    internal val setShrinkWidthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PopupMenu", "set_shrink_width", 2586408642)
+
+    internal val getShrinkWidthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PopupMenu", "get_shrink_width", 36873697)
   }
 }
