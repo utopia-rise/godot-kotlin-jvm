@@ -185,17 +185,15 @@ String JvmUserConfiguration::export_configuration_to_json(const JvmUserConfigura
 }
 
 Error split_argument(const String& cmd_arg, String& identifier, String& value) {
-    Vector<String> jvm_debug_split {cmd_arg.split("=")};
-
-    if (jvm_debug_split.size() == 2) {
-        identifier = jvm_debug_split[0];
-        value = jvm_debug_split[1];
-    } else if (jvm_debug_split.size() == 1) {
-        identifier = jvm_debug_split[0];
+    int split_position = cmd_arg.find("=");
+    if (split_position == -1) {
+        identifier = cmd_arg;
         value = "";
-    } else {
-        JVM_ERR_FAIL_V_MSG(Error::ERR_PARSE_ERROR, "Can't parse command-line argument: %s", cmd_arg);
+        return OK;
     }
+
+    identifier = cmd_arg.substr(0, split_position);
+    value = cmd_arg.substr(split_position + 1, cmd_arg.length());
     return OK;
 }
 
@@ -272,8 +270,14 @@ void JvmUserConfiguration::parse_command_line(const List<String>& args, HashMap<
             configuration_map[DISABLE_GC_CMD_IDENTIFIER] = get_cmd_bool_or_default(value, TRUE_STRING);
         } else if (identifier == JVM_ARGUMENTS_CMD_IDENTIFIER) {
             Array arr {};
-            for(String jvm_arg: value.split(" ")){
-                arr.append(arg);
+            // Support both comma-separated and space-separated values.
+            // Space separation requires quoting at shell level, e.g.:
+            // --jvm-custom-args="-Xmx4g -Xms4g"
+            for (String jvm_arg : value.replace(",", " ").split(" ", false)) {
+                String stripped_jvm_arg = jvm_arg.strip_edges();
+                if (!stripped_jvm_arg.is_empty()) {
+                    arr.append(stripped_jvm_arg);
+                }
             }
             configuration_map[JVM_ARGUMENTS_CMD_IDENTIFIER] = arr;
         }
@@ -302,7 +306,7 @@ void JvmUserConfiguration::merge_with_command_line(JvmUserConfiguration& json_co
         // Will be overridden if the actual argument is used.
         json_config.use_debug = true;
     }
-    replace_json_value_by_cmd_value(cmd_map, json_config.use_debug, DEBUG_PORT_CMD_IDENTIFIER);
+    replace_json_value_by_cmd_value(cmd_map, json_config.use_debug, USE_DEBUG_CMD_IDENTIFIER);
     replace_json_value_by_cmd_value(cmd_map, json_config.jvm_jmx_port, JMX_PORT_CMD_IDENTIFIER);
     replace_json_value_by_cmd_value(cmd_map, json_config.max_string_size, MAX_STRING_SIZE_CMD_IDENTIFIER);
     replace_json_value_by_cmd_value(cmd_map, json_config.disable_gc, DISABLE_GC_CMD_IDENTIFIER);

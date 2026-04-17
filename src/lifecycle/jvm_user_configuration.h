@@ -18,14 +18,14 @@ static constexpr const char* JVM_ARGUMENTS_JSON_IDENTIFIER {"custom_jvm_args"};
 
 // COMMAND LINE IDENTIFIER
 static constexpr const char* VM_TYPE_CMD_IDENTIFIER {"--jvm-vm-type"};
-static constexpr const char* USE_DEBUG_CMD_IDENTIFIER {"--jvm-use_debug"};
+static constexpr const char* USE_DEBUG_CMD_IDENTIFIER {"--jvm-use-debug"};
 static constexpr const char* DEBUG_PORT_CMD_IDENTIFIER {"--jvm-debug-port"};
 static constexpr const char* DEBUG_ADDRESS_CMD_IDENTIFIER {"--jvm-debug-address"};
-static constexpr const char* WAIT_FOR_DEBUGGER_CMD_IDENTIFIER {"--wait-for-debugger"};
+static constexpr const char* WAIT_FOR_DEBUGGER_CMD_IDENTIFIER {"--jvm-wait-for-debugger"};
 static constexpr const char* JMX_PORT_CMD_IDENTIFIER {"--jvm-jmx-port"};
 static constexpr const char* MAX_STRING_SIZE_CMD_IDENTIFIER {"--jvm-max-string-size"};
 static constexpr const char* DISABLE_GC_CMD_IDENTIFIER {"--jvm-disable-gc"};
-static constexpr const char* JVM_ARGUMENTS_CMD_IDENTIFIER {"--custom-jvm-args"};
+static constexpr const char* JVM_ARGUMENTS_CMD_IDENTIFIER {"--jvm-custom-args"};
 
 // VALUE
 static constexpr const char* AUTO_STRING {"auto"};
