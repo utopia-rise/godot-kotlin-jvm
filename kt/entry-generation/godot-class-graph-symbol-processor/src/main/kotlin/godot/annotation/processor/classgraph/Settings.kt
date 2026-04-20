@@ -7,6 +7,7 @@ data class Settings(
     val isFqNameRegistrationEnabled: Boolean,
     val projectName: String,
     val projectBaseDir: File,
+    val userCodeClassPathRoots: Set<File>,
     val registrationBaseDirPathRelativeToProjectDir: String,
     val isRegistrationFileHierarchyEnabled: Boolean,
     val isRegistrationFileGenerationEnabled: Boolean,

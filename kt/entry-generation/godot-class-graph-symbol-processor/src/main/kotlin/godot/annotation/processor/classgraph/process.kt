@@ -2,9 +2,6 @@ package godot.annotation.processor.classgraph
 
 import godot.annotation.GodotBaseType
 import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
-import godot.annotation.RegisterProperty
-import godot.annotation.RegisterSignal
 import godot.annotation.processor.classgraph.extensions.mapToClazz
 import godot.annotation.processor.classgraph.logging.LoggerWrapper
 import godot.core.KtObject
@@ -15,6 +12,7 @@ import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.utils.DefaultJvmTypeProvider
 import godot.tools.common.constants.FileExtensions
 import io.github.classgraph.ClassGraph
+import io.github.classgraph.ClassInfo
 import org.slf4j.Logger
 import java.io.File
 import java.io.FileOutputStream
@@ -42,16 +40,11 @@ fun generateEntryUsingClassGraph(
         .use {
             RegisteredClassMetadataContainerDatabase.populateDependencies(it, settings)
 
-            val classesToProcess = linkedSetOf<io.github.classgraph.ClassInfo>().apply {
-                addAll(it.getClassesWithAnnotation(RegisterClass::class.java.name))
-                addAll(it.getClassesWithMethodAnnotation(RegisterFunction::class.java.name))
-                addAll(it.getClassesWithFieldAnnotation(RegisterProperty::class.java.name))
-                addAll(it.getClassesWithFieldAnnotation(RegisterSignal::class.java.name))
-                addAll(
-                    it.getSubclasses(KtObject::class.java.name)
-                        .filter { classInfo -> classInfo.isAbstract }
-                )
+            val normalizedUserCodeRoots = settings.userCodeClassPathRoots.mapTo(hashSetOf()) { file ->
+                file.canonicalFile
             }
+            val classesToProcess = it.getClassesWithAnnotation(RegisterClass::class.java.name)
+                .filter { classInfo -> classInfo.isFromUserCode(normalizedUserCodeRoots) }
 
             val classes = classesToProcess
                 .filter { classInfo ->
@@ -178,4 +171,11 @@ fun generateEntryUsingClassGraph(
                 )
             }
         }
+}
+
+private fun ClassInfo.isFromUserCode(normalizedUserCodeRoots: Set<File>): Boolean {
+    if (normalizedUserCodeRoots.isEmpty()) return true
+
+    val classpathElementFile = classpathElementFile?.canonicalFile ?: return false
+    return normalizedUserCodeRoots.contains(classpathElementFile)
 }
