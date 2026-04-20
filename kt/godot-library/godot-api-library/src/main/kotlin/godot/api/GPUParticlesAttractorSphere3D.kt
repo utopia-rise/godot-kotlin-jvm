@@ -44,7 +44,7 @@ public open class GPUParticlesAttractorSphere3D : GPUParticlesAttractor3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(663, scriptPtr)
+    createNativeObject(258, scriptPtr)
   }
 
   public final fun setRadius(radius: Float): Unit {

@@ -155,7 +155,7 @@ public object XRServer : Object() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(36)
+    getSingleton(37)
   }
 
   /**

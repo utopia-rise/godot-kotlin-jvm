@@ -41,7 +41,7 @@ import kotlin.Unit
 @GodotBaseType
 public abstract class ResourceFormatLoader : RefCounted() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(199, scriptPtr)
+    createNativeObject(609, scriptPtr)
   }
 
   /**

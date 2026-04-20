@@ -40,7 +40,7 @@ import kotlin.Unit
 @GodotBaseType
 public abstract class TextServerExtension : TextServer() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(210, scriptPtr)
+    createNativeObject(723, scriptPtr)
   }
 
   /**
@@ -1405,6 +1405,13 @@ public abstract class TextServerExtension : TextServer() {
    */
   public open fun _shapedGetRunRange(shaped: RID, index: Long): Vector2i {
     throw NotImplementedError("TextServerExtension::_shapedGetRunRange is not implemented.")
+  }
+
+  /**
+   * Returns the glyph range of the [index] text run (in visual order).
+   */
+  public open fun _shapedGetRunGlyphRange(shaped: RID, index: Long): Vector2i {
+    throw NotImplementedError("TextServerExtension::_shapedGetRunGlyphRange is not implemented.")
   }
 
   /**

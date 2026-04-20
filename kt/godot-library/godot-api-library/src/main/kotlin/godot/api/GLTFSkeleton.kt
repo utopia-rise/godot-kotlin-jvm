@@ -86,7 +86,7 @@ public open class GLTFSkeleton : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(945, scriptPtr)
+    createNativeObject(248, scriptPtr)
   }
 
   /**

@@ -127,7 +127,7 @@ public object Input : Object() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(18)
+    getSingleton(10)
   }
 
   /**
@@ -468,10 +468,10 @@ public object Input : Object() {
   }
 
   /**
-   * Returns an SDL2-compatible device GUID on platforms that use gamepad remapping, e.g.
-   * `030000004c050000c405000000010000`. Returns an empty string if it cannot be found. Godot uses the
-   * [url=https://github.com/gabomdq/SDL_GameControllerDB]SDL2 game controller database[/url] to
-   * determine gamepad names and mappings based on this GUID.
+   * Returns an SDL-compatible device GUID on platforms that use gamepad remapping, e.g.
+   * `030000004c050000c405000000010000`. Returns an empty string if it cannot be found. Godot uses
+   * SDL's internal mappings, supplemented by community-contributed mappings, to determine gamepad
+   * names and mappings based on this GUID.
    *
    * On Windows, all XInput joypad GUIDs will be overridden by Godot to `__XINPUT_DEVICE__`, because
    * their mappings are the same.

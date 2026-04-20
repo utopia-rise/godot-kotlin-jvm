@@ -70,7 +70,7 @@ public open class PlaceholderTextureLayered internal constructor() : TextureLaye
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(798, scriptPtr)
+    createNativeObject(550, scriptPtr)
   }
 
   /**

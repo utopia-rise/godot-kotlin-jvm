@@ -66,7 +66,7 @@ public open class Sky : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(677, scriptPtr)
+    createNativeObject(667, scriptPtr)
   }
 
   public final fun setRadianceSize(size: RadianceSize): Unit {

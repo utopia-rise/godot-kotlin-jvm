@@ -59,7 +59,7 @@ public open class XRFaceModifier3D : Node3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(625, scriptPtr)
+    createNativeObject(927, scriptPtr)
   }
 
   public final fun setFaceTracker(trackerName: StringName): Unit {

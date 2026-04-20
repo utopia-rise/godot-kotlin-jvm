@@ -221,7 +221,7 @@ public open class TabContainer : Container() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(379, scriptPtr)
+    createNativeObject(715, scriptPtr)
   }
 
   /**

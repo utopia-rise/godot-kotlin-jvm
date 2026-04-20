@@ -32,7 +32,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class TCPServer : SocketServer() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(165, scriptPtr)
+    createNativeObject(712, scriptPtr)
   }
 
   /**

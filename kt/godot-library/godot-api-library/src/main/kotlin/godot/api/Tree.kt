@@ -354,7 +354,7 @@ public open class Tree : Control() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(16, scriptPtr)
+    createNativeObject(757, scriptPtr)
   }
 
   /**

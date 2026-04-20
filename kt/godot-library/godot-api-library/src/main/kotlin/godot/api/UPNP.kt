@@ -62,7 +62,7 @@ import kotlin.jvm.JvmOverloads
  * 	var upnp = UPNP.new()
  * 	var err = upnp.discover()
  *
- * 	if err != OK:
+ * 	if err != UPNP.UPNP_RESULT_SUCCESS:
  * 		push_error(str(err))
  * 		upnp_completed.emit(err)
  * 		return
@@ -72,7 +72,7 @@ import kotlin.jvm.JvmOverloads
  * ProjectSettings.get_setting("application/config/name"), "UDP")
  * 		upnp.add_port_mapping(server_port, server_port,
  * ProjectSettings.get_setting("application/config/name"), "TCP")
- * 		upnp_completed.emit(OK)
+ * 		upnp_completed.emit(UPNP.UPNP_RESULT_SUCCESS)
  *
  * func _ready():
  * 	thread = Thread.new()
@@ -157,7 +157,7 @@ public open class UPNP : RefCounted() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(14, scriptPtr)
+    createNativeObject(766, scriptPtr)
   }
 
   /**

@@ -24,7 +24,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class OpenXRSpatialContextPersistenceConfig : OpenXRStructureBase() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(891, scriptPtr)
+    createNativeObject(480, scriptPtr)
   }
 
   /**

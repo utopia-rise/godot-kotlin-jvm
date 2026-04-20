@@ -68,7 +68,7 @@ public open class ViewportTexture : Texture2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(413, scriptPtr)
+    createNativeObject(783, scriptPtr)
   }
 
   public final fun setViewportPathInScene(path: NodePath): Unit {

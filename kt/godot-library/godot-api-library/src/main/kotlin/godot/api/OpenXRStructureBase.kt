@@ -38,7 +38,7 @@ public open class OpenXRStructureBase : RefCounted() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(898, scriptPtr)
+    createNativeObject(486, scriptPtr)
   }
 
   public open fun _getHeader(next: Long): Long {

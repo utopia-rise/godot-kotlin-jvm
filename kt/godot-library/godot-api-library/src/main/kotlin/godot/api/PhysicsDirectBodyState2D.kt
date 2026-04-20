@@ -180,7 +180,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(55, scriptPtr)
+    createNativeObject(517, scriptPtr)
   }
 
   /**

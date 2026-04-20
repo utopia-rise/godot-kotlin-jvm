@@ -131,7 +131,7 @@ public open class FogMaterial : Material() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(597, scriptPtr)
+    createNativeObject(224, scriptPtr)
   }
 
   /**

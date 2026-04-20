@@ -110,7 +110,7 @@ public infix fun Long.and(other: TextServer.FontStyle): Long = this.and(other.fl
 @GodotBaseType
 public open class TextServer internal constructor() : RefCounted() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(25, scriptPtr)
+    createNativeObject(720, scriptPtr)
   }
 
   /**
@@ -1976,6 +1976,15 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun shapedGetRunRange(shaped: RID, index: Long): Vector2i {
     TransferContext.writeArguments(_RID to shaped, LONG to index)
     TransferContext.callMethod(ptr, MethodBindings.shapedGetRunRangePtr, VECTOR2I)
+    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
+  }
+
+  /**
+   * Returns the glyph range of the [index] text run (in visual order).
+   */
+  public final fun shapedGetRunGlyphRange(shaped: RID, index: Long): Vector2i {
+    TransferContext.writeArguments(_RID to shaped, LONG to index)
+    TransferContext.callMethod(ptr, MethodBindings.shapedGetRunGlyphRangePtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
@@ -4204,6 +4213,9 @@ public open class TextServer internal constructor() : RefCounted() {
 
     internal val shapedGetRunRangePtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "shaped_get_run_range", 4069534484)
+
+    internal val shapedGetRunGlyphRangePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "shaped_get_run_glyph_range", 4069534484)
 
     internal val shapedGetRunFontRidPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "shaped_get_run_font_rid", 1066463050)

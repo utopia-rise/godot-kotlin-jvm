@@ -132,7 +132,7 @@ public open class GLTFLight : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(726, scriptPtr)
+    createNativeObject(242, scriptPtr)
   }
 
   /**

@@ -24,7 +24,7 @@ import kotlin.Unit
 public open class OpenXRSpatialCapabilityConfigurationAnchor :
     OpenXRSpatialCapabilityConfigurationBaseHeader() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(896, scriptPtr)
+    createNativeObject(461, scriptPtr)
   }
 
   /**

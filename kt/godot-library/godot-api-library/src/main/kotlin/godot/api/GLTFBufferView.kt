@@ -114,7 +114,7 @@ public open class GLTFBufferView : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(728, scriptPtr)
+    createNativeObject(237, scriptPtr)
   }
 
   /**

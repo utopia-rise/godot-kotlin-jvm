@@ -1,9 +1,9 @@
 [versions]
 
-godotKotlinJvm = "0.15.0"
-kotlin = "2.1.10" # https://kotlinlang.org/docs/releases.html#release-details
+godotKotlinJvm = "0.16.0"
+kotlin = "2.3.20" # https://kotlinlang.org/docs/releases.html#release-details
 kotlinCoroutine = "1.10.1" # https://github.com/Kotlin/kotlinx.coroutines/releases
-godot = "4.6"
+godot = "4.6.2"
 ideaPluginDefaultIntellijVersion = "2025.1"
 
 toolchain-jvm="11"

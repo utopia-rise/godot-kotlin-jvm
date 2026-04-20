@@ -24,7 +24,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class GodotInstance internal constructor() : Object() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(118, scriptPtr)
+    createNativeObject(269, scriptPtr)
   }
 
   /**

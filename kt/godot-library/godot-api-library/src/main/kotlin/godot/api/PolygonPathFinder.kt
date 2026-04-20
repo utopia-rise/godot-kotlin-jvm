@@ -32,7 +32,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class PolygonPathFinder : Resource() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(755, scriptPtr)
+    createNativeObject(556, scriptPtr)
   }
 
   /**

@@ -57,7 +57,7 @@ public object GDExtensionManager : Object() {
   public val extensionUnloading: Signal1<GDExtension> by Signal1
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(26)
+    getSingleton(6)
   }
 
   /**

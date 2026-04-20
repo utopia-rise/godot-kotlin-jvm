@@ -36,7 +36,7 @@ public open class VisualShaderNodeBooleanConstant : VisualShaderNodeConstant() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(568, scriptPtr)
+    createNativeObject(792, scriptPtr)
   }
 
   public final fun setConstant(constant: Boolean): Unit {

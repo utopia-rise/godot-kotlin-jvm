@@ -118,7 +118,7 @@ public object AudioServer : Object() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(24)
+    getSingleton(0)
   }
 
   @JvmStatic

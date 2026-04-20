@@ -82,7 +82,7 @@ public open class Joint2D internal constructor() : Node2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(433, scriptPtr)
+    createNativeObject(335, scriptPtr)
   }
 
   public final fun setNodeA(node: NodePath): Unit {

@@ -38,7 +38,7 @@ public open class JointLimitationCone3D : JointLimitation3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(652, scriptPtr)
+    createNativeObject(338, scriptPtr)
   }
 
   public final fun setAngle(angle: Float): Unit {

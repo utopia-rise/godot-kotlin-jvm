@@ -117,6 +117,10 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
    * The relative option. If `true`, the rotation is applied relative to the pose. If `false`, the
    * rotation is applied relative to the rest. It means to replace the current pose with the
    * [LookAtModifier3D]'s result.
+   *
+   * **Note:** This option affects the base angle for [useAngleLimitation] unlike [IterateIK3D]'s
+   * [JointLimitation3D]. Since the [LookAtModifier3D] relies strongly on Euler rotation, the axis that
+   * determines the limitation and the actual rotation are strongly tied together.
    */
   public final inline var relative: Boolean
     @JvmName("relativeProperty")
@@ -256,8 +260,8 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
    * from rotating 360 degrees.
    *
    * **Note:** As with [AnimationTree] blending, interpolation is provided that favors
-   * [Skeleton3D.getBoneRest]. This means that interpolation does not select the shortest path in some
-   * cases.
+   * [Skeleton3D.getBoneRest] or [Skeleton3D.getBonePose] depends on the [relative] option. This means
+   * that interpolation does not select the shortest path in some cases.
    *
    * **Note:** Some values for [transitionType] (such as [Tween.TRANS_BACK], [Tween.TRANS_ELASTIC],
    * and [Tween.TRANS_SPRING]) may exceed the limitations. If interpolation occurs while overshooting
@@ -425,7 +429,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(614, scriptPtr)
+    createNativeObject(357, scriptPtr)
   }
 
   /**

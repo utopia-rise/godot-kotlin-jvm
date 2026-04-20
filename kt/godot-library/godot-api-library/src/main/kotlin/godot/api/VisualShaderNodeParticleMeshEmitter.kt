@@ -62,7 +62,7 @@ public open class VisualShaderNodeParticleMeshEmitter : VisualShaderNodeParticle
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(474, scriptPtr)
+    createNativeObject(840, scriptPtr)
   }
 
   public final fun setMesh(mesh: Mesh?): Unit {

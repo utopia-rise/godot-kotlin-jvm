@@ -89,7 +89,7 @@ public open class InputEventAction : InputEvent() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(177, scriptPtr)
+    createNativeObject(305, scriptPtr)
   }
 
   public final fun setAction(action: StringName): Unit {

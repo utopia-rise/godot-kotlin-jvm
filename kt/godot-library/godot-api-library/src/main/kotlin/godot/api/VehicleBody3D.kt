@@ -88,7 +88,7 @@ public open class VehicleBody3D : RigidBody3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(612, scriptPtr)
+    createNativeObject(776, scriptPtr)
   }
 
   public final fun setEngineForce(engineForce: Float): Unit {

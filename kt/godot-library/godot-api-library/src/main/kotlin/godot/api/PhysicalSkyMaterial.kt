@@ -197,7 +197,7 @@ public open class PhysicalSkyMaterial : Material() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(831, scriptPtr)
+    createNativeObject(514, scriptPtr)
   }
 
   /**

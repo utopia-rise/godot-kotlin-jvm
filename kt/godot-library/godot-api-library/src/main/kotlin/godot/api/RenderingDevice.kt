@@ -116,7 +116,7 @@ public infix fun Long.and(other: RenderingDevice.DrawFlags): Long = this.and(oth
 @GodotBaseType
 public open class RenderingDevice internal constructor() : Object() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(42, scriptPtr)
+    createNativeObject(606, scriptPtr)
   }
 
   /**

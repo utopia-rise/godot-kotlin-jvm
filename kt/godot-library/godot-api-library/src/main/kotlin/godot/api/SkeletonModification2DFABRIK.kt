@@ -74,7 +74,7 @@ public open class SkeletonModification2DFABRIK : SkeletonModification2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(861, scriptPtr)
+    createNativeObject(655, scriptPtr)
   }
 
   public final fun setTargetNode(targetNodepath: NodePath): Unit {

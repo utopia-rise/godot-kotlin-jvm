@@ -26,7 +26,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class OptimizedTranslation : Translation() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(142, scriptPtr)
+    createNativeObject(488, scriptPtr)
   }
 
   /**

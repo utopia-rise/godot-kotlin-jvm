@@ -225,7 +225,7 @@ public open class Sprite2D : Node2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(461, scriptPtr)
+    createNativeObject(685, scriptPtr)
   }
 
   /**

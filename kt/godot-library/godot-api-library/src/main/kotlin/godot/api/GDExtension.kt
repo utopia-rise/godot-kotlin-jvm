@@ -30,7 +30,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class GDExtension : Resource() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(119, scriptPtr)
+    createNativeObject(232, scriptPtr)
   }
 
   /**

@@ -21,7 +21,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class OpenXRVisibilityMask : VisualInstance3D() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(906, scriptPtr)
+    createNativeObject(487, scriptPtr)
   }
 
   public companion object

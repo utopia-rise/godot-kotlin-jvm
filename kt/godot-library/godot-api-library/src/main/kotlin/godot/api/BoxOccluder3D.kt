@@ -46,7 +46,7 @@ public open class BoxOccluder3D : Occluder3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(692, scriptPtr)
+    createNativeObject(114, scriptPtr)
   }
 
   /**

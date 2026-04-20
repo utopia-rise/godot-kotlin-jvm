@@ -70,7 +70,7 @@ public open class OpenXRActionSet : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(923, scriptPtr)
+    createNativeObject(432, scriptPtr)
   }
 
   public final fun setLocalizedName(localizedName: String): Unit {

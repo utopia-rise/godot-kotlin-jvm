@@ -45,7 +45,7 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(856, scriptPtr)
+    createNativeObject(658, scriptPtr)
   }
 
   public final fun setPhysicalBoneChainLength(length: Int): Unit {

@@ -76,7 +76,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public object PhysicsServer3D : Object() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(8)
+    getSingleton(25)
   }
 
   /**

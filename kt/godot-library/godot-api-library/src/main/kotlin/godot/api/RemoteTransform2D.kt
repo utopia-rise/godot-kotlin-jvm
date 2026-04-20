@@ -86,7 +86,7 @@ public open class RemoteTransform2D : Node2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(425, scriptPtr)
+    createNativeObject(594, scriptPtr)
   }
 
   public final fun setRemoteNode(path: NodePath): Unit {

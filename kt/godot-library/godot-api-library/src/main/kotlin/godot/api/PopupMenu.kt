@@ -215,7 +215,7 @@ public open class PopupMenu : Popup() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(47, scriptPtr)
+    createNativeObject(558, scriptPtr)
   }
 
   /**

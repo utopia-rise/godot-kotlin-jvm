@@ -24,7 +24,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class OpenXRSpatialComponentPersistenceList : OpenXRSpatialComponentData() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(877, scriptPtr)
+    createNativeObject(476, scriptPtr)
   }
 
   /**

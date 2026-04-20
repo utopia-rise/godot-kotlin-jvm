@@ -62,7 +62,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class PacketPeerUDP : PacketPeer() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(159, scriptPtr)
+    createNativeObject(498, scriptPtr)
   }
 
   /**

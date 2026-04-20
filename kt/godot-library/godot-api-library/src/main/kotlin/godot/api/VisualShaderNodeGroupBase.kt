@@ -28,7 +28,7 @@ import kotlin.Unit
 public open class VisualShaderNodeGroupBase internal constructor() : VisualShaderNodeResizableBase()
     {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(576, scriptPtr)
+    createNativeObject(820, scriptPtr)
   }
 
   /**

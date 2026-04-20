@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.PackedStringArray
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.Vector2i
@@ -75,7 +76,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public abstract class MovieWriter : Object() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(263, scriptPtr)
+    createNativeObject(378, scriptPtr)
   }
 
   /**
@@ -106,6 +107,11 @@ public abstract class MovieWriter : Object() {
    * ```
    */
   public abstract fun _handlesFile(path: String): Boolean
+
+  /**
+   * Returns the list of supported filename extensions for movies written with this [MovieWriter].
+   */
+  public abstract fun _getSupportedExtensions(): PackedStringArray
 
   /**
    * Called once before the engine starts writing video and audio data. [movieSize] is the width and

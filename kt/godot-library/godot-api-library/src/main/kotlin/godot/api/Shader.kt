@@ -54,7 +54,7 @@ public open class Shader : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(32, scriptPtr)
+    createNativeObject(640, scriptPtr)
   }
 
   /**

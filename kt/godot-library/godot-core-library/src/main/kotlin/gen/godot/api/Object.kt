@@ -115,7 +115,7 @@ public open class Object : KtObject() {
   public val propertyListChanged: Signal0 by Signal0
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(1, scriptPtr)
+    createNativeObject(0, scriptPtr)
   }
 
   /**

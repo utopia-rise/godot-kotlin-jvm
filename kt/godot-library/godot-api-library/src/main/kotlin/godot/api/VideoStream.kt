@@ -38,7 +38,7 @@ public abstract class VideoStream : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(359, scriptPtr)
+    createNativeObject(778, scriptPtr)
   }
 
   /**

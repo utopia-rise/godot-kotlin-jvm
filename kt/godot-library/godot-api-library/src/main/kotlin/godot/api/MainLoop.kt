@@ -88,7 +88,7 @@ public open class MainLoop : Object() {
   public val onRequestPermissionsResult: Signal2<String, Boolean> by Signal2
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(145, scriptPtr)
+    createNativeObject(358, scriptPtr)
   }
 
   /**

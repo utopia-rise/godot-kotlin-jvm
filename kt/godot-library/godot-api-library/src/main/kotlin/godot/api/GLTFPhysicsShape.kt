@@ -139,7 +139,7 @@ public open class GLTFPhysicsShape : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(946, scriptPtr)
+    createNativeObject(247, scriptPtr)
   }
 
   /**

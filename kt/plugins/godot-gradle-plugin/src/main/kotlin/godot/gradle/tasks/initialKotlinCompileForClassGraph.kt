@@ -6,15 +6,13 @@ import org.gradle.api.tasks.SourceSetContainer
 import org.gradle.api.tasks.TaskProvider
 import org.gradle.api.tasks.compile.JavaCompile
 import org.gradle.api.tasks.scala.ScalaCompile
-import org.jetbrains.kotlin.gradle.dsl.KotlinJvmCompilerOptions
-import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinWithJavaCompilation
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 fun Project.initialKotlinCompileForClassGraph(
     classGraphScalaCompile: TaskProvider<ScalaCompile>,
     classGraphJavaCompile: TaskProvider<JavaCompile>
-): KotlinWithJavaCompilation<KotlinJvmOptions, KotlinJvmCompilerOptions> {
+): KotlinWithJavaCompilation<*, *> {
     val mainCompilation = kotlinJvmExtension.target.compilations.getByName("main")
 
     val mainSourceSet =  project.extensions

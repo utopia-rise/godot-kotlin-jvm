@@ -113,7 +113,7 @@ public open class HTTPClient : RefCounted() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(156, scriptPtr)
+    createNativeObject(287, scriptPtr)
   }
 
   /**

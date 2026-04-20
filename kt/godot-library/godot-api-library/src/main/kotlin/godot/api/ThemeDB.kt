@@ -112,7 +112,7 @@ public object ThemeDB : Object() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(35)
+    getSingleton(33)
   }
 
   /**

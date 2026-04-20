@@ -23,7 +23,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class OpenXRSpatialComponentData : RefCounted() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(889, scriptPtr)
+    createNativeObject(471, scriptPtr)
   }
 
   /**

@@ -7,13 +7,11 @@ import godot.tools.common.constants.FileExtensions
 import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.tasks.TaskProvider
-import org.jetbrains.kotlin.gradle.dsl.KotlinJvmCompilerOptions
-import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinWithJavaCompilation
 import java.io.File
 
 fun Project.classGraphSymbolsProcess(
-    classGraphKotlinCompile: KotlinWithJavaCompilation<KotlinJvmOptions, KotlinJvmCompilerOptions>,
+    classGraphKotlinCompile: KotlinWithJavaCompilation<*, *>,
     deleteClassGraphGeneratedTask: TaskProvider<out Task>
 ): TaskProvider<out Task> {
     val classGraphGenerationTask = tasks.register(

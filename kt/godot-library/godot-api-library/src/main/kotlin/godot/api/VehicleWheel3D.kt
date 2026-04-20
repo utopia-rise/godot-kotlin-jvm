@@ -225,7 +225,7 @@ public open class VehicleWheel3D : Node3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(611, scriptPtr)
+    createNativeObject(777, scriptPtr)
   }
 
   public final fun setRadius(length: Float): Unit {

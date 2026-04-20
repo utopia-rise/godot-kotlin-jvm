@@ -31,7 +31,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public object NavigationServer2DManager : Object() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(31)
+    getSingleton(18)
   }
 
   /**

@@ -55,7 +55,7 @@ public open class SplineIK3D : ChainIK3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(639, scriptPtr)
+    createNativeObject(676, scriptPtr)
   }
 
   /**

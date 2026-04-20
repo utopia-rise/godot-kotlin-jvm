@@ -74,7 +74,7 @@ public open class OccluderPolygon2D : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(438, scriptPtr)
+    createNativeObject(423, scriptPtr)
   }
 
   /**

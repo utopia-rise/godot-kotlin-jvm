@@ -25,7 +25,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class OpenXRSpatialComponentMesh3DList : OpenXRSpatialComponentData() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(884, scriptPtr)
+    createNativeObject(474, scriptPtr)
   }
 
   /**

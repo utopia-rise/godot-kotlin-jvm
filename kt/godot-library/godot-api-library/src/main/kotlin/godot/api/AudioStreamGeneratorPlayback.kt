@@ -33,7 +33,7 @@ import kotlin.Unit
 public open class AudioStreamGeneratorPlayback internal constructor() :
     AudioStreamPlaybackResampled() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(317, scriptPtr)
+    createNativeObject(83, scriptPtr)
   }
 
   /**

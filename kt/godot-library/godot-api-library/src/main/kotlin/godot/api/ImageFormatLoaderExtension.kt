@@ -28,7 +28,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class ImageFormatLoaderExtension : ImageFormatLoader() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(121, scriptPtr)
+    createNativeObject(296, scriptPtr)
   }
 
   /**

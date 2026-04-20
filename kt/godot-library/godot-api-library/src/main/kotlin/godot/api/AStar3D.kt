@@ -115,7 +115,7 @@ public open class AStar3D : RefCounted() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(129, scriptPtr)
+    createNativeObject(4, scriptPtr)
   }
 
   /**

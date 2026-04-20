@@ -198,7 +198,7 @@ public open class CanvasLayer : Node() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(408, scriptPtr)
+    createNativeObject(142, scriptPtr)
   }
 
   /**

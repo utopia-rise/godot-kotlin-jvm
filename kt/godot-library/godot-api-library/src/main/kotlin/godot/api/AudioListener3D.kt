@@ -47,7 +47,7 @@ public open class AudioListener3D : Node3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(699, scriptPtr)
+    createNativeObject(77, scriptPtr)
   }
 
   /**

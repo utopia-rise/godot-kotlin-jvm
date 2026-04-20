@@ -57,7 +57,7 @@ public open class RegExMatch : RefCounted() {
     get() = getStrings()
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(873, scriptPtr)
+    createNativeObject(593, scriptPtr)
   }
 
   public final fun getSubject(): String {

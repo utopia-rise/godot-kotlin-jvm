@@ -23,7 +23,7 @@ import kotlin.Unit
 @GodotBaseType
 public abstract class ScriptExtension : Script() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(194, scriptPtr)
+    createNativeObject(630, scriptPtr)
   }
 
   public abstract fun _editorCanReloadFromFile(): Boolean

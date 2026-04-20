@@ -48,7 +48,7 @@ public open class RectangleShape2D : Shape2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(765, scriptPtr)
+    createNativeObject(589, scriptPtr)
   }
 
   /**

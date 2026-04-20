@@ -100,7 +100,7 @@ public open class Theme : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(406, scriptPtr)
+    createNativeObject(739, scriptPtr)
   }
 
   /**

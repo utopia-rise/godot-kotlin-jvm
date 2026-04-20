@@ -19,7 +19,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VFlowContainer : FlowContainer() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(364, scriptPtr)
+    createNativeObject(771, scriptPtr)
   }
 
   public companion object

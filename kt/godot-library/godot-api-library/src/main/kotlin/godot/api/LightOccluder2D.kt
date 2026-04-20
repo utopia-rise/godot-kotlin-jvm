@@ -63,7 +63,7 @@ public open class LightOccluder2D : Node2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(439, scriptPtr)
+    createNativeObject(346, scriptPtr)
   }
 
   public final fun setOccluderPolygon(polygon: OccluderPolygon2D?): Unit {

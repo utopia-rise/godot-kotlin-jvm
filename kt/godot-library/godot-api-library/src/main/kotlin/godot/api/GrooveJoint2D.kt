@@ -50,7 +50,7 @@ public open class GrooveJoint2D : Joint2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(431, scriptPtr)
+    createNativeObject(279, scriptPtr)
   }
 
   public final fun setLength(length: Float): Unit {

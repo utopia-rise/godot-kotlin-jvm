@@ -23,7 +23,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class ResourceImporter internal constructor() : RefCounted() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(120, scriptPtr)
+    createNativeObject(611, scriptPtr)
   }
 
   /**

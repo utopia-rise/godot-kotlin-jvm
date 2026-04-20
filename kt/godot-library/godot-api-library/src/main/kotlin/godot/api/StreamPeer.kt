@@ -55,7 +55,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(172, scriptPtr)
+    createNativeObject(693, scriptPtr)
   }
 
   /**

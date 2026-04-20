@@ -31,7 +31,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class AudioStreamPlaybackInteractive internal constructor() : AudioStreamPlayback() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(938, scriptPtr)
+    createNativeObject(89, scriptPtr)
   }
 
   /**

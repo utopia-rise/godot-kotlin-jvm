@@ -147,7 +147,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(356, scriptPtr)
+    createNativeObject(158, scriptPtr)
   }
 
   /**

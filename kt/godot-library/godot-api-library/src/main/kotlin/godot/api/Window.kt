@@ -794,7 +794,7 @@ public open class Window : Viewport() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(7, scriptPtr)
+    createNativeObject(912, scriptPtr)
   }
 
   /**

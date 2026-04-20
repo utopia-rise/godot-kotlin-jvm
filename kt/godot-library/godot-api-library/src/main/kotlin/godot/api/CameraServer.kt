@@ -100,7 +100,7 @@ public object CameraServer : Object() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(29)
+    getSingleton(1)
   }
 
   @JvmStatic

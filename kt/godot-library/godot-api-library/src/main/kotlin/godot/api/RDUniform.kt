@@ -50,7 +50,7 @@ public open class RDUniform : RefCounted() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(284, scriptPtr)
+    createNativeObject(583, scriptPtr)
   }
 
   public final fun setUniformType(pMember: RenderingDevice.UniformType): Unit {

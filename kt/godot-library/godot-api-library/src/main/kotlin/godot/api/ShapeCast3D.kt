@@ -194,7 +194,7 @@ public open class ShapeCast3D : Node3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(606, scriptPtr)
+    createNativeObject(648, scriptPtr)
   }
 
   /**

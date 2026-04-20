@@ -49,7 +49,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class JavaScriptObject internal constructor() : RefCounted() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(862, scriptPtr)
+    createNativeObject(334, scriptPtr)
   }
 
   public companion object

@@ -41,7 +41,7 @@ public open class InputEventMagnifyGesture : InputEventGesture() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(175, scriptPtr)
+    createNativeObject(312, scriptPtr)
   }
 
   public final fun setFactor(factor: Float): Unit {

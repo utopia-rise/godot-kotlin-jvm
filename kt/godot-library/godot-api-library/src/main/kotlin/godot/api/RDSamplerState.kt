@@ -213,7 +213,7 @@ public open class RDSamplerState : RefCounted() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(286, scriptPtr)
+    createNativeObject(577, scriptPtr)
   }
 
   public final fun setMagFilter(pMember: RenderingDevice.SamplerFilter): Unit {

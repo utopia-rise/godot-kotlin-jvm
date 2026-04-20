@@ -108,7 +108,7 @@ public open class ImporterMeshInstance3D : Node3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(705, scriptPtr)
+    createNativeObject(302, scriptPtr)
   }
 
   public final fun setMesh(mesh: ImporterMesh?): Unit {

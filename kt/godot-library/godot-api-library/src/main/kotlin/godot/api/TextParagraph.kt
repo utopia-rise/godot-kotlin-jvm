@@ -196,7 +196,7 @@ public open class TextParagraph : RefCounted() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(26, scriptPtr)
+    createNativeObject(719, scriptPtr)
   }
 
   /**

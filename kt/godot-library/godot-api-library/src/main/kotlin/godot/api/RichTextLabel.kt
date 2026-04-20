@@ -503,7 +503,7 @@ public open class RichTextLabel : Control() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(38, scriptPtr)
+    createNativeObject(619, scriptPtr)
   }
 
   /**

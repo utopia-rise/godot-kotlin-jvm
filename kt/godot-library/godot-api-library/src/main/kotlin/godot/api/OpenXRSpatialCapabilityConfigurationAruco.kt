@@ -42,7 +42,7 @@ public open class OpenXRSpatialCapabilityConfigurationAruco :
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(893, scriptPtr)
+    createNativeObject(463, scriptPtr)
   }
 
   /**

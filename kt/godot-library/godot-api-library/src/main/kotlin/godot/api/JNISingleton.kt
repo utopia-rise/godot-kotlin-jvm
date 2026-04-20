@@ -29,7 +29,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class JNISingleton : Object() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(865, scriptPtr)
+    createNativeObject(326, scriptPtr)
   }
 
   /**

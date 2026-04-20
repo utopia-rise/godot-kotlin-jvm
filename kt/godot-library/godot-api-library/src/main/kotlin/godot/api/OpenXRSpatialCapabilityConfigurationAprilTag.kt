@@ -42,7 +42,7 @@ public open class OpenXRSpatialCapabilityConfigurationAprilTag :
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(892, scriptPtr)
+    createNativeObject(462, scriptPtr)
   }
 
   /**

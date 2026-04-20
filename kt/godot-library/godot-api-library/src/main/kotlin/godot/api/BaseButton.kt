@@ -186,7 +186,7 @@ public open class BaseButton : Control() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(404, scriptPtr)
+    createNativeObject(104, scriptPtr)
   }
 
   /**

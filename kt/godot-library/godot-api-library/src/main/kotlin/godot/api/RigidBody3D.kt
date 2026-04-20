@@ -521,7 +521,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(36, scriptPtr)
+    createNativeObject(621, scriptPtr)
   }
 
   /**

@@ -40,7 +40,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public object JavaClassWrapper : Object() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(37)
+    getSingleton(12)
   }
 
   /**

@@ -75,7 +75,7 @@ public open class OggPacketSequence : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(740, scriptPtr)
+    createNativeObject(425, scriptPtr)
   }
 
   /**

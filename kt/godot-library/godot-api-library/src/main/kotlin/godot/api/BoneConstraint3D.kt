@@ -33,7 +33,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class BoneConstraint3D : SkeletonModifier3D() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(646, scriptPtr)
+    createNativeObject(109, scriptPtr)
   }
 
   /**
