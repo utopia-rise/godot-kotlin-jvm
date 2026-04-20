@@ -207,6 +207,7 @@ open class GodotExtension(objects: ObjectFactory) {
         registrationFileBaseDir.set(target.projectDir.resolve(FileExtensions.GodotKotlinJvm.registrationFile))
         isRegistrationFileHierarchyEnabled.set(true)
         isFqNameRegistrationEnabled.set(false)
+        isRegistrationFileGenerationEnabled.set(true)
 
         isAndroidExportEnabled.set(false)
 
