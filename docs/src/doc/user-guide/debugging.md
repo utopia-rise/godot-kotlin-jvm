@@ -25,7 +25,7 @@ Open up the **Customize Run Instances** dialog from the **Debug** menu in Godot
 In the **Main Run Args**, you should specify your commandline options. In the example below we use port `5005` by specifying: `--jvm-debug-port=5005`
 
 !!! info
-    If you specify either `--jvm-debug-port` or `--jvm-debug-address` the execution of the game will suspend until you attach a remote debugger. You can configure this behaviour by specifying `--wait-for-debugger=true` or `--wait-for-debugger=false`
+    If you specify either `--jvm-debug-port` or `--jvm-debug-address` the execution of the game will suspend until you attach a remote debugger. You can configure this behaviour by specifying `--jvm-wait-for-debugger=true` or `--jvm-wait-for-debugger=false`
 
 ![remote debug configuration_step_2](../assets/img/remote_debug_configuration_godot_dialog.png)
 
@@ -46,7 +46,7 @@ Use the same port as you used in step 2, in our case `5005`
 
 #### 6. Launch the game in Godot
 
-Depending on your flags (`--wait-for-debugger`), the game will suspend until you attached the remote debugger from IntelliJ
+Depending on your flags (`--jvm-wait-for-debugger`), the game will suspend until you attached the remote debugger from IntelliJ
 
 #### 7. Run the Debug Game configuration
 
