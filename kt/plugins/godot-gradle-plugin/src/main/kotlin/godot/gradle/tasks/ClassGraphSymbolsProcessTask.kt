@@ -24,7 +24,7 @@ abstract class ClassGraphSymbolsProcessTask : DefaultTask() {
     abstract val classPrefix: Property<String>
 
     @get:Input
-    abstract val isFqNameRegistrationEnabled: Property<Boolean>
+    abstract val fqNameRegistrationEnabled: Property<Boolean>
 
     @get:Input
     abstract val projectName: Property<String>
@@ -33,10 +33,10 @@ abstract class ClassGraphSymbolsProcessTask : DefaultTask() {
     abstract val registrationBaseDirPathRelativeToProjectDir: Property<String>
 
     @get:Input
-    abstract val isRegistrationFileHierarchyEnabled: Property<Boolean>
+    abstract val registrationFileHierarchyEnabled: Property<Boolean>
 
     @get:Input
-    abstract val isRegistrationFileGenerationEnabled: Property<Boolean>
+    abstract val registrationFileGenerationEnabled: Property<Boolean>
 
     @get:OutputDirectory
     abstract val generatedSourceRootDir: DirectoryProperty
@@ -49,20 +49,20 @@ abstract class ClassGraphSymbolsProcessTask : DefaultTask() {
         val generatedSourceRoot = generatedSourceRootDir.get().asFile
         generatedSourceRoot.mkdirs()
 
-        if (isRegistrationFileGenerationEnabled.get()) {
+        if (registrationFileGenerationEnabled.get()) {
             registrationFilesOutputDir.get().asFile.mkdirs()
         }
 
         generateEntryUsingClassGraph(
             settings = Settings(
                 classPrefix = classPrefix.orNull,
-                isFqNameRegistrationEnabled = isFqNameRegistrationEnabled.get(),
+                isFqNameRegistrationEnabled = fqNameRegistrationEnabled.get(),
                 projectName = projectName.get(),
                 projectBaseDir = project.projectDir,
                 userCodeClassPathRoots = userCodeClassPathRoots.files.map { it.canonicalFile }.toSet(),
                 registrationBaseDirPathRelativeToProjectDir = registrationBaseDirPathRelativeToProjectDir.get(),
-                isRegistrationFileHierarchyEnabled = isRegistrationFileHierarchyEnabled.get(),
-                isRegistrationFileGenerationEnabled = isRegistrationFileGenerationEnabled.get(),
+                isRegistrationFileHierarchyEnabled = registrationFileHierarchyEnabled.get(),
+                isRegistrationFileGenerationEnabled = registrationFileGenerationEnabled.get(),
                 generatedSourceRootDir = generatedSourceRoot
             ),
             logger = logger,

@@ -21,7 +21,7 @@ fun Project.classGraphSymbolsProcess(
 
         task.userCodeClassPathRoots.from(classGraphKotlinCompile.output.allOutputs)
         task.classPrefix.convention(godotJvmExtension.classPrefix)
-        task.isFqNameRegistrationEnabled.convention(godotJvmExtension.isFqNameRegistrationEnabled)
+        task.fqNameRegistrationEnabled.convention(godotJvmExtension.isFqNameRegistrationEnabled)
         task.projectName.convention(
             providers.provider {
                 (godotJvmExtension.projectName.orNull ?: project.name).replace(" ", "_")
@@ -49,8 +49,8 @@ fun Project.classGraphSymbolsProcess(
                     .removeSuffix("/")
             }
         )
-        task.isRegistrationFileHierarchyEnabled.convention(godotJvmExtension.isRegistrationFileHierarchyEnabled)
-        task.isRegistrationFileGenerationEnabled.convention(godotJvmExtension.isRegistrationFileGenerationEnabled)
+        task.registrationFileHierarchyEnabled.convention(godotJvmExtension.isRegistrationFileHierarchyEnabled)
+        task.registrationFileGenerationEnabled.convention(godotJvmExtension.isRegistrationFileGenerationEnabled)
         task.generatedSourceRootDir.convention(layout.buildDirectory.dir("generated/classgraph"))
         task.registrationFilesOutputDir.convention(
             task.registrationBaseDirPathRelativeToProjectDir.map { relativePath ->
