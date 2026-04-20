@@ -1,80 +1,63 @@
 package godot.gradle.tasks
 
-import godot.annotation.processor.classgraph.Settings
-import godot.annotation.processor.classgraph.generateEntryUsingClassGraph
 import godot.gradle.projectExt.godotJvmExtension
 import godot.tools.common.constants.FileExtensions
 import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.tasks.TaskProvider
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinWithJavaCompilation
-import java.io.File
 
 fun Project.classGraphSymbolsProcess(
-    classGraphKotlinCompile: KotlinWithJavaCompilation<*, *>,
-    deleteClassGraphGeneratedTask: TaskProvider<out Task>
+    classGraphKotlinCompile: KotlinWithJavaCompilation<*, *>
 ): TaskProvider<out Task> {
     val classGraphGenerationTask = tasks.register(
-        "classGraphSymbolsProcess"
-    ) {
-        group = "godot-kotlin-jvm-internal"
-        description = "Generates entry files using ClassGraph api"
+        "classGraphSymbolsProcess",
+        ClassGraphSymbolsProcessTask::class.java
+    ) { task ->
+        task.group = "godot-kotlin-jvm-internal"
+        task.description = "Generates entry files using ClassGraph api"
 
-        with(it) {
-            dependsOn(classGraphKotlinCompile.compileTaskProvider)
-            dependsOn(deleteClassGraphGeneratedTask)
+        task.dependsOn(classGraphKotlinCompile.compileTaskProvider)
 
-            doFirst {
-                val normalizedBuildDirPath = layout.buildDirectory.get().asFile.toPath().toAbsolutePath().normalize()
-                val candidateClassPathRoots = (classGraphKotlinCompile.compileDependencyFiles + classGraphKotlinCompile.output.allOutputs)
-                    .files
-                val userCodeClassPathRoots = candidateClassPathRoots
-                    .mapNotNull { file ->
-                        val canonicalFile = file.canonicalFile
-                        canonicalFile.takeIf {
-                            canonicalFile.toPath().startsWith(normalizedBuildDirPath)
-                        }
-                    }
-                    .toSet()
-                val classPath = candidateClassPathRoots
-
-                generateEntryUsingClassGraph(
-                    Settings(
-                        classPrefix = godotJvmExtension.classPrefix.orNull,
-                        isFqNameRegistrationEnabled = godotJvmExtension.isFqNameRegistrationEnabled.get(),
-                        projectName = (godotJvmExtension.projectName.orNull ?: project.name).replace(" ", "_"),
-                        projectBaseDir = File(projectDir.absolutePath.replace(File.separator, "/")),
-                        userCodeClassPathRoots = userCodeClassPathRoots,
-                        registrationBaseDirPathRelativeToProjectDir = (
-                            godotJvmExtension
-                                .registrationFileBaseDir
-                                .orNull
-                                ?.asFile
-                                ?: projectDir
-                                    .resolve(FileExtensions.GodotKotlinJvm.registrationFile)
-                                    .apply {
-                                        if (godotJvmExtension.isRegistrationFileGenerationEnabled.getOrElse(true)) {
-                                            mkdirs()
-                                        }
-                                    }
-                            )
-                            .relativeTo(projectDir)
-                            .path
-                            .replace(File.separator, "/")
-                            .removePrefix("/")
-                            .removeSuffix("/"),
-                        isRegistrationFileHierarchyEnabled = godotJvmExtension.isRegistrationFileHierarchyEnabled.get(),
-                        isRegistrationFileGenerationEnabled = godotJvmExtension.isRegistrationFileGenerationEnabled.getOrElse(true),
-                        generatedSourceRootDir = layout.buildDirectory.get()
-                            .asFile
-                            .resolve("generated")
-                            .resolve("classgraph")
-                    ),
-                    logger,
-                    classPath
-                )
+        task.userCodeClassPathRoots.from(classGraphKotlinCompile.output.allOutputs)
+        task.classPrefix.convention(godotJvmExtension.classPrefix)
+        task.isFqNameRegistrationEnabled.convention(godotJvmExtension.isFqNameRegistrationEnabled)
+        task.projectName.convention(
+            providers.provider {
+                (godotJvmExtension.projectName.orNull ?: project.name).replace(" ", "_")
             }
-        }
+        )
+        task.registrationBaseDirPathRelativeToProjectDir.convention(
+            providers.provider {
+                (
+                    godotJvmExtension
+                        .registrationFileBaseDir
+                        .orNull
+                        ?.asFile
+                        ?: projectDir
+                            .resolve(FileExtensions.GodotKotlinJvm.registrationFile)
+                            .apply {
+                                if (godotJvmExtension.isRegistrationFileGenerationEnabled.getOrElse(true)) {
+                                    mkdirs()
+                                }
+                            }
+                    )
+                    .relativeTo(projectDir)
+                    .path
+                    .replace(java.io.File.separator, "/")
+                    .removePrefix("/")
+                    .removeSuffix("/")
+                    .ifEmpty { FileExtensions.GodotKotlinJvm.registrationFile }
+            }
+        )
+        task.isRegistrationFileHierarchyEnabled.convention(godotJvmExtension.isRegistrationFileHierarchyEnabled)
+        task.isRegistrationFileGenerationEnabled.convention(godotJvmExtension.isRegistrationFileGenerationEnabled)
+        task.generatedSourceRootDir.convention(layout.buildDirectory.dir("generated/classgraph"))
+        task.registrationFilesOutputDir.convention(
+            task.registrationBaseDirPathRelativeToProjectDir.map { relativePath ->
+                layout.projectDirectory.dir(relativePath)
+            }
+        )
     }
 
     tasks.getByName("compileKotlin").dependsOn(classGraphGenerationTask)

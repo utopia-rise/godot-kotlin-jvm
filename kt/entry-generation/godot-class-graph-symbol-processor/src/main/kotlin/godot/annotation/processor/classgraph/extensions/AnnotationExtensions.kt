@@ -87,7 +87,9 @@ fun AnnotationInfo.mapToGodotAnnotation(parentDeclaration: Any, declarationStrin
             val typeArgument = typeDescriptor.typeArguments.first().typeSignature as ClassRefTypeSignature
 
             val enumValues = Context.enumValueNamesByClass.getOrPut(typeArgument.fullyQualifiedClassName) {
-                Context.scanResult.getClassInfo(typeArgument.fullyQualifiedClassName)
+                requireNotNull(Context.getClassInfoOrNull(typeArgument.fullyQualifiedClassName)) {
+                    "Could not resolve enum class info for ${typeArgument.fullyQualifiedClassName}"
+                }
                     .fieldInfo
                     .filter { it.typeDescriptor == typeArgument }
                     .map { it.name }

@@ -18,7 +18,9 @@ private fun ClassRefTypeSignature.getMappedType(settings: Settings): Type {
     return if (fullyQualifiedClassName == JVM_OBJECT) {
         getJavaLangObjectType(settings)
     } else {
-        Context.scanResult.getClassInfo(fullyQualifiedClassName).mapToType(
+        requireNotNull(Context.getClassInfoOrNull(fullyQualifiedClassName)) {
+            "Could not resolve class info for type argument: $fullyQualifiedClassName"
+        }.mapToType(
             typeArguments,
             settings
         )
@@ -26,4 +28,6 @@ private fun ClassRefTypeSignature.getMappedType(settings: Settings): Type {
 }
 
 internal val TypeArgument.typeClassInfo: ClassInfo
-    get() = Context.scanResult.getClassInfo(typeSignature.toString())
+    get() = requireNotNull(Context.getClassInfoOrNull(typeSignature.toString())) {
+        "Could not resolve class info for type signature: ${typeSignature}"
+    }

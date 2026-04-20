@@ -5,6 +5,7 @@ import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
 import godot.annotation.RegisterSignal
 import godot.annotation.processor.classgraph.Context
+import godot.annotation.processor.classgraph.ExtendsClassCacheKey
 import godot.annotation.processor.classgraph.ErrorsDatabase
 import godot.annotation.processor.classgraph.Settings
 import godot.annotation.processor.classgraph.TypeCacheKey
@@ -102,7 +103,7 @@ private fun ClassInfo.isAbstractAndContainsRegisteredMembers(
 ) = isAbstract && (registeredFunctions.isNotEmpty() || registeredSignals.isNotEmpty() || registeredProperties.isNotEmpty())
 
 private val ClassInfo.isAbstractAndInheritsGodotObject
-    get() = isAbstract && extendsSuperclass(KtObject::class.java)
+    get() = isAbstract && extendsSuperclassCached(KtObject::class.java)
 
 private fun getDefaultRegisteredName(fqName: String, settings: Settings): String = if (settings.isFqNameRegistrationEnabled) {
     fqName.replace(".", "_")
@@ -196,3 +197,13 @@ internal fun ClassInfo.mapToType(typeArguments: List<TypeArgument>, settings: Se
 
 val ClassInfo.isScala: Boolean
     get() = sourceFile.endsWith(".scala")
+
+fun ClassInfo.extendsSuperclassCached(superClass: Class<*>): Boolean {
+    val cacheKey = ExtendsClassCacheKey(
+        classFqName = name,
+        superClassFqName = superClass.name
+    )
+    return Context.extendsClassByKey.getOrPut(cacheKey) {
+        extendsSuperclass(superClass)
+    }
+}

@@ -86,7 +86,9 @@ class TypeDescriptor private constructor(
     val isObject = rawDescriptor == JVM_OBJECT
 
     val typeClassInfo: ClassInfo
-        get() = Context.scanResult.getClassInfo(rawDescriptor)
+        get() = requireNotNull(Context.getClassInfoOrNull(rawDescriptor)) {
+            "Could not resolve class info for descriptor: $rawDescriptor"
+        }
 
     fun getMappedType(settings: Settings): Type = primitiveType ?: if (isObject) {
         getJavaLangObjectType(settings)

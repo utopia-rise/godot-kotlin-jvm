@@ -3,6 +3,7 @@ package godot.annotation.processor.classgraph
 import godot.annotation.GodotBaseType
 import godot.annotation.RegisterClass
 import godot.annotation.processor.classgraph.extensions.mapToClazz
+import godot.annotation.processor.classgraph.extensions.extendsSuperclassCached
 import godot.annotation.processor.classgraph.logging.LoggerWrapper
 import godot.core.KtObject
 import godot.entrygenerator.EntryGenerator
@@ -33,7 +34,6 @@ fun generateEntryUsingClassGraph(
         .ignoreClassVisibility()
         .ignoreFieldVisibility()
         .ignoreMethodVisibility()
-        .enableSystemJarsAndModules()
         .scan()
     Context.reset(scanResult)
     scanResult
@@ -48,7 +48,7 @@ fun generateEntryUsingClassGraph(
 
             val classes = classesToProcess
                 .filter { classInfo ->
-                    classInfo.extendsSuperclass(KtObject::class.java)
+                    classInfo.extendsSuperclassCached(KtObject::class.java)
                         && !classInfo.hasAnnotation(GodotBaseType::class.java)
                 }
                 .filter { classInfo -> !RegisteredClassMetadataContainerDatabase.dependenciesContainsFqName(classInfo.name) }

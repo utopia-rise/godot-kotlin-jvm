@@ -44,11 +44,10 @@ fun Project.setupTasks() {
                 classGraphJavaCompile
             )
 
-            val deleteClassGraphGeneratedTask = deleteClassGraphGeneratedSourceTask()
+            deleteClassGraphGeneratedSourceTask()
 
             val classGraphGenerationTask = classGraphSymbolsProcess(
-                classGraphKotlinCompile,
-                deleteClassGraphGeneratedTask
+                classGraphKotlinCompile
             )
 
             val packageBootstrapJarTask = packageBootstrapJarTask()

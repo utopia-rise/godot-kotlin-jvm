@@ -1,0 +1,73 @@
+package godot.gradle.tasks
+
+import godot.annotation.processor.classgraph.Settings
+import godot.annotation.processor.classgraph.generateEntryUsingClassGraph
+import org.gradle.api.DefaultTask
+import org.gradle.api.file.ConfigurableFileCollection
+import org.gradle.api.file.DirectoryProperty
+import org.gradle.api.provider.Property
+import org.gradle.api.tasks.CacheableTask
+import org.gradle.api.tasks.Classpath
+import org.gradle.api.tasks.Input
+import org.gradle.api.tasks.Optional
+import org.gradle.api.tasks.OutputDirectory
+import org.gradle.api.tasks.TaskAction
+
+@CacheableTask
+abstract class ClassGraphSymbolsProcessTask : DefaultTask() {
+
+    @get:Classpath
+    abstract val userCodeClassPathRoots: ConfigurableFileCollection
+
+    @get:Input
+    @get:Optional
+    abstract val classPrefix: Property<String>
+
+    @get:Input
+    abstract val isFqNameRegistrationEnabled: Property<Boolean>
+
+    @get:Input
+    abstract val projectName: Property<String>
+
+    @get:Input
+    abstract val registrationBaseDirPathRelativeToProjectDir: Property<String>
+
+    @get:Input
+    abstract val isRegistrationFileHierarchyEnabled: Property<Boolean>
+
+    @get:Input
+    abstract val isRegistrationFileGenerationEnabled: Property<Boolean>
+
+    @get:OutputDirectory
+    abstract val generatedSourceRootDir: DirectoryProperty
+
+    @get:OutputDirectory
+    abstract val registrationFilesOutputDir: DirectoryProperty
+
+    @TaskAction
+    fun process() {
+        val generatedSourceRoot = generatedSourceRootDir.get().asFile
+        generatedSourceRoot.deleteRecursively()
+        generatedSourceRoot.mkdirs()
+
+        if (isRegistrationFileGenerationEnabled.get()) {
+            registrationFilesOutputDir.get().asFile.mkdirs()
+        }
+
+        generateEntryUsingClassGraph(
+            settings = Settings(
+                classPrefix = classPrefix.orNull,
+                isFqNameRegistrationEnabled = isFqNameRegistrationEnabled.get(),
+                projectName = projectName.get(),
+                projectBaseDir = project.projectDir,
+                userCodeClassPathRoots = userCodeClassPathRoots.files.map { it.canonicalFile }.toSet(),
+                registrationBaseDirPathRelativeToProjectDir = registrationBaseDirPathRelativeToProjectDir.get(),
+                isRegistrationFileHierarchyEnabled = isRegistrationFileHierarchyEnabled.get(),
+                isRegistrationFileGenerationEnabled = isRegistrationFileGenerationEnabled.get(),
+                generatedSourceRootDir = generatedSourceRoot
+            ),
+            logger = logger,
+            runtimeClassPathFiles = userCodeClassPathRoots.files.map { it.canonicalFile }.toSet()
+        )
+    }
+}
