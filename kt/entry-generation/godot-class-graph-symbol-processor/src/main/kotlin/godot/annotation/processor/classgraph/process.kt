@@ -1,6 +1,10 @@
 package godot.annotation.processor.classgraph
 
 import godot.annotation.GodotBaseType
+import godot.annotation.RegisterClass
+import godot.annotation.RegisterFunction
+import godot.annotation.RegisterProperty
+import godot.annotation.RegisterSignal
 import godot.annotation.processor.classgraph.extensions.mapToClazz
 import godot.annotation.processor.classgraph.logging.LoggerWrapper
 import godot.core.KtObject
@@ -38,10 +42,21 @@ fun generateEntryUsingClassGraph(
         .use {
             RegisteredClassMetadataContainerDatabase.populateDependencies(it, settings)
 
-            val classes = it.allClasses
-                .filter { clazz ->
-                    clazz.extendsSuperclass(KtObject::class.java)
-                        && !clazz.hasAnnotation(GodotBaseType::class.java)
+            val classesToProcess = linkedSetOf<io.github.classgraph.ClassInfo>().apply {
+                addAll(it.getClassesWithAnnotation(RegisterClass::class.java.name))
+                addAll(it.getClassesWithMethodAnnotation(RegisterFunction::class.java.name))
+                addAll(it.getClassesWithFieldAnnotation(RegisterProperty::class.java.name))
+                addAll(it.getClassesWithFieldAnnotation(RegisterSignal::class.java.name))
+                addAll(
+                    it.getSubclasses(KtObject::class.java.name)
+                        .filter { classInfo -> classInfo.isAbstract }
+                )
+            }
+
+            val classes = classesToProcess
+                .filter { classInfo ->
+                    classInfo.extendsSuperclass(KtObject::class.java)
+                        && !classInfo.hasAnnotation(GodotBaseType::class.java)
                 }
                 .filter { classInfo -> !RegisteredClassMetadataContainerDatabase.dependenciesContainsFqName(classInfo.name) }
                 .map { classInfo ->
