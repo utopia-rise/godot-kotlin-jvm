@@ -47,7 +47,6 @@ fun Project.classGraphSymbolsProcess(
                     .replace(java.io.File.separator, "/")
                     .removePrefix("/")
                     .removeSuffix("/")
-                    .ifEmpty { FileExtensions.GodotKotlinJvm.registrationFile }
             }
         )
         task.isRegistrationFileHierarchyEnabled.convention(godotJvmExtension.isRegistrationFileHierarchyEnabled)

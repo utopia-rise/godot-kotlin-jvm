@@ -47,7 +47,6 @@ abstract class ClassGraphSymbolsProcessTask : DefaultTask() {
     @TaskAction
     fun process() {
         val generatedSourceRoot = generatedSourceRootDir.get().asFile
-        generatedSourceRoot.deleteRecursively()
         generatedSourceRoot.mkdirs()
 
         if (isRegistrationFileGenerationEnabled.get()) {
