@@ -39,12 +39,12 @@ fun generateEntryUsingClassGraph(
     scanResult
         .use {
             RegisteredClassMetadataContainerDatabase.populateDependencies(it, settings)
-
-            val normalizedUserCodeRoots = settings.userCodeClassPathRoots.mapTo(hashSetOf()) { file ->
-                file.canonicalFile
+            require(settings.userCodeClassPathRoots.isNotEmpty()) {
+                "No user code classpath roots were provided for ClassGraph symbol processing. Ensure compilation ran before classGraphSymbolsProcess and check that the build directory contains compiled user classes."
             }
+
             val classesToProcess = it.getClassesWithAnnotation(RegisterClass::class.java.name)
-                .filter { classInfo -> classInfo.isFromUserCode(normalizedUserCodeRoots) }
+                .filter { classInfo -> classInfo.isFromUserCode(settings.userCodeClassPathRoots) }
 
             val classes = classesToProcess
                 .filter { classInfo ->
@@ -173,9 +173,7 @@ fun generateEntryUsingClassGraph(
         }
 }
 
-private fun ClassInfo.isFromUserCode(normalizedUserCodeRoots: Set<File>): Boolean {
-    if (normalizedUserCodeRoots.isEmpty()) return true
-
+private fun ClassInfo.isFromUserCode(userCodeClassPathRoots: Set<File>): Boolean {
     val classpathElementFile = classpathElementFile?.canonicalFile ?: return false
-    return normalizedUserCodeRoots.contains(classpathElementFile)
+    return userCodeClassPathRoots.contains(classpathElementFile)
 }

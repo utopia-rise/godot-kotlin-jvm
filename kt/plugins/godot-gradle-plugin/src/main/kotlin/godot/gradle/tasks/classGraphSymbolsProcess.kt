@@ -25,11 +25,18 @@ fun Project.classGraphSymbolsProcess(
             dependsOn(deleteClassGraphGeneratedTask)
 
             doFirst {
-                val classGraphOutputs = classGraphKotlinCompile.output.allOutputs.files + setOf(
-                    layout.buildDirectory.get().asFile.resolve("classes/java/main"),
-                    layout.buildDirectory.get().asFile.resolve("classes/scala/main"),
-                )
-                val classPath = (classGraphKotlinCompile.compileDependencyFiles + classGraphKotlinCompile.output.allOutputs).files
+                val normalizedBuildDirPath = layout.buildDirectory.get().asFile.toPath().toAbsolutePath().normalize()
+                val candidateClassPathRoots = (classGraphKotlinCompile.compileDependencyFiles + classGraphKotlinCompile.output.allOutputs)
+                    .files
+                val userCodeClassPathRoots = candidateClassPathRoots
+                    .mapNotNull { file ->
+                        val canonicalFile = file.canonicalFile
+                        canonicalFile.takeIf {
+                            canonicalFile.toPath().startsWith(normalizedBuildDirPath)
+                        }
+                    }
+                    .toSet()
+                val classPath = candidateClassPathRoots
 
                 generateEntryUsingClassGraph(
                     Settings(
@@ -37,7 +44,7 @@ fun Project.classGraphSymbolsProcess(
                         isFqNameRegistrationEnabled = godotJvmExtension.isFqNameRegistrationEnabled.get(),
                         projectName = (godotJvmExtension.projectName.orNull ?: project.name).replace(" ", "_"),
                         projectBaseDir = File(projectDir.absolutePath.replace(File.separator, "/")),
-                        userCodeClassPathRoots = classGraphOutputs,
+                        userCodeClassPathRoots = userCodeClassPathRoots,
                         registrationBaseDirPathRelativeToProjectDir = (
                             godotJvmExtension
                                 .registrationFileBaseDir
