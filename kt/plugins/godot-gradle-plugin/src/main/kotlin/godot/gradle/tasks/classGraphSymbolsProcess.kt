@@ -27,6 +27,9 @@ fun Project.classGraphSymbolsProcess(
                 (godotJvmExtension.projectName.orNull ?: project.name).replace(" ", "_")
             }
         )
+        task.projectBaseDirPath.convention(
+            providers.provider { layout.projectDirectory.asFile.absolutePath }
+        )
         task.registrationBaseDirPathRelativeToProjectDir.convention(
             providers.provider {
                 (
@@ -60,6 +63,7 @@ fun Project.classGraphSymbolsProcess(
     }
 
     tasks.getByName("compileKotlin").dependsOn(classGraphGenerationTask)
+    tasks.getByName("processResources").dependsOn(classGraphGenerationTask)
 
     return classGraphGenerationTask
 }

@@ -33,9 +33,10 @@ fun Project.configureThirdPartyPlugins() {
 }
 
 private fun Project.addClassGraphGeneratedSourcesToMainSourceSet() {
-    kotlinJvmExtension
+    val mainSourceSet = kotlinJvmExtension
         .sourceSets
         .getByName("main")
-        .kotlin
-        .srcDirs(classGraphGeneratedDirectory.resolve("main/kotlin/"))
+
+    mainSourceSet.kotlin.srcDirs(classGraphGeneratedDirectory.resolve("main/kotlin/"))
+    mainSourceSet.resources.srcDirs(classGraphGeneratedDirectory.resolve("resources/"))
 }

@@ -21,7 +21,6 @@ class TestBasis {
             EulerOrder.YXZ -> "YXZ"
             EulerOrder.ZXY -> "ZXY"
             EulerOrder.ZYX -> "ZYX"
-            else -> "[Not supported]"
         }
     }
 

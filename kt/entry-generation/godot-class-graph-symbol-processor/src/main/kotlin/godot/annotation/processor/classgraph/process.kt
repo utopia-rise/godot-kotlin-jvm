@@ -3,7 +3,6 @@ package godot.annotation.processor.classgraph
 import godot.annotation.GodotBaseType
 import godot.annotation.RegisterClass
 import godot.annotation.processor.classgraph.extensions.mapToClazz
-import godot.annotation.processor.classgraph.extensions.extendsSuperclassCached
 import godot.annotation.processor.classgraph.logging.LoggerWrapper
 import godot.core.KtObject
 import godot.entrygenerator.EntryGenerator
@@ -12,6 +11,7 @@ import godot.entrygenerator.ext.provideRegistrationFilePathForInitialGeneration
 import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.utils.DefaultJvmTypeProvider
 import godot.tools.common.constants.FileExtensions
+import godot.tools.common.constants.godotRegistrationPackage
 import io.github.classgraph.ClassGraph
 import io.github.classgraph.ClassInfo
 import org.slf4j.Logger
@@ -43,18 +43,17 @@ fun generateEntryUsingClassGraph(
                 "No user code classpath roots were provided for ClassGraph symbol processing. Ensure compilation ran before classGraphSymbolsProcess and check that the build directory contains compiled user classes."
             }
 
-            val classesToProcess = it.getClassesWithAnnotation(RegisterClass::class.java.name)
+            val registeredClasses = it.getClassesWithAnnotation(RegisterClass::class.java.name)
+                .intersect(it.getSubclasses(KtObject::class.java))
+                // 1. Select scanned classes that are eligible for registration in the current project.
                 .filter { classInfo -> classInfo.isFromUserCode(settings.userCodeClassPathRoots) }
-
-            val classes = classesToProcess
-                .filter { classInfo ->
-                    classInfo.extendsSuperclassCached(KtObject::class.java)
-                        && !classInfo.hasAnnotation(GodotBaseType::class.java)
-                }
+                .filter { classInfo -> !classInfo.hasAnnotation(GodotBaseType::class.java) }
                 .filter { classInfo -> !RegisteredClassMetadataContainerDatabase.dependenciesContainsFqName(classInfo.name) }
-                .map { classInfo ->
-                    classInfo.mapToClazz(settings)
-                }
+                // 2. Map ClassGraph metadata to the entry generator model.
+                .map { classInfo -> classInfo.mapToClazz(settings) }
+                // 3. Keep only concrete registration outputs and remove duplicate fqNames.
+                .filterIsInstance<RegisteredClass>()
+                .distinctBy { clazz -> clazz.fqName }
 
             require(ErrorsDatabase.isEmpty()) {
                 buildString {
@@ -64,8 +63,6 @@ fun generateEntryUsingClassGraph(
                 }
             }
 
-            val registeredClasses = classes.filterIsInstance<RegisteredClass>().distinctBy { clazz -> clazz.fqName }
-
             RegisteredClassMetadataContainerDatabase.populateCurrentProject(registeredClasses, settings)
             val allRegisteredClassMetadataContainers = RegisteredClassMetadataContainerDatabase.list()
 
@@ -73,7 +70,6 @@ fun generateEntryUsingClassGraph(
 
             EntryGenerator.generateEntryFilesUsingRegisteredClasses(
                 projectName = settings.projectName,
-                projectDir = settings.projectBaseDir.absolutePath,
                 registeredClasses = registeredClasses,
                 logger = LoggerWrapper(logger),
                 jvmTypeFqNamesProvider = DefaultJvmTypeProvider(),
@@ -123,6 +119,11 @@ fun generateEntryUsingClassGraph(
 
                     FileOutputStream(file).bufferedWriter()
                 },
+                serviceFile = settings.generatedSourceRootDir
+                    .resolve("resources")
+                    .resolve("META-INF")
+                    .resolve("services")
+                    .resolve("$godotRegistrationPackage.Entry"),
                 classRegistrarFromDependencyCount = RegisteredClassMetadataContainerDatabase.dependenciesSize,
                 isRegistrationFileHierarchyEnabled = settings.isRegistrationFileHierarchyEnabled
             )

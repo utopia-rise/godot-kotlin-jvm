@@ -12,6 +12,7 @@ import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.Optional
 import org.gradle.api.tasks.OutputDirectory
 import org.gradle.api.tasks.TaskAction
+import java.io.File
 
 @CacheableTask
 abstract class ClassGraphSymbolsProcessTask : DefaultTask() {
@@ -28,6 +29,9 @@ abstract class ClassGraphSymbolsProcessTask : DefaultTask() {
 
     @get:Input
     abstract val projectName: Property<String>
+
+    @get:Input
+    abstract val projectBaseDirPath: Property<String>
 
     @get:Input
     abstract val registrationBaseDirPathRelativeToProjectDir: Property<String>
@@ -58,7 +62,7 @@ abstract class ClassGraphSymbolsProcessTask : DefaultTask() {
                 classPrefix = classPrefix.orNull,
                 isFqNameRegistrationEnabled = fqNameRegistrationEnabled.get(),
                 projectName = projectName.get(),
-                projectBaseDir = project.projectDir,
+                projectBaseDir = File(projectBaseDirPath.get()),
                 userCodeClassPathRoots = userCodeClassPathRoots.files.map { it.canonicalFile }.toSet(),
                 registrationBaseDirPathRelativeToProjectDir = registrationBaseDirPathRelativeToProjectDir.get(),
                 isRegistrationFileHierarchyEnabled = registrationFileHierarchyEnabled.get(),

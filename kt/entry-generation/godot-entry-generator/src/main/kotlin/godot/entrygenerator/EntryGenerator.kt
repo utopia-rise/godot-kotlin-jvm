@@ -32,7 +32,6 @@ object EntryGenerator {
         get() = _jvmTypeFqNamesProvider ?: throw UninitializedPropertyAccessException("jvmTypeFqNamesProvider not yet initialized. Get jvmTypeFqNamesProvider only after generateEntryFiles was called")
 
     fun generateEntryFiles(
-        projectDir: String,
         projectName: String,
         classRegistrarFromDependencyCount: Int,
         logger: Logger,
@@ -41,10 +40,10 @@ object EntryGenerator {
         jvmTypeFqNamesProvider: (JvmType) -> Set<String>,
         compilationTimeRelativeRegistrationFilePathProvider: (RegisteredClass) -> String,
         classRegistrarAppendableProvider: (RegisteredClass) -> BufferedWriter,
-        mainBufferedWriterProvider: () -> BufferedWriter
+        mainBufferedWriterProvider: () -> BufferedWriter,
+        serviceFile: File
     ) {
         generateEntryFilesUsingRegisteredClasses(
-            projectDir,
             projectName,
             classRegistrarFromDependencyCount,
             logger,
@@ -53,12 +52,12 @@ object EntryGenerator {
             jvmTypeFqNamesProvider,
             compilationTimeRelativeRegistrationFilePathProvider,
             classRegistrarAppendableProvider,
-            mainBufferedWriterProvider
+            mainBufferedWriterProvider,
+            serviceFile
         )
     }
 
     fun generateEntryFilesUsingRegisteredClasses(
-        projectDir: String,
         projectName: String,
         classRegistrarFromDependencyCount: Int,
         logger: Logger,
@@ -67,12 +66,10 @@ object EntryGenerator {
         jvmTypeFqNamesProvider: (JvmType) -> Set<String>,
         compilationTimeRelativeRegistrationFilePathProvider: (RegisteredClass) -> String,
         classRegistrarAppendableProvider: (RegisteredClass) -> BufferedWriter,
-        mainBufferedWriterProvider: () -> BufferedWriter
+        mainBufferedWriterProvider: () -> BufferedWriter,
+        serviceFile: File
     ) {
-        val serviceFile = File(projectDir)
-            .resolve("src/main/resources/META-INF/services")
-            .apply { mkdirs() }
-            .resolve("$godotRegistrationPackage.Entry")
+        serviceFile.parentFile.mkdirs()
 
         // the package path for an entry file needs to be unique over all possible dependencies otherwise they'll override each other and only one will be used/loaded
         val randomPackageForEntryFile = getOrCreateRandomPackageName(serviceFile)
