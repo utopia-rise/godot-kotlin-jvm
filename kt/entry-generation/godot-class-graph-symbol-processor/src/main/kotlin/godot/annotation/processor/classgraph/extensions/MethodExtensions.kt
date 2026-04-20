@@ -31,11 +31,21 @@ private val MethodInfo.methodSignature: String
     get() = "$name:$typeDescriptor"
 
 private fun ClassInfo.collectSuperMethodSignatures(): Set<String> {
-    return Context.superMethodSignaturesByClass.getOrPut(name) {
+    val signatures = mutableSetOf<String>()
+    for (superclass in superclasses) {
+        signatures += superclass.collectHierarchyMethodSignatures()
+    }
+    return signatures
+}
+
+private fun ClassInfo.collectHierarchyMethodSignatures(): Set<String> {
+    return Context.hierarchyMethodSignaturesByClass.getOrPut(name) {
         val signatures = mutableSetOf<String>()
+        for (method in methodInfo) {
+            signatures += "${method.name}:${method.typeDescriptor}"
+        }
         for (superclass in superclasses) {
-            signatures += superclass.methodInfo.map { "${it.name}:${it.typeDescriptor}" }
-            signatures += superclass.collectSuperMethodSignatures()
+            signatures += superclass.collectHierarchyMethodSignatures()
         }
         signatures
     }

@@ -10,15 +10,20 @@ object Context {
         private set
 
     val mappedClazzByFqName = mutableMapOf<String, Clazz>()
-    val mappedTypeByKey = mutableMapOf<String, Type>()
+    val mappedTypeByKey = mutableMapOf<TypeCacheKey, Type>()
     val enumValueNamesByClass = mutableMapOf<String, List<String>>()
-    val superMethodSignaturesByClass = mutableMapOf<String, Set<String>>()
+    val hierarchyMethodSignaturesByClass = mutableMapOf<String, Set<String>>()
 
     fun reset(scanResult: ScanResult) {
         this.scanResult = scanResult
         mappedClazzByFqName.clear()
         mappedTypeByKey.clear()
         enumValueNamesByClass.clear()
-        superMethodSignaturesByClass.clear()
+        hierarchyMethodSignaturesByClass.clear()
     }
 }
+
+data class TypeCacheKey(
+    val fqName: String,
+    val typeArgumentDescriptors: List<String>
+)

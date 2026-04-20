@@ -7,6 +7,7 @@ import godot.annotation.RegisterSignal
 import godot.annotation.processor.classgraph.Context
 import godot.annotation.processor.classgraph.ErrorsDatabase
 import godot.annotation.processor.classgraph.Settings
+import godot.annotation.processor.classgraph.TypeCacheKey
 import godot.annotation.processor.classgraph.constants.KOTLIN_ANY
 import godot.core.KtObject
 import godot.entrygenerator.model.ClassAnnotation
@@ -169,7 +170,10 @@ val ClassInfo.typeKind: TypeKind
     }
 
 internal fun ClassInfo.mapToType(typeArguments: List<TypeArgument>, settings: Settings): Type {
-    val cacheKey = "$name<${typeArguments.joinToString(",") { it.toString() }}>"
+    val cacheKey = TypeCacheKey(
+        fqName = name,
+        typeArgumentDescriptors = typeArguments.map { it.toString() }
+    )
     Context.mappedTypeByKey[cacheKey]?.let { return it }
 
     val superTypes = superclasses.map { it.mapToType(listOf(), settings) }
