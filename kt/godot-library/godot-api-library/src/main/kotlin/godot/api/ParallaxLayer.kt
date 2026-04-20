@@ -107,7 +107,7 @@ public open class ParallaxLayer : Node2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(423, scriptPtr)
+    createNativeObject(504, scriptPtr)
   }
 
   /**

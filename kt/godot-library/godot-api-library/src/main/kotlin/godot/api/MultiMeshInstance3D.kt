@@ -38,7 +38,7 @@ public open class MultiMeshInstance3D : GeometryInstance3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(605, scriptPtr)
+    createNativeObject(381, scriptPtr)
   }
 
   public final fun setMultimesh(multimesh: MultiMesh?): Unit {

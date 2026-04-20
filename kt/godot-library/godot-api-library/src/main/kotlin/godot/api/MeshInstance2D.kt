@@ -62,7 +62,7 @@ public open class MeshInstance2D : Node2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(459, scriptPtr)
+    createNativeObject(369, scriptPtr)
   }
 
   public final fun setMesh(mesh: Mesh?): Unit {

@@ -33,7 +33,7 @@ public open class VisualShaderNodeCurveTexture : VisualShaderNodeResizableBase()
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(530, scriptPtr)
+    createNativeObject(804, scriptPtr)
   }
 
   public final fun setTexture(texture: CurveTexture?): Unit {

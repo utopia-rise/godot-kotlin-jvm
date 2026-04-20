@@ -27,7 +27,7 @@ public open class Popup : Window() {
   public val popupHide: Signal0 by Signal0
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(391, scriptPtr)
+    createNativeObject(557, scriptPtr)
   }
 
   public companion object

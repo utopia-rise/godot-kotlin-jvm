@@ -156,7 +156,7 @@ public open class PathFollow3D : Node3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(602, scriptPtr)
+    createNativeObject(509, scriptPtr)
   }
 
   public final fun setProgress(progress: Float): Unit {

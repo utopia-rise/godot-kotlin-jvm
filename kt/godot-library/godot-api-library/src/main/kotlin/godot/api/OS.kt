@@ -95,7 +95,7 @@ public object OS : Object() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(11)
+    getSingleton(21)
   }
 
   /**

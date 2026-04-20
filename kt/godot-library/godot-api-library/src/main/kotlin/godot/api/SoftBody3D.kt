@@ -108,6 +108,10 @@ public open class SoftBody3D : MeshInstance3D() {
 
   /**
    * The SoftBody3D's mass.
+   *
+   * **Note:** When using Jolt Physics, the default value of this property will instead be `0.0`,
+   * which will cause the body to automatically calculate the mass to 1 kg per point. This is a bug,
+   * which will be fixed in Godot 4.7.
    */
   public final inline var totalMass: Float
     @JvmName("totalMassProperty")
@@ -204,7 +208,7 @@ public open class SoftBody3D : MeshInstance3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(616, scriptPtr)
+    createNativeObject(671, scriptPtr)
   }
 
   /**

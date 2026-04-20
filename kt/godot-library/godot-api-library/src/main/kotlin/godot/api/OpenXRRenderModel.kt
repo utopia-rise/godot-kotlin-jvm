@@ -50,7 +50,7 @@ public open class OpenXRRenderModel : Node3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(905, scriptPtr)
+    createNativeObject(457, scriptPtr)
   }
 
   /**

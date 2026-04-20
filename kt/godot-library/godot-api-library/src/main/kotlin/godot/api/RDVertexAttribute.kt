@@ -95,7 +95,7 @@ public open class RDVertexAttribute : RefCounted() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(285, scriptPtr)
+    createNativeObject(584, scriptPtr)
   }
 
   public final fun setBinding(pMember: Long): Unit {

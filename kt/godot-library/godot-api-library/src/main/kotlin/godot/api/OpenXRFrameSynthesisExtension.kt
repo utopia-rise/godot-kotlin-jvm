@@ -51,7 +51,7 @@ public open class OpenXRFrameSynthesisExtension : OpenXRExtensionWrapper() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(216, scriptPtr)
+    createNativeObject(444, scriptPtr)
   }
 
   /**

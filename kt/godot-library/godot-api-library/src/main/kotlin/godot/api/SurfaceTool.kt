@@ -92,7 +92,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class SurfaceTool : RefCounted() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(29, scriptPtr)
+    createNativeObject(709, scriptPtr)
   }
 
   /**

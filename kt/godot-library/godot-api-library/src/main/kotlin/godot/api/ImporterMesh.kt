@@ -47,7 +47,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public open class ImporterMesh : Resource() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(76, scriptPtr)
+    createNativeObject(301, scriptPtr)
   }
 
   /**

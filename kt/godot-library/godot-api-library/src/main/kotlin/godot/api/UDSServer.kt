@@ -30,7 +30,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class UDSServer : SocketServer() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(163, scriptPtr)
+    createNativeObject(765, scriptPtr)
   }
 
   /**

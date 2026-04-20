@@ -18,7 +18,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeRotationByAxis : VisualShaderNode() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(489, scriptPtr)
+    createNativeObject(851, scriptPtr)
   }
 
   public companion object

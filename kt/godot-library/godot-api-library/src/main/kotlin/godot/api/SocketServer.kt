@@ -23,7 +23,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class SocketServer internal constructor() : RefCounted() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(170, scriptPtr)
+    createNativeObject(670, scriptPtr)
   }
 
   /**

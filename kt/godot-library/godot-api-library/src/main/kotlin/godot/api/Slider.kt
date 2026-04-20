@@ -99,7 +99,7 @@ public open class Slider internal constructor() : Range() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(394, scriptPtr)
+    createNativeObject(668, scriptPtr)
   }
 
   public final fun setTicks(count: Int): Unit {

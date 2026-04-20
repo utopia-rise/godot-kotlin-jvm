@@ -44,7 +44,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public open class Thread : RefCounted() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(137, scriptPtr)
+    createNativeObject(741, scriptPtr)
   }
 
   /**

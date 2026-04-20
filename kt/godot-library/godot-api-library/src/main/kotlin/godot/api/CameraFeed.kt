@@ -97,7 +97,7 @@ public open class CameraFeed : RefCounted() {
     get() = getFormats()
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(264, scriptPtr)
+    createNativeObject(136, scriptPtr)
   }
 
   /**

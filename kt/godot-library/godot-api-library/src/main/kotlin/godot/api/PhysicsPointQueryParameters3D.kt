@@ -104,7 +104,7 @@ public open class PhysicsPointQueryParameters3D : RefCounted() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(248, scriptPtr)
+    createNativeObject(527, scriptPtr)
   }
 
   /**

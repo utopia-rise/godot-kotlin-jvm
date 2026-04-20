@@ -186,9 +186,8 @@ public open class FileDialog : ConfirmationDialog() {
    * If `true`, and if supported by the current [DisplayServer], OS native dialog will be used
    * instead of custom one.
    *
-   * **Note:** On Android, it is only supported for Android 10+ devices and when using
-   * [ACCESS_FILESYSTEM]. For access mode [ACCESS_RESOURCES] and [ACCESS_USERDATA], the system will
-   * fall back to custom FileDialog.
+   * **Note:** On Android, it is only supported when using [ACCESS_FILESYSTEM]. For access mode
+   * [ACCESS_RESOURCES] and [ACCESS_USERDATA], the system will fall back to custom FileDialog.
    *
    * **Note:** On Linux and macOS, sandboxed apps always use native dialogs to access the host file
    * system.
@@ -360,7 +359,7 @@ public open class FileDialog : ConfirmationDialog() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(86, scriptPtr)
+    createNativeObject(222, scriptPtr)
   }
 
   /**

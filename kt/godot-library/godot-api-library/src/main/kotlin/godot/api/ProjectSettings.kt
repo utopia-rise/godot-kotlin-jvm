@@ -64,7 +64,7 @@ public object ProjectSettings : Object() {
   public val settingsChanged: Signal0 by Signal0
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(7)
+    getSingleton(27)
   }
 
   /**

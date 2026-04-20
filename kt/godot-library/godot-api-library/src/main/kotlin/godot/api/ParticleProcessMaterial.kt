@@ -1684,7 +1684,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(855, scriptPtr)
+    createNativeObject(505, scriptPtr)
   }
 
   /**

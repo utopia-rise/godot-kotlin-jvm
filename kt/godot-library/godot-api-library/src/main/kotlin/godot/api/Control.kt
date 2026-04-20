@@ -902,7 +902,7 @@ public open class Control : CanvasItem() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(95, scriptPtr)
+    createNativeObject(183, scriptPtr)
   }
 
   /**

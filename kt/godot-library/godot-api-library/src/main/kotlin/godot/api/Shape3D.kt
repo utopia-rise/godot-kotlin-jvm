@@ -60,7 +60,7 @@ public open class Shape3D internal constructor() : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(246, scriptPtr)
+    createNativeObject(646, scriptPtr)
   }
 
   public final fun setCustomSolverBias(bias: Float): Unit {

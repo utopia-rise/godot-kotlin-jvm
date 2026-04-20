@@ -28,7 +28,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class CallbackTweener : Tweener() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(335, scriptPtr)
+    createNativeObject(130, scriptPtr)
   }
 
   /**

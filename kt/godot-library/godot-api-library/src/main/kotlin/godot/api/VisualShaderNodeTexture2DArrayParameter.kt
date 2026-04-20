@@ -18,7 +18,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeTexture2DArrayParameter : VisualShaderNodeTextureParameter() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(508, scriptPtr)
+    createNativeObject(862, scriptPtr)
   }
 
   public companion object

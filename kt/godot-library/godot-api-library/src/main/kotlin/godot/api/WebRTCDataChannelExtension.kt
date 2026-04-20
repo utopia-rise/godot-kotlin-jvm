@@ -18,7 +18,7 @@ import kotlin.Unit
 @GodotBaseType
 public abstract class WebRTCDataChannelExtension : WebRTCDataChannel() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(868, scriptPtr)
+    createNativeObject(905, scriptPtr)
   }
 
   public abstract fun _getAvailablePacketCount(): Int

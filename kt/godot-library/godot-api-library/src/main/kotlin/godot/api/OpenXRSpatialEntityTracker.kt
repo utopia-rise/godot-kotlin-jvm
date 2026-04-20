@@ -52,7 +52,7 @@ public open class OpenXRSpatialEntityTracker : XRPositionalTracker() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(902, scriptPtr)
+    createNativeObject(482, scriptPtr)
   }
 
   public final fun setEntity(entity: RID): Unit {

@@ -38,7 +38,7 @@ public open class VisualShaderNodeSmoothStep : VisualShaderNode() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(540, scriptPtr)
+    createNativeObject(857, scriptPtr)
   }
 
   public final fun setOpType(opType: OpType): Unit {

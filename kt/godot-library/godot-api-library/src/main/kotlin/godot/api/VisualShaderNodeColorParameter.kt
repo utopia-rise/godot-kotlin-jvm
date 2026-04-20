@@ -57,7 +57,7 @@ public open class VisualShaderNodeColorParameter : VisualShaderNodeParameter() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(516, scriptPtr)
+    createNativeObject(798, scriptPtr)
   }
 
   /**

@@ -34,7 +34,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class ImageTexture3D : Texture3D() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(809, scriptPtr)
+    createNativeObject(298, scriptPtr)
   }
 
   /**

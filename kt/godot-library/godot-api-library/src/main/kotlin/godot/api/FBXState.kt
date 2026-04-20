@@ -35,7 +35,7 @@ public open class FBXState : GLTFState() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(736, scriptPtr)
+    createNativeObject(219, scriptPtr)
   }
 
   public final fun getAllowGeometryHelperNodes(): Boolean {

@@ -59,7 +59,7 @@ public open class ZIPPacker : RefCounted() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(6, scriptPtr)
+    createNativeObject(940, scriptPtr)
   }
 
   /**

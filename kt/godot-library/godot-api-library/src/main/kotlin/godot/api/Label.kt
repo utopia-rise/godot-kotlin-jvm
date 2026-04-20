@@ -321,7 +321,7 @@ public open class Label : Control() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(401, scriptPtr)
+    createNativeObject(341, scriptPtr)
   }
 
   /**

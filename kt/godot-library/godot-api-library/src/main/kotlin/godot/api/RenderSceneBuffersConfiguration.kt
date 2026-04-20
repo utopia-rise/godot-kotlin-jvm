@@ -160,7 +160,7 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(269, scriptPtr)
+    createNativeObject(600, scriptPtr)
   }
 
   /**

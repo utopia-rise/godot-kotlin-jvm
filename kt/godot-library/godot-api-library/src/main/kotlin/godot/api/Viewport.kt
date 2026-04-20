@@ -854,7 +854,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(417, scriptPtr)
+    createNativeObject(782, scriptPtr)
   }
 
   /**

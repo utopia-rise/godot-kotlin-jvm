@@ -112,8 +112,8 @@ tasks {
 
     withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
         compilerOptions {
-            freeCompilerArgs.add("-Xjvm-default=all")
-            freeCompilerArgs.add("-Xcontext-receivers") // We have to add context receiver support because the analysis api from k2 is using context receivers...
+            freeCompilerArgs.add("-jvm-default=no-compatibility")
+            freeCompilerArgs.add("-Xcontext-parameters") // The analysis API requires context support; Kotlin 2.3 uses context parameters.
         }
     }
 

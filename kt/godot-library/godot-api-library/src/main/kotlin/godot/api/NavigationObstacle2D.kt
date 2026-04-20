@@ -156,7 +156,7 @@ public open class NavigationObstacle2D : Node2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(757, scriptPtr)
+    createNativeObject(398, scriptPtr)
   }
 
   /**

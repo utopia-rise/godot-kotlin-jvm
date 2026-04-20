@@ -135,7 +135,7 @@ public open class GLTFObjectModelProperty : RefCounted() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(731, scriptPtr)
+    createNativeObject(245, scriptPtr)
   }
 
   /**

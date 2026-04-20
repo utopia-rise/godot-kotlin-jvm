@@ -191,7 +191,7 @@ public open class TileData : Object() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(427, scriptPtr)
+    createNativeObject(742, scriptPtr)
   }
 
   /**

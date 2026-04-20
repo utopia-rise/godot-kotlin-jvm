@@ -104,7 +104,7 @@ public open class AtlasTexture : Texture2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(815, scriptPtr)
+    createNativeObject(44, scriptPtr)
   }
 
   /**

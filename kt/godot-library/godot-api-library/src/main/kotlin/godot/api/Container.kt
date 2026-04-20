@@ -38,7 +38,7 @@ public open class Container : Control() {
   public val sortChildren: Signal0 by Signal0
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(385, scriptPtr)
+    createNativeObject(182, scriptPtr)
   }
 
   /**

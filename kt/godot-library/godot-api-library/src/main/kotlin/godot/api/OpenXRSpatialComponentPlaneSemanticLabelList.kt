@@ -23,7 +23,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class OpenXRSpatialComponentPlaneSemanticLabelList : OpenXRSpatialComponentData() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(881, scriptPtr)
+    createNativeObject(478, scriptPtr)
   }
 
   /**

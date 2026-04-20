@@ -307,7 +307,7 @@ public open class HTTPRequest : Node() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(79, scriptPtr)
+    createNativeObject(288, scriptPtr)
   }
 
   /**

@@ -58,7 +58,7 @@ public object TranslationServer : Object() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(3)
+    getSingleton(35)
   }
 
   /**

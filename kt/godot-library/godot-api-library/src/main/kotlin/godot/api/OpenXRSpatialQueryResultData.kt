@@ -22,7 +22,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class OpenXRSpatialQueryResultData : OpenXRSpatialComponentData() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(879, scriptPtr)
+    createNativeObject(485, scriptPtr)
   }
 
   /**

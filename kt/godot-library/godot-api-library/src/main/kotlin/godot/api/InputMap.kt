@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.Signal0
 import godot.core.StringName
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
@@ -36,8 +37,14 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object InputMap : Object() {
+  /**
+   * Emitted when the [ProjectSettings] [InputMap] has been loaded.
+   */
+  @JvmStatic
+  public val projectSettingsLoaded: Signal0 by Signal0
+
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(17)
+    getSingleton(11)
   }
 
   /**

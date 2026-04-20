@@ -52,7 +52,7 @@ public open class AudioEffectAmplify : AudioEffect() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(316, scriptPtr)
+    createNativeObject(47, scriptPtr)
   }
 
   public final fun setVolumeDb(volume: Float): Unit {

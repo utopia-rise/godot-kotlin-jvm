@@ -196,7 +196,7 @@ public open class ColorPicker : VBoxContainer() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(352, scriptPtr)
+    createNativeObject(166, scriptPtr)
   }
 
   /**

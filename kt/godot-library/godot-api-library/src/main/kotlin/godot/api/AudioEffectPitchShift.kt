@@ -69,7 +69,7 @@ public open class AudioEffectPitchShift : AudioEffect() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(297, scriptPtr)
+    createNativeObject(70, scriptPtr)
   }
 
   public final fun setPitchScale(rate: Float): Unit {

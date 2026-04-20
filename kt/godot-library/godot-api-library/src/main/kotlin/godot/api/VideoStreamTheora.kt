@@ -22,7 +22,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VideoStreamTheora : VideoStream() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(872, scriptPtr)
+    createNativeObject(781, scriptPtr)
   }
 
   /**

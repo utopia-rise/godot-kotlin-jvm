@@ -193,7 +193,7 @@ public open class InputEventKey : InputEventWithModifiers() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(186, scriptPtr)
+    createNativeObject(310, scriptPtr)
   }
 
   public final fun setPressed(pressed: Boolean): Unit {

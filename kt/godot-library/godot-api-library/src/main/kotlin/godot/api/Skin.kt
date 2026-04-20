@@ -27,7 +27,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class Skin : Resource() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(707, scriptPtr)
+    createNativeObject(665, scriptPtr)
   }
 
   public final fun setBindCount(bindCount: Int): Unit {

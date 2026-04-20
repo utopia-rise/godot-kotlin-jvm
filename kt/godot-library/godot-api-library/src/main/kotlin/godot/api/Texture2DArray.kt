@@ -32,7 +32,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class Texture2DArray : ImageTextureLayered() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(805, scriptPtr)
+    createNativeObject(727, scriptPtr)
   }
 
   /**

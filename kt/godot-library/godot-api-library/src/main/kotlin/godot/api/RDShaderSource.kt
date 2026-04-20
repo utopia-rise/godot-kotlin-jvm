@@ -95,7 +95,7 @@ public open class RDShaderSource : RefCounted() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(278, scriptPtr)
+    createNativeObject(580, scriptPtr)
   }
 
   /**

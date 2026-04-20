@@ -74,7 +74,7 @@ public open class DPITexture : Texture2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(794, scriptPtr)
+    createNativeObject(199, scriptPtr)
   }
 
   /**

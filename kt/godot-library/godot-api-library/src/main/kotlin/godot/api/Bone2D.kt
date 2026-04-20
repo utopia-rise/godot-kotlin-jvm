@@ -63,7 +63,7 @@ public open class Bone2D : Node2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(443, scriptPtr)
+    createNativeObject(107, scriptPtr)
   }
 
   /**

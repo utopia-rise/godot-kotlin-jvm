@@ -48,7 +48,7 @@ public open class RefCounted : Object() {
   }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(0, scriptPtr)
+    createNativeObject(1, scriptPtr)
   }
 
   /**

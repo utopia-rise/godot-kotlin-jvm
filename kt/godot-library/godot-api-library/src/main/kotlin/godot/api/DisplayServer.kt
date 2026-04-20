@@ -130,7 +130,7 @@ public object DisplayServer : Object() {
   public final const val INVALID_INDICATOR_ID: Long = -1
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(23)
+    getSingleton(3)
   }
 
   /**
@@ -3672,8 +3672,7 @@ public object DisplayServer : Object() {
    * is always `0`.
    *
    * **Note:** This method is implemented if the display server has the [FEATURE_NATIVE_DIALOG_FILE]
-   * feature. Supported platforms include Linux (X11/Wayland), Windows, macOS, and Android (API level
-   * 29+).
+   * feature. Supported platforms include Linux (X11/Wayland), Windows, macOS, and Android.
    *
    * **Note:** [currentDirectory] might be ignored.
    *

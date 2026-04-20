@@ -145,7 +145,7 @@ public open class MultiplayerSynchronizer : Node() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(930, scriptPtr)
+    createNativeObject(387, scriptPtr)
   }
 
   public final fun setRootPath(path: NodePath): Unit {

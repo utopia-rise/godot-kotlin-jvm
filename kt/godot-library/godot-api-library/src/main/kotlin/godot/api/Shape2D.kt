@@ -57,7 +57,7 @@ public open class Shape2D internal constructor() : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(256, scriptPtr)
+    createNativeObject(645, scriptPtr)
   }
 
   public final fun setCustomSolverBias(bias: Float): Unit {

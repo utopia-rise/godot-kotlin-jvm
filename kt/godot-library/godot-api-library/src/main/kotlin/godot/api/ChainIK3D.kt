@@ -31,7 +31,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class ChainIK3D internal constructor() : IKModifier3D() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(640, scriptPtr)
+    createNativeObject(149, scriptPtr)
   }
 
   /**

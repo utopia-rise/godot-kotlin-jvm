@@ -74,7 +74,7 @@ public open class ProgressBar : Range() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(395, scriptPtr)
+    createNativeObject(564, scriptPtr)
   }
 
   public final fun setFillMode(mode: Int): Unit {

@@ -52,7 +52,7 @@ public open class TwoBoneIK3D : IKModifier3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(641, scriptPtr)
+    createNativeObject(763, scriptPtr)
   }
 
   /**

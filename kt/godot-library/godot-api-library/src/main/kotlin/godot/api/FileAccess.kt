@@ -123,7 +123,7 @@ public open class FileAccess internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(139, scriptPtr)
+    createNativeObject(221, scriptPtr)
   }
 
   /**

@@ -60,7 +60,7 @@ public open class MenuButton : Button() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(354, scriptPtr)
+    createNativeObject(365, scriptPtr)
   }
 
   /**

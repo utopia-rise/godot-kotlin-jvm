@@ -205,7 +205,7 @@ public open class SplitContainer : Container() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(347, scriptPtr)
+    createNativeObject(677, scriptPtr)
   }
 
   /**

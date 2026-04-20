@@ -351,7 +351,7 @@ public open class CodeEdit : TextEdit() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(96, scriptPtr)
+    createNativeObject(157, scriptPtr)
   }
 
   /**

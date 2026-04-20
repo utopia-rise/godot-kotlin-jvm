@@ -21,7 +21,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class OpenXRSpatialMarkerTrackingCapability : OpenXRExtensionWrapper() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(874, scriptPtr)
+    createNativeObject(483, scriptPtr)
   }
 
   /**

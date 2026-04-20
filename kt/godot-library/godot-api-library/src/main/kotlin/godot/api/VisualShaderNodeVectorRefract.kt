@@ -18,7 +18,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeVectorRefract : VisualShaderNodeVectorBase() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(537, scriptPtr)
+    createNativeObject(899, scriptPtr)
   }
 
   public companion object

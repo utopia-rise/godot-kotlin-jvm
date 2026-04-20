@@ -199,7 +199,7 @@ public open class ScrollContainer : Container() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(368, scriptPtr)
+    createNativeObject(634, scriptPtr)
   }
 
   public final fun setHScroll(`value`: Int): Unit {

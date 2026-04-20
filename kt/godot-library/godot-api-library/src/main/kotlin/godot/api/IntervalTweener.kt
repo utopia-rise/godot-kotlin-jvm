@@ -21,7 +21,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class IntervalTweener : Tweener() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(336, scriptPtr)
+    createNativeObject(323, scriptPtr)
   }
 
   public companion object

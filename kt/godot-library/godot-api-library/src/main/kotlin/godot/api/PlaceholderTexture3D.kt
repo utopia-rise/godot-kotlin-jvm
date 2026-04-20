@@ -58,7 +58,7 @@ public open class PlaceholderTexture3D : Texture3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(799, scriptPtr)
+    createNativeObject(549, scriptPtr)
   }
 
   /**

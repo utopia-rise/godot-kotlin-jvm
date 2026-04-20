@@ -62,7 +62,7 @@ public open class Font internal constructor() : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(85, scriptPtr)
+    createNativeObject(228, scriptPtr)
   }
 
   public final fun setFallbacks(fallbacks: VariantArray<Font>): Unit {

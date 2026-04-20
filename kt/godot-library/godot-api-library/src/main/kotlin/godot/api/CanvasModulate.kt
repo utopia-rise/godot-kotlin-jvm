@@ -45,7 +45,7 @@ public open class CanvasModulate : Node2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(436, scriptPtr)
+    createNativeObject(143, scriptPtr)
   }
 
   /**

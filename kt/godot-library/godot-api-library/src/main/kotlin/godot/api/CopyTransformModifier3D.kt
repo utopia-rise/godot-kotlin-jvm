@@ -73,7 +73,7 @@ public open class CopyTransformModifier3D : BoneConstraint3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(645, scriptPtr)
+    createNativeObject(187, scriptPtr)
   }
 
   /**

@@ -88,7 +88,7 @@ public open class World3D : Resource() {
     get() = getDirectSpaceState()
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(416, scriptPtr)
+    createNativeObject(915, scriptPtr)
   }
 
   public final fun getSpace(): RID {

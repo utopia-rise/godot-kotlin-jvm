@@ -42,7 +42,7 @@ public open class Texture3DRD : Texture3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(787, scriptPtr)
+    createNativeObject(731, scriptPtr)
   }
 
   public final fun setTextureRdRid(textureRdRid: RID): Unit {

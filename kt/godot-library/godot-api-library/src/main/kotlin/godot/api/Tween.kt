@@ -199,7 +199,7 @@ public open class Tween : RefCounted() {
   public val finished: Signal0 by Signal0
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(339, scriptPtr)
+    createNativeObject(761, scriptPtr)
   }
 
   /**

@@ -341,7 +341,7 @@ public open class CanvasItem internal constructor() : Node() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(97, scriptPtr)
+    createNativeObject(140, scriptPtr)
   }
 
   /**

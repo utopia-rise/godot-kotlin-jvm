@@ -28,7 +28,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class PinJoint3D : Joint3D() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(594, scriptPtr)
+    createNativeObject(542, scriptPtr)
   }
 
   /**

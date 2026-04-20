@@ -159,7 +159,7 @@ public open class NinePatchRect : Control() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(382, scriptPtr)
+    createNativeObject(411, scriptPtr)
   }
 
   /**

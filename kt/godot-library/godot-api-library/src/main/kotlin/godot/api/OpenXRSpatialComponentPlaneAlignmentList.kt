@@ -23,7 +23,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class OpenXRSpatialComponentPlaneAlignmentList : OpenXRSpatialComponentData() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(883, scriptPtr)
+    createNativeObject(477, scriptPtr)
   }
 
   /**

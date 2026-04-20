@@ -28,7 +28,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public open class FramebufferCacheRD : Object() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(266, scriptPtr)
+    createNativeObject(231, scriptPtr)
   }
 
   public companion object {

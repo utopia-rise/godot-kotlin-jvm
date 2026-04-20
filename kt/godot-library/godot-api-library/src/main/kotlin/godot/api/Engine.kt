@@ -218,7 +218,7 @@ public object Engine : Object() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(2)
+    getSingleton(4)
   }
 
   @JvmStatic

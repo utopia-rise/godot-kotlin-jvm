@@ -44,7 +44,7 @@ public open class VisualShaderNodeTransformConstant : VisualShaderNodeConstant()
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(563, scriptPtr)
+    createNativeObject(871, scriptPtr)
   }
 
   /**

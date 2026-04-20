@@ -107,7 +107,7 @@ public open class MenuBar : Control() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(355, scriptPtr)
+    createNativeObject(364, scriptPtr)
   }
 
   public final fun setSwitchOnHover(enable: Boolean): Unit {

@@ -24,7 +24,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class StreamPeerSocket internal constructor() : StreamPeer() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(171, scriptPtr)
+    createNativeObject(697, scriptPtr)
   }
 
   /**

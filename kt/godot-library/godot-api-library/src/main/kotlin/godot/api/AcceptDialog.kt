@@ -114,7 +114,7 @@ public open class AcceptDialog : Window() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(114, scriptPtr)
+    createNativeObject(6, scriptPtr)
   }
 
   /**

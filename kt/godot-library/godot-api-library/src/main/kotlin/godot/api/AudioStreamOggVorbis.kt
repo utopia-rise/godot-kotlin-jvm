@@ -116,7 +116,7 @@ public open class AudioStreamOggVorbis : AudioStream() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(741, scriptPtr)
+    createNativeObject(87, scriptPtr)
   }
 
   public final fun setPacketSequence(packetSequence: OggPacketSequence?): Unit {

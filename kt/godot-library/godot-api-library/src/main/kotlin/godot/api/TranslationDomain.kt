@@ -194,7 +194,7 @@ public open class TranslationDomain : RefCounted() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(143, scriptPtr)
+    createNativeObject(755, scriptPtr)
   }
 
   /**

@@ -44,7 +44,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class XRInterfaceExtension : XRInterface() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(234, scriptPtr)
+    createNativeObject(932, scriptPtr)
   }
 
   /**
