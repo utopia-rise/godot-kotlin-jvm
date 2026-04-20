@@ -1,5 +1,6 @@
 package godot.annotation.processor.classgraph.extensions
 
+import godot.annotation.processor.classgraph.Context
 import godot.annotation.processor.classgraph.Settings
 import godot.annotation.processor.classgraph.models.TypeDescriptor
 import godot.entrygenerator.model.FunctionAnnotation
@@ -24,26 +25,18 @@ fun MethodInfo.mapMethodToRegisteredFunction(currentClass: ClassInfo, settings: 
 }
 
 val MethodInfo.isOverridee: Boolean
-    get() {
-        for (superclass in classInfo.superclasses) {
-            if (isOverrideInHierarchyOf(superclass)) {
-                return true
-            }
+    get() = classInfo.collectSuperMethodSignatures().contains(methodSignature)
+
+private val MethodInfo.methodSignature: String
+    get() = "$name:$typeDescriptor"
+
+private fun ClassInfo.collectSuperMethodSignatures(): Set<String> {
+    return Context.superMethodSignaturesByClass.getOrPut(name) {
+        val signatures = mutableSetOf<String>()
+        for (superclass in superclasses) {
+            signatures += superclass.methodInfo.map { "${it.name}:${it.typeDescriptor}" }
+            signatures += superclass.collectSuperMethodSignatures()
         }
-
-        return false
+        signatures
     }
-
-private fun MethodInfo.isOverrideInHierarchyOf(classInfo: ClassInfo): Boolean {
-    if (classInfo.methodInfo.any { name == it.name && typeDescriptor == it.typeDescriptor }) {
-        return true
-    }
-
-    for (superclass in classInfo.superclasses) {
-        if (isOverrideInHierarchyOf(superclass)) {
-            return true
-        }
-    }
-
-    return false
 }

@@ -86,10 +86,12 @@ fun AnnotationInfo.mapToGodotAnnotation(parentDeclaration: Any, declarationStrin
 
             val typeArgument = typeDescriptor.typeArguments.first().typeSignature as ClassRefTypeSignature
 
-            val enumValues = Context.scanResult.getClassInfo(typeArgument.fullyQualifiedClassName)
-                .fieldInfo
-                .filter { it.typeDescriptor == typeArgument }
-                .map { it.name }
+            val enumValues = Context.enumValueNamesByClass.getOrPut(typeArgument.fullyQualifiedClassName) {
+                Context.scanResult.getClassInfo(typeArgument.fullyQualifiedClassName)
+                    .fieldInfo
+                    .filter { it.typeDescriptor == typeArgument }
+                    .map { it.name }
+            }
             EnumFlagHintStringAnnotation(enumValueNames = enumValues, source = this)
         }
         IntFlag::class.java.name -> IntFlagHintAnnotation(

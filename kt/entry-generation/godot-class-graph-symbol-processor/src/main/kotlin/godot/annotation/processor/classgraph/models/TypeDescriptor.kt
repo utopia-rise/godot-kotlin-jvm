@@ -30,6 +30,8 @@ class TypeDescriptor private constructor(
     val isLateInit: Boolean,
     private val descriptorType: DescriptorType
 ) {
+    private val rawDescriptor = descriptor.toStringWithoutAnnotations()
+
     constructor(fieldInfo: FieldInfo, classInfo: ClassInfo) : this(
         fieldInfo.typeDescriptor,
         (fieldInfo.typeSignature as? ClassRefTypeSignature)?.typeArguments ?: listOf(),
@@ -62,11 +64,11 @@ class TypeDescriptor private constructor(
         TypeArgumentType(typeArgument.toString())
     )
 
-    private val isGodotPrimitive: Boolean = descriptor.toStringWithoutAnnotations().isGodotPrimitive
+    private val isGodotPrimitive: Boolean = rawDescriptor.isGodotPrimitive
 
     private val primitiveType = when {
         isGodotPrimitive -> {
-            val fqName = requireNotNull(jvmPrimitivesToKotlinPrimitives[descriptor.toStringWithoutAnnotations()])
+            val fqName = requireNotNull(jvmPrimitivesToKotlinPrimitives[rawDescriptor])
             Type(
                 fqName = fqName,
                 kind = TypeKind.UNKNOWN,
@@ -75,16 +77,16 @@ class TypeDescriptor private constructor(
                 registeredName = { fqName }
             )
         }
-        descriptor.toStringWithoutAnnotations() == VOID -> null
+        rawDescriptor == VOID -> null
         else -> null
     }
 
     val isPrimitive = primitiveType != null
-    val isVoid = descriptor.toStringWithoutAnnotations() == VOID
-    val isObject = descriptor.toStringWithoutAnnotations() == JVM_OBJECT
+    val isVoid = rawDescriptor == VOID
+    val isObject = rawDescriptor == JVM_OBJECT
 
     val typeClassInfo: ClassInfo
-        get() = Context.scanResult.getClassInfo(descriptor.toStringWithoutAnnotations())
+        get() = Context.scanResult.getClassInfo(rawDescriptor)
 
     fun getMappedType(settings: Settings): Type = primitiveType ?: if (isObject) {
         getJavaLangObjectType(settings)

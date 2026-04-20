@@ -4,6 +4,7 @@ import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
 import godot.annotation.RegisterSignal
+import godot.annotation.processor.classgraph.Context
 import godot.annotation.processor.classgraph.ErrorsDatabase
 import godot.annotation.processor.classgraph.Settings
 import godot.annotation.processor.classgraph.constants.KOTLIN_ANY
@@ -21,6 +22,8 @@ import io.github.classgraph.TypeArgument
 
 fun ClassInfo.mapToClazz(settings: Settings): Clazz {
     val fqName = name
+    Context.mappedClazzByFqName[fqName]?.let { return it }
+
     val supertypes = superclasses.union(interfaces).map { it.mapToClazz(settings) }
 
     val annotations = annotationInfo
@@ -44,7 +47,7 @@ fun ClassInfo.mapToClazz(settings: Settings): Clazz {
 
     val shouldBeRegistered = shouldBeRegistered(methods, fields, signals)
 
-    return if (shouldBeRegistered) {
+    val clazz = if (shouldBeRegistered) {
         if (!constructorInfo.any { it.isPublic && it.parameterInfo.isEmpty() }) {
             ErrorsDatabase.add(
                 "You should provide a default constructor for class $fqName"
@@ -72,6 +75,9 @@ fun ClassInfo.mapToClazz(settings: Settings): Clazz {
             symbolProcessorSource = this
         )
     }
+
+    Context.mappedClazzByFqName[fqName] = clazz
+    return clazz
 }
 
 private fun ClassInfo.shouldBeRegistered(
@@ -163,19 +169,25 @@ val ClassInfo.typeKind: TypeKind
     }
 
 internal fun ClassInfo.mapToType(typeArguments: List<TypeArgument>, settings: Settings): Type {
+    val cacheKey = "$name<${typeArguments.joinToString(",") { it.toString() }}>"
+    Context.mappedTypeByKey[cacheKey]?.let { return it }
+
     val superTypes = superclasses.map { it.mapToType(listOf(), settings) }
         .union(
             interfaces.map { it.mapToType(listOf(), settings) }
         )
         .toList()
 
-    return Type(
+    val type = Type(
         fqName = name.replace("$", "."),
         kind = typeKind,
         supertypes = superTypes,
         arguments = { typeArguments.map { it.getType(settings) } },
         registeredName = { provideRegisteredClassName(settings) },
     )
+
+    Context.mappedTypeByKey[cacheKey] = type
+    return type
 }
 
 val ClassInfo.isScala: Boolean

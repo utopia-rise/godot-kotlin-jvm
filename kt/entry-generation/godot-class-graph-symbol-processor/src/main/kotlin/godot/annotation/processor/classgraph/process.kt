@@ -20,12 +20,20 @@ fun generateEntryUsingClassGraph(
     logger: Logger,
     runtimeClassPathFiles: Set<File>
 ) {
+    ErrorsDatabase.clear()
+
     val scanResult = ClassGraph()
         .overrideClasspath(runtimeClassPathFiles)
-        .enableAllInfo()
+        .enableClassInfo()
+        .enableAnnotationInfo()
+        .enableFieldInfo()
+        .enableMethodInfo()
+        .ignoreClassVisibility()
+        .ignoreFieldVisibility()
+        .ignoreMethodVisibility()
         .enableSystemJarsAndModules()
         .scan()
-    Context.scanResult = scanResult
+    Context.reset(scanResult)
     scanResult
         .use {
             RegisteredClassMetadataContainerDatabase.populateDependencies(it, settings)
@@ -51,6 +59,7 @@ fun generateEntryUsingClassGraph(
             val registeredClasses = classes.filterIsInstance<RegisteredClass>().distinctBy { clazz -> clazz.fqName }
 
             RegisteredClassMetadataContainerDatabase.populateCurrentProject(registeredClasses, settings)
+            val allRegisteredClassMetadataContainers = RegisteredClassMetadataContainerDatabase.list()
 
             val existingRegistrationFiles = settings.projectBaseDir.provideExistingRegistrationFiles()
 
@@ -65,7 +74,7 @@ fun generateEntryUsingClassGraph(
                         ?.relativeTo(settings.projectBaseDir)
                         ?: File(
                             registeredClass.provideRegistrationFilePathForInitialGeneration(
-                                registeredClassMetadataContainers = RegisteredClassMetadataContainerDatabase.list(),
+                                registeredClassMetadataContainers = allRegisteredClassMetadataContainers,
                                 isRegistrationFileHierarchyEnabledSetting = settings.isRegistrationFileHierarchyEnabled,
                                 compilationProjectName = settings.projectName,
                                 classProjectName = settings.projectName, // same as project name as no registration file exists for this class, hence it is new / renamed
@@ -112,10 +121,10 @@ fun generateEntryUsingClassGraph(
 
             if (settings.isRegistrationFileGenerationEnabled) {
                 EntryGenerator.generateRegistrationFiles(
-                    registeredClassMetadataContainers = RegisteredClassMetadataContainerDatabase.list(),
+                    registeredClassMetadataContainers = allRegisteredClassMetadataContainers,
                     registrationFileAppendableProvider = { metadata ->
                         val registrationFile = provideRegistrationFilePathForInitialGeneration(
-                            registeredClassMetadataContainers = RegisteredClassMetadataContainerDatabase.list(),
+                            registeredClassMetadataContainers = allRegisteredClassMetadataContainers,
                             isRegistrationFileHierarchyEnabledSetting = settings.isRegistrationFileHierarchyEnabled,
                             fqName = metadata.fqName,
                             registeredName = metadata.registeredName,
