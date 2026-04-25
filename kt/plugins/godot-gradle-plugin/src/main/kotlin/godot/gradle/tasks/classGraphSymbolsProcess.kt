@@ -20,6 +20,8 @@ fun Project.classGraphSymbolsProcess(
         task.dependsOn(classGraphKotlinCompile.compileTaskProvider)
 
         task.userCodeClassPathRoots.from(classGraphKotlinCompile.output.allOutputs)
+        task.runtimeClassPathFiles.from(classGraphKotlinCompile.compileDependencyFiles)
+        task.runtimeClassPathFiles.from(classGraphKotlinCompile.output.allOutputs)
         task.classPrefix.convention(godotJvmExtension.classPrefix)
         task.fqNameRegistrationEnabled.convention(godotJvmExtension.isFqNameRegistrationEnabled)
         task.projectName.convention(

@@ -25,28 +25,38 @@ fun generateEntryUsingClassGraph(
 ) {
     ErrorsDatabase.clear()
 
+    val dependencyClassPathFiles = runtimeClassPathFiles - settings.userCodeClassPathRoots
+    ClassGraph()
+        .overrideClasspath(dependencyClassPathFiles)
+        .enableClassInfo()
+        .enableAnnotationInfo()
+        .enableFieldInfo()
+        .enableMethodInfo()
+        .ignoreFieldVisibility()
+        .ignoreMethodVisibility()
+        .scan()
+        .use { dependencyScanResult ->
+            RegisteredClassMetadataContainerDatabase.populateDependencies(dependencyScanResult, settings)
+        }
+
     val scanResult = ClassGraph()
         .overrideClasspath(runtimeClassPathFiles)
         .enableClassInfo()
         .enableAnnotationInfo()
         .enableFieldInfo()
         .enableMethodInfo()
-        .ignoreClassVisibility()
         .ignoreFieldVisibility()
         .ignoreMethodVisibility()
         .scan()
     Context.reset(scanResult)
     scanResult
         .use {
-            RegisteredClassMetadataContainerDatabase.populateDependencies(it, settings)
             require(settings.userCodeClassPathRoots.isNotEmpty()) {
                 "No user code classpath roots were provided for ClassGraph symbol processing. Ensure compilation ran before classGraphSymbolsProcess and check that the build directory contains compiled user classes."
             }
-
             val registeredClasses = it.getClassesWithAnnotation(RegisterClass::class.java.name)
                 .intersect(it.getSubclasses(KtObject::class.java))
                 // 1. Select scanned classes that are eligible for registration in the current project.
-                .filter { classInfo -> classInfo.isFromUserCode(settings.userCodeClassPathRoots) }
                 .filter { classInfo -> !classInfo.hasAnnotation(GodotBaseType::class.java) }
                 .filter { classInfo -> !RegisteredClassMetadataContainerDatabase.dependenciesContainsFqName(classInfo.name) }
                 // 2. Map ClassGraph metadata to the entry generator model.
@@ -172,9 +182,4 @@ fun generateEntryUsingClassGraph(
                 )
             }
         }
-}
-
-private fun ClassInfo.isFromUserCode(userCodeClassPathRoots: Set<File>): Boolean {
-    val classpathElementFile = classpathElementFile?.canonicalFile ?: return false
-    return userCodeClassPathRoots.contains(classpathElementFile)
 }

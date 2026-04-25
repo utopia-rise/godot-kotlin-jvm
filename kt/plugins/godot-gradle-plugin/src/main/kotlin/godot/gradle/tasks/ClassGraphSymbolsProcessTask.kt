@@ -20,6 +20,9 @@ abstract class ClassGraphSymbolsProcessTask : DefaultTask() {
     @get:Classpath
     abstract val userCodeClassPathRoots: ConfigurableFileCollection
 
+    @get:Classpath
+    abstract val runtimeClassPathFiles: ConfigurableFileCollection
+
     @get:Input
     @get:Optional
     abstract val classPrefix: Property<String>
@@ -70,7 +73,7 @@ abstract class ClassGraphSymbolsProcessTask : DefaultTask() {
                 generatedSourceRootDir = generatedSourceRoot
             ),
             logger = logger,
-            runtimeClassPathFiles = userCodeClassPathRoots.files.map { it.canonicalFile }.toSet()
+            runtimeClassPathFiles = runtimeClassPathFiles.files.map { it.canonicalFile }.toSet()
         )
     }
 }
