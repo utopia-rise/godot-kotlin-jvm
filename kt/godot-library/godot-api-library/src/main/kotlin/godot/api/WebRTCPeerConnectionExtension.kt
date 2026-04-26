@@ -12,6 +12,7 @@ import godot.core.Dictionary
 import godot.core.Error
 import kotlin.Any
 import kotlin.Int
+import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -52,4 +53,55 @@ public abstract class WebRTCPeerConnectionExtension : WebRTCPeerConnection() {
   public companion object
 
   public object MethodBindings
+}
+
+internal class WebRTCPeerConnectionExtensionDummy : WebRTCPeerConnectionExtension() {
+  public override fun _getConnectionState(): WebRTCPeerConnection.ConnectionState {
+    throw NotImplementedError("WebRTCPeerConnectionExtension::_getConnectionState is only implemented by non-JVM code.")
+  }
+
+  public override fun _getGatheringState(): WebRTCPeerConnection.GatheringState {
+    throw NotImplementedError("WebRTCPeerConnectionExtension::_getGatheringState is only implemented by non-JVM code.")
+  }
+
+  public override fun _getSignalingState(): WebRTCPeerConnection.SignalingState {
+    throw NotImplementedError("WebRTCPeerConnectionExtension::_getSignalingState is only implemented by non-JVM code.")
+  }
+
+  public override fun _initialize(pConfig: Dictionary<Any?, Any?>): Error {
+    throw NotImplementedError("WebRTCPeerConnectionExtension::_initialize is only implemented by non-JVM code.")
+  }
+
+  public override fun _createDataChannel(pLabel: String, pConfig: Dictionary<Any?, Any?>):
+      WebRTCDataChannel? {
+    throw NotImplementedError("WebRTCPeerConnectionExtension::_createDataChannel is only implemented by non-JVM code.")
+  }
+
+  public override fun _createOffer(): Error {
+    throw NotImplementedError("WebRTCPeerConnectionExtension::_createOffer is only implemented by non-JVM code.")
+  }
+
+  public override fun _setRemoteDescription(pType: String, pSdp: String): Error {
+    throw NotImplementedError("WebRTCPeerConnectionExtension::_setRemoteDescription is only implemented by non-JVM code.")
+  }
+
+  public override fun _setLocalDescription(pType: String, pSdp: String): Error {
+    throw NotImplementedError("WebRTCPeerConnectionExtension::_setLocalDescription is only implemented by non-JVM code.")
+  }
+
+  public override fun _addIceCandidate(
+    pSdpMidName: String,
+    pSdpMlineIndex: Int,
+    pSdpName: String,
+  ): Error {
+    throw NotImplementedError("WebRTCPeerConnectionExtension::_addIceCandidate is only implemented by non-JVM code.")
+  }
+
+  public override fun _poll(): Error {
+    throw NotImplementedError("WebRTCPeerConnectionExtension::_poll is only implemented by non-JVM code.")
+  }
+
+  public override fun _close(): Unit {
+    throw NotImplementedError("WebRTCPeerConnectionExtension::_close is only implemented by non-JVM code.")
+  }
 }

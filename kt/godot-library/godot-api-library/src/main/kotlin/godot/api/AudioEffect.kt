@@ -8,6 +8,7 @@ package godot.api
 
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -52,4 +53,10 @@ public abstract class AudioEffect : Resource() {
   public companion object
 
   public object MethodBindings
+}
+
+internal class AudioEffectDummy : AudioEffect() {
+  public override fun _instantiate(): AudioEffectInstance? {
+    throw NotImplementedError("AudioEffect::_instantiate is only implemented by non-JVM code.")
+  }
 }

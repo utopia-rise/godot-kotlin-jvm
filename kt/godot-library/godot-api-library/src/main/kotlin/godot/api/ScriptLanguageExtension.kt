@@ -298,3 +298,267 @@ public abstract class ScriptLanguageExtension : ScriptLanguage() {
 
   public object MethodBindings
 }
+
+internal class ScriptLanguageExtensionDummy : ScriptLanguageExtension() {
+  public override fun _getName(): String {
+    throw NotImplementedError("ScriptLanguageExtension::_getName is only implemented by non-JVM code.")
+  }
+
+  public override fun _init(): Unit {
+    throw NotImplementedError("ScriptLanguageExtension::_init is only implemented by non-JVM code.")
+  }
+
+  public override fun _getType(): String {
+    throw NotImplementedError("ScriptLanguageExtension::_getType is only implemented by non-JVM code.")
+  }
+
+  public override fun _getExtension(): String {
+    throw NotImplementedError("ScriptLanguageExtension::_getExtension is only implemented by non-JVM code.")
+  }
+
+  public override fun _finish(): Unit {
+    throw NotImplementedError("ScriptLanguageExtension::_finish is only implemented by non-JVM code.")
+  }
+
+  public override fun _getReservedWords(): PackedStringArray {
+    throw NotImplementedError("ScriptLanguageExtension::_getReservedWords is only implemented by non-JVM code.")
+  }
+
+  public override fun _isControlFlowKeyword(keyword: String): Boolean {
+    throw NotImplementedError("ScriptLanguageExtension::_isControlFlowKeyword is only implemented by non-JVM code.")
+  }
+
+  public override fun _getCommentDelimiters(): PackedStringArray {
+    throw NotImplementedError("ScriptLanguageExtension::_getCommentDelimiters is only implemented by non-JVM code.")
+  }
+
+  public override fun _getStringDelimiters(): PackedStringArray {
+    throw NotImplementedError("ScriptLanguageExtension::_getStringDelimiters is only implemented by non-JVM code.")
+  }
+
+  public override fun _makeTemplate(
+    template: String,
+    className: String,
+    baseClassName: String,
+  ): Script? {
+    throw NotImplementedError("ScriptLanguageExtension::_makeTemplate is only implemented by non-JVM code.")
+  }
+
+  public override fun _getBuiltInTemplates(`object`: StringName):
+      VariantArray<Dictionary<Any?, Any?>> {
+    throw NotImplementedError("ScriptLanguageExtension::_getBuiltInTemplates is only implemented by non-JVM code.")
+  }
+
+  public override fun _isUsingTemplates(): Boolean {
+    throw NotImplementedError("ScriptLanguageExtension::_isUsingTemplates is only implemented by non-JVM code.")
+  }
+
+  public override fun _validate(
+    script: String,
+    path: String,
+    validateFunctions: Boolean,
+    validateErrors: Boolean,
+    validateWarnings: Boolean,
+    validateSafeLines: Boolean,
+  ): Dictionary<Any?, Any?> {
+    throw NotImplementedError("ScriptLanguageExtension::_validate is only implemented by non-JVM code.")
+  }
+
+  public override fun _validatePath(path: String): String {
+    throw NotImplementedError("ScriptLanguageExtension::_validatePath is only implemented by non-JVM code.")
+  }
+
+  public override fun _createScript(): Object? {
+    throw NotImplementedError("ScriptLanguageExtension::_createScript is only implemented by non-JVM code.")
+  }
+
+  public override fun _supportsBuiltinMode(): Boolean {
+    throw NotImplementedError("ScriptLanguageExtension::_supportsBuiltinMode is only implemented by non-JVM code.")
+  }
+
+  public override fun _supportsDocumentation(): Boolean {
+    throw NotImplementedError("ScriptLanguageExtension::_supportsDocumentation is only implemented by non-JVM code.")
+  }
+
+  public override fun _canInheritFromFile(): Boolean {
+    throw NotImplementedError("ScriptLanguageExtension::_canInheritFromFile is only implemented by non-JVM code.")
+  }
+
+  public override fun _findFunction(function: String, code: String): Int {
+    throw NotImplementedError("ScriptLanguageExtension::_findFunction is only implemented by non-JVM code.")
+  }
+
+  public override fun _makeFunction(
+    className: String,
+    functionName: String,
+    functionArgs: PackedStringArray,
+  ): String {
+    throw NotImplementedError("ScriptLanguageExtension::_makeFunction is only implemented by non-JVM code.")
+  }
+
+  public override fun _canMakeFunction(): Boolean {
+    throw NotImplementedError("ScriptLanguageExtension::_canMakeFunction is only implemented by non-JVM code.")
+  }
+
+  public override fun _openInExternalEditor(
+    script: Script?,
+    line: Int,
+    column: Int,
+  ): Error {
+    throw NotImplementedError("ScriptLanguageExtension::_openInExternalEditor is only implemented by non-JVM code.")
+  }
+
+  public override fun _overridesExternalEditor(): Boolean {
+    throw NotImplementedError("ScriptLanguageExtension::_overridesExternalEditor is only implemented by non-JVM code.")
+  }
+
+  public override fun _completeCode(
+    code: String,
+    path: String,
+    owner: Object?,
+  ): Dictionary<Any?, Any?> {
+    throw NotImplementedError("ScriptLanguageExtension::_completeCode is only implemented by non-JVM code.")
+  }
+
+  public override fun _lookupCode(
+    code: String,
+    symbol: String,
+    path: String,
+    owner: Object?,
+  ): Dictionary<Any?, Any?> {
+    throw NotImplementedError("ScriptLanguageExtension::_lookupCode is only implemented by non-JVM code.")
+  }
+
+  public override fun _autoIndentCode(
+    code: String,
+    fromLine: Int,
+    toLine: Int,
+  ): String {
+    throw NotImplementedError("ScriptLanguageExtension::_autoIndentCode is only implemented by non-JVM code.")
+  }
+
+  public override fun _addGlobalConstant(name: StringName, `value`: Any?): Unit {
+    throw NotImplementedError("ScriptLanguageExtension::_addGlobalConstant is only implemented by non-JVM code.")
+  }
+
+  public override fun _addNamedGlobalConstant(name: StringName, `value`: Any?): Unit {
+    throw NotImplementedError("ScriptLanguageExtension::_addNamedGlobalConstant is only implemented by non-JVM code.")
+  }
+
+  public override fun _removeNamedGlobalConstant(name: StringName): Unit {
+    throw NotImplementedError("ScriptLanguageExtension::_removeNamedGlobalConstant is only implemented by non-JVM code.")
+  }
+
+  public override fun _threadEnter(): Unit {
+    throw NotImplementedError("ScriptLanguageExtension::_threadEnter is only implemented by non-JVM code.")
+  }
+
+  public override fun _threadExit(): Unit {
+    throw NotImplementedError("ScriptLanguageExtension::_threadExit is only implemented by non-JVM code.")
+  }
+
+  public override fun _debugGetError(): String {
+    throw NotImplementedError("ScriptLanguageExtension::_debugGetError is only implemented by non-JVM code.")
+  }
+
+  public override fun _debugGetStackLevelCount(): Int {
+    throw NotImplementedError("ScriptLanguageExtension::_debugGetStackLevelCount is only implemented by non-JVM code.")
+  }
+
+  public override fun _debugGetStackLevelLine(level: Int): Int {
+    throw NotImplementedError("ScriptLanguageExtension::_debugGetStackLevelLine is only implemented by non-JVM code.")
+  }
+
+  public override fun _debugGetStackLevelFunction(level: Int): String {
+    throw NotImplementedError("ScriptLanguageExtension::_debugGetStackLevelFunction is only implemented by non-JVM code.")
+  }
+
+  public override fun _debugGetStackLevelSource(level: Int): String {
+    throw NotImplementedError("ScriptLanguageExtension::_debugGetStackLevelSource is only implemented by non-JVM code.")
+  }
+
+  public override fun _debugGetStackLevelLocals(
+    level: Int,
+    maxSubitems: Int,
+    maxDepth: Int,
+  ): Dictionary<Any?, Any?> {
+    throw NotImplementedError("ScriptLanguageExtension::_debugGetStackLevelLocals is only implemented by non-JVM code.")
+  }
+
+  public override fun _debugGetStackLevelMembers(
+    level: Int,
+    maxSubitems: Int,
+    maxDepth: Int,
+  ): Dictionary<Any?, Any?> {
+    throw NotImplementedError("ScriptLanguageExtension::_debugGetStackLevelMembers is only implemented by non-JVM code.")
+  }
+
+  public override fun _debugGetGlobals(maxSubitems: Int, maxDepth: Int): Dictionary<Any?, Any?> {
+    throw NotImplementedError("ScriptLanguageExtension::_debugGetGlobals is only implemented by non-JVM code.")
+  }
+
+  public override fun _debugParseStackLevelExpression(
+    level: Int,
+    expression: String,
+    maxSubitems: Int,
+    maxDepth: Int,
+  ): String {
+    throw NotImplementedError("ScriptLanguageExtension::_debugParseStackLevelExpression is only implemented by non-JVM code.")
+  }
+
+  public override fun _debugGetCurrentStackInfo(): VariantArray<Dictionary<Any?, Any?>> {
+    throw NotImplementedError("ScriptLanguageExtension::_debugGetCurrentStackInfo is only implemented by non-JVM code.")
+  }
+
+  public override fun _reloadAllScripts(): Unit {
+    throw NotImplementedError("ScriptLanguageExtension::_reloadAllScripts is only implemented by non-JVM code.")
+  }
+
+  public override fun _reloadScripts(scripts: VariantArray<Any?>, softReload: Boolean): Unit {
+    throw NotImplementedError("ScriptLanguageExtension::_reloadScripts is only implemented by non-JVM code.")
+  }
+
+  public override fun _reloadToolScript(script: Script?, softReload: Boolean): Unit {
+    throw NotImplementedError("ScriptLanguageExtension::_reloadToolScript is only implemented by non-JVM code.")
+  }
+
+  public override fun _getRecognizedExtensions(): PackedStringArray {
+    throw NotImplementedError("ScriptLanguageExtension::_getRecognizedExtensions is only implemented by non-JVM code.")
+  }
+
+  public override fun _getPublicFunctions(): VariantArray<Dictionary<Any?, Any?>> {
+    throw NotImplementedError("ScriptLanguageExtension::_getPublicFunctions is only implemented by non-JVM code.")
+  }
+
+  public override fun _getPublicConstants(): Dictionary<Any?, Any?> {
+    throw NotImplementedError("ScriptLanguageExtension::_getPublicConstants is only implemented by non-JVM code.")
+  }
+
+  public override fun _getPublicAnnotations(): VariantArray<Dictionary<Any?, Any?>> {
+    throw NotImplementedError("ScriptLanguageExtension::_getPublicAnnotations is only implemented by non-JVM code.")
+  }
+
+  public override fun _profilingStart(): Unit {
+    throw NotImplementedError("ScriptLanguageExtension::_profilingStart is only implemented by non-JVM code.")
+  }
+
+  public override fun _profilingStop(): Unit {
+    throw NotImplementedError("ScriptLanguageExtension::_profilingStop is only implemented by non-JVM code.")
+  }
+
+  public override fun _profilingSetSaveNativeCalls(enable: Boolean): Unit {
+    throw NotImplementedError("ScriptLanguageExtension::_profilingSetSaveNativeCalls is only implemented by non-JVM code.")
+  }
+
+  public override fun _frame(): Unit {
+    throw NotImplementedError("ScriptLanguageExtension::_frame is only implemented by non-JVM code.")
+  }
+
+  public override fun _handlesGlobalClassType(type: String): Boolean {
+    throw NotImplementedError("ScriptLanguageExtension::_handlesGlobalClassType is only implemented by non-JVM code.")
+  }
+
+  public override fun _getGlobalClassName(path: String): Dictionary<Any?, Any?> {
+    throw NotImplementedError("ScriptLanguageExtension::_getGlobalClassName is only implemented by non-JVM code.")
+  }
+}

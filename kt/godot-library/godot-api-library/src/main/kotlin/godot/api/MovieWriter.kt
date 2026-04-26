@@ -17,6 +17,7 @@ import godot.core.VariantParser.OBJECT
 import godot.core.Vector2i
 import kotlin.Boolean
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -152,5 +153,35 @@ public abstract class MovieWriter : Object() {
   public object MethodBindings {
     internal val addWriterPtr: VoidPtr =
         TypeManager.getMethodBindPtr("MovieWriter", "add_writer", 4023702871)
+  }
+}
+
+internal class MovieWriterDummy : MovieWriter() {
+  public override fun _getAudioMixRate(): Long {
+    throw NotImplementedError("MovieWriter::_getAudioMixRate is only implemented by non-JVM code.")
+  }
+
+  public override fun _getAudioSpeakerMode(): AudioServer.SpeakerMode {
+    throw NotImplementedError("MovieWriter::_getAudioSpeakerMode is only implemented by non-JVM code.")
+  }
+
+  public override fun _handlesFile(path: String): Boolean {
+    throw NotImplementedError("MovieWriter::_handlesFile is only implemented by non-JVM code.")
+  }
+
+  public override fun _getSupportedExtensions(): PackedStringArray {
+    throw NotImplementedError("MovieWriter::_getSupportedExtensions is only implemented by non-JVM code.")
+  }
+
+  public override fun _writeBegin(
+    movieSize: Vector2i,
+    fps: Long,
+    basePath: String,
+  ): Error {
+    throw NotImplementedError("MovieWriter::_writeBegin is only implemented by non-JVM code.")
+  }
+
+  public override fun _writeEnd(): Unit {
+    throw NotImplementedError("MovieWriter::_writeEnd is only implemented by non-JVM code.")
   }
 }

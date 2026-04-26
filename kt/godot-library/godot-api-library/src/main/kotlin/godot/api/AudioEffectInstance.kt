@@ -39,3 +39,5 @@ public abstract class AudioEffectInstance : RefCounted() {
 
   public object MethodBindings
 }
+
+internal class AudioEffectInstanceDummy : AudioEffectInstance()

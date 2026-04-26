@@ -9,6 +9,7 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import kotlin.Int
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -23,4 +24,10 @@ public abstract class StreamPeerExtension : StreamPeer() {
   public companion object
 
   public object MethodBindings
+}
+
+internal class StreamPeerExtensionDummy : StreamPeerExtension() {
+  public override fun _getAvailableBytes(): Int {
+    throw NotImplementedError("StreamPeerExtension::_getAvailableBytes is only implemented by non-JVM code.")
+  }
 }

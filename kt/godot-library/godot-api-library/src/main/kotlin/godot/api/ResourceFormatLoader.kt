@@ -212,3 +212,14 @@ public abstract class ResourceFormatLoader : RefCounted() {
 
   public object MethodBindings
 }
+
+internal class ResourceFormatLoaderDummy : ResourceFormatLoader() {
+  public override fun _load(
+    path: String,
+    originalPath: String,
+    useSubThreads: Boolean,
+    cacheMode: Int,
+  ): Any? {
+    throw NotImplementedError("ResourceFormatLoader::_load is only implemented by non-JVM code.")
+  }
+}

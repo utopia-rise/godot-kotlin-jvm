@@ -31,6 +31,8 @@ class EnrichedClass(model: Class) : TypeGenerationTrait, DocumentedGenerationTra
     val methods = model.methods?.toEnriched() ?: listOf()
 
     val isAbstract = methods.any { it.isAbstract }
+    val abstractDummyClassName: ClassName
+        get() = ClassName(className.packageName, "${identifier}Dummy")
     val isInstantiable = model.isInstantiable
 
     override var description = model.description

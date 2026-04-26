@@ -17,6 +17,7 @@ import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -188,5 +189,35 @@ public abstract class TextureLayered : Texture() {
 
     internal val getLayerDataPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextureLayered", "get_layer_data", 3655284255)
+  }
+}
+
+internal class TextureLayeredDummy : TextureLayered() {
+  public override fun _getFormat(): Image.Format {
+    throw NotImplementedError("TextureLayered::_getFormat is only implemented by non-JVM code.")
+  }
+
+  public override fun _getLayeredType(): Long {
+    throw NotImplementedError("TextureLayered::_getLayeredType is only implemented by non-JVM code.")
+  }
+
+  public override fun _getWidth(): Int {
+    throw NotImplementedError("TextureLayered::_getWidth is only implemented by non-JVM code.")
+  }
+
+  public override fun _getHeight(): Int {
+    throw NotImplementedError("TextureLayered::_getHeight is only implemented by non-JVM code.")
+  }
+
+  public override fun _getLayers(): Int {
+    throw NotImplementedError("TextureLayered::_getLayers is only implemented by non-JVM code.")
+  }
+
+  public override fun _hasMipmaps(): Boolean {
+    throw NotImplementedError("TextureLayered::_hasMipmaps is only implemented by non-JVM code.")
+  }
+
+  public override fun _getLayerData(layerIndex: Int): Image? {
+    throw NotImplementedError("TextureLayered::_getLayerData is only implemented by non-JVM code.")
   }
 }

@@ -245,3 +245,9 @@ public abstract class StyleBox : Resource() {
         TypeManager.getMethodBindPtr("StyleBox", "test_mask", 3735564539)
   }
 }
+
+internal class StyleBoxDummy : StyleBox() {
+  public override fun _draw(toCanvasItem: RID, rect: Rect2): Unit {
+    throw NotImplementedError("StyleBox::_draw is only implemented by non-JVM code.")
+  }
+}

@@ -32,6 +32,7 @@ import kotlin.Boolean
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmField
@@ -772,5 +773,63 @@ public abstract class Mesh : Resource() {
 
     internal val generateTriangleMeshPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Mesh", "generate_triangle_mesh", 3476533166)
+  }
+}
+
+internal class MeshDummy : Mesh() {
+  public override fun _getSurfaceCount(): Int {
+    throw NotImplementedError("Mesh::_getSurfaceCount is only implemented by non-JVM code.")
+  }
+
+  public override fun _surfaceGetArrayLen(index: Int): Int {
+    throw NotImplementedError("Mesh::_surfaceGetArrayLen is only implemented by non-JVM code.")
+  }
+
+  public override fun _surfaceGetArrayIndexLen(index: Int): Int {
+    throw NotImplementedError("Mesh::_surfaceGetArrayIndexLen is only implemented by non-JVM code.")
+  }
+
+  public override fun _surfaceGetArrays(index: Int): VariantArray<Any?> {
+    throw NotImplementedError("Mesh::_surfaceGetArrays is only implemented by non-JVM code.")
+  }
+
+  public override fun _surfaceGetBlendShapeArrays(index: Int): VariantArray<VariantArray<Any?>> {
+    throw NotImplementedError("Mesh::_surfaceGetBlendShapeArrays is only implemented by non-JVM code.")
+  }
+
+  public override fun _surfaceGetLods(index: Int): Dictionary<Any?, Any?> {
+    throw NotImplementedError("Mesh::_surfaceGetLods is only implemented by non-JVM code.")
+  }
+
+  public override fun _surfaceGetFormat(index: Int): Long {
+    throw NotImplementedError("Mesh::_surfaceGetFormat is only implemented by non-JVM code.")
+  }
+
+  public override fun _surfaceGetPrimitiveType(index: Int): Long {
+    throw NotImplementedError("Mesh::_surfaceGetPrimitiveType is only implemented by non-JVM code.")
+  }
+
+  public override fun _surfaceSetMaterial(index: Int, material: Material?): Unit {
+    throw NotImplementedError("Mesh::_surfaceSetMaterial is only implemented by non-JVM code.")
+  }
+
+  public override fun _surfaceGetMaterial(index: Int): Material? {
+    throw NotImplementedError("Mesh::_surfaceGetMaterial is only implemented by non-JVM code.")
+  }
+
+  public override fun _getBlendShapeCount(): Int {
+    throw NotImplementedError("Mesh::_getBlendShapeCount is only implemented by non-JVM code.")
+  }
+
+  public override fun _getBlendShapeName(index: Int): StringName {
+    throw NotImplementedError("Mesh::_getBlendShapeName is only implemented by non-JVM code.")
+  }
+
+  public override fun _setBlendShapeName(index: Int, name: StringName): Unit {
+    throw NotImplementedError("Mesh::_setBlendShapeName is only implemented by non-JVM code.")
+  }
+
+  public override fun _getAabb(): AABB {
+    throw NotImplementedError("Mesh::_getAabb is only implemented by non-JVM code.")
   }
 }

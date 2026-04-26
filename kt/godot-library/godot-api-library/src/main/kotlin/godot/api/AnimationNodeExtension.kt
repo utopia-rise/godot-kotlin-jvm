@@ -17,6 +17,7 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.PACKED_FLOAT_32_ARRAY
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmStatic
@@ -81,5 +82,12 @@ public abstract class AnimationNodeExtension : AnimationNode() {
 
     internal val getRemainingTimePtr: VoidPtr =
         TypeManager.getMethodBindPtr("AnimationNodeExtension", "get_remaining_time", 2851904656)
+  }
+}
+
+internal class AnimationNodeExtensionDummy : AnimationNodeExtension() {
+  public override fun _processAnimationNode(playbackInfo: PackedFloat64Array, testOnly: Boolean):
+      PackedFloat32Array {
+    throw NotImplementedError("AnimationNodeExtension::_processAnimationNode is only implemented by non-JVM code.")
   }
 }

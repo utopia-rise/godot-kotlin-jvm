@@ -57,12 +57,13 @@ class RegistrationRule() : GodotApiRule<ApiTask>() {
             )
         } else {
             if(clazz.isAbstract) {
-                formatString = "%T.registerEngineType(%S,·%T::class,·null)"
+                formatString = "%T.registerEngineType(%S,·%T::class,·::%T)"
                 engineTypes.addStatement(
                     formatString,
                     TYPE_MANAGER,
                     clazz.identifier,
                     clazz.className,
+                    clazz.abstractDummyClassName,
                 )
             } else {
                 formatString = "%T.registerEngineType(%S,·%T::class,·::%T)"

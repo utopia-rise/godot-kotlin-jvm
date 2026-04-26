@@ -1,16 +1,20 @@
 package godot.codegen.generation.rule
 
+import com.squareup.kotlinpoet.ANY
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeSpec
+import com.squareup.kotlinpoet.UNIT
 import godot.codegen.generation.GenerationContext
+import godot.codegen.generation.task.AbstractClassDummyTask
 import godot.codegen.generation.task.EnrichedClassTask
 import godot.codegen.generation.task.EnrichedConstantTask
 import godot.codegen.generation.task.EnrichedEnumTask
 import godot.codegen.generation.task.EnrichedMethodTask
 import godot.codegen.generation.task.EnrichedPropertyTask
 import godot.codegen.generation.task.SignalTask
+import godot.codegen.models.enriched.EnrichedClass
 import godot.codegen.models.enriched.EnrichedMethod
 import godot.codegen.models.traits.addKdoc
 import godot.tools.common.constants.GODOT_BASE_TYPE
@@ -128,6 +132,60 @@ class MemberRule : GodotApiRule<EnrichedClassTask>() {
         return this
     }
 
+}
+
+class AbstractClassDummyRule : GodotApiRule<AbstractClassDummyTask>() {
+    override fun apply(task: AbstractClassDummyTask, context: GenerationContext) = configure(task.builder) {
+        val clazz = task.clazz
+        addModifiers(KModifier.INTERNAL)
+        superclass(clazz.className)
+
+        clazz.methods
+            .filter { it.isAbstract }
+            .filter { canGenerateMethod(context, it) }
+            .forEach { method ->
+                addFunction(method.toDummyOverride(clazz))
+            }
+    }
+
+    private fun canGenerateMethod(context: GenerationContext, method: EnrichedMethod): Boolean {
+        if (context.isNativeStructure(method.type.identifier)) {
+            return false
+        }
+        for (argument in method.arguments) {
+            if (context.isNativeStructure(argument.type.identifier)) {
+                return false
+            }
+        }
+        return true
+    }
+
+    private fun EnrichedMethod.toDummyOverride(clazz: EnrichedClass): FunSpec {
+        val builder = FunSpec.builder(name)
+            .addModifiers(KModifier.OVERRIDE)
+
+        val returnType = getCastedType()
+        if (returnType != UNIT) {
+            builder.returns(returnType)
+        }
+
+        arguments.forEach { argument ->
+            builder.addParameter(argument.name, argument.getCastedType())
+        }
+
+        if (isVararg) {
+            builder.addParameter("args", ANY.copy(nullable = true), KModifier.VARARG)
+        }
+
+        builder.addStatement(
+            "%L·%T(%S)",
+            "throw",
+            NotImplementedError::class,
+            "${clazz.identifier}::${name} is only implemented by non-JVM code."
+        )
+
+        return builder.build()
+    }
 }
 
 class BindingRule : GodotApiRule<EnrichedClassTask>() {

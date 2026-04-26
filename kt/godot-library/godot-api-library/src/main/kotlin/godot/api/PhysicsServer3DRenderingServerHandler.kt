@@ -16,6 +16,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
 import kotlin.Int
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -81,5 +82,20 @@ public abstract class PhysicsServer3DRenderingServerHandler : Object() {
 
     internal val setAabbPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PhysicsServer3DRenderingServerHandler", "set_aabb", 259215842)
+  }
+}
+
+internal class PhysicsServer3DRenderingServerHandlerDummy : PhysicsServer3DRenderingServerHandler()
+    {
+  public override fun _setVertex(vertexId: Int, vertex: Vector3): Unit {
+    throw NotImplementedError("PhysicsServer3DRenderingServerHandler::_setVertex is only implemented by non-JVM code.")
+  }
+
+  public override fun _setNormal(vertexId: Int, normal: Vector3): Unit {
+    throw NotImplementedError("PhysicsServer3DRenderingServerHandler::_setNormal is only implemented by non-JVM code.")
+  }
+
+  public override fun _setAabb(aabb: AABB): Unit {
+    throw NotImplementedError("PhysicsServer3DRenderingServerHandler::_setAabb is only implemented by non-JVM code.")
   }
 }

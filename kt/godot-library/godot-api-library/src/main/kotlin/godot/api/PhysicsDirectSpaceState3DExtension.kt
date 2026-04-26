@@ -15,6 +15,7 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser._RID
 import godot.core.Vector3
 import kotlin.Boolean
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -45,5 +46,11 @@ public abstract class PhysicsDirectSpaceState3DExtension : PhysicsDirectSpaceSta
   public object MethodBindings {
     internal val isBodyExcludedFromQueryPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PhysicsDirectSpaceState3DExtension", "is_body_excluded_from_query", 4155700596)
+  }
+}
+
+internal class PhysicsDirectSpaceState3DExtensionDummy : PhysicsDirectSpaceState3DExtension() {
+  public override fun _getClosestPointToObjectVolume(`object`: RID, point: Vector3): Vector3 {
+    throw NotImplementedError("PhysicsDirectSpaceState3DExtension::_getClosestPointToObjectVolume is only implemented by non-JVM code.")
   }
 }

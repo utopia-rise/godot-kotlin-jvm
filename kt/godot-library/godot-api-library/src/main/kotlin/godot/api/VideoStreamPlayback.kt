@@ -150,3 +150,9 @@ public abstract class VideoStreamPlayback : Resource() {
         TypeManager.getMethodBindPtr("VideoStreamPlayback", "mix_audio", 93876830)
   }
 }
+
+internal class VideoStreamPlaybackDummy : VideoStreamPlayback() {
+  public override fun _update(delta: Double): Unit {
+    throw NotImplementedError("VideoStreamPlayback::_update is only implemented by non-JVM code.")
+  }
+}

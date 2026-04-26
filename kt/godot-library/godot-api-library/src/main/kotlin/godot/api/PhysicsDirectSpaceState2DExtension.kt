@@ -44,3 +44,5 @@ public abstract class PhysicsDirectSpaceState2DExtension : PhysicsDirectSpaceSta
         TypeManager.getMethodBindPtr("PhysicsDirectSpaceState2DExtension", "is_body_excluded_from_query", 4155700596)
   }
 }
+
+internal class PhysicsDirectSpaceState2DExtensionDummy : PhysicsDirectSpaceState2DExtension()

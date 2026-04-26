@@ -207,3 +207,9 @@ public abstract class AudioStream : Resource() {
         TypeManager.getMethodBindPtr("AudioStream", "is_meta_stream", 36873697)
   }
 }
+
+internal class AudioStreamDummy : AudioStream() {
+  public override fun _instantiatePlayback(): AudioStreamPlayback? {
+    throw NotImplementedError("AudioStream::_instantiatePlayback is only implemented by non-JVM code.")
+  }
+}

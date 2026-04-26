@@ -18,6 +18,7 @@ import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -155,5 +156,31 @@ public abstract class Texture3D : Texture() {
 
     internal val createPlaceholderPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Texture3D", "create_placeholder", 121922552)
+  }
+}
+
+internal class Texture3DDummy : Texture3D() {
+  public override fun _getFormat(): Image.Format {
+    throw NotImplementedError("Texture3D::_getFormat is only implemented by non-JVM code.")
+  }
+
+  public override fun _getWidth(): Int {
+    throw NotImplementedError("Texture3D::_getWidth is only implemented by non-JVM code.")
+  }
+
+  public override fun _getHeight(): Int {
+    throw NotImplementedError("Texture3D::_getHeight is only implemented by non-JVM code.")
+  }
+
+  public override fun _getDepth(): Int {
+    throw NotImplementedError("Texture3D::_getDepth is only implemented by non-JVM code.")
+  }
+
+  public override fun _hasMipmaps(): Boolean {
+    throw NotImplementedError("Texture3D::_hasMipmaps is only implemented by non-JVM code.")
+  }
+
+  public override fun _getData(): VariantArray<Image> {
+    throw NotImplementedError("Texture3D::_getData is only implemented by non-JVM code.")
   }
 }

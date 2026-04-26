@@ -9,6 +9,7 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import godot.core.PackedByteArray
+import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -40,4 +41,14 @@ public abstract class OpenXRBindingModifier : Resource() {
   public companion object
 
   public object MethodBindings
+}
+
+internal class OpenXRBindingModifierDummy : OpenXRBindingModifier() {
+  public override fun _getDescription(): String {
+    throw NotImplementedError("OpenXRBindingModifier::_getDescription is only implemented by non-JVM code.")
+  }
+
+  public override fun _getIpModification(): PackedByteArray {
+    throw NotImplementedError("OpenXRBindingModifier::_getIpModification is only implemented by non-JVM code.")
+  }
 }

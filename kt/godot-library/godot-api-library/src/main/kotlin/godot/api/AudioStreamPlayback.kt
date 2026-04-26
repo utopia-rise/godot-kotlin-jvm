@@ -220,3 +220,21 @@ public abstract class AudioStreamPlayback : RefCounted() {
         TypeManager.getMethodBindPtr("AudioStreamPlayback", "is_playing", 36873697)
   }
 }
+
+internal class AudioStreamPlaybackDummy : AudioStreamPlayback() {
+  public override fun _start(fromPos: Double): Unit {
+    throw NotImplementedError("AudioStreamPlayback::_start is only implemented by non-JVM code.")
+  }
+
+  public override fun _stop(): Unit {
+    throw NotImplementedError("AudioStreamPlayback::_stop is only implemented by non-JVM code.")
+  }
+
+  public override fun _isPlaying(): Boolean {
+    throw NotImplementedError("AudioStreamPlayback::_isPlaying is only implemented by non-JVM code.")
+  }
+
+  public override fun _getPlaybackPosition(): Double {
+    throw NotImplementedError("AudioStreamPlayback::_getPlaybackPosition is only implemented by non-JVM code.")
+  }
+}
