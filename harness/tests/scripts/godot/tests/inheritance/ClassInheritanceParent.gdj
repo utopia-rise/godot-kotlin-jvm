@@ -24,5 +24,6 @@ properties = [
 ]
 functions = [
     closed_function,
-	open_function
+	open_function,
+	_notification
 ]

@@ -1,15 +1,15 @@
 package godot.annotation.processor.classgraph.extensions
 
 import godot.annotation.processor.classgraph.Context
-import godot.annotation.processor.classgraph.Settings
 import godot.annotation.processor.classgraph.models.TypeDescriptor
 import godot.entrygenerator.model.FunctionAnnotation
 import godot.entrygenerator.model.RegisteredFunction
+import godot.entrygenerator.settings.Settings
 import io.github.classgraph.ClassInfo
 import io.github.classgraph.MethodInfo
 
 fun MethodInfo.mapMethodToRegisteredFunction(currentClass: ClassInfo, settings: Settings): RegisteredFunction {
-    val parameters = parameterInfo.map { it.mapToValueParameter(settings) }
+    val parameters = parameterInfo.mapIndexed { index, parameter -> parameter.mapToValueParameter(settings, index) }
     val annotations = annotationInfo.mapNotNull { it.mapToGodotAnnotation(this, fqName) as? FunctionAnnotation }
 
     val typeDescriptor = TypeDescriptor(this)
@@ -20,7 +20,6 @@ fun MethodInfo.mapMethodToRegisteredFunction(currentClass: ClassInfo, settings: 
         parameters = parameters,
         returnType = if (typeDescriptor.isVoid) null else typeDescriptor.getMappedType(settings),
         annotations = annotations.toList(),
-        symbolProcessorSource = this
     )
 }
 

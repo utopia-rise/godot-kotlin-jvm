@@ -6,7 +6,6 @@ import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.MemberName
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
-import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.STAR
 import com.squareup.kotlinpoet.TypeSpec
 import com.squareup.kotlinpoet.asTypeName
@@ -39,14 +38,6 @@ class MainEntryFileBuilder {
                 )
         )
 
-    private val classRegistrarCountPropertySpec = PropertySpec
-        .builder("classRegistrarCount", Int::class.asTypeName())
-        .addModifiers(KModifier.OVERRIDE)
-
-    private val projectNamePropertySpec = PropertySpec
-        .builder("projectName", String::class.asTypeName())
-        .addModifiers(KModifier.OVERRIDE)
-
     fun build(randomPackageForEntryFile: String, outAppendable: () -> BufferedWriter) {
         val entryFileSpec = FileSpec
             .builder(randomPackageForEntryFile, "Entry")
@@ -58,8 +49,6 @@ class MainEntryFileBuilder {
                 .superclass(ClassName(godotRegistrationPackage, GodotKotlinJvmTypes.entry))
                 .addFunction(initFunctionSpec.build())
                 .addFunction(registerUserTypesVariantMappingsFunSpec.build())
-                .addProperty(classRegistrarCountPropertySpec.build())
-                .addProperty(projectNamePropertySpec.build())
                 .build()
         )
         outAppendable().use {
@@ -86,14 +75,4 @@ class MainEntryFileBuilder {
         )
     }
 
-    fun registerProjectName(projectName: String) {
-        projectNamePropertySpec.initializer("%S", projectName)
-    }
-
-    fun registerClassRegistrarCount(classRegistrarFromCurrentCompilationCount: Int, classRegistrarFromDependencyCount: Int) {
-        classRegistrarCountPropertySpec.initializer(
-            "%L",
-            classRegistrarFromCurrentCompilationCount + classRegistrarFromDependencyCount
-        )
-    }
 }

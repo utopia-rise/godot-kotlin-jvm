@@ -10,5 +10,4 @@ data class RangeHintAnnotation<T: Number>(
     val isDegrees: Boolean,
     val isExp: Boolean,
     val suffix: String?,
-    override val symbolProcessorSource: Any,
-): PropertyHintAnnotation(symbolProcessorSource)
+): PropertyHintAnnotation()

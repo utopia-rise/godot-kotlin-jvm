@@ -1,3 +1,3 @@
 package godot.entrygenerator.model
 
-sealed interface GodotAnnotation : GodotJvmSourceElement
+sealed interface GodotAnnotation

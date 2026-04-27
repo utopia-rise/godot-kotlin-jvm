@@ -18,12 +18,14 @@ import godot.entrygenerator.model.ExportAnnotation
 import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.model.RegisteredProperty
 import godot.entrygenerator.model.TypeKind
+import godot.entrygenerator.settings.Settings
 import godot.tools.common.constants.GodotTypes
 import godot.tools.common.constants.godotCorePackage
 
 object PropertyRegistrationGenerator {
     fun generate(
         registeredClass: RegisteredClass,
+        settings: Settings,
         className: ClassName,
         registerClassControlFlow: FunSpec.Builder,
     ) {
@@ -35,6 +37,7 @@ object PropertyRegistrationGenerator {
                         registeredProperty.type.arguments().firstOrNull()?.kind == TypeKind.ENUM_CLASS &&
                         registeredProperty.annotations.hasAnnotation<EnumAnnotation>() -> registerEnumFlag(
                         registeredProperty,
+                        settings,
                         className,
                         registerClassControlFlow,
                     )
@@ -45,17 +48,19 @@ object PropertyRegistrationGenerator {
                     ) &&
                         registeredProperty.type.arguments().firstOrNull()?.kind == TypeKind.ENUM_CLASS -> registerEnumList(
                         registeredProperty,
+                        settings,
                         className,
                         registerClassControlFlow,
                     )
 
-                    else -> registerProperty(registeredProperty, className, registerClassControlFlow)
+                    else -> registerProperty(registeredProperty, settings, className, registerClassControlFlow)
                 }
             }
     }
 
     private fun registerProperty(
         registeredProperty: RegisteredProperty,
+        settings: Settings,
         className: ClassName,
         registerClassControlFlow: FunSpec.Builder,
     ) {
@@ -114,7 +119,7 @@ object PropertyRegistrationGenerator {
                     typeFqNameWithNullability,
                     PropertyTypeHintProvider.provide(registeredProperty),
                     PropertyHintStringGeneratorProvider
-                        .provide(registeredProperty)
+                        .provide(registeredProperty, settings)
                         .getHintString()
                         .replace("?", ""),
                     getPropertyUsage(registeredProperty),
@@ -130,7 +135,7 @@ object PropertyRegistrationGenerator {
                 typeFqNameWithNullability,
                 PropertyTypeHintProvider.provide(registeredProperty),
                 PropertyHintStringGeneratorProvider
-                    .provide(registeredProperty)
+                    .provide(registeredProperty, settings)
                     .getHintString()
                     .replace("?", ""),
                 getPropertyUsage(registeredProperty),
@@ -139,6 +144,7 @@ object PropertyRegistrationGenerator {
 
     private fun registerEnumList(
         registeredProperty: RegisteredProperty,
+        settings: Settings,
         className: ClassName,
         registerClassControlFlow: FunSpec.Builder,
     ) {
@@ -157,7 +163,7 @@ object PropertyRegistrationGenerator {
                     getSetterReference(registeredProperty, className),
                     getPropertyUsage(registeredProperty),
                     PropertyHintStringGeneratorProvider
-                        .provide(registeredProperty)
+                        .provide(registeredProperty, settings)
                         .getHintString()
                         .replace("?", ""),
                 )
@@ -170,7 +176,7 @@ object PropertyRegistrationGenerator {
                 getPropertyReference(registeredProperty, className),
                 getPropertyUsage(registeredProperty),
                 PropertyHintStringGeneratorProvider
-                    .provide(registeredProperty)
+                    .provide(registeredProperty, settings)
                     .getHintString()
                     .replace("?", ""),
             )
@@ -178,6 +184,7 @@ object PropertyRegistrationGenerator {
 
     private fun registerEnumFlag(
         registeredProperty: RegisteredProperty,
+        settings: Settings,
         className: ClassName,
         registerClassControlFlow: FunSpec.Builder,
     ) {
@@ -196,7 +203,7 @@ object PropertyRegistrationGenerator {
                     getSetterReference(registeredProperty, className),
                     getPropertyUsage(registeredProperty),
                     PropertyHintStringGeneratorProvider
-                        .provide(registeredProperty)
+                        .provide(registeredProperty, settings)
                         .getHintString()
                         .replace("?", ""),
                 )
@@ -209,7 +216,7 @@ object PropertyRegistrationGenerator {
                 getPropertyReference(registeredProperty, className),
                 getPropertyUsage(registeredProperty),
                 PropertyHintStringGeneratorProvider
-                    .provide(registeredProperty)
+                    .provide(registeredProperty, settings)
                     .getHintString()
                     .replace("?", ""),
             )

@@ -1,5 +1,7 @@
 package godot.gradle
 
+import godot.entrygenerator.settings.RegistrationFileLayoutMode
+import godot.entrygenerator.settings.RegisteredNameMode
 import godot.tools.common.constants.FileExtensions
 import org.gradle.api.Project
 import org.gradle.api.file.RegularFileProperty
@@ -9,74 +11,43 @@ import java.io.File
 
 open class GodotExtension(objects: ObjectFactory) {
     /**
-     * Registers every class with this prefix. Especially useful for library authors
-     */
-    val classPrefix: Property<String> = objects.property(String::class.java)
-
-    /**
-     * Base directory where registration files ('.gdj' files) are generated to. Defaults to `<projectDir>/gdj`
+     * Base directory where registration files (`.gdj` files) are generated. Defaults to `<projectDir>/gdj`.
+     *
+     * Files from the current project are written directly under this directory.
+     * Files from external projects are written under a subdirectory named after their source project.
      */
     val registrationFileBaseDir: RegularFileProperty = objects.fileProperty()
 
     /**
-     * Defines whether the registration files follow the package hierarchy or if they are all generated to the [registrationFileBaseDir]. Defaults to `true`
+     * Controls how registration files are laid out inside each project-specific directory.
      *
-     * Examples:
+     * - [RegistrationFileLayoutMode.FLAT]: write `.gdj` files directly into the project directory.
+     * - [RegistrationFileLayoutMode.HIERARCHICAL]: mirror the package hierarchy before the `.gdj` file.
      *
-     * **true**:
-     * ```
-     *  -[registrationFileBaseDir]
-     *      | packagePathOne
-     *          | ClassOne.gdj
-     *          | ClassTwo.gdj
-     *      | packagePathTwo
-     *          | ClassThree.gdj
-     *          | ClassFour.gdj
-     * ```
-     * **false**:
-     * ```
-     *  -[registrationFileBaseDir]
-     *      | ClassOne.gdj
-     *      | ClassTwo.gdj
-     *      | ClassThree.gdj
-     *      | ClassFour.gdj
-     * ```
+     * This setting does not change the top-level project split. External projects are always generated under
+     * `<registrationFileBaseDir>/<sourceProjectName>/...`.
+     *
+     * Defaults to [RegistrationFileLayoutMode.FLAT].
      */
-    val isRegistrationFileHierarchyEnabled: Property<Boolean> = objects.property(Boolean::class.java)
+    val registrationFileLayoutMode: Property<RegistrationFileLayoutMode> = objects.property(RegistrationFileLayoutMode::class.java)
 
     /**
-     * Defines whether classes should be registered with the full fqName or just with their simple name. Defaults to false
+     * Controls how Godot registration names are computed when `@RegisterClass` does not provide a custom name.
      *
-     * **Note:** the custom class name in the `@RegisterClass` annotation takes precedence over this property!
+     * - [RegisteredNameMode.SIMPLE_NAME]: use the Kotlin class name.
+     * - [RegisteredNameMode.FQ_NAME]: use the fully qualified class name.
+     * - [RegisteredNameMode.PROJECT_PREFIX]: use the Kotlin class name for the current project, and prefix
+     *   external classes with their source project name.
      *
-     * Examples:
-     *
-     * **true**: `com.company.MyClass` -> `com_company_MyClass`
-     *
-     * **false**: `com.company.MyClass` -> `MyClass`
+     * Defaults to [RegisteredNameMode.SIMPLE_NAME].
      */
-    val isFqNameRegistrationEnabled: Property<Boolean> = objects.property(Boolean::class.java)
+    val registeredNameMode: Property<RegisteredNameMode> = objects.property(RegisteredNameMode::class.java)
 
     /**
-     * Only has a visible effect when this project is used as a library. This project name defines to what directory the
-     * registration files are generated to. Defaults to the gradle project name
+     * Defines whether `.gdj` registration files should be generated at all. Defaults to `true`.
      *
-     * Example:
-     * ```
-     *  -[registrationFileBaseDir]
-     *      | dependencies
-     *          | <your_defined_project_name>
-     *              | ClassFromThisProject.gdj
-     *      | ClassFromConsumingProject.gdj
-     *  ```
-     */
-    val projectName: Property<String> = objects.property(String::class.java)
-
-    /**
-     * Defines whether registration files should be generated or not. Defaults to `true`.
-     *
-     * Only really useful for library authors to disable the registration file generation if a project is only used as a
-     * library where the registration files are not needed.
+     * This is mostly useful for library authors who do not need checked-in registration files in that project.
+     * Entry source/resource generation still runs independently from this setting.
      */
     val isRegistrationFileGenerationEnabled: Property<Boolean> = objects.property(Boolean::class.java)
 
@@ -205,8 +176,8 @@ open class GodotExtension(objects: ObjectFactory) {
             ?.last { it.isDirectory }
 
         registrationFileBaseDir.set(target.projectDir.resolve(FileExtensions.GodotKotlinJvm.registrationFile))
-        isRegistrationFileHierarchyEnabled.set(true)
-        isFqNameRegistrationEnabled.set(false)
+        registrationFileLayoutMode.set(RegistrationFileLayoutMode.FLAT)
+        registeredNameMode.set(RegisteredNameMode.SIMPLE_NAME)
         isRegistrationFileGenerationEnabled.set(true)
 
         isAndroidExportEnabled.set(false)

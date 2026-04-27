@@ -44,28 +44,23 @@ value class ResPath(private val path: String) {
         }
 
         fun scriptClassFqName(fqName: String, module: Module?): ResPath {
-            val isFqNameRegistrationEnabled = GodotKotlinJvmSettings[module].isFqNameRegistrationEnabled
-            val isRegistrationFileHierarchyEnabled = GodotKotlinJvmSettings[module].isRegistrationFileHierarchyEnabled
+            val registeredNameMode = GodotKotlinJvmSettings[module].registeredNameMode
+            val registrationFileLayoutMode = GodotKotlinJvmSettings[module].registrationFileLayoutMode
             val registrationFileBaseDir = GodotKotlinJvmSettings[module].registrationFileBaseDir
-
-            return if (isFqNameRegistrationEnabled || isRegistrationFileHierarchyEnabled) {
-                val path = if (isRegistrationFileHierarchyEnabled) {
-                    "${registrationFileBaseDir}/${fqName.substringBeforeLast(".").replace(".", "/")}"
-                } else {
-                    registrationFileBaseDir
-                }
-
-                val name = if (isFqNameRegistrationEnabled) {
-                    fqName
-                } else {
-                    fqName.substringAfterLast(".")
-                }
-
-                ResPath(path = "res://${path}/${name}.${FileExtensions.GodotKotlinJvm.registrationFile}")
+            val isHierarchicalLayout = registrationFileLayoutMode == "HIERARCHICAL"
+            val registeredName = if (registeredNameMode == "FQ_NAME") {
+                fqName
             } else {
-                val simpleName = fqName.substringAfterLast(".")
-                ResPath(path = "res://${registrationFileBaseDir}/${simpleName}.${FileExtensions.GodotKotlinJvm.registrationFile}")
+                fqName.substringAfterLast(".")
             }
+
+            val directory = if (isHierarchicalLayout && fqName.contains(".")) {
+                "${registrationFileBaseDir}/${fqName.substringBeforeLast(".").replace(".", "/")}"
+            } else {
+                registrationFileBaseDir
+            }
+
+            return ResPath(path = "res://${directory}/${registeredName}.${FileExtensions.GodotKotlinJvm.registrationFile}")
         }
     }
 }

@@ -1,42 +1,60 @@
 package godot.entrygenerator.ext
 
 import godot.entrygenerator.model.RegisteredClass
-import godot.entrygenerator.model.RegisteredClassMetadataContainer
+import godot.entrygenerator.settings.RegistrationFileLayoutMode
+import godot.entrygenerator.settings.RegisteredNameMode
+import godot.entrygenerator.settings.Settings
 import godot.tools.common.constants.FileExtensions
 
+fun RegisteredClass.provideRegisteredName(settings: Settings): String {
+    val customRegisteredName = customName?.takeIf { it.isNotBlank() }
+    if (customRegisteredName != null) {
+        return customRegisteredName
+    }
+
+    val defaultRegisteredName = when (settings.registeredNameMode) {
+        RegisteredNameMode.SIMPLE_NAME,
+        RegisteredNameMode.PROJECT_PREFIX -> fqName.substringAfterLast(".")
+        RegisteredNameMode.FQ_NAME -> fqName
+    }
+
+    return when (settings.registeredNameMode) {
+        RegisteredNameMode.SIMPLE_NAME,
+        RegisteredNameMode.FQ_NAME -> defaultRegisteredName
+        RegisteredNameMode.PROJECT_PREFIX -> {
+            if (sourceProjectName == settings.projectName) {
+                defaultRegisteredName
+            } else {
+                "${sourceProjectName}_$defaultRegisteredName"
+            }
+        }
+    }
+}
+
 fun RegisteredClass.provideRegistrationFilePathForInitialGeneration(
-    registeredClassMetadataContainers: List<RegisteredClassMetadataContainer>,
-    isRegistrationFileHierarchyEnabledSetting: Boolean,
+    settings: Settings,
     compilationProjectName: String,
     classProjectName: String,
-    registrationFileOutDir: String
+    registrationFileOutDir: String,
+    registrationFileLayoutMode: RegistrationFileLayoutMode,
 ) = provideRegistrationFilePathForInitialGeneration(
-    registeredClassMetadataContainers,
-    isRegistrationFileHierarchyEnabledSetting,
     fqName,
-    registeredName,
+    provideRegisteredName(settings),
     compilationProjectName,
     classProjectName,
-    registrationFileOutDir
+    registrationFileOutDir,
+    registrationFileLayoutMode
 )
 
 fun provideRegistrationFilePathForInitialGeneration(
-    registeredClassMetadataContainers: List<RegisteredClassMetadataContainer>,
-    isRegistrationFileHierarchyEnabledSetting: Boolean,
     fqName: String,
     registeredName: String,
     compilationProjectName: String,
     classProjectName: String,
-    registrationFileOutDir: String
+    registrationFileOutDir: String,
+    registrationFileLayoutMode: RegistrationFileLayoutMode,
 ): String {
-    val registrationMetadata = registeredClassMetadataContainers.firstOrNull { it.fqName == fqName }
-    val isRegistrationFileHierarchyEnabled = if (registrationMetadata != null) {
-        registrationMetadata.isRegistrationFileHierarchyEnabled
-    } else {
-        isRegistrationFileHierarchyEnabledSetting
-    }
-
-    val registrationFileRelativePath = if (isRegistrationFileHierarchyEnabled && fqName.contains(".")) {
+    val registrationFileRelativePath = if (registrationFileLayoutMode == RegistrationFileLayoutMode.HIERARCHICAL && fqName.contains(".")) {
         fqName.substringBeforeLast(".").replace(".", "/")
     } else ""
 
@@ -45,7 +63,7 @@ fun provideRegistrationFilePathForInitialGeneration(
     val pathWithoutExtension = if (compilationProjectName == classProjectName) {
         "${registrationFileOutDir}/$localResourcePath"
     } else {
-        "${registrationFileOutDir}/dependencies/${classProjectName}/$localResourcePath"
+        "${registrationFileOutDir}/${classProjectName}/$localResourcePath"
     }
 
     return "$pathWithoutExtension.${FileExtensions.GodotKotlinJvm.registrationFile}"

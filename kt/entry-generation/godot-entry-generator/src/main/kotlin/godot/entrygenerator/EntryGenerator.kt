@@ -1,5 +1,4 @@
 package godot.entrygenerator
-
 import godot.entrygenerator.checks.FunctionArgCountCheck
 import godot.entrygenerator.checks.LateinitPropertyCheck
 import godot.entrygenerator.checks.NullablePropertyCheck
@@ -13,7 +12,7 @@ import godot.entrygenerator.filebuilder.MainEntryFileBuilder
 import godot.entrygenerator.filebuilder.RegistrationFileGenerator
 import godot.entrygenerator.model.JvmType
 import godot.entrygenerator.model.RegisteredClass
-import godot.entrygenerator.model.RegisteredClassMetadataContainer
+import godot.entrygenerator.settings.Settings
 import godot.entrygenerator.model.SourceFile
 import godot.entrygenerator.utils.Logger
 import godot.tools.common.constants.FileExtensions
@@ -32,11 +31,9 @@ object EntryGenerator {
         get() = _jvmTypeFqNamesProvider ?: throw UninitializedPropertyAccessException("jvmTypeFqNamesProvider not yet initialized. Get jvmTypeFqNamesProvider only after generateEntryFiles was called")
 
     fun generateEntryFiles(
-        projectName: String,
-        classRegistrarFromDependencyCount: Int,
+        settings: Settings,
         logger: Logger,
         sourceFiles: List<SourceFile>,
-        isRegistrationFileHierarchyEnabled: Boolean,
         jvmTypeFqNamesProvider: (JvmType) -> Set<String>,
         compilationTimeRelativeRegistrationFilePathProvider: (RegisteredClass) -> String,
         classRegistrarAppendableProvider: (RegisteredClass) -> BufferedWriter,
@@ -44,11 +41,9 @@ object EntryGenerator {
         serviceFile: File
     ) {
         generateEntryFilesUsingRegisteredClasses(
-            projectName,
-            classRegistrarFromDependencyCount,
+            settings,
             logger,
             sourceFiles.flatMap { it.registeredClasses },
-            isRegistrationFileHierarchyEnabled,
             jvmTypeFqNamesProvider,
             compilationTimeRelativeRegistrationFilePathProvider,
             classRegistrarAppendableProvider,
@@ -58,11 +53,9 @@ object EntryGenerator {
     }
 
     fun generateEntryFilesUsingRegisteredClasses(
-        projectName: String,
-        classRegistrarFromDependencyCount: Int,
+        settings: Settings,
         logger: Logger,
         registeredClasses: List<RegisteredClass>,
-        isRegistrationFileHierarchyEnabled: Boolean,
         jvmTypeFqNamesProvider: (JvmType) -> Set<String>,
         compilationTimeRelativeRegistrationFilePathProvider: (RegisteredClass) -> String,
         classRegistrarAppendableProvider: (RegisteredClass) -> BufferedWriter,
@@ -85,21 +78,14 @@ object EntryGenerator {
             registeredClasses.forEach { registeredClass ->
                 registerClassRegistrar(
                     ClassRegistrarFileBuilder(
-                        projectName = projectName,
                         registeredClass = registeredClass,
+                        settings = settings,
                         registrarAppendableProvider = classRegistrarAppendableProvider,
                         compilationTimeRelativeRegistrationFilePath = compilationTimeRelativeRegistrationFilePathProvider(registeredClass),
-                        isRegistrationFileHierarchyEnabled = isRegistrationFileHierarchyEnabled
                     )
                 )
             }
             registerUserTypesVariantMappings(registeredClasses)
-            registerProjectName(projectName)
-            val classRegistrarsForCurrentCompilationCount = registeredClasses.size
-            registerClassRegistrarCount(
-                classRegistrarFromCurrentCompilationCount = classRegistrarsForCurrentCompilationCount,
-                classRegistrarFromDependencyCount = classRegistrarFromDependencyCount
-            )
             build(randomPackageForEntryFile, mainBufferedWriterProvider)
         }
 
@@ -107,12 +93,14 @@ object EntryGenerator {
     }
 
     fun generateRegistrationFiles(
-        registeredClassMetadataContainers: List<RegisteredClassMetadataContainer>,
-        registrationFileAppendableProvider: (RegisteredClassMetadataContainer) -> BufferedWriter,
+        settings: Settings,
+        registeredClasses: List<RegisteredClass>,
+        registrationFileAppendableProvider: (RegisteredClass) -> BufferedWriter,
     ) {
-        registeredClassMetadataContainers.forEach { metadata ->
+        registeredClasses.forEach { registeredClass ->
             RegistrationFileGenerator(
-                metadata,
+                registeredClass,
+                settings = settings,
                 registrationFileAppendableProvider
             ).build()
         }

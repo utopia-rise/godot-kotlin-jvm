@@ -7,31 +7,39 @@ class RotatingCube: Node3D() {
 }
 ```
 
-Each registered classes will generate its own .gdj files. For more information, read [registration files](../user-guide/api-differences.md#registration-files-gdj).
+Each registered class generates its own `.gdj` file. For more information, read [registration files](../user-guide/api-differences.md#registration-files-gdj).
 
 ### Naming
 
 Classes need to be registered with a unique name as Godot does not support namespaces (or packages in this case) for script classes.
 
-By default, we register your classes with the name you give them. While beign a simple approach and enough in most cases,
-this can lead to naming conflicts if you have classes in different packages with the same name. For example:
+By default, classes are registered with their simple Kotlin class name. This is enough in many cases, but it can lead to conflicts if different packages contain classes with the same name. For example:
 
 - `com.package.a.MyClass`
 - `com.package.b.MyClass`
 
-This leads to a conflict on the Godot side as both classes are registered as `MyClass`.
+Both would be registered as `MyClass`.
 
 So you are responsible for making sure that classes have a unique name.
 We do however provide you with some assistance:
 
 - We have compile time checks in place which should let the *build fail* if classes would end up having the same name.
 - The `@RegisterClass` annotation lets you define a custom registration name: `@RegisterClass("CustomRegistrationName")`.
-- Register the class names with the fully qualified name: `com.mygame.MyClass` will be registered as: `com_mygame_MyClass`. This can be configured with:
-    ```kotlin
-    godot {
-        isFqNameRegistrationEnabled.set(true)
-    }
-    ```
+- You can configure how default registration names are computed:
+
+```kotlin
+import godot.entrygenerator.settings.RegisteredNameMode
+
+godot {
+    registeredNameMode.set(RegisteredNameMode.FQ_NAME)
+}
+```
+
+The available modes are:
+
+- `RegisteredNameMode.SIMPLE_NAME`: default. Uses the custom name if present, otherwise the Kotlin class name.
+- `RegisteredNameMode.FQ_NAME`: uses the custom name if present, otherwise the fully qualified class name.
+- `RegisteredNameMode.PROJECT_PREFIX`: uses the custom name if present, otherwise the Kotlin class name. Classes from external projects are prefixed with their source project name.
 
 !!! warning "Class names from other languages"
     Even with all these checks and helpers in place, we cannot check the names of classes from other languages like GDScript or C#. It's your responsibility to make sure there are no naming conflicts.
@@ -41,27 +49,25 @@ We do however provide you with some assistance:
 As mentioned beforehand, Godot does not have the concept of namespaces. So all classes are registered at top level.
 It does not matter where in the folder hierarchy a script resides in, it still is accessed the same way.
 Hence, it does not matter if the registration files are all in one directory, or scattered across multiple directories.
-By default, the registration files are all generated in a folder hierarchy which resembles your package hierarchy:
+
+By default, registration files are generated flat inside the configured base directory:
 
 - `com.mygame.packageA.ClassA`
 - `com.mygame.packageB.ClassB`
 
 ```
 [registrationFileBaseDir]/
-└── com/
-    └── mygame/
-        ├── packageA/
-        │   └── ClassA.gdj
-        └── packageB/
-            └── ClassB.gdj
+|- ClassA.gdj
+`- ClassB.gdj
 ```
 
-Some do not like this hierarchical structure and especially for small games with not many scripts, this could be undesirable to work with.
-Thus, we let you turn of the hierarchical generation in your `build.gradle.kts`:
+If you prefer the `.gdj` files to mirror the package hierarchy, you can switch to hierarchical layout in your `build.gradle.kts`:
 
 ```kotlin
+import godot.entrygenerator.settings.RegistrationFileLayoutMode
+
 godot {
-    isRegistrationFileHierarchyEnabled.set(false)
+    registrationFileLayoutMode.set(RegistrationFileLayoutMode.HIERARCHICAL)
 }
 ```
 
@@ -72,20 +78,18 @@ Which would result in a folder structure like the following:
 
 ```
 [registrationFileBaseDir]/
-├── ClassA.gdj
-└── ClassB.gdj
+`- com/
+   `- mygame/
+      |- packageA/
+      |  `- ClassA.gdj
+      `- packageB/
+         `- ClassB.gdj
 ```
 
-This could also be useful together with the option `isFqNameRegistrationEnabled` from the [Naming section](#naming) which would result in:
+When registration files come from external projects, they are always grouped by project name first. For example, if `registrationFileBaseDir` is `scripts` and an external library named `sharedlib` contributes a class, its `.gdj` file is generated under:
 
-- `com.mygame.packageA.ClassA`
-- `com.mygame.packageB.ClassB`
-
-```
-[registrationFileBaseDir]/
-├── com_mygame_packageA_ClassA.gdj
-└── com_mygame_packageA_ClassB.gdj
-```
+- `scripts/sharedlib/MyExternalClass.gdj` in flat mode
+- `scripts/sharedlib/com/example/MyExternalClass.gdj` in hierarchical mode
 
 ## Lifecycle
 

@@ -16,10 +16,12 @@ import godot.entrygenerator.model.EnumAnnotation
 import godot.entrygenerator.model.RegisteredProperty
 import godot.entrygenerator.model.Type
 import godot.entrygenerator.model.TypeKind
+import godot.entrygenerator.settings.Settings
 
 class ArrayAndDictionaryHintStringGenerator(
     registeredProperty: RegisteredProperty,
-) : PropertyHintStringGenerator<EnumAnnotation>(registeredProperty) {
+    settings: Settings,
+) : PropertyHintStringGenerator<EnumAnnotation>(registeredProperty, settings) {
 
 
     /**
@@ -96,14 +98,14 @@ class ArrayAndDictionaryHintStringGenerator(
                     }
 
                     currentElementType.isGodotPrimitive() || currentElementType.isCoreType() -> {
-                        append("${currentElementType.getAsVariantTypeOrdinal()}:${currentElementType.getAsGodotClassName()}")
+                        append("${currentElementType.getAsVariantTypeOrdinal()}:${currentElementType.getAsGodotClassName(settings)}")
                         break@loop
                     }
 
                     currentElementType.isNodeType() -> {
                         val objectVariantType = VariantParser.OBJECT.id
 
-                        val className = currentElementType.registeredName()
+                        val className = currentElementType.registeredName(settings)
                             ?: currentElementType.baseGodotType()?.fqName?.substringAfterLast(".")
 
                         val subTypeString = if (className != null) {
@@ -119,7 +121,7 @@ class ArrayAndDictionaryHintStringGenerator(
                     currentElementType.isResource() -> {
                         val objectVariantType = VariantParser.OBJECT.id
 
-                        val className = currentElementType.registeredName()
+                        val className = currentElementType.registeredName(settings)
                             ?: currentElementType.baseGodotType()?.fqName?.substringAfterLast(".")
 
                         val subTypeString = if (className != null) {

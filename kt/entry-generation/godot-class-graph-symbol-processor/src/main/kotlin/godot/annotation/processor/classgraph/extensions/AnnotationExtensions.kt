@@ -49,27 +49,25 @@ fun AnnotationInfo.mapToGodotAnnotation(parentDeclaration: Any, declarationStrin
     return when (name) {
         RegisterClass::class.java.name -> RegisterClassAnnotation(
             customName = parameterValues.getValue("customName") as? String,
-            symbolProcessorSource = this
         )
-        RegisterFunction::class.java.name -> RegisterFunctionAnnotation(this)
-        RegisterProperty::class.java.name -> RegisterPropertyAnnotation(this)
-        RegisterSignal::class.java.name -> RegisterSignalAnnotation(this)
-        Tool::class.java.name -> ToolAnnotation(this)
-        Export::class.java.name -> ExportAnnotation(this)
+        RegisterFunction::class.java.name -> RegisterFunctionAnnotation()
+        RegisterProperty::class.java.name -> RegisterPropertyAnnotation()
+        RegisterSignal::class.java.name -> RegisterSignalAnnotation()
+        Tool::class.java.name -> ToolAnnotation()
+        Export::class.java.name -> ExportAnnotation()
         Rpc::class.java.name -> RpcAnnotation(
             rpcMode = getRpcMode(),
             sync = getSyncMode(),
             transferMode = getTransferMode(),
             transferChannel = parameterValues.getValue("transferChannel") as Int,
-            symbolProcessorSource = this
         )
-        "godot.annotation.GodotBaseType" -> GodotBaseTypeAnnotation(this) // is internal
+        "godot.annotation.GodotBaseType" -> GodotBaseTypeAnnotation() // is internal
         EnumFlag::class.java.name -> {
             if (parentDeclaration !is FieldInfo) {
                 ErrorsDatabase.add(
                     "EnumFlag annotation has been set on $declarationString. It should be placed on property only."
                 )
-                return EnumFlagHintStringAnnotation(enumValueNames = listOf(), source = this)
+                return EnumFlagHintStringAnnotation(enumValueNames = listOf())
             }
 
             val typeDescriptor = parentDeclaration.typeSignature
@@ -81,7 +79,7 @@ fun AnnotationInfo.mapToGodotAnnotation(parentDeclaration: Any, declarationStrin
                 ErrorsDatabase.add(
                     "Property annotated with EnumFlag should be of type $SET, $declarationString is of type $fullyQualifiedClassName"
                 )
-                return EnumFlagHintStringAnnotation(enumValueNames = listOf(), source = this)
+                return EnumFlagHintStringAnnotation(enumValueNames = listOf())
             }
 
             val typeArgument = typeDescriptor.typeArguments.first().typeSignature as ClassRefTypeSignature
@@ -94,15 +92,14 @@ fun AnnotationInfo.mapToGodotAnnotation(parentDeclaration: Any, declarationStrin
                     .filter { it.typeDescriptor == typeArgument }
                     .map { it.name }
             }
-            EnumFlagHintStringAnnotation(enumValueNames = enumValues, source = this)
+            EnumFlagHintStringAnnotation(enumValueNames = enumValues)
         }
         IntFlag::class.java.name -> IntFlagHintAnnotation(
-            parameterValues.getValue("values") as? List<String> ?: emptyList(),
-            this
+            parameterValues.getValue("values") as? List<String> ?: emptyList()
         )
-        MultilineText::class.java.name -> MultilineTextHintAnnotation(this)
-        PlaceHolderText::class.java.name -> PlaceHolderTextHintAnnotation(this)
-        ColorNoAlpha::class.java.name -> ColorNoAlphaHintAnnotation(this)
+        MultilineText::class.java.name -> MultilineTextHintAnnotation()
+        PlaceHolderText::class.java.name -> PlaceHolderTextHintAnnotation()
+        ColorNoAlpha::class.java.name -> ColorNoAlphaHintAnnotation()
         godot.annotation.IntRange::class.java.name -> provideRangeHintAnnotation(-1)
         godot.annotation.LongRange::class.java.name -> provideRangeHintAnnotation(-1L)
         godot.annotation.FloatRange::class.java.name -> provideRangeHintAnnotation(-1f)
@@ -110,16 +107,13 @@ fun AnnotationInfo.mapToGodotAnnotation(parentDeclaration: Any, declarationStrin
         ExpEasing::class.java.name -> ExpEasingHintAnnotation(
             attenuation = parameterValues.getValue("attenuation") as? Boolean ?: false,
             isPositiveOnly = parameterValues.getValue("isPositiveOnly") as? Boolean ?: false,
-            source = this
         )
         godot.annotation.File::class.java.name -> FileHintAnnotation(
             extensions = parameterValues.getValue("extensions") as? List<String> ?: emptyList(),
             global = parameterValues.getValue("global") as? Boolean ?: false,
-            source = this
         )
         Dir::class.java.name -> DirHintAnnotation(
             global = parameterValues.getValue("global") as? Boolean ?: false,
-            source = this
         )
         else -> null
     }
@@ -175,7 +169,6 @@ private fun <T : Number> AnnotationInfo.provideRangeHintAnnotation(stepDefault: 
         isDegrees = isDegrees,
         isExp = isExp,
         suffix = suffix,
-        symbolProcessorSource = this
     )
 }
 
