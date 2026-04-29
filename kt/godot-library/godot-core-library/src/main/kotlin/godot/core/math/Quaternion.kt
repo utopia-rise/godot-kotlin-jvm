@@ -28,7 +28,7 @@ class Quaternion(
 
     //CONSTANTS
     companion object {
-        private const val SHORTEST_ARC_TOLERANCE: RealT = 0.999999999999999
+        private const val SHORTEST_ARC_DOT_THRESHOLD: RealT = 0.999999999999999
 
         val IDENTITY: Quaternion
             get() = Quaternion(0.0, 0.0, 0.0, 1.0)
@@ -85,7 +85,7 @@ class Quaternion(
             require(!(v0.isZeroApprox() || v1.isZeroApprox())) { "The vectors must not be zero."}
         }
         // Mirrors upstream Godot's REAL_T_IS_DOUBLE shortest-arc tolerance to avoid numerical instability near ±1 dot values.
-        val almostOne = SHORTEST_ARC_TOLERANCE
+        val almostOne = SHORTEST_ARC_DOT_THRESHOLD
 
         val n0 = v0.normalized();
         val n1 = v1.normalized();
