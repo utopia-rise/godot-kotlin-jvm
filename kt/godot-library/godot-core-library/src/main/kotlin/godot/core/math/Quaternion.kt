@@ -82,6 +82,7 @@ class Quaternion(
         if (GodotJvmBuildConfig.DEBUG) {
             require(!(v0.isZeroApprox() || v1.isZeroApprox())) { "The vectors must not be zero."}
         }
+        // Mirrors upstream Godot's REAL_T_IS_DOUBLE shortest-arc tolerance to avoid numerical instability near ±1 dot values.
         val almostOne = 0.999999999999999
 
         val n0 = v0.normalized();
