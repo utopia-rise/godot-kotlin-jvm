@@ -232,6 +232,8 @@ class TestQuaternion {
         checkTrue(Quaternion(down, up).xform(down).isEqualApprox(up));
         checkTrue(Quaternion(forward, back).xform(forward).isEqualApprox(back));
         checkTrue(Quaternion(back, forward).xform(back).isEqualApprox(forward));
+        checkTrue(leftToRight.isNormalized())
+        checkTrue(rightToLeft.isNormalized())
 
         // With (arbitrary) opposite vectors that are not axis-aligned as parameters.
         val diagonalUp = Vector3(1.2, 2.3, 4.5).normalized();
@@ -239,6 +241,7 @@ class TestQuaternion {
         val q1 = Quaternion(diagonalUp, diagonalDown);
         checkTrue(q1.xform(diagonalDown).isEqualApprox(diagonalUp));
         checkTrue(q1.xform(diagonalUp).isEqualApprox(diagonalDown));
+        checkTrue(q1.isNormalized())
 
         // For the consistency of the rotation direction, they should be symmetrical to the plane.
         checkTrue(leftToRight.isEqualApprox(rightToLeft.inverse()));

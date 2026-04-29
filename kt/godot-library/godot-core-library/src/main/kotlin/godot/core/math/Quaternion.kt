@@ -82,7 +82,7 @@ class Quaternion(
         if (GodotJvmBuildConfig.DEBUG) {
             require(!(v0.isZeroApprox() || v1.isZeroApprox())) { "The vectors must not be zero."}
         }
-        val almostOne = 1.0f - CMP_EPSILON;
+        val almostOne = 0.999999999999999
 
         val n0 = v0.normalized();
         val n1 = v1.normalized();
@@ -106,6 +106,7 @@ class Quaternion(
             z = c.z * rs
             w = s * 0.5
         }
+        normalize()
     }
 
     //API

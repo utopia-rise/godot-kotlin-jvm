@@ -190,6 +190,10 @@ class TestVector3 {
                 )
             )
         ) { "Vector3 normalize should work as expected." }
+
+        val nonFiniteVector = Vector3(Double.NaN, 1.0, 2.0)
+        nonFiniteVector.normalize()
+        checkMessage(nonFiniteVector == Vector3.ZERO) { "Vector3 normalize should fall back to zero for non-finite values." }
     }
 
     @Test

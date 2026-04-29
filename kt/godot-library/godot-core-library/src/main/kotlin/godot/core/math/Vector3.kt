@@ -442,15 +442,23 @@ class Vector3(
     }
 
     internal fun normalize() {
-        val l = this.length()
-        if (l.isEqualApprox(0.0)) {
+        if (!isFinite()) {
+            x = 0.0
+            y = 0.0
+            z = 0.0
+            return
+        }
+
+        val l = lengthSquared()
+        if (l == 0.0) {
             x = 0.0
             y = 0.0
             z = 0.0
         } else {
-            x /= l
-            y /= l
-            z /= l
+            val length = sqrt(l)
+            x /= length
+            y /= length
+            z /= length
         }
     }
 
