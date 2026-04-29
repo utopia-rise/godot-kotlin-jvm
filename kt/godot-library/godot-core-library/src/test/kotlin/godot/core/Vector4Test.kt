@@ -86,7 +86,7 @@ class TestVector4 {
 
         val nonFiniteVector = Vector4(Double.NaN, 1.0, 2.0, 3.0)
         nonFiniteVector.normalize()
-        checkTrue(nonFiniteVector == Vector4.ZERO)
+        checkMessage(nonFiniteVector == Vector4.ZERO) { "Vector4 normalize should fall back to zero for non-finite values." }
     }
 
     @Test
