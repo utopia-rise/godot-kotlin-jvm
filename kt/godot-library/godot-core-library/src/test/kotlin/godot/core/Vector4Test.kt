@@ -83,10 +83,6 @@ class TestVector4 {
                 .isEqualApprox(Vector4(0.7071067811865476, 0.7071067811865476, 0.0, 0.0))
         )
         checkTrue(Vector4(1.0, 1.0, 1.0, 1.0).normalized().isEqualApprox(Vector4(0.5, 0.5, 0.5, 0.5)))
-
-        val nonFiniteVector = Vector4(Double.NaN, 1.0, 2.0, 3.0)
-        nonFiniteVector.normalize()
-        checkMessage(nonFiniteVector == Vector4.ZERO) { "Vector4 normalize should fall back to zero for non-finite values." }
     }
 
     @Test

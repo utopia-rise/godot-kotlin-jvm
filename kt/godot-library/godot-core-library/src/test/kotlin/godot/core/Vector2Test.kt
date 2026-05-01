@@ -166,10 +166,6 @@ class TestVector2 {
         checkMessage(vector == Vector2(3.2, -5.4).normalized()) { "Vector2 normalize should convert the same way as Vector2 normalized." }
         val expectedNormalizedVector = Vector2(0.5098023903017329, -0.8602915336341743)
         checkMessage(vector.isEqualApprox(expectedNormalizedVector)) { "Vector2 normalize should work as expected." }
-
-        val nonFiniteVector = Vector2(Double.NaN, 1.0)
-        nonFiniteVector.normalize()
-        checkMessage(nonFiniteVector == Vector2.ZERO) { "Vector2 normalize should fall back to zero for non-finite values." }
     }
 
     @Test

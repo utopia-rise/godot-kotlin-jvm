@@ -8,6 +8,8 @@ import godot.common.util.fposmod
 import godot.common.util.isEqualApprox
 import godot.common.util.snapped
 import godot.common.util.toRealT
+import godot.internal.logging.GodotLogging
+import kotlincompile.definitions.GodotJvmBuildConfig
 import kotlin.math.abs
 import kotlin.math.ceil
 import kotlin.math.floor
@@ -323,16 +325,19 @@ class Vector4(
     }
 
     internal fun normalize() {
-        if (!isFinite()) {
-            x = 0.0
-            y = 0.0
-            z = 0.0
-            w = 0.0
-            return
+        if (GodotJvmBuildConfig.DEBUG) {
+            if((!isFinite())) {
+                GodotLogging.warning("Vector2 cannot be normalized, the elements must be finite. Making (0, 0, 0, 0) as a fallback.")
+                x = 0.0
+                y = 0.0
+                z = 0.0
+                w = 0.0
+                return
+            }
         }
 
         val l = lengthSquared()
-        if (l.isEqualApprox(0.0)) {
+        if (l == 0.0) {
             x = 0.0
             y = 0.0
             z = 0.0
