@@ -1,45 +1,19 @@
-<idea-plugin require-restart="false">
+<idea-plugin require-restart="true">
     <id>com.utopia-rise.godotjvmideaplugin</id>
     <name>Godot Kotlin/Jvm</name>
-    <!-- The vendor of the plugin.
-       The optional "url" attribute specifies the URL of the vendor homepage.
-       The optional "email" attribute specifies the e-mail address of the vendor.
-       Displayed in the "Plugins" settings dialog and the plugin repository Web interface. -->
     <vendor url="https://github.com/utopia-rise/" email="meisels27@yahoo.fr">Utopia-Rise</vendor>
 
-    <!-- Product and plugin compatibility requirements -->
-    <!-- https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html -->
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <postStartupActivity implementation="godot.intellij.plugin.listener.GodotKotlinJvmStartupActivity"/>
-        <projectService serviceInterface="godot.intellij.plugin.project.GodotKotlinJvmProjectService" serviceImplementation="godot.intellij.plugin.project.GodotKotlinJvmProjectServiceImpl"/>
-        <moduleBuilder builderClass="godot.intellij.plugin.module.GodotModuleBuilder"/>
+        <projectService serviceImplementation="godot.intellij.plugin.GodotKotlinJvmProjectService"/>
+        <projectService serviceImplementation="godot.intellij.plugin.GodotProjectScopeService"/>
+        <postStartupActivity implementation="godot.intellij.plugin.GodotKotlinJvmProjectActivity"/>
+        <newProjectWizard.generator implementation="godot.intellij.plugin.wizard.GodotNewProjectWizard"/>
         <notificationGroup id="Error message" displayType="STICKY_BALLOON" key="notification.group.error" isLogByDefault="true"/>
-        <annotator implementationClass="godot.intellij.plugin.annotator.clazz.RegisterClassAnnotator" language="JVM"/>
-        <annotator implementationClass="godot.intellij.plugin.annotator.function.RegisterFunctionAnnotator" language="JVM"/>
-        <annotator implementationClass="godot.intellij.plugin.annotator.function.RpcAnnotator" language="JVM"/>
-        <annotator implementationClass="godot.intellij.plugin.annotator.property.RegisterPropertiesAnnotator" language="JVM"/>
-        <annotator implementationClass="godot.intellij.plugin.annotator.signal.RegisterSignalAnnotator" language="JVM"/>
-        <annotator implementationClass="godot.intellij.plugin.annotator.reference.FunctionReferenceAnnotator" language="JVM"/>
-        <annotator implementationClass="godot.intellij.plugin.annotator.copy.CopyModificationAnnotator" language="JVM"/>
-        <codeInsight.lineMarkerProvider language="JVM" implementationClass="godot.intellij.plugin.linemarker.SignalConnectionLineMarker"/>
-        <codeInsight.lineMarkerProvider language="JVM" implementationClass="godot.intellij.plugin.linemarker.RegisteredNameLineMarker"/>
-        <fileType name="GodotSceneFile"
-            fieldName="INSTANCE"
-            language="godotScene"
-            extensions="tscn"
-            implementationClass="godot.intellij.plugin.language.scene.filetype.GodotSceneFileType"/>
-        <fileType name="GodotKotlinJvmRegistrationFile"
-            fieldName="INSTANCE"
-            language="godotKotlinJvmRegistrationFile"
-            extensions="gdj"
-            implementationClass="godot.intellij.plugin.language.registrationfile.filetype.GodotKotlinJvmRegistrationFileFileType"/>
-        <editorNotificationProvider
-            implementation="godot.intellij.plugin.notification.SettingsFetchingNotification" />
-        <externalSystemTaskNotificationListener
-                implementation="godot.intellij.plugin.gradle.GradleSystemListener"/>
-        <refactoring.elementListenerProvider implementation="godot.intellij.plugin.listener.refactoring.RefactoringListenerProvider"/>
+        <localInspection implementationClass="godot.intellij.plugin.inspection.JvmInspection" language="JVM"/>
+        <localInspection implementationClass="godot.intellij.plugin.inspection.KotlinInspection" language="kotlin"/>
+        <localInspection implementationClass="godot.intellij.plugin.inspection.CoreTypeCopyModificationInspection" language="kotlin"/>
     </extensions>
 
     <extensions defaultExtensionNs="org.jetbrains.kotlin">
@@ -50,5 +24,4 @@
 
     <depends>com.intellij.modules.java</depends>
     <depends>org.jetbrains.kotlin</depends>
-    <depends>com.intellij.gradle</depends>
 </idea-plugin>

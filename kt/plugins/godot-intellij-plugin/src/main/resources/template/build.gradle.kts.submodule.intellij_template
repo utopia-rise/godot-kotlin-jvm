@@ -1,5 +1,5 @@
 plugins {
-    GODOT_KOTLIN_DEPENDENCY
+    id("com.utopia-rise.godot-kotlin-jvm") version "GODOT_KOTLIN_JVM_VERSION"
 }
 
 repositories {
@@ -11,43 +11,24 @@ kotlin {
 }
 
 godot {
-    // START: registration options
-    // regular setup
-    // the script registration which you'll attach to nodes are generated into this directory
-    registrationFileBaseDir.set(projectDir.resolve("gdj").also { it.mkdirs() })
+    // --------- Setup ---------
+    registrationFileBaseDir.set(projectDir.resolve("gdj"))
+    isRegistrationFileGenerationEnabled.set(true)
 
-    // defines whether the script registration files should be generated hierarchically according to the classes package path or flattened into `registrationFileBaseDir`
-//registrationFileLayoutMode.set(RegistrationFileLayoutMode.FLAT)
+    // registrationFileLayoutMode.set(RegistrationFileLayoutMode.FLAT)
+    // registeredNameMode.set(RegisteredNameMode.SIMPLE_NAME)
 
-    // defines whether your scripts should be registered with their fqName or their simple name (can help with resolving script name conflicts)
-//registeredNameMode.set(RegisteredNameMode.SIMPLE_NAME)
-
-    // library setup. See: https://godot-kotl.in/en/stable/develop-libraries/
-    // only really needed for library authors. See: https://godot-kotl.in/en/stable/develop-libraries/setup/
-//registeredNameMode.set(RegisteredNameMode.PROJECT_PREFIX)
-
-    // only needed for library authors. See: https://godot-kotl.in/en/stable/develop-libraries/setup/
-    //isRegistrationFileGenerationEnabled.set(true)
-    // END: registration options
-
-    // -------------------------
-
-    // START: android export options
-    // NOTE: Make sure you read: https://godot-kotl.in/en/stable/user-guide/exporting/#android as not all jvm libraries are compatible with android!
-    // IMPORTANT: Android export should to be considered from the start of development!
+    // --------- Android ---------
     isAndroidExportEnabled.set(ANDROID_ENABLED)
     d8ToolPath.set(File("D8_TOOL_PATH"))
     androidCompileSdkDir.set(File("ANDROID_COMPILE_SDK_DIR"))
-    // END: android export options
 
-    // -------------------------
-
-    // START: graal native image export options
-    // NOTE: this is an advanced feature! Read: https://godot-kotl.in/en/stable/user-guide/advanced/graal-vm-native-image/
-    // IMPORTANT: Graal Native Image needs to be considered from the start of development!
+    // --------- Graal / iOS ---------
     isGraalNativeImageExportEnabled.set(IS_GRAAL_VM_ENABLED)
     graalVmDirectory.set(File("GRAAL_VM_DIR"))
     windowsDeveloperVCVarsPath.set(File("WINDOWS_DEVELOPER_VS_VARS_PATH"))
     isIOSExportEnabled.set(IS_IOS_ENABLED)
-    // END: graal native image export options
+
+    // --------- Library authors ---------
+    // registeredNameMode.set(RegisteredNameMode.PROJECT_PREFIX)
 }

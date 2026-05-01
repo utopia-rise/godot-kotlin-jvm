@@ -1,0 +1,15 @@
+<html>
+<body>
+<p>Detects assignments that mutate a nested member of a core-type copy.</p>
+
+<p>
+Godot core-type properties marked with <code>@CoreTypeLocalCopy</code> return copies from their getter.
+Writing through one of those copies, such as <code>transform.basis.x.x = 1.0</code>, only mutates the copy and
+does not update the original owner.
+</p>
+
+<p>
+Reassign the full property directly, or use the matching core-type helper when one exists.
+</p>
+</body>
+</html>

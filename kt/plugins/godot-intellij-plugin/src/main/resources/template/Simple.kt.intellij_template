@@ -1,4 +1,4 @@
-package GROUP_ID.ARTEFACT_ID
+package GROUP_ID
 
 import godot.api.Node3D
 import godot.annotation.RegisterClass

@@ -1,0 +1,19 @@
+<html>
+<body>
+<p>Runs Kotlin-specific Godot Kotlin/JVM inspections.</p>
+
+<p>
+These checks operate on Kotlin PSI and K2 analysis to validate registration annotations,
+exported properties, RPC usage, signals, and callable references used in common Godot patterns.
+</p>
+
+<p>Current checks include:</p>
+<ul>
+  <li><code>@RegisterProperty</code>, <code>@Export</code>, and property hint validation</li>
+  <li><code>@RegisterFunction</code> validation</li>
+  <li><code>@RegisterSignal</code> validation</li>
+  <li><code>@Rpc</code> annotation validation</li>
+  <li>callable-reference validation for signal, <code>call</code>, and <code>rpc</code> usage</li>
+</ul>
+</body>
+</html>
