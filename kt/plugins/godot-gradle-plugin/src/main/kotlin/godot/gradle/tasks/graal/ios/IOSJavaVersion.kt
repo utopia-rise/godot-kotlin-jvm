@@ -2,6 +2,7 @@ package godot.gradle.tasks.graal.ios
 
 import godot.gradle.projectExt.godotJvmExtension
 import org.gradle.api.Project
+import java.io.File
 
 enum class IOSJavaVersion {
     JVM_11,
@@ -9,9 +10,7 @@ enum class IOSJavaVersion {
 
     companion object {
         operator fun invoke(project: Project): IOSJavaVersion {
-            val javaCPath = project.godotJvmExtension.graalVmDirectory
-                .get()
-                .asFile
+            val javaCPath = File(project.godotJvmExtension.graalVmHomeDirectory.get())
                 .resolve("bin")
                 .resolve("javac")
                 .absolutePath

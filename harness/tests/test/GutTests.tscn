@@ -143,10 +143,10 @@ func _on_run_gut_tests_button_pressed():
 	_gut_control.run_tests()
 "
 
-[node name="GutTests" type="Node2D" unique_id=884692679]
+[node name="GutTests" type="Node2D" unique_id=278266498]
 script = SubResource("GDScript_5bhub")
 
-[node name="GutControl" parent="." unique_id=788943901 instance=ExtResource("1_qrxmy")]
+[node name="GutControl" parent="." unique_id=2012545066 instance=ExtResource("1_qrxmy")]
 offset_right = 1171.0
 offset_bottom = 639.0
 bg_color = Color(0, 0, 0, 1)

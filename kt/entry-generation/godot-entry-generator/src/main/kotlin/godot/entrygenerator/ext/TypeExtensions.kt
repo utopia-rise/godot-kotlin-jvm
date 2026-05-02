@@ -1,118 +1,154 @@
 package godot.entrygenerator.ext
 
 import com.squareup.kotlinpoet.ClassName
-import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
+import com.squareup.kotlinpoet.MemberName
 import com.squareup.kotlinpoet.TypeName
+import godot.api.Node
+import godot.api.Object
+import godot.api.RefCounted
+import godot.api.Resource
 import godot.common.extensions.convertToCamelCase
+import godot.common.util.NaturalT
+import godot.common.util.RealT
+import godot.core.AABB
+import godot.core.Basis
+import godot.core.Callable
+import godot.core.Color
 import godot.core.CoreType
+import godot.core.Dictionary
+import godot.core.LambdaCallable
+import godot.core.NodePath
+import godot.core.PackedByteArray
+import godot.core.PackedColorArray
+import godot.core.PackedFloat32Array
+import godot.core.PackedFloat64Array
+import godot.core.PackedInt32Array
+import godot.core.PackedInt64Array
+import godot.core.PackedStringArray
+import godot.core.PackedVector2Array
+import godot.core.PackedVector3Array
+import godot.core.PackedVector4Array
+import godot.core.Plane
+import godot.core.Projection
+import godot.core.Quaternion
+import godot.core.RID
+import godot.core.Rect2
+import godot.core.Rect2i
+import godot.core.Signal
+import godot.core.StringName
+import godot.core.Transform2D
+import godot.core.Transform3D
+import godot.core.VariantArray
+import godot.core.Vector2
+import godot.core.Vector2i
+import godot.core.Vector3
+import godot.core.Vector3i
+import godot.core.Vector4
+import godot.core.Vector4i
 import godot.entrygenerator.model.Type
 import godot.entrygenerator.model.TypeKind
-import godot.tools.common.constants.GodotKotlinJvmTypes
-import godot.tools.common.constants.GodotTypes
-import godot.tools.common.constants.VARIANT_CASTER_ANY
-import godot.tools.common.constants.VARIANT_CASTER_BYTE
-import godot.tools.common.constants.VARIANT_CASTER_ENUM
-import godot.tools.common.constants.VARIANT_CASTER_FLOAT
-import godot.tools.common.constants.VARIANT_CASTER_INT
-import godot.tools.common.constants.VARIANT_PARSER_AABB
-import godot.tools.common.constants.VARIANT_PARSER_ARRAY
-import godot.tools.common.constants.VARIANT_PARSER_BOOL
-import godot.tools.common.constants.VARIANT_PARSER_DOUBLE
-import godot.tools.common.constants.VARIANT_PARSER_LONG
-import godot.tools.common.constants.VARIANT_PARSER_NIL
-import godot.tools.common.constants.VARIANT_PARSER_NODE_PATH
-import godot.tools.common.constants.VARIANT_PARSER_OBJECT
-import godot.tools.common.constants.VARIANT_PARSER_PACKED_BYTE_ARRAY
-import godot.tools.common.constants.VARIANT_PARSER_PACKED_CALLABLE
-import godot.tools.common.constants.VARIANT_PARSER_PACKED_COLOR_ARRAY
-import godot.tools.common.constants.VARIANT_PARSER_PACKED_FLOAT_32_ARRAY
-import godot.tools.common.constants.VARIANT_PARSER_PACKED_FLOAT_64_ARRAY
-import godot.tools.common.constants.VARIANT_PARSER_PACKED_INT_32_ARRAY
-import godot.tools.common.constants.VARIANT_PARSER_PACKED_INT_64_ARRAY
-import godot.tools.common.constants.VARIANT_PARSER_PACKED_STRING_ARRAY
-import godot.tools.common.constants.VARIANT_PARSER_PACKED_VECTOR2_ARRAY
-import godot.tools.common.constants.VARIANT_PARSER_PACKED_VECTOR3_ARRAY
-import godot.tools.common.constants.VARIANT_PARSER_PACKED_VECTOR4_ARRAY
-import godot.tools.common.constants.VARIANT_PARSER_STRING
-import godot.tools.common.constants.VARIANT_PARSER_STRING_NAME
-import godot.tools.common.constants.VARIANT_PARSER_TRANSFORM2D
-import godot.tools.common.constants.VARIANT_PARSER_TRANSFORM3D
-import godot.tools.common.constants.VARIANT_PARSER__RID
 import godot.tools.common.constants.godotApiPackage
 import godot.tools.common.constants.godotCorePackage
-import godot.tools.common.constants.godotUtilPackage
-import godot.tools.common.constants.kotlinCollectionsPackage
-import godot.tools.common.constants.variantParserPackage
+import godot.tools.common.constants.isCollectionsType
+import godot.tools.common.constants.isFromPackage
+import godot.tools.common.constants.variantCaster
+import godot.tools.common.constants.variantParser
 import java.util.*
 
-//TODO: make compatible with other languages
-fun Type?.toKtVariantType(): TypeName = when {
-    this == null || fqName == Unit::class.qualifiedName -> VARIANT_PARSER_NIL
-    this.kind == TypeKind.ENUM_CLASS -> VARIANT_CASTER_ENUM.parameterizedBy(ClassName(fqName.substringBeforeLast("."), fqName.substringAfterLast(".")))
-    fqName == Byte::class.qualifiedName -> VARIANT_CASTER_BYTE
-    fqName == Int::class.qualifiedName -> VARIANT_CASTER_INT
-    fqName == "$godotUtilPackage.${GodotKotlinJvmTypes.naturalT}" ||
-        fqName == Long::class.qualifiedName -> VARIANT_PARSER_LONG
+object VariantConverterNames {
+    private val parserName = "$godotCorePackage.$variantParser"
+    private val casterName = "$godotCorePackage.$variantCaster"
 
-    fqName == Float::class.qualifiedName -> VARIANT_CASTER_FLOAT
-    fqName == "$godotUtilPackage.${GodotKotlinJvmTypes.realT}" ||
-        fqName == Double::class.qualifiedName -> VARIANT_PARSER_DOUBLE
+    val nil = MemberName(parserName, "NIL")
+    val bool = MemberName(parserName, "BOOL")
+    val byte = MemberName(casterName, "BYTE")
+    val int = MemberName(casterName, "INT")
+    val long = MemberName(parserName, "LONG")
+    val float = MemberName(casterName, "FLOAT")
+    val double = MemberName(parserName, "DOUBLE")
+    val string = MemberName(parserName, "STRING")
+    val array = MemberName(parserName, "ARRAY")
+    val stringName = MemberName(parserName, "STRING_NAME")
+    val rid = MemberName(parserName, "_RID")
+    val aabb = MemberName(parserName, "AABB")
+    val nodePath = MemberName(parserName, "NODE_PATH")
+    val transform2D = MemberName(parserName, "TRANSFORM2D")
+    val transform3D = MemberName(parserName, "TRANSFORM3D")
+    val packedByteArray = MemberName(parserName, "PACKED_BYTE_ARRAY")
+    val packedInt32Array = MemberName(parserName, "PACKED_INT_32_ARRAY")
+    val packedInt64Array = MemberName(parserName, "PACKED_INT_64_ARRAY")
+    val packedFloat32Array = MemberName(parserName, "PACKED_FLOAT_32_ARRAY")
+    val packedFloat64Array = MemberName(parserName, "PACKED_FLOAT_64_ARRAY")
+    val packedStringArray = MemberName(parserName, "PACKED_STRING_ARRAY")
+    val packedVector2Array = MemberName(parserName, "PACKED_VECTOR2_ARRAY")
+    val packedVector3Array = MemberName(parserName, "PACKED_VECTOR3_ARRAY")
+    val packedVector4Array = MemberName(parserName, "PACKED_VECTOR4_ARRAY")
+    val packedColorArray = MemberName(parserName, "PACKED_COLOR_ARRAY")
+    val callable = MemberName(parserName, "CALLABLE")
+    val any = MemberName(casterName, "ANY")
+    val enum = MemberName(casterName, "ENUM")
+    val obj = MemberName(parserName, "OBJECT")
 
-    fqName == String::class.qualifiedName -> VARIANT_PARSER_STRING
-    fqName == Boolean::class.qualifiedName -> VARIANT_PARSER_BOOL
-    fqName == "$godotCorePackage.${GodotKotlinJvmTypes.variantArray}" -> VARIANT_PARSER_ARRAY
-    fqName == "$godotCorePackage.${GodotTypes.stringName}" -> VARIANT_PARSER_STRING_NAME
-    fqName == "$godotCorePackage.${GodotTypes.rid}" -> VARIANT_PARSER__RID
-    fqName == "$godotCorePackage.${GodotTypes.aabb}" -> VARIANT_PARSER_AABB
-    fqName == "$godotCorePackage.${GodotTypes.nodePath}" -> VARIANT_PARSER_NODE_PATH
-    fqName == "$godotCorePackage.${GodotTypes.transform2D}" -> VARIANT_PARSER_TRANSFORM2D
-    fqName == "$godotCorePackage.${GodotTypes.transform3D}" -> VARIANT_PARSER_TRANSFORM3D
-    fqName == "$godotCorePackage.${GodotTypes.packedByteArray}" -> VARIANT_PARSER_PACKED_BYTE_ARRAY
-    fqName == "$godotCorePackage.${GodotTypes.packedInt32Array}" -> VARIANT_PARSER_PACKED_INT_32_ARRAY
-    fqName == "$godotCorePackage.${GodotTypes.packedInt64Array}" -> VARIANT_PARSER_PACKED_INT_64_ARRAY
-    fqName == "$godotCorePackage.${GodotTypes.packedFloat32Array}" -> VARIANT_PARSER_PACKED_FLOAT_32_ARRAY
-    fqName == "$godotCorePackage.${GodotTypes.packedFloat64Array}" -> VARIANT_PARSER_PACKED_FLOAT_64_ARRAY
-    fqName == "$godotCorePackage.${GodotTypes.packedStringArray}" -> VARIANT_PARSER_PACKED_STRING_ARRAY
-    fqName == "$godotCorePackage.${GodotTypes.packedVector2Array}" -> VARIANT_PARSER_PACKED_VECTOR2_ARRAY
-    fqName == "$godotCorePackage.${GodotTypes.packedVector3Array}" -> VARIANT_PARSER_PACKED_VECTOR3_ARRAY
-    fqName == "$godotCorePackage.${GodotTypes.packedVector4Array}" -> VARIANT_PARSER_PACKED_VECTOR4_ARRAY
-    fqName == "$godotCorePackage.${GodotTypes.packedColorArray}" -> VARIANT_PARSER_PACKED_COLOR_ARRAY
-    fqName.startsWith("$godotCorePackage.${GodotTypes.lambdaCallable}") -> VARIANT_PARSER_PACKED_CALLABLE
-    isCoreType() -> ClassName(
-        variantParserPackage,
-        fqName.substringAfterLast(".").convertToCamelCase().uppercase(Locale.getDefault())
-    )
-
-    fqName == Any::class.qualifiedName -> VARIANT_CASTER_ANY
-    else -> VARIANT_PARSER_OBJECT
+    fun parserName(name: String) = MemberName(parserName, name.uppercase(Locale.getDefault()))
 }
 
-/**
- * Same as [toKtVariantType] but resolves JVM_* types to actual godot types.
- *
- * Calls [toKtVariantType] under the hood for all other types
- */
-fun Type?.toGodotVariantType(): TypeName = this?.let {
+fun Type?.toGodotVariantMemberName(): MemberName = this?.let {
     when (it.fqName) {
-        Byte::class.qualifiedName, Int::class.qualifiedName -> VARIANT_PARSER_LONG
-        Float::class.qualifiedName -> VARIANT_PARSER_DOUBLE
-        else -> toKtVariantType()
+        Byte::class.qualifiedName, Int::class.qualifiedName -> VariantConverterNames.long
+        Float::class.qualifiedName -> VariantConverterNames.double
+        else -> toKtVariantMemberName()
     }
-} ?: toKtVariantType()
+} ?: toKtVariantMemberName()
+
+fun Type?.toKtVariantMemberName(): MemberName = when {
+    this == null || fqName == Unit::class.qualifiedName -> VariantConverterNames.nil
+    this.kind == TypeKind.ENUM_CLASS -> VariantConverterNames.enum
+    fqName == Byte::class.qualifiedName -> VariantConverterNames.byte
+    fqName == Int::class.qualifiedName -> VariantConverterNames.int
+    fqName == NaturalT::class.qualifiedName || fqName == Long::class.qualifiedName -> VariantConverterNames.long
+    fqName == Float::class.qualifiedName -> VariantConverterNames.float
+    fqName == RealT::class.qualifiedName || fqName == Double::class.qualifiedName -> VariantConverterNames.double
+
+    fqName == String::class.qualifiedName -> VariantConverterNames.string
+    fqName == Boolean::class.qualifiedName -> VariantConverterNames.bool
+    fqName == VariantArray::class.qualifiedName -> VariantConverterNames.array
+    fqName == StringName::class.qualifiedName -> VariantConverterNames.stringName
+    fqName == RID::class.qualifiedName -> VariantConverterNames.rid
+    fqName == AABB::class.qualifiedName -> VariantConverterNames.aabb
+    fqName == NodePath::class.qualifiedName -> VariantConverterNames.nodePath
+    fqName == Transform2D::class.qualifiedName -> VariantConverterNames.transform2D
+    fqName == Transform3D::class.qualifiedName -> VariantConverterNames.transform3D
+    fqName == PackedByteArray::class.qualifiedName -> VariantConverterNames.packedByteArray
+    fqName == PackedInt32Array::class.qualifiedName -> VariantConverterNames.packedInt32Array
+    fqName == PackedInt64Array::class.qualifiedName -> VariantConverterNames.packedInt64Array
+    fqName == PackedFloat32Array::class.qualifiedName -> VariantConverterNames.packedFloat32Array
+    fqName == PackedFloat64Array::class.qualifiedName -> VariantConverterNames.packedFloat64Array
+    fqName == PackedStringArray::class.qualifiedName -> VariantConverterNames.packedStringArray
+    fqName == PackedVector2Array::class.qualifiedName -> VariantConverterNames.packedVector2Array
+    fqName == PackedVector3Array::class.qualifiedName -> VariantConverterNames.packedVector3Array
+    fqName == PackedVector4Array::class.qualifiedName -> VariantConverterNames.packedVector4Array
+    fqName == PackedColorArray::class.qualifiedName -> VariantConverterNames.packedColorArray
+    fqName.startsWith(LambdaCallable::class.qualifiedName!!) -> VariantConverterNames.callable
+    isCoreType() -> VariantConverterNames.parserName(fqName.substringAfterLast(".").convertToCamelCase().uppercase(Locale.getDefault()))
+
+
+    fqName == Any::class.qualifiedName -> VariantConverterNames.any
+    else -> VariantConverterNames.obj
+}
 
 fun Type.isCoreType(): Boolean {
     return supertypes.any { it.fqName == CoreType::class.qualifiedName || it.allSuperTypes.any { superType -> superType.fqName == CoreType::class.qualifiedName } }
 }
 
 fun Type.isNodeType(): Boolean {
-    return fqName == "$godotApiPackage.${GodotTypes.node}" || allSuperTypes.any { supertype -> supertype.fqName == "$godotApiPackage.${GodotTypes.node}" }
+    return fqName == Node::class.qualifiedName || allSuperTypes.any { supertype -> supertype.fqName == Node::class.qualifiedName }
 }
 
 fun Type.baseGodotType(): Type? {
-    return if (fqName.startsWith(godotApiPackage)) {
+    return if (fqName.isFromPackage(godotApiPackage)) {
         this
     } else {
-        allSuperTypes.firstOrNull { supertype -> supertype.fqName.startsWith(godotApiPackage) }
+        allSuperTypes.firstOrNull { supertype -> supertype.fqName.isFromPackage(godotApiPackage) }
     }
 }
 
@@ -122,16 +158,16 @@ fun Type.toTypeName(): TypeName = ClassName(
 )
 
 fun Type.isCompatibleList(): Boolean = when (fqName) {
-    "$godotCorePackage.${GodotKotlinJvmTypes.variantArray}" -> true
-    else -> allSuperTypes.any { it.fqName == "$godotCorePackage.${GodotKotlinJvmTypes.variantArray}" }
+    VariantArray::class.qualifiedName -> true
+    else -> allSuperTypes.any { it.fqName == VariantArray::class.qualifiedName }
 }
 
 fun Type.isDictionary(): Boolean = when (fqName) {
-    "$godotCorePackage.${GodotKotlinJvmTypes.dictionary}" -> true
-    else -> allSuperTypes.any { it.fqName == "$godotCorePackage.${GodotKotlinJvmTypes.dictionary}" }
+    Dictionary::class.qualifiedName -> true
+    else -> allSuperTypes.any { it.fqName == Dictionary::class.qualifiedName }
 }
 
-fun Type.isKotlinCollection(): Boolean = fqName.contains(kotlinCollectionsPackage)
+fun Type.isKotlinCollection(): Boolean = isCollectionsType(fqName)
 
 private val javaCollection = arrayOf(
     "java.util.ArrayList",
@@ -163,20 +199,20 @@ fun String.isJavaCollection(): Boolean = javaCollection.contains(this)
 
 fun Type.isEnum(): Boolean = kind == TypeKind.ENUM_CLASS
 
-fun Type.isRefCounted(): Boolean = fqName == "$godotApiPackage.${GodotKotlinJvmTypes.refCounted}" || this
+fun Type.isRefCounted(): Boolean = fqName == RefCounted::class.qualifiedName || this
     .allSuperTypes
-    .any { supertype -> supertype.fqName == "$godotApiPackage.${GodotKotlinJvmTypes.refCounted}" }
+    .any { supertype -> supertype.fqName == RefCounted::class.qualifiedName }
 
-fun Type.isResource(): Boolean = fqName == "$godotApiPackage.${GodotKotlinJvmTypes.resource}" || this
+fun Type.isResource(): Boolean = fqName == Resource::class.qualifiedName || this
     .allSuperTypes
-    .any { supertype -> supertype.fqName == "$godotApiPackage.${GodotKotlinJvmTypes.resource}" }
+    .any { supertype -> supertype.fqName == Resource::class.qualifiedName }
 
 fun Type.isGodotPrimitive(): Boolean = when (fqName) {
     Int::class.qualifiedName,
-    "$godotUtilPackage.${GodotKotlinJvmTypes.naturalT}",
+    NaturalT::class.qualifiedName,
     Long::class.qualifiedName,
     Float::class.qualifiedName,
-    "$godotUtilPackage.${GodotKotlinJvmTypes.realT}",
+    RealT::class.qualifiedName,
     Double::class.qualifiedName,
     Boolean::class.qualifiedName,
     Byte::class.qualifiedName,
@@ -190,82 +226,68 @@ fun Type.isGodotPrimitive(): Boolean = when (fqName) {
 fun Type.getAsVariantTypeOrdinal(): Int? = when (fqName) {
     Boolean::class.qualifiedName -> 1
     Int::class.qualifiedName,
-    "$godotUtilPackage.${GodotKotlinJvmTypes.naturalT}",
+    NaturalT::class.qualifiedName,
     Long::class.qualifiedName,
     Byte::class.qualifiedName,
     Short::class.qualifiedName,
     Enum::class.qualifiedName -> 2
 
     Float::class.qualifiedName,
-    "$godotUtilPackage.${GodotKotlinJvmTypes.realT}",
+    RealT::class.qualifiedName,
     Double::class.qualifiedName -> 3
 
     String::class.qualifiedName -> 4
-    "$godotCorePackage.${GodotTypes.vector2}" -> 5
-    "$godotCorePackage.${GodotTypes.vector2i}" -> 6
-    "$godotCorePackage.${GodotTypes.rect2}" -> 7
-    "$godotCorePackage.${GodotTypes.rect2i}" -> 8
-    "$godotCorePackage.${GodotTypes.vector3}" -> 9
-    "$godotCorePackage.${GodotTypes.vector3i}" -> 10
-    "$godotCorePackage.${GodotTypes.transform2D}" -> 11
-    "$godotCorePackage.${GodotTypes.vector4}" -> 12
-    "$godotCorePackage.${GodotTypes.vector4i}" -> 13
-    "$godotCorePackage.${GodotTypes.plane}" -> 14
-    "$godotCorePackage.${GodotTypes.quaternion}" -> 15
-    "$godotCorePackage.${GodotTypes.aabb}" -> 16
-    "$godotCorePackage.${GodotTypes.basis}" -> 17
-    "$godotCorePackage.${GodotTypes.transform3D}" -> 18
-    "$godotCorePackage.${GodotTypes.projection}" -> 19
-    "$godotCorePackage.${GodotTypes.color}" -> 20
-    "$godotCorePackage.${GodotTypes.stringName}" -> 21
-    "$godotCorePackage.${GodotTypes.nodePath}" -> 22
-    "$godotCorePackage.${GodotTypes.rid}" -> 23
-    "$godotCorePackage.${GodotKotlinJvmTypes.obj}" -> 24
-    "$godotCorePackage.${GodotTypes.callable}" -> 25
-    "$godotCorePackage.${GodotTypes.signal}" -> 26
-    "$godotCorePackage.${GodotTypes.dictionary}" -> 27
-    //Array -> handled in else branch
-    "$godotCorePackage.${GodotTypes.packedByteArray}" -> 29
-    "$godotCorePackage.${GodotTypes.packedInt32Array}" -> 30
-    "$godotCorePackage.${GodotTypes.packedInt64Array}" -> 31
-    "$godotCorePackage.${GodotTypes.packedFloat32Array}" -> 32
-    "$godotCorePackage.${GodotTypes.packedFloat64Array}" -> 33
-    "$godotCorePackage.${GodotTypes.packedStringArray}" -> 34
-    "$godotCorePackage.${GodotTypes.packedVector2Array}" -> 35
-    "$godotCorePackage.${GodotTypes.packedVector3Array}" -> 36
-    "$godotCorePackage.${GodotTypes.packedColorArray}" -> 37
-    "$godotCorePackage.${GodotTypes.packedVector4Array}" -> 38
-    else -> if (this.isCompatibleListType()) {
-        28
-    } else {
-        null
-    }
+    Vector2::class.qualifiedName -> 5
+    Vector2i::class.qualifiedName -> 6
+    Rect2::class.qualifiedName -> 7
+    Rect2i::class.qualifiedName -> 8
+    Vector3::class.qualifiedName -> 9
+    Vector3i::class.qualifiedName -> 10
+    Transform2D::class.qualifiedName -> 11
+    Vector4::class.qualifiedName -> 12
+    Vector4i::class.qualifiedName -> 13
+    Plane::class.qualifiedName -> 14
+    Quaternion::class.qualifiedName -> 15
+    AABB::class.qualifiedName -> 16
+    Basis::class.qualifiedName -> 17
+    Transform3D::class.qualifiedName -> 18
+    Projection::class.qualifiedName -> 19
+    Color::class.qualifiedName -> 20
+    StringName::class.qualifiedName -> 21
+    NodePath::class.qualifiedName -> 22
+    RID::class.qualifiedName -> 23
+    Object::class.qualifiedName -> 24
+    Callable::class.qualifiedName -> 25
+    Signal::class.qualifiedName -> 26
+    Dictionary::class.qualifiedName -> 27
+    VariantArray::class.qualifiedName -> 28
+    PackedByteArray::class.qualifiedName -> 29
+    PackedInt32Array::class.qualifiedName -> 30
+    PackedInt64Array::class.qualifiedName -> 31
+    PackedFloat32Array::class.qualifiedName -> 32
+    PackedFloat64Array::class.qualifiedName -> 33
+    PackedStringArray::class.qualifiedName -> 34
+    PackedVector2Array::class.qualifiedName -> 35
+    PackedVector3Array::class.qualifiedName -> 36
+    PackedColorArray::class.qualifiedName -> 37
+    PackedVector4Array::class.qualifiedName -> 38
+    else -> null
 }
 
-fun Type.getAsGodotClassName(): String = when {
+fun Type.getGodotCoreTypeName(): String = when {
     fqName == Boolean::class.qualifiedName -> "bool"
     fqName == Int::class.qualifiedName ||
-        fqName == "$godotUtilPackage.${GodotKotlinJvmTypes.naturalT}" ||
+        fqName == NaturalT::class.qualifiedName ||
         fqName == Long::class.qualifiedName ||
         fqName == Byte::class.qualifiedName ||
         fqName == Short::class.qualifiedName ||
         fqName == Enum::class.qualifiedName -> "int"
 
     fqName == Float::class.qualifiedName ||
-        fqName == "$godotUtilPackage.${GodotKotlinJvmTypes.realT}" ||
+        fqName == RealT::class.qualifiedName ||
         fqName == Double::class.qualifiedName -> "float"
 
     fqName == String::class.qualifiedName -> "String"
     fqName.startsWith(godotCorePackage) -> fqName.substringAfterLast(".")
-    else -> registeredName() ?: fqName.substringAfterLast(".")
-}
-
-fun Type.isCompatibleListType(): Boolean {
-    return this.getCompatibleListType().isNotEmpty()
-}
-
-// TODO: 4.0: fix ordinals: https://github.com/godotengine/godot/blob/0810ecaafdbee3ea747219e6ab3a8de5d2216a09/editor/editor_properties_array_dict.cpp
-fun Type.getCompatibleListType() = when (fqName) {
-    "$godotCorePackage.${GodotKotlinJvmTypes.variantArray}" -> "17"
-    else -> ""
+    else -> throw IllegalArgumentException("Unsupported fq type $fqName")
 }

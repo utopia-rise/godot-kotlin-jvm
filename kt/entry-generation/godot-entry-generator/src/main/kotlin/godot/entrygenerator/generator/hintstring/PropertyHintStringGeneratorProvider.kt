@@ -17,13 +17,17 @@ import godot.entrygenerator.model.MultilineTextHintAnnotation
 import godot.entrygenerator.model.PlaceHolderTextHintAnnotation
 import godot.entrygenerator.model.PropertyHintAnnotation
 import godot.entrygenerator.model.RangeHintAnnotation
+import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.model.RegisteredProperty
+import godot.entrygenerator.settings.Settings
 
 
 object PropertyHintStringGeneratorProvider {
 
     fun provide(
-        registeredProperty: RegisteredProperty
+        registeredProperty: RegisteredProperty,
+        settings: Settings,
+        registeredClassesByFqName: Map<String, RegisteredClass>,
     ): PropertyHintStringGenerator<out PropertyHintAnnotation> {
         val hintAnnotations = registeredProperty
             .annotations
@@ -37,24 +41,25 @@ object PropertyHintStringGeneratorProvider {
             )
         }
 
-        return when(hintAnnotations.firstOrNull()) {
-            is ColorNoAlphaHintAnnotation -> ColorNoAlphaHintStringGenerator(registeredProperty)
-            is DirHintAnnotation -> DirHintStringGenerator(registeredProperty)
+        return when (hintAnnotations.firstOrNull()) {
+            is ColorNoAlphaHintAnnotation -> ColorNoAlphaHintStringGenerator(registeredProperty, settings, registeredClassesByFqName)
+            is DirHintAnnotation -> DirHintStringGenerator(registeredProperty, settings, registeredClassesByFqName)
             is EnumFlagHintStringAnnotation,
-            is EnumHintStringAnnotation -> EnumHintStringGenerator(registeredProperty)
-            is EnumListHintStringAnnotation -> ArrayAndDictionaryHintStringGenerator(registeredProperty)
-            is ExpEasingHintAnnotation -> ExpEasingHintStringGenerator(registeredProperty)
-            is FileHintAnnotation -> FileHintStringGenerator(registeredProperty)
-            is IntFlagHintAnnotation -> IntFlagHintStringGenerator(registeredProperty)
-            is MultilineTextHintAnnotation -> MultilineTextHintStringGenerator(registeredProperty)
-            is PlaceHolderTextHintAnnotation -> PlaceHolderTextHintStringGenerator(registeredProperty)
-            is RangeHintAnnotation<*> -> RangeHintStringGenerator(registeredProperty)
+            is EnumHintStringAnnotation -> EnumHintStringGenerator(registeredProperty, settings, registeredClassesByFqName)
+
+            is EnumListHintStringAnnotation -> ArrayAndDictionaryHintStringGenerator(registeredProperty, settings, registeredClassesByFqName)
+            is ExpEasingHintAnnotation -> ExpEasingHintStringGenerator(registeredProperty, settings, registeredClassesByFqName)
+            is FileHintAnnotation -> FileHintStringGenerator(registeredProperty, settings, registeredClassesByFqName)
+            is IntFlagHintAnnotation -> IntFlagHintStringGenerator(registeredProperty, settings, registeredClassesByFqName)
+            is MultilineTextHintAnnotation -> MultilineTextHintStringGenerator(registeredProperty, settings, registeredClassesByFqName)
+            is PlaceHolderTextHintAnnotation -> PlaceHolderTextHintStringGenerator(registeredProperty, settings, registeredClassesByFqName)
+            is RangeHintAnnotation<*> -> RangeHintStringGenerator(registeredProperty, settings, registeredClassesByFqName)
             null -> when {
-                registeredProperty.type.isNodeType() -> NodeTypeHintStringGenerator(registeredProperty)
-                registeredProperty.type.isRefCounted() -> ResourceHintStringGenerator(registeredProperty)
-                registeredProperty.type.isCompatibleList() -> ArrayAndDictionaryHintStringGenerator(registeredProperty)
-                registeredProperty.type.isDictionary() -> ArrayAndDictionaryHintStringGenerator(registeredProperty)
-                else -> object : PropertyHintStringGenerator<PropertyHintAnnotation>(registeredProperty) {
+                registeredProperty.type.isNodeType() -> NodeTypeHintStringGenerator(registeredProperty, settings, registeredClassesByFqName)
+                registeredProperty.type.isRefCounted() -> ResourceHintStringGenerator(registeredProperty, settings, registeredClassesByFqName)
+                registeredProperty.type.isCompatibleList() -> ArrayAndDictionaryHintStringGenerator(registeredProperty, settings, registeredClassesByFqName)
+                registeredProperty.type.isDictionary() -> ArrayAndDictionaryHintStringGenerator(registeredProperty, settings, registeredClassesByFqName)
+                else -> object : PropertyHintStringGenerator<PropertyHintAnnotation>(registeredProperty, settings, registeredClassesByFqName) {
                     override fun getHintString(): String {
                         return ""
                     }

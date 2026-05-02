@@ -36,7 +36,7 @@ class EnrichedClass(model: Class) : TypeGenerationTrait, DocumentedGenerationTra
     val isInstantiable = model.isInstantiable
 
     override var description = model.description
-    val additionalImports = mutableSetOf<ClassName>()
+    val additionalImports = mutableSetOf<Any>()
 
     fun makeSingleton() {
         isSingleton = true

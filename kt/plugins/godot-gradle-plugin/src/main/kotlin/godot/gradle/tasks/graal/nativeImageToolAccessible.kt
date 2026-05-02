@@ -7,6 +7,7 @@ import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.tasks.TaskProvider
 import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
+import java.io.File
 
 fun Project.checkNativeImageToolAccessibleTask(): TaskProvider<Task> {
     return tasks.register("checkNativeImageToolAccessible") {
@@ -17,10 +18,7 @@ fun Project.checkNativeImageToolAccessibleTask(): TaskProvider<Task> {
 
             doLast {
                 try {
-                    val graalBinDir = godotJvmExtension.graalVmDirectory
-                        .get()
-                        .asFile
-                        .resolve("bin")
+                    val graalBinDir = File(godotJvmExtension.graalVmHomeDirectory.get()).resolve("bin")
                     val result = checkToolAccessible(
                         if (DefaultNativePlatform.getCurrentOperatingSystem().isWindows) {
                             graalBinDir

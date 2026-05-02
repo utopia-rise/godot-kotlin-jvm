@@ -1,4 +1,4 @@
-import versioninfo.fullGodotKotlinJvmVersion
+import versioninfo.fullBuildVersion
 
 plugins {
     alias(libs.plugins.kotlin.jvm)
@@ -21,7 +21,7 @@ kotlin {
 dependencies {
     // added here as a transitive dependency so the user can use reflection
     // we need to add it here so reflection is available where the code is loaded (Bootstrap.kt) otherwise it will not work
-    api("com.utopia-rise:common:$fullGodotKotlinJvmVersion")
+    api("com.utopia-rise:common:$fullBuildVersion")
 }
 
 val targetSuffix = if (isRelease) "release" else "debug"

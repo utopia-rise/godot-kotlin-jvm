@@ -1,4 +1,4 @@
-import versioninfo.fullGodotKotlinJvmVersion
+import versioninfo.fullBuildVersion
 
 plugins {
     alias(libs.plugins.kotlin.jvm)
@@ -34,7 +34,7 @@ dependencies {
     // added here as a transitive dependency so the user can use reflection
     // we need to add it here so reflection is available where the code is loaded (Bootstrap.kt) otherwise it will not work
     api(kotlin("reflect", version = libs.versions.kotlin.get()))
-    api("com.utopia-rise:common:$fullGodotKotlinJvmVersion")
+    api("com.utopia-rise:common:$fullBuildVersion")
     implementation (project(":godot-internal-library"))
     api(project(":godot-core-library"))
     api(project(":godot-api-library"))

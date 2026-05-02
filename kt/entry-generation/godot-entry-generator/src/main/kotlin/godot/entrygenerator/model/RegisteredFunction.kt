@@ -7,8 +7,7 @@ data class RegisteredFunction(
     val parameters: List<ValueParameter> = emptyList(),
     val returnType: Type? = null,
     val annotations: List<FunctionAnnotation> = emptyList(),
-    override val symbolProcessorSource: Any
-) : GodotJvmSourceElement {
+) {
     val name: String
         get() = fqName.substringAfterLast(".")
 }

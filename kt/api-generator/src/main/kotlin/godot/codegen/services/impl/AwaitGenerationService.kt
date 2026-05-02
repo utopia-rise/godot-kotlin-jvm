@@ -1,36 +1,25 @@
 package godot.codegen.services.impl
 
 import com.squareup.kotlinpoet.AnnotationSpec
-import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
-import com.squareup.kotlinpoet.MemberName
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeName
 import com.squareup.kotlinpoet.TypeSpec
 import com.squareup.kotlinpoet.TypeVariableName
 import com.squareup.kotlinpoet.UNIT
+import godot.codegen.constants.Core
+import godot.codegen.constants.Coroutines
 import godot.codegen.services.IAwaitGenerationService
 import godot.common.constants.Constraints
-import godot.tools.common.constants.GodotKotlinJvmTypes.signal
-import godot.tools.common.constants.godotCorePackage
 import godot.tools.common.constants.godotCoroutinePackage
-import godot.tools.common.constants.godotExtensionPackage
-import godot.tools.common.constants.kotlinCoroutinePackage
-import godot.tools.common.constants.kotlinxCoroutinePackage
 import java.io.File
-
-private val cancellableContinuationClass = ClassName(kotlinxCoroutinePackage, CANCELLABLE_CONTINUATION_CLASS_NAME)
-private val suspendCancellableCoroutine = MemberName(kotlinxCoroutinePackage, METHOD_NAME_SUSPEND_CANCELLABLE_COROUTINE)
-private val promise = MemberName(godotExtensionPackage, METHOD_NAME_PROMISE)
-private val resume = MemberName(kotlinCoroutinePackage, METHOD_NAME_RESUME)
-private const val cancel = "cancel"
 
 object AwaitGenerationService : IAwaitGenerationService {
     override fun generate(output: File) {
-        val awaitFile = FileSpec.builder(godotCoroutinePackage, AWAIT_FILE_NAME)
+        val awaitFile = FileSpec.builder(godotCoroutinePackage, Coroutines.await.simpleName)
 
         val allParameters = Array(Constraints.MAX_FUNCTION_ARG_COUNT) { index ->
             TypeVariableName("P$index")
@@ -39,7 +28,7 @@ object AwaitGenerationService : IAwaitGenerationService {
         for (argCount in 0..Constraints.MAX_FUNCTION_ARG_COUNT) {
             val parameters = allParameters.take(argCount)
 
-            val baseReceiver = ClassName(godotCorePackage, signal + argCount)
+            val baseReceiver = Core.signal(argCount)
             val receiver = if (argCount != 0) {
                 baseReceiver.parameterizedBy(parameters)
             } else {
@@ -49,13 +38,14 @@ object AwaitGenerationService : IAwaitGenerationService {
             val returnType: TypeName = when (argCount) {
                 0 -> UNIT
                 1 -> parameters[0]
-                else -> ClassName(godotCoroutinePackage, "$SIGNAL_ARGUMENTS_CLASS_BASENAME$argCount").parameterizedBy(parameters)
+                else -> Core.signalArguments(argCount).parameterizedBy(parameters)
             }
 
             // Create a tuple for the signal arguments
             if (argCount >= 2) {
+                val signalArguments = Core.signalArguments(argCount)
                 awaitFile.addType(
-                    TypeSpec.classBuilder("$SIGNAL_ARGUMENTS_CLASS_BASENAME$argCount")
+                    TypeSpec.classBuilder(signalArguments.simpleName)
                         .addModifiers(KModifier.DATA)
                         .primaryConstructor(
                             FunSpec
@@ -122,7 +112,7 @@ object AwaitGenerationService : IAwaitGenerationService {
         val resumeParameters = when (argCount) {
             0 -> "Unit"
             1 -> lambdaParameters
-            else -> "$SIGNAL_ARGUMENTS_CLASS_BASENAME$argCount($lambdaParameters)"
+            else -> "${Core.signalArguments(argCount).simpleName}($lambdaParameters)"
         }
         val lambdaParametersWithType = buildString {
             for (i in 0 until argCount) {
@@ -134,12 +124,13 @@ object AwaitGenerationService : IAwaitGenerationService {
         }
 
         return this
-            .beginControlFlow("return·%M", suspendCancellableCoroutine)
-            .addStatement("cont:·%T<%T>·->", cancellableContinuationClass, returnType)
-            .addStatement("%M(", promise)
-            .addStatement("{·$lambdaParametersWithType·->·cont.%M($resumeParameters)·},", resume)
-            .addStatement("{·cont.%L()·},", cancel)
+            .beginControlFlow("return·%M", Coroutines.suspendCancellableCoroutine)
+            .addStatement("cont:·%T<%T>·->", Coroutines.cancellableContinuation, returnType)
+            .addStatement("%M(", Coroutines.promise)
+            .addStatement("{·$lambdaParametersWithType·->·cont.%M($resumeParameters)·},", Coroutines.resume)
+            .addStatement("{·cont.%L()·},", Coroutines.cancel)
             .addStatement(")")
             .endControlFlow()
     }
 }
+

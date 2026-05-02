@@ -1,8 +1,14 @@
 package godot.gradle.tasks.graal.ios
 
 import godot.gradle.projectExt.godotJvmExtension
-import godot.gradle.tasks.graal.*
-import godot.utils.GodotBuildProperties
+import godot.gradle.tasks.graal.getAdditionalGraalReflectionConfigurationFiles
+import godot.gradle.tasks.graal.getAdditionalGraalResourceConfigurationFiles
+import godot.gradle.tasks.graal.getGraalVmAdditionalJniConfigs
+import godot.gradle.tasks.graal.iosJniConfig
+import godot.gradle.tasks.graal.iosReflectionConfig
+import godot.gradle.tasks.graal.iosResourceConfig
+import godot.tools.common.IOS_CAP_CACHE_VERSION
+import godot.tools.common.IOS_JDK_VERSION
 import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.tasks.Exec
@@ -61,7 +67,7 @@ fun Project.createIOSGraalNativeImageTask(
                     iosGraalConfigDir.resolve(iosResourceConfig)
             }
 
-            val verboseArgument = if (godotJvmExtension.isGraalVmNativeImageGenerationVerbose.get()) {
+            val verboseArgument = if (godotJvmExtension.isGraalNativeImageVerboseEnabled.get()) {
                 "--verbose"
             } else {
                 ""
@@ -71,12 +77,7 @@ fun Project.createIOSGraalNativeImageTask(
             val godotBootstrapJar = File(libsDir, "godot-bootstrap.jar")
 
             val arguments = arrayOf(
-                godotJvmExtension.graalVmDirectory
-                    .get()
-                    .asFile
-                    .resolve("bin")
-                    .resolve("native-image")
-                    .absolutePath,
+                File(godotJvmExtension.graalVmHomeDirectory.get()).resolve("bin").resolve("native-image").absolutePath,
                 "-cp",
                 "${godotBootstrapJar.absolutePath}:${mainJar.absolutePath}",
                 "--no-server",
@@ -101,7 +102,7 @@ fun Project.createIOSGraalNativeImageTask(
                 "-H:CAPCacheDir=${
                     iosGraalConfigDir
                         .resolve("capcache")
-                        .resolve("${GodotBuildProperties.iosCapCacheVersion}-${GodotBuildProperties.iosJdkVersion}")
+                        .resolve("$IOS_CAP_CACHE_VERSION-$IOS_JDK_VERSION")
                         .absolutePath
                 }",
                 "-H:CompilerBackend=lir",

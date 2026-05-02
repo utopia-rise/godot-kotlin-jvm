@@ -172,10 +172,8 @@
       { "name" : "engine_call_copy_constructor", "parameterTypes" : [] },
 
       { "name" : "engine_call_bind", "parameterTypes" : ["long"] },
-      { "name" : "engine_call_bindv", "parameterTypes" : ["long"] },
       { "name" : "engine_call_call", "parameterTypes" : ["long"] },
       { "name" : "engine_call_call_deferred", "parameterTypes" : ["long"] },
-      { "name" : "engine_call_callv", "parameterTypes" : ["long"] },
       { "name" : "engine_call_get_bound_arguments", "parameterTypes" : ["long"] },
       { "name" : "engine_call_get_bound_arguments_count", "parameterTypes" : ["long"] },
       { "name" : "engine_call_get_method", "parameterTypes" : ["long"] },
@@ -719,10 +717,7 @@
   {
     "name":"godot.core.KtClass",
     "methods":[
-      {"name":"getRelativeSourcePath","parameterTypes":[] },
-      {"name":"getCompilationTimeRelativeRegistrationFilePath","parameterTypes":[] },
       {"name":"getBaseGodotClass","parameterTypes":[] },
-      {"name":"getConstructors","parameterTypes":[] },
       {"name":"getFunctions","parameterTypes":[] },
       {"name":"getProperties","parameterTypes":[] },
       {"name":"getRegisteredName","parameterTypes":[] },
@@ -735,7 +730,6 @@
   {
     "name": "godot.core.KtConstructor",
     "methods": [
-      {"name": "getParameterCount", "parameterTypes": []},
       {"name": "construct", "parameterTypes": ["long", "long"]}
     ]
   },

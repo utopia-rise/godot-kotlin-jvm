@@ -1,8 +1,8 @@
 package godot.codegen.generation.task
 
 import com.squareup.kotlinpoet.TypeSpec
+import godot.codegen.constants.API
 import godot.codegen.models.enriched.EnrichedClass
-import godot.codegen.services.impl.methodBindingsInnerClassName
 import godot.common.util.back
 
 
@@ -13,7 +13,7 @@ class EnrichedClassTask(
     override val builder = if (clazz.isSingleton) TypeSpec.objectBuilder(clazz.className) else TypeSpec.classBuilder(clazz.className)
     override val companion = if (clazz.isSingleton) builder else TypeSpec.companionObjectBuilder()
 
-    val bindings = TypeSpec.objectBuilder(clazz.className.nestedClass(methodBindingsInnerClassName))
+    val bindings = TypeSpec.objectBuilder(clazz.className.nestedClass(API.methodBindingsInnerClassName))
 
     val enums by back<EnrichedEnumTask>(innerClasses)
     val signals by back<SignalTask>(properties)

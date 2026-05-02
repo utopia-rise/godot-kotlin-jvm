@@ -3,9 +3,8 @@ package godot.entrygenerator.generator.hintstring
 import godot.core.PropertyHint
 import godot.core.VariantParser
 import godot.entrygenerator.ext.baseGodotType
-import godot.entrygenerator.ext.getAsGodotClassName
 import godot.entrygenerator.ext.getAsVariantTypeOrdinal
-import godot.entrygenerator.ext.getCompatibleListType
+import godot.entrygenerator.ext.getGodotCoreTypeName
 import godot.entrygenerator.ext.isCompatibleList
 import godot.entrygenerator.ext.isCoreType
 import godot.entrygenerator.ext.isDictionary
@@ -13,20 +12,24 @@ import godot.entrygenerator.ext.isGodotPrimitive
 import godot.entrygenerator.ext.isNodeType
 import godot.entrygenerator.ext.isResource
 import godot.entrygenerator.model.EnumAnnotation
+import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.model.RegisteredProperty
 import godot.entrygenerator.model.Type
 import godot.entrygenerator.model.TypeKind
+import godot.entrygenerator.settings.Settings
 
 class ArrayAndDictionaryHintStringGenerator(
     registeredProperty: RegisteredProperty,
-) : PropertyHintStringGenerator<EnumAnnotation>(registeredProperty) {
+    settings: Settings,
+    registeredClassesByFqName: Map<String, RegisteredClass>,
+) : PropertyHintStringGenerator<EnumAnnotation>(registeredProperty, settings, registeredClassesByFqName) {
 
 
     /**
      * Hint string array formatting: https://github.com/godotengine/godot/blob/30b0aadab65fcafb9a160dba2c9abfd005bb62a5/editor/editor_properties_array_dict.cpp#L1085
      */
     override fun getHintString(): String {
-        val elementType = registeredProperty.type.arguments().firstOrNull()
+        val elementType = registeredProperty.type.arguments.firstOrNull()
 
         return when {
             // if type is any -> no hint string necessary. it will be untyped
@@ -46,8 +49,8 @@ class ArrayAndDictionaryHintStringGenerator(
                 //          -> dict key value types are separated by ;
                 buildString {
                     if (elementType == null) {
-                        val compatibleListType = registeredProperty.type.getCompatibleListType()
-                        if (compatibleListType.isNotEmpty()) {
+                        val compatibleListType = registeredProperty.type.getAsVariantTypeOrdinal()
+                        if (compatibleListType != null) {
                             append(":${compatibleListType}")
                         }
                     }
@@ -55,7 +58,7 @@ class ArrayAndDictionaryHintStringGenerator(
                     append(
                         registeredProperty
                             .type
-                            .arguments()
+                            .arguments
                             .joinToString(";") { argument ->
                                 argument.generateHintString()
                             }
@@ -77,17 +80,17 @@ class ArrayAndDictionaryHintStringGenerator(
             //      -> 2 == int -> variant type ordinal
             // example: Dictionary<Int, Button>() -> 2:int;24/34:Button
             //      -> 24 == Object -> variant type ordinal -> VariantParser.OBJECT.id
-            //      -> 34 == Button -> node type property hint ordinal -> PropertyHint.NODE_TYPE.id
+            //      -> 34 == Button -> node type property hint ordinal -> PropertyHint.NODE_TYPE.value
             loop@ while (currentElementType != null) {
                 when {
                     currentElementType.isCompatibleList() -> {
                         append(VariantParser.ARRAY.id)
-                        currentElementType = currentElementType.arguments().firstOrNull()
+                        currentElementType = currentElementType.arguments.firstOrNull()
                     }
 
                     currentElementType.isDictionary() -> {
                         append(VariantParser.DICTIONARY.id)
-                        val subHintString = currentElementType.arguments().joinToString(";") { argument ->
+                        val subHintString = currentElementType.arguments.joinToString(";") { argument ->
                             argument.generateHintString()
                         }
                         if (subHintString.isNotEmpty()) {
@@ -96,14 +99,14 @@ class ArrayAndDictionaryHintStringGenerator(
                     }
 
                     currentElementType.isGodotPrimitive() || currentElementType.isCoreType() -> {
-                        append("${currentElementType.getAsVariantTypeOrdinal()}:${currentElementType.getAsGodotClassName()}")
+                        append("${currentElementType.getAsVariantTypeOrdinal()}:${currentElementType.getGodotCoreTypeName()}")
                         break@loop
                     }
 
                     currentElementType.isNodeType() -> {
                         val objectVariantType = VariantParser.OBJECT.id
 
-                        val className = currentElementType.registeredName()
+                        val className = registeredClassesByFqName[currentElementType.fqName]?.getRegisteredName(settings)
                             ?: currentElementType.baseGodotType()?.fqName?.substringAfterLast(".")
 
                         val subTypeString = if (className != null) {
@@ -119,7 +122,7 @@ class ArrayAndDictionaryHintStringGenerator(
                     currentElementType.isResource() -> {
                         val objectVariantType = VariantParser.OBJECT.id
 
-                        val className = currentElementType.registeredName()
+                        val className = registeredClassesByFqName[currentElementType.fqName]?.getRegisteredName(settings)
                             ?: currentElementType.baseGodotType()?.fqName?.substringAfterLast(".")
 
                         val subTypeString = if (className != null) {

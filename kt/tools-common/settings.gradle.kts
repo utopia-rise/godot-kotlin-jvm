@@ -1,4 +1,3 @@
-
 pluginManagement {
     includeBuild("../build-logic")
     repositories {

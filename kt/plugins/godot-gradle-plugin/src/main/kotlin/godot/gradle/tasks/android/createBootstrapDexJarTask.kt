@@ -36,27 +36,27 @@ fun Project.createBootstrapDexJarTask(
                     commandLine(
                         "cmd",
                         "/c",
-                        godotJvmExtension.d8ToolPath.get().asFile.absolutePath,
+                        godotJvmExtension.d8ToolPath.get(),
                         godotBootstrapJar.absolutePath,
                         "--output",
                         "godot-bootstrap-dex.jar",
                         "--lib",
-                        "${godotJvmExtension.androidCompileSdkDir.get().asFile.absolutePath}${File.separator}android.jar",
+                        "${godotJvmExtension.androidCompileSdkDirectory.get()}${File.separator}android.jar",
                         "--min-api",
-                        godotJvmExtension.androidMinApi.get(),
+                        godotJvmExtension.androidMinApiLevel.get(),
                         "--main-dex-rules",
                         mainDexRules,
                     )
                 } else {
                     commandLine(
-                        godotJvmExtension.d8ToolPath.get().asFile.absolutePath,
+                        godotJvmExtension.d8ToolPath.get(),
                         godotBootstrapJar.absolutePath,
                         "--output",
                         "godot-bootstrap-dex.jar",
                         "--lib",
-                        "${godotJvmExtension.androidCompileSdkDir.get().asFile.absolutePath}/android.jar",
+                        "${godotJvmExtension.androidCompileSdkDirectory.get()}/android.jar",
                         "--min-api",
-                        godotJvmExtension.androidMinApi.get(),
+                        godotJvmExtension.androidMinApiLevel.get(),
                         "--main-dex-rules",
                         mainDexRules,
                     )

@@ -6,6 +6,7 @@ import godot.gradle.projectExt.godotJvmExtension
 import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.tasks.TaskProvider
+import java.io.File
 
 fun Project.checkD8ToolAccessibleTask(): TaskProvider<Task> {
     return tasks.register("checkD8ToolAccessible") {
@@ -15,7 +16,7 @@ fun Project.checkD8ToolAccessibleTask(): TaskProvider<Task> {
 
             doLast {
                 try {
-                    val d8Tool = godotJvmExtension.d8ToolPath.orNull?.asFile ?: throw D8ToolNotFoundException()
+                    val d8Tool = godotJvmExtension.d8ToolPath.orNull?.let(::File) ?: throw D8ToolNotFoundException()
                     val result = checkToolAccessible(d8Tool.absolutePath)
                     if (result.exitValue != 0) {
                         throw D8ToolNotFoundException()

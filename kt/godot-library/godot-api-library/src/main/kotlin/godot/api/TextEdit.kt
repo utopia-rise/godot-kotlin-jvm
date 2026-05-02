@@ -888,14 +888,12 @@ public open class TextEdit : Control() {
 
   public final fun setBackspaceDeletesCompositeCharacterEnabled(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(ptr, MethodBindings.setBackspaceDeletesCompositeCharacterEnabledPtr,
-        NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setBackspaceDeletesCompositeCharacterEnabledPtr, NIL)
   }
 
   public final fun isBackspaceDeletesCompositeCharacterEnabled(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isBackspaceDeletesCompositeCharacterEnabledPtr,
-        BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isBackspaceDeletesCompositeCharacterEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

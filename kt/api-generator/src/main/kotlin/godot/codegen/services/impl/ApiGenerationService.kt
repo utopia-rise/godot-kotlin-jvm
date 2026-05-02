@@ -35,8 +35,6 @@ import godot.codegen.models.ApiDescription
 import godot.codegen.services.IApiGenerationService
 import java.io.File
 
-const val methodBindingsInnerClassName = "MethodBindings"
-
 class ApiGenerationService(
     val api: ApiDescription,
 ) : IApiGenerationService {

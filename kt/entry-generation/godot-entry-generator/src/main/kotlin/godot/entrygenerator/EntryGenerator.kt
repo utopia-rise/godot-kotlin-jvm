@@ -10,15 +10,11 @@ import godot.entrygenerator.checks.SignalTypeCheck
 import godot.entrygenerator.exceptions.ChecksFailedException
 import godot.entrygenerator.filebuilder.ClassRegistrarFileBuilder
 import godot.entrygenerator.filebuilder.MainEntryFileBuilder
-import godot.entrygenerator.filebuilder.RegistrationFileGenerator
 import godot.entrygenerator.model.JvmType
 import godot.entrygenerator.model.RegisteredClass
-import godot.entrygenerator.model.RegisteredClassMetadataContainer
-import godot.entrygenerator.model.SourceFile
+import godot.entrygenerator.settings.Settings
 import godot.entrygenerator.utils.Logger
-import godot.tools.common.constants.FileExtensions
 import godot.tools.common.constants.godotEntryBasePackage
-import godot.tools.common.constants.godotRegistrationPackage
 import java.io.BufferedWriter
 import java.io.File
 
@@ -29,50 +25,20 @@ object EntryGenerator {
 
     private var _jvmTypeFqNamesProvider: ((JvmType) -> Set<String>)? = null
     internal val jvmTypeFqNamesProvider: ((JvmType) -> Set<String>)
-        get() = _jvmTypeFqNamesProvider ?: throw UninitializedPropertyAccessException("jvmTypeFqNamesProvider not yet initialized. Get jvmTypeFqNamesProvider only after generateEntryFiles was called")
+        get() = _jvmTypeFqNamesProvider
+            ?: throw UninitializedPropertyAccessException("jvmTypeFqNamesProvider not yet initialized. Get jvmTypeFqNamesProvider only after generateEntryFiles was called")
 
-    fun generateEntryFiles(
-        projectDir: String,
-        projectName: String,
-        classRegistrarFromDependencyCount: Int,
-        logger: Logger,
-        sourceFiles: List<SourceFile>,
-        isRegistrationFileHierarchyEnabled: Boolean,
-        jvmTypeFqNamesProvider: (JvmType) -> Set<String>,
-        compilationTimeRelativeRegistrationFilePathProvider: (RegisteredClass) -> String,
-        classRegistrarAppendableProvider: (RegisteredClass) -> BufferedWriter,
-        mainBufferedWriterProvider: () -> BufferedWriter
-    ) {
-        generateEntryFilesUsingRegisteredClasses(
-            projectDir,
-            projectName,
-            classRegistrarFromDependencyCount,
-            logger,
-            sourceFiles.flatMap { it.registeredClasses },
-            isRegistrationFileHierarchyEnabled,
-            jvmTypeFqNamesProvider,
-            compilationTimeRelativeRegistrationFilePathProvider,
-            classRegistrarAppendableProvider,
-            mainBufferedWriterProvider
-        )
-    }
 
     fun generateEntryFilesUsingRegisteredClasses(
-        projectDir: String,
-        projectName: String,
-        classRegistrarFromDependencyCount: Int,
+        settings: Settings,
         logger: Logger,
         registeredClasses: List<RegisteredClass>,
-        isRegistrationFileHierarchyEnabled: Boolean,
         jvmTypeFqNamesProvider: (JvmType) -> Set<String>,
-        compilationTimeRelativeRegistrationFilePathProvider: (RegisteredClass) -> String,
         classRegistrarAppendableProvider: (RegisteredClass) -> BufferedWriter,
-        mainBufferedWriterProvider: () -> BufferedWriter
+        mainBufferedWriterProvider: () -> BufferedWriter,
+        serviceFile: File
     ) {
-        val serviceFile = File(projectDir)
-            .resolve("src/main/resources/META-INF/services")
-            .apply { mkdirs() }
-            .resolve("$godotRegistrationPackage.Entry")
+        serviceFile.parentFile.mkdirs()
 
         // the package path for an entry file needs to be unique over all possible dependencies otherwise they'll override each other and only one will be used/loaded
         val randomPackageForEntryFile = getOrCreateRandomPackageName(serviceFile)
@@ -84,100 +50,24 @@ object EntryGenerator {
             throw ChecksFailedException()
         }
 
+        val registeredClassesByFqName = registeredClasses.associateBy { it.fqName }
         with(MainEntryFileBuilder()) {
             registeredClasses.forEach { registeredClass ->
                 registerClassRegistrar(
                     ClassRegistrarFileBuilder(
-                        projectName = projectName,
                         registeredClass = registeredClass,
+                        settings = settings,
                         registrarAppendableProvider = classRegistrarAppendableProvider,
-                        compilationTimeRelativeRegistrationFilePath = compilationTimeRelativeRegistrationFilePathProvider(registeredClass),
-                        isRegistrationFileHierarchyEnabled = isRegistrationFileHierarchyEnabled
-                    )
+                        registeredClassesByFqName = registeredClassesByFqName,
+                    ),
+                    settings
                 )
             }
             registerUserTypesVariantMappings(registeredClasses)
-            registerProjectName(projectName)
-            val classRegistrarsForCurrentCompilationCount = registeredClasses.size
-            registerClassRegistrarCount(
-                classRegistrarFromCurrentCompilationCount = classRegistrarsForCurrentCompilationCount,
-                classRegistrarFromDependencyCount = classRegistrarFromDependencyCount
-            )
             build(randomPackageForEntryFile, mainBufferedWriterProvider)
         }
 
         generateServiceFile(randomPackageForEntryFile, serviceFile)
-    }
-
-    fun generateRegistrationFiles(
-        registeredClassMetadataContainers: List<RegisteredClassMetadataContainer>,
-        registrationFileAppendableProvider: (RegisteredClassMetadataContainer) -> BufferedWriter,
-    ) {
-        registeredClassMetadataContainers.forEach { metadata ->
-            RegistrationFileGenerator(
-                metadata,
-                registrationFileAppendableProvider
-            ).build()
-        }
-    }
-
-    fun updateRegistrationFiles(
-        generatedRegistrationFilesBaseDir: File,
-        initialRegistrationFilesOutDir: File,
-        existingRegistrationFilesMap: Map<String, File>
-    ) {
-        val registrationFiles = generatedRegistrationFilesBaseDir
-            .walkTopDown()
-            .filter { file ->
-                file.extension == FileExtensions.GodotKotlinJvm.registrationFile
-            }
-            .associateBy { file ->
-                file.name
-            }
-
-        // compare new and existing registration files
-        val deletedRegistrationFiles = existingRegistrationFilesMap
-            .filterKeys { registrationFileName -> !registrationFiles.containsKey(registrationFileName) }
-            .values
-
-        val updatedRegistrationFiles = existingRegistrationFilesMap
-            .filterKeys { registrationFileName -> registrationFiles.containsKey(registrationFileName) }
-
-        val newRegistrationFiles = registrationFiles
-            .filterKeys { registrationFileName -> !existingRegistrationFilesMap.containsKey(registrationFileName) }
-
-
-        // delete obsolete registration files
-        deletedRegistrationFiles.forEach { obsoleteRegistrationFile ->
-            try {
-                obsoleteRegistrationFile.delete()
-            } catch (e: Throwable) {
-                logger.warn("Could not delete obsolete registration file. You need to delete it manually! ${obsoleteRegistrationFile.absolutePath}")
-            }
-        }
-        // delete empty dirs in the initial gdj out folder (but not anywhere else!)
-        initialRegistrationFilesOutDir
-            .walkBottomUp()
-            .filter { dir -> dir.isDirectory && dir.listFiles()?.isEmpty() == true }
-            .forEach { emptyDir ->
-                try {
-                    emptyDir.delete()
-                } catch (e: Throwable) {
-                    logger.warn("Could not delete seemingly empty registration directory! ${emptyDir.absolutePath}")
-                }
-            }
-
-        // replace existing registration files
-        updatedRegistrationFiles.forEach { (registrationFileName, registrationFile) ->
-            registrationFiles[registrationFileName]?.copyTo(registrationFile, overwrite = true)
-        }
-
-        // copy new registration files
-        newRegistrationFiles.forEach { (_, registrationFile) ->
-            val relativePath = registrationFile.toRelativeString(generatedRegistrationFilesBaseDir)
-            val targetFile = initialRegistrationFilesOutDir.resolve(relativePath)
-            registrationFile.copyTo(targetFile, overwrite = true)
-        }
     }
 
     private fun generateServiceFile(randomPackagePathForEntryFile: String, serviceFile: File) {
@@ -201,11 +91,6 @@ object EntryGenerator {
             RpcCheck(logger, registeredClasses).execute(),
         ).any { hasIssue -> hasIssue }
     }
-
-    private fun executeSanityChecks(
-        logger: Logger,
-        sourceFiles: List<SourceFile>
-    ) = executeSanityChecksUsingRegisteredClasses(logger, sourceFiles.flatMap { it.registeredClasses })
 
     /**
      * Either gets the previously generated random package path of the entry class or creates a new one.

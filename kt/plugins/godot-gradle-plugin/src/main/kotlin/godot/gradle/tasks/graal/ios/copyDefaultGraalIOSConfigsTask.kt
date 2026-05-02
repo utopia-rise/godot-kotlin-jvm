@@ -1,10 +1,12 @@
 package godot.gradle.tasks.graal.ios
 
-import godot.gradle.tasks.graal.*
+import godot.gradle.tasks.graal.copyToGraalBuildDirectory
+import godot.gradle.tasks.graal.iosJniConfig
+import godot.gradle.tasks.graal.iosReflectionConfig
+import godot.gradle.tasks.graal.iosResourceConfig
 import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.tasks.TaskProvider
-import org.jetbrains.kotlin.gradle.internal.ensureParentDirsCreated
 
 fun Project.copyDefaultGraalIOSConfigsTask(
     checkPresenceOfDefaultGraalJniConfigTask: TaskProvider<out Task>,

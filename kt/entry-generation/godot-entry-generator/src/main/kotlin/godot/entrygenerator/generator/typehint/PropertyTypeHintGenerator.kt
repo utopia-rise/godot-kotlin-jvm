@@ -1,6 +1,6 @@
 package godot.entrygenerator.generator.typehint
 
-import com.squareup.kotlinpoet.ClassName
+import com.squareup.kotlinpoet.MemberName
 import godot.entrygenerator.model.PropertyHintAnnotation
 import godot.entrygenerator.model.RegisteredProperty
 
@@ -8,5 +8,5 @@ abstract class PropertyTypeHintGenerator(
     registeredProperty: RegisteredProperty
 ) {
     protected val propertyHintAnnotation = registeredProperty.annotations.firstOrNull { it is PropertyHintAnnotation } as PropertyHintAnnotation?
-    abstract fun getPropertyTypeHint(): ClassName
+    abstract fun getPropertyTypeHint(): MemberName
 }

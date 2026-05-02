@@ -15,25 +15,24 @@ const val godotCorePackage = "godot.core"
 const val godotApiPackage = "godot.api"
 const val godotExtensionPackage = "godot.extension"
 
+//Bootstrap
 const val godotAnnotationPackage = "godot.annotation"
 const val godotRegistrationPackage = "godot.registration"
 const val godotEntryBasePackage = "godot.entry"
 
-//Extensions
-const val godotCoroutinePackage = "godot.coroutines"
-
-
-
-const val variantConverterPackage = "$godotInteropPackage.${GodotKotlinJvmTypes.variantConverter}"
-const val variantParserPackage = "$godotCorePackage.${GodotKotlinJvmTypes.variantParser}"
-const val variantCasterPackage = "$godotCorePackage.${GodotKotlinJvmTypes.variantCaster}"
-
+//Lang
 const val kotlinPackage = "kotlin"
-const val kotlinCollectionsPackage = "$kotlinPackage.collections"
-const val kotlinReflectPackage = "$kotlinPackage.reflect"
-const val kotlinTextPackage = "$kotlinPackage.text"
-const val kotlinCoroutinePackage = "$kotlinPackage.coroutines"
+const val javaPackage = "java"
+const val javaUtilPackage = "java.util"
+const val kotlinCollectionsPackage = "kotlin.collections"
+const val kotlinReflectPackage = "kotlin.reflect"
+const val kotlinTextPackage = "kotlin.text"
+
+//Coroutines
+const val godotCoroutinePackage = "godot.coroutines"
+const val kotlinCoroutinePackage = "kotlin.coroutines"
 const val kotlinxCoroutinePackage = "kotlinx.coroutines"
 
-const val javaPackage = "java"
-const val javaUtilPackage = "$javaPackage.util"
+
+fun String.isFromPackage(packageName: String) = this.startsWith(packageName)
+fun isCollectionsType(fqName: String) = fqName.contains(kotlinCollectionsPackage)

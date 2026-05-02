@@ -2,6 +2,7 @@ package godot.codegen.generation.rule
 
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.ClassName
+import com.squareup.kotlinpoet.MemberName
 import godot.codegen.generation.GenerationContext
 import godot.codegen.generation.task.AbstractClassDummyTask
 import godot.codegen.generation.task.ApiTask
@@ -36,8 +37,11 @@ class HeaderCommentRule() : GodotApiRule<FileTask>() {
 class ImportRule() : GodotApiRule<FileTask>() {
     override fun apply(task: FileTask, context: GenerationContext) = configure(task.builder) {
         for (clazz in task.classes) {
-            for (className in clazz.clazz.additionalImports) {
-                addImport(className.packageName, className.simpleName)
+            for (importTarget in clazz.clazz.additionalImports) {
+                when (importTarget) {
+                    is ClassName -> addImport(importTarget.packageName, importTarget.simpleName)
+                    is MemberName -> addImport(importTarget.packageName, importTarget.simpleName)
+                }
             }
         }
     }
@@ -46,7 +50,7 @@ class ImportRule() : GodotApiRule<FileTask>() {
 class WarningRule() : GodotApiRule<FileTask>() {
     override fun apply(task: FileTask, context: GenerationContext) = configure(task.builder) {
         addAnnotation(
-            AnnotationSpec.builder(ClassName("kotlin", "Suppress"))
+            AnnotationSpec.builder(Suppress::class)
                 .addMember(
                     "\"PackageDirectoryMismatch\", \"unused\", \"FunctionName\", \"RedundantModalityModifier\", " +
                         "\"UNCHECKED_CAST\", \"JoinDeclarationAndAssignment\", \"USELESS_CAST\", \"RemoveRedundantQualifierName\", " +
@@ -59,8 +63,8 @@ class WarningRule() : GodotApiRule<FileTask>() {
 }
 
 class StaticRule : GodotApiRule<FileTask>() {
-    override fun apply(fileTask: FileTask, context: GenerationContext) = configure(fileTask.builder) {
-        for (classTask in fileTask.classes) {
+    override fun apply(task: FileTask, context: GenerationContext) = configure(task.builder) {
+        for (classTask in task.classes) {
             for (method in classTask.enrichedStaticMethods) {
                 method.builder.addAnnotation(JvmStatic::class)
             }
@@ -118,7 +122,7 @@ class DocumentationRule : GodotApiRule<ApiTask>() {
     private val codeBlockRegex = Regex("""```[\s\S]*?```""")
     private val doubleSkipRegex = Regex("(?<!\n)\n(?!\n)")
 
-    override fun apply(fileTask: ApiTask, context: GenerationContext) {
+    override fun apply(task: ApiTask, context: GenerationContext) {
         val enumValues = context
             .globalEnumList
             .flatMap { it.values }
@@ -190,7 +194,7 @@ class DocumentationRule : GodotApiRule<ApiTask>() {
         // Find all code blocks to reinsert later
         val codeBlocks = codeBlockRegex.findAll(unicodeString).map { it.value }.iterator()
         val sanitized = StringBuilder()
-        parts.forEachIndexed { index, part ->
+        parts.forEachIndexed { _, part ->
             // Replace single newlines with double newlines in non-code parts.
             // This regex finds newline characters that are not already doubled.
             sanitized.append(
@@ -206,3 +210,4 @@ class DocumentationRule : GodotApiRule<ApiTask>() {
         return unicodeString
     }
 }
+

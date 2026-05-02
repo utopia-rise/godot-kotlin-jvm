@@ -1,11 +1,9 @@
 package godot.codegen.models.traits
 
+import godot.codegen.constants.Core
 import godot.codegen.constants.GodotMeta
-import godot.tools.common.constants.GODOT_CALLABLE
-import godot.tools.common.constants.GODOT_VARIANT_CALLABLE
-import godot.tools.common.constants.GodotKotlinJvmTypes
-import godot.tools.common.constants.GodotTypes
-import godot.tools.common.constants.godotCorePackage
+import godot.codegen.constants.TypeIdentifier
+import godot.codegen.constants.Utils
 import java.util.*
 
 interface WithDefaultValueTrait : MetaGenerationTrait {
@@ -17,45 +15,45 @@ interface WithDefaultValueTrait : MetaGenerationTrait {
         val identifier = type.identifier
         return when {
             type.isNullable() && defaultValue == "null" -> defaultValueString to arrayOf()
-            identifier == GodotTypes.color -> "${GodotKotlinJvmTypes.color}($defaultValueString)" to arrayOf()
-            identifier == GodotTypes.variant -> defaultValueString to arrayOf()
-            identifier == GodotTypes.bool -> defaultValueString.lowercase(Locale.US) to arrayOf()
-            identifier == GodotTypes.float && meta == GodotMeta.Float.float -> "${intToFloat(defaultValueString)}f" to arrayOf()
-            identifier == GodotTypes.float -> intToFloat(defaultValueString) to arrayOf()
-            identifier == GodotTypes.stringName -> "${GodotKotlinJvmTypes.stringName}(".plus(defaultValueString.replace("&", ""))
+            identifier == TypeIdentifier.COLOR.name -> "${TypeIdentifier.COLOR.name}($defaultValueString)" to arrayOf()
+            identifier == TypeIdentifier.VARIANT.name -> defaultValueString to arrayOf()
+            identifier == TypeIdentifier.BOOL.name -> defaultValueString.lowercase(Locale.US) to arrayOf()
+            identifier == TypeIdentifier.FLOAT.name && meta == GodotMeta.Float.float -> "${intToFloat(defaultValueString)}f" to arrayOf()
+            identifier == TypeIdentifier.FLOAT.name -> intToFloat(defaultValueString) to arrayOf()
+            identifier == TypeIdentifier.STRING_NAME.name -> "${TypeIdentifier.STRING_NAME.name}(".plus(defaultValueString.replace("&", ""))
                 .plus(")") to arrayOf()
 
-            identifier == GodotTypes.array || type.isTypedArray() ->
+            identifier == TypeIdentifier.ARRAY.name || type.isTypedArray() ->
                 if (defaultValueString.startsWith("Array")) {
                     val defaultArrayValues = defaultValueString
                         .replace("Array.*\\(\\[".toRegex(), "")
                         .removeSuffix("])")
-                    "$godotCorePackage.variantArrayOf(".plus(defaultArrayValues).plus(")")
+                    "${Utils.variantArrayOf.canonicalName}(".plus(defaultArrayValues).plus(")")
                 } else {
-                    "$godotCorePackage.variantArrayOf("
+                    "${Utils.variantArrayOf.canonicalName}("
                         .plus(defaultValueString.removePrefix("[").removeSuffix("]"))
                         .plus(")")
                 } to arrayOf()
 
-            identifier == GodotTypes.rect2 -> defaultValueString
+            identifier == Core.rect2.simpleName -> defaultValueString
                 .replace(",", ".0,")
                 .replace(")", ".0)") to arrayOf()
 
-            identifier == GodotTypes.callable -> "%T()" to arrayOf(GODOT_VARIANT_CALLABLE)
+            identifier == Core.callable.simpleName -> "%T()" to arrayOf(Core.callable)
 
-            identifier == GodotTypes.rid ||
-                identifier == GodotTypes.dictionary ||
-                identifier == GodotTypes.transform2D ||
-                identifier == GodotTypes.transform3D ||
-                identifier == GodotTypes.packedByteArray ||
-                identifier == GodotTypes.packedColorArray ||
-                identifier == GodotTypes.packedFloat32Array ||
-                identifier == GodotTypes.packedFloat64Array ||
-                identifier == GodotTypes.packedStringArray ||
-                identifier == GodotTypes.packedInt32Array ||
-                identifier == GodotTypes.packedInt64Array ||
-                identifier == GodotTypes.packedVector2Array ||
-                identifier == GodotTypes.packedVector3Array
+            identifier == Core.rid.simpleName ||
+                identifier == Core.dictionary.simpleName ||
+                identifier == Core.transform2D.simpleName ||
+                identifier == Core.transform3D.simpleName ||
+                identifier == Core.packedByteArray.simpleName ||
+                identifier == Core.packedColorArray.simpleName ||
+                identifier == Core.packedFloat32Array.simpleName ||
+                identifier == Core.packedFloat64Array.simpleName ||
+                identifier == Core.packedStringArray.simpleName ||
+                identifier == Core.packedInt32Array.simpleName ||
+                identifier == Core.packedInt64Array.simpleName ||
+                identifier == Core.packedVector2Array.simpleName ||
+                identifier == Core.packedVector3Array.simpleName
                 -> "$identifier()" to arrayOf()
 
             else -> defaultValueString to arrayOf()
@@ -67,3 +65,4 @@ interface WithDefaultValueTrait : MetaGenerationTrait {
         return "$defaultValue.0"
     }
 }
+

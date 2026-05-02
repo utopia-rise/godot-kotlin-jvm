@@ -1,6 +1,7 @@
 package godot.entrygenerator.generator.typehint.primitives
 
-import com.squareup.kotlinpoet.ClassName
+import com.squareup.kotlinpoet.MemberName
+import godot.core.PropertyHint
 import godot.entrygenerator.exceptions.WrongAnnotationUsageException
 import godot.entrygenerator.generator.typehint.PropertyTypeHintGenerator
 import godot.entrygenerator.model.DirHintAnnotation
@@ -10,32 +11,33 @@ import godot.entrygenerator.model.MultilineTextHintAnnotation
 import godot.entrygenerator.model.PlaceHolderTextHintAnnotation
 import godot.entrygenerator.model.RangeHintAnnotation
 import godot.entrygenerator.model.RegisteredProperty
-import godot.tools.common.constants.GodotTypes
-import godot.tools.common.constants.godotCorePackage
-import godot.tools.common.constants.godotPackage
+import godot.entrygenerator.utils.asEnumName
 
 class JvmPrimitivesTypeHintGenerator(
     private val registeredProperty: RegisteredProperty
 ) : PropertyTypeHintGenerator(registeredProperty) {
-    override fun getPropertyTypeHint(): ClassName {
+    override fun getPropertyTypeHint(): MemberName {
         return when (propertyHintAnnotation) {
-            is RangeHintAnnotation<*> -> ClassName("$godotCorePackage.${GodotTypes.propertyHint}", "RANGE")
-            is ExpEasingHintAnnotation -> ClassName("$godotCorePackage.${GodotTypes.propertyHint}", "EXP_EASING")
+            is RangeHintAnnotation<*> -> PropertyHint.RANGE.asEnumName()
+            is ExpEasingHintAnnotation -> PropertyHint.EXP_EASING.asEnumName()
             is FileHintAnnotation -> if (propertyHintAnnotation.global) {
-                ClassName("$godotCorePackage.${GodotTypes.propertyHint}", "GLOBAL_FILE")
+                PropertyHint.GLOBAL_FILE.asEnumName()
             } else {
-                ClassName("$godotCorePackage.${GodotTypes.propertyHint}", "FILE")
+                PropertyHint.FILE.asEnumName()
             }
+
             is DirHintAnnotation -> if (propertyHintAnnotation.global) {
-                ClassName("$godotCorePackage.${GodotTypes.propertyHint}", "GLOBAL_DIR")
+                PropertyHint.GLOBAL_DIR.asEnumName()
             } else {
-                ClassName("$godotCorePackage.${GodotTypes.propertyHint}", "DIR")
+                PropertyHint.DIR.asEnumName()
             }
-            is MultilineTextHintAnnotation -> ClassName("$godotCorePackage.${GodotTypes.propertyHint}", "MULTILINE_TEXT")
-            is PlaceHolderTextHintAnnotation -> ClassName("$godotCorePackage.${GodotTypes.propertyHint}", "PLACE_HOLDER_TEXT")
-            null -> ClassName("$godotCorePackage.${GodotTypes.propertyHint}", "NONE")
+
+            is MultilineTextHintAnnotation -> PropertyHint.MULTILINE_TEXT.asEnumName()
+            is PlaceHolderTextHintAnnotation -> PropertyHint.PLACEHOLDER_TEXT.asEnumName()
+            null -> PropertyHint.NONE.asEnumName()
 
             else -> throw WrongAnnotationUsageException(registeredProperty, propertyHintAnnotation)
         }
     }
 }
+

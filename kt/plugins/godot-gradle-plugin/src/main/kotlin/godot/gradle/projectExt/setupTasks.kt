@@ -7,9 +7,11 @@ import godot.gradle.tasks.android.createBootstrapDexJarTask
 import godot.gradle.tasks.android.createMainDexFileTask
 import godot.gradle.tasks.android.packageBootstrapDexJarTask
 import godot.gradle.tasks.android.packageMainDexJarTask
-import godot.gradle.tasks.classGraphSymbolsProcess
 import godot.gradle.tasks.createCopyJarsTask
-import godot.gradle.tasks.deleteClassGraphGeneratedSourceTask
+import godot.gradle.tasks.entryGenerationGenerateFilesTask
+import godot.gradle.tasks.entryGenerationJarTask
+import godot.gradle.tasks.entryGenerationSyncRegistrationFilesTask
+import godot.gradle.tasks.entry_generation.entryGenerationIndexExistingRegistrationFilesTask
 import godot.gradle.tasks.generateGdIgnoreFilesTask
 import godot.gradle.tasks.graal.checkNativeImageToolAccessibleTask
 import godot.gradle.tasks.graal.copyDefaultGraalJniConfigTask
@@ -19,15 +21,13 @@ import godot.gradle.tasks.graal.ios.createIOSGraalNativeImageTask
 import godot.gradle.tasks.graal.ios.createIOSStaticLibraryTask
 import godot.gradle.tasks.graal.ios.downloadIOSCapCacheFiles
 import godot.gradle.tasks.graal.ios.downloadIOSJdkStaticLibraries
-import godot.gradle.tasks.initialJavaCompileForClassGraph
-import godot.gradle.tasks.initialKotlinCompileForClassGraph
-import godot.gradle.tasks.initialScalaCompileForClassGraph
 import godot.gradle.tasks.packageBootstrapJarTask
 import godot.gradle.tasks.packageMainJarTask
-import godot.gradle.tasks.setupAfterIdeaSyncTasks
+import godot.gradle.tasks.packageUserJarTask
 import godot.gradle.tasks.setupBuildTask
 import godot.gradle.tasks.setupCleanTask
 import org.gradle.api.Project
+import org.gradle.jvm.tasks.Jar
 
 fun Project.setupTasks() {
     tasks.register("generateEmbeddedJre", GenerateEmbeddedJreTask::class.java) { task ->
@@ -37,25 +37,46 @@ fun Project.setupTasks() {
 
     afterEvaluate {
         with(it) {
-            val classGraphScalaCompile = initialScalaCompileForClassGraph()
-            val classGraphJavaCompile = initialJavaCompileForClassGraph()
-            val classGraphKotlinCompile = initialKotlinCompileForClassGraph(
-                classGraphScalaCompile,
-                classGraphJavaCompile
+            if (godotJvmExtension.isLibrary.get()) {
+                tasks.named("jar", Jar::class.java) { jarTask ->
+                    jarTask.group = "godot-kotlin-jvm"
+                    jarTask.description = "Builds the reusable Godot Kotlin/JVM library jar."
+                    jarTask.archiveBaseName.set(project.name)
+                    jarTask.archiveVersion.set("")
+                    jarTask.archiveClassifier.set("")
+                }
+                return@with
+            }
+
+            val classesTask = tasks.named("classes")
+
+            // Step 1: package the first user-code artifact, scan it to generate entry files and staged .gdj files, then sync .gdj files.
+            val packageUserJarTask = packageUserJarTask(
+                userClassesTask = classesTask,
+            )
+            val generateEntryFilesTask = entryGenerationGenerateFilesTask(
+                packageUserJarTask = packageUserJarTask,
+            )
+            val indexExistingRegistrationFilesTask = entryGenerationIndexExistingRegistrationFilesTask()
+            val updateRegistrationFilesTask = entryGenerationSyncRegistrationFilesTask(
+                generateEntryFilesTask = generateEntryFilesTask,
+                indexExistingRegistrationFilesTask = indexExistingRegistrationFilesTask,
+            )
+            val generatedEntryJarTask = entryGenerationJarTask(
+                generateEntryFilesTask = generateEntryFilesTask,
             )
 
-            val deleteClassGraphGeneratedTask = deleteClassGraphGeneratedSourceTask()
-
-            val classGraphGenerationTask = classGraphSymbolsProcess(
-                classGraphKotlinCompile,
-                deleteClassGraphGeneratedTask
-            )
-
+            // Step 2: package the two runtime jars.
             val packageBootstrapJarTask = packageBootstrapJarTask()
-            val packageMainJarTask = packageMainJarTask(classGraphGenerationTask = classGraphGenerationTask)
-            val generateGdIgnoreFilesTask = generateGdIgnoreFilesTask()
+            val packageMainJarTask = packageMainJarTask(
+                generatedEntryJarTask = generatedEntryJarTask,
+                updateRegistrationFilesTask = updateRegistrationFilesTask,
+                userClassesTask = classesTask,
+            )
 
-            // START: android specific tasks
+            // Step 3: project housekeeping around the packaged jars.
+            val generateGdIgnoreFilesTask = generateGdIgnoreFilesTask()
+            // Step 4: optional Android packaging derives from bootstrap.jar and main.jar.
             val checkD8ToolAccessibleTask = checkD8ToolAccessibleTask()
             val checkAndroidJarAccessibleTask = checkAndroidJarAccessibleTask()
             val createBootstrapDexJarTask = createBootstrapDexJarTask(
@@ -70,14 +91,13 @@ fun Project.setupTasks() {
                 checkAndroidJarAccessibleTask = checkAndroidJarAccessibleTask,
                 checkD8ToolAccessibleTask = checkD8ToolAccessibleTask,
                 packageBootstrapDexJarTask = packageBootstrapDexJarTask,
-                packageMainJarTask = packageMainJarTask
+                packageMainJarTask = packageMainJarTask,
             )
             val packageMainDexJarTask = packageMainDexJarTask(
                 createMainDexFileTask = createMainDexFileTask
             )
-            // END: android specific tasks
 
-            // START: graal native image specific tasks
+            // Step 5: optional Graal packaging also derives from bootstrap.jar and main.jar.
             val checkNativeImageToolAccessibleTask = checkNativeImageToolAccessibleTask()
             val copyDefaultGraalJniConfigTask = copyDefaultGraalJniConfigTask()
             val copyDefaultGraalIOSConfigsTask = copyDefaultGraalIOSConfigsTask(
@@ -100,15 +120,18 @@ fun Project.setupTasks() {
                 downloadStaticJdkLibrariesTask = downloadIOSJdkStaticLibraries(),
                 createIOSGraalNativeImageTask = createIOSGraalNativeImageTask
             )
-            // END: graal native image specific tasks
 
             val copyJarTask = createCopyJarsTask(
                 packageBootstrapJarTask = packageBootstrapJarTask,
                 packageMainJarTask = packageMainJarTask,
+                createBootstrapDexJarTask = createBootstrapDexJarTask,
+                packageMainDexJarTask = packageMainDexJarTask,
+                createGraalNativeImageTask = createGraalNativeImageTask,
+                createIOSTask = createIOSStaticLibraryTask,
             )
 
-            @Suppress("UNUSED_VARIABLE")
-            val buildTask = setupBuildTask(
+            // Step 6: wire the lifecycle tasks that users actually call.
+            setupBuildTask(
                 packageBootstrapJarTask = packageBootstrapJarTask,
                 packageMainJarTask = packageMainJarTask,
                 packageBootstrapDexJarTask = packageBootstrapDexJarTask,
@@ -119,12 +142,7 @@ fun Project.setupTasks() {
                 copyJarTask = copyJarTask,
             )
 
-            @Suppress("UNUSED_VARIABLE")
-            val cleanTask = setupCleanTask(
-                generateGdIgnoreFilesTask = generateGdIgnoreFilesTask,
-            )
-
-            setupAfterIdeaSyncTasks(
+            setupCleanTask(
                 generateGdIgnoreFilesTask = generateGdIgnoreFilesTask,
             )
         }

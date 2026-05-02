@@ -1,4 +1,6 @@
-import versioninfo.fullGodotKotlinJvmVersion
+import versioninfo.fullBuildVersion
+import versioninfo.VersionInfoExtension
+import org.gradle.kotlin.dsl.configure
 
 plugins {
     alias(libs.plugins.kotlin.jvm)
@@ -9,8 +11,12 @@ plugins {
 
 // the version is not inherited from the root build.gradle.kts as this here is a separate gradle project. Hence, we set it
 // through the godot-dependencies plugin
-version = fullGodotKotlinJvmVersion
+version = fullBuildVersion
 group = "com.utopia-rise"
+
+configure<VersionInfoExtension> {
+    generateCommonVersionKt()
+}
 
 kotlin {
     jvmToolchain(libs.versions.toolchain.jvm.get().toInt())

@@ -3,8 +3,8 @@ package godot.codegen.models.enriched
 
 import com.squareup.kotlinpoet.ClassName
 import godot.codegen.models.Argument
-import godot.codegen.models.traits.MetaGenerationTrait
 import godot.codegen.models.traits.GenerationType
+import godot.codegen.models.traits.MetaGenerationTrait
 import godot.codegen.models.traits.WithDefaultValueTrait
 import godot.codegen.workarounds.sanitizeApiType
 import godot.common.extensions.convertToCamelCase

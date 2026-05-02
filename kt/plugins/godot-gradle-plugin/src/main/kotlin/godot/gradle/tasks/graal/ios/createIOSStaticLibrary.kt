@@ -20,16 +20,18 @@ fun Project.createIOSStaticLibraryTask(
 
         doFirst {
             val iosLibDir = project.layout.buildDirectory.asFile.get().resolve("libs").resolve("ios")
+            val userCodeObjectPath = iosLibDir.listFiles()
+                ?.filter { file -> file.isDirectory && file.name.startsWith("SVM-") }
+                ?.maxByOrNull { file -> file.lastModified() }
+                ?.resolve("usercode.o")
+                ?.absolutePath
+                ?: error("Could not find generated iOS object file in ${iosLibDir.absolutePath}")
 
             commandLine(
                 "ar",
                 "-r",
                 "${iosLibDir.absolutePath}/usercode.a",
-                iosLibDir.listFiles()
-                    ?.filter { file -> file.isDirectory && file.name.startsWith("SVM-") }
-                    ?.maxByOrNull { file -> file.lastModified() }
-                    ?.resolve("usercode.o")
-                    ?.absolutePath,
+                userCodeObjectPath,
             )
 
             logger.quiet(commandLine.joinToString(" "))

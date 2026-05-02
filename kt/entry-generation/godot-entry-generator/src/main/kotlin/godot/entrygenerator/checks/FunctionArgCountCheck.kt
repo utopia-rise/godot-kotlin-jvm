@@ -4,7 +4,7 @@ import godot.common.constants.Constraints
 import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.utils.Logger
 
-class FunctionArgCountCheck(logger: Logger, registeredClasses: List<RegisteredClass>): BaseCheck(logger, registeredClasses) {
+class FunctionArgCountCheck(logger: Logger, registeredClasses: List<RegisteredClass>) : BaseCheck(logger, registeredClasses) {
     override fun execute(): Boolean {
         var hasIssues = false
         registeredClasses

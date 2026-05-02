@@ -5,6 +5,7 @@ import godot.annotation.Dir
 import godot.annotation.EnumFlag
 import godot.annotation.ExpEasing
 import godot.annotation.Export
+import godot.annotation.GodotBaseType
 import godot.annotation.IntFlag
 import godot.annotation.MultilineText
 import godot.annotation.PlaceHolderText
@@ -49,27 +50,25 @@ fun AnnotationInfo.mapToGodotAnnotation(parentDeclaration: Any, declarationStrin
     return when (name) {
         RegisterClass::class.java.name -> RegisterClassAnnotation(
             customName = parameterValues.getValue("customName") as? String,
-            symbolProcessorSource = this
         )
-        RegisterFunction::class.java.name -> RegisterFunctionAnnotation(this)
-        RegisterProperty::class.java.name -> RegisterPropertyAnnotation(this)
-        RegisterSignal::class.java.name -> RegisterSignalAnnotation(this)
-        Tool::class.java.name -> ToolAnnotation(this)
-        Export::class.java.name -> ExportAnnotation(this)
+        RegisterFunction::class.java.name -> RegisterFunctionAnnotation()
+        RegisterProperty::class.java.name -> RegisterPropertyAnnotation()
+        RegisterSignal::class.java.name -> RegisterSignalAnnotation()
+        Tool::class.java.name -> ToolAnnotation()
+        Export::class.java.name -> ExportAnnotation()
         Rpc::class.java.name -> RpcAnnotation(
             rpcMode = getRpcMode(),
             sync = getSyncMode(),
             transferMode = getTransferMode(),
             transferChannel = parameterValues.getValue("transferChannel") as Int,
-            symbolProcessorSource = this
         )
-        "godot.annotation.GodotBaseType" -> GodotBaseTypeAnnotation(this) // is internal
+        GodotBaseType::class.java.name -> GodotBaseTypeAnnotation() // is internal
         EnumFlag::class.java.name -> {
             if (parentDeclaration !is FieldInfo) {
                 ErrorsDatabase.add(
                     "EnumFlag annotation has been set on $declarationString. It should be placed on property only."
                 )
-                return EnumFlagHintStringAnnotation(enumValueNames = listOf(), source = this)
+                return EnumFlagHintStringAnnotation(enumValueNames = listOf())
             }
 
             val typeDescriptor = parentDeclaration.typeSignature
@@ -81,24 +80,27 @@ fun AnnotationInfo.mapToGodotAnnotation(parentDeclaration: Any, declarationStrin
                 ErrorsDatabase.add(
                     "Property annotated with EnumFlag should be of type $SET, $declarationString is of type $fullyQualifiedClassName"
                 )
-                return EnumFlagHintStringAnnotation(enumValueNames = listOf(), source = this)
+                return EnumFlagHintStringAnnotation(enumValueNames = listOf())
             }
 
             val typeArgument = typeDescriptor.typeArguments.first().typeSignature as ClassRefTypeSignature
 
-            val enumValues = Context.scanResult.getClassInfo(typeArgument.fullyQualifiedClassName)
-                .fieldInfo
-                .filter { it.typeDescriptor == typeArgument }
-                .map { it.name }
-            EnumFlagHintStringAnnotation(enumValueNames = enumValues, source = this)
+            val enumValues = Context.enumValueNamesByClass.getOrPut(typeArgument.fullyQualifiedClassName) {
+                requireNotNull(Context.getClassInfoOrNull(typeArgument.fullyQualifiedClassName)) {
+                    "Could not resolve enum class info for ${typeArgument.fullyQualifiedClassName}"
+                }
+                    .fieldInfo
+                    .filter { it.typeDescriptor == typeArgument }
+                    .map { it.name }
+            }
+            EnumFlagHintStringAnnotation(enumValueNames = enumValues)
         }
         IntFlag::class.java.name -> IntFlagHintAnnotation(
-            parameterValues.getValue("values") as? List<String> ?: emptyList(),
-            this
+            parameterValues.getValue("values") as? List<String> ?: emptyList()
         )
-        MultilineText::class.java.name -> MultilineTextHintAnnotation(this)
-        PlaceHolderText::class.java.name -> PlaceHolderTextHintAnnotation(this)
-        ColorNoAlpha::class.java.name -> ColorNoAlphaHintAnnotation(this)
+        MultilineText::class.java.name -> MultilineTextHintAnnotation()
+        PlaceHolderText::class.java.name -> PlaceHolderTextHintAnnotation()
+        ColorNoAlpha::class.java.name -> ColorNoAlphaHintAnnotation()
         godot.annotation.IntRange::class.java.name -> provideRangeHintAnnotation(-1)
         godot.annotation.LongRange::class.java.name -> provideRangeHintAnnotation(-1L)
         godot.annotation.FloatRange::class.java.name -> provideRangeHintAnnotation(-1f)
@@ -106,46 +108,43 @@ fun AnnotationInfo.mapToGodotAnnotation(parentDeclaration: Any, declarationStrin
         ExpEasing::class.java.name -> ExpEasingHintAnnotation(
             attenuation = parameterValues.getValue("attenuation") as? Boolean ?: false,
             isPositiveOnly = parameterValues.getValue("isPositiveOnly") as? Boolean ?: false,
-            source = this
         )
         godot.annotation.File::class.java.name -> FileHintAnnotation(
             extensions = parameterValues.getValue("extensions") as? List<String> ?: emptyList(),
             global = parameterValues.getValue("global") as? Boolean ?: false,
-            source = this
         )
         Dir::class.java.name -> DirHintAnnotation(
             global = parameterValues.getValue("global") as? Boolean ?: false,
-            source = this
         )
         else -> null
     }
 }
 
-private fun AnnotationInfo.getRpcMode(): godot.entrygenerator.model.RpcMode {
+private fun AnnotationInfo.getRpcMode(): RpcMode {
     val rpcModeName = parameterValues.getValue("rpcMode")?.toString()
     return when (rpcModeName) {
-        RpcMode.ANY.fqName -> godot.entrygenerator.model.RpcMode.ANY
-        RpcMode.AUTHORITY.fqName -> godot.entrygenerator.model.RpcMode.AUTHORITY
-        else -> godot.entrygenerator.model.RpcMode.DISABLED
+        RpcMode.ANY.fqName -> RpcMode.ANY
+        RpcMode.AUTHORITY.fqName -> RpcMode.AUTHORITY
+        else -> RpcMode.DISABLED
     }
 }
 
-private fun AnnotationInfo.getSyncMode(): godot.entrygenerator.model.Sync {
+private fun AnnotationInfo.getSyncMode(): Sync {
     val syncName = parameterValues.getValue("sync")?.toString()
     return when (syncName) {
-        Sync.SYNC.fqName -> godot.entrygenerator.model.Sync.SYNC
-        Sync.NO_SYNC.fqName -> godot.entrygenerator.model.Sync.NO_SYNC
-        else -> godot.entrygenerator.model.Sync.NO_SYNC
+        Sync.SYNC.fqName -> Sync.SYNC
+        Sync.NO_SYNC.fqName -> Sync.NO_SYNC
+        else -> Sync.NO_SYNC
     }
 }
 
-private fun AnnotationInfo.getTransferMode(): godot.entrygenerator.model.TransferMode {
+private fun AnnotationInfo.getTransferMode(): TransferMode {
     val transferModeName = parameterValues.getValue("transferMode")?.toString()
     return when (transferModeName) {
-        TransferMode.RELIABLE.fqName -> godot.entrygenerator.model.TransferMode.RELIABLE
-        TransferMode.UNRELIABLE.fqName -> godot.entrygenerator.model.TransferMode.UNRELIABLE
-        TransferMode.UNRELIABLE_ORDERED.fqName -> godot.entrygenerator.model.TransferMode.UNRELIABLE_ORDERED
-        else -> godot.entrygenerator.model.TransferMode.RELIABLE
+        TransferMode.RELIABLE.fqName -> TransferMode.RELIABLE
+        TransferMode.UNRELIABLE.fqName -> TransferMode.UNRELIABLE
+        TransferMode.UNRELIABLE_ORDERED.fqName -> TransferMode.UNRELIABLE_ORDERED
+        else -> TransferMode.RELIABLE
     }
 }
 
@@ -171,12 +170,8 @@ private fun <T : Number> AnnotationInfo.provideRangeHintAnnotation(stepDefault: 
         isDegrees = isDegrees,
         isExp = isExp,
         suffix = suffix,
-        symbolProcessorSource = this
     )
 }
-
-@Suppress("UNCHECKED_CAST")
-fun <T> AnnotationInfo.getParameterValue(parameterName: String): T = parameterValues.getValue(parameterName) as T
 
 private val Enum<*>.fqName
     get() = "${this::class.qualifiedName}.$name"

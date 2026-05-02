@@ -22,7 +22,6 @@ includeBuild("../../kt") {
         substitute(module("com.utopia-rise:godot-coroutine-library-release")).using(project(":godot-coroutine-library"))
         substitute(module("com.utopia-rise:godot-class-graph-symbol-processor")).using(project(":godot-class-graph-symbol-processor"))
         substitute(module("com.utopia-rise:godot-entry-generator")).using(project(":godot-entry-generator"))
-        substitute(module("com.utopia-rise:godot-build-props")).using(project(":godot-build-props"))
     }
 }
 
@@ -32,21 +31,9 @@ includeBuild("../../kt/common") {
     }
 }
 
-includeBuild("../../harness/hierarchical-library-tests") {
+includeBuild("../../harness/third-party-library") {
     dependencySubstitution {
-        substitute(module("com.godot.tests:hierarchical-library")).using(project(":"))
-    }
-}
-
-includeBuild("../../harness/flattened-library-tests") {
-    dependencySubstitution {
-        substitute(module("com.godot.tests:flattened-library")).using(project(":"))
-    }
-}
-
-includeBuild("../../harness/fqname-library-tests") {
-    dependencySubstitution {
-        substitute(module("com.godot.tests:fqname-library")).using(project(":"))
+        substitute(module("com.godot.tests:third-party-library")).using(project(":"))
     }
 }
 

@@ -4,7 +4,6 @@ import godot.gradle.GodotExtension
 import godot.gradle.projectExt.godotJvmExtension
 import org.gradle.api.Project
 import org.jetbrains.kotlin.gradle.internal.ensureParentDirsCreated
-import java.io.File
 import java.io.InputStream
 
 fun Project.copyToGraalBuildDirectory(resourcePath: String) {

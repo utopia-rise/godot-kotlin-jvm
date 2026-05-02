@@ -1334,8 +1334,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
 
   public final fun getVisibilityAabb(): AABB {
     TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getVisibilityAabbPtr,
-        godot.core.VariantParser.AABB)
+    TransferContext.callMethod(ptr, MethodBindings.getVisibilityAabbPtr, godot.core.VariantParser.AABB)
     return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 

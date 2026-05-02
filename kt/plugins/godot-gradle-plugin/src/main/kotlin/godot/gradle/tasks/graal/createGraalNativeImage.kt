@@ -56,17 +56,13 @@ fun Project.createGraalNativeImageTask(
                     ""
                 }
 
-                val verboseArgument = if (godotJvmExtension.isGraalVmNativeImageGenerationVerbose.get()) {
+                val verboseArgument = if (godotJvmExtension.isGraalNativeImageVerboseEnabled.get()) {
                     "--verbose"
                 } else {
                     ""
                 }
 
-                val graalBinDir = godotJvmExtension
-                    .graalVmDirectory
-                    .get()
-                    .asFile
-                    .resolve("bin")
+                val graalBinDir = File(godotJvmExtension.graalVmHomeDirectory.get()).resolve("bin")
 
 
                 val arguments = if (DefaultNativePlatform.getCurrentOperatingSystem().isWindows) {
@@ -76,7 +72,7 @@ fun Project.createGraalNativeImageTask(
 
                         "(",
 
-                        godotJvmExtension.windowsDeveloperVCVarsPath.get().asFile.absolutePath,
+                        godotJvmExtension.windowsDeveloperVcVarsPath.get(),
 
                         "&&",
 
@@ -105,11 +101,11 @@ fun Project.createGraalNativeImageTask(
                     )
                 }
 
-                if(additionalConfigFiles.isNotEmpty()){
+                if (additionalConfigFiles.isNotEmpty()) {
                     arguments.add(reflectionConfigurationFilesArgument)
                 }
 
-                if(resourceConfigFiles.isNotEmpty()){
+                if (resourceConfigFiles.isNotEmpty()) {
                     arguments.add(resourceConfigurationFilesArgument)
                 }
 

@@ -4,8 +4,7 @@ open class Type(
     val fqName: String,
     val kind: TypeKind,
     val supertypes: List<Type>,
-    val arguments: () -> List<Type>,
-    val registeredName: () -> String?,
+    val arguments: List<Type>,
 ) {
     val allSuperTypes: List<Type>
         get() = collectSupertypes()
@@ -26,7 +25,6 @@ class PropertyType(
     type.kind,
     type.supertypes,
     type.arguments,
-    type.registeredName
 )
 
 enum class TypeKind {

@@ -1,0 +1,296 @@
+package godot.intellij.plugin.analysis.kotlin
+
+import godot.annotation.ColorNoAlpha
+import godot.annotation.Dir
+import godot.annotation.DoubleRange
+import godot.annotation.EnumFlag
+import godot.annotation.EnumTypeHint
+import godot.annotation.ExpEasing
+import godot.annotation.Export
+import godot.annotation.File
+import godot.annotation.FloatRange
+import godot.annotation.IntFlag
+import godot.annotation.IntRange
+import godot.annotation.LongRange
+import godot.annotation.MultilineText
+import godot.annotation.PlaceHolderText
+import godot.annotation.RegisterProperty
+import godot.core.Color
+import godot.intellij.plugin.GodotPluginBundle
+import godot.intellij.plugin.analysis.GodotProblem
+import godot.intellij.plugin.project.fqName
+import godot.intellij.plugin.quickfix.PropertyNotExportedQuickFix
+import godot.intellij.plugin.quickfix.PropertyNotRegisteredQuickFix
+import org.jetbrains.kotlin.analysis.api.analyze
+import org.jetbrains.kotlin.analysis.api.types.KaClassType
+import org.jetbrains.kotlin.analysis.api.types.symbol
+import org.jetbrains.kotlin.idea.codeinsight.utils.isEnum
+import org.jetbrains.kotlin.idea.util.findAnnotation
+import org.jetbrains.kotlin.psi.KtClass
+import org.jetbrains.kotlin.psi.KtEnumEntry
+import org.jetbrains.kotlin.psi.KtProperty
+import org.jetbrains.kotlin.scripting.resolve.classId
+import kotlin.reflect.KClass
+
+private const val MAX_ENUM_ENTRIES_FOR_ENUM_FLAGS = 32
+
+object PropertyHintAnalyzer {
+    private val propertyNotRegisteredQuickFix by lazy { PropertyNotRegisteredQuickFix() }
+    private val propertyNotExportedQuickFix by lazy { PropertyNotExportedQuickFix() }
+
+    fun analyze(property: KtProperty): List<GodotProblem> {
+        return when {
+            property.findAnnotation(IntRange::class.classId) != null -> {
+                checkForRegistrationAnnotations(property) + checkIntRange(property)
+            }
+
+            property.findAnnotation(LongRange::class.classId) != null -> {
+                checkForRegistrationAnnotations(property) + checkLongRange(property)
+            }
+
+            property.findAnnotation(FloatRange::class.classId) != null -> {
+                checkForRegistrationAnnotations(property) + checkFloatRange(property)
+            }
+
+            property.findAnnotation(DoubleRange::class.classId) != null -> {
+                checkForRegistrationAnnotations(property) + checkDoubleRange(property)
+            }
+
+            property.findAnnotation(ExpEasing::class.classId) != null -> {
+                checkForRegistrationAnnotations(property) + checkExpEasing(property)
+            }
+
+            property.findAnnotation(EnumTypeHint::class.classId) != null -> {
+                checkForRegistrationAnnotations(property) + checkEnumTypeHint(property)
+            }
+
+            property.findAnnotation(EnumFlag::class.classId) != null -> {
+                checkForRegistrationAnnotations(property) + checkEnumFlag(property)
+            }
+
+            property.findAnnotation(IntFlag::class.classId) != null -> {
+                checkForRegistrationAnnotations(property) + checkIntFlag(property)
+            }
+
+            property.findAnnotation(File::class.classId) != null -> {
+                checkForRegistrationAnnotations(property) + checkFile(property)
+            }
+
+            property.findAnnotation(Dir::class.classId) != null -> {
+                checkForRegistrationAnnotations(property) + checkDir(property)
+            }
+
+            property.findAnnotation(MultilineText::class.classId) != null -> {
+                checkForRegistrationAnnotations(property) + checkMultilineText(property)
+            }
+
+            property.findAnnotation(PlaceHolderText::class.classId) != null -> {
+                checkForRegistrationAnnotations(property) + checkPlaceholderText(property)
+            }
+
+            property.findAnnotation(ColorNoAlpha::class.classId) != null -> {
+                checkForRegistrationAnnotations(property) + checkColorNoAlpha(property)
+            }
+
+            else -> emptyList()
+        }
+    }
+
+    private fun checkColorNoAlpha(property: KtProperty): List<GodotProblem> {
+        if (property.fqName() == Color::class.qualifiedName!!) return emptyList()
+        return listOf(
+            GodotProblem(
+                GodotPluginBundle.message("problem.property.hint.wrongType", Color::class.qualifiedName!!),
+                property.findAnnotation(ColorNoAlpha::class.classId)?.psiOrParent
+                    ?: property.nameIdentifier
+                    ?: property.navigationElement
+            )
+        )
+    }
+
+    private fun checkPlaceholderText(property: KtProperty): List<GodotProblem> {
+        return checkStringPropertyType(property, PlaceHolderText::class)
+    }
+
+    private fun checkMultilineText(property: KtProperty): List<GodotProblem> {
+        return checkStringPropertyType(property, MultilineText::class)
+    }
+
+    private fun checkDir(property: KtProperty): List<GodotProblem> {
+        return checkStringPropertyType(property, Dir::class)
+    }
+
+    private fun checkFile(property: KtProperty): List<GodotProblem> {
+        return checkStringPropertyType(property, File::class)
+    }
+
+    private fun checkStringPropertyType(property: KtProperty, annotation: KClass<*>): List<GodotProblem> {
+        if (property.fqName() == String::class.qualifiedName) return emptyList()
+        return listOf(
+            GodotProblem(
+                GodotPluginBundle.message("problem.property.hint.wrongType", String::class.qualifiedName!!),
+                property.findAnnotation(annotation.classId)?.psiOrParent
+                    ?: property.nameIdentifier
+                    ?: property.navigationElement
+            )
+        )
+    }
+
+    private fun checkIntFlag(property: KtProperty): List<GodotProblem> {
+        val isInt = analyze(property) { property.returnType.isIntType }
+        if (isInt) return emptyList()
+        return listOf(
+            GodotProblem(
+                GodotPluginBundle.message("problem.property.hint.wrongType", Int::class.qualifiedName!!),
+                property.findAnnotation(IntFlag::class.classId)?.psiOrParent
+                    ?: property.nameIdentifier
+                    ?: property.navigationElement
+            )
+        )
+    }
+
+    private fun checkEnumFlag(property: KtProperty): List<GodotProblem> {
+        if (property.fqName()?.let { it == Set::class.qualifiedName || it == MutableSet::class.qualifiedName } == false) {
+            return listOf(
+                GodotProblem(
+                    GodotPluginBundle.message("problem.property.hint.wrongType", "${Set::class.qualifiedName} or ${MutableSet::class.qualifiedName}"),
+                    property.findAnnotation(EnumFlag::class.classId)?.psiOrParent
+                        ?: property.nameIdentifier
+                        ?: property.navigationElement
+                )
+            )
+        }
+
+        val numberOfEnumEntriesInEnum = analyze(property) {
+            ((property.returnType as? KaClassType)
+                ?.typeArguments
+                ?.firstOrNull()
+                ?.type
+                ?: property.returnType)
+                .symbol
+                ?.psi
+                ?.let { it as? KtClass }
+                ?.declarations
+                ?.filterIsInstance<KtEnumEntry>()
+                ?.size ?: 0
+        }
+
+        if (numberOfEnumEntriesInEnum <= MAX_ENUM_ENTRIES_FOR_ENUM_FLAGS) return emptyList()
+        return listOf(
+            GodotProblem(
+                GodotPluginBundle.message("problem.property.hint.toManyEnumEntries"),
+                property.findAnnotation(EnumFlag::class.classId)?.psiOrParent
+                    ?: property.nameIdentifier
+                    ?: property.navigationElement
+            )
+        )
+    }
+
+    private fun checkEnumTypeHint(property: KtProperty): List<GodotProblem> {
+        val isEnum = analyze(property) { property.returnType.isEnum() }
+        if (isEnum) return emptyList()
+        return listOf(
+            GodotProblem(
+                GodotPluginBundle.message("problem.property.hint.wrongType", Enum::class.qualifiedName!!),
+                property.findAnnotation(EnumTypeHint::class.classId)?.psiOrParent
+                    ?: property.nameIdentifier
+                    ?: property.navigationElement
+            )
+        )
+    }
+
+    private fun checkExpEasing(property: KtProperty): List<GodotProblem> {
+        return checkRealTypeProperty(property, ExpEasing::class)
+    }
+
+    private fun checkRealTypeProperty(property: KtProperty, annotation: KClass<*>): List<GodotProblem> {
+        val isRealType = analyze(property) {
+            val type = property.returnType
+            type.isFloatType || type.isDoubleType
+        }
+        if (isRealType) return emptyList()
+        return listOf(
+            GodotProblem(
+                GodotPluginBundle.message("problem.property.hint.wrongType", "${Float::class.qualifiedName!!} or ${Double::class.qualifiedName!!}"),
+                property.findAnnotation(annotation.classId)?.psiOrParent
+                    ?: property.nameIdentifier
+                    ?: property.navigationElement
+            )
+        )
+    }
+
+    private fun checkDoubleRange(property: KtProperty): List<GodotProblem> {
+        val isDouble = analyze(property) { property.returnType.isDoubleType }
+        if (isDouble) return emptyList()
+        return listOf(
+            GodotProblem(
+                GodotPluginBundle.message("problem.property.hint.wrongType", Double::class.qualifiedName!!),
+                property.findAnnotation(DoubleRange::class.classId)?.psiOrParent
+                    ?: property.nameIdentifier
+                    ?: property.navigationElement
+            )
+        )
+    }
+
+    private fun checkFloatRange(property: KtProperty): List<GodotProblem> {
+        val isFloat = analyze(property) { property.returnType.isFloatType }
+        if (isFloat) return emptyList()
+        return listOf(
+            GodotProblem(
+                GodotPluginBundle.message("problem.property.hint.wrongType", Float::class.qualifiedName!!),
+                property.findAnnotation(FloatRange::class.classId)?.psiOrParent
+                    ?: property.nameIdentifier
+                    ?: property.navigationElement
+            )
+        )
+    }
+
+    private fun checkLongRange(property: KtProperty): List<GodotProblem> {
+        val isLong = analyze(property) { property.returnType.isLongType }
+        if (isLong) return emptyList()
+        return listOf(
+            GodotProblem(
+                GodotPluginBundle.message("problem.property.hint.wrongType", Long::class.qualifiedName!!),
+                property.findAnnotation(LongRange::class.classId)?.psiOrParent
+                    ?: property.nameIdentifier
+                    ?: property.navigationElement
+            )
+        )
+    }
+
+    private fun checkIntRange(property: KtProperty): List<GodotProblem> {
+        val isInt = analyze(property) { property.returnType.isIntType }
+        if (isInt) return emptyList()
+        return listOf(
+            GodotProblem(
+                GodotPluginBundle.message("problem.property.hint.wrongType", Int::class.qualifiedName!!),
+                property.findAnnotation(IntRange::class.classId)?.psiOrParent
+                    ?: property.nameIdentifier
+                    ?: property.navigationElement
+            )
+        )
+    }
+
+    private fun checkForRegistrationAnnotations(property: KtProperty): List<GodotProblem> {
+        return buildList {
+            if (property.findAnnotation(RegisterProperty::class.classId) == null) {
+                add(
+                    GodotProblem(
+                        GodotPluginBundle.message("problem.property.hint.notRegistered"),
+                        property.nameIdentifier ?: property.navigationElement,
+                        arrayOf(propertyNotRegisteredQuickFix)
+                    )
+                )
+            }
+            if (property.findAnnotation(Export::class.classId) == null) {
+                add(
+                    GodotProblem(
+                        GodotPluginBundle.message("problem.property.hint.notExported"),
+                        property.nameIdentifier ?: property.navigationElement,
+                        arrayOf(propertyNotExportedQuickFix)
+                    )
+                )
+            }
+        }
+    }
+}

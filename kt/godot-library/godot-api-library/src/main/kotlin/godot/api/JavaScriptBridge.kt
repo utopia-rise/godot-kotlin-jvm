@@ -175,7 +175,7 @@ public object JavaScriptBridge : Object() {
    */
   @JvmStatic
   public final fun createObject(`object`: String, vararg args: Any?): Any? {
-    TransferContext.writeArguments(STRING to `object`,  *args.map { ANY to it }.toTypedArray())
+    TransferContext.writeArguments(STRING to `object`, *args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(ptr, MethodBindings.createObjectPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }

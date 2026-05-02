@@ -7,24 +7,17 @@ import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.LambdaTypeName
-import com.squareup.kotlinpoet.MemberName
 import com.squareup.kotlinpoet.ParameterSpec
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.TypeVariableName
 import com.squareup.kotlinpoet.UNIT
-import com.squareup.kotlinpoet.asClassName
-import com.squareup.kotlinpoet.buildCodeBlock
+import godot.codegen.constants.API
+import godot.codegen.constants.Core
+import godot.codegen.constants.Utils
+import godot.codegen.constants.VariantConverter
 import godot.codegen.poet.GenericClassNameInfo
 import godot.codegen.services.IConnectorGenerationService
 import godot.common.constants.Constraints
-import godot.tools.common.constants.GODOT_METHOD_CALLABLE
-import godot.tools.common.constants.GODOT_SIGNAL_CONNECTOR
-import godot.tools.common.constants.GODOT_OBJECT
-import godot.tools.common.constants.GodotFunctions
-import godot.tools.common.constants.GodotKotlinJvmTypes
-import godot.tools.common.constants.TO_GODOT_NAME_UTIL_FUNCTION
-import godot.tools.common.constants.godotApiPackage
-import godot.tools.common.constants.godotCorePackage
 import godot.tools.common.constants.godotExtensionPackage
 import java.io.File
 import java.lang.Class
@@ -32,10 +25,17 @@ import kotlin.jvm.JvmName
 import kotlin.reflect.KCallable
 
 object ConnectorGenerationService : IConnectorGenerationService {
+    private const val CONNECT_METHOD_METHOD_NAME = "connectMethod"
+    private const val CONNECT_LAMBDA_METHOD_NAME = "connectLambda"
+    private const val PROMISE_METHOD_NAME = "promise"
     private const val METHOD_PARAMETER_NAME = "method"
     private const val CANCEL_PARAMETER_NAME = "cancel"
     private const val FLAGS_PARAMETER_NAME = "flags"
     private const val TARGET_PARAMETER_NAME = "target"
+    private val godotObjectBoundTypeVariable = TypeVariableName("T", API.`object`)
+    private val connectFlagClassName = API.connectFlags
+    private val variantMapperMember = VariantConverter.MAPPER
+    private val asCallableMember = Utils.asCallable
     private fun javaOnlyLambdaHelperName(argCount: Int) = "_connectLambda${argCount}Java"
     private fun javaOnlyMethodHelperName(argCount: Int) = "_connectMethod${argCount}Java"
     private val godotObjectBoundTypeVariable = TypeVariableName("T", GODOT_OBJECT)
@@ -46,7 +46,7 @@ object ConnectorGenerationService : IConnectorGenerationService {
     private val javaClassClassName = Class::class.asClassName()
     private val returnTypeParameter = TypeVariableName("R", ANY.copy(nullable = true))
 
-    override fun generate(output: File) {
+    override fun generate(extensionDir: File) {
         val connectorFileSpec = FileSpec.builder(godotExtensionPackage, SIGNAL_CONNECTORS_FILE_NAME)
 
         for (argCount in 0..Constraints.MAX_FUNCTION_ARG_COUNT) {
@@ -96,12 +96,12 @@ object ConnectorGenerationService : IConnectorGenerationService {
                                 connector.connect($FLAGS_PARAMETER_NAME)
                                 return connector
                             """.trimIndent(),
-                            GODOT_SIGNAL_CONNECTOR,
+                            Core.signalConnector,
                             asCallableMember
                         )
                     )
                     .returns(
-                        GODOT_SIGNAL_CONNECTOR
+                        Core.signalConnector
                     )
                     .build()
             )
@@ -165,7 +165,7 @@ object ConnectorGenerationService : IConnectorGenerationService {
                             flagsParameter
                         )
                     )
-                    .returns(GODOT_SIGNAL_CONNECTOR)
+                    .returns(Core.signalConnector)
                     .addCode(
                         CodeBlock.of(
                             """ 
@@ -176,10 +176,10 @@ object ConnectorGenerationService : IConnectorGenerationService {
                                 connector.connect($FLAGS_PARAMETER_NAME)
                                 return connector
                             """.trimIndent(),
-                            GODOT_SIGNAL_CONNECTOR,
-                            GODOT_METHOD_CALLABLE,
-                            KCallable::class.asClassName(),
-                            TO_GODOT_NAME_UTIL_FUNCTION,
+                            Core.signalConnector,
+                            Core.methodCallable,
+                            KCallable::class,
+                            Utils.toGodotName,
                         )
                     )
                     .addAnnotation(JvmSynthetic::class)
@@ -258,7 +258,7 @@ object ConnectorGenerationService : IConnectorGenerationService {
                     .addCode(
                         CodeBlock.of(
                             buildString {
-                                append("%T(%T.NIL,·arrayOf(")
+                                append("%T(%M,·arrayOf(")
                                 genericParameters.forEachIndexed { index, _ ->
                                     if (index != 0) append(",·")
                                     append("%M(%T::class)!!")
@@ -266,7 +266,7 @@ object ConnectorGenerationService : IConnectorGenerationService {
                                 append("),·$METHOD_PARAMETER_NAME).setAsCancellable(this,·$CANCEL_PARAMETER_NAME)")
                             },
                             containerInfo.className.parameterizedBy(listOf(UNIT) + containerInfo.genericTypes),
-                            variantConverterClassName,
+                            VariantConverter.NIL,
                             *genericParameters
                                 .flatMap {
                                     listOf(variantConverterMember, it)
@@ -287,13 +287,15 @@ object ConnectorGenerationService : IConnectorGenerationService {
             )
             .addAnnotation(
                 AnnotationSpec
-                    .builder(ClassName("kotlin", "Suppress"))
+                    .builder(Suppress::class)
                     .addMember("\"PackageDirectoryMismatch\", \"UNCHECKED_CAST\"")
                     .addMember("\"unused\"")
                     .addMember("\"NOTHING_TO_INLINE\"")
                     .build()
             )
             .build()
-            .writeTo(output)
+            .writeTo(extensionDir)
     }
 }
+
+

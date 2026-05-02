@@ -1,6 +1,7 @@
 package godot.gradle.tasks.graal.ios
 
-import godot.utils.GodotBuildProperties
+import godot.tools.common.IOS_CAP_CACHE_VERSION
+import godot.tools.common.IOS_JDK_VERSION
 import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.tasks.TaskProvider
@@ -20,9 +21,9 @@ fun Project.downloadIOSCapCacheFiles(): TaskProvider<out Task> = tasks
                     .resolve("graal")
                     .resolve("ios")
                     .resolve("capcache")
-                    .resolve("${GodotBuildProperties.iosCapCacheVersion}-${GodotBuildProperties.iosJdkVersion}")
+                    .resolve("$IOS_CAP_CACHE_VERSION-$IOS_JDK_VERSION")
 
-                val iosCapCacheReleaseBaseLink = "https://github.com/utopia-rise/cap-cache-generator/releases/download/${GodotBuildProperties.iosCapCacheVersion}-${GodotBuildProperties.iosJdkVersion}"
+                val iosCapCacheReleaseBaseLink = "https://github.com/utopia-rise/cap-cache-generator/releases/download/$IOS_CAP_CACHE_VERSION-$IOS_JDK_VERSION"
 
                 arrayOf(
                     "AArch64LibCHelperDirectives.cap",

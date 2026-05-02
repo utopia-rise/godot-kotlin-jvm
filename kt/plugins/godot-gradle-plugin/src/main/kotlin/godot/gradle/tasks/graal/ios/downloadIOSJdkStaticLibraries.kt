@@ -1,6 +1,7 @@
 package godot.gradle.tasks.graal.ios
 
-import godot.utils.GodotBuildProperties
+import godot.tools.common.IOS_GRAAL_JDK_BUILD_VERSION
+import godot.tools.common.IOS_JDK_VERSION
 import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.tasks.TaskProvider
@@ -21,9 +22,9 @@ fun Project.downloadIOSJdkStaticLibraries(): TaskProvider<out Task> = tasks
                     .resolve("libs")
                     .resolve("ios")
                     .resolve("ios-jdk")
-                    .resolve("21")
+                    .resolve(IOS_JDK_VERSION)
 
-                val iosGraalJdkReleaseBaseLink = "https://github.com/utopia-rise/ios-graal-jdk-${GodotBuildProperties.iosJdkVersion}/releases/download/${GodotBuildProperties.iosGraalJdkBuildVersion}/"
+                val iosGraalJdkReleaseBaseLink = "https://github.com/utopia-rise/ios-graal-jdk-$IOS_JDK_VERSION/releases/download/$IOS_GRAAL_JDK_BUILD_VERSION/"
 
                 val libJavaFileName = "libjava-release.a"
 
@@ -49,4 +50,4 @@ fun Project.downloadIOSJdkStaticLibraries(): TaskProvider<out Task> = tasks
                 }
             }
         }
-}
+    }

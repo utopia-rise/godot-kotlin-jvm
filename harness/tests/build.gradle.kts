@@ -1,3 +1,5 @@
+import godot.entrygenerator.settings.RegistrationFileLayoutMode
+import godot.gradle.GodotLanguage
 import org.jetbrains.kotlin.konan.target.HostManager
 
 plugins {
@@ -11,41 +13,33 @@ repositories {
 }
 
 godot {
-    registrationFileBaseDir.set(projectDir.resolve("scripts").also { it.mkdirs() })
-    isRegistrationFileHierarchyEnabled.set(true)
+    registrationFilesDirectory.set(projectDir.resolve("scripts").also { it.mkdirs() })
+    registrationFilesLayoutMode.set(RegistrationFileLayoutMode.HIERARCHICAL)
     isGodotCoroutinesEnabled.set(true)
 
-    //uncomment to test android
-//    isAndroidExportEnabled.set(true)
-//    d8ToolPath.set(File("${System.getenv("ANDROID_SDK_ROOT")}/build-tools/36.0.0/d8"))
-//    androidCompileSdkDir.set(File("${System.getenv("ANDROID_SDK_ROOT")}/platforms/android-36"))
 
-//    uncomment to test graal vm native image
-//    isGraalNativeImageExportEnabled.set(true)
-//    graalVmDirectory.set(File(System.getenv("JAVA_HOME")))
-//    additionalGraalResourceConfigurationFiles.set(
-//        arrayOf(
-//            projectDir.resolve("graal").resolve("resource-config.json").absolutePath,
-//         )
-//    )
-//    additionalGraalReflectionConfigurationFiles.set(
-//        arrayOf(
-//            projectDir.resolve("graal").resolve("reflect-config.json").absolutePath,
-//        )
-//    )
-//    windowsDeveloperVCVarsPath.set(File(System.getenv("VC_VARS_PATH")))
+    d8ToolPath.set("${System.getenv("ANDROID_SDK_ROOT")}/build-tools/37.0.0/d8")
+    androidCompileSdkDirectory.set("${System.getenv("ANDROID_SDK_ROOT")}/platforms/android-36.1/")
 
-    // uncomment to test ios
-//    isIOSExportEnabled.set(true)
+    graalVmHomeDirectory.set(System.getenv("GRAALVM_HOME"))
+    additionalGraalResourceConfigurationFiles.set(
+        arrayOf(
+            projectDir.resolve("graal").resolve("resource-config.json").absolutePath,
+         )
+    )
+    additionalGraalReflectionConfigurationFiles.set(
+        arrayOf(
+            projectDir.resolve("graal").resolve("reflect-config.json").absolutePath,
+        )
+    )
+    windowsDeveloperVcVarsPath.set(System.getenv("VC_VARS_PATH"))
 
 }
 
 dependencies {
     implementation("joda-time:joda-time:2.10.6") // external dependency to test dependency inclusion in mainCompilation
 
-    implementation("com.godot.tests:hierarchical-library")
-    implementation("com.godot.tests:flattened-library")
-    implementation("com.godot.tests:fqname-library")
+    implementation("com.godot.tests:third-party-library")
 
 
     // reflection test cases: see GH-571

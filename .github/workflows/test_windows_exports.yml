@@ -23,9 +23,11 @@ jobs:
           - name: dev tests
             target: dev
             jvm-target: debug
+            build-task: build
           - name: release tests
             target: release
             jvm-target: release
+            build-task: buildRelease
 
     steps:
       - name: Clone Godot JVM module.
@@ -60,7 +62,7 @@ jobs:
 
       - name: Build tests project
         run: |
-          harness/tests/gradlew -p harness/tests/ build -P${{ matrix.jvm-target }}
+          harness/tests/gradlew -p harness/tests/ ${{ matrix.build-task }}
 
       - name: Create JRE
         run: |

@@ -1,11 +1,11 @@
-package godot.intellij.plugin.quickfix
+﻿package godot.intellij.plugin.quickfix
 
 import com.intellij.codeInspection.LocalQuickFix
 import com.intellij.codeInspection.ProblemDescriptor
 import com.intellij.openapi.project.Project
+import godot.annotation.RegisterProperty
 import godot.intellij.plugin.GodotPluginBundle
-import godot.intellij.plugin.data.model.REGISTER_PROPERTY_ANNOTATION
-import godot.intellij.plugin.extension.asClassId
+import org.jetbrains.kotlin.scripting.resolve.classId
 import org.jetbrains.kotlin.idea.references.mainReference
 import org.jetbrains.kotlin.idea.util.addAnnotation
 import org.jetbrains.kotlin.psi.KtCallableReferenceExpression
@@ -15,11 +15,11 @@ class TargetPropertyNotRegisteredQuickFix : LocalQuickFix {
     override fun getFamilyName(): String = GodotPluginBundle.message("quickFix.property.connectedPropertyNotRegistered.familyName")
 
     override fun applyFix(project: Project, descriptor: ProblemDescriptor) {
-        val ktNamedFunction = (descriptor.psiElement as? KtCallableReferenceExpression)
+        val ktProperty = (descriptor.psiElement as? KtCallableReferenceExpression)
             ?.callableReference
             ?.mainReference
             ?.resolve() as? KtProperty
 
-        ktNamedFunction?.addAnnotation(asClassId(REGISTER_PROPERTY_ANNOTATION))
+        ktProperty?.addAnnotation(RegisterProperty::class.classId)
     }
 }

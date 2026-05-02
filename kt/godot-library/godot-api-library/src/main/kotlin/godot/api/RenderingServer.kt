@@ -3318,8 +3318,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun meshGetCustomAabb(mesh: RID): AABB {
     TransferContext.writeArguments(_RID to mesh)
-    TransferContext.callMethod(ptr, MethodBindings.meshGetCustomAabbPtr,
-        godot.core.VariantParser.AABB)
+    TransferContext.callMethod(ptr, MethodBindings.meshGetCustomAabbPtr, godot.core.VariantParser.AABB)
     return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 
@@ -3520,8 +3519,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun multimeshGetAabb(multimesh: RID): AABB {
     TransferContext.writeArguments(_RID to multimesh)
-    TransferContext.callMethod(ptr, MethodBindings.multimeshGetAabbPtr,
-        godot.core.VariantParser.AABB)
+    TransferContext.callMethod(ptr, MethodBindings.multimeshGetAabbPtr, godot.core.VariantParser.AABB)
     return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 
@@ -3540,8 +3538,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun multimeshGetCustomAabb(multimesh: RID): AABB {
     TransferContext.writeArguments(_RID to multimesh)
-    TransferContext.callMethod(ptr, MethodBindings.multimeshGetCustomAabbPtr,
-        godot.core.VariantParser.AABB)
+    TransferContext.callMethod(ptr, MethodBindings.multimeshGetCustomAabbPtr, godot.core.VariantParser.AABB)
     return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 
@@ -3771,8 +3768,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun multimeshInstanceResetPhysicsInterpolation(multimesh: RID, index: Int): Unit {
     TransferContext.writeArguments(_RID to multimesh, LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.multimeshInstanceResetPhysicsInterpolationPtr,
-        NIL)
+    TransferContext.callMethod(ptr, MethodBindings.multimeshInstanceResetPhysicsInterpolationPtr, NIL)
   }
 
   /**
@@ -3784,8 +3780,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun multimeshInstancesResetPhysicsInterpolation(multimesh: RID): Unit {
     TransferContext.writeArguments(_RID to multimesh)
-    TransferContext.callMethod(ptr, MethodBindings.multimeshInstancesResetPhysicsInterpolationPtr,
-        NIL)
+    TransferContext.callMethod(ptr, MethodBindings.multimeshInstancesResetPhysicsInterpolationPtr, NIL)
   }
 
   /**
@@ -4682,8 +4677,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun lightmapGetProbeCapturePoints(lightmap: RID): PackedVector3Array {
     TransferContext.writeArguments(_RID to lightmap)
-    TransferContext.callMethod(ptr, MethodBindings.lightmapGetProbeCapturePointsPtr,
-        PACKED_VECTOR3_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.lightmapGetProbeCapturePointsPtr, PACKED_VECTOR3_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
 
@@ -4697,16 +4691,14 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun lightmapGetProbeCaptureTetrahedra(lightmap: RID): PackedInt32Array {
     TransferContext.writeArguments(_RID to lightmap)
-    TransferContext.callMethod(ptr, MethodBindings.lightmapGetProbeCaptureTetrahedraPtr,
-        PACKED_INT_32_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.lightmapGetProbeCaptureTetrahedraPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   @JvmStatic
   public final fun lightmapGetProbeCaptureBspTree(lightmap: RID): PackedInt32Array {
     TransferContext.writeArguments(_RID to lightmap)
-    TransferContext.callMethod(ptr, MethodBindings.lightmapGetProbeCaptureBspTreePtr,
-        PACKED_INT_32_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.lightmapGetProbeCaptureBspTreePtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
@@ -5071,8 +5063,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun particlesGetCurrentAabb(particles: RID): AABB {
     TransferContext.writeArguments(_RID to particles)
-    TransferContext.callMethod(ptr, MethodBindings.particlesGetCurrentAabbPtr,
-        godot.core.VariantParser.AABB)
+    TransferContext.callMethod(ptr, MethodBindings.particlesGetCurrentAabbPtr, godot.core.VariantParser.AABB)
     return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 
@@ -5165,8 +5156,7 @@ public object RenderingServer : Object() {
   public final fun particlesCollisionSetAttractorDirectionality(particlesCollision: RID,
       amount: Float): Unit {
     TransferContext.writeArguments(_RID to particlesCollision, DOUBLE to amount.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.particlesCollisionSetAttractorDirectionalityPtr,
-        NIL)
+    TransferContext.callMethod(ptr, MethodBindings.particlesCollisionSetAttractorDirectionalityPtr, NIL)
   }
 
   /**
@@ -5178,8 +5168,7 @@ public object RenderingServer : Object() {
   public final fun particlesCollisionSetAttractorAttenuation(particlesCollision: RID, curve: Float):
       Unit {
     TransferContext.writeArguments(_RID to particlesCollision, DOUBLE to curve.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.particlesCollisionSetAttractorAttenuationPtr,
-        NIL)
+    TransferContext.callMethod(ptr, MethodBindings.particlesCollisionSetAttractorAttenuationPtr, NIL)
   }
 
   /**
@@ -5212,8 +5201,7 @@ public object RenderingServer : Object() {
   public final fun particlesCollisionSetHeightFieldResolution(particlesCollision: RID,
       resolution: ParticlesCollisionHeightfieldResolution): Unit {
     TransferContext.writeArguments(_RID to particlesCollision, LONG to resolution.value)
-    TransferContext.callMethod(ptr, MethodBindings.particlesCollisionSetHeightFieldResolutionPtr,
-        NIL)
+    TransferContext.callMethod(ptr, MethodBindings.particlesCollisionSetHeightFieldResolutionPtr, NIL)
   }
 
   /**
@@ -5813,8 +5801,7 @@ public object RenderingServer : Object() {
   public final fun viewportSetDefaultCanvasItemTextureFilter(viewport: RID,
       filter: CanvasItemTextureFilter): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to filter.value)
-    TransferContext.callMethod(ptr, MethodBindings.viewportSetDefaultCanvasItemTextureFilterPtr,
-        NIL)
+    TransferContext.callMethod(ptr, MethodBindings.viewportSetDefaultCanvasItemTextureFilterPtr, NIL)
   }
 
   /**
@@ -5824,8 +5811,7 @@ public object RenderingServer : Object() {
   public final fun viewportSetDefaultCanvasItemTextureRepeat(viewport: RID,
       repeat: CanvasItemTextureRepeat): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to repeat.value)
-    TransferContext.callMethod(ptr, MethodBindings.viewportSetDefaultCanvasItemTextureRepeatPtr,
-        NIL)
+    TransferContext.callMethod(ptr, MethodBindings.viewportSetDefaultCanvasItemTextureRepeatPtr, NIL)
   }
 
   /**
@@ -5928,8 +5914,7 @@ public object RenderingServer : Object() {
     subdivision: Int,
   ): Unit {
     TransferContext.writeArguments(_RID to viewport, LONG to quadrant.toLong(), LONG to subdivision.toLong())
-    TransferContext.callMethod(ptr,
-        MethodBindings.viewportSetPositionalShadowAtlasQuadrantSubdivisionPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.viewportSetPositionalShadowAtlasQuadrantSubdivisionPtr, NIL)
   }
 
   /**
@@ -7289,8 +7274,7 @@ public object RenderingServer : Object() {
   public final fun instanceGeometryGetShaderParameterDefaultValue(instance: RID,
       parameter: StringName): Any? {
     TransferContext.writeArguments(_RID to instance, STRING_NAME to parameter)
-    TransferContext.callMethod(ptr,
-        MethodBindings.instanceGeometryGetShaderParameterDefaultValuePtr, ANY)
+    TransferContext.callMethod(ptr, MethodBindings.instanceGeometryGetShaderParameterDefaultValuePtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
@@ -8173,8 +8157,7 @@ public object RenderingServer : Object() {
   public final fun canvasItemGetInstanceShaderParameterDefaultValue(instance: RID,
       parameter: StringName): Any? {
     TransferContext.writeArguments(_RID to instance, STRING_NAME to parameter)
-    TransferContext.callMethod(ptr,
-        MethodBindings.canvasItemGetInstanceShaderParameterDefaultValuePtr, ANY)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemGetInstanceShaderParameterDefaultValuePtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
@@ -8189,8 +8172,7 @@ public object RenderingServer : Object() {
   public final fun canvasItemGetInstanceShaderParameterList(instance: RID):
       VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(_RID to instance)
-    TransferContext.callMethod(ptr, MethodBindings.canvasItemGetInstanceShaderParameterListPtr,
-        ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.canvasItemGetInstanceShaderParameterListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
@@ -8566,8 +8548,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasLightOccluderResetPhysicsInterpolation(occluder: RID): Unit {
     TransferContext.writeArguments(_RID to occluder)
-    TransferContext.callMethod(ptr, MethodBindings.canvasLightOccluderResetPhysicsInterpolationPtr,
-        NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasLightOccluderResetPhysicsInterpolationPtr, NIL)
   }
 
   /**
@@ -8580,8 +8561,7 @@ public object RenderingServer : Object() {
   public final fun canvasLightOccluderTransformPhysicsInterpolation(occluder: RID,
       transform: Transform2D): Unit {
     TransferContext.writeArguments(_RID to occluder, TRANSFORM2D to transform)
-    TransferContext.callMethod(ptr,
-        MethodBindings.canvasLightOccluderTransformPhysicsInterpolationPtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.canvasLightOccluderTransformPhysicsInterpolationPtr, NIL)
   }
 
   /**

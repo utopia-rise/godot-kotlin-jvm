@@ -3,30 +3,30 @@ package godot.codegen.services.impl
 import com.squareup.kotlinpoet.ANY
 import com.squareup.kotlinpoet.ARRAY
 import com.squareup.kotlinpoet.AnnotationSpec
-import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
-import com.squareup.kotlinpoet.MemberName
 import com.squareup.kotlinpoet.ParameterSpec
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.STRING
 import com.squareup.kotlinpoet.TypeSpec
 import com.squareup.kotlinpoet.TypeVariableName
-import com.squareup.kotlinpoet.UNIT
-import com.squareup.kotlinpoet.asClassName
-import com.squareup.kotlinpoet.buildCodeBlock
+import godot.codegen.constants.API
+import godot.codegen.constants.Core
+import godot.codegen.constants.Utils
+import godot.codegen.constants.VariantConverter
 import godot.codegen.poet.GenericClassNameInfo
 import godot.codegen.services.ICallableGenerationService
 import godot.common.constants.Constraints
-import godot.tools.common.constants.AS_STRING_NAME_UTIL_FUNCTION
+import godot.tools.common.constants.GODOT_METHOD_CALLABLE
 import godot.tools.common.constants.GODOT_OBJECT
 import godot.tools.common.constants.GodotFunctions
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.STRING_NAME
 import godot.tools.common.constants.TO_GODOT_NAME_UTIL_FUNCTION
+import godot.tools.common.constants.VARIANT_PARSER_NIL
 import godot.tools.common.constants.godotCorePackage
 import godot.tools.common.constants.godotInteropPackage
 import java.io.File
@@ -48,24 +48,16 @@ object CallableGenerationService : ICallableGenerationService {
     private const val VARIANT_TYPE_RETURN_NAME = "returnConverter"
     private const val VARIANT_TYPE_ARGUMENT_NAME = "typeConverters"
 
-    private val CALLABLE_CLASS_NAME = ClassName(godotCorePackage, CALLABLE_CLASS_BASENAME)
-    private val LAMBDA_CALLABLE_CLASS_NAME = ClassName(godotCorePackage, LAMBDA_CALLABLE_CLASS_BASENAME)
-    private val LAMBDA_CONTAINER_CLASS_NAME = ClassName(godotCorePackage, LAMBDA_CONTAINER_CLASS_BASENAME)
-    private val METHOD_CALLABLE_CLASS_NAME = ClassName(godotCorePackage, METHOD_CALLABLE_CLASS_BASENAME)
-
-    private val javaClassClassName = Class::class.asClassName()
     private val returnTypeParameter = TypeVariableName("R", ANY.copy(nullable = true))
-    private val variantConverterClassName = ClassName(godotInteropPackage, GodotKotlinJvmTypes.variantConverter)
 
     private fun kotlinJavaHelperName(baseName: String) = "_${baseName}Java"
 
     override fun generate(outputDir: File) {
-        val callableFileSpec = FileSpec.builder(godotCorePackage, CALLABLE_CLASS_BASENAME + "s")
+        val callableFileSpec = FileSpec.builder(Core.callable.packageName, Core.callable.simpleName + "s")
+        val lambdaFileSpec = FileSpec.builder(Core.callable.packageName, Core.lambdaCallable.simpleName + "s")
+        val containerFileSpec = FileSpec.builder(Core.callable.packageName, Core.lambdaContainer.simpleName + "s")
+        val methodFileSpec = FileSpec.builder(Core.callable.packageName, Core.methodCallable.simpleName + "s")
         val jvmFunctionFileSpec = FileSpec.builder(godotCorePackage, JVM_FUNCTION_CLASS_BASENAME + "s")
-        val lambdaFileSpec = FileSpec.builder(godotCorePackage, LAMBDA_CALLABLE_CLASS_BASENAME + "s")
-        val containerFileSpec = FileSpec.builder(godotCorePackage, LAMBDA_CONTAINER_CLASS_BASENAME + "s")
-        val methodFileSpec = FileSpec.builder(godotCorePackage, METHOD_CALLABLE_CLASS_BASENAME + "s")
-
 
         for (argCount in 0..Constraints.MAX_FUNCTION_ARG_COUNT) {
             callableFileSpec.generateCallables(argCount)
@@ -134,7 +126,7 @@ object CallableGenerationService : ICallableGenerationService {
 
         val callableClassBuilder = TypeSpec
             .interfaceBuilder(callableClassName)
-            .addSuperinterface(CALLABLE_CLASS_NAME)
+            .addSuperinterface(Core.callable)
             .addTypeVariable(returnTypeParameter)
             .addTypeVariables(genericParameters)
             .addFunction(
@@ -505,7 +497,7 @@ object CallableGenerationService : ICallableGenerationService {
 
         val lambdaCallableClassBuilder = TypeSpec
             .classBuilder(lambdaCallableClassName)
-            .superclass(LAMBDA_CALLABLE_CLASS_NAME.parameterizedBy(returnTypeParameter))
+            .superclass(Core.lambdaCallable.parameterizedBy(returnTypeParameter))
             .addSuperinterface(callableClassName.parameterizedBy(listOf(returnTypeParameter) + genericParameters))
             .addTypeVariable(returnTypeParameter)
             .addTypeVariables(genericParameters)
@@ -517,7 +509,7 @@ object CallableGenerationService : ICallableGenerationService {
                         ParameterSpec
                             .builder(
                                 CONTAINER_ARGUMENT_NAME,
-                                LAMBDA_CONTAINER_CLASS_NAME.parameterizedBy(returnTypeParameter)
+                                Core.lambdaContainer.parameterizedBy(returnTypeParameter)
                             )
                             .build()
                     )
@@ -726,7 +718,7 @@ object CallableGenerationService : ICallableGenerationService {
     fun FileSpec.Builder.buildTo(dir: File) {
         addAnnotation(
             AnnotationSpec
-                .builder(ClassName("kotlin", "Suppress"))
+                .builder(Suppress::class)
                 .addMember("\"PackageDirectoryMismatch\", \"UNCHECKED_CAST\"")
                 .addMember("\"unused\"")
                 .addMember("\"RedundantVisibilityModifier\"")
@@ -736,3 +728,5 @@ object CallableGenerationService : ICallableGenerationService {
             .writeTo(dir)
     }
 }
+
+

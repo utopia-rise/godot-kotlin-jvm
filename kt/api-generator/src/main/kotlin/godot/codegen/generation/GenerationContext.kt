@@ -1,13 +1,12 @@
 package godot.codegen.generation
 
+import godot.codegen.constants.TypeIdentifier
 import godot.codegen.exceptions.NoMatchingEnumFound
-import godot.codegen.models.traits.GenerationType
 import godot.codegen.models.ApiDescription
 import godot.codegen.models.enriched.EnrichedClass
 import godot.codegen.models.enriched.EnrichedEnum
 import godot.codegen.models.enriched.EnrichedNativeStructure
-import godot.tools.common.constants.GodotTypes
-import java.io.File
+import godot.codegen.models.traits.GenerationType
 
 class GenerationContext(
     val api: ApiDescription,
@@ -35,7 +34,7 @@ class GenerationContext(
         val className: String
         val enrichedEnum = if (simpleNames.size > 1) {
             className = simpleNames[0]
-            if (GodotTypes.coreTypes.contains(className)) {
+            if (TypeIdentifier.core.contains(className)) {
                 coreTypeMap[className] ?: listOf()
             } else {
                 classMap[className]!!.enums
@@ -43,7 +42,6 @@ class GenerationContext(
                 it.identifier == type.identifier
             } ?: throw NoMatchingEnumFound(type.identifier)
         } else {
-            className = ""
             globalEnumMap[type.identifier]!!
         }
 

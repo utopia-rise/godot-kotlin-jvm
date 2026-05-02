@@ -604,7 +604,7 @@ public open class Object : KtObject() {
    * each call.
    */
   public final fun emitSignal(signal: StringName, vararg args: Any?): Error {
-    TransferContext.writeArguments(STRING_NAME to signal,  *args.map { ANY to it }.toTypedArray())
+    TransferContext.writeArguments(STRING_NAME to signal, *args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(ptr, MethodBindings.emitSignalPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -630,7 +630,7 @@ public open class Object : KtObject() {
    * each call.
    */
   public final fun call(method: StringName, vararg args: Any?): Any? {
-    TransferContext.writeArguments(STRING_NAME to method,  *args.map { ANY to it }.toTypedArray())
+    TransferContext.writeArguments(STRING_NAME to method, *args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(ptr, MethodBindings.callPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
@@ -683,7 +683,7 @@ public open class Object : KtObject() {
    * ```
    */
   public final fun callDeferred(method: StringName, vararg args: Any?): Any? {
-    TransferContext.writeArguments(STRING_NAME to method,  *args.map { ANY to it }.toTypedArray())
+    TransferContext.writeArguments(STRING_NAME to method, *args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(ptr, MethodBindings.callDeferredPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }

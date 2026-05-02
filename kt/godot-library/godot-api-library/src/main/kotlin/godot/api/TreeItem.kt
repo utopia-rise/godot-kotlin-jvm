@@ -1255,7 +1255,7 @@ public open class TreeItem internal constructor() : Object() {
    * comma separated list.
    */
   public final fun callRecursive(method: StringName, vararg args: Any?): Unit {
-    TransferContext.writeArguments(STRING_NAME to method,  *args.map { ANY to it }.toTypedArray())
+    TransferContext.writeArguments(STRING_NAME to method, *args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(ptr, MethodBindings.callRecursivePtr, NIL)
   }
 

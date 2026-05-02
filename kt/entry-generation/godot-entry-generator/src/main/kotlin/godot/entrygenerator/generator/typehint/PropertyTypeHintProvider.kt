@@ -1,6 +1,7 @@
 package godot.entrygenerator.generator.typehint
 
-import com.squareup.kotlinpoet.ClassName
+import com.squareup.kotlinpoet.MemberName
+import godot.core.PropertyHint
 import godot.entrygenerator.ext.hasAnnotation
 import godot.entrygenerator.ext.isCompatibleList
 import godot.entrygenerator.ext.isCoreType
@@ -15,70 +16,55 @@ import godot.entrygenerator.model.MultilineTextHintAnnotation
 import godot.entrygenerator.model.PlaceHolderTextHintAnnotation
 import godot.entrygenerator.model.RegisteredProperty
 import godot.entrygenerator.model.TypeKind
-import godot.tools.common.constants.GodotTypes
-import godot.tools.common.constants.godotCorePackage
+import godot.entrygenerator.utils.asEnumName
 
 object PropertyTypeHintProvider {
 
     fun provide(
         registeredProperty: RegisteredProperty
-    ): ClassName {
+    ): MemberName {
         return when {
             registeredProperty.type.fqName == Int::class.qualifiedName -> if (registeredProperty.annotations.hasAnnotation<IntFlagHintAnnotation>()) {
-                ClassName("$godotCorePackage.${GodotTypes.propertyHint}", "FLAGS")
+                PropertyHint.FLAGS.asEnumName()
             } else {
                 JvmPrimitivesTypeHintGenerator(registeredProperty).getPropertyTypeHint()
             }
+
             registeredProperty.type.fqName == String::class.qualifiedName -> when {
                 registeredProperty.annotations.hasAnnotation<MultilineTextHintAnnotation>() -> {
-                    ClassName(
-                        "$godotCorePackage.${GodotTypes.propertyHint}",
-                        "MULTILINE_TEXT"
-                    )
+                    PropertyHint.MULTILINE_TEXT.asEnumName()
                 }
+
                 registeredProperty.annotations.hasAnnotation<PlaceHolderTextHintAnnotation>() -> {
-                    ClassName(
-                        "$godotCorePackage.${GodotTypes.propertyHint}",
-                        "PLACEHOLDER_TEXT"
-                    )
+                    PropertyHint.PLACEHOLDER_TEXT.asEnumName()
                 }
+
                 else -> {
                     JvmPrimitivesTypeHintGenerator(registeredProperty).getPropertyTypeHint()
                 }
             }
+
             registeredProperty.type.fqName == Long::class.qualifiedName ||
-            registeredProperty.type.fqName == Float::class.qualifiedName ||
-            registeredProperty.type.fqName == Double::class.qualifiedName ||
-            registeredProperty.type.fqName == Boolean::class.qualifiedName -> JvmPrimitivesTypeHintGenerator(registeredProperty)
+                registeredProperty.type.fqName == Float::class.qualifiedName ||
+                registeredProperty.type.fqName == Double::class.qualifiedName ||
+                registeredProperty.type.fqName == Boolean::class.qualifiedName -> JvmPrimitivesTypeHintGenerator(registeredProperty)
                 .getPropertyTypeHint()
 
-            registeredProperty.type.kind == TypeKind.ENUM_CLASS -> ClassName(
-                "$godotCorePackage.${GodotTypes.propertyHint}",
-                "ENUM"
-            )
+            registeredProperty.type.kind == TypeKind.ENUM_CLASS -> PropertyHint.ENUM.asEnumName()
 
             registeredProperty.type.isCoreType() && !registeredProperty.type.isCompatibleList() && !registeredProperty.type.isDictionary() -> JvmCoreTypeTypeHintGenerator(
                 registeredProperty
             ).getPropertyTypeHint()
 
-            registeredProperty.type.isRefCounted() -> ClassName(
-                "$godotCorePackage.${GodotTypes.propertyHint}",
-                "RESOURCE_TYPE"
-            )
+            registeredProperty.type.isRefCounted() -> PropertyHint.RESOURCE_TYPE.asEnumName()
 
             registeredProperty.type.isDictionary() -> JvmArrayAndDictionaryTypeHintGenerator(registeredProperty).getPropertyTypeHint()
             registeredProperty.type.isCompatibleList() -> JvmArrayAndDictionaryTypeHintGenerator(registeredProperty).getPropertyTypeHint()
-            registeredProperty.type.fqName.matches(Regex("^kotlin\\.collections\\..*Set\$")) -> ClassName(
-                "$godotCorePackage.${GodotTypes.propertyHint}",
-                "RESOURCE_TYPE"
-            )
+            registeredProperty.type.fqName.matches(Regex("^kotlin\\.collections\\..*Set\$")) -> PropertyHint.RESOURCE_TYPE.asEnumName()
 
-            registeredProperty.type.isNodeType() -> ClassName(
-                "$godotCorePackage.${GodotTypes.propertyHint}",
-                "NODE_TYPE"
-            )
-
-            else -> ClassName("$godotCorePackage.${GodotTypes.propertyHint}", "NONE")
+            registeredProperty.type.isNodeType() -> PropertyHint.NODE_TYPE.asEnumName()
+            else -> PropertyHint.NONE.asEnumName()
         }
     }
 }
+
