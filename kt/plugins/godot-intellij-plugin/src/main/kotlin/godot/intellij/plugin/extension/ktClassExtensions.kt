@@ -20,10 +20,9 @@ fun KtClass.getRegisteredClassName(): Pair<String, String>? = this.toLightClass(
 
 fun PsiClass.getRegisteredClassName(): Pair<String, String>? {
     val fqName = qualifiedName ?: return null
-    val isFqNameRegistrationEnabled = GodotKotlinJvmSettings[module].isFqNameRegistrationEnabled
+    val registeredNameMode = GodotKotlinJvmSettings[module].registeredNameMode
 
-    // if `isFqNameRegistrationEnabled` is true we take the fqName, otherwise we'll use the simpleName
-    val defaultRegistrationName = if (isFqNameRegistrationEnabled) {
+    val defaultRegistrationName = if (registeredNameMode == "FQ_NAME") {
         fqName
     } else {
         name
@@ -47,9 +46,9 @@ fun PsiClass.getRegistrationFilePath(): String? {
         val fqName = qualifiedName ?: return null
         val registeredName = getRegisteredClassName()?.second ?: return null
 
-        val isRegistrationFileHierarchyEnabled = GodotKotlinJvmSettings[module].isRegistrationFileHierarchyEnabled
+        val registrationFileLayoutMode = GodotKotlinJvmSettings[module].registrationFileLayoutMode
 
-        if (isRegistrationFileHierarchyEnabled) {
+        if (registrationFileLayoutMode == "FLAT") {
             registeredName
         } else {
             fqName

@@ -32,21 +32,9 @@ includeBuild("../../kt/common") {
     }
 }
 
-includeBuild("../../harness/hierarchical-library-tests") {
+includeBuild("../../harness/third-party-library") {
     dependencySubstitution {
-        substitute(module("com.godot.tests:hierarchical-library")).using(project(":"))
-    }
-}
-
-includeBuild("../../harness/flattened-library-tests") {
-    dependencySubstitution {
-        substitute(module("com.godot.tests:flattened-library")).using(project(":"))
-    }
-}
-
-includeBuild("../../harness/fqname-library-tests") {
-    dependencySubstitution {
-        substitute(module("com.godot.tests:fqname-library")).using(project(":"))
+        substitute(module("com.godot.tests:third-party-library")).using(project(":"))
     }
 }
 

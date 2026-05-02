@@ -1,9 +1,9 @@
 package godot.annotation.processor.classgraph.extensions
 
 import godot.annotation.processor.classgraph.Context
-import godot.annotation.processor.classgraph.Settings
 import godot.annotation.processor.classgraph.constants.JVM_OBJECT
 import godot.annotation.processor.classgraph.models.TypeDescriptor
+import godot.entrygenerator.settings.Settings
 import godot.entrygenerator.model.Type
 import io.github.classgraph.ClassInfo
 import io.github.classgraph.ClassRefTypeSignature
@@ -14,16 +14,7 @@ fun TypeArgument.getType(settings: Settings): Type {
     return descriptor.getMappedType(settings)
 }
 
-private fun ClassRefTypeSignature.getMappedType(settings: Settings): Type {
-    return if (fullyQualifiedClassName == JVM_OBJECT) {
-        getJavaLangObjectType(settings)
-    } else {
-        Context.scanResult.getClassInfo(fullyQualifiedClassName).mapToType(
-            typeArguments,
-            settings
-        )
-    }
-}
-
 internal val TypeArgument.typeClassInfo: ClassInfo
-    get() = Context.scanResult.getClassInfo(typeSignature.toString())
+    get() = requireNotNull(Context.getClassInfoOrNull(typeSignature.toString())) {
+        "Could not resolve class info for type signature: ${typeSignature}"
+    }

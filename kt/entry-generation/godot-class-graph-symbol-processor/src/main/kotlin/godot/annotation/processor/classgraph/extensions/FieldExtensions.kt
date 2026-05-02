@@ -1,7 +1,6 @@
 package godot.annotation.processor.classgraph.extensions
 
 import godot.annotation.RegisterSignal
-import godot.annotation.processor.classgraph.Settings
 import godot.annotation.processor.classgraph.models.TypeDescriptor
 import godot.entrygenerator.ext.hasAnnotation
 import godot.entrygenerator.ext.isJavaCollection
@@ -11,6 +10,7 @@ import godot.entrygenerator.model.EnumListHintStringAnnotation
 import godot.entrygenerator.model.PropertyAnnotation
 import godot.entrygenerator.model.RegisteredProperty
 import godot.entrygenerator.model.RegisteredSignal
+import godot.entrygenerator.settings.Settings
 import io.github.classgraph.AnnotationInfo
 import io.github.classgraph.ClassInfo
 import io.github.classgraph.FieldInfo
@@ -32,14 +32,13 @@ fun FieldInfo.mapToRegisteredProperty(settings: Settings, classInfo: ClassInfo):
 
         if (!annotations.hasAnnotation<EnumAnnotation>() && typeClassInfo.isEnum) {
             annotations.add(
-                EnumHintStringAnnotation(
-                    enumValueNames = typeClassInfo.fieldInfo
-                        .filter { it.isEnum }
-                        .map { it.name },
-                    source = this
+                    EnumHintStringAnnotation(
+                        enumValueNames = typeClassInfo.fieldInfo
+                            .filter { it.isEnum }
+                            .map { it.name }
+                    )
                 )
-            )
-        }
+            }
 
         // Check if the property is a collection of enums
         if (!annotations.hasAnnotation<EnumAnnotation>() &&
@@ -50,8 +49,7 @@ fun FieldInfo.mapToRegisteredProperty(settings: Settings, classInfo: ClassInfo):
                     EnumListHintStringAnnotation(
                         enumValueNames = containedTypeDeclaration.fieldInfo
                             .filter { it.isEnum }
-                            .map { it.name },
-                        source = this
+                            .map { it.name }
                     )
                 )
             }
@@ -85,7 +83,6 @@ fun FieldInfo.mapToRegisteredProperty(settings: Settings, classInfo: ClassInfo):
         isLateinit = typeDescriptor.isLateInit,
         isOverridee = isOverridee,
         annotations = annotations.toList(),
-        symbolProcessorSource = this
     )
 }
 
@@ -122,7 +119,6 @@ fun FieldInfo.mapFieldToRegisteredSignal(settings: Settings, classInfo: ClassInf
                 ).toList(),
         isOverridee = isOverridee,
         annotations = annotations.mapNotNull { it.mapToGodotAnnotation(this, fqName) as? PropertyAnnotation },
-        symbolProcessorSource = this
     )
 }
 

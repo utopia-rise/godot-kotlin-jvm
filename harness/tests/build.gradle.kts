@@ -1,3 +1,4 @@
+import godot.entrygenerator.settings.RegistrationFileLayoutMode
 import org.jetbrains.kotlin.konan.target.HostManager
 
 plugins {
@@ -12,7 +13,7 @@ repositories {
 
 godot {
     registrationFileBaseDir.set(projectDir.resolve("scripts").also { it.mkdirs() })
-    isRegistrationFileHierarchyEnabled.set(true)
+    registrationFileLayoutMode = RegistrationFileLayoutMode.HIERARCHICAL
     isGodotCoroutinesEnabled.set(true)
 
     //uncomment to test android
@@ -43,9 +44,7 @@ godot {
 dependencies {
     implementation("joda-time:joda-time:2.10.6") // external dependency to test dependency inclusion in mainCompilation
 
-    implementation("com.godot.tests:hierarchical-library")
-    implementation("com.godot.tests:flattened-library")
-    implementation("com.godot.tests:fqname-library")
+    implementation("com.godot.tests:third-party-library")
 
 
     // reflection test cases: see GH-571

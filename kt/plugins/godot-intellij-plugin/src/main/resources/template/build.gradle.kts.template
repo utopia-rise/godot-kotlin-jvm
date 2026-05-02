@@ -20,10 +20,10 @@ godot {
 	isRegistrationFileGenerationEnabled.set(true)
 
     // defines whether the script registration files should be generated hierarchically according to the classes package path or flattened into `registrationFileBaseDir`
-    //isRegistrationFileHierarchyEnabled.set(true)
+//registrationFileLayoutMode.set(RegistrationFileLayoutMode.FLAT)
 
     // defines whether your scripts should be registered with their fqName or their simple name (can help with resolving script name conflicts)
-    //isFqNameRegistrationEnabled.set(false)
+//registeredNameMode.set(RegisteredNameMode.SIMPLE_NAME)
 
     // ---------Android----------------
 
@@ -45,7 +45,5 @@ godot {
 	// --------Library authors------------
 
 	// library setup. See: https://godot-kotl.in/en/stable/develop-libraries/
-    //classPrefix.set("MyCustomClassPrefix")
-    //projectName.set("LibraryProjectName")
-    //projectName.set("LibraryProjectName")
+//registeredNameMode.set(RegisteredNameMode.PROJECT_PREFIX)
 }

@@ -14,10 +14,10 @@ interface GodotKotlinJvmPropertiesFile : Serializable {
         get() = GodotBuildProperties.godotKotlinJvmVersion
     val minimumIdePluginVersion: String
         get() = GodotBuildProperties.godotKotlinJvmVersion
-    val isFqNameRegistrationEnabled: Boolean
-        get() = false
-    val isRegistrationFileHierarchyEnabled: Boolean
-        get() = true
+    val registeredNameMode: String
+        get() = "SIMPLE_NAME"
+    val registrationFileLayoutMode: String
+        get() = "FLAT"
     val registrationFileBaseDir: String
         get() = FileExtensions.GodotKotlinJvm.registrationFile
 }

@@ -9,8 +9,7 @@ data class RegisteredProperty(
     val isLateinit: Boolean = false,
     val isOverridee: Boolean = false,
     val annotations: List<PropertyAnnotation> = emptyList(),
-    override val symbolProcessorSource: Any
-) : GodotJvmSourceElement {
+) {
     val name: String = fqName.substringAfterLast(".")
     val getterName = getterFqName?.substringAfterLast(".")
     val setterName = setterFqName?.substringAfterLast(".")

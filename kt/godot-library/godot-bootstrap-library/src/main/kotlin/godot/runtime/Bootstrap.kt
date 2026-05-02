@@ -61,26 +61,14 @@ internal class Bootstrap {
             }
         }
 
-        // the entry with the most class registrars is always the "main" entry. All other entries are from dependencies
-        // reason: the "main" compilation generates the registration files from all class registrars (its own AND all from dependencies). Hence, it will always be the one with the highest registrar count
-        val mainEntry = entries.maxBy { entry -> entry.classRegistrarCount }
         val classRegistries = mutableListOf<ClassRegistry>()
 
-        var mainRegistry: ClassRegistry? = null
         entries.forEach { entry ->
-            val isMainEntry = entry == mainEntry
-
-            val registry = ClassRegistry(
-                projectName = entry.projectName,
-                isDependency = !isMainEntry,
-            )
+            val registry = ClassRegistry()
 
             classRegistries.add(registry)
 
             with(entry) {
-                if (isMainEntry) {
-                    mainRegistry = registry
-                }
                 for (clazz in registry.getRegisteredClasses()) {
                     variantMapper[clazz] = VariantParser.OBJECT
                 }
@@ -101,16 +89,13 @@ internal class Bootstrap {
         // END: order matters!
 
         fun forceJvmInitializationOfScripts() {
-            // Ugly but it will have to wait for when you rework Registration and Bootstrap
             // Has to run after all classes are initialized in case a static block needs a Godot type
-            if (mainRegistry == null) {
-                return
-            }
-
-            with(mainEntry) {
-                mainRegistry.getRegisteredClasses().forEach { clazz ->
+            entries.zip(classRegistries).forEach { (entry, registry) ->
+                with(entry) {
+                    registry.getRegisteredClasses().forEach { clazz ->
                     // Force init of the class so any static block runs.
                     Class.forName(clazz.java.name, true, clazz.java.classLoader)
+                }
                 }
             }
         }

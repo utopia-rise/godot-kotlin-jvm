@@ -43,6 +43,7 @@ import godot.tools.common.constants.godotCorePackage
 import godot.tools.common.constants.godotUtilPackage
 import godot.tools.common.constants.kotlinCollectionsPackage
 import godot.tools.common.constants.variantParserPackage
+import godot.entrygenerator.settings.Settings
 import java.util.*
 
 //TODO: make compatible with other languages
@@ -242,7 +243,7 @@ fun Type.getAsVariantTypeOrdinal(): Int? = when (fqName) {
     }
 }
 
-fun Type.getAsGodotClassName(): String = when {
+fun Type.getAsGodotClassName(settings: Settings): String = when {
     fqName == Boolean::class.qualifiedName -> "bool"
     fqName == Int::class.qualifiedName ||
         fqName == "$godotUtilPackage.${GodotKotlinJvmTypes.naturalT}" ||
@@ -257,7 +258,7 @@ fun Type.getAsGodotClassName(): String = when {
 
     fqName == String::class.qualifiedName -> "String"
     fqName.startsWith(godotCorePackage) -> fqName.substringAfterLast(".")
-    else -> registeredName() ?: fqName.substringAfterLast(".")
+    else -> registeredName(settings) ?: fqName.substringAfterLast(".")
 }
 
 fun Type.isCompatibleListType(): Boolean {

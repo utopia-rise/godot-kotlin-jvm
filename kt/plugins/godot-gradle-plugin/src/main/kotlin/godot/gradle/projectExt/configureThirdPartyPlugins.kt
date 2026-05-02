@@ -22,20 +22,10 @@ fun Project.configureThirdPartyPlugins() {
     }
 
     afterEvaluate {
-        addClassGraphGeneratedSourcesToMainSourceSet()
-
         ideaExtension.apply {
             module { ideaModule ->
                 ideaModule.generatedSourceDirs.add(layout.buildDirectory.asFile.get().resolve("generated/classgraph/main/kotlin/"))
             }
         }
     }
-}
-
-private fun Project.addClassGraphGeneratedSourcesToMainSourceSet() {
-    kotlinJvmExtension
-        .sourceSets
-        .getByName("main")
-        .kotlin
-        .srcDirs(classGraphGeneratedDirectory.resolve("main/kotlin/"))
 }

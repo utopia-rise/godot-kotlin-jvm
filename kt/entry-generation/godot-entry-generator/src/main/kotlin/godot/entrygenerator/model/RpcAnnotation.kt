@@ -5,7 +5,6 @@ data class RpcAnnotation(
     val sync: Sync,
     val transferMode: TransferMode,
     val transferChannel: Int,
-    override val symbolProcessorSource: Any
 ) : FunctionAnnotation
 
 enum class RpcMode {

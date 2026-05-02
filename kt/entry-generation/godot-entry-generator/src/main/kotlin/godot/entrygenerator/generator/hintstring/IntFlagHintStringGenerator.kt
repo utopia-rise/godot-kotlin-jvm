@@ -6,10 +6,12 @@ import godot.entrygenerator.ext.fqNameIsJvmType
 import godot.entrygenerator.model.IntFlagHintAnnotation
 import godot.entrygenerator.model.JvmType
 import godot.entrygenerator.model.RegisteredProperty
+import godot.entrygenerator.settings.Settings
 
 class IntFlagHintStringGenerator(
-    registeredProperty: RegisteredProperty
-) : PropertyHintStringGenerator<IntFlagHintAnnotation>(registeredProperty) {
+    registeredProperty: RegisteredProperty,
+    settings: Settings,
+) : PropertyHintStringGenerator<IntFlagHintAnnotation>(registeredProperty, settings) {
 
     override fun getHintString(): String {
         if (!registeredProperty.type.fqName.fqNameIsJvmType(JvmType.INT)) {

@@ -1,7 +1,6 @@
 package godot.annotation.processor.classgraph.models
 
 import godot.annotation.processor.classgraph.Context
-import godot.annotation.processor.classgraph.Settings
 import godot.annotation.processor.classgraph.constants.JVM_OBJECT
 import godot.annotation.processor.classgraph.constants.VOID
 import godot.annotation.processor.classgraph.constants.isGodotPrimitive
@@ -12,6 +11,7 @@ import godot.annotation.processor.classgraph.extensions.mapToType
 import godot.annotation.processor.classgraph.extensions.toStringWithoutAnnotations
 import godot.entrygenerator.ext.isCoreType
 import godot.entrygenerator.model.PropertyType
+import godot.entrygenerator.settings.Settings
 import godot.entrygenerator.model.Type
 import godot.entrygenerator.model.TypeKind
 import io.github.classgraph.ClassInfo
@@ -24,18 +24,18 @@ import io.github.classgraph.TypeSignature
 import org.jetbrains.annotations.NotNull
 
 class TypeDescriptor private constructor(
-    private val descriptor: TypeSignature,
+    descriptor: TypeSignature,
     val typeArguments: List<TypeArgument>,
     private val nullable: Boolean,
     val isLateInit: Boolean,
-    private val descriptorType: DescriptorType
 ) {
+    private val rawDescriptor = descriptor.toStringWithoutAnnotations()
+
     constructor(fieldInfo: FieldInfo, classInfo: ClassInfo) : this(
         fieldInfo.typeDescriptor,
         (fieldInfo.typeSignature as? ClassRefTypeSignature)?.typeArguments ?: listOf(),
         !fieldInfo.hasAnnotation(NotNull::class.java, classInfo),
         fieldInfo.hasAnnotation("kotlin.Lateinit", classInfo),
-        FieldType(fieldInfo.name)
     )
 
     constructor(parameterInfo: MethodParameterInfo) : this(
@@ -43,7 +43,6 @@ class TypeDescriptor private constructor(
         (parameterInfo.typeSignature as? ClassRefTypeSignature)?.typeArguments ?: listOf(),
         !parameterInfo.hasAnnotation(NotNull::class.java),
         false,
-        ParameterType(parameterInfo.name)
     )
 
     constructor(methodInfo: MethodInfo) : this(
@@ -51,7 +50,6 @@ class TypeDescriptor private constructor(
         (methodInfo.typeSignature?.resultType as? ClassRefTypeSignature)?.typeArguments ?: listOf(),
         !methodInfo.hasAnnotation(NotNull::class.java),
         false,
-        MethodType(methodInfo.name)
     )
 
     constructor(typeArgument: TypeArgument) : this(
@@ -59,32 +57,33 @@ class TypeDescriptor private constructor(
         (typeArgument.typeSignature as? ClassRefTypeSignature)?.typeArguments ?: listOf(),
         typeArgument.typeAnnotationInfo?.containsName(NotNull::class.java.name) ?: true,
         false,
-        TypeArgumentType(typeArgument.toString())
     )
 
-    private val isGodotPrimitive: Boolean = descriptor.toStringWithoutAnnotations().isGodotPrimitive
+    private val isGodotPrimitive: Boolean = rawDescriptor.isGodotPrimitive
 
     private val primitiveType = when {
         isGodotPrimitive -> {
-            val fqName = requireNotNull(jvmPrimitivesToKotlinPrimitives[descriptor.toStringWithoutAnnotations()])
+            val fqName = requireNotNull(jvmPrimitivesToKotlinPrimitives[rawDescriptor])
             Type(
                 fqName = fqName,
                 kind = TypeKind.UNKNOWN,
                 supertypes = listOf(),
                 arguments = { listOf() },
-                registeredName = { fqName }
+                registeredName = { _ -> fqName }
             )
         }
-        descriptor.toStringWithoutAnnotations() == VOID -> null
+        rawDescriptor == VOID -> null
         else -> null
     }
 
     val isPrimitive = primitiveType != null
-    val isVoid = descriptor.toStringWithoutAnnotations() == VOID
-    val isObject = descriptor.toStringWithoutAnnotations() == JVM_OBJECT
+    val isVoid = rawDescriptor == VOID
+    val isObject = rawDescriptor == JVM_OBJECT
 
     val typeClassInfo: ClassInfo
-        get() = Context.scanResult.getClassInfo(descriptor.toStringWithoutAnnotations())
+        get() = requireNotNull(Context.getClassInfoOrNull(rawDescriptor)) {
+            "Could not resolve class info for descriptor: $rawDescriptor"
+        }
 
     fun getMappedType(settings: Settings): Type = primitiveType ?: if (isObject) {
         getJavaLangObjectType(settings)
@@ -98,22 +97,5 @@ class TypeDescriptor private constructor(
             type,
             !isGodotPrimitive && !type.isCoreType() && !isLateInit && nullable
         )
-    }
-
-    private sealed interface DescriptorType {
-        val name: String
-    }
-
-    private class FieldType(override val name: String) : DescriptorType {
-        override fun toString() = "Property: $name"
-    }
-    private class ParameterType(override val name: String) : DescriptorType {
-        override fun toString() = "Parameter: $name"
-    }
-    private class MethodType(override val name: String): DescriptorType {
-        override fun toString() = "Method: $name"
-    }
-    private class TypeArgumentType(override val name: String): DescriptorType {
-        override fun toString() = "TypeArgument: $name"
     }
 }

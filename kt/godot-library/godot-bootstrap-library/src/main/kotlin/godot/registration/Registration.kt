@@ -1239,10 +1239,7 @@ class ClassBuilderDsl<T : KtObject>(
     }
 }
 
-class ClassRegistry(
-    private val projectName: String,
-    private val isDependency: Boolean,
-) {
+class ClassRegistry {
     private val _classes = mutableListOf<KtClass<*>>()
     val classes: List<KtClass<*>> = _classes
 

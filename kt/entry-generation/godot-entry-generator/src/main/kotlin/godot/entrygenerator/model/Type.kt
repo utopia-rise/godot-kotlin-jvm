@@ -5,7 +5,7 @@ open class Type(
     val kind: TypeKind,
     val supertypes: List<Type>,
     val arguments: () -> List<Type>,
-    val registeredName: () -> String?,
+    val registeredName: (godot.entrygenerator.settings.Settings) -> String?,
 ) {
     val allSuperTypes: List<Type>
         get() = collectSupertypes()

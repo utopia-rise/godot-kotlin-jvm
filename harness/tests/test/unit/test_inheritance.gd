@@ -67,11 +67,3 @@ func test_script_is_child_of() -> void:
 	assert_eq(child_script.get_base_script(), parent_script)
 	child.free()
 	parent.free()
-	
-	child = godot_tests_library_fqname_FQNLSimpleChild.new()
-	child_script= child.get_script()
-	parent = godot_tests_library_fqname_FQNLSimple.new()
-	parent_script = parent.get_script()
-	assert_eq(child_script.get_base_script(), parent_script)
-	child.free()
-	parent.free()

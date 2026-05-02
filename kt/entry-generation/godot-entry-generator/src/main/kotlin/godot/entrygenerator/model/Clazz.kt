@@ -9,8 +9,7 @@ open class Clazz(
     open val supertypes: List<Clazz> = emptyList(),
     open val annotations: List<ClassAnnotation> = emptyList(),
     open val isAbstract: Boolean = false,
-    override val symbolProcessorSource: Any
-) : GodotJvmSourceElement {
+) {
     val name: String
         get() = fqName.substringAfterLast(".")
     val containingPackage: String

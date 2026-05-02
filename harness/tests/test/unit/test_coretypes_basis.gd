@@ -63,4 +63,3 @@ func test_jvm_basis_is_equal_approx():
 	assert_false(basis_test.is_equal_approx_jvm(ref, Basis(Vector3(1, 2, 3), Vector3(6, 8, 10), Vector3(5, 0, 7))))
 	assert_false(basis_test.is_equal_approx_jvm(ref, Basis(Vector3(1, 2, 3), Vector3(6, 8, 10), Vector3(5, 9, 0))))
 	basis_test.free()
-

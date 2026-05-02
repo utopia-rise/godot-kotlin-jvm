@@ -1,5 +1,7 @@
 package godot.gradle
 
+import godot.entrygenerator.settings.RegistrationFileLayoutMode
+import godot.entrygenerator.settings.RegisteredNameMode
 import godot.gradle.projectExt.checkKotlinVersionCompatibility
 import godot.gradle.projectExt.configureThirdPartyPlugins
 import godot.gradle.projectExt.godotCoroutineLibraryArtifactName
@@ -46,8 +48,8 @@ abstract class GodotPlugin : Plugin<Project> {
             }
             registry.register(
                 PropertiesModelBuilder(
-                    isFqNameRegistrationEnabled = extension.isFqNameRegistrationEnabled.get(),
-                    isRegistrationFileHierarchyEnabled = extension.isRegistrationFileHierarchyEnabled.get(),
+                    registeredNameMode = extension.registeredNameMode.get(),
+                    registrationFileLayoutMode = extension.registrationFileLayoutMode.get(),
                     registrationFileBaseDir = extension.registrationFileBaseDir.get().asFile.relativeTo(projectDir).path
                 )
             )
@@ -60,13 +62,13 @@ abstract class GodotPlugin : Plugin<Project> {
      *
      * This file is only virtually present and is then loaded by `FetchProjectModelsBuildAction` in the IDE plugin to load the users gradle configuration of our gradle plugin.
      *
-     * @property isFqNameRegistrationEnabled A boolean value indicating whether fully qualified name registration is enabled.
-     * @property isRegistrationFileHierarchyEnabled A boolean value indicating whether registration file hierarchy is enabled.
+     * @property registeredNameMode A value indicating how registered classes should be named.
+     * @property registrationFileLayoutMode Defines how registration file paths are laid out inside their project directory.
      * @property registrationFileBaseDir The base directory for the registration file.
      */
     internal class PropertiesModelBuilder(
-        private val isFqNameRegistrationEnabled: Boolean,
-        private val isRegistrationFileHierarchyEnabled: Boolean,
+        private val registeredNameMode: RegisteredNameMode,
+        private val registrationFileLayoutMode: RegistrationFileLayoutMode,
         private val registrationFileBaseDir: String,
     ) : ToolingModelBuilder {
         override fun canBuild(modelName: String): Boolean {
@@ -75,8 +77,8 @@ abstract class GodotPlugin : Plugin<Project> {
 
         override fun buildAll(modelName: String, project: Project): Any {
             return GodotKotlinJvmPropertiesFileImpl(
-                isFqNameRegistrationEnabled = isFqNameRegistrationEnabled,
-                isRegistrationFileHierarchyEnabled = isRegistrationFileHierarchyEnabled,
+                registeredNameMode = registeredNameMode.name,
+                registrationFileLayoutMode = registrationFileLayoutMode.name,
                 registrationFileBaseDir = registrationFileBaseDir,
             )
         }
