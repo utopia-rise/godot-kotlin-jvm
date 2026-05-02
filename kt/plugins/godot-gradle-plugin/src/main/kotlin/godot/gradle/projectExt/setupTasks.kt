@@ -23,7 +23,6 @@ import godot.gradle.tasks.graal.ios.downloadIOSJdkStaticLibraries
 import godot.gradle.tasks.packageBootstrapJarTask
 import godot.gradle.tasks.packageMainJarTask
 import godot.gradle.tasks.packageUserJarTask
-import godot.gradle.tasks.setupAfterIdeaSyncTasks
 import godot.gradle.tasks.setupBuildTask
 import godot.gradle.tasks.setupCleanTask
 import org.gradle.api.Project
@@ -125,10 +124,6 @@ fun Project.setupTasks() {
             )
 
             setupCleanTask(
-                generateGdIgnoreFilesTask = generateGdIgnoreFilesTask,
-            )
-
-            setupAfterIdeaSyncTasks(
                 generateGdIgnoreFilesTask = generateGdIgnoreFilesTask,
             )
         }

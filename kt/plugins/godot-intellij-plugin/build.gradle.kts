@@ -39,9 +39,7 @@ kotlin {
 
 dependencies {
     implementation("com.utopia-rise:tools-common:$fullGodotKotlinJvmVersion")
-    implementation("com.utopia-rise:jvm-godot-resource-serialization:0.1.0")
     implementation(project(":godot-build-props"))
-    implementation(project(":godot-plugins-common"))
 
     // https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin.html
     intellijPlatform {
@@ -49,7 +47,6 @@ dependencies {
 
         bundledPlugin("com.intellij.java")
         bundledPlugin("org.jetbrains.kotlin")
-        bundledPlugin("com.intellij.gradle")
 
         pluginVerifier()
         zipSigner()
@@ -91,9 +88,6 @@ tasks {
                     subList(indexOf(start) + 1, indexOf(end))
                 }.joinToString("\n").run { markdownToHTML(this) }
         )
-
-        // Get the latest available change notes from the changelog file
-        changeNotes.set(changelog.renderItem(changelog.getLatest(), Changelog.OutputType.HTML))
     }
 
     publishPlugin {

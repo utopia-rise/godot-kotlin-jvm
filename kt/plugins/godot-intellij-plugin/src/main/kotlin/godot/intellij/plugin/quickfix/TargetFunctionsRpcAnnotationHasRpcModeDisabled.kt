@@ -4,8 +4,8 @@ import com.intellij.codeInspection.LocalQuickFix
 import com.intellij.codeInspection.ProblemDescriptor
 import com.intellij.openapi.project.Project
 import godot.intellij.plugin.GodotPluginBundle
-import godot.intellij.plugin.data.model.RPC_ANNOTATION
-import godot.intellij.plugin.extension.asClassId
+import godot.intellij.plugin.analysis.RPC_ANNOTATION
+import godot.intellij.plugin.project.asClassId
 import org.jetbrains.kotlin.idea.references.mainReference
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.psi.KtCallableReferenceExpression
@@ -26,10 +26,10 @@ class TargetFunctionsRpcAnnotationHasRpcModeDisabled : LocalQuickFix {
 
         val rpcModeValueArgument = rpcAnnotationValueArgumentList
             ?.arguments
-            ?.firstOrNull { it.isNamed() && it.getArgumentName()?.text == "rpcMode" } // named; so position is not relevant
+            ?.firstOrNull { it.isNamed() && it.getArgumentName()?.text == "rpcMode" }
             ?: rpcAnnotationValueArgumentList
                 ?.arguments
-                ?.getOrNull(0) // not named; so getting by argument position
+                ?.getOrNull(0)
 
         rpcModeValueArgument?.let { rpcAnnotationValueArgumentList?.removeArgument(it) }
     }

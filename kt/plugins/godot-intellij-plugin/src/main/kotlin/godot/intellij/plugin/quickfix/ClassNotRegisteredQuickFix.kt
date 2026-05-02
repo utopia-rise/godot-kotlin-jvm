@@ -5,8 +5,8 @@ import com.intellij.codeInspection.ProblemDescriptor
 import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiClass
 import godot.intellij.plugin.GodotPluginBundle
-import godot.intellij.plugin.data.model.REGISTER_CLASS_ANNOTATION
-import godot.intellij.plugin.extension.asClassId
+import godot.intellij.plugin.analysis.REGISTER_CLASS_ANNOTATION
+import godot.intellij.plugin.project.asClassId
 import org.jetbrains.kotlin.asJava.classes.KtUltraLightClass
 import org.jetbrains.kotlin.idea.util.addAnnotation
 
@@ -20,7 +20,7 @@ class ClassNotRegisteredQuickFix : LocalQuickFix {
             descriptor.psiElement.parent as? PsiClass
         } ?: return
 
-        when(psiClass) {
+        when (psiClass) {
             is KtUltraLightClass -> psiClass.kotlinOrigin.addAnnotation(asClassId(REGISTER_CLASS_ANNOTATION))
             else -> psiClass.modifierList?.addAnnotation(REGISTER_CLASS_ANNOTATION)
         }

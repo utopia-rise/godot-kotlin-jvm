@@ -1,0 +1,15 @@
+package GROUP_ID
+
+import godot.annotation.RegisterClass
+import godot.annotation.RegisterFunction
+import godot.api.Node3D
+import godot.global.GD
+
+@RegisterClass
+class Simple extends Node3D {
+
+    @RegisterFunction
+    override def _ready(): Unit = {
+        GD.print("Hello world!")
+    }
+}

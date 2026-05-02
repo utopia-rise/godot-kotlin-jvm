@@ -2,7 +2,6 @@ package godot.gradle.projectExt
 
 import godot.gradle.GodotExtension
 import org.gradle.api.Project
-import org.gradle.plugins.ide.idea.model.IdeaModel
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 import java.io.File
 
@@ -13,15 +12,6 @@ val Project.kotlinJvmExtension: KotlinJvmProjectExtension
     get() = extensions
         .findByType(KotlinJvmProjectExtension::class.java)
         ?: rootProject.extensions.getByType(KotlinJvmProjectExtension::class.java)
-
-
-val Project.ideaExtension: IdeaModel
-    get() = requireNotNull(
-        extensions
-            .findByType(IdeaModel::class.java)
-    ) {
-        "idea extension not found"
-    }
 
 val Project.isRelease: Boolean
     get() = hasProperty("release")
