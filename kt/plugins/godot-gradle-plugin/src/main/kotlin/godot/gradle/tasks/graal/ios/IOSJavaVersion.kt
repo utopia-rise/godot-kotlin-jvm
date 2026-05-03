@@ -9,7 +9,7 @@ enum class IOSJavaVersion {
 
     companion object {
         operator fun invoke(project: Project): IOSJavaVersion {
-            val javaCPath = project.godotJvmExtension.graalVmDirectory
+            val javaCPath = project.godotJvmExtension.graalVmHomeDirectory
                 .get()
                 .asFile
                 .resolve("bin")

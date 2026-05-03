@@ -9,6 +9,6 @@ repositories {
 }
 
 godot {
-    registrationFileBaseDir.set(projectDir.resolve("scripts"))
-    registrationFileLayoutMode.set(RegistrationFileLayoutMode.HIERARCHICAL)
+    registrationFilesDirectory.set(projectDir.resolve("scripts"))
+    registrationFilesLayoutMode.set(RegistrationFileLayoutMode.HIERARCHICAL)
 }

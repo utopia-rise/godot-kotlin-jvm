@@ -6,6 +6,9 @@ repositories {
     mavenCentral()
 }
 
+group = "com.godot.tests"
+
 godot {
-    isRegistrationFileGenerationEnabled.set(false)
+    isLibrary.set(true)
 }
+

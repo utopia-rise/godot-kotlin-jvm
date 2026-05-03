@@ -1,5 +1,6 @@
 package godot.gradle.tasks
 
+import godot.gradle.tasks.entry_generation.requireConfiguredGodotProjectDirectory
 import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.tasks.TaskProvider
@@ -15,15 +16,18 @@ fun Project.generateGdIgnoreFilesTask(): TaskProvider<Task> {
             onlyIf { hasPlugin.get() }
 
             val projectDir = layout.projectDirectory.asFile
+            val godotProjectDir = provider { requireConfiguredGodotProjectDirectory() }
             val buildDirProvider = layout.buildDirectory.asFile
             doFirst {
 
                 val buildDir = buildDirProvider.get()
+                val godotJvmDir = godotProjectDir.get().resolve("jvm")
 
                 val targetDirSequence = sequenceOf(
                     buildDir,
                     projectDir.resolve("gradle"),
-                    *(projectDir
+                    godotJvmDir,
+                    *(godotJvmDir
                         .listFiles()
                         ?.filter { it.name.startsWith("jre-") }
                         ?.toTypedArray()

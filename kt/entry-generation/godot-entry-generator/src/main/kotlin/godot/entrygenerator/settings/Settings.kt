@@ -7,8 +7,6 @@ data class Settings(
     val projectName: String,
     val projectBaseDir: File,
     val userCodeClassPathRoots: Set<File>,
-    val registrationBaseDirPathRelativeToProjectDir: String,
     val registrationFileLayoutMode: RegistrationFileLayoutMode,
-    val isRegistrationFileGenerationEnabled: Boolean,
     val generatedSourceRootDir: File
 )

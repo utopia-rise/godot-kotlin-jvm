@@ -15,7 +15,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
  * - Configures compiler flags that the entry-generation scan relies on, such as parameter metadata for Java and Kotlin.
  * - Creates a dedicated `bootstrap` configuration used to build `bootstrap.jar`, which contains the glue code for the
  *   `cpp -> jvm -> cpp` communication but no user project classes.
- * - The user's normal compiled output is later packaged into an intermediary `user.jar`, scanned by ClassGraph to
+ * - The user's normal compiled output is later packaged into an intermediary `user.jar`, then used by entry generation to
  *   produce generated entry sources and `.gdj` files, then merged into the final `main.jar`.
  * - At runtime, the module uses `godot-bootstrap.jar` together with `main.jar`.
  */
@@ -27,11 +27,18 @@ fun Project.setupConfigurationsAndCompilations() {
             compileOnly("com.utopia-rise:godot-build-props:${GodotBuildProperties.assembledGodotKotlinJvmVersion}")
             compileOnly("com.utopia-rise:$godotCoreArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}")
             compileOnly("com.utopia-rise:$godotApiArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}")
-            compileOnly("com.utopia-rise:$godotBootstrapArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}")
             compileOnly("com.utopia-rise:$godotExtensionArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}")
-            compileOnly("com.utopia-rise:godot-class-graph-symbol-processor:${GodotBuildProperties.assembledGodotKotlinJvmVersion}")
+            compileOnly("com.utopia-rise:$godotBootstrapArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}")
+            implementation("org.scala-lang:scala3-library_3:${godotJvmExtension.scalaLanguageVersion.get()}")
+        }
+    }
 
-            implementation("org.scala-lang:scala3-library_3:${godotJvmExtension.scalaVersion.get()}")
+    afterEvaluate {
+        if (!godotJvmExtension.isLibrary.get()) {
+            dependencies.add(
+                "compileOnly",
+                "com.utopia-rise:godot-class-graph-symbol-processor:${GodotBuildProperties.assembledGodotKotlinJvmVersion}"
+            )
         }
     }
 

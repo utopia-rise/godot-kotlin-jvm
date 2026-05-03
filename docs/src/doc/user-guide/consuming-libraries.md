@@ -24,18 +24,17 @@ dependencies {
 
 But, during compilation, registration files for the registered classes in these libraries are generated for you,
 so you can use those and attach them to nodes in the Godot Editor.
-These registration files for those libraries are generated to a directory called `dependencies` inside your
+These registration files for those libraries are grouped by the source project name inside your
 configured root directory for registration files:
 
 ```
-[registrationFileBaseDir]/
-├── dependencies/
-│   ├── libraryA/
-│   │   └── ClassFromLibraryA.gdj
-│   └── libraryB/
-│       └── ClassFromLibraryB.gdj
+[registrationFilesDirectory]/
+├── libraryA/
+│   └── ClassFromLibraryA.gdj
+├── libraryB/
+│   └── ClassFromLibraryB.gdj
 └── // your own registration files
 ```
 
-The folder structure configuration is the same as you configured for your own project (just inside the `dependencies/<library_name>` folder).
+The folder structure configuration is the same as you configured for your own project, just inside the `<library_name>/` directory for each external project.
 Have a look at the available options in the [classes user-guide](classes.md#registration-files)

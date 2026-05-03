@@ -35,7 +35,6 @@ object EntryGenerator {
         logger: Logger,
         sourceFiles: List<SourceFile>,
         jvmTypeFqNamesProvider: (JvmType) -> Set<String>,
-        compilationTimeRelativeRegistrationFilePathProvider: (RegisteredClass) -> String,
         classRegistrarAppendableProvider: (RegisteredClass) -> BufferedWriter,
         mainBufferedWriterProvider: () -> BufferedWriter,
         serviceFile: File
@@ -45,7 +44,6 @@ object EntryGenerator {
             logger,
             sourceFiles.flatMap { it.registeredClasses },
             jvmTypeFqNamesProvider,
-            compilationTimeRelativeRegistrationFilePathProvider,
             classRegistrarAppendableProvider,
             mainBufferedWriterProvider,
             serviceFile
@@ -57,7 +55,6 @@ object EntryGenerator {
         logger: Logger,
         registeredClasses: List<RegisteredClass>,
         jvmTypeFqNamesProvider: (JvmType) -> Set<String>,
-        compilationTimeRelativeRegistrationFilePathProvider: (RegisteredClass) -> String,
         classRegistrarAppendableProvider: (RegisteredClass) -> BufferedWriter,
         mainBufferedWriterProvider: () -> BufferedWriter,
         serviceFile: File
@@ -81,7 +78,6 @@ object EntryGenerator {
                         registeredClass = registeredClass,
                         settings = settings,
                         registrarAppendableProvider = classRegistrarAppendableProvider,
-                        compilationTimeRelativeRegistrationFilePath = compilationTimeRelativeRegistrationFilePathProvider(registeredClass),
                     )
                 )
             }

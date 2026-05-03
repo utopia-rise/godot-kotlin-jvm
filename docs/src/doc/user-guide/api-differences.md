@@ -35,15 +35,20 @@ They have several benefits over source files:
 - Registration files are language agnostic, they are generated for Kotlin, Java and Scala files with no difference.
 - When creating a script from code using its registered name. The module is going to use the registration file as the script. Therefore, registration files are treated as the default way to use scripts inside the module.
 
-By default, these files are generated into a folder called `gdj` in the root of your project.
+By default, these files are generated into a folder called `gdj` in the root of your Godot project.
 
-You can however configure the destination folder inside your `build.gradle.kts`:
+You can however configure the Godot root and the base directory used for newly created registration files inside your `build.gradle.kts`:
 
 ```kotlin
 godot {
-    registrationFileBaseDir.set(<folder>)
+    // Only needed when the Gradle project directory is not the Godot project root.
+    godotProjectDirectory.set(file(".."))
+
+    registrationFilesDirectory.set(<folder>)
 }
 ```
+
+During the sync step, the Gradle plugin scans the whole configured Godot project for existing `.gdj` files. Matching files are updated in place, obsolete ones are deleted, and only newly discovered registrations are copied into `registrationFilesDirectory`.
 
 !!! Reason
     Contrary to GDScript, Kotlin is a compiled language. Hence, if you use a library which defines scripts you can not attach those to nodes anymore as the source files don't exist. You only have a jar of the library. While in GDScript you still have the sources when using an addon. With our registration files our compiler plugin is able to extract those from the libraries you use and provide them to you, so you can also attach scripts from libraries you use.

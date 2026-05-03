@@ -17,7 +17,7 @@ fun Project.checkNativeImageToolAccessibleTask(): TaskProvider<Task> {
 
             doLast {
                 try {
-                    val graalBinDir = godotJvmExtension.graalVmDirectory
+                    val graalBinDir = godotJvmExtension.graalVmHomeDirectory
                         .get()
                         .asFile
                         .resolve("bin")

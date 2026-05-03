@@ -78,7 +78,6 @@ data class KtFunctionArgument(
 class ClassBuilderDsl<T : KtObject>(
     @PublishedApi internal val registeredName: String,
     private val fqdn: String,
-    private val compilationTimeRelativeRegistrationFilePath: String,
     private val superClasses: List<String>,
     private val baseGodotClass: String
 ) {
@@ -1227,7 +1226,6 @@ class ClassBuilderDsl<T : KtObject>(
         return KtClass(
             registeredName = registeredName,
             fqdn = fqdn,
-            compilationTimeRelativeRegistrationFilePath = compilationTimeRelativeRegistrationFilePath,
             _registeredSupertypes = superClasses,
             constructor = constructorField,
             _properties = properties,
@@ -1250,10 +1248,9 @@ class ClassRegistry {
         baseGodotClass: String,
         registeredName: String,
         fqdn: String,
-        compilationTimeRelativeRegistrationFilePath: String,
         cb: ClassBuilderDsl<T>.() -> Unit
     ) {
-        val builder = ClassBuilderDsl<T>(registeredName, fqdn, compilationTimeRelativeRegistrationFilePath, superClass, baseGodotClass)
+        val builder = ClassBuilderDsl<T>(registeredName, fqdn, superClass, baseGodotClass)
         builder.cb()
         TypeManager.registerUserType(registeredName, kClass)
         registerClass(builder.build())

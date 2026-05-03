@@ -31,43 +31,31 @@ fun RegisteredClass.provideRegisteredName(settings: Settings): String {
     }
 }
 
-fun RegisteredClass.provideRegistrationFilePathForInitialGeneration(
-    settings: Settings,
-    compilationProjectName: String,
-    classProjectName: String,
-    registrationFileOutDir: String,
-    registrationFileLayoutMode: RegistrationFileLayoutMode,
-) = provideRegistrationFilePathForInitialGeneration(
-    fqName,
-    provideRegisteredName(settings),
-    compilationProjectName,
-    classProjectName,
-    registrationFileOutDir,
-    registrationFileLayoutMode
-)
-
-fun provideRegistrationFilePathForInitialGeneration(
-    fqName: String,
-    registeredName: String,
-    compilationProjectName: String,
-    classProjectName: String,
-    registrationFileOutDir: String,
-    registrationFileLayoutMode: RegistrationFileLayoutMode,
-): String {
-    val registrationFileRelativePath = if (registrationFileLayoutMode == RegistrationFileLayoutMode.HIERARCHICAL && fqName.contains(".")) {
-        fqName.substringBeforeLast(".").replace(".", "/")
-    } else ""
-
-    val localResourcePath = "$registrationFileRelativePath/$registeredName".removePrefix("/")
-
-    val pathWithoutExtension = if (compilationProjectName == classProjectName) {
-        "${registrationFileOutDir}/$localResourcePath"
-    } else {
-        "${registrationFileOutDir}/${classProjectName}/$localResourcePath"
-    }
-
-    return "$pathWithoutExtension.${FileExtensions.GodotKotlinJvm.registrationFile}"
-}
-
 val RegisteredClass.shouldGenerateGdjFile: Boolean
     get() = !isAbstract
+
+fun RegisteredClass.provideRegistrationFileRelativePath(settings: Settings): String {
+    val relativeDir = buildString {
+        if (sourceProjectName != settings.projectName) {
+            append(sourceProjectName)
+        }
+
+        if (settings.registrationFileLayoutMode == RegistrationFileLayoutMode.HIERARCHICAL && fqName.contains(".")) {
+            val packagePath = fqName.substringBeforeLast(".").replace(".", "/")
+            if (isNotEmpty()) {
+                append("/")
+            }
+            append(packagePath)
+        }
+    }
+
+    return buildString {
+        if (relativeDir.isNotEmpty()) {
+            append(relativeDir)
+            append("/")
+        }
+        append(provideRegisteredName(settings))
+        append(".")
+        append(FileExtensions.GodotKotlinJvm.registrationFile)
+    }
+}

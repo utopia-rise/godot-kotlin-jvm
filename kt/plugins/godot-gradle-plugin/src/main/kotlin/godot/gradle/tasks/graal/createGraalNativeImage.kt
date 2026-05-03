@@ -56,14 +56,14 @@ fun Project.createGraalNativeImageTask(
                     ""
                 }
 
-                val verboseArgument = if (godotJvmExtension.isGraalVmNativeImageGenerationVerbose.get()) {
+                val verboseArgument = if (godotJvmExtension.isGraalNativeImageVerboseEnabled.get()) {
                     "--verbose"
                 } else {
                     ""
                 }
 
                 val graalBinDir = godotJvmExtension
-                    .graalVmDirectory
+                    .graalVmHomeDirectory
                     .get()
                     .asFile
                     .resolve("bin")
@@ -76,7 +76,7 @@ fun Project.createGraalNativeImageTask(
 
                         "(",
 
-                        godotJvmExtension.windowsDeveloperVCVarsPath.get().asFile.absolutePath,
+                        godotJvmExtension.windowsDeveloperVcVarsPath.get().asFile.absolutePath,
 
                         "&&",
 

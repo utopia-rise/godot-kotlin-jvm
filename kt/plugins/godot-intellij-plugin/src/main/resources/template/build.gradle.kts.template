@@ -12,23 +12,23 @@ kotlin {
 
 godot {
     // --------- Setup ---------
-    registrationFileBaseDir.set(projectDir.resolve("gdj"))
-    isRegistrationFileGenerationEnabled.set(true)
+    // godotProjectDirectory.set(file("..")) // only if the Godot project root is not this Gradle project directory
+    // registrationFilesDirectory.set(file("custom-gdj")) // defaults to <godotProjectDirectory>/gdj
 
-    // registrationFileLayoutMode.set(RegistrationFileLayoutMode.FLAT)
-    // registeredNameMode.set(RegisteredNameMode.SIMPLE_NAME)
+    // registrationFilesLayoutMode.set(RegistrationFileLayoutMode.FLAT)
+    // registrationNameMode.set(RegisteredNameMode.SIMPLE_NAME)
 
     // --------- Android ---------
     isAndroidExportEnabled.set(ANDROID_ENABLED)
     d8ToolPath.set(File("D8_TOOL_PATH"))
-    androidCompileSdkDir.set(File("ANDROID_COMPILE_SDK_DIR"))
+    androidCompileSdkDirectory.set(File("ANDROID_COMPILE_SDK_DIR"))
 
     // --------- Graal / iOS ---------
     isGraalNativeImageExportEnabled.set(IS_GRAAL_VM_ENABLED)
-    graalVmDirectory.set(File("GRAAL_VM_DIR"))
-    windowsDeveloperVCVarsPath.set(File("WINDOWS_DEVELOPER_VS_VARS_PATH"))
+    graalVmHomeDirectory.set(File("GRAAL_VM_DIR"))
+    windowsDeveloperVcVarsPath.set(File("WINDOWS_DEVELOPER_VS_VARS_PATH"))
     isIOSExportEnabled.set(IS_IOS_ENABLED)
 
     // --------- Library authors ---------
-    // registeredNameMode.set(RegisteredNameMode.PROJECT_PREFIX)
+    // registrationNameMode.set(RegisteredNameMode.PROJECT_PREFIX)
 }
