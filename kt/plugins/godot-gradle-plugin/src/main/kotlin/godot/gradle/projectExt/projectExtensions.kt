@@ -14,7 +14,18 @@ val Project.kotlinJvmExtension: KotlinJvmProjectExtension
         ?: rootProject.extensions.getByType(KotlinJvmProjectExtension::class.java)
 
 val Project.isRelease: Boolean
-    get() = hasProperty("release")
+    get() = hasProperty("release") || gradle.startParameter.taskNames
+        .asSequence()
+        .map { taskPath -> taskPath.substringAfterLast(':') }
+        .any { taskName ->
+            taskName in setOf(
+                "buildRelease",
+                "buildAndroidRelease",
+                "buildGraalNativeImageRelease",
+                "buildIOSRelease",
+                "exportRelease",
+            )
+        }
 
 val Project.godotInternalArtifactName: String
     get() = "godot-internal-library-${if (isRelease) "release" else "debug"}"

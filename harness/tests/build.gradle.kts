@@ -16,13 +16,11 @@ godot {
     registrationFilesLayoutMode.set(RegistrationFileLayoutMode.HIERARCHICAL)
     isGodotCoroutinesEnabled.set(true)
 
-    //uncomment to test android
-//    isAndroidExportEnabled.set(true)
+
 //    d8ToolPath.set(File("${System.getenv("ANDROID_SDK_ROOT")}/build-tools/36.0.0/d8"))
 //    androidCompileSdkDirectory.set(File("${System.getenv("ANDROID_SDK_ROOT")}/platforms/android-36"))
 
-//    uncomment to test graal vm native image
-//    isGraalNativeImageExportEnabled.set(true)
+
 //    graalVmHomeDirectory.set(File(System.getenv("JAVA_HOME")))
 //    additionalGraalResourceConfigurationFiles.set(
 //        arrayOf(
@@ -35,9 +33,6 @@ godot {
 //        )
 //    )
 //    windowsDeveloperVcVarsPath.set(File(System.getenv("VC_VARS_PATH")))
-
-    // uncomment to test ios
-//    isIOSExportEnabled.set(true)
 
 }
 
