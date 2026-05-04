@@ -3,7 +3,7 @@ package godot.gradle.tasks
 import godot.annotation.processor.classgraph.ClassGraphProcessor
 import godot.annotation.processor.classgraph.logging.LoggerWrapper
 import godot.entrygenerator.EntryGenerator
-import godot.entrygenerator.ext.provideRegistrationFilePathForInitialGeneration
+import godot.entrygenerator.ext.provideRegistrationFileRelativePath
 import godot.entrygenerator.ext.provideRegisteredName
 import godot.entrygenerator.ext.shouldGenerateGdjFile
 import godot.entrygenerator.filebuilder.RegistrationFileGenerator
@@ -51,13 +51,7 @@ abstract class ClassGraphGenerateEntryFilesTask : DefaultTask() {
     abstract val projectBaseDirPath: Property<String>
 
     @get:Input
-    abstract val registrationBaseDirPathRelativeToProjectDir: Property<String>
-
-    @get:Input
     abstract val registrationFileLayoutMode: Property<RegistrationFileLayoutMode>
-
-    @get:Input
-    abstract val registrationFileGenerationEnabled: Property<Boolean>
 
     @get:Input
     @get:Optional
@@ -85,19 +79,13 @@ abstract class ClassGraphGenerateEntryFilesTask : DefaultTask() {
             projectName = projectName.get(),
             projectBaseDir = File(projectBaseDirPath.get()),
             userCodeClassPathRoots = userCodeClassPathRoots.files.map { it.canonicalFile }.toSet(),
-            registrationBaseDirPathRelativeToProjectDir = registrationBaseDirPathRelativeToProjectDir.get(),
             registrationFileLayoutMode = registrationFileLayoutMode.get(),
-            isRegistrationFileGenerationEnabled = registrationFileGenerationEnabled.get(),
             generatedSourceRootDir = outputRoot,
         )
         val allRegisteredClasses = ClassGraphProcessor.process(
             runtimeClassPathFiles = runtimeClassPathFiles.files.map { it.canonicalFile }.toSet(),
             settings
         )
-
-        val classProjectNamesByFqName = allRegisteredClasses.associate { registeredClass ->
-            registeredClass.fqName to registeredClass.sourceProjectName
-        }
 
         val serviceFile = outputRoot
             .resolve("resources")
@@ -115,17 +103,6 @@ abstract class ClassGraphGenerateEntryFilesTask : DefaultTask() {
             registeredClasses = allRegisteredClasses,
             logger = LoggerWrapper(logger),
             jvmTypeFqNamesProvider = DefaultJvmTypeProvider(),
-            compilationTimeRelativeRegistrationFilePathProvider = { registeredClass ->
-                File(
-                    registeredClass.provideRegistrationFilePathForInitialGeneration(
-                        settings = settings,
-                        compilationProjectName = settings.projectName,
-                        classProjectName = classProjectNamesByFqName.getValue(registeredClass.fqName),
-                        registrationFileOutDir = settings.registrationBaseDirPathRelativeToProjectDir,
-                        registrationFileLayoutMode = settings.registrationFileLayoutMode
-                    )
-                ).invariantSeparatorsPath
-            },
             classRegistrarAppendableProvider = { registeredClass ->
                 val file = outputRoot
                     .resolve("main")
@@ -158,14 +135,11 @@ abstract class ClassGraphGenerateEntryFilesTask : DefaultTask() {
             serviceFile = serviceFile,
         )
 
-        if (settings.isRegistrationFileGenerationEnabled) {
-            generateRegistrationFiles(
-                settings = settings,
-                registeredClasses = allRegisteredClasses.filter { it.shouldGenerateGdjFile },
-                classProjectNamesByFqName = classProjectNamesByFqName,
-                generatedRegistrationRootDir = generatedRegistrationRoot,
-            )
-        }
+        generateRegistrationFiles(
+            settings = settings,
+            registeredClasses = allRegisteredClasses.filter { it.shouldGenerateGdjFile },
+            generatedRegistrationRootDir = generatedRegistrationRoot,
+        )
     }
 
     private fun ensureBuildDirectoryIsIgnoredByGodot() {
@@ -181,21 +155,11 @@ abstract class ClassGraphGenerateEntryFilesTask : DefaultTask() {
 private fun generateRegistrationFiles(
     settings: Settings,
     registeredClasses: List<RegisteredClass>,
-    classProjectNamesByFqName: Map<String, String>,
     generatedRegistrationRootDir: File,
 ) {
     registeredClasses.forEach { registeredClass ->
-        val registrationFile = registeredClass.provideRegistrationFilePathForInitialGeneration(
-            settings = settings,
-            compilationProjectName = settings.projectName,
-            classProjectName = classProjectNamesByFqName.getValue(registeredClass.fqName),
-            registrationFileOutDir = settings.registrationBaseDirPathRelativeToProjectDir,
-            registrationFileLayoutMode = settings.registrationFileLayoutMode
-        )
-
-        val targetFile = generatedRegistrationRootDir.resolve(
-            registrationFile.removePrefix("${settings.registrationBaseDirPathRelativeToProjectDir}/")
-        )
+        val targetFile = generatedRegistrationRootDir
+            .resolve(registeredClass.provideRegistrationFileRelativePath(settings))
         targetFile.parentFile.mkdirs()
 
         RegistrationFileGenerator(registeredClass, settings) { _: RegisteredClass ->
@@ -204,59 +168,36 @@ private fun generateRegistrationFiles(
     }
 }
 
-fun Project.classGraphGenerateEntryFilesTask(
+fun Project.entryGenerationGenerateFilesTask(
     packageUserJarTask: TaskProvider<Jar>,
 ): TaskProvider<ClassGraphGenerateEntryFilesTask> {
     val mainSourceSet = extensions
         .getByType(SourceSetContainer::class.java)
         .getByName("main")
-    val generatedSourceRootDir = layout.buildDirectory.dir("generated/classgraph")
-    val generatedRegistrationRootDir = layout.buildDirectory.dir("generated/classgraph/registration")
+    val generatedSourceRootDir = layout.buildDirectory.dir("generated/entry-generation")
+    val generatedRegistrationRootDir = layout.buildDirectory.dir("generated/entry-generation/registration")
     val serviceFileProvider = generatedSourceRootDir.map { generatedRoot ->
         generatedRoot.file("resources/META-INF/services/$godotRegistrationPackage.Entry")
     }
 
-    val registrationFilesOutputDir = providers.provider {
-        (
-            godotJvmExtension
-                .registrationFileBaseDir
-                .orNull
-                ?.asFile
-                ?: projectDir
-                    .resolve(FileExtensions.GodotKotlinJvm.registrationFile)
-                    .apply {
-                        if (godotJvmExtension.isRegistrationFileGenerationEnabled.getOrElse(true)) {
-                            mkdirs()
-                        }
-                    }
-            )
-            .relativeTo(projectDir)
-            .path
-            .replace(java.io.File.separator, "/")
-            .removePrefix("/")
-            .removeSuffix("/")
-    }
-
     return tasks.register(
-        "classGraphGenerateEntryFiles",
+        "entryGenerationGenerateFiles",
         ClassGraphGenerateEntryFilesTask::class.java
     ) { task ->
         task.group = "godot-kotlin-jvm-internal"
-        task.description = "Scans compiled user code and generates entry sources/resources plus staged .gdj files."
+        task.description = "Generates entry sources/resources plus staged .gdj files from compiled user code."
         task.dependsOn(packageUserJarTask)
         task.userCodeClassPathRoots.from(packageUserJarTask.flatMap { it.archiveFile })
         task.runtimeClassPathFiles.from(mainSourceSet.compileClasspath)
         task.runtimeClassPathFiles.from(packageUserJarTask.flatMap { it.archiveFile })
-        task.registeredNameMode.convention(godotJvmExtension.registeredNameMode)
+        task.registeredNameMode.convention(godotJvmExtension.registrationNameMode)
         task.projectName.convention(
             providers.provider { project.name.replace(" ", "_") }
         )
         task.projectBaseDirPath.convention(
             providers.provider { layout.projectDirectory.asFile.absolutePath }
         )
-        task.registrationBaseDirPathRelativeToProjectDir.convention(registrationFilesOutputDir)
-        task.registrationFileLayoutMode.convention(godotJvmExtension.registrationFileLayoutMode)
-        task.registrationFileGenerationEnabled.convention(godotJvmExtension.isRegistrationFileGenerationEnabled)
+        task.registrationFileLayoutMode.convention(godotJvmExtension.registrationFilesLayoutMode)
         task.previousServiceContent.convention(
             providers.provider {
                 val serviceFile = serviceFileProvider.get().asFile

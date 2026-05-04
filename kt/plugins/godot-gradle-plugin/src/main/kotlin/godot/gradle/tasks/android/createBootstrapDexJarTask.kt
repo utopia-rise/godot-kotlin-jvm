@@ -41,9 +41,9 @@ fun Project.createBootstrapDexJarTask(
                         "--output",
                         "godot-bootstrap-dex.jar",
                         "--lib",
-                        "${godotJvmExtension.androidCompileSdkDir.get().asFile.absolutePath}${File.separator}android.jar",
+                        "${godotJvmExtension.androidCompileSdkDirectory.get().asFile.absolutePath}${File.separator}android.jar",
                         "--min-api",
-                        godotJvmExtension.androidMinApi.get(),
+                        godotJvmExtension.androidMinApiLevel.get(),
                         "--main-dex-rules",
                         mainDexRules,
                     )
@@ -54,9 +54,9 @@ fun Project.createBootstrapDexJarTask(
                         "--output",
                         "godot-bootstrap-dex.jar",
                         "--lib",
-                        "${godotJvmExtension.androidCompileSdkDir.get().asFile.absolutePath}/android.jar",
+                        "${godotJvmExtension.androidCompileSdkDirectory.get().asFile.absolutePath}/android.jar",
                         "--min-api",
-                        godotJvmExtension.androidMinApi.get(),
+                        godotJvmExtension.androidMinApiLevel.get(),
                         "--main-dex-rules",
                         mainDexRules,
                     )

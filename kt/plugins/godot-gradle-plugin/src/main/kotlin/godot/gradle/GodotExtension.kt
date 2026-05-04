@@ -4,6 +4,7 @@ import godot.entrygenerator.settings.RegistrationFileLayoutMode
 import godot.entrygenerator.settings.RegisteredNameMode
 import godot.tools.common.constants.FileExtensions
 import org.gradle.api.Project
+import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.file.RegularFileProperty
 import org.gradle.api.model.ObjectFactory
 import org.gradle.api.provider.Property
@@ -11,12 +12,30 @@ import java.io.File
 
 open class GodotExtension(objects: ObjectFactory) {
     /**
+     * Marks this Gradle project as a reusable Godot Kotlin/JVM library rather than a runnable Godot project.
+     *
+     * When enabled, the plugin keeps the compile setup and library dependencies, but skips entry scanning,
+     * entry generation, `.gdj` generation/synchronization, and the runtime jar packaging/copy pipeline.
+     *
+     * Defaults to `false`.
+     */
+    val isLibrary: Property<Boolean> = objects.property(Boolean::class.java)
+
+    /**
+     * Directory of the Godot project that contains `project.godot`.
+     *
+     * Defaults to the Gradle project's directory. Override this when the Gradle project lives in a subdirectory
+     * or any non-standard layout where the Godot project root is elsewhere.
+     */
+    val godotProjectDirectory: DirectoryProperty = objects.directoryProperty()
+
+    /**
      * Base directory where registration files (`.gdj` files) are generated. Defaults to `<projectDir>/gdj`.
      *
      * Files from the current project are written directly under this directory.
      * Files from external projects are written under a subdirectory named after their source project.
      */
-    val registrationFileBaseDir: RegularFileProperty = objects.fileProperty()
+    val registrationFilesDirectory: DirectoryProperty = objects.directoryProperty()
 
     /**
      * Controls how registration files are laid out inside each project-specific directory.
@@ -25,11 +44,11 @@ open class GodotExtension(objects: ObjectFactory) {
      * - [RegistrationFileLayoutMode.HIERARCHICAL]: mirror the package hierarchy before the `.gdj` file.
      *
      * This setting does not change the top-level project split. External projects are always generated under
-     * `<registrationFileBaseDir>/<sourceProjectName>/...`.
+     * `<registrationFilesDirectory>/<sourceProjectName>/...`.
      *
      * Defaults to [RegistrationFileLayoutMode.FLAT].
      */
-    val registrationFileLayoutMode: Property<RegistrationFileLayoutMode> = objects.property(RegistrationFileLayoutMode::class.java)
+    val registrationFilesLayoutMode: Property<RegistrationFileLayoutMode> = objects.property(RegistrationFileLayoutMode::class.java)
 
     /**
      * Controls how Godot registration names are computed when `@RegisterClass` does not provide a custom name.
@@ -41,72 +60,63 @@ open class GodotExtension(objects: ObjectFactory) {
      *
      * Defaults to [RegisteredNameMode.SIMPLE_NAME].
      */
-    val registeredNameMode: Property<RegisteredNameMode> = objects.property(RegisteredNameMode::class.java)
+    val registrationNameMode: Property<RegisteredNameMode> = objects.property(RegisteredNameMode::class.java)
 
     /**
-     * Defines whether `.gdj` registration files should be generated at all. Defaults to `true`.
+     * Enables Android export support.
      *
-     * This is mostly useful for library authors who do not need checked-in registration files in that project.
-     * Entry source/resource generation still runs independently from this setting.
-     */
-    val isRegistrationFileGenerationEnabled: Property<Boolean> = objects.property(Boolean::class.java)
-
-    /**
-     * enable android export
-     *
-     * is set to true, d8 tool and androidCompileSdk dir have to be resolvable
+     * When enabled, the d8 executable and Android compile SDK directory must be resolvable.
      */
     val isAndroidExportEnabled: Property<Boolean> = objects.property(Boolean::class.java)
 
     /**
-     * path to the d8 tool used for desugaring and converting the jar to a dex file
+     * File path to the d8 executable used for desugaring and converting jars to dex files.
      *
      * example: "${System.getenv("ANDROID_SDK_ROOT")}/build-tools/36.0.0/d8"
      */
-    var d8ToolPath: RegularFileProperty = objects.fileProperty()
+    val d8ToolPath: RegularFileProperty = objects.fileProperty()
 
     /**
-     * path to the sdk dir for your target sdk compilation dir
+     * Directory of the Android SDK platform used for compilation.
      *
      * example: "${System.getenv("ANDROID_SDK_ROOT")}/platforms/android-36"
      */
-    var androidCompileSdkDir: RegularFileProperty = objects.fileProperty()
+    val androidCompileSdkDirectory: DirectoryProperty = objects.directoryProperty()
 
     /**
-     * Min android api version.
+     * Minimum Android API level passed to d8.
      *
      * example: 21
      */
-    var androidMinApi: Property<Int> = objects.property(Int::class.java)
+    val androidMinApiLevel: Property<Int> = objects.property(Int::class.java)
 
     /**
-     * enable Graal Native Image Export
+     * Enables Graal Native Image export support.
      *
-     * if is set to true, native-image tool and graalvm home has to be resolvable
+     * When enabled, the `native-image` tool and GraalVM home directory must be resolvable.
      */
     val isGraalNativeImageExportEnabled: Property<Boolean> = objects.property(Boolean::class.java)
 
     /**
-     * enable ios Export, if true, [isGraalNativeImageExportEnabled] should be set to true
+     * Enables iOS export support.
      *
-     * if is set to true, native-image tool and graalvm home has to be resolvable
+     * If enabled, [isGraalNativeImageExportEnabled] should also be enabled.
      */
     val isIOSExportEnabled: Property<Boolean> = objects.property(Boolean::class.java)
 
     /**
-     * path to the native-image tool used to convert jar to native.
+     * GraalVM home directory used to locate the `native-image` executable.
      *
      * example: "${System.getenv("GRAALVM_HOME")}"
      */
-    val graalVmDirectory: RegularFileProperty = objects.fileProperty()
+    val graalVmHomeDirectory: DirectoryProperty = objects.directoryProperty()
 
     /**
-     * Windows specific.
-     * Path to Visual Studio VCVARS to initialize native developer tools.
+     * Windows-specific file path to the Visual Studio VCVARS script used to initialize native developer tools.
      *
      * example: ${System.getenv("VC_VARS_PATH")}
      */
-    val windowsDeveloperVCVarsPath: RegularFileProperty = objects.fileProperty()
+    val windowsDeveloperVcVarsPath: RegularFileProperty = objects.fileProperty()
 
     /**
      * Additional Graal JNI configurations.
@@ -134,20 +144,97 @@ open class GodotExtension(objects: ObjectFactory) {
      *
      * If set to true, native-image tool will be in verbose mode.
      */
-    val isGraalVmNativeImageGenerationVerbose: Property<Boolean> = objects.property(Boolean::class.java)
+    val isGraalNativeImageVerboseEnabled: Property<Boolean> = objects.property(Boolean::class.java)
 
 
     /**
-     * Enable the use of coroutines in the context of Godot lifecycle callbacks (signals)
+     * Enables the use of coroutines in the context of Godot lifecycle callbacks (signals).
      *
-     * If set to true, import godot-coroutine-library
+     * If set to true, the plugin adds `godot-coroutine-library`.
      */
     val isGodotCoroutinesEnabled: Property<Boolean> = objects.property(Boolean::class.java)
 
     /**
-     * Sets the scala version used to support scala language, default 3.6.3
+     * Scala language version used for Scala support.
      */
-    val scalaVersion: Property<String> = objects.property(String::class.java)
+    val scalaLanguageVersion: Property<String> = objects.property(String::class.java)
+
+    @Deprecated(
+        message = "Use registrationFilesDirectory instead.",
+        replaceWith = ReplaceWith("registrationFilesDirectory"),
+    )
+    val registrationFileBaseDir: DirectoryProperty
+        get() = registrationFilesDirectory
+
+    @Deprecated(
+        message = "Use registrationFilesLayoutMode instead.",
+        replaceWith = ReplaceWith("registrationFilesLayoutMode"),
+    )
+    val registrationFileLayoutMode: Property<RegistrationFileLayoutMode>
+        get() = registrationFilesLayoutMode
+
+    @Deprecated(
+        message = "Use registrationNameMode instead.",
+        replaceWith = ReplaceWith("registrationNameMode"),
+    )
+    val registeredNameMode: Property<RegisteredNameMode>
+        get() = registrationNameMode
+
+    @Deprecated(
+        message = "Use d8ToolPath instead.",
+        replaceWith = ReplaceWith("d8ToolPath"),
+    )
+    val d8ToolFile: RegularFileProperty
+        get() = d8ToolPath
+
+    @Deprecated(
+        message = "Use androidCompileSdkDirectory instead.",
+        replaceWith = ReplaceWith("androidCompileSdkDirectory"),
+    )
+    val androidCompileSdkDir: DirectoryProperty
+        get() = androidCompileSdkDirectory
+
+    @Deprecated(
+        message = "Use androidMinApiLevel instead.",
+        replaceWith = ReplaceWith("androidMinApiLevel"),
+    )
+    val androidMinApi: Property<Int>
+        get() = androidMinApiLevel
+
+    @Deprecated(
+        message = "Use graalVmHomeDirectory instead.",
+        replaceWith = ReplaceWith("graalVmHomeDirectory"),
+    )
+    val graalVmDirectory: DirectoryProperty
+        get() = graalVmHomeDirectory
+
+    @Deprecated(
+        message = "Use windowsDeveloperVcVarsPath instead.",
+        replaceWith = ReplaceWith("windowsDeveloperVcVarsPath"),
+    )
+    val windowsDeveloperVcVarsFile: RegularFileProperty
+        get() = windowsDeveloperVcVarsPath
+
+    @Deprecated(
+        message = "Use windowsDeveloperVcVarsPath instead.",
+        replaceWith = ReplaceWith("windowsDeveloperVcVarsPath"),
+    )
+    val windowsDeveloperVCVarsPath: RegularFileProperty
+        get() = windowsDeveloperVcVarsPath
+
+    @Deprecated(
+        message = "Use isGraalNativeImageVerboseEnabled instead.",
+        replaceWith = ReplaceWith("isGraalNativeImageVerboseEnabled"),
+    )
+    val isGraalVmNativeImageGenerationVerbose: Property<Boolean>
+        get() = isGraalNativeImageVerboseEnabled
+
+    @Deprecated(
+        message = "Use scalaLanguageVersion instead.",
+        replaceWith = ReplaceWith("scalaLanguageVersion"),
+    )
+    val scalaVersion: Property<String>
+        get() = scalaLanguageVersion
 
     internal fun configureExtensionDefaults(target: Project) {
         val androidSdkRoot = System.getenv("ANDROID_SDK_ROOT")?.let { androidSdkRoot ->
@@ -171,14 +258,15 @@ open class GodotExtension(objects: ObjectFactory) {
             ?.last { it.isDirectory }
             ?.resolve("d8")
 
-        val androidCompileSdkDirFile = platformsDir
+        val androidCompileSdkDirectoryFile = platformsDir
             ?.listFiles()
             ?.last { it.isDirectory }
 
-        registrationFileBaseDir.set(target.projectDir.resolve(FileExtensions.GodotKotlinJvm.registrationFile))
-        registrationFileLayoutMode.set(RegistrationFileLayoutMode.FLAT)
-        registeredNameMode.set(RegisteredNameMode.SIMPLE_NAME)
-        isRegistrationFileGenerationEnabled.set(true)
+        godotProjectDirectory.set(target.projectDir)
+        isLibrary.set(false)
+        registrationFilesDirectory.set(godotProjectDirectory.dir(FileExtensions.GodotKotlinJvm.registrationFile))
+        registrationFilesLayoutMode.set(RegistrationFileLayoutMode.FLAT)
+        registrationNameMode.set(RegisteredNameMode.SIMPLE_NAME)
 
         isAndroidExportEnabled.set(false)
 
@@ -186,14 +274,14 @@ open class GodotExtension(objects: ObjectFactory) {
             d8ToolPath.set(d8Tool)
         }
 
-        if (androidCompileSdkDirFile != null) {
-            androidCompileSdkDir.set(androidCompileSdkDirFile)
+        if (androidCompileSdkDirectoryFile != null) {
+            androidCompileSdkDirectory.set(androidCompileSdkDirectoryFile)
         }
 
-        androidMinApi.set(21)
+        androidMinApiLevel.set(21)
 
         isGraalNativeImageExportEnabled.set(false)
-        graalVmDirectory.set(
+        graalVmHomeDirectory.set(
             System.getenv("GRAALVM_HOME")?.let {
                 File(it)
             }
@@ -201,14 +289,14 @@ open class GodotExtension(objects: ObjectFactory) {
         additionalGraalJniConfigurationFiles.set(arrayOf())
         additionalGraalReflectionConfigurationFiles.set(arrayOf())
         additionalGraalResourceConfigurationFiles.set(arrayOf())
-        isGraalVmNativeImageGenerationVerbose.set(false)
+        isGraalNativeImageVerboseEnabled.set(false)
 
         isGodotCoroutinesEnabled.set(false)
 
-        scalaVersion.set("3.6.3")
+        scalaLanguageVersion.set("3.6.3")
 
         System.getenv("VC_VARS_PATH")?.let {
-            windowsDeveloperVCVarsPath.set(File(it))
+            windowsDeveloperVcVarsPath.set(File(it))
         }
 
         isIOSExportEnabled.set(false)

@@ -61,7 +61,7 @@ fun Project.createIOSGraalNativeImageTask(
                     iosGraalConfigDir.resolve(iosResourceConfig)
             }
 
-            val verboseArgument = if (godotJvmExtension.isGraalVmNativeImageGenerationVerbose.get()) {
+            val verboseArgument = if (godotJvmExtension.isGraalNativeImageVerboseEnabled.get()) {
                 "--verbose"
             } else {
                 ""
@@ -71,7 +71,7 @@ fun Project.createIOSGraalNativeImageTask(
             val godotBootstrapJar = File(libsDir, "godot-bootstrap.jar")
 
             val arguments = arrayOf(
-                godotJvmExtension.graalVmDirectory
+                godotJvmExtension.graalVmHomeDirectory
                     .get()
                     .asFile
                     .resolve("bin")

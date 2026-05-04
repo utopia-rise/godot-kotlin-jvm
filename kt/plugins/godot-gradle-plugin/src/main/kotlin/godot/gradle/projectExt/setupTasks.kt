@@ -7,9 +7,10 @@ import godot.gradle.tasks.android.createBootstrapDexJarTask
 import godot.gradle.tasks.android.createMainDexFileTask
 import godot.gradle.tasks.android.packageBootstrapDexJarTask
 import godot.gradle.tasks.android.packageMainDexJarTask
-import godot.gradle.tasks.classGraphGenerateEntryFilesTask
-import godot.gradle.tasks.classGraphGeneratedEntryJarTask
-import godot.gradle.tasks.classGraphUpdateRegistrationFilesTask
+import godot.gradle.tasks.entryGenerationGenerateFilesTask
+import godot.gradle.tasks.entryGenerationJarTask
+import godot.gradle.tasks.entry_generation.entryGenerationIndexExistingRegistrationFilesTask
+import godot.gradle.tasks.entryGenerationSyncRegistrationFilesTask
 import godot.gradle.tasks.createCopyJarsTask
 import godot.gradle.tasks.generateGdIgnoreFilesTask
 import godot.gradle.tasks.graal.checkNativeImageToolAccessibleTask
@@ -26,6 +27,7 @@ import godot.gradle.tasks.packageUserJarTask
 import godot.gradle.tasks.setupBuildTask
 import godot.gradle.tasks.setupCleanTask
 import org.gradle.api.Project
+import org.gradle.jvm.tasks.Jar
 
 fun Project.setupTasks() {
     tasks.register("generateEmbeddedJre", GenerateEmbeddedJreTask::class.java) { task ->
@@ -35,19 +37,32 @@ fun Project.setupTasks() {
 
     afterEvaluate {
         with(it) {
+            if (godotJvmExtension.isLibrary.get()) {
+                tasks.named("jar", Jar::class.java) { jarTask ->
+                    jarTask.group = "godot-kotlin-jvm"
+                    jarTask.description = "Builds the reusable Godot Kotlin/JVM library jar."
+                    jarTask.archiveBaseName.set(project.name)
+                    jarTask.archiveVersion.set("")
+                    jarTask.archiveClassifier.set("")
+                }
+                return@with
+            }
+
             val classesTask = tasks.named("classes")
 
             // Step 1: package the first user-code artifact, scan it to generate entry files and staged .gdj files, then sync .gdj files.
             val packageUserJarTask = packageUserJarTask(
                 userClassesTask = classesTask,
             )
-            val generateEntryFilesTask = classGraphGenerateEntryFilesTask(
+            val generateEntryFilesTask = entryGenerationGenerateFilesTask(
                 packageUserJarTask = packageUserJarTask,
             )
-            val updateRegistrationFilesTask = classGraphUpdateRegistrationFilesTask(
+            val indexExistingRegistrationFilesTask = entryGenerationIndexExistingRegistrationFilesTask()
+            val updateRegistrationFilesTask = entryGenerationSyncRegistrationFilesTask(
                 generateEntryFilesTask = generateEntryFilesTask,
+                indexExistingRegistrationFilesTask = indexExistingRegistrationFilesTask,
             )
-            val generatedEntryJarTask = classGraphGeneratedEntryJarTask(
+            val generatedEntryJarTask = entryGenerationJarTask(
                 generateEntryFilesTask = generateEntryFilesTask,
             )
 

@@ -10,7 +10,6 @@ KtClass::KtClass(jni::Env& p_env, jni::JObject p_wrapped) :
     LOCAL_FRAME(4);
     registered_class_name = get_registered_name(p_env);
     fqdn = get_fqdn(p_env);
-    compilation_time_relative_registration_file_path = get_compilation_time_relative_registration_file_path(p_env);
     base_godot_class = get_base_godot_class(p_env);
     _has_notification = get_has_notification(p_env);
 }
@@ -59,11 +58,6 @@ String KtClass::get_registered_name(jni::Env& env) {
 
 String KtClass::get_fqdn(jni::Env& env) {
     jni::JObject ret = wrapped.call_object_method(env, GET_FQDN);
-    return env.from_jstring(jni::JString((jstring) ret.obj));
-}
-
-String KtClass::get_compilation_time_relative_registration_file_path(jni::Env& env) {
-    jni::JObject ret = wrapped.call_object_method(env, GET_COMPILATION_TIME_RELATIVE_REGISTRATION_FILE_PATH);
     return env.from_jstring(jni::JString((jstring) ret.obj));
 }
 

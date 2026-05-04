@@ -720,7 +720,6 @@
     "name":"godot.core.KtClass",
     "methods":[
       {"name":"getRelativeSourcePath","parameterTypes":[] },
-      {"name":"getCompilationTimeRelativeRegistrationFilePath","parameterTypes":[] },
       {"name":"getBaseGodotClass","parameterTypes":[] },
       {"name":"getConstructors","parameterTypes":[] },
       {"name":"getFunctions","parameterTypes":[] },

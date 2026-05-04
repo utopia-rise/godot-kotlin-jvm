@@ -15,7 +15,7 @@ fun Project.packageUserJarTask(
 
     return tasks.register("packageUserJar", Jar::class.java) { task ->
         task.group = "godot-kotlin-jvm-internal"
-        task.description = "Packages compiled user classes and resources into the intermediary jar used for ClassGraph scanning."
+        task.description = "Packages compiled user classes and resources into the intermediary jar used for entry generation."
 
         task.archiveBaseName.set("user")
         task.archiveVersion.set("")

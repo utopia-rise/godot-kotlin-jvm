@@ -2,10 +2,6 @@ package godot.core
 
 interface GodotEnum {
     val value: Long
-
-    @Deprecated("Use `value` instead", ReplaceWith("value"))
-    val id: Long
-        get() = value
 }
 
 val Enum<*>.godotOrdinal: Long

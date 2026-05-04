@@ -1,10 +1,15 @@
 #include "jvm_script_manager.h"
 
-#include "lifecycle/paths.h"
+#include "language/names.h"
+#include "script/language/gdj_script.h"
 
 #include <core/io/resource_loader.h>
 
 #include "jvm_wrapper/memory/type_manager.h"
+
+static String _get_virtual_gdj_path(const StringName &p_registered_name) {
+    return String(GODOT_JVM_VIRTUAL_PATH_PREFIX) + String(p_registered_name) + "." + GODOT_JVM_REGISTRATION_FILE_EXTENSION;
+}
 
 void JvmScriptManager::create_and_update_scripts(Vector<KtClass*>& classes) {
 #if defined(DEBUG_ENABLED) && !defined(TOOLS_ENABLED)
@@ -28,13 +33,13 @@ void JvmScriptManager::create_and_update_scripts(Vector<KtClass*>& classes) {
     for (int i = 0; i < classes.size(); i++) {
         KtClass* kotlin_class = classes[i];
         String script_name = kotlin_class->registered_class_name;
-        String script_path = RES_DIRECTORY + kotlin_class->compilation_time_relative_registration_file_path;
+        String script_path = _get_virtual_gdj_path(kotlin_class->registered_class_name);
 
-        Ref<NamedScript> named_script;
 #ifdef TOOLS_ENABLED
+
         // First check if the scripts already exist
         if (named_script_cache.has(script_name)) {
-            named_script = named_script_cache[script_name];
+            const Ref<NamedScript> named_script = named_script_cache[script_name];
 
             delete named_script->kotlin_class;
             named_script->kotlin_class = kotlin_class;
@@ -44,13 +49,16 @@ void JvmScriptManager::create_and_update_scripts(Vector<KtClass*>& classes) {
 
             named_script->export_dirty_flag = true;
             named_script->set_path(script_path, true);
-
+            TypeManager::get_instance().assign_script_to_class(env, i, named_script);
             JVM_DEV_VERBOSE("JVM Script updated: %s", script_name);
         } else {
 #endif
-            named_script = Ref<NamedScript>(ResourceLoader::load(script_path));
-            named_script->kotlin_class = kotlin_class;
-            TypeManager::get_instance().assign_script_to_class(env, i, named_script);
+            Ref<GdjScript> gdj_script;
+            gdj_script.instantiate();
+            gdj_script->set_path(script_path, true);
+            gdj_script->kotlin_class = kotlin_class;
+            named_scripts_map[script_name] = gdj_script;
+            TypeManager::get_instance().assign_script_to_class(env, i, gdj_script);
 
             JVM_DEV_VERBOSE("JVM Script created: %s", script_name);
 #ifdef TOOLS_ENABLED

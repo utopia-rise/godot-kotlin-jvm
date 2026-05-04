@@ -31,7 +31,7 @@ We do however provide you with some assistance:
 import godot.entrygenerator.settings.RegisteredNameMode
 
 godot {
-    registeredNameMode.set(RegisteredNameMode.FQ_NAME)
+    registrationNameMode.set(RegisteredNameMode.FQ_NAME)
 }
 ```
 
@@ -50,13 +50,13 @@ As mentioned beforehand, Godot does not have the concept of namespaces. So all c
 It does not matter where in the folder hierarchy a script resides in, it still is accessed the same way.
 Hence, it does not matter if the registration files are all in one directory, or scattered across multiple directories.
 
-By default, registration files are generated flat inside the configured base directory:
+By default, new registration files are generated flat inside the configured base directory:
 
 - `com.mygame.packageA.ClassA`
 - `com.mygame.packageB.ClassB`
 
 ```
-[registrationFileBaseDir]/
+[registrationFilesDirectory]/
 |- ClassA.gdj
 `- ClassB.gdj
 ```
@@ -67,7 +67,7 @@ If you prefer the `.gdj` files to mirror the package hierarchy, you can switch t
 import godot.entrygenerator.settings.RegistrationFileLayoutMode
 
 godot {
-    registrationFileLayoutMode.set(RegistrationFileLayoutMode.HIERARCHICAL)
+    registrationFilesLayoutMode.set(RegistrationFileLayoutMode.HIERARCHICAL)
 }
 ```
 
@@ -77,7 +77,7 @@ Which would result in a folder structure like the following:
 - `com.mygame.packageB.ClassB`
 
 ```
-[registrationFileBaseDir]/
+[registrationFilesDirectory]/
 `- com/
    `- mygame/
       |- packageA/
@@ -86,10 +86,12 @@ Which would result in a folder structure like the following:
          `- ClassB.gdj
 ```
 
-When registration files come from external projects, they are always grouped by project name first. For example, if `registrationFileBaseDir` is `scripts` and an external library named `sharedlib` contributes a class, its `.gdj` file is generated under:
+When registration files come from external projects, they are always grouped by project name first. For example, if `registrationFilesDirectory` is `scripts` and an external library named `sharedlib` contributes a class, its `.gdj` file is generated under:
 
 - `scripts/sharedlib/MyExternalClass.gdj` in flat mode
 - `scripts/sharedlib/com/example/MyExternalClass.gdj` in hierarchical mode
+
+The Gradle plugin updates existing `.gdj` files in place wherever they already live inside the configured Godot project. `registrationFilesDirectory` is therefore the default home for new `.gdj` files, not the only directory the sync task considers.
 
 ## Lifecycle
 

@@ -6,7 +6,6 @@ import godot.internal.memory.TransferContext
 data class KtClass<T : KtObject>(
     val registeredName: String,
     val fqdn: String,
-    val compilationTimeRelativeRegistrationFilePath: String,
     private val _registeredSupertypes: List<String>,
     val constructor: KtConstructor<T>,
     private val _properties: Map<String, KtProperty<T, *>>,

@@ -53,7 +53,7 @@ object FunctionRegistrationGenerator {
                 KOTLIN_LIST_OF,
                 *notificationClasses.indices.flatMap {
                     listOf(
-                        "notificationFunctionClass${it}",
+                        "notificationFunctionClass$it",
                         GodotFunctions.notification,
                         "block"
                     )
@@ -88,18 +88,18 @@ object FunctionRegistrationGenerator {
             "%T"
         }
 
-        append("function(%L,·$variantType") //functionReference, returnTypeConverterReference
+        append("function(%L,·$variantType") // functionReference, returnTypeConverterReference
 
         if (registeredFunction.parameters.isNotEmpty()) {
             registeredFunction.parameters.forEach { _ ->
-                append(",·%T") //Variant type
+                append(",·%T") // Variant type
             }
             registeredFunction.parameters.forEach { _ ->
-                append(",·%T(%T,·%S,·%S)") //argument KtFunctionArgument
+                append(",·%T(%T,·%S,·%S)") // argument KtFunctionArgument
             }
         }
 
-        append(",·%T($variantType,·%S),·%T(%T.id.toInt(),·%L,·%T.id.toInt(),·%L))") //return KtFunctionArgument
+        append(",·%T($variantType,·%S),·%T(%T.value.toInt(),·%L,·%T.value.toInt(),·%L))") // return KtFunctionArgument
     }
 
     private fun getTemplateArgs(registeredFunction: RegisteredFunction, className: ClassName): List<Any> {
@@ -111,10 +111,10 @@ object FunctionRegistrationGenerator {
             registeredFunction.returnType?.fqName ?: requireNotNull(Unit::class.qualifiedName)
         }
 
-        val typeClassName = registeredFunction.returnType?.let { returnType ->
+        val typeClassName = registeredFunction.returnType?.let { returnTypeInfo ->
             ClassName(
-                returnType.fqName.substringBeforeLast("."),
-                returnType.fqName.substringAfterLast("."),
+                returnTypeInfo.fqName.substringBeforeLast("."),
+                returnTypeInfo.fqName.substringAfterLast("."),
             )
         }
 

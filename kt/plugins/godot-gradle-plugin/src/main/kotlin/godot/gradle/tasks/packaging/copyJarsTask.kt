@@ -1,5 +1,6 @@
 package godot.gradle.tasks
 
+import godot.gradle.tasks.entry_generation.requireConfiguredGodotProjectDirectory
 import godot.tools.common.constants.Paths
 import org.gradle.api.Project
 import org.gradle.api.Task
@@ -22,7 +23,7 @@ fun Project.createCopyJarsTask(
             )
 
             this.from(layout.buildDirectory.asFile.get().resolve("libs"))
-            this.destinationDir = projectDir.resolve(Paths.GODOT_KOTLIN_JVM_DIR)
+            this.destinationDir = requireConfiguredGodotProjectDirectory().resolve(Paths.GODOT_KOTLIN_JVM_DIR)
         }
     }
 }

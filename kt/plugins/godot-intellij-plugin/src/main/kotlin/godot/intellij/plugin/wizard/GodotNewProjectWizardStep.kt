@@ -26,11 +26,11 @@ class GodotNewProjectWizardStep(parent: NewProjectWizardBaseStep) : AbstractNewP
     private var group = "com.godot.game"
     private var language = ProjectLanguage.KOTLIN
     private var isAndroidEnabled = false
-    private var d8Path = ""
-    private var androidCompileSdkDir = ""
+    private var d8ToolPath = ""
+    private var androidCompileSdkDirectory = ""
     private var isGraalNativeImageEnabled = false
-    private var graalVmDirectory = ""
-    private var windowsDeveloperVCVarsPath = ""
+    private var graalVmHomeDirectory = ""
+    private var windowsDeveloperVcVarsPath = ""
     private var isIOSEnabled = false
 
     init {
@@ -87,20 +87,20 @@ class GodotNewProjectWizardStep(parent: NewProjectWizardBaseStep) : AbstractNewP
                                 .withTitle(GodotPluginBundle.message("wizard.projectSettings.buildSettings.android.d8ToolPath.browseDialogTitle")),
                             context.project
                         )
-                            .bindText(::d8Path)
+                            .bindText(::d8ToolPath)
                             .columns(PATH_FIELD_COLUMNS)
                             .comment(GodotPluginBundle.message("wizard.projectSettings.buildSettings.android.d8ToolPath.comment"))
                     }
-                    row(GodotPluginBundle.message("wizard.projectSettings.buildSettings.android.androidCompileSdkDir")) {
+                    row(GodotPluginBundle.message("wizard.projectSettings.buildSettings.android.androidCompileSdkDirectory")) {
                         textFieldWithBrowseButton(
                             FileChooserDescriptorFactory
                                 .createSingleFolderDescriptor()
-                                .withTitle(GodotPluginBundle.message("wizard.projectSettings.buildSettings.android.androidCompileSdkDir.browseDialogTitle")),
+                                .withTitle(GodotPluginBundle.message("wizard.projectSettings.buildSettings.android.androidCompileSdkDirectory.browseDialogTitle")),
                             context.project
                         )
-                            .bindText(::androidCompileSdkDir)
+                            .bindText(::androidCompileSdkDirectory)
                             .columns(PATH_FIELD_COLUMNS)
-                            .comment(GodotPluginBundle.message("wizard.projectSettings.buildSettings.android.androidCompileSdkDir.comment"))
+                            .comment(GodotPluginBundle.message("wizard.projectSettings.buildSettings.android.androidCompileSdkDirectory.comment"))
                     }
                 }.visibleIf(isAndroidEnabledCheckBox.selected)
             }
@@ -145,27 +145,27 @@ class GodotNewProjectWizardStep(parent: NewProjectWizardBaseStep) : AbstractNewP
                             BrowserUtil.browse(GodotPluginBundle.message("wizard.projectSettings.buildSettings.graalvm.link"))
                         }
                     }
-                    row(GodotPluginBundle.message("wizard.projectSettings.buildSettings.graalvm.graalVmDirectory")) {
+                    row(GodotPluginBundle.message("wizard.projectSettings.buildSettings.graalvm.graalVmHomeDirectory")) {
                         textFieldWithBrowseButton(
                             FileChooserDescriptorFactory
                                 .createSingleFolderDescriptor()
-                                .withTitle(GodotPluginBundle.message("wizard.projectSettings.buildSettings.graalvm.graalVmDirectory.browseDialogTitle")),
+                                .withTitle(GodotPluginBundle.message("wizard.projectSettings.buildSettings.graalvm.graalVmHomeDirectory.browseDialogTitle")),
                             context.project
                         )
-                            .bindText(::graalVmDirectory)
+                            .bindText(::graalVmHomeDirectory)
                             .columns(PATH_FIELD_COLUMNS)
-                            .comment(GodotPluginBundle.message("wizard.projectSettings.buildSettings.graalvm.graalVmDirectory.comment"))
+                            .comment(GodotPluginBundle.message("wizard.projectSettings.buildSettings.graalvm.graalVmHomeDirectory.comment"))
                     }
-                    row(GodotPluginBundle.message("wizard.projectSettings.buildSettings.graalvm.windowsDeveloperVCVarsPath")) {
+                    row(GodotPluginBundle.message("wizard.projectSettings.buildSettings.graalvm.windowsDeveloperVcVarsPath")) {
                         textFieldWithBrowseButton(
                             FileChooserDescriptorFactory
                                 .createSingleFileNoJarsDescriptor()
-                                .withTitle(GodotPluginBundle.message("wizard.projectSettings.buildSettings.graalvm.windowsDeveloperVCVarsPath.browseDialogTitle")),
+                                .withTitle(GodotPluginBundle.message("wizard.projectSettings.buildSettings.graalvm.windowsDeveloperVcVarsPath.browseDialogTitle")),
                             context.project
                         )
-                            .bindText(::windowsDeveloperVCVarsPath)
+                            .bindText(::windowsDeveloperVcVarsPath)
                             .columns(PATH_FIELD_COLUMNS)
-                            .comment(GodotPluginBundle.message("wizard.projectSettings.buildSettings.graalvm.windowsDeveloperVCVarsPath.comment"))
+                            .comment(GodotPluginBundle.message("wizard.projectSettings.buildSettings.graalvm.windowsDeveloperVcVarsPath.comment"))
                     }
                 }.visibleIf(isGraalVmEnabledCheckBox.selected)
             }
@@ -244,13 +244,13 @@ class GodotNewProjectWizardStep(parent: NewProjectWizardBaseStep) : AbstractNewP
         return content
             .replace("GODOT_KOTLIN_JVM_VERSION", GodotBuildProperties.assembledGodotKotlinJvmVersion)
             .replace("ANDROID_ENABLED", isAndroidEnabled.toString())
-            .replace("D8_TOOL_PATH", d8Path.trim().takeUnless(String::isEmpty) ?: DEFAULT_D8_TOOL_PATH)
-            .replace("ANDROID_COMPILE_SDK_DIR", androidCompileSdkDir.trim().takeUnless(String::isEmpty) ?: DEFAULT_ANDROID_COMPILE_SDK_DIR)
+            .replace("D8_TOOL_PATH", d8ToolPath.trim().takeUnless(String::isEmpty) ?: DEFAULT_D8_TOOL_PATH)
+            .replace("ANDROID_COMPILE_SDK_DIR", androidCompileSdkDirectory.trim().takeUnless(String::isEmpty) ?: DEFAULT_ANDROID_COMPILE_SDK_DIR)
             .replace("IS_GRAAL_VM_ENABLED", (isGraalNativeImageEnabled || isIOSEnabled).toString())
-            .replace("GRAAL_VM_DIR", graalVmDirectory.trim().takeUnless(String::isEmpty) ?: DEFAULT_GRAAL_VM_DIRECTORY)
+            .replace("GRAAL_VM_DIR", graalVmHomeDirectory.trim().takeUnless(String::isEmpty) ?: DEFAULT_GRAAL_VM_DIRECTORY)
             .replace(
                 "WINDOWS_DEVELOPER_VS_VARS_PATH",
-                windowsDeveloperVCVarsPath.trim().takeUnless(String::isEmpty) ?: DEFAULT_WINDOWS_DEVELOPER_VC_VARS_PATH
+                windowsDeveloperVcVarsPath.trim().takeUnless(String::isEmpty) ?: DEFAULT_WINDOWS_DEVELOPER_VC_VARS_PATH
             )
             .replace("IS_IOS_ENABLED", isIOSEnabled.toString())
     }

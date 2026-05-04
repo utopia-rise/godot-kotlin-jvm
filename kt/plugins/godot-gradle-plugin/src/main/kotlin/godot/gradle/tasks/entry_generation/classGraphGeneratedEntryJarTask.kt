@@ -8,25 +8,25 @@ import org.gradle.api.tasks.TaskProvider
 import org.gradle.api.tasks.bundling.Jar
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinWithJavaCompilation
 
-fun Project.classGraphGeneratedEntryJarTask(
+fun Project.entryGenerationJarTask(
     generateEntryFilesTask: TaskProvider<ClassGraphGenerateEntryFilesTask>,
 ): TaskProvider<Jar> {
     val mainCompilation = kotlinJvmExtension.target.compilations.getByName("main")
-    val generatedSourceRootDir = classGraphGeneratedSourceRootDir()
-    val generatedEntryCompilation = createClassGraphGeneratedEntryCompilation(
+    val generatedSourceRootDir = entryGenerationGeneratedSourceRootDir()
+    val generatedEntryCompilation = createEntryGenerationCompilation(
         mainCompilation = mainCompilation,
         generatedSourceRootDir = generatedSourceRootDir,
         generateEntryFilesTask = generateEntryFilesTask
     )
 
     return tasks.register(
-        "classGraphGeneratedEntryJar",
+        "entryGenerationJar",
         Jar::class.java
     ) { task ->
         task.group = "godot-kotlin-jvm-internal"
-        task.description = "Compiles generated ClassGraph entry sources into a reusable jar."
+        task.description = "Compiles generated entry sources into a reusable jar."
 
-        task.archiveBaseName.set("classgraph-entry")
+        task.archiveBaseName.set("entry-generation")
         task.archiveVersion.set("")
         task.archiveClassifier.set("")
 
@@ -38,15 +38,15 @@ fun Project.classGraphGeneratedEntryJarTask(
     }
 }
 
-private fun Project.classGraphGeneratedSourceRootDir(): Provider<Directory> =
-    layout.buildDirectory.dir("generated/classgraph")
+private fun Project.entryGenerationGeneratedSourceRootDir(): Provider<Directory> =
+    layout.buildDirectory.dir("generated/entry-generation")
 
-private fun Project.createClassGraphGeneratedEntryCompilation(
+private fun Project.createEntryGenerationCompilation(
     mainCompilation: KotlinWithJavaCompilation<*, *>,
     generatedSourceRootDir: Provider<Directory>,
     generateEntryFilesTask: TaskProvider<ClassGraphGenerateEntryFilesTask>,
 ): KotlinWithJavaCompilation<*, *> {
-    val generatedEntryCompilation = kotlinJvmExtension.target.compilations.create("classGraphGeneratedEntry") { compilation ->
+    val generatedEntryCompilation = kotlinJvmExtension.target.compilations.create("entryGeneration") { compilation ->
         compilation.defaultSourceSet {
             kotlin.srcDir(generatedSourceRootDir.map { generatedRoot -> generatedRoot.dir("main/kotlin").asFile })
         }
