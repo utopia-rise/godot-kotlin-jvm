@@ -39,8 +39,25 @@ Error GradleTaskRunner::run_task(int task_id, String& log, bool blocking) {
             args.push_back("build");
             break;
         case Task::BUILD_RELEASE:
-            args.push_back("build");
-            args.push_back("-Prelease=true");
+            args.push_back("buildRelease");
+            break;
+        case Task::BUILD_ANDROID_DEBUG:
+            args.push_back("buildAndroid");
+            break;
+        case Task::BUILD_ANDROID_RELEASE:
+            args.push_back("buildAndroidRelease");
+            break;
+        case Task::BUILD_GRAAL_NATIVE_IMAGE_DEBUG:
+            args.push_back("buildGraalNativeImage");
+            break;
+        case Task::BUILD_GRAAL_NATIVE_IMAGE_RELEASE:
+            args.push_back("buildGraalNativeImageRelease");
+            break;
+        case Task::BUILD_IOS_DEBUG:
+            args.push_back("buildIOS");
+            break;
+        case Task::BUILD_IOS_RELEASE:
+            args.push_back("buildIOSRelease");
             break;
         case Task::GENERATE_EMBEDDED_JVM:
             args.push_back("generateEmbeddedJre");

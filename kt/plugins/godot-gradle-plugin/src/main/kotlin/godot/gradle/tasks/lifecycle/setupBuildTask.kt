@@ -1,7 +1,6 @@
 package godot.gradle.tasks
 
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-import godot.gradle.projectExt.godotJvmExtension
 import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.tasks.TaskProvider
@@ -30,24 +29,49 @@ fun Project.setupBuildTask(
                 packageBootstrapJarTask,
                 packageMainJarTask
             )
-
-            if (godotJvmExtension.isAndroidExportEnabled.get()) {
-                copyJarTask.configure { copyTask ->
-                    copyTask.dependsOn(packageBootstrapDexJarTask, packageMainDexJarTask)
-                }
-                task.finalizedBy(packageBootstrapDexJarTask, packageMainDexJarTask)
-            }
-            if (godotJvmExtension.isGraalNativeImageExportEnabled.get()) {
-                copyJarTask.configure { copyTask ->
-                    copyTask.dependsOn(createGraalNativeImageTask)
-                }
-                task.finalizedBy(createGraalNativeImageTask)
-            }
-            if (godotJvmExtension.isIOSExportEnabled.get()) {
-                copyJarTask.configure { copyTask ->
-                    copyTask.dependsOn(createIOSTask)
-                }
-                task.finalizedBy(createIOSTask)
-            }
         }
+
+    val buildTask = tasks.named("build")
+
+    tasks.register("buildRelease") { task ->
+        task.group = "build"
+        task.description = "Builds the desktop release jars."
+        task.dependsOn(buildTask)
+    }
+
+    tasks.register("buildAndroid") { task ->
+        task.group = "build"
+        task.description = "Builds the desktop jars and Android dex artifacts."
+        task.dependsOn(buildTask, packageBootstrapDexJarTask, packageMainDexJarTask)
+    }
+
+    tasks.register("buildAndroidRelease") { task ->
+        task.group = "build"
+        task.description = "Builds the desktop release jars and Android dex artifacts."
+        task.dependsOn(buildTask, packageBootstrapDexJarTask, packageMainDexJarTask)
+    }
+
+    tasks.register("buildGraalNativeImage") { task ->
+        task.group = "build"
+        task.description = "Builds the desktop jars and GraalVM native image."
+        task.dependsOn(buildTask, createGraalNativeImageTask)
+    }
+
+    tasks.register("buildGraalNativeImageRelease") { task ->
+        task.group = "build"
+        task.description = "Builds the desktop release jars and GraalVM native image."
+        task.dependsOn(buildTask, createGraalNativeImageTask)
+    }
+
+    tasks.register("buildIOS") { task ->
+        task.group = "build"
+        task.description = "Builds the desktop jars and iOS static library."
+        task.dependsOn(buildTask, createIOSTask)
+    }
+
+    tasks.register("buildIOSRelease") { task ->
+        task.group = "build"
+        task.description = "Builds the desktop release jars and iOS static library."
+        task.dependsOn(buildTask, createIOSTask)
+    }
 }

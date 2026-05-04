@@ -19,15 +19,12 @@ godot {
     // registrationNameMode.set(RegisteredNameMode.SIMPLE_NAME)
 
     // --------- Android ---------
-    isAndroidExportEnabled.set(ANDROID_ENABLED)
     d8ToolPath.set(File("D8_TOOL_PATH"))
     androidCompileSdkDirectory.set(File("ANDROID_COMPILE_SDK_DIR"))
 
     // --------- Graal / iOS ---------
-    isGraalNativeImageExportEnabled.set(IS_GRAAL_VM_ENABLED)
     graalVmHomeDirectory.set(File("GRAAL_VM_DIR"))
     windowsDeveloperVcVarsPath.set(File("WINDOWS_DEVELOPER_VS_VARS_PATH"))
-    isIOSExportEnabled.set(IS_IOS_ENABLED)
 
     // --------- Library authors ---------
     // registrationNameMode.set(RegisteredNameMode.PROJECT_PREFIX)

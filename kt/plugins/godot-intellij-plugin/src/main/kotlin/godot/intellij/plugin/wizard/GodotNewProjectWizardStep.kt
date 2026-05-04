@@ -243,16 +243,13 @@ class GodotNewProjectWizardStep(parent: NewProjectWizardBaseStep) : AbstractNewP
     private fun applyBuildTemplateVariables(content: String): String {
         return content
             .replace("GODOT_KOTLIN_JVM_VERSION", GodotBuildProperties.assembledGodotKotlinJvmVersion)
-            .replace("ANDROID_ENABLED", isAndroidEnabled.toString())
             .replace("D8_TOOL_PATH", d8ToolPath.trim().takeUnless(String::isEmpty) ?: DEFAULT_D8_TOOL_PATH)
             .replace("ANDROID_COMPILE_SDK_DIR", androidCompileSdkDirectory.trim().takeUnless(String::isEmpty) ?: DEFAULT_ANDROID_COMPILE_SDK_DIR)
-            .replace("IS_GRAAL_VM_ENABLED", (isGraalNativeImageEnabled || isIOSEnabled).toString())
             .replace("GRAAL_VM_DIR", graalVmHomeDirectory.trim().takeUnless(String::isEmpty) ?: DEFAULT_GRAAL_VM_DIRECTORY)
             .replace(
                 "WINDOWS_DEVELOPER_VS_VARS_PATH",
                 windowsDeveloperVcVarsPath.trim().takeUnless(String::isEmpty) ?: DEFAULT_WINDOWS_DEVELOPER_VC_VARS_PATH
             )
-            .replace("IS_IOS_ENABLED", isIOSEnabled.toString())
     }
 
     private fun copyTemplateFile(
