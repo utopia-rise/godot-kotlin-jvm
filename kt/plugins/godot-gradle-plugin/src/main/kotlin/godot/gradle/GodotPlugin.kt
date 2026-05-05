@@ -2,6 +2,7 @@ package godot.gradle
 
 import godot.gradle.projectExt.checkKotlinVersionCompatibility
 import godot.gradle.projectExt.configureThirdPartyPlugins
+import godot.gradle.projectExt.optimizeLanguageCompilationTasks
 import godot.gradle.projectExt.setupConfigurationsAndCompilations
 import godot.gradle.projectExt.setupTasks
 import org.gradle.api.Plugin
@@ -16,6 +17,7 @@ abstract class GodotPlugin : Plugin<Project> {
         }
 
         configureThirdPartyPlugins()
+        optimizeLanguageCompilationTasks()
         setupConfigurationsAndCompilations()
         setupTasks()
     }
