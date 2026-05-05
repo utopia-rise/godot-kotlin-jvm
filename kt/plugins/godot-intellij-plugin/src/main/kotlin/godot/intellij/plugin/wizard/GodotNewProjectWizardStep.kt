@@ -14,8 +14,9 @@ import com.intellij.ui.dsl.builder.bindText
 import com.intellij.ui.dsl.builder.columns
 import com.intellij.ui.dsl.builder.panel
 import com.intellij.ui.dsl.builder.selected
+import godot.common.GODOT_JVM_VERSION
+import godot.common.GODOT_VERSION
 import godot.intellij.plugin.GodotPluginBundle
-import godot.utils.GodotBuildProperties
 import java.io.File
 import javax.swing.ScrollPaneConstants
 import javax.swing.JCheckBox
@@ -222,7 +223,7 @@ class GodotNewProjectWizardStep(parent: NewProjectWizardBaseStep) : AbstractNewP
             outFile.writeText(
                 outFile
                     .readText()
-                    .replace("GODOT_VERSION", GodotBuildProperties.godotVersion.majorMinor())
+                    .replace("GODOT_VERSION", GODOT_VERSION.majorMinor())
                     .replace("PROJECT_NAME", project.name)
             )
         }
@@ -242,7 +243,7 @@ class GodotNewProjectWizardStep(parent: NewProjectWizardBaseStep) : AbstractNewP
 
     private fun applyBuildTemplateVariables(content: String): String {
         return content
-            .replace("GODOT_KOTLIN_JVM_VERSION", GodotBuildProperties.assembledGodotKotlinJvmVersion)
+            .replace("GODOT_KOTLIN_JVM_VERSION", GODOT_JVM_VERSION)
             .replace("D8_TOOL_PATH", d8ToolPath.trim().takeUnless(String::isEmpty) ?: DEFAULT_D8_TOOL_PATH)
             .replace("ANDROID_COMPILE_SDK_DIR", androidCompileSdkDirectory.trim().takeUnless(String::isEmpty) ?: DEFAULT_ANDROID_COMPILE_SDK_DIR)
             .replace("GRAAL_VM_DIR", graalVmHomeDirectory.trim().takeUnless(String::isEmpty) ?: DEFAULT_GRAAL_VM_DIRECTORY)

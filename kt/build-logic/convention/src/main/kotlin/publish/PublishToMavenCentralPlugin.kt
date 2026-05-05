@@ -61,10 +61,10 @@ class PublishToMavenCentralPlugin : Plugin<Project> {
                             publication.pom { mavenPom ->
                                 mavenPom.url.set("https://github.com/utopia-rise/godot-kotlin-jvm.git")
 
-                                if (mavenPom.name.getOrElse("").isNullOrEmpty()) {
+                                if (mavenPom.name.getOrElse("").isEmpty()) {
                                     mavenPom.name.set(evaluatedProject.name)
                                 }
-                                if (mavenPom.description.getOrElse("").isNullOrEmpty()) {
+                                if (mavenPom.description.getOrElse("").isEmpty()) {
                                     mavenPom.description.set(evaluatedProject.description ?: "Godot kotlin jvm module")
                                 }
 

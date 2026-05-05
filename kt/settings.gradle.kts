@@ -62,10 +62,6 @@ subdir("plugins") {
     include("godot-intellij-plugin")
 }
 
-subdir("utils") {
-    include("godot-build-props")
-}
-
 includeBuild("common") {
     dependencySubstitution {
         substitute(module("com.utopia-rise:common")).using(project(":"))

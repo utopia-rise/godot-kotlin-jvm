@@ -1,4 +1,4 @@
-import versioninfo.fullGodotKotlinJvmVersion
+import versioninfo.fullBuildVersion
 
 plugins {
     alias(libs.plugins.kotlin.jvm)
@@ -35,9 +35,8 @@ dependencies {
     // used for idea sync gradle task integration (ex. generateGdIgnoreFilesTask)
     implementation(libs.ideaSync)
 
-    implementation(project(":godot-build-props"))
     implementation(project(":godot-entry-generator"))
-    implementation("com.utopia-rise:tools-common:$fullGodotKotlinJvmVersion")
+    implementation("com.utopia-rise:tools-common:$fullBuildVersion")
 
     implementation(project(":godot-class-graph-symbol-processor"))
 }

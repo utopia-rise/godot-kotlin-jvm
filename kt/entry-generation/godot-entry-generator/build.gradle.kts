@@ -1,4 +1,4 @@
-import versioninfo.fullGodotKotlinJvmVersion
+import versioninfo.fullBuildVersion
 
 plugins {
     alias(libs.plugins.kotlin.jvm)
@@ -11,7 +11,7 @@ kotlin {
 }
 
 dependencies {
-    implementation("com.utopia-rise:tools-common:$fullGodotKotlinJvmVersion")
+    implementation("com.utopia-rise:tools-common:$fullBuildVersion")
     implementation(project(":godot-bootstrap-library"))
     implementation(libs.kotlinPoet)
 }

@@ -1,6 +1,6 @@
 import org.jetbrains.changelog.Changelog
 import org.jetbrains.changelog.markdownToHTML
-import versioninfo.fullGodotKotlinJvmVersion
+import versioninfo.fullBuildVersion
 import versioninfo.isSnapshot
 
 plugins {
@@ -28,7 +28,7 @@ repositories {
     }
 }
 
-version = fullGodotKotlinJvmVersion
+version = fullBuildVersion
 group = "com.utopia-rise"
 
 val intellijVersion: String = project.properties["godot.plugins.intellij.version"]?.toString() ?: libs.versions.ideaPluginDefaultIntellijVersion.get()
@@ -38,8 +38,7 @@ kotlin {
 }
 
 dependencies {
-    implementation("com.utopia-rise:tools-common:$fullGodotKotlinJvmVersion")
-    implementation(project(":godot-build-props"))
+    implementation("com.utopia-rise:tools-common:$fullBuildVersion")
 
     // https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin.html
     intellijPlatform {

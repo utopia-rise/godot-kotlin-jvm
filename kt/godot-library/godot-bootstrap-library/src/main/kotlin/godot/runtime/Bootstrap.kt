@@ -1,6 +1,6 @@
 package godot.runtime
 
-import godot.common.GODOT_KOTLIN_VERSION
+import godot.common.GODOT_JVM_VERSION
 import godot.core.KtClass
 import godot.core.VariantParser
 import godot.core.variantMapper
@@ -27,10 +27,7 @@ internal class Bootstrap {
     }
 
     fun getVersion(): String {
-        // we cannot use the assembled version here as it includes the git hash on local dev builds which is not present
-        // on the cpp side
-        // hence we assemble it manually here
-        return GODOT_KOTLIN_VERSION
+        return GODOT_JVM_VERSION
     }
 
     fun finish() {

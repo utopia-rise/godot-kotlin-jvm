@@ -44,6 +44,3 @@ val Project.godotExtensionArtifactName: String
 
 val Project.godotCoroutineLibraryArtifactName: String
     get() = "godot-coroutine-library-${if (isRelease) "release" else "debug"}"
-
-val Project.entryGenerationGeneratedDirectory: File
-    get() = layout.buildDirectory.asFile.get().resolve("generated/entry-generation/")

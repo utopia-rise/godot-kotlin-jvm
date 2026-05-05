@@ -7,7 +7,6 @@ import godot.common.interop.nullptr
 import godot.common.util.toRealT
 import godot.internal.memory.LongStringQueue
 import java.nio.ByteBuffer
-import kotlin.enums.EnumEntries
 
 private var ByteBuffer.bool: Boolean
     get() = int == 1

@@ -2,7 +2,8 @@ package godot.gradle.tasks.graal.ios
 
 import godot.gradle.projectExt.godotJvmExtension
 import godot.gradle.tasks.graal.*
-import godot.utils.GodotBuildProperties
+import godot.tools.common.IOS_CAP_CACHE_VERSION
+import godot.tools.common.IOS_JDK_VERSION
 import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.tasks.Exec
@@ -101,7 +102,7 @@ fun Project.createIOSGraalNativeImageTask(
                 "-H:CAPCacheDir=${
                     iosGraalConfigDir
                         .resolve("capcache")
-                        .resolve("${GodotBuildProperties.iosCapCacheVersion}-${GodotBuildProperties.iosJdkVersion}")
+                        .resolve("$IOS_CAP_CACHE_VERSION-$IOS_JDK_VERSION")
                         .absolutePath
                 }",
                 "-H:CompilerBackend=lir",
