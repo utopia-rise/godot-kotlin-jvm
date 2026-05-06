@@ -133,8 +133,7 @@ public open class OggPacketSequence : Resource() {
 
   public final fun getPacketGranulePositions(): PackedInt64Array {
     TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPacketGranulePositionsPtr,
-        PACKED_INT_64_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getPacketGranulePositionsPtr, PACKED_INT_64_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY) as PackedInt64Array)
   }
 

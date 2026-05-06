@@ -1,11 +1,8 @@
 package godot.codegen.services.impl
 
 import com.squareup.kotlinpoet.AnnotationSpec
-import com.squareup.kotlinpoet.ClassName
-import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
-import com.squareup.kotlinpoet.MemberName
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeName
@@ -14,23 +11,21 @@ import com.squareup.kotlinpoet.TypeVariableName
 import com.squareup.kotlinpoet.UNIT
 import godot.codegen.services.IAwaitGenerationService
 import godot.common.constants.Constraints
-import godot.tools.common.constants.GodotKotlinJvmTypes.signal
-import godot.tools.common.constants.godotCorePackage
-import godot.tools.common.constants.godotCoroutinePackage
-import godot.tools.common.constants.godotExtensionPackage
-import godot.tools.common.constants.kotlinCoroutinePackage
-import godot.tools.common.constants.kotlinxCoroutinePackage
+import godot.tools.common.names.CoreType
+import godot.tools.common.names.Coroutines
+import godot.tools.common.names.Function
+import godot.tools.common.names.fileSpecBuilder
 import java.io.File
 
-private val cancellableContinuationClass = ClassName(kotlinxCoroutinePackage, "CancellableContinuation")
-private val suspendCancellableCoroutine = MemberName(kotlinxCoroutinePackage, "suspendCancellableCoroutine")
-private val promise = MemberName(godotExtensionPackage, "promise")
-private val resume = MemberName(kotlinCoroutinePackage, "resume")
+private val cancellableContinuationClass = Coroutines.cancellableContinuation
+private val suspendCancellableCoroutine = Coroutines.suspendCancellableCoroutine
+private val promise = Function.promise
+private val resume = Coroutines.resume
 private const val cancel = "cancel"
 
 object AwaitGenerationService : IAwaitGenerationService {
     override fun generate(output: File) {
-        val awaitFile = FileSpec.builder(godotCoroutinePackage, "Await")
+        val awaitFile = Coroutines.await.fileSpecBuilder()
 
         val allParameters = Array(Constraints.MAX_FUNCTION_ARG_COUNT) { index ->
             TypeVariableName("P$index")
@@ -39,7 +34,7 @@ object AwaitGenerationService : IAwaitGenerationService {
         for (argCount in 0..Constraints.MAX_FUNCTION_ARG_COUNT) {
             val parameters = allParameters.take(argCount)
 
-            val baseReceiver = ClassName(godotCorePackage, signal + argCount)
+            val baseReceiver = CoreType.signal(argCount)
             val receiver = if (argCount != 0) {
                 baseReceiver.parameterizedBy(parameters)
             } else {
@@ -49,13 +44,14 @@ object AwaitGenerationService : IAwaitGenerationService {
             val returnType: TypeName = when (argCount) {
                 0 -> UNIT
                 1 -> parameters[0]
-                else -> ClassName(godotCoroutinePackage, "SignalArguments$argCount").parameterizedBy(parameters)
+                else -> Coroutines.signalArguments(argCount).parameterizedBy(parameters)
             }
 
             // Create a tuple for the signal arguments
             if (argCount >= 2) {
+                val signalArguments = Coroutines.signalArguments(argCount)
                 awaitFile.addType(
-                    TypeSpec.classBuilder("SignalArguments$argCount")
+                    TypeSpec.classBuilder(signalArguments.simpleName)
                         .addModifiers(KModifier.DATA)
                         .primaryConstructor(
                             FunSpec
@@ -122,7 +118,7 @@ object AwaitGenerationService : IAwaitGenerationService {
         val resumeParameters = when (argCount) {
             0 -> "Unit"
             1 -> lambdaParameters
-            else -> "SignalArguments$argCount($lambdaParameters)"
+            else -> "${Coroutines.signalArguments(argCount).simpleName}($lambdaParameters)"
         }
         val lambdaParametersWithType = buildString {
             for (i in 0 until argCount) {
@@ -143,3 +139,4 @@ object AwaitGenerationService : IAwaitGenerationService {
             .endControlFlow()
     }
 }
+

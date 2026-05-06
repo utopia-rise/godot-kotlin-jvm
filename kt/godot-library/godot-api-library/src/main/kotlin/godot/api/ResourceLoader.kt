@@ -151,8 +151,7 @@ public object ResourceLoader : Object() {
   @JvmStatic
   public final fun getRecognizedExtensionsForType(type: String): PackedStringArray {
     TransferContext.writeArguments(STRING to type)
-    TransferContext.callMethod(ptr, MethodBindings.getRecognizedExtensionsForTypePtr,
-        PACKED_STRING_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getRecognizedExtensionsForTypePtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 

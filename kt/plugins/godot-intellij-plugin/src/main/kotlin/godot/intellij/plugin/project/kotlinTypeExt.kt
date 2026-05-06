@@ -1,10 +1,10 @@
 package godot.intellij.plugin.project
 
-import godot.tools.common.constants.GodotKotlinJvmTypes
-import godot.tools.common.constants.GodotTypes
-import godot.tools.common.constants.godotCorePackage
-import godot.tools.common.constants.godotUtilPackage
-import godot.tools.common.constants.kotlinCollectionsPackage
+import com.squareup.kotlinpoet.ClassName
+import godot.tools.common.names.CoreType
+import godot.tools.common.names.Kotlin
+import godot.tools.common.names.Util
+import godot.tools.common.names.qualifiedName
 import org.jetbrains.kotlin.analysis.api.KaSession
 import org.jetbrains.kotlin.analysis.api.analyze
 import org.jetbrains.kotlin.analysis.api.types.KaType
@@ -19,11 +19,15 @@ fun KtDeclaration.isType(classId: ClassId): Boolean {
     }
 }
 
+fun KtDeclaration.isType(className: ClassName): Boolean = isType(className.asClassId())
+
 fun KtDeclaration.isOrInheritsType(classId: ClassId): Boolean {
     return analyze(this) {
         returnType.isOrInheritsType(classId, this)
     }
 }
+
+fun KtDeclaration.isOrInheritsType(className: ClassName): Boolean = isOrInheritsType(className.asClassId())
 
 private fun KaType.isOrInheritsType(classId: ClassId, session: KaSession): Boolean {
     return with(session) {
@@ -39,7 +43,7 @@ fun KtDeclaration.isCoreType(): Boolean {
 
 private fun KaType.isCoreType(session: KaSession): Boolean {
     return with(session) {
-        isClassType(asClassId("$godotCorePackage.${GodotTypes.coreType}"))
+        isClassType(CoreType.coreType.asClassId())
             || allSupertypes.any { superType -> superType.isCoreType(session) }
     }
 }
@@ -53,7 +57,7 @@ private fun KaType.isSupportedJvmType(session: KaSession): Boolean {
         isPrimitive
             || isStringType
             || isEnum()
-            || symbol?.classId?.asFqNameString()?.startsWith(kotlinCollectionsPackage) == true
+            || symbol?.classId?.asFqNameString()?.let(Kotlin::isCollectionsType) == true
             || isArrayOrPrimitiveArray
             || isCharType
             || allSupertypes.any { superType -> superType.isSupportedJvmType(session) }
@@ -70,10 +74,10 @@ private fun KaType.isGodotPrimitive(session: KaSession): Boolean {
     return with(session) {
         isIntType
             || isLongType
-            || symbol?.classId?.asFqNameString()?.removeSuffix("?") == "$godotUtilPackage.${GodotKotlinJvmTypes.naturalT}"
+            || symbol?.classId?.asFqNameString()?.removeSuffix("?") == Util.naturalT.qualifiedName
             || isFloatType
             || isDoubleType
-            || symbol?.classId?.asFqNameString()?.removeSuffix("?") == "$godotUtilPackage.${GodotKotlinJvmTypes.realT}"
+            || symbol?.classId?.asFqNameString()?.removeSuffix("?") == Util.realT.qualifiedName
             || isBooleanType
             || isShortType
             || isStringType

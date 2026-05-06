@@ -3,12 +3,11 @@ package godot.intellij.plugin.analysis.kotlin.reference
 import com.intellij.psi.util.parentOfType
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.analysis.GodotProblem
-import godot.intellij.plugin.analysis.REGISTER_FUNCTION_ANNOTATION
 import godot.intellij.plugin.project.asClassId
 import godot.intellij.plugin.project.isOrInheritsType
 import godot.intellij.plugin.quickfix.TargetFunctionNotRegisteredQuickFix
-import godot.tools.common.constants.GodotKotlinJvmTypes
-import godot.tools.common.constants.godotCorePackage
+import godot.tools.common.names.Annotation
+import godot.tools.common.names.CoreType
 import org.jetbrains.kotlin.idea.references.KtSimpleNameReference
 import org.jetbrains.kotlin.idea.references.mainReference
 import org.jetbrains.kotlin.idea.util.findAnnotation
@@ -28,7 +27,7 @@ object SignalFunctionReferenceAnalyzer {
             ?.firstIsInstanceOrNull<KtSimpleNameReference>()
             ?.resolve() as? KtProperty
 
-        val isSignal = signalElement?.isOrInheritsType(asClassId("$godotCorePackage.${GodotKotlinJvmTypes.signal}")) == true
+        val isSignal = signalElement?.isOrInheritsType(CoreType.signal) == true
 
         if (isSignal) {
             val targetFunction = element
@@ -36,7 +35,7 @@ object SignalFunctionReferenceAnalyzer {
                 .mainReference
                 .resolve() as? KtNamedFunction
 
-            if (targetFunction != null && targetFunction.findAnnotation(asClassId(REGISTER_FUNCTION_ANNOTATION)) == null) {
+            if (targetFunction != null && targetFunction.findAnnotation(Annotation.registerFunction.asClassId()) == null) {
                 return listOf(
                     GodotProblem(
                         GodotPluginBundle.message("problem.signal.connection.connectedFunctionNotRegistered"),

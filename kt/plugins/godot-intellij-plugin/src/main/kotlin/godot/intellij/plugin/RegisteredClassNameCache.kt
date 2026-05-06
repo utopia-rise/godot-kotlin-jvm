@@ -5,7 +5,6 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiRecursiveElementWalkingVisitor
 import godot.intellij.plugin.project.getRegisteredClassName
-import org.jetbrains.kotlin.asJava.toLightClass
 import org.jetbrains.kotlin.psi.KtClass
 
 class RegisteredClassNameCache {
@@ -27,20 +26,33 @@ class RegisteredClassNameCache {
                 override fun visitElement(element: PsiElement) {
                     super.visitElement(element)
 
-                    val psiClass = when (element) {
-                        is KtClass -> element.toLightClass() ?: return
-                        is PsiClass -> element
+                    val registeredClass = when (element) {
+                        is KtClass -> element.getRegisteredClassName()
+                            ?.let { (fqName, registeredName) ->
+                                Triple(fqName, registeredName, element.containingFile.virtualFile)
+                            }
+
+                        is PsiClass -> (element as PsiClass).getRegisteredClassName()
+                            ?.let { (fqName, registeredName) ->
+                                Triple(fqName, registeredName, element.containingFile.virtualFile)
+                            }
+
                         else -> return
                     }
 
-                    val (fqName, registeredName) = psiClass.getRegisteredClassName() ?: run {
-                        fqNameToRegisteredName.remove(psiClass.qualifiedName)
+                    if (registeredClass == null) {
+                        when (element) {
+                            is KtClass -> element.fqName?.asString()?.let(fqNameToRegisteredName::remove)
+                            is PsiClass -> element.qualifiedName?.let(fqNameToRegisteredName::remove)
+                        }
                         return
                     }
+
+                    val (fqName, registeredName, vFile) = registeredClass
                     fqNameToRegisteredName[fqName] = RegisteredClassDataContainer(
                         fqName,
                         registeredName,
-                        element.containingFile.virtualFile
+                        vFile
                     )
                 }
             }
@@ -53,13 +65,13 @@ class RegisteredClassNameCache {
                 override fun visitElement(element: PsiElement) {
                     super.visitElement(element)
 
-                    val psiClass = when (element) {
-                        is KtClass -> element.toLightClass() ?: return
-                        is PsiClass -> element
+                    val fqName = when (element) {
+                        is KtClass -> element.fqName?.asString()
+                        is PsiClass -> element.qualifiedName
                         else -> return
                     }
 
-                    fqNameToRegisteredName.remove(psiClass.qualifiedName)
+                    fqName?.let(fqNameToRegisteredName::remove)
                 }
             }
         )

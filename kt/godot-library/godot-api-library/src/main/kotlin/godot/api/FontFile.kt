@@ -1278,8 +1278,7 @@ public open class FontFile : Font() {
    */
   public final fun getLanguageSupportOverrides(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getLanguageSupportOverridesPtr,
-        PACKED_STRING_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getLanguageSupportOverridesPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
@@ -1313,8 +1312,7 @@ public open class FontFile : Font() {
    */
   public final fun getScriptSupportOverrides(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getScriptSupportOverridesPtr,
-        PACKED_STRING_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getScriptSupportOverridesPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 

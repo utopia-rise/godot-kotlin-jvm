@@ -292,7 +292,7 @@ public object ClassDB : Object() {
     method: StringName,
     vararg args: Any?,
   ): Any? {
-    TransferContext.writeArguments(STRING_NAME to `class`, STRING_NAME to method,  *args.map { ANY to it }.toTypedArray())
+    TransferContext.writeArguments(STRING_NAME to `class`, STRING_NAME to method, *args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(ptr, MethodBindings.classCallStaticPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
@@ -305,8 +305,7 @@ public object ClassDB : Object() {
   public final fun classGetIntegerConstantList(`class`: StringName, noInheritance: Boolean = false):
       PackedStringArray {
     TransferContext.writeArguments(STRING_NAME to `class`, BOOL to noInheritance)
-    TransferContext.callMethod(ptr, MethodBindings.classGetIntegerConstantListPtr,
-        PACKED_STRING_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.classGetIntegerConstantListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 

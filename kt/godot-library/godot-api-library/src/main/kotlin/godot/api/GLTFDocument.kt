@@ -439,8 +439,7 @@ public open class GLTFDocument : Resource() {
     @JvmStatic
     public final fun getSupportedGltfExtensions(): PackedStringArray {
       TransferContext.writeArguments()
-      TransferContext.callMethod(0, MethodBindings.getSupportedGltfExtensionsPtr,
-          PACKED_STRING_ARRAY)
+      TransferContext.callMethod(0, MethodBindings.getSupportedGltfExtensionsPtr, PACKED_STRING_ARRAY)
       return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
     }
 

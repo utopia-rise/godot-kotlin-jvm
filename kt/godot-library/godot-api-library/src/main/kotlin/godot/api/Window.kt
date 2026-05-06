@@ -1484,8 +1484,7 @@ public open class Window : Viewport() {
 
   public final fun getMousePassthroughPolygon(): PackedVector2Array {
     TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMousePassthroughPolygonPtr,
-        PACKED_VECTOR2_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getMousePassthroughPolygonPtr, PACKED_VECTOR2_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 

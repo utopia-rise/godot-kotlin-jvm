@@ -2407,7 +2407,7 @@ public open class Node : Object() {
    * (`get_multiplayer().peer.get_connection_status() == CONNECTION_CONNECTED`).
    */
   public final fun rpc(method: StringName, vararg args: Any?): Error {
-    TransferContext.writeArguments(STRING_NAME to method,  *args.map { ANY to it }.toTypedArray())
+    TransferContext.writeArguments(STRING_NAME to method, *args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(ptr, MethodBindings.rpcPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -2425,7 +2425,7 @@ public open class Node : Object() {
     method: StringName,
     vararg args: Any?,
   ): Error {
-    TransferContext.writeArguments(LONG to peerId, STRING_NAME to method,  *args.map { ANY to it }.toTypedArray())
+    TransferContext.writeArguments(LONG to peerId, STRING_NAME to method, *args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(ptr, MethodBindings.rpcIdPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -2447,7 +2447,7 @@ public open class Node : Object() {
    * called.
    */
   public final fun callDeferredThreadGroup(method: StringName, vararg args: Any?): Any? {
-    TransferContext.writeArguments(STRING_NAME to method,  *args.map { ANY to it }.toTypedArray())
+    TransferContext.writeArguments(STRING_NAME to method, *args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(ptr, MethodBindings.callDeferredThreadGroupPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
@@ -2474,7 +2474,7 @@ public open class Node : Object() {
    * the call will become deferred. Otherwise, the call will go through directly.
    */
   public final fun callThreadSafe(method: StringName, vararg args: Any?): Any? {
-    TransferContext.writeArguments(STRING_NAME to method,  *args.map { ANY to it }.toTypedArray())
+    TransferContext.writeArguments(STRING_NAME to method, *args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(ptr, MethodBindings.callThreadSafePtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }

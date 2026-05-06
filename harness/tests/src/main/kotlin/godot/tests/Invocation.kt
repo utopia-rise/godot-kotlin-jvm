@@ -50,6 +50,7 @@ enum class TestEnum {
 	ENUM_2
 }
 
+
 @RegisterClass
 class Invocation : Node3D() {
 	@Export

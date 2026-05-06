@@ -2,6 +2,7 @@ package godot.codegen.generation.task
 
 import com.squareup.kotlinpoet.FileSpec
 import godot.codegen.models.traits.TypeGenerationTrait
+import godot.tools.common.names.fileSpecBuilder
 
 class FileTask(
     val type: TypeGenerationTrait
@@ -9,7 +10,7 @@ class FileTask(
 
     val builder = run {
         val className = type.className
-        FileSpec.builder(className.packageName, className.simpleName)
+        className.fileSpecBuilder()
     }
 
     val classes = subTask<EnrichedClassTask, _> { output -> builder.addType(output) }

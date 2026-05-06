@@ -157,8 +157,7 @@ public object Geometry2D : Object() {
     q2: Vector2,
   ): PackedVector2Array {
     TransferContext.writeArguments(VECTOR2 to p1, VECTOR2 to q1, VECTOR2 to p2, VECTOR2 to q2)
-    TransferContext.callMethod(ptr, MethodBindings.getClosestPointsBetweenSegmentsPtr,
-        PACKED_VECTOR2_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getClosestPointsBetweenSegmentsPtr, PACKED_VECTOR2_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 

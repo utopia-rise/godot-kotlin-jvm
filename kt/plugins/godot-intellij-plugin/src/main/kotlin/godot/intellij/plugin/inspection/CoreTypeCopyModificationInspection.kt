@@ -12,12 +12,10 @@ class CoreTypeCopyModificationInspection : GodotInspection() {
 
     override fun getShortName(): String = "CoreTypeCopyModification"
 
-    override fun checkElements(elements: List<PsiElement>, holder: ProblemsHolder, isOnTheFly: Boolean) {
-        elements.forEach { element ->
-            when (element) {
-                is KtBinaryExpression -> holder.registerProblems(CoreTypeCopyModificationAnalyzer.analyzeAssignment(element))
-                is KtCallExpression -> holder.registerProblems(CoreTypeCopyModificationAnalyzer.analyzeHelperCall(element))
-            }
+    override fun checkElement(element: PsiElement, holder: ProblemsHolder, isOnTheFly: Boolean) {
+        when (element) {
+            is KtBinaryExpression -> holder.registerProblems(CoreTypeCopyModificationAnalyzer.analyzeAssignment(element))
+            is KtCallExpression -> holder.registerProblems(CoreTypeCopyModificationAnalyzer.analyzeHelperCall(element))
         }
     }
 }

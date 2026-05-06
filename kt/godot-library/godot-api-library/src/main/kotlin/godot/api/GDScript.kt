@@ -40,7 +40,7 @@ public open class GDScript : Script() {
    * ```
    */
   public final fun new(vararg args: Any?): Any? {
-    TransferContext.writeArguments( *args.map { ANY to it }.toTypedArray())
+    TransferContext.writeArguments(*args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(ptr, MethodBindings.newPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }

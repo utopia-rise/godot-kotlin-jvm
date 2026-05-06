@@ -39,11 +39,12 @@ object PropertyHintStringGeneratorProvider {
             )
         }
 
-        return when(hintAnnotations.firstOrNull()) {
+        return when (hintAnnotations.firstOrNull()) {
             is ColorNoAlphaHintAnnotation -> ColorNoAlphaHintStringGenerator(registeredProperty, settings)
             is DirHintAnnotation -> DirHintStringGenerator(registeredProperty, settings)
             is EnumFlagHintStringAnnotation,
             is EnumHintStringAnnotation -> EnumHintStringGenerator(registeredProperty, settings)
+
             is EnumListHintStringAnnotation -> ArrayAndDictionaryHintStringGenerator(registeredProperty, settings)
             is ExpEasingHintAnnotation -> ExpEasingHintStringGenerator(registeredProperty, settings)
             is FileHintAnnotation -> FileHintStringGenerator(registeredProperty, settings)

@@ -830,8 +830,7 @@ public object NavigationServer3D : Object() {
   @JvmStatic
   public final fun regionGetBounds(region: RID): AABB {
     TransferContext.writeArguments(_RID to region)
-    TransferContext.callMethod(ptr, MethodBindings.regionGetBoundsPtr,
-        godot.core.VariantParser.AABB)
+    TransferContext.callMethod(ptr, MethodBindings.regionGetBoundsPtr, godot.core.VariantParser.AABB)
     return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 

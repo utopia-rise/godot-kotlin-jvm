@@ -12,7 +12,11 @@ class ExpEasingHintStringGenerator(registeredProperty: RegisteredProperty, setti
     PropertyHintStringGenerator<ExpEasingHintAnnotation>(registeredProperty, settings) {
     override fun getHintString(): String {
         if (!registeredProperty.type.fqName.fqNameIsJvmType(JvmType.FLOAT, JvmType.DOUBLE)) {
-            throw WrongAnnotationUsageException(registeredProperty, propertyHintAnnotation, setOf(*JvmType.FLOAT.fqName.toTypedArray(), *JvmType.DOUBLE.fqName.toTypedArray()))
+            throw WrongAnnotationUsageException(
+                registeredProperty,
+                propertyHintAnnotation,
+                setOf(*JvmType.FLOAT.fqName.toTypedArray(), *JvmType.DOUBLE.fqName.toTypedArray())
+            )
         }
 
         if (propertyHintAnnotation == null) {

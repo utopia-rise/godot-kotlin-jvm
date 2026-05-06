@@ -1322,8 +1322,7 @@ public open class FileAccess internal constructor() : RefCounted() {
     @JvmStatic
     public final fun getExtendedAttributesList(`file`: String): PackedStringArray {
       TransferContext.writeArguments(STRING to file)
-      TransferContext.callMethod(0, MethodBindings.getExtendedAttributesListPtr,
-          PACKED_STRING_ARRAY)
+      TransferContext.callMethod(0, MethodBindings.getExtendedAttributesListPtr, PACKED_STRING_ARRAY)
       return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
     }
   }

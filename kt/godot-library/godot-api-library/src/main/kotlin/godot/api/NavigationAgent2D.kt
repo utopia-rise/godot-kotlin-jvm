@@ -983,8 +983,7 @@ public open class NavigationAgent2D : Node() {
    */
   public final fun getCurrentNavigationPath(): PackedVector2Array {
     TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCurrentNavigationPathPtr,
-        PACKED_VECTOR2_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getCurrentNavigationPathPtr, PACKED_VECTOR2_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 

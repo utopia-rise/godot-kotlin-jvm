@@ -3,11 +3,11 @@ package godot.intellij.plugin.analysis.kotlin
 import com.intellij.codeInspection.ProblemHighlightType
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.analysis.GodotProblem
-import godot.intellij.plugin.analysis.RPC_ANNOTATION
 import godot.intellij.plugin.project.asClassId
 import godot.intellij.plugin.quickfix.TransferModeIgnoresChannelQuickFix
-import godot.tools.common.constants.GodotKotlinJvmTypes
-import godot.tools.common.constants.godotAnnotationPackage
+import godot.tools.common.names.Annotation
+import godot.tools.common.names.API
+import godot.tools.common.names.qualifiedName
 import org.jetbrains.kotlin.idea.base.psi.kotlinFqName
 import org.jetbrains.kotlin.idea.references.mainReference
 import org.jetbrains.kotlin.idea.util.findAnnotation
@@ -19,7 +19,7 @@ object RpcAnnotationAnalyzer {
     private val transferModeIgnoresChannelQuickFix = TransferModeIgnoresChannelQuickFix()
 
     fun analyze(element: KtAnnotated): List<GodotProblem> {
-        val rpcAnnotation = element.findAnnotation(asClassId(RPC_ANNOTATION)) ?: return emptyList()
+        val rpcAnnotation = element.findAnnotation(Annotation.rpc.asClassId()) ?: return emptyList()
         val valueArgumentList = rpcAnnotation.valueArgumentList ?: return emptyList()
 
         val transferModeValueArgument = valueArgumentList
@@ -33,7 +33,7 @@ object RpcAnnotationAnalyzer {
             ?.mainReference
             ?.resolve()
             ?.kotlinFqName
-            ?.asString() == "$godotAnnotationPackage.${GodotKotlinJvmTypes.transferMode}.UNRELIABLE_ORDERED"
+            ?.asString() == API.transferModeUnreliableOrdered.qualifiedName
 
         val channelElement = valueArgumentList
             .arguments

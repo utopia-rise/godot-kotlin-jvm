@@ -1,5 +1,6 @@
 package godot.intellij.plugin.analysis.jvm
 
+import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiField
 import com.intellij.psi.PsiTypeParameterListOwner
 import godot.intellij.plugin.GodotPluginBundle
@@ -12,7 +13,10 @@ object GenericRegistrationAnalyzer {
             typeParameterListOwner.typeParameters.isNotEmpty() -> listOf(
                 GodotProblem(
                     GodotPluginBundle.message("problem.general.cannotRegisterGenerics"),
-                    typeParameterListOwner.typeParameterList ?: typeParameterListOwner.navigationElement
+                    typeParameterListOwner.physicalAnchor(
+                        typeParameterListOwner.typeParameterList,
+                        typeParameterListOwner.navigationElement
+                    )
                 )
             )
 
@@ -42,5 +46,11 @@ object GenericRegistrationAnalyzer {
 
             else -> emptyList()
         }
+    }
+
+    private fun PsiTypeParameterListOwner.physicalAnchor(vararg candidates: PsiElement?): PsiElement {
+        return candidates.firstOrNull { candidate -> candidate?.isPhysical == true }
+            ?: candidates.firstOrNull { candidate -> candidate?.isValid == true }
+            ?: this
     }
 }

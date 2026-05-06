@@ -1,6 +1,5 @@
-import versioninfo.fullBuildVersion
 import versioninfo.VersionInfoExtension
-import org.gradle.kotlin.dsl.configure
+import versioninfo.fullBuildVersion
 
 plugins {
     alias(libs.plugins.kotlin.jvm)

@@ -2,8 +2,6 @@ package godot.codegen.exceptions
 
 import godot.codegen.models.Method
 import godot.codegen.models.Signal
-import godot.codegen.models.enriched.EnrichedMethod
-import godot.codegen.models.enriched.EnrichedSignal
 import godot.common.constants.Constraints
 
 class TooManyMethodArgument(method: Method) :

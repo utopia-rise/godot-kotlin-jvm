@@ -2,7 +2,7 @@ package godot.codegen.generation.task
 
 import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.FunSpec
-import godot.tools.common.constants.godotPackage
+import godot.tools.common.names.godotPackage
 
 class RegistrationTask(
 ) : GenerationTask<FileSpec>() {

@@ -1,18 +1,15 @@
 package godot.codegen.generation.rule
 
-import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.TypeSpec
 import com.squareup.kotlinpoet.TypeVariableName
-import com.squareup.kotlinpoet.asClassName
 import godot.codegen.constants.PrimitiveNativeStructures
 import godot.codegen.generation.GenerationContext
 import godot.codegen.generation.task.ApiTask
 import godot.codegen.generation.task.EnrichedClassTask
 import godot.codegen.generation.task.FileTask
-import godot.codegen.models.traits.GenerationType
 import godot.codegen.models.ApiType
 import godot.codegen.models.EnumValue
 import godot.codegen.models.NativeStructure
@@ -21,15 +18,16 @@ import godot.codegen.models.enriched.EnrichedMethod
 import godot.codegen.models.enriched.EnrichedNativeStructure
 import godot.codegen.models.enriched.EnrichedProperty
 import godot.codegen.models.enriched.toEnriched
+import godot.codegen.models.traits.GenerationType
 import godot.codegen.rpc.RpcFunctionMode
-import godot.tools.common.constants.GODOT_ERROR
-import godot.tools.common.constants.GodotKotlinJvmTypes
-import godot.tools.common.constants.GodotTypes
-import godot.tools.common.constants.TO_GODOT_NAME_UTIL_FUNCTION
+import godot.tools.common.names.API
+import godot.tools.common.names.CoreType
+import godot.tools.common.names.Function
+import godot.tools.common.names.Kotlin
 
 class UseConnectFlagRule : GodotApiRule<ApiTask>() {
     override fun apply(task: ApiTask, context: GenerationContext) {
-        val objectClassIndex = context.api.classes.indexOfFirst { it.name == GodotKotlinJvmTypes.obj }
+        val objectClassIndex = context.api.classes.indexOfFirst { it.name == API.`object`.simpleName }
         val objectRawClass = context.api.classes[objectClassIndex]
 
         val connectEnumIndex = objectRawClass.enums!!.indexOfFirst { it.name == "ConnectFlags" }
@@ -53,7 +51,7 @@ class UseConnectFlagRule : GodotApiRule<ApiTask>() {
         val flagArgumentIndex = connectMethod.arguments!!.indexOfFirst { it.name == "flags" }
         val flagArgument = connectMethod.arguments[flagArgumentIndex]
 
-        val newArgument = flagArgument.copy(type="enum::Object.ConnectFlags", meta = null)
+        val newArgument = flagArgument.copy(type = "enum::Object.ConnectFlags", meta = null)
         val newMethod = connectMethod.copy(arguments = connectMethod.arguments.dropLast(1) + newArgument)
         val newMethodList = objectRawClass.methods.toMutableList()
         newMethodList[connectMethodIndex] = newMethod
@@ -127,7 +125,7 @@ class EnrichedClassRule : GodotApiRule<ApiTask>() {
         context.classMap += classMap
         context.classList += classList
 
-        val coreSeeds = setOf(GodotTypes.godotObject, GodotTypes.refCounted)
+        val coreSeeds = setOf(API.`object`.simpleName, API.refCounted.simpleName)
         coreSeeds.forEach { name ->
             classMap[name]?.setAsCoreModule()
         }
@@ -140,7 +138,7 @@ class EnrichedClassRule : GodotApiRule<ApiTask>() {
         if (getter == null) return
         if (getter.type.isVoid() || getter.arguments.size > 1 || getter.isVirtual) return
         if (!property.isIndexed && getter.arguments.size == 1) return
-        if (getter.arguments.size == 1 && !getter.arguments[0].type.isEnum() && getter.arguments[0].type.identifier != GodotTypes.int) return
+        if (getter.arguments.size == 1 && !getter.arguments[0].type.isEnum() && getter.arguments[0].type.identifier != CoreType.intIdentifier) return
         property.setGetter(getter)
     }
 
@@ -148,7 +146,7 @@ class EnrichedClassRule : GodotApiRule<ApiTask>() {
         if (setter == null) return
         if (!setter.type.isVoid() || setter.arguments.size > 2 || setter.isVirtual) return
         if (!property.isIndexed && setter.arguments.size == 2) return
-        if (setter.arguments.size == 2 && !setter.arguments[0].type.isEnum() && setter.arguments[0].type.identifier != GodotTypes.int) return
+        if (setter.arguments.size == 2 && !setter.arguments[0].type.isEnum() && setter.arguments[0].type.identifier != CoreType.intIdentifier) return
         property.setSetter(setter)
     }
 
@@ -222,10 +220,10 @@ class ApiRule : GodotApiRule<ApiTask>() {
 class ObjectRule : GodotApiRule<EnrichedClassTask>() {
     override fun apply(task: EnrichedClassTask, context: GenerationContext) = with(task.builder) {
         val type = task.clazz
-        if (type.identifier == GodotTypes.node) {
+        if (type.identifier == API.node.simpleName) {
             generateTypesafeRpc()
         }
-        if (type.identifier == GodotKotlinJvmTypes.refCounted) {
+        if (type.identifier == API.refCounted.simpleName) {
             preventOnDestroyUsage()
         }
     }
@@ -249,17 +247,17 @@ class ObjectRule : GodotApiRule<EnrichedClassTask>() {
                 }
             }
 
-            val kFunctionClassName = ClassName("kotlin.reflect", "KFunction$i")
+            val kFunctionClassName = Kotlin.kFunction(i)
                 .parameterizedBy(*kFunctionTypeParameters.toTypedArray(), TypeVariableName.invoke("*"))
 
             RpcFunctionMode.entries.forEach { rpcFunctionMode ->
                 val rpcFunSpec = FunSpec
                     .builder(rpcFunctionMode.functionName)
-                    .returns(GODOT_ERROR)
+                    .returns(CoreType.error)
                     .addModifiers(KModifier.INLINE)
 
                 if (rpcFunctionMode.hasId) {
-                    rpcFunSpec.addParameter("id", Long::class.asClassName())
+                    rpcFunSpec.addParameter("id", Long::class)
                 }
 
                 rpcFunSpec.addParameter("function", TypeVariableName.invoke("FUNCTION"))
@@ -279,7 +277,7 @@ class ObjectRule : GodotApiRule<EnrichedClassTask>() {
                     templateString += ", $argParamName"
                 }
                 templateString += ")"
-                rpcFunSpec.addStatement(templateString, TO_GODOT_NAME_UTIL_FUNCTION)
+                rpcFunSpec.addStatement(templateString, Function.toGodotName)
 
                 rpcFunSpec.addTypeVariable(TypeVariableName.invoke("FUNCTION", kFunctionClassName).copy(reified = true))
                 addFunction(rpcFunSpec.build())
@@ -287,3 +285,4 @@ class ObjectRule : GodotApiRule<EnrichedClassTask>() {
         }
     }
 }
+

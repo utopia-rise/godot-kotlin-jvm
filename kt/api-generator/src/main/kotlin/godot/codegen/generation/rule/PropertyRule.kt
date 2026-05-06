@@ -12,12 +12,11 @@ import godot.codegen.generation.GenerationContext
 import godot.codegen.generation.task.EnrichedClassTask
 import godot.codegen.generation.task.EnrichedConstantTask
 import godot.codegen.generation.task.EnrichedPropertyTask
-import godot.codegen.models.traits.addKdoc
 import godot.codegen.models.enriched.EnrichedClass
 import godot.codegen.models.enriched.EnrichedProperty
-import godot.tools.common.constants.CORE_TYPE_HELPER
-import godot.tools.common.constants.CORE_TYPE_LOCAL_COPY
-import godot.tools.common.constants.GodotTypes.localCopyCoreTypesMap
+import godot.codegen.models.traits.addKdoc
+import godot.tools.common.names.API
+import godot.tools.common.names.CoreType
 
 class PropertyRule : GodotApiRule<EnrichedPropertyTask>() {
     override fun apply(task: EnrichedPropertyTask, context: GenerationContext) = configure(task.builder) {
@@ -127,7 +126,9 @@ class LocalCopyHelperRule : GodotApiRule<EnrichedClassTask>() {
             val property = propertyTask.property
             if (!property.hasSetter || !property.type.isLocalCopyCoreTypes()) continue
 
-            propertyTask.builder.addAnnotation(CORE_TYPE_LOCAL_COPY)
+            propertyTask.builder.addAnnotation(
+                AnnotationSpec.builder(API.coreTypeLocalCopy).build()
+            )
             propertyTask.builder.addKdoc(
                 """|
                    |
@@ -140,7 +141,7 @@ class LocalCopyHelperRule : GodotApiRule<EnrichedClassTask>() {
 
             if (!property.type.isLocalIndexedCopyCoreTypes()) continue
 
-            val className = localCopyCoreTypesMap[property.type.identifier]!!
+            val className = CoreType.indexedLocalCopyCoreTypeElementMap[property.type.identifier]!!
             addFunction(getMutateEachHelper(property, className))
         }
     }
@@ -161,7 +162,7 @@ class LocalCopyHelperRule : GodotApiRule<EnrichedClassTask>() {
                     )
                 ).build()
             )
-            .addAnnotation(CORE_TYPE_HELPER)
+            .addAnnotation(AnnotationSpec.builder(API.coreTypeHelper).build())
             .returns(parameterTypeName)
             .addStatement(
                 """return·$parameterName.apply·{
@@ -200,7 +201,7 @@ class LocalCopyHelperRule : GodotApiRule<EnrichedClassTask>() {
 
         val propertyFunSpec = FunSpec.builder("${parameterName}MutateEach").addModifiers(KModifier.FINAL)
 
-        val lambdaType =  ParameterSpec.builder(
+        val lambdaType = ParameterSpec.builder(
             "block",
             LambdaTypeName.get(
                 parameters = listOf(
@@ -208,11 +209,12 @@ class LocalCopyHelperRule : GodotApiRule<EnrichedClassTask>() {
                     ParameterSpec.builder("value", elementType).build()
                 ),
                 returnType = UNIT
-            )).build()
+            )
+        ).build()
 
         return propertyFunSpec
             .addParameter(lambdaType)
-            .addAnnotation(CORE_TYPE_HELPER)
+            .addAnnotation(AnnotationSpec.builder(API.coreTypeHelper).build())
             .returns(parameterTypeName)
             .addStatement(
                 """return·$parameterName.apply·{
@@ -250,3 +252,4 @@ class ConstantRule : GodotApiRule<EnrichedConstantTask>() {
         build()
     }
 }
+

@@ -13,9 +13,7 @@ import godot.entrygenerator.generator.SignalRegistrationGenerator
 import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.settings.Settings
 import godot.tools.common.constants.GENERATED_COMMENT
-import godot.tools.common.constants.GodotKotlinJvmTypes
-import godot.tools.common.constants.godotEntryBasePackage
-import godot.tools.common.constants.godotRegistrationPackage
+import godot.tools.common.names.Registration
 import java.io.BufferedWriter
 
 class ClassRegistrarFileBuilder(
@@ -39,7 +37,7 @@ class ClassRegistrarFileBuilder(
     private val registerClassControlFlow = FunSpec
         .builder("register")
         .addModifiers(KModifier.OVERRIDE)
-        .addParameter("registry", ClassName(godotRegistrationPackage, GodotKotlinJvmTypes.classRegistry))
+        .addParameter("registry", Registration.classRegistry)
         .beginControlFlow("with(registry)") //START: with registry
         .let { funSpecBuilder ->
             if (!registeredClass.isAbstract) {
@@ -68,7 +66,7 @@ class ClassRegistrarFileBuilder(
 
     fun build(): Pair<String, Array<Any>> {
         classRegistrarBuilder.addSuperinterface(
-            ClassName(godotRegistrationPackage, GodotKotlinJvmTypes.classRegistrar)
+            Registration.classRegistrar
         )
 
         if (!registeredClass.isAbstract) {
@@ -91,7 +89,7 @@ class ClassRegistrarFileBuilder(
 
         registrarAppendableProvider(registeredClass).use { bufferedWriter ->
             FileSpec
-                .builder(godotEntryBasePackage, "${registeredClassName}Entry")
+                .builder(Registration.generatedRegistrar(registeredClassName).packageName, "${registeredClassName}Entry")
                 .addFileComment(GENERATED_COMMENT)
                 .addType(classRegistrarBuilder.build())
                 .build()
@@ -99,10 +97,8 @@ class ClassRegistrarFileBuilder(
         }
 
         return "%T().register(this)" to arrayOf(
-            ClassName(
-                godotEntryBasePackage,
-                "${registeredClassName}Registrar"
-            )
+            Registration.generatedRegistrar(registeredClassName)
         )
     }
 }
+

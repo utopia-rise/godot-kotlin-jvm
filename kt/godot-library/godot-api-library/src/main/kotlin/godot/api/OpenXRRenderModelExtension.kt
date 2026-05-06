@@ -118,8 +118,7 @@ public open class OpenXRRenderModelExtension : OpenXRExtensionWrapper() {
    */
   public final fun renderModelGetSubactionPaths(renderModel: RID): PackedStringArray {
     TransferContext.writeArguments(_RID to renderModel)
-    TransferContext.callMethod(ptr, MethodBindings.renderModelGetSubactionPathsPtr,
-        PACKED_STRING_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.renderModelGetSubactionPathsPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
@@ -185,8 +184,7 @@ public open class OpenXRRenderModelExtension : OpenXRExtensionWrapper() {
   public final fun renderModelGetAnimatableNodeTransform(renderModel: RID, index: Long):
       Transform3D {
     TransferContext.writeArguments(_RID to renderModel, LONG to index)
-    TransferContext.callMethod(ptr, MethodBindings.renderModelGetAnimatableNodeTransformPtr,
-        TRANSFORM3D)
+    TransferContext.callMethod(ptr, MethodBindings.renderModelGetAnimatableNodeTransformPtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 

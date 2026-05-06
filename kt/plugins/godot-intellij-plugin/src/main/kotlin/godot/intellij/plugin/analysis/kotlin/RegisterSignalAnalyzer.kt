@@ -3,13 +3,12 @@ package godot.intellij.plugin.analysis.kotlin
 import com.intellij.codeInspection.ProblemHighlightType
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.analysis.GodotProblem
-import godot.intellij.plugin.analysis.REGISTER_SIGNAL_ANNOTATION
 import godot.intellij.plugin.analysis.jvm.GenericRegistrationAnalyzer
 import godot.intellij.plugin.project.asClassId
 import godot.intellij.plugin.project.isOrInheritsType
 import godot.intellij.plugin.quickfix.RegisterSignalMutabilityQuickFix
-import godot.tools.common.constants.GodotKotlinJvmTypes
-import godot.tools.common.constants.godotCorePackage
+import godot.tools.common.names.Annotation
+import godot.tools.common.names.CoreType
 import org.jetbrains.kotlin.asJava.toLightElements
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.psi.KtProperty
@@ -19,7 +18,7 @@ object RegisterSignalAnalyzer {
     private val mutabilityQuickFix = RegisterSignalMutabilityQuickFix()
 
     fun analyze(property: KtProperty): List<GodotProblem> {
-        if (property.findAnnotation(asClassId(REGISTER_SIGNAL_ANNOTATION)) == null) return emptyList()
+        if (property.findAnnotation(Annotation.registerSignal.asClassId()) == null) return emptyList()
 
         return buildList {
             addAll(GenericRegistrationAnalyzer.analyze(property.toLightElements().firstIsInstance()))
@@ -33,7 +32,7 @@ object RegisterSignalAnalyzer {
                     )
                 )
             }
-            if (!property.isOrInheritsType(asClassId("$godotCorePackage.${GodotKotlinJvmTypes.signal}"))) {
+            if (!property.isOrInheritsType(CoreType.signal)) {
                 add(
                     GodotProblem(
                         GodotPluginBundle.message("problem.signal.wrongType"),

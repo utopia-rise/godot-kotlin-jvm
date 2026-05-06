@@ -5,36 +5,14 @@ import com.squareup.kotlinpoet.BOOLEAN
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.DOUBLE
 import com.squareup.kotlinpoet.LONG
+import com.squareup.kotlinpoet.MemberName
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.STRING
 import com.squareup.kotlinpoet.TypeName
 import com.squareup.kotlinpoet.UNIT
-import godot.tools.common.constants.GODOT_ARRAY
-import godot.tools.common.constants.GODOT_CALLABLE
-import godot.tools.common.constants.GODOT_DICTIONARY
-import godot.tools.common.constants.GodotTypes
-import godot.tools.common.constants.VARIANT_CASTER_ANY
-import godot.tools.common.constants.VARIANT_PARSER_ARRAY
-import godot.tools.common.constants.VARIANT_PARSER_BOOL
-import godot.tools.common.constants.VARIANT_PARSER_DOUBLE
-import godot.tools.common.constants.VARIANT_PARSER_LONG
-import godot.tools.common.constants.VARIANT_PARSER_NIL
-import godot.tools.common.constants.VARIANT_PARSER_NODE_PATH
-import godot.tools.common.constants.VARIANT_PARSER_OBJECT
-import godot.tools.common.constants.VARIANT_PARSER_PACKED_BYTE_ARRAY
-import godot.tools.common.constants.VARIANT_PARSER_PACKED_COLOR_ARRAY
-import godot.tools.common.constants.VARIANT_PARSER_PACKED_FLOAT_32_ARRAY
-import godot.tools.common.constants.VARIANT_PARSER_PACKED_FLOAT_64_ARRAY
-import godot.tools.common.constants.VARIANT_PARSER_PACKED_INT_32_ARRAY
-import godot.tools.common.constants.VARIANT_PARSER_PACKED_INT_64_ARRAY
-import godot.tools.common.constants.VARIANT_PARSER_PACKED_STRING_ARRAY
-import godot.tools.common.constants.VARIANT_PARSER_PACKED_VECTOR2_ARRAY
-import godot.tools.common.constants.VARIANT_PARSER_PACKED_VECTOR3_ARRAY
-import godot.tools.common.constants.VARIANT_PARSER_STRING_NAME
-import godot.tools.common.constants.VARIANT_PARSER__RID
-import godot.tools.common.constants.godotApiPackage
-import godot.tools.common.constants.godotCorePackage
-import godot.tools.common.constants.variantParserPackage
+import godot.tools.common.names.API
+import godot.tools.common.names.CoreType
+import godot.tools.common.names.VariantConverter
 import java.util.*
 
 enum class Nature {
@@ -53,70 +31,66 @@ interface TypeGenerationTrait {
     val nature: Nature
     val className: ClassName
 
-    fun getVariantConverter() = when {
-        isVoid() -> VARIANT_PARSER_NIL
-        isEnum() -> VARIANT_PARSER_LONG
-        isBitField() -> VARIANT_PARSER_LONG
-        identifier == GodotTypes.bool -> VARIANT_PARSER_BOOL
-        identifier == GodotTypes.int -> VARIANT_PARSER_LONG
-        identifier == GodotTypes.float -> VARIANT_PARSER_DOUBLE
-        identifier == GodotTypes.nodePath -> VARIANT_PARSER_NODE_PATH
-        identifier == GodotTypes.stringName -> VARIANT_PARSER_STRING_NAME
-        identifier == GodotTypes.rid -> VARIANT_PARSER__RID
-        identifier == GodotTypes.array || isTypedArray() -> VARIANT_PARSER_ARRAY
-        identifier == GodotTypes.packedByteArray -> VARIANT_PARSER_PACKED_BYTE_ARRAY
-        identifier == GodotTypes.packedInt32Array -> VARIANT_PARSER_PACKED_INT_32_ARRAY
-        identifier == GodotTypes.packedInt64Array -> VARIANT_PARSER_PACKED_INT_64_ARRAY
-        identifier == GodotTypes.packedFloat32Array -> VARIANT_PARSER_PACKED_FLOAT_32_ARRAY
-        identifier == GodotTypes.packedFloat64Array -> VARIANT_PARSER_PACKED_FLOAT_64_ARRAY
-        identifier == GodotTypes.packedStringArray -> VARIANT_PARSER_PACKED_STRING_ARRAY
-        identifier == GodotTypes.packedVector2Array -> VARIANT_PARSER_PACKED_VECTOR2_ARRAY
-        identifier == GodotTypes.packedVector3Array -> VARIANT_PARSER_PACKED_VECTOR3_ARRAY
-        identifier == GodotTypes.packedColorArray -> VARIANT_PARSER_PACKED_COLOR_ARRAY
-        identifier == GodotTypes.variant -> VARIANT_CASTER_ANY
-        isCoreType() || isPrimitive() -> ClassName(variantParserPackage, identifier.uppercase(Locale.US))
-        else -> VARIANT_PARSER_OBJECT
+    fun getVariantConverter(): MemberName = when {
+        isVoid() -> VariantConverter.nil
+        isEnum() -> VariantConverter.long
+        isBitField() -> VariantConverter.long
+        identifier == CoreType.boolIdentifier -> VariantConverter.bool
+        identifier == CoreType.intIdentifier -> VariantConverter.long
+        identifier == CoreType.floatIdentifier -> VariantConverter.double
+        identifier == CoreType.nodePath.simpleName -> VariantConverter.nodePath
+        identifier == CoreType.stringName.simpleName -> VariantConverter.stringName
+        identifier == CoreType.rid.simpleName -> VariantConverter.rid
+        identifier == CoreType.arrayIdentifier || isTypedArray() -> VariantConverter.array
+        identifier == CoreType.packedByteArray.simpleName -> VariantConverter.packedByteArray
+        identifier == CoreType.packedInt32Array.simpleName -> VariantConverter.packedInt32Array
+        identifier == CoreType.packedInt64Array.simpleName -> VariantConverter.packedInt64Array
+        identifier == CoreType.packedFloat32Array.simpleName -> VariantConverter.packedFloat32Array
+        identifier == CoreType.packedFloat64Array.simpleName -> VariantConverter.packedFloat64Array
+        identifier == CoreType.packedStringArray.simpleName -> VariantConverter.packedStringArray
+        identifier == CoreType.packedVector2Array.simpleName -> VariantConverter.packedVector2Array
+        identifier == CoreType.packedVector3Array.simpleName -> VariantConverter.packedVector3Array
+        identifier == CoreType.packedColorArray.simpleName -> VariantConverter.packedColorArray
+        identifier == CoreType.variantIdentifier -> VariantConverter.any
+        isCoreType() || isPrimitive() -> VariantConverter.parserName(identifier.uppercase(Locale.US))
+        else -> VariantConverter.obj
     }
-
 
     fun isVoid() = nature == Nature.VOID
     fun isCoreType() = nature == Nature.CORE || nature == Nature.TYPED_ARRAY
     fun isPrimitive() = nature == Nature.PRIMITIVE
-    fun isLocalCopyCoreTypes() = GodotTypes.localCopyCoreTypes.find { s -> s == identifier } != null
-    fun isLocalIndexedCopyCoreTypes() = GodotTypes.indexedLocalCopyCoreTypes.find { s -> s == identifier } != null
+    fun isLocalCopyCoreTypes() = CoreType.isLocalCopyCoreTypeIdentifier(identifier)
+    fun isLocalIndexedCopyCoreTypes() = CoreType.isLocalIndexedCopyCoreTypeIdentifier(identifier)
     fun isEnum() = nature == Nature.ENUM
     fun isBitField() = nature == Nature.BITFIELD
     fun isTypedArray() = nature == Nature.TYPED_ARRAY
     fun isObjectSubClass() = nature == Nature.CLASS
-    fun isNullable() = isObjectSubClass() || identifier == GodotTypes.variant
+    fun isNullable() = isObjectSubClass() || identifier == CoreType.variantIdentifier
 }
 
 fun ClassName.Companion.from(type: TypeGenerationTrait) = when {
     type.isVoid() -> UNIT
-    type.identifier.startsWith("Signal") -> ClassName(godotCorePackage, type.identifier)
+        type.identifier.startsWith("Signal") -> CoreType.signal(type.identifier.removePrefix("Signal").toInt())
     type.isEnum() || type.isBitField() -> {
         val containerAndEnum = type.identifier.split('.')
-        val enumPackage = if (containerAndEnum.size == 1 || containerAndEnum[0] in GodotTypes.coreTypes) {
-            godotCorePackage
+        val enumPackage = if (containerAndEnum.size == 1 || CoreType.isCoreTypeIdentifier(containerAndEnum[0])) {
+            CoreType.color.packageName
         } else {
-            godotApiPackage
+            API.`object`.packageName
         }
-        ClassName(
-            enumPackage,
-            containerAndEnum
-        )
+        ClassName(enumPackage, containerAndEnum)
     }
 
-    type.identifier == GodotTypes.bool -> BOOLEAN
-    type.identifier == GodotTypes.int -> LONG
-    type.identifier == GodotTypes.float -> DOUBLE
-    type.identifier == GodotTypes.string -> STRING
-    type.identifier == GodotTypes.variant -> ANY
-    type.identifier == GodotTypes.callable -> GODOT_CALLABLE
-    type.identifier == GodotTypes.array || type.isTypedArray() -> GODOT_ARRAY
-    type.identifier == GodotTypes.dictionary -> GODOT_DICTIONARY
-    type.isCoreType() -> ClassName(godotCorePackage, type.identifier)
-    else -> ClassName(godotApiPackage, type.identifier)
+    type.identifier == CoreType.boolIdentifier -> BOOLEAN
+    type.identifier == CoreType.intIdentifier -> LONG
+    type.identifier == CoreType.floatIdentifier -> DOUBLE
+    type.identifier == CoreType.string.simpleName -> STRING
+    type.identifier == CoreType.variantIdentifier -> ANY
+    type.identifier == CoreType.callable.simpleName -> CoreType.callable
+    type.identifier == CoreType.arrayIdentifier || type.isTypedArray() -> CoreType.variantArray
+    type.identifier == CoreType.dictionary.simpleName -> CoreType.dictionary
+    type.isCoreType() -> ClassName(CoreType.color.packageName, type.identifier)
+    else -> ClassName(API.`object`.packageName, type.identifier)
 }
 
 fun TypeName.Companion.from(type: TypeGenerationTrait, genericParameters: List<TypeName> = emptyList(), isNullable: Boolean? = null): TypeName {
@@ -124,18 +98,18 @@ fun TypeName.Companion.from(type: TypeGenerationTrait, genericParameters: List<T
 
     return when {
         type.identifier.startsWith("Signal") && !type.identifier.endsWith("0") -> {
-            val nonNullableGenericParameters = genericParameters.map { it.copy(nullable = false)} // We assume generic parameters are always non-nullable
+            val nonNullableGenericParameters = genericParameters.map { it.copy(nullable = false) }
             className.parameterizedBy(nonNullableGenericParameters)
         }
 
         type.isTypedArray() -> {
-            val genericType = type.identifier.removePrefix("${GodotTypes.typedArray}::")
+            val genericType = type.identifier.removePrefix("${CoreType.typedArrayIdentifier}::")
             val subType = GenerationType(genericType)
             className.parameterizedBy(from(subType).copy(nullable = false))
         }
 
-        type.identifier == GodotTypes.array -> className.parameterizedBy(ANY.copy(nullable = true))
-        type.identifier == GodotTypes.dictionary -> className.parameterizedBy(ANY.copy(nullable = true), ANY.copy(nullable = true))
+        type.identifier == CoreType.arrayIdentifier -> className.parameterizedBy(ANY.copy(nullable = true))
+        type.identifier == CoreType.dictionary.simpleName -> className.parameterizedBy(ANY.copy(nullable = true), ANY.copy(nullable = true))
         else -> className
     }.copy(nullable = isNullable ?: type.isNullable())
 }
@@ -154,15 +128,12 @@ class GenerationType(rawIdentifier: String) : TypeGenerationTrait {
 
     private fun getNature(identifier: String) = when {
         identifier == "void" -> Nature.VOID
-        GodotTypes.primitives.find { s -> s == identifier } != null -> Nature.PRIMITIVE
+        CoreType.primitiveIdentifiers.any { it == identifier } -> Nature.PRIMITIVE
         identifier.startsWith("Signal") -> Nature.CORE
-        GodotTypes.coreTypes.find { s -> s == identifier } != null -> Nature.CORE
+        CoreType.isCoreTypeIdentifier(identifier) -> Nature.CORE
         identifier.startsWith(enumPrefix) -> Nature.ENUM
         identifier.startsWith(bitfieldPrefix) -> Nature.BITFIELD
-        identifier.startsWith(GodotTypes.typedArray) -> Nature.TYPED_ARRAY
+        identifier.startsWith(CoreType.typedArrayIdentifier) -> Nature.TYPED_ARRAY
         else -> Nature.CLASS
     }
 }
-
-
-

@@ -4,8 +4,8 @@ import godot.entrygenerator.exceptions.WrongAnnotationUsageException
 import godot.entrygenerator.model.ColorNoAlphaHintAnnotation
 import godot.entrygenerator.model.RegisteredProperty
 import godot.entrygenerator.settings.Settings
-import godot.tools.common.constants.GodotTypes
-import godot.tools.common.constants.godotCorePackage
+import godot.tools.common.names.CoreType
+import godot.tools.common.names.qualifiedName
 
 class ColorNoAlphaHintStringGenerator(
     registeredProperty: RegisteredProperty,
@@ -13,8 +13,8 @@ class ColorNoAlphaHintStringGenerator(
 ) : PropertyHintStringGenerator<ColorNoAlphaHintAnnotation>(registeredProperty, settings) {
 
     override fun getHintString(): String {
-        if (registeredProperty.type.fqName != "$godotCorePackage.${GodotTypes.color}") {
-            throw WrongAnnotationUsageException(registeredProperty, propertyHintAnnotation, setOf("${godotCorePackage}.${GodotTypes.color}"))
+        if (registeredProperty.type.fqName != CoreType.color.qualifiedName) {
+            throw WrongAnnotationUsageException(registeredProperty, propertyHintAnnotation, setOf(CoreType.color.qualifiedName))
         }
         return "" //hint string is empty for this typehint
     }

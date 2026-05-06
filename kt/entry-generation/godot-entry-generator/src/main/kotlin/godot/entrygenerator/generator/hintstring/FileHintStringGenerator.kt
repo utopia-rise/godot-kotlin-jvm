@@ -8,7 +8,7 @@ import godot.entrygenerator.model.JvmType
 import godot.entrygenerator.model.RegisteredProperty
 import godot.entrygenerator.settings.Settings
 
-class FileHintStringGenerator(registeredProperty: RegisteredProperty, settings: Settings):
+class FileHintStringGenerator(registeredProperty: RegisteredProperty, settings: Settings) :
     PropertyHintStringGenerator<FileHintAnnotation>(registeredProperty, settings) {
     override fun getHintString(): String {
         if (!registeredProperty.type.fqName.fqNameIsJvmType(JvmType.STRING)) {

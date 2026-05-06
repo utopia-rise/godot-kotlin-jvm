@@ -731,8 +731,7 @@ public open class NavigationMesh : Resource() {
 
   public final fun getFilterBakingAabb(): AABB {
     TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFilterBakingAabbPtr,
-        godot.core.VariantParser.AABB)
+    TransferContext.callMethod(ptr, MethodBindings.getFilterBakingAabbPtr, godot.core.VariantParser.AABB)
     return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 

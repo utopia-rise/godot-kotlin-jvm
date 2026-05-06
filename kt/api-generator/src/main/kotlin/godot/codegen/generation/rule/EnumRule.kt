@@ -1,6 +1,5 @@
 package godot.codegen.generation.rule
 
-import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.INT
@@ -14,8 +13,7 @@ import godot.codegen.generation.task.EnrichedEnumTask
 import godot.codegen.generation.task.FileTask
 import godot.codegen.models.enriched.EnrichedEnum
 import godot.codegen.models.traits.addKdoc
-import godot.tools.common.constants.GodotKotlinJvmTypes.godotEnum
-import godot.tools.common.constants.godotCorePackage
+import godot.tools.common.names.CoreType
 
 private const val BIT_FLAG_VALUE_MEMBER = "flag"
 
@@ -31,7 +29,7 @@ class EnumRule : GodotApiRule<EnrichedEnumTask>() {
     }
 
     fun TypeSpec.Builder.generateEnum(enum: EnrichedEnum) {
-        addSuperinterface(ClassName(godotCorePackage, godotEnum))
+        addSuperinterface(CoreType.godotEnum)
 
         primaryConstructor(
             FunSpec.constructorBuilder()
@@ -215,3 +213,4 @@ class BitfieldExtensionRule : GodotApiRule<FileTask>() {
             }
     }
 }
+

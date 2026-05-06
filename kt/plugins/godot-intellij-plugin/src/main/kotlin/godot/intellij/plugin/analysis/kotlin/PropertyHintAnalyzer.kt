@@ -1,18 +1,23 @@
 package godot.intellij.plugin.analysis.kotlin
 
+import com.squareup.kotlinpoet.DOUBLE
+import com.squareup.kotlinpoet.FLOAT
+import com.squareup.kotlinpoet.INT
+import com.squareup.kotlinpoet.LONG
+import com.squareup.kotlinpoet.STRING
+import com.squareup.kotlinpoet.ClassName
 import godot.intellij.plugin.GodotPluginBundle
-import godot.intellij.plugin.analysis.EXPORT_ANNOTATION
 import godot.intellij.plugin.analysis.GodotProblem
-import godot.intellij.plugin.analysis.REGISTER_PROPERTY_ANNOTATION
 import godot.intellij.plugin.project.asClassId
 import godot.intellij.plugin.project.fqName
 import godot.intellij.plugin.quickfix.PropertyNotExportedQuickFix
 import godot.intellij.plugin.quickfix.PropertyNotRegisteredQuickFix
-import godot.tools.common.constants.GodotKotlinJvmTypes
-import godot.tools.common.constants.GodotTypes
-import godot.tools.common.constants.godotAnnotationPackage
-import godot.tools.common.constants.godotCorePackage
+import godot.tools.common.names.Annotation
+import godot.tools.common.names.CoreType
+import godot.tools.common.names.Kotlin
+import godot.tools.common.names.qualifiedName
 import org.jetbrains.kotlin.analysis.api.analyze
+import org.jetbrains.kotlin.analysis.api.types.KaClassType
 import org.jetbrains.kotlin.analysis.api.types.symbol
 import org.jetbrains.kotlin.idea.codeinsight.utils.isEnum
 import org.jetbrains.kotlin.idea.util.findAnnotation
@@ -28,59 +33,59 @@ object PropertyHintAnalyzer {
 
     fun analyze(property: KtProperty): List<GodotProblem> {
         return when {
-            property.findAnnotation(asClassId("$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.intRange}")) != null -> {
+            property.findAnnotation(Annotation.intRange.asClassId()) != null -> {
                 checkForRegistrationAnnotations(property) + checkIntRange(property)
             }
 
-            property.findAnnotation(asClassId("$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.longRange}")) != null -> {
+            property.findAnnotation(Annotation.longRange.asClassId()) != null -> {
                 checkForRegistrationAnnotations(property) + checkLongRange(property)
             }
 
-            property.findAnnotation(asClassId("$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.floatRange}")) != null -> {
+            property.findAnnotation(Annotation.floatRange.asClassId()) != null -> {
                 checkForRegistrationAnnotations(property) + checkFloatRange(property)
             }
 
-            property.findAnnotation(asClassId("$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.doubleRange}")) != null -> {
+            property.findAnnotation(Annotation.doubleRange.asClassId()) != null -> {
                 checkForRegistrationAnnotations(property) + checkDoubleRange(property)
             }
 
-            property.findAnnotation(asClassId("$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.expRange}")) != null -> {
+            property.findAnnotation(Annotation.expRange.asClassId()) != null -> {
                 checkForRegistrationAnnotations(property) + checkExpRange(property)
             }
 
-            property.findAnnotation(asClassId("$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.expEasing}")) != null -> {
+            property.findAnnotation(Annotation.expEasing.asClassId()) != null -> {
                 checkForRegistrationAnnotations(property) + checkExpEasing(property)
             }
 
-            property.findAnnotation(asClassId("$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.enumTypeHint}")) != null -> {
+            property.findAnnotation(Annotation.enumTypeHint.asClassId()) != null -> {
                 checkForRegistrationAnnotations(property) + checkEnumTypeHint(property)
             }
 
-            property.findAnnotation(asClassId("$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.enumFlag}")) != null -> {
+            property.findAnnotation(Annotation.enumFlag.asClassId()) != null -> {
                 checkForRegistrationAnnotations(property) + checkEnumFlag(property)
             }
 
-            property.findAnnotation(asClassId("$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.intFlag}")) != null -> {
+            property.findAnnotation(Annotation.intFlag.asClassId()) != null -> {
                 checkForRegistrationAnnotations(property) + checkIntFlag(property)
             }
 
-            property.findAnnotation(asClassId("$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.file}")) != null -> {
+            property.findAnnotation(Annotation.file.asClassId()) != null -> {
                 checkForRegistrationAnnotations(property) + checkFile(property)
             }
 
-            property.findAnnotation(asClassId("$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.dir}")) != null -> {
+            property.findAnnotation(Annotation.dir.asClassId()) != null -> {
                 checkForRegistrationAnnotations(property) + checkDir(property)
             }
 
-            property.findAnnotation(asClassId("$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.multilineText}")) != null -> {
+            property.findAnnotation(Annotation.multilineText.asClassId()) != null -> {
                 checkForRegistrationAnnotations(property) + checkMultilineText(property)
             }
 
-            property.findAnnotation(asClassId("$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.placeHolderText}")) != null -> {
+            property.findAnnotation(Annotation.placeHolderText.asClassId()) != null -> {
                 checkForRegistrationAnnotations(property) + checkPlaceholderText(property)
             }
 
-            property.findAnnotation(asClassId("$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.colorNoAlpha}")) != null -> {
+            property.findAnnotation(Annotation.colorNoAlpha.asClassId()) != null -> {
                 checkForRegistrationAnnotations(property) + checkColorNoAlpha(property)
             }
 
@@ -89,11 +94,11 @@ object PropertyHintAnalyzer {
     }
 
     private fun checkColorNoAlpha(property: KtProperty): List<GodotProblem> {
-        if (property.fqName() == "$godotCorePackage.${GodotTypes.color}") return emptyList()
+        if (property.fqName() == CoreType.color.qualifiedName) return emptyList()
         return listOf(
             GodotProblem(
-                GodotPluginBundle.message("problem.property.hint.wrongType", "$godotCorePackage.${GodotTypes.color}"),
-                property.findAnnotation(asClassId("$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.colorNoAlpha}"))?.psiOrParent
+                GodotPluginBundle.message("problem.property.hint.wrongType", CoreType.color.qualifiedName),
+                property.findAnnotation(Annotation.colorNoAlpha.asClassId())?.psiOrParent
                     ?: property.nameIdentifier
                     ?: property.navigationElement
             )
@@ -101,27 +106,27 @@ object PropertyHintAnalyzer {
     }
 
     private fun checkPlaceholderText(property: KtProperty): List<GodotProblem> {
-        return checkStringPropertyType(property, GodotKotlinJvmTypes.Annotations.placeHolderText)
+        return checkStringPropertyType(property, Annotation.placeHolderText)
     }
 
     private fun checkMultilineText(property: KtProperty): List<GodotProblem> {
-        return checkStringPropertyType(property, GodotKotlinJvmTypes.Annotations.multilineText)
+        return checkStringPropertyType(property, Annotation.multilineText)
     }
 
     private fun checkDir(property: KtProperty): List<GodotProblem> {
-        return checkStringPropertyType(property, GodotKotlinJvmTypes.Annotations.dir)
+        return checkStringPropertyType(property, Annotation.dir)
     }
 
     private fun checkFile(property: KtProperty): List<GodotProblem> {
-        return checkStringPropertyType(property, GodotKotlinJvmTypes.Annotations.file)
+        return checkStringPropertyType(property, Annotation.file)
     }
 
-    private fun checkStringPropertyType(property: KtProperty, annotationName: String): List<GodotProblem> {
-        if (property.fqName() == String::class.qualifiedName) return emptyList()
+    private fun checkStringPropertyType(property: KtProperty, annotation: ClassName): List<GodotProblem> {
+        if (property.fqName() == STRING.toString()) return emptyList()
         return listOf(
             GodotProblem(
-                GodotPluginBundle.message("problem.property.hint.wrongType", String::class.qualifiedName.toString()),
-                property.findAnnotation(asClassId("$godotAnnotationPackage.$annotationName"))?.psiOrParent
+                GodotPluginBundle.message("problem.property.hint.wrongType", STRING.toString()),
+                property.findAnnotation(annotation.asClassId())?.psiOrParent
                     ?: property.nameIdentifier
                     ?: property.navigationElement
             )
@@ -133,8 +138,8 @@ object PropertyHintAnalyzer {
         if (isInt) return emptyList()
         return listOf(
             GodotProblem(
-                GodotPluginBundle.message("problem.property.hint.wrongType", Int::class.qualifiedName.toString()),
-                property.findAnnotation(asClassId("$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.intFlag}"))?.psiOrParent
+                GodotPluginBundle.message("problem.property.hint.wrongType", INT.toString()),
+                property.findAnnotation(Annotation.intFlag.asClassId())?.psiOrParent
                     ?: property.nameIdentifier
                     ?: property.navigationElement
             )
@@ -142,11 +147,11 @@ object PropertyHintAnalyzer {
     }
 
     private fun checkEnumFlag(property: KtProperty): List<GodotProblem> {
-        if (property.fqName()?.matches(Regex("^kotlin\\.collections\\..*Set$")) == false) {
+        if (property.fqName()?.let { it == Kotlin.set.qualifiedName || it == Kotlin.mutableSet.qualifiedName } == false) {
             return listOf(
                 GodotProblem(
-                    GodotPluginBundle.message("problem.property.hint.wrongType", "kotlin.collections.Set or kotlin.collections.MutableSet"),
-                    property.findAnnotation(asClassId("$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.enumFlag}"))?.psiOrParent
+                    GodotPluginBundle.message("problem.property.hint.wrongType", "${Kotlin.set.qualifiedName} or ${Kotlin.mutableSet.qualifiedName}"),
+                    property.findAnnotation(Annotation.enumFlag.asClassId())?.psiOrParent
                         ?: property.nameIdentifier
                         ?: property.navigationElement
                 )
@@ -154,7 +159,13 @@ object PropertyHintAnalyzer {
         }
 
         val numberOfEnumEntriesInEnum = analyze(property) {
-            property.returnType.symbol?.psi
+            ((property.returnType as? KaClassType)
+                ?.typeArguments
+                ?.firstOrNull()
+                ?.type
+                ?: property.returnType)
+                .symbol
+                ?.psi
                 ?.let { it as? KtClass }
                 ?.declarations
                 ?.filterIsInstance<KtEnumEntry>()
@@ -165,7 +176,7 @@ object PropertyHintAnalyzer {
         return listOf(
             GodotProblem(
                 GodotPluginBundle.message("problem.property.hint.toManyEnumEntries"),
-                property.findAnnotation(asClassId("$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.enumFlag}"))?.psiOrParent
+                property.findAnnotation(Annotation.enumFlag.asClassId())?.psiOrParent
                     ?: property.nameIdentifier
                     ?: property.navigationElement
             )
@@ -177,8 +188,8 @@ object PropertyHintAnalyzer {
         if (isEnum) return emptyList()
         return listOf(
             GodotProblem(
-                GodotPluginBundle.message("problem.property.hint.wrongType", Enum::class.qualifiedName.toString()),
-                property.findAnnotation(asClassId("$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.enumTypeHint}"))?.psiOrParent
+                GodotPluginBundle.message("problem.property.hint.wrongType", Kotlin.enum.qualifiedName),
+                property.findAnnotation(Annotation.enumTypeHint.asClassId())?.psiOrParent
                     ?: property.nameIdentifier
                     ?: property.navigationElement
             )
@@ -186,14 +197,14 @@ object PropertyHintAnalyzer {
     }
 
     private fun checkExpEasing(property: KtProperty): List<GodotProblem> {
-        return checkRealTypeProperty(property, GodotKotlinJvmTypes.Annotations.expEasing)
+        return checkRealTypeProperty(property, Annotation.expEasing)
     }
 
     private fun checkExpRange(property: KtProperty): List<GodotProblem> {
-        return checkRealTypeProperty(property, GodotKotlinJvmTypes.Annotations.expRange)
+        return checkRealTypeProperty(property, Annotation.expRange)
     }
 
-    private fun checkRealTypeProperty(property: KtProperty, annotationName: String): List<GodotProblem> {
+    private fun checkRealTypeProperty(property: KtProperty, annotation: ClassName): List<GodotProblem> {
         val isRealType = analyze(property) {
             val type = property.returnType
             type.isFloatType || type.isDoubleType
@@ -201,8 +212,8 @@ object PropertyHintAnalyzer {
         if (isRealType) return emptyList()
         return listOf(
             GodotProblem(
-                GodotPluginBundle.message("problem.property.hint.wrongType", "${Float::class.qualifiedName} or ${Double::class.qualifiedName}"),
-                property.findAnnotation(asClassId("$godotAnnotationPackage.$annotationName"))?.psiOrParent
+                GodotPluginBundle.message("problem.property.hint.wrongType", "${FLOAT} or ${DOUBLE}"),
+                property.findAnnotation(annotation.asClassId())?.psiOrParent
                     ?: property.nameIdentifier
                     ?: property.navigationElement
             )
@@ -214,8 +225,8 @@ object PropertyHintAnalyzer {
         if (isDouble) return emptyList()
         return listOf(
             GodotProblem(
-                GodotPluginBundle.message("problem.property.hint.wrongType", Double::class.qualifiedName.toString()),
-                property.findAnnotation(asClassId("$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.doubleRange}"))?.psiOrParent
+                GodotPluginBundle.message("problem.property.hint.wrongType", DOUBLE.toString()),
+                property.findAnnotation(Annotation.doubleRange.asClassId())?.psiOrParent
                     ?: property.nameIdentifier
                     ?: property.navigationElement
             )
@@ -227,8 +238,8 @@ object PropertyHintAnalyzer {
         if (isFloat) return emptyList()
         return listOf(
             GodotProblem(
-                GodotPluginBundle.message("problem.property.hint.wrongType", Float::class.qualifiedName.toString()),
-                property.findAnnotation(asClassId("$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.floatRange}"))?.psiOrParent
+                GodotPluginBundle.message("problem.property.hint.wrongType", FLOAT.toString()),
+                property.findAnnotation(Annotation.floatRange.asClassId())?.psiOrParent
                     ?: property.nameIdentifier
                     ?: property.navigationElement
             )
@@ -240,8 +251,8 @@ object PropertyHintAnalyzer {
         if (isLong) return emptyList()
         return listOf(
             GodotProblem(
-                GodotPluginBundle.message("problem.property.hint.wrongType", Long::class.qualifiedName.toString()),
-                property.findAnnotation(asClassId("$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.longRange}"))?.psiOrParent
+                GodotPluginBundle.message("problem.property.hint.wrongType", LONG.toString()),
+                property.findAnnotation(Annotation.longRange.asClassId())?.psiOrParent
                     ?: property.nameIdentifier
                     ?: property.navigationElement
             )
@@ -253,8 +264,8 @@ object PropertyHintAnalyzer {
         if (isInt) return emptyList()
         return listOf(
             GodotProblem(
-                GodotPluginBundle.message("problem.property.hint.wrongType", Int::class.qualifiedName.toString()),
-                property.findAnnotation(asClassId("$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.intRange}"))?.psiOrParent
+                GodotPluginBundle.message("problem.property.hint.wrongType", INT.toString()),
+                property.findAnnotation(Annotation.intRange.asClassId())?.psiOrParent
                     ?: property.nameIdentifier
                     ?: property.navigationElement
             )
@@ -263,7 +274,7 @@ object PropertyHintAnalyzer {
 
     private fun checkForRegistrationAnnotations(property: KtProperty): List<GodotProblem> {
         return buildList {
-            if (property.findAnnotation(asClassId(REGISTER_PROPERTY_ANNOTATION)) == null) {
+            if (property.findAnnotation(Annotation.registerProperty.asClassId()) == null) {
                 add(
                     GodotProblem(
                         GodotPluginBundle.message("problem.property.hint.notRegistered"),
@@ -272,7 +283,7 @@ object PropertyHintAnalyzer {
                     )
                 )
             }
-            if (property.findAnnotation(asClassId(EXPORT_ANNOTATION)) == null) {
+            if (property.findAnnotation(Annotation.export.asClassId()) == null) {
                 add(
                     GodotProblem(
                         GodotPluginBundle.message("problem.property.hint.notExported"),

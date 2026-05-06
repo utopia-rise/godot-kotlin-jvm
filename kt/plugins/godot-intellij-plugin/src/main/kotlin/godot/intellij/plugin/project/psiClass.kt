@@ -1,9 +1,11 @@
 package godot.intellij.plugin.project
 
+import com.squareup.kotlinpoet.ClassName
 import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiMethod
 import com.intellij.psi.PsiModifier
-import godot.intellij.plugin.analysis.REGISTER_CLASS_ANNOTATION
+import godot.tools.common.names.Annotation
+import godot.tools.common.names.qualifiedName
 import org.jetbrains.kotlin.analysis.utils.classId
 import org.jetbrains.kotlin.asJava.classes.KtUltraLightClass
 import org.jetbrains.kotlin.idea.util.findAnnotation
@@ -17,28 +19,30 @@ val PsiClass.isAbstract: Boolean
         else -> isInterface || modifierList?.hasModifierProperty(PsiModifier.ABSTRACT) ?: false
     }
 
-fun PsiClass.anyFunctionHasAnnotation(annotationFqName: String) = this
+fun PsiClass.anyFunctionHasAnnotation(annotation: ClassName) = this
     .methods
     .filterIsInstance<PsiMethod>()
     .any { declaration ->
-        declaration.getAnnotation(annotationFqName) != null
+        declaration.getAnnotation(annotation.qualifiedName) != null
     }
 
-fun PsiClass.anyPropertyHasAnnotation(annotationFqName: String) = when (this) {
+fun PsiClass.anyPropertyHasAnnotation(annotation: ClassName) = when (this) {
     is KtUltraLightClass -> (this.kotlinOrigin as? KtClass)?.getProperties()
-        ?.any { property -> property.findAnnotation(asClassId(annotationFqName)) != null } == true
+        ?.any { property -> property.findAnnotation(annotation.asClassId()) != null } == true
 
     else -> this
         .fields
         .any { declaration ->
-            declaration.getAnnotation(annotationFqName) != null
+            declaration.getAnnotation(annotation.qualifiedName) != null
         }
 }
 
 val PsiClass.isRegistered: Boolean
-    get() = getAnnotation(REGISTER_CLASS_ANNOTATION) != null
+    get() = getAnnotation(Annotation.registerClass.qualifiedName) != null
 
 
 fun PsiClass.isOrInheritsType(classId: ClassId): Boolean {
     return this.classId == classId || superTypes.any { superType -> superType.resolve()?.isOrInheritsType(classId) == true }
 }
+
+fun PsiClass.isOrInheritsType(className: ClassName): Boolean = isOrInheritsType(className.asClassId())

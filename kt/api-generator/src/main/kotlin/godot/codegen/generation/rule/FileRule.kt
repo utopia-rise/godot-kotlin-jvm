@@ -2,6 +2,7 @@ package godot.codegen.generation.rule
 
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.ClassName
+import com.squareup.kotlinpoet.MemberName
 import godot.codegen.generation.GenerationContext
 import godot.codegen.generation.task.ApiTask
 import godot.codegen.generation.task.EnrichedClassTask
@@ -11,6 +12,7 @@ import godot.codegen.models.enriched.EnrichedClass
 import godot.codegen.models.enriched.EnrichedEnum
 import godot.common.extensions.convertToCamelCase
 import godot.tools.common.constants.GENERATED_COMMENT
+import godot.tools.common.names.Kotlin
 
 class FileRule : GodotApiRule<FileTask>() {
     override fun apply(task: FileTask, context: GenerationContext) {
@@ -32,8 +34,11 @@ class HeaderCommentRule() : GodotApiRule<FileTask>() {
 class ImportRule() : GodotApiRule<FileTask>() {
     override fun apply(task: FileTask, context: GenerationContext) = configure(task.builder) {
         for (clazz in task.classes) {
-            for (className in clazz.clazz.additionalImports) {
-                addImport(className.packageName, className.simpleName)
+            for (importTarget in clazz.clazz.additionalImports) {
+                when (importTarget) {
+                    is ClassName -> addImport(importTarget.packageName, importTarget.simpleName)
+                    is MemberName -> addImport(importTarget.packageName, importTarget.simpleName)
+                }
             }
         }
     }
@@ -42,7 +47,7 @@ class ImportRule() : GodotApiRule<FileTask>() {
 class WarningRule() : GodotApiRule<FileTask>() {
     override fun apply(task: FileTask, context: GenerationContext) = configure(task.builder) {
         addAnnotation(
-            AnnotationSpec.builder(ClassName("kotlin", "Suppress"))
+            AnnotationSpec.builder(Kotlin.suppress)
                 .addMember(
                     "\"PackageDirectoryMismatch\", \"unused\", \"FunctionName\", \"RedundantModalityModifier\", " +
                         "\"UNCHECKED_CAST\", \"JoinDeclarationAndAssignment\", \"USELESS_CAST\", \"RemoveRedundantQualifierName\", " +
@@ -202,3 +207,4 @@ class DocumentationRule : GodotApiRule<ApiTask>() {
         return unicodeString
     }
 }
+

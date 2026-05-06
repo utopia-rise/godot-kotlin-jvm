@@ -13,8 +13,7 @@ import godot.entrygenerator.settings.RegisteredNameMode
 import godot.entrygenerator.settings.Settings
 import godot.entrygenerator.utils.DefaultJvmTypeProvider
 import godot.gradle.projectExt.godotJvmExtension
-import godot.tools.common.constants.FileExtensions
-import godot.tools.common.constants.godotRegistrationPackage
+import godot.tools.common.names.godotRegistrationPackage
 import org.gradle.api.DefaultTask
 import org.gradle.api.Project
 import org.gradle.api.file.ConfigurableFileCollection
@@ -32,9 +31,10 @@ import org.gradle.api.tasks.bundling.Jar
 import java.io.File
 import java.io.FileOutputStream
 
+private const val entryServiceName = "$godotRegistrationPackage.Entry"
+
 @CacheableTask
 abstract class ClassGraphGenerateEntryFilesTask : DefaultTask() {
-
     @get:Classpath
     abstract val userCodeClassPathRoots: ConfigurableFileCollection
 
@@ -91,7 +91,7 @@ abstract class ClassGraphGenerateEntryFilesTask : DefaultTask() {
             .resolve("resources")
             .resolve("META-INF")
             .resolve("services")
-            .resolve("$godotRegistrationPackage.Entry")
+            .resolve(entryServiceName)
 
         if (!previousServiceContent.orNull.isNullOrBlank()) {
             serviceFile.parentFile.mkdirs()
@@ -177,7 +177,7 @@ fun Project.entryGenerationGenerateFilesTask(
     val generatedSourceRootDir = layout.buildDirectory.dir("generated/entry-generation")
     val generatedRegistrationRootDir = layout.buildDirectory.dir("generated/entry-generation/registration")
     val serviceFileProvider = generatedSourceRootDir.map { generatedRoot ->
-        generatedRoot.file("resources/META-INF/services/$godotRegistrationPackage.Entry")
+        generatedRoot.file("resources/META-INF/services/$entryServiceName")
     }
 
     return tasks.register(

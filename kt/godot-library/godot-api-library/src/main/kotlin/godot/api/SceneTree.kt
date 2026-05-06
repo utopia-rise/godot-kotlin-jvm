@@ -544,7 +544,7 @@ public open class SceneTree : MainLoop() {
     method: StringName,
     vararg args: Any?,
   ): Unit {
-    TransferContext.writeArguments(LONG to flags, STRING_NAME to group, STRING_NAME to method,  *args.map { ANY to it }.toTypedArray())
+    TransferContext.writeArguments(LONG to flags, STRING_NAME to group, STRING_NAME to method, *args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(ptr, MethodBindings.callGroupFlagsPtr, NIL)
   }
 
@@ -598,7 +598,7 @@ public open class SceneTree : MainLoop() {
     method: StringName,
     vararg args: Any?,
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to group, STRING_NAME to method,  *args.map { ANY to it }.toTypedArray())
+    TransferContext.writeArguments(STRING_NAME to group, STRING_NAME to method, *args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(ptr, MethodBindings.callGroupPtr, NIL)
   }
 

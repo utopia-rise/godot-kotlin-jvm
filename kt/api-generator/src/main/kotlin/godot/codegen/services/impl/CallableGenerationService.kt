@@ -3,39 +3,27 @@ package godot.codegen.services.impl
 import com.squareup.kotlinpoet.ANY
 import com.squareup.kotlinpoet.ARRAY
 import com.squareup.kotlinpoet.AnnotationSpec
-import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
-import com.squareup.kotlinpoet.MemberName
 import com.squareup.kotlinpoet.ParameterSpec
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.TypeSpec
 import com.squareup.kotlinpoet.TypeVariableName
-import com.squareup.kotlinpoet.asClassName
 import godot.codegen.poet.GenericClassNameInfo
 import godot.codegen.services.ICallableGenerationService
 import godot.common.constants.Constraints
-import godot.tools.common.constants.GODOT_METHOD_CALLABLE
-import godot.tools.common.constants.GODOT_OBJECT
-import godot.tools.common.constants.GodotFunctions
-import godot.tools.common.constants.GodotKotlinJvmTypes
-import godot.tools.common.constants.STRING_NAME
-import godot.tools.common.constants.TO_GODOT_NAME_UTIL_FUNCTION
-import godot.tools.common.constants.VARIANT_PARSER_NIL
-import godot.tools.common.constants.godotCorePackage
-import godot.tools.common.constants.godotInteropPackage
+import godot.tools.common.names.API
+import godot.tools.common.names.CoreType
+import godot.tools.common.names.Function
+import godot.tools.common.names.Kotlin
+import godot.tools.common.names.VariantConverter
 import java.io.File
 import kotlin.reflect.KCallable
 
 
 object CallableGenerationService : ICallableGenerationService {
-    private const val CALLABLE_NAME = "Callable"
-    private const val LAMBDA_CALLABLE_NAME = "LambdaCallable"
-    private const val LAMBDA_CONTAINER_NAME = "LambdaContainer"
-    private const val METHOD_CALLABLE_NAME = "MethodCallable"
-
     private const val FUNCTION_PARAMETER_NAME = "function"
     private const val CONTAINER_ARGUMENT_NAME = "container"
     private const val TARGET_ARGUMENT_NAME = "target"
@@ -45,26 +33,26 @@ object CallableGenerationService : ICallableGenerationService {
     private const val VARIANT_TYPE_RETURN_NAME = "returnConverter"
     private const val VARIANT_TYPE_ARGUMENT_NAME = "typeConverters"
 
-    private val CALLABLE_CLASS_NAME = ClassName(godotCorePackage, CALLABLE_NAME)
-    private val LAMBDA_CALLABLE_CLASS_NAME = ClassName(godotCorePackage, LAMBDA_CALLABLE_NAME)
-    private val LAMBDA_CONTAINER_CLASS_NAME = ClassName(godotCorePackage, LAMBDA_CONTAINER_NAME)
-    private val METHOD_CALLABLE_CLASS_NAME = ClassName(godotCorePackage, METHOD_CALLABLE_NAME)
+    private val CALLABLE_CLASS_NAME = CoreType.callable
+    private val LAMBDA_CALLABLE_CLASS_NAME = CoreType.lambdaCallable
+    private val LAMBDA_CONTAINER_CLASS_NAME = CoreType.lambdaContainer
+    private val METHOD_CALLABLE_CLASS_NAME = CoreType.methodCallable
 
     private val returnTypeParameter = TypeVariableName("R", ANY.copy(nullable = true))
-    private val variantConverterClassName = ClassName(godotInteropPackage, GodotKotlinJvmTypes.variantConverter)
+    private val variantConverterClassName = VariantConverter.converterType
 
     override fun generate(outputDir: File) {
-        val callableFileSpec = FileSpec.builder(godotCorePackage, CALLABLE_NAME + "s")
-        val lambdaFileSpec = FileSpec.builder(godotCorePackage, LAMBDA_CALLABLE_NAME + "s")
-        val containerFileSpec = FileSpec.builder(godotCorePackage, LAMBDA_CONTAINER_NAME + "s")
-        val methodFileSpec = FileSpec.builder(godotCorePackage, METHOD_CALLABLE_NAME + "s")
+        val callableFileSpec = FileSpec.builder(CoreType.callable.packageName, CoreType.callable.simpleName + "s")
+        val lambdaFileSpec = FileSpec.builder(CoreType.callable.packageName, CoreType.lambdaCallable.simpleName + "s")
+        val containerFileSpec = FileSpec.builder(CoreType.callable.packageName, CoreType.lambdaContainer.simpleName + "s")
+        val methodFileSpec = FileSpec.builder(CoreType.callable.packageName, CoreType.methodCallable.simpleName + "s")
 
         for (argCount in 0..Constraints.MAX_FUNCTION_ARG_COUNT) {
 
-            val callableClassName = ClassName(godotCorePackage, "$CALLABLE_NAME$argCount")
-            val lambdaContainerClassName = ClassName(godotCorePackage, "$LAMBDA_CONTAINER_NAME$argCount")
-            val lambdaCallableClassName = ClassName(godotCorePackage, "$LAMBDA_CALLABLE_NAME$argCount")
-            val methodCallableClassName = ClassName(godotCorePackage, "$METHOD_CALLABLE_NAME$argCount")
+            val callableClassName = CoreType.callable(argCount)
+            val lambdaContainerClassName = CoreType.lambdaContainer(argCount)
+            val lambdaCallableClassName = CoreType.lambdaCallable(argCount)
+            val methodCallableClassName = CoreType.methodCallable(argCount)
 
             val callableInfo = GenericClassNameInfo(callableClassName, argCount)
             val containerInfo = GenericClassNameInfo(lambdaContainerClassName, argCount)
@@ -182,7 +170,7 @@ object CallableGenerationService : ICallableGenerationService {
                                     append(")?:·throw·%T()")
                                 },
                                 lambdaInfo.toErasedLambdaTypeName(returnType = returnTypeParameter),
-                                ClassName(godotCorePackage, "InvalidJvmLambdaException")
+                                CoreType.invalidJvmLambdaException
                             )
                         )
                         .build()
@@ -236,7 +224,7 @@ object CallableGenerationService : ICallableGenerationService {
                             ParameterSpec
                                 .builder(
                                     TARGET_ARGUMENT_NAME,
-                                    GODOT_OBJECT
+                                    API.`object`
                                 )
                                 .build()
                         )
@@ -244,7 +232,7 @@ object CallableGenerationService : ICallableGenerationService {
                             ParameterSpec
                                 .builder(
                                     METHOD_NAME_ARGUMENT_NAME,
-                                    STRING_NAME
+                                    CoreType.stringName
                                 )
                                 .build()
                         )
@@ -267,9 +255,9 @@ object CallableGenerationService : ICallableGenerationService {
             val typeVariables = genericParameters.toMutableList()
             var remainingParameters = 0
             while (typeVariables.isNotEmpty()) {
-                val boundCallableClassName = ClassName(godotCorePackage, "$CALLABLE_NAME${remainingParameters}")
-                val boundLambdaCallableClassName = ClassName(godotCorePackage, "$LAMBDA_CALLABLE_NAME${remainingParameters}")
-                val boundMethodCallableClassName = ClassName(godotCorePackage, "$METHOD_CALLABLE_NAME${remainingParameters}")
+                val boundCallableClassName = CoreType.callable(remainingParameters)
+                val boundLambdaCallableClassName = CoreType.lambdaCallable(remainingParameters)
+                val boundMethodCallableClassName = CoreType.methodCallable(remainingParameters)
 
                 val bindInfo = GenericClassNameInfo(boundLambdaCallableClassName, remainingParameters)
 
@@ -346,7 +334,7 @@ object CallableGenerationService : ICallableGenerationService {
             methodFileSpec.addType(methodCallableClassBuilder.build())
 
 
-            val variantMapperMember = MemberName(godotCorePackage, "variantMapper")
+            val variantMapperMember = Function.variantMapper
             lambdaFileSpec.addFunction(
                 FunSpec.builder(CALLABLE_FUNCTION_NAME + argCount)
                     .addTypeVariable(returnTypeParameter.copy(reified = true))
@@ -367,7 +355,7 @@ object CallableGenerationService : ICallableGenerationService {
                         CodeBlock.of(
                             buildString {
                                 append("return·%T(%T(")
-                                append("%M.getOrDefault(%T::class,·%T),·arrayOf(")
+                                append("%M.getOrDefault(%T::class,·%M),·arrayOf(")
                                 genericParameters.forEachIndexed { index, _ ->
                                     if (index != 0) append(",·")
                                     append("%M[%T::class]!!")
@@ -380,7 +368,7 @@ object CallableGenerationService : ICallableGenerationService {
                             containerInfo.className.parameterizedBy(listOf(returnTypeParameter) + genericParameters),
                             variantMapperMember,
                             returnTypeParameter,
-                            VARIANT_PARSER_NIL,
+                            VariantConverter.nil,
                             *genericParameters
                                 .flatMap {
                                     listOf(variantMapperMember, it)
@@ -394,7 +382,7 @@ object CallableGenerationService : ICallableGenerationService {
             lambdaFileSpec
                 .addFunction(
                     FunSpec
-                        .builder(GodotFunctions.asCallable)
+                        .builder(Function.asCallable.simpleName)
                         .addTypeVariable(returnTypeParameter.copy(reified = true))
                         .addTypeVariables(genericParameters.map { it.copy(reified = true) })
                         .addModifiers(KModifier.INLINE)
@@ -403,7 +391,7 @@ object CallableGenerationService : ICallableGenerationService {
                         .build()
                 )
 
-            val objectGeneric = TypeVariableName("T", GODOT_OBJECT)
+            val objectGeneric = TypeVariableName("T", API.`object`)
             methodFileSpec
                 .addFunction(
                     FunSpec.builder(CALLABLE_FUNCTION_NAME + argCount)
@@ -416,7 +404,7 @@ object CallableGenerationService : ICallableGenerationService {
                                 ParameterSpec
                                     .builder(
                                         CALLABLE_FUNCTION_NAME,
-                                        methodCallableInfo.toLambdaTypeName(returnType =returnTypeParameter, receiver = objectGeneric)
+                                        methodCallableInfo.toLambdaTypeName(returnType = returnTypeParameter, receiver = objectGeneric)
                                     )
                                     .build()
                             )
@@ -425,8 +413,8 @@ object CallableGenerationService : ICallableGenerationService {
                             CodeBlock.of(
                                 "return·%T(this,·($CALLABLE_FUNCTION_NAME·as·%T<R>).name.%M())",
                                 methodCallableClassName.parameterizedBy(listOf(returnTypeParameter) + genericParameters),
-                                KCallable::class.asClassName(),
-                                TO_GODOT_NAME_UTIL_FUNCTION,
+                                KCallable::class,
+                                Function.toGodotName,
                             )
                         )
                         .build()
@@ -436,7 +424,7 @@ object CallableGenerationService : ICallableGenerationService {
         callableFileSpec
             .addAnnotation(
                 AnnotationSpec
-                    .builder(ClassName("kotlin", "Suppress"))
+                    .builder(Kotlin.suppress)
                     .addMember("\"PackageDirectoryMismatch\", \"UNCHECKED_CAST\"")
                     .addMember("\"unused\"")
                     .build()
@@ -447,7 +435,7 @@ object CallableGenerationService : ICallableGenerationService {
         containerFileSpec
             .addAnnotation(
                 AnnotationSpec
-                    .builder(ClassName("kotlin", "Suppress"))
+                    .builder(Kotlin.suppress)
                     .addMember("\"PackageDirectoryMismatch\", \"UNCHECKED_CAST\"")
                     .addMember("\"unused\"")
                     .build()
@@ -458,7 +446,7 @@ object CallableGenerationService : ICallableGenerationService {
         lambdaFileSpec
             .addAnnotation(
                 AnnotationSpec
-                    .builder(ClassName("kotlin", "Suppress"))
+                    .builder(Kotlin.suppress)
                     .addMember("\"PackageDirectoryMismatch\", \"UNCHECKED_CAST\"")
                     .addMember("\"unused\"")
                     .build()
@@ -469,7 +457,7 @@ object CallableGenerationService : ICallableGenerationService {
         methodFileSpec
             .addAnnotation(
                 AnnotationSpec
-                    .builder(ClassName("kotlin", "Suppress"))
+                    .builder(Kotlin.suppress)
                     .addMember("\"PackageDirectoryMismatch\", \"UNCHECKED_CAST\"")
                     .addMember("\"unused\"")
                     .build()
@@ -478,3 +466,5 @@ object CallableGenerationService : ICallableGenerationService {
             .writeTo(outputDir)
     }
 }
+
+

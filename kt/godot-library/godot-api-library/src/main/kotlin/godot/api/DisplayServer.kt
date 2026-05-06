@@ -3548,8 +3548,7 @@ public object DisplayServer : Object() {
   @JvmStatic
   public final fun setHardwareKeyboardConnectionChangeCallback(callable: Callable): Unit {
     TransferContext.writeArguments(CALLABLE to callable)
-    TransferContext.callMethod(ptr, MethodBindings.setHardwareKeyboardConnectionChangeCallbackPtr,
-        NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setHardwareKeyboardConnectionChangeCallbackPtr, NIL)
   }
 
   /**

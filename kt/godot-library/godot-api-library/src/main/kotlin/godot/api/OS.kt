@@ -1093,8 +1093,7 @@ public object OS : Object() {
   @JvmStatic
   public final fun getVideoAdapterDriverInfo(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getVideoAdapterDriverInfoPtr,
-        PACKED_STRING_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getVideoAdapterDriverInfoPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
@@ -1140,8 +1139,7 @@ public object OS : Object() {
   @JvmStatic
   public final fun getRestartOnExitArguments(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getRestartOnExitArgumentsPtr,
-        PACKED_STRING_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getRestartOnExitArgumentsPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 

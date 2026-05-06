@@ -390,15 +390,13 @@ public open class TranslationDomain : RefCounted() {
 
   public final fun isPseudolocalizationSkipPlaceholdersEnabled(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isPseudolocalizationSkipPlaceholdersEnabledPtr,
-        BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isPseudolocalizationSkipPlaceholdersEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setPseudolocalizationSkipPlaceholdersEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.setPseudolocalizationSkipPlaceholdersEnabledPtr,
-        NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setPseudolocalizationSkipPlaceholdersEnabledPtr, NIL)
   }
 
   public final fun getPseudolocalizationExpansionRatio(): Float {

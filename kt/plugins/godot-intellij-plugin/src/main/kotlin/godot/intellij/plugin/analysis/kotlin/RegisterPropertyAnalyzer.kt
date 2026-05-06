@@ -1,9 +1,7 @@
 package godot.intellij.plugin.analysis.kotlin
 
 import godot.intellij.plugin.GodotPluginBundle
-import godot.intellij.plugin.analysis.EXPORT_ANNOTATION
 import godot.intellij.plugin.analysis.GodotProblem
-import godot.intellij.plugin.analysis.REGISTER_PROPERTY_ANNOTATION
 import godot.intellij.plugin.analysis.jvm.GenericRegistrationAnalyzer
 import godot.intellij.plugin.project.asClassId
 import godot.intellij.plugin.project.isCoreType
@@ -13,11 +11,11 @@ import godot.intellij.plugin.project.isOrInheritsType
 import godot.intellij.plugin.project.isSupportedJvmType
 import godot.intellij.plugin.quickfix.PropertyNotRegisteredQuickFix
 import godot.intellij.plugin.quickfix.RegisterPropertyMutabilityQuickFix
-import godot.tools.common.constants.GodotKotlinJvmTypes
-import godot.tools.common.constants.godotAnnotationPackage
-import godot.tools.common.constants.godotApiPackage
-import godot.tools.common.constants.godotCorePackage
-import godot.tools.common.constants.kotlinCollectionsPackage
+import godot.tools.common.names.API
+import godot.tools.common.names.Annotation
+import godot.tools.common.names.CoreType
+import godot.tools.common.names.Kotlin
+import godot.tools.common.names.qualifiedName
 import org.jetbrains.kotlin.analysis.api.KaExperimentalApi
 import org.jetbrains.kotlin.analysis.api.analyze
 import org.jetbrains.kotlin.analysis.api.symbols.typeParameters
@@ -34,7 +32,7 @@ object RegisterPropertyAnalyzer {
 
     fun analyze(property: KtProperty): List<GodotProblem> {
         return buildList {
-            if (property.findAnnotation(asClassId(REGISTER_PROPERTY_ANNOTATION)) != null) {
+            if (property.findAnnotation(Annotation.registerProperty.asClassId()) != null) {
                 addAll(GenericRegistrationAnalyzer.analyze(property.toLightElements().firstIsInstance()))
                 if (!property.isVar) {
                     add(
@@ -64,7 +62,7 @@ object RegisterPropertyAnalyzer {
                 }
             }
 
-            if (property.findAnnotation(asClassId(EXPORT_ANNOTATION)) != null && property.findAnnotation(asClassId(REGISTER_PROPERTY_ANNOTATION)) == null) {
+            if (property.findAnnotation(Annotation.export.asClassId()) != null && property.findAnnotation(Annotation.registerProperty.asClassId()) == null) {
                 add(
                     GodotProblem(
                         GodotPluginBundle.message("problem.property.export.notRegistered"),
@@ -80,10 +78,10 @@ object RegisterPropertyAnalyzer {
     private fun checkRegisteredType(property: KtProperty): List<GodotProblem> {
         val problems = mutableListOf<GodotProblem>()
         val isEnumCollection = analyze(property) {
-            property.returnType.symbol?.classId?.asFqNameString()?.startsWith(kotlinCollectionsPackage) == true
+            property.returnType.symbol?.classId?.asFqNameString()?.let(Kotlin::isCollectionsType) == true
                 && property.returnType.symbol?.typeParameters?.firstOrNull()?.defaultType?.isEnum() == true
         }
-        if (isEnumCollection && property.findAnnotation(asClassId("$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.enumFlag}")) == null) {
+        if (isEnumCollection && property.findAnnotation(Annotation.enumFlag.asClassId()) == null) {
             problems += GodotProblem(
                 GodotPluginBundle.message("problem.property.registeredKotlinCollection"),
                 property.initializer?.psiOrParent ?: property.nameIdentifier ?: property.navigationElement
@@ -91,7 +89,7 @@ object RegisterPropertyAnalyzer {
         }
 
         val isEnumVariantArray = analyze(property) {
-            property.returnType.symbol?.classId?.asFqNameString()?.startsWith("$godotCorePackage.${GodotKotlinJvmTypes.variantArray}") == true
+            property.returnType.symbol?.classId?.asFqNameString()?.startsWith(CoreType.variantArray.qualifiedName) == true
                 && property.returnType.symbol?.typeParameters?.firstOrNull()?.defaultType?.isEnum() == true
         }
         if (isEnumVariantArray) {
@@ -101,7 +99,7 @@ object RegisterPropertyAnalyzer {
             )
         }
 
-        val isInheritingObject = property.isOrInheritsType(asClassId("$godotApiPackage.${GodotKotlinJvmTypes.obj}"))
+        val isInheritingObject = property.isOrInheritsType(API.`object`)
         if (!isInheritingObject && !property.isCoreType() && !property.isSupportedJvmType()) {
             problems += GodotProblem(
                 GodotPluginBundle.message("problem.property.export.triedToExportUnsupportedType"),

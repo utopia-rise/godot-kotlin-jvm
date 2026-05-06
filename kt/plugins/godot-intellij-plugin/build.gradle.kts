@@ -39,6 +39,7 @@ kotlin {
 
 dependencies {
     implementation("com.utopia-rise:tools-common:$fullBuildVersion")
+    implementation(libs.kotlinPoet)
 
     // https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin.html
     intellijPlatform {
@@ -46,6 +47,7 @@ dependencies {
 
         bundledPlugin("com.intellij.java")
         bundledPlugin("org.jetbrains.kotlin")
+        plugin("org.intellij.scala", "2025.1.4")
 
         pluginVerifier()
         zipSigner()

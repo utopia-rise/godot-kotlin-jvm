@@ -721,8 +721,7 @@ public open class RenderingDevice internal constructor() : Object() {
   public final fun shaderCompileBinaryFromSpirv(spirvData: RDShaderSPIRV?, name: String = ""):
       PackedByteArray {
     TransferContext.writeArguments(OBJECT to spirvData, STRING to name)
-    TransferContext.callMethod(ptr, MethodBindings.shaderCompileBinaryFromSpirvPtr,
-        PACKED_BYTE_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.shaderCompileBinaryFromSpirvPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
@@ -1355,8 +1354,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public final fun drawListSwitchToNextPassSplit(splits: Long): PackedInt64Array {
     TransferContext.writeArguments(LONG to splits)
-    TransferContext.callMethod(ptr, MethodBindings.drawListSwitchToNextPassSplitPtr,
-        PACKED_INT_64_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.drawListSwitchToNextPassSplitPtr, PACKED_INT_64_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY) as PackedInt64Array)
   }
 

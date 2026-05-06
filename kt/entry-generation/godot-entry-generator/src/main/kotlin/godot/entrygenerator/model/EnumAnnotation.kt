@@ -2,7 +2,7 @@ package godot.entrygenerator.model
 
 sealed class EnumAnnotation(
     val enumValueNames: List<String>,
-): PropertyHintAnnotation()
+) : PropertyHintAnnotation()
 
 class EnumHintStringAnnotation(enumValueNames: List<String>) : EnumAnnotation(enumValueNames)
 class EnumFlagHintStringAnnotation(enumValueNames: List<String>) : EnumAnnotation(enumValueNames)

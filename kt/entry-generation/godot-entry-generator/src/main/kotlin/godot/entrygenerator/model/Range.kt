@@ -1,8 +1,7 @@
 package godot.entrygenerator.model
 
 import com.squareup.kotlinpoet.ClassName
-import godot.tools.common.constants.GodotKotlinJvmTypes
-import godot.tools.common.constants.godotRegistrationPackage
+import godot.tools.common.names.Annotation
 
 enum class Range {
     NONE,
@@ -10,6 +9,6 @@ enum class Range {
     OR_LESSER;
 
     internal fun asClassName(): ClassName {
-        return ClassName("$godotRegistrationPackage.${GodotKotlinJvmTypes.Annotations.range}", name)
+        return Annotation.range.nestedClass(name)
     }
 }

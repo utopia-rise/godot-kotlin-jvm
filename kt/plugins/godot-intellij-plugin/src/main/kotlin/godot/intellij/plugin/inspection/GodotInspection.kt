@@ -6,8 +6,6 @@ import com.intellij.codeHighlighting.HighlightDisplayLevel
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiElementVisitor
 import godot.intellij.plugin.project.isInGodotRoot
-import org.jetbrains.kotlin.asJava.toLightElements
-import org.jetbrains.kotlin.psi.KtElement
 
 abstract class GodotInspection : LocalInspectionTool() {
     override fun getGroupDisplayName(): String = "Godot-JVM"
@@ -20,21 +18,10 @@ abstract class GodotInspection : LocalInspectionTool() {
         return object : PsiElementVisitor() {
             override fun visitElement(element: PsiElement) {
                 if (!element.isInGodotRoot()) return
-                checkElements(buildInspectionElements(element), holder, isOnTheFly)
+                checkElement(element, holder, isOnTheFly)
             }
         }
     }
 
-    private fun buildInspectionElements(element: PsiElement): List<PsiElement> {
-        if (element !is KtElement) {
-            return listOf(element)
-        }
-
-        return buildList {
-            add(element)
-            addAll(element.toLightElements())
-        }.distinct()
-    }
-
-    abstract fun checkElements(elements: List<PsiElement>, holder: ProblemsHolder, isOnTheFly: Boolean)
+    abstract fun checkElement(element: PsiElement, holder: ProblemsHolder, isOnTheFly: Boolean)
 }

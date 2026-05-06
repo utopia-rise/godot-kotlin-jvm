@@ -40,9 +40,9 @@ class EnrichedMethod(private val model: Method, override: Boolean = false) : Cal
         if (override) {
             Modifier.OVERRIDE
         } else if (model.isVirtual) {
-            if(model.isRequired) {
+            if (model.isRequired) {
                 Modifier.ABSTRACT
-            } else  {
+            } else {
                 Modifier.VIRTUAL
             }
 
@@ -63,6 +63,7 @@ class EnrichedMethod(private val model: Method, override: Boolean = false) : Cal
         get() = modifier == Modifier.OVERRIDE
 
     val originalName = model.name
+
     init {
         if (arguments.size > Constraints.MAX_FUNCTION_ARG_COUNT) {
             throw TooManyMethodArgument(model)

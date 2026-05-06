@@ -1,28 +1,22 @@
 package godot.codegen.services.impl
 
 import com.squareup.kotlinpoet.AnnotationSpec
-import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.LambdaTypeName
-import com.squareup.kotlinpoet.MemberName
 import com.squareup.kotlinpoet.ParameterSpec
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.TypeVariableName
 import com.squareup.kotlinpoet.UNIT
-import com.squareup.kotlinpoet.asClassName
 import godot.codegen.poet.GenericClassNameInfo
 import godot.codegen.services.IConnectorGenerationService
 import godot.common.constants.Constraints
-import godot.tools.common.constants.GODOT_METHOD_CALLABLE
-import godot.tools.common.constants.GODOT_SIGNAL_CONNECTOR
-import godot.tools.common.constants.GODOT_OBJECT
-import godot.tools.common.constants.GodotKotlinJvmTypes
-import godot.tools.common.constants.TO_GODOT_NAME_UTIL_FUNCTION
-import godot.tools.common.constants.godotApiPackage
-import godot.tools.common.constants.godotCorePackage
-import godot.tools.common.constants.godotExtensionPackage
+import godot.tools.common.names.API
+import godot.tools.common.names.CoreType
+import godot.tools.common.names.Function
+import godot.tools.common.names.Kotlin
+import godot.tools.common.names.VariantConverter
 import java.io.File
 import kotlin.reflect.KCallable
 
@@ -36,17 +30,16 @@ object ConnectorGenerationService : IConnectorGenerationService {
     private const val CANCEL_PARAMETER_NAME = "cancel"
     private const val FLAGS_PARAMETER_NAME = "flags"
     private const val TARGET_PARAMETER_NAME = "target"
-    private val godotObjectBoundTypeVariable = TypeVariableName("T", GODOT_OBJECT)
-    private val connectFlagClassName = ClassName(godotApiPackage, "Object.ConnectFlags")
-    private val variantConverterClassName = ClassName(godotCorePackage, GodotKotlinJvmTypes.variantParser)
-    private val variantMapperMember = MemberName(godotCorePackage, "variantMapper")
-    private val asCallableMember= MemberName(godotCorePackage, "asCallable")
+    private val godotObjectBoundTypeVariable = TypeVariableName("T", API.`object`)
+    private val connectFlagClassName = API.connectFlags
+    private val variantMapperMember = Function.variantMapper
+    private val asCallableMember = Function.asCallable
 
     override fun generate(output: File) {
-        val connectorFileSpec = FileSpec.builder(godotExtensionPackage, "SignalConnectors")
+        val connectorFileSpec = FileSpec.builder(Function.promise.packageName, "SignalConnectors")
 
         for (argCount in 0..Constraints.MAX_FUNCTION_ARG_COUNT) {
-            val signalClassName = ClassName(godotCorePackage, "$SIGNAL_CLASS_NAME$argCount")
+            val signalClassName = CoreType.signal(argCount)
             val genericClassNameInfo = GenericClassNameInfo(signalClassName, argCount)
             val genericParameters = genericClassNameInfo.genericTypes
 
@@ -83,12 +76,12 @@ object ConnectorGenerationService : IConnectorGenerationService {
                                 connector.connect($FLAGS_PARAMETER_NAME)
                                 return connector
                             """.trimIndent(),
-                            GODOT_SIGNAL_CONNECTOR,
+                            CoreType.signalConnector,
                             asCallableMember
                         )
                     )
                     .returns(
-                        GODOT_SIGNAL_CONNECTOR
+                        CoreType.signalConnector
                     )
                     .build()
             )
@@ -110,7 +103,7 @@ object ConnectorGenerationService : IConnectorGenerationService {
                             flagsParameter
                         )
                     )
-                    .returns(GODOT_SIGNAL_CONNECTOR)
+                    .returns(CoreType.signalConnector)
                     .addCode(
                         CodeBlock.of(
                             """ 
@@ -121,17 +114,17 @@ object ConnectorGenerationService : IConnectorGenerationService {
                                 connector.connect($FLAGS_PARAMETER_NAME)
                                 return connector
                             """.trimIndent(),
-                            GODOT_SIGNAL_CONNECTOR,
-                            GODOT_METHOD_CALLABLE,
-                            KCallable::class.asClassName(),
-                            TO_GODOT_NAME_UTIL_FUNCTION,
+                            CoreType.signalConnector,
+                            CoreType.methodCallable,
+                            KCallable::class,
+                            Function.toGodotName,
                         )
                     )
                     .addAnnotation(JvmSynthetic::class)
                     .build()
             )
 
-            val lambdaContainerClassName = ClassName(godotCorePackage, "$LAMBDA_CONTAINER_NAME$argCount")
+            val lambdaContainerClassName = CoreType.lambdaContainer(argCount)
             val containerInfo = GenericClassNameInfo(lambdaContainerClassName, argCount)
             connectorFileSpec.addFunction(
                 genericClassNameInfo
@@ -162,7 +155,7 @@ object ConnectorGenerationService : IConnectorGenerationService {
                     .addCode(
                         CodeBlock.of(
                             buildString {
-                                append("%T(%T.NIL,·arrayOf(")
+                                append("%T(%M,·arrayOf(")
                                 genericParameters.forEachIndexed { index, _ ->
                                     if (index != 0) append(",·")
                                     append("%M[%T::class]!!")
@@ -170,7 +163,7 @@ object ConnectorGenerationService : IConnectorGenerationService {
                                 append("),·$METHOD_PARAMETER_NAME).setAsCancellable(this,·$CANCEL_PARAMETER_NAME)")
                             },
                             containerInfo.className.parameterizedBy(listOf(UNIT) + containerInfo.genericTypes),
-                            variantConverterClassName,
+                            VariantConverter.nil,
                             *genericParameters
                                 .flatMap {
                                     listOf(variantMapperMember, it)
@@ -185,7 +178,7 @@ object ConnectorGenerationService : IConnectorGenerationService {
         connectorFileSpec
             .addAnnotation(
                 AnnotationSpec
-                    .builder(ClassName("kotlin", "Suppress"))
+                    .builder(Kotlin.suppress)
                     .addMember("\"PackageDirectoryMismatch\", \"UNCHECKED_CAST\"")
                     .addMember("\"unused\"")
                     .addMember("\"NOTHING_TO_INLINE\"")
@@ -195,3 +188,5 @@ object ConnectorGenerationService : IConnectorGenerationService {
             .writeTo(output)
     }
 }
+
+

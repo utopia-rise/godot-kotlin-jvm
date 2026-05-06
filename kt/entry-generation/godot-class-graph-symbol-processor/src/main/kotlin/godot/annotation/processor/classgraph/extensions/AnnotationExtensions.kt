@@ -5,6 +5,7 @@ import godot.annotation.Dir
 import godot.annotation.EnumFlag
 import godot.annotation.ExpEasing
 import godot.annotation.Export
+import godot.annotation.GodotBaseType
 import godot.annotation.IntFlag
 import godot.annotation.MultilineText
 import godot.annotation.PlaceHolderText
@@ -61,7 +62,7 @@ fun AnnotationInfo.mapToGodotAnnotation(parentDeclaration: Any, declarationStrin
             transferMode = getTransferMode(),
             transferChannel = parameterValues.getValue("transferChannel") as Int,
         )
-        "godot.annotation.GodotBaseType" -> GodotBaseTypeAnnotation() // is internal
+        GodotBaseType::class.java.name -> GodotBaseTypeAnnotation() // is internal
         EnumFlag::class.java.name -> {
             if (parentDeclaration !is FieldInfo) {
                 ErrorsDatabase.add(
@@ -171,9 +172,6 @@ private fun <T : Number> AnnotationInfo.provideRangeHintAnnotation(stepDefault: 
         suffix = suffix,
     )
 }
-
-@Suppress("UNCHECKED_CAST")
-fun <T> AnnotationInfo.getParameterValue(parameterName: String): T = parameterValues.getValue(parameterName) as T
 
 private val Enum<*>.fqName
     get() = "${this::class.qualifiedName}.$name"

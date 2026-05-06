@@ -1496,8 +1496,7 @@ public open class TextServer internal constructor() : RefCounted() {
    */
   public final fun fontGetLanguageSupportOverrides(fontRid: RID): PackedStringArray {
     TransferContext.writeArguments(_RID to fontRid)
-    TransferContext.callMethod(ptr, MethodBindings.fontGetLanguageSupportOverridesPtr,
-        PACKED_STRING_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.fontGetLanguageSupportOverridesPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
@@ -1545,8 +1544,7 @@ public open class TextServer internal constructor() : RefCounted() {
    */
   public final fun fontGetScriptSupportOverrides(fontRid: RID): PackedStringArray {
     TransferContext.writeArguments(_RID to fontRid)
-    TransferContext.callMethod(ptr, MethodBindings.fontGetScriptSupportOverridesPtr,
-        PACKED_STRING_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.fontGetScriptSupportOverridesPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
@@ -2157,8 +2155,7 @@ public open class TextServer internal constructor() : RefCounted() {
     breakFlags: LineBreakFlag = TextServer.LineBreakFlag(3),
   ): PackedInt32Array {
     TransferContext.writeArguments(_RID to shaped, PACKED_FLOAT_32_ARRAY to width, LONG to start, BOOL to once, LONG to breakFlags.flag)
-    TransferContext.callMethod(ptr, MethodBindings.shapedTextGetLineBreaksAdvPtr,
-        PACKED_INT_32_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.shapedTextGetLineBreaksAdvPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
@@ -2413,8 +2410,7 @@ public open class TextServer internal constructor() : RefCounted() {
    */
   public final fun shapedTextGetCharacterBreaks(shaped: RID): PackedInt32Array {
     TransferContext.writeArguments(_RID to shaped)
-    TransferContext.callMethod(ptr, MethodBindings.shapedTextGetCharacterBreaksPtr,
-        PACKED_INT_32_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.shapedTextGetCharacterBreaksPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 

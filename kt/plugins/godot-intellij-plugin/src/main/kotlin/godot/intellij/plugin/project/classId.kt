@@ -1,10 +1,9 @@
 package godot.intellij.plugin.project
 
+import com.squareup.kotlinpoet.ClassName
 import org.jetbrains.kotlin.name.ClassId
 import org.jetbrains.kotlin.name.FqName
 
-fun asClassId(fqName: String): ClassId {
-    val packageName = fqName.substringBeforeLast(".")
-    val simpleName = fqName.substringAfterLast(".")
-    return ClassId(FqName(packageName), FqName(simpleName), false)
-}
+fun String.asClassId(): ClassId = ClassId.topLevel(FqName(this))
+
+fun ClassName.asClassId(): ClassId = ClassId.topLevel(FqName(canonicalName))

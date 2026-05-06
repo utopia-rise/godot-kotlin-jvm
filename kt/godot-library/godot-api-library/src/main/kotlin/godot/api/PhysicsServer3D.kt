@@ -891,8 +891,7 @@ public object PhysicsServer3D : Object() {
   @JvmStatic
   public final fun bodySetEnableContinuousCollisionDetection(body: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to body, BOOL to enable)
-    TransferContext.callMethod(ptr, MethodBindings.bodySetEnableContinuousCollisionDetectionPtr,
-        NIL)
+    TransferContext.callMethod(ptr, MethodBindings.bodySetEnableContinuousCollisionDetectionPtr, NIL)
   }
 
   /**
@@ -901,8 +900,7 @@ public object PhysicsServer3D : Object() {
   @JvmStatic
   public final fun bodyIsContinuousCollisionDetectionEnabled(body: RID): Boolean {
     TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(ptr, MethodBindings.bodyIsContinuousCollisionDetectionEnabledPtr,
-        BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.bodyIsContinuousCollisionDetectionEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -1366,8 +1364,7 @@ public object PhysicsServer3D : Object() {
   @JvmStatic
   public final fun softBodyGetBounds(body: RID): AABB {
     TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(ptr, MethodBindings.softBodyGetBoundsPtr,
-        godot.core.VariantParser.AABB)
+    TransferContext.callMethod(ptr, MethodBindings.softBodyGetBoundsPtr, godot.core.VariantParser.AABB)
     return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 

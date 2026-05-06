@@ -13,6 +13,7 @@ import com.intellij.psi.PsiManager
 import com.intellij.psi.PsiTreeChangeAdapter
 import com.intellij.psi.PsiTreeChangeEvent
 import com.intellij.psi.search.FileTypeIndex
+import com.intellij.psi.search.FilenameIndex
 import com.intellij.psi.search.GlobalSearchScope
 import com.intellij.util.concurrency.AppExecutorUtil
 import godot.intellij.plugin.project.isInGodotRoot
@@ -45,7 +46,7 @@ class PsiTreeListener(
                     override fun beforeChildrenChange(event: PsiTreeChangeEvent) {
                         val psiFile = event.file
                         if (psiFile == null || !psiFile.isInGodotRoot()) return
-                        if (psiFile.language == KotlinLanguage.INSTANCE || psiFile.language == JavaLanguage.INSTANCE) {
+                        if (psiFile.isIndexedLanguageFile()) {
                             // remove class names (will be re registered in [childrenChanged])
                             // needed because [childrenChanged] gets triggered for each char typed. So for class name's a "new" class gets registered for each typed char
                             // no way to delete those obsolete class names again after [childrenChanged] as they simply don't exist anymore
@@ -56,7 +57,7 @@ class PsiTreeListener(
                     override fun childrenChanged(event: PsiTreeChangeEvent) {
                         val psiFile = event.file
                         if (psiFile == null || !psiFile.isInGodotRoot()) return
-                        if (psiFile.language == KotlinLanguage.INSTANCE || psiFile.language == JavaLanguage.INSTANCE) {
+                        if (psiFile.isIndexedLanguageFile()) {
                             psiFileChanged(psiFile)
                         }
                     }
@@ -86,10 +87,14 @@ class PsiTreeListener(
                 val javaFiles = FileTypeIndex
                     .getFiles(JavaFileType.INSTANCE, GlobalSearchScope.projectScope(project))
                     .toList()
+                val scalaFiles = FilenameIndex
+                    .getAllFilesByExt(project, "scala", GlobalSearchScope.projectScope(project))
+                    .toList()
 
                 buildList {
                     addAll(ktFiles)
                     addAll(javaFiles)
+                    addAll(scalaFiles)
                 }
             }
             .inSmartMode(project)
@@ -110,5 +115,9 @@ class PsiTreeListener(
                         }
                     }
             }
+    }
+
+    private fun PsiFile.isIndexedLanguageFile(): Boolean {
+        return language == KotlinLanguage.INSTANCE || language == JavaLanguage.INSTANCE || virtualFile.extension == "scala"
     }
 }

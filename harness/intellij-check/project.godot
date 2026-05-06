@@ -1,0 +1,8 @@
+; Minimal Godot project file for IDE inspection fixtures.
+
+config_version=5
+
+[application]
+
+config/name="intellij-check"
+config/features=PackedStringArray("4.5")

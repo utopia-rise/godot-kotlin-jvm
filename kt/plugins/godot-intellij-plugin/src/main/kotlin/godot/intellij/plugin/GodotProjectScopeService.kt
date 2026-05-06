@@ -8,7 +8,6 @@ import godot.intellij.plugin.project.GodotRoot
 import java.io.File
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
-import kotlin.jvm.optionals.getOrNull
 
 class GodotProjectScopeService {
     private val godotRootCache = ConcurrentHashMap<Module, Optional<GodotRoot>>()
@@ -16,7 +15,7 @@ class GodotProjectScopeService {
     fun provideGodotRoot(module: Module): GodotRoot? {
         val cachedRoot = godotRootCache[module]
         if (cachedRoot != null) {
-            return cachedRoot.getOrNull()
+            return cachedRoot.orElse(null)
         }
 
         godotRootCache[module] = Optional.empty()
@@ -38,7 +37,7 @@ class GodotProjectScopeService {
         )
 
         godotRootCache[module] = resolvedRoot
-        return resolvedRoot.getOrNull()
+        return resolvedRoot.orElse(null)
     }
 
     private fun File.findFileRecursively(excludedDirs: List<String>, filter: (File) -> Boolean): File? {

@@ -1,4 +1,5 @@
 package godot.entrygenerator
+
 import godot.entrygenerator.checks.FunctionArgCountCheck
 import godot.entrygenerator.checks.LateinitPropertyCheck
 import godot.entrygenerator.checks.NullablePropertyCheck
@@ -12,12 +13,11 @@ import godot.entrygenerator.filebuilder.MainEntryFileBuilder
 import godot.entrygenerator.filebuilder.RegistrationFileGenerator
 import godot.entrygenerator.model.JvmType
 import godot.entrygenerator.model.RegisteredClass
-import godot.entrygenerator.settings.Settings
 import godot.entrygenerator.model.SourceFile
+import godot.entrygenerator.settings.Settings
 import godot.entrygenerator.utils.Logger
 import godot.tools.common.constants.FileExtensions
-import godot.tools.common.constants.godotEntryBasePackage
-import godot.tools.common.constants.godotRegistrationPackage
+import godot.tools.common.names.Registration
 import java.io.BufferedWriter
 import java.io.File
 
@@ -28,7 +28,8 @@ object EntryGenerator {
 
     private var _jvmTypeFqNamesProvider: ((JvmType) -> Set<String>)? = null
     internal val jvmTypeFqNamesProvider: ((JvmType) -> Set<String>)
-        get() = _jvmTypeFqNamesProvider ?: throw UninitializedPropertyAccessException("jvmTypeFqNamesProvider not yet initialized. Get jvmTypeFqNamesProvider only after generateEntryFiles was called")
+        get() = _jvmTypeFqNamesProvider
+            ?: throw UninitializedPropertyAccessException("jvmTypeFqNamesProvider not yet initialized. Get jvmTypeFqNamesProvider only after generateEntryFiles was called")
 
     fun generateEntryFiles(
         settings: Settings,
@@ -195,7 +196,7 @@ object EntryGenerator {
         return if (serviceFile.exists()) {
             serviceFile.readText().trim().removeSuffix(".Entry")
         } else {
-            "$godotEntryBasePackage.${randomPackageName()}"
+            Registration.generatedPackage(randomPackageName())
         }
     }
 

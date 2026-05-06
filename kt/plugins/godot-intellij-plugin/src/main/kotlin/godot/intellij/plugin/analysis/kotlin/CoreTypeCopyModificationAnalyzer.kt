@@ -2,11 +2,11 @@ package godot.intellij.plugin.analysis.kotlin
 
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiModifierListOwner
-import godot.intellij.plugin.analysis.CORE_TYPE_HELPER_ANNOTATION
 import godot.intellij.plugin.GodotPluginBundle
-import godot.intellij.plugin.analysis.CORE_TYPE_LOCAL_COPY_ANNOTATION
 import godot.intellij.plugin.analysis.GodotProblem
 import godot.intellij.plugin.project.asClassId
+import godot.tools.common.names.Annotation
+import godot.tools.common.names.qualifiedName
 import org.jetbrains.kotlin.idea.references.mainReference
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.lexer.KtTokens
@@ -101,8 +101,8 @@ object CoreTypeCopyModificationAnalyzer {
     // is explicitly marked as returning a local copy.
     private fun KtNameReferenceExpression.resolvesToCoreTypeLocalCopy(): Boolean {
         return when (val resolvedElement = mainReference.resolve()) {
-            is KtAnnotated -> resolvedElement.findAnnotation(asClassId(CORE_TYPE_LOCAL_COPY_ANNOTATION)) != null
-            is PsiModifierListOwner -> resolvedElement.hasAnnotation(CORE_TYPE_LOCAL_COPY_ANNOTATION)
+            is KtAnnotated -> resolvedElement.findAnnotation(Annotation.coreTypeLocalCopy.asClassId()) != null
+            is PsiModifierListOwner -> resolvedElement.hasAnnotation(Annotation.coreTypeLocalCopy.qualifiedName)
             else -> false
         }
     }
@@ -112,8 +112,8 @@ object CoreTypeCopyModificationAnalyzer {
     private fun KtCallExpression.resolvesToCoreTypeHelper(): Boolean {
         val callee = calleeExpression as? KtNameReferenceExpression ?: return false
         return when (val resolvedElement = callee.mainReference.resolve()) {
-            is KtAnnotated -> resolvedElement.findAnnotation(asClassId(CORE_TYPE_HELPER_ANNOTATION)) != null
-            is PsiModifierListOwner -> resolvedElement.hasAnnotation(CORE_TYPE_HELPER_ANNOTATION)
+            is KtAnnotated -> resolvedElement.findAnnotation(Annotation.coreTypeHelper.asClassId()) != null
+            is PsiModifierListOwner -> resolvedElement.hasAnnotation(Annotation.coreTypeHelper.qualifiedName)
             else -> false
         }
     }

@@ -4,7 +4,7 @@ import godot.entrygenerator.model.RegisterPropertyAnnotation
 import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.utils.Logger
 
-class PropertyMutablilityCheck(logger: Logger, registeredClasses: List<RegisteredClass>): BaseCheck(logger, registeredClasses) {
+class PropertyMutablilityCheck(logger: Logger, registeredClasses: List<RegisteredClass>) : BaseCheck(logger, registeredClasses) {
     override fun execute(): Boolean {
         var hasIssue = false
         registeredClasses
