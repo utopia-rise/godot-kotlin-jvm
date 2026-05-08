@@ -1,5 +1,6 @@
 package godot.core
 
+import godot.annotation.GodotBaseType
 import godot.common.interop.NativeWrapper
 import godot.common.interop.ObjectID
 import godot.common.interop.VoidPtr
@@ -14,6 +15,7 @@ class GodotNotification internal constructor(val block: Any.(Int) -> Unit)
 
 @OptIn(ExperimentalContracts::class)
 @Suppress("LeakingThis", "FunctionName")
+@GodotBaseType
 abstract class KtObject : NativeWrapper {
 
     /** Used to prevent the new method to be executed when called from instantiateWith

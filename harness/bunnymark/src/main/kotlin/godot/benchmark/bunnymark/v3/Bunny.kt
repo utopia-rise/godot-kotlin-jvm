@@ -15,12 +15,10 @@ class Bunny : Sprite2D() {
 	private lateinit var screenSize: Vector2
 	private val randomNumberGenerator = RandomNumberGenerator()
 
-    @Register
     override fun _ready() {
         randomNumberGenerator.randomize()
     }
 
-	@Register
 	override fun _process(delta: Double) {
 		screenSize = getViewportRect().size
 		val pos = position

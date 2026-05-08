@@ -1,5 +1,6 @@
 package godot.annotation.processor.classgraph.extensions
 
+import godot.annotation.GodotBaseType
 import godot.annotation.Register
 import godot.annotation.Rpc
 import godot.annotation.processor.classgraph.Context
@@ -39,6 +40,9 @@ fun MethodInfo.getAnnotations() = annotationInfo
     .flatMap { annotation -> annotation.getAnnotationChain() }
     .distinctBy { annotation -> annotation.name }
 
+val MethodInfo.isGodotBaseTypeOverridee: Boolean
+    get() = classInfo.collectGodotBaseHierarchyMethodSignatures().contains(registrationSignature)
+
 val MethodInfo.isOverridee: Boolean
     get() = classInfo.collectSuperMethodSignatures().contains(registrationSignature)
 
@@ -46,22 +50,21 @@ val MethodInfo.registrationSignature: String
     get() = "$name:$typeDescriptor"
 
 private fun ClassInfo.collectSuperMethodSignatures(): Set<String> {
-    val signatures = mutableSetOf<String>()
-    for (superclass in superclasses) {
-        signatures += superclass.collectHierarchyMethodSignatures()
+    return Context.hierarchyMethodSignaturesByClass.getOrPut(name) {
+        superclasses
+            .flatMap { superclass -> superclass.methodInfo.asSequence() }
+            .map { method -> method.registrationSignature }
+            .toSet()
     }
-    return signatures
 }
 
-private fun ClassInfo.collectHierarchyMethodSignatures(): Set<String> {
-    return Context.hierarchyMethodSignaturesByClass.getOrPut(name) {
-        val signatures = mutableSetOf<String>()
-        for (method in methodInfo) {
-            signatures += method.registrationSignature
-        }
-        for (superclass in superclasses) {
-            signatures += superclass.collectHierarchyMethodSignatures()
-        }
-        signatures
+private fun ClassInfo.collectGodotBaseHierarchyMethodSignatures(): Set<String> {
+    return Context.godotBaseHierarchyMethodSignaturesByClass.getOrPut(name) {
+        superclasses
+            .asSequence()
+            .filter { superclass -> superclass.hasAnnotation(GodotBaseType::class.java) }
+            .flatMap { superclass -> superclass.methodInfo.asSequence() }
+            .map { method -> method.registrationSignature }
+            .toSet()
     }
 }

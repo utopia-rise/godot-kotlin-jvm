@@ -7,6 +7,7 @@ import godot.intellij.plugin.project.anyFunctionHasAnnotation
 import godot.intellij.plugin.project.anyPropertyHasAnnotation
 import godot.intellij.plugin.project.asClassId
 import godot.intellij.plugin.project.getRegisteredClassName
+import godot.intellij.plugin.project.isGodotRegisteredFunction
 import godot.intellij.plugin.project.isAbstract
 import godot.intellij.plugin.project.isOrInheritsType
 import godot.intellij.plugin.project.registeredClassNameCache
@@ -129,7 +130,7 @@ object RegisterClassAnalyzer {
                         )
                     )
                 }
-                if (!psiClass.isAbstract && psiClass.anyFunctionHasAnnotation(Annotation.register)) {
+                if (!psiClass.isAbstract && psiClass.methods.any { method -> method.isGodotRegisteredFunction() }) {
                     add(
                         GodotProblem(
                             GodotPluginBundle.message("problem.class.notRegistered.functions"),
@@ -228,7 +229,13 @@ object RegisterClassAnalyzer {
     private fun KtClass.anyFunctionHasAnnotation(annotation: String): Boolean {
         return declarations
             .filterIsInstance<KtNamedFunction>()
-            .any { declaration -> declaration.annotationEntries.any { it.shortName?.asString() == annotation } }
+            .any { declaration ->
+                if (annotation == Annotation.register.simpleName) {
+                    declaration.isGodotRegisteredFunction()
+                } else {
+                    declaration.annotationEntries.any { it.shortName?.asString() == annotation }
+                }
+            }
     }
 
     private fun KtClass.anyPropertyHasAnnotation(annotation: String): Boolean {

@@ -42,7 +42,6 @@ class SignalTest : Node() {
     @Visible
     var otherScript = OtherScript()
 
-    @Register
     override fun _ready() {
 
         noParamSignalDelegate.connectMethod(otherScript, OtherScript::hookNoParam)

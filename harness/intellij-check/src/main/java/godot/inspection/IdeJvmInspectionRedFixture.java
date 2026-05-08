@@ -70,8 +70,8 @@ class JvmGenericRegisteredClassFixture<T> extends Node {
 // Method registration checks.
 @GodotScript
 public class IdeJvmInspectionRedFixture extends Node {
-    // Expected red: notification callbacks like `_ready` must also carry
-    // `@Register` inside a registered class.
+    // Expected clean: overrides coming from Godot base types are registered
+    // automatically now.
     @Override
     public void _ready() {
     }

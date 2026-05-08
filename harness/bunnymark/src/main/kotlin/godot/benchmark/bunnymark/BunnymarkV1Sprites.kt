@@ -22,12 +22,10 @@ class BunnymarkV1Sprites : Node2D() {
 
 	private lateinit var screenSize: Vector2
 
-	@Register
 	override fun _ready() {
 		randomNumberGenerator.randomize()
 	}
 
-	@Register
 	override fun _process(delta: Double) {
 		screenSize = getViewportRect().size
 

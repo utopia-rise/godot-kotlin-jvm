@@ -38,7 +38,6 @@ class LambdaCallableTest : Node() {
     @Visible
     var ktCallableString: String = ""
 
-    @Register
     override fun _ready() {
         signalNoParam.connectLambda {
             hasSignalNoParamBeenTriggered = true

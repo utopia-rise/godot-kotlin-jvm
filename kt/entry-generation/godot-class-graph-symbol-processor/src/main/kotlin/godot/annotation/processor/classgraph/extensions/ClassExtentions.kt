@@ -32,7 +32,7 @@ fun ClassInfo.mapToClazz(settings: Settings): Clazz {
         .mapNotNull { it.mapToGodotAnnotation(this, fqName) as? ClassAnnotation }
 
     val methods = methodInfo
-        .filter { it.hasAnnotation(Register::class.java) }
+        .filter { it.hasAnnotation(Register::class.java) || it.isGodotBaseTypeOverridee }
         .map { it.mapMethodToRegisteredFunction(this, settings) }
 
     val fields = fieldInfo

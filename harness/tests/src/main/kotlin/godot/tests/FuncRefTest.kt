@@ -29,7 +29,6 @@ class FuncRefTest : Node() {
     @Visible
     var signalCallFlag = false
 
-    @Register
     override fun _ready() {
         test.connectMethod(this, FuncRefTest::testSignalCallback)
     }

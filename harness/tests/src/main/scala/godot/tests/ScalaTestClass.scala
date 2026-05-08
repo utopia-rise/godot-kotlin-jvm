@@ -60,7 +60,6 @@ class ScalaTestClass extends Node {
 //
   //var methodCallable: NativeCallable = Callable.create(this, StringNames.asStringName("DummyName"))
 
-  @Register
   override def _ready(): Unit = {
     // Check if Singletons have the correct syntax, without Single.INSTANCE
     val constant = RenderingServer.NO_INDEX_ARRAY

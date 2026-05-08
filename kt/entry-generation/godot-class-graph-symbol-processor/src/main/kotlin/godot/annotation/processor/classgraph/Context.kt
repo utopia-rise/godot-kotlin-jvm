@@ -18,6 +18,8 @@ object Context {
     val enumValueNamesByClass = mutableMapOf<String, List<String>>()
     // The same class hierarchy is checked for inherited method signatures once per candidate method unless memoized.
     val hierarchyMethodSignaturesByClass = mutableMapOf<String, Set<String>>()
+    // The same superclass chain is revisited when checking whether an override ultimately comes from a Godot base type.
+    val godotBaseHierarchyMethodSignaturesByClass = mutableMapOf<String, Set<String>>()
     // The same annotation meta-chain is reused whenever a property annotation implies export/visibility through other annotations.
     val annotationChainByAnnotationName = mutableMapOf<String, Set<io.github.classgraph.AnnotationInfo>>()
 
@@ -27,6 +29,7 @@ object Context {
         mappedTypeByKey.clear()
         enumValueNamesByClass.clear()
         hierarchyMethodSignaturesByClass.clear()
+        godotBaseHierarchyMethodSignaturesByClass.clear()
         annotationChainByAnnotationName.clear()
     }
 

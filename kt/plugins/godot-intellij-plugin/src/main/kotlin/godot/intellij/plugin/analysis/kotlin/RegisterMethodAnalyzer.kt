@@ -4,6 +4,7 @@ import godot.common.constants.Constraints
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.analysis.GodotProblem
 import godot.intellij.plugin.project.asClassId
+import godot.intellij.plugin.project.isGodotRegisteredFunction
 import godot.tools.common.names.Annotation
 import godot.tools.common.names.API
 import org.jetbrains.kotlin.idea.util.findAnnotation
@@ -16,7 +17,7 @@ object RegisterMethodAnalyzer {
             if (
                 function.containingClass()?.findAnnotation(Annotation.registerClass.asClassId()) != null &&
                 API.notificationFunctions.any { it.simpleName == function.name } &&
-                function.findAnnotation(Annotation.register.asClassId()) == null
+                !function.isGodotRegisteredFunction()
             ) {
                 add(
                     GodotProblem(
@@ -26,7 +27,7 @@ object RegisterMethodAnalyzer {
                 )
             }
 
-            if (function.findAnnotation(Annotation.register.asClassId()) != null) {
+            if (function.isGodotRegisteredFunction()) {
                 if (function.typeParameters.isNotEmpty()) {
                     add(
                         GodotProblem(

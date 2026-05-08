@@ -2,14 +2,12 @@ package godot.intellij.plugin.analysis.kotlin.reference
 
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.analysis.GodotProblem
-import godot.intellij.plugin.project.asClassId
+import godot.intellij.plugin.project.isGodotRegisteredFunction
 import godot.intellij.plugin.project.isOrInheritsType
 import godot.intellij.plugin.quickfix.TargetFunctionNotRegisteredQuickFix
 import godot.tools.common.names.API
-import godot.tools.common.names.Annotation
 import godot.tools.common.names.qualifiedName
 import org.jetbrains.kotlin.idea.references.mainReference
-import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.psi.KtCallExpression
 import org.jetbrains.kotlin.psi.KtCallableReferenceExpression
 import org.jetbrains.kotlin.psi.KtClass
@@ -34,8 +32,7 @@ object CallFunctionReferenceAnalyzer {
                 .mainReference
                 .resolve() as? KtNamedFunction
 
-            val registerFunctionAnnotation = targetFunction?.findAnnotation(Annotation.register.asClassId())
-            if (targetFunction != null && registerFunctionAnnotation == null) {
+            if (targetFunction != null && !targetFunction.isGodotRegisteredFunction()) {
                 return listOf(
                     GodotProblem(
                         GodotPluginBundle.message("problem.general.calledFunctionNotRegistered"),

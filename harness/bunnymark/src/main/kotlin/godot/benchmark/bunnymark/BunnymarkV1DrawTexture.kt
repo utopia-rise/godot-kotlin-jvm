@@ -25,19 +25,16 @@ class BunnymarkV1DrawTexture : Node2D() {
 
 	private lateinit var screenSize: Vector2
 
-	@Register
 	override fun _ready() {
 		randomNumberGenerator.randomize()
 	}
 
-	@Register
 	override fun _draw() {
 		for (bunny in bunnies) {
 			drawTexture(bunnyTexture, bunny.position)
 		}
 	}
 
-	@Register
 	override fun _process(delta: Double) {
 		screenSize = getViewportRect().size
 

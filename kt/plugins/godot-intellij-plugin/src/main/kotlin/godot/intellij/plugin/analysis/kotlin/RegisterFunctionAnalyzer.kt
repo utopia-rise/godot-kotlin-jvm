@@ -3,6 +3,7 @@ package godot.intellij.plugin.analysis.kotlin
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.analysis.GodotProblem
 import godot.intellij.plugin.project.asClassId
+import godot.intellij.plugin.project.isGodotRegisteredFunction
 import godot.intellij.plugin.quickfix.FunctionNotRegisteredQuickFix
 import godot.tools.common.names.Annotation
 import org.jetbrains.kotlin.analysis.api.analyze
@@ -33,7 +34,7 @@ object RegisterFunctionAnalyzer {
             element.symbol.allOverriddenSymbols.any { it.annotations.contains(Annotation.register.asClassId()) }
         }
         return element.containingClass()?.findAnnotation(Annotation.registerClass.asClassId()) != null &&
-            element.findAnnotation(Annotation.register.asClassId()) == null &&
+            !element.isGodotRegisteredFunction() &&
             hasRegisterAnnotation
     }
 }

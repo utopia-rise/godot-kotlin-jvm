@@ -92,8 +92,8 @@ class GenericRegisteredClassFixture<T> : Node()
 // Method registration checks.
 @GodotScript
 class NotificationFunctionWithoutRegisterFunctionFixture : Node() {
-    // Expected red: notification callbacks like `_ready` must also carry
-    // `@Register` inside a registered class.
+    // Expected clean: overrides coming from Godot base types are registered
+    // automatically now.
     override fun _ready() {
     }
 }
@@ -266,7 +266,6 @@ class CallableReferenceProblemFixture : Node() {
     @RegisterSignal
     val localSignal by signal0()
 
-    @Register
     override fun _ready() {
         // Expected red on the callable reference: connected signal targets must
         // be registered functions.

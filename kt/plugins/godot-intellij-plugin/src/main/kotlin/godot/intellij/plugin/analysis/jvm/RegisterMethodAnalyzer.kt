@@ -5,6 +5,7 @@ import com.intellij.psi.PsiMethod
 import godot.common.constants.Constraints
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.analysis.GodotProblem
+import godot.intellij.plugin.project.isGodotRegisteredFunction
 import godot.tools.common.names.API
 import godot.tools.common.names.Annotation
 import godot.tools.common.names.qualifiedName
@@ -15,7 +16,7 @@ object RegisterMethodAnalyzer {
             if (
                 method.containingClass?.getAnnotation(Annotation.registerClass.qualifiedName) != null &&
                 API.notificationFunctions.any { it.simpleName == method.name } &&
-                method.getAnnotation(Annotation.register.qualifiedName) == null
+                !method.isGodotRegisteredFunction()
             ) {
                 add(
                     GodotProblem(
@@ -25,7 +26,7 @@ object RegisterMethodAnalyzer {
                 )
             }
 
-            if (method.getAnnotation(Annotation.register.qualifiedName) != null) {
+            if (method.isGodotRegisteredFunction()) {
                 addAll(GenericRegistrationAnalyzer.analyze(method))
                 if (method.parameterList.parametersCount > Constraints.MAX_FUNCTION_ARG_COUNT) {
                     add(

@@ -13,7 +13,6 @@ class HelloFromScala extends Node {
   @Visible
   var myInt: Int = 0
 
-  @Register
   override def _ready(): Unit = {
     println("Hello from scala")
   }

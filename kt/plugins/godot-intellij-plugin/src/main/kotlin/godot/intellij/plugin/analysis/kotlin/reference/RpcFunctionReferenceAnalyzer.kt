@@ -3,6 +3,7 @@ package godot.intellij.plugin.analysis.kotlin.reference
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.analysis.GodotProblem
 import godot.intellij.plugin.project.asClassId
+import godot.intellij.plugin.project.isGodotRegisteredFunction
 import godot.intellij.plugin.quickfix.TargetFunctionHasNoRpcAnnotationQuickFix
 import godot.intellij.plugin.quickfix.TargetFunctionNotRegisteredQuickFix
 import godot.intellij.plugin.quickfix.TargetFunctionsRpcAnnotationHasRpcModeDisabled
@@ -38,11 +39,10 @@ object RpcFunctionReferenceAnalyzer {
                 .mainReference
                 .resolve() as? KtNamedFunction
 
-            val registerFunctionAnnotation = targetFunction?.findAnnotation(Annotation.register.asClassId())
             val rpcAnnotation = targetFunction?.findAnnotation(Annotation.rpc.asClassId())
 
             when {
-                targetFunction != null && registerFunctionAnnotation == null -> {
+                targetFunction != null && !targetFunction.isGodotRegisteredFunction() -> {
                     return listOf(
                         GodotProblem(
                             GodotPluginBundle.message("problem.rpc.calledFunctionNotRegistered"),

@@ -22,7 +22,6 @@ class BunnymarkV2 : Node2D() {
 
 	private lateinit var screenSize: Vector2
 
-	@Register
 	override fun _ready() {
 		randomNumberGenerator.randomize()
 		addChild(bunnies)
@@ -30,7 +29,6 @@ class BunnymarkV2 : Node2D() {
 		addChild(label)
 	}
 
-	@Register
 	override fun _process(delta: Double) {
 		screenSize = getViewportRect().size
 		label.text = "Bunnies: " + bunnies.getChildCount().toString()
