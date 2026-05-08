@@ -38,7 +38,7 @@ object RegisterClassAnalyzer {
                         )
                     )
                 }
-                if (!ktClass.isAbstract() && ktClass.anyPropertyHasAnnotation(Annotation.registerProperty.simpleName)) {
+                if (!ktClass.isAbstract() && ktClass.anyPropertyHasAnnotation(Annotation.visible.simpleName)) {
                     add(
                         GodotProblem(
                             GodotPluginBundle.message("problem.class.notRegistered.properties"),
@@ -56,7 +56,7 @@ object RegisterClassAnalyzer {
                         )
                     )
                 }
-                if (!ktClass.isAbstract() && ktClass.anyFunctionHasAnnotation(Annotation.registerFunction.simpleName)) {
+                if (!ktClass.isAbstract() && ktClass.anyFunctionHasAnnotation(Annotation.register.simpleName)) {
                     add(
                         GodotProblem(
                             GodotPluginBundle.message("problem.class.notRegistered.functions"),
@@ -111,7 +111,7 @@ object RegisterClassAnalyzer {
                         )
                     )
                 }
-                if (!psiClass.isAbstract && psiClass.anyPropertyHasAnnotation(Annotation.registerProperty)) {
+                if (!psiClass.isAbstract && psiClass.anyPropertyHasAnnotation(Annotation.visible)) {
                     add(
                         GodotProblem(
                             GodotPluginBundle.message("problem.class.notRegistered.properties"),
@@ -129,7 +129,7 @@ object RegisterClassAnalyzer {
                         )
                     )
                 }
-                if (!psiClass.isAbstract && psiClass.anyFunctionHasAnnotation(Annotation.registerFunction)) {
+                if (!psiClass.isAbstract && psiClass.anyFunctionHasAnnotation(Annotation.register)) {
                     add(
                         GodotProblem(
                             GodotPluginBundle.message("problem.class.notRegistered.functions"),

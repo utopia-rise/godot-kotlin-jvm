@@ -1,9 +1,9 @@
 package godot.inspection;
 
 import godot.annotation.Export;
-import godot.annotation.RegisterClass;
-import godot.annotation.RegisterFunction;
-import godot.annotation.RegisterProperty;
+import godot.annotation.GodotScript;
+import godot.annotation.Register;
+import godot.annotation.Visible;
 import godot.annotation.RegisterSignal;
 import godot.annotation.Tool;
 import godot.api.Node;
@@ -17,13 +17,13 @@ import godot.core.StringNames;
 class JvmNotRegisteredButToolFixture extends Node {
 }
 
-// Expected red on the class: it is not `@RegisterClass`, but it contains
+// Expected red on the class: it is not `@GodotScript`, but it contains
 // registered properties, signals, and functions.
 class JvmNotRegisteredButMembersFixture extends Node {
     // Expected red via the containing class: registered property inside a
     // non-registered class.
     @Export
-    @RegisterProperty
+    @Visible
     public int propertyShouldStayRed = 1;
 
     // Expected red via the containing class: registered signal inside a
@@ -33,21 +33,21 @@ class JvmNotRegisteredButMembersFixture extends Node {
 
     // Expected red via the containing class: registered function inside a
     // non-registered class.
-    @RegisterFunction
+    @Register
     public int functionShouldStayRed() {
         return propertyShouldStayRed;
     }
 }
 
-// Expected red: `@RegisterClass` is present, but the class does not inherit a
+// Expected red: `@GodotScript` is present, but the class does not inherit a
 // Godot object type.
-@RegisterClass
+@GodotScript
 class JvmRegisterClassWithoutGodotBaseFixture {
 }
 
 // Expected red: registered classes must expose exactly one parameterless
 // constructor, and this one only has a parameterized constructor.
-@RegisterClass
+@GodotScript
 class JvmRegisterClassWithoutDefaultConstructorFixture extends Node {
     public JvmRegisterClassWithoutDefaultConstructorFixture(int number) {
     }
@@ -55,36 +55,36 @@ class JvmRegisterClassWithoutDefaultConstructorFixture extends Node {
 
 // Expected red on both duplicate declarations: they register the same custom
 // Godot class name.
-@RegisterClass(className = "DuplicateJvmInspectionName")
+@GodotScript(className = "DuplicateJvmInspectionName")
 class JvmDuplicateRegisteredNameFixtureOne extends Node {
 }
 
-@RegisterClass(className = "DuplicateJvmInspectionName")
+@GodotScript(className = "DuplicateJvmInspectionName")
 class JvmDuplicateRegisteredNameFixtureTwo extends Node {
 }
 
 // Expected red: generic classes cannot be registered.
-@RegisterClass
+@GodotScript
 class JvmGenericRegisteredClassFixture<T> extends Node {
 }
 
 // Method registration checks.
-@RegisterClass
+@GodotScript
 public class IdeJvmInspectionRedFixture extends Node {
     // Expected red: notification callbacks like `_ready` must also carry
-    // `@RegisterFunction` inside a registered class.
+    // `@Register` inside a registered class.
     @Override
     public void _ready() {
     }
 
     // Expected red: generic functions cannot be registered.
-    @RegisterFunction
+    @Register
     public <T> void genericRegisteredFunction(T value) {
     }
 
     // Expected red: registered functions may not exceed the max supported
     // parameter count.
-    @RegisterFunction
+    @Register
     public void tooManyParameters(
             int p01,
             int p02,

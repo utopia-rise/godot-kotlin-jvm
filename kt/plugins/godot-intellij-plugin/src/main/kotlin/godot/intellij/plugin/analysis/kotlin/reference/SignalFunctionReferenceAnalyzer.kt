@@ -35,7 +35,7 @@ object SignalFunctionReferenceAnalyzer {
                 .mainReference
                 .resolve() as? KtNamedFunction
 
-            if (targetFunction != null && targetFunction.findAnnotation(Annotation.registerFunction.asClassId()) == null) {
+            if (targetFunction != null && targetFunction.findAnnotation(Annotation.register.asClassId()) == null) {
                 return listOf(
                     GodotProblem(
                         GodotPluginBundle.message("problem.signal.connection.connectedFunctionNotRegistered"),

@@ -1,12 +1,13 @@
 package godot.tests.constructor
 
 import godot.api.Node
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterProperty
+import godot.annotation.GodotScript
+import godot.annotation.Register
+import godot.annotation.Visible
 
-@RegisterClass
+@GodotScript
 class ConstructorRegistrationTest(): Node() {
-    @RegisterProperty
+    @Visible
     var defaultConstructorHasBeenCalled = false
 
     init {

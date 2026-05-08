@@ -30,10 +30,10 @@ object RegisterFunctionAnalyzer {
 
     private fun overriddenRegisteredAbstractFunctionNotRegistered(element: KtNamedFunction): Boolean {
         val hasRegisterAnnotation = analyze(element) {
-            element.symbol.allOverriddenSymbols.any { it.annotations.contains(Annotation.registerFunction.asClassId()) }
+            element.symbol.allOverriddenSymbols.any { it.annotations.contains(Annotation.register.asClassId()) }
         }
         return element.containingClass()?.findAnnotation(Annotation.registerClass.asClassId()) != null &&
-            element.findAnnotation(Annotation.registerFunction.asClassId()) == null &&
+            element.findAnnotation(Annotation.register.asClassId()) == null &&
             hasRegisterAnnotation
     }
 }

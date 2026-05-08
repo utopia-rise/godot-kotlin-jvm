@@ -20,6 +20,6 @@ class TargetPropertyNotRegisteredQuickFix : LocalQuickFix {
             ?.mainReference
             ?.resolve() as? KtProperty
 
-        ktProperty?.addAnnotation(Annotation.registerProperty.asClassId())
+        ktProperty?.addAnnotation(Annotation.visible.asClassId())
     }
 }

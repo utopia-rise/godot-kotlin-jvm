@@ -16,6 +16,6 @@ class FunctionNotRegisteredQuickFix : LocalQuickFix {
         val ktNamedFunction = descriptor.psiElement as? KtNamedFunction
             ?: descriptor.psiElement.parent as? KtNamedFunction
             ?: return
-        ktNamedFunction.addAnnotation(Annotation.registerFunction.asClassId())
+        ktNamedFunction.addAnnotation(Annotation.register.asClassId())
     }
 }

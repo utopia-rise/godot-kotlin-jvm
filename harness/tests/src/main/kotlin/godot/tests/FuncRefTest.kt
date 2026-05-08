@@ -1,9 +1,9 @@
 package godot.tests
 
 import godot.api.Node
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
-import godot.annotation.RegisterProperty
+import godot.annotation.GodotScript
+import godot.annotation.Register
+import godot.annotation.Visible
 import godot.annotation.RegisterSignal
 import godot.annotation.Rpc
 import godot.core.callable0
@@ -11,66 +11,66 @@ import godot.core.callable1
 import godot.core.signal0
 import godot.extension.connectMethod
 
-@RegisterClass
+@GodotScript
 class FuncRefTest : Node() {
 
     @RegisterSignal
     val test by signal0()
 
-    @RegisterProperty
+    @Visible
     var blubb: Boolean = false
 
-    @RegisterProperty
+    @Visible
     var callFlag = false
 
-    @RegisterProperty
+    @Visible
     var callWithParamFlag = false
 
-    @RegisterProperty
+    @Visible
     var signalCallFlag = false
 
-    @RegisterFunction
+    @Register
     override fun _ready() {
         test.connectMethod(this, FuncRefTest::testSignalCallback)
     }
 
     @Rpc
-    @RegisterFunction
+    @Register
     fun testSignalCallback() {
         signalCallFlag = true
     }
 
-    @RegisterFunction
+    @Register
     fun testSignalCall() {
         test.emit()
     }
 
-    @RegisterFunction
+    @Register
     fun withoutParamCallback() {
         callFlag = true
     }
 
-    @RegisterFunction
+    @Register
     fun testCallWithoutParam() {
         callable0(this::withoutParamCallback).call()
     }
 
-    @RegisterFunction
+    @Register
     fun testCallDeferredWithoutParam() {
         callable0(this::withoutParamCallback).callDeferred()
     }
 
-    @RegisterFunction
+    @Register
     fun withParamCallback(flag: Boolean) {
         callWithParamFlag = flag
     }
 
-    @RegisterFunction
+    @Register
     fun testCallWithParam() {
         callable1(this::withParamCallback).call(true)
     }
 
-    @RegisterFunction
+    @Register
     fun testCallDeferredWithParam() {
         callable1(this::withParamCallback).callDeferred(true)
     }

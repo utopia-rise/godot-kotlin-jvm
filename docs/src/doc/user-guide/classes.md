@@ -1,7 +1,7 @@
-To expose a class written in Kotlin it needs to extend `godot.Object` (or any of its subtype) and must be annotated with `@RegisterClass`.
+To expose a class written in Kotlin it needs to extend `godot.Object` (or any of its subtype) and must be annotated with `@GodotScript`.
 
 ```kt
-@RegisterClass
+@GodotScript
 class RotatingCube: Node3D() {
     // ...
 }
@@ -24,7 +24,7 @@ So you are responsible for making sure that classes have a unique name.
 We do however provide you with some assistance:
 
 - We have compile time checks in place which should let the *build fail* if classes would end up having the same name.
-- The `@RegisterClass` annotation lets you define a custom registration name: `@RegisterClass("CustomRegistrationName")`.
+- The `@GodotScript` annotation lets you define a custom registration name: `@GodotScript("CustomRegistrationName")`.
 - You can configure how default registration names are computed:
 
 ```kotlin
@@ -99,7 +99,7 @@ If you want to be notified when initialization and destruction of your class' in
 and override the `_onDestroy` function respectively.
 
 ```kt
-@RegisterClass
+@GodotScript
 class RotatingCube: Node3D() {
     init {
         println("Initializing RotatingCube!")
@@ -116,7 +116,7 @@ class RotatingCube: Node3D() {
 Checking if an object is an instance of a particular type can be done via the `is` operator.
 
 ```kt
-@RegisterFunction
+@Register
 override fun _ready() {
     val parent = getParent()
     if (parent is CollisionShape) {
@@ -134,7 +134,7 @@ This also works for any type you define.
     If you are sure that an object is always an instance of some type, then you can take advantage of Kotlin's [contracts](https://kotlinlang.org/docs/reference/whatsnew13.html#contracts) feature. This allows you to avoid having nested `if`s.
 
     ```kt
-    @RegisterFunction
+    @Register
     override fun _ready() {
         val parent = getParent()
         require(parent is CollisionShape)
@@ -164,7 +164,7 @@ But you can create the object and set the required properties after instantiatio
 
 You can customize to some extent how your class should be registered in Godot.
 
-The `@RegisterClass` annotation takes only one argument:
+The `@GodotScript` annotation takes only one argument:
 
 - **className**: If set, the class will be registered with the provided name.
 
@@ -174,7 +174,7 @@ The `@RegisterClass` annotation takes only one argument:
 
 ## Tool Mode
 
-Annotate your class with `@Tool` to make it a tool class (note that `@RegisterClass` is required for this annotation to take effect).
+Annotate your class with `@Tool` to make it a tool class (note that `@GodotScript` is required for this annotation to take effect).
 
 !!! Caution
     This is currently not implemented.

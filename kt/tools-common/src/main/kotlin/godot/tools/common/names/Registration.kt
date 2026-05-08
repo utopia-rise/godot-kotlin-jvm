@@ -11,9 +11,9 @@ object Registration {
     @Suppress("NOTHING_TO_INLINE")
     private inline fun registrationName(simpleName: String) = ClassName(godotRegistrationPackage, simpleName)
 
-    val registerClass = annotationName("RegisterClass")
-    val registerProperty = annotationName("RegisterProperty")
-    val registerFunction = annotationName("RegisterFunction")
+    val registerClass = annotationName("GodotScript")
+    val register = annotationName("Register")
+    val visible = annotationName("Visible")
     val registerSignal = annotationName("RegisterSignal")
     val tool = annotationName("Tool")
     val export = annotationName("Export")

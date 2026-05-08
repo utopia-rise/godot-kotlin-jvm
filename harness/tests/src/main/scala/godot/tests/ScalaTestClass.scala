@@ -1,12 +1,12 @@
 package godot.tests
 
-import godot.annotation.{Export, RegisterClass, RegisterFunction, RegisterProperty, RegisterSignal}
+import godot.annotation.{Export, GodotScript, Register, RegisterSignal, Visible}
 import godot.api.Object.ConnectFlags
 import godot.api.{Button, Node, RenderingServer}
 import godot.core.{Callable, Dictionary, GodotNotification, LambdaCallable, LambdaCallable0, Signal0, Signal2, StringNames, VariantArray}
 import org.jetbrains.annotations.NotNull
 
-@RegisterClass
+@GodotScript
 class ScalaTestClass extends Node {
   //@RegisterSignal
   //val testSignal: Signal0 = Signal0.create(this, "test_signal")
@@ -15,49 +15,49 @@ class ScalaTestClass extends Node {
   //val testSignal2: Signal2[String, String] = Signal2.create(this, "test_signal_2")
 
   @Export
-  @RegisterProperty
+  @Visible
   var exportedInt: Int = 1
 
   @Export
-  @RegisterProperty
+  @Visible
   var exportedLong: Long = 1L
 
   @Export
-  @RegisterProperty
+  @Visible
   var exportedFloat: Float = 1f
 
   @Export
-  @RegisterProperty
+  @Visible
   var exportedDouble: Double = 1.0
 
   @Export
-  @RegisterProperty
+  @Visible
   var exportedBoolean: Boolean = true
 
   @Export
-  @RegisterProperty
+  @Visible
   var exportedString: String = "blubb"
 
   @Export
-  @RegisterProperty
+  @Visible
   var exportedByte: Byte = 1
 
   @Export
-  @RegisterProperty
+  @Visible
   var exportedButton: Button = null
 
-  @RegisterFunction
+  @Register
   def greeting: String = {
     return "Hello from scala"
   }
 
-  @RegisterProperty
+  @Visible
   var signalEmitted: Boolean = false
 
-  @RegisterProperty
+  @Visible
   var variantArray: VariantArray[Integer] = new VariantArray[Integer](classOf[Integer])
 
-  @RegisterProperty
+  @Visible
   var dictionary: Dictionary[Float, String] = new Dictionary[Float, String](classOf[Float], classOf[String])
 
   //var lambdaCallable: LambdaCallable[Void] = LambdaCallable0.create(classOf[Void], () => {
@@ -68,7 +68,7 @@ class ScalaTestClass extends Node {
 //
   //var methodCallable: NativeCallable = Callable.create(this, StringNames.asStringName("DummyName"))
 
-  @RegisterFunction
+  @Register
   override def _ready(): Unit = {
     // Check if Singletons have the correct syntax, without Single.INSTANCE
     val constant = RenderingServer.NO_INDEX_ARRAY
@@ -76,7 +76,7 @@ class ScalaTestClass extends Node {
     RenderingServer.getDefaultClearColor
   }
 
-  //@RegisterFunction
+  //@Register
   //def connectAndTriggerSignal(): Unit = {
   //  connect(StringNames.asStringName("test_signal"), new NativeCallable(this, StringNames.asStringName("signal_callback")), ConnectFlags.ONE_SHOT.getId.toInt)
   //  emitSignal(StringNames.asStringName("test_signal"))
@@ -90,7 +90,7 @@ class ScalaTestClass extends Node {
   //  })
   //}
 
-  @RegisterFunction
+  @Register
   def signalCallback(): Unit = {
     signalEmitted = true
   }

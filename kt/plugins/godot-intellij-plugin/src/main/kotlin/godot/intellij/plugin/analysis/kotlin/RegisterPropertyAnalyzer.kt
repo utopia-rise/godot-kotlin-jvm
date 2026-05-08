@@ -32,7 +32,7 @@ object RegisterPropertyAnalyzer {
 
     fun analyze(property: KtProperty): List<GodotProblem> {
         return buildList {
-            if (property.findAnnotation(Annotation.registerProperty.asClassId()) != null) {
+            if (property.findAnnotation(Annotation.visible.asClassId()) != null) {
                 addAll(GenericRegistrationAnalyzer.analyze(property.toLightElements().firstIsInstance()))
                 if (!property.isVar) {
                     add(
@@ -62,7 +62,7 @@ object RegisterPropertyAnalyzer {
                 }
             }
 
-            if (property.findAnnotation(Annotation.export.asClassId()) != null && property.findAnnotation(Annotation.registerProperty.asClassId()) == null) {
+            if (property.findAnnotation(Annotation.export.asClassId()) != null && property.findAnnotation(Annotation.visible.asClassId()) == null) {
                 add(
                     GodotProblem(
                         GodotPluginBundle.message("problem.property.export.notRegistered"),

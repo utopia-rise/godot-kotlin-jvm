@@ -1,10 +1,10 @@
 import godot.api.Node
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
+import godot.annotation.GodotScript
+import godot.annotation.Register
 
-@RegisterClass
+@GodotScript
 class ScriptInOtherSourceDir: Node() {
 
-	@RegisterFunction
+	@Register
 	fun greeting() = "HelloWorld"
 }

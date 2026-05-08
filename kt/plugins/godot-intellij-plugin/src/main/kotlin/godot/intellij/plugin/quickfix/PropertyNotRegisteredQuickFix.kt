@@ -17,6 +17,6 @@ class PropertyNotRegisteredQuickFix : LocalQuickFix {
         val ktProperty = if (descriptor.psiElement is KtProperty) descriptor.psiElement else descriptor.psiElement.parent
         ktProperty
             .let { it as? KtModifierListOwner }
-            ?.addAnnotation(Annotation.registerProperty.asClassId())
+            ?.addAnnotation(Annotation.visible.asClassId())
     }
 }

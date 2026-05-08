@@ -37,7 +37,7 @@ Also consider the [API Differences](user-guide/api-differences.md) section for g
 and limitations which will not be or cannot be adressed in the near forseable future or ever.
 
 - Only a default no arg constructor can be registered.
-- No tool mode (you can set it already in the `@RegisterClass` annotation but it has no effect yet).
+- No tool mode (you can set it already in the `@GodotScript` annotation but it has no effect yet).
 - No addon support, you cannot use Godot Kotlin/JVM to write plugins and addons yet (you can however [write libraries](develop-libraries/introduction.md) with godot specific code).
 - Web is currently not supported. See [Supported platforms](#supported-platforms) to see what platforms we currently support
 

@@ -1,16 +1,16 @@
 package godot.tests.inheritance
 
 import godot.api.Node
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
-import godot.annotation.RegisterProperty
+import godot.annotation.GodotScript
+import godot.annotation.Register
+import godot.annotation.Visible
 import godot.annotation.RegisterSignal
 import godot.core.GodotNotification
 import godot.core.signal1
 import godot.core.signal2
 import godot.global.GD
 
-@RegisterClass
+@GodotScript
 open class ClassInheritanceParent : Node() {
 
     @RegisterSignal("blubb")
@@ -21,34 +21,34 @@ open class ClassInheritanceParent : Node() {
 
     //---------------- Here to check ------------------
 
-    @RegisterProperty
+    @Visible
     var closedFunctionHasBeenCalled = false
 
-    @RegisterProperty
+    @Visible
     var parentOpenFunctionHasBeenCalled = false
 
     //-------------------------------------------------
 
-    @RegisterProperty
+    @Visible
     var closedVar = 0
 
-    @RegisterProperty
+    @Visible
     open var openVar = 0
 
-    @RegisterFunction
+    @Register
     fun closedFunction() {
         closedFunctionHasBeenCalled = true
     }
 
-    @RegisterFunction
+    @Register
     open fun openFunction() {
         parentOpenFunctionHasBeenCalled = true
     }
 
-    @RegisterProperty
+    @Visible
     var notificationCallBitFlag = 0
 
-    @RegisterFunction
+    @Register
     override fun _notification(): GodotNotification = godotNotification {
         GD.print("Called ClassInheritanceParent::_notification on $this with $it")
         notificationCallBitFlag = notificationCallBitFlag or 1

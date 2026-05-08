@@ -1,9 +1,9 @@
 package godot.tests.instance
 
 import godot.api.Object
-import godot.annotation.RegisterClass
+import godot.annotation.GodotScript
 
-@RegisterClass
+@GodotScript
 class ObjectInstance : Object() {
 }
 

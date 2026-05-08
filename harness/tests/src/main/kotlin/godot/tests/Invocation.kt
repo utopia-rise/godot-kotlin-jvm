@@ -19,9 +19,9 @@ import godot.annotation.IntRange
 import godot.annotation.LongRange
 import godot.annotation.MultilineText
 import godot.annotation.PlaceHolderText
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
-import godot.annotation.RegisterProperty
+import godot.annotation.GodotScript
+import godot.annotation.Register
+import godot.annotation.Visible
 import godot.core.Color
 import godot.core.Dictionary
 import godot.core.NodePath
@@ -51,91 +51,91 @@ enum class TestEnum {
 }
 
 
-@RegisterClass
+@GodotScript
 class Invocation : Node3D() {
 	@Export
-	@RegisterProperty
+	@Visible
 	lateinit var button: Button
 
 	@Export
-	@RegisterProperty
+	@Visible
 	var enumList = listOf(TestEnum.ENUM_1)
 
-	@RegisterProperty
+	@Visible
 	var vectorList = PackedVector3Array()
 
 	@Export
-	@RegisterProperty
+	@Visible
 	var enumListMutable = mutableListOf(TestEnum.ENUM_1, TestEnum.ENUM_2)
 
 	// Can't export nullable coretypes
     //@Export
-    //@RegisterProperty
+    //@Register
     //var nullableLong: Long? = null
 
     private var hasInitializedLateInits = false
 
 	// Can't export nullable coretypes
 	//@Export
-	//@RegisterProperty
+	//@Register
 	//var lateinitString: String? = null
 
-	@RegisterProperty
+	@Visible
 	lateinit var registerObject: OtherScript
 
-	@RegisterProperty
+	@Visible
 	var registerObjectNullable: OtherScript? = null
 
-	@RegisterProperty
+	@Visible
 	var registerObjectNullablePreInit: OtherScript? = OtherScript()
 		set(value) {
 			field?.free()
 			field = value
 		}
 
-	@RegisterProperty
+	@Visible
 	var registerObjectNonNullablePreInit: OtherScript = OtherScript()
 		set(value) {
 			field.free()
 			field = value
 		}
 
-	@RegisterProperty
+	@Visible
 	var vector = Vector3()
 
 	@Export
-	@RegisterProperty
+	@Visible
 	var x = 0
 
 	@Export
-	@RegisterProperty
+	@Visible
 	var y = 0.0
 
 	@Export
-	@RegisterProperty
+	@Visible
 	var z = 0.0f
 
 	@Export
-	@RegisterProperty
+	@Visible
 	var customName = "Idonthaveanyidea"
 
 	//references in default values are allowed if the property is NOT exported
 	private val otherScriptReference = OtherScript()
 	private fun provideOtherScriptReference() = otherScriptReference
 
-	@RegisterProperty
+	@Visible
 	var invocation = provideOtherScriptReference()
 
 	@Export
-	@RegisterProperty
+	@Visible
 	var enumTest = TestEnum.ENUM_1
 
 	@Export
-	@RegisterProperty
+	@Visible
 	var resourceTest = NavigationMesh()
 
 	@Export
-	@RegisterProperty
+	@Visible
 	var jvmId: Int = 0
 		get() = hashCode()
 		set(value) {
@@ -143,145 +143,145 @@ class Invocation : Node3D() {
 		}
 
 	@Export
-	@RegisterProperty
+	@Visible
 	var testArrayAny = VariantArray<Any>()
 
 	@Export
-	@RegisterProperty
+	@Visible
 	var navMeshes = variantArrayOf(NavigationMesh())
 
 	@Export
-	@RegisterProperty
+	@Visible
 	var nullableArray = variantArrayOf(NavigationMesh(), null)
 
 	@Export
-	@RegisterProperty
+	@Visible
 	var anyToAnyDictionary = Dictionary<Any, Any>()
 
 	@Export
-	@RegisterProperty
+	@Visible
 	var navMeshesDictionary = dictionaryOf("AwesomeNavmesh" to NavigationMesh())
 
 	@Export
-	@RegisterProperty
+	@Visible
 	var nullableDictionary = dictionaryOf(
 		"notnull" to NavigationMesh(),
 		"null" to null
 	)
 
 	@Export
-	@RegisterProperty
+	@Visible
 	var color = Color()
 
 	@Export
-	@RegisterProperty
+	@Visible
 	var rid = RID()
 
 	@Export
-	@RegisterProperty
+	@Visible
 	var packedByteArray = PackedByteArray()
 
 	@Export
-	@RegisterProperty
+	@Visible
 	var packedInt32Array = PackedInt32Array()
 
 	@Export
-	@RegisterProperty
+	@Visible
 	var packedFloat64Array = PackedFloat64Array()
 
 	@Export
-	@RegisterProperty
+	@Visible
 	var packedColorArray = PackedColorArray()
 
 	@Export
-	@RegisterProperty
+	@Visible
 	var packedStringArray = PackedStringArray()
 
 	@Export
-	@RegisterProperty
+	@Visible
 	var packedVector2Array = PackedVector2Array()
 
 	@Export
-	@RegisterProperty
+	@Visible
 	var packedVector3Array = PackedVector3Array()
 
 	@Export
-	@RegisterProperty
+	@Visible
 	@IntRange(1, 2)
 	var p1 = 1
 
 	@Export
-	@RegisterProperty
+	@Visible
 	@LongRange(1L, 2L)
 	var p1_1 = 1L
 
 	@Export
-	@RegisterProperty
+	@Visible
 	@FloatRange(1f, 2f)
 	var p2 = 1f
 
 	@Export
-	@RegisterProperty
+	@Visible
 	@DoubleRange(1.0, 2.0)
 	var p3 = 1.0
 
 	@Export
-	@RegisterProperty
+	@Visible
 	@DoubleRange(min = 1.0, max = 2.0, step = 0.1, or = Range.OR_GREATER, hideSlider = true, isDegrees = true, suffix = "MyCoolSuffix")
 	var p4 = 1.0
 
 	@Export
-	@RegisterProperty
+	@Visible
 	@FloatRange(1f, 2f)
 	var p5 = 1f
 
 	@Export
-	@RegisterProperty
+	@Visible
 	@EnumTypeHint
 	var p6 = TestEnum.ENUM_1
 
 	@Export
-	@RegisterProperty
+	@Visible
 	@ExpEasing
 	var p7 = 1f
 
 	@Export
-	@RegisterProperty
+	@Visible
 	@ExpEasing
 	var p8 = 1.0
 
 	@Export
-	@RegisterProperty
+	@Visible
 	@EnumFlag
 	var p9 = setOf(TestEnum.ENUM_1)
 
 	@Export
-	@RegisterProperty
+	@Visible
 	@EnumFlag
 	var p10 = mutableSetOf(TestEnum.ENUM_1)
 
 	@Export
-	@RegisterProperty
+	@Visible
 	@EnumFlag
 	var p11 = mutableSetOf<TestEnum>()
 
 	@Export
-	@RegisterProperty
+	@Visible
 	@IntFlag
 	var p12 = 1 or 2 and 3
 
 	@Export
-	@RegisterProperty
+	@Visible
 	@File
 	var p13 = "someFile"
 
 	@Export
-	@RegisterProperty
+	@Visible
 	@Dir
 	var p14 = "someDir"
 
 	@Export
-	@RegisterProperty
+	@Visible
 	@MultilineText
 	var p15 = """
 		some
@@ -290,60 +290,60 @@ class Invocation : Node3D() {
 	""".trimIndent()
 
 	@Export
-	@RegisterProperty
+	@Visible
 	@PlaceHolderText
 	var p16 = "some placeholderText"
 
 	@Export
-	@RegisterProperty
+	@Visible
 	@ColorNoAlpha
 	var p17 = Color()
 
 	@Export
-	@RegisterProperty
+	@Visible
 	var stringtemplation = "blubb ${17 + 25}"
 
 	@Export
-	@RegisterProperty
+	@Visible
 	var testString = "Two eggs in a boiler. One says: it's hot here, isn't ? The other: oh my god, an egg talking!"
 
 	@Export
-	@RegisterProperty
+	@Visible
 	var asciiString = ""
 
 	@Export
-	@RegisterProperty
+	@Visible
 	var utf8String = ""
 
-	@RegisterFunction
+	@Register
 	fun intValue(value: Int) = value
 
-	@RegisterFunction
+	@Register
 	fun longValue(value: Long) = value
 
-	@RegisterFunction
+	@Register
 	fun floatValue(value: Float) = value
 
-	@RegisterFunction
+	@Register
 	fun doubleValue(value: Double) = value
 
-	@RegisterFunction
+	@Register
 	fun booleanValue(value: Boolean) = value
 
-	@RegisterFunction
+	@Register
 	fun stringValue(value: String) = value
 
-	@RegisterFunction
+	@Register
 	fun intAddition(a: Int, b: Int) = a + b
 
-	@RegisterFunction
+	@Register
 	fun initNullables() {
 		registerObject = OtherScript()
 		registerObjectNullable = OtherScript()
 		hasInitializedLateInits = true
 	}
 
-	@RegisterFunction
+	@Register
 	override fun _enterTree() {
 		//TODO: uncomment once https://github.com/utopia-rise/godot-kotlin-jvm/issues/86 is fixed
 //        GD.print("Hello", "Hello")
@@ -357,7 +357,7 @@ class Invocation : Node3D() {
 		println("CustomName is $customName")
 	}
 
-	@RegisterFunction
+	@Register
 	override fun _ready() {
 		val formerName = name
 		println("Name is: $name")
@@ -402,202 +402,202 @@ class Invocation : Node3D() {
 		registerObjectNonNullablePreInit.free()
 	}
 
-	@RegisterFunction
+	@Register
 	fun getRidId() = rid.id
 
-	@RegisterFunction
+	@Register
 	fun getNavMeshRid() = resourceTest.getRid()
 
-	@RegisterFunction
+	@Register
 	fun appendToAnyDict(key: Any, value: Any) {
 		anyToAnyDictionary[key] = value
 	}
 
-	@RegisterFunction
+	@Register
 	fun removeFromAnyDict(key: Any) {
 		anyToAnyDictionary.remove(key)
 	}
 
-	@RegisterFunction
+	@Register
 	fun getFromAnyDict(key: Any) = anyToAnyDictionary[key]
 
-	@RegisterFunction
+	@Register
 	fun anyDictSize() = anyToAnyDictionary.size
 
-	@RegisterFunction
+	@Register
 	fun appendToStringNavMeshDict(key: String, value: NavigationMesh) {
 		navMeshesDictionary[key] = value
 	}
 
-	@RegisterFunction
+	@Register
 	fun removeFromStringNavMeshDict(key: String) {
 		navMeshesDictionary.remove(key)
 	}
 
-	@RegisterFunction
+	@Register
 	fun getFromStringNavMeshDict(key: String) = navMeshesDictionary[key]
 
-	@RegisterFunction
+	@Register
 	fun stringNavMeshDictSize() = navMeshesDictionary.size
 
-	@RegisterFunction
+	@Register
 	fun appendToStringNavMeshNullableDict(key: String, value: NavigationMesh) {
 		nullableDictionary[key] = value
 	}
 
-	@RegisterFunction
+	@Register
 	fun removeFromStringNavMeshNullableDict(key: String) {
 		nullableDictionary.remove(key)
 	}
 
 //	TODO: This will fail to register as we cannot register nullable return type
-//	@RegisterFunction
+//	@Register
 //	fun getFromStringNavMeshNullableDict(key: String) = nullableDictionary[key]
 
-	@RegisterFunction
+	@Register
 	fun stringNavMeshNullableDictSize() = nullableDictionary.size
 
-	@RegisterFunction
+	@Register
 	fun appendNullableStandardNavMesh() = nullableArray.append(NavigationMesh())
 
-	@RegisterFunction
+	@Register
 	fun appendNullableNavMesh(navigationMesh: NavigationMesh?) = nullableArray.append(navigationMesh)
 
-	@RegisterFunction
+	@Register
 	fun removeNullableNavMesh(navigationMesh: NavigationMesh?) = nullableArray.remove(navigationMesh)
 
-	@RegisterFunction
+	@Register
 	fun removeNullableNavMeshWithIndex(index: Int) = nullableArray.removeAt(index)
 
 //	TODO: This will fail to register as we cannot register nullable return type
-//	@RegisterFunction
+//	@Register
 //	fun getNullableNavMeshFromArray(index: Int) = nullableArray[index]
 
-	@RegisterFunction
+	@Register
 	fun nullableNavMeshesSize() = nullableArray.size
 
-	@RegisterFunction
+	@Register
 	fun appendStandardNavMesh() = navMeshes.append(NavigationMesh())
 
-	@RegisterFunction
+	@Register
 	fun appendNavMesh(navigationMesh: NavigationMesh) = navMeshes.append(navigationMesh)
 
-	@RegisterFunction
+	@Register
 	fun removeNavMesh(navigationMesh: NavigationMesh) = navMeshes.remove(navigationMesh)
 
-	@RegisterFunction
+	@Register
 	fun removeNavMeshWithIndex(index: Int) = navMeshes.removeAt(index)
 
-	@RegisterFunction
+	@Register
 	fun getNavMeshFromArray(index: Int) = navMeshes[index]
 
-	@RegisterFunction
+	@Register
 	fun navMeshesSize() = navMeshes.size
 
-	@RegisterFunction
+	@Register
 	fun appendAnyToArray(any: Any) = testArrayAny.append(any)
 
-	@RegisterFunction
+	@Register
 	fun removeAnyFromArray(any: Any) = testArrayAny.remove(any)
 
-	@RegisterFunction
+	@Register
 	fun getAnyFromArray(index: Int) = testArrayAny[index]
 
-	@RegisterFunction
+	@Register
 	fun arrayAnySize() = testArrayAny.size
 
-	@RegisterFunction
+	@Register
 	fun countNameshInstance(navigationMesh: NavigationMesh) = navMeshes.count(navigationMesh)
 
-	@RegisterFunction
+	@Register
 	fun getNavMeshCount() = navMeshes.count()
 
 	//Type cast checks
-	@RegisterFunction
+	@Register
 	fun parentIsNode3D() = getParent() is Node3D
 
-	@RegisterFunction
+	@Register
 	fun isObjectNode3D(obj: Object) = obj is Node3D
 
-	@RegisterFunction
+	@Register
 	fun otherJvmId(invocation: Invocation) = invocation.jvmId
 
-	@RegisterFunction
+	@Register
 	fun hasCameraNode() = getNodeOrNull(NodePath("Camera")) != null
 
-	@RegisterFunction
+	@Register
 	fun addByteToPackedArray(byte: Byte) = packedByteArray.append(byte)
 
-	@RegisterFunction
+	@Register
 	fun addByteArrayToPackedArray(array: PackedByteArray) = packedByteArray.appendArray(array)
 
-	@RegisterFunction
+	@Register
 	fun deleteByteFromPackedArray(index: Int) = packedByteArray.removeAt(index)
 
-	@RegisterFunction
+	@Register
 	fun getByteFromPackedArray(index: Int) = packedByteArray[index]
 
-	@RegisterFunction
+	@Register
 	fun setByteInPackedArray(index: Int, value: Byte) {
 		packedByteArray[index] = value
 	}
 
-	@RegisterFunction
+	@Register
 	fun resizeBytePackedArray(newSize: Int) {
 		packedByteArray.resize(newSize)
 	}
 
-	@RegisterFunction
+	@Register
 	fun addColorToPackedArray(color: Color) = packedColorArray.append(color)
 
-	@RegisterFunction
+	@Register
 	fun addColorArrayToPackedArray(colorArray: PackedColorArray) = packedColorArray.appendArray(colorArray)
 
-	@RegisterFunction
+	@Register
 	fun deleteColorFromPackedArray(index: Int) = packedColorArray.removeAt(index)
 
-	@RegisterFunction
+	@Register
 	fun getColorFromPackedArray(index: Int) = packedColorArray[index]
 
-	@RegisterFunction
+	@Register
 	fun setColorInPackedArray(index: Int, color: Color) {
 		packedColorArray[index] = color
 	}
 
-	@RegisterFunction
+	@Register
 	fun resizeColorPackedArray(newSize: Int) {
 		packedColorArray.resize(newSize)
 	}
 
-	@RegisterFunction
+	@Register
 	fun addIntToPackedArray(int: Int) = packedInt32Array.append(int)
 
-	@RegisterFunction
+	@Register
 	fun addIntArrayToPackedArray(intArray: PackedInt32Array) = this.packedInt32Array.appendArray(intArray)
 
-	@RegisterFunction
+	@Register
 	fun deleteIntFromPackedArray(index: Int) = packedInt32Array.removeAt(index)
 
-	@RegisterFunction
+	@Register
 	fun getIntFromPackedArray(index: Int) = packedInt32Array[index]
 
-	@RegisterFunction
+	@Register
 	fun setIntInPackedArray(index: Int, value: Int) {
 		packedInt32Array[index] = value
 	}
 
-	@RegisterFunction
+	@Register
 	fun resizeIntPackedArray(newSize: Int) {
 		packedInt32Array.resize(newSize)
 	}
 
-	@RegisterFunction
+	@Register
 	fun addRealToPackedArray(realT: RealT) = packedFloat64Array.append(realT)
 
-	@RegisterFunction
+	@Register
 	fun addRealArrayToPackedArray(realArray: PackedFloat64Array) = packedFloat64Array.appendArray(realArray)
 
-	@RegisterFunction
+	@Register
 	fun readStringFromByteArray() {
 
 		val asciiArray = testString.toByteArray(Charsets.US_ASCII)
@@ -615,94 +615,94 @@ class Invocation : Node3D() {
 		utf8String = packed2.getStringFromUtf8()
 	}
 
-	@RegisterFunction
+	@Register
 	fun deleteRealFromPackedArray(index: Int) = packedFloat64Array.removeAt(index)
 
-	@RegisterFunction
+	@Register
 	fun getRealFromPackedArray(index: Int) = packedFloat64Array[index]
 
-	@RegisterFunction
+	@Register
 	fun setRealInPackedArray(index: Int, value: Double) {
 		packedFloat64Array[index] = value
 	}
 
-	@RegisterFunction
+	@Register
 	fun resizeRealPackedArray(newSize: Int) {
 		packedFloat64Array.resize(newSize)
 	}
 
-	@RegisterFunction
+	@Register
 	fun addStringToPackedArray(string: String) = packedStringArray.append(string)
 
-	@RegisterFunction
+	@Register
 	fun addStringArrayToPackedArray(stringArray: PackedStringArray) = packedStringArray.appendArray(stringArray)
 
-	@RegisterFunction
+	@Register
 	fun deleteStringFromPackedArray(index: Int) = packedStringArray.removeAt(index)
 
-	@RegisterFunction
+	@Register
 	fun getStringFromPackedArray(index: Int) = packedStringArray[index]
 
-	@RegisterFunction
+	@Register
 	fun setStringInPackedArray(index: Int, value: String) {
 		packedStringArray[index] = value
 	}
 
-	@RegisterFunction
+	@Register
 	fun resizeStringPackedArray(newSize: Int) {
 		packedStringArray.resize(newSize)
 	}
 
-	@RegisterFunction
+	@Register
 	fun addVector2ToPackedArray(vector2: Vector2) = packedVector2Array.append(vector2)
 
-	@RegisterFunction
+	@Register
 	fun addVector2ArrayToPackedArray(vector2Array: PackedVector2Array) = packedVector2Array.appendArray(vector2Array)
 
-	@RegisterFunction
+	@Register
 	fun deleteVector2FromPackedArray(index: Int) = packedVector2Array.removeAt(index)
 
-	@RegisterFunction
+	@Register
 	fun getVector2FromPackedArray(index: Int) = packedVector2Array[index]
 
-	@RegisterFunction
+	@Register
 	fun setVector2InPackedArray(index: Int, vector2: Vector2) {
 		packedVector2Array[index] = vector2
 	}
 
-	@RegisterFunction
+	@Register
 	fun resizeVector2PackedArray(newSize: Int) {
 		packedVector2Array.resize(newSize)
 	}
 
-	@RegisterFunction
+	@Register
 	fun addVector3ToPackedArray(vector3: Vector3) = packedVector3Array.append(vector3)
 
-	@RegisterFunction
+	@Register
 	fun addVector3ArrayToPackedArray(vector3Array: PackedVector3Array) = packedVector3Array.appendArray(vector3Array)
 
-	@RegisterFunction
+	@Register
 	fun deleteVector3FromPackedArray(index: Int) = packedVector3Array.removeAt(index)
 
-	@RegisterFunction
+	@Register
 	fun getVector3FromPackedArray(index: Int) = packedVector3Array[index]
 
-	@RegisterFunction
+	@Register
 	fun setVector3InPackedArray(index: Int, vector3: Vector3) {
 		packedVector3Array[index] = vector3
 	}
 
-	@RegisterFunction
+	@Register
 	fun resizeVector3PackedArray(newSize: Int) {
 		packedVector3Array.resize(newSize)
 	}
 
 	// Singleton tests
 
-	@RegisterFunction
+	@Register
 	fun isSentXrSameInstanceAsJvmSingleton(arvrServer: XRServer) =
 		XRServer.getInstanceId() == arvrServer.getInstanceId()
 
-	@RegisterFunction
+	@Register
 	fun createVariantArrayOfUserType() = variantArrayOf<OtherScript>()
 }

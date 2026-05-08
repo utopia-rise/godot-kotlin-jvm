@@ -97,7 +97,7 @@ public:
 protected:
     static constexpr const char* PACKAGE_KEYWORD = "package";
     static constexpr const char* CLASS_KEYWORD = "class";
-    static constexpr const char* REGISTER_CLASS_ANNOTATION = "@RegisterClass";
+    static constexpr const char* REGISTER_CLASS_ANNOTATION = "@GodotScript";
     static bool is_whitespace_or_linebreak(char32_t character);
     static bool is_package_end(char32_t character);
     static bool is_class_name_end(char32_t character);

@@ -1,13 +1,13 @@
 Any property of a registered class can be registered as long as it is public, mutable and can be converted to a `Variant`.
-To register a property annotate it with `@RegisterProperty`.
+To register a property annotate it with `@Visible`.
 
 ```kotlin
-@RegisterClass
+@GodotScript
 class RotatingCube: Node3D() {
-    @RegisterProperty
+    @Visible
     var someString: String = "Hello there :-)"
 
-    @RegisterProperty
+    @Visible
     var propertyWithDefaultValue: Float = 2f
 }
 ```
@@ -27,10 +27,10 @@ A registered property can be exported (a.k.a make it visible in the Godot editor
 A property can be exported if it is a core type, a primitive or inherits from `godot.RefCounted`.
 
 ```kotlin
-@RegisterClass
+@GodotScript
 class RotatingCube: Node3D() {
     @Export
-    @RegisterProperty
+    @Visible
     var speed: Float = 2f
 }
 ```
@@ -44,7 +44,7 @@ A default value can **only** contain compile time constants and only references 
 ## Type hint registration
 
 This module provides a plethora of annotations for defining property type hints.
-These annotations controls how Godot display the property in the inspector.
+These annotations control how Godot displays the property in the inspector.
 Each property hint annotation can only be added to certain types of properties.
 Using the wrong annotation will make the compilation fail. These will only take effect if the property is exported.
 
@@ -63,8 +63,8 @@ Below is a list of currently implemented type hints:
 | `ExpEasing`       | Float Double               | attenuation: Boolean = false, inOut: Boolean = true                   | N/A                                                                                                                                              |
 | `EnumFlag`        | Set<Enum> MutableSet<Enum> |                                                                       | Registers a flag with the enum names set as the flag names. The values in the set define which flags are set.                                    |
 | `IntFlag`         | Int                        | names: vararg String                                                  | Same as enum flag but the `names` set which values can be set in the inspector and no automatic conversion to the individual flag values happen. |
-| `File`            | String                     | extensions: Array<String> = [], global: Boolean = false               | The inspector will show a File dialog in which you can select a File. The Path of the file will be stored in the property.                       |
-| `Dir`             | String                     | global: Boolean = false                                               | The inspector will show a File dialog in which you can select a directory. The Path of the directory will be stored in the property.             |
+| `File`            | String                     | extensions: Array<String> = [], global: Boolean = false               | The inspector will show a File dialog in which you can select a File. The path of the file will be stored in the property.                       |
+| `Dir`             | String                     | global: Boolean = false                                               | The inspector will show a File dialog in which you can select a directory. The path of the directory will be stored in the property.             |
 | `MultilineText`   | String                     |                                                                       | The inspector shows a multiline text input.                                                                                                      |
 | `PlaceHolderText` | String                     |                                                                       | N/A                                                                                                                                              |
 | `ColorNoAlpha`    | Color                      |                                                                       | The inspector shows a color selection dialog without Alpha                                                                                       |

@@ -274,7 +274,7 @@ object PropertyHintAnalyzer {
 
     private fun checkForRegistrationAnnotations(property: KtProperty): List<GodotProblem> {
         return buildList {
-            if (property.findAnnotation(Annotation.registerProperty.asClassId()) == null) {
+            if (property.findAnnotation(Annotation.visible.asClassId()) == null) {
                 add(
                     GodotProblem(
                         GodotPluginBundle.message("problem.property.hint.notRegistered"),

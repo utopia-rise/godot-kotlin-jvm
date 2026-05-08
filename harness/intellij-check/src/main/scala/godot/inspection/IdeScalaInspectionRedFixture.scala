@@ -1,9 +1,9 @@
 package godot.inspection
 
 import godot.annotation.Export
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
-import godot.annotation.RegisterProperty
+import godot.annotation.GodotScript
+import godot.annotation.Register
+import godot.annotation.Visible
 import godot.annotation.RegisterSignal
 import godot.annotation.Tool
 import godot.api.Node
@@ -16,13 +16,13 @@ import godot.core.StringNames
 @Tool
 class ScalaNotRegisteredButToolFixture extends Node
 
-// Expected red on the class: it is not `@RegisterClass`, but it contains
+// Expected red on the class: it is not `@GodotScript`, but it contains
 // registered properties, signals, and functions.
 class ScalaNotRegisteredButMembersFixture extends Node {
   // Expected red via the containing class: registered property inside a
   // non-registered class.
   @Export
-  @RegisterProperty
+  @Visible
   var propertyShouldStayRed = 1
 
   // Expected red via the containing class: registered signal inside a
@@ -32,48 +32,48 @@ class ScalaNotRegisteredButMembersFixture extends Node {
 
   // Expected red via the containing class: registered function inside a
   // non-registered class.
-  @RegisterFunction
+  @Register
   def functionShouldStayRed(): Int = propertyShouldStayRed
 }
 
-// Expected red: `@RegisterClass` is present, but the class does not inherit a
+// Expected red: `@GodotScript` is present, but the class does not inherit a
 // Godot object type.
-@RegisterClass
+@GodotScript
 class ScalaRegisterClassWithoutGodotBaseFixture
 
 // Expected red: registered classes must expose exactly one parameterless
 // constructor, and this one only has a parameterized constructor.
-@RegisterClass
+@GodotScript
 class ScalaRegisterClassWithoutDefaultConstructorFixture(number: Int) extends Node
 
 // Expected red on both duplicate declarations: they register the same custom
 // Godot class name.
-@RegisterClass(className = "DuplicateScalaInspectionName")
+@GodotScript(className = "DuplicateScalaInspectionName")
 class ScalaDuplicateRegisteredNameFixtureOne extends Node
 
-@RegisterClass(className = "DuplicateScalaInspectionName")
+@GodotScript(className = "DuplicateScalaInspectionName")
 class ScalaDuplicateRegisteredNameFixtureTwo extends Node
 
 // Expected red: generic classes cannot be registered.
-@RegisterClass
+@GodotScript
 class ScalaGenericRegisteredClassFixture[T] extends Node
 
 // Method registration checks.
-@RegisterClass
+@GodotScript
 class IdeScalaInspectionRedFixture extends Node {
   // Expected red: notification callbacks like `_ready` must also carry
-  // `@RegisterFunction` inside a registered class.
+  // `@Register` inside a registered class.
   override def _ready(): Unit = {
   }
 
   // Expected red: generic functions cannot be registered.
-  @RegisterFunction
+  @Register
   def genericRegisteredFunction[T](value: T): Unit = {
   }
 
   // Expected red: registered functions may not exceed the max supported
   // parameter count.
-  @RegisterFunction
+  @Register
   def tooManyParameters(
     p01: Int,
     p02: Int,

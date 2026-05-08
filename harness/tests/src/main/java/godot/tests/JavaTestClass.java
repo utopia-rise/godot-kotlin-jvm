@@ -8,7 +8,7 @@ import godot.annotation.*;
 import godot.core.*;
 import org.jetbrains.annotations.NotNull;
 
-@RegisterClass
+@GodotScript
 public class JavaTestClass extends Node {
     //@RegisterSignal
     //public Signal0 testSignal = Signal0.create(this, "test_signal");
@@ -21,54 +21,54 @@ public class JavaTestClass extends Node {
 //    public Signal testSignal3 = new Signal2<>(this, "name");
 
     @Export
-    @RegisterProperty
+    @Visible
     @EnumTypeHint
     public JavaEnum javaEnum = JavaEnum.JAVA_ENUM_1;
 
     @Export
-    @RegisterProperty
+    @Visible
     public int exportedInt = 1;
 
     @Export
-    @RegisterProperty
+    @Visible
     public long exportedLong = 1L;
 
     @Export
-    @RegisterProperty
+    @Visible
     public float exportedFloat = 1f;
 
     @Export
-    @RegisterProperty
+    @Visible
     public double exportedDouble = 1.0;
 
     @Export
-    @RegisterProperty
+    @Visible
     public boolean exportedBoolean = true;
 
     @Export
-    @RegisterProperty
+    @Visible
     public String exportedString = "blubb";
 
     @Export
-    @RegisterProperty
+    @Visible
     public byte exportedByte = 1;
 
     @Export
-    @RegisterProperty
+    @Visible
     public Button exportedButton;
 
-    @RegisterFunction
+    @Register
     public String greeting() {
         return "Hello from java";
     }
 
-    @RegisterProperty
+    @Visible
     public boolean signalEmitted = false;
 
-    @RegisterProperty
+    @Visible
     public VariantArray<Integer> variantArray = new VariantArray<>(Integer.class);
 
-    @RegisterProperty
+    @Visible
     public Dictionary<Float, String> dictionary = new Dictionary<>(Float.class, String.class);
 
     //public LambdaCallable<Void> lambdaCallable = LambdaCallable0.create(
@@ -81,7 +81,7 @@ public class JavaTestClass extends Node {
 //
     //public NativeCallable methodCallable = Callable.create(this, StringNames.asStringName("DummyName"));
 
-    @RegisterFunction
+    @Register
     @Override
     public void _ready() {
         // Check if Singletons have the correct syntax, without Single.INSTANCE
@@ -94,7 +94,7 @@ public class JavaTestClass extends Node {
         control.free();
     }
 
-    @RegisterFunction
+    @Register
     public void connectAndTriggerSignal() {
         //connect(
         //        StringNames.asStringName("test_signal"),
@@ -115,7 +115,7 @@ public class JavaTestClass extends Node {
         );
     }
 
-    @RegisterFunction
+    @Register
     public void signalCallback() {
         signalEmitted = true;
     }

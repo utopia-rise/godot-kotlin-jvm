@@ -20,6 +20,6 @@ class TargetFunctionNotRegisteredQuickFix : LocalQuickFix {
             ?.mainReference
             ?.resolve() as? KtNamedFunction
 
-        ktNamedFunction?.addAnnotation(Annotation.registerFunction.asClassId())
+        ktNamedFunction?.addAnnotation(Annotation.register.asClassId())
     }
 }

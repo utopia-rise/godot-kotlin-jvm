@@ -1,12 +1,12 @@
 package godot.tests.binding
 
 import godot.api.Object
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
+import godot.annotation.GodotScript
+import godot.annotation.Register
 
-@RegisterClass
+@GodotScript
 class BindingTest : Object() {
-    @RegisterFunction
+    @Register
     fun getClassName(obj: Object) = obj::class.simpleName
 }
 

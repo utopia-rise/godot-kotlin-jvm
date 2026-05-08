@@ -5,9 +5,9 @@ import godot.api.Object
 import godot.api.PackedScene
 import godot.api.ResourceLoader
 import godot.api.Timer
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
-import godot.annotation.RegisterProperty
+import godot.annotation.GodotScript
+import godot.annotation.Register
+import godot.annotation.Visible
 import godot.annotation.RegisterSignal
 import godot.core.Vector2
 import godot.core.signal0
@@ -24,7 +24,7 @@ import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
 
-@RegisterClass
+@GodotScript
 class CoroutineTest : Object() {
 
     @RegisterSignal
@@ -36,43 +36,43 @@ class CoroutineTest : Object() {
     @RegisterSignal("int", "float", "vector2", "string")
     val signalWithManyParameters by signal4<Int, Float, Vector2, String>()
 
-    @RegisterProperty
+    @Visible
     var step: Int = 0
 
-    @RegisterProperty
+    @Visible
     var wasChildCancelled = false
 
-    @RegisterProperty
+    @Visible
     var wasParentCancelled = true
 
-    @RegisterFunction
+    @Register
     fun startCoroutineWithoutParameter() = godotCoroutine {
         step = 1
         signalWithoutParameter.await()
         step = 2
     }
 
-    @RegisterFunction
+    @Register
     fun startCoroutineWithOneParameter() = godotCoroutine {
         step = 3
         step = signalWithOneParameter.await()
     }
 
-    @RegisterFunction
+    @Register
     fun startCoroutineWithManyParameters() = godotCoroutine {
         step = 5
         val (int, _, _, _) = signalWithManyParameters.await()
         step = int
     }
 
-    @RegisterFunction
+    @Register
     fun startCoroutineUndispatched() = godotCoroutine(start = CoroutineStart.UNDISPATCHED) {
         step = 7
         signalWithoutParameter.await()
         step = 8
     }
 
-    @RegisterFunction
+    @Register
     fun startCoroutineWithPhysicsFrame() = godotCoroutine(start = CoroutineStart.UNDISPATCHED) {
         step = 9
         awaitPhysicsFrame {
@@ -80,7 +80,7 @@ class CoroutineTest : Object() {
         }
     }
 
-    @RegisterFunction
+    @Register
     fun startCoroutineWithProcessFrame() = godotCoroutine(start = CoroutineStart.UNDISPATCHED) {
         step = 11
         awaitProcessFrame {
@@ -91,7 +91,7 @@ class CoroutineTest : Object() {
     @RegisterSignal("is_test_successful")
     val runOnMainThreadFromBackgroundThreadFinished by signal1<Boolean>()
 
-    @RegisterFunction
+    @Register
     fun runOnMainThreadFromBackgroundThread() {
         val thread = Thread.currentThread().name
 
@@ -121,7 +121,7 @@ class CoroutineTest : Object() {
     @RegisterSignal("is_test_successful")
     val asyncLoadResourceFinished by signal1<Boolean>()
 
-    @RegisterFunction
+    @Register
     fun asyncLoadResource() {
         godotCoroutine {
             val resource = ResourceLoader.awaitLoadAs<PackedScene>("res://Spatial.tscn")
@@ -134,7 +134,7 @@ class CoroutineTest : Object() {
         }
     }
 
-    @RegisterFunction
+    @Register
     fun cancelCoroutine() = godotCoroutine {
         val timer = Timer()
         timer.autostart = true

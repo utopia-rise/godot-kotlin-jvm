@@ -15,7 +15,7 @@ object RegisterMethodAnalyzer {
             if (
                 method.containingClass?.getAnnotation(Annotation.registerClass.qualifiedName) != null &&
                 API.notificationFunctions.any { it.simpleName == method.name } &&
-                method.getAnnotation(Annotation.registerFunction.qualifiedName) == null
+                method.getAnnotation(Annotation.register.qualifiedName) == null
             ) {
                 add(
                     GodotProblem(
@@ -25,7 +25,7 @@ object RegisterMethodAnalyzer {
                 )
             }
 
-            if (method.getAnnotation(Annotation.registerFunction.qualifiedName) != null) {
+            if (method.getAnnotation(Annotation.register.qualifiedName) != null) {
                 addAll(GenericRegistrationAnalyzer.analyze(method))
                 if (method.parameterList.parametersCount > Constraints.MAX_FUNCTION_ARG_COUNT) {
                     add(

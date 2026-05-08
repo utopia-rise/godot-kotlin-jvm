@@ -20,7 +20,7 @@ Java and Scala support are welcome when they naturally fit the same JVM-facing i
 Adds focused K2-only code insight for Godot Kotlin/JVM projects in IntelliJ IDEA.
 
 Features:
-- validates `@RegisterClass`, `@RegisterProperty`, `@RegisterFunction`, `@RegisterSignal`, `@Export`, and `@Rpc` usage
+- validates `@GodotScript`, `@Visible`, `@Register`, `@RegisterSignal`, `@Export`, and `@Rpc` usage
 - validates common callable-reference usage for Godot signal, `call`, and `rpc` patterns
 - detects nested mutation through `@CoreTypeLocalCopy` getter results in simple assignment chains
 - offers quick fixes for common registration and mutability mistakes
@@ -63,7 +63,7 @@ That split is meant to keep each file easy to scan:
 
 ### Class registration
 
-Checks around `@RegisterClass`, including:
+Checks around `@GodotScript`, including:
 
 - invalid Godot inheritance
 - generic classes
@@ -78,7 +78,7 @@ Relevant files:
 
 ### Property and export checks
 
-Checks around `@RegisterProperty` and `@Export`, including:
+Checks around `@Visible` and `@Export`, including:
 
 - mutability
 - missing property registration
@@ -94,7 +94,7 @@ Relevant files:
 
 ### Function and RPC checks
 
-Checks around `@RegisterFunction` and `@Rpc`, including:
+Checks around `@Register` and `@Rpc`, including:
 
 - generic registered functions
 - argument-count limits
@@ -226,8 +226,8 @@ There are no substantial checked-in tests yet, so verification is mostly manual.
 
 Recommended checks after `runIde`:
 
-- `@RegisterProperty` on a `val`
-- `@Export` without `@RegisterProperty`
+- `@Visible` on a `val`
+- `@Export` without `@Visible`
 - duplicate registered class names
 - invalid `@Rpc` channel usage
 - callable reference to a non-registered function

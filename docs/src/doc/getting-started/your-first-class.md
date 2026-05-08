@@ -4,21 +4,21 @@ Let's create a file `src/main/kotlin/com/yourcompany/game/Simple.kt` with the fo
 package com.yourcompany.game
 
 import godot.Node3D
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
+import godot.annotation.GodotScript
+import godot.annotation.Register
 import godot.global.GD
 
-@RegisterClass
+@GodotScript
 class Simple: Node3D() {
 
-    @RegisterFunction
+    @Register
     override fun _ready() {
         GD.print("Hello world!")
     }
 }
 ```
 
-The [classes](../user-guide/classes.md) section covers in details what we did here, but for now `@RegisterClass` will register the class to Godot. Now we can trigger a build.
+The [classes](../user-guide/classes.md) section covers in details what we did here, but for now `@GodotScript` will register the class to Godot. Now we can trigger a build.
 
 ```shell
 ./gradlew build
@@ -39,27 +39,27 @@ The final filesystem project should look like this:
 ```
 ~/Dev/Workspace/kotlin-godot-demo tree
 .
-├── build
-│   └── libs
-├── build.gradle.kts
-├── gdj
-├── gradle
-│   └── wrapper
-│       ├── gradle-wrapper.jar
-│       └── gradle-wrapper.properties
-├── gradlew
-├── gradlew.bat
-├── icon.svg
-├── kotlin-godot-demo.iml
-├── project.godot
-├── settings.gradle.kts
-└── src
-    └── main
-        └── kotlin
-            └── com
-                └── utopiarise
-                    └── demo
-                        └── Simple.kt
+Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ build
+Ã¢â€â€šÃ‚Â Ã‚Â  Ã¢â€â€Ã¢â€â‚¬Ã¢â€â‚¬ libs
+Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ build.gradle.kts
+Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ gdj
+Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ gradle
+Ã¢â€â€šÃ‚Â Ã‚Â  Ã¢â€â€Ã¢â€â‚¬Ã¢â€â‚¬ wrapper
+Ã¢â€â€šÃ‚Â Ã‚Â      Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ gradle-wrapper.jar
+Ã¢â€â€šÃ‚Â Ã‚Â      Ã¢â€â€Ã¢â€â‚¬Ã¢â€â‚¬ gradle-wrapper.properties
+Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ gradlew
+Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ gradlew.bat
+Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ icon.svg
+Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ kotlin-godot-demo.iml
+Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ project.godot
+Ã¢â€Å“Ã¢â€â‚¬Ã¢â€â‚¬ settings.gradle.kts
+Ã¢â€â€Ã¢â€â‚¬Ã¢â€â‚¬ src
+    Ã¢â€â€Ã¢â€â‚¬Ã¢â€â‚¬ main
+        Ã¢â€â€Ã¢â€â‚¬Ã¢â€â‚¬ kotlin
+            Ã¢â€â€Ã¢â€â‚¬Ã¢â€â‚¬ com
+                Ã¢â€â€Ã¢â€â‚¬Ã¢â€â‚¬ utopiarise
+                    Ã¢â€â€Ã¢â€â‚¬Ã¢â€â‚¬ demo
+                        Ã¢â€â€Ã¢â€â‚¬Ã¢â€â‚¬ Simple.kt
 
 12 directories, 10 files
 ```

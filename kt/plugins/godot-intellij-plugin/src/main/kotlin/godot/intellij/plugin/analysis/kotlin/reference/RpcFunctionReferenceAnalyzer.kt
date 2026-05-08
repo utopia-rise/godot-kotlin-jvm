@@ -38,7 +38,7 @@ object RpcFunctionReferenceAnalyzer {
                 .mainReference
                 .resolve() as? KtNamedFunction
 
-            val registerFunctionAnnotation = targetFunction?.findAnnotation(Annotation.registerFunction.asClassId())
+            val registerFunctionAnnotation = targetFunction?.findAnnotation(Annotation.register.asClassId())
             val rpcAnnotation = targetFunction?.findAnnotation(Annotation.rpc.asClassId())
 
             when {

@@ -190,7 +190,7 @@ godot {
 
 ### `registrationNameMode`
 
-Controls how default registered names are computed when `@RegisterClass` does not provide a custom name.
+Controls how default registered names are computed when `@GodotScript` does not provide a custom name.
 
 Values:
 

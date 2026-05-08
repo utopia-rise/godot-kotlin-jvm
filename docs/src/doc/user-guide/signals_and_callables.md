@@ -14,7 +14,7 @@ In both case, you have to provide the name of the signal parameters as strings a
 
 /// tab | Kotlin
 ```kotlin
-@RegisterClass
+@GodotScript
 class MyScript: Node() {
     @RegisterSignal("reverse")
     val mySignal by signal1<Boolean>()
@@ -27,7 +27,7 @@ class MyScript: Node() {
 
 /// tab | Java
 ```java
-@RegisterClass
+@GodotScript
 public MyScript extends Node {
     @RegisterSignal("reverse")
     public Signal1<Boolean> mySignal = Signal1.create(this, "mySignal"); // Only one way to do it in Java.
@@ -37,7 +37,7 @@ public MyScript extends Node {
 
 /// tab | Scala
 ```scala
-@RegisterClass
+@GodotScript
 class MyScript extends Node {
     @RegisterSignal("reverse")
     val mySignal: Signal1[Boolean] = Signal1.create(this, "mySignal") // Only one way to do it in Scala.
@@ -119,15 +119,15 @@ Note that the connected method has to be a registered to Godot.
 
 /// tab | Kotlin
 ```kotlin
-@RegisterClass
+@GodotScript
 class SomeObject: Object() {
-    @RegisterFunction
+    @Register
     fun onReverseChanged(reverse: Boolean) {
         println("Value of reverse has changed: $reverse")
     }
 }
 
-@RegisterClass
+@GodotScript
 class AnotherObject: Object() { 
     @RegisterSignal("reverse")
     val mySignal by signal1<Boolean>()
@@ -147,15 +147,15 @@ class AnotherObject: Object() {
 
 /// tab | Java
 ```java
-@RegisterClass
+@GodotScript
 public class SomeObject extends Object {
-    @RegisterFunction
+    @Register
     public void onReverseChanged(boolean reverse) {
         System.out.println("Value of reverse has changed: " + reverse);
     }
 }
 
-@RegisterClass
+@GodotScript
 public class AnotherObject extends Object {
     @RegisterSignal("reverse")
     public Signal1<Boolean> mySignal = Signal1.create(this, "mySignal");
@@ -174,15 +174,15 @@ public class AnotherObject extends Object {
 
 /// tab | Scala
 ```scala
-@RegisterClass
+@GodotScript
 class SomeObject extends Object {
-    @RegisterFunction
+    @Register
     def onReverseChanged(boolean reverse): Unit = {
         println(s"Value of reverse has changed: $reverse")
     }
 }
 
-@RegisterClass
+@GodotScript
 class AnotherObject extends Object {
     @RegisterSignal("reverse")
     val mySignal: Signal1[Boolean] = Signal1.create(this, "mySignal")

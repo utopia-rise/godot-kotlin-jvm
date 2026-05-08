@@ -245,8 +245,8 @@ There are no meaningful checked-in tests yet, so manual testing matters.
 
 Good smoke checks:
 
-- `@RegisterProperty` on a `val`
-- `@Export` without `@RegisterProperty`
+- `@Visible` on a `val`
+- `@Export` without `@Visible`
 - duplicate registered class names
 - invalid RPC channel setup
 - callable reference to an unregistered function

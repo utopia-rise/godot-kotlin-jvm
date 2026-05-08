@@ -1,9 +1,9 @@
 package godot.annotation.processor.classgraph.extensions
 
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
-import godot.annotation.RegisterProperty
+import godot.annotation.GodotScript
+import godot.annotation.Register
 import godot.annotation.RegisterSignal
+import godot.annotation.Visible
 import godot.annotation.processor.classgraph.Context
 import godot.annotation.processor.classgraph.ErrorsDatabase
 import godot.annotation.processor.classgraph.TypeCacheKey
@@ -33,12 +33,12 @@ fun ClassInfo.mapToClazz(settings: Settings): Clazz {
         .mapNotNull { it.mapToGodotAnnotation(this, fqName) as? ClassAnnotation }
 
     val methods = methodInfo
-        .filter { it.hasAnnotation(RegisterFunction::class.java) }
+        .filter { it.hasAnnotation(Register::class.java) }
         .map { it.mapMethodToRegisteredFunction(this, settings) }
 
     val fields = fieldInfo
         .filter { fieldInfo ->
-            fieldInfo.hasAnnotation(RegisterProperty::class.java, this)
+            fieldInfo.hasAnnotation(Visible::class.java, this)
         }
         .map { it.mapToRegisteredProperty(settings, this) }
 
@@ -85,7 +85,7 @@ private fun ClassInfo.shouldBeRegistered(
     registeredProperties: List<RegisteredProperty>,
     registeredSignals: List<RegisteredSignal>
 ) = !isInterface && (
-        hasAnnotation(RegisterClass::class.java) ||
+        hasAnnotation(GodotScript::class.java) ||
                 isAbstractAndContainsRegisteredMembers(
                     registeredFunctions,
                     registeredProperties,
@@ -105,7 +105,7 @@ private val ClassInfo.isAbstractAndInheritsGodotObject
 
 private fun ClassInfo.provideCustomName(): String? {
     val registerClassAnnotation = annotationInfo
-        .firstOrNull { it.name == RegisterClass::class.qualifiedName }
+        .firstOrNull { it.name == GodotScript::class.qualifiedName }
 
     return registerClassAnnotation
         ?.parameterValues

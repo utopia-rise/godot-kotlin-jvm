@@ -34,7 +34,7 @@ object CallFunctionReferenceAnalyzer {
                 .mainReference
                 .resolve() as? KtNamedFunction
 
-            val registerFunctionAnnotation = targetFunction?.findAnnotation(Annotation.registerFunction.asClassId())
+            val registerFunctionAnnotation = targetFunction?.findAnnotation(Annotation.register.asClassId())
             if (targetFunction != null && registerFunctionAnnotation == null) {
                 return listOf(
                     GodotProblem(

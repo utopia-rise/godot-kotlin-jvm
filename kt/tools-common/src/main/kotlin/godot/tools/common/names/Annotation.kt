@@ -8,10 +8,10 @@ object Annotation {
     @Suppress("NOTHING_TO_INLINE")
     private inline fun annotationName(simpleName: String) = ClassName(godotAnnotationPackage, simpleName)
 
-    val registerClass = annotationName("RegisterClass")
+    val registerClass = annotationName("GodotScript")
+    val register = annotationName("Register")
+    val visible = annotationName("Visible")
     val tool = annotationName("Tool")
-    val registerFunction = annotationName("RegisterFunction")
-    val registerProperty = annotationName("RegisterProperty")
     val export = annotationName("Export")
     val registerSignal = annotationName("RegisterSignal")
     val godotBaseType = annotationName("GodotBaseType")

@@ -1,9 +1,9 @@
 package godot.tests.signal
 
 import godot.api.Node
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
-import godot.annotation.RegisterProperty
+import godot.annotation.GodotScript
+import godot.annotation.Register
+import godot.annotation.Visible
 import godot.annotation.RegisterSignal
 import godot.core.Signal0
 import godot.core.Signal1
@@ -18,7 +18,7 @@ import godot.extension.connectLambda
 import godot.extension.connectMethod
 import godot.tests.subpackage.OtherScript
 
-@RegisterClass
+@GodotScript
 class SignalTest : Node() {
     @RegisterSignal
     val noParamSignalDelegate by signal0()
@@ -39,10 +39,10 @@ class SignalTest : Node() {
     @RegisterSignal("str", "inv")
     val twoParamSignalField = Signal2<String, SignalTest>("twoParamSignalField")
 
-    @RegisterProperty
+    @Visible
     var otherScript = OtherScript()
 
-    @RegisterFunction
+    @Register
     override fun _ready() {
 
         noParamSignalDelegate.connectMethod(otherScript, OtherScript::hookNoParam)
@@ -81,10 +81,10 @@ class SignalTest : Node() {
     val signalWithMultipleTargets by signal1<Vector2>()
 
     //To store values emitted by signals
-    @RegisterProperty
+    @Visible
     var array: VariantArray<Vector2> = VariantArray()
 
-    @RegisterFunction
+    @Register
     fun targetFunctionOne(vector2: Vector2) {
         array.append(vector2)
         //call GodotAPI to insert different parameters in the stack.
@@ -96,9 +96,8 @@ class SignalTest : Node() {
     }
 
 
-    @RegisterFunction
+    @Register
     fun targetFunctionTwo(vector2: Vector2) {
         array.append(vector2)
     }
 }
-

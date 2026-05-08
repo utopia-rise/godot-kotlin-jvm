@@ -53,7 +53,7 @@ open class GodotExtension(objects: ObjectFactory) {
     val registrationFilesLayoutMode: Property<RegistrationFileLayoutMode> = objects.property(RegistrationFileLayoutMode::class.java)
 
     /**
-     * Controls how Godot registration names are computed when `@RegisterClass` does not provide a custom name.
+     * Controls how Godot registration names are computed when `@GodotScript` does not provide a custom name.
      *
      * - [RegisteredNameMode.SIMPLE_NAME]: use the Kotlin class name.
      * - [RegisteredNameMode.FQ_NAME]: use the fully qualified class name.

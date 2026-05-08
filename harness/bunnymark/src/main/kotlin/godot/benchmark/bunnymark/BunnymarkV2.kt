@@ -2,12 +2,12 @@ package godot.benchmark.bunnymark
 
 import godot.core.*
 import godot.*
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
+import godot.annotation.GodotScript
+import godot.annotation.Register
 import godot.annotation.RegisterSignal
 import godot.signals.signal
 
-@RegisterClass("BunnymarkV2")
+@GodotScript("BunnymarkV2")
 class BunnymarkV2 : Node2D() {
 
 	@RegisterSignal
@@ -22,7 +22,7 @@ class BunnymarkV2 : Node2D() {
 
 	private lateinit var screenSize: Vector2
 
-	@RegisterFunction
+	@Register
 	override fun _ready() {
 		randomNumberGenerator.randomize()
 		addChild(bunnies)
@@ -30,7 +30,7 @@ class BunnymarkV2 : Node2D() {
 		addChild(label)
 	}
 
-	@RegisterFunction
+	@Register
 	override fun _process(delta: Double) {
 		screenSize = getViewportRect().size
 		label.text = "Bunnies: " + bunnies.getChildCount().toString()
@@ -75,7 +75,7 @@ class BunnymarkV2 : Node2D() {
 		}
 	}
 
-	@RegisterFunction
+	@Register
 	fun addBunny() {
 		val bunny = Sprite2D()
 		bunny.texture = bunnyTexture
@@ -86,7 +86,7 @@ class BunnymarkV2 : Node2D() {
 		)
 	}
 
-	@RegisterFunction
+	@Register
 	fun removeBunny() {
 		val childCount = bunnies.getChildCount()
 		if (childCount == 0) return
@@ -99,7 +99,7 @@ class BunnymarkV2 : Node2D() {
 		bunnySpeeds.removeAt(childCount.toInt() - 1)
 	}
 
-	@RegisterFunction
+	@Register
 	fun finish() {
         benchmarkFinished.emit(bunnySpeeds.size)
 	}

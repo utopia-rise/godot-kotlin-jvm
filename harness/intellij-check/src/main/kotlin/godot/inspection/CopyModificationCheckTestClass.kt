@@ -1,16 +1,17 @@
 import godot.api.Node3D
 import godot.annotation.Export
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterProperty
+import godot.annotation.GodotScript
+import godot.annotation.Register
+import godot.annotation.Visible
 import godot.core.Basis
 import godot.core.Transform3D
 import godot.core.Vector3
 
-@RegisterClass
+@GodotScript
 class CopyModificationCheckTestClass : Node3D() {
 
     @Export
-    @RegisterProperty
+    @Visible
     lateinit var node3D: Node3D
 
     class Blubb {

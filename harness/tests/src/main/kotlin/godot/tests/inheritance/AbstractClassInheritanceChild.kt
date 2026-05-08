@@ -1,12 +1,12 @@
 package godot.tests.inheritance
 
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
-import godot.annotation.RegisterProperty
+import godot.annotation.GodotScript
+import godot.annotation.Register
+import godot.annotation.Visible
 import godot.annotation.RegisterSignal
 import godot.core.signal2
 
-@RegisterClass
+@GodotScript
 class AbstractClassInheritanceChild : AbstractClassInheritanceParent() {
 
     @RegisterSignal("blubb", "habbalubbb")
@@ -14,14 +14,14 @@ class AbstractClassInheritanceChild : AbstractClassInheritanceParent() {
 
     //---------------- Here to check ------------------
 
-    @RegisterProperty
+    @Visible
     var childOpenFunctionHasBeenCalled = false
 
     //-------------------------------------------------
 
     override var openVar: Int = 100
 
-    @RegisterFunction
+    @Register
     override fun openFunction() {
         childOpenFunctionHasBeenCalled = true
     }

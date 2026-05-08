@@ -1,5 +1,7 @@
 package godot.annotation.processor.classgraph.extensions
 
+import godot.annotation.Register
+import godot.annotation.Rpc
 import godot.annotation.processor.classgraph.Context
 import godot.annotation.processor.classgraph.models.TypeDescriptor
 import godot.entrygenerator.model.FunctionAnnotation
@@ -10,7 +12,9 @@ import io.github.classgraph.MethodInfo
 
 fun MethodInfo.mapMethodToRegisteredFunction(currentClass: ClassInfo, settings: Settings): RegisteredFunction {
     val parameters = parameterInfo.mapIndexed { index, parameter -> parameter.mapToValueParameter(settings, index) }
-    val annotations = annotationInfo.mapNotNull { it.mapToGodotAnnotation(this, fqName) as? FunctionAnnotation }
+    val annotations = annotationInfo
+        .filter { it.name in methodAnnotationNames }
+        .mapNotNull { it.mapToGodotAnnotation(this, fqName) as? FunctionAnnotation }
 
     val typeDescriptor = TypeDescriptor(this)
     return RegisteredFunction(
@@ -23,10 +27,15 @@ fun MethodInfo.mapMethodToRegisteredFunction(currentClass: ClassInfo, settings: 
     )
 }
 
-val MethodInfo.isOverridee: Boolean
-    get() = classInfo.collectSuperMethodSignatures().contains(methodSignature)
+private val methodAnnotationNames = setOf(
+    Register::class.java.name,
+    Rpc::class.java.name,
+)
 
-private val MethodInfo.methodSignature: String
+val MethodInfo.isOverridee: Boolean
+    get() = classInfo.collectSuperMethodSignatures().contains(registrationSignature)
+
+val MethodInfo.registrationSignature: String
     get() = "$name:$typeDescriptor"
 
 private fun ClassInfo.collectSuperMethodSignatures(): Set<String> {
@@ -41,7 +50,7 @@ private fun ClassInfo.collectHierarchyMethodSignatures(): Set<String> {
     return Context.hierarchyMethodSignaturesByClass.getOrPut(name) {
         val signatures = mutableSetOf<String>()
         for (method in methodInfo) {
-            signatures += "${method.name}:${method.typeDescriptor}"
+            signatures += method.registrationSignature
         }
         for (superclass in superclasses) {
             signatures += superclass.collectHierarchyMethodSignatures()

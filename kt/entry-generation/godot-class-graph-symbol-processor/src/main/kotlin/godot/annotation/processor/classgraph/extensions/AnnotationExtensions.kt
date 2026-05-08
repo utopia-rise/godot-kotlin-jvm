@@ -9,15 +9,15 @@ import godot.annotation.GodotBaseType
 import godot.annotation.IntFlag
 import godot.annotation.MultilineText
 import godot.annotation.PlaceHolderText
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
-import godot.annotation.RegisterProperty
+import godot.annotation.GodotScript
+import godot.annotation.Register
 import godot.annotation.RegisterSignal
 import godot.annotation.Rpc
 import godot.annotation.RpcMode
 import godot.annotation.Sync
 import godot.annotation.Tool
 import godot.annotation.TransferMode
+import godot.annotation.Visible
 import godot.annotation.processor.classgraph.Context
 import godot.annotation.processor.classgraph.ErrorsDatabase
 import godot.annotation.processor.classgraph.constants.SET
@@ -48,11 +48,11 @@ import io.github.classgraph.FieldInfo
 fun AnnotationInfo.mapToGodotAnnotation(parentDeclaration: Any, declarationString: String): GodotAnnotation? {
     @Suppress("UNCHECKED_CAST")
     return when (name) {
-        RegisterClass::class.java.name -> RegisterClassAnnotation(
+        GodotScript::class.java.name -> RegisterClassAnnotation(
             customName = parameterValues.getValue("customName") as? String,
         )
-        RegisterFunction::class.java.name -> RegisterFunctionAnnotation()
-        RegisterProperty::class.java.name -> RegisterPropertyAnnotation()
+        Register::class.java.name -> RegisterFunctionAnnotation()
+        Visible::class.java.name -> RegisterPropertyAnnotation()
         RegisterSignal::class.java.name -> RegisterSignalAnnotation()
         Tool::class.java.name -> ToolAnnotation()
         Export::class.java.name -> ExportAnnotation()

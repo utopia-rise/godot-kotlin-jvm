@@ -1,24 +1,24 @@
 package godot.tests
 
-import godot.annotation.{RegisterClass, RegisterFunction, RegisterProperty, RegisterSignal}
+import godot.annotation.{GodotScript, Register, RegisterSignal, Visible}
 import godot.api.Node
 import godot.core.Signal2
 
-@RegisterClass
+@GodotScript
 class HelloFromScala extends Node {
 
   //@RegisterSignal(parameters = Array("param1", "param2"))
   //val mySignal: Signal2[String, String] = Signal2.create(this, "test_signal_2")
 
-  @RegisterProperty
+  @Visible
   var myInt: Int = 0
 
-  @RegisterFunction
+  @Register
   override def _ready(): Unit = {
     println("Hello from scala")
   }
 
-  @RegisterFunction
+  @Register
   def sayHello(): Unit = {
     println("hello")
   }
