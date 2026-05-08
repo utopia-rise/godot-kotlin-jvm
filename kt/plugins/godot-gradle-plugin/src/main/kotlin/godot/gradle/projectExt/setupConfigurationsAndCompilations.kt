@@ -3,7 +3,6 @@ package godot.gradle.projectExt
 import godot.gradle.GodotLanguage
 import godot.tools.common.BUILD_VERSION
 import godot.tools.common.KOTLIN_COROUTINE_VERSION
-import godot.tools.common.KOTLIN_VERSION
 import org.gradle.api.Project
 import org.gradle.api.tasks.compile.JavaCompile
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
@@ -32,7 +31,7 @@ fun Project.setupConfigurationsAndCompilations() {
         dependencies.add("compileOnly", "com.utopia-rise:$godotExtensionArtifactName:$BUILD_VERSION")
         dependencies.add("compileOnly", "com.utopia-rise:$godotBootstrapArtifactName:$BUILD_VERSION")
         if (isLanguageEnabled(GodotLanguage.SCALA)) {
-            dependencies.add("implementation", "org.scala-lang:scala3-library_3:${godotJvmExtension.scalaLanguageVersion.get()}")
+            dependencies.add("implementation", "org.scala-lang:scala3-library_3:${godotJvmExtension.scalaVersion.get()}")
         }
 
         if (godotJvmExtension.isGodotCoroutinesEnabled.get()) {
@@ -66,8 +65,9 @@ fun Project.setupConfigurationsAndCompilations() {
 
     //bootstrap configuration containing all glue code but no user code
     configurations.create("bootstrap") {
+        val kotlinBuildVersion = resolvedKotlinBuildVersion()
         with(it.dependencies) {
-            add(dependencies.create("org.jetbrains.kotlin:kotlin-stdlib:${kotlinJvmExtension.coreLibrariesVersion}"))
+            add(dependencies.create("org.jetbrains.kotlin:kotlin-stdlib:$kotlinBuildVersion"))
             add(dependencies.create("com.utopia-rise:common:$BUILD_VERSION"))
             add(dependencies.create("com.utopia-rise:$godotInternalArtifactName:$BUILD_VERSION"))
             add(dependencies.create("com.utopia-rise:$godotCoreArtifactName:$BUILD_VERSION"))
@@ -75,7 +75,7 @@ fun Project.setupConfigurationsAndCompilations() {
             add(dependencies.create("com.utopia-rise:$godotBootstrapArtifactName:$BUILD_VERSION"))
             add(dependencies.create("com.utopia-rise:$godotExtensionArtifactName:$BUILD_VERSION"))
             // add reflection explicitly so it's usable in exported projects as well. See: GH-571
-            add(dependencies.create("org.jetbrains.kotlin:kotlin-reflect:$KOTLIN_VERSION"))
+            add(dependencies.create("org.jetbrains.kotlin:kotlin-reflect:$kotlinBuildVersion"))
         }
     }
 }

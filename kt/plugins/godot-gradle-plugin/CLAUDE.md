@@ -32,6 +32,11 @@ Start with these files, in order:
 5. [`src/main/kotlin/godot/gradle/projectExt/configureThirdPartyPlugins.kt`](D:/Godot/Module/kotlin/modules/kotlin_jvm/kt/plugins/godot-gradle-plugin/src/main/kotlin/godot/gradle/projectExt/configureThirdPartyPlugins.kt)  
    Applies the supporting third-party plugins used by the build, such as Shadow, optional Scala support, and IDEA integration.
 
+6. [`src/main/kotlin/godot/gradle/projectExt/checkKotlinVersionCompatibility.kt`](D:/Godot/Module/kotlin/modules/kotlin_jvm/kt/plugins/godot-gradle-plugin/src/main/kotlin/godot/gradle/projectExt/checkKotlinVersionCompatibility.kt),
+   [`checkJdkVersionCompatibility.kt`](D:/Godot/Module/kotlin/modules/kotlin_jvm/kt/plugins/godot-gradle-plugin/src/main/kotlin/godot/gradle/projectExt/checkJdkVersionCompatibility.kt),
+   and [`checkScalaVersionCompatibility.kt`](D:/Godot/Module/kotlin/modules/kotlin_jvm/kt/plugins/godot-gradle-plugin/src/main/kotlin/godot/gradle/projectExt/checkScalaVersionCompatibility.kt)  
+   Guard the configurable build versions and toolchain defaults exposed through `GodotExtension`.
+
 ## Mental Model
 
 The plugin uses the normal project compilation output as the first pass.
@@ -47,6 +52,9 @@ Key properties:
 
 - `godot.isLibrary = true` switches the plugin into library mode
 - `godot.languages` controls which source-language tasks participate in the initial `classes` pass
+- `godot.javaVersion` defaults to 11 and configures the Java and Kotlin toolchains
+- `godot.kotlinVersion` defaults to the bundled Kotlin version and may be overridden to a newer version
+- `godot.scalaVersion` defaults to the bundled Scala version and may be overridden to a newer version
 - there is no separate pre-scan compile pipeline
 - there is no registered-class plan task anymore
 - there is no `RegisteredClassMetadata` re-scan pipeline anymore
@@ -159,6 +167,9 @@ Important behavior:
 
 - `isLibrary` defaults to `false`
 - `languages` defaults to all three built-in languages: Kotlin, Java, and Scala
+- `javaVersion` defaults to 11 and must stay at least 11
+- `kotlinVersion` defaults to the Kotlin version bundled with this Godot Kotlin/JVM release
+- `scalaVersion` defaults to the bundled Scala version and must stay at least 3.0.0
 - `godotProjectDirectory` defaults to the Gradle project directory and must contain `project.godot`
 - `RegisteredNameMode.SIMPLE_NAME` is the default
 - `RegisteredNameMode.FQ_NAME` uses the fqName as the default registered name
@@ -184,6 +195,10 @@ Project-level setup.
 - `setupConfigurationsAndCompilations.kt`: dependencies, compiler flags, bootstrap configuration
 - `setupTasks.kt`: workflow order and task graph
 - `configureThirdPartyPlugins.kt`: Shadow, optional Scala support, IDEA integration
+- `checkJdkVersionCompatibility.kt`: applies and validates the Java/Kotlin toolchain version
+- `checkKotlinVersionCompatibility.kt`: applies and validates the Kotlin Gradle plugin version
+- `checkScalaVersionCompatibility.kt`: validates the configured Scala language version
+- `versionComparison.kt`: shared semantic-ish version comparison helper for Kotlin and Scala guards
 
 ### [`src/main/kotlin/godot/gradle/tasks/entry_generation`](D:/Godot/Module/kotlin/modules/kotlin_jvm/kt/plugins/godot-gradle-plugin/src/main/kotlin/godot/gradle/tasks/entry_generation)
 
@@ -308,6 +323,10 @@ Useful commands from the monorepo root (`D:\Godot\Module\kotlin\modules\kotlin_j
 ```
 
 Use this after editing plugin code. It is the minimum sanity check.
+
+For user-facing Gradle settings and examples, the canonical docs page is:
+
+- [docs/src/doc/user-guide/advanced/gradle-plugin-configuration.md](D:/Godot/Module/kotlin/modules/kotlin_jvm/docs/src/doc/user-guide/advanced/gradle-plugin-configuration.md)
 
 For entry-generation changes, verify the task pipeline explicitly from a harness project, for example:
 

@@ -6,34 +6,42 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinPluginWrapper
 
 fun Project.checkKotlinVersionCompatibility() {
     val kotlinPlugin = plugins.findPlugin(KotlinPluginWrapper::class.java)
-    val kotlinPluginVersion = buildscript
-        .configurations
-        .firstOrNull { it.name == "classpath" }
-        ?.dependencies
-        ?.firstOrNull { it.name == "org.jetbrains.kotlin.jvm.gradle.plugin" }
-        ?.version
+    val kotlinPluginVersion = detectedKotlinPluginVersion()
 
-    val isSuppressingKotlinIncompatibility =
-        (findProperty("godot.jvm.suppressKotlinIncompatibility") as? String)?.toBoolean() ?: false
+    logger.info("Kotlin plugin already applied: ${kotlinPlugin != null}; detected version: ${kotlinPluginVersion ?: "none"}")
 
-    if (!isSuppressingKotlinIncompatibility) {
-        logger.info("Kotlin plugin already applied: ${kotlinPlugin != null}; detected version: ${kotlinPluginVersion ?: "none"}")
+    when {
+        kotlinPluginVersion != null && isVersionLowerThan(kotlinPluginVersion, KOTLIN_VERSION) -> throw IllegalArgumentException(
+            "Detected Kotlin Gradle plugin version $kotlinPluginVersion, but Godot-Kotlin requires at least Kotlin $KOTLIN_VERSION."
+        )
 
-        when {
-            kotlinPlugin != null && kotlinPluginVersion != null && kotlinPluginVersion != KOTLIN_VERSION -> throw IllegalArgumentException(
-                "Detected that a kotlin plugin with version $kotlinPluginVersion is already applied. But Godot-Kotlin is only compatible with kotlin $KOTLIN_VERSION, please change the version to $KOTLIN_VERSION"
-            )
-
-            kotlinPlugin == null && kotlinPluginVersion != null && kotlinPluginVersion != KOTLIN_VERSION -> throw IllegalArgumentException(
-                "Detected that kotlin plugin version $kotlinPluginVersion is already defined. But Godot-Kotlin is only compatible with kotlin $KOTLIN_VERSION, please change the version to $KOTLIN_VERSION"
-            )
-
-            kotlinPlugin == null && kotlinPluginVersion == null || kotlinPluginVersion == KOTLIN_VERSION -> {
-                pluginManager.apply(KotlinPluginWrapper::class.java) // the version will be the one with which this plugin was built
-            }
+        kotlinPlugin == null && kotlinPluginVersion == null -> {
+            pluginManager.apply(KotlinPluginWrapper::class.java)
         }
-    } else {
-        // warn is not really visible enough in the log. As this is a very important print, error is used to print it more visible
-        logger.error("Found property \"godot.jvm.suppressKotlinIncompatibility\" is set to \"true\". This is an advanced feature! Only use it if you know what you're doing. We cannot guarantee that our compiler plugin is compatible with other kotlin version tha $KOTLIN_VERSION (found version: $kotlinPluginVersion). Setting this property to true can lead to build and/or runtime errors.")
+    }
+
+    afterEvaluate {
+        val configuredKotlinVersion = godotJvmExtension.kotlinVersion.get()
+        val resolvedKotlinVersion = resolvedKotlinBuildVersion()
+
+        require(!isVersionLowerThan(configuredKotlinVersion, KOTLIN_VERSION)) {
+            "godot.kotlinVersion is set to $configuredKotlinVersion, but Godot-Kotlin requires at least Kotlin $KOTLIN_VERSION."
+        }
+
+        if (configuredKotlinVersion != KOTLIN_VERSION && configuredKotlinVersion != resolvedKotlinVersion) {
+            throw IllegalArgumentException(
+                "godot.kotlinVersion is set to $configuredKotlinVersion, but the applied Kotlin Gradle plugin version is $resolvedKotlinVersion. " +
+                    "To use a custom Kotlin version, apply `org.jetbrains.kotlin.jvm` explicitly with version $configuredKotlinVersion before `com.utopia-rise.godot-kotlin-jvm`."
+            )
+        }
     }
 }
+
+fun Project.detectedKotlinPluginVersion(): String? = buildscript
+    .configurations
+    .firstOrNull { it.name == "classpath" }
+    ?.dependencies
+    ?.firstOrNull { it.name == "org.jetbrains.kotlin.jvm.gradle.plugin" }
+    ?.version
+
+fun Project.resolvedKotlinBuildVersion(): String = detectedKotlinPluginVersion() ?: KOTLIN_VERSION

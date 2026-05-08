@@ -2,6 +2,7 @@ package godot.gradle
 
 import godot.entrygenerator.settings.RegisteredNameMode
 import godot.entrygenerator.settings.RegistrationFileLayoutMode
+import godot.tools.common.KOTLIN_VERSION
 import godot.tools.common.constants.FileExtensions
 import org.gradle.api.Project
 import org.gradle.api.file.DirectoryProperty
@@ -145,9 +146,24 @@ open class GodotExtension(objects: ObjectFactory) {
     val isGodotCoroutinesEnabled: Property<Boolean> = objects.property(Boolean::class.java)
 
     /**
+     * JDK/toolchain version to use for Java and Kotlin compilation.
+     *
+     * Defaults to the current built-in JDK toolchain version and must be at least 11.
+     */
+    val javaVersion: Property<Int> = objects.property(Int::class.java)
+
+    /**
+     * Kotlin Gradle plugin version to use for the build.
+     *
+     * Defaults to the Kotlin version this Godot Kotlin/JVM release was built with.
+     * If you override it, it must be at least that version.
+     */
+    val kotlinVersion: Property<String> = objects.property(String::class.java)
+
+    /**
      * Scala language version used for Scala support.
      */
-    val scalaLanguageVersion: Property<String> = objects.property(String::class.java)
+    val scalaVersion: Property<String> = objects.property(String::class.java)
 
     @Deprecated(
         message = "Use registrationFilesDirectory instead.",
@@ -219,13 +235,6 @@ open class GodotExtension(objects: ObjectFactory) {
     val isGraalVmNativeImageGenerationVerbose: Property<Boolean>
         get() = isGraalNativeImageVerboseEnabled
 
-    @Deprecated(
-        message = "Use scalaLanguageVersion instead.",
-        replaceWith = ReplaceWith("scalaLanguageVersion"),
-    )
-    val scalaVersion: Property<String>
-        get() = scalaLanguageVersion
-
     internal fun configureExtensionDefaults(target: Project) {
         val androidSdkRoot = System.getenv("ANDROID_SDK_ROOT")?.let { androidSdkRoot ->
             File(androidSdkRoot)
@@ -281,7 +290,9 @@ open class GodotExtension(objects: ObjectFactory) {
 
         isGodotCoroutinesEnabled.set(false)
 
-        scalaLanguageVersion.set("3.6.3")
+        javaVersion.set(17)
+        kotlinVersion.set(KOTLIN_VERSION)
+        scalaVersion.set("3.6.3")
 
         System.getenv("VC_VARS_PATH")?.let {
             windowsDeveloperVcVarsPath.set(File(it))

@@ -10,10 +10,6 @@ repositories {
     mavenCentral()
 }
 
-kotlin {
-    jvmToolchain(17)
-}
-
 godot {
     // --------- Setup ---------
     languages.set(setOf(GODOT_LANGUAGES))

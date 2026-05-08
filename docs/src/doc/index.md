@@ -70,12 +70,12 @@ Module Version: `0.16.0`
 
 Supported Godot Version: `4.6.2`
 
-This module relies on a Kotlin *compiler plugin* for registering your classes and members to Godot. As the compiler API from Kotlin is not stable yet, at the moment we can only support specific Kotlin version per release.
+This module relies on a Kotlin *compiler plugin* for registering your classes and members to Godot. As the compiler API from Kotlin is not stable yet, each release still defines a minimum supported Kotlin version.
 
-The current latest release is compatible with Kotlin version `2.3.20`.
+The current latest release requires at least Kotlin version `2.3.20`.
 
 !!! info
-    It is possible to use this module with other Kotlin versions as well but we do not provide any guarantees for it. You find more infos in the [Gradle Plugin configuration](user-guide/advanced/gradle-plugin-configuration.md#disable-build-failure-on-kotlin-version-mismatch) section.
+    It is possible to use this module with other Kotlin versions as well but we do not provide any guarantees for it. You find more infos in the [Gradle Plugin configuration](user-guide/advanced/gradle-plugin-configuration.md#kotlinversion) section.
 
 ## Custom engine builds
 
