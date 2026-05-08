@@ -54,7 +54,6 @@ class NotRegisteredButMembersFixture : Node() {
     // Expected red via the containing class: registered property inside a
     // non-registered class.
     @Export
-    @Visible
     var propertyShouldStayRed = 1
 
     // Expected red via the containing class: registered signal inside a
@@ -203,8 +202,6 @@ class PropertyHintProblemFixture : Node() {
 
     // Expected red: enum flags are capped at 32 enum entries, and this enum is
     // intentionally larger.
-    @Export
-    @Visible
     @EnumFlag
     var enumFlagTooManyEntries = setOf(
         LargeEnum.E01, LargeEnum.E02, LargeEnum.E03, LargeEnum.E04, LargeEnum.E05, LargeEnum.E06,
@@ -259,7 +256,6 @@ class RpcAnnotationProblemFixture : Node() {
     // Expected weak warning: non-zero transfer channels are ignored unless the
     // transfer mode is `UNRELIABLE_ORDERED`.
     @Rpc(transferMode = TransferMode.RELIABLE, transferChannel = 1)
-    @Register
     fun rpcChannelIgnored() {
     }
 }
@@ -304,14 +300,12 @@ class CallableReferenceProblemFixture : Node() {
 
     // Expected red when referenced from `rpc()`: registered, but missing
     // `@Rpc`.
-    @Register
     fun rpcTargetMissingRpc() {
     }
 
     // Expected red when referenced from `rpc()`: RPC-enabled, but explicitly
     // disabled for network access.
     @Rpc(rpcMode = RpcMode.DISABLED)
-    @Register
     fun rpcTargetDisabled() {
     }
 }

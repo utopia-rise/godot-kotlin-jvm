@@ -1,7 +1,7 @@
 package godot.tests.inheritance
 
 import godot.api.Node
-import godot.annotation.GodotScript
+import godot.annotation.script
 import godot.annotation.Register
 import godot.annotation.Visible
 import godot.annotation.RegisterSignal
@@ -10,7 +10,7 @@ import godot.core.signal1
 import godot.core.signal2
 import godot.global.GD
 
-@GodotScript
+@script
 open class ClassInheritanceParent : Node() {
 
     @RegisterSignal("blubb")

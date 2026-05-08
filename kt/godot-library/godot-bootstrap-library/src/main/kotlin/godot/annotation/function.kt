@@ -1,5 +1,15 @@
 package godot.annotation
 
+/**
+ * Registers a function in Godot so it can be used from another language or from Godot.
+ *
+ * **Note:** Engine functions like `_ready` also need to be annotated with this annotation in order to work.
+ *
+ * Also you can only register functions that receive and return either primitives, Objects derived from Godot classes or Objects wrapped in `Variant`.
+ */
+@Target(AnnotationTarget.FUNCTION, AnnotationTarget.ANNOTATION_CLASS)
+@Retention(AnnotationRetention.RUNTIME)
+annotation class Register
 
 /**
  * Define function's RPC (networking) capabilities.
@@ -9,6 +19,7 @@ package godot.annotation
  * @param transferMode see: [TransferMode]. Defaults to [TransferMode.RELIABLE]
  * @param transferChannel Should only be used in conjunction with [TransferMode.UNRELIABLE_ORDERED]! Will be ignored otherwise. Defaults to `0`
  */
+@Register
 @Target(AnnotationTarget.FUNCTION)
 @Retention(AnnotationRetention.RUNTIME)
 annotation class Rpc(

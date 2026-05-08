@@ -1,13 +1,13 @@
 package godot.tests.inheritance
 
-import godot.annotation.GodotScript
+import godot.annotation.script
 import godot.annotation.Register
 import godot.annotation.Visible
 import godot.annotation.RegisterSignal
 import godot.core.signal2
 import godot.global.GD
 
-@GodotScript
+@script
 class ClassInheritanceChild : ClassInheritanceParent() {
 
     @RegisterSignal("blubb", "habbalubbb")

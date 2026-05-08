@@ -1,6 +1,7 @@
 package godot.annotation.processor.classgraph.extensions
 
 import godot.annotation.RegisterSignal
+import godot.annotation.processor.classgraph.Context
 import godot.annotation.processor.classgraph.models.TypeDescriptor
 import godot.entrygenerator.ext.hasAnnotation
 import godot.entrygenerator.ext.isJavaCollection
@@ -132,18 +133,10 @@ val FieldInfo.isOverridee: Boolean
     }
 
 fun <T : Annotation> FieldInfo.hasAnnotation(annotationClass: Class<T>, classInfo: ClassInfo): Boolean =
-    hasAnnotation(annotationClass) ||
-        classInfo.methodInfo
-            .any {
-                it.hasAnnotation(annotationClass) && (it.name == toSyntheticAnnotations() || it.name == toGetterName())
-            }
+    getAnnotations(classInfo).any { it.name == annotationClass.name }
 
 fun FieldInfo.hasAnnotation(annotationName: String, classInfo: ClassInfo): Boolean =
-    hasAnnotation(annotationName) ||
-            classInfo.methodInfo
-                .any {
-                    it.hasAnnotation(annotationName) && (it.name == toSyntheticAnnotations() || it.name == toGetterName())
-                }
+    getAnnotations(classInfo).any { it.name == annotationName }
 
 
 fun FieldInfo.toGetterName(): String = "get${capitalizedName()}"
@@ -178,14 +171,16 @@ fun FieldInfo.getSetter(classInfo: ClassInfo): MethodInfo {
         }
 }
 
-fun FieldInfo.getAnnotations(classInfo: ClassInfo): Collection<AnnotationInfo> = classInfo
+fun FieldInfo.getAnnotations(classInfo: ClassInfo): Collection<AnnotationInfo> = getDirectAnnotations(classInfo)
+    .flatMap { annotation -> annotation.getAnnotationChain() }
+    .distinctBy { annotation -> annotation.name }
+
+private fun FieldInfo.getDirectAnnotations(classInfo: ClassInfo): Collection<AnnotationInfo> = classInfo
     .getMethodInfo(toSyntheticAnnotations())
     .firstOrNull()
     ?.annotationInfo ?: listOf<AnnotationInfo>()
-    .union(
-        annotationInfo
-    )
-    .distinct()
+    .union(annotationInfo)
+    .distinctBy { annotation -> annotation.name }
 
 private fun FieldInfo.capitalizedName(): String = sanitizedName
     .replaceFirstChar { char -> if (char.isLowerCase()) char.titlecase() else char.toString() }

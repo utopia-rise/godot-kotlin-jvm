@@ -1,10 +1,10 @@
 package godot.tests.exception
 
 import godot.api.Node
-import godot.annotation.GodotScript
+import godot.annotation.script
 import godot.annotation.Register
 
-@GodotScript
+@script
 class ExceptionTest: Node() {
 
     @Register

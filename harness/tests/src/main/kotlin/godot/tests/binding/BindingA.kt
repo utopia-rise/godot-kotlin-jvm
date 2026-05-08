@@ -2,8 +2,8 @@ package godot.tests.binding
 
 
 import godot.api.Node
-import godot.annotation.GodotScript
+import godot.annotation.script
 
-@GodotScript
+@script
 class BindingA : Node() {
 }

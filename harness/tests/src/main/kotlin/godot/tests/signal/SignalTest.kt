@@ -1,7 +1,7 @@
 package godot.tests.signal
 
 import godot.api.Node
-import godot.annotation.GodotScript
+import godot.annotation.script
 import godot.annotation.Register
 import godot.annotation.Visible
 import godot.annotation.RegisterSignal
@@ -18,7 +18,7 @@ import godot.extension.connectLambda
 import godot.extension.connectMethod
 import godot.tests.subpackage.OtherScript
 
-@GodotScript
+@script
 class SignalTest : Node() {
     @RegisterSignal
     val noParamSignalDelegate by signal0()

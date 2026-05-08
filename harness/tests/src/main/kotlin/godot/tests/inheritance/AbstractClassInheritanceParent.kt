@@ -13,12 +13,9 @@ import godot.core.signal2
 abstract class AbstractClassInheritanceParent : Node() {
     // GH-731
     @DoubleRange(1.0, 100.0)
-    @Visible
-    @Export
     var speed: Double = 100.0
 
     @Export
-    @Visible
     var registeredExportedPropertyInParent = false
 
     @RegisterSignal("blubb")

@@ -1,7 +1,7 @@
 package godot.tests
 
 import godot.api.Node
-import godot.annotation.GodotScript
+import godot.annotation.script
 import godot.annotation.Register
 import godot.annotation.Visible
 import godot.annotation.RegisterSignal
@@ -11,7 +11,7 @@ import godot.core.callable1
 import godot.core.signal0
 import godot.extension.connectMethod
 
-@GodotScript
+@script
 class FuncRefTest : Node() {
 
     @RegisterSignal
@@ -35,7 +35,6 @@ class FuncRefTest : Node() {
     }
 
     @Rpc
-    @Register
     fun testSignalCallback() {
         signalCallFlag = true
     }

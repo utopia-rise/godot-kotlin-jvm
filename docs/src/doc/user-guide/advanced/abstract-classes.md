@@ -21,7 +21,6 @@ Abstract class definition:
 abstract class AbstractClassInheritanceParent: Node() {
 
     @Export
-    @Visible
     var registeredExportedPropertyInAbstractClass = false
 
     @RegisterSignal("blubb")

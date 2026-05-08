@@ -1,7 +1,7 @@
 package godot.tests.packedarray
 
 import godot.api.Node
-import godot.annotation.GodotScript
+import godot.annotation.script
 import godot.annotation.Register
 import godot.core.PackedByteArray
 import godot.core.PackedFloat32Array
@@ -15,7 +15,7 @@ import godot.core.Vector2
 import godot.core.Vector3
 import godot.core.Vector4
 
-@GodotScript
+@script
 class PackedArrayTest : Node() {
 
     @Register

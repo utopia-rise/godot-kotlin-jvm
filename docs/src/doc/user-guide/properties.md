@@ -30,7 +30,6 @@ A property can be exported if it is a core type, a primitive or inherits from `g
 @GodotScript
 class RotatingCube: Node3D() {
     @Export
-    @Visible
     var speed: Float = 2f
 }
 ```

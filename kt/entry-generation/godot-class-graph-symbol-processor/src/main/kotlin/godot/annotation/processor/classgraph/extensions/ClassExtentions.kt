@@ -1,6 +1,6 @@
 package godot.annotation.processor.classgraph.extensions
 
-import godot.annotation.GodotScript
+import godot.annotation.script
 import godot.annotation.Register
 import godot.annotation.RegisterSignal
 import godot.annotation.Visible
@@ -21,7 +21,6 @@ import godot.entrygenerator.settings.RegisteredNameMode
 import godot.entrygenerator.settings.Settings
 import io.github.classgraph.ClassInfo
 import io.github.classgraph.TypeArgument
-import java.io.File
 
 fun ClassInfo.mapToClazz(settings: Settings): Clazz {
     val fqName = name
@@ -85,7 +84,7 @@ private fun ClassInfo.shouldBeRegistered(
     registeredProperties: List<RegisteredProperty>,
     registeredSignals: List<RegisteredSignal>
 ) = !isInterface && (
-        hasAnnotation(GodotScript::class.java) ||
+        hasAnnotation(script::class.java) ||
                 isAbstractAndContainsRegisteredMembers(
                     registeredFunctions,
                     registeredProperties,
@@ -105,7 +104,7 @@ private val ClassInfo.isAbstractAndInheritsGodotObject
 
 private fun ClassInfo.provideCustomName(): String? {
     val registerClassAnnotation = annotationInfo
-        .firstOrNull { it.name == GodotScript::class.qualifiedName }
+        .firstOrNull { it.name == script::class.qualifiedName }
 
     return registerClassAnnotation
         ?.parameterValues

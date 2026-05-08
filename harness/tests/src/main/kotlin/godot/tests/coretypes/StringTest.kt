@@ -1,12 +1,12 @@
 package godot.tests.coretypes
 
 import godot.api.Node
-import godot.annotation.GodotScript
+import godot.annotation.script
 import godot.annotation.Register
 import godot.core.asStringName
 import godot.core.Vector2
 
-@GodotScript
+@script
 class StringTest : Node() {
 
     private val _shortString = "Short String"

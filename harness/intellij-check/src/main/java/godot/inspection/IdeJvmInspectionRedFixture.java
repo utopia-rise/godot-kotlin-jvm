@@ -23,7 +23,6 @@ class JvmNotRegisteredButMembersFixture extends Node {
     // Expected red via the containing class: registered property inside a
     // non-registered class.
     @Export
-    @Visible
     public int propertyShouldStayRed = 1;
 
     // Expected red via the containing class: registered signal inside a

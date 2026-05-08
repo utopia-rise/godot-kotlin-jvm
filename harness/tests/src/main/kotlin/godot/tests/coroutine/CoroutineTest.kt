@@ -5,7 +5,7 @@ import godot.api.Object
 import godot.api.PackedScene
 import godot.api.ResourceLoader
 import godot.api.Timer
-import godot.annotation.GodotScript
+import godot.annotation.script
 import godot.annotation.Register
 import godot.annotation.Visible
 import godot.annotation.RegisterSignal
@@ -24,7 +24,7 @@ import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
 
-@GodotScript
+@script
 class CoroutineTest : Object() {
 
     @RegisterSignal

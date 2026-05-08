@@ -19,7 +19,7 @@ import godot.annotation.IntRange
 import godot.annotation.LongRange
 import godot.annotation.MultilineText
 import godot.annotation.PlaceHolderText
-import godot.annotation.GodotScript
+import godot.annotation.script
 import godot.annotation.Register
 import godot.annotation.Visible
 import godot.core.Color
@@ -51,21 +51,18 @@ enum class TestEnum {
 }
 
 
-@GodotScript
+@script
 class Invocation : Node3D() {
 	@Export
-	@Visible
 	lateinit var button: Button
 
 	@Export
-	@Visible
 	var enumList = listOf(TestEnum.ENUM_1)
 
 	@Visible
 	var vectorList = PackedVector3Array()
 
 	@Export
-	@Visible
 	var enumListMutable = mutableListOf(TestEnum.ENUM_1, TestEnum.ENUM_2)
 
 	// Can't export nullable coretypes
@@ -104,19 +101,15 @@ class Invocation : Node3D() {
 	var vector = Vector3()
 
 	@Export
-	@Visible
 	var x = 0
 
 	@Export
-	@Visible
 	var y = 0.0
 
 	@Export
-	@Visible
 	var z = 0.0f
 
 	@Export
-	@Visible
 	var customName = "Idonthaveanyidea"
 
 	//references in default values are allowed if the property is NOT exported
@@ -127,15 +120,12 @@ class Invocation : Node3D() {
 	var invocation = provideOtherScriptReference()
 
 	@Export
-	@Visible
 	var enumTest = TestEnum.ENUM_1
 
 	@Export
-	@Visible
 	var resourceTest = NavigationMesh()
 
 	@Export
-	@Visible
 	var jvmId: Int = 0
 		get() = hashCode()
 		set(value) {
@@ -143,145 +133,98 @@ class Invocation : Node3D() {
 		}
 
 	@Export
-	@Visible
 	var testArrayAny = VariantArray<Any>()
 
 	@Export
-	@Visible
 	var navMeshes = variantArrayOf(NavigationMesh())
 
 	@Export
-	@Visible
 	var nullableArray = variantArrayOf(NavigationMesh(), null)
 
 	@Export
-	@Visible
 	var anyToAnyDictionary = Dictionary<Any, Any>()
 
 	@Export
-	@Visible
 	var navMeshesDictionary = dictionaryOf("AwesomeNavmesh" to NavigationMesh())
 
 	@Export
-	@Visible
 	var nullableDictionary = dictionaryOf(
 		"notnull" to NavigationMesh(),
 		"null" to null
 	)
 
 	@Export
-	@Visible
 	var color = Color()
 
 	@Export
-	@Visible
 	var rid = RID()
 
 	@Export
-	@Visible
 	var packedByteArray = PackedByteArray()
 
 	@Export
-	@Visible
 	var packedInt32Array = PackedInt32Array()
 
 	@Export
-	@Visible
 	var packedFloat64Array = PackedFloat64Array()
 
 	@Export
-	@Visible
 	var packedColorArray = PackedColorArray()
 
 	@Export
-	@Visible
 	var packedStringArray = PackedStringArray()
 
 	@Export
-	@Visible
 	var packedVector2Array = PackedVector2Array()
 
 	@Export
-	@Visible
 	var packedVector3Array = PackedVector3Array()
 
-	@Export
-	@Visible
 	@IntRange(1, 2)
 	var p1 = 1
 
-	@Export
-	@Visible
 	@LongRange(1L, 2L)
 	var p1_1 = 1L
 
-	@Export
-	@Visible
 	@FloatRange(1f, 2f)
 	var p2 = 1f
 
-	@Export
-	@Visible
 	@DoubleRange(1.0, 2.0)
 	var p3 = 1.0
 
-	@Export
-	@Visible
 	@DoubleRange(min = 1.0, max = 2.0, step = 0.1, or = Range.OR_GREATER, hideSlider = true, isDegrees = true, suffix = "MyCoolSuffix")
 	var p4 = 1.0
 
-	@Export
-	@Visible
 	@FloatRange(1f, 2f)
 	var p5 = 1f
 
-	@Export
-	@Visible
 	@EnumTypeHint
 	var p6 = TestEnum.ENUM_1
 
-	@Export
-	@Visible
 	@ExpEasing
 	var p7 = 1f
 
-	@Export
-	@Visible
 	@ExpEasing
 	var p8 = 1.0
 
-	@Export
-	@Visible
 	@EnumFlag
 	var p9 = setOf(TestEnum.ENUM_1)
 
-	@Export
-	@Visible
 	@EnumFlag
 	var p10 = mutableSetOf(TestEnum.ENUM_1)
 
-	@Export
-	@Visible
 	@EnumFlag
 	var p11 = mutableSetOf<TestEnum>()
 
-	@Export
-	@Visible
 	@IntFlag
 	var p12 = 1 or 2 and 3
 
-	@Export
-	@Visible
 	@File
 	var p13 = "someFile"
 
-	@Export
-	@Visible
 	@Dir
 	var p14 = "someDir"
 
-	@Export
-	@Visible
 	@MultilineText
 	var p15 = """
 		some
@@ -289,30 +232,22 @@ class Invocation : Node3D() {
 		text
 	""".trimIndent()
 
-	@Export
-	@Visible
 	@PlaceHolderText
 	var p16 = "some placeholderText"
 
-	@Export
-	@Visible
 	@ColorNoAlpha
 	var p17 = Color()
 
 	@Export
-	@Visible
 	var stringtemplation = "blubb ${17 + 25}"
 
 	@Export
-	@Visible
 	var testString = "Two eggs in a boiler. One says: it's hot here, isn't ? The other: oh my god, an egg talking!"
 
 	@Export
-	@Visible
 	var asciiString = ""
 
 	@Export
-	@Visible
 	var utf8String = ""
 
 	@Register

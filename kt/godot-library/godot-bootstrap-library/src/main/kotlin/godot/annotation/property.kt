@@ -10,8 +10,33 @@ The following annotations are implemented based on https://github.com/godotengin
  */
 
 /**
+ * Registers a property in Godot so it can be used from another language or from Godot.
+ *
+ * **Note:** Only compile time constant assignments can be used. If this is not possible you have to use lateinit and set the value either in the constructor or in `_ready`.
+ */
+@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD, AnnotationTarget.ANNOTATION_CLASS)
+@Retention(AnnotationRetention.RUNTIME)
+annotation class Visible
+
+/**
+ * Mark a registered property as exported and thus visible in the inspector.
+ *
+ * Only core types and references can be exported.
+ */
+@Visible
+@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD, AnnotationTarget.ANNOTATION_CLASS)
+@Retention(AnnotationRetention.RUNTIME)
+annotation class Export
+
+@Export
+@Target(AnnotationTarget.ANNOTATION_CLASS)
+@Retention(AnnotationRetention.RUNTIME)
+annotation class PropertyHint
+
+/**
  * Can only be used on Int properties!
  */
+@PropertyHint
 @Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 @Retention(AnnotationRetention.RUNTIME)
 annotation class IntRange(
@@ -29,6 +54,7 @@ annotation class IntRange(
 /**
  * Can only be used on Long properties!
  */
+@PropertyHint
 @Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 @Retention(AnnotationRetention.RUNTIME)
 annotation class LongRange(
@@ -46,6 +72,7 @@ annotation class LongRange(
 /**
  * Can only be used on Float properties!
  */
+@PropertyHint
 @Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 @Retention(AnnotationRetention.RUNTIME)
 annotation class FloatRange(
@@ -63,6 +90,7 @@ annotation class FloatRange(
 /**
  * Can only be used on Double properties!
  */
+@PropertyHint
 @Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 @Retention(AnnotationRetention.RUNTIME)
 annotation class DoubleRange(
@@ -80,6 +108,7 @@ annotation class DoubleRange(
 /**
  * Can only be used on Enum properties!
  */
+@PropertyHint
 @Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 @Retention(AnnotationRetention.RUNTIME)
 annotation class EnumTypeHint
@@ -87,6 +116,7 @@ annotation class EnumTypeHint
 /**
  * Can only be used on Float and Double properties!
  */
+@PropertyHint
 @Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 @Retention(AnnotationRetention.RUNTIME)
 annotation class ExpEasing(val attenuation: Boolean = false, val isPositiveOnly: Boolean = true)
@@ -105,6 +135,7 @@ annotation class ExpEasing(val attenuation: Boolean = false, val isPositiveOnly:
  *
  * **Note:** The used enum can not have more than 32 Entries!
  */
+@PropertyHint
 @Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 @Retention(AnnotationRetention.RUNTIME)
 annotation class EnumFlag
@@ -114,6 +145,7 @@ annotation class EnumFlag
  *
  * Can only be used on Int properties!
  */
+@PropertyHint
 @Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 @Retention(AnnotationRetention.RUNTIME)
 annotation class IntFlag(vararg val names: String)
@@ -149,6 +181,7 @@ annotation class IntFlag(vararg val names: String)
 /**
  * Can only be used on String properties!
  */
+@PropertyHint
 @Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 @Retention(AnnotationRetention.RUNTIME)
 annotation class File(vararg val extensions: String = [], val global: Boolean = false)
@@ -156,6 +189,7 @@ annotation class File(vararg val extensions: String = [], val global: Boolean = 
 /**
  * Can only be used on String properties!
  */
+@PropertyHint
 @Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 @Retention(AnnotationRetention.RUNTIME)
 annotation class Dir(val global: Boolean = false)
@@ -163,6 +197,7 @@ annotation class Dir(val global: Boolean = false)
 /**
  * Can only be used on String properties!
  */
+@PropertyHint
 @Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 @Retention(AnnotationRetention.RUNTIME)
 annotation class MultilineText
@@ -170,6 +205,7 @@ annotation class MultilineText
 /**
  * Can only be used on String properties!
  */
+@PropertyHint
 @Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 @Retention(AnnotationRetention.RUNTIME)
 annotation class PlaceHolderText
@@ -177,6 +213,7 @@ annotation class PlaceHolderText
 /**
  * Can only be used on Color properties!
  */
+@PropertyHint
 @Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 @Retention(AnnotationRetention.RUNTIME)
 annotation class ColorNoAlpha

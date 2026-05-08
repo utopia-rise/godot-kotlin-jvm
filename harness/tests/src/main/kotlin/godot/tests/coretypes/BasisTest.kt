@@ -1,13 +1,13 @@
 package godot.tests.coretypes
 
 import godot.api.Node
-import godot.annotation.GodotScript
+import godot.annotation.script
 import godot.annotation.Register
 import godot.core.Basis
 import godot.core.Quaternion
 import godot.core.Vector3
 
-@GodotScript
+@script
 class BasisTest : Node() {
 
     @Register

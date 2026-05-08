@@ -11,7 +11,6 @@ import godot.core.Vector3
 class CopyModificationCheckTestClass : Node3D() {
 
     @Export
-    @Visible
     lateinit var node3D: Node3D
 
     class Blubb {

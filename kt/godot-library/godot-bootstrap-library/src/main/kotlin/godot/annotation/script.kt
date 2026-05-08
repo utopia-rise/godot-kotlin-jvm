@@ -7,4 +7,13 @@ package godot.annotation
  */
 @Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.RUNTIME)
-annotation class GodotScript(val className: String = "")
+annotation class script(val className: String = "")
+
+/**
+ * Mark a class as tool class.
+ *
+ * The class needs to have the @[script] annotation added as well.
+ */
+@Target(AnnotationTarget.CLASS)
+@Retention(AnnotationRetention.RUNTIME)
+annotation class Tool

@@ -9,7 +9,7 @@ import godot.annotation.GodotBaseType
 import godot.annotation.IntFlag
 import godot.annotation.MultilineText
 import godot.annotation.PlaceHolderText
-import godot.annotation.GodotScript
+import godot.annotation.script
 import godot.annotation.Register
 import godot.annotation.RegisterSignal
 import godot.annotation.Rpc
@@ -48,7 +48,7 @@ import io.github.classgraph.FieldInfo
 fun AnnotationInfo.mapToGodotAnnotation(parentDeclaration: Any, declarationString: String): GodotAnnotation? {
     @Suppress("UNCHECKED_CAST")
     return when (name) {
-        GodotScript::class.java.name -> RegisterClassAnnotation(
+        script::class.java.name -> RegisterClassAnnotation(
             customName = parameterValues.getValue("customName") as? String,
         )
         Register::class.java.name -> RegisterFunctionAnnotation()

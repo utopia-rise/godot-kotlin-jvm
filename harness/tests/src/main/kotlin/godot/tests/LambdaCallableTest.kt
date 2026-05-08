@@ -1,7 +1,7 @@
 package godot.tests
 
 import godot.api.Node
-import godot.annotation.GodotScript
+import godot.annotation.script
 import godot.annotation.Register
 import godot.annotation.Visible
 import godot.annotation.RegisterSignal
@@ -11,7 +11,7 @@ import godot.core.signal0
 import godot.core.signal3
 import godot.extension.connectLambda
 
-@GodotScript
+@script
 class LambdaCallableTest : Node() {
 
     @RegisterSignal

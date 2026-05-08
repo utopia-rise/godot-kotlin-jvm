@@ -1,12 +1,12 @@
 package godot.tests
 
-import godot.annotation.{Export, GodotScript, Register, RegisterSignal, Visible}
+import godot.annotation.{Export, script, Register, RegisterSignal, Visible}
 import godot.api.Object.ConnectFlags
 import godot.api.{Button, Node, RenderingServer}
 import godot.core.{Callable, Dictionary, GodotNotification, LambdaCallable, LambdaCallable0, Signal0, Signal2, StringNames, VariantArray}
 import org.jetbrains.annotations.NotNull
 
-@GodotScript
+@script
 class ScalaTestClass extends Node {
   //@RegisterSignal
   //val testSignal: Signal0 = Signal0.create(this, "test_signal")
@@ -15,35 +15,27 @@ class ScalaTestClass extends Node {
   //val testSignal2: Signal2[String, String] = Signal2.create(this, "test_signal_2")
 
   @Export
-  @Visible
   var exportedInt: Int = 1
 
   @Export
-  @Visible
   var exportedLong: Long = 1L
 
   @Export
-  @Visible
   var exportedFloat: Float = 1f
 
   @Export
-  @Visible
   var exportedDouble: Double = 1.0
 
   @Export
-  @Visible
   var exportedBoolean: Boolean = true
 
   @Export
-  @Visible
   var exportedString: String = "blubb"
 
   @Export
-  @Visible
   var exportedByte: Byte = 1
 
   @Export
-  @Visible
   var exportedButton: Button = null
 
   @Register

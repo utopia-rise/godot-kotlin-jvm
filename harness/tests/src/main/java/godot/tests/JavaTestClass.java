@@ -8,7 +8,7 @@ import godot.annotation.*;
 import godot.core.*;
 import org.jetbrains.annotations.NotNull;
 
-@GodotScript
+@script
 public class JavaTestClass extends Node {
     //@RegisterSignal
     //public Signal0 testSignal = Signal0.create(this, "test_signal");
@@ -20,41 +20,31 @@ public class JavaTestClass extends Node {
 //    @RegisterSignal
 //    public Signal testSignal3 = new Signal2<>(this, "name");
 
-    @Export
-    @Visible
     @EnumTypeHint
     public JavaEnum javaEnum = JavaEnum.JAVA_ENUM_1;
 
     @Export
-    @Visible
     public int exportedInt = 1;
 
     @Export
-    @Visible
     public long exportedLong = 1L;
 
     @Export
-    @Visible
     public float exportedFloat = 1f;
 
     @Export
-    @Visible
     public double exportedDouble = 1.0;
 
     @Export
-    @Visible
     public boolean exportedBoolean = true;
 
     @Export
-    @Visible
     public String exportedString = "blubb";
 
     @Export
-    @Visible
     public byte exportedByte = 1;
 
     @Export
-    @Visible
     public Button exportedButton;
 
     @Register

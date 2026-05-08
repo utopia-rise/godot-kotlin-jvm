@@ -12,7 +12,7 @@ import io.github.classgraph.MethodInfo
 
 fun MethodInfo.mapMethodToRegisteredFunction(currentClass: ClassInfo, settings: Settings): RegisteredFunction {
     val parameters = parameterInfo.mapIndexed { index, parameter -> parameter.mapToValueParameter(settings, index) }
-    val annotations = annotationInfo
+    val annotations = getAnnotations()
         .filter { it.name in methodAnnotationNames }
         .mapNotNull { it.mapToGodotAnnotation(this, fqName) as? FunctionAnnotation }
 
@@ -31,6 +31,13 @@ private val methodAnnotationNames = setOf(
     Register::class.java.name,
     Rpc::class.java.name,
 )
+
+fun MethodInfo.hasAnnotation(annotationClass: Class<out Annotation>): Boolean =
+    getAnnotations().any { it.name == annotationClass.name }
+
+fun MethodInfo.getAnnotations() = annotationInfo
+    .flatMap { annotation -> annotation.getAnnotationChain() }
+    .distinctBy { annotation -> annotation.name }
 
 val MethodInfo.isOverridee: Boolean
     get() = classInfo.collectSuperMethodSignatures().contains(registrationSignature)
