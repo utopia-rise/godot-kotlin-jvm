@@ -8,6 +8,7 @@ import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.file.RegularFileProperty
 import org.gradle.api.model.ObjectFactory
 import org.gradle.api.provider.Property
+import org.gradle.api.provider.SetProperty
 import java.io.File
 
 open class GodotExtension(objects: ObjectFactory) {
@@ -63,11 +64,14 @@ open class GodotExtension(objects: ObjectFactory) {
     val registrationNameMode: Property<RegisteredNameMode> = objects.property(RegisteredNameMode::class.java)
 
     /**
-     * Enables Android export support.
+     * JVM source languages enabled for the project's initial compilation pass.
      *
-     * When enabled, the d8 executable and Android compile SDK directory must be resolvable.
+     * This controls which language-specific compile tasks and support dependencies are wired into the
+     * regular `classes` phase that feeds entry generation and packaging.
+     *
+     * Defaults to Kotlin, Java, and Scala.
      */
-    val isAndroidExportEnabled: Property<Boolean> = objects.property(Boolean::class.java)
+    val languages: SetProperty<GodotLanguage> = objects.setProperty(GodotLanguage::class.java)
 
     /**
      * File path to the d8 executable used for desugaring and converting jars to dex files.
@@ -89,20 +93,6 @@ open class GodotExtension(objects: ObjectFactory) {
      * example: 21
      */
     val androidMinApiLevel: Property<Int> = objects.property(Int::class.java)
-
-    /**
-     * Enables Graal Native Image export support.
-     *
-     * When enabled, the `native-image` tool and GraalVM home directory must be resolvable.
-     */
-    val isGraalNativeImageExportEnabled: Property<Boolean> = objects.property(Boolean::class.java)
-
-    /**
-     * Enables iOS export support.
-     *
-     * If enabled, [isGraalNativeImageExportEnabled] should also be enabled.
-     */
-    val isIOSExportEnabled: Property<Boolean> = objects.property(Boolean::class.java)
 
     /**
      * GraalVM home directory used to locate the `native-image` executable.
@@ -267,8 +257,7 @@ open class GodotExtension(objects: ObjectFactory) {
         registrationFilesDirectory.set(godotProjectDirectory.dir(FileExtensions.GodotKotlinJvm.registrationFile))
         registrationFilesLayoutMode.set(RegistrationFileLayoutMode.FLAT)
         registrationNameMode.set(RegisteredNameMode.SIMPLE_NAME)
-
-        isAndroidExportEnabled.set(false)
+        languages.set(GodotLanguage.entries.toSet())
 
         if (d8Tool != null) {
             d8ToolPath.set(d8Tool)
@@ -280,7 +269,6 @@ open class GodotExtension(objects: ObjectFactory) {
 
         androidMinApiLevel.set(21)
 
-        isGraalNativeImageExportEnabled.set(false)
         graalVmHomeDirectory.set(
             System.getenv("GRAALVM_HOME")?.let {
                 File(it)
@@ -298,7 +286,5 @@ open class GodotExtension(objects: ObjectFactory) {
         System.getenv("VC_VARS_PATH")?.let {
             windowsDeveloperVcVarsPath.set(File(it))
         }
-
-        isIOSExportEnabled.set(false)
     }
 }

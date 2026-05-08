@@ -1,3 +1,7 @@
+import godot.entrygenerator.settings.RegisteredNameMode
+import godot.entrygenerator.settings.RegistrationFileLayoutMode
+import godot.gradle.GodotLanguage
+
 plugins {
     id("com.utopia-rise.godot-kotlin-jvm") version "GODOT_KOTLIN_JVM_VERSION"
 }
@@ -12,20 +16,22 @@ kotlin {
 
 godot {
     // --------- Setup ---------
-    // godotProjectDirectory.set(file("..")) // only if the Godot project root is not this Gradle project directory
-    // registrationFilesDirectory.set(file("custom-gdj")) // defaults to <godotProjectDirectory>/gdj
+    languages.set(setOf(GODOT_LANGUAGES))
+    godotProjectDirectory.set(file(".")) // only change this if the Godot project root is not this Gradle project directory
+    registrationFilesDirectory.set(file("gdj")) // defaults to <godotProjectDirectory>/gdj
 
-    // registrationFilesLayoutMode.set(RegistrationFileLayoutMode.FLAT)
-    // registrationNameMode.set(RegisteredNameMode.SIMPLE_NAME)
+    registrationFilesLayoutMode.set(RegistrationFileLayoutMode.FLAT)
+    registrationNameMode.set(RegisteredNameMode.SIMPLE_NAME)
 
+    // BEGIN_OPTIONAL_ANDROID
     // --------- Android ---------
     d8ToolPath.set(File("D8_TOOL_PATH"))
     androidCompileSdkDirectory.set(File("ANDROID_COMPILE_SDK_DIR"))
+    // END_OPTIONAL_ANDROID
 
+    // BEGIN_OPTIONAL_GRAAL
     // --------- Graal / iOS ---------
     graalVmHomeDirectory.set(File("GRAAL_VM_DIR"))
     windowsDeveloperVcVarsPath.set(File("WINDOWS_DEVELOPER_VS_VARS_PATH"))
-
-    // --------- Library authors ---------
-    // registrationNameMode.set(RegisteredNameMode.PROJECT_PREFIX)
+    // END_OPTIONAL_GRAAL
 }

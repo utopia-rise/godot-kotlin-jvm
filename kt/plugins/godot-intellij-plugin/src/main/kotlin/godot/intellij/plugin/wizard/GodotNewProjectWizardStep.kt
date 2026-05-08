@@ -244,6 +244,7 @@ class GodotNewProjectWizardStep(parent: NewProjectWizardBaseStep) : AbstractNewP
     private fun applyBuildTemplateVariables(content: String): String {
         return content
             .replace("GODOT_KOTLIN_JVM_VERSION", GODOT_JVM_VERSION)
+            .replace("GODOT_LANGUAGES", language.gradleLanguagesLiteral)
             .replace("D8_TOOL_PATH", d8ToolPath.trim().takeUnless(String::isEmpty) ?: DEFAULT_D8_TOOL_PATH)
             .replace("ANDROID_COMPILE_SDK_DIR", androidCompileSdkDirectory.trim().takeUnless(String::isEmpty) ?: DEFAULT_ANDROID_COMPILE_SDK_DIR)
             .replace("GRAAL_VM_DIR", graalVmHomeDirectory.trim().takeUnless(String::isEmpty) ?: DEFAULT_GRAAL_VM_DIRECTORY)
@@ -251,6 +252,18 @@ class GodotNewProjectWizardStep(parent: NewProjectWizardBaseStep) : AbstractNewP
                 "WINDOWS_DEVELOPER_VS_VARS_PATH",
                 windowsDeveloperVcVarsPath.trim().takeUnless(String::isEmpty) ?: DEFAULT_WINDOWS_DEVELOPER_VC_VARS_PATH
             )
+            .removeOptionalBlock("ANDROID", isAndroidEnabled)
+            .removeOptionalBlock("GRAAL", isGraalNativeImageEnabled || isIOSEnabled)
+    }
+
+    private fun String.removeOptionalBlock(name: String, isEnabled: Boolean): String {
+        if (isEnabled) {
+            return replace("// BEGIN_OPTIONAL_$name\n", "")
+                .replace("\n    // END_OPTIONAL_$name", "")
+                .replace("// END_OPTIONAL_$name", "")
+        }
+
+        return replace(Regex("""\n?\s*// BEGIN_OPTIONAL_${name}\R.*?\R\s*// END_OPTIONAL_${name}\s*""", RegexOption.DOT_MATCHES_ALL), "\n")
     }
 
     private fun copyTemplateFile(
@@ -288,10 +301,11 @@ class GodotNewProjectWizardStep(parent: NewProjectWizardBaseStep) : AbstractNewP
         val sourceRoot: String,
         val templateName: String,
         val sampleFileName: String,
+        val gradleLanguagesLiteral: String,
     ) {
-        KOTLIN("Kotlin", "src/main/kotlin", "Simple.kt.intellij_template", "Simple.kt"),
-        JAVA("Java", "src/main/java", "Simple.java.intellij_template", "Simple.java"),
-        SCALA("Scala", "src/main/scala", "Simple.scala.intellij_template", "Simple.scala");
+        KOTLIN("Kotlin", "src/main/kotlin", "Simple.kt.intellij_template", "Simple.kt", "GodotLanguage.KOTLIN"),
+        JAVA("Java", "src/main/java", "Simple.java.intellij_template", "Simple.java", "GodotLanguage.JAVA"),
+        SCALA("Scala", "src/main/scala", "Simple.scala.intellij_template", "Simple.scala", "GodotLanguage.SCALA");
 
         override fun toString(): String = displayName
     }

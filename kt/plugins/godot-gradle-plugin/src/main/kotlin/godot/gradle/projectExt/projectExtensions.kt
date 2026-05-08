@@ -1,11 +1,14 @@
 package godot.gradle.projectExt
 
 import godot.gradle.GodotExtension
+import godot.gradle.GodotLanguage
 import org.gradle.api.Project
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 
 val Project.godotJvmExtension: GodotExtension
     get() = extensions.getByType(GodotExtension::class.java)
+
+fun Project.isLanguageEnabled(language: GodotLanguage): Boolean = godotJvmExtension.languages.get().contains(language)
 
 val Project.kotlinJvmExtension: KotlinJvmProjectExtension
     get() = extensions

@@ -1,4 +1,5 @@
 import godot.entrygenerator.settings.RegistrationFileLayoutMode
+import godot.gradle.GodotLanguage
 import org.jetbrains.kotlin.konan.target.HostManager
 
 plugins {
@@ -17,22 +18,22 @@ godot {
     isGodotCoroutinesEnabled.set(true)
 
 
-//    d8ToolPath.set(File("${System.getenv("ANDROID_SDK_ROOT")}/build-tools/36.0.0/d8"))
-//    androidCompileSdkDirectory.set(File("${System.getenv("ANDROID_SDK_ROOT")}/platforms/android-36"))
+    d8ToolPath.set(File("${System.getenv("ANDROID_SDK_ROOT")}/build-tools/36.0.0/d8"))
+    androidCompileSdkDirectory.set(File("${System.getenv("ANDROID_SDK_ROOT")}/platforms/android-36"))
 
 
-//    graalVmHomeDirectory.set(File(System.getenv("JAVA_HOME")))
-//    additionalGraalResourceConfigurationFiles.set(
-//        arrayOf(
-//            projectDir.resolve("graal").resolve("resource-config.json").absolutePath,
-//         )
-//    )
-//    additionalGraalReflectionConfigurationFiles.set(
-//        arrayOf(
-//            projectDir.resolve("graal").resolve("reflect-config.json").absolutePath,
-//        )
-//    )
-//    windowsDeveloperVcVarsPath.set(File(System.getenv("VC_VARS_PATH")))
+    graalVmHomeDirectory.set(File(System.getenv("JAVA_HOME")))
+    additionalGraalResourceConfigurationFiles.set(
+        arrayOf(
+            projectDir.resolve("graal").resolve("resource-config.json").absolutePath,
+         )
+    )
+    additionalGraalReflectionConfigurationFiles.set(
+        arrayOf(
+            projectDir.resolve("graal").resolve("reflect-config.json").absolutePath,
+        )
+    )
+    windowsDeveloperVcVarsPath.set(File(System.getenv("VC_VARS_PATH")))
 
 }
 

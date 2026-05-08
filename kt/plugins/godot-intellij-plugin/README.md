@@ -165,6 +165,7 @@ Current behavior:
 - uses IntelliJ's built-in project name
 - asks for default package and language
 - supports Kotlin, Java, and Scala starter files
+- writes `godot.languages` in the generated Gradle build so the initial compile pass matches the selected starter language
 - offers top-level Android and iOS toggles
 - unfolds Android and GraalVM details only when enabled
 - automatically enables Graal native-image when iOS export is enabled

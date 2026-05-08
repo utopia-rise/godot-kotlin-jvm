@@ -40,7 +40,12 @@ By default, these files are generated into a folder called `gdj` in the root of 
 You can however configure the Godot root and the base directory used for newly created registration files inside your `build.gradle.kts`:
 
 ```kotlin
+import godot.gradle.GodotLanguage
+
 godot {
+    // Optional: limit the initial compile pass to the JVM languages your project actually uses.
+    languages.set(setOf(GodotLanguage.KOTLIN, GodotLanguage.JAVA))
+
     // Only needed when the Gradle project directory is not the Godot project root.
     godotProjectDirectory.set(file(".."))
 

@@ -6,7 +6,7 @@
 
 It is responsible for:
 
-1. configuring the user project so Kotlin, Java, and Scala compile against the Godot Kotlin/JVM libraries
+1. configuring the user project so the enabled JVM source languages compile against the Godot Kotlin/JVM libraries
 2. scanning compiled user code to discover Godot-registered classes
 3. generating entry sources/resources and `.gdj` registration files
 4. packaging the runtime jars consumed by Godot Kotlin/JVM
@@ -30,7 +30,7 @@ Start with these files, in order:
    This is also where snapshot-aware runtime artifact coordinates are injected into the consumer project via `godot.tools.common.BUILD_VERSION`.
 
 5. [`src/main/kotlin/godot/gradle/projectExt/configureThirdPartyPlugins.kt`](D:/Godot/Module/kotlin/modules/kotlin_jvm/kt/plugins/godot-gradle-plugin/src/main/kotlin/godot/gradle/projectExt/configureThirdPartyPlugins.kt)  
-   Applies the supporting third-party plugins used by the build, such as Shadow, Scala, and IDEA integration.
+   Applies the supporting third-party plugins used by the build, such as Shadow, optional Scala support, and IDEA integration.
 
 ## Mental Model
 
@@ -46,6 +46,7 @@ Versioning has two runtime/build-time layers:
 Key properties:
 
 - `godot.isLibrary = true` switches the plugin into library mode
+- `godot.languages` controls which source-language tasks participate in the initial `classes` pass
 - there is no separate pre-scan compile pipeline
 - there is no registered-class plan task anymore
 - there is no `RegisteredClassMetadata` re-scan pipeline anymore
@@ -59,9 +60,9 @@ Library mode is intentionally different:
 
 The first compilation step is the project's regular build:
 
-- `compileKotlin`
-- `compileJava`
-- `compileScala` when present
+- `compileKotlin` when `GodotLanguage.KOTLIN` is enabled
+- `compileJava` when `GodotLanguage.JAVA` is enabled
+- `compileScala` when `GodotLanguage.SCALA` is enabled
 - `processResources`
 - `classes`
 
@@ -157,6 +158,7 @@ The shared entry-generation settings now live in:
 Important behavior:
 
 - `isLibrary` defaults to `false`
+- `languages` defaults to all three built-in languages: Kotlin, Java, and Scala
 - `godotProjectDirectory` defaults to the Gradle project directory and must contain `project.godot`
 - `RegisteredNameMode.SIMPLE_NAME` is the default
 - `RegisteredNameMode.FQ_NAME` uses the fqName as the default registered name
@@ -181,7 +183,7 @@ Project-level setup.
 
 - `setupConfigurationsAndCompilations.kt`: dependencies, compiler flags, bootstrap configuration
 - `setupTasks.kt`: workflow order and task graph
-- `configureThirdPartyPlugins.kt`: Shadow, Scala, IDEA integration
+- `configureThirdPartyPlugins.kt`: Shadow, optional Scala support, IDEA integration
 
 ### [`src/main/kotlin/godot/gradle/tasks/entry_generation`](D:/Godot/Module/kotlin/modules/kotlin_jvm/kt/plugins/godot-gradle-plugin/src/main/kotlin/godot/gradle/tasks/entry_generation)
 

@@ -1,5 +1,6 @@
 package godot.gradle.projectExt
 
+import godot.gradle.GodotLanguage
 import godot.tools.common.BUILD_VERSION
 import godot.tools.common.KOTLIN_COROUTINE_VERSION
 import godot.tools.common.KOTLIN_VERSION
@@ -30,7 +31,9 @@ fun Project.setupConfigurationsAndCompilations() {
         dependencies.add("compileOnly", "com.utopia-rise:$godotApiArtifactName:$BUILD_VERSION")
         dependencies.add("compileOnly", "com.utopia-rise:$godotExtensionArtifactName:$BUILD_VERSION")
         dependencies.add("compileOnly", "com.utopia-rise:$godotBootstrapArtifactName:$BUILD_VERSION")
-        dependencies.add("implementation", "org.scala-lang:scala3-library_3:${godotJvmExtension.scalaLanguageVersion.get()}")
+        if (isLanguageEnabled(GodotLanguage.SCALA)) {
+            dependencies.add("implementation", "org.scala-lang:scala3-library_3:${godotJvmExtension.scalaLanguageVersion.get()}")
+        }
 
         if (godotJvmExtension.isGodotCoroutinesEnabled.get()) {
             dependencies.add(

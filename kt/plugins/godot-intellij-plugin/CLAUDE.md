@@ -168,6 +168,7 @@ It has:
 - a built-in project name from IntelliJ
 - a default package field
 - a language selector
+- Gradle template generation that writes `godot.languages` for the selected starter language
 - top-level Android and iOS export toggles
 - a Graal Native Image section that unfolds only when enabled
 - iOS as a one-way dependency on Graal Native Image

@@ -1,3 +1,24 @@
+## Limit the enabled JVM source languages
+
+By default, the Gradle plugin enables Kotlin, Java, and Scala for the initial `classes` compilation pass.
+
+If your project only uses a subset of those languages, you can narrow it explicitly:
+
+```kotlin
+import godot.gradle.GodotLanguage
+
+godot {
+    languages.set(setOf(GodotLanguage.KOTLIN, GodotLanguage.JAVA))
+}
+```
+
+This affects the first-pass language-specific compile tasks and Scala runtime wiring:
+
+- `compileKotlin` only runs when `KOTLIN` is enabled
+- `compileJava` only runs when `JAVA` is enabled
+- `compileScala` only runs when `SCALA` is enabled
+- the Scala Gradle plugin and Scala runtime dependency are only added when `SCALA` is enabled
+
 ## Disable build failure on Kotlin version mismatch
 
 As we're using a Kotlin compiler plugin to register your code with Godot, we can only support a specific Kotlin version per release.
