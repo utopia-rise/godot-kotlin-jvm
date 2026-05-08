@@ -70,7 +70,7 @@ interface TypeGenerationTrait {
 
 fun ClassName.Companion.from(type: TypeGenerationTrait) = when {
     type.isVoid() -> UNIT
-        type.identifier.startsWith("Signal") -> CoreType.signal(type.identifier.removePrefix("Signal").toInt())
+    type.identifier.startsWith("Signal") -> CoreType.signal(type.identifier.removePrefix("Signal").toInt())
     type.isEnum() || type.isBitField() -> {
         val containerAndEnum = type.identifier.split('.')
         val enumPackage = if (containerAndEnum.size == 1 || CoreType.isCoreTypeIdentifier(containerAndEnum[0])) {

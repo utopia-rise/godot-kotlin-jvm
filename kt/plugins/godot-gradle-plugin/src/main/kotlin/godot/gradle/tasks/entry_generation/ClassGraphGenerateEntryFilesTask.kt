@@ -3,13 +3,13 @@ package godot.gradle.tasks
 import godot.annotation.processor.classgraph.ClassGraphProcessor
 import godot.annotation.processor.classgraph.logging.LoggerWrapper
 import godot.entrygenerator.EntryGenerator
-import godot.entrygenerator.ext.provideRegistrationFileRelativePath
 import godot.entrygenerator.ext.provideRegisteredName
+import godot.entrygenerator.ext.provideRegistrationFileRelativePath
 import godot.entrygenerator.ext.shouldGenerateGdjFile
 import godot.entrygenerator.filebuilder.RegistrationFileGenerator
 import godot.entrygenerator.model.RegisteredClass
-import godot.entrygenerator.settings.RegistrationFileLayoutMode
 import godot.entrygenerator.settings.RegisteredNameMode
+import godot.entrygenerator.settings.RegistrationFileLayoutMode
 import godot.entrygenerator.settings.Settings
 import godot.entrygenerator.utils.DefaultJvmTypeProvider
 import godot.gradle.projectExt.godotJvmExtension

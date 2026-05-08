@@ -1,0 +1,5 @@
+<idea-plugin>
+    <extensions defaultExtensionNs="com.intellij">
+        <localInspection implementationClass="godot.intellij.plugin.inspection.ScalaInspection" language="Scala"/>
+    </extensions>
+</idea-plugin>

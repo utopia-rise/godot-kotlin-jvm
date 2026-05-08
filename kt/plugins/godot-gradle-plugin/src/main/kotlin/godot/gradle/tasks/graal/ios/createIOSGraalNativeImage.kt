@@ -1,7 +1,12 @@
 package godot.gradle.tasks.graal.ios
 
 import godot.gradle.projectExt.godotJvmExtension
-import godot.gradle.tasks.graal.*
+import godot.gradle.tasks.graal.getAdditionalGraalReflectionConfigurationFiles
+import godot.gradle.tasks.graal.getAdditionalGraalResourceConfigurationFiles
+import godot.gradle.tasks.graal.getGraalVmAdditionalJniConfigs
+import godot.gradle.tasks.graal.iosJniConfig
+import godot.gradle.tasks.graal.iosReflectionConfig
+import godot.gradle.tasks.graal.iosResourceConfig
 import godot.tools.common.IOS_CAP_CACHE_VERSION
 import godot.tools.common.IOS_JDK_VERSION
 import org.gradle.api.Project

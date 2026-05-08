@@ -5,8 +5,8 @@ import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.analysis.GodotProblem
 import godot.intellij.plugin.project.asClassId
 import godot.intellij.plugin.quickfix.TransferModeIgnoresChannelQuickFix
-import godot.tools.common.names.Annotation
 import godot.tools.common.names.API
+import godot.tools.common.names.Annotation
 import godot.tools.common.names.qualifiedName
 import org.jetbrains.kotlin.idea.base.psi.kotlinFqName
 import org.jetbrains.kotlin.idea.references.mainReference

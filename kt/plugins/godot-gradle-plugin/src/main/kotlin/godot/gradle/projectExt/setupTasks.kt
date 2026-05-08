@@ -7,11 +7,11 @@ import godot.gradle.tasks.android.createBootstrapDexJarTask
 import godot.gradle.tasks.android.createMainDexFileTask
 import godot.gradle.tasks.android.packageBootstrapDexJarTask
 import godot.gradle.tasks.android.packageMainDexJarTask
+import godot.gradle.tasks.createCopyJarsTask
 import godot.gradle.tasks.entryGenerationGenerateFilesTask
 import godot.gradle.tasks.entryGenerationJarTask
-import godot.gradle.tasks.entry_generation.entryGenerationIndexExistingRegistrationFilesTask
 import godot.gradle.tasks.entryGenerationSyncRegistrationFilesTask
-import godot.gradle.tasks.createCopyJarsTask
+import godot.gradle.tasks.entry_generation.entryGenerationIndexExistingRegistrationFilesTask
 import godot.gradle.tasks.generateGdIgnoreFilesTask
 import godot.gradle.tasks.graal.checkNativeImageToolAccessibleTask
 import godot.gradle.tasks.graal.copyDefaultGraalJniConfigTask

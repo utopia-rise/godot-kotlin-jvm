@@ -18,8 +18,8 @@ import godot.common.GODOT_JVM_VERSION
 import godot.common.GODOT_VERSION
 import godot.intellij.plugin.GodotPluginBundle
 import java.io.File
-import javax.swing.ScrollPaneConstants
 import javax.swing.JCheckBox
+import javax.swing.ScrollPaneConstants
 
 class GodotNewProjectWizardStep(parent: NewProjectWizardBaseStep) : AbstractNewProjectWizardStep(parent) {
     private val baseStep = parent

@@ -15,7 +15,6 @@ import godot.intellij.plugin.quickfix.ClassNotRegisteredQuickFix
 import godot.tools.common.names.Annotation
 import godot.tools.common.names.CoreType
 import godot.tools.common.names.qualifiedName
-import org.jetbrains.kotlin.analysis.api.analyze
 import org.jetbrains.kotlin.idea.base.util.module
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.name.ClassId

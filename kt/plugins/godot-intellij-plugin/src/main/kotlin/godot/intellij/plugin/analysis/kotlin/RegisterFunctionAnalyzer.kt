@@ -1,6 +1,5 @@
 package godot.intellij.plugin.analysis.kotlin
 
-import godot.common.constants.Constraints
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.analysis.GodotProblem
 import godot.intellij.plugin.project.asClassId

@@ -5,8 +5,8 @@ import com.intellij.psi.PsiMethod
 import godot.common.constants.Constraints
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.analysis.GodotProblem
-import godot.tools.common.names.Annotation
 import godot.tools.common.names.API
+import godot.tools.common.names.Annotation
 import godot.tools.common.names.qualifiedName
 
 object RegisterMethodAnalyzer {

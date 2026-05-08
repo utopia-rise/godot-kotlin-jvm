@@ -23,9 +23,11 @@ fun Project.checkKotlinVersionCompatibility() {
             kotlinPlugin != null && kotlinPluginVersion != null && kotlinPluginVersion != KOTLIN_VERSION -> throw IllegalArgumentException(
                 "Detected that a kotlin plugin with version $kotlinPluginVersion is already applied. But Godot-Kotlin is only compatible with kotlin $KOTLIN_VERSION, please change the version to $KOTLIN_VERSION"
             )
+
             kotlinPlugin == null && kotlinPluginVersion != null && kotlinPluginVersion != KOTLIN_VERSION -> throw IllegalArgumentException(
                 "Detected that kotlin plugin version $kotlinPluginVersion is already defined. But Godot-Kotlin is only compatible with kotlin $KOTLIN_VERSION, please change the version to $KOTLIN_VERSION"
             )
+
             kotlinPlugin == null && kotlinPluginVersion == null || kotlinPluginVersion == KOTLIN_VERSION -> {
                 pluginManager.apply(KotlinPluginWrapper::class.java) // the version will be the one with which this plugin was built
             }

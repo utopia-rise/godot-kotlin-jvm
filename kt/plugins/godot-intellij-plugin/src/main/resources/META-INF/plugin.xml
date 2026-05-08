@@ -11,17 +11,18 @@
         <postStartupActivity implementation="godot.intellij.plugin.GodotKotlinJvmProjectActivity"/>
         <newProjectWizard.generator implementation="godot.intellij.plugin.wizard.GodotNewProjectWizard"/>
         <notificationGroup id="Error message" displayType="STICKY_BALLOON" key="notification.group.error" isLogByDefault="true"/>
-        <localInspection implementationClass="godot.intellij.plugin.inspection.JvmInspection" language="JVM"/>
+        <localInspection implementationClass="godot.intellij.plugin.inspection.JavaInspection" language="JAVA"/>
         <localInspection implementationClass="godot.intellij.plugin.inspection.KotlinInspection" language="kotlin"/>
         <localInspection implementationClass="godot.intellij.plugin.inspection.CoreTypeCopyModificationInspection" language="kotlin"/>
     </extensions>
 
     <extensions defaultExtensionNs="org.jetbrains.kotlin">
-        <supportsKotlinPluginMode supportsK2="true" />
+        <supportsKotlinPluginMode supportsK2="true"/>
     </extensions>
 
     <resource-bundle>messages.generalLabels</resource-bundle>
 
     <depends>com.intellij.modules.java</depends>
     <depends>org.jetbrains.kotlin</depends>
+    <depends optional="true" config-file="godotjvmideaplugin-with-scala.xml">org.intellij.scala</depends>
 </idea-plugin>

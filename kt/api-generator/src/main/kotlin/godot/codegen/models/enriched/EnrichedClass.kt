@@ -1,7 +1,6 @@
 package godot.codegen.models.enriched
 
 import com.squareup.kotlinpoet.ClassName
-import com.squareup.kotlinpoet.MemberName
 import godot.codegen.models.ApiType
 import godot.codegen.models.Class
 import godot.codegen.models.traits.DocumentedGenerationTrait

@@ -1,9 +1,10 @@
 package godot.intellij.plugin.analysis.kotlin
 
-import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiModifierListOwner
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.analysis.GodotProblem
+import godot.intellij.plugin.analysis.kotlin.CoreTypeCopyModificationAnalyzer.analyzeAssignment
+import godot.intellij.plugin.analysis.kotlin.CoreTypeCopyModificationAnalyzer.analyzeHelperCall
 import godot.intellij.plugin.project.asClassId
 import godot.tools.common.names.Annotation
 import godot.tools.common.names.qualifiedName

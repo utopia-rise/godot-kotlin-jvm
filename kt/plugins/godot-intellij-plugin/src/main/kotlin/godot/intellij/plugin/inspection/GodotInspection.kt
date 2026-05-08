@@ -1,8 +1,8 @@
 package godot.intellij.plugin.inspection
 
+import com.intellij.codeHighlighting.HighlightDisplayLevel
 import com.intellij.codeInspection.LocalInspectionTool
 import com.intellij.codeInspection.ProblemsHolder
-import com.intellij.codeHighlighting.HighlightDisplayLevel
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiElementVisitor
 import godot.intellij.plugin.project.isInGodotRoot

@@ -14,7 +14,6 @@ import godot.intellij.plugin.analysis.kotlin.reference.CallFunctionReferenceAnal
 import godot.intellij.plugin.analysis.kotlin.reference.RpcFunctionReferenceAnalyzer
 import godot.intellij.plugin.analysis.kotlin.reference.SignalFunctionReferenceAnalyzer
 import godot.intellij.plugin.analysis.registerProblems
-import org.jetbrains.kotlin.asJava.toLightClass
 import org.jetbrains.kotlin.asJava.toLightMethods
 import org.jetbrains.kotlin.psi.KtAnnotated
 import org.jetbrains.kotlin.psi.KtCallableReferenceExpression

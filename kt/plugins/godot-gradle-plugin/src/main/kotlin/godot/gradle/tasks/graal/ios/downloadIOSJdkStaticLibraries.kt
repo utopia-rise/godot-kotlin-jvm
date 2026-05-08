@@ -50,4 +50,4 @@ fun Project.downloadIOSJdkStaticLibraries(): TaskProvider<out Task> = tasks
                 }
             }
         }
-}
+    }

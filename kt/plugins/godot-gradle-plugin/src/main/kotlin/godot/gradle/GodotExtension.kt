@@ -1,7 +1,7 @@
 package godot.gradle
 
-import godot.entrygenerator.settings.RegistrationFileLayoutMode
 import godot.entrygenerator.settings.RegisteredNameMode
+import godot.entrygenerator.settings.RegistrationFileLayoutMode
 import godot.tools.common.constants.FileExtensions
 import org.gradle.api.Project
 import org.gradle.api.file.DirectoryProperty

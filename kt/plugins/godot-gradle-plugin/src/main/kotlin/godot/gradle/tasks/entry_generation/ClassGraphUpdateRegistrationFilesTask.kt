@@ -99,7 +99,7 @@ fun Project.entryGenerationSyncRegistrationFilesTask(
     indexExistingRegistrationFilesTask: TaskProvider<ClassGraphIndexExistingRegistrationFilesTask>,
 ): TaskProvider<ClassGraphUpdateRegistrationFilesTask> {
     val registrationFilesOutputDir = providers.provider {
-            (
+        (
             godotJvmExtension
                 .registrationFilesDirectory
                 .orNull

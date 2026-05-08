@@ -1,9 +1,9 @@
 package godot.intellij.plugin.project
 
-import com.squareup.kotlinpoet.ClassName
 import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiMethod
 import com.intellij.psi.PsiModifier
+import com.squareup.kotlinpoet.ClassName
 import godot.tools.common.names.Annotation
 import godot.tools.common.names.qualifiedName
 import org.jetbrains.kotlin.analysis.utils.classId

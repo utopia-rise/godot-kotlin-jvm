@@ -105,11 +105,11 @@ fun Project.createGraalNativeImageTask(
                     )
                 }
 
-                if(additionalConfigFiles.isNotEmpty()){
+                if (additionalConfigFiles.isNotEmpty()) {
                     arguments.add(reflectionConfigurationFilesArgument)
                 }
 
-                if(resourceConfigFiles.isNotEmpty()){
+                if (resourceConfigFiles.isNotEmpty()) {
                     arguments.add(resourceConfigurationFilesArgument)
                 }
 
