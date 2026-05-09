@@ -6,14 +6,13 @@ import godot.ResourceLoader
 import godot.Texture2D
 import godot.annotation.GodotScript
 import godot.annotation.Register
-import godot.annotation.RegisterSignal
 import godot.core.Vector2
 import godot.signals.signal
 
 @GodotScript("BunnymarkV1DrawTexture")
 class BunnymarkV1DrawTexture : Node2D() {
 
-	@RegisterSignal
+	
 	val benchmarkFinished by signal<Int>("bunnyCount")
 
 	data class Bunny(var position: Vector2, var speed: Vector2)
@@ -98,3 +97,4 @@ class BunnymarkV1DrawTexture : Node2D() {
         benchmarkFinished.emit(bunnies.size)
 	}
 }
+

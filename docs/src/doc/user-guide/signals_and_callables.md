@@ -10,16 +10,15 @@ The delegate is the recommended way, it is lightweight and doesn't store the sig
 You can opt to directly create a signal and store it in your script, but it uses more memory.
 Signals are not stateful so it's usually a waste to store them directly per instance, unless you have a high rate of connection/disconnection.
 
-In both case, you have to provide the name of the signal parameters as strings arguments of the `@RegisterSignal` annotation for the registration to Godot. If you do not provide them, a parameter name is set by default (`p0` for the first, `p1` for the second and so on).
+In both cases, signals declared directly on the class are registered automatically. Use `@ArgumentName` only if you want custom parameter names instead of the default placeholders (`p0`, `p1`, and so on).
 
 /// tab | Kotlin
 ```kotlin
 @GodotScript
 class MyScript: Node() {
-    @RegisterSignal("reverse")
+    @ArgumentName("reverse")
     val mySignal by signal1<Boolean>()
     
-    @RegisterSignal("reverse")
     val mySignal = Signal1<Boolean>("mySignal")
 }
 ```
@@ -29,7 +28,7 @@ class MyScript: Node() {
 ```java
 @GodotScript
 public MyScript extends Node {
-    @RegisterSignal("reverse")
+    @ArgumentName("reverse")
     public Signal1<Boolean> mySignal = Signal1.create(this, "mySignal"); // Only one way to do it in Java.
 }
 ```
@@ -39,7 +38,7 @@ public MyScript extends Node {
 ```scala
 @GodotScript
 class MyScript extends Node {
-    @RegisterSignal("reverse")
+    @ArgumentName("reverse")
     val mySignal: Signal1[Boolean] = Signal1.create(this, "mySignal") // Only one way to do it in Scala.
 }
 ```
@@ -129,7 +128,7 @@ class SomeObject: Object() {
 
 @GodotScript
 class AnotherObject: Object() { 
-    @RegisterSignal("reverse")
+    @ArgumentName("reverse")
     val mySignal by signal1<Boolean>()
     
     private val targetObject = SomeObject()
@@ -157,7 +156,7 @@ public class SomeObject extends Object {
 
 @GodotScript
 public class AnotherObject extends Object {
-    @RegisterSignal("reverse")
+    @ArgumentName("reverse")
     public Signal1<Boolean> mySignal = Signal1.create(this, "mySignal");
 
     private SomeObject targetObject = new SomeObject();
@@ -184,7 +183,7 @@ class SomeObject extends Object {
 
 @GodotScript
 class AnotherObject extends Object {
-    @RegisterSignal("reverse")
+    @ArgumentName("reverse")
     val mySignal: Signal1[Boolean] = Signal1.create(this, "mySignal")
 
     private val targetObject = new SomeObject()

@@ -1,7 +1,7 @@
 package godot.tests.inheritance
 
-import godot.annotation.script
+import godot.annotation.GodotScript
 
 // issue: https://github.com/utopia-rise/godot-kotlin-jvm/issues/365
-@script
+@GodotScript
 class AbstractClassInheritanceEmptyChild: AbstractClassInheritanceEmptyParent()

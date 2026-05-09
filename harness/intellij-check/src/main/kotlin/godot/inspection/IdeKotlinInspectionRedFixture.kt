@@ -17,13 +17,14 @@ import godot.annotation.PlaceHolderText
 import godot.annotation.GodotScript
 import godot.annotation.Register
 import godot.annotation.Visible
-import godot.annotation.RegisterSignal
+import godot.annotation.ArgumentName
 import godot.annotation.Rpc
 import godot.annotation.RpcMode
 import godot.annotation.Tool
 import godot.annotation.TransferMode
 import godot.api.Node
 import godot.core.Signal0
+import godot.core.Signal1
 import godot.core.VariantArray
 import godot.core.Vector2
 import godot.core.callable0
@@ -44,40 +45,39 @@ enum class LargeEnum {
 }
 
 // Class-level registration checks.
-// Expected red: `@Tool` requires the class itself to be registered.
+// NOT ALLOWED: `@Tool` requires the class itself to be `@GodotScript`.
 @Tool
 class NotRegisteredButToolFixture : Node()
 
-// Expected red on the class: it is not `@GodotScript`, but it contains
-// registered properties, signals, and functions.
+// NOT ALLOWED on the class: it is not `@GodotScript`, but it contains
+// members that would be registered.
 class NotRegisteredButMembersFixture : Node() {
-    // Expected red via the containing class: registered property inside a
-    // non-registered class.
+    // NOT ALLOWED via the containing class: `@Export` implies a registered
+    // property, so the class itself must be `@GodotScript`.
     @Export
     var propertyShouldStayRed = 1
 
-    // Expected red via the containing class: registered signal inside a
-    // non-registered class.
-    @RegisterSignal
+    // NOT ALLOWED via the containing class: direct signal declarations are
+    // auto-registered, so the class itself must be `@GodotScript`.
     val signalShouldStayRed by signal0()
 
-    // Expected red via the containing class: registered function inside a
-    // non-registered class.
+    // NOT ALLOWED via the containing class: explicitly registered function
+    // inside a non-registered class.
     @Register
     fun functionShouldStayRed() = propertyShouldStayRed
 }
 
-// Expected red: `@GodotScript` is present, but the class does not inherit a
+// NOT ALLOWED: `@GodotScript` is present, but the class does not inherit a
 // Godot object type.
 @GodotScript
 class RegisterClassWithoutGodotBaseFixture
 
-// Expected red: registered classes must expose exactly one parameterless
+// NOT ALLOWED: registered classes must expose exactly one parameterless
 // constructor, and this one only has a parameterized constructor.
 @GodotScript
 class RegisterClassWithoutDefaultConstructorFixture(val number: Int) : Node()
 
-// Expected red on both duplicate declarations: they register the same custom
+// NOT ALLOWED on both declarations: they register the same custom
 // Godot class name.
 @GodotScript(className = "DuplicateIdeRegistrationName")
 class DuplicateRegisteredNameFixtureOne : Node()
@@ -85,16 +85,21 @@ class DuplicateRegisteredNameFixtureOne : Node()
 @GodotScript(className = "DuplicateIdeRegistrationName")
 class DuplicateRegisteredNameFixtureTwo : Node()
 
-// Expected red: generic classes cannot be registered.
+// NOT ALLOWED: generic classes cannot be registered.
 @GodotScript
 class GenericRegisteredClassFixture<T> : Node()
 
 // Method registration checks.
 @GodotScript
 class NotificationFunctionWithoutRegisterFunctionFixture : Node() {
-    // Expected clean: overrides coming from Godot base types are registered
-    // automatically now.
+    // ALLOWED: overrides coming from Godot base types are registered
+    // automatically.
     override fun _ready() {
+    }
+
+    // ALLOWED: `_notification` is also a Godot base override and should not
+    // need `@Register`.
+    override fun _notification(what: Int) {
     }
 }
 
@@ -106,20 +111,20 @@ abstract class RegisteredAbstractBaseFixture : Node() {
 
 @GodotScript
 class OverriddenRegisteredFunctionMissingAnnotationFixture : RegisteredAbstractBaseFixture() {
-    // Expected weak warning: this overrides an abstract registered function,
-    // but the override itself is missing `@Register`.
+    // NOT ALLOWED: this overrides a user-defined abstract registered function,
+    // not a Godot base method, so the override itself still needs `@Register`.
     override fun mustStayRegistered() {
     }
 }
 
 @GodotScript
 class RegisterFunctionProblemFixture : Node() {
-    // Expected red: generic functions cannot be registered.
+    // NOT ALLOWED: generic functions cannot be registered.
     @Register
     fun <T> genericRegisteredFunction(value: T) {
     }
 
-    // Expected red: registered functions may not exceed the max supported
+    // NOT ALLOWED: registered functions may not exceed the max supported
     // parameter count.
     @Register
     fun tooManyParameters(
@@ -133,74 +138,79 @@ class RegisterFunctionProblemFixture : Node() {
 // Property registration checks.
 @GodotScript
 class RegisterPropertyProblemFixture : Node() {
-    // Expected red: registered properties must be mutable `var`, not `val`.
+    // NOT ALLOWED: registered properties must be mutable `var`, not `val`.
     @Visible
     val immutableRegisteredProperty = 1
 
-    // Expected red: core types are not allowed as `lateinit` registered
+    // NOT ALLOWED: core types are not allowed as `lateinit` registered
     // properties.
     @Visible
     lateinit var lateinitCoreTypeProperty: Vector2
 
-    // Expected red: core types are not allowed as nullable registered
+    // NOT ALLOWED: core types are not allowed as nullable registered
     // properties.
     @Visible
     var nullableCoreTypeProperty: Vector2? = null
 
-    // Expected red: this type is neither a supported JVM type nor a Godot/core
+    // NOT ALLOWED: this type is neither a supported JVM type nor a Godot/core
     // type, so it cannot be exported/registered.
     @Visible
     var unsupportedExportedType = UnsupportedExportedType()
 
-    // Expected red: Kotlin collections of enums need `@EnumFlag` to describe
+    // NOT ALLOWED: Kotlin collections of enums need `@EnumFlag` to describe
     // how they should be exported.
     @Visible
     var enumSetWithoutEnumFlag = setOf(SmallEnum.A)
 
-    // Expected red: `VariantArray<Enum>` is explicitly rejected by the
+    // NOT ALLOWED: `VariantArray<Enum>` is explicitly rejected by the
     // inspection.
     @Visible
     var enumVariantArray = VariantArray<SmallEnum>()
 
-    // Expected red: `@Export` without `@Visible` is incomplete.
+    // ALLOWED: `@Export` now implies visible/registered property status.
     @Export
     var exportWithoutRegisterProperty = 1
+
+    // ALLOWED: a property hint now implies `@Export`, which itself implies
+    // visible/registered property status.
+    @FloatRange(min = 0f, max = 1f)
+    var hintedPropertyWithoutExplicitExportOrVisible = 0.5f
 }
 
 // Property hint checks.
 @GodotScript
 class PropertyHintProblemFixture : Node() {
-    // Expected red: `@IntRange` only makes sense on `Int` properties.
+    // NOT ALLOWED: `@IntRange` only makes sense on `Int` properties.
     @IntRange(min = 0, max = 1)
     var intRangeWrongType = ""
 
-    // Expected red: `@LongRange` only makes sense on `Long` properties.
+    // NOT ALLOWED: `@LongRange` only makes sense on `Long` properties.
     @LongRange(min = 0, max = 1)
     var longRangeWrongType = 1
 
-    // Expected red: `@FloatRange` only makes sense on `Float` properties.
+    // NOT ALLOWED: `@FloatRange` only makes sense on `Float` properties.
     @FloatRange(min = 0f, max = 1f)
     var floatRangeWrongType = 1
 
-    // Expected red: `@DoubleRange` only makes sense on `Double` properties.
+    // NOT ALLOWED: `@DoubleRange` only makes sense on `Double` properties.
     @DoubleRange(min = 0.0, max = 1.0)
     var doubleRangeWrongType = 1
 
-    // Expected red: `@ExpEasing` only makes sense on `Float` or `Double`
+    // NOT ALLOWED: `@ExpEasing` only makes sense on `Float` or `Double`
     // properties.
     @ExpEasing
     var expEasingWrongType = 1
 
-    // Expected red: `@EnumTypeHint` only makes sense on enum properties.
+    // NOT ALLOWED: `@EnumTypeHint` only makes sense on enum properties.
     @EnumTypeHint
     var enumTypeHintWrongType = 1
 
-    // Expected red: `@EnumFlag` only makes sense on `Set<Enum>` or
+    // NOT ALLOWED: `@EnumFlag` only makes sense on `Set<Enum>` or
     // `MutableSet<Enum>`.
     @EnumFlag
     var enumFlagWrongType = 1
 
-    // Expected red: enum flags are capped at 32 enum entries, and this enum is
+    // NOT ALLOWED: enum flags are capped at 32 enum entries, and this enum is
     // intentionally larger.
     @EnumFlag
     var enumFlagTooManyEntries = setOf(
@@ -212,48 +222,79 @@ class PropertyHintProblemFixture : Node() {
         LargeEnum.E31, LargeEnum.E32, LargeEnum.E33,
     )
 
-    // Expected red: `@IntFlag` only makes sense on `Int` properties.
+    // NOT ALLOWED: `@IntFlag` only makes sense on `Int` properties.
     @IntFlag("a")
     var intFlagWrongType = ""
 
-    // Expected red: `@File` only makes sense on `String` properties.
+    // NOT ALLOWED: `@File` only makes sense on `String` properties.
     @File
     var fileWrongType = 1
 
-    // Expected red: `@Dir` only makes sense on `String` properties.
+    // NOT ALLOWED: `@Dir` only makes sense on `String` properties.
     @Dir
     var dirWrongType = 1
 
-    // Expected red: `@MultilineText` only makes sense on `String` properties.
+    // NOT ALLOWED: `@MultilineText` only makes sense on `String` properties.
     @MultilineText
     var multilineTextWrongType = 1
 
-    // Expected red: `@PlaceHolderText` only makes sense on `String`
+    // NOT ALLOWED: `@PlaceHolderText` only makes sense on `String`
     // properties.
     @PlaceHolderText
     var placeholderTextWrongType = 1
 
-    // Expected red: `@ColorNoAlpha` only makes sense on `Color` properties.
+    // NOT ALLOWED: `@ColorNoAlpha` only makes sense on `Color` properties.
     @ColorNoAlpha
     var colorNoAlphaWrongType = 1
 }
 
 // Signal registration checks.
 @GodotScript
-class RegisterSignalProblemFixture : Node() {
-    // Expected warning: registered signals should be immutable `val`.
-    @RegisterSignal
+class ArgumentNameProblemFixture : Node() {
+    // ALLOWED: direct signal declarations are auto-registered.
+    val directSignal by signal0()
+
+    // ALLOWED: `@ArgumentName` is optional and only names signal arguments.
+    @ArgumentName("value")
+    val namedSignal = Signal1<Int>("namedSignal")
+
+    // NOT ALLOWED: registered signals should be immutable `val`.
     var mutableSignal = Signal0("mutableSignal")
 
-    // Expected red: a registered signal must actually have signal type.
-    @RegisterSignal
+    // NOT ALLOWED: `@ArgumentName` can only be used on signal-typed
+    // properties.
+    @ArgumentName("value")
     val signalWrongType = 1
+}
+
+// Signal open/override checks.
+@GodotScript
+open class OpenSignalFixture : Node() {
+    // NOT ALLOWED: signals cannot be open.
+    open val openSignal by signal0()
+}
+
+abstract class AbstractSignalFixture : Node() {
+    // NOT ALLOWED: signals cannot be abstract.
+    abstract val abstractSignal: Signal0
+}
+
+// NOT ALLOWED on the override: signals cannot be overridden.
+// (The parent's `open val openSignal` above is itself already an error.)
+@GodotScript
+class OverrideSignalFixture : OpenSignalFixture() {
+    override val openSignal by signal0()
 }
 
 // RPC annotation checks.
 @GodotScript
 class RpcAnnotationProblemFixture : Node() {
-    // Expected weak warning: non-zero transfer channels are ignored unless the
+    // ALLOWED: `@Rpc` now implies `@Register`.
+    @Rpc
+    fun rpcImplicitlyRegistered() {
+    }
+
+    // NOT ALLOWED: non-zero transfer channels are ignored unless the
     // transfer mode is `UNRELIABLE_ORDERED`.
     @Rpc(transferMode = TransferMode.RELIABLE, transferChannel = 1)
     fun rpcChannelIgnored() {
@@ -263,48 +304,65 @@ class RpcAnnotationProblemFixture : Node() {
 // Callable-reference registration checks.
 @GodotScript
 class CallableReferenceProblemFixture : Node() {
-    @RegisterSignal
+    // ALLOWED: direct signal declarations are auto-registered.
     val localSignal by signal0()
 
     override fun _ready() {
-        // Expected red on the callable reference: connected signal targets must
+        // NOT ALLOWED on the callable reference: connected signal targets must
         // be registered functions.
         localSignal.connectMethod(this, CallableReferenceProblemFixture::signalTargetNotRegistered)
-        // Expected red on the callable reference: Godot callable targets must
+        // ALLOWED on the callable reference: explicit registration is enough
+        // for regular callable targets.
+        callable0(this::callTargetRegistered).call()
+        // NOT ALLOWED on the callable reference: Godot callable targets must
         // be registered functions.
         callable0(this::callTargetNotRegistered).call()
-        // Expected red on the callable reference: RPC targets must be
+        // NOT ALLOWED on the callable reference: RPC targets must be
         // registered functions.
         rpc(::rpcTargetNotRegistered)
-        // Expected red on the callable reference: RPC targets also need the
+        // ALLOWED on the callable reference: `@Rpc` implies `@Register`.
+        rpc(::rpcTargetRegisteredThroughRpc)
+        // NOT ALLOWED on the callable reference: RPC targets also need the
         // `@Rpc` annotation.
         rpc(::rpcTargetMissingRpc)
-        // Expected red on the callable reference: the target has `@Rpc`, but it
+        // NOT ALLOWED on the callable reference: the target has `@Rpc`, but it
         // is explicitly disabled via `RpcMode.DISABLED`.
         rpc(::rpcTargetDisabled)
     }
 
-    // Expected red when referenced from `connectMethod`: missing
+    // NOT ALLOWED when referenced from `connectMethod`: missing
     // `@Register`.
     fun signalTargetNotRegistered() {
     }
 
-    // Expected red when referenced from `call()`: missing `@Register`.
+    // ALLOWED when referenced from `call()`: explicit `@Register`.
+    @Register
+    fun callTargetRegistered() {
+    }
+
+    // NOT ALLOWED when referenced from `call()`: missing `@Register`.
     fun callTargetNotRegistered() {
     }
 
-    // Expected red when referenced from `rpc()`: missing `@Register`.
+    // NOT ALLOWED when referenced from `rpc()`: missing `@Register`.
     fun rpcTargetNotRegistered() {
     }
 
-    // Expected red when referenced from `rpc()`: registered, but missing
+    // ALLOWED when referenced from `rpc()`: `@Rpc` implies `@Register`.
+    @Rpc
+    fun rpcTargetRegisteredThroughRpc() {
+    }
+
+    // NOT ALLOWED when referenced from `rpc()`: registered, but missing
     // `@Rpc`.
+    @Register
     fun rpcTargetMissingRpc() {
     }
 
-    // Expected red when referenced from `rpc()`: RPC-enabled, but explicitly
+    // NOT ALLOWED when referenced from `rpc()`: RPC-enabled, but explicitly
     // disabled for network access.
     @Rpc(rpcMode = RpcMode.DISABLED)
     fun rpcTargetDisabled() {
     }
 }
+

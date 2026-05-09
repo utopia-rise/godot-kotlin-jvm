@@ -5,10 +5,10 @@ import godot.api.Object
 import godot.api.PackedScene
 import godot.api.ResourceLoader
 import godot.api.Timer
-import godot.annotation.script
+import godot.annotation.GodotScript
 import godot.annotation.Register
 import godot.annotation.Visible
-import godot.annotation.RegisterSignal
+import godot.annotation.ArgumentName
 import godot.core.Vector2
 import godot.core.signal0
 import godot.core.signal1
@@ -24,16 +24,16 @@ import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
 
-@script
+@GodotScript
 class CoroutineTest : Object() {
 
-    @RegisterSignal
+    
     val signalWithoutParameter by signal0()
 
-    @RegisterSignal("int")
+    @ArgumentName("int")
     val signalWithOneParameter by signal1<Int>()
 
-    @RegisterSignal("int", "float", "vector2", "string")
+    @ArgumentName("int", "float", "vector2", "string")
     val signalWithManyParameters by signal4<Int, Float, Vector2, String>()
 
     @Visible
@@ -88,7 +88,7 @@ class CoroutineTest : Object() {
         }
     }
 
-    @RegisterSignal("is_test_successful")
+    @ArgumentName("is_test_successful")
     val runOnMainThreadFromBackgroundThreadFinished by signal1<Boolean>()
 
     @Register
@@ -118,7 +118,7 @@ class CoroutineTest : Object() {
         }
     }
 
-    @RegisterSignal("is_test_successful")
+    @ArgumentName("is_test_successful")
     val asyncLoadResourceFinished by signal1<Boolean>()
 
     @Register
@@ -149,3 +149,4 @@ class CoroutineTest : Object() {
         wasParentCancelled = false
     }
 }
+

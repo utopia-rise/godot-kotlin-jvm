@@ -7,13 +7,14 @@ import godot.intellij.plugin.project.anyFunctionHasAnnotation
 import godot.intellij.plugin.project.anyPropertyHasAnnotation
 import godot.intellij.plugin.project.asClassId
 import godot.intellij.plugin.project.getRegisteredClassName
+import godot.intellij.plugin.project.hasDirectGodotSignals
 import godot.intellij.plugin.project.isGodotRegisteredFunction
 import godot.intellij.plugin.project.isAbstract
 import godot.intellij.plugin.project.isOrInheritsType
 import godot.intellij.plugin.project.registeredClassNameCache
 import godot.intellij.plugin.quickfix.ClassAlreadyRegisteredQuickFix
 import godot.intellij.plugin.quickfix.ClassNotRegisteredQuickFix
-import godot.tools.common.names.Annotation
+import godot.tools.common.names.Registration
 import godot.tools.common.names.CoreType
 import godot.tools.common.names.qualifiedName
 import org.jetbrains.kotlin.idea.base.util.module
@@ -30,7 +31,7 @@ object RegisterClassAnalyzer {
         return buildList {
             if (!ktClass.isRegistered()) {
                 val errorLocation = ktClass.nameIdentifier ?: ktClass.navigationElement
-                if (ktClass.findAnnotation(Annotation.tool.asClassId()) != null) {
+                if (ktClass.findAnnotation(Registration.tool.asClassId()) != null) {
                     add(
                         GodotProblem(
                             GodotPluginBundle.message("problem.class.notRegistered.butHasToolAnnotation"),
@@ -39,7 +40,7 @@ object RegisterClassAnalyzer {
                         )
                     )
                 }
-                if (!ktClass.isAbstract() && ktClass.anyPropertyHasAnnotation(Annotation.visible.simpleName)) {
+                if (!ktClass.isAbstract() && ktClass.anyPropertyHasAnnotation(Registration.visible.simpleName)) {
                     add(
                         GodotProblem(
                             GodotPluginBundle.message("problem.class.notRegistered.properties"),
@@ -48,7 +49,7 @@ object RegisterClassAnalyzer {
                         )
                     )
                 }
-                if (!ktClass.isAbstract() && ktClass.anyPropertyHasAnnotation(Annotation.registerSignal.simpleName)) {
+                if (!ktClass.isAbstract() && ktClass.hasDirectGodotSignals()) {
                     add(
                         GodotProblem(
                             GodotPluginBundle.message("problem.class.notRegistered.signals"),
@@ -57,7 +58,7 @@ object RegisterClassAnalyzer {
                         )
                     )
                 }
-                if (!ktClass.isAbstract() && ktClass.anyFunctionHasAnnotation(Annotation.register.simpleName)) {
+                if (!ktClass.isAbstract() && ktClass.anyFunctionHasAnnotation(Registration.register.simpleName)) {
                     add(
                         GodotProblem(
                             GodotPluginBundle.message("problem.class.notRegistered.functions"),
@@ -101,9 +102,9 @@ object RegisterClassAnalyzer {
 
     fun analyze(psiClass: PsiClass): List<GodotProblem> {
         return buildList {
-            if (psiClass.getAnnotation(Annotation.registerClass.qualifiedName) == null) {
+            if (psiClass.getAnnotation(Registration.registerClass.qualifiedName) == null) {
                 val errorLocation = psiClass.nameIdentifier ?: psiClass.navigationElement
-                if (psiClass.getAnnotation(Annotation.tool.qualifiedName) != null) {
+                if (psiClass.getAnnotation(Registration.tool.qualifiedName) != null) {
                     add(
                         GodotProblem(
                             GodotPluginBundle.message("problem.class.notRegistered.butHasToolAnnotation"),
@@ -112,7 +113,7 @@ object RegisterClassAnalyzer {
                         )
                     )
                 }
-                if (!psiClass.isAbstract && psiClass.anyPropertyHasAnnotation(Annotation.visible)) {
+                if (!psiClass.isAbstract && psiClass.anyPropertyHasAnnotation(Registration.visible)) {
                     add(
                         GodotProblem(
                             GodotPluginBundle.message("problem.class.notRegistered.properties"),
@@ -121,7 +122,7 @@ object RegisterClassAnalyzer {
                         )
                     )
                 }
-                if (!psiClass.isAbstract && psiClass.anyPropertyHasAnnotation(Annotation.registerSignal)) {
+                if (!psiClass.isAbstract && psiClass.hasDirectGodotSignals()) {
                     add(
                         GodotProblem(
                             GodotPluginBundle.message("problem.class.notRegistered.signals"),
@@ -175,7 +176,7 @@ object RegisterClassAnalyzer {
             return null
         }
 
-        val registerClassAnnotation = ktClass.findAnnotation(Annotation.registerClass.asClassId())
+        val registerClassAnnotation = ktClass.findAnnotation(Registration.registerClass.asClassId())
         val psiElement = registerClassAnnotation?.valueArgumentList?.arguments?.firstOrNull { argument ->
             argument.getArgumentName()?.asName?.asString() == "className" || !argument.isNamed()
         } ?: registerClassAnnotation ?: ktClass.nameIdentifier ?: ktClass.navigationElement
@@ -202,7 +203,7 @@ object RegisterClassAnalyzer {
             return null
         }
 
-        val registerClassAnnotation = psiClass.getAnnotation(Annotation.registerClass.qualifiedName)
+        val registerClassAnnotation = psiClass.getAnnotation(Registration.registerClass.qualifiedName)
         val psiElement = if (registerClassAnnotation == null) {
             psiClass.nameIdentifier ?: psiClass.navigationElement
         } else {
@@ -224,13 +225,13 @@ object RegisterClassAnalyzer {
         }
     }
 
-    private fun KtClass.isRegistered(): Boolean = findAnnotation(Annotation.registerClass.asClassId()) != null
+    private fun KtClass.isRegistered(): Boolean = findAnnotation(Registration.registerClass.asClassId()) != null
 
     private fun KtClass.anyFunctionHasAnnotation(annotation: String): Boolean {
         return declarations
             .filterIsInstance<KtNamedFunction>()
             .any { declaration ->
-                if (annotation == Annotation.register.simpleName) {
+                if (annotation == Registration.register.simpleName) {
                     declaration.isGodotRegisteredFunction()
                 } else {
                     declaration.annotationEntries.any { it.shortName?.asString() == annotation }

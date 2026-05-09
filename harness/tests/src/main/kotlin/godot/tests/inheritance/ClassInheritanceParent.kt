@@ -1,23 +1,23 @@
 package godot.tests.inheritance
 
 import godot.api.Node
-import godot.annotation.script
+import godot.annotation.GodotScript
 import godot.annotation.Register
 import godot.annotation.Visible
-import godot.annotation.RegisterSignal
+import godot.annotation.ArgumentName
 import godot.core.GodotNotification
 import godot.core.signal1
 import godot.core.signal2
 import godot.global.GD
 
-@script
+@GodotScript
 open class ClassInheritanceParent : Node() {
 
-    @RegisterSignal("blubb")
+    @ArgumentName("blubb")
     val testNotOverridden by signal1<String>()
 
-    @RegisterSignal("blubb", "habbalubb")
-    open val testOverridden by signal2<String, Int>()
+    @ArgumentName("blubb", "habbalubb")
+    val testOverridden by signal2<String, Int>()
 
     //---------------- Here to check ------------------
 
@@ -54,3 +54,4 @@ open class ClassInheritanceParent : Node() {
         GD.print(notificationCallBitFlag)
     }
 }
+

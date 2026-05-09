@@ -1,16 +1,11 @@
 package godot.tests.inheritance
 
-import godot.annotation.script
+import godot.annotation.GodotScript
 import godot.annotation.Register
 import godot.annotation.Visible
-import godot.annotation.RegisterSignal
-import godot.core.signal2
 
-@script
+@GodotScript
 class AbstractClassInheritanceChild : AbstractClassInheritanceParent() {
-
-    @RegisterSignal("blubb", "habbalubbb")
-    override val testOverridden by signal2<String, Int>()
 
     //---------------- Here to check ------------------
 
@@ -26,3 +21,4 @@ class AbstractClassInheritanceChild : AbstractClassInheritanceParent() {
         childOpenFunctionHasBeenCalled = true
     }
 }
+

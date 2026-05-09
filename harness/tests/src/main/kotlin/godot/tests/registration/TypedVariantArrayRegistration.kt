@@ -4,11 +4,11 @@ import godot.api.Button
 import godot.api.Node
 import godot.api.Texture
 import godot.annotation.Export
-import godot.annotation.script
+import godot.annotation.GodotScript
 import godot.core.VariantArray
 import godot.core.variantArrayOf
 
-@script
+@GodotScript
 class TypedVariantArrayRegistration: Node() {
 
     @Export

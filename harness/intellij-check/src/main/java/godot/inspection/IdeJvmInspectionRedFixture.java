@@ -4,47 +4,45 @@ import godot.annotation.Export;
 import godot.annotation.GodotScript;
 import godot.annotation.Register;
 import godot.annotation.Visible;
-import godot.annotation.RegisterSignal;
+import godot.annotation.ArgumentName;
 import godot.annotation.Tool;
 import godot.api.Node;
 import godot.core.Signal0;
 import godot.core.StringNames;
 
 // Class-level registration checks.
-
-// Expected red: `@Tool` requires the class itself to be registered.
+// NOT ALLOWED: `@Tool` requires the class itself to be `@GodotScript`.
 @Tool
 class JvmNotRegisteredButToolFixture extends Node {
 }
 
-// Expected red on the class: it is not `@GodotScript`, but it contains
-// registered properties, signals, and functions.
+// NOT ALLOWED on the class: it is not `@GodotScript`, but it contains
+// members that would be registered.
 class JvmNotRegisteredButMembersFixture extends Node {
-    // Expected red via the containing class: registered property inside a
-    // non-registered class.
+    // NOT ALLOWED via the containing class: `@Export` implies a registered
+    // property, so the class itself must be `@GodotScript`.
     @Export
     public int propertyShouldStayRed = 1;
 
-    // Expected red via the containing class: registered signal inside a
-    // non-registered class.
-    @RegisterSignal
+    // NOT ALLOWED via the containing class: direct signal declarations are
+    // auto-registered, so the class itself must be `@GodotScript`.
     public Signal0 signalShouldStayRed = new Signal0(this, StringNames.asStringName("signalShouldStayRed"));
 
-    // Expected red via the containing class: registered function inside a
-    // non-registered class.
+    // NOT ALLOWED via the containing class: explicitly registered function
+    // inside a non-registered class.
     @Register
     public int functionShouldStayRed() {
         return propertyShouldStayRed;
     }
 }
 
-// Expected red: `@GodotScript` is present, but the class does not inherit a
+// NOT ALLOWED: `@GodotScript` is present, but the class does not inherit a
 // Godot object type.
 @GodotScript
 class JvmRegisterClassWithoutGodotBaseFixture {
 }
 
-// Expected red: registered classes must expose exactly one parameterless
+// NOT ALLOWED: registered classes must expose exactly one parameterless
 // constructor, and this one only has a parameterized constructor.
 @GodotScript
 class JvmRegisterClassWithoutDefaultConstructorFixture extends Node {
@@ -52,7 +50,7 @@ class JvmRegisterClassWithoutDefaultConstructorFixture extends Node {
     }
 }
 
-// Expected red on both duplicate declarations: they register the same custom
+// NOT ALLOWED on both declarations: they register the same custom
 // Godot class name.
 @GodotScript(className = "DuplicateJvmInspectionName")
 class JvmDuplicateRegisteredNameFixtureOne extends Node {
@@ -62,7 +60,7 @@ class JvmDuplicateRegisteredNameFixtureOne extends Node {
 class JvmDuplicateRegisteredNameFixtureTwo extends Node {
 }
 
-// Expected red: generic classes cannot be registered.
+// NOT ALLOWED: generic classes cannot be registered.
 @GodotScript
 class JvmGenericRegisteredClassFixture<T> extends Node {
 }
@@ -70,18 +68,18 @@ class JvmGenericRegisteredClassFixture<T> extends Node {
 // Method registration checks.
 @GodotScript
 public class IdeJvmInspectionRedFixture extends Node {
-    // Expected clean: overrides coming from Godot base types are registered
-    // automatically now.
+    // ALLOWED: overrides coming from Godot base types are registered
+    // automatically.
     @Override
     public void _ready() {
     }
 
-    // Expected red: generic functions cannot be registered.
+    // NOT ALLOWED: generic functions cannot be registered.
     @Register
     public <T> void genericRegisteredFunction(T value) {
     }
 
-    // Expected red: registered functions may not exceed the max supported
+    // NOT ALLOWED: registered functions may not exceed the max supported
     // parameter count.
     @Register
     public void tooManyParameters(
@@ -105,3 +103,4 @@ public class IdeJvmInspectionRedFixture extends Node {
     ) {
     }
 }
+

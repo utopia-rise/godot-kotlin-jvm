@@ -3,10 +3,10 @@ package godot.tests.static
 import godot.api.DirAccess
 import godot.api.Node
 import godot.api.ProjectSettings
-import godot.annotation.script
+import godot.annotation.GodotScript
 import godot.annotation.Register
 
-@script
+@GodotScript
 class CallStaticTest: Node() {
 
     @Register

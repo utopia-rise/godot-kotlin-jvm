@@ -1,8 +1,7 @@
 package godot.annotation.processor.classgraph.extensions
 
-import godot.annotation.script
+import godot.annotation.GodotScript
 import godot.annotation.Register
-import godot.annotation.RegisterSignal
 import godot.annotation.Visible
 import godot.annotation.processor.classgraph.Context
 import godot.annotation.processor.classgraph.ErrorsDatabase
@@ -41,10 +40,7 @@ fun ClassInfo.mapToClazz(settings: Settings): Clazz {
         }
         .map { it.mapToRegisteredProperty(settings, this) }
 
-    val signals = fieldInfo
-        .filter { fieldInfo ->
-            fieldInfo.hasAnnotation(RegisterSignal::class.java, this)
-        }
+    val signals = signalInfo
         .map { it.mapFieldToRegisteredSignal(settings, this) }
 
     val shouldBeRegistered = shouldBeRegistered(methods, fields, signals)
@@ -84,7 +80,7 @@ private fun ClassInfo.shouldBeRegistered(
     registeredProperties: List<RegisteredProperty>,
     registeredSignals: List<RegisteredSignal>
 ) = !isInterface && (
-        hasAnnotation(script::class.java) ||
+        hasAnnotation(GodotScript::class.java) ||
                 isAbstractAndContainsRegisteredMembers(
                     registeredFunctions,
                     registeredProperties,
@@ -104,7 +100,7 @@ private val ClassInfo.isAbstractAndInheritsGodotObject
 
 private fun ClassInfo.provideCustomName(): String? {
     val registerClassAnnotation = annotationInfo
-        .firstOrNull { it.name == script::class.qualifiedName }
+        .firstOrNull { it.name == GodotScript::class.qualifiedName }
 
     return registerClassAnnotation
         ?.parameterValues

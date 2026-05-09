@@ -9,9 +9,8 @@ import godot.annotation.GodotBaseType
 import godot.annotation.IntFlag
 import godot.annotation.MultilineText
 import godot.annotation.PlaceHolderText
-import godot.annotation.script
+import godot.annotation.GodotScript
 import godot.annotation.Register
-import godot.annotation.RegisterSignal
 import godot.annotation.Rpc
 import godot.annotation.RpcMode
 import godot.annotation.Sync
@@ -37,7 +36,6 @@ import godot.entrygenerator.model.RangeHintAnnotation
 import godot.entrygenerator.model.RegisterClassAnnotation
 import godot.entrygenerator.model.RegisterFunctionAnnotation
 import godot.entrygenerator.model.RegisterPropertyAnnotation
-import godot.entrygenerator.model.RegisterSignalAnnotation
 import godot.entrygenerator.model.RpcAnnotation
 import godot.entrygenerator.model.ToolAnnotation
 import io.github.classgraph.AnnotationEnumValue
@@ -48,12 +46,11 @@ import io.github.classgraph.FieldInfo
 fun AnnotationInfo.mapToGodotAnnotation(parentDeclaration: Any, declarationString: String): GodotAnnotation? {
     @Suppress("UNCHECKED_CAST")
     return when (name) {
-        script::class.java.name -> RegisterClassAnnotation(
+        GodotScript::class.java.name -> RegisterClassAnnotation(
             customName = parameterValues.getValue("customName") as? String,
         )
         Register::class.java.name -> RegisterFunctionAnnotation()
         Visible::class.java.name -> RegisterPropertyAnnotation()
-        RegisterSignal::class.java.name -> RegisterSignalAnnotation()
         Tool::class.java.name -> ToolAnnotation()
         Export::class.java.name -> ExportAnnotation()
         Rpc::class.java.name -> RpcAnnotation(

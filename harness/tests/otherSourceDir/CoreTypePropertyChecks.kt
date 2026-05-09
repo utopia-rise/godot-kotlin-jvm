@@ -1,10 +1,10 @@
 import godot.api.Node
 import godot.annotation.Export
-import godot.annotation.script
+import godot.annotation.GodotScript
 import godot.annotation.Visible
 import godot.core.Vector3
 
-@script
+@GodotScript
 class CoreTypePropertyChecks: Node() {
     // not allowed cases are commented out so that the compilation runs. Otherwise, our compiler checks trigger a build failure
     // to test out these checks, uncomment the cases

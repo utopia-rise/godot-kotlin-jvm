@@ -1,11 +1,11 @@
 package godot.tests.library
 
 import godot.annotation.Export
-import godot.annotation.script
+import godot.annotation.GodotScript
 import godot.annotation.Register
 import godot.api.Node
 
-@script
+@GodotScript
 class Simple: Node() {
 
     @Export

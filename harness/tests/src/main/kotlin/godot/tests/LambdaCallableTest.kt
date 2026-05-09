@@ -1,26 +1,26 @@
 package godot.tests
 
 import godot.api.Node
-import godot.annotation.script
+import godot.annotation.GodotScript
 import godot.annotation.Register
 import godot.annotation.Visible
-import godot.annotation.RegisterSignal
+import godot.annotation.ArgumentName
 import godot.core.Signal3
 import godot.core.asCallable
 import godot.core.signal0
 import godot.core.signal3
 import godot.extension.connectLambda
 
-@script
+@GodotScript
 class LambdaCallableTest : Node() {
 
-    @RegisterSignal
+    
     val signalNoParam by signal0()
 
     @Visible
     var hasSignalNoParamBeenTriggered = false
 
-    @RegisterSignal("str", "long", "node")
+    @ArgumentName("str", "long", "node")
     val signalWithParams: Signal3<String, Long, Node> by signal3()
 
     @Visible
@@ -60,3 +60,4 @@ class LambdaCallableTest : Node() {
         signalWithParams.emit(str, long, node)
     }
 }
+

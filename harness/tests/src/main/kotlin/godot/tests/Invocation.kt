@@ -19,7 +19,7 @@ import godot.annotation.IntRange
 import godot.annotation.LongRange
 import godot.annotation.MultilineText
 import godot.annotation.PlaceHolderText
-import godot.annotation.script
+import godot.annotation.GodotScript
 import godot.annotation.Register
 import godot.annotation.Visible
 import godot.core.Color
@@ -51,7 +51,7 @@ enum class TestEnum {
 }
 
 
-@script
+@GodotScript
 class Invocation : Node3D() {
 	@Export
 	lateinit var button: Button

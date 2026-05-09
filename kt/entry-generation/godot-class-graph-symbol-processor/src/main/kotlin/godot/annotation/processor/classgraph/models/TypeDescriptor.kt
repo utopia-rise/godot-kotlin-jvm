@@ -80,8 +80,11 @@ class TypeDescriptor private constructor(
     val isVoid = rawDescriptor == VOID
     val isObject = rawDescriptor == JVM_OBJECT
 
+    val typeClassInfoOrNull: ClassInfo?
+        get() = Context.getClassInfoOrNull(rawDescriptor)
+
     val typeClassInfo: ClassInfo
-        get() = requireNotNull(Context.getClassInfoOrNull(rawDescriptor)) {
+        get() = requireNotNull(typeClassInfoOrNull) {
             "Could not resolve class info for descriptor: $rawDescriptor"
         }
 

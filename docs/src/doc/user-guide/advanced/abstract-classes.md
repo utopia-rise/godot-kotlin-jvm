@@ -23,7 +23,7 @@ abstract class AbstractClassInheritanceParent: Node() {
     @Export
     var registeredExportedPropertyInAbstractClass = false
 
-    @RegisterSignal("blubb")
+    @ArgumentName("blubb")
     val signalInAbstractClass by signal<String>()
 
     @Register
@@ -49,4 +49,4 @@ class AbstractClassInheritanceChild: AbstractClassInheritanceParent() {
 ```
 
 !!! warning "Registration of overridden members"
-    As you can see in the example; you need to explicitly register any member in the child class which you override from the abstract parent class. Otherwise they will not be registered and thus are not known to godot.
+    As you can see in the example, members overridden from your own abstract parent classes still need explicit registration in the child class. Only overrides that originate from a Godot base type are registered automatically.

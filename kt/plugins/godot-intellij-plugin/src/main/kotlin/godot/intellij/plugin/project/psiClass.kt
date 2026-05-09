@@ -4,7 +4,7 @@ import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiMethod
 import com.intellij.psi.PsiModifier
 import com.squareup.kotlinpoet.ClassName
-import godot.tools.common.names.Annotation
+import godot.tools.common.names.Registration
 import godot.tools.common.names.qualifiedName
 import org.jetbrains.kotlin.analysis.utils.classId
 import org.jetbrains.kotlin.asJava.classes.KtUltraLightClass
@@ -38,7 +38,7 @@ fun PsiClass.anyPropertyHasAnnotation(annotation: ClassName) = when (this) {
 }
 
 val PsiClass.isRegistered: Boolean
-    get() = getAnnotation(Annotation.registerClass.qualifiedName) != null
+    get() = getAnnotation(Registration.registerClass.qualifiedName) != null
 
 
 fun PsiClass.isOrInheritsType(classId: ClassId): Boolean {

@@ -3,7 +3,6 @@ package godot.benchmark.bunnymark
 import godot.*
 import godot.annotation.GodotScript
 import godot.annotation.Register
-import godot.annotation.RegisterSignal
 import godot.benchmark.bunnymark.v3.Bunny
 import godot.core.Vector2
 import godot.signals.signal
@@ -11,7 +10,7 @@ import godot.signals.signal
 @GodotScript("BunnymarkV3")
 class BunnymarkV3 : Node2D() {
 
-	@RegisterSignal
+	
 	val benchmarkFinished by signal<Int>("bunnyCount")
 
 	private val randomNumberGenerator = RandomNumberGenerator()
@@ -58,3 +57,4 @@ class BunnymarkV3 : Node2D() {
         benchmarkFinished.emit(bunnies.getChildCount())
 	}
 }
+

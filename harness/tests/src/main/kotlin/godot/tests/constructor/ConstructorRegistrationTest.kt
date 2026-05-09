@@ -1,10 +1,10 @@
 package godot.tests.constructor
 
 import godot.api.Node
-import godot.annotation.script
+import godot.annotation.GodotScript
 import godot.annotation.Visible
 
-@script
+@GodotScript
 class ConstructorRegistrationTest(): Node() {
     @Visible
     var defaultConstructorHasBeenCalled = false

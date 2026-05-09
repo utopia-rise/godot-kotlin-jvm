@@ -1,10 +1,10 @@
 package godot.tests.signal
 
 import godot.api.Node
-import godot.annotation.script
+import godot.annotation.GodotScript
 import godot.annotation.Register
 import godot.annotation.Visible
-import godot.annotation.RegisterSignal
+import godot.annotation.ArgumentName
 import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.Signal2
@@ -18,25 +18,25 @@ import godot.extension.connectLambda
 import godot.extension.connectMethod
 import godot.tests.subpackage.OtherScript
 
-@script
+@GodotScript
 class SignalTest : Node() {
-    @RegisterSignal
+    
     val noParamSignalDelegate by signal0()
 
-    @RegisterSignal("refresh")
+    @ArgumentName("refresh")
     val oneParamSignalDelegate by signal1<Boolean>()
 
-    @RegisterSignal("str", "inv")
+    @ArgumentName("str", "inv")
     val twoParamSignalDelegate by signal2<String, SignalTest>()
 
 
-    @RegisterSignal()
+    
     val noParamSignalField = Signal0("noParamSignalField")
 
-    @RegisterSignal("refresh")
+    @ArgumentName("refresh")
     val oneParamSignalField = Signal1<Boolean>("oneParamSignalField")
 
-    @RegisterSignal("str", "inv")
+    @ArgumentName("str", "inv")
     val twoParamSignalField = Signal2<String, SignalTest>("twoParamSignalField")
 
     @Visible
@@ -76,7 +76,7 @@ class SignalTest : Node() {
     }
 
 
-    @RegisterSignal("vector2")
+    @ArgumentName("vector2")
     val signalWithMultipleTargets by signal1<Vector2>()
 
     //To store values emitted by signals
@@ -100,3 +100,4 @@ class SignalTest : Node() {
         array.append(vector2)
     }
 }
+

@@ -1,12 +1,12 @@
 package godot.tests
 
 import godot.api.Node
-import godot.annotation.script
+import godot.annotation.GodotScript
 import godot.annotation.Register
 import godot.annotation.Visible
 import godot.core.*
 
-@script
+@GodotScript
 class CoreTypesIdentityTest : Node() {
 
     @Visible

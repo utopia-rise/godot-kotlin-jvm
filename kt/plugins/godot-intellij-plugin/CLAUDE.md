@@ -135,7 +135,7 @@ Important files:
 - [analysis/jvm/RegisterMethodAnalyzer.kt](src/main/kotlin/godot/intellij/plugin/analysis/jvm/RegisterMethodAnalyzer.kt)
 - [analysis/kotlin/RegisterPropertyAnalyzer.kt](src/main/kotlin/godot/intellij/plugin/analysis/kotlin/RegisterPropertyAnalyzer.kt)
 - [analysis/kotlin/RegisterFunctionAnalyzer.kt](src/main/kotlin/godot/intellij/plugin/analysis/kotlin/RegisterFunctionAnalyzer.kt)
-- [analysis/kotlin/RegisterSignalAnalyzer.kt](src/main/kotlin/godot/intellij/plugin/analysis/kotlin/RegisterSignalAnalyzer.kt)
+- [analysis/kotlin/ArgumentNameAnalyzer.kt](src/main/kotlin/godot/intellij/plugin/analysis/kotlin/ArgumentNameAnalyzer.kt)
 - [analysis/kotlin/RpcAnnotationAnalyzer.kt](src/main/kotlin/godot/intellij/plugin/analysis/kotlin/RpcAnnotationAnalyzer.kt)
 - [analysis/kotlin/CoreTypeCopyModificationAnalyzer.kt](src/main/kotlin/godot/intellij/plugin/analysis/kotlin/CoreTypeCopyModificationAnalyzer.kt)
 
@@ -267,3 +267,4 @@ Keep these constraints in mind:
 - favor maintainability over feature sprawl
 
 If a change starts adding hidden state, duplicate sources of truth, or a new Gradle/IDE bridge, it is probably the wrong direction.
+

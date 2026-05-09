@@ -8,16 +8,16 @@ import godot.annotation.*;
 import godot.core.*;
 import org.jetbrains.annotations.NotNull;
 
-@script
+@GodotScript
 public class JavaTestClass extends Node {
-    //@RegisterSignal
+    //
     //public Signal0 testSignal = Signal0.create(this, "test_signal");
 //
-    //@RegisterSignal(parameters = {"param1", "param2"})
+    //@ArgumentName(parameters = {"param1", "param2"})
     //public Signal2<String, String> testSignal2 = Signal2.create(this, "test_signal_2");
 
     // The following should NOT work as we cannot extract parameter names. The compiler checks should catch that and throw a build error
-//    @RegisterSignal
+//    
 //    public Signal testSignal3 = new Signal2<>(this, "name");
 
     @EnumTypeHint
@@ -110,3 +110,4 @@ public class JavaTestClass extends Node {
         signalEmitted = true;
     }
 }
+

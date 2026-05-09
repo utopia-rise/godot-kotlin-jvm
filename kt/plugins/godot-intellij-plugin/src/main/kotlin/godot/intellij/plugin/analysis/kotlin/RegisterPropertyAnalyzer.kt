@@ -12,7 +12,7 @@ import godot.intellij.plugin.project.isSupportedJvmType
 import godot.intellij.plugin.quickfix.PropertyNotRegisteredQuickFix
 import godot.intellij.plugin.quickfix.RegisterPropertyMutabilityQuickFix
 import godot.tools.common.names.API
-import godot.tools.common.names.Annotation
+import godot.tools.common.names.Registration
 import godot.tools.common.names.CoreType
 import godot.tools.common.names.Kotlin
 import godot.tools.common.names.qualifiedName
@@ -32,7 +32,7 @@ object RegisterPropertyAnalyzer {
 
     fun analyze(property: KtProperty): List<GodotProblem> {
         return buildList {
-            if (property.findAnnotation(Annotation.visible.asClassId()) != null) {
+            if (property.findAnnotation(Registration.visible.asClassId()) != null) {
                 addAll(GenericRegistrationAnalyzer.analyze(property.toLightElements().firstIsInstance()))
                 if (!property.isVar) {
                     add(
@@ -62,7 +62,7 @@ object RegisterPropertyAnalyzer {
                 }
             }
 
-            if (property.findAnnotation(Annotation.export.asClassId()) != null && property.findAnnotation(Annotation.visible.asClassId()) == null) {
+            if (property.findAnnotation(Registration.export.asClassId()) != null && property.findAnnotation(Registration.visible.asClassId()) == null) {
                 add(
                     GodotProblem(
                         GodotPluginBundle.message("problem.property.export.notRegistered"),
@@ -81,7 +81,7 @@ object RegisterPropertyAnalyzer {
             property.returnType.symbol?.classId?.asFqNameString()?.let(Kotlin::isCollectionsType) == true
                 && property.returnType.symbol?.typeParameters?.firstOrNull()?.defaultType?.isEnum() == true
         }
-        if (isEnumCollection && property.findAnnotation(Annotation.enumFlag.asClassId()) == null) {
+        if (isEnumCollection && property.findAnnotation(Registration.enumFlag.asClassId()) == null) {
             problems += GodotProblem(
                 GodotPluginBundle.message("problem.property.registeredKotlinCollection"),
                 property.initializer?.psiOrParent ?: property.nameIdentifier ?: property.navigationElement

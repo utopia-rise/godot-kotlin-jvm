@@ -1,7 +1,7 @@
 package godot.annotation.processor.classgraph
 
 import godot.annotation.GodotBaseType
-import godot.annotation.script
+import godot.annotation.GodotScript
 import godot.annotation.processor.classgraph.extensions.mapToClazz
 import godot.core.KtObject
 import godot.entrygenerator.model.RegisteredClass
@@ -30,7 +30,7 @@ object ClassGraphProcessor {
 
             Context.reset(it)
 
-            val registeredClasses = it.getClassesWithAnnotation(script::class.java.name)
+            val registeredClasses = it.getClassesWithAnnotation(GodotScript::class.java.name)
                 .intersect(it.getSubclasses(KtObject::class.java))
                 .filter { classInfo -> !classInfo.hasAnnotation(GodotBaseType::class.java) }
                 .map { classInfo -> classInfo.mapToClazz(settings) }

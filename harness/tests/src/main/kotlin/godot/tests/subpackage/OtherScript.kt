@@ -1,10 +1,10 @@
 package godot.tests.subpackage
 
 import godot.api.Node
-import godot.annotation.script
+import godot.annotation.GodotScript
 import godot.annotation.Register
 
-@script
+@GodotScript
 class OtherScript : Node() {
     @Register
     fun hookNoParam() {

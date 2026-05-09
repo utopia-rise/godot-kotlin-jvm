@@ -1,6 +1,8 @@
 package godot.annotation.processor.classgraph.extensions
 
-import godot.annotation.RegisterSignal
+import godot.annotation.ArgumentName
+import godot.annotation.GodotBaseType
+import godot.core.Signal
 import godot.annotation.processor.classgraph.Context
 import godot.annotation.processor.classgraph.models.TypeDescriptor
 import godot.entrygenerator.ext.hasAnnotation
@@ -87,7 +89,7 @@ fun FieldInfo.mapToRegisteredProperty(settings: Settings, classInfo: ClassInfo):
     )
 }
 
-private const val signalParametersName = "parameters"
+private const val signalParametersName = "value"
 
 fun FieldInfo.mapFieldToRegisteredSignal(settings: Settings, classInfo: ClassInfo): RegisteredSignal {
     val typeDescriptor = when {
@@ -107,8 +109,8 @@ fun FieldInfo.mapFieldToRegisteredSignal(settings: Settings, classInfo: ClassInf
     val annotations = getAnnotations(classInfo)
 
     val parameterValues = annotations
-        .first { it.classInfo.name == RegisterSignal::class.java.name }
-        .parameterValues
+        .firstOrNull { it.classInfo.name == ArgumentName::class.java.name }
+        ?.parameterValues
 
     return RegisteredSignal(
         fqName = fqName.replace("$", "."),
@@ -116,11 +118,47 @@ fun FieldInfo.mapFieldToRegisteredSignal(settings: Settings, classInfo: ClassInf
         parameterTypes = type.arguments(),
         parameterNames = (
                 parameterValues
-                    .getValue(signalParametersName) as Array<String>
-                ).toList(),
+                    ?.getValue(signalParametersName) as? Array<String>
+                )?.toList() ?: emptyList(),
         isOverridee = isOverridee,
+        isOpenOrAbstract = isSignalOpenOrAbstract,
         annotations = annotations.mapNotNull { it.mapToGodotAnnotation(this, fqName) as? PropertyAnnotation },
     )
+}
+
+private val FieldInfo.isSignalOpenOrAbstract: Boolean
+    get() = classInfo.methodInfo
+        .firstOrNull { it.name == toGetterName() && it.parameterInfo.isEmpty() }
+        ?.let { !it.isFinal } ?: false
+
+val ClassInfo.signalInfo: List<FieldInfo>
+    get() {
+        val declaredSignalNames = declaredFieldInfo
+            .filter { it.isDirectSignalDeclaration(this) }
+            .map { it.sanitizedName }
+            .toSet()
+
+        return fieldInfo.filter {
+            it.isDirectSignalDeclaration(this) &&
+                !it.classInfo.hasAnnotation(GodotBaseType::class.java) &&
+                (it.classInfo == this || it.sanitizedName !in declaredSignalNames)
+        }
+    }
+
+fun FieldInfo.isDirectSignalDeclaration(classInfo: ClassInfo): Boolean {
+    val typeDescriptor = when {
+        classInfo.isScala -> TypeDescriptor(getGetter(classInfo))
+        name.endsWith(DELEGATE_SUFFIX) -> TypeDescriptor(getGetter(classInfo))
+        else -> TypeDescriptor(this, classInfo)
+    }
+
+    if (typeDescriptor.isPrimitive || typeDescriptor.isVoid) {
+        return false
+    }
+
+    val signalTypeClassInfo = typeDescriptor.typeClassInfoOrNull ?: return false
+    return signalTypeClassInfo.name == Signal::class.java.name ||
+        signalTypeClassInfo.extendsSuperclass(Signal::class.java)
 }
 
 val FieldInfo.isOverridee: Boolean

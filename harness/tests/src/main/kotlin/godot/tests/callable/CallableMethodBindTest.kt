@@ -1,7 +1,7 @@
 package godot.tests.callable
 
 import godot.api.Node
-import godot.annotation.script
+import godot.annotation.GodotScript
 import godot.annotation.Register
 import godot.annotation.Visible
 import godot.core.Callable0
@@ -13,7 +13,7 @@ import godot.core.callable3
 import godot.core.variantArrayOf
 import godot.global.GD
 
-@script
+@GodotScript
 class CallableMethodBindTest: Node() {
     @Visible
     var methodBinds: VariantArray<Int> = variantArrayOf(-1, -1, -1)

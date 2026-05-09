@@ -5,7 +5,7 @@ import godot.annotation.DoubleRange
 import godot.annotation.Export
 import godot.annotation.Register
 import godot.annotation.Visible
-import godot.annotation.RegisterSignal
+import godot.annotation.ArgumentName
 import godot.core.signal1
 import godot.core.signal2
 
@@ -18,11 +18,11 @@ abstract class AbstractClassInheritanceParent : Node() {
     @Export
     var registeredExportedPropertyInParent = false
 
-    @RegisterSignal("blubb")
+    @ArgumentName("blubb")
     val testNotOverridden by signal1<String>()
 
-    @RegisterSignal("blubb", "habbalubb")
-    open val testOverridden  by signal2<String, Int>()
+    @ArgumentName("blubb", "habbalubb")
+    val testOverridden by signal2<String, Int>()
 
     //---------------- Here to check ------------------
 

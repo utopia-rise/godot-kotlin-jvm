@@ -1,12 +1,12 @@
 package godot.tests.args
 
 import godot.api.Node
-import godot.annotation.script
+import godot.annotation.GodotScript
 import godot.annotation.Register
 import godot.core.VariantArray
 import godot.core.variantArrayOf
 
-@script
+@GodotScript
 class FunctionArgSizeTest : Node() {
 
     @Register

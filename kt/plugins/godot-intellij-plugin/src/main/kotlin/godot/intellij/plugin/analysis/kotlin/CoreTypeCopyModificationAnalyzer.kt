@@ -6,7 +6,7 @@ import godot.intellij.plugin.analysis.GodotProblem
 import godot.intellij.plugin.analysis.kotlin.CoreTypeCopyModificationAnalyzer.analyzeAssignment
 import godot.intellij.plugin.analysis.kotlin.CoreTypeCopyModificationAnalyzer.analyzeHelperCall
 import godot.intellij.plugin.project.asClassId
-import godot.tools.common.names.Annotation
+import godot.tools.common.names.Registration
 import godot.tools.common.names.qualifiedName
 import org.jetbrains.kotlin.idea.references.mainReference
 import org.jetbrains.kotlin.idea.util.findAnnotation
@@ -102,8 +102,8 @@ object CoreTypeCopyModificationAnalyzer {
     // is explicitly marked as returning a local copy.
     private fun KtNameReferenceExpression.resolvesToCoreTypeLocalCopy(): Boolean {
         return when (val resolvedElement = mainReference.resolve()) {
-            is KtAnnotated -> resolvedElement.findAnnotation(Annotation.coreTypeLocalCopy.asClassId()) != null
-            is PsiModifierListOwner -> resolvedElement.hasAnnotation(Annotation.coreTypeLocalCopy.qualifiedName)
+            is KtAnnotated -> resolvedElement.findAnnotation(Registration.coreTypeLocalCopy.asClassId()) != null
+            is PsiModifierListOwner -> resolvedElement.hasAnnotation(Registration.coreTypeLocalCopy.qualifiedName)
             else -> false
         }
     }
@@ -113,8 +113,8 @@ object CoreTypeCopyModificationAnalyzer {
     private fun KtCallExpression.resolvesToCoreTypeHelper(): Boolean {
         val callee = calleeExpression as? KtNameReferenceExpression ?: return false
         return when (val resolvedElement = callee.mainReference.resolve()) {
-            is KtAnnotated -> resolvedElement.findAnnotation(Annotation.coreTypeHelper.asClassId()) != null
-            is PsiModifierListOwner -> resolvedElement.hasAnnotation(Annotation.coreTypeHelper.qualifiedName)
+            is KtAnnotated -> resolvedElement.findAnnotation(Registration.coreTypeHelper.asClassId()) != null
+            is PsiModifierListOwner -> resolvedElement.hasAnnotation(Registration.coreTypeHelper.qualifiedName)
             else -> false
         }
     }

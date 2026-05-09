@@ -1,17 +1,12 @@
 package godot.tests.inheritance
 
-import godot.annotation.script
+import godot.annotation.GodotScript
 import godot.annotation.Register
 import godot.annotation.Visible
-import godot.annotation.RegisterSignal
-import godot.core.signal2
 import godot.global.GD
 
-@script
+@GodotScript
 class ClassInheritanceChild : ClassInheritanceParent() {
-
-    @RegisterSignal("blubb", "habbalubbb")
-    override val testOverridden  by signal2<String, Int>()
 
     //---------------- Here to check ------------------
 
@@ -32,3 +27,4 @@ class ClassInheritanceChild : ClassInheritanceParent() {
         notificationCallBitFlag += notificationCallBitFlag or 2
     }
 }
+

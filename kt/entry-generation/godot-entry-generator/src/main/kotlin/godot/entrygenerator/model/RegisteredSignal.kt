@@ -6,6 +6,7 @@ data class RegisteredSignal(
     val parameterTypes: List<Type>,
     val parameterNames: List<String>,
     val isOverridee: Boolean = false,
+    val isOpenOrAbstract: Boolean = false,
     val annotations: List<PropertyAnnotation> = emptyList(),
 ) {
     val name: String = fqName.substringAfterLast(".")

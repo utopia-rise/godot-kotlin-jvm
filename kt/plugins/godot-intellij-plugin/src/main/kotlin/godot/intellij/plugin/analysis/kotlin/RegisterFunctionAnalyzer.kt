@@ -5,7 +5,7 @@ import godot.intellij.plugin.analysis.GodotProblem
 import godot.intellij.plugin.project.asClassId
 import godot.intellij.plugin.project.isGodotRegisteredFunction
 import godot.intellij.plugin.quickfix.FunctionNotRegisteredQuickFix
-import godot.tools.common.names.Annotation
+import godot.tools.common.names.Registration
 import org.jetbrains.kotlin.analysis.api.analyze
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.psi.KtNamedFunction
@@ -31,9 +31,9 @@ object RegisterFunctionAnalyzer {
 
     private fun overriddenRegisteredAbstractFunctionNotRegistered(element: KtNamedFunction): Boolean {
         val hasRegisterAnnotation = analyze(element) {
-            element.symbol.allOverriddenSymbols.any { it.annotations.contains(Annotation.register.asClassId()) }
+            element.symbol.allOverriddenSymbols.any { it.annotations.contains(Registration.register.asClassId()) }
         }
-        return element.containingClass()?.findAnnotation(Annotation.registerClass.asClassId()) != null &&
+        return element.containingClass()?.findAnnotation(Registration.registerClass.asClassId()) != null &&
             !element.isGodotRegisteredFunction() &&
             hasRegisterAnnotation
     }

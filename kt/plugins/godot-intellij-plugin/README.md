@@ -20,7 +20,7 @@ Java and Scala support are welcome when they naturally fit the same JVM-facing i
 Adds focused K2-only code insight for Godot Kotlin/JVM projects in IntelliJ IDEA.
 
 Features:
-- validates `@GodotScript`, `@Visible`, `@Register`, `@RegisterSignal`, `@Export`, and `@Rpc` usage
+- validates `@GodotScript`, `@Visible`, `@Register`, direct signal declarations, `@ArgumentName`, `@Export`, and `@Rpc` usage
 - validates common callable-reference usage for Godot signal, `call`, and `rpc` patterns
 - detects nested mutation through `@CoreTypeLocalCopy` getter results in simple assignment chains
 - offers quick fixes for common registration and mutability mistakes
@@ -112,7 +112,7 @@ Relevant files:
 
 ### Signal and callable-reference checks
 
-Checks around `@RegisterSignal` and callable references used in Godot patterns such as signal connect, `call`, and `rpc`.
+Checks around direct signal declarations, `@ArgumentName`, and callable references used in Godot patterns such as signal connect, `call`, and `rpc`.
 
 Relevant files:
 
@@ -242,3 +242,4 @@ If you are working on the codebase itself, also read:
 - [CLAUDE.md](CLAUDE.md)
 
 That file explains the internal mental model, startup flow, and the best files to read first.
+

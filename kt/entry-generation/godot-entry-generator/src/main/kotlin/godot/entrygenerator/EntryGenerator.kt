@@ -6,6 +6,7 @@ import godot.entrygenerator.checks.NullablePropertyCheck
 import godot.entrygenerator.checks.PropertyMutablilityCheck
 import godot.entrygenerator.checks.PropertyTypeCheck
 import godot.entrygenerator.checks.RpcCheck
+import godot.entrygenerator.checks.SignalOpenOrOverrideCheck
 import godot.entrygenerator.checks.SignalTypeCheck
 import godot.entrygenerator.exceptions.ChecksFailedException
 import godot.entrygenerator.filebuilder.ClassRegistrarFileBuilder
@@ -174,6 +175,7 @@ object EntryGenerator {
             FunctionArgCountCheck(logger, registeredClasses).execute(),
 
             SignalTypeCheck(logger, registeredClasses).execute(),
+            SignalOpenOrOverrideCheck(logger, registeredClasses).execute(),
 
             PropertyTypeCheck(logger, registeredClasses).execute(),
             PropertyMutablilityCheck(logger, registeredClasses).execute(),

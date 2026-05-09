@@ -5,7 +5,7 @@ import com.intellij.codeInspection.ProblemDescriptor
 import com.intellij.openapi.project.Project
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.project.asClassId
-import godot.tools.common.names.Annotation
+import godot.tools.common.names.Registration
 import org.jetbrains.kotlin.idea.references.mainReference
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.psi.KtCallableReferenceExpression
@@ -21,7 +21,7 @@ class TargetFunctionsRpcAnnotationHasRpcModeDisabled : LocalQuickFix {
             ?.resolve() as? KtNamedFunction
 
         val rpcAnnotationValueArgumentList = ktNamedFunction
-            ?.findAnnotation(Annotation.rpc.asClassId())
+            ?.findAnnotation(Registration.rpc.asClassId())
             ?.valueArgumentList
 
         val rpcModeValueArgument = rpcAnnotationValueArgumentList

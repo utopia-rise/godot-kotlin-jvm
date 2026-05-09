@@ -6,7 +6,7 @@ import godot.intellij.plugin.analysis.GodotProblem
 import godot.intellij.plugin.project.asClassId
 import godot.intellij.plugin.quickfix.TransferModeIgnoresChannelQuickFix
 import godot.tools.common.names.API
-import godot.tools.common.names.Annotation
+import godot.tools.common.names.Registration
 import godot.tools.common.names.qualifiedName
 import org.jetbrains.kotlin.idea.base.psi.kotlinFqName
 import org.jetbrains.kotlin.idea.references.mainReference
@@ -19,7 +19,7 @@ object RpcAnnotationAnalyzer {
     private val transferModeIgnoresChannelQuickFix = TransferModeIgnoresChannelQuickFix()
 
     fun analyze(element: KtAnnotated): List<GodotProblem> {
-        val rpcAnnotation = element.findAnnotation(Annotation.rpc.asClassId()) ?: return emptyList()
+        val rpcAnnotation = element.findAnnotation(Registration.rpc.asClassId()) ?: return emptyList()
         val valueArgumentList = rpcAnnotation.valueArgumentList ?: return emptyList()
 
         val transferModeValueArgument = valueArgumentList

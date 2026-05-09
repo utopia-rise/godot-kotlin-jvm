@@ -1,8 +1,8 @@
 package godot.tests.instance
 
 import godot.api.RefCounted
-import godot.annotation.script
+import godot.annotation.GodotScript
 
-@script
+@GodotScript
 class RefCountedInstance : RefCounted() {
 }

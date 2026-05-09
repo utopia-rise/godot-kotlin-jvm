@@ -3,12 +3,12 @@ package godot.tests.reflection
 import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import godot.api.Node
-import godot.annotation.script
+import godot.annotation.GodotScript
 import godot.annotation.Register
 
 
 @Suppress("ClassName")
-@script
+@GodotScript
 class GH571_ReflectionTest: Node() {
 
     private val testJsonString = """

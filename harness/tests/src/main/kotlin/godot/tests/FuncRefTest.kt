@@ -1,20 +1,19 @@
 package godot.tests
 
 import godot.api.Node
-import godot.annotation.script
+import godot.annotation.GodotScript
 import godot.annotation.Register
 import godot.annotation.Visible
-import godot.annotation.RegisterSignal
 import godot.annotation.Rpc
 import godot.core.callable0
 import godot.core.callable1
 import godot.core.signal0
 import godot.extension.connectMethod
 
-@script
+@GodotScript
 class FuncRefTest : Node() {
 
-    @RegisterSignal
+    
     val test by signal0()
 
     @Visible
@@ -73,3 +72,4 @@ class FuncRefTest : Node() {
         callable1(this::withParamCallback).callDeferred(true)
     }
 }
+

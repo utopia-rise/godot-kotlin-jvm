@@ -5,7 +5,7 @@ import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.analysis.GodotProblem
 import godot.intellij.plugin.project.asClassId
 import godot.intellij.plugin.project.isGodotRegisteredFunction
-import godot.tools.common.names.Annotation
+import godot.tools.common.names.Registration
 import godot.tools.common.names.API
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.psi.KtNamedFunction
@@ -15,7 +15,7 @@ object RegisterMethodAnalyzer {
     fun analyze(function: KtNamedFunction): List<GodotProblem> {
         return buildList {
             if (
-                function.containingClass()?.findAnnotation(Annotation.registerClass.asClassId()) != null &&
+                function.containingClass()?.findAnnotation(Registration.registerClass.asClassId()) != null &&
                 API.notificationFunctions.any { it.simpleName == function.name } &&
                 !function.isGodotRegisteredFunction()
             ) {

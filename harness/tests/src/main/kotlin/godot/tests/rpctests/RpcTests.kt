@@ -1,13 +1,13 @@
 package godot.tests.rpctests
 
 import godot.api.Node
-import godot.annotation.script
+import godot.annotation.GodotScript
 import godot.annotation.Register
 import godot.annotation.Visible
 import godot.annotation.Rpc
 import godot.annotation.Sync
 
-@script("RPCTests")
+@GodotScript("RPCTests")
 class RpcTests : Node() {
 
     @Visible

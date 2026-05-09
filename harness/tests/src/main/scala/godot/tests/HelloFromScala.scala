@@ -1,13 +1,13 @@
 package godot.tests
 
-import godot.annotation.{script, Register, RegisterSignal, Visible}
+import godot.annotation.{GodotScript, Register, ArgumentName, Visible}
 import godot.api.Node
 import godot.core.Signal2
 
-@script
+@GodotScript
 class HelloFromScala extends Node {
 
-  //@RegisterSignal(parameters = Array("param1", "param2"))
+  //@ArgumentName(parameters = Array("param1", "param2"))
   //val mySignal: Signal2[String, String] = Signal2.create(this, "test_signal_2")
 
   @Visible
@@ -22,3 +22,4 @@ class HelloFromScala extends Node {
     println("hello")
   }
 }
+

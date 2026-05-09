@@ -1,12 +1,12 @@
 package godot.tests.coretypes
 
 import godot.api.Node
-import godot.annotation.script
+import godot.annotation.GodotScript
 import godot.annotation.Register
 import godot.core.Vector3
 import godot.common.util.RealT
 
-@script
+@GodotScript
 class Vector3Test : Node() {
 
     @Register

@@ -7,14 +7,14 @@ import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.analysis.GodotProblem
 import godot.intellij.plugin.project.isGodotRegisteredFunction
 import godot.tools.common.names.API
-import godot.tools.common.names.Annotation
+import godot.tools.common.names.Registration
 import godot.tools.common.names.qualifiedName
 
 object RegisterMethodAnalyzer {
     fun analyze(method: PsiMethod): List<GodotProblem> {
         return buildList {
             if (
-                method.containingClass?.getAnnotation(Annotation.registerClass.qualifiedName) != null &&
+                method.containingClass?.getAnnotation(Registration.registerClass.qualifiedName) != null &&
                 API.notificationFunctions.any { it.simpleName == method.name } &&
                 !method.isGodotRegisteredFunction()
             ) {

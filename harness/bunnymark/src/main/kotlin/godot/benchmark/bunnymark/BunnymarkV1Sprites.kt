@@ -4,13 +4,12 @@ import godot.core.*
 import godot.*
 import godot.annotation.GodotScript
 import godot.annotation.Register
-import godot.annotation.RegisterSignal
 import godot.signals.signal
 
 @GodotScript("BunnymarkV1Sprites")
 class BunnymarkV1Sprites : Node2D() {
 
-	@RegisterSignal
+	
 	val benchmarkFinished by signal<Int>("bunnyCount")
 
 	private data class Bunny(var sprite: Sprite2D, var speed: Vector2)
@@ -95,3 +94,4 @@ class BunnymarkV1Sprites : Node2D() {
         benchmarkFinished.emit(bunnies.size)
 	}
 }
+
