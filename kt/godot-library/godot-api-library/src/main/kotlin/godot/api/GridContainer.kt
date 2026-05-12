@@ -10,12 +10,15 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -55,7 +58,15 @@ public open class GridContainer : Container() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setColumnsName: MethodStringName1<GridContainer, Unit, Int> =
+        MethodStringName1<GridContainer, Unit, Int>("set_columns")
+
+    @JvmField
+    public val getColumnsName: MethodStringName0<GridContainer, Int> =
+        MethodStringName0<GridContainer, Int>("get_columns")
+  }
 
   public object MethodBindings {
     internal val setColumnsPtr: VoidPtr =

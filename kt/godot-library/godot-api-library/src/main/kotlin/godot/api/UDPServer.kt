@@ -11,6 +11,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -22,6 +25,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
@@ -256,7 +260,43 @@ public open class UDPServer : RefCounted() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val listenName: MethodStringName2<UDPServer, Error, Int, String> =
+        MethodStringName2<UDPServer, Error, Int, String>("listen")
+
+    @JvmField
+    public val pollName: MethodStringName0<UDPServer, Error> =
+        MethodStringName0<UDPServer, Error>("poll")
+
+    @JvmField
+    public val isConnectionAvailableName: MethodStringName0<UDPServer, Boolean> =
+        MethodStringName0<UDPServer, Boolean>("is_connection_available")
+
+    @JvmField
+    public val getLocalPortName: MethodStringName0<UDPServer, Int> =
+        MethodStringName0<UDPServer, Int>("get_local_port")
+
+    @JvmField
+    public val isListeningName: MethodStringName0<UDPServer, Boolean> =
+        MethodStringName0<UDPServer, Boolean>("is_listening")
+
+    @JvmField
+    public val takeConnectionName: MethodStringName0<UDPServer, PacketPeerUDP?> =
+        MethodStringName0<UDPServer, PacketPeerUDP?>("take_connection")
+
+    @JvmField
+    public val stopName: MethodStringName0<UDPServer, Unit> =
+        MethodStringName0<UDPServer, Unit>("stop")
+
+    @JvmField
+    public val setMaxPendingConnectionsName: MethodStringName1<UDPServer, Unit, Int> =
+        MethodStringName1<UDPServer, Unit, Int>("set_max_pending_connections")
+
+    @JvmField
+    public val getMaxPendingConnectionsName: MethodStringName0<UDPServer, Int> =
+        MethodStringName0<UDPServer, Int>("get_max_pending_connections")
+  }
 
   public object MethodBindings {
     internal val listenPtr: VoidPtr =

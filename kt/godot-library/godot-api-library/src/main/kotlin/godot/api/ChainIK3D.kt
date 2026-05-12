@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -23,6 +25,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 
 /**
  * Base class of [SkeletonModifier3D] that automatically generates a joint list from the bones
@@ -189,7 +192,77 @@ public open class ChainIK3D internal constructor() : IKModifier3D() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setRootBoneNameName: MethodStringName2<ChainIK3D, Unit, Int, String> =
+        MethodStringName2<ChainIK3D, Unit, Int, String>("set_root_bone_name")
+
+    @JvmField
+    public val getRootBoneNameName: MethodStringName1<ChainIK3D, String, Int> =
+        MethodStringName1<ChainIK3D, String, Int>("get_root_bone_name")
+
+    @JvmField
+    public val setRootBoneName: MethodStringName2<ChainIK3D, Unit, Int, Int> =
+        MethodStringName2<ChainIK3D, Unit, Int, Int>("set_root_bone")
+
+    @JvmField
+    public val getRootBoneName: MethodStringName1<ChainIK3D, Int, Int> =
+        MethodStringName1<ChainIK3D, Int, Int>("get_root_bone")
+
+    @JvmField
+    public val setEndBoneNameName: MethodStringName2<ChainIK3D, Unit, Int, String> =
+        MethodStringName2<ChainIK3D, Unit, Int, String>("set_end_bone_name")
+
+    @JvmField
+    public val getEndBoneNameName: MethodStringName1<ChainIK3D, String, Int> =
+        MethodStringName1<ChainIK3D, String, Int>("get_end_bone_name")
+
+    @JvmField
+    public val setEndBoneName: MethodStringName2<ChainIK3D, Unit, Int, Int> =
+        MethodStringName2<ChainIK3D, Unit, Int, Int>("set_end_bone")
+
+    @JvmField
+    public val getEndBoneName: MethodStringName1<ChainIK3D, Int, Int> =
+        MethodStringName1<ChainIK3D, Int, Int>("get_end_bone")
+
+    @JvmField
+    public val setExtendEndBoneName: MethodStringName2<ChainIK3D, Unit, Int, Boolean> =
+        MethodStringName2<ChainIK3D, Unit, Int, Boolean>("set_extend_end_bone")
+
+    @JvmField
+    public val isEndBoneExtendedName: MethodStringName1<ChainIK3D, Boolean, Int> =
+        MethodStringName1<ChainIK3D, Boolean, Int>("is_end_bone_extended")
+
+    @JvmField
+    public val setEndBoneDirectionName:
+        MethodStringName2<ChainIK3D, Unit, Int, SkeletonModifier3D.BoneDirection> =
+        MethodStringName2<ChainIK3D, Unit, Int, SkeletonModifier3D.BoneDirection>("set_end_bone_direction")
+
+    @JvmField
+    public val getEndBoneDirectionName:
+        MethodStringName1<ChainIK3D, SkeletonModifier3D.BoneDirection, Int> =
+        MethodStringName1<ChainIK3D, SkeletonModifier3D.BoneDirection, Int>("get_end_bone_direction")
+
+    @JvmField
+    public val setEndBoneLengthName: MethodStringName2<ChainIK3D, Unit, Int, Float> =
+        MethodStringName2<ChainIK3D, Unit, Int, Float>("set_end_bone_length")
+
+    @JvmField
+    public val getEndBoneLengthName: MethodStringName1<ChainIK3D, Float, Int> =
+        MethodStringName1<ChainIK3D, Float, Int>("get_end_bone_length")
+
+    @JvmField
+    public val getJointBoneNameName: MethodStringName2<ChainIK3D, String, Int, Int> =
+        MethodStringName2<ChainIK3D, String, Int, Int>("get_joint_bone_name")
+
+    @JvmField
+    public val getJointBoneName: MethodStringName2<ChainIK3D, Int, Int, Int> =
+        MethodStringName2<ChainIK3D, Int, Int, Int>("get_joint_bone")
+
+    @JvmField
+    public val getJointCountName: MethodStringName1<ChainIK3D, Int, Int> =
+        MethodStringName1<ChainIK3D, Int, Int>("get_joint_count")
+  }
 
   public object MethodBindings {
     internal val setRootBoneNamePtr: VoidPtr =

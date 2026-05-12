@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName3
 import godot.core.RID
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
@@ -18,6 +19,7 @@ import godot.core.VariantParser._RID
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmStatic
 
 /**
@@ -32,6 +34,11 @@ public open class UniformSetCacheRD : Object() {
   }
 
   public companion object {
+    @JvmField
+    public val getCacheName:
+        MethodStringName3<UniformSetCacheRD, RID, RID, Long, VariantArray<RDUniform>> =
+        MethodStringName3<UniformSetCacheRD, RID, RID, Long, VariantArray<RDUniform>>("get_cache")
+
     /**
      * Creates/returns a cached uniform set based on the provided uniforms for a given shader.
      */

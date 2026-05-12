@@ -12,8 +12,13 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Callable
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
 import godot.core.RID
 import godot.core.Transform3D
+import godot.core.VariantCallable
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.CALLABLE
 import godot.core.VariantParser.LONG
@@ -25,6 +30,7 @@ import kotlin.Boolean
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -77,7 +83,7 @@ public open class OpenXRSpatialAnchorCapability : OpenXRExtensionWrapper() {
    */
   @JvmOverloads
   public final fun createPersistenceContext(scope: PersistenceScope, userCallback: Callable =
-      Callable()): OpenXRFutureResult? {
+      VariantCallable()): OpenXRFutureResult? {
     TransferContext.writeArguments(LONG to scope.value, CALLABLE to userCallback)
     TransferContext.callMethod(ptr, MethodBindings.createPersistenceContextPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as OpenXRFutureResult?)
@@ -141,7 +147,7 @@ public open class OpenXRSpatialAnchorCapability : OpenXRExtensionWrapper() {
   public final fun persistAnchor(
     anchorTracker: OpenXRAnchorTracker?,
     persistenceContext: RID = RID(),
-    userCallback: Callable = Callable(),
+    userCallback: Callable = VariantCallable(),
   ): OpenXRFutureResult? {
     TransferContext.writeArguments(OBJECT to anchorTracker, _RID to persistenceContext, CALLABLE to userCallback)
     TransferContext.callMethod(ptr, MethodBindings.persistAnchorPtr, OBJECT)
@@ -162,7 +168,7 @@ public open class OpenXRSpatialAnchorCapability : OpenXRExtensionWrapper() {
   public final fun unpersistAnchor(
     anchorTracker: OpenXRAnchorTracker?,
     persistenceContext: RID = RID(),
-    userCallback: Callable = Callable(),
+    userCallback: Callable = VariantCallable(),
   ): OpenXRFutureResult? {
     TransferContext.writeArguments(OBJECT to anchorTracker, _RID to persistenceContext, CALLABLE to userCallback)
     TransferContext.callMethod(ptr, MethodBindings.unpersistAnchorPtr, OBJECT)
@@ -196,7 +202,60 @@ public open class OpenXRSpatialAnchorCapability : OpenXRExtensionWrapper() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val isSpatialAnchorSupportedName:
+        MethodStringName0<OpenXRSpatialAnchorCapability, Boolean> =
+        MethodStringName0<OpenXRSpatialAnchorCapability, Boolean>("is_spatial_anchor_supported")
+
+    @JvmField
+    public val isSpatialPersistenceSupportedName:
+        MethodStringName0<OpenXRSpatialAnchorCapability, Boolean> =
+        MethodStringName0<OpenXRSpatialAnchorCapability, Boolean>("is_spatial_persistence_supported")
+
+    @JvmField
+    public val isPersistenceScopeSupportedName:
+        MethodStringName1<OpenXRSpatialAnchorCapability, Boolean, PersistenceScope> =
+        MethodStringName1<OpenXRSpatialAnchorCapability, Boolean, PersistenceScope>("is_persistence_scope_supported")
+
+    @JvmField
+    public val createPersistenceContextName:
+        MethodStringName2<OpenXRSpatialAnchorCapability, OpenXRFutureResult?, PersistenceScope, Callable>
+        =
+        MethodStringName2<OpenXRSpatialAnchorCapability, OpenXRFutureResult?, PersistenceScope, Callable>("create_persistence_context")
+
+    @JvmField
+    public val getPersistenceContextHandleName:
+        MethodStringName1<OpenXRSpatialAnchorCapability, Long, RID> =
+        MethodStringName1<OpenXRSpatialAnchorCapability, Long, RID>("get_persistence_context_handle")
+
+    @JvmField
+    public val freePersistenceContextName:
+        MethodStringName1<OpenXRSpatialAnchorCapability, Unit, RID> =
+        MethodStringName1<OpenXRSpatialAnchorCapability, Unit, RID>("free_persistence_context")
+
+    @JvmField
+    public val createNewAnchorName:
+        MethodStringName2<OpenXRSpatialAnchorCapability, OpenXRAnchorTracker?, Transform3D, RID> =
+        MethodStringName2<OpenXRSpatialAnchorCapability, OpenXRAnchorTracker?, Transform3D, RID>("create_new_anchor")
+
+    @JvmField
+    public val removeAnchorName:
+        MethodStringName1<OpenXRSpatialAnchorCapability, Unit, OpenXRAnchorTracker?> =
+        MethodStringName1<OpenXRSpatialAnchorCapability, Unit, OpenXRAnchorTracker?>("remove_anchor")
+
+    @JvmField
+    public val persistAnchorName:
+        MethodStringName3<OpenXRSpatialAnchorCapability, OpenXRFutureResult?, OpenXRAnchorTracker?, RID, Callable>
+        =
+        MethodStringName3<OpenXRSpatialAnchorCapability, OpenXRFutureResult?, OpenXRAnchorTracker?, RID, Callable>("persist_anchor")
+
+    @JvmField
+    public val unpersistAnchorName:
+        MethodStringName3<OpenXRSpatialAnchorCapability, OpenXRFutureResult?, OpenXRAnchorTracker?, RID, Callable>
+        =
+        MethodStringName3<OpenXRSpatialAnchorCapability, OpenXRFutureResult?, OpenXRAnchorTracker?, RID, Callable>("unpersist_anchor")
+  }
 
   public object MethodBindings {
     internal val isSpatialAnchorSupportedPtr: VoidPtr =

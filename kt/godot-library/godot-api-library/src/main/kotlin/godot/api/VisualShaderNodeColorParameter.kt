@@ -13,12 +13,15 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -101,7 +104,24 @@ public open class VisualShaderNodeColorParameter : VisualShaderNodeParameter() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setDefaultValueEnabledName:
+        MethodStringName1<VisualShaderNodeColorParameter, Unit, Boolean> =
+        MethodStringName1<VisualShaderNodeColorParameter, Unit, Boolean>("set_default_value_enabled")
+
+    @JvmField
+    public val isDefaultValueEnabledName: MethodStringName0<VisualShaderNodeColorParameter, Boolean>
+        = MethodStringName0<VisualShaderNodeColorParameter, Boolean>("is_default_value_enabled")
+
+    @JvmField
+    public val setDefaultValueName: MethodStringName1<VisualShaderNodeColorParameter, Unit, Color> =
+        MethodStringName1<VisualShaderNodeColorParameter, Unit, Color>("set_default_value")
+
+    @JvmField
+    public val getDefaultValueName: MethodStringName0<VisualShaderNodeColorParameter, Color> =
+        MethodStringName0<VisualShaderNodeColorParameter, Color>("get_default_value")
+  }
 
   public object MethodBindings {
     internal val setDefaultValueEnabledPtr: VoidPtr =

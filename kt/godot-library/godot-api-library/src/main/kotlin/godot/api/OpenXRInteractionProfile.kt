@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.LONG
@@ -22,6 +24,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -140,7 +143,52 @@ public open class OpenXRInteractionProfile : Resource() {
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setInteractionProfilePathName:
+        MethodStringName1<OpenXRInteractionProfile, Unit, String> =
+        MethodStringName1<OpenXRInteractionProfile, Unit, String>("set_interaction_profile_path")
+
+    @JvmField
+    public val getInteractionProfilePathName: MethodStringName0<OpenXRInteractionProfile, String> =
+        MethodStringName0<OpenXRInteractionProfile, String>("get_interaction_profile_path")
+
+    @JvmField
+    public val getBindingCountName: MethodStringName0<OpenXRInteractionProfile, Int> =
+        MethodStringName0<OpenXRInteractionProfile, Int>("get_binding_count")
+
+    @JvmField
+    public val getBindingName: MethodStringName1<OpenXRInteractionProfile, OpenXRIPBinding?, Int> =
+        MethodStringName1<OpenXRInteractionProfile, OpenXRIPBinding?, Int>("get_binding")
+
+    @JvmField
+    public val setBindingsName:
+        MethodStringName1<OpenXRInteractionProfile, Unit, VariantArray<Any?>> =
+        MethodStringName1<OpenXRInteractionProfile, Unit, VariantArray<Any?>>("set_bindings")
+
+    @JvmField
+    public val getBindingsName: MethodStringName0<OpenXRInteractionProfile, VariantArray<Any?>> =
+        MethodStringName0<OpenXRInteractionProfile, VariantArray<Any?>>("get_bindings")
+
+    @JvmField
+    public val getBindingModifierCountName: MethodStringName0<OpenXRInteractionProfile, Int> =
+        MethodStringName0<OpenXRInteractionProfile, Int>("get_binding_modifier_count")
+
+    @JvmField
+    public val getBindingModifierName:
+        MethodStringName1<OpenXRInteractionProfile, OpenXRIPBindingModifier?, Int> =
+        MethodStringName1<OpenXRInteractionProfile, OpenXRIPBindingModifier?, Int>("get_binding_modifier")
+
+    @JvmField
+    public val setBindingModifiersName:
+        MethodStringName1<OpenXRInteractionProfile, Unit, VariantArray<Any?>> =
+        MethodStringName1<OpenXRInteractionProfile, Unit, VariantArray<Any?>>("set_binding_modifiers")
+
+    @JvmField
+    public val getBindingModifiersName:
+        MethodStringName0<OpenXRInteractionProfile, VariantArray<Any?>> =
+        MethodStringName0<OpenXRInteractionProfile, VariantArray<Any?>>("get_binding_modifiers")
+  }
 
   public object MethodBindings {
     internal val setInteractionProfilePathPtr: VoidPtr =

@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.PackedVector2Array
 import godot.core.RID
 import godot.core.Transform3D
@@ -20,6 +22,7 @@ import godot.core.VariantParser._RID
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 
 /**
  * Object for storing the queries 2D polygon result data when calling
@@ -49,7 +52,17 @@ public open class OpenXRSpatialComponentPolygon2DList : OpenXRSpatialComponentDa
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val getTransformName:
+        MethodStringName1<OpenXRSpatialComponentPolygon2DList, Transform3D, Long> =
+        MethodStringName1<OpenXRSpatialComponentPolygon2DList, Transform3D, Long>("get_transform")
+
+    @JvmField
+    public val getVerticesName:
+        MethodStringName2<OpenXRSpatialComponentPolygon2DList, PackedVector2Array, RID, Long> =
+        MethodStringName2<OpenXRSpatialComponentPolygon2DList, PackedVector2Array, RID, Long>("get_vertices")
+  }
 
   public object MethodBindings {
     internal val getTransformPtr: VoidPtr =

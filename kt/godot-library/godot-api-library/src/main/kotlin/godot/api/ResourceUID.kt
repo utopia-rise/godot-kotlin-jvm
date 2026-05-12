@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -19,6 +22,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmStatic
 
 /**
@@ -30,6 +34,54 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object ResourceUID : Object() {
+  @JvmField
+  public val idToTextName: MethodStringName1<ResourceUID, String, Long> =
+      MethodStringName1<ResourceUID, String, Long>("id_to_text")
+
+  @JvmField
+  public val textToIdName: MethodStringName1<ResourceUID, Long, String> =
+      MethodStringName1<ResourceUID, Long, String>("text_to_id")
+
+  @JvmField
+  public val createIdName: MethodStringName0<ResourceUID, Long> =
+      MethodStringName0<ResourceUID, Long>("create_id")
+
+  @JvmField
+  public val createIdForPathName: MethodStringName1<ResourceUID, Long, String> =
+      MethodStringName1<ResourceUID, Long, String>("create_id_for_path")
+
+  @JvmField
+  public val hasIdName: MethodStringName1<ResourceUID, Boolean, Long> =
+      MethodStringName1<ResourceUID, Boolean, Long>("has_id")
+
+  @JvmField
+  public val addIdName: MethodStringName2<ResourceUID, Unit, Long, String> =
+      MethodStringName2<ResourceUID, Unit, Long, String>("add_id")
+
+  @JvmField
+  public val setIdName: MethodStringName2<ResourceUID, Unit, Long, String> =
+      MethodStringName2<ResourceUID, Unit, Long, String>("set_id")
+
+  @JvmField
+  public val getIdPathName: MethodStringName1<ResourceUID, String, Long> =
+      MethodStringName1<ResourceUID, String, Long>("get_id_path")
+
+  @JvmField
+  public val removeIdName: MethodStringName1<ResourceUID, Unit, Long> =
+      MethodStringName1<ResourceUID, Unit, Long>("remove_id")
+
+  @JvmField
+  public val uidToPathName: MethodStringName1<ResourceUID, String, String> =
+      MethodStringName1<ResourceUID, String, String>("uid_to_path")
+
+  @JvmField
+  public val pathToUidName: MethodStringName1<ResourceUID, String, String> =
+      MethodStringName1<ResourceUID, String, String>("path_to_uid")
+
+  @JvmField
+  public val ensurePathName: MethodStringName1<ResourceUID, String, String> =
+      MethodStringName1<ResourceUID, String, String>("ensure_path")
+
   /**
    * The value to use for an invalid UID, for example if the resource could not be loaded.
    *

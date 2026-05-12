@@ -11,6 +11,10 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Callable
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.VariantCallable
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.CALLABLE
 import godot.core.VariantParser.LONG
@@ -20,6 +24,7 @@ import kotlin.Boolean
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -62,7 +67,7 @@ public open class OpenXRFutureExtension : OpenXRExtensionWrapper() {
    * ```
    */
   @JvmOverloads
-  public final fun registerFuture(future: Long, onSuccess: Callable = Callable()):
+  public final fun registerFuture(future: Long, onSuccess: Callable = VariantCallable()):
       OpenXRFutureResult? {
     TransferContext.writeArguments(LONG to future, CALLABLE to onSuccess)
     TransferContext.callMethod(ptr, MethodBindings.registerFuturePtr, OBJECT)
@@ -78,7 +83,20 @@ public open class OpenXRFutureExtension : OpenXRExtensionWrapper() {
     TransferContext.callMethod(ptr, MethodBindings.cancelFuturePtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val isActiveName: MethodStringName0<OpenXRFutureExtension, Boolean> =
+        MethodStringName0<OpenXRFutureExtension, Boolean>("is_active")
+
+    @JvmField
+    public val registerFutureName:
+        MethodStringName2<OpenXRFutureExtension, OpenXRFutureResult?, Long, Callable> =
+        MethodStringName2<OpenXRFutureExtension, OpenXRFutureResult?, Long, Callable>("register_future")
+
+    @JvmField
+    public val cancelFutureName: MethodStringName1<OpenXRFutureExtension, Unit, Long> =
+        MethodStringName1<OpenXRFutureExtension, Unit, Long>("cancel_future")
+  }
 
   public object MethodBindings {
     internal val isActivePtr: VoidPtr =

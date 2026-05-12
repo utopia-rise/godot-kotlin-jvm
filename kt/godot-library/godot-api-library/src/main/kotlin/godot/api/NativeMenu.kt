@@ -13,7 +13,16 @@ import godot.common.interop.VoidPtr
 import godot.core.Callable
 import godot.core.GodotEnum
 import godot.core.Key
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
+import godot.core.MethodStringName5
+import godot.core.MethodStringName7
+import godot.core.MethodStringName8
+import godot.core.MethodStringName9
 import godot.core.RID
+import godot.core.VariantCallable
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.CALLABLE
@@ -36,6 +45,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
@@ -78,6 +88,289 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object NativeMenu : Object() {
+  @JvmField
+  public val hasFeatureName: MethodStringName1<NativeMenu, Boolean, Feature> =
+      MethodStringName1<NativeMenu, Boolean, Feature>("has_feature")
+
+  @JvmField
+  public val hasSystemMenuName: MethodStringName1<NativeMenu, Boolean, SystemMenus> =
+      MethodStringName1<NativeMenu, Boolean, SystemMenus>("has_system_menu")
+
+  @JvmField
+  public val getSystemMenuName: MethodStringName1<NativeMenu, RID, SystemMenus> =
+      MethodStringName1<NativeMenu, RID, SystemMenus>("get_system_menu")
+
+  @JvmField
+  public val getSystemMenuNameName: MethodStringName1<NativeMenu, String, SystemMenus> =
+      MethodStringName1<NativeMenu, String, SystemMenus>("get_system_menu_name")
+
+  @JvmField
+  public val getSystemMenuTextName: MethodStringName1<NativeMenu, String, SystemMenus> =
+      MethodStringName1<NativeMenu, String, SystemMenus>("get_system_menu_text")
+
+  @JvmField
+  public val setSystemMenuTextName: MethodStringName2<NativeMenu, Unit, SystemMenus, String> =
+      MethodStringName2<NativeMenu, Unit, SystemMenus, String>("set_system_menu_text")
+
+  @JvmField
+  public val createMenuName: MethodStringName0<NativeMenu, RID> =
+      MethodStringName0<NativeMenu, RID>("create_menu")
+
+  @JvmField
+  public val hasMenuName: MethodStringName1<NativeMenu, Boolean, RID> =
+      MethodStringName1<NativeMenu, Boolean, RID>("has_menu")
+
+  @JvmField
+  public val freeMenuName: MethodStringName1<NativeMenu, Unit, RID> =
+      MethodStringName1<NativeMenu, Unit, RID>("free_menu")
+
+  @JvmField
+  public val getSizeName: MethodStringName1<NativeMenu, Vector2, RID> =
+      MethodStringName1<NativeMenu, Vector2, RID>("get_size")
+
+  @JvmField
+  public val popupName: MethodStringName2<NativeMenu, Unit, RID, Vector2i> =
+      MethodStringName2<NativeMenu, Unit, RID, Vector2i>("popup")
+
+  @JvmField
+  public val setInterfaceDirectionName: MethodStringName2<NativeMenu, Unit, RID, Boolean> =
+      MethodStringName2<NativeMenu, Unit, RID, Boolean>("set_interface_direction")
+
+  @JvmField
+  public val setPopupOpenCallbackName: MethodStringName2<NativeMenu, Unit, RID, Callable> =
+      MethodStringName2<NativeMenu, Unit, RID, Callable>("set_popup_open_callback")
+
+  @JvmField
+  public val getPopupOpenCallbackName: MethodStringName1<NativeMenu, Callable, RID> =
+      MethodStringName1<NativeMenu, Callable, RID>("get_popup_open_callback")
+
+  @JvmField
+  public val setPopupCloseCallbackName: MethodStringName2<NativeMenu, Unit, RID, Callable> =
+      MethodStringName2<NativeMenu, Unit, RID, Callable>("set_popup_close_callback")
+
+  @JvmField
+  public val getPopupCloseCallbackName: MethodStringName1<NativeMenu, Callable, RID> =
+      MethodStringName1<NativeMenu, Callable, RID>("get_popup_close_callback")
+
+  @JvmField
+  public val setMinimumWidthName: MethodStringName2<NativeMenu, Unit, RID, Float> =
+      MethodStringName2<NativeMenu, Unit, RID, Float>("set_minimum_width")
+
+  @JvmField
+  public val getMinimumWidthName: MethodStringName1<NativeMenu, Float, RID> =
+      MethodStringName1<NativeMenu, Float, RID>("get_minimum_width")
+
+  @JvmField
+  public val isOpenedName: MethodStringName1<NativeMenu, Boolean, RID> =
+      MethodStringName1<NativeMenu, Boolean, RID>("is_opened")
+
+  @JvmField
+  public val addSubmenuItemName: MethodStringName5<NativeMenu, Int, RID, String, RID, Any?, Int> =
+      MethodStringName5<NativeMenu, Int, RID, String, RID, Any?, Int>("add_submenu_item")
+
+  @JvmField
+  public val addItemName:
+      MethodStringName7<NativeMenu, Int, RID, String, Callable, Callable, Any?, Key, Int> =
+      MethodStringName7<NativeMenu, Int, RID, String, Callable, Callable, Any?, Key, Int>("add_item")
+
+  @JvmField
+  public val addCheckItemName:
+      MethodStringName7<NativeMenu, Int, RID, String, Callable, Callable, Any?, Key, Int> =
+      MethodStringName7<NativeMenu, Int, RID, String, Callable, Callable, Any?, Key, Int>("add_check_item")
+
+  @JvmField
+  public val addIconItemName:
+      MethodStringName8<NativeMenu, Int, RID, Texture2D?, String, Callable, Callable, Any?, Key, Int>
+      =
+      MethodStringName8<NativeMenu, Int, RID, Texture2D?, String, Callable, Callable, Any?, Key, Int>("add_icon_item")
+
+  @JvmField
+  public val addIconCheckItemName:
+      MethodStringName8<NativeMenu, Int, RID, Texture2D?, String, Callable, Callable, Any?, Key, Int>
+      =
+      MethodStringName8<NativeMenu, Int, RID, Texture2D?, String, Callable, Callable, Any?, Key, Int>("add_icon_check_item")
+
+  @JvmField
+  public val addRadioCheckItemName:
+      MethodStringName7<NativeMenu, Int, RID, String, Callable, Callable, Any?, Key, Int> =
+      MethodStringName7<NativeMenu, Int, RID, String, Callable, Callable, Any?, Key, Int>("add_radio_check_item")
+
+  @JvmField
+  public val addIconRadioCheckItemName:
+      MethodStringName8<NativeMenu, Int, RID, Texture2D?, String, Callable, Callable, Any?, Key, Int>
+      =
+      MethodStringName8<NativeMenu, Int, RID, Texture2D?, String, Callable, Callable, Any?, Key, Int>("add_icon_radio_check_item")
+
+  @JvmField
+  public val addMultistateItemName:
+      MethodStringName9<NativeMenu, Int, RID, String, Int, Int, Callable, Callable, Any?, Key, Int>
+      =
+      MethodStringName9<NativeMenu, Int, RID, String, Int, Int, Callable, Callable, Any?, Key, Int>("add_multistate_item")
+
+  @JvmField
+  public val addSeparatorName: MethodStringName2<NativeMenu, Int, RID, Int> =
+      MethodStringName2<NativeMenu, Int, RID, Int>("add_separator")
+
+  @JvmField
+  public val findItemIndexWithTextName: MethodStringName2<NativeMenu, Int, RID, String> =
+      MethodStringName2<NativeMenu, Int, RID, String>("find_item_index_with_text")
+
+  @JvmField
+  public val findItemIndexWithTagName: MethodStringName2<NativeMenu, Int, RID, Any?> =
+      MethodStringName2<NativeMenu, Int, RID, Any?>("find_item_index_with_tag")
+
+  @JvmField
+  public val findItemIndexWithSubmenuName: MethodStringName2<NativeMenu, Int, RID, RID> =
+      MethodStringName2<NativeMenu, Int, RID, RID>("find_item_index_with_submenu")
+
+  @JvmField
+  public val isItemCheckedName: MethodStringName2<NativeMenu, Boolean, RID, Int> =
+      MethodStringName2<NativeMenu, Boolean, RID, Int>("is_item_checked")
+
+  @JvmField
+  public val isItemCheckableName: MethodStringName2<NativeMenu, Boolean, RID, Int> =
+      MethodStringName2<NativeMenu, Boolean, RID, Int>("is_item_checkable")
+
+  @JvmField
+  public val isItemRadioCheckableName: MethodStringName2<NativeMenu, Boolean, RID, Int> =
+      MethodStringName2<NativeMenu, Boolean, RID, Int>("is_item_radio_checkable")
+
+  @JvmField
+  public val getItemCallbackName: MethodStringName2<NativeMenu, Callable, RID, Int> =
+      MethodStringName2<NativeMenu, Callable, RID, Int>("get_item_callback")
+
+  @JvmField
+  public val getItemKeyCallbackName: MethodStringName2<NativeMenu, Callable, RID, Int> =
+      MethodStringName2<NativeMenu, Callable, RID, Int>("get_item_key_callback")
+
+  @JvmField
+  public val getItemTagName: MethodStringName2<NativeMenu, Any?, RID, Int> =
+      MethodStringName2<NativeMenu, Any?, RID, Int>("get_item_tag")
+
+  @JvmField
+  public val getItemTextName: MethodStringName2<NativeMenu, String, RID, Int> =
+      MethodStringName2<NativeMenu, String, RID, Int>("get_item_text")
+
+  @JvmField
+  public val getItemSubmenuName: MethodStringName2<NativeMenu, RID, RID, Int> =
+      MethodStringName2<NativeMenu, RID, RID, Int>("get_item_submenu")
+
+  @JvmField
+  public val getItemAcceleratorName: MethodStringName2<NativeMenu, Key, RID, Int> =
+      MethodStringName2<NativeMenu, Key, RID, Int>("get_item_accelerator")
+
+  @JvmField
+  public val isItemDisabledName: MethodStringName2<NativeMenu, Boolean, RID, Int> =
+      MethodStringName2<NativeMenu, Boolean, RID, Int>("is_item_disabled")
+
+  @JvmField
+  public val isItemHiddenName: MethodStringName2<NativeMenu, Boolean, RID, Int> =
+      MethodStringName2<NativeMenu, Boolean, RID, Int>("is_item_hidden")
+
+  @JvmField
+  public val getItemTooltipName: MethodStringName2<NativeMenu, String, RID, Int> =
+      MethodStringName2<NativeMenu, String, RID, Int>("get_item_tooltip")
+
+  @JvmField
+  public val getItemStateName: MethodStringName2<NativeMenu, Int, RID, Int> =
+      MethodStringName2<NativeMenu, Int, RID, Int>("get_item_state")
+
+  @JvmField
+  public val getItemMaxStatesName: MethodStringName2<NativeMenu, Int, RID, Int> =
+      MethodStringName2<NativeMenu, Int, RID, Int>("get_item_max_states")
+
+  @JvmField
+  public val getItemIconName: MethodStringName2<NativeMenu, Texture2D?, RID, Int> =
+      MethodStringName2<NativeMenu, Texture2D?, RID, Int>("get_item_icon")
+
+  @JvmField
+  public val getItemIndentationLevelName: MethodStringName2<NativeMenu, Int, RID, Int> =
+      MethodStringName2<NativeMenu, Int, RID, Int>("get_item_indentation_level")
+
+  @JvmField
+  public val setItemCheckedName: MethodStringName3<NativeMenu, Unit, RID, Int, Boolean> =
+      MethodStringName3<NativeMenu, Unit, RID, Int, Boolean>("set_item_checked")
+
+  @JvmField
+  public val setItemCheckableName: MethodStringName3<NativeMenu, Unit, RID, Int, Boolean> =
+      MethodStringName3<NativeMenu, Unit, RID, Int, Boolean>("set_item_checkable")
+
+  @JvmField
+  public val setItemRadioCheckableName: MethodStringName3<NativeMenu, Unit, RID, Int, Boolean> =
+      MethodStringName3<NativeMenu, Unit, RID, Int, Boolean>("set_item_radio_checkable")
+
+  @JvmField
+  public val setItemCallbackName: MethodStringName3<NativeMenu, Unit, RID, Int, Callable> =
+      MethodStringName3<NativeMenu, Unit, RID, Int, Callable>("set_item_callback")
+
+  @JvmField
+  public val setItemHoverCallbacksName: MethodStringName3<NativeMenu, Unit, RID, Int, Callable> =
+      MethodStringName3<NativeMenu, Unit, RID, Int, Callable>("set_item_hover_callbacks")
+
+  @JvmField
+  public val setItemKeyCallbackName: MethodStringName3<NativeMenu, Unit, RID, Int, Callable> =
+      MethodStringName3<NativeMenu, Unit, RID, Int, Callable>("set_item_key_callback")
+
+  @JvmField
+  public val setItemTagName: MethodStringName3<NativeMenu, Unit, RID, Int, Any?> =
+      MethodStringName3<NativeMenu, Unit, RID, Int, Any?>("set_item_tag")
+
+  @JvmField
+  public val setItemTextName: MethodStringName3<NativeMenu, Unit, RID, Int, String> =
+      MethodStringName3<NativeMenu, Unit, RID, Int, String>("set_item_text")
+
+  @JvmField
+  public val setItemSubmenuName: MethodStringName3<NativeMenu, Unit, RID, Int, RID> =
+      MethodStringName3<NativeMenu, Unit, RID, Int, RID>("set_item_submenu")
+
+  @JvmField
+  public val setItemAcceleratorName: MethodStringName3<NativeMenu, Unit, RID, Int, Key> =
+      MethodStringName3<NativeMenu, Unit, RID, Int, Key>("set_item_accelerator")
+
+  @JvmField
+  public val setItemDisabledName: MethodStringName3<NativeMenu, Unit, RID, Int, Boolean> =
+      MethodStringName3<NativeMenu, Unit, RID, Int, Boolean>("set_item_disabled")
+
+  @JvmField
+  public val setItemHiddenName: MethodStringName3<NativeMenu, Unit, RID, Int, Boolean> =
+      MethodStringName3<NativeMenu, Unit, RID, Int, Boolean>("set_item_hidden")
+
+  @JvmField
+  public val setItemTooltipName: MethodStringName3<NativeMenu, Unit, RID, Int, String> =
+      MethodStringName3<NativeMenu, Unit, RID, Int, String>("set_item_tooltip")
+
+  @JvmField
+  public val setItemStateName: MethodStringName3<NativeMenu, Unit, RID, Int, Int> =
+      MethodStringName3<NativeMenu, Unit, RID, Int, Int>("set_item_state")
+
+  @JvmField
+  public val setItemMaxStatesName: MethodStringName3<NativeMenu, Unit, RID, Int, Int> =
+      MethodStringName3<NativeMenu, Unit, RID, Int, Int>("set_item_max_states")
+
+  @JvmField
+  public val setItemIconName: MethodStringName3<NativeMenu, Unit, RID, Int, Texture2D?> =
+      MethodStringName3<NativeMenu, Unit, RID, Int, Texture2D?>("set_item_icon")
+
+  @JvmField
+  public val setItemIndentationLevelName: MethodStringName3<NativeMenu, Unit, RID, Int, Int> =
+      MethodStringName3<NativeMenu, Unit, RID, Int, Int>("set_item_indentation_level")
+
+  @JvmField
+  public val getItemCountName: MethodStringName1<NativeMenu, Int, RID> =
+      MethodStringName1<NativeMenu, Int, RID>("get_item_count")
+
+  @JvmField
+  public val isSystemMenuName: MethodStringName1<NativeMenu, Boolean, RID> =
+      MethodStringName1<NativeMenu, Boolean, RID>("is_system_menu")
+
+  @JvmField
+  public val removeItemName: MethodStringName2<NativeMenu, Unit, RID, Int> =
+      MethodStringName2<NativeMenu, Unit, RID, Int>("remove_item")
+
+  @JvmField
+  public val clearName: MethodStringName1<NativeMenu, Unit, RID> =
+      MethodStringName1<NativeMenu, Unit, RID>("clear")
+
   public override fun new(scriptPtr: VoidPtr): Unit {
     getSingleton(15)
   }
@@ -352,8 +645,8 @@ public object NativeMenu : Object() {
   public final fun addItem(
     rid: RID,
     label: String,
-    callback: Callable = Callable(),
-    keyCallback: Callable = Callable(),
+    callback: Callable = VariantCallable(),
+    keyCallback: Callable = VariantCallable(),
     tag: Any? = null,
     accelerator: Key = Key.NONE,
     index: Int = -1,
@@ -385,8 +678,8 @@ public object NativeMenu : Object() {
   public final fun addCheckItem(
     rid: RID,
     label: String,
-    callback: Callable = Callable(),
-    keyCallback: Callable = Callable(),
+    callback: Callable = VariantCallable(),
+    keyCallback: Callable = VariantCallable(),
     tag: Any? = null,
     accelerator: Key = Key.NONE,
     index: Int = -1,
@@ -419,8 +712,8 @@ public object NativeMenu : Object() {
     rid: RID,
     icon: Texture2D?,
     label: String,
-    callback: Callable = Callable(),
-    keyCallback: Callable = Callable(),
+    callback: Callable = VariantCallable(),
+    keyCallback: Callable = VariantCallable(),
     tag: Any? = null,
     accelerator: Key = Key.NONE,
     index: Int = -1,
@@ -453,8 +746,8 @@ public object NativeMenu : Object() {
     rid: RID,
     icon: Texture2D?,
     label: String,
-    callback: Callable = Callable(),
-    keyCallback: Callable = Callable(),
+    callback: Callable = VariantCallable(),
+    keyCallback: Callable = VariantCallable(),
     tag: Any? = null,
     accelerator: Key = Key.NONE,
     index: Int = -1,
@@ -490,8 +783,8 @@ public object NativeMenu : Object() {
   public final fun addRadioCheckItem(
     rid: RID,
     label: String,
-    callback: Callable = Callable(),
-    keyCallback: Callable = Callable(),
+    callback: Callable = VariantCallable(),
+    keyCallback: Callable = VariantCallable(),
     tag: Any? = null,
     accelerator: Key = Key.NONE,
     index: Int = -1,
@@ -528,8 +821,8 @@ public object NativeMenu : Object() {
     rid: RID,
     icon: Texture2D?,
     label: String,
-    callback: Callable = Callable(),
-    keyCallback: Callable = Callable(),
+    callback: Callable = VariantCallable(),
+    keyCallback: Callable = VariantCallable(),
     tag: Any? = null,
     accelerator: Key = Key.NONE,
     index: Int = -1,
@@ -570,8 +863,8 @@ public object NativeMenu : Object() {
     label: String,
     maxStates: Int,
     defaultState: Int,
-    callback: Callable = Callable(),
-    keyCallback: Callable = Callable(),
+    callback: Callable = VariantCallable(),
+    keyCallback: Callable = VariantCallable(),
     tag: Any? = null,
     accelerator: Key = Key.NONE,
     index: Int = -1,

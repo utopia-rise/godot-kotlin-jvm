@@ -14,6 +14,9 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.PackedColorArray
 import godot.core.PackedFloat32Array
 import godot.core.VariantParser.COLOR
@@ -28,6 +31,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -330,7 +334,75 @@ public open class Gradient : Resource() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val addPointName: MethodStringName2<Gradient, Unit, Float, Color> =
+        MethodStringName2<Gradient, Unit, Float, Color>("add_point")
+
+    @JvmField
+    public val removePointName: MethodStringName1<Gradient, Unit, Int> =
+        MethodStringName1<Gradient, Unit, Int>("remove_point")
+
+    @JvmField
+    public val setOffsetName: MethodStringName2<Gradient, Unit, Int, Float> =
+        MethodStringName2<Gradient, Unit, Int, Float>("set_offset")
+
+    @JvmField
+    public val getOffsetName: MethodStringName1<Gradient, Float, Int> =
+        MethodStringName1<Gradient, Float, Int>("get_offset")
+
+    @JvmField
+    public val reverseName: MethodStringName0<Gradient, Unit> =
+        MethodStringName0<Gradient, Unit>("reverse")
+
+    @JvmField
+    public val setColorName: MethodStringName2<Gradient, Unit, Int, Color> =
+        MethodStringName2<Gradient, Unit, Int, Color>("set_color")
+
+    @JvmField
+    public val getColorName: MethodStringName1<Gradient, Color, Int> =
+        MethodStringName1<Gradient, Color, Int>("get_color")
+
+    @JvmField
+    public val sampleName: MethodStringName1<Gradient, Color, Float> =
+        MethodStringName1<Gradient, Color, Float>("sample")
+
+    @JvmField
+    public val getPointCountName: MethodStringName0<Gradient, Int> =
+        MethodStringName0<Gradient, Int>("get_point_count")
+
+    @JvmField
+    public val setOffsetsName: MethodStringName1<Gradient, Unit, PackedFloat32Array> =
+        MethodStringName1<Gradient, Unit, PackedFloat32Array>("set_offsets")
+
+    @JvmField
+    public val getOffsetsName: MethodStringName0<Gradient, PackedFloat32Array> =
+        MethodStringName0<Gradient, PackedFloat32Array>("get_offsets")
+
+    @JvmField
+    public val setColorsName: MethodStringName1<Gradient, Unit, PackedColorArray> =
+        MethodStringName1<Gradient, Unit, PackedColorArray>("set_colors")
+
+    @JvmField
+    public val getColorsName: MethodStringName0<Gradient, PackedColorArray> =
+        MethodStringName0<Gradient, PackedColorArray>("get_colors")
+
+    @JvmField
+    public val setInterpolationModeName: MethodStringName1<Gradient, Unit, InterpolationMode> =
+        MethodStringName1<Gradient, Unit, InterpolationMode>("set_interpolation_mode")
+
+    @JvmField
+    public val getInterpolationModeName: MethodStringName0<Gradient, InterpolationMode> =
+        MethodStringName0<Gradient, InterpolationMode>("get_interpolation_mode")
+
+    @JvmField
+    public val setInterpolationColorSpaceName: MethodStringName1<Gradient, Unit, ColorSpace> =
+        MethodStringName1<Gradient, Unit, ColorSpace>("set_interpolation_color_space")
+
+    @JvmField
+    public val getInterpolationColorSpaceName: MethodStringName0<Gradient, ColorSpace> =
+        MethodStringName0<Gradient, ColorSpace>("get_interpolation_color_space")
+  }
 
   public object MethodBindings {
     internal val addPointPtr: VoidPtr =

@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
@@ -21,6 +23,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -142,7 +145,32 @@ public open class StaticBody2D : PhysicsBody2D() {
     return (TransferContext.readReturnValue(OBJECT) as PhysicsMaterial?)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setConstantLinearVelocityName: MethodStringName1<StaticBody2D, Unit, Vector2> =
+        MethodStringName1<StaticBody2D, Unit, Vector2>("set_constant_linear_velocity")
+
+    @JvmField
+    public val setConstantAngularVelocityName: MethodStringName1<StaticBody2D, Unit, Float> =
+        MethodStringName1<StaticBody2D, Unit, Float>("set_constant_angular_velocity")
+
+    @JvmField
+    public val getConstantLinearVelocityName: MethodStringName0<StaticBody2D, Vector2> =
+        MethodStringName0<StaticBody2D, Vector2>("get_constant_linear_velocity")
+
+    @JvmField
+    public val getConstantAngularVelocityName: MethodStringName0<StaticBody2D, Float> =
+        MethodStringName0<StaticBody2D, Float>("get_constant_angular_velocity")
+
+    @JvmField
+    public val setPhysicsMaterialOverrideName:
+        MethodStringName1<StaticBody2D, Unit, PhysicsMaterial?> =
+        MethodStringName1<StaticBody2D, Unit, PhysicsMaterial?>("set_physics_material_override")
+
+    @JvmField
+    public val getPhysicsMaterialOverrideName: MethodStringName0<StaticBody2D, PhysicsMaterial?> =
+        MethodStringName0<StaticBody2D, PhysicsMaterial?>("get_physics_material_override")
+  }
 
   public object MethodBindings {
     internal val setConstantLinearVelocityPtr: VoidPtr =

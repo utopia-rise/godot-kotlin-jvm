@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.Signal0
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
@@ -18,6 +20,7 @@ import kotlin.Boolean
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -66,7 +69,19 @@ public open class OpenXRAnchorTracker : OpenXRSpatialEntityTracker() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val hasUuidName: MethodStringName0<OpenXRAnchorTracker, Boolean> =
+        MethodStringName0<OpenXRAnchorTracker, Boolean>("has_uuid")
+
+    @JvmField
+    public val setUuidName: MethodStringName1<OpenXRAnchorTracker, Unit, String> =
+        MethodStringName1<OpenXRAnchorTracker, Unit, String>("set_uuid")
+
+    @JvmField
+    public val getUuidName: MethodStringName0<OpenXRAnchorTracker, String> =
+        MethodStringName0<OpenXRAnchorTracker, String>("get_uuid")
+  }
 
   public object MethodBindings {
     internal val hasUuidPtr: VoidPtr =

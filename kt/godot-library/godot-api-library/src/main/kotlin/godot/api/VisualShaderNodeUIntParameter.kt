@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -18,6 +20,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -75,7 +78,24 @@ public open class VisualShaderNodeUIntParameter : VisualShaderNodeParameter() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setDefaultValueEnabledName:
+        MethodStringName1<VisualShaderNodeUIntParameter, Unit, Boolean> =
+        MethodStringName1<VisualShaderNodeUIntParameter, Unit, Boolean>("set_default_value_enabled")
+
+    @JvmField
+    public val isDefaultValueEnabledName: MethodStringName0<VisualShaderNodeUIntParameter, Boolean>
+        = MethodStringName0<VisualShaderNodeUIntParameter, Boolean>("is_default_value_enabled")
+
+    @JvmField
+    public val setDefaultValueName: MethodStringName1<VisualShaderNodeUIntParameter, Unit, Int> =
+        MethodStringName1<VisualShaderNodeUIntParameter, Unit, Int>("set_default_value")
+
+    @JvmField
+    public val getDefaultValueName: MethodStringName0<VisualShaderNodeUIntParameter, Int> =
+        MethodStringName0<VisualShaderNodeUIntParameter, Int>("get_default_value")
+  }
 
   public object MethodBindings {
     internal val setDefaultValueEnabledPtr: VoidPtr =

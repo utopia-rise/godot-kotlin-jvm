@@ -10,6 +10,10 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
 import godot.core.Signal0
 import godot.core.StringName
 import godot.core.VariantParser.BOOL
@@ -28,6 +32,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
@@ -327,7 +332,83 @@ public open class AnimatedSprite3D : SpriteBase3D() {
    */
   public final fun playBackwards(name: String) = playBackwards(name.asCachedStringName())
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setSpriteFramesName: MethodStringName1<AnimatedSprite3D, Unit, SpriteFrames?> =
+        MethodStringName1<AnimatedSprite3D, Unit, SpriteFrames?>("set_sprite_frames")
+
+    @JvmField
+    public val getSpriteFramesName: MethodStringName0<AnimatedSprite3D, SpriteFrames?> =
+        MethodStringName0<AnimatedSprite3D, SpriteFrames?>("get_sprite_frames")
+
+    @JvmField
+    public val setAnimationName: MethodStringName1<AnimatedSprite3D, Unit, StringName> =
+        MethodStringName1<AnimatedSprite3D, Unit, StringName>("set_animation")
+
+    @JvmField
+    public val getAnimationName: MethodStringName0<AnimatedSprite3D, StringName> =
+        MethodStringName0<AnimatedSprite3D, StringName>("get_animation")
+
+    @JvmField
+    public val setAutoplayName: MethodStringName1<AnimatedSprite3D, Unit, String> =
+        MethodStringName1<AnimatedSprite3D, Unit, String>("set_autoplay")
+
+    @JvmField
+    public val getAutoplayName: MethodStringName0<AnimatedSprite3D, String> =
+        MethodStringName0<AnimatedSprite3D, String>("get_autoplay")
+
+    @JvmField
+    public val isPlayingName: MethodStringName0<AnimatedSprite3D, Boolean> =
+        MethodStringName0<AnimatedSprite3D, Boolean>("is_playing")
+
+    @JvmField
+    public val playName: MethodStringName3<AnimatedSprite3D, Unit, StringName, Float, Boolean> =
+        MethodStringName3<AnimatedSprite3D, Unit, StringName, Float, Boolean>("play")
+
+    @JvmField
+    public val playBackwardsName: MethodStringName1<AnimatedSprite3D, Unit, StringName> =
+        MethodStringName1<AnimatedSprite3D, Unit, StringName>("play_backwards")
+
+    @JvmField
+    public val pauseName: MethodStringName0<AnimatedSprite3D, Unit> =
+        MethodStringName0<AnimatedSprite3D, Unit>("pause")
+
+    @JvmField
+    public val stopName: MethodStringName0<AnimatedSprite3D, Unit> =
+        MethodStringName0<AnimatedSprite3D, Unit>("stop")
+
+    @JvmField
+    public val setFrameName: MethodStringName1<AnimatedSprite3D, Unit, Int> =
+        MethodStringName1<AnimatedSprite3D, Unit, Int>("set_frame")
+
+    @JvmField
+    public val getFrameName: MethodStringName0<AnimatedSprite3D, Int> =
+        MethodStringName0<AnimatedSprite3D, Int>("get_frame")
+
+    @JvmField
+    public val setFrameProgressName: MethodStringName1<AnimatedSprite3D, Unit, Float> =
+        MethodStringName1<AnimatedSprite3D, Unit, Float>("set_frame_progress")
+
+    @JvmField
+    public val getFrameProgressName: MethodStringName0<AnimatedSprite3D, Float> =
+        MethodStringName0<AnimatedSprite3D, Float>("get_frame_progress")
+
+    @JvmField
+    public val setFrameAndProgressName: MethodStringName2<AnimatedSprite3D, Unit, Int, Float> =
+        MethodStringName2<AnimatedSprite3D, Unit, Int, Float>("set_frame_and_progress")
+
+    @JvmField
+    public val setSpeedScaleName: MethodStringName1<AnimatedSprite3D, Unit, Float> =
+        MethodStringName1<AnimatedSprite3D, Unit, Float>("set_speed_scale")
+
+    @JvmField
+    public val getSpeedScaleName: MethodStringName0<AnimatedSprite3D, Float> =
+        MethodStringName0<AnimatedSprite3D, Float>("get_speed_scale")
+
+    @JvmField
+    public val getPlayingSpeedName: MethodStringName0<AnimatedSprite3D, Float> =
+        MethodStringName0<AnimatedSprite3D, Float>("get_playing_speed")
+  }
 
   public object MethodBindings {
     internal val setSpriteFramesPtr: VoidPtr =

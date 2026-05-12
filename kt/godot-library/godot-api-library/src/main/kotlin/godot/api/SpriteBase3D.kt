@@ -14,6 +14,9 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.Rect2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
@@ -32,6 +35,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -647,7 +651,147 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setCenteredName: MethodStringName1<SpriteBase3D, Unit, Boolean> =
+        MethodStringName1<SpriteBase3D, Unit, Boolean>("set_centered")
+
+    @JvmField
+    public val isCenteredName: MethodStringName0<SpriteBase3D, Boolean> =
+        MethodStringName0<SpriteBase3D, Boolean>("is_centered")
+
+    @JvmField
+    public val setOffsetName: MethodStringName1<SpriteBase3D, Unit, Vector2> =
+        MethodStringName1<SpriteBase3D, Unit, Vector2>("set_offset")
+
+    @JvmField
+    public val getOffsetName: MethodStringName0<SpriteBase3D, Vector2> =
+        MethodStringName0<SpriteBase3D, Vector2>("get_offset")
+
+    @JvmField
+    public val setFlipHName: MethodStringName1<SpriteBase3D, Unit, Boolean> =
+        MethodStringName1<SpriteBase3D, Unit, Boolean>("set_flip_h")
+
+    @JvmField
+    public val isFlippedHName: MethodStringName0<SpriteBase3D, Boolean> =
+        MethodStringName0<SpriteBase3D, Boolean>("is_flipped_h")
+
+    @JvmField
+    public val setFlipVName: MethodStringName1<SpriteBase3D, Unit, Boolean> =
+        MethodStringName1<SpriteBase3D, Unit, Boolean>("set_flip_v")
+
+    @JvmField
+    public val isFlippedVName: MethodStringName0<SpriteBase3D, Boolean> =
+        MethodStringName0<SpriteBase3D, Boolean>("is_flipped_v")
+
+    @JvmField
+    public val setModulateName: MethodStringName1<SpriteBase3D, Unit, Color> =
+        MethodStringName1<SpriteBase3D, Unit, Color>("set_modulate")
+
+    @JvmField
+    public val getModulateName: MethodStringName0<SpriteBase3D, Color> =
+        MethodStringName0<SpriteBase3D, Color>("get_modulate")
+
+    @JvmField
+    public val setRenderPriorityName: MethodStringName1<SpriteBase3D, Unit, Int> =
+        MethodStringName1<SpriteBase3D, Unit, Int>("set_render_priority")
+
+    @JvmField
+    public val getRenderPriorityName: MethodStringName0<SpriteBase3D, Int> =
+        MethodStringName0<SpriteBase3D, Int>("get_render_priority")
+
+    @JvmField
+    public val setPixelSizeName: MethodStringName1<SpriteBase3D, Unit, Float> =
+        MethodStringName1<SpriteBase3D, Unit, Float>("set_pixel_size")
+
+    @JvmField
+    public val getPixelSizeName: MethodStringName0<SpriteBase3D, Float> =
+        MethodStringName0<SpriteBase3D, Float>("get_pixel_size")
+
+    @JvmField
+    public val setAxisName: MethodStringName1<SpriteBase3D, Unit, Vector3.Axis> =
+        MethodStringName1<SpriteBase3D, Unit, Vector3.Axis>("set_axis")
+
+    @JvmField
+    public val getAxisName: MethodStringName0<SpriteBase3D, Vector3.Axis> =
+        MethodStringName0<SpriteBase3D, Vector3.Axis>("get_axis")
+
+    @JvmField
+    public val setDrawFlagName: MethodStringName2<SpriteBase3D, Unit, DrawFlags, Boolean> =
+        MethodStringName2<SpriteBase3D, Unit, DrawFlags, Boolean>("set_draw_flag")
+
+    @JvmField
+    public val getDrawFlagName: MethodStringName1<SpriteBase3D, Boolean, DrawFlags> =
+        MethodStringName1<SpriteBase3D, Boolean, DrawFlags>("get_draw_flag")
+
+    @JvmField
+    public val setAlphaCutModeName: MethodStringName1<SpriteBase3D, Unit, AlphaCutMode> =
+        MethodStringName1<SpriteBase3D, Unit, AlphaCutMode>("set_alpha_cut_mode")
+
+    @JvmField
+    public val getAlphaCutModeName: MethodStringName0<SpriteBase3D, AlphaCutMode> =
+        MethodStringName0<SpriteBase3D, AlphaCutMode>("get_alpha_cut_mode")
+
+    @JvmField
+    public val setAlphaScissorThresholdName: MethodStringName1<SpriteBase3D, Unit, Float> =
+        MethodStringName1<SpriteBase3D, Unit, Float>("set_alpha_scissor_threshold")
+
+    @JvmField
+    public val getAlphaScissorThresholdName: MethodStringName0<SpriteBase3D, Float> =
+        MethodStringName0<SpriteBase3D, Float>("get_alpha_scissor_threshold")
+
+    @JvmField
+    public val setAlphaHashScaleName: MethodStringName1<SpriteBase3D, Unit, Float> =
+        MethodStringName1<SpriteBase3D, Unit, Float>("set_alpha_hash_scale")
+
+    @JvmField
+    public val getAlphaHashScaleName: MethodStringName0<SpriteBase3D, Float> =
+        MethodStringName0<SpriteBase3D, Float>("get_alpha_hash_scale")
+
+    @JvmField
+    public val setAlphaAntialiasingName:
+        MethodStringName1<SpriteBase3D, Unit, BaseMaterial3D.AlphaAntiAliasing> =
+        MethodStringName1<SpriteBase3D, Unit, BaseMaterial3D.AlphaAntiAliasing>("set_alpha_antialiasing")
+
+    @JvmField
+    public val getAlphaAntialiasingName:
+        MethodStringName0<SpriteBase3D, BaseMaterial3D.AlphaAntiAliasing> =
+        MethodStringName0<SpriteBase3D, BaseMaterial3D.AlphaAntiAliasing>("get_alpha_antialiasing")
+
+    @JvmField
+    public val setAlphaAntialiasingEdgeName: MethodStringName1<SpriteBase3D, Unit, Float> =
+        MethodStringName1<SpriteBase3D, Unit, Float>("set_alpha_antialiasing_edge")
+
+    @JvmField
+    public val getAlphaAntialiasingEdgeName: MethodStringName0<SpriteBase3D, Float> =
+        MethodStringName0<SpriteBase3D, Float>("get_alpha_antialiasing_edge")
+
+    @JvmField
+    public val setBillboardModeName:
+        MethodStringName1<SpriteBase3D, Unit, BaseMaterial3D.BillboardMode> =
+        MethodStringName1<SpriteBase3D, Unit, BaseMaterial3D.BillboardMode>("set_billboard_mode")
+
+    @JvmField
+    public val getBillboardModeName: MethodStringName0<SpriteBase3D, BaseMaterial3D.BillboardMode> =
+        MethodStringName0<SpriteBase3D, BaseMaterial3D.BillboardMode>("get_billboard_mode")
+
+    @JvmField
+    public val setTextureFilterName:
+        MethodStringName1<SpriteBase3D, Unit, BaseMaterial3D.TextureFilter> =
+        MethodStringName1<SpriteBase3D, Unit, BaseMaterial3D.TextureFilter>("set_texture_filter")
+
+    @JvmField
+    public val getTextureFilterName: MethodStringName0<SpriteBase3D, BaseMaterial3D.TextureFilter> =
+        MethodStringName0<SpriteBase3D, BaseMaterial3D.TextureFilter>("get_texture_filter")
+
+    @JvmField
+    public val getItemRectName: MethodStringName0<SpriteBase3D, Rect2> =
+        MethodStringName0<SpriteBase3D, Rect2>("get_item_rect")
+
+    @JvmField
+    public val generateTriangleMeshName: MethodStringName0<SpriteBase3D, TriangleMesh?> =
+        MethodStringName0<SpriteBase3D, TriangleMesh?>("generate_triangle_mesh")
+  }
 
   public object MethodBindings {
     internal val setCenteredPtr: VoidPtr =

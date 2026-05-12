@@ -12,11 +12,14 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -77,7 +80,15 @@ public open class VisualShaderNodeVec3Constant : VisualShaderNodeConstant() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setConstantName: MethodStringName1<VisualShaderNodeVec3Constant, Unit, Vector3> =
+        MethodStringName1<VisualShaderNodeVec3Constant, Unit, Vector3>("set_constant")
+
+    @JvmField
+    public val getConstantName: MethodStringName0<VisualShaderNodeVec3Constant, Vector3> =
+        MethodStringName0<VisualShaderNodeVec3Constant, Vector3>("get_constant")
+  }
 
   public object MethodBindings {
     internal val setConstantPtr: VoidPtr =

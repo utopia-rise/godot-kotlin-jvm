@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName3
 import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.StringName
@@ -21,6 +24,7 @@ import kotlin.Boolean
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
@@ -249,7 +253,71 @@ public open class AcceptDialog : Window() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val getOkButtonName: MethodStringName0<AcceptDialog, Button?> =
+        MethodStringName0<AcceptDialog, Button?>("get_ok_button")
+
+    @JvmField
+    public val getLabelName: MethodStringName0<AcceptDialog, Label?> =
+        MethodStringName0<AcceptDialog, Label?>("get_label")
+
+    @JvmField
+    public val setHideOnOkName: MethodStringName1<AcceptDialog, Unit, Boolean> =
+        MethodStringName1<AcceptDialog, Unit, Boolean>("set_hide_on_ok")
+
+    @JvmField
+    public val getHideOnOkName: MethodStringName0<AcceptDialog, Boolean> =
+        MethodStringName0<AcceptDialog, Boolean>("get_hide_on_ok")
+
+    @JvmField
+    public val setCloseOnEscapeName: MethodStringName1<AcceptDialog, Unit, Boolean> =
+        MethodStringName1<AcceptDialog, Unit, Boolean>("set_close_on_escape")
+
+    @JvmField
+    public val getCloseOnEscapeName: MethodStringName0<AcceptDialog, Boolean> =
+        MethodStringName0<AcceptDialog, Boolean>("get_close_on_escape")
+
+    @JvmField
+    public val addButtonName: MethodStringName3<AcceptDialog, Button?, String, Boolean, String> =
+        MethodStringName3<AcceptDialog, Button?, String, Boolean, String>("add_button")
+
+    @JvmField
+    public val addCancelButtonName: MethodStringName1<AcceptDialog, Button?, String> =
+        MethodStringName1<AcceptDialog, Button?, String>("add_cancel_button")
+
+    @JvmField
+    public val removeButtonName: MethodStringName1<AcceptDialog, Unit, Button?> =
+        MethodStringName1<AcceptDialog, Unit, Button?>("remove_button")
+
+    @JvmField
+    public val registerTextEnterName: MethodStringName1<AcceptDialog, Unit, LineEdit?> =
+        MethodStringName1<AcceptDialog, Unit, LineEdit?>("register_text_enter")
+
+    @JvmField
+    public val setTextName: MethodStringName1<AcceptDialog, Unit, String> =
+        MethodStringName1<AcceptDialog, Unit, String>("set_text")
+
+    @JvmField
+    public val getTextName: MethodStringName0<AcceptDialog, String> =
+        MethodStringName0<AcceptDialog, String>("get_text")
+
+    @JvmField
+    public val setAutowrapName: MethodStringName1<AcceptDialog, Unit, Boolean> =
+        MethodStringName1<AcceptDialog, Unit, Boolean>("set_autowrap")
+
+    @JvmField
+    public val hasAutowrapName: MethodStringName0<AcceptDialog, Boolean> =
+        MethodStringName0<AcceptDialog, Boolean>("has_autowrap")
+
+    @JvmField
+    public val setOkButtonTextName: MethodStringName1<AcceptDialog, Unit, String> =
+        MethodStringName1<AcceptDialog, Unit, String>("set_ok_button_text")
+
+    @JvmField
+    public val getOkButtonTextName: MethodStringName0<AcceptDialog, String> =
+        MethodStringName0<AcceptDialog, String>("get_ok_button_text")
+  }
 
   public object MethodBindings {
     internal val getOkButtonPtr: VoidPtr =

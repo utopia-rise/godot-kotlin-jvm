@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -19,6 +21,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -126,7 +129,39 @@ public open class CapsuleMesh : PrimitiveMesh() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setRadiusName: MethodStringName1<CapsuleMesh, Unit, Float> =
+        MethodStringName1<CapsuleMesh, Unit, Float>("set_radius")
+
+    @JvmField
+    public val getRadiusName: MethodStringName0<CapsuleMesh, Float> =
+        MethodStringName0<CapsuleMesh, Float>("get_radius")
+
+    @JvmField
+    public val setHeightName: MethodStringName1<CapsuleMesh, Unit, Float> =
+        MethodStringName1<CapsuleMesh, Unit, Float>("set_height")
+
+    @JvmField
+    public val getHeightName: MethodStringName0<CapsuleMesh, Float> =
+        MethodStringName0<CapsuleMesh, Float>("get_height")
+
+    @JvmField
+    public val setRadialSegmentsName: MethodStringName1<CapsuleMesh, Unit, Int> =
+        MethodStringName1<CapsuleMesh, Unit, Int>("set_radial_segments")
+
+    @JvmField
+    public val getRadialSegmentsName: MethodStringName0<CapsuleMesh, Int> =
+        MethodStringName0<CapsuleMesh, Int>("get_radial_segments")
+
+    @JvmField
+    public val setRingsName: MethodStringName1<CapsuleMesh, Unit, Int> =
+        MethodStringName1<CapsuleMesh, Unit, Int>("set_rings")
+
+    @JvmField
+    public val getRingsName: MethodStringName0<CapsuleMesh, Int> =
+        MethodStringName0<CapsuleMesh, Int>("get_rings")
+  }
 
   public object MethodBindings {
     internal val setRadiusPtr: VoidPtr =

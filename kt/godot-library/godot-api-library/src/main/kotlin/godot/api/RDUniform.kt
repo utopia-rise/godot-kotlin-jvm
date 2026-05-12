@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.RID
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
@@ -20,6 +22,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -101,7 +104,35 @@ public open class RDUniform : RefCounted() {
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<RID>)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setUniformTypeName: MethodStringName1<RDUniform, Unit, RenderingDevice.UniformType> =
+        MethodStringName1<RDUniform, Unit, RenderingDevice.UniformType>("set_uniform_type")
+
+    @JvmField
+    public val getUniformTypeName: MethodStringName0<RDUniform, RenderingDevice.UniformType> =
+        MethodStringName0<RDUniform, RenderingDevice.UniformType>("get_uniform_type")
+
+    @JvmField
+    public val setBindingName: MethodStringName1<RDUniform, Unit, Int> =
+        MethodStringName1<RDUniform, Unit, Int>("set_binding")
+
+    @JvmField
+    public val getBindingName: MethodStringName0<RDUniform, Int> =
+        MethodStringName0<RDUniform, Int>("get_binding")
+
+    @JvmField
+    public val addIdName: MethodStringName1<RDUniform, Unit, RID> =
+        MethodStringName1<RDUniform, Unit, RID>("add_id")
+
+    @JvmField
+    public val clearIdsName: MethodStringName0<RDUniform, Unit> =
+        MethodStringName0<RDUniform, Unit>("clear_ids")
+
+    @JvmField
+    public val getIdsName: MethodStringName0<RDUniform, VariantArray<RID>> =
+        MethodStringName0<RDUniform, VariantArray<RID>>("get_ids")
+  }
 
   public object MethodBindings {
     internal val setUniformTypePtr: VoidPtr =

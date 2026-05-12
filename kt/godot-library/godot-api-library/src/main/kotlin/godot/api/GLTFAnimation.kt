@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.StringName
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.BOOL
@@ -22,6 +25,7 @@ import kotlin.Boolean
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 @GodotBaseType
@@ -122,7 +126,31 @@ public open class GLTFAnimation : Resource() {
   public final fun setAdditionalData(extensionName: String, additionalData: Any?) =
       setAdditionalData(extensionName.asCachedStringName(), additionalData)
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val getOriginalNameName: MethodStringName0<GLTFAnimation, String> =
+        MethodStringName0<GLTFAnimation, String>("get_original_name")
+
+    @JvmField
+    public val setOriginalNameName: MethodStringName1<GLTFAnimation, Unit, String> =
+        MethodStringName1<GLTFAnimation, Unit, String>("set_original_name")
+
+    @JvmField
+    public val getLoopName: MethodStringName0<GLTFAnimation, Boolean> =
+        MethodStringName0<GLTFAnimation, Boolean>("get_loop")
+
+    @JvmField
+    public val setLoopName: MethodStringName1<GLTFAnimation, Unit, Boolean> =
+        MethodStringName1<GLTFAnimation, Unit, Boolean>("set_loop")
+
+    @JvmField
+    public val getAdditionalDataName: MethodStringName1<GLTFAnimation, Any?, StringName> =
+        MethodStringName1<GLTFAnimation, Any?, StringName>("get_additional_data")
+
+    @JvmField
+    public val setAdditionalDataName: MethodStringName2<GLTFAnimation, Unit, StringName, Any?> =
+        MethodStringName2<GLTFAnimation, Unit, StringName, Any?>("set_additional_data")
+  }
 
   public object MethodBindings {
     internal val getOriginalNamePtr: VoidPtr =

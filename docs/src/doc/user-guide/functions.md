@@ -1,21 +1,48 @@
-Any Kotlin function can be registered as long as its parameters and return type can be converted to a `Variant`.
+Any Kotlin, Java, or Scala function can be registered as long as its parameters and return type can be converted to a `Variant`.
 To register a function annotate it with `@RegisterFunction`.
 
+/// tab | Kotlin
 ```kotlin
 @RegisterClass
-class RotatingCube: Node3D() {
+class RotatingCube : Node3D() {
     @RegisterFunction
     override fun _ready() {
         println("I am ready!")
     }
 }
 ```
+///
+
+/// tab | Java
+```java
+@RegisterClass
+public class RotatingCube extends Node3D {
+    @RegisterFunction
+    @Override
+    public void _ready() {
+        System.out.println("I am ready!");
+    }
+}
+```
+///
+
+/// tab | Scala
+```scala
+@RegisterClass
+class RotatingCube extends Node3D {
+  @RegisterFunction
+  override def _ready(): Unit = {
+    println("I am ready!")
+  }
+}
+```
+///
 
 ## Naming
 
-Function names should follow Kotlin's style which is `camelCase`. For consistency with Godot's style,
+Function names should follow the usual style of the language you use. For consistency with Godot's style,
 your functions are actually registered as `snake_case`.
-Therefore, a function called `doSomething()` in Kotlin is usable in GDScript as `do_something()`.
+Therefore, a function called `doSomething()` is usable in GDScript as `do_something()`.
 
 ## Virtual functions
 

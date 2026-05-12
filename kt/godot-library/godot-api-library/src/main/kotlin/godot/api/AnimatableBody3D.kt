@@ -10,11 +10,14 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -56,7 +59,15 @@ public open class AnimatableBody3D : StaticBody3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setSyncToPhysicsName: MethodStringName1<AnimatableBody3D, Unit, Boolean> =
+        MethodStringName1<AnimatableBody3D, Unit, Boolean>("set_sync_to_physics")
+
+    @JvmField
+    public val isSyncToPhysicsEnabledName: MethodStringName0<AnimatableBody3D, Boolean> =
+        MethodStringName0<AnimatableBody3D, Boolean>("is_sync_to_physics_enabled")
+  }
 
   public object MethodBindings {
     internal val setSyncToPhysicsPtr: VoidPtr =

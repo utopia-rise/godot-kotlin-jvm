@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.RID
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.LONG
@@ -19,6 +21,7 @@ import kotlin.Any
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 
 /**
  * Object for storing the queries marker result data when calling
@@ -98,7 +101,21 @@ public open class OpenXRSpatialComponentMarkerList : OpenXRSpatialComponentData(
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val getMarkerTypeName:
+        MethodStringName1<OpenXRSpatialComponentMarkerList, MarkerType, Long> =
+        MethodStringName1<OpenXRSpatialComponentMarkerList, MarkerType, Long>("get_marker_type")
+
+    @JvmField
+    public val getMarkerIdName: MethodStringName1<OpenXRSpatialComponentMarkerList, Long, Long> =
+        MethodStringName1<OpenXRSpatialComponentMarkerList, Long, Long>("get_marker_id")
+
+    @JvmField
+    public val getMarkerDataName:
+        MethodStringName2<OpenXRSpatialComponentMarkerList, Any?, RID, Long> =
+        MethodStringName2<OpenXRSpatialComponentMarkerList, Any?, RID, Long>("get_marker_data")
+  }
 
   public object MethodBindings {
     internal val getMarkerTypePtr: VoidPtr =

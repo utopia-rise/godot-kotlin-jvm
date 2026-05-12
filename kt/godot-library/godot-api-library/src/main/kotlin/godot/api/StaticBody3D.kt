@@ -12,12 +12,15 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -169,7 +172,32 @@ public open class StaticBody3D : PhysicsBody3D() {
     return (TransferContext.readReturnValue(OBJECT) as PhysicsMaterial?)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setConstantLinearVelocityName: MethodStringName1<StaticBody3D, Unit, Vector3> =
+        MethodStringName1<StaticBody3D, Unit, Vector3>("set_constant_linear_velocity")
+
+    @JvmField
+    public val setConstantAngularVelocityName: MethodStringName1<StaticBody3D, Unit, Vector3> =
+        MethodStringName1<StaticBody3D, Unit, Vector3>("set_constant_angular_velocity")
+
+    @JvmField
+    public val getConstantLinearVelocityName: MethodStringName0<StaticBody3D, Vector3> =
+        MethodStringName0<StaticBody3D, Vector3>("get_constant_linear_velocity")
+
+    @JvmField
+    public val getConstantAngularVelocityName: MethodStringName0<StaticBody3D, Vector3> =
+        MethodStringName0<StaticBody3D, Vector3>("get_constant_angular_velocity")
+
+    @JvmField
+    public val setPhysicsMaterialOverrideName:
+        MethodStringName1<StaticBody3D, Unit, PhysicsMaterial?> =
+        MethodStringName1<StaticBody3D, Unit, PhysicsMaterial?>("set_physics_material_override")
+
+    @JvmField
+    public val getPhysicsMaterialOverrideName: MethodStringName0<StaticBody3D, PhysicsMaterial?> =
+        MethodStringName0<StaticBody3D, PhysicsMaterial?>("get_physics_material_override")
+  }
 
   public object MethodBindings {
     internal val setConstantLinearVelocityPtr: VoidPtr =

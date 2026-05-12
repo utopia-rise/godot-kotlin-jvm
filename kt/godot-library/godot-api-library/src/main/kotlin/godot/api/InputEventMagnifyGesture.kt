@@ -10,12 +10,15 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import kotlin.Double
 import kotlin.Float
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -55,7 +58,15 @@ public open class InputEventMagnifyGesture : InputEventGesture() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setFactorName: MethodStringName1<InputEventMagnifyGesture, Unit, Float> =
+        MethodStringName1<InputEventMagnifyGesture, Unit, Float>("set_factor")
+
+    @JvmField
+    public val getFactorName: MethodStringName0<InputEventMagnifyGesture, Float> =
+        MethodStringName0<InputEventMagnifyGesture, Float>("get_factor")
+  }
 
   public object MethodBindings {
     internal val setFactorPtr: VoidPtr =

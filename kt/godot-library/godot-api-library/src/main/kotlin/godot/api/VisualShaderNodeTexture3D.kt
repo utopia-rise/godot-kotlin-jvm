@@ -10,10 +10,13 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -49,7 +52,15 @@ public open class VisualShaderNodeTexture3D : VisualShaderNodeSample3D() {
     return (TransferContext.readReturnValue(OBJECT) as Texture3D?)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setTextureName: MethodStringName1<VisualShaderNodeTexture3D, Unit, Texture3D?> =
+        MethodStringName1<VisualShaderNodeTexture3D, Unit, Texture3D?>("set_texture")
+
+    @JvmField
+    public val getTextureName: MethodStringName0<VisualShaderNodeTexture3D, Texture3D?> =
+        MethodStringName0<VisualShaderNodeTexture3D, Texture3D?>("get_texture")
+  }
 
   public object MethodBindings {
     internal val setTexturePtr: VoidPtr =

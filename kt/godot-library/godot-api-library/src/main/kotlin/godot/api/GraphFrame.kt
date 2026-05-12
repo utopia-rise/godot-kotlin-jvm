@@ -13,6 +13,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.Signal0
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
@@ -26,6 +28,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -220,7 +223,59 @@ public open class GraphFrame : GraphElement() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setTitleName: MethodStringName1<GraphFrame, Unit, String> =
+        MethodStringName1<GraphFrame, Unit, String>("set_title")
+
+    @JvmField
+    public val getTitleName: MethodStringName0<GraphFrame, String> =
+        MethodStringName0<GraphFrame, String>("get_title")
+
+    @JvmField
+    public val getTitlebarHboxName: MethodStringName0<GraphFrame, HBoxContainer?> =
+        MethodStringName0<GraphFrame, HBoxContainer?>("get_titlebar_hbox")
+
+    @JvmField
+    public val setAutoshrinkEnabledName: MethodStringName1<GraphFrame, Unit, Boolean> =
+        MethodStringName1<GraphFrame, Unit, Boolean>("set_autoshrink_enabled")
+
+    @JvmField
+    public val isAutoshrinkEnabledName: MethodStringName0<GraphFrame, Boolean> =
+        MethodStringName0<GraphFrame, Boolean>("is_autoshrink_enabled")
+
+    @JvmField
+    public val setAutoshrinkMarginName: MethodStringName1<GraphFrame, Unit, Int> =
+        MethodStringName1<GraphFrame, Unit, Int>("set_autoshrink_margin")
+
+    @JvmField
+    public val getAutoshrinkMarginName: MethodStringName0<GraphFrame, Int> =
+        MethodStringName0<GraphFrame, Int>("get_autoshrink_margin")
+
+    @JvmField
+    public val setDragMarginName: MethodStringName1<GraphFrame, Unit, Int> =
+        MethodStringName1<GraphFrame, Unit, Int>("set_drag_margin")
+
+    @JvmField
+    public val getDragMarginName: MethodStringName0<GraphFrame, Int> =
+        MethodStringName0<GraphFrame, Int>("get_drag_margin")
+
+    @JvmField
+    public val setTintColorEnabledName: MethodStringName1<GraphFrame, Unit, Boolean> =
+        MethodStringName1<GraphFrame, Unit, Boolean>("set_tint_color_enabled")
+
+    @JvmField
+    public val isTintColorEnabledName: MethodStringName0<GraphFrame, Boolean> =
+        MethodStringName0<GraphFrame, Boolean>("is_tint_color_enabled")
+
+    @JvmField
+    public val setTintColorName: MethodStringName1<GraphFrame, Unit, Color> =
+        MethodStringName1<GraphFrame, Unit, Color>("set_tint_color")
+
+    @JvmField
+    public val getTintColorName: MethodStringName0<GraphFrame, Color> =
+        MethodStringName0<GraphFrame, Color>("get_tint_color")
+  }
 
   public object MethodBindings {
     internal val setTitlePtr: VoidPtr =

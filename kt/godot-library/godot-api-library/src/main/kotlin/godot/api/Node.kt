@@ -12,6 +12,11 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
+import godot.core.MethodStringName4
 import godot.core.NodePath
 import godot.core.PackedStringArray
 import godot.core.RID
@@ -3072,6 +3077,477 @@ public open class Node : Object() {
   }
 
   public companion object {
+    @JvmField
+    public val printOrphanNodesName: MethodStringName0<Node, Unit> =
+        MethodStringName0<Node, Unit>("print_orphan_nodes")
+
+    @JvmField
+    public val getOrphanNodeIdsName: MethodStringName0<Node, VariantArray<Long>> =
+        MethodStringName0<Node, VariantArray<Long>>("get_orphan_node_ids")
+
+    @JvmField
+    public val addSiblingName: MethodStringName2<Node, Unit, Node, Boolean> =
+        MethodStringName2<Node, Unit, Node, Boolean>("add_sibling")
+
+    @JvmField
+    public val setNameName: MethodStringName1<Node, Unit, StringName> =
+        MethodStringName1<Node, Unit, StringName>("set_name")
+
+    @JvmField
+    public val getNameName: MethodStringName0<Node, StringName> =
+        MethodStringName0<Node, StringName>("get_name")
+
+    @JvmField
+    public val addChildName: MethodStringName3<Node, Unit, Node, Boolean, InternalMode> =
+        MethodStringName3<Node, Unit, Node, Boolean, InternalMode>("add_child")
+
+    @JvmField
+    public val removeChildName: MethodStringName1<Node, Unit, Node> =
+        MethodStringName1<Node, Unit, Node>("remove_child")
+
+    @JvmField
+    public val reparentName: MethodStringName2<Node, Unit, Node, Boolean> =
+        MethodStringName2<Node, Unit, Node, Boolean>("reparent")
+
+    @JvmField
+    public val getChildCountName: MethodStringName1<Node, Int, Boolean> =
+        MethodStringName1<Node, Int, Boolean>("get_child_count")
+
+    @JvmField
+    public val getChildrenName: MethodStringName1<Node, VariantArray<Node>, Boolean> =
+        MethodStringName1<Node, VariantArray<Node>, Boolean>("get_children")
+
+    @JvmField
+    public val getChildName: MethodStringName2<Node, Node?, Int, Boolean> =
+        MethodStringName2<Node, Node?, Int, Boolean>("get_child")
+
+    @JvmField
+    public val hasNodeName: MethodStringName1<Node, Boolean, NodePath> =
+        MethodStringName1<Node, Boolean, NodePath>("has_node")
+
+    @JvmField
+    public val getNodeName: MethodStringName1<Node, Node?, NodePath> =
+        MethodStringName1<Node, Node?, NodePath>("get_node")
+
+    @JvmField
+    public val getNodeOrNullName: MethodStringName1<Node, Node?, NodePath> =
+        MethodStringName1<Node, Node?, NodePath>("get_node_or_null")
+
+    @JvmField
+    public val getParentName: MethodStringName0<Node, Node?> =
+        MethodStringName0<Node, Node?>("get_parent")
+
+    @JvmField
+    public val findChildName: MethodStringName3<Node, Node?, String, Boolean, Boolean> =
+        MethodStringName3<Node, Node?, String, Boolean, Boolean>("find_child")
+
+    @JvmField
+    public val findChildrenName:
+        MethodStringName4<Node, VariantArray<Node>, String, String, Boolean, Boolean> =
+        MethodStringName4<Node, VariantArray<Node>, String, String, Boolean, Boolean>("find_children")
+
+    @JvmField
+    public val findParentName: MethodStringName1<Node, Node?, String> =
+        MethodStringName1<Node, Node?, String>("find_parent")
+
+    @JvmField
+    public val hasNodeAndResourceName: MethodStringName1<Node, Boolean, NodePath> =
+        MethodStringName1<Node, Boolean, NodePath>("has_node_and_resource")
+
+    @JvmField
+    public val getNodeAndResourceName: MethodStringName1<Node, VariantArray<Any?>, NodePath> =
+        MethodStringName1<Node, VariantArray<Any?>, NodePath>("get_node_and_resource")
+
+    @JvmField
+    public val isInsideTreeName: MethodStringName0<Node, Boolean> =
+        MethodStringName0<Node, Boolean>("is_inside_tree")
+
+    @JvmField
+    public val isPartOfEditedSceneName: MethodStringName0<Node, Boolean> =
+        MethodStringName0<Node, Boolean>("is_part_of_edited_scene")
+
+    @JvmField
+    public val isAncestorOfName: MethodStringName1<Node, Boolean, Node> =
+        MethodStringName1<Node, Boolean, Node>("is_ancestor_of")
+
+    @JvmField
+    public val isGreaterThanName: MethodStringName1<Node, Boolean, Node> =
+        MethodStringName1<Node, Boolean, Node>("is_greater_than")
+
+    @JvmField
+    public val getPathName: MethodStringName0<Node, NodePath> =
+        MethodStringName0<Node, NodePath>("get_path")
+
+    @JvmField
+    public val getPathToName: MethodStringName2<Node, NodePath, Node, Boolean> =
+        MethodStringName2<Node, NodePath, Node, Boolean>("get_path_to")
+
+    @JvmField
+    public val addToGroupName: MethodStringName2<Node, Unit, StringName, Boolean> =
+        MethodStringName2<Node, Unit, StringName, Boolean>("add_to_group")
+
+    @JvmField
+    public val removeFromGroupName: MethodStringName1<Node, Unit, StringName> =
+        MethodStringName1<Node, Unit, StringName>("remove_from_group")
+
+    @JvmField
+    public val isInGroupName: MethodStringName1<Node, Boolean, StringName> =
+        MethodStringName1<Node, Boolean, StringName>("is_in_group")
+
+    @JvmField
+    public val moveChildName: MethodStringName2<Node, Unit, Node, Int> =
+        MethodStringName2<Node, Unit, Node, Int>("move_child")
+
+    @JvmField
+    public val getGroupsName: MethodStringName0<Node, VariantArray<StringName>> =
+        MethodStringName0<Node, VariantArray<StringName>>("get_groups")
+
+    @JvmField
+    public val setOwnerName: MethodStringName1<Node, Unit, Node?> =
+        MethodStringName1<Node, Unit, Node?>("set_owner")
+
+    @JvmField
+    public val getOwnerName: MethodStringName0<Node, Node?> =
+        MethodStringName0<Node, Node?>("get_owner")
+
+    @JvmField
+    public val getIndexName: MethodStringName1<Node, Int, Boolean> =
+        MethodStringName1<Node, Int, Boolean>("get_index")
+
+    @JvmField
+    public val printTreeName: MethodStringName0<Node, Unit> =
+        MethodStringName0<Node, Unit>("print_tree")
+
+    @JvmField
+    public val printTreePrettyName: MethodStringName0<Node, Unit> =
+        MethodStringName0<Node, Unit>("print_tree_pretty")
+
+    @JvmField
+    public val getTreeStringName: MethodStringName0<Node, String> =
+        MethodStringName0<Node, String>("get_tree_string")
+
+    @JvmField
+    public val getTreeStringPrettyName: MethodStringName0<Node, String> =
+        MethodStringName0<Node, String>("get_tree_string_pretty")
+
+    @JvmField
+    public val setSceneFilePathName: MethodStringName1<Node, Unit, String> =
+        MethodStringName1<Node, Unit, String>("set_scene_file_path")
+
+    @JvmField
+    public val getSceneFilePathName: MethodStringName0<Node, String> =
+        MethodStringName0<Node, String>("get_scene_file_path")
+
+    @JvmField
+    public val propagateNotificationName: MethodStringName1<Node, Unit, Int> =
+        MethodStringName1<Node, Unit, Int>("propagate_notification")
+
+    @JvmField
+    public val propagateCallName:
+        MethodStringName3<Node, Unit, StringName, VariantArray<Any?>, Boolean> =
+        MethodStringName3<Node, Unit, StringName, VariantArray<Any?>, Boolean>("propagate_call")
+
+    @JvmField
+    public val setPhysicsProcessName: MethodStringName1<Node, Unit, Boolean> =
+        MethodStringName1<Node, Unit, Boolean>("set_physics_process")
+
+    @JvmField
+    public val getPhysicsProcessDeltaTimeName: MethodStringName0<Node, Double> =
+        MethodStringName0<Node, Double>("get_physics_process_delta_time")
+
+    @JvmField
+    public val isPhysicsProcessingName: MethodStringName0<Node, Boolean> =
+        MethodStringName0<Node, Boolean>("is_physics_processing")
+
+    @JvmField
+    public val getProcessDeltaTimeName: MethodStringName0<Node, Double> =
+        MethodStringName0<Node, Double>("get_process_delta_time")
+
+    @JvmField
+    public val setProcessName: MethodStringName1<Node, Unit, Boolean> =
+        MethodStringName1<Node, Unit, Boolean>("set_process")
+
+    @JvmField
+    public val setProcessPriorityName: MethodStringName1<Node, Unit, Int> =
+        MethodStringName1<Node, Unit, Int>("set_process_priority")
+
+    @JvmField
+    public val getProcessPriorityName: MethodStringName0<Node, Int> =
+        MethodStringName0<Node, Int>("get_process_priority")
+
+    @JvmField
+    public val setPhysicsProcessPriorityName: MethodStringName1<Node, Unit, Int> =
+        MethodStringName1<Node, Unit, Int>("set_physics_process_priority")
+
+    @JvmField
+    public val getPhysicsProcessPriorityName: MethodStringName0<Node, Int> =
+        MethodStringName0<Node, Int>("get_physics_process_priority")
+
+    @JvmField
+    public val isProcessingName: MethodStringName0<Node, Boolean> =
+        MethodStringName0<Node, Boolean>("is_processing")
+
+    @JvmField
+    public val setProcessInputName: MethodStringName1<Node, Unit, Boolean> =
+        MethodStringName1<Node, Unit, Boolean>("set_process_input")
+
+    @JvmField
+    public val isProcessingInputName: MethodStringName0<Node, Boolean> =
+        MethodStringName0<Node, Boolean>("is_processing_input")
+
+    @JvmField
+    public val setProcessShortcutInputName: MethodStringName1<Node, Unit, Boolean> =
+        MethodStringName1<Node, Unit, Boolean>("set_process_shortcut_input")
+
+    @JvmField
+    public val isProcessingShortcutInputName: MethodStringName0<Node, Boolean> =
+        MethodStringName0<Node, Boolean>("is_processing_shortcut_input")
+
+    @JvmField
+    public val setProcessUnhandledInputName: MethodStringName1<Node, Unit, Boolean> =
+        MethodStringName1<Node, Unit, Boolean>("set_process_unhandled_input")
+
+    @JvmField
+    public val isProcessingUnhandledInputName: MethodStringName0<Node, Boolean> =
+        MethodStringName0<Node, Boolean>("is_processing_unhandled_input")
+
+    @JvmField
+    public val setProcessUnhandledKeyInputName: MethodStringName1<Node, Unit, Boolean> =
+        MethodStringName1<Node, Unit, Boolean>("set_process_unhandled_key_input")
+
+    @JvmField
+    public val isProcessingUnhandledKeyInputName: MethodStringName0<Node, Boolean> =
+        MethodStringName0<Node, Boolean>("is_processing_unhandled_key_input")
+
+    @JvmField
+    public val setProcessModeName: MethodStringName1<Node, Unit, ProcessMode> =
+        MethodStringName1<Node, Unit, ProcessMode>("set_process_mode")
+
+    @JvmField
+    public val getProcessModeName: MethodStringName0<Node, ProcessMode> =
+        MethodStringName0<Node, ProcessMode>("get_process_mode")
+
+    @JvmField
+    public val canProcessName: MethodStringName0<Node, Boolean> =
+        MethodStringName0<Node, Boolean>("can_process")
+
+    @JvmField
+    public val setProcessThreadGroupName: MethodStringName1<Node, Unit, ProcessThreadGroup> =
+        MethodStringName1<Node, Unit, ProcessThreadGroup>("set_process_thread_group")
+
+    @JvmField
+    public val getProcessThreadGroupName: MethodStringName0<Node, ProcessThreadGroup> =
+        MethodStringName0<Node, ProcessThreadGroup>("get_process_thread_group")
+
+    @JvmField
+    public val setProcessThreadMessagesName: MethodStringName1<Node, Unit, ProcessThreadMessages> =
+        MethodStringName1<Node, Unit, ProcessThreadMessages>("set_process_thread_messages")
+
+    @JvmField
+    public val getProcessThreadMessagesName: MethodStringName0<Node, ProcessThreadMessages> =
+        MethodStringName0<Node, ProcessThreadMessages>("get_process_thread_messages")
+
+    @JvmField
+    public val setProcessThreadGroupOrderName: MethodStringName1<Node, Unit, Int> =
+        MethodStringName1<Node, Unit, Int>("set_process_thread_group_order")
+
+    @JvmField
+    public val getProcessThreadGroupOrderName: MethodStringName0<Node, Int> =
+        MethodStringName0<Node, Int>("get_process_thread_group_order")
+
+    @JvmField
+    public val queueAccessibilityUpdateName: MethodStringName0<Node, Unit> =
+        MethodStringName0<Node, Unit>("queue_accessibility_update")
+
+    @JvmField
+    public val getAccessibilityElementName: MethodStringName0<Node, RID> =
+        MethodStringName0<Node, RID>("get_accessibility_element")
+
+    @JvmField
+    public val setDisplayFoldedName: MethodStringName1<Node, Unit, Boolean> =
+        MethodStringName1<Node, Unit, Boolean>("set_display_folded")
+
+    @JvmField
+    public val isDisplayedFoldedName: MethodStringName0<Node, Boolean> =
+        MethodStringName0<Node, Boolean>("is_displayed_folded")
+
+    @JvmField
+    public val setProcessInternalName: MethodStringName1<Node, Unit, Boolean> =
+        MethodStringName1<Node, Unit, Boolean>("set_process_internal")
+
+    @JvmField
+    public val isProcessingInternalName: MethodStringName0<Node, Boolean> =
+        MethodStringName0<Node, Boolean>("is_processing_internal")
+
+    @JvmField
+    public val setPhysicsProcessInternalName: MethodStringName1<Node, Unit, Boolean> =
+        MethodStringName1<Node, Unit, Boolean>("set_physics_process_internal")
+
+    @JvmField
+    public val isPhysicsProcessingInternalName: MethodStringName0<Node, Boolean> =
+        MethodStringName0<Node, Boolean>("is_physics_processing_internal")
+
+    @JvmField
+    public val setPhysicsInterpolationModeName:
+        MethodStringName1<Node, Unit, PhysicsInterpolationMode> =
+        MethodStringName1<Node, Unit, PhysicsInterpolationMode>("set_physics_interpolation_mode")
+
+    @JvmField
+    public val getPhysicsInterpolationModeName: MethodStringName0<Node, PhysicsInterpolationMode> =
+        MethodStringName0<Node, PhysicsInterpolationMode>("get_physics_interpolation_mode")
+
+    @JvmField
+    public val isPhysicsInterpolatedName: MethodStringName0<Node, Boolean> =
+        MethodStringName0<Node, Boolean>("is_physics_interpolated")
+
+    @JvmField
+    public val isPhysicsInterpolatedAndEnabledName: MethodStringName0<Node, Boolean> =
+        MethodStringName0<Node, Boolean>("is_physics_interpolated_and_enabled")
+
+    @JvmField
+    public val resetPhysicsInterpolationName: MethodStringName0<Node, Unit> =
+        MethodStringName0<Node, Unit>("reset_physics_interpolation")
+
+    @JvmField
+    public val setAutoTranslateModeName: MethodStringName1<Node, Unit, AutoTranslateMode> =
+        MethodStringName1<Node, Unit, AutoTranslateMode>("set_auto_translate_mode")
+
+    @JvmField
+    public val getAutoTranslateModeName: MethodStringName0<Node, AutoTranslateMode> =
+        MethodStringName0<Node, AutoTranslateMode>("get_auto_translate_mode")
+
+    @JvmField
+    public val canAutoTranslateName: MethodStringName0<Node, Boolean> =
+        MethodStringName0<Node, Boolean>("can_auto_translate")
+
+    @JvmField
+    public val setTranslationDomainInheritedName: MethodStringName0<Node, Unit> =
+        MethodStringName0<Node, Unit>("set_translation_domain_inherited")
+
+    @JvmField
+    public val getWindowName: MethodStringName0<Node, Window?> =
+        MethodStringName0<Node, Window?>("get_window")
+
+    @JvmField
+    public val getLastExclusiveWindowName: MethodStringName0<Node, Window?> =
+        MethodStringName0<Node, Window?>("get_last_exclusive_window")
+
+    @JvmField
+    public val getTreeName: MethodStringName0<Node, SceneTree?> =
+        MethodStringName0<Node, SceneTree?>("get_tree")
+
+    @JvmField
+    public val createTweenName: MethodStringName0<Node, Tween> =
+        MethodStringName0<Node, Tween>("create_tween")
+
+    @JvmField
+    public val duplicateName: MethodStringName1<Node, Node?, Int> =
+        MethodStringName1<Node, Node?, Int>("duplicate")
+
+    @JvmField
+    public val replaceByName: MethodStringName2<Node, Unit, Node, Boolean> =
+        MethodStringName2<Node, Unit, Node, Boolean>("replace_by")
+
+    @JvmField
+    public val setSceneInstanceLoadPlaceholderName: MethodStringName1<Node, Unit, Boolean> =
+        MethodStringName1<Node, Unit, Boolean>("set_scene_instance_load_placeholder")
+
+    @JvmField
+    public val getSceneInstanceLoadPlaceholderName: MethodStringName0<Node, Boolean> =
+        MethodStringName0<Node, Boolean>("get_scene_instance_load_placeholder")
+
+    @JvmField
+    public val setEditableInstanceName: MethodStringName2<Node, Unit, Node, Boolean> =
+        MethodStringName2<Node, Unit, Node, Boolean>("set_editable_instance")
+
+    @JvmField
+    public val isEditableInstanceName: MethodStringName1<Node, Boolean, Node?> =
+        MethodStringName1<Node, Boolean, Node?>("is_editable_instance")
+
+    @JvmField
+    public val getViewportName: MethodStringName0<Node, Viewport?> =
+        MethodStringName0<Node, Viewport?>("get_viewport")
+
+    @JvmField
+    public val queueFreeName: MethodStringName0<Node, Unit> =
+        MethodStringName0<Node, Unit>("queue_free")
+
+    @JvmField
+    public val requestReadyName: MethodStringName0<Node, Unit> =
+        MethodStringName0<Node, Unit>("request_ready")
+
+    @JvmField
+    public val isNodeReadyName: MethodStringName0<Node, Boolean> =
+        MethodStringName0<Node, Boolean>("is_node_ready")
+
+    @JvmField
+    public val setMultiplayerAuthorityName: MethodStringName2<Node, Unit, Int, Boolean> =
+        MethodStringName2<Node, Unit, Int, Boolean>("set_multiplayer_authority")
+
+    @JvmField
+    public val getMultiplayerAuthorityName: MethodStringName0<Node, Int> =
+        MethodStringName0<Node, Int>("get_multiplayer_authority")
+
+    @JvmField
+    public val isMultiplayerAuthorityName: MethodStringName0<Node, Boolean> =
+        MethodStringName0<Node, Boolean>("is_multiplayer_authority")
+
+    @JvmField
+    public val getMultiplayerName: MethodStringName0<Node, MultiplayerAPI?> =
+        MethodStringName0<Node, MultiplayerAPI?>("get_multiplayer")
+
+    @JvmField
+    public val rpcConfigName: MethodStringName2<Node, Unit, StringName, Any?> =
+        MethodStringName2<Node, Unit, StringName, Any?>("rpc_config")
+
+    @JvmField
+    public val getNodeRpcConfigName: MethodStringName0<Node, Any?> =
+        MethodStringName0<Node, Any?>("get_node_rpc_config")
+
+    @JvmField
+    public val setEditorDescriptionName: MethodStringName1<Node, Unit, String> =
+        MethodStringName1<Node, Unit, String>("set_editor_description")
+
+    @JvmField
+    public val getEditorDescriptionName: MethodStringName0<Node, String> =
+        MethodStringName0<Node, String>("get_editor_description")
+
+    @JvmField
+    public val setUniqueNameInOwnerName: MethodStringName1<Node, Unit, Boolean> =
+        MethodStringName1<Node, Unit, Boolean>("set_unique_name_in_owner")
+
+    @JvmField
+    public val isUniqueNameInOwnerName: MethodStringName0<Node, Boolean> =
+        MethodStringName0<Node, Boolean>("is_unique_name_in_owner")
+
+    @JvmField
+    public val atrName: MethodStringName2<Node, String, String, StringName> =
+        MethodStringName2<Node, String, String, StringName>("atr")
+
+    @JvmField
+    public val atrNName: MethodStringName4<Node, String, String, StringName, Int, StringName> =
+        MethodStringName4<Node, String, String, StringName, Int, StringName>("atr_n")
+
+    @JvmField
+    public val updateConfigurationWarningsName: MethodStringName0<Node, Unit> =
+        MethodStringName0<Node, Unit>("update_configuration_warnings")
+
+    @JvmField
+    public val setDeferredThreadGroupName: MethodStringName2<Node, Unit, StringName, Any?> =
+        MethodStringName2<Node, Unit, StringName, Any?>("set_deferred_thread_group")
+
+    @JvmField
+    public val notifyDeferredThreadGroupName: MethodStringName1<Node, Unit, Int> =
+        MethodStringName1<Node, Unit, Int>("notify_deferred_thread_group")
+
+    @JvmField
+    public val setThreadSafeName: MethodStringName2<Node, Unit, StringName, Any?> =
+        MethodStringName2<Node, Unit, StringName, Any?>("set_thread_safe")
+
+    @JvmField
+    public val notifyThreadSafeName: MethodStringName1<Node, Unit, Int> =
+        MethodStringName1<Node, Unit, Int>("notify_thread_safe")
+
     /**
      * Notification received when the node enters a [SceneTree]. See [_enterTree].
      *

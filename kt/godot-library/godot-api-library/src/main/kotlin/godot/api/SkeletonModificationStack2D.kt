@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -22,6 +25,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -191,7 +195,71 @@ public open class SkeletonModificationStack2D : Resource() {
     return (TransferContext.readReturnValue(OBJECT) as Skeleton2D?)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setupName: MethodStringName0<SkeletonModificationStack2D, Unit> =
+        MethodStringName0<SkeletonModificationStack2D, Unit>("setup")
+
+    @JvmField
+    public val executeName: MethodStringName2<SkeletonModificationStack2D, Unit, Float, Int> =
+        MethodStringName2<SkeletonModificationStack2D, Unit, Float, Int>("execute")
+
+    @JvmField
+    public val enableAllModificationsName:
+        MethodStringName1<SkeletonModificationStack2D, Unit, Boolean> =
+        MethodStringName1<SkeletonModificationStack2D, Unit, Boolean>("enable_all_modifications")
+
+    @JvmField
+    public val getModificationName:
+        MethodStringName1<SkeletonModificationStack2D, SkeletonModification2D?, Int> =
+        MethodStringName1<SkeletonModificationStack2D, SkeletonModification2D?, Int>("get_modification")
+
+    @JvmField
+    public val addModificationName:
+        MethodStringName1<SkeletonModificationStack2D, Unit, SkeletonModification2D?> =
+        MethodStringName1<SkeletonModificationStack2D, Unit, SkeletonModification2D?>("add_modification")
+
+    @JvmField
+    public val deleteModificationName: MethodStringName1<SkeletonModificationStack2D, Unit, Int> =
+        MethodStringName1<SkeletonModificationStack2D, Unit, Int>("delete_modification")
+
+    @JvmField
+    public val setModificationName:
+        MethodStringName2<SkeletonModificationStack2D, Unit, Int, SkeletonModification2D?> =
+        MethodStringName2<SkeletonModificationStack2D, Unit, Int, SkeletonModification2D?>("set_modification")
+
+    @JvmField
+    public val setModificationCountName: MethodStringName1<SkeletonModificationStack2D, Unit, Int> =
+        MethodStringName1<SkeletonModificationStack2D, Unit, Int>("set_modification_count")
+
+    @JvmField
+    public val getModificationCountName: MethodStringName0<SkeletonModificationStack2D, Int> =
+        MethodStringName0<SkeletonModificationStack2D, Int>("get_modification_count")
+
+    @JvmField
+    public val getIsSetupName: MethodStringName0<SkeletonModificationStack2D, Boolean> =
+        MethodStringName0<SkeletonModificationStack2D, Boolean>("get_is_setup")
+
+    @JvmField
+    public val setEnabledName: MethodStringName1<SkeletonModificationStack2D, Unit, Boolean> =
+        MethodStringName1<SkeletonModificationStack2D, Unit, Boolean>("set_enabled")
+
+    @JvmField
+    public val getEnabledName: MethodStringName0<SkeletonModificationStack2D, Boolean> =
+        MethodStringName0<SkeletonModificationStack2D, Boolean>("get_enabled")
+
+    @JvmField
+    public val setStrengthName: MethodStringName1<SkeletonModificationStack2D, Unit, Float> =
+        MethodStringName1<SkeletonModificationStack2D, Unit, Float>("set_strength")
+
+    @JvmField
+    public val getStrengthName: MethodStringName0<SkeletonModificationStack2D, Float> =
+        MethodStringName0<SkeletonModificationStack2D, Float>("get_strength")
+
+    @JvmField
+    public val getSkeletonName: MethodStringName0<SkeletonModificationStack2D, Skeleton2D?> =
+        MethodStringName0<SkeletonModificationStack2D, Skeleton2D?>("get_skeleton")
+  }
 
   public object MethodBindings {
     internal val setupPtr: VoidPtr =

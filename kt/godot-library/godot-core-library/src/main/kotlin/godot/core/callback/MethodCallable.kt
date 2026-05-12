@@ -41,4 +41,9 @@ open class MethodCallable internal constructor(
         }
         return unbound
     }
+
+    companion object {
+        @JvmStatic
+        fun createUnsafe(target: Object, methodName: String) = MethodCallable(target, methodName.toGodotName())
+    }
 }

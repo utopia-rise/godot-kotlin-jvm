@@ -12,6 +12,10 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
 import godot.core.Signal1
 import godot.core.StringName
 import godot.core.VariantArray
@@ -30,6 +34,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
@@ -256,6 +261,58 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
       getNodePosition(name.asCachedStringName())
 
   public companion object {
+    @JvmField
+    public val addNodeName:
+        MethodStringName3<AnimationNodeBlendTree, Unit, StringName, AnimationNode?, Vector2> =
+        MethodStringName3<AnimationNodeBlendTree, Unit, StringName, AnimationNode?, Vector2>("add_node")
+
+    @JvmField
+    public val getNodeName: MethodStringName1<AnimationNodeBlendTree, AnimationNode?, StringName> =
+        MethodStringName1<AnimationNodeBlendTree, AnimationNode?, StringName>("get_node")
+
+    @JvmField
+    public val removeNodeName: MethodStringName1<AnimationNodeBlendTree, Unit, StringName> =
+        MethodStringName1<AnimationNodeBlendTree, Unit, StringName>("remove_node")
+
+    @JvmField
+    public val renameNodeName:
+        MethodStringName2<AnimationNodeBlendTree, Unit, StringName, StringName> =
+        MethodStringName2<AnimationNodeBlendTree, Unit, StringName, StringName>("rename_node")
+
+    @JvmField
+    public val hasNodeName: MethodStringName1<AnimationNodeBlendTree, Boolean, StringName> =
+        MethodStringName1<AnimationNodeBlendTree, Boolean, StringName>("has_node")
+
+    @JvmField
+    public val connectNodeName:
+        MethodStringName3<AnimationNodeBlendTree, Unit, StringName, Int, StringName> =
+        MethodStringName3<AnimationNodeBlendTree, Unit, StringName, Int, StringName>("connect_node")
+
+    @JvmField
+    public val disconnectNodeName: MethodStringName2<AnimationNodeBlendTree, Unit, StringName, Int>
+        = MethodStringName2<AnimationNodeBlendTree, Unit, StringName, Int>("disconnect_node")
+
+    @JvmField
+    public val getNodeListName: MethodStringName0<AnimationNodeBlendTree, VariantArray<StringName>>
+        = MethodStringName0<AnimationNodeBlendTree, VariantArray<StringName>>("get_node_list")
+
+    @JvmField
+    public val setNodePositionName:
+        MethodStringName2<AnimationNodeBlendTree, Unit, StringName, Vector2> =
+        MethodStringName2<AnimationNodeBlendTree, Unit, StringName, Vector2>("set_node_position")
+
+    @JvmField
+    public val getNodePositionName: MethodStringName1<AnimationNodeBlendTree, Vector2, StringName> =
+        MethodStringName1<AnimationNodeBlendTree, Vector2, StringName>("get_node_position")
+
+    @JvmField
+    public val setGraphOffsetName: MethodStringName1<AnimationNodeBlendTree, Unit, Vector2> =
+        MethodStringName1<AnimationNodeBlendTree, Unit, Vector2>("set_graph_offset")
+
+    @JvmField
+    public val getGraphOffsetName: MethodStringName0<AnimationNodeBlendTree, Vector2> =
+        MethodStringName0<AnimationNodeBlendTree, Vector2>("get_graph_offset")
+
     /**
      * The connection was successful.
      */

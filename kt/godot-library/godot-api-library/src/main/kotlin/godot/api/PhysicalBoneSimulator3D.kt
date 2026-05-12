@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.RID
 import godot.core.StringName
 import godot.core.VariantArray
@@ -20,6 +22,7 @@ import godot.core.VariantParser._RID
 import kotlin.Boolean
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -84,7 +87,30 @@ public open class PhysicalBoneSimulator3D : SkeletonModifier3D() {
     TransferContext.callMethod(ptr, MethodBindings.physicalBonesRemoveCollisionExceptionPtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val isSimulatingPhysicsName: MethodStringName0<PhysicalBoneSimulator3D, Boolean> =
+        MethodStringName0<PhysicalBoneSimulator3D, Boolean>("is_simulating_physics")
+
+    @JvmField
+    public val physicalBonesStopSimulationName: MethodStringName0<PhysicalBoneSimulator3D, Unit> =
+        MethodStringName0<PhysicalBoneSimulator3D, Unit>("physical_bones_stop_simulation")
+
+    @JvmField
+    public val physicalBonesStartSimulationName:
+        MethodStringName1<PhysicalBoneSimulator3D, Unit, VariantArray<StringName>> =
+        MethodStringName1<PhysicalBoneSimulator3D, Unit, VariantArray<StringName>>("physical_bones_start_simulation")
+
+    @JvmField
+    public val physicalBonesAddCollisionExceptionName:
+        MethodStringName1<PhysicalBoneSimulator3D, Unit, RID> =
+        MethodStringName1<PhysicalBoneSimulator3D, Unit, RID>("physical_bones_add_collision_exception")
+
+    @JvmField
+    public val physicalBonesRemoveCollisionExceptionName:
+        MethodStringName1<PhysicalBoneSimulator3D, Unit, RID> =
+        MethodStringName1<PhysicalBoneSimulator3D, Unit, RID>("physical_bones_remove_collision_exception")
+  }
 
   public object MethodBindings {
     internal val isSimulatingPhysicsPtr: VoidPtr =

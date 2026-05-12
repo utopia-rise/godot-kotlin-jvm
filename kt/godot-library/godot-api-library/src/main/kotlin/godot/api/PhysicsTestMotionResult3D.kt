@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.RID
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -23,6 +25,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -180,7 +183,63 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val getTravelName: MethodStringName0<PhysicsTestMotionResult3D, Vector3> =
+        MethodStringName0<PhysicsTestMotionResult3D, Vector3>("get_travel")
+
+    @JvmField
+    public val getRemainderName: MethodStringName0<PhysicsTestMotionResult3D, Vector3> =
+        MethodStringName0<PhysicsTestMotionResult3D, Vector3>("get_remainder")
+
+    @JvmField
+    public val getCollisionSafeFractionName: MethodStringName0<PhysicsTestMotionResult3D, Float> =
+        MethodStringName0<PhysicsTestMotionResult3D, Float>("get_collision_safe_fraction")
+
+    @JvmField
+    public val getCollisionUnsafeFractionName: MethodStringName0<PhysicsTestMotionResult3D, Float> =
+        MethodStringName0<PhysicsTestMotionResult3D, Float>("get_collision_unsafe_fraction")
+
+    @JvmField
+    public val getCollisionCountName: MethodStringName0<PhysicsTestMotionResult3D, Int> =
+        MethodStringName0<PhysicsTestMotionResult3D, Int>("get_collision_count")
+
+    @JvmField
+    public val getCollisionPointName: MethodStringName1<PhysicsTestMotionResult3D, Vector3, Int> =
+        MethodStringName1<PhysicsTestMotionResult3D, Vector3, Int>("get_collision_point")
+
+    @JvmField
+    public val getCollisionNormalName: MethodStringName1<PhysicsTestMotionResult3D, Vector3, Int> =
+        MethodStringName1<PhysicsTestMotionResult3D, Vector3, Int>("get_collision_normal")
+
+    @JvmField
+    public val getColliderVelocityName: MethodStringName1<PhysicsTestMotionResult3D, Vector3, Int> =
+        MethodStringName1<PhysicsTestMotionResult3D, Vector3, Int>("get_collider_velocity")
+
+    @JvmField
+    public val getColliderIdName: MethodStringName1<PhysicsTestMotionResult3D, Long, Int> =
+        MethodStringName1<PhysicsTestMotionResult3D, Long, Int>("get_collider_id")
+
+    @JvmField
+    public val getColliderRidName: MethodStringName1<PhysicsTestMotionResult3D, RID, Int> =
+        MethodStringName1<PhysicsTestMotionResult3D, RID, Int>("get_collider_rid")
+
+    @JvmField
+    public val getColliderName: MethodStringName1<PhysicsTestMotionResult3D, Object?, Int> =
+        MethodStringName1<PhysicsTestMotionResult3D, Object?, Int>("get_collider")
+
+    @JvmField
+    public val getColliderShapeName: MethodStringName1<PhysicsTestMotionResult3D, Int, Int> =
+        MethodStringName1<PhysicsTestMotionResult3D, Int, Int>("get_collider_shape")
+
+    @JvmField
+    public val getCollisionLocalShapeName: MethodStringName1<PhysicsTestMotionResult3D, Int, Int> =
+        MethodStringName1<PhysicsTestMotionResult3D, Int, Int>("get_collision_local_shape")
+
+    @JvmField
+    public val getCollisionDepthName: MethodStringName1<PhysicsTestMotionResult3D, Float, Int> =
+        MethodStringName1<PhysicsTestMotionResult3D, Float, Int>("get_collision_depth")
+  }
 
   public object MethodBindings {
     internal val getTravelPtr: VoidPtr =

@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -22,6 +25,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -194,7 +198,74 @@ public open class LimitAngularVelocityModifier3D : SkeletonModifier3D() {
     TransferContext.callMethod(ptr, MethodBindings.resetPtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setRootBoneNameName:
+        MethodStringName2<LimitAngularVelocityModifier3D, Unit, Int, String> =
+        MethodStringName2<LimitAngularVelocityModifier3D, Unit, Int, String>("set_root_bone_name")
+
+    @JvmField
+    public val getRootBoneNameName: MethodStringName1<LimitAngularVelocityModifier3D, String, Int> =
+        MethodStringName1<LimitAngularVelocityModifier3D, String, Int>("get_root_bone_name")
+
+    @JvmField
+    public val setRootBoneName: MethodStringName2<LimitAngularVelocityModifier3D, Unit, Int, Int> =
+        MethodStringName2<LimitAngularVelocityModifier3D, Unit, Int, Int>("set_root_bone")
+
+    @JvmField
+    public val getRootBoneName: MethodStringName1<LimitAngularVelocityModifier3D, Int, Int> =
+        MethodStringName1<LimitAngularVelocityModifier3D, Int, Int>("get_root_bone")
+
+    @JvmField
+    public val setEndBoneNameName:
+        MethodStringName2<LimitAngularVelocityModifier3D, Unit, Int, String> =
+        MethodStringName2<LimitAngularVelocityModifier3D, Unit, Int, String>("set_end_bone_name")
+
+    @JvmField
+    public val getEndBoneNameName: MethodStringName1<LimitAngularVelocityModifier3D, String, Int> =
+        MethodStringName1<LimitAngularVelocityModifier3D, String, Int>("get_end_bone_name")
+
+    @JvmField
+    public val setEndBoneName: MethodStringName2<LimitAngularVelocityModifier3D, Unit, Int, Int> =
+        MethodStringName2<LimitAngularVelocityModifier3D, Unit, Int, Int>("set_end_bone")
+
+    @JvmField
+    public val getEndBoneName: MethodStringName1<LimitAngularVelocityModifier3D, Int, Int> =
+        MethodStringName1<LimitAngularVelocityModifier3D, Int, Int>("get_end_bone")
+
+    @JvmField
+    public val setChainCountName: MethodStringName1<LimitAngularVelocityModifier3D, Unit, Int> =
+        MethodStringName1<LimitAngularVelocityModifier3D, Unit, Int>("set_chain_count")
+
+    @JvmField
+    public val getChainCountName: MethodStringName0<LimitAngularVelocityModifier3D, Int> =
+        MethodStringName0<LimitAngularVelocityModifier3D, Int>("get_chain_count")
+
+    @JvmField
+    public val clearChainsName: MethodStringName0<LimitAngularVelocityModifier3D, Unit> =
+        MethodStringName0<LimitAngularVelocityModifier3D, Unit>("clear_chains")
+
+    @JvmField
+    public val setMaxAngularVelocityName:
+        MethodStringName1<LimitAngularVelocityModifier3D, Unit, Double> =
+        MethodStringName1<LimitAngularVelocityModifier3D, Unit, Double>("set_max_angular_velocity")
+
+    @JvmField
+    public val getMaxAngularVelocityName: MethodStringName0<LimitAngularVelocityModifier3D, Double>
+        = MethodStringName0<LimitAngularVelocityModifier3D, Double>("get_max_angular_velocity")
+
+    @JvmField
+    public val setExcludeName: MethodStringName1<LimitAngularVelocityModifier3D, Unit, Boolean> =
+        MethodStringName1<LimitAngularVelocityModifier3D, Unit, Boolean>("set_exclude")
+
+    @JvmField
+    public val isExcludeName: MethodStringName0<LimitAngularVelocityModifier3D, Boolean> =
+        MethodStringName0<LimitAngularVelocityModifier3D, Boolean>("is_exclude")
+
+    @JvmField
+    public val resetName: MethodStringName0<LimitAngularVelocityModifier3D, Unit> =
+        MethodStringName0<LimitAngularVelocityModifier3D, Unit>("reset")
+  }
 
   public object MethodBindings {
     internal val setRootBoneNamePtr: VoidPtr =

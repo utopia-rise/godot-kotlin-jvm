@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.PackedInt64Array
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -18,6 +20,7 @@ import godot.core.VariantParser.PACKED_INT_64_ARRAY
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -98,7 +101,22 @@ public open class OpenXRSpatialCapabilityConfigurationAprilTag :
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val getEnabledComponentsName:
+        MethodStringName0<OpenXRSpatialCapabilityConfigurationAprilTag, PackedInt64Array> =
+        MethodStringName0<OpenXRSpatialCapabilityConfigurationAprilTag, PackedInt64Array>("get_enabled_components")
+
+    @JvmField
+    public val setAprilDictName:
+        MethodStringName1<OpenXRSpatialCapabilityConfigurationAprilTag, Unit, AprilTagDict> =
+        MethodStringName1<OpenXRSpatialCapabilityConfigurationAprilTag, Unit, AprilTagDict>("set_april_dict")
+
+    @JvmField
+    public val getAprilDictName:
+        MethodStringName0<OpenXRSpatialCapabilityConfigurationAprilTag, AprilTagDict> =
+        MethodStringName0<OpenXRSpatialCapabilityConfigurationAprilTag, AprilTagDict>("get_april_dict")
+  }
 
   public object MethodBindings {
     internal val getEnabledComponentsPtr: VoidPtr =

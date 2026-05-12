@@ -1,8 +1,10 @@
 package godot.codegen.generation.rule
 
 import com.squareup.kotlinpoet.ANY
+import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
+import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeSpec
 import com.squareup.kotlinpoet.UNIT
@@ -21,6 +23,7 @@ import godot.tools.common.constants.GODOT_BASE_TYPE
 import godot.tools.common.constants.KT_OBJECT
 import godot.tools.common.constants.TYPE_MANAGER
 import godot.tools.common.constants.VOID_PTR
+import godot.tools.common.constants.godotCorePackage
 
 
 class MemberRule : GodotApiRule<EnrichedClassTask>() {
@@ -36,7 +39,7 @@ class MemberRule : GodotApiRule<EnrichedClassTask>() {
         }
 
         for (method in clazz.methods) {
-            if(!canGenerateMethod(context, method)) continue
+            if(!canGenerateMethod(method)) continue
 
             if (method.isStatic) {
                 task.enrichedStaticMethods.add(EnrichedMethodTask(method, clazz))
@@ -83,22 +86,14 @@ class MemberRule : GodotApiRule<EnrichedClassTask>() {
 
         val parent = task.clazz.parent?: return@configure
         for (method in parent.methods.filter { it.isAbstract }) {
-            if(!canGenerateMethod(context, method)) continue
+            if(!canGenerateMethod(method)) continue
             val overrideMethod = method.override()
             task.enrichedMethods.add(EnrichedMethodTask(overrideMethod, clazz))
         }
     }
 
-    private fun canGenerateMethod(context: GenerationContext, method: EnrichedMethod): Boolean {
-        if (context.isNativeStructure(method.type.identifier)) {
-            return false
-        }
-        for (argument in method.arguments) {
-            if (context.isNativeStructure(argument.type.identifier)) {
-                return false
-            }
-        }
-        return true
+    private fun canGenerateMethod(method: EnrichedMethod): Boolean {
+        return method.isJvmCompatible
     }
 
     private fun TypeSpec.Builder.generateClassConstructor(
@@ -142,22 +137,14 @@ class AbstractClassDummyRule : GodotApiRule<AbstractClassDummyTask>() {
 
         clazz.methods
             .filter { it.isAbstract }
-            .filter { canGenerateMethod(context, it) }
+            .filter { canGenerateMethod(it) }
             .forEach { method ->
                 addFunction(method.toDummyOverride(clazz))
             }
     }
 
-    private fun canGenerateMethod(context: GenerationContext, method: EnrichedMethod): Boolean {
-        if (context.isNativeStructure(method.type.identifier)) {
-            return false
-        }
-        for (argument in method.arguments) {
-            if (context.isNativeStructure(argument.type.identifier)) {
-                return false
-            }
-        }
-        return true
+    private fun canGenerateMethod(method: EnrichedMethod): Boolean {
+        return method.isJvmCompatible
     }
 
     private fun EnrichedMethod.toDummyOverride(clazz: EnrichedClass): FunSpec {
@@ -196,7 +183,7 @@ class BindingRule : GodotApiRule<EnrichedClassTask>() {
             .onEach {
                 task.bindings.addProperty(
                     PropertySpec
-                        .builder(it.voidPtrVariableName, VOID_PTR)
+                        .builder("${it.name}Ptr", VOID_PTR)
                         .addModifiers(KModifier.INTERNAL)
                         .initializer(
                             "%T.getMethodBindPtr(%S,·%S,·%L)",
@@ -205,6 +192,37 @@ class BindingRule : GodotApiRule<EnrichedClassTask>() {
                             it.originalName,
                             it.hash
                         )
+                        .build()
+                )
+            }
+    }
+}
+
+
+class MethodNameRule : GodotApiRule<EnrichedClassTask>() {
+    override fun apply(classTask: EnrichedClassTask, context: GenerationContext) = configure(classTask.builder) {
+        val clazz = classTask.clazz
+        clazz.methods
+            .filter { !it.isVirtual }
+            .onEach {
+                if (it.isVararg || !it.isJvmCompatible) return@onEach
+
+                val argCount = it.arguments.size
+                val methodStringClassName = ClassName(
+                    godotCorePackage,
+                    "MethodStringName$argCount"
+                ).parameterizedBy(
+                    listOf(classTask.clazz.className, it.getCastedType()) + it.arguments.map { it.getCastedType()}
+                )
+
+                classTask.companion.addProperty(
+                    PropertySpec
+                        .builder("${it.name}Name", methodStringClassName)
+                        .initializer(
+                            "%T(\"${it.originalName}\")",
+                            methodStringClassName
+                        )
+                        .addAnnotation(JvmField::class)
                         .build()
                 )
             }

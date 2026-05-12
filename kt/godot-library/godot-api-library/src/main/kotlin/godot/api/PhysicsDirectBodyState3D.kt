@@ -13,6 +13,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Basis
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.RID
 import godot.core.Transform3D
 import godot.core.VariantParser.BASIS
@@ -32,6 +35,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
@@ -683,7 +687,216 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
     return (TransferContext.readReturnValue(OBJECT) as PhysicsDirectSpaceState3D)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val getTotalGravityName: MethodStringName0<PhysicsDirectBodyState3D, Vector3> =
+        MethodStringName0<PhysicsDirectBodyState3D, Vector3>("get_total_gravity")
+
+    @JvmField
+    public val getTotalLinearDampName: MethodStringName0<PhysicsDirectBodyState3D, Float> =
+        MethodStringName0<PhysicsDirectBodyState3D, Float>("get_total_linear_damp")
+
+    @JvmField
+    public val getTotalAngularDampName: MethodStringName0<PhysicsDirectBodyState3D, Float> =
+        MethodStringName0<PhysicsDirectBodyState3D, Float>("get_total_angular_damp")
+
+    @JvmField
+    public val getCenterOfMassName: MethodStringName0<PhysicsDirectBodyState3D, Vector3> =
+        MethodStringName0<PhysicsDirectBodyState3D, Vector3>("get_center_of_mass")
+
+    @JvmField
+    public val getCenterOfMassLocalName: MethodStringName0<PhysicsDirectBodyState3D, Vector3> =
+        MethodStringName0<PhysicsDirectBodyState3D, Vector3>("get_center_of_mass_local")
+
+    @JvmField
+    public val getPrincipalInertiaAxesName: MethodStringName0<PhysicsDirectBodyState3D, Basis> =
+        MethodStringName0<PhysicsDirectBodyState3D, Basis>("get_principal_inertia_axes")
+
+    @JvmField
+    public val getInverseMassName: MethodStringName0<PhysicsDirectBodyState3D, Float> =
+        MethodStringName0<PhysicsDirectBodyState3D, Float>("get_inverse_mass")
+
+    @JvmField
+    public val getInverseInertiaName: MethodStringName0<PhysicsDirectBodyState3D, Vector3> =
+        MethodStringName0<PhysicsDirectBodyState3D, Vector3>("get_inverse_inertia")
+
+    @JvmField
+    public val getInverseInertiaTensorName: MethodStringName0<PhysicsDirectBodyState3D, Basis> =
+        MethodStringName0<PhysicsDirectBodyState3D, Basis>("get_inverse_inertia_tensor")
+
+    @JvmField
+    public val setLinearVelocityName: MethodStringName1<PhysicsDirectBodyState3D, Unit, Vector3> =
+        MethodStringName1<PhysicsDirectBodyState3D, Unit, Vector3>("set_linear_velocity")
+
+    @JvmField
+    public val getLinearVelocityName: MethodStringName0<PhysicsDirectBodyState3D, Vector3> =
+        MethodStringName0<PhysicsDirectBodyState3D, Vector3>("get_linear_velocity")
+
+    @JvmField
+    public val setAngularVelocityName: MethodStringName1<PhysicsDirectBodyState3D, Unit, Vector3> =
+        MethodStringName1<PhysicsDirectBodyState3D, Unit, Vector3>("set_angular_velocity")
+
+    @JvmField
+    public val getAngularVelocityName: MethodStringName0<PhysicsDirectBodyState3D, Vector3> =
+        MethodStringName0<PhysicsDirectBodyState3D, Vector3>("get_angular_velocity")
+
+    @JvmField
+    public val setTransformName: MethodStringName1<PhysicsDirectBodyState3D, Unit, Transform3D> =
+        MethodStringName1<PhysicsDirectBodyState3D, Unit, Transform3D>("set_transform")
+
+    @JvmField
+    public val getTransformName: MethodStringName0<PhysicsDirectBodyState3D, Transform3D> =
+        MethodStringName0<PhysicsDirectBodyState3D, Transform3D>("get_transform")
+
+    @JvmField
+    public val getVelocityAtLocalPositionName:
+        MethodStringName1<PhysicsDirectBodyState3D, Vector3, Vector3> =
+        MethodStringName1<PhysicsDirectBodyState3D, Vector3, Vector3>("get_velocity_at_local_position")
+
+    @JvmField
+    public val applyCentralImpulseName: MethodStringName1<PhysicsDirectBodyState3D, Unit, Vector3> =
+        MethodStringName1<PhysicsDirectBodyState3D, Unit, Vector3>("apply_central_impulse")
+
+    @JvmField
+    public val applyImpulseName: MethodStringName2<PhysicsDirectBodyState3D, Unit, Vector3, Vector3>
+        = MethodStringName2<PhysicsDirectBodyState3D, Unit, Vector3, Vector3>("apply_impulse")
+
+    @JvmField
+    public val applyTorqueImpulseName: MethodStringName1<PhysicsDirectBodyState3D, Unit, Vector3> =
+        MethodStringName1<PhysicsDirectBodyState3D, Unit, Vector3>("apply_torque_impulse")
+
+    @JvmField
+    public val applyCentralForceName: MethodStringName1<PhysicsDirectBodyState3D, Unit, Vector3> =
+        MethodStringName1<PhysicsDirectBodyState3D, Unit, Vector3>("apply_central_force")
+
+    @JvmField
+    public val applyForceName: MethodStringName2<PhysicsDirectBodyState3D, Unit, Vector3, Vector3> =
+        MethodStringName2<PhysicsDirectBodyState3D, Unit, Vector3, Vector3>("apply_force")
+
+    @JvmField
+    public val applyTorqueName: MethodStringName1<PhysicsDirectBodyState3D, Unit, Vector3> =
+        MethodStringName1<PhysicsDirectBodyState3D, Unit, Vector3>("apply_torque")
+
+    @JvmField
+    public val addConstantCentralForceName:
+        MethodStringName1<PhysicsDirectBodyState3D, Unit, Vector3> =
+        MethodStringName1<PhysicsDirectBodyState3D, Unit, Vector3>("add_constant_central_force")
+
+    @JvmField
+    public val addConstantForceName:
+        MethodStringName2<PhysicsDirectBodyState3D, Unit, Vector3, Vector3> =
+        MethodStringName2<PhysicsDirectBodyState3D, Unit, Vector3, Vector3>("add_constant_force")
+
+    @JvmField
+    public val addConstantTorqueName: MethodStringName1<PhysicsDirectBodyState3D, Unit, Vector3> =
+        MethodStringName1<PhysicsDirectBodyState3D, Unit, Vector3>("add_constant_torque")
+
+    @JvmField
+    public val setConstantForceName: MethodStringName1<PhysicsDirectBodyState3D, Unit, Vector3> =
+        MethodStringName1<PhysicsDirectBodyState3D, Unit, Vector3>("set_constant_force")
+
+    @JvmField
+    public val getConstantForceName: MethodStringName0<PhysicsDirectBodyState3D, Vector3> =
+        MethodStringName0<PhysicsDirectBodyState3D, Vector3>("get_constant_force")
+
+    @JvmField
+    public val setConstantTorqueName: MethodStringName1<PhysicsDirectBodyState3D, Unit, Vector3> =
+        MethodStringName1<PhysicsDirectBodyState3D, Unit, Vector3>("set_constant_torque")
+
+    @JvmField
+    public val getConstantTorqueName: MethodStringName0<PhysicsDirectBodyState3D, Vector3> =
+        MethodStringName0<PhysicsDirectBodyState3D, Vector3>("get_constant_torque")
+
+    @JvmField
+    public val setSleepStateName: MethodStringName1<PhysicsDirectBodyState3D, Unit, Boolean> =
+        MethodStringName1<PhysicsDirectBodyState3D, Unit, Boolean>("set_sleep_state")
+
+    @JvmField
+    public val isSleepingName: MethodStringName0<PhysicsDirectBodyState3D, Boolean> =
+        MethodStringName0<PhysicsDirectBodyState3D, Boolean>("is_sleeping")
+
+    @JvmField
+    public val setCollisionLayerName: MethodStringName1<PhysicsDirectBodyState3D, Unit, Long> =
+        MethodStringName1<PhysicsDirectBodyState3D, Unit, Long>("set_collision_layer")
+
+    @JvmField
+    public val getCollisionLayerName: MethodStringName0<PhysicsDirectBodyState3D, Long> =
+        MethodStringName0<PhysicsDirectBodyState3D, Long>("get_collision_layer")
+
+    @JvmField
+    public val setCollisionMaskName: MethodStringName1<PhysicsDirectBodyState3D, Unit, Long> =
+        MethodStringName1<PhysicsDirectBodyState3D, Unit, Long>("set_collision_mask")
+
+    @JvmField
+    public val getCollisionMaskName: MethodStringName0<PhysicsDirectBodyState3D, Long> =
+        MethodStringName0<PhysicsDirectBodyState3D, Long>("get_collision_mask")
+
+    @JvmField
+    public val getContactCountName: MethodStringName0<PhysicsDirectBodyState3D, Int> =
+        MethodStringName0<PhysicsDirectBodyState3D, Int>("get_contact_count")
+
+    @JvmField
+    public val getContactLocalPositionName:
+        MethodStringName1<PhysicsDirectBodyState3D, Vector3, Int> =
+        MethodStringName1<PhysicsDirectBodyState3D, Vector3, Int>("get_contact_local_position")
+
+    @JvmField
+    public val getContactLocalNormalName: MethodStringName1<PhysicsDirectBodyState3D, Vector3, Int>
+        = MethodStringName1<PhysicsDirectBodyState3D, Vector3, Int>("get_contact_local_normal")
+
+    @JvmField
+    public val getContactImpulseName: MethodStringName1<PhysicsDirectBodyState3D, Vector3, Int> =
+        MethodStringName1<PhysicsDirectBodyState3D, Vector3, Int>("get_contact_impulse")
+
+    @JvmField
+    public val getContactLocalShapeName: MethodStringName1<PhysicsDirectBodyState3D, Int, Int> =
+        MethodStringName1<PhysicsDirectBodyState3D, Int, Int>("get_contact_local_shape")
+
+    @JvmField
+    public val getContactLocalVelocityAtPositionName:
+        MethodStringName1<PhysicsDirectBodyState3D, Vector3, Int> =
+        MethodStringName1<PhysicsDirectBodyState3D, Vector3, Int>("get_contact_local_velocity_at_position")
+
+    @JvmField
+    public val getContactColliderName: MethodStringName1<PhysicsDirectBodyState3D, RID, Int> =
+        MethodStringName1<PhysicsDirectBodyState3D, RID, Int>("get_contact_collider")
+
+    @JvmField
+    public val getContactColliderPositionName:
+        MethodStringName1<PhysicsDirectBodyState3D, Vector3, Int> =
+        MethodStringName1<PhysicsDirectBodyState3D, Vector3, Int>("get_contact_collider_position")
+
+    @JvmField
+    public val getContactColliderIdName: MethodStringName1<PhysicsDirectBodyState3D, Long, Int> =
+        MethodStringName1<PhysicsDirectBodyState3D, Long, Int>("get_contact_collider_id")
+
+    @JvmField
+    public val getContactColliderObjectName:
+        MethodStringName1<PhysicsDirectBodyState3D, Object?, Int> =
+        MethodStringName1<PhysicsDirectBodyState3D, Object?, Int>("get_contact_collider_object")
+
+    @JvmField
+    public val getContactColliderShapeName: MethodStringName1<PhysicsDirectBodyState3D, Int, Int> =
+        MethodStringName1<PhysicsDirectBodyState3D, Int, Int>("get_contact_collider_shape")
+
+    @JvmField
+    public val getContactColliderVelocityAtPositionName:
+        MethodStringName1<PhysicsDirectBodyState3D, Vector3, Int> =
+        MethodStringName1<PhysicsDirectBodyState3D, Vector3, Int>("get_contact_collider_velocity_at_position")
+
+    @JvmField
+    public val getStepName: MethodStringName0<PhysicsDirectBodyState3D, Float> =
+        MethodStringName0<PhysicsDirectBodyState3D, Float>("get_step")
+
+    @JvmField
+    public val integrateForcesName: MethodStringName0<PhysicsDirectBodyState3D, Unit> =
+        MethodStringName0<PhysicsDirectBodyState3D, Unit>("integrate_forces")
+
+    @JvmField
+    public val getSpaceStateName:
+        MethodStringName0<PhysicsDirectBodyState3D, PhysicsDirectSpaceState3D> =
+        MethodStringName0<PhysicsDirectBodyState3D, PhysicsDirectSpaceState3D>("get_space_state")
+  }
 
   public object MethodBindings {
     internal val getTotalGravityPtr: VoidPtr =

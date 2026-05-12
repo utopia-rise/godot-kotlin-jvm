@@ -10,6 +10,11 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
+import godot.core.MethodStringName4
+import godot.core.MethodStringName5
 import godot.core.PackedInt32Array
 import godot.core.PackedVector3Array
 import godot.core.Plane
@@ -28,6 +33,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
@@ -37,6 +43,80 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object Geometry3D : Object() {
+  @JvmField
+  public val computeConvexMeshPointsName:
+      MethodStringName1<Geometry3D, PackedVector3Array, VariantArray<Plane>> =
+      MethodStringName1<Geometry3D, PackedVector3Array, VariantArray<Plane>>("compute_convex_mesh_points")
+
+  @JvmField
+  public val buildBoxPlanesName: MethodStringName1<Geometry3D, VariantArray<Plane>, Vector3> =
+      MethodStringName1<Geometry3D, VariantArray<Plane>, Vector3>("build_box_planes")
+
+  @JvmField
+  public val buildCylinderPlanesName:
+      MethodStringName4<Geometry3D, VariantArray<Plane>, Float, Float, Int, Vector3.Axis> =
+      MethodStringName4<Geometry3D, VariantArray<Plane>, Float, Float, Int, Vector3.Axis>("build_cylinder_planes")
+
+  @JvmField
+  public val buildCapsulePlanesName:
+      MethodStringName5<Geometry3D, VariantArray<Plane>, Float, Float, Int, Int, Vector3.Axis> =
+      MethodStringName5<Geometry3D, VariantArray<Plane>, Float, Float, Int, Int, Vector3.Axis>("build_capsule_planes")
+
+  @JvmField
+  public val getClosestPointsBetweenSegmentsName:
+      MethodStringName4<Geometry3D, PackedVector3Array, Vector3, Vector3, Vector3, Vector3> =
+      MethodStringName4<Geometry3D, PackedVector3Array, Vector3, Vector3, Vector3, Vector3>("get_closest_points_between_segments")
+
+  @JvmField
+  public val getClosestPointToSegmentName:
+      MethodStringName3<Geometry3D, Vector3, Vector3, Vector3, Vector3> =
+      MethodStringName3<Geometry3D, Vector3, Vector3, Vector3, Vector3>("get_closest_point_to_segment")
+
+  @JvmField
+  public val getClosestPointToSegmentUncappedName:
+      MethodStringName3<Geometry3D, Vector3, Vector3, Vector3, Vector3> =
+      MethodStringName3<Geometry3D, Vector3, Vector3, Vector3, Vector3>("get_closest_point_to_segment_uncapped")
+
+  @JvmField
+  public val getTriangleBarycentricCoordsName:
+      MethodStringName4<Geometry3D, Vector3, Vector3, Vector3, Vector3, Vector3> =
+      MethodStringName4<Geometry3D, Vector3, Vector3, Vector3, Vector3, Vector3>("get_triangle_barycentric_coords")
+
+  @JvmField
+  public val rayIntersectsTriangleName:
+      MethodStringName5<Geometry3D, Any?, Vector3, Vector3, Vector3, Vector3, Vector3> =
+      MethodStringName5<Geometry3D, Any?, Vector3, Vector3, Vector3, Vector3, Vector3>("ray_intersects_triangle")
+
+  @JvmField
+  public val segmentIntersectsTriangleName:
+      MethodStringName5<Geometry3D, Any?, Vector3, Vector3, Vector3, Vector3, Vector3> =
+      MethodStringName5<Geometry3D, Any?, Vector3, Vector3, Vector3, Vector3, Vector3>("segment_intersects_triangle")
+
+  @JvmField
+  public val segmentIntersectsSphereName:
+      MethodStringName4<Geometry3D, PackedVector3Array, Vector3, Vector3, Vector3, Float> =
+      MethodStringName4<Geometry3D, PackedVector3Array, Vector3, Vector3, Vector3, Float>("segment_intersects_sphere")
+
+  @JvmField
+  public val segmentIntersectsCylinderName:
+      MethodStringName4<Geometry3D, PackedVector3Array, Vector3, Vector3, Float, Float> =
+      MethodStringName4<Geometry3D, PackedVector3Array, Vector3, Vector3, Float, Float>("segment_intersects_cylinder")
+
+  @JvmField
+  public val segmentIntersectsConvexName:
+      MethodStringName3<Geometry3D, PackedVector3Array, Vector3, Vector3, VariantArray<Plane>> =
+      MethodStringName3<Geometry3D, PackedVector3Array, Vector3, Vector3, VariantArray<Plane>>("segment_intersects_convex")
+
+  @JvmField
+  public val clipPolygonName:
+      MethodStringName2<Geometry3D, PackedVector3Array, PackedVector3Array, Plane> =
+      MethodStringName2<Geometry3D, PackedVector3Array, PackedVector3Array, Plane>("clip_polygon")
+
+  @JvmField
+  public val tetrahedralizeDelaunayName:
+      MethodStringName1<Geometry3D, PackedInt32Array, PackedVector3Array> =
+      MethodStringName1<Geometry3D, PackedInt32Array, PackedVector3Array>("tetrahedralize_delaunay")
+
   public override fun new(scriptPtr: VoidPtr): Unit {
     getSingleton(8)
   }

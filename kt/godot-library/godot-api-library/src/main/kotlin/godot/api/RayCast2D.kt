@@ -12,6 +12,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.RID
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
@@ -25,6 +28,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -394,7 +398,119 @@ public open class RayCast2D : Node2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setEnabledName: MethodStringName1<RayCast2D, Unit, Boolean> =
+        MethodStringName1<RayCast2D, Unit, Boolean>("set_enabled")
+
+    @JvmField
+    public val isEnabledName: MethodStringName0<RayCast2D, Boolean> =
+        MethodStringName0<RayCast2D, Boolean>("is_enabled")
+
+    @JvmField
+    public val setTargetPositionName: MethodStringName1<RayCast2D, Unit, Vector2> =
+        MethodStringName1<RayCast2D, Unit, Vector2>("set_target_position")
+
+    @JvmField
+    public val getTargetPositionName: MethodStringName0<RayCast2D, Vector2> =
+        MethodStringName0<RayCast2D, Vector2>("get_target_position")
+
+    @JvmField
+    public val isCollidingName: MethodStringName0<RayCast2D, Boolean> =
+        MethodStringName0<RayCast2D, Boolean>("is_colliding")
+
+    @JvmField
+    public val forceRaycastUpdateName: MethodStringName0<RayCast2D, Unit> =
+        MethodStringName0<RayCast2D, Unit>("force_raycast_update")
+
+    @JvmField
+    public val getColliderName: MethodStringName0<RayCast2D, Object?> =
+        MethodStringName0<RayCast2D, Object?>("get_collider")
+
+    @JvmField
+    public val getColliderRidName: MethodStringName0<RayCast2D, RID> =
+        MethodStringName0<RayCast2D, RID>("get_collider_rid")
+
+    @JvmField
+    public val getColliderShapeName: MethodStringName0<RayCast2D, Int> =
+        MethodStringName0<RayCast2D, Int>("get_collider_shape")
+
+    @JvmField
+    public val getCollisionPointName: MethodStringName0<RayCast2D, Vector2> =
+        MethodStringName0<RayCast2D, Vector2>("get_collision_point")
+
+    @JvmField
+    public val getCollisionNormalName: MethodStringName0<RayCast2D, Vector2> =
+        MethodStringName0<RayCast2D, Vector2>("get_collision_normal")
+
+    @JvmField
+    public val addExceptionRidName: MethodStringName1<RayCast2D, Unit, RID> =
+        MethodStringName1<RayCast2D, Unit, RID>("add_exception_rid")
+
+    @JvmField
+    public val addExceptionName: MethodStringName1<RayCast2D, Unit, CollisionObject2D> =
+        MethodStringName1<RayCast2D, Unit, CollisionObject2D>("add_exception")
+
+    @JvmField
+    public val removeExceptionRidName: MethodStringName1<RayCast2D, Unit, RID> =
+        MethodStringName1<RayCast2D, Unit, RID>("remove_exception_rid")
+
+    @JvmField
+    public val removeExceptionName: MethodStringName1<RayCast2D, Unit, CollisionObject2D> =
+        MethodStringName1<RayCast2D, Unit, CollisionObject2D>("remove_exception")
+
+    @JvmField
+    public val clearExceptionsName: MethodStringName0<RayCast2D, Unit> =
+        MethodStringName0<RayCast2D, Unit>("clear_exceptions")
+
+    @JvmField
+    public val setCollisionMaskName: MethodStringName1<RayCast2D, Unit, Long> =
+        MethodStringName1<RayCast2D, Unit, Long>("set_collision_mask")
+
+    @JvmField
+    public val getCollisionMaskName: MethodStringName0<RayCast2D, Long> =
+        MethodStringName0<RayCast2D, Long>("get_collision_mask")
+
+    @JvmField
+    public val setCollisionMaskValueName: MethodStringName2<RayCast2D, Unit, Int, Boolean> =
+        MethodStringName2<RayCast2D, Unit, Int, Boolean>("set_collision_mask_value")
+
+    @JvmField
+    public val getCollisionMaskValueName: MethodStringName1<RayCast2D, Boolean, Int> =
+        MethodStringName1<RayCast2D, Boolean, Int>("get_collision_mask_value")
+
+    @JvmField
+    public val setExcludeParentBodyName: MethodStringName1<RayCast2D, Unit, Boolean> =
+        MethodStringName1<RayCast2D, Unit, Boolean>("set_exclude_parent_body")
+
+    @JvmField
+    public val getExcludeParentBodyName: MethodStringName0<RayCast2D, Boolean> =
+        MethodStringName0<RayCast2D, Boolean>("get_exclude_parent_body")
+
+    @JvmField
+    public val setCollideWithAreasName: MethodStringName1<RayCast2D, Unit, Boolean> =
+        MethodStringName1<RayCast2D, Unit, Boolean>("set_collide_with_areas")
+
+    @JvmField
+    public val isCollideWithAreasEnabledName: MethodStringName0<RayCast2D, Boolean> =
+        MethodStringName0<RayCast2D, Boolean>("is_collide_with_areas_enabled")
+
+    @JvmField
+    public val setCollideWithBodiesName: MethodStringName1<RayCast2D, Unit, Boolean> =
+        MethodStringName1<RayCast2D, Unit, Boolean>("set_collide_with_bodies")
+
+    @JvmField
+    public val isCollideWithBodiesEnabledName: MethodStringName0<RayCast2D, Boolean> =
+        MethodStringName0<RayCast2D, Boolean>("is_collide_with_bodies_enabled")
+
+    @JvmField
+    public val setHitFromInsideName: MethodStringName1<RayCast2D, Unit, Boolean> =
+        MethodStringName1<RayCast2D, Unit, Boolean>("set_hit_from_inside")
+
+    @JvmField
+    public val isHitFromInsideEnabledName: MethodStringName0<RayCast2D, Boolean> =
+        MethodStringName0<RayCast2D, Boolean>("is_hit_from_inside_enabled")
+  }
 
   public object MethodBindings {
     internal val setEnabledPtr: VoidPtr =

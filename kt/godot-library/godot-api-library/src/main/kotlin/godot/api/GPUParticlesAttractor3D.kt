@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -18,6 +20,7 @@ import kotlin.Float
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -143,7 +146,39 @@ public open class GPUParticlesAttractor3D internal constructor() : VisualInstanc
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setCullMaskName: MethodStringName1<GPUParticlesAttractor3D, Unit, Long> =
+        MethodStringName1<GPUParticlesAttractor3D, Unit, Long>("set_cull_mask")
+
+    @JvmField
+    public val getCullMaskName: MethodStringName0<GPUParticlesAttractor3D, Long> =
+        MethodStringName0<GPUParticlesAttractor3D, Long>("get_cull_mask")
+
+    @JvmField
+    public val setStrengthName: MethodStringName1<GPUParticlesAttractor3D, Unit, Float> =
+        MethodStringName1<GPUParticlesAttractor3D, Unit, Float>("set_strength")
+
+    @JvmField
+    public val getStrengthName: MethodStringName0<GPUParticlesAttractor3D, Float> =
+        MethodStringName0<GPUParticlesAttractor3D, Float>("get_strength")
+
+    @JvmField
+    public val setAttenuationName: MethodStringName1<GPUParticlesAttractor3D, Unit, Float> =
+        MethodStringName1<GPUParticlesAttractor3D, Unit, Float>("set_attenuation")
+
+    @JvmField
+    public val getAttenuationName: MethodStringName0<GPUParticlesAttractor3D, Float> =
+        MethodStringName0<GPUParticlesAttractor3D, Float>("get_attenuation")
+
+    @JvmField
+    public val setDirectionalityName: MethodStringName1<GPUParticlesAttractor3D, Unit, Float> =
+        MethodStringName1<GPUParticlesAttractor3D, Unit, Float>("set_directionality")
+
+    @JvmField
+    public val getDirectionalityName: MethodStringName0<GPUParticlesAttractor3D, Float> =
+        MethodStringName0<GPUParticlesAttractor3D, Float>("get_directionality")
+  }
 
   public object MethodBindings {
     internal val setCullMaskPtr: VoidPtr =

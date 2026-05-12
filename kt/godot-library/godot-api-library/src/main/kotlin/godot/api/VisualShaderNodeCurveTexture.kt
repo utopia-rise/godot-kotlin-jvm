@@ -10,10 +10,13 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -47,7 +50,15 @@ public open class VisualShaderNodeCurveTexture : VisualShaderNodeResizableBase()
     return (TransferContext.readReturnValue(OBJECT) as CurveTexture?)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setTextureName: MethodStringName1<VisualShaderNodeCurveTexture, Unit, CurveTexture?>
+        = MethodStringName1<VisualShaderNodeCurveTexture, Unit, CurveTexture?>("set_texture")
+
+    @JvmField
+    public val getTextureName: MethodStringName0<VisualShaderNodeCurveTexture, CurveTexture?> =
+        MethodStringName0<VisualShaderNodeCurveTexture, CurveTexture?>("get_texture")
+  }
 
   public object MethodBindings {
     internal val setTexturePtr: VoidPtr =

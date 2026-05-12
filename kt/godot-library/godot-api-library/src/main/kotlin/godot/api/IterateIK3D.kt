@@ -10,6 +10,10 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
 import godot.core.NodePath
 import godot.core.Quaternion
 import godot.core.VariantParser.BOOL
@@ -29,6 +33,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -344,7 +349,105 @@ public open class IterateIK3D internal constructor() : ChainIK3D() {
   public final fun setTargetNode(index: Int, targetNode: String) =
       setTargetNode(index, targetNode.asCachedNodePath())
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setMaxIterationsName: MethodStringName1<IterateIK3D, Unit, Int> =
+        MethodStringName1<IterateIK3D, Unit, Int>("set_max_iterations")
+
+    @JvmField
+    public val getMaxIterationsName: MethodStringName0<IterateIK3D, Int> =
+        MethodStringName0<IterateIK3D, Int>("get_max_iterations")
+
+    @JvmField
+    public val setMinDistanceName: MethodStringName1<IterateIK3D, Unit, Double> =
+        MethodStringName1<IterateIK3D, Unit, Double>("set_min_distance")
+
+    @JvmField
+    public val getMinDistanceName: MethodStringName0<IterateIK3D, Double> =
+        MethodStringName0<IterateIK3D, Double>("get_min_distance")
+
+    @JvmField
+    public val setAngularDeltaLimitName: MethodStringName1<IterateIK3D, Unit, Double> =
+        MethodStringName1<IterateIK3D, Unit, Double>("set_angular_delta_limit")
+
+    @JvmField
+    public val getAngularDeltaLimitName: MethodStringName0<IterateIK3D, Double> =
+        MethodStringName0<IterateIK3D, Double>("get_angular_delta_limit")
+
+    @JvmField
+    public val setDeterministicName: MethodStringName1<IterateIK3D, Unit, Boolean> =
+        MethodStringName1<IterateIK3D, Unit, Boolean>("set_deterministic")
+
+    @JvmField
+    public val isDeterministicName: MethodStringName0<IterateIK3D, Boolean> =
+        MethodStringName0<IterateIK3D, Boolean>("is_deterministic")
+
+    @JvmField
+    public val setTargetNodeName: MethodStringName2<IterateIK3D, Unit, Int, NodePath> =
+        MethodStringName2<IterateIK3D, Unit, Int, NodePath>("set_target_node")
+
+    @JvmField
+    public val getTargetNodeName: MethodStringName1<IterateIK3D, NodePath, Int> =
+        MethodStringName1<IterateIK3D, NodePath, Int>("get_target_node")
+
+    @JvmField
+    public val setJointRotationAxisName:
+        MethodStringName3<IterateIK3D, Unit, Int, Int, SkeletonModifier3D.RotationAxis> =
+        MethodStringName3<IterateIK3D, Unit, Int, Int, SkeletonModifier3D.RotationAxis>("set_joint_rotation_axis")
+
+    @JvmField
+    public val getJointRotationAxisName:
+        MethodStringName2<IterateIK3D, SkeletonModifier3D.RotationAxis, Int, Int> =
+        MethodStringName2<IterateIK3D, SkeletonModifier3D.RotationAxis, Int, Int>("get_joint_rotation_axis")
+
+    @JvmField
+    public val setJointRotationAxisVectorName:
+        MethodStringName3<IterateIK3D, Unit, Int, Int, Vector3> =
+        MethodStringName3<IterateIK3D, Unit, Int, Int, Vector3>("set_joint_rotation_axis_vector")
+
+    @JvmField
+    public val getJointRotationAxisVectorName: MethodStringName2<IterateIK3D, Vector3, Int, Int> =
+        MethodStringName2<IterateIK3D, Vector3, Int, Int>("get_joint_rotation_axis_vector")
+
+    @JvmField
+    public val setJointLimitationName:
+        MethodStringName3<IterateIK3D, Unit, Int, Int, JointLimitation3D?> =
+        MethodStringName3<IterateIK3D, Unit, Int, Int, JointLimitation3D?>("set_joint_limitation")
+
+    @JvmField
+    public val getJointLimitationName: MethodStringName2<IterateIK3D, JointLimitation3D?, Int, Int>
+        = MethodStringName2<IterateIK3D, JointLimitation3D?, Int, Int>("get_joint_limitation")
+
+    @JvmField
+    public val setJointLimitationRightAxisName:
+        MethodStringName3<IterateIK3D, Unit, Int, Int, SkeletonModifier3D.SecondaryDirection> =
+        MethodStringName3<IterateIK3D, Unit, Int, Int, SkeletonModifier3D.SecondaryDirection>("set_joint_limitation_right_axis")
+
+    @JvmField
+    public val getJointLimitationRightAxisName:
+        MethodStringName2<IterateIK3D, SkeletonModifier3D.SecondaryDirection, Int, Int> =
+        MethodStringName2<IterateIK3D, SkeletonModifier3D.SecondaryDirection, Int, Int>("get_joint_limitation_right_axis")
+
+    @JvmField
+    public val setJointLimitationRightAxisVectorName:
+        MethodStringName3<IterateIK3D, Unit, Int, Int, Vector3> =
+        MethodStringName3<IterateIK3D, Unit, Int, Int, Vector3>("set_joint_limitation_right_axis_vector")
+
+    @JvmField
+    public val getJointLimitationRightAxisVectorName:
+        MethodStringName2<IterateIK3D, Vector3, Int, Int> =
+        MethodStringName2<IterateIK3D, Vector3, Int, Int>("get_joint_limitation_right_axis_vector")
+
+    @JvmField
+    public val setJointLimitationRotationOffsetName:
+        MethodStringName3<IterateIK3D, Unit, Int, Int, Quaternion> =
+        MethodStringName3<IterateIK3D, Unit, Int, Int, Quaternion>("set_joint_limitation_rotation_offset")
+
+    @JvmField
+    public val getJointLimitationRotationOffsetName:
+        MethodStringName2<IterateIK3D, Quaternion, Int, Int> =
+        MethodStringName2<IterateIK3D, Quaternion, Int, Int>("get_joint_limitation_rotation_offset")
+  }
 
   public object MethodBindings {
     internal val setMaxIterationsPtr: VoidPtr =

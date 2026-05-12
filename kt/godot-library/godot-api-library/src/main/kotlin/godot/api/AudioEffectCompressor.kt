@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.StringName
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
@@ -21,6 +23,7 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -214,7 +217,63 @@ public open class AudioEffectCompressor : AudioEffect() {
 
   public final fun setSidechain(sidechain: String) = setSidechain(sidechain.asCachedStringName())
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setThresholdName: MethodStringName1<AudioEffectCompressor, Unit, Float> =
+        MethodStringName1<AudioEffectCompressor, Unit, Float>("set_threshold")
+
+    @JvmField
+    public val getThresholdName: MethodStringName0<AudioEffectCompressor, Float> =
+        MethodStringName0<AudioEffectCompressor, Float>("get_threshold")
+
+    @JvmField
+    public val setRatioName: MethodStringName1<AudioEffectCompressor, Unit, Float> =
+        MethodStringName1<AudioEffectCompressor, Unit, Float>("set_ratio")
+
+    @JvmField
+    public val getRatioName: MethodStringName0<AudioEffectCompressor, Float> =
+        MethodStringName0<AudioEffectCompressor, Float>("get_ratio")
+
+    @JvmField
+    public val setGainName: MethodStringName1<AudioEffectCompressor, Unit, Float> =
+        MethodStringName1<AudioEffectCompressor, Unit, Float>("set_gain")
+
+    @JvmField
+    public val getGainName: MethodStringName0<AudioEffectCompressor, Float> =
+        MethodStringName0<AudioEffectCompressor, Float>("get_gain")
+
+    @JvmField
+    public val setAttackUsName: MethodStringName1<AudioEffectCompressor, Unit, Float> =
+        MethodStringName1<AudioEffectCompressor, Unit, Float>("set_attack_us")
+
+    @JvmField
+    public val getAttackUsName: MethodStringName0<AudioEffectCompressor, Float> =
+        MethodStringName0<AudioEffectCompressor, Float>("get_attack_us")
+
+    @JvmField
+    public val setReleaseMsName: MethodStringName1<AudioEffectCompressor, Unit, Float> =
+        MethodStringName1<AudioEffectCompressor, Unit, Float>("set_release_ms")
+
+    @JvmField
+    public val getReleaseMsName: MethodStringName0<AudioEffectCompressor, Float> =
+        MethodStringName0<AudioEffectCompressor, Float>("get_release_ms")
+
+    @JvmField
+    public val setMixName: MethodStringName1<AudioEffectCompressor, Unit, Float> =
+        MethodStringName1<AudioEffectCompressor, Unit, Float>("set_mix")
+
+    @JvmField
+    public val getMixName: MethodStringName0<AudioEffectCompressor, Float> =
+        MethodStringName0<AudioEffectCompressor, Float>("get_mix")
+
+    @JvmField
+    public val setSidechainName: MethodStringName1<AudioEffectCompressor, Unit, StringName> =
+        MethodStringName1<AudioEffectCompressor, Unit, StringName>("set_sidechain")
+
+    @JvmField
+    public val getSidechainName: MethodStringName0<AudioEffectCompressor, StringName> =
+        MethodStringName0<AudioEffectCompressor, StringName>("get_sidechain")
+  }
 
   public object MethodBindings {
     internal val setThresholdPtr: VoidPtr =

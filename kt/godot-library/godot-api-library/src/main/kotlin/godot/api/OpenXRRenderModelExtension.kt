@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.PackedStringArray
 import godot.core.RID
 import godot.core.Signal1
@@ -29,6 +32,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 
 /**
  * This class implements the OpenXR Render Model Extension, if enabled it will maintain a list of
@@ -190,7 +194,69 @@ public open class OpenXRRenderModelExtension : OpenXRExtensionWrapper() {
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val isActiveName: MethodStringName0<OpenXRRenderModelExtension, Boolean> =
+        MethodStringName0<OpenXRRenderModelExtension, Boolean>("is_active")
+
+    @JvmField
+    public val renderModelCreateName: MethodStringName1<OpenXRRenderModelExtension, RID, Long> =
+        MethodStringName1<OpenXRRenderModelExtension, RID, Long>("render_model_create")
+
+    @JvmField
+    public val renderModelDestroyName: MethodStringName1<OpenXRRenderModelExtension, Unit, RID> =
+        MethodStringName1<OpenXRRenderModelExtension, Unit, RID>("render_model_destroy")
+
+    @JvmField
+    public val renderModelGetAllName:
+        MethodStringName0<OpenXRRenderModelExtension, VariantArray<RID>> =
+        MethodStringName0<OpenXRRenderModelExtension, VariantArray<RID>>("render_model_get_all")
+
+    @JvmField
+    public val renderModelNewSceneInstanceName:
+        MethodStringName1<OpenXRRenderModelExtension, Node3D?, RID> =
+        MethodStringName1<OpenXRRenderModelExtension, Node3D?, RID>("render_model_new_scene_instance")
+
+    @JvmField
+    public val renderModelGetSubactionPathsName:
+        MethodStringName1<OpenXRRenderModelExtension, PackedStringArray, RID> =
+        MethodStringName1<OpenXRRenderModelExtension, PackedStringArray, RID>("render_model_get_subaction_paths")
+
+    @JvmField
+    public val renderModelGetTopLevelPathName:
+        MethodStringName1<OpenXRRenderModelExtension, String, RID> =
+        MethodStringName1<OpenXRRenderModelExtension, String, RID>("render_model_get_top_level_path")
+
+    @JvmField
+    public val renderModelGetConfidenceName:
+        MethodStringName1<OpenXRRenderModelExtension, XRPose.TrackingConfidence, RID> =
+        MethodStringName1<OpenXRRenderModelExtension, XRPose.TrackingConfidence, RID>("render_model_get_confidence")
+
+    @JvmField
+    public val renderModelGetRootTransformName:
+        MethodStringName1<OpenXRRenderModelExtension, Transform3D, RID> =
+        MethodStringName1<OpenXRRenderModelExtension, Transform3D, RID>("render_model_get_root_transform")
+
+    @JvmField
+    public val renderModelGetAnimatableNodeCountName:
+        MethodStringName1<OpenXRRenderModelExtension, Long, RID> =
+        MethodStringName1<OpenXRRenderModelExtension, Long, RID>("render_model_get_animatable_node_count")
+
+    @JvmField
+    public val renderModelGetAnimatableNodeNameName:
+        MethodStringName2<OpenXRRenderModelExtension, String, RID, Long> =
+        MethodStringName2<OpenXRRenderModelExtension, String, RID, Long>("render_model_get_animatable_node_name")
+
+    @JvmField
+    public val renderModelIsAnimatableNodeVisibleName:
+        MethodStringName2<OpenXRRenderModelExtension, Boolean, RID, Long> =
+        MethodStringName2<OpenXRRenderModelExtension, Boolean, RID, Long>("render_model_is_animatable_node_visible")
+
+    @JvmField
+    public val renderModelGetAnimatableNodeTransformName:
+        MethodStringName2<OpenXRRenderModelExtension, Transform3D, RID, Long> =
+        MethodStringName2<OpenXRRenderModelExtension, Transform3D, RID, Long>("render_model_get_animatable_node_transform")
+  }
 
   public object MethodBindings {
     internal val isActivePtr: VoidPtr =

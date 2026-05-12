@@ -15,6 +15,9 @@ import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.Error
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.PackedByteArray
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DICTIONARY
@@ -32,6 +35,7 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
@@ -387,6 +391,85 @@ public open class AudioStreamWAV : AudioStream() {
   }
 
   public companion object {
+    @JvmField
+    public val loadFromBufferName:
+        MethodStringName2<AudioStreamWAV, AudioStreamWAV?, PackedByteArray, Dictionary<Any?, Any?>>
+        =
+        MethodStringName2<AudioStreamWAV, AudioStreamWAV?, PackedByteArray, Dictionary<Any?, Any?>>("load_from_buffer")
+
+    @JvmField
+    public val loadFromFileName:
+        MethodStringName2<AudioStreamWAV, AudioStreamWAV?, String, Dictionary<Any?, Any?>> =
+        MethodStringName2<AudioStreamWAV, AudioStreamWAV?, String, Dictionary<Any?, Any?>>("load_from_file")
+
+    @JvmField
+    public val setDataName: MethodStringName1<AudioStreamWAV, Unit, PackedByteArray> =
+        MethodStringName1<AudioStreamWAV, Unit, PackedByteArray>("set_data")
+
+    @JvmField
+    public val getDataName: MethodStringName0<AudioStreamWAV, PackedByteArray> =
+        MethodStringName0<AudioStreamWAV, PackedByteArray>("get_data")
+
+    @JvmField
+    public val setFormatName: MethodStringName1<AudioStreamWAV, Unit, Format> =
+        MethodStringName1<AudioStreamWAV, Unit, Format>("set_format")
+
+    @JvmField
+    public val getFormatName: MethodStringName0<AudioStreamWAV, Format> =
+        MethodStringName0<AudioStreamWAV, Format>("get_format")
+
+    @JvmField
+    public val setLoopModeName: MethodStringName1<AudioStreamWAV, Unit, LoopMode> =
+        MethodStringName1<AudioStreamWAV, Unit, LoopMode>("set_loop_mode")
+
+    @JvmField
+    public val getLoopModeName: MethodStringName0<AudioStreamWAV, LoopMode> =
+        MethodStringName0<AudioStreamWAV, LoopMode>("get_loop_mode")
+
+    @JvmField
+    public val setLoopBeginName: MethodStringName1<AudioStreamWAV, Unit, Int> =
+        MethodStringName1<AudioStreamWAV, Unit, Int>("set_loop_begin")
+
+    @JvmField
+    public val getLoopBeginName: MethodStringName0<AudioStreamWAV, Int> =
+        MethodStringName0<AudioStreamWAV, Int>("get_loop_begin")
+
+    @JvmField
+    public val setLoopEndName: MethodStringName1<AudioStreamWAV, Unit, Int> =
+        MethodStringName1<AudioStreamWAV, Unit, Int>("set_loop_end")
+
+    @JvmField
+    public val getLoopEndName: MethodStringName0<AudioStreamWAV, Int> =
+        MethodStringName0<AudioStreamWAV, Int>("get_loop_end")
+
+    @JvmField
+    public val setMixRateName: MethodStringName1<AudioStreamWAV, Unit, Int> =
+        MethodStringName1<AudioStreamWAV, Unit, Int>("set_mix_rate")
+
+    @JvmField
+    public val getMixRateName: MethodStringName0<AudioStreamWAV, Int> =
+        MethodStringName0<AudioStreamWAV, Int>("get_mix_rate")
+
+    @JvmField
+    public val setStereoName: MethodStringName1<AudioStreamWAV, Unit, Boolean> =
+        MethodStringName1<AudioStreamWAV, Unit, Boolean>("set_stereo")
+
+    @JvmField
+    public val isStereoName: MethodStringName0<AudioStreamWAV, Boolean> =
+        MethodStringName0<AudioStreamWAV, Boolean>("is_stereo")
+
+    @JvmField
+    public val setTagsName: MethodStringName1<AudioStreamWAV, Unit, Dictionary<Any?, Any?>> =
+        MethodStringName1<AudioStreamWAV, Unit, Dictionary<Any?, Any?>>("set_tags")
+
+    @JvmField
+    public val getTagsName: MethodStringName0<AudioStreamWAV, Dictionary<Any?, Any?>> =
+        MethodStringName0<AudioStreamWAV, Dictionary<Any?, Any?>>("get_tags")
+
+    @JvmField
+    public val saveToWavName: MethodStringName1<AudioStreamWAV, Error, String> =
+        MethodStringName1<AudioStreamWAV, Error, String>("save_to_wav")
+
     /**
      * Creates a new [AudioStreamWAV] instance from the given buffer. The buffer must contain WAV
      * data.

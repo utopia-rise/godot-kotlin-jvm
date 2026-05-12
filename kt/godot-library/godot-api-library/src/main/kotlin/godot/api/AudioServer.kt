@@ -12,6 +12,10 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
 import godot.core.PackedStringArray
 import godot.core.PackedVector2Array
 import godot.core.Signal0
@@ -35,6 +39,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
@@ -45,6 +50,235 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object AudioServer : Object() {
+  @JvmField
+  public val setBusCountName: MethodStringName1<AudioServer, Unit, Int> =
+      MethodStringName1<AudioServer, Unit, Int>("set_bus_count")
+
+  @JvmField
+  public val getBusCountName: MethodStringName0<AudioServer, Int> =
+      MethodStringName0<AudioServer, Int>("get_bus_count")
+
+  @JvmField
+  public val removeBusName: MethodStringName1<AudioServer, Unit, Int> =
+      MethodStringName1<AudioServer, Unit, Int>("remove_bus")
+
+  @JvmField
+  public val addBusName: MethodStringName1<AudioServer, Unit, Int> =
+      MethodStringName1<AudioServer, Unit, Int>("add_bus")
+
+  @JvmField
+  public val moveBusName: MethodStringName2<AudioServer, Unit, Int, Int> =
+      MethodStringName2<AudioServer, Unit, Int, Int>("move_bus")
+
+  @JvmField
+  public val setBusNameName: MethodStringName2<AudioServer, Unit, Int, String> =
+      MethodStringName2<AudioServer, Unit, Int, String>("set_bus_name")
+
+  @JvmField
+  public val getBusNameName: MethodStringName1<AudioServer, String, Int> =
+      MethodStringName1<AudioServer, String, Int>("get_bus_name")
+
+  @JvmField
+  public val getBusIndexName: MethodStringName1<AudioServer, Int, StringName> =
+      MethodStringName1<AudioServer, Int, StringName>("get_bus_index")
+
+  @JvmField
+  public val getBusChannelsName: MethodStringName1<AudioServer, Int, Int> =
+      MethodStringName1<AudioServer, Int, Int>("get_bus_channels")
+
+  @JvmField
+  public val setBusVolumeDbName: MethodStringName2<AudioServer, Unit, Int, Float> =
+      MethodStringName2<AudioServer, Unit, Int, Float>("set_bus_volume_db")
+
+  @JvmField
+  public val getBusVolumeDbName: MethodStringName1<AudioServer, Float, Int> =
+      MethodStringName1<AudioServer, Float, Int>("get_bus_volume_db")
+
+  @JvmField
+  public val setBusVolumeLinearName: MethodStringName2<AudioServer, Unit, Int, Float> =
+      MethodStringName2<AudioServer, Unit, Int, Float>("set_bus_volume_linear")
+
+  @JvmField
+  public val getBusVolumeLinearName: MethodStringName1<AudioServer, Float, Int> =
+      MethodStringName1<AudioServer, Float, Int>("get_bus_volume_linear")
+
+  @JvmField
+  public val setBusSendName: MethodStringName2<AudioServer, Unit, Int, StringName> =
+      MethodStringName2<AudioServer, Unit, Int, StringName>("set_bus_send")
+
+  @JvmField
+  public val getBusSendName: MethodStringName1<AudioServer, StringName, Int> =
+      MethodStringName1<AudioServer, StringName, Int>("get_bus_send")
+
+  @JvmField
+  public val setBusSoloName: MethodStringName2<AudioServer, Unit, Int, Boolean> =
+      MethodStringName2<AudioServer, Unit, Int, Boolean>("set_bus_solo")
+
+  @JvmField
+  public val isBusSoloName: MethodStringName1<AudioServer, Boolean, Int> =
+      MethodStringName1<AudioServer, Boolean, Int>("is_bus_solo")
+
+  @JvmField
+  public val setBusMuteName: MethodStringName2<AudioServer, Unit, Int, Boolean> =
+      MethodStringName2<AudioServer, Unit, Int, Boolean>("set_bus_mute")
+
+  @JvmField
+  public val isBusMuteName: MethodStringName1<AudioServer, Boolean, Int> =
+      MethodStringName1<AudioServer, Boolean, Int>("is_bus_mute")
+
+  @JvmField
+  public val setBusBypassEffectsName: MethodStringName2<AudioServer, Unit, Int, Boolean> =
+      MethodStringName2<AudioServer, Unit, Int, Boolean>("set_bus_bypass_effects")
+
+  @JvmField
+  public val isBusBypassingEffectsName: MethodStringName1<AudioServer, Boolean, Int> =
+      MethodStringName1<AudioServer, Boolean, Int>("is_bus_bypassing_effects")
+
+  @JvmField
+  public val addBusEffectName: MethodStringName3<AudioServer, Unit, Int, AudioEffect?, Int> =
+      MethodStringName3<AudioServer, Unit, Int, AudioEffect?, Int>("add_bus_effect")
+
+  @JvmField
+  public val removeBusEffectName: MethodStringName2<AudioServer, Unit, Int, Int> =
+      MethodStringName2<AudioServer, Unit, Int, Int>("remove_bus_effect")
+
+  @JvmField
+  public val getBusEffectCountName: MethodStringName1<AudioServer, Int, Int> =
+      MethodStringName1<AudioServer, Int, Int>("get_bus_effect_count")
+
+  @JvmField
+  public val getBusEffectName: MethodStringName2<AudioServer, AudioEffect?, Int, Int> =
+      MethodStringName2<AudioServer, AudioEffect?, Int, Int>("get_bus_effect")
+
+  @JvmField
+  public val getBusEffectInstanceName:
+      MethodStringName3<AudioServer, AudioEffectInstance?, Int, Int, Int> =
+      MethodStringName3<AudioServer, AudioEffectInstance?, Int, Int, Int>("get_bus_effect_instance")
+
+  @JvmField
+  public val swapBusEffectsName: MethodStringName3<AudioServer, Unit, Int, Int, Int> =
+      MethodStringName3<AudioServer, Unit, Int, Int, Int>("swap_bus_effects")
+
+  @JvmField
+  public val setBusEffectEnabledName: MethodStringName3<AudioServer, Unit, Int, Int, Boolean> =
+      MethodStringName3<AudioServer, Unit, Int, Int, Boolean>("set_bus_effect_enabled")
+
+  @JvmField
+  public val isBusEffectEnabledName: MethodStringName2<AudioServer, Boolean, Int, Int> =
+      MethodStringName2<AudioServer, Boolean, Int, Int>("is_bus_effect_enabled")
+
+  @JvmField
+  public val getBusPeakVolumeLeftDbName: MethodStringName2<AudioServer, Float, Int, Int> =
+      MethodStringName2<AudioServer, Float, Int, Int>("get_bus_peak_volume_left_db")
+
+  @JvmField
+  public val getBusPeakVolumeRightDbName: MethodStringName2<AudioServer, Float, Int, Int> =
+      MethodStringName2<AudioServer, Float, Int, Int>("get_bus_peak_volume_right_db")
+
+  @JvmField
+  public val setPlaybackSpeedScaleName: MethodStringName1<AudioServer, Unit, Float> =
+      MethodStringName1<AudioServer, Unit, Float>("set_playback_speed_scale")
+
+  @JvmField
+  public val getPlaybackSpeedScaleName: MethodStringName0<AudioServer, Float> =
+      MethodStringName0<AudioServer, Float>("get_playback_speed_scale")
+
+  @JvmField
+  public val lockName: MethodStringName0<AudioServer, Unit> =
+      MethodStringName0<AudioServer, Unit>("lock")
+
+  @JvmField
+  public val unlockName: MethodStringName0<AudioServer, Unit> =
+      MethodStringName0<AudioServer, Unit>("unlock")
+
+  @JvmField
+  public val getSpeakerModeName: MethodStringName0<AudioServer, SpeakerMode> =
+      MethodStringName0<AudioServer, SpeakerMode>("get_speaker_mode")
+
+  @JvmField
+  public val getMixRateName: MethodStringName0<AudioServer, Float> =
+      MethodStringName0<AudioServer, Float>("get_mix_rate")
+
+  @JvmField
+  public val getInputMixRateName: MethodStringName0<AudioServer, Float> =
+      MethodStringName0<AudioServer, Float>("get_input_mix_rate")
+
+  @JvmField
+  public val getDriverNameName: MethodStringName0<AudioServer, String> =
+      MethodStringName0<AudioServer, String>("get_driver_name")
+
+  @JvmField
+  public val getOutputDeviceListName: MethodStringName0<AudioServer, PackedStringArray> =
+      MethodStringName0<AudioServer, PackedStringArray>("get_output_device_list")
+
+  @JvmField
+  public val getOutputDeviceName: MethodStringName0<AudioServer, String> =
+      MethodStringName0<AudioServer, String>("get_output_device")
+
+  @JvmField
+  public val setOutputDeviceName: MethodStringName1<AudioServer, Unit, String> =
+      MethodStringName1<AudioServer, Unit, String>("set_output_device")
+
+  @JvmField
+  public val getTimeToNextMixName: MethodStringName0<AudioServer, Double> =
+      MethodStringName0<AudioServer, Double>("get_time_to_next_mix")
+
+  @JvmField
+  public val getTimeSinceLastMixName: MethodStringName0<AudioServer, Double> =
+      MethodStringName0<AudioServer, Double>("get_time_since_last_mix")
+
+  @JvmField
+  public val getOutputLatencyName: MethodStringName0<AudioServer, Double> =
+      MethodStringName0<AudioServer, Double>("get_output_latency")
+
+  @JvmField
+  public val getInputDeviceListName: MethodStringName0<AudioServer, PackedStringArray> =
+      MethodStringName0<AudioServer, PackedStringArray>("get_input_device_list")
+
+  @JvmField
+  public val getInputDeviceName: MethodStringName0<AudioServer, String> =
+      MethodStringName0<AudioServer, String>("get_input_device")
+
+  @JvmField
+  public val setInputDeviceName: MethodStringName1<AudioServer, Unit, String> =
+      MethodStringName1<AudioServer, Unit, String>("set_input_device")
+
+  @JvmField
+  public val setInputDeviceActiveName: MethodStringName1<AudioServer, Error, Boolean> =
+      MethodStringName1<AudioServer, Error, Boolean>("set_input_device_active")
+
+  @JvmField
+  public val getInputFramesAvailableName: MethodStringName0<AudioServer, Int> =
+      MethodStringName0<AudioServer, Int>("get_input_frames_available")
+
+  @JvmField
+  public val getInputBufferLengthFramesName: MethodStringName0<AudioServer, Int> =
+      MethodStringName0<AudioServer, Int>("get_input_buffer_length_frames")
+
+  @JvmField
+  public val getInputFramesName: MethodStringName1<AudioServer, PackedVector2Array, Int> =
+      MethodStringName1<AudioServer, PackedVector2Array, Int>("get_input_frames")
+
+  @JvmField
+  public val setBusLayoutName: MethodStringName1<AudioServer, Unit, AudioBusLayout?> =
+      MethodStringName1<AudioServer, Unit, AudioBusLayout?>("set_bus_layout")
+
+  @JvmField
+  public val generateBusLayoutName: MethodStringName0<AudioServer, AudioBusLayout?> =
+      MethodStringName0<AudioServer, AudioBusLayout?>("generate_bus_layout")
+
+  @JvmField
+  public val setEnableTaggingUsedAudioStreamsName: MethodStringName1<AudioServer, Unit, Boolean> =
+      MethodStringName1<AudioServer, Unit, Boolean>("set_enable_tagging_used_audio_streams")
+
+  @JvmField
+  public val isStreamRegisteredAsSampleName: MethodStringName1<AudioServer, Boolean, AudioStream?> =
+      MethodStringName1<AudioServer, Boolean, AudioStream?>("is_stream_registered_as_sample")
+
+  @JvmField
+  public val registerStreamAsSampleName: MethodStringName1<AudioServer, Unit, AudioStream?> =
+      MethodStringName1<AudioServer, Unit, AudioStream?>("register_stream_as_sample")
+
   /**
    * Emitted when an audio bus is added, deleted, or moved.
    */

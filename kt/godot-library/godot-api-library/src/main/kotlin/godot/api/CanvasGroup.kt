@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
@@ -18,6 +20,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -133,7 +136,31 @@ public open class CanvasGroup : Node2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setFitMarginName: MethodStringName1<CanvasGroup, Unit, Float> =
+        MethodStringName1<CanvasGroup, Unit, Float>("set_fit_margin")
+
+    @JvmField
+    public val getFitMarginName: MethodStringName0<CanvasGroup, Float> =
+        MethodStringName0<CanvasGroup, Float>("get_fit_margin")
+
+    @JvmField
+    public val setClearMarginName: MethodStringName1<CanvasGroup, Unit, Float> =
+        MethodStringName1<CanvasGroup, Unit, Float>("set_clear_margin")
+
+    @JvmField
+    public val getClearMarginName: MethodStringName0<CanvasGroup, Float> =
+        MethodStringName0<CanvasGroup, Float>("get_clear_margin")
+
+    @JvmField
+    public val setUseMipmapsName: MethodStringName1<CanvasGroup, Unit, Boolean> =
+        MethodStringName1<CanvasGroup, Unit, Boolean>("set_use_mipmaps")
+
+    @JvmField
+    public val isUsingMipmapsName: MethodStringName0<CanvasGroup, Boolean> =
+        MethodStringName0<CanvasGroup, Boolean>("is_using_mipmaps")
+  }
 
   public object MethodBindings {
     internal val setFitMarginPtr: VoidPtr =

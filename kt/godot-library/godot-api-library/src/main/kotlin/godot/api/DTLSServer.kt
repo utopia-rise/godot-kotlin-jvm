@@ -11,11 +11,13 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.OBJECT
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 
 /**
  * This class is used to store the state of a DTLS server. Upon [setup] it converts connected
@@ -199,7 +201,15 @@ public open class DTLSServer : RefCounted() {
     return (TransferContext.readReturnValue(OBJECT) as PacketPeerDTLS?)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setupName: MethodStringName1<DTLSServer, Error, TLSOptions?> =
+        MethodStringName1<DTLSServer, Error, TLSOptions?>("setup")
+
+    @JvmField
+    public val takeConnectionName: MethodStringName1<DTLSServer, PacketPeerDTLS?, PacketPeerUDP?> =
+        MethodStringName1<DTLSServer, PacketPeerDTLS?, PacketPeerUDP?>("take_connection")
+  }
 
   public object MethodBindings {
     internal val setupPtr: VoidPtr = TypeManager.getMethodBindPtr("DTLSServer", "setup", 1262296096)

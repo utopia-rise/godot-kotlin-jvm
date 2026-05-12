@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.Rect2
 import godot.core.Signal0
 import godot.core.VariantParser.BOOL
@@ -20,6 +22,7 @@ import godot.core.VariantParser.RECT2
 import kotlin.Boolean
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -135,7 +138,27 @@ public open class VisibleOnScreenNotifier2D : Node2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setRectName: MethodStringName1<VisibleOnScreenNotifier2D, Unit, Rect2> =
+        MethodStringName1<VisibleOnScreenNotifier2D, Unit, Rect2>("set_rect")
+
+    @JvmField
+    public val getRectName: MethodStringName0<VisibleOnScreenNotifier2D, Rect2> =
+        MethodStringName0<VisibleOnScreenNotifier2D, Rect2>("get_rect")
+
+    @JvmField
+    public val setShowRectName: MethodStringName1<VisibleOnScreenNotifier2D, Unit, Boolean> =
+        MethodStringName1<VisibleOnScreenNotifier2D, Unit, Boolean>("set_show_rect")
+
+    @JvmField
+    public val isShowingRectName: MethodStringName0<VisibleOnScreenNotifier2D, Boolean> =
+        MethodStringName0<VisibleOnScreenNotifier2D, Boolean>("is_showing_rect")
+
+    @JvmField
+    public val isOnScreenName: MethodStringName0<VisibleOnScreenNotifier2D, Boolean> =
+        MethodStringName0<VisibleOnScreenNotifier2D, Boolean>("is_on_screen")
+  }
 
   public object MethodBindings {
     internal val setRectPtr: VoidPtr =

@@ -13,6 +13,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.StringName
 import godot.core.Transform3D
 import godot.core.VariantParser.BOOL
@@ -28,6 +30,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -310,7 +313,59 @@ public open class XRPose : RefCounted() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setHasTrackingDataName: MethodStringName1<XRPose, Unit, Boolean> =
+        MethodStringName1<XRPose, Unit, Boolean>("set_has_tracking_data")
+
+    @JvmField
+    public val getHasTrackingDataName: MethodStringName0<XRPose, Boolean> =
+        MethodStringName0<XRPose, Boolean>("get_has_tracking_data")
+
+    @JvmField
+    public val setNameName: MethodStringName1<XRPose, Unit, StringName> =
+        MethodStringName1<XRPose, Unit, StringName>("set_name")
+
+    @JvmField
+    public val getNameName: MethodStringName0<XRPose, StringName> =
+        MethodStringName0<XRPose, StringName>("get_name")
+
+    @JvmField
+    public val setTransformName: MethodStringName1<XRPose, Unit, Transform3D> =
+        MethodStringName1<XRPose, Unit, Transform3D>("set_transform")
+
+    @JvmField
+    public val getTransformName: MethodStringName0<XRPose, Transform3D> =
+        MethodStringName0<XRPose, Transform3D>("get_transform")
+
+    @JvmField
+    public val getAdjustedTransformName: MethodStringName0<XRPose, Transform3D> =
+        MethodStringName0<XRPose, Transform3D>("get_adjusted_transform")
+
+    @JvmField
+    public val setLinearVelocityName: MethodStringName1<XRPose, Unit, Vector3> =
+        MethodStringName1<XRPose, Unit, Vector3>("set_linear_velocity")
+
+    @JvmField
+    public val getLinearVelocityName: MethodStringName0<XRPose, Vector3> =
+        MethodStringName0<XRPose, Vector3>("get_linear_velocity")
+
+    @JvmField
+    public val setAngularVelocityName: MethodStringName1<XRPose, Unit, Vector3> =
+        MethodStringName1<XRPose, Unit, Vector3>("set_angular_velocity")
+
+    @JvmField
+    public val getAngularVelocityName: MethodStringName0<XRPose, Vector3> =
+        MethodStringName0<XRPose, Vector3>("get_angular_velocity")
+
+    @JvmField
+    public val setTrackingConfidenceName: MethodStringName1<XRPose, Unit, TrackingConfidence> =
+        MethodStringName1<XRPose, Unit, TrackingConfidence>("set_tracking_confidence")
+
+    @JvmField
+    public val getTrackingConfidenceName: MethodStringName0<XRPose, TrackingConfidence> =
+        MethodStringName0<XRPose, TrackingConfidence>("get_tracking_confidence")
+  }
 
   public object MethodBindings {
     internal val setHasTrackingDataPtr: VoidPtr =

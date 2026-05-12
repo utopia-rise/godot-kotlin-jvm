@@ -13,6 +13,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.PackedVector2Array
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
@@ -26,6 +28,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -259,7 +262,55 @@ public open class CollisionPolygon3D : Node3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setDepthName: MethodStringName1<CollisionPolygon3D, Unit, Float> =
+        MethodStringName1<CollisionPolygon3D, Unit, Float>("set_depth")
+
+    @JvmField
+    public val getDepthName: MethodStringName0<CollisionPolygon3D, Float> =
+        MethodStringName0<CollisionPolygon3D, Float>("get_depth")
+
+    @JvmField
+    public val setPolygonName: MethodStringName1<CollisionPolygon3D, Unit, PackedVector2Array> =
+        MethodStringName1<CollisionPolygon3D, Unit, PackedVector2Array>("set_polygon")
+
+    @JvmField
+    public val getPolygonName: MethodStringName0<CollisionPolygon3D, PackedVector2Array> =
+        MethodStringName0<CollisionPolygon3D, PackedVector2Array>("get_polygon")
+
+    @JvmField
+    public val setDisabledName: MethodStringName1<CollisionPolygon3D, Unit, Boolean> =
+        MethodStringName1<CollisionPolygon3D, Unit, Boolean>("set_disabled")
+
+    @JvmField
+    public val isDisabledName: MethodStringName0<CollisionPolygon3D, Boolean> =
+        MethodStringName0<CollisionPolygon3D, Boolean>("is_disabled")
+
+    @JvmField
+    public val setDebugColorName: MethodStringName1<CollisionPolygon3D, Unit, Color> =
+        MethodStringName1<CollisionPolygon3D, Unit, Color>("set_debug_color")
+
+    @JvmField
+    public val getDebugColorName: MethodStringName0<CollisionPolygon3D, Color> =
+        MethodStringName0<CollisionPolygon3D, Color>("get_debug_color")
+
+    @JvmField
+    public val setEnableDebugFillName: MethodStringName1<CollisionPolygon3D, Unit, Boolean> =
+        MethodStringName1<CollisionPolygon3D, Unit, Boolean>("set_enable_debug_fill")
+
+    @JvmField
+    public val getEnableDebugFillName: MethodStringName0<CollisionPolygon3D, Boolean> =
+        MethodStringName0<CollisionPolygon3D, Boolean>("get_enable_debug_fill")
+
+    @JvmField
+    public val setMarginName: MethodStringName1<CollisionPolygon3D, Unit, Float> =
+        MethodStringName1<CollisionPolygon3D, Unit, Float>("set_margin")
+
+    @JvmField
+    public val getMarginName: MethodStringName0<CollisionPolygon3D, Float> =
+        MethodStringName0<CollisionPolygon3D, Float>("get_margin")
+  }
 
   public object MethodBindings {
     internal val setDepthPtr: VoidPtr =

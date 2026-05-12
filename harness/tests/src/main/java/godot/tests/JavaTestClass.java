@@ -6,19 +6,26 @@ import godot.api.Node;
 import godot.api.RenderingServer;
 import godot.annotation.*;
 import godot.core.*;
+import kotlin.Unit;
 import org.jetbrains.annotations.NotNull;
 
 @RegisterClass
 public class JavaTestClass extends Node {
-    //@RegisterSignal
-    //public Signal0 testSignal = Signal0.create(this, "test_signal");
-//
-    //@RegisterSignal(parameters = {"param1", "param2"})
-    //public Signal2<String, String> testSignal2 = Signal2.create(this, "test_signal_2");
+    @RegisterSignal
+    public Signal0 testSignal = Signal0.create(this, "testSignal");
+
+    @RegisterSignal(parameters = {"param1"})
+    public Signal1<String> testSignal1 = Signal1.create(this, "testSignal1");
+
+    @RegisterSignal
+    public Signal0 lambdaSignalNoParam = Signal0.create(this, "lambdaSignalNoParam");
+
+    @RegisterSignal(parameters = {"str", "long", "node"})
+    public Signal3<String, Long, Node> lambdaSignalWithParams = Signal3.create(this, "lambdaSignalWithParams");
 
     // The following should NOT work as we cannot extract parameter names. The compiler checks should catch that and throw a build error
-//    @RegisterSignal
-//    public Signal testSignal3 = new Signal2<>(this, "name");
+    //@RegisterSignal
+    //public Signal testSignal3 = new Signal2<>(this, "name");
 
     @Export
     @RegisterProperty
@@ -66,20 +73,35 @@ public class JavaTestClass extends Node {
     public boolean signalEmitted = false;
 
     @RegisterProperty
+    public boolean hasSignalNoParamBeenTriggered = false;
+
+    @RegisterProperty
+    public String signalString = "";
+
+    @RegisterProperty
+    public long signalLong = Long.MIN_VALUE;
+
+    @RegisterProperty
+    public Node signalNode;
+
+    @RegisterProperty
+    public Callable javaCallable = LambdaCallable1.create(
+            String.class,
+            str -> javaCallableString = str
+    );
+
+    @RegisterProperty
+    public String javaCallableString = "";
+
+    @RegisterProperty
     public VariantArray<Integer> variantArray = new VariantArray<>(Integer.class);
 
     @RegisterProperty
     public Dictionary<Float, String> dictionary = new Dictionary<>(Float.class, String.class);
 
-    //public LambdaCallable<Void> lambdaCallable = LambdaCallable0.create(
-    //        Void.class,
-    //        () -> {
-    //            System.out.println("Hello from Callable");
-    //            return null;
-    //        }
-    //);
-//
-    //public NativeCallable methodCallable = Callable.create(this, StringNames.asStringName("DummyName"));
+    @RegisterProperty
+    public boolean notificationTriggered = false;
+    
 
     @RegisterFunction
     @Override
@@ -92,31 +114,56 @@ public class JavaTestClass extends Node {
         Control control = new Control();
         control.setHSizeFlags(Control.SizeFlags.FILL);
         control.free();
+
+        lambdaSignalNoParam.connect(
+                LambdaCallable0.create(() -> hasSignalNoParamBeenTriggered = true)
+        );
+
+        lambdaSignalWithParams.connect(
+                LambdaCallable3.create(
+                        String.class,
+                        Long.class,
+                        Node.class,
+                        (str, longValue, node) -> {
+                            signalString = str;
+                            signalLong = longValue;
+                            signalNode = node;
+                        }
+                )
+        );
     }
 
     @RegisterFunction
     public void connectAndTriggerSignal() {
-        //connect(
-        //        StringNames.asStringName("test_signal"),
-        //        new NativeCallable(this, StringNames.asStringName("signal_callback")),
-        //        (int) ConnectFlags.ONE_SHOT.getId()
-        //);
-        //emitSignal(StringNames.asStringName("test_signal"));
+        Callable1<Void, String> callable = LambdaCallable1.create(
+                String.class,
+                value -> signalEmitted = true
+        );
+        testSignal1.connect(callable, ConnectFlags.ONE_SHOT);
+        testSignal1.emit("test");
     }
 
+    @RegisterFunction
     @NotNull
     @Override
     public GodotNotification _notification() {
         return godotNotification(
-                this, (myself, notification) -> {
-                    System.out.println(notification);
-                    return null;
-                }
+                (JavaTestClass myself, int notification) -> myself.notificationTriggered = true
         );
     }
 
     @RegisterFunction
     public void signalCallback() {
         signalEmitted = true;
+    }
+
+    @RegisterFunction
+    public void emitLambdaSignalNoParam() {
+        lambdaSignalNoParam.emit();
+    }
+
+    @RegisterFunction
+    public void emitLambdaSignalWithParam(String str, long longValue, Node node) {
+        lambdaSignalWithParams.emit(str, longValue, node);
     }
 }

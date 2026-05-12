@@ -10,11 +10,14 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -56,7 +59,15 @@ public open class CSGPrimitive3D internal constructor() : CSGShape3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setFlipFacesName: MethodStringName1<CSGPrimitive3D, Unit, Boolean> =
+        MethodStringName1<CSGPrimitive3D, Unit, Boolean>("set_flip_faces")
+
+    @JvmField
+    public val getFlipFacesName: MethodStringName0<CSGPrimitive3D, Boolean> =
+        MethodStringName0<CSGPrimitive3D, Boolean>("get_flip_faces")
+  }
 
   public object MethodBindings {
     internal val setFlipFacesPtr: VoidPtr =

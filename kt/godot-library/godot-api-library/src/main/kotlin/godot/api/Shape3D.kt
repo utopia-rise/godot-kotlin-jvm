@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
@@ -17,6 +19,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -94,7 +97,27 @@ public open class Shape3D internal constructor() : Resource() {
     return (TransferContext.readReturnValue(OBJECT) as ArrayMesh?)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setCustomSolverBiasName: MethodStringName1<Shape3D, Unit, Float> =
+        MethodStringName1<Shape3D, Unit, Float>("set_custom_solver_bias")
+
+    @JvmField
+    public val getCustomSolverBiasName: MethodStringName0<Shape3D, Float> =
+        MethodStringName0<Shape3D, Float>("get_custom_solver_bias")
+
+    @JvmField
+    public val setMarginName: MethodStringName1<Shape3D, Unit, Float> =
+        MethodStringName1<Shape3D, Unit, Float>("set_margin")
+
+    @JvmField
+    public val getMarginName: MethodStringName0<Shape3D, Float> =
+        MethodStringName0<Shape3D, Float>("get_margin")
+
+    @JvmField
+    public val getDebugMeshName: MethodStringName0<Shape3D, ArrayMesh?> =
+        MethodStringName0<Shape3D, ArrayMesh?>("get_debug_mesh")
+  }
 
   public object MethodBindings {
     internal val setCustomSolverBiasPtr: VoidPtr =

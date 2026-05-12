@@ -10,10 +10,12 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName1
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 
 /**
  * An optimized translation. Uses real-time compressed translations, which results in very small
@@ -42,7 +44,11 @@ public open class OptimizedTranslation : Translation() {
     TransferContext.callMethod(ptr, MethodBindings.generatePtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val generateName: MethodStringName1<OptimizedTranslation, Unit, Translation?> =
+        MethodStringName1<OptimizedTranslation, Unit, Translation?>("generate")
+  }
 
   public object MethodBindings {
     internal val generatePtr: VoidPtr =

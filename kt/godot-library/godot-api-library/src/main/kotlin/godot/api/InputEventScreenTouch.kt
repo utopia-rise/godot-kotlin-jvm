@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -22,6 +24,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -161,7 +164,39 @@ public open class InputEventScreenTouch : InputEventFromWindow() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setIndexName: MethodStringName1<InputEventScreenTouch, Unit, Int> =
+        MethodStringName1<InputEventScreenTouch, Unit, Int>("set_index")
+
+    @JvmField
+    public val getIndexName: MethodStringName0<InputEventScreenTouch, Int> =
+        MethodStringName0<InputEventScreenTouch, Int>("get_index")
+
+    @JvmField
+    public val setPositionName: MethodStringName1<InputEventScreenTouch, Unit, Vector2> =
+        MethodStringName1<InputEventScreenTouch, Unit, Vector2>("set_position")
+
+    @JvmField
+    public val getPositionName: MethodStringName0<InputEventScreenTouch, Vector2> =
+        MethodStringName0<InputEventScreenTouch, Vector2>("get_position")
+
+    @JvmField
+    public val setPressedName: MethodStringName1<InputEventScreenTouch, Unit, Boolean> =
+        MethodStringName1<InputEventScreenTouch, Unit, Boolean>("set_pressed")
+
+    @JvmField
+    public val setCanceledName: MethodStringName1<InputEventScreenTouch, Unit, Boolean> =
+        MethodStringName1<InputEventScreenTouch, Unit, Boolean>("set_canceled")
+
+    @JvmField
+    public val setDoubleTapName: MethodStringName1<InputEventScreenTouch, Unit, Boolean> =
+        MethodStringName1<InputEventScreenTouch, Unit, Boolean>("set_double_tap")
+
+    @JvmField
+    public val isDoubleTapName: MethodStringName0<InputEventScreenTouch, Boolean> =
+        MethodStringName0<InputEventScreenTouch, Boolean>("is_double_tap")
+  }
 
   public object MethodBindings {
     internal val setIndexPtr: VoidPtr =

@@ -10,11 +10,14 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -49,7 +52,15 @@ public open class CenterContainer : Container() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setUseTopLeftName: MethodStringName1<CenterContainer, Unit, Boolean> =
+        MethodStringName1<CenterContainer, Unit, Boolean>("set_use_top_left")
+
+    @JvmField
+    public val isUsingTopLeftName: MethodStringName0<CenterContainer, Boolean> =
+        MethodStringName0<CenterContainer, Boolean>("is_using_top_left")
+  }
 
   public object MethodBindings {
     internal val setUseTopLeftPtr: VoidPtr =

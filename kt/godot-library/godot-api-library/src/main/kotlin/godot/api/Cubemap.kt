@@ -10,9 +10,11 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
 import godot.core.VariantParser.OBJECT
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 
 /**
  * A cubemap is made of 6 textures organized in layers. They are typically used for faking
@@ -96,7 +98,11 @@ public open class Cubemap : ImageTextureLayered() {
     return (TransferContext.readReturnValue(OBJECT) as Resource?)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val createPlaceholderName: MethodStringName0<Cubemap, Resource?> =
+        MethodStringName0<Cubemap, Resource?>("create_placeholder")
+  }
 
   public object MethodBindings {
     internal val createPlaceholderPtr: VoidPtr =

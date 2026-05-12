@@ -22,15 +22,15 @@ import godot.tools.common.constants.kotlinCoroutinePackage
 import godot.tools.common.constants.kotlinxCoroutinePackage
 import java.io.File
 
-private val cancellableContinuationClass = ClassName(kotlinxCoroutinePackage, "CancellableContinuation")
-private val suspendCancellableCoroutine = MemberName(kotlinxCoroutinePackage, "suspendCancellableCoroutine")
-private val promise = MemberName(godotExtensionPackage, "promise")
-private val resume = MemberName(kotlinCoroutinePackage, "resume")
+private val cancellableContinuationClass = ClassName(kotlinxCoroutinePackage, CANCELLABLE_CONTINUATION_CLASS_NAME)
+private val suspendCancellableCoroutine = MemberName(kotlinxCoroutinePackage, METHOD_NAME_SUSPEND_CANCELLABLE_COROUTINE)
+private val promise = MemberName(godotExtensionPackage, METHOD_NAME_PROMISE)
+private val resume = MemberName(kotlinCoroutinePackage, METHOD_NAME_RESUME)
 private const val cancel = "cancel"
 
 object AwaitGenerationService : IAwaitGenerationService {
     override fun generate(output: File) {
-        val awaitFile = FileSpec.builder(godotCoroutinePackage, "Await")
+        val awaitFile = FileSpec.builder(godotCoroutinePackage, AWAIT_FILE_NAME)
 
         val allParameters = Array(Constraints.MAX_FUNCTION_ARG_COUNT) { index ->
             TypeVariableName("P$index")
@@ -49,13 +49,13 @@ object AwaitGenerationService : IAwaitGenerationService {
             val returnType: TypeName = when (argCount) {
                 0 -> UNIT
                 1 -> parameters[0]
-                else -> ClassName(godotCoroutinePackage, "SignalArguments$argCount").parameterizedBy(parameters)
+                else -> ClassName(godotCoroutinePackage, "$SIGNAL_ARGUMENTS_CLASS_BASENAME$argCount").parameterizedBy(parameters)
             }
 
             // Create a tuple for the signal arguments
             if (argCount >= 2) {
                 awaitFile.addType(
-                    TypeSpec.classBuilder("SignalArguments$argCount")
+                    TypeSpec.classBuilder("$SIGNAL_ARGUMENTS_CLASS_BASENAME$argCount")
                         .addModifiers(KModifier.DATA)
                         .primaryConstructor(
                             FunSpec
@@ -81,7 +81,7 @@ object AwaitGenerationService : IAwaitGenerationService {
             }
 
             awaitFile.addFunction(
-                FunSpec.builder("await")
+                FunSpec.builder(METHOD_NAME_AWAIT)
                     .addModifiers(KModifier.SUSPEND, KModifier.INLINE)
                     .receiver(receiver)
                     .apply {
@@ -122,7 +122,7 @@ object AwaitGenerationService : IAwaitGenerationService {
         val resumeParameters = when (argCount) {
             0 -> "Unit"
             1 -> lambdaParameters
-            else -> "SignalArguments$argCount($lambdaParameters)"
+            else -> "$SIGNAL_ARGUMENTS_CLASS_BASENAME$argCount($lambdaParameters)"
         }
         val lambdaParametersWithType = buildString {
             for (i in 0 until argCount) {

@@ -13,6 +13,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
@@ -23,6 +25,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -187,7 +190,47 @@ public open class CollisionShape2D : Node2D() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setShapeName: MethodStringName1<CollisionShape2D, Unit, Shape2D?> =
+        MethodStringName1<CollisionShape2D, Unit, Shape2D?>("set_shape")
+
+    @JvmField
+    public val getShapeName: MethodStringName0<CollisionShape2D, Shape2D?> =
+        MethodStringName0<CollisionShape2D, Shape2D?>("get_shape")
+
+    @JvmField
+    public val setDisabledName: MethodStringName1<CollisionShape2D, Unit, Boolean> =
+        MethodStringName1<CollisionShape2D, Unit, Boolean>("set_disabled")
+
+    @JvmField
+    public val isDisabledName: MethodStringName0<CollisionShape2D, Boolean> =
+        MethodStringName0<CollisionShape2D, Boolean>("is_disabled")
+
+    @JvmField
+    public val setOneWayCollisionName: MethodStringName1<CollisionShape2D, Unit, Boolean> =
+        MethodStringName1<CollisionShape2D, Unit, Boolean>("set_one_way_collision")
+
+    @JvmField
+    public val isOneWayCollisionEnabledName: MethodStringName0<CollisionShape2D, Boolean> =
+        MethodStringName0<CollisionShape2D, Boolean>("is_one_way_collision_enabled")
+
+    @JvmField
+    public val setOneWayCollisionMarginName: MethodStringName1<CollisionShape2D, Unit, Float> =
+        MethodStringName1<CollisionShape2D, Unit, Float>("set_one_way_collision_margin")
+
+    @JvmField
+    public val getOneWayCollisionMarginName: MethodStringName0<CollisionShape2D, Float> =
+        MethodStringName0<CollisionShape2D, Float>("get_one_way_collision_margin")
+
+    @JvmField
+    public val setDebugColorName: MethodStringName1<CollisionShape2D, Unit, Color> =
+        MethodStringName1<CollisionShape2D, Unit, Color>("set_debug_color")
+
+    @JvmField
+    public val getDebugColorName: MethodStringName0<CollisionShape2D, Color> =
+        MethodStringName0<CollisionShape2D, Color>("get_debug_color")
+  }
 
   public object MethodBindings {
     internal val setShapePtr: VoidPtr =

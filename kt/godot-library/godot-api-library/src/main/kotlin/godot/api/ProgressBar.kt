@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -19,6 +21,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -156,7 +159,39 @@ public open class ProgressBar : Range() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setFillModeName: MethodStringName1<ProgressBar, Unit, Int> =
+        MethodStringName1<ProgressBar, Unit, Int>("set_fill_mode")
+
+    @JvmField
+    public val getFillModeName: MethodStringName0<ProgressBar, Int> =
+        MethodStringName0<ProgressBar, Int>("get_fill_mode")
+
+    @JvmField
+    public val setShowPercentageName: MethodStringName1<ProgressBar, Unit, Boolean> =
+        MethodStringName1<ProgressBar, Unit, Boolean>("set_show_percentage")
+
+    @JvmField
+    public val isPercentageShownName: MethodStringName0<ProgressBar, Boolean> =
+        MethodStringName0<ProgressBar, Boolean>("is_percentage_shown")
+
+    @JvmField
+    public val setIndeterminateName: MethodStringName1<ProgressBar, Unit, Boolean> =
+        MethodStringName1<ProgressBar, Unit, Boolean>("set_indeterminate")
+
+    @JvmField
+    public val isIndeterminateName: MethodStringName0<ProgressBar, Boolean> =
+        MethodStringName0<ProgressBar, Boolean>("is_indeterminate")
+
+    @JvmField
+    public val setEditorPreviewIndeterminateName: MethodStringName1<ProgressBar, Unit, Boolean> =
+        MethodStringName1<ProgressBar, Unit, Boolean>("set_editor_preview_indeterminate")
+
+    @JvmField
+    public val isEditorPreviewIndeterminateEnabledName: MethodStringName0<ProgressBar, Boolean> =
+        MethodStringName0<ProgressBar, Boolean>("is_editor_preview_indeterminate_enabled")
+  }
 
   public object MethodBindings {
     internal val setFillModePtr: VoidPtr =

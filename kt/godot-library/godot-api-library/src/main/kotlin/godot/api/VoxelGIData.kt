@@ -11,6 +11,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.AABB
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName7
 import godot.core.PackedByteArray
 import godot.core.PackedInt32Array
 import godot.core.Transform3D
@@ -27,6 +30,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -276,7 +280,93 @@ public open class VoxelGIData : Resource() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val allocateName:
+        MethodStringName7<VoxelGIData, Unit, Transform3D, AABB, Vector3, PackedByteArray, PackedByteArray, PackedByteArray, PackedInt32Array>
+        =
+        MethodStringName7<VoxelGIData, Unit, Transform3D, AABB, Vector3, PackedByteArray, PackedByteArray, PackedByteArray, PackedInt32Array>("allocate")
+
+    @JvmField
+    public val getBoundsName: MethodStringName0<VoxelGIData, AABB> =
+        MethodStringName0<VoxelGIData, AABB>("get_bounds")
+
+    @JvmField
+    public val getOctreeSizeName: MethodStringName0<VoxelGIData, Vector3> =
+        MethodStringName0<VoxelGIData, Vector3>("get_octree_size")
+
+    @JvmField
+    public val getToCellXformName: MethodStringName0<VoxelGIData, Transform3D> =
+        MethodStringName0<VoxelGIData, Transform3D>("get_to_cell_xform")
+
+    @JvmField
+    public val getOctreeCellsName: MethodStringName0<VoxelGIData, PackedByteArray> =
+        MethodStringName0<VoxelGIData, PackedByteArray>("get_octree_cells")
+
+    @JvmField
+    public val getDataCellsName: MethodStringName0<VoxelGIData, PackedByteArray> =
+        MethodStringName0<VoxelGIData, PackedByteArray>("get_data_cells")
+
+    @JvmField
+    public val getLevelCountsName: MethodStringName0<VoxelGIData, PackedInt32Array> =
+        MethodStringName0<VoxelGIData, PackedInt32Array>("get_level_counts")
+
+    @JvmField
+    public val setDynamicRangeName: MethodStringName1<VoxelGIData, Unit, Float> =
+        MethodStringName1<VoxelGIData, Unit, Float>("set_dynamic_range")
+
+    @JvmField
+    public val getDynamicRangeName: MethodStringName0<VoxelGIData, Float> =
+        MethodStringName0<VoxelGIData, Float>("get_dynamic_range")
+
+    @JvmField
+    public val setEnergyName: MethodStringName1<VoxelGIData, Unit, Float> =
+        MethodStringName1<VoxelGIData, Unit, Float>("set_energy")
+
+    @JvmField
+    public val getEnergyName: MethodStringName0<VoxelGIData, Float> =
+        MethodStringName0<VoxelGIData, Float>("get_energy")
+
+    @JvmField
+    public val setBiasName: MethodStringName1<VoxelGIData, Unit, Float> =
+        MethodStringName1<VoxelGIData, Unit, Float>("set_bias")
+
+    @JvmField
+    public val getBiasName: MethodStringName0<VoxelGIData, Float> =
+        MethodStringName0<VoxelGIData, Float>("get_bias")
+
+    @JvmField
+    public val setNormalBiasName: MethodStringName1<VoxelGIData, Unit, Float> =
+        MethodStringName1<VoxelGIData, Unit, Float>("set_normal_bias")
+
+    @JvmField
+    public val getNormalBiasName: MethodStringName0<VoxelGIData, Float> =
+        MethodStringName0<VoxelGIData, Float>("get_normal_bias")
+
+    @JvmField
+    public val setPropagationName: MethodStringName1<VoxelGIData, Unit, Float> =
+        MethodStringName1<VoxelGIData, Unit, Float>("set_propagation")
+
+    @JvmField
+    public val getPropagationName: MethodStringName0<VoxelGIData, Float> =
+        MethodStringName0<VoxelGIData, Float>("get_propagation")
+
+    @JvmField
+    public val setInteriorName: MethodStringName1<VoxelGIData, Unit, Boolean> =
+        MethodStringName1<VoxelGIData, Unit, Boolean>("set_interior")
+
+    @JvmField
+    public val isInteriorName: MethodStringName0<VoxelGIData, Boolean> =
+        MethodStringName0<VoxelGIData, Boolean>("is_interior")
+
+    @JvmField
+    public val setUseTwoBouncesName: MethodStringName1<VoxelGIData, Unit, Boolean> =
+        MethodStringName1<VoxelGIData, Unit, Boolean>("set_use_two_bounces")
+
+    @JvmField
+    public val isUsingTwoBouncesName: MethodStringName0<VoxelGIData, Boolean> =
+        MethodStringName0<VoxelGIData, Boolean>("is_using_two_bounces")
+  }
 
   public object MethodBindings {
     internal val allocatePtr: VoidPtr =

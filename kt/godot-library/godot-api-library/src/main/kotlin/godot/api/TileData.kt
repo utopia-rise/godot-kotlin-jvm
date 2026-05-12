@@ -13,6 +13,12 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
+import godot.core.MethodStringName4
+import godot.core.MethodStringName5
 import godot.core.PackedVector2Array
 import godot.core.Signal0
 import godot.core.VariantCaster.ANY
@@ -37,6 +43,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
@@ -682,7 +689,232 @@ public open class TileData : Object() {
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setFlipHName: MethodStringName1<TileData, Unit, Boolean> =
+        MethodStringName1<TileData, Unit, Boolean>("set_flip_h")
+
+    @JvmField
+    public val getFlipHName: MethodStringName0<TileData, Boolean> =
+        MethodStringName0<TileData, Boolean>("get_flip_h")
+
+    @JvmField
+    public val setFlipVName: MethodStringName1<TileData, Unit, Boolean> =
+        MethodStringName1<TileData, Unit, Boolean>("set_flip_v")
+
+    @JvmField
+    public val getFlipVName: MethodStringName0<TileData, Boolean> =
+        MethodStringName0<TileData, Boolean>("get_flip_v")
+
+    @JvmField
+    public val setTransposeName: MethodStringName1<TileData, Unit, Boolean> =
+        MethodStringName1<TileData, Unit, Boolean>("set_transpose")
+
+    @JvmField
+    public val getTransposeName: MethodStringName0<TileData, Boolean> =
+        MethodStringName0<TileData, Boolean>("get_transpose")
+
+    @JvmField
+    public val setMaterialName: MethodStringName1<TileData, Unit, Material?> =
+        MethodStringName1<TileData, Unit, Material?>("set_material")
+
+    @JvmField
+    public val getMaterialName: MethodStringName0<TileData, Material?> =
+        MethodStringName0<TileData, Material?>("get_material")
+
+    @JvmField
+    public val setTextureOriginName: MethodStringName1<TileData, Unit, Vector2i> =
+        MethodStringName1<TileData, Unit, Vector2i>("set_texture_origin")
+
+    @JvmField
+    public val getTextureOriginName: MethodStringName0<TileData, Vector2i> =
+        MethodStringName0<TileData, Vector2i>("get_texture_origin")
+
+    @JvmField
+    public val setModulateName: MethodStringName1<TileData, Unit, Color> =
+        MethodStringName1<TileData, Unit, Color>("set_modulate")
+
+    @JvmField
+    public val getModulateName: MethodStringName0<TileData, Color> =
+        MethodStringName0<TileData, Color>("get_modulate")
+
+    @JvmField
+    public val setZIndexName: MethodStringName1<TileData, Unit, Int> =
+        MethodStringName1<TileData, Unit, Int>("set_z_index")
+
+    @JvmField
+    public val getZIndexName: MethodStringName0<TileData, Int> =
+        MethodStringName0<TileData, Int>("get_z_index")
+
+    @JvmField
+    public val setYSortOriginName: MethodStringName1<TileData, Unit, Int> =
+        MethodStringName1<TileData, Unit, Int>("set_y_sort_origin")
+
+    @JvmField
+    public val getYSortOriginName: MethodStringName0<TileData, Int> =
+        MethodStringName0<TileData, Int>("get_y_sort_origin")
+
+    @JvmField
+    public val setOccluderPolygonsCountName: MethodStringName2<TileData, Unit, Int, Int> =
+        MethodStringName2<TileData, Unit, Int, Int>("set_occluder_polygons_count")
+
+    @JvmField
+    public val getOccluderPolygonsCountName: MethodStringName1<TileData, Int, Int> =
+        MethodStringName1<TileData, Int, Int>("get_occluder_polygons_count")
+
+    @JvmField
+    public val addOccluderPolygonName: MethodStringName1<TileData, Unit, Int> =
+        MethodStringName1<TileData, Unit, Int>("add_occluder_polygon")
+
+    @JvmField
+    public val removeOccluderPolygonName: MethodStringName2<TileData, Unit, Int, Int> =
+        MethodStringName2<TileData, Unit, Int, Int>("remove_occluder_polygon")
+
+    @JvmField
+    public val setOccluderPolygonName:
+        MethodStringName3<TileData, Unit, Int, Int, OccluderPolygon2D?> =
+        MethodStringName3<TileData, Unit, Int, Int, OccluderPolygon2D?>("set_occluder_polygon")
+
+    @JvmField
+    public val getOccluderPolygonName:
+        MethodStringName5<TileData, OccluderPolygon2D?, Int, Int, Boolean, Boolean, Boolean> =
+        MethodStringName5<TileData, OccluderPolygon2D?, Int, Int, Boolean, Boolean, Boolean>("get_occluder_polygon")
+
+    @JvmField
+    public val setOccluderName: MethodStringName2<TileData, Unit, Int, OccluderPolygon2D?> =
+        MethodStringName2<TileData, Unit, Int, OccluderPolygon2D?>("set_occluder")
+
+    @JvmField
+    public val getOccluderName:
+        MethodStringName4<TileData, OccluderPolygon2D?, Int, Boolean, Boolean, Boolean> =
+        MethodStringName4<TileData, OccluderPolygon2D?, Int, Boolean, Boolean, Boolean>("get_occluder")
+
+    @JvmField
+    public val setConstantLinearVelocityName: MethodStringName2<TileData, Unit, Int, Vector2> =
+        MethodStringName2<TileData, Unit, Int, Vector2>("set_constant_linear_velocity")
+
+    @JvmField
+    public val getConstantLinearVelocityName: MethodStringName1<TileData, Vector2, Int> =
+        MethodStringName1<TileData, Vector2, Int>("get_constant_linear_velocity")
+
+    @JvmField
+    public val setConstantAngularVelocityName: MethodStringName2<TileData, Unit, Int, Float> =
+        MethodStringName2<TileData, Unit, Int, Float>("set_constant_angular_velocity")
+
+    @JvmField
+    public val getConstantAngularVelocityName: MethodStringName1<TileData, Float, Int> =
+        MethodStringName1<TileData, Float, Int>("get_constant_angular_velocity")
+
+    @JvmField
+    public val setCollisionPolygonsCountName: MethodStringName2<TileData, Unit, Int, Int> =
+        MethodStringName2<TileData, Unit, Int, Int>("set_collision_polygons_count")
+
+    @JvmField
+    public val getCollisionPolygonsCountName: MethodStringName1<TileData, Int, Int> =
+        MethodStringName1<TileData, Int, Int>("get_collision_polygons_count")
+
+    @JvmField
+    public val addCollisionPolygonName: MethodStringName1<TileData, Unit, Int> =
+        MethodStringName1<TileData, Unit, Int>("add_collision_polygon")
+
+    @JvmField
+    public val removeCollisionPolygonName: MethodStringName2<TileData, Unit, Int, Int> =
+        MethodStringName2<TileData, Unit, Int, Int>("remove_collision_polygon")
+
+    @JvmField
+    public val setCollisionPolygonPointsName:
+        MethodStringName3<TileData, Unit, Int, Int, PackedVector2Array> =
+        MethodStringName3<TileData, Unit, Int, Int, PackedVector2Array>("set_collision_polygon_points")
+
+    @JvmField
+    public val getCollisionPolygonPointsName:
+        MethodStringName2<TileData, PackedVector2Array, Int, Int> =
+        MethodStringName2<TileData, PackedVector2Array, Int, Int>("get_collision_polygon_points")
+
+    @JvmField
+    public val setCollisionPolygonOneWayName: MethodStringName3<TileData, Unit, Int, Int, Boolean> =
+        MethodStringName3<TileData, Unit, Int, Int, Boolean>("set_collision_polygon_one_way")
+
+    @JvmField
+    public val isCollisionPolygonOneWayName: MethodStringName2<TileData, Boolean, Int, Int> =
+        MethodStringName2<TileData, Boolean, Int, Int>("is_collision_polygon_one_way")
+
+    @JvmField
+    public val setCollisionPolygonOneWayMarginName:
+        MethodStringName3<TileData, Unit, Int, Int, Float> =
+        MethodStringName3<TileData, Unit, Int, Int, Float>("set_collision_polygon_one_way_margin")
+
+    @JvmField
+    public val getCollisionPolygonOneWayMarginName: MethodStringName2<TileData, Float, Int, Int> =
+        MethodStringName2<TileData, Float, Int, Int>("get_collision_polygon_one_way_margin")
+
+    @JvmField
+    public val setTerrainSetName: MethodStringName1<TileData, Unit, Int> =
+        MethodStringName1<TileData, Unit, Int>("set_terrain_set")
+
+    @JvmField
+    public val getTerrainSetName: MethodStringName0<TileData, Int> =
+        MethodStringName0<TileData, Int>("get_terrain_set")
+
+    @JvmField
+    public val setTerrainName: MethodStringName1<TileData, Unit, Int> =
+        MethodStringName1<TileData, Unit, Int>("set_terrain")
+
+    @JvmField
+    public val getTerrainName: MethodStringName0<TileData, Int> =
+        MethodStringName0<TileData, Int>("get_terrain")
+
+    @JvmField
+    public val setTerrainPeeringBitName:
+        MethodStringName2<TileData, Unit, TileSet.CellNeighbor, Int> =
+        MethodStringName2<TileData, Unit, TileSet.CellNeighbor, Int>("set_terrain_peering_bit")
+
+    @JvmField
+    public val getTerrainPeeringBitName: MethodStringName1<TileData, Int, TileSet.CellNeighbor> =
+        MethodStringName1<TileData, Int, TileSet.CellNeighbor>("get_terrain_peering_bit")
+
+    @JvmField
+    public val isValidTerrainPeeringBitName:
+        MethodStringName1<TileData, Boolean, TileSet.CellNeighbor> =
+        MethodStringName1<TileData, Boolean, TileSet.CellNeighbor>("is_valid_terrain_peering_bit")
+
+    @JvmField
+    public val setNavigationPolygonName: MethodStringName2<TileData, Unit, Int, NavigationPolygon?>
+        = MethodStringName2<TileData, Unit, Int, NavigationPolygon?>("set_navigation_polygon")
+
+    @JvmField
+    public val getNavigationPolygonName:
+        MethodStringName4<TileData, NavigationPolygon?, Int, Boolean, Boolean, Boolean> =
+        MethodStringName4<TileData, NavigationPolygon?, Int, Boolean, Boolean, Boolean>("get_navigation_polygon")
+
+    @JvmField
+    public val setProbabilityName: MethodStringName1<TileData, Unit, Float> =
+        MethodStringName1<TileData, Unit, Float>("set_probability")
+
+    @JvmField
+    public val getProbabilityName: MethodStringName0<TileData, Float> =
+        MethodStringName0<TileData, Float>("get_probability")
+
+    @JvmField
+    public val setCustomDataName: MethodStringName2<TileData, Unit, String, Any?> =
+        MethodStringName2<TileData, Unit, String, Any?>("set_custom_data")
+
+    @JvmField
+    public val getCustomDataName: MethodStringName1<TileData, Any?, String> =
+        MethodStringName1<TileData, Any?, String>("get_custom_data")
+
+    @JvmField
+    public val hasCustomDataName: MethodStringName1<TileData, Boolean, String> =
+        MethodStringName1<TileData, Boolean, String>("has_custom_data")
+
+    @JvmField
+    public val setCustomDataByLayerIdName: MethodStringName2<TileData, Unit, Int, Any?> =
+        MethodStringName2<TileData, Unit, Int, Any?>("set_custom_data_by_layer_id")
+
+    @JvmField
+    public val getCustomDataByLayerIdName: MethodStringName1<TileData, Any?, Int> =
+        MethodStringName1<TileData, Any?, Int>("get_custom_data_by_layer_id")
+  }
 
   public object MethodBindings {
     internal val setFlipHPtr: VoidPtr =

@@ -11,6 +11,10 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName4
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
@@ -23,6 +27,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
@@ -155,6 +160,46 @@ public open class JSON : Resource() {
   }
 
   public companion object {
+    @JvmField
+    public val stringifyName: MethodStringName4<JSON, String, Any?, String, Boolean, Boolean> =
+        MethodStringName4<JSON, String, Any?, String, Boolean, Boolean>("stringify")
+
+    @JvmField
+    public val parseStringName: MethodStringName1<JSON, Any?, String> =
+        MethodStringName1<JSON, Any?, String>("parse_string")
+
+    @JvmField
+    public val parseName: MethodStringName2<JSON, Error, String, Boolean> =
+        MethodStringName2<JSON, Error, String, Boolean>("parse")
+
+    @JvmField
+    public val getDataName: MethodStringName0<JSON, Any?> =
+        MethodStringName0<JSON, Any?>("get_data")
+
+    @JvmField
+    public val setDataName: MethodStringName1<JSON, Unit, Any?> =
+        MethodStringName1<JSON, Unit, Any?>("set_data")
+
+    @JvmField
+    public val getParsedTextName: MethodStringName0<JSON, String> =
+        MethodStringName0<JSON, String>("get_parsed_text")
+
+    @JvmField
+    public val getErrorLineName: MethodStringName0<JSON, Int> =
+        MethodStringName0<JSON, Int>("get_error_line")
+
+    @JvmField
+    public val getErrorMessageName: MethodStringName0<JSON, String> =
+        MethodStringName0<JSON, String>("get_error_message")
+
+    @JvmField
+    public val fromNativeName: MethodStringName2<JSON, Any?, Any?, Boolean> =
+        MethodStringName2<JSON, Any?, Any?, Boolean>("from_native")
+
+    @JvmField
+    public val toNativeName: MethodStringName2<JSON, Any?, Any?, Boolean> =
+        MethodStringName2<JSON, Any?, Any?, Boolean>("to_native")
+
     /**
      * Converts a [Variant] var to JSON text and returns the result. Useful for serializing data to
      * store or send over the network.

@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.NodePath
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -28,6 +30,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -329,7 +332,123 @@ public open class TwoBoneIK3D : IKModifier3D() {
   public final fun setPoleNode(index: Int, poleNode: String) =
       setPoleNode(index, poleNode.asCachedNodePath())
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setTargetNodeName: MethodStringName2<TwoBoneIK3D, Unit, Int, NodePath> =
+        MethodStringName2<TwoBoneIK3D, Unit, Int, NodePath>("set_target_node")
+
+    @JvmField
+    public val getTargetNodeName: MethodStringName1<TwoBoneIK3D, NodePath, Int> =
+        MethodStringName1<TwoBoneIK3D, NodePath, Int>("get_target_node")
+
+    @JvmField
+    public val setPoleNodeName: MethodStringName2<TwoBoneIK3D, Unit, Int, NodePath> =
+        MethodStringName2<TwoBoneIK3D, Unit, Int, NodePath>("set_pole_node")
+
+    @JvmField
+    public val getPoleNodeName: MethodStringName1<TwoBoneIK3D, NodePath, Int> =
+        MethodStringName1<TwoBoneIK3D, NodePath, Int>("get_pole_node")
+
+    @JvmField
+    public val setRootBoneNameName: MethodStringName2<TwoBoneIK3D, Unit, Int, String> =
+        MethodStringName2<TwoBoneIK3D, Unit, Int, String>("set_root_bone_name")
+
+    @JvmField
+    public val getRootBoneNameName: MethodStringName1<TwoBoneIK3D, String, Int> =
+        MethodStringName1<TwoBoneIK3D, String, Int>("get_root_bone_name")
+
+    @JvmField
+    public val setRootBoneName: MethodStringName2<TwoBoneIK3D, Unit, Int, Int> =
+        MethodStringName2<TwoBoneIK3D, Unit, Int, Int>("set_root_bone")
+
+    @JvmField
+    public val getRootBoneName: MethodStringName1<TwoBoneIK3D, Int, Int> =
+        MethodStringName1<TwoBoneIK3D, Int, Int>("get_root_bone")
+
+    @JvmField
+    public val setMiddleBoneNameName: MethodStringName2<TwoBoneIK3D, Unit, Int, String> =
+        MethodStringName2<TwoBoneIK3D, Unit, Int, String>("set_middle_bone_name")
+
+    @JvmField
+    public val getMiddleBoneNameName: MethodStringName1<TwoBoneIK3D, String, Int> =
+        MethodStringName1<TwoBoneIK3D, String, Int>("get_middle_bone_name")
+
+    @JvmField
+    public val setMiddleBoneName: MethodStringName2<TwoBoneIK3D, Unit, Int, Int> =
+        MethodStringName2<TwoBoneIK3D, Unit, Int, Int>("set_middle_bone")
+
+    @JvmField
+    public val getMiddleBoneName: MethodStringName1<TwoBoneIK3D, Int, Int> =
+        MethodStringName1<TwoBoneIK3D, Int, Int>("get_middle_bone")
+
+    @JvmField
+    public val setPoleDirectionName:
+        MethodStringName2<TwoBoneIK3D, Unit, Int, SkeletonModifier3D.SecondaryDirection> =
+        MethodStringName2<TwoBoneIK3D, Unit, Int, SkeletonModifier3D.SecondaryDirection>("set_pole_direction")
+
+    @JvmField
+    public val getPoleDirectionName:
+        MethodStringName1<TwoBoneIK3D, SkeletonModifier3D.SecondaryDirection, Int> =
+        MethodStringName1<TwoBoneIK3D, SkeletonModifier3D.SecondaryDirection, Int>("get_pole_direction")
+
+    @JvmField
+    public val setPoleDirectionVectorName: MethodStringName2<TwoBoneIK3D, Unit, Int, Vector3> =
+        MethodStringName2<TwoBoneIK3D, Unit, Int, Vector3>("set_pole_direction_vector")
+
+    @JvmField
+    public val getPoleDirectionVectorName: MethodStringName1<TwoBoneIK3D, Vector3, Int> =
+        MethodStringName1<TwoBoneIK3D, Vector3, Int>("get_pole_direction_vector")
+
+    @JvmField
+    public val setEndBoneNameName: MethodStringName2<TwoBoneIK3D, Unit, Int, String> =
+        MethodStringName2<TwoBoneIK3D, Unit, Int, String>("set_end_bone_name")
+
+    @JvmField
+    public val getEndBoneNameName: MethodStringName1<TwoBoneIK3D, String, Int> =
+        MethodStringName1<TwoBoneIK3D, String, Int>("get_end_bone_name")
+
+    @JvmField
+    public val setEndBoneName: MethodStringName2<TwoBoneIK3D, Unit, Int, Int> =
+        MethodStringName2<TwoBoneIK3D, Unit, Int, Int>("set_end_bone")
+
+    @JvmField
+    public val getEndBoneName: MethodStringName1<TwoBoneIK3D, Int, Int> =
+        MethodStringName1<TwoBoneIK3D, Int, Int>("get_end_bone")
+
+    @JvmField
+    public val setUseVirtualEndName: MethodStringName2<TwoBoneIK3D, Unit, Int, Boolean> =
+        MethodStringName2<TwoBoneIK3D, Unit, Int, Boolean>("set_use_virtual_end")
+
+    @JvmField
+    public val isUsingVirtualEndName: MethodStringName1<TwoBoneIK3D, Boolean, Int> =
+        MethodStringName1<TwoBoneIK3D, Boolean, Int>("is_using_virtual_end")
+
+    @JvmField
+    public val setExtendEndBoneName: MethodStringName2<TwoBoneIK3D, Unit, Int, Boolean> =
+        MethodStringName2<TwoBoneIK3D, Unit, Int, Boolean>("set_extend_end_bone")
+
+    @JvmField
+    public val isEndBoneExtendedName: MethodStringName1<TwoBoneIK3D, Boolean, Int> =
+        MethodStringName1<TwoBoneIK3D, Boolean, Int>("is_end_bone_extended")
+
+    @JvmField
+    public val setEndBoneDirectionName:
+        MethodStringName2<TwoBoneIK3D, Unit, Int, SkeletonModifier3D.BoneDirection> =
+        MethodStringName2<TwoBoneIK3D, Unit, Int, SkeletonModifier3D.BoneDirection>("set_end_bone_direction")
+
+    @JvmField
+    public val getEndBoneDirectionName:
+        MethodStringName1<TwoBoneIK3D, SkeletonModifier3D.BoneDirection, Int> =
+        MethodStringName1<TwoBoneIK3D, SkeletonModifier3D.BoneDirection, Int>("get_end_bone_direction")
+
+    @JvmField
+    public val setEndBoneLengthName: MethodStringName2<TwoBoneIK3D, Unit, Int, Float> =
+        MethodStringName2<TwoBoneIK3D, Unit, Int, Float>("set_end_bone_length")
+
+    @JvmField
+    public val getEndBoneLengthName: MethodStringName1<TwoBoneIK3D, Float, Int> =
+        MethodStringName1<TwoBoneIK3D, Float, Int>("get_end_bone_length")
+  }
 
   public object MethodBindings {
     internal val setTargetNodePtr: VoidPtr =

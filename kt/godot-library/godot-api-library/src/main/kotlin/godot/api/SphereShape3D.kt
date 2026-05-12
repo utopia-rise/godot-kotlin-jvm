@@ -10,12 +10,15 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import kotlin.Double
 import kotlin.Float
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -53,7 +56,15 @@ public open class SphereShape3D : Shape3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setRadiusName: MethodStringName1<SphereShape3D, Unit, Float> =
+        MethodStringName1<SphereShape3D, Unit, Float>("set_radius")
+
+    @JvmField
+    public val getRadiusName: MethodStringName0<SphereShape3D, Float> =
+        MethodStringName0<SphereShape3D, Float>("get_radius")
+  }
 
   public object MethodBindings {
     internal val setRadiusPtr: VoidPtr =

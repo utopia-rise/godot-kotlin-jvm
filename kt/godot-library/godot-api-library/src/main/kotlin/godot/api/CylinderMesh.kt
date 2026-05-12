@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -21,6 +23,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -201,7 +204,63 @@ public open class CylinderMesh : PrimitiveMesh() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setTopRadiusName: MethodStringName1<CylinderMesh, Unit, Float> =
+        MethodStringName1<CylinderMesh, Unit, Float>("set_top_radius")
+
+    @JvmField
+    public val getTopRadiusName: MethodStringName0<CylinderMesh, Float> =
+        MethodStringName0<CylinderMesh, Float>("get_top_radius")
+
+    @JvmField
+    public val setBottomRadiusName: MethodStringName1<CylinderMesh, Unit, Float> =
+        MethodStringName1<CylinderMesh, Unit, Float>("set_bottom_radius")
+
+    @JvmField
+    public val getBottomRadiusName: MethodStringName0<CylinderMesh, Float> =
+        MethodStringName0<CylinderMesh, Float>("get_bottom_radius")
+
+    @JvmField
+    public val setHeightName: MethodStringName1<CylinderMesh, Unit, Float> =
+        MethodStringName1<CylinderMesh, Unit, Float>("set_height")
+
+    @JvmField
+    public val getHeightName: MethodStringName0<CylinderMesh, Float> =
+        MethodStringName0<CylinderMesh, Float>("get_height")
+
+    @JvmField
+    public val setRadialSegmentsName: MethodStringName1<CylinderMesh, Unit, Int> =
+        MethodStringName1<CylinderMesh, Unit, Int>("set_radial_segments")
+
+    @JvmField
+    public val getRadialSegmentsName: MethodStringName0<CylinderMesh, Int> =
+        MethodStringName0<CylinderMesh, Int>("get_radial_segments")
+
+    @JvmField
+    public val setRingsName: MethodStringName1<CylinderMesh, Unit, Int> =
+        MethodStringName1<CylinderMesh, Unit, Int>("set_rings")
+
+    @JvmField
+    public val getRingsName: MethodStringName0<CylinderMesh, Int> =
+        MethodStringName0<CylinderMesh, Int>("get_rings")
+
+    @JvmField
+    public val setCapTopName: MethodStringName1<CylinderMesh, Unit, Boolean> =
+        MethodStringName1<CylinderMesh, Unit, Boolean>("set_cap_top")
+
+    @JvmField
+    public val isCapTopName: MethodStringName0<CylinderMesh, Boolean> =
+        MethodStringName0<CylinderMesh, Boolean>("is_cap_top")
+
+    @JvmField
+    public val setCapBottomName: MethodStringName1<CylinderMesh, Unit, Boolean> =
+        MethodStringName1<CylinderMesh, Unit, Boolean>("set_cap_bottom")
+
+    @JvmField
+    public val isCapBottomName: MethodStringName0<CylinderMesh, Boolean> =
+        MethodStringName0<CylinderMesh, Boolean>("is_cap_bottom")
+  }
 
   public object MethodBindings {
     internal val setTopRadiusPtr: VoidPtr =

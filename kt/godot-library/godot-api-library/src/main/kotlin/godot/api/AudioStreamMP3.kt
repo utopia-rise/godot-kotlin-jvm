@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.PackedByteArray
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -29,6 +31,7 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmStatic
 
@@ -294,6 +297,63 @@ public open class AudioStreamMP3 : AudioStream() {
   }
 
   public companion object {
+    @JvmField
+    public val loadFromBufferName:
+        MethodStringName1<AudioStreamMP3, AudioStreamMP3?, PackedByteArray> =
+        MethodStringName1<AudioStreamMP3, AudioStreamMP3?, PackedByteArray>("load_from_buffer")
+
+    @JvmField
+    public val loadFromFileName: MethodStringName1<AudioStreamMP3, AudioStreamMP3?, String> =
+        MethodStringName1<AudioStreamMP3, AudioStreamMP3?, String>("load_from_file")
+
+    @JvmField
+    public val setDataName: MethodStringName1<AudioStreamMP3, Unit, PackedByteArray> =
+        MethodStringName1<AudioStreamMP3, Unit, PackedByteArray>("set_data")
+
+    @JvmField
+    public val getDataName: MethodStringName0<AudioStreamMP3, PackedByteArray> =
+        MethodStringName0<AudioStreamMP3, PackedByteArray>("get_data")
+
+    @JvmField
+    public val setLoopName: MethodStringName1<AudioStreamMP3, Unit, Boolean> =
+        MethodStringName1<AudioStreamMP3, Unit, Boolean>("set_loop")
+
+    @JvmField
+    public val hasLoopName: MethodStringName0<AudioStreamMP3, Boolean> =
+        MethodStringName0<AudioStreamMP3, Boolean>("has_loop")
+
+    @JvmField
+    public val setLoopOffsetName: MethodStringName1<AudioStreamMP3, Unit, Double> =
+        MethodStringName1<AudioStreamMP3, Unit, Double>("set_loop_offset")
+
+    @JvmField
+    public val getLoopOffsetName: MethodStringName0<AudioStreamMP3, Double> =
+        MethodStringName0<AudioStreamMP3, Double>("get_loop_offset")
+
+    @JvmField
+    public val setBpmName: MethodStringName1<AudioStreamMP3, Unit, Double> =
+        MethodStringName1<AudioStreamMP3, Unit, Double>("set_bpm")
+
+    @JvmField
+    public val getBpmName: MethodStringName0<AudioStreamMP3, Double> =
+        MethodStringName0<AudioStreamMP3, Double>("get_bpm")
+
+    @JvmField
+    public val setBeatCountName: MethodStringName1<AudioStreamMP3, Unit, Int> =
+        MethodStringName1<AudioStreamMP3, Unit, Int>("set_beat_count")
+
+    @JvmField
+    public val getBeatCountName: MethodStringName0<AudioStreamMP3, Int> =
+        MethodStringName0<AudioStreamMP3, Int>("get_beat_count")
+
+    @JvmField
+    public val setBarBeatsName: MethodStringName1<AudioStreamMP3, Unit, Int> =
+        MethodStringName1<AudioStreamMP3, Unit, Int>("set_bar_beats")
+
+    @JvmField
+    public val getBarBeatsName: MethodStringName0<AudioStreamMP3, Int> =
+        MethodStringName0<AudioStreamMP3, Int>("get_bar_beats")
+
     /**
      * Creates a new [AudioStreamMP3] instance from the given buffer. The buffer must contain MP3
      * data.

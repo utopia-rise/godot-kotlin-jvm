@@ -10,12 +10,14 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.STRING
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 
 /**
  * Object for storing the query persistence result data when calling
@@ -45,7 +47,17 @@ public open class OpenXRSpatialComponentPersistenceList : OpenXRSpatialComponent
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val getPersistentUuidName:
+        MethodStringName1<OpenXRSpatialComponentPersistenceList, String, Long> =
+        MethodStringName1<OpenXRSpatialComponentPersistenceList, String, Long>("get_persistent_uuid")
+
+    @JvmField
+    public val getPersistentStateName:
+        MethodStringName1<OpenXRSpatialComponentPersistenceList, Long, Long> =
+        MethodStringName1<OpenXRSpatialComponentPersistenceList, Long, Long>("get_persistent_state")
+  }
 
   public object MethodBindings {
     internal val getPersistentUuidPtr: VoidPtr =

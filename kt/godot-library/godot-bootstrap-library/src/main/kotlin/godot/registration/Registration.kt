@@ -30,6 +30,7 @@ import godot.core.KtProperty
 import godot.core.KtPropertyInfo
 import godot.core.KtRpcConfig
 import godot.core.KtSignalInfo
+import godot.core.NotificationFunction
 import godot.core.PropertyHint
 import godot.internal.reflection.TypeManager
 import godot.core.VariantParser
@@ -85,7 +86,7 @@ class ClassBuilderDsl<T : KtObject>(
     private lateinit var constructorField: KtConstructor<T>
 
     private val functions = mutableMapOf<String, KtFunction<T, *>>()
-    private var notificationFunctions = listOf<Any.(Int) -> Unit>()
+    private var notificationFunctions = listOf<NotificationFunction<out KtObject>>()
 
     @PublishedApi
     internal val properties = mutableMapOf<String, KtProperty<T, *>>()
@@ -280,7 +281,7 @@ class ClassBuilderDsl<T : KtObject>(
      * the return type and parameters match!
      */
     fun notificationFunctions(
-        notificationFunctionsOfClassHierarchy: List<Any.(Int) -> Unit>
+        notificationFunctionsOfClassHierarchy: List<NotificationFunction<out KtObject>>
     ) {
         notificationFunctions = notificationFunctionsOfClassHierarchy
     }

@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.Transform2D
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -25,6 +27,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -186,7 +189,51 @@ public open class Bone2D : Node2D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setRestName: MethodStringName1<Bone2D, Unit, Transform2D> =
+        MethodStringName1<Bone2D, Unit, Transform2D>("set_rest")
+
+    @JvmField
+    public val getRestName: MethodStringName0<Bone2D, Transform2D> =
+        MethodStringName0<Bone2D, Transform2D>("get_rest")
+
+    @JvmField
+    public val applyRestName: MethodStringName0<Bone2D, Unit> =
+        MethodStringName0<Bone2D, Unit>("apply_rest")
+
+    @JvmField
+    public val getSkeletonRestName: MethodStringName0<Bone2D, Transform2D> =
+        MethodStringName0<Bone2D, Transform2D>("get_skeleton_rest")
+
+    @JvmField
+    public val getIndexInSkeletonName: MethodStringName0<Bone2D, Int> =
+        MethodStringName0<Bone2D, Int>("get_index_in_skeleton")
+
+    @JvmField
+    public val setAutocalculateLengthAndAngleName: MethodStringName1<Bone2D, Unit, Boolean> =
+        MethodStringName1<Bone2D, Unit, Boolean>("set_autocalculate_length_and_angle")
+
+    @JvmField
+    public val getAutocalculateLengthAndAngleName: MethodStringName0<Bone2D, Boolean> =
+        MethodStringName0<Bone2D, Boolean>("get_autocalculate_length_and_angle")
+
+    @JvmField
+    public val setLengthName: MethodStringName1<Bone2D, Unit, Float> =
+        MethodStringName1<Bone2D, Unit, Float>("set_length")
+
+    @JvmField
+    public val getLengthName: MethodStringName0<Bone2D, Float> =
+        MethodStringName0<Bone2D, Float>("get_length")
+
+    @JvmField
+    public val setBoneAngleName: MethodStringName1<Bone2D, Unit, Float> =
+        MethodStringName1<Bone2D, Unit, Float>("set_bone_angle")
+
+    @JvmField
+    public val getBoneAngleName: MethodStringName0<Bone2D, Float> =
+        MethodStringName0<Bone2D, Float>("get_bone_angle")
+  }
 
   public object MethodBindings {
     internal val setRestPtr: VoidPtr =

@@ -10,6 +10,7 @@ import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.TypeName
 import com.squareup.kotlinpoet.TypeSpec
 import com.squareup.kotlinpoet.TypeVariableName
+import org.gradle.declarative.dsl.schema.FqName.Empty.packageName
 
 /**
  * Provides utilities to handle generic classes and generate KotlinPoet builders for them.
@@ -18,7 +19,7 @@ import com.squareup.kotlinpoet.TypeVariableName
  * @param numberOfGenericParameters The number of generic type parameters for the class.
  */
 class GenericClassNameInfo(
-    val className: ClassName,
+    val className: ClassName = ClassName("dummy.package", "DummyClass"),
     numberOfGenericParameters: Int
 ) {
     /**

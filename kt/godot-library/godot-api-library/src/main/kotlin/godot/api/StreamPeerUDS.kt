@@ -11,12 +11,15 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.STRING
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 
 /**
  * A stream peer that handles UNIX Domain Socket (UDS) connections. This object can be used to
@@ -62,7 +65,19 @@ public open class StreamPeerUDS : StreamPeerSocket() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val bindName: MethodStringName1<StreamPeerUDS, Error, String> =
+        MethodStringName1<StreamPeerUDS, Error, String>("bind")
+
+    @JvmField
+    public val connectToHostName: MethodStringName1<StreamPeerUDS, Error, String> =
+        MethodStringName1<StreamPeerUDS, Error, String>("connect_to_host")
+
+    @JvmField
+    public val getConnectedPathName: MethodStringName0<StreamPeerUDS, String> =
+        MethodStringName0<StreamPeerUDS, String>("get_connected_path")
+  }
 
   public object MethodBindings {
     internal val bindPtr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeerUDS", "bind", 166001499)

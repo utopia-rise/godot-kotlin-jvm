@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.NodePath
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -20,6 +22,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -117,7 +120,23 @@ public open class VisibleOnScreenEnabler2D : VisibleOnScreenNotifier2D() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setEnableModeName: MethodStringName1<VisibleOnScreenEnabler2D, Unit, EnableMode> =
+        MethodStringName1<VisibleOnScreenEnabler2D, Unit, EnableMode>("set_enable_mode")
+
+    @JvmField
+    public val getEnableModeName: MethodStringName0<VisibleOnScreenEnabler2D, EnableMode> =
+        MethodStringName0<VisibleOnScreenEnabler2D, EnableMode>("get_enable_mode")
+
+    @JvmField
+    public val setEnableNodePathName: MethodStringName1<VisibleOnScreenEnabler2D, Unit, NodePath> =
+        MethodStringName1<VisibleOnScreenEnabler2D, Unit, NodePath>("set_enable_node_path")
+
+    @JvmField
+    public val getEnableNodePathName: MethodStringName0<VisibleOnScreenEnabler2D, NodePath> =
+        MethodStringName0<VisibleOnScreenEnabler2D, NodePath>("get_enable_node_path")
+  }
 
   public object MethodBindings {
     internal val setEnableModePtr: VoidPtr =

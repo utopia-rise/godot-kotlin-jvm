@@ -12,6 +12,10 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Callable
 import godot.core.GodotEnum
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
+import godot.core.MethodStringName4
 import godot.core.PackedByteArray
 import godot.core.PackedFloat32Array
 import godot.core.PackedInt32Array
@@ -21,6 +25,7 @@ import godot.core.PackedVector3Array
 import godot.core.RID
 import godot.core.Signal1
 import godot.core.VariantArray
+import godot.core.VariantCallable
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.CALLABLE
@@ -40,6 +45,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -94,7 +100,7 @@ public open class OpenXRSpatialEntityExtension : OpenXRExtensionWrapper() {
   public final fun createSpatialContext(
     capabilityConfigurations: VariantArray<OpenXRSpatialCapabilityConfigurationBaseHeader>,
     next: OpenXRStructureBase? = null,
-    userCallback: Callable = Callable(),
+    userCallback: Callable = VariantCallable(),
   ): OpenXRFutureResult? {
     TransferContext.writeArguments(ARRAY to capabilityConfigurations, OBJECT to next, CALLABLE to userCallback)
     TransferContext.callMethod(ptr, MethodBindings.createSpatialContextPtr, OBJECT)
@@ -148,7 +154,7 @@ public open class OpenXRSpatialEntityExtension : OpenXRExtensionWrapper() {
     spatialContext: RID,
     componentTypes: PackedInt64Array,
     next: OpenXRStructureBase? = null,
-    userCallback: Callable = Callable(),
+    userCallback: Callable = VariantCallable(),
   ): OpenXRFutureResult? {
     TransferContext.writeArguments(_RID to spatialContext, PACKED_INT_64_ARRAY to componentTypes, OBJECT to next, CALLABLE to userCallback)
     TransferContext.callMethod(ptr, MethodBindings.discoverSpatialEntitiesPtr, OBJECT)
@@ -462,7 +468,130 @@ public open class OpenXRSpatialEntityExtension : OpenXRExtensionWrapper() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val supportsCapabilityName:
+        MethodStringName1<OpenXRSpatialEntityExtension, Boolean, Capability> =
+        MethodStringName1<OpenXRSpatialEntityExtension, Boolean, Capability>("supports_capability")
+
+    @JvmField
+    public val supportsComponentTypeName:
+        MethodStringName2<OpenXRSpatialEntityExtension, Boolean, Capability, ComponentType> =
+        MethodStringName2<OpenXRSpatialEntityExtension, Boolean, Capability, ComponentType>("supports_component_type")
+
+    @JvmField
+    public val createSpatialContextName:
+        MethodStringName3<OpenXRSpatialEntityExtension, OpenXRFutureResult?, VariantArray<OpenXRSpatialCapabilityConfigurationBaseHeader>, OpenXRStructureBase?, Callable>
+        =
+        MethodStringName3<OpenXRSpatialEntityExtension, OpenXRFutureResult?, VariantArray<OpenXRSpatialCapabilityConfigurationBaseHeader>, OpenXRStructureBase?, Callable>("create_spatial_context")
+
+    @JvmField
+    public val getSpatialContextReadyName:
+        MethodStringName1<OpenXRSpatialEntityExtension, Boolean, RID> =
+        MethodStringName1<OpenXRSpatialEntityExtension, Boolean, RID>("get_spatial_context_ready")
+
+    @JvmField
+    public val freeSpatialContextName: MethodStringName1<OpenXRSpatialEntityExtension, Unit, RID> =
+        MethodStringName1<OpenXRSpatialEntityExtension, Unit, RID>("free_spatial_context")
+
+    @JvmField
+    public val getSpatialContextHandleName:
+        MethodStringName1<OpenXRSpatialEntityExtension, Long, RID> =
+        MethodStringName1<OpenXRSpatialEntityExtension, Long, RID>("get_spatial_context_handle")
+
+    @JvmField
+    public val discoverSpatialEntitiesName:
+        MethodStringName4<OpenXRSpatialEntityExtension, OpenXRFutureResult?, RID, PackedInt64Array, OpenXRStructureBase?, Callable>
+        =
+        MethodStringName4<OpenXRSpatialEntityExtension, OpenXRFutureResult?, RID, PackedInt64Array, OpenXRStructureBase?, Callable>("discover_spatial_entities")
+
+    @JvmField
+    public val updateSpatialEntitiesName:
+        MethodStringName4<OpenXRSpatialEntityExtension, RID, RID, VariantArray<RID>, PackedInt64Array, OpenXRStructureBase?>
+        =
+        MethodStringName4<OpenXRSpatialEntityExtension, RID, RID, VariantArray<RID>, PackedInt64Array, OpenXRStructureBase?>("update_spatial_entities")
+
+    @JvmField
+    public val freeSpatialSnapshotName: MethodStringName1<OpenXRSpatialEntityExtension, Unit, RID> =
+        MethodStringName1<OpenXRSpatialEntityExtension, Unit, RID>("free_spatial_snapshot")
+
+    @JvmField
+    public val getSpatialSnapshotHandleName:
+        MethodStringName1<OpenXRSpatialEntityExtension, Long, RID> =
+        MethodStringName1<OpenXRSpatialEntityExtension, Long, RID>("get_spatial_snapshot_handle")
+
+    @JvmField
+    public val getSpatialSnapshotContextName:
+        MethodStringName1<OpenXRSpatialEntityExtension, RID, RID> =
+        MethodStringName1<OpenXRSpatialEntityExtension, RID, RID>("get_spatial_snapshot_context")
+
+    @JvmField
+    public val querySnapshotName:
+        MethodStringName3<OpenXRSpatialEntityExtension, Boolean, RID, VariantArray<OpenXRSpatialComponentData>, OpenXRStructureBase?>
+        =
+        MethodStringName3<OpenXRSpatialEntityExtension, Boolean, RID, VariantArray<OpenXRSpatialComponentData>, OpenXRStructureBase?>("query_snapshot")
+
+    @JvmField
+    public val getStringName: MethodStringName2<OpenXRSpatialEntityExtension, String, RID, Long> =
+        MethodStringName2<OpenXRSpatialEntityExtension, String, RID, Long>("get_string")
+
+    @JvmField
+    public val getUint8BufferName:
+        MethodStringName2<OpenXRSpatialEntityExtension, PackedByteArray, RID, Long> =
+        MethodStringName2<OpenXRSpatialEntityExtension, PackedByteArray, RID, Long>("get_uint8_buffer")
+
+    @JvmField
+    public val getUint16BufferName:
+        MethodStringName2<OpenXRSpatialEntityExtension, PackedInt32Array, RID, Long> =
+        MethodStringName2<OpenXRSpatialEntityExtension, PackedInt32Array, RID, Long>("get_uint16_buffer")
+
+    @JvmField
+    public val getUint32BufferName:
+        MethodStringName2<OpenXRSpatialEntityExtension, PackedInt32Array, RID, Long> =
+        MethodStringName2<OpenXRSpatialEntityExtension, PackedInt32Array, RID, Long>("get_uint32_buffer")
+
+    @JvmField
+    public val getFloatBufferName:
+        MethodStringName2<OpenXRSpatialEntityExtension, PackedFloat32Array, RID, Long> =
+        MethodStringName2<OpenXRSpatialEntityExtension, PackedFloat32Array, RID, Long>("get_float_buffer")
+
+    @JvmField
+    public val getVector2BufferName:
+        MethodStringName2<OpenXRSpatialEntityExtension, PackedVector2Array, RID, Long> =
+        MethodStringName2<OpenXRSpatialEntityExtension, PackedVector2Array, RID, Long>("get_vector2_buffer")
+
+    @JvmField
+    public val getVector3BufferName:
+        MethodStringName2<OpenXRSpatialEntityExtension, PackedVector3Array, RID, Long> =
+        MethodStringName2<OpenXRSpatialEntityExtension, PackedVector3Array, RID, Long>("get_vector3_buffer")
+
+    @JvmField
+    public val findSpatialEntityName: MethodStringName1<OpenXRSpatialEntityExtension, RID, Long> =
+        MethodStringName1<OpenXRSpatialEntityExtension, RID, Long>("find_spatial_entity")
+
+    @JvmField
+    public val addSpatialEntityName:
+        MethodStringName3<OpenXRSpatialEntityExtension, RID, RID, Long, Long> =
+        MethodStringName3<OpenXRSpatialEntityExtension, RID, RID, Long, Long>("add_spatial_entity")
+
+    @JvmField
+    public val makeSpatialEntityName:
+        MethodStringName2<OpenXRSpatialEntityExtension, RID, RID, Long> =
+        MethodStringName2<OpenXRSpatialEntityExtension, RID, RID, Long>("make_spatial_entity")
+
+    @JvmField
+    public val getSpatialEntityIdName: MethodStringName1<OpenXRSpatialEntityExtension, Long, RID> =
+        MethodStringName1<OpenXRSpatialEntityExtension, Long, RID>("get_spatial_entity_id")
+
+    @JvmField
+    public val getSpatialEntityContextName:
+        MethodStringName1<OpenXRSpatialEntityExtension, RID, RID> =
+        MethodStringName1<OpenXRSpatialEntityExtension, RID, RID>("get_spatial_entity_context")
+
+    @JvmField
+    public val freeSpatialEntityName: MethodStringName1<OpenXRSpatialEntityExtension, Unit, RID> =
+        MethodStringName1<OpenXRSpatialEntityExtension, Unit, RID>("free_spatial_entity")
+  }
 
   public object MethodBindings {
     internal val supportsCapabilityPtr: VoidPtr =

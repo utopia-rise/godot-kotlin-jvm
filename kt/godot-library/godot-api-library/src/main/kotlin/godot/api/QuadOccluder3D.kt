@@ -12,11 +12,14 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -80,7 +83,15 @@ public open class QuadOccluder3D : Occluder3D() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setSizeName: MethodStringName1<QuadOccluder3D, Unit, Vector2> =
+        MethodStringName1<QuadOccluder3D, Unit, Vector2>("set_size")
+
+    @JvmField
+    public val getSizeName: MethodStringName0<QuadOccluder3D, Vector2> =
+        MethodStringName0<QuadOccluder3D, Vector2>("get_size")
+  }
 
   public object MethodBindings {
     internal val setSizePtr: VoidPtr =

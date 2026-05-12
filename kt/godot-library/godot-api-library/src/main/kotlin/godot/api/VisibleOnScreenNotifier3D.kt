@@ -13,12 +13,15 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.AABB
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.Signal0
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -106,7 +109,15 @@ public open class VisibleOnScreenNotifier3D : VisualInstance3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setAabbName: MethodStringName1<VisibleOnScreenNotifier3D, Unit, AABB> =
+        MethodStringName1<VisibleOnScreenNotifier3D, Unit, AABB>("set_aabb")
+
+    @JvmField
+    public val isOnScreenName: MethodStringName0<VisibleOnScreenNotifier3D, Boolean> =
+        MethodStringName0<VisibleOnScreenNotifier3D, Boolean>("is_on_screen")
+  }
 
   public object MethodBindings {
     internal val setAabbPtr: VoidPtr =

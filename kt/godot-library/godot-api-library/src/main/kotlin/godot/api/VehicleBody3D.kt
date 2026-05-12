@@ -10,12 +10,15 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import kotlin.Double
 import kotlin.Float
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -124,7 +127,31 @@ public open class VehicleBody3D : RigidBody3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setEngineForceName: MethodStringName1<VehicleBody3D, Unit, Float> =
+        MethodStringName1<VehicleBody3D, Unit, Float>("set_engine_force")
+
+    @JvmField
+    public val getEngineForceName: MethodStringName0<VehicleBody3D, Float> =
+        MethodStringName0<VehicleBody3D, Float>("get_engine_force")
+
+    @JvmField
+    public val setBrakeName: MethodStringName1<VehicleBody3D, Unit, Float> =
+        MethodStringName1<VehicleBody3D, Unit, Float>("set_brake")
+
+    @JvmField
+    public val getBrakeName: MethodStringName0<VehicleBody3D, Float> =
+        MethodStringName0<VehicleBody3D, Float>("get_brake")
+
+    @JvmField
+    public val setSteeringName: MethodStringName1<VehicleBody3D, Unit, Float> =
+        MethodStringName1<VehicleBody3D, Unit, Float>("set_steering")
+
+    @JvmField
+    public val getSteeringName: MethodStringName0<VehicleBody3D, Float> =
+        MethodStringName0<VehicleBody3D, Float>("get_steering")
+  }
 
   public object MethodBindings {
     internal val setEngineForcePtr: VoidPtr =

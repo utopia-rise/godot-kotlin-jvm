@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -20,6 +22,7 @@ import kotlin.Float
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -381,7 +384,136 @@ public open class RDSamplerState : RefCounted() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setMagFilterName:
+        MethodStringName1<RDSamplerState, Unit, RenderingDevice.SamplerFilter> =
+        MethodStringName1<RDSamplerState, Unit, RenderingDevice.SamplerFilter>("set_mag_filter")
+
+    @JvmField
+    public val getMagFilterName: MethodStringName0<RDSamplerState, RenderingDevice.SamplerFilter> =
+        MethodStringName0<RDSamplerState, RenderingDevice.SamplerFilter>("get_mag_filter")
+
+    @JvmField
+    public val setMinFilterName:
+        MethodStringName1<RDSamplerState, Unit, RenderingDevice.SamplerFilter> =
+        MethodStringName1<RDSamplerState, Unit, RenderingDevice.SamplerFilter>("set_min_filter")
+
+    @JvmField
+    public val getMinFilterName: MethodStringName0<RDSamplerState, RenderingDevice.SamplerFilter> =
+        MethodStringName0<RDSamplerState, RenderingDevice.SamplerFilter>("get_min_filter")
+
+    @JvmField
+    public val setMipFilterName:
+        MethodStringName1<RDSamplerState, Unit, RenderingDevice.SamplerFilter> =
+        MethodStringName1<RDSamplerState, Unit, RenderingDevice.SamplerFilter>("set_mip_filter")
+
+    @JvmField
+    public val getMipFilterName: MethodStringName0<RDSamplerState, RenderingDevice.SamplerFilter> =
+        MethodStringName0<RDSamplerState, RenderingDevice.SamplerFilter>("get_mip_filter")
+
+    @JvmField
+    public val setRepeatUName:
+        MethodStringName1<RDSamplerState, Unit, RenderingDevice.SamplerRepeatMode> =
+        MethodStringName1<RDSamplerState, Unit, RenderingDevice.SamplerRepeatMode>("set_repeat_u")
+
+    @JvmField
+    public val getRepeatUName: MethodStringName0<RDSamplerState, RenderingDevice.SamplerRepeatMode>
+        = MethodStringName0<RDSamplerState, RenderingDevice.SamplerRepeatMode>("get_repeat_u")
+
+    @JvmField
+    public val setRepeatVName:
+        MethodStringName1<RDSamplerState, Unit, RenderingDevice.SamplerRepeatMode> =
+        MethodStringName1<RDSamplerState, Unit, RenderingDevice.SamplerRepeatMode>("set_repeat_v")
+
+    @JvmField
+    public val getRepeatVName: MethodStringName0<RDSamplerState, RenderingDevice.SamplerRepeatMode>
+        = MethodStringName0<RDSamplerState, RenderingDevice.SamplerRepeatMode>("get_repeat_v")
+
+    @JvmField
+    public val setRepeatWName:
+        MethodStringName1<RDSamplerState, Unit, RenderingDevice.SamplerRepeatMode> =
+        MethodStringName1<RDSamplerState, Unit, RenderingDevice.SamplerRepeatMode>("set_repeat_w")
+
+    @JvmField
+    public val getRepeatWName: MethodStringName0<RDSamplerState, RenderingDevice.SamplerRepeatMode>
+        = MethodStringName0<RDSamplerState, RenderingDevice.SamplerRepeatMode>("get_repeat_w")
+
+    @JvmField
+    public val setLodBiasName: MethodStringName1<RDSamplerState, Unit, Float> =
+        MethodStringName1<RDSamplerState, Unit, Float>("set_lod_bias")
+
+    @JvmField
+    public val getLodBiasName: MethodStringName0<RDSamplerState, Float> =
+        MethodStringName0<RDSamplerState, Float>("get_lod_bias")
+
+    @JvmField
+    public val setUseAnisotropyName: MethodStringName1<RDSamplerState, Unit, Boolean> =
+        MethodStringName1<RDSamplerState, Unit, Boolean>("set_use_anisotropy")
+
+    @JvmField
+    public val getUseAnisotropyName: MethodStringName0<RDSamplerState, Boolean> =
+        MethodStringName0<RDSamplerState, Boolean>("get_use_anisotropy")
+
+    @JvmField
+    public val setAnisotropyMaxName: MethodStringName1<RDSamplerState, Unit, Float> =
+        MethodStringName1<RDSamplerState, Unit, Float>("set_anisotropy_max")
+
+    @JvmField
+    public val getAnisotropyMaxName: MethodStringName0<RDSamplerState, Float> =
+        MethodStringName0<RDSamplerState, Float>("get_anisotropy_max")
+
+    @JvmField
+    public val setEnableCompareName: MethodStringName1<RDSamplerState, Unit, Boolean> =
+        MethodStringName1<RDSamplerState, Unit, Boolean>("set_enable_compare")
+
+    @JvmField
+    public val getEnableCompareName: MethodStringName0<RDSamplerState, Boolean> =
+        MethodStringName0<RDSamplerState, Boolean>("get_enable_compare")
+
+    @JvmField
+    public val setCompareOpName:
+        MethodStringName1<RDSamplerState, Unit, RenderingDevice.CompareOperator> =
+        MethodStringName1<RDSamplerState, Unit, RenderingDevice.CompareOperator>("set_compare_op")
+
+    @JvmField
+    public val getCompareOpName: MethodStringName0<RDSamplerState, RenderingDevice.CompareOperator>
+        = MethodStringName0<RDSamplerState, RenderingDevice.CompareOperator>("get_compare_op")
+
+    @JvmField
+    public val setMinLodName: MethodStringName1<RDSamplerState, Unit, Float> =
+        MethodStringName1<RDSamplerState, Unit, Float>("set_min_lod")
+
+    @JvmField
+    public val getMinLodName: MethodStringName0<RDSamplerState, Float> =
+        MethodStringName0<RDSamplerState, Float>("get_min_lod")
+
+    @JvmField
+    public val setMaxLodName: MethodStringName1<RDSamplerState, Unit, Float> =
+        MethodStringName1<RDSamplerState, Unit, Float>("set_max_lod")
+
+    @JvmField
+    public val getMaxLodName: MethodStringName0<RDSamplerState, Float> =
+        MethodStringName0<RDSamplerState, Float>("get_max_lod")
+
+    @JvmField
+    public val setBorderColorName:
+        MethodStringName1<RDSamplerState, Unit, RenderingDevice.SamplerBorderColor> =
+        MethodStringName1<RDSamplerState, Unit, RenderingDevice.SamplerBorderColor>("set_border_color")
+
+    @JvmField
+    public val getBorderColorName:
+        MethodStringName0<RDSamplerState, RenderingDevice.SamplerBorderColor> =
+        MethodStringName0<RDSamplerState, RenderingDevice.SamplerBorderColor>("get_border_color")
+
+    @JvmField
+    public val setUnnormalizedUvwName: MethodStringName1<RDSamplerState, Unit, Boolean> =
+        MethodStringName1<RDSamplerState, Unit, Boolean>("set_unnormalized_uvw")
+
+    @JvmField
+    public val getUnnormalizedUvwName: MethodStringName0<RDSamplerState, Boolean> =
+        MethodStringName0<RDSamplerState, Boolean>("get_unnormalized_uvw")
+  }
 
   public object MethodBindings {
     internal val setMagFilterPtr: VoidPtr =

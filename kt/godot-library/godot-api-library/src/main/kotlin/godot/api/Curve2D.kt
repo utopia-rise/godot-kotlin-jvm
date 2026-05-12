@@ -10,6 +10,10 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName4
 import godot.core.PackedVector2Array
 import godot.core.Transform2D
 import godot.core.VariantParser.BOOL
@@ -27,6 +31,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
@@ -327,7 +332,99 @@ public open class Curve2D : Resource() {
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val getPointCountName: MethodStringName0<Curve2D, Int> =
+        MethodStringName0<Curve2D, Int>("get_point_count")
+
+    @JvmField
+    public val setPointCountName: MethodStringName1<Curve2D, Unit, Int> =
+        MethodStringName1<Curve2D, Unit, Int>("set_point_count")
+
+    @JvmField
+    public val addPointName: MethodStringName4<Curve2D, Unit, Vector2, Vector2, Vector2, Int> =
+        MethodStringName4<Curve2D, Unit, Vector2, Vector2, Vector2, Int>("add_point")
+
+    @JvmField
+    public val setPointPositionName: MethodStringName2<Curve2D, Unit, Int, Vector2> =
+        MethodStringName2<Curve2D, Unit, Int, Vector2>("set_point_position")
+
+    @JvmField
+    public val getPointPositionName: MethodStringName1<Curve2D, Vector2, Int> =
+        MethodStringName1<Curve2D, Vector2, Int>("get_point_position")
+
+    @JvmField
+    public val setPointInName: MethodStringName2<Curve2D, Unit, Int, Vector2> =
+        MethodStringName2<Curve2D, Unit, Int, Vector2>("set_point_in")
+
+    @JvmField
+    public val getPointInName: MethodStringName1<Curve2D, Vector2, Int> =
+        MethodStringName1<Curve2D, Vector2, Int>("get_point_in")
+
+    @JvmField
+    public val setPointOutName: MethodStringName2<Curve2D, Unit, Int, Vector2> =
+        MethodStringName2<Curve2D, Unit, Int, Vector2>("set_point_out")
+
+    @JvmField
+    public val getPointOutName: MethodStringName1<Curve2D, Vector2, Int> =
+        MethodStringName1<Curve2D, Vector2, Int>("get_point_out")
+
+    @JvmField
+    public val removePointName: MethodStringName1<Curve2D, Unit, Int> =
+        MethodStringName1<Curve2D, Unit, Int>("remove_point")
+
+    @JvmField
+    public val clearPointsName: MethodStringName0<Curve2D, Unit> =
+        MethodStringName0<Curve2D, Unit>("clear_points")
+
+    @JvmField
+    public val sampleName: MethodStringName2<Curve2D, Vector2, Int, Float> =
+        MethodStringName2<Curve2D, Vector2, Int, Float>("sample")
+
+    @JvmField
+    public val samplefName: MethodStringName1<Curve2D, Vector2, Float> =
+        MethodStringName1<Curve2D, Vector2, Float>("samplef")
+
+    @JvmField
+    public val setBakeIntervalName: MethodStringName1<Curve2D, Unit, Float> =
+        MethodStringName1<Curve2D, Unit, Float>("set_bake_interval")
+
+    @JvmField
+    public val getBakeIntervalName: MethodStringName0<Curve2D, Float> =
+        MethodStringName0<Curve2D, Float>("get_bake_interval")
+
+    @JvmField
+    public val getBakedLengthName: MethodStringName0<Curve2D, Float> =
+        MethodStringName0<Curve2D, Float>("get_baked_length")
+
+    @JvmField
+    public val sampleBakedName: MethodStringName2<Curve2D, Vector2, Float, Boolean> =
+        MethodStringName2<Curve2D, Vector2, Float, Boolean>("sample_baked")
+
+    @JvmField
+    public val sampleBakedWithRotationName: MethodStringName2<Curve2D, Transform2D, Float, Boolean>
+        = MethodStringName2<Curve2D, Transform2D, Float, Boolean>("sample_baked_with_rotation")
+
+    @JvmField
+    public val getBakedPointsName: MethodStringName0<Curve2D, PackedVector2Array> =
+        MethodStringName0<Curve2D, PackedVector2Array>("get_baked_points")
+
+    @JvmField
+    public val getClosestPointName: MethodStringName1<Curve2D, Vector2, Vector2> =
+        MethodStringName1<Curve2D, Vector2, Vector2>("get_closest_point")
+
+    @JvmField
+    public val getClosestOffsetName: MethodStringName1<Curve2D, Float, Vector2> =
+        MethodStringName1<Curve2D, Float, Vector2>("get_closest_offset")
+
+    @JvmField
+    public val tessellateName: MethodStringName2<Curve2D, PackedVector2Array, Int, Float> =
+        MethodStringName2<Curve2D, PackedVector2Array, Int, Float>("tessellate")
+
+    @JvmField
+    public val tessellateEvenLengthName: MethodStringName2<Curve2D, PackedVector2Array, Int, Float>
+        = MethodStringName2<Curve2D, PackedVector2Array, Int, Float>("tessellate_even_length")
+  }
 
   public object MethodBindings {
     internal val getPointCountPtr: VoidPtr =

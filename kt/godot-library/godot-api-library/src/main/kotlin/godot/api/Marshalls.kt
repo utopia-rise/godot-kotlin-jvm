@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.PackedByteArray
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.BOOL
@@ -20,6 +22,7 @@ import kotlin.Boolean
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
@@ -28,6 +31,30 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object Marshalls : Object() {
+  @JvmField
+  public val variantToBase64Name: MethodStringName2<Marshalls, String, Any?, Boolean> =
+      MethodStringName2<Marshalls, String, Any?, Boolean>("variant_to_base64")
+
+  @JvmField
+  public val base64ToVariantName: MethodStringName2<Marshalls, Any?, String, Boolean> =
+      MethodStringName2<Marshalls, Any?, String, Boolean>("base64_to_variant")
+
+  @JvmField
+  public val rawToBase64Name: MethodStringName1<Marshalls, String, PackedByteArray> =
+      MethodStringName1<Marshalls, String, PackedByteArray>("raw_to_base64")
+
+  @JvmField
+  public val base64ToRawName: MethodStringName1<Marshalls, PackedByteArray, String> =
+      MethodStringName1<Marshalls, PackedByteArray, String>("base64_to_raw")
+
+  @JvmField
+  public val utf8ToBase64Name: MethodStringName1<Marshalls, String, String> =
+      MethodStringName1<Marshalls, String, String>("utf8_to_base64")
+
+  @JvmField
+  public val base64ToUtf8Name: MethodStringName1<Marshalls, String, String> =
+      MethodStringName1<Marshalls, String, String>("base64_to_utf8")
+
   public override fun new(scriptPtr: VoidPtr): Unit {
     getSingleton(14)
   }

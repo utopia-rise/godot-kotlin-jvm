@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.Signal0
 import godot.core.StringName
 import godot.core.VariantParser.BOOL
@@ -28,6 +30,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -377,7 +380,127 @@ public open class VideoStreamPlayer : Control() {
 
   public final fun setBus(bus: String) = setBus(bus.asCachedStringName())
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setStreamName: MethodStringName1<VideoStreamPlayer, Unit, VideoStream?> =
+        MethodStringName1<VideoStreamPlayer, Unit, VideoStream?>("set_stream")
+
+    @JvmField
+    public val getStreamName: MethodStringName0<VideoStreamPlayer, VideoStream?> =
+        MethodStringName0<VideoStreamPlayer, VideoStream?>("get_stream")
+
+    @JvmField
+    public val playName: MethodStringName0<VideoStreamPlayer, Unit> =
+        MethodStringName0<VideoStreamPlayer, Unit>("play")
+
+    @JvmField
+    public val stopName: MethodStringName0<VideoStreamPlayer, Unit> =
+        MethodStringName0<VideoStreamPlayer, Unit>("stop")
+
+    @JvmField
+    public val isPlayingName: MethodStringName0<VideoStreamPlayer, Boolean> =
+        MethodStringName0<VideoStreamPlayer, Boolean>("is_playing")
+
+    @JvmField
+    public val setPausedName: MethodStringName1<VideoStreamPlayer, Unit, Boolean> =
+        MethodStringName1<VideoStreamPlayer, Unit, Boolean>("set_paused")
+
+    @JvmField
+    public val isPausedName: MethodStringName0<VideoStreamPlayer, Boolean> =
+        MethodStringName0<VideoStreamPlayer, Boolean>("is_paused")
+
+    @JvmField
+    public val setLoopName: MethodStringName1<VideoStreamPlayer, Unit, Boolean> =
+        MethodStringName1<VideoStreamPlayer, Unit, Boolean>("set_loop")
+
+    @JvmField
+    public val hasLoopName: MethodStringName0<VideoStreamPlayer, Boolean> =
+        MethodStringName0<VideoStreamPlayer, Boolean>("has_loop")
+
+    @JvmField
+    public val setVolumeName: MethodStringName1<VideoStreamPlayer, Unit, Float> =
+        MethodStringName1<VideoStreamPlayer, Unit, Float>("set_volume")
+
+    @JvmField
+    public val getVolumeName: MethodStringName0<VideoStreamPlayer, Float> =
+        MethodStringName0<VideoStreamPlayer, Float>("get_volume")
+
+    @JvmField
+    public val setVolumeDbName: MethodStringName1<VideoStreamPlayer, Unit, Float> =
+        MethodStringName1<VideoStreamPlayer, Unit, Float>("set_volume_db")
+
+    @JvmField
+    public val getVolumeDbName: MethodStringName0<VideoStreamPlayer, Float> =
+        MethodStringName0<VideoStreamPlayer, Float>("get_volume_db")
+
+    @JvmField
+    public val setSpeedScaleName: MethodStringName1<VideoStreamPlayer, Unit, Float> =
+        MethodStringName1<VideoStreamPlayer, Unit, Float>("set_speed_scale")
+
+    @JvmField
+    public val getSpeedScaleName: MethodStringName0<VideoStreamPlayer, Float> =
+        MethodStringName0<VideoStreamPlayer, Float>("get_speed_scale")
+
+    @JvmField
+    public val setAudioTrackName: MethodStringName1<VideoStreamPlayer, Unit, Int> =
+        MethodStringName1<VideoStreamPlayer, Unit, Int>("set_audio_track")
+
+    @JvmField
+    public val getAudioTrackName: MethodStringName0<VideoStreamPlayer, Int> =
+        MethodStringName0<VideoStreamPlayer, Int>("get_audio_track")
+
+    @JvmField
+    public val getStreamNameName: MethodStringName0<VideoStreamPlayer, String> =
+        MethodStringName0<VideoStreamPlayer, String>("get_stream_name")
+
+    @JvmField
+    public val getStreamLengthName: MethodStringName0<VideoStreamPlayer, Double> =
+        MethodStringName0<VideoStreamPlayer, Double>("get_stream_length")
+
+    @JvmField
+    public val setStreamPositionName: MethodStringName1<VideoStreamPlayer, Unit, Double> =
+        MethodStringName1<VideoStreamPlayer, Unit, Double>("set_stream_position")
+
+    @JvmField
+    public val getStreamPositionName: MethodStringName0<VideoStreamPlayer, Double> =
+        MethodStringName0<VideoStreamPlayer, Double>("get_stream_position")
+
+    @JvmField
+    public val setAutoplayName: MethodStringName1<VideoStreamPlayer, Unit, Boolean> =
+        MethodStringName1<VideoStreamPlayer, Unit, Boolean>("set_autoplay")
+
+    @JvmField
+    public val hasAutoplayName: MethodStringName0<VideoStreamPlayer, Boolean> =
+        MethodStringName0<VideoStreamPlayer, Boolean>("has_autoplay")
+
+    @JvmField
+    public val setExpandName: MethodStringName1<VideoStreamPlayer, Unit, Boolean> =
+        MethodStringName1<VideoStreamPlayer, Unit, Boolean>("set_expand")
+
+    @JvmField
+    public val hasExpandName: MethodStringName0<VideoStreamPlayer, Boolean> =
+        MethodStringName0<VideoStreamPlayer, Boolean>("has_expand")
+
+    @JvmField
+    public val setBufferingMsecName: MethodStringName1<VideoStreamPlayer, Unit, Int> =
+        MethodStringName1<VideoStreamPlayer, Unit, Int>("set_buffering_msec")
+
+    @JvmField
+    public val getBufferingMsecName: MethodStringName0<VideoStreamPlayer, Int> =
+        MethodStringName0<VideoStreamPlayer, Int>("get_buffering_msec")
+
+    @JvmField
+    public val setBusName: MethodStringName1<VideoStreamPlayer, Unit, StringName> =
+        MethodStringName1<VideoStreamPlayer, Unit, StringName>("set_bus")
+
+    @JvmField
+    public val getBusName: MethodStringName0<VideoStreamPlayer, StringName> =
+        MethodStringName0<VideoStreamPlayer, StringName>("get_bus")
+
+    @JvmField
+    public val getVideoTextureName: MethodStringName0<VideoStreamPlayer, Texture2D?> =
+        MethodStringName0<VideoStreamPlayer, Texture2D?>("get_video_texture")
+  }
 
   public object MethodBindings {
     internal val setStreamPtr: VoidPtr =

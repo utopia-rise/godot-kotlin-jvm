@@ -10,11 +10,14 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -50,7 +53,15 @@ public open class VisualShaderNodeBooleanConstant : VisualShaderNodeConstant() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setConstantName: MethodStringName1<VisualShaderNodeBooleanConstant, Unit, Boolean> =
+        MethodStringName1<VisualShaderNodeBooleanConstant, Unit, Boolean>("set_constant")
+
+    @JvmField
+    public val getConstantName: MethodStringName0<VisualShaderNodeBooleanConstant, Boolean> =
+        MethodStringName0<VisualShaderNodeBooleanConstant, Boolean>("get_constant")
+  }
 
   public object MethodBindings {
     internal val setConstantPtr: VoidPtr =

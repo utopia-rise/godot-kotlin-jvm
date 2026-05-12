@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.Signal0
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
@@ -22,6 +24,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -289,7 +292,83 @@ public open class TouchScreenButton : Node2D() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setTextureNormalName: MethodStringName1<TouchScreenButton, Unit, Texture2D?> =
+        MethodStringName1<TouchScreenButton, Unit, Texture2D?>("set_texture_normal")
+
+    @JvmField
+    public val getTextureNormalName: MethodStringName0<TouchScreenButton, Texture2D?> =
+        MethodStringName0<TouchScreenButton, Texture2D?>("get_texture_normal")
+
+    @JvmField
+    public val setTexturePressedName: MethodStringName1<TouchScreenButton, Unit, Texture2D?> =
+        MethodStringName1<TouchScreenButton, Unit, Texture2D?>("set_texture_pressed")
+
+    @JvmField
+    public val getTexturePressedName: MethodStringName0<TouchScreenButton, Texture2D?> =
+        MethodStringName0<TouchScreenButton, Texture2D?>("get_texture_pressed")
+
+    @JvmField
+    public val setBitmaskName: MethodStringName1<TouchScreenButton, Unit, BitMap?> =
+        MethodStringName1<TouchScreenButton, Unit, BitMap?>("set_bitmask")
+
+    @JvmField
+    public val getBitmaskName: MethodStringName0<TouchScreenButton, BitMap?> =
+        MethodStringName0<TouchScreenButton, BitMap?>("get_bitmask")
+
+    @JvmField
+    public val setShapeName: MethodStringName1<TouchScreenButton, Unit, Shape2D?> =
+        MethodStringName1<TouchScreenButton, Unit, Shape2D?>("set_shape")
+
+    @JvmField
+    public val getShapeName: MethodStringName0<TouchScreenButton, Shape2D?> =
+        MethodStringName0<TouchScreenButton, Shape2D?>("get_shape")
+
+    @JvmField
+    public val setShapeCenteredName: MethodStringName1<TouchScreenButton, Unit, Boolean> =
+        MethodStringName1<TouchScreenButton, Unit, Boolean>("set_shape_centered")
+
+    @JvmField
+    public val isShapeCenteredName: MethodStringName0<TouchScreenButton, Boolean> =
+        MethodStringName0<TouchScreenButton, Boolean>("is_shape_centered")
+
+    @JvmField
+    public val setShapeVisibleName: MethodStringName1<TouchScreenButton, Unit, Boolean> =
+        MethodStringName1<TouchScreenButton, Unit, Boolean>("set_shape_visible")
+
+    @JvmField
+    public val isShapeVisibleName: MethodStringName0<TouchScreenButton, Boolean> =
+        MethodStringName0<TouchScreenButton, Boolean>("is_shape_visible")
+
+    @JvmField
+    public val setActionName: MethodStringName1<TouchScreenButton, Unit, String> =
+        MethodStringName1<TouchScreenButton, Unit, String>("set_action")
+
+    @JvmField
+    public val getActionName: MethodStringName0<TouchScreenButton, String> =
+        MethodStringName0<TouchScreenButton, String>("get_action")
+
+    @JvmField
+    public val setVisibilityModeName: MethodStringName1<TouchScreenButton, Unit, VisibilityMode> =
+        MethodStringName1<TouchScreenButton, Unit, VisibilityMode>("set_visibility_mode")
+
+    @JvmField
+    public val getVisibilityModeName: MethodStringName0<TouchScreenButton, VisibilityMode> =
+        MethodStringName0<TouchScreenButton, VisibilityMode>("get_visibility_mode")
+
+    @JvmField
+    public val setPassbyPressName: MethodStringName1<TouchScreenButton, Unit, Boolean> =
+        MethodStringName1<TouchScreenButton, Unit, Boolean>("set_passby_press")
+
+    @JvmField
+    public val isPassbyPressEnabledName: MethodStringName0<TouchScreenButton, Boolean> =
+        MethodStringName0<TouchScreenButton, Boolean>("is_passby_press_enabled")
+
+    @JvmField
+    public val isPressedName: MethodStringName0<TouchScreenButton, Boolean> =
+        MethodStringName0<TouchScreenButton, Boolean>("is_pressed")
+  }
 
   public object MethodBindings {
     internal val setTextureNormalPtr: VoidPtr =

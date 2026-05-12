@@ -13,6 +13,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.HorizontalAlignment
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -33,6 +35,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -507,7 +510,156 @@ public open class TextMesh : PrimitiveMesh() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setHorizontalAlignmentName: MethodStringName1<TextMesh, Unit, HorizontalAlignment> =
+        MethodStringName1<TextMesh, Unit, HorizontalAlignment>("set_horizontal_alignment")
+
+    @JvmField
+    public val getHorizontalAlignmentName: MethodStringName0<TextMesh, HorizontalAlignment> =
+        MethodStringName0<TextMesh, HorizontalAlignment>("get_horizontal_alignment")
+
+    @JvmField
+    public val setVerticalAlignmentName: MethodStringName1<TextMesh, Unit, VerticalAlignment> =
+        MethodStringName1<TextMesh, Unit, VerticalAlignment>("set_vertical_alignment")
+
+    @JvmField
+    public val getVerticalAlignmentName: MethodStringName0<TextMesh, VerticalAlignment> =
+        MethodStringName0<TextMesh, VerticalAlignment>("get_vertical_alignment")
+
+    @JvmField
+    public val setTextName: MethodStringName1<TextMesh, Unit, String> =
+        MethodStringName1<TextMesh, Unit, String>("set_text")
+
+    @JvmField
+    public val getTextName: MethodStringName0<TextMesh, String> =
+        MethodStringName0<TextMesh, String>("get_text")
+
+    @JvmField
+    public val setFontName: MethodStringName1<TextMesh, Unit, Font?> =
+        MethodStringName1<TextMesh, Unit, Font?>("set_font")
+
+    @JvmField
+    public val getFontName: MethodStringName0<TextMesh, Font?> =
+        MethodStringName0<TextMesh, Font?>("get_font")
+
+    @JvmField
+    public val setFontSizeName: MethodStringName1<TextMesh, Unit, Int> =
+        MethodStringName1<TextMesh, Unit, Int>("set_font_size")
+
+    @JvmField
+    public val getFontSizeName: MethodStringName0<TextMesh, Int> =
+        MethodStringName0<TextMesh, Int>("get_font_size")
+
+    @JvmField
+    public val setLineSpacingName: MethodStringName1<TextMesh, Unit, Float> =
+        MethodStringName1<TextMesh, Unit, Float>("set_line_spacing")
+
+    @JvmField
+    public val getLineSpacingName: MethodStringName0<TextMesh, Float> =
+        MethodStringName0<TextMesh, Float>("get_line_spacing")
+
+    @JvmField
+    public val setAutowrapModeName: MethodStringName1<TextMesh, Unit, TextServer.AutowrapMode> =
+        MethodStringName1<TextMesh, Unit, TextServer.AutowrapMode>("set_autowrap_mode")
+
+    @JvmField
+    public val getAutowrapModeName: MethodStringName0<TextMesh, TextServer.AutowrapMode> =
+        MethodStringName0<TextMesh, TextServer.AutowrapMode>("get_autowrap_mode")
+
+    @JvmField
+    public val setJustificationFlagsName:
+        MethodStringName1<TextMesh, Unit, TextServer.JustificationFlag> =
+        MethodStringName1<TextMesh, Unit, TextServer.JustificationFlag>("set_justification_flags")
+
+    @JvmField
+    public val getJustificationFlagsName: MethodStringName0<TextMesh, TextServer.JustificationFlag>
+        = MethodStringName0<TextMesh, TextServer.JustificationFlag>("get_justification_flags")
+
+    @JvmField
+    public val setDepthName: MethodStringName1<TextMesh, Unit, Float> =
+        MethodStringName1<TextMesh, Unit, Float>("set_depth")
+
+    @JvmField
+    public val getDepthName: MethodStringName0<TextMesh, Float> =
+        MethodStringName0<TextMesh, Float>("get_depth")
+
+    @JvmField
+    public val setWidthName: MethodStringName1<TextMesh, Unit, Float> =
+        MethodStringName1<TextMesh, Unit, Float>("set_width")
+
+    @JvmField
+    public val getWidthName: MethodStringName0<TextMesh, Float> =
+        MethodStringName0<TextMesh, Float>("get_width")
+
+    @JvmField
+    public val setPixelSizeName: MethodStringName1<TextMesh, Unit, Float> =
+        MethodStringName1<TextMesh, Unit, Float>("set_pixel_size")
+
+    @JvmField
+    public val getPixelSizeName: MethodStringName0<TextMesh, Float> =
+        MethodStringName0<TextMesh, Float>("get_pixel_size")
+
+    @JvmField
+    public val setOffsetName: MethodStringName1<TextMesh, Unit, Vector2> =
+        MethodStringName1<TextMesh, Unit, Vector2>("set_offset")
+
+    @JvmField
+    public val getOffsetName: MethodStringName0<TextMesh, Vector2> =
+        MethodStringName0<TextMesh, Vector2>("get_offset")
+
+    @JvmField
+    public val setCurveStepName: MethodStringName1<TextMesh, Unit, Float> =
+        MethodStringName1<TextMesh, Unit, Float>("set_curve_step")
+
+    @JvmField
+    public val getCurveStepName: MethodStringName0<TextMesh, Float> =
+        MethodStringName0<TextMesh, Float>("get_curve_step")
+
+    @JvmField
+    public val setTextDirectionName: MethodStringName1<TextMesh, Unit, TextServer.Direction> =
+        MethodStringName1<TextMesh, Unit, TextServer.Direction>("set_text_direction")
+
+    @JvmField
+    public val getTextDirectionName: MethodStringName0<TextMesh, TextServer.Direction> =
+        MethodStringName0<TextMesh, TextServer.Direction>("get_text_direction")
+
+    @JvmField
+    public val setLanguageName: MethodStringName1<TextMesh, Unit, String> =
+        MethodStringName1<TextMesh, Unit, String>("set_language")
+
+    @JvmField
+    public val getLanguageName: MethodStringName0<TextMesh, String> =
+        MethodStringName0<TextMesh, String>("get_language")
+
+    @JvmField
+    public val setStructuredTextBidiOverrideName:
+        MethodStringName1<TextMesh, Unit, TextServer.StructuredTextParser> =
+        MethodStringName1<TextMesh, Unit, TextServer.StructuredTextParser>("set_structured_text_bidi_override")
+
+    @JvmField
+    public val getStructuredTextBidiOverrideName:
+        MethodStringName0<TextMesh, TextServer.StructuredTextParser> =
+        MethodStringName0<TextMesh, TextServer.StructuredTextParser>("get_structured_text_bidi_override")
+
+    @JvmField
+    public val setStructuredTextBidiOverrideOptionsName:
+        MethodStringName1<TextMesh, Unit, VariantArray<Any?>> =
+        MethodStringName1<TextMesh, Unit, VariantArray<Any?>>("set_structured_text_bidi_override_options")
+
+    @JvmField
+    public val getStructuredTextBidiOverrideOptionsName:
+        MethodStringName0<TextMesh, VariantArray<Any?>> =
+        MethodStringName0<TextMesh, VariantArray<Any?>>("get_structured_text_bidi_override_options")
+
+    @JvmField
+    public val setUppercaseName: MethodStringName1<TextMesh, Unit, Boolean> =
+        MethodStringName1<TextMesh, Unit, Boolean>("set_uppercase")
+
+    @JvmField
+    public val isUppercaseName: MethodStringName0<TextMesh, Boolean> =
+        MethodStringName0<TextMesh, Boolean>("is_uppercase")
+  }
 
   public object MethodBindings {
     internal val setHorizontalAlignmentPtr: VoidPtr =

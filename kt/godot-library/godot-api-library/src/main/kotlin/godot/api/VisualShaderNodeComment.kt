@@ -10,11 +10,14 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -50,7 +53,15 @@ public open class VisualShaderNodeComment : VisualShaderNodeFrame() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setDescriptionName: MethodStringName1<VisualShaderNodeComment, Unit, String> =
+        MethodStringName1<VisualShaderNodeComment, Unit, String>("set_description")
+
+    @JvmField
+    public val getDescriptionName: MethodStringName0<VisualShaderNodeComment, String> =
+        MethodStringName0<VisualShaderNodeComment, String>("get_description")
+  }
 
   public object MethodBindings {
     internal val setDescriptionPtr: VoidPtr =

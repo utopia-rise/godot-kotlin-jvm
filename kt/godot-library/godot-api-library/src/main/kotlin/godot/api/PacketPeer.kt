@@ -11,6 +11,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.PackedByteArray
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.BOOL
@@ -23,6 +26,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
@@ -134,7 +138,39 @@ public open class PacketPeer internal constructor() : RefCounted() {
     TransferContext.callMethod(ptr, MethodBindings.setEncodeBufferMaxSizePtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val getVarName: MethodStringName1<PacketPeer, Any?, Boolean> =
+        MethodStringName1<PacketPeer, Any?, Boolean>("get_var")
+
+    @JvmField
+    public val putVarName: MethodStringName2<PacketPeer, Error, Any?, Boolean> =
+        MethodStringName2<PacketPeer, Error, Any?, Boolean>("put_var")
+
+    @JvmField
+    public val getPacketName: MethodStringName0<PacketPeer, PackedByteArray> =
+        MethodStringName0<PacketPeer, PackedByteArray>("get_packet")
+
+    @JvmField
+    public val putPacketName: MethodStringName1<PacketPeer, Error, PackedByteArray> =
+        MethodStringName1<PacketPeer, Error, PackedByteArray>("put_packet")
+
+    @JvmField
+    public val getPacketErrorName: MethodStringName0<PacketPeer, Error> =
+        MethodStringName0<PacketPeer, Error>("get_packet_error")
+
+    @JvmField
+    public val getAvailablePacketCountName: MethodStringName0<PacketPeer, Int> =
+        MethodStringName0<PacketPeer, Int>("get_available_packet_count")
+
+    @JvmField
+    public val getEncodeBufferMaxSizeName: MethodStringName0<PacketPeer, Int> =
+        MethodStringName0<PacketPeer, Int>("get_encode_buffer_max_size")
+
+    @JvmField
+    public val setEncodeBufferMaxSizeName: MethodStringName1<PacketPeer, Unit, Int> =
+        MethodStringName1<PacketPeer, Unit, Int>("set_encode_buffer_max_size")
+  }
 
   public object MethodBindings {
     internal val getVarPtr: VoidPtr =

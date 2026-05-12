@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -17,6 +19,7 @@ import kotlin.Any
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -79,7 +82,23 @@ public open class RDPipelineSpecializationConstant : RefCounted() {
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setValueName: MethodStringName1<RDPipelineSpecializationConstant, Unit, Any?> =
+        MethodStringName1<RDPipelineSpecializationConstant, Unit, Any?>("set_value")
+
+    @JvmField
+    public val getValueName: MethodStringName0<RDPipelineSpecializationConstant, Any?> =
+        MethodStringName0<RDPipelineSpecializationConstant, Any?>("get_value")
+
+    @JvmField
+    public val setConstantIdName: MethodStringName1<RDPipelineSpecializationConstant, Unit, Long> =
+        MethodStringName1<RDPipelineSpecializationConstant, Unit, Long>("set_constant_id")
+
+    @JvmField
+    public val getConstantIdName: MethodStringName0<RDPipelineSpecializationConstant, Long> =
+        MethodStringName0<RDPipelineSpecializationConstant, Long>("get_constant_id")
+  }
 
   public object MethodBindings {
     internal val setValuePtr: VoidPtr =

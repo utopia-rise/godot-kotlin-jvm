@@ -10,6 +10,10 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName4
+import godot.core.MethodStringName5
 import godot.core.Transform2D
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
@@ -24,6 +28,7 @@ import kotlin.Boolean
 import kotlin.Float
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -130,7 +135,35 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
     TransferContext.callMethod(ptr, MethodBindings.removeCollisionExceptionWithPtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val moveAndCollideName:
+        MethodStringName4<PhysicsBody2D, KinematicCollision2D?, Vector2, Boolean, Float, Boolean> =
+        MethodStringName4<PhysicsBody2D, KinematicCollision2D?, Vector2, Boolean, Float, Boolean>("move_and_collide")
+
+    @JvmField
+    public val testMoveName:
+        MethodStringName5<PhysicsBody2D, Boolean, Transform2D, Vector2, KinematicCollision2D?, Float, Boolean>
+        =
+        MethodStringName5<PhysicsBody2D, Boolean, Transform2D, Vector2, KinematicCollision2D?, Float, Boolean>("test_move")
+
+    @JvmField
+    public val getGravityName: MethodStringName0<PhysicsBody2D, Vector2> =
+        MethodStringName0<PhysicsBody2D, Vector2>("get_gravity")
+
+    @JvmField
+    public val getCollisionExceptionsName:
+        MethodStringName0<PhysicsBody2D, VariantArray<PhysicsBody2D>> =
+        MethodStringName0<PhysicsBody2D, VariantArray<PhysicsBody2D>>("get_collision_exceptions")
+
+    @JvmField
+    public val addCollisionExceptionWithName: MethodStringName1<PhysicsBody2D, Unit, Node> =
+        MethodStringName1<PhysicsBody2D, Unit, Node>("add_collision_exception_with")
+
+    @JvmField
+    public val removeCollisionExceptionWithName: MethodStringName1<PhysicsBody2D, Unit, Node> =
+        MethodStringName1<PhysicsBody2D, Unit, Node>("remove_collision_exception_with")
+  }
 
   public object MethodBindings {
     internal val moveAndCollidePtr: VoidPtr =

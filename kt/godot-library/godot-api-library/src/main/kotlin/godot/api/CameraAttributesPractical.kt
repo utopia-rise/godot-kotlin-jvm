@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
@@ -18,6 +20,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -262,7 +265,86 @@ public open class CameraAttributesPractical : CameraAttributes() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setDofBlurFarEnabledName: MethodStringName1<CameraAttributesPractical, Unit, Boolean>
+        = MethodStringName1<CameraAttributesPractical, Unit, Boolean>("set_dof_blur_far_enabled")
+
+    @JvmField
+    public val isDofBlurFarEnabledName: MethodStringName0<CameraAttributesPractical, Boolean> =
+        MethodStringName0<CameraAttributesPractical, Boolean>("is_dof_blur_far_enabled")
+
+    @JvmField
+    public val setDofBlurFarDistanceName: MethodStringName1<CameraAttributesPractical, Unit, Float>
+        = MethodStringName1<CameraAttributesPractical, Unit, Float>("set_dof_blur_far_distance")
+
+    @JvmField
+    public val getDofBlurFarDistanceName: MethodStringName0<CameraAttributesPractical, Float> =
+        MethodStringName0<CameraAttributesPractical, Float>("get_dof_blur_far_distance")
+
+    @JvmField
+    public val setDofBlurFarTransitionName:
+        MethodStringName1<CameraAttributesPractical, Unit, Float> =
+        MethodStringName1<CameraAttributesPractical, Unit, Float>("set_dof_blur_far_transition")
+
+    @JvmField
+    public val getDofBlurFarTransitionName: MethodStringName0<CameraAttributesPractical, Float> =
+        MethodStringName0<CameraAttributesPractical, Float>("get_dof_blur_far_transition")
+
+    @JvmField
+    public val setDofBlurNearEnabledName:
+        MethodStringName1<CameraAttributesPractical, Unit, Boolean> =
+        MethodStringName1<CameraAttributesPractical, Unit, Boolean>("set_dof_blur_near_enabled")
+
+    @JvmField
+    public val isDofBlurNearEnabledName: MethodStringName0<CameraAttributesPractical, Boolean> =
+        MethodStringName0<CameraAttributesPractical, Boolean>("is_dof_blur_near_enabled")
+
+    @JvmField
+    public val setDofBlurNearDistanceName: MethodStringName1<CameraAttributesPractical, Unit, Float>
+        = MethodStringName1<CameraAttributesPractical, Unit, Float>("set_dof_blur_near_distance")
+
+    @JvmField
+    public val getDofBlurNearDistanceName: MethodStringName0<CameraAttributesPractical, Float> =
+        MethodStringName0<CameraAttributesPractical, Float>("get_dof_blur_near_distance")
+
+    @JvmField
+    public val setDofBlurNearTransitionName:
+        MethodStringName1<CameraAttributesPractical, Unit, Float> =
+        MethodStringName1<CameraAttributesPractical, Unit, Float>("set_dof_blur_near_transition")
+
+    @JvmField
+    public val getDofBlurNearTransitionName: MethodStringName0<CameraAttributesPractical, Float> =
+        MethodStringName0<CameraAttributesPractical, Float>("get_dof_blur_near_transition")
+
+    @JvmField
+    public val setDofBlurAmountName: MethodStringName1<CameraAttributesPractical, Unit, Float> =
+        MethodStringName1<CameraAttributesPractical, Unit, Float>("set_dof_blur_amount")
+
+    @JvmField
+    public val getDofBlurAmountName: MethodStringName0<CameraAttributesPractical, Float> =
+        MethodStringName0<CameraAttributesPractical, Float>("get_dof_blur_amount")
+
+    @JvmField
+    public val setAutoExposureMaxSensitivityName:
+        MethodStringName1<CameraAttributesPractical, Unit, Float> =
+        MethodStringName1<CameraAttributesPractical, Unit, Float>("set_auto_exposure_max_sensitivity")
+
+    @JvmField
+    public val getAutoExposureMaxSensitivityName:
+        MethodStringName0<CameraAttributesPractical, Float> =
+        MethodStringName0<CameraAttributesPractical, Float>("get_auto_exposure_max_sensitivity")
+
+    @JvmField
+    public val setAutoExposureMinSensitivityName:
+        MethodStringName1<CameraAttributesPractical, Unit, Float> =
+        MethodStringName1<CameraAttributesPractical, Unit, Float>("set_auto_exposure_min_sensitivity")
+
+    @JvmField
+    public val getAutoExposureMinSensitivityName:
+        MethodStringName0<CameraAttributesPractical, Float> =
+        MethodStringName0<CameraAttributesPractical, Float>("get_auto_exposure_min_sensitivity")
+  }
 
   public object MethodBindings {
     internal val setDofBlurFarEnabledPtr: VoidPtr =

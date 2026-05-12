@@ -11,6 +11,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DICTIONARY
 import godot.core.VariantParser.OBJECT
@@ -20,6 +23,7 @@ import kotlin.Boolean
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -81,7 +85,21 @@ public open class InstancePlaceholder internal constructor() : Node() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val getStoredValuesName:
+        MethodStringName1<InstancePlaceholder, Dictionary<Any?, Any?>, Boolean> =
+        MethodStringName1<InstancePlaceholder, Dictionary<Any?, Any?>, Boolean>("get_stored_values")
+
+    @JvmField
+    public val createInstanceName:
+        MethodStringName2<InstancePlaceholder, Node?, Boolean, PackedScene?> =
+        MethodStringName2<InstancePlaceholder, Node?, Boolean, PackedScene?>("create_instance")
+
+    @JvmField
+    public val getInstancePathName: MethodStringName0<InstancePlaceholder, String> =
+        MethodStringName0<InstancePlaceholder, String>("get_instance_path")
+  }
 
   public object MethodBindings {
     internal val getStoredValuesPtr: VoidPtr =

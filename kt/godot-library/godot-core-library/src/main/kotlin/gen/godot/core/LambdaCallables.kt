@@ -1,96 +1,208 @@
 @file:Suppress(
   "PackageDirectoryMismatch", "UNCHECKED_CAST",
   "unused",
+  "RedundantVisibilityModifier",
 )
 
 package godot.core
 
-import godot.core.VariantParser.NIL
+import java.lang.Class
+import java.lang.Void
 import kotlin.Any
 import kotlin.Array
 import kotlin.PublishedApi
 import kotlin.Suppress
+import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 public class LambdaCallable0<R> @PublishedApi internal constructor(
   container: LambdaContainer<R>,
   boundArgs: Array<Any?> = emptyArray(),
-) : LambdaCallable<R>(container, boundArgs), Callable0<R>
+) : LambdaCallable<R>(container, boundArgs), Callable0<R> {
+  public companion object {
+    @JvmStatic
+    @JvmName("create")
+    public fun <R> _createJava(returnType: Class<R>, function: JvmFunction0<R>): LambdaCallable0<R>
+        = LambdaCallable0<R>(LambdaContainer0<R>(getVariantConverter(returnType)!!, arrayOf(),
+        function))
 
-public inline fun <reified R> callable0(noinline function: () -> R) =
-    LambdaCallable0<R>(LambdaContainer0<R>(variantMapper.getOrDefault(R::class, NIL), arrayOf(), function))
+    @JvmStatic
+    @JvmName("create")
+    public fun _createJava(action: JvmAction0): LambdaCallable0<Void?> =
+        LambdaCallable0<Void?>(LambdaContainer0<Void?>(getVariantConverter(Void::class.java)!!,
+        arrayOf(), object : JvmFunction0<Void?> {
+      override fun invoke(): Void? {
+        action.invoke()
+        return null
+      }
+    }
+    ))
+  }
+}
 
-public inline fun <reified R> (() -> R).asCallable() = callable0(this)
+public inline fun <reified R> lambdaCallable0(noinline function: () -> R) =
+    LambdaCallable0<R>(LambdaContainer0<R>(getVariantConverter<R>()!!, arrayOf(), function))
+
+public inline fun <reified R> (() -> R).asCallable() = lambdaCallable0(this)
 
 public class LambdaCallable1<R, P0> @PublishedApi internal constructor(
   container: LambdaContainer<R>,
   boundArgs: Array<Any?> = emptyArray(),
 ) : LambdaCallable<R>(container, boundArgs), Callable1<R, P0> {
   public override fun bind(p0: P0) = LambdaCallable0<R>(container, arrayOf<Any?>(p0, *boundArgs))
+
+  public companion object {
+    @JvmStatic
+    @JvmName("create")
+    public fun <R, P0> _createJava(
+      returnType: Class<R>,
+      p0Type: Class<P0>,
+      function: JvmFunction1<R, P0>,
+    ): LambdaCallable1<R, P0> =
+        LambdaCallable1<R, P0>(LambdaContainer1<R, P0>(getVariantConverter(returnType)!!,
+        arrayOf(getVariantConverter(p0Type)!!), function))
+
+    @JvmStatic
+    @JvmName("create")
+    public fun <P0> _createJava(p0Type: Class<P0>, action: JvmAction1<P0>):
+        LambdaCallable1<Void?, P0> =
+        LambdaCallable1<Void?, P0>(LambdaContainer1<Void?, P0>(getVariantConverter(Void::class.java)!!,
+        arrayOf(getVariantConverter(p0Type)!!), object : JvmFunction1<Void?, P0> {
+      override fun invoke(p0: P0): Void? {
+        action.invoke(p0)
+        return null
+      }
+    }
+    ))
+  }
 }
 
-public inline fun <reified R, reified P0> callable1(noinline function: (p0: P0) -> R) =
-    LambdaCallable1<R, P0>(LambdaContainer1<R, P0>(variantMapper.getOrDefault(R::class, NIL), arrayOf(variantMapper[P0::class]!!), function))
+public inline fun <reified R, reified P0> lambdaCallable1(noinline function: (p0: P0) -> R) =
+    LambdaCallable1<R, P0>(LambdaContainer1<R, P0>(getVariantConverter<R>()!!, arrayOf(getVariantConverter<P0>()!!), function))
 
-public inline fun <reified R, reified P0> ((p0: P0) -> R).asCallable() = callable1(this)
+public inline fun <reified R, reified P0> ((p0: P0) -> R).asCallable() = lambdaCallable1(this)
 
 public class LambdaCallable2<R, P0, P1> @PublishedApi internal constructor(
   container: LambdaContainer<R>,
   boundArgs: Array<Any?> = emptyArray(),
 ) : LambdaCallable<R>(container, boundArgs), Callable2<R, P0, P1> {
+  public override fun bind(p1: P1) = LambdaCallable1<R, P0>(container, arrayOf<Any?>(p1,
+      *boundArgs))
+
   public override fun bind(p0: P0, p1: P1) = LambdaCallable0<R>(container, arrayOf<Any?>(p0, p1,
       *boundArgs))
 
-  public override fun bind(p1: P1) = LambdaCallable1<R, P0>(container, arrayOf<Any?>(p1,
-      *boundArgs))
+  public companion object {
+    @JvmStatic
+    @JvmName("create")
+    public fun <R, P0, P1> _createJava(
+      returnType: Class<R>,
+      p0Type: Class<P0>,
+      p1Type: Class<P1>,
+      function: JvmFunction2<R, P0, P1>,
+    ): LambdaCallable2<R, P0, P1> =
+        LambdaCallable2<R, P0, P1>(LambdaContainer2<R, P0, P1>(getVariantConverter(returnType)!!,
+        arrayOf(getVariantConverter(p0Type)!!, getVariantConverter(p1Type)!!), function))
+
+    @JvmStatic
+    @JvmName("create")
+    public fun <P0, P1> _createJava(
+      p0Type: Class<P0>,
+      p1Type: Class<P1>,
+      action: JvmAction2<P0, P1>,
+    ): LambdaCallable2<Void?, P0, P1> =
+        LambdaCallable2<Void?, P0, P1>(LambdaContainer2<Void?, P0, P1>(getVariantConverter(Void::class.java)!!,
+        arrayOf(getVariantConverter(p0Type)!!, getVariantConverter(p1Type)!!), object :
+        JvmFunction2<Void?, P0, P1> {
+      override fun invoke(p0: P0, p1: P1): Void? {
+        action.invoke(p0, p1)
+        return null
+      }
+    }
+    ))
+  }
 }
 
-public inline fun <reified R, reified P0, reified P1> callable2(noinline function: (p0: P0,
+public inline fun <reified R, reified P0, reified P1> lambdaCallable2(noinline function: (p0: P0,
     p1: P1) -> R) =
-    LambdaCallable2<R, P0, P1>(LambdaContainer2<R, P0, P1>(variantMapper.getOrDefault(R::class, NIL), arrayOf(variantMapper[P0::class]!!, variantMapper[P1::class]!!), function))
+    LambdaCallable2<R, P0, P1>(LambdaContainer2<R, P0, P1>(getVariantConverter<R>()!!, arrayOf(getVariantConverter<P0>()!!, getVariantConverter<P1>()!!), function))
 
 public inline fun <reified R, reified P0, reified P1> ((p0: P0, p1: P1) -> R).asCallable() =
-    callable2(this)
+    lambdaCallable2(this)
 
 public class LambdaCallable3<R, P0, P1, P2> @PublishedApi internal constructor(
   container: LambdaContainer<R>,
   boundArgs: Array<Any?> = emptyArray(),
 ) : LambdaCallable<R>(container, boundArgs), Callable3<R, P0, P1, P2> {
+  public override fun bind(p2: P2) = LambdaCallable2<R, P0, P1>(container, arrayOf<Any?>(p2,
+      *boundArgs))
+
+  public override fun bind(p1: P1, p2: P2) = LambdaCallable1<R, P0>(container, arrayOf<Any?>(p1, p2,
+      *boundArgs))
+
   public override fun bind(
     p0: P0,
     p1: P1,
     p2: P2,
   ) = LambdaCallable0<R>(container, arrayOf<Any?>(p0, p1, p2, *boundArgs))
 
-  public override fun bind(p1: P1, p2: P2) = LambdaCallable1<R, P0>(container, arrayOf<Any?>(p1, p2,
-      *boundArgs))
+  public companion object {
+    @JvmStatic
+    @JvmName("create")
+    public fun <R, P0, P1, P2> _createJava(
+      returnType: Class<R>,
+      p0Type: Class<P0>,
+      p1Type: Class<P1>,
+      p2Type: Class<P2>,
+      function: JvmFunction3<R, P0, P1, P2>,
+    ): LambdaCallable3<R, P0, P1, P2> =
+        LambdaCallable3<R, P0, P1, P2>(LambdaContainer3<R, P0, P1, P2>(getVariantConverter(returnType)!!,
+        arrayOf(getVariantConverter(p0Type)!!, getVariantConverter(p1Type)!!,
+        getVariantConverter(p2Type)!!), function))
 
-  public override fun bind(p2: P2) = LambdaCallable2<R, P0, P1>(container, arrayOf<Any?>(p2,
-      *boundArgs))
+    @JvmStatic
+    @JvmName("create")
+    public fun <P0, P1, P2> _createJava(
+      p0Type: Class<P0>,
+      p1Type: Class<P1>,
+      p2Type: Class<P2>,
+      action: JvmAction3<P0, P1, P2>,
+    ): LambdaCallable3<Void?, P0, P1, P2> =
+        LambdaCallable3<Void?, P0, P1, P2>(LambdaContainer3<Void?, P0, P1, P2>(getVariantConverter(Void::class.java)!!,
+        arrayOf(getVariantConverter(p0Type)!!, getVariantConverter(p1Type)!!,
+        getVariantConverter(p2Type)!!), object : JvmFunction3<Void?, P0, P1, P2> {
+      override fun invoke(p0: P0, p1: P1, p2: P2): Void? {
+        action.invoke(p0, p1, p2)
+        return null
+      }
+    }
+    ))
+  }
 }
 
-public inline fun <reified R, reified P0, reified P1, reified P2> callable3(noinline function: (
+public inline fun <reified R, reified P0, reified P1, reified P2> lambdaCallable3(noinline
+    function: (
   p0: P0,
   p1: P1,
   p2: P2,
 ) -> R) =
-    LambdaCallable3<R, P0, P1, P2>(LambdaContainer3<R, P0, P1, P2>(variantMapper.getOrDefault(R::class, NIL), arrayOf(variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!), function))
+    LambdaCallable3<R, P0, P1, P2>(LambdaContainer3<R, P0, P1, P2>(getVariantConverter<R>()!!, arrayOf(getVariantConverter<P0>()!!, getVariantConverter<P1>()!!, getVariantConverter<P2>()!!), function))
 
 public inline fun <reified R, reified P0, reified P1, reified P2> ((
   p0: P0,
   p1: P1,
   p2: P2,
-) -> R).asCallable() = callable3(this)
+) -> R).asCallable() = lambdaCallable3(this)
 
 public class LambdaCallable4<R, P0, P1, P2, P3> @PublishedApi internal constructor(
   container: LambdaContainer<R>,
   boundArgs: Array<Any?> = emptyArray(),
 ) : LambdaCallable<R>(container, boundArgs), Callable4<R, P0, P1, P2, P3> {
-  public override fun bind(
-    p0: P0,
-    p1: P1,
-    p2: P2,
-    p3: P3,
-  ) = LambdaCallable0<R>(container, arrayOf<Any?>(p0, p1, p2, p3, *boundArgs))
+  public override fun bind(p3: P3) = LambdaCallable3<R, P0, P1, P2>(container, arrayOf<Any?>(p3,
+      *boundArgs))
+
+  public override fun bind(p2: P2, p3: P3) = LambdaCallable2<R, P0, P1>(container,
+      arrayOf<Any?>(p2, p3, *boundArgs))
 
   public override fun bind(
     p1: P1,
@@ -98,40 +210,81 @@ public class LambdaCallable4<R, P0, P1, P2, P3> @PublishedApi internal construct
     p3: P3,
   ) = LambdaCallable1<R, P0>(container, arrayOf<Any?>(p1, p2, p3, *boundArgs))
 
-  public override fun bind(p2: P2, p3: P3) = LambdaCallable2<R, P0, P1>(container,
-      arrayOf<Any?>(p2, p3, *boundArgs))
+  public override fun bind(
+    p0: P0,
+    p1: P1,
+    p2: P2,
+    p3: P3,
+  ) = LambdaCallable0<R>(container, arrayOf<Any?>(p0, p1, p2, p3, *boundArgs))
 
-  public override fun bind(p3: P3) = LambdaCallable3<R, P0, P1, P2>(container, arrayOf<Any?>(p3,
-      *boundArgs))
+  public companion object {
+    @JvmStatic
+    @JvmName("create")
+    public fun <R, P0, P1, P2, P3> _createJava(
+      returnType: Class<R>,
+      p0Type: Class<P0>,
+      p1Type: Class<P1>,
+      p2Type: Class<P2>,
+      p3Type: Class<P3>,
+      function: JvmFunction4<R, P0, P1, P2, P3>,
+    ): LambdaCallable4<R, P0, P1, P2, P3> =
+        LambdaCallable4<R, P0, P1, P2, P3>(LambdaContainer4<R, P0, P1, P2, P3>(getVariantConverter(returnType)!!,
+        arrayOf(getVariantConverter(p0Type)!!, getVariantConverter(p1Type)!!,
+        getVariantConverter(p2Type)!!, getVariantConverter(p3Type)!!), function))
+
+    @JvmStatic
+    @JvmName("create")
+    public fun <P0, P1, P2, P3> _createJava(
+      p0Type: Class<P0>,
+      p1Type: Class<P1>,
+      p2Type: Class<P2>,
+      p3Type: Class<P3>,
+      action: JvmAction4<P0, P1, P2, P3>,
+    ): LambdaCallable4<Void?, P0, P1, P2, P3> =
+        LambdaCallable4<Void?, P0, P1, P2, P3>(LambdaContainer4<Void?, P0, P1, P2, P3>(getVariantConverter(Void::class.java)!!,
+        arrayOf(getVariantConverter(p0Type)!!, getVariantConverter(p1Type)!!,
+        getVariantConverter(p2Type)!!, getVariantConverter(p3Type)!!), object :
+        JvmFunction4<Void?, P0, P1, P2, P3> {
+      override fun invoke(p0: P0, p1: P1, p2: P2, p3: P3): Void? {
+        action.invoke(p0, p1, p2, p3)
+        return null
+      }
+    }
+    ))
+  }
 }
 
-public inline fun <reified R, reified P0, reified P1, reified P2, reified P3> callable4(noinline
-    function: (
+public inline fun <reified R, reified P0, reified P1, reified P2, reified P3>
+    lambdaCallable4(noinline function: (
   p0: P0,
   p1: P1,
   p2: P2,
   p3: P3,
 ) -> R) =
-    LambdaCallable4<R, P0, P1, P2, P3>(LambdaContainer4<R, P0, P1, P2, P3>(variantMapper.getOrDefault(R::class, NIL), arrayOf(variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!), function))
+    LambdaCallable4<R, P0, P1, P2, P3>(LambdaContainer4<R, P0, P1, P2, P3>(getVariantConverter<R>()!!, arrayOf(getVariantConverter<P0>()!!, getVariantConverter<P1>()!!, getVariantConverter<P2>()!!, getVariantConverter<P3>()!!), function))
 
 public inline fun <reified R, reified P0, reified P1, reified P2, reified P3> ((
   p0: P0,
   p1: P1,
   p2: P2,
   p3: P3,
-) -> R).asCallable() = callable4(this)
+) -> R).asCallable() = lambdaCallable4(this)
 
 public class LambdaCallable5<R, P0, P1, P2, P3, P4> @PublishedApi internal constructor(
   container: LambdaContainer<R>,
   boundArgs: Array<Any?> = emptyArray(),
 ) : LambdaCallable<R>(container, boundArgs), Callable5<R, P0, P1, P2, P3, P4> {
+  public override fun bind(p4: P4) = LambdaCallable4<R, P0, P1, P2, P3>(container, arrayOf<Any?>(p4,
+      *boundArgs))
+
+  public override fun bind(p3: P3, p4: P4) = LambdaCallable3<R, P0, P1, P2>(container,
+      arrayOf<Any?>(p3, p4, *boundArgs))
+
   public override fun bind(
-    p0: P0,
-    p1: P1,
     p2: P2,
     p3: P3,
     p4: P4,
-  ) = LambdaCallable0<R>(container, arrayOf<Any?>(p0, p1, p2, p3, p4, *boundArgs))
+  ) = LambdaCallable2<R, P0, P1>(container, arrayOf<Any?>(p2, p3, p4, *boundArgs))
 
   public override fun bind(
     p1: P1,
@@ -141,27 +294,62 @@ public class LambdaCallable5<R, P0, P1, P2, P3, P4> @PublishedApi internal const
   ) = LambdaCallable1<R, P0>(container, arrayOf<Any?>(p1, p2, p3, p4, *boundArgs))
 
   public override fun bind(
+    p0: P0,
+    p1: P1,
     p2: P2,
     p3: P3,
     p4: P4,
-  ) = LambdaCallable2<R, P0, P1>(container, arrayOf<Any?>(p2, p3, p4, *boundArgs))
+  ) = LambdaCallable0<R>(container, arrayOf<Any?>(p0, p1, p2, p3, p4, *boundArgs))
 
-  public override fun bind(p3: P3, p4: P4) = LambdaCallable3<R, P0, P1, P2>(container,
-      arrayOf<Any?>(p3, p4, *boundArgs))
+  public companion object {
+    @JvmStatic
+    @JvmName("create")
+    public fun <R, P0, P1, P2, P3, P4> _createJava(
+      returnType: Class<R>,
+      p0Type: Class<P0>,
+      p1Type: Class<P1>,
+      p2Type: Class<P2>,
+      p3Type: Class<P3>,
+      p4Type: Class<P4>,
+      function: JvmFunction5<R, P0, P1, P2, P3, P4>,
+    ): LambdaCallable5<R, P0, P1, P2, P3, P4> =
+        LambdaCallable5<R, P0, P1, P2, P3, P4>(LambdaContainer5<R, P0, P1, P2, P3, P4>(getVariantConverter(returnType)!!,
+        arrayOf(getVariantConverter(p0Type)!!, getVariantConverter(p1Type)!!,
+        getVariantConverter(p2Type)!!, getVariantConverter(p3Type)!!,
+        getVariantConverter(p4Type)!!), function))
 
-  public override fun bind(p4: P4) = LambdaCallable4<R, P0, P1, P2, P3>(container, arrayOf<Any?>(p4,
-      *boundArgs))
+    @JvmStatic
+    @JvmName("create")
+    public fun <P0, P1, P2, P3, P4> _createJava(
+      p0Type: Class<P0>,
+      p1Type: Class<P1>,
+      p2Type: Class<P2>,
+      p3Type: Class<P3>,
+      p4Type: Class<P4>,
+      action: JvmAction5<P0, P1, P2, P3, P4>,
+    ): LambdaCallable5<Void?, P0, P1, P2, P3, P4> =
+        LambdaCallable5<Void?, P0, P1, P2, P3, P4>(LambdaContainer5<Void?, P0, P1, P2, P3, P4>(getVariantConverter(Void::class.java)!!,
+        arrayOf(getVariantConverter(p0Type)!!, getVariantConverter(p1Type)!!,
+        getVariantConverter(p2Type)!!, getVariantConverter(p3Type)!!,
+        getVariantConverter(p4Type)!!), object : JvmFunction5<Void?, P0, P1, P2, P3, P4> {
+      override fun invoke(p0: P0, p1: P1, p2: P2, p3: P3, p4: P4): Void? {
+        action.invoke(p0, p1, p2, p3, p4)
+        return null
+      }
+    }
+    ))
+  }
 }
 
 public inline fun <reified R, reified P0, reified P1, reified P2, reified P3, reified P4>
-    callable5(noinline function: (
+    lambdaCallable5(noinline function: (
   p0: P0,
   p1: P1,
   p2: P2,
   p3: P3,
   p4: P4,
 ) -> R) =
-    LambdaCallable5<R, P0, P1, P2, P3, P4>(LambdaContainer5<R, P0, P1, P2, P3, P4>(variantMapper.getOrDefault(R::class, NIL), arrayOf(variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!), function))
+    LambdaCallable5<R, P0, P1, P2, P3, P4>(LambdaContainer5<R, P0, P1, P2, P3, P4>(getVariantConverter<R>()!!, arrayOf(getVariantConverter<P0>()!!, getVariantConverter<P1>()!!, getVariantConverter<P2>()!!, getVariantConverter<P3>()!!, getVariantConverter<P4>()!!), function))
 
 public inline fun <reified R, reified P0, reified P1, reified P2, reified P3, reified P4> ((
   p0: P0,
@@ -169,20 +357,30 @@ public inline fun <reified R, reified P0, reified P1, reified P2, reified P3, re
   p2: P2,
   p3: P3,
   p4: P4,
-) -> R).asCallable() = callable5(this)
+) -> R).asCallable() = lambdaCallable5(this)
 
 public class LambdaCallable6<R, P0, P1, P2, P3, P4, P5> @PublishedApi internal constructor(
   container: LambdaContainer<R>,
   boundArgs: Array<Any?> = emptyArray(),
 ) : LambdaCallable<R>(container, boundArgs), Callable6<R, P0, P1, P2, P3, P4, P5> {
+  public override fun bind(p5: P5) = LambdaCallable5<R, P0, P1, P2, P3, P4>(container,
+      arrayOf<Any?>(p5, *boundArgs))
+
+  public override fun bind(p4: P4, p5: P5) = LambdaCallable4<R, P0, P1, P2, P3>(container,
+      arrayOf<Any?>(p4, p5, *boundArgs))
+
   public override fun bind(
-    p0: P0,
-    p1: P1,
+    p3: P3,
+    p4: P4,
+    p5: P5,
+  ) = LambdaCallable3<R, P0, P1, P2>(container, arrayOf<Any?>(p3, p4, p5, *boundArgs))
+
+  public override fun bind(
     p2: P2,
     p3: P3,
     p4: P4,
     p5: P5,
-  ) = LambdaCallable0<R>(container, arrayOf<Any?>(p0, p1, p2, p3, p4, p5, *boundArgs))
+  ) = LambdaCallable2<R, P0, P1>(container, arrayOf<Any?>(p2, p3, p4, p5, *boundArgs))
 
   public override fun bind(
     p1: P1,
@@ -193,27 +391,58 @@ public class LambdaCallable6<R, P0, P1, P2, P3, P4, P5> @PublishedApi internal c
   ) = LambdaCallable1<R, P0>(container, arrayOf<Any?>(p1, p2, p3, p4, p5, *boundArgs))
 
   public override fun bind(
+    p0: P0,
+    p1: P1,
     p2: P2,
     p3: P3,
     p4: P4,
     p5: P5,
-  ) = LambdaCallable2<R, P0, P1>(container, arrayOf<Any?>(p2, p3, p4, p5, *boundArgs))
+  ) = LambdaCallable0<R>(container, arrayOf<Any?>(p0, p1, p2, p3, p4, p5, *boundArgs))
 
-  public override fun bind(
-    p3: P3,
-    p4: P4,
-    p5: P5,
-  ) = LambdaCallable3<R, P0, P1, P2>(container, arrayOf<Any?>(p3, p4, p5, *boundArgs))
+  public companion object {
+    @JvmStatic
+    @JvmName("create")
+    public fun <R, P0, P1, P2, P3, P4, P5> _createJava(
+      returnType: Class<R>,
+      p0Type: Class<P0>,
+      p1Type: Class<P1>,
+      p2Type: Class<P2>,
+      p3Type: Class<P3>,
+      p4Type: Class<P4>,
+      p5Type: Class<P5>,
+      function: JvmFunction6<R, P0, P1, P2, P3, P4, P5>,
+    ): LambdaCallable6<R, P0, P1, P2, P3, P4, P5> =
+        LambdaCallable6<R, P0, P1, P2, P3, P4, P5>(LambdaContainer6<R, P0, P1, P2, P3, P4, P5>(getVariantConverter(returnType)!!,
+        arrayOf(getVariantConverter(p0Type)!!, getVariantConverter(p1Type)!!,
+        getVariantConverter(p2Type)!!, getVariantConverter(p3Type)!!, getVariantConverter(p4Type)!!,
+        getVariantConverter(p5Type)!!), function))
 
-  public override fun bind(p4: P4, p5: P5) = LambdaCallable4<R, P0, P1, P2, P3>(container,
-      arrayOf<Any?>(p4, p5, *boundArgs))
-
-  public override fun bind(p5: P5) = LambdaCallable5<R, P0, P1, P2, P3, P4>(container,
-      arrayOf<Any?>(p5, *boundArgs))
+    @JvmStatic
+    @JvmName("create")
+    public fun <P0, P1, P2, P3, P4, P5> _createJava(
+      p0Type: Class<P0>,
+      p1Type: Class<P1>,
+      p2Type: Class<P2>,
+      p3Type: Class<P3>,
+      p4Type: Class<P4>,
+      p5Type: Class<P5>,
+      action: JvmAction6<P0, P1, P2, P3, P4, P5>,
+    ): LambdaCallable6<Void?, P0, P1, P2, P3, P4, P5> =
+        LambdaCallable6<Void?, P0, P1, P2, P3, P4, P5>(LambdaContainer6<Void?, P0, P1, P2, P3, P4, P5>(getVariantConverter(Void::class.java)!!,
+        arrayOf(getVariantConverter(p0Type)!!, getVariantConverter(p1Type)!!,
+        getVariantConverter(p2Type)!!, getVariantConverter(p3Type)!!, getVariantConverter(p4Type)!!,
+        getVariantConverter(p5Type)!!), object : JvmFunction6<Void?, P0, P1, P2, P3, P4, P5> {
+      override fun invoke(p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5): Void? {
+        action.invoke(p0, p1, p2, p3, p4, p5)
+        return null
+      }
+    }
+    ))
+  }
 }
 
 public inline fun <reified R, reified P0, reified P1, reified P2, reified P3, reified P4, reified
-    P5> callable6(noinline function: (
+    P5> lambdaCallable6(noinline function: (
   p0: P0,
   p1: P1,
   p2: P2,
@@ -221,7 +450,7 @@ public inline fun <reified R, reified P0, reified P1, reified P2, reified P3, re
   p4: P4,
   p5: P5,
 ) -> R) =
-    LambdaCallable6<R, P0, P1, P2, P3, P4, P5>(LambdaContainer6<R, P0, P1, P2, P3, P4, P5>(variantMapper.getOrDefault(R::class, NIL), arrayOf(variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!), function))
+    LambdaCallable6<R, P0, P1, P2, P3, P4, P5>(LambdaContainer6<R, P0, P1, P2, P3, P4, P5>(getVariantConverter<R>()!!, arrayOf(getVariantConverter<P0>()!!, getVariantConverter<P1>()!!, getVariantConverter<P2>()!!, getVariantConverter<P3>()!!, getVariantConverter<P4>()!!, getVariantConverter<P5>()!!), function))
 
 public inline fun <reified R, reified P0, reified P1, reified P2, reified P3, reified P4, reified
     P5> ((
@@ -231,21 +460,38 @@ public inline fun <reified R, reified P0, reified P1, reified P2, reified P3, re
   p3: P3,
   p4: P4,
   p5: P5,
-) -> R).asCallable() = callable6(this)
+) -> R).asCallable() = lambdaCallable6(this)
 
 public class LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6> @PublishedApi internal constructor(
   container: LambdaContainer<R>,
   boundArgs: Array<Any?> = emptyArray(),
 ) : LambdaCallable<R>(container, boundArgs), Callable7<R, P0, P1, P2, P3, P4, P5, P6> {
+  public override fun bind(p6: P6) = LambdaCallable6<R, P0, P1, P2, P3, P4, P5>(container,
+      arrayOf<Any?>(p6, *boundArgs))
+
+  public override fun bind(p5: P5, p6: P6) = LambdaCallable5<R, P0, P1, P2, P3, P4>(container,
+      arrayOf<Any?>(p5, p6, *boundArgs))
+
   public override fun bind(
-    p0: P0,
-    p1: P1,
+    p4: P4,
+    p5: P5,
+    p6: P6,
+  ) = LambdaCallable4<R, P0, P1, P2, P3>(container, arrayOf<Any?>(p4, p5, p6, *boundArgs))
+
+  public override fun bind(
+    p3: P3,
+    p4: P4,
+    p5: P5,
+    p6: P6,
+  ) = LambdaCallable3<R, P0, P1, P2>(container, arrayOf<Any?>(p3, p4, p5, p6, *boundArgs))
+
+  public override fun bind(
     p2: P2,
     p3: P3,
     p4: P4,
     p5: P5,
     p6: P6,
-  ) = LambdaCallable0<R>(container, arrayOf<Any?>(p0, p1, p2, p3, p4, p5, p6, *boundArgs))
+  ) = LambdaCallable2<R, P0, P1>(container, arrayOf<Any?>(p2, p3, p4, p5, p6, *boundArgs))
 
   public override fun bind(
     p1: P1,
@@ -257,35 +503,62 @@ public class LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6> @PublishedApi intern
   ) = LambdaCallable1<R, P0>(container, arrayOf<Any?>(p1, p2, p3, p4, p5, p6, *boundArgs))
 
   public override fun bind(
+    p0: P0,
+    p1: P1,
     p2: P2,
     p3: P3,
     p4: P4,
     p5: P5,
     p6: P6,
-  ) = LambdaCallable2<R, P0, P1>(container, arrayOf<Any?>(p2, p3, p4, p5, p6, *boundArgs))
+  ) = LambdaCallable0<R>(container, arrayOf<Any?>(p0, p1, p2, p3, p4, p5, p6, *boundArgs))
 
-  public override fun bind(
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-  ) = LambdaCallable3<R, P0, P1, P2>(container, arrayOf<Any?>(p3, p4, p5, p6, *boundArgs))
+  public companion object {
+    @JvmStatic
+    @JvmName("create")
+    public fun <R, P0, P1, P2, P3, P4, P5, P6> _createJava(
+      returnType: Class<R>,
+      p0Type: Class<P0>,
+      p1Type: Class<P1>,
+      p2Type: Class<P2>,
+      p3Type: Class<P3>,
+      p4Type: Class<P4>,
+      p5Type: Class<P5>,
+      p6Type: Class<P6>,
+      function: JvmFunction7<R, P0, P1, P2, P3, P4, P5, P6>,
+    ): LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6> =
+        LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>(LambdaContainer7<R, P0, P1, P2, P3, P4, P5, P6>(getVariantConverter(returnType)!!,
+        arrayOf(getVariantConverter(p0Type)!!, getVariantConverter(p1Type)!!,
+        getVariantConverter(p2Type)!!, getVariantConverter(p3Type)!!, getVariantConverter(p4Type)!!,
+        getVariantConverter(p5Type)!!, getVariantConverter(p6Type)!!), function))
 
-  public override fun bind(
-    p4: P4,
-    p5: P5,
-    p6: P6,
-  ) = LambdaCallable4<R, P0, P1, P2, P3>(container, arrayOf<Any?>(p4, p5, p6, *boundArgs))
-
-  public override fun bind(p5: P5, p6: P6) = LambdaCallable5<R, P0, P1, P2, P3, P4>(container,
-      arrayOf<Any?>(p5, p6, *boundArgs))
-
-  public override fun bind(p6: P6) = LambdaCallable6<R, P0, P1, P2, P3, P4, P5>(container,
-      arrayOf<Any?>(p6, *boundArgs))
+    @JvmStatic
+    @JvmName("create")
+    public fun <P0, P1, P2, P3, P4, P5, P6> _createJava(
+      p0Type: Class<P0>,
+      p1Type: Class<P1>,
+      p2Type: Class<P2>,
+      p3Type: Class<P3>,
+      p4Type: Class<P4>,
+      p5Type: Class<P5>,
+      p6Type: Class<P6>,
+      action: JvmAction7<P0, P1, P2, P3, P4, P5, P6>,
+    ): LambdaCallable7<Void?, P0, P1, P2, P3, P4, P5, P6> =
+        LambdaCallable7<Void?, P0, P1, P2, P3, P4, P5, P6>(LambdaContainer7<Void?, P0, P1, P2, P3, P4, P5, P6>(getVariantConverter(Void::class.java)!!,
+        arrayOf(getVariantConverter(p0Type)!!, getVariantConverter(p1Type)!!,
+        getVariantConverter(p2Type)!!, getVariantConverter(p3Type)!!, getVariantConverter(p4Type)!!,
+        getVariantConverter(p5Type)!!, getVariantConverter(p6Type)!!), object :
+        JvmFunction7<Void?, P0, P1, P2, P3, P4, P5, P6> {
+      override fun invoke(p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6): Void? {
+        action.invoke(p0, p1, p2, p3, p4, p5, p6)
+        return null
+      }
+    }
+    ))
+  }
 }
 
 public inline fun <reified R, reified P0, reified P1, reified P2, reified P3, reified P4, reified
-    P5, reified P6> callable7(noinline function: (
+    P5, reified P6> lambdaCallable7(noinline function: (
   p0: P0,
   p1: P1,
   p2: P2,
@@ -294,7 +567,7 @@ public inline fun <reified R, reified P0, reified P1, reified P2, reified P3, re
   p5: P5,
   p6: P6,
 ) -> R) =
-    LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>(LambdaContainer7<R, P0, P1, P2, P3, P4, P5, P6>(variantMapper.getOrDefault(R::class, NIL), arrayOf(variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!), function))
+    LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>(LambdaContainer7<R, P0, P1, P2, P3, P4, P5, P6>(getVariantConverter<R>()!!, arrayOf(getVariantConverter<P0>()!!, getVariantConverter<P1>()!!, getVariantConverter<P2>()!!, getVariantConverter<P3>()!!, getVariantConverter<P4>()!!, getVariantConverter<P5>()!!, getVariantConverter<P6>()!!), function))
 
 public inline fun <reified R, reified P0, reified P1, reified P2, reified P3, reified P4, reified
     P5, reified P6> ((
@@ -305,22 +578,47 @@ public inline fun <reified R, reified P0, reified P1, reified P2, reified P3, re
   p4: P4,
   p5: P5,
   p6: P6,
-) -> R).asCallable() = callable7(this)
+) -> R).asCallable() = lambdaCallable7(this)
 
 public class LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7> @PublishedApi internal constructor(
   container: LambdaContainer<R>,
   boundArgs: Array<Any?> = emptyArray(),
 ) : LambdaCallable<R>(container, boundArgs), Callable8<R, P0, P1, P2, P3, P4, P5, P6, P7> {
+  public override fun bind(p7: P7) = LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>(container,
+      arrayOf<Any?>(p7, *boundArgs))
+
+  public override fun bind(p6: P6, p7: P7) = LambdaCallable6<R, P0, P1, P2, P3, P4, P5>(container,
+      arrayOf<Any?>(p6, p7, *boundArgs))
+
   public override fun bind(
-    p0: P0,
-    p1: P1,
+    p5: P5,
+    p6: P6,
+    p7: P7,
+  ) = LambdaCallable5<R, P0, P1, P2, P3, P4>(container, arrayOf<Any?>(p5, p6, p7, *boundArgs))
+
+  public override fun bind(
+    p4: P4,
+    p5: P5,
+    p6: P6,
+    p7: P7,
+  ) = LambdaCallable4<R, P0, P1, P2, P3>(container, arrayOf<Any?>(p4, p5, p6, p7, *boundArgs))
+
+  public override fun bind(
+    p3: P3,
+    p4: P4,
+    p5: P5,
+    p6: P6,
+    p7: P7,
+  ) = LambdaCallable3<R, P0, P1, P2>(container, arrayOf<Any?>(p3, p4, p5, p6, p7, *boundArgs))
+
+  public override fun bind(
     p2: P2,
     p3: P3,
     p4: P4,
     p5: P5,
     p6: P6,
     p7: P7,
-  ) = LambdaCallable0<R>(container, arrayOf<Any?>(p0, p1, p2, p3, p4, p5, p6, p7, *boundArgs))
+  ) = LambdaCallable2<R, P0, P1>(container, arrayOf<Any?>(p2, p3, p4, p5, p6, p7, *boundArgs))
 
   public override fun bind(
     p1: P1,
@@ -333,44 +631,67 @@ public class LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7> @PublishedApi in
   ) = LambdaCallable1<R, P0>(container, arrayOf<Any?>(p1, p2, p3, p4, p5, p6, p7, *boundArgs))
 
   public override fun bind(
+    p0: P0,
+    p1: P1,
     p2: P2,
     p3: P3,
     p4: P4,
     p5: P5,
     p6: P6,
     p7: P7,
-  ) = LambdaCallable2<R, P0, P1>(container, arrayOf<Any?>(p2, p3, p4, p5, p6, p7, *boundArgs))
+  ) = LambdaCallable0<R>(container, arrayOf<Any?>(p0, p1, p2, p3, p4, p5, p6, p7, *boundArgs))
 
-  public override fun bind(
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-  ) = LambdaCallable3<R, P0, P1, P2>(container, arrayOf<Any?>(p3, p4, p5, p6, p7, *boundArgs))
+  public companion object {
+    @JvmStatic
+    @JvmName("create")
+    public fun <R, P0, P1, P2, P3, P4, P5, P6, P7> _createJava(
+      returnType: Class<R>,
+      p0Type: Class<P0>,
+      p1Type: Class<P1>,
+      p2Type: Class<P2>,
+      p3Type: Class<P3>,
+      p4Type: Class<P4>,
+      p5Type: Class<P5>,
+      p6Type: Class<P6>,
+      p7Type: Class<P7>,
+      function: JvmFunction8<R, P0, P1, P2, P3, P4, P5, P6, P7>,
+    ): LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7> =
+        LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7>(LambdaContainer8<R, P0, P1, P2, P3, P4, P5, P6, P7>(getVariantConverter(returnType)!!,
+        arrayOf(getVariantConverter(p0Type)!!, getVariantConverter(p1Type)!!,
+        getVariantConverter(p2Type)!!, getVariantConverter(p3Type)!!, getVariantConverter(p4Type)!!,
+        getVariantConverter(p5Type)!!, getVariantConverter(p6Type)!!,
+        getVariantConverter(p7Type)!!), function))
 
-  public override fun bind(
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-  ) = LambdaCallable4<R, P0, P1, P2, P3>(container, arrayOf<Any?>(p4, p5, p6, p7, *boundArgs))
-
-  public override fun bind(
-    p5: P5,
-    p6: P6,
-    p7: P7,
-  ) = LambdaCallable5<R, P0, P1, P2, P3, P4>(container, arrayOf<Any?>(p5, p6, p7, *boundArgs))
-
-  public override fun bind(p6: P6, p7: P7) = LambdaCallable6<R, P0, P1, P2, P3, P4, P5>(container,
-      arrayOf<Any?>(p6, p7, *boundArgs))
-
-  public override fun bind(p7: P7) = LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>(container,
-      arrayOf<Any?>(p7, *boundArgs))
+    @JvmStatic
+    @JvmName("create")
+    public fun <P0, P1, P2, P3, P4, P5, P6, P7> _createJava(
+      p0Type: Class<P0>,
+      p1Type: Class<P1>,
+      p2Type: Class<P2>,
+      p3Type: Class<P3>,
+      p4Type: Class<P4>,
+      p5Type: Class<P5>,
+      p6Type: Class<P6>,
+      p7Type: Class<P7>,
+      action: JvmAction8<P0, P1, P2, P3, P4, P5, P6, P7>,
+    ): LambdaCallable8<Void?, P0, P1, P2, P3, P4, P5, P6, P7> =
+        LambdaCallable8<Void?, P0, P1, P2, P3, P4, P5, P6, P7>(LambdaContainer8<Void?, P0, P1, P2, P3, P4, P5, P6, P7>(getVariantConverter(Void::class.java)!!,
+        arrayOf(getVariantConverter(p0Type)!!, getVariantConverter(p1Type)!!,
+        getVariantConverter(p2Type)!!, getVariantConverter(p3Type)!!, getVariantConverter(p4Type)!!,
+        getVariantConverter(p5Type)!!, getVariantConverter(p6Type)!!,
+        getVariantConverter(p7Type)!!), object : JvmFunction8<Void?, P0, P1, P2, P3, P4, P5, P6, P7>
+        {
+      override fun invoke(p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7): Void? {
+        action.invoke(p0, p1, p2, p3, p4, p5, p6, p7)
+        return null
+      }
+    }
+    ))
+  }
 }
 
 public inline fun <reified R, reified P0, reified P1, reified P2, reified P3, reified P4, reified
-    P5, reified P6, reified P7> callable8(noinline function: (
+    P5, reified P6, reified P7> lambdaCallable8(noinline function: (
   p0: P0,
   p1: P1,
   p2: P2,
@@ -380,7 +701,7 @@ public inline fun <reified R, reified P0, reified P1, reified P2, reified P3, re
   p6: P6,
   p7: P7,
 ) -> R) =
-    LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7>(LambdaContainer8<R, P0, P1, P2, P3, P4, P5, P6, P7>(variantMapper.getOrDefault(R::class, NIL), arrayOf(variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!), function))
+    LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7>(LambdaContainer8<R, P0, P1, P2, P3, P4, P5, P6, P7>(getVariantConverter<R>()!!, arrayOf(getVariantConverter<P0>()!!, getVariantConverter<P1>()!!, getVariantConverter<P2>()!!, getVariantConverter<P3>()!!, getVariantConverter<P4>()!!, getVariantConverter<P5>()!!, getVariantConverter<P6>()!!, getVariantConverter<P7>()!!), function))
 
 public inline fun <reified R, reified P0, reified P1, reified P2, reified P3, reified P4, reified
     P5, reified P6, reified P7> ((
@@ -392,16 +713,50 @@ public inline fun <reified R, reified P0, reified P1, reified P2, reified P3, re
   p5: P5,
   p6: P6,
   p7: P7,
-) -> R).asCallable() = callable8(this)
+) -> R).asCallable() = lambdaCallable8(this)
 
 public class LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8> @PublishedApi internal
     constructor(
   container: LambdaContainer<R>,
   boundArgs: Array<Any?> = emptyArray(),
 ) : LambdaCallable<R>(container, boundArgs), Callable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8> {
+  public override fun bind(p8: P8) = LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7>(container,
+      arrayOf<Any?>(p8, *boundArgs))
+
+  public override fun bind(p7: P7, p8: P8) =
+      LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>(container, arrayOf<Any?>(p7, p8, *boundArgs))
+
   public override fun bind(
-    p0: P0,
-    p1: P1,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+  ) = LambdaCallable6<R, P0, P1, P2, P3, P4, P5>(container, arrayOf<Any?>(p6, p7, p8, *boundArgs))
+
+  public override fun bind(
+    p5: P5,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+  ) = LambdaCallable5<R, P0, P1, P2, P3, P4>(container, arrayOf<Any?>(p5, p6, p7, p8, *boundArgs))
+
+  public override fun bind(
+    p4: P4,
+    p5: P5,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+  ) = LambdaCallable4<R, P0, P1, P2, P3>(container, arrayOf<Any?>(p4, p5, p6, p7, p8, *boundArgs))
+
+  public override fun bind(
+    p3: P3,
+    p4: P4,
+    p5: P5,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+  ) = LambdaCallable3<R, P0, P1, P2>(container, arrayOf<Any?>(p3, p4, p5, p6, p7, p8, *boundArgs))
+
+  public override fun bind(
     p2: P2,
     p3: P3,
     p4: P4,
@@ -409,7 +764,7 @@ public class LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8> @PublishedAp
     p6: P6,
     p7: P7,
     p8: P8,
-  ) = LambdaCallable0<R>(container, arrayOf<Any?>(p0, p1, p2, p3, p4, p5, p6, p7, p8, *boundArgs))
+  ) = LambdaCallable2<R, P0, P1>(container, arrayOf<Any?>(p2, p3, p4, p5, p6, p7, p8, *boundArgs))
 
   public override fun bind(
     p1: P1,
@@ -423,6 +778,8 @@ public class LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8> @PublishedAp
   ) = LambdaCallable1<R, P0>(container, arrayOf<Any?>(p1, p2, p3, p4, p5, p6, p7, p8, *boundArgs))
 
   public override fun bind(
+    p0: P0,
+    p1: P1,
     p2: P2,
     p3: P3,
     p4: P4,
@@ -430,47 +787,62 @@ public class LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8> @PublishedAp
     p6: P6,
     p7: P7,
     p8: P8,
-  ) = LambdaCallable2<R, P0, P1>(container, arrayOf<Any?>(p2, p3, p4, p5, p6, p7, p8, *boundArgs))
+  ) = LambdaCallable0<R>(container, arrayOf<Any?>(p0, p1, p2, p3, p4, p5, p6, p7, p8, *boundArgs))
 
-  public override fun bind(
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-  ) = LambdaCallable3<R, P0, P1, P2>(container, arrayOf<Any?>(p3, p4, p5, p6, p7, p8, *boundArgs))
+  public companion object {
+    @JvmStatic
+    @JvmName("create")
+    public fun <R, P0, P1, P2, P3, P4, P5, P6, P7, P8> _createJava(
+      returnType: Class<R>,
+      p0Type: Class<P0>,
+      p1Type: Class<P1>,
+      p2Type: Class<P2>,
+      p3Type: Class<P3>,
+      p4Type: Class<P4>,
+      p5Type: Class<P5>,
+      p6Type: Class<P6>,
+      p7Type: Class<P7>,
+      p8Type: Class<P8>,
+      function: JvmFunction9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>,
+    ): LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8> =
+        LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>(LambdaContainer9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>(getVariantConverter(returnType)!!,
+        arrayOf(getVariantConverter(p0Type)!!, getVariantConverter(p1Type)!!,
+        getVariantConverter(p2Type)!!, getVariantConverter(p3Type)!!, getVariantConverter(p4Type)!!,
+        getVariantConverter(p5Type)!!, getVariantConverter(p6Type)!!, getVariantConverter(p7Type)!!,
+        getVariantConverter(p8Type)!!), function))
 
-  public override fun bind(
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-  ) = LambdaCallable4<R, P0, P1, P2, P3>(container, arrayOf<Any?>(p4, p5, p6, p7, p8, *boundArgs))
-
-  public override fun bind(
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-  ) = LambdaCallable5<R, P0, P1, P2, P3, P4>(container, arrayOf<Any?>(p5, p6, p7, p8, *boundArgs))
-
-  public override fun bind(
-    p6: P6,
-    p7: P7,
-    p8: P8,
-  ) = LambdaCallable6<R, P0, P1, P2, P3, P4, P5>(container, arrayOf<Any?>(p6, p7, p8, *boundArgs))
-
-  public override fun bind(p7: P7, p8: P8) =
-      LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>(container, arrayOf<Any?>(p7, p8, *boundArgs))
-
-  public override fun bind(p8: P8) = LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7>(container,
-      arrayOf<Any?>(p8, *boundArgs))
+    @JvmStatic
+    @JvmName("create")
+    public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8> _createJava(
+      p0Type: Class<P0>,
+      p1Type: Class<P1>,
+      p2Type: Class<P2>,
+      p3Type: Class<P3>,
+      p4Type: Class<P4>,
+      p5Type: Class<P5>,
+      p6Type: Class<P6>,
+      p7Type: Class<P7>,
+      p8Type: Class<P8>,
+      action: JvmAction9<P0, P1, P2, P3, P4, P5, P6, P7, P8>,
+    ): LambdaCallable9<Void?, P0, P1, P2, P3, P4, P5, P6, P7, P8> =
+        LambdaCallable9<Void?, P0, P1, P2, P3, P4, P5, P6, P7, P8>(LambdaContainer9<Void?, P0, P1, P2, P3, P4, P5, P6, P7, P8>(getVariantConverter(Void::class.java)!!,
+        arrayOf(getVariantConverter(p0Type)!!, getVariantConverter(p1Type)!!,
+        getVariantConverter(p2Type)!!, getVariantConverter(p3Type)!!, getVariantConverter(p4Type)!!,
+        getVariantConverter(p5Type)!!, getVariantConverter(p6Type)!!, getVariantConverter(p7Type)!!,
+        getVariantConverter(p8Type)!!), object :
+        JvmFunction9<Void?, P0, P1, P2, P3, P4, P5, P6, P7, P8> {
+      override fun invoke(p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8):
+          Void? {
+        action.invoke(p0, p1, p2, p3, p4, p5, p6, p7, p8)
+        return null
+      }
+    }
+    ))
+  }
 }
 
 public inline fun <reified R, reified P0, reified P1, reified P2, reified P3, reified P4, reified
-    P5, reified P6, reified P7, reified P8> callable9(noinline function: (
+    P5, reified P6, reified P7, reified P8> lambdaCallable9(noinline function: (
   p0: P0,
   p1: P1,
   p2: P2,
@@ -481,7 +853,7 @@ public inline fun <reified R, reified P0, reified P1, reified P2, reified P3, re
   p7: P7,
   p8: P8,
 ) -> R) =
-    LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>(LambdaContainer9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>(variantMapper.getOrDefault(R::class, NIL), arrayOf(variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, variantMapper[P8::class]!!), function))
+    LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>(LambdaContainer9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>(getVariantConverter<R>()!!, arrayOf(getVariantConverter<P0>()!!, getVariantConverter<P1>()!!, getVariantConverter<P2>()!!, getVariantConverter<P3>()!!, getVariantConverter<P4>()!!, getVariantConverter<P5>()!!, getVariantConverter<P6>()!!, getVariantConverter<P7>()!!, getVariantConverter<P8>()!!), function))
 
 public inline fun <reified R, reified P0, reified P1, reified P2, reified P3, reified P4, reified
     P5, reified P6, reified P7, reified P8> ((
@@ -494,16 +866,67 @@ public inline fun <reified R, reified P0, reified P1, reified P2, reified P3, re
   p6: P6,
   p7: P7,
   p8: P8,
-) -> R).asCallable() = callable9(this)
+) -> R).asCallable() = lambdaCallable9(this)
 
 public class LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> @PublishedApi internal
     constructor(
   container: LambdaContainer<R>,
   boundArgs: Array<Any?> = emptyArray(),
 ) : LambdaCallable<R>(container, boundArgs), Callable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> {
+  public override fun bind(p9: P9) =
+      LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>(container, arrayOf<Any?>(p9,
+      *boundArgs))
+
+  public override fun bind(p8: P8, p9: P9) =
+      LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7>(container, arrayOf<Any?>(p8, p9,
+      *boundArgs))
+
   public override fun bind(
-    p0: P0,
-    p1: P1,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+  ) = LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>(container, arrayOf<Any?>(p7, p8, p9,
+      *boundArgs))
+
+  public override fun bind(
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+  ) = LambdaCallable6<R, P0, P1, P2, P3, P4, P5>(container, arrayOf<Any?>(p6, p7, p8, p9,
+      *boundArgs))
+
+  public override fun bind(
+    p5: P5,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+  ) = LambdaCallable5<R, P0, P1, P2, P3, P4>(container, arrayOf<Any?>(p5, p6, p7, p8, p9,
+      *boundArgs))
+
+  public override fun bind(
+    p4: P4,
+    p5: P5,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+  ) = LambdaCallable4<R, P0, P1, P2, P3>(container, arrayOf<Any?>(p4, p5, p6, p7, p8, p9,
+      *boundArgs))
+
+  public override fun bind(
+    p3: P3,
+    p4: P4,
+    p5: P5,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+  ) = LambdaCallable3<R, P0, P1, P2>(container, arrayOf<Any?>(p3, p4, p5, p6, p7, p8, p9,
+      *boundArgs))
+
+  public override fun bind(
     p2: P2,
     p3: P3,
     p4: P4,
@@ -512,7 +935,7 @@ public class LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> @Publis
     p7: P7,
     p8: P8,
     p9: P9,
-  ) = LambdaCallable0<R>(container, arrayOf<Any?>(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9,
+  ) = LambdaCallable2<R, P0, P1>(container, arrayOf<Any?>(p2, p3, p4, p5, p6, p7, p8, p9,
       *boundArgs))
 
   public override fun bind(
@@ -529,6 +952,8 @@ public class LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> @Publis
       *boundArgs))
 
   public override fun bind(
+    p0: P0,
+    p1: P1,
     p2: P2,
     p3: P3,
     p4: P4,
@@ -537,65 +962,65 @@ public class LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> @Publis
     p7: P7,
     p8: P8,
     p9: P9,
-  ) = LambdaCallable2<R, P0, P1>(container, arrayOf<Any?>(p2, p3, p4, p5, p6, p7, p8, p9,
+  ) = LambdaCallable0<R>(container, arrayOf<Any?>(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9,
       *boundArgs))
 
-  public override fun bind(
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-  ) = LambdaCallable3<R, P0, P1, P2>(container, arrayOf<Any?>(p3, p4, p5, p6, p7, p8, p9,
-      *boundArgs))
+  public companion object {
+    @JvmStatic
+    @JvmName("create")
+    public fun <R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> _createJava(
+      returnType: Class<R>,
+      p0Type: Class<P0>,
+      p1Type: Class<P1>,
+      p2Type: Class<P2>,
+      p3Type: Class<P3>,
+      p4Type: Class<P4>,
+      p5Type: Class<P5>,
+      p6Type: Class<P6>,
+      p7Type: Class<P7>,
+      p8Type: Class<P8>,
+      p9Type: Class<P9>,
+      function: JvmFunction10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>,
+    ): LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> =
+        LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(LambdaContainer10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(getVariantConverter(returnType)!!,
+        arrayOf(getVariantConverter(p0Type)!!, getVariantConverter(p1Type)!!,
+        getVariantConverter(p2Type)!!, getVariantConverter(p3Type)!!, getVariantConverter(p4Type)!!,
+        getVariantConverter(p5Type)!!, getVariantConverter(p6Type)!!, getVariantConverter(p7Type)!!,
+        getVariantConverter(p8Type)!!, getVariantConverter(p9Type)!!), function))
 
-  public override fun bind(
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-  ) = LambdaCallable4<R, P0, P1, P2, P3>(container, arrayOf<Any?>(p4, p5, p6, p7, p8, p9,
-      *boundArgs))
-
-  public override fun bind(
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-  ) = LambdaCallable5<R, P0, P1, P2, P3, P4>(container, arrayOf<Any?>(p5, p6, p7, p8, p9,
-      *boundArgs))
-
-  public override fun bind(
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-  ) = LambdaCallable6<R, P0, P1, P2, P3, P4, P5>(container, arrayOf<Any?>(p6, p7, p8, p9,
-      *boundArgs))
-
-  public override fun bind(
-    p7: P7,
-    p8: P8,
-    p9: P9,
-  ) = LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>(container, arrayOf<Any?>(p7, p8, p9,
-      *boundArgs))
-
-  public override fun bind(p8: P8, p9: P9) =
-      LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7>(container, arrayOf<Any?>(p8, p9,
-      *boundArgs))
-
-  public override fun bind(p9: P9) =
-      LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>(container, arrayOf<Any?>(p9,
-      *boundArgs))
+    @JvmStatic
+    @JvmName("create")
+    public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> _createJava(
+      p0Type: Class<P0>,
+      p1Type: Class<P1>,
+      p2Type: Class<P2>,
+      p3Type: Class<P3>,
+      p4Type: Class<P4>,
+      p5Type: Class<P5>,
+      p6Type: Class<P6>,
+      p7Type: Class<P7>,
+      p8Type: Class<P8>,
+      p9Type: Class<P9>,
+      action: JvmAction10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>,
+    ): LambdaCallable10<Void?, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> =
+        LambdaCallable10<Void?, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(LambdaContainer10<Void?, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(getVariantConverter(Void::class.java)!!,
+        arrayOf(getVariantConverter(p0Type)!!, getVariantConverter(p1Type)!!,
+        getVariantConverter(p2Type)!!, getVariantConverter(p3Type)!!, getVariantConverter(p4Type)!!,
+        getVariantConverter(p5Type)!!, getVariantConverter(p6Type)!!, getVariantConverter(p7Type)!!,
+        getVariantConverter(p8Type)!!, getVariantConverter(p9Type)!!), object :
+        JvmFunction10<Void?, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> {
+      override fun invoke(p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8,
+          p9: P9): Void? {
+        action.invoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9)
+        return null
+      }
+    }
+    ))
+  }
 }
 
 public inline fun <reified R, reified P0, reified P1, reified P2, reified P3, reified P4, reified
-    P5, reified P6, reified P7, reified P8, reified P9> callable10(noinline function: (
+    P5, reified P6, reified P7, reified P8, reified P9> lambdaCallable10(noinline function: (
   p0: P0,
   p1: P1,
   p2: P2,
@@ -607,7 +1032,7 @@ public inline fun <reified R, reified P0, reified P1, reified P2, reified P3, re
   p8: P8,
   p9: P9,
 ) -> R) =
-    LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(LambdaContainer10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(variantMapper.getOrDefault(R::class, NIL), arrayOf(variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, variantMapper[P8::class]!!, variantMapper[P9::class]!!), function))
+    LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(LambdaContainer10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(getVariantConverter<R>()!!, arrayOf(getVariantConverter<P0>()!!, getVariantConverter<P1>()!!, getVariantConverter<P2>()!!, getVariantConverter<P3>()!!, getVariantConverter<P4>()!!, getVariantConverter<P5>()!!, getVariantConverter<P6>()!!, getVariantConverter<P7>()!!, getVariantConverter<P8>()!!, getVariantConverter<P9>()!!), function))
 
 public inline fun <reified R, reified P0, reified P1, reified P2, reified P3, reified P4, reified
     P5, reified P6, reified P7, reified P8, reified P9> ((
@@ -621,7 +1046,7 @@ public inline fun <reified R, reified P0, reified P1, reified P2, reified P3, re
   p7: P7,
   p8: P8,
   p9: P9,
-) -> R).asCallable() = callable10(this)
+) -> R).asCallable() = lambdaCallable10(this)
 
 public class LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> @PublishedApi internal
     constructor(
@@ -629,9 +1054,72 @@ public class LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> @P
   boundArgs: Array<Any?> = emptyArray(),
 ) : LambdaCallable<R>(container, boundArgs),
     Callable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> {
+  public override fun bind(p10: P10) =
+      LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(container, arrayOf<Any?>(p10,
+      *boundArgs))
+
+  public override fun bind(p9: P9, p10: P10) =
+      LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>(container, arrayOf<Any?>(p9, p10,
+      *boundArgs))
+
   public override fun bind(
-    p0: P0,
-    p1: P1,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+  ) = LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7>(container, arrayOf<Any?>(p8, p9, p10,
+      *boundArgs))
+
+  public override fun bind(
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+  ) = LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>(container, arrayOf<Any?>(p7, p8, p9, p10,
+      *boundArgs))
+
+  public override fun bind(
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+  ) = LambdaCallable6<R, P0, P1, P2, P3, P4, P5>(container, arrayOf<Any?>(p6, p7, p8, p9, p10,
+      *boundArgs))
+
+  public override fun bind(
+    p5: P5,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+  ) = LambdaCallable5<R, P0, P1, P2, P3, P4>(container, arrayOf<Any?>(p5, p6, p7, p8, p9, p10,
+      *boundArgs))
+
+  public override fun bind(
+    p4: P4,
+    p5: P5,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+  ) = LambdaCallable4<R, P0, P1, P2, P3>(container, arrayOf<Any?>(p4, p5, p6, p7, p8, p9, p10,
+      *boundArgs))
+
+  public override fun bind(
+    p3: P3,
+    p4: P4,
+    p5: P5,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+  ) = LambdaCallable3<R, P0, P1, P2>(container, arrayOf<Any?>(p3, p4, p5, p6, p7, p8, p9, p10,
+      *boundArgs))
+
+  public override fun bind(
     p2: P2,
     p3: P3,
     p4: P4,
@@ -641,7 +1129,7 @@ public class LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> @P
     p8: P8,
     p9: P9,
     p10: P10,
-  ) = LambdaCallable0<R>(container, arrayOf<Any?>(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10,
+  ) = LambdaCallable2<R, P0, P1>(container, arrayOf<Any?>(p2, p3, p4, p5, p6, p7, p8, p9, p10,
       *boundArgs))
 
   public override fun bind(
@@ -659,6 +1147,8 @@ public class LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> @P
       *boundArgs))
 
   public override fun bind(
+    p0: P0,
+    p1: P1,
     p2: P2,
     p3: P3,
     p4: P4,
@@ -668,77 +1158,70 @@ public class LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> @P
     p8: P8,
     p9: P9,
     p10: P10,
-  ) = LambdaCallable2<R, P0, P1>(container, arrayOf<Any?>(p2, p3, p4, p5, p6, p7, p8, p9, p10,
+  ) = LambdaCallable0<R>(container, arrayOf<Any?>(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10,
       *boundArgs))
 
-  public override fun bind(
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-  ) = LambdaCallable3<R, P0, P1, P2>(container, arrayOf<Any?>(p3, p4, p5, p6, p7, p8, p9, p10,
-      *boundArgs))
+  public companion object {
+    @JvmStatic
+    @JvmName("create")
+    public fun <R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> _createJava(
+      returnType: Class<R>,
+      p0Type: Class<P0>,
+      p1Type: Class<P1>,
+      p2Type: Class<P2>,
+      p3Type: Class<P3>,
+      p4Type: Class<P4>,
+      p5Type: Class<P5>,
+      p6Type: Class<P6>,
+      p7Type: Class<P7>,
+      p8Type: Class<P8>,
+      p9Type: Class<P9>,
+      p10Type: Class<P10>,
+      function: JvmFunction11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>,
+    ): LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> =
+        LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(LambdaContainer11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(getVariantConverter(returnType)!!,
+        arrayOf(getVariantConverter(p0Type)!!, getVariantConverter(p1Type)!!,
+        getVariantConverter(p2Type)!!, getVariantConverter(p3Type)!!, getVariantConverter(p4Type)!!,
+        getVariantConverter(p5Type)!!, getVariantConverter(p6Type)!!, getVariantConverter(p7Type)!!,
+        getVariantConverter(p8Type)!!, getVariantConverter(p9Type)!!,
+        getVariantConverter(p10Type)!!), function))
 
-  public override fun bind(
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-  ) = LambdaCallable4<R, P0, P1, P2, P3>(container, arrayOf<Any?>(p4, p5, p6, p7, p8, p9, p10,
-      *boundArgs))
-
-  public override fun bind(
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-  ) = LambdaCallable5<R, P0, P1, P2, P3, P4>(container, arrayOf<Any?>(p5, p6, p7, p8, p9, p10,
-      *boundArgs))
-
-  public override fun bind(
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-  ) = LambdaCallable6<R, P0, P1, P2, P3, P4, P5>(container, arrayOf<Any?>(p6, p7, p8, p9, p10,
-      *boundArgs))
-
-  public override fun bind(
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-  ) = LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>(container, arrayOf<Any?>(p7, p8, p9, p10,
-      *boundArgs))
-
-  public override fun bind(
-    p8: P8,
-    p9: P9,
-    p10: P10,
-  ) = LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7>(container, arrayOf<Any?>(p8, p9, p10,
-      *boundArgs))
-
-  public override fun bind(p9: P9, p10: P10) =
-      LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>(container, arrayOf<Any?>(p9, p10,
-      *boundArgs))
-
-  public override fun bind(p10: P10) =
-      LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(container, arrayOf<Any?>(p10,
-      *boundArgs))
+    @JvmStatic
+    @JvmName("create")
+    public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> _createJava(
+      p0Type: Class<P0>,
+      p1Type: Class<P1>,
+      p2Type: Class<P2>,
+      p3Type: Class<P3>,
+      p4Type: Class<P4>,
+      p5Type: Class<P5>,
+      p6Type: Class<P6>,
+      p7Type: Class<P7>,
+      p8Type: Class<P8>,
+      p9Type: Class<P9>,
+      p10Type: Class<P10>,
+      action: JvmAction11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>,
+    ): LambdaCallable11<Void?, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> =
+        LambdaCallable11<Void?, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(LambdaContainer11<Void?, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(getVariantConverter(Void::class.java)!!,
+        arrayOf(getVariantConverter(p0Type)!!, getVariantConverter(p1Type)!!,
+        getVariantConverter(p2Type)!!, getVariantConverter(p3Type)!!, getVariantConverter(p4Type)!!,
+        getVariantConverter(p5Type)!!, getVariantConverter(p6Type)!!, getVariantConverter(p7Type)!!,
+        getVariantConverter(p8Type)!!, getVariantConverter(p9Type)!!,
+        getVariantConverter(p10Type)!!), object :
+        JvmFunction11<Void?, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> {
+      override fun invoke(p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8,
+          p9: P9, p10: P10): Void? {
+        action.invoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10)
+        return null
+      }
+    }
+    ))
+  }
 }
 
 public inline fun <reified R, reified P0, reified P1, reified P2, reified P3, reified P4, reified
-    P5, reified P6, reified P7, reified P8, reified P9, reified P10> callable11(noinline function: (
+    P5, reified P6, reified P7, reified P8, reified P9, reified P10> lambdaCallable11(noinline
+    function: (
   p0: P0,
   p1: P1,
   p2: P2,
@@ -751,7 +1234,7 @@ public inline fun <reified R, reified P0, reified P1, reified P2, reified P3, re
   p9: P9,
   p10: P10,
 ) -> R) =
-    LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(LambdaContainer11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(variantMapper.getOrDefault(R::class, NIL), arrayOf(variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, variantMapper[P8::class]!!, variantMapper[P9::class]!!, variantMapper[P10::class]!!), function))
+    LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(LambdaContainer11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(getVariantConverter<R>()!!, arrayOf(getVariantConverter<P0>()!!, getVariantConverter<P1>()!!, getVariantConverter<P2>()!!, getVariantConverter<P3>()!!, getVariantConverter<P4>()!!, getVariantConverter<P5>()!!, getVariantConverter<P6>()!!, getVariantConverter<P7>()!!, getVariantConverter<P8>()!!, getVariantConverter<P9>()!!, getVariantConverter<P10>()!!), function))
 
 public inline fun <reified R, reified P0, reified P1, reified P2, reified P3, reified P4, reified
     P5, reified P6, reified P7, reified P8, reified P9, reified P10> ((
@@ -766,7 +1249,7 @@ public inline fun <reified R, reified P0, reified P1, reified P2, reified P3, re
   p8: P8,
   p9: P9,
   p10: P10,
-) -> R).asCallable() = callable11(this)
+) -> R).asCallable() = lambdaCallable11(this)
 
 public class LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> @PublishedApi
     internal constructor(
@@ -774,9 +1257,85 @@ public class LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
   boundArgs: Array<Any?> = emptyArray(),
 ) : LambdaCallable<R>(container, boundArgs),
     Callable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> {
+  public override fun bind(p11: P11) =
+      LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(container, arrayOf<Any?>(p11,
+      *boundArgs))
+
+  public override fun bind(p10: P10, p11: P11) =
+      LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(container, arrayOf<Any?>(p10, p11,
+      *boundArgs))
+
   public override fun bind(
-    p0: P0,
-    p1: P1,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+  ) = LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>(container, arrayOf<Any?>(p9, p10, p11,
+      *boundArgs))
+
+  public override fun bind(
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+  ) = LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7>(container, arrayOf<Any?>(p8, p9, p10, p11,
+      *boundArgs))
+
+  public override fun bind(
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+  ) = LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>(container, arrayOf<Any?>(p7, p8, p9, p10, p11,
+      *boundArgs))
+
+  public override fun bind(
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+  ) = LambdaCallable6<R, P0, P1, P2, P3, P4, P5>(container, arrayOf<Any?>(p6, p7, p8, p9, p10, p11,
+      *boundArgs))
+
+  public override fun bind(
+    p5: P5,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+  ) = LambdaCallable5<R, P0, P1, P2, P3, P4>(container, arrayOf<Any?>(p5, p6, p7, p8, p9, p10, p11,
+      *boundArgs))
+
+  public override fun bind(
+    p4: P4,
+    p5: P5,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+  ) = LambdaCallable4<R, P0, P1, P2, P3>(container, arrayOf<Any?>(p4, p5, p6, p7, p8, p9, p10, p11,
+      *boundArgs))
+
+  public override fun bind(
+    p3: P3,
+    p4: P4,
+    p5: P5,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+  ) = LambdaCallable3<R, P0, P1, P2>(container, arrayOf<Any?>(p3, p4, p5, p6, p7, p8, p9, p10, p11,
+      *boundArgs))
+
+  public override fun bind(
     p2: P2,
     p3: P3,
     p4: P4,
@@ -787,7 +1346,7 @@ public class LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p9: P9,
     p10: P10,
     p11: P11,
-  ) = LambdaCallable0<R>(container, arrayOf<Any?>(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11,
+  ) = LambdaCallable2<R, P0, P1>(container, arrayOf<Any?>(p2, p3, p4, p5, p6, p7, p8, p9, p10, p11,
       *boundArgs))
 
   public override fun bind(
@@ -806,6 +1365,8 @@ public class LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
       *boundArgs))
 
   public override fun bind(
+    p0: P0,
+    p1: P1,
     p2: P2,
     p3: P3,
     p4: P4,
@@ -816,91 +1377,72 @@ public class LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p9: P9,
     p10: P10,
     p11: P11,
-  ) = LambdaCallable2<R, P0, P1>(container, arrayOf<Any?>(p2, p3, p4, p5, p6, p7, p8, p9, p10, p11,
+  ) = LambdaCallable0<R>(container, arrayOf<Any?>(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11,
       *boundArgs))
 
-  public override fun bind(
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-  ) = LambdaCallable3<R, P0, P1, P2>(container, arrayOf<Any?>(p3, p4, p5, p6, p7, p8, p9, p10, p11,
-      *boundArgs))
+  public companion object {
+    @JvmStatic
+    @JvmName("create")
+    public fun <R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> _createJava(
+      returnType: Class<R>,
+      p0Type: Class<P0>,
+      p1Type: Class<P1>,
+      p2Type: Class<P2>,
+      p3Type: Class<P3>,
+      p4Type: Class<P4>,
+      p5Type: Class<P5>,
+      p6Type: Class<P6>,
+      p7Type: Class<P7>,
+      p8Type: Class<P8>,
+      p9Type: Class<P9>,
+      p10Type: Class<P10>,
+      p11Type: Class<P11>,
+      function: JvmFunction12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>,
+    ): LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> =
+        LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>(LambdaContainer12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>(getVariantConverter(returnType)!!,
+        arrayOf(getVariantConverter(p0Type)!!, getVariantConverter(p1Type)!!,
+        getVariantConverter(p2Type)!!, getVariantConverter(p3Type)!!, getVariantConverter(p4Type)!!,
+        getVariantConverter(p5Type)!!, getVariantConverter(p6Type)!!, getVariantConverter(p7Type)!!,
+        getVariantConverter(p8Type)!!, getVariantConverter(p9Type)!!,
+        getVariantConverter(p10Type)!!, getVariantConverter(p11Type)!!), function))
 
-  public override fun bind(
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-  ) = LambdaCallable4<R, P0, P1, P2, P3>(container, arrayOf<Any?>(p4, p5, p6, p7, p8, p9, p10, p11,
-      *boundArgs))
-
-  public override fun bind(
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-  ) = LambdaCallable5<R, P0, P1, P2, P3, P4>(container, arrayOf<Any?>(p5, p6, p7, p8, p9, p10, p11,
-      *boundArgs))
-
-  public override fun bind(
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-  ) = LambdaCallable6<R, P0, P1, P2, P3, P4, P5>(container, arrayOf<Any?>(p6, p7, p8, p9, p10, p11,
-      *boundArgs))
-
-  public override fun bind(
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-  ) = LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>(container, arrayOf<Any?>(p7, p8, p9, p10, p11,
-      *boundArgs))
-
-  public override fun bind(
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-  ) = LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7>(container, arrayOf<Any?>(p8, p9, p10, p11,
-      *boundArgs))
-
-  public override fun bind(
-    p9: P9,
-    p10: P10,
-    p11: P11,
-  ) = LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>(container, arrayOf<Any?>(p9, p10, p11,
-      *boundArgs))
-
-  public override fun bind(p10: P10, p11: P11) =
-      LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(container, arrayOf<Any?>(p10, p11,
-      *boundArgs))
-
-  public override fun bind(p11: P11) =
-      LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(container, arrayOf<Any?>(p11,
-      *boundArgs))
+    @JvmStatic
+    @JvmName("create")
+    public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> _createJava(
+      p0Type: Class<P0>,
+      p1Type: Class<P1>,
+      p2Type: Class<P2>,
+      p3Type: Class<P3>,
+      p4Type: Class<P4>,
+      p5Type: Class<P5>,
+      p6Type: Class<P6>,
+      p7Type: Class<P7>,
+      p8Type: Class<P8>,
+      p9Type: Class<P9>,
+      p10Type: Class<P10>,
+      p11Type: Class<P11>,
+      action: JvmAction12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>,
+    ): LambdaCallable12<Void?, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> =
+        LambdaCallable12<Void?, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>(LambdaContainer12<Void?, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>(getVariantConverter(Void::class.java)!!,
+        arrayOf(getVariantConverter(p0Type)!!, getVariantConverter(p1Type)!!,
+        getVariantConverter(p2Type)!!, getVariantConverter(p3Type)!!, getVariantConverter(p4Type)!!,
+        getVariantConverter(p5Type)!!, getVariantConverter(p6Type)!!, getVariantConverter(p7Type)!!,
+        getVariantConverter(p8Type)!!, getVariantConverter(p9Type)!!,
+        getVariantConverter(p10Type)!!, getVariantConverter(p11Type)!!), object :
+        JvmFunction12<Void?, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> {
+      override fun invoke(p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8,
+          p9: P9, p10: P10, p11: P11): Void? {
+        action.invoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11)
+        return null
+      }
+    }
+    ))
+  }
 }
 
 public inline fun <reified R, reified P0, reified P1, reified P2, reified P3, reified P4, reified
     P5, reified P6, reified P7, reified P8, reified P9, reified P10, reified P11>
-    callable12(noinline function: (
+    lambdaCallable12(noinline function: (
   p0: P0,
   p1: P1,
   p2: P2,
@@ -914,7 +1456,7 @@ public inline fun <reified R, reified P0, reified P1, reified P2, reified P3, re
   p10: P10,
   p11: P11,
 ) -> R) =
-    LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>(LambdaContainer12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>(variantMapper.getOrDefault(R::class, NIL), arrayOf(variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, variantMapper[P8::class]!!, variantMapper[P9::class]!!, variantMapper[P10::class]!!, variantMapper[P11::class]!!), function))
+    LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>(LambdaContainer12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>(getVariantConverter<R>()!!, arrayOf(getVariantConverter<P0>()!!, getVariantConverter<P1>()!!, getVariantConverter<P2>()!!, getVariantConverter<P3>()!!, getVariantConverter<P4>()!!, getVariantConverter<P5>()!!, getVariantConverter<P6>()!!, getVariantConverter<P7>()!!, getVariantConverter<P8>()!!, getVariantConverter<P9>()!!, getVariantConverter<P10>()!!, getVariantConverter<P11>()!!), function))
 
 public inline fun <reified R, reified P0, reified P1, reified P2, reified P3, reified P4, reified
     P5, reified P6, reified P7, reified P8, reified P9, reified P10, reified P11> ((
@@ -930,7 +1472,7 @@ public inline fun <reified R, reified P0, reified P1, reified P2, reified P3, re
   p9: P9,
   p10: P10,
   p11: P11,
-) -> R).asCallable() = callable12(this)
+) -> R).asCallable() = lambdaCallable12(this)
 
 public class LambdaCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>
     @PublishedApi internal constructor(
@@ -938,9 +1480,99 @@ public class LambdaCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
   boundArgs: Array<Any?> = emptyArray(),
 ) : LambdaCallable<R>(container, boundArgs),
     Callable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12> {
+  public override fun bind(p12: P12) =
+      LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>(container,
+      arrayOf<Any?>(p12, *boundArgs))
+
+  public override fun bind(p11: P11, p12: P12) =
+      LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(container,
+      arrayOf<Any?>(p11, p12, *boundArgs))
+
   public override fun bind(
-    p0: P0,
-    p1: P1,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+  ) = LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(container,
+      arrayOf<Any?>(p10, p11, p12, *boundArgs))
+
+  public override fun bind(
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+  ) = LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>(container,
+      arrayOf<Any?>(p9, p10, p11, p12, *boundArgs))
+
+  public override fun bind(
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+  ) = LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7>(container,
+      arrayOf<Any?>(p8, p9, p10, p11, p12, *boundArgs))
+
+  public override fun bind(
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+  ) = LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>(container,
+      arrayOf<Any?>(p7, p8, p9, p10, p11, p12, *boundArgs))
+
+  public override fun bind(
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+  ) = LambdaCallable6<R, P0, P1, P2, P3, P4, P5>(container,
+      arrayOf<Any?>(p6, p7, p8, p9, p10, p11, p12, *boundArgs))
+
+  public override fun bind(
+    p5: P5,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+  ) = LambdaCallable5<R, P0, P1, P2, P3, P4>(container,
+      arrayOf<Any?>(p5, p6, p7, p8, p9, p10, p11, p12, *boundArgs))
+
+  public override fun bind(
+    p4: P4,
+    p5: P5,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+  ) = LambdaCallable4<R, P0, P1, P2, P3>(container,
+      arrayOf<Any?>(p4, p5, p6, p7, p8, p9, p10, p11, p12, *boundArgs))
+
+  public override fun bind(
+    p3: P3,
+    p4: P4,
+    p5: P5,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+  ) = LambdaCallable3<R, P0, P1, P2>(container,
+      arrayOf<Any?>(p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, *boundArgs))
+
+  public override fun bind(
     p2: P2,
     p3: P3,
     p4: P4,
@@ -952,8 +1584,8 @@ public class LambdaCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p10: P10,
     p11: P11,
     p12: P12,
-  ) = LambdaCallable0<R>(container,
-      arrayOf<Any?>(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, *boundArgs))
+  ) = LambdaCallable2<R, P0, P1>(container,
+      arrayOf<Any?>(p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, *boundArgs))
 
   public override fun bind(
     p1: P1,
@@ -972,6 +1604,8 @@ public class LambdaCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
       arrayOf<Any?>(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, *boundArgs))
 
   public override fun bind(
+    p0: P0,
+    p1: P1,
     p2: P2,
     p3: P3,
     p4: P4,
@@ -983,105 +1617,76 @@ public class LambdaCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p10: P10,
     p11: P11,
     p12: P12,
-  ) = LambdaCallable2<R, P0, P1>(container,
-      arrayOf<Any?>(p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, *boundArgs))
+  ) = LambdaCallable0<R>(container,
+      arrayOf<Any?>(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, *boundArgs))
 
-  public override fun bind(
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-  ) = LambdaCallable3<R, P0, P1, P2>(container,
-      arrayOf<Any?>(p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, *boundArgs))
+  public companion object {
+    @JvmStatic
+    @JvmName("create")
+    public fun <R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12> _createJava(
+      returnType: Class<R>,
+      p0Type: Class<P0>,
+      p1Type: Class<P1>,
+      p2Type: Class<P2>,
+      p3Type: Class<P3>,
+      p4Type: Class<P4>,
+      p5Type: Class<P5>,
+      p6Type: Class<P6>,
+      p7Type: Class<P7>,
+      p8Type: Class<P8>,
+      p9Type: Class<P9>,
+      p10Type: Class<P10>,
+      p11Type: Class<P11>,
+      p12Type: Class<P12>,
+      function: JvmFunction13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>,
+    ): LambdaCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12> =
+        LambdaCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>(LambdaContainer13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>(getVariantConverter(returnType)!!,
+        arrayOf(getVariantConverter(p0Type)!!, getVariantConverter(p1Type)!!,
+        getVariantConverter(p2Type)!!, getVariantConverter(p3Type)!!, getVariantConverter(p4Type)!!,
+        getVariantConverter(p5Type)!!, getVariantConverter(p6Type)!!, getVariantConverter(p7Type)!!,
+        getVariantConverter(p8Type)!!, getVariantConverter(p9Type)!!,
+        getVariantConverter(p10Type)!!, getVariantConverter(p11Type)!!,
+        getVariantConverter(p12Type)!!), function))
 
-  public override fun bind(
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-  ) = LambdaCallable4<R, P0, P1, P2, P3>(container,
-      arrayOf<Any?>(p4, p5, p6, p7, p8, p9, p10, p11, p12, *boundArgs))
-
-  public override fun bind(
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-  ) = LambdaCallable5<R, P0, P1, P2, P3, P4>(container,
-      arrayOf<Any?>(p5, p6, p7, p8, p9, p10, p11, p12, *boundArgs))
-
-  public override fun bind(
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-  ) = LambdaCallable6<R, P0, P1, P2, P3, P4, P5>(container,
-      arrayOf<Any?>(p6, p7, p8, p9, p10, p11, p12, *boundArgs))
-
-  public override fun bind(
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-  ) = LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>(container,
-      arrayOf<Any?>(p7, p8, p9, p10, p11, p12, *boundArgs))
-
-  public override fun bind(
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-  ) = LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7>(container,
-      arrayOf<Any?>(p8, p9, p10, p11, p12, *boundArgs))
-
-  public override fun bind(
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-  ) = LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>(container,
-      arrayOf<Any?>(p9, p10, p11, p12, *boundArgs))
-
-  public override fun bind(
-    p10: P10,
-    p11: P11,
-    p12: P12,
-  ) = LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(container,
-      arrayOf<Any?>(p10, p11, p12, *boundArgs))
-
-  public override fun bind(p11: P11, p12: P12) =
-      LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(container,
-      arrayOf<Any?>(p11, p12, *boundArgs))
-
-  public override fun bind(p12: P12) =
-      LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>(container,
-      arrayOf<Any?>(p12, *boundArgs))
+    @JvmStatic
+    @JvmName("create")
+    public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12> _createJava(
+      p0Type: Class<P0>,
+      p1Type: Class<P1>,
+      p2Type: Class<P2>,
+      p3Type: Class<P3>,
+      p4Type: Class<P4>,
+      p5Type: Class<P5>,
+      p6Type: Class<P6>,
+      p7Type: Class<P7>,
+      p8Type: Class<P8>,
+      p9Type: Class<P9>,
+      p10Type: Class<P10>,
+      p11Type: Class<P11>,
+      p12Type: Class<P12>,
+      action: JvmAction13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>,
+    ): LambdaCallable13<Void?, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12> =
+        LambdaCallable13<Void?, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>(LambdaContainer13<Void?, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>(getVariantConverter(Void::class.java)!!,
+        arrayOf(getVariantConverter(p0Type)!!, getVariantConverter(p1Type)!!,
+        getVariantConverter(p2Type)!!, getVariantConverter(p3Type)!!, getVariantConverter(p4Type)!!,
+        getVariantConverter(p5Type)!!, getVariantConverter(p6Type)!!, getVariantConverter(p7Type)!!,
+        getVariantConverter(p8Type)!!, getVariantConverter(p9Type)!!,
+        getVariantConverter(p10Type)!!, getVariantConverter(p11Type)!!,
+        getVariantConverter(p12Type)!!), object :
+        JvmFunction13<Void?, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12> {
+      override fun invoke(p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8,
+          p9: P9, p10: P10, p11: P11, p12: P12): Void? {
+        action.invoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12)
+        return null
+      }
+    }
+    ))
+  }
 }
 
 public inline fun <reified R, reified P0, reified P1, reified P2, reified P3, reified P4, reified
     P5, reified P6, reified P7, reified P8, reified P9, reified P10, reified P11, reified P12>
-    callable13(noinline function: (
+    lambdaCallable13(noinline function: (
   p0: P0,
   p1: P1,
   p2: P2,
@@ -1096,7 +1701,7 @@ public inline fun <reified R, reified P0, reified P1, reified P2, reified P3, re
   p11: P11,
   p12: P12,
 ) -> R) =
-    LambdaCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>(LambdaContainer13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>(variantMapper.getOrDefault(R::class, NIL), arrayOf(variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, variantMapper[P8::class]!!, variantMapper[P9::class]!!, variantMapper[P10::class]!!, variantMapper[P11::class]!!, variantMapper[P12::class]!!), function))
+    LambdaCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>(LambdaContainer13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>(getVariantConverter<R>()!!, arrayOf(getVariantConverter<P0>()!!, getVariantConverter<P1>()!!, getVariantConverter<P2>()!!, getVariantConverter<P3>()!!, getVariantConverter<P4>()!!, getVariantConverter<P5>()!!, getVariantConverter<P6>()!!, getVariantConverter<P7>()!!, getVariantConverter<P8>()!!, getVariantConverter<P9>()!!, getVariantConverter<P10>()!!, getVariantConverter<P11>()!!, getVariantConverter<P12>()!!), function))
 
 public inline fun <reified R, reified P0, reified P1, reified P2, reified P3, reified P4, reified
     P5, reified P6, reified P7, reified P8, reified P9, reified P10, reified P11, reified P12> ((
@@ -1113,7 +1718,7 @@ public inline fun <reified R, reified P0, reified P1, reified P2, reified P3, re
   p10: P10,
   p11: P11,
   p12: P12,
-) -> R).asCallable() = callable13(this)
+) -> R).asCallable() = lambdaCallable13(this)
 
 public class LambdaCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>
     @PublishedApi internal constructor(
@@ -1121,9 +1726,114 @@ public class LambdaCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
   boundArgs: Array<Any?> = emptyArray(),
 ) : LambdaCallable<R>(container, boundArgs),
     Callable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13> {
+  public override fun bind(p13: P13) =
+      LambdaCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>(container,
+      arrayOf<Any?>(p13, *boundArgs))
+
+  public override fun bind(p12: P12, p13: P13) =
+      LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>(container,
+      arrayOf<Any?>(p12, p13, *boundArgs))
+
   public override fun bind(
-    p0: P0,
-    p1: P1,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+  ) = LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(container,
+      arrayOf<Any?>(p11, p12, p13, *boundArgs))
+
+  public override fun bind(
+    p10: P10,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+  ) = LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(container,
+      arrayOf<Any?>(p10, p11, p12, p13, *boundArgs))
+
+  public override fun bind(
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+  ) = LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>(container,
+      arrayOf<Any?>(p9, p10, p11, p12, p13, *boundArgs))
+
+  public override fun bind(
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+  ) = LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7>(container,
+      arrayOf<Any?>(p8, p9, p10, p11, p12, p13, *boundArgs))
+
+  public override fun bind(
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+  ) = LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>(container,
+      arrayOf<Any?>(p7, p8, p9, p10, p11, p12, p13, *boundArgs))
+
+  public override fun bind(
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+  ) = LambdaCallable6<R, P0, P1, P2, P3, P4, P5>(container,
+      arrayOf<Any?>(p6, p7, p8, p9, p10, p11, p12, p13, *boundArgs))
+
+  public override fun bind(
+    p5: P5,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+  ) = LambdaCallable5<R, P0, P1, P2, P3, P4>(container,
+      arrayOf<Any?>(p5, p6, p7, p8, p9, p10, p11, p12, p13, *boundArgs))
+
+  public override fun bind(
+    p4: P4,
+    p5: P5,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+  ) = LambdaCallable4<R, P0, P1, P2, P3>(container,
+      arrayOf<Any?>(p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, *boundArgs))
+
+  public override fun bind(
+    p3: P3,
+    p4: P4,
+    p5: P5,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+  ) = LambdaCallable3<R, P0, P1, P2>(container,
+      arrayOf<Any?>(p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, *boundArgs))
+
+  public override fun bind(
     p2: P2,
     p3: P3,
     p4: P4,
@@ -1136,8 +1846,8 @@ public class LambdaCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p11: P11,
     p12: P12,
     p13: P13,
-  ) = LambdaCallable0<R>(container,
-      arrayOf<Any?>(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, *boundArgs))
+  ) = LambdaCallable2<R, P0, P1>(container,
+      arrayOf<Any?>(p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, *boundArgs))
 
   public override fun bind(
     p1: P1,
@@ -1157,6 +1867,8 @@ public class LambdaCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
       arrayOf<Any?>(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, *boundArgs))
 
   public override fun bind(
+    p0: P0,
+    p1: P1,
     p2: P2,
     p3: P3,
     p4: P4,
@@ -1169,120 +1881,78 @@ public class LambdaCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p11: P11,
     p12: P12,
     p13: P13,
-  ) = LambdaCallable2<R, P0, P1>(container,
-      arrayOf<Any?>(p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, *boundArgs))
+  ) = LambdaCallable0<R>(container,
+      arrayOf<Any?>(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, *boundArgs))
 
-  public override fun bind(
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-  ) = LambdaCallable3<R, P0, P1, P2>(container,
-      arrayOf<Any?>(p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, *boundArgs))
+  public companion object {
+    @JvmStatic
+    @JvmName("create")
+    public fun <R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13> _createJava(
+      returnType: Class<R>,
+      p0Type: Class<P0>,
+      p1Type: Class<P1>,
+      p2Type: Class<P2>,
+      p3Type: Class<P3>,
+      p4Type: Class<P4>,
+      p5Type: Class<P5>,
+      p6Type: Class<P6>,
+      p7Type: Class<P7>,
+      p8Type: Class<P8>,
+      p9Type: Class<P9>,
+      p10Type: Class<P10>,
+      p11Type: Class<P11>,
+      p12Type: Class<P12>,
+      p13Type: Class<P13>,
+      function: JvmFunction14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>,
+    ): LambdaCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13> =
+        LambdaCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>(LambdaContainer14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>(getVariantConverter(returnType)!!,
+        arrayOf(getVariantConverter(p0Type)!!, getVariantConverter(p1Type)!!,
+        getVariantConverter(p2Type)!!, getVariantConverter(p3Type)!!, getVariantConverter(p4Type)!!,
+        getVariantConverter(p5Type)!!, getVariantConverter(p6Type)!!, getVariantConverter(p7Type)!!,
+        getVariantConverter(p8Type)!!, getVariantConverter(p9Type)!!,
+        getVariantConverter(p10Type)!!, getVariantConverter(p11Type)!!,
+        getVariantConverter(p12Type)!!, getVariantConverter(p13Type)!!), function))
 
-  public override fun bind(
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-  ) = LambdaCallable4<R, P0, P1, P2, P3>(container,
-      arrayOf<Any?>(p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, *boundArgs))
-
-  public override fun bind(
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-  ) = LambdaCallable5<R, P0, P1, P2, P3, P4>(container,
-      arrayOf<Any?>(p5, p6, p7, p8, p9, p10, p11, p12, p13, *boundArgs))
-
-  public override fun bind(
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-  ) = LambdaCallable6<R, P0, P1, P2, P3, P4, P5>(container,
-      arrayOf<Any?>(p6, p7, p8, p9, p10, p11, p12, p13, *boundArgs))
-
-  public override fun bind(
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-  ) = LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>(container,
-      arrayOf<Any?>(p7, p8, p9, p10, p11, p12, p13, *boundArgs))
-
-  public override fun bind(
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-  ) = LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7>(container,
-      arrayOf<Any?>(p8, p9, p10, p11, p12, p13, *boundArgs))
-
-  public override fun bind(
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-  ) = LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>(container,
-      arrayOf<Any?>(p9, p10, p11, p12, p13, *boundArgs))
-
-  public override fun bind(
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-  ) = LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(container,
-      arrayOf<Any?>(p10, p11, p12, p13, *boundArgs))
-
-  public override fun bind(
-    p11: P11,
-    p12: P12,
-    p13: P13,
-  ) = LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(container,
-      arrayOf<Any?>(p11, p12, p13, *boundArgs))
-
-  public override fun bind(p12: P12, p13: P13) =
-      LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>(container,
-      arrayOf<Any?>(p12, p13, *boundArgs))
-
-  public override fun bind(p13: P13) =
-      LambdaCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>(container,
-      arrayOf<Any?>(p13, *boundArgs))
+    @JvmStatic
+    @JvmName("create")
+    public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13> _createJava(
+      p0Type: Class<P0>,
+      p1Type: Class<P1>,
+      p2Type: Class<P2>,
+      p3Type: Class<P3>,
+      p4Type: Class<P4>,
+      p5Type: Class<P5>,
+      p6Type: Class<P6>,
+      p7Type: Class<P7>,
+      p8Type: Class<P8>,
+      p9Type: Class<P9>,
+      p10Type: Class<P10>,
+      p11Type: Class<P11>,
+      p12Type: Class<P12>,
+      p13Type: Class<P13>,
+      action: JvmAction14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>,
+    ): LambdaCallable14<Void?, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13> =
+        LambdaCallable14<Void?, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>(LambdaContainer14<Void?, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>(getVariantConverter(Void::class.java)!!,
+        arrayOf(getVariantConverter(p0Type)!!, getVariantConverter(p1Type)!!,
+        getVariantConverter(p2Type)!!, getVariantConverter(p3Type)!!, getVariantConverter(p4Type)!!,
+        getVariantConverter(p5Type)!!, getVariantConverter(p6Type)!!, getVariantConverter(p7Type)!!,
+        getVariantConverter(p8Type)!!, getVariantConverter(p9Type)!!,
+        getVariantConverter(p10Type)!!, getVariantConverter(p11Type)!!,
+        getVariantConverter(p12Type)!!, getVariantConverter(p13Type)!!), object :
+        JvmFunction14<Void?, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13> {
+      override fun invoke(p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8,
+          p9: P9, p10: P10, p11: P11, p12: P12, p13: P13): Void? {
+        action.invoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13)
+        return null
+      }
+    }
+    ))
+  }
 }
 
 public inline fun <reified R, reified P0, reified P1, reified P2, reified P3, reified P4, reified
     P5, reified P6, reified P7, reified P8, reified P9, reified P10, reified P11, reified P12,
-    reified P13> callable14(noinline function: (
+    reified P13> lambdaCallable14(noinline function: (
   p0: P0,
   p1: P1,
   p2: P2,
@@ -1298,7 +1968,7 @@ public inline fun <reified R, reified P0, reified P1, reified P2, reified P3, re
   p12: P12,
   p13: P13,
 ) -> R) =
-    LambdaCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>(LambdaContainer14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>(variantMapper.getOrDefault(R::class, NIL), arrayOf(variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, variantMapper[P8::class]!!, variantMapper[P9::class]!!, variantMapper[P10::class]!!, variantMapper[P11::class]!!, variantMapper[P12::class]!!, variantMapper[P13::class]!!), function))
+    LambdaCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>(LambdaContainer14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>(getVariantConverter<R>()!!, arrayOf(getVariantConverter<P0>()!!, getVariantConverter<P1>()!!, getVariantConverter<P2>()!!, getVariantConverter<P3>()!!, getVariantConverter<P4>()!!, getVariantConverter<P5>()!!, getVariantConverter<P6>()!!, getVariantConverter<P7>()!!, getVariantConverter<P8>()!!, getVariantConverter<P9>()!!, getVariantConverter<P10>()!!, getVariantConverter<P11>()!!, getVariantConverter<P12>()!!, getVariantConverter<P13>()!!), function))
 
 public inline fun <reified R, reified P0, reified P1, reified P2, reified P3, reified P4, reified
     P5, reified P6, reified P7, reified P8, reified P9, reified P10, reified P11, reified P12,
@@ -1317,7 +1987,7 @@ public inline fun <reified R, reified P0, reified P1, reified P2, reified P3, re
   p11: P11,
   p12: P12,
   p13: P13,
-) -> R).asCallable() = callable14(this)
+) -> R).asCallable() = lambdaCallable14(this)
 
 public class LambdaCallable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>
     @PublishedApi internal constructor(
@@ -1325,9 +1995,130 @@ public class LambdaCallable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
   boundArgs: Array<Any?> = emptyArray(),
 ) : LambdaCallable<R>(container, boundArgs),
     Callable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14> {
+  public override fun bind(p14: P14) =
+      LambdaCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>(container,
+      arrayOf<Any?>(p14, *boundArgs))
+
+  public override fun bind(p13: P13, p14: P14) =
+      LambdaCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>(container,
+      arrayOf<Any?>(p13, p14, *boundArgs))
+
   public override fun bind(
-    p0: P0,
-    p1: P1,
+    p12: P12,
+    p13: P13,
+    p14: P14,
+  ) = LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>(container,
+      arrayOf<Any?>(p12, p13, p14, *boundArgs))
+
+  public override fun bind(
+    p11: P11,
+    p12: P12,
+    p13: P13,
+    p14: P14,
+  ) = LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(container,
+      arrayOf<Any?>(p11, p12, p13, p14, *boundArgs))
+
+  public override fun bind(
+    p10: P10,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+    p14: P14,
+  ) = LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(container,
+      arrayOf<Any?>(p10, p11, p12, p13, p14, *boundArgs))
+
+  public override fun bind(
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+    p14: P14,
+  ) = LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>(container,
+      arrayOf<Any?>(p9, p10, p11, p12, p13, p14, *boundArgs))
+
+  public override fun bind(
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+    p14: P14,
+  ) = LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7>(container,
+      arrayOf<Any?>(p8, p9, p10, p11, p12, p13, p14, *boundArgs))
+
+  public override fun bind(
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+    p14: P14,
+  ) = LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>(container,
+      arrayOf<Any?>(p7, p8, p9, p10, p11, p12, p13, p14, *boundArgs))
+
+  public override fun bind(
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+    p14: P14,
+  ) = LambdaCallable6<R, P0, P1, P2, P3, P4, P5>(container,
+      arrayOf<Any?>(p6, p7, p8, p9, p10, p11, p12, p13, p14, *boundArgs))
+
+  public override fun bind(
+    p5: P5,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+    p14: P14,
+  ) = LambdaCallable5<R, P0, P1, P2, P3, P4>(container,
+      arrayOf<Any?>(p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, *boundArgs))
+
+  public override fun bind(
+    p4: P4,
+    p5: P5,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+    p14: P14,
+  ) = LambdaCallable4<R, P0, P1, P2, P3>(container,
+      arrayOf<Any?>(p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, *boundArgs))
+
+  public override fun bind(
+    p3: P3,
+    p4: P4,
+    p5: P5,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+    p14: P14,
+  ) = LambdaCallable3<R, P0, P1, P2>(container,
+      arrayOf<Any?>(p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, *boundArgs))
+
+  public override fun bind(
     p2: P2,
     p3: P3,
     p4: P4,
@@ -1341,8 +2132,8 @@ public class LambdaCallable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p12: P12,
     p13: P13,
     p14: P14,
-  ) = LambdaCallable0<R>(container,
-      arrayOf<Any?>(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, *boundArgs))
+  ) = LambdaCallable2<R, P0, P1>(container,
+      arrayOf<Any?>(p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, *boundArgs))
 
   public override fun bind(
     p1: P1,
@@ -1363,6 +2154,8 @@ public class LambdaCallable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
       arrayOf<Any?>(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, *boundArgs))
 
   public override fun bind(
+    p0: P0,
+    p1: P1,
     p2: P2,
     p3: P3,
     p4: P4,
@@ -1376,136 +2169,82 @@ public class LambdaCallable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p12: P12,
     p13: P13,
     p14: P14,
-  ) = LambdaCallable2<R, P0, P1>(container,
-      arrayOf<Any?>(p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, *boundArgs))
+  ) = LambdaCallable0<R>(container,
+      arrayOf<Any?>(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, *boundArgs))
 
-  public override fun bind(
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-    p14: P14,
-  ) = LambdaCallable3<R, P0, P1, P2>(container,
-      arrayOf<Any?>(p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, *boundArgs))
+  public companion object {
+    @JvmStatic
+    @JvmName("create")
+    public fun <R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14> _createJava(
+      returnType: Class<R>,
+      p0Type: Class<P0>,
+      p1Type: Class<P1>,
+      p2Type: Class<P2>,
+      p3Type: Class<P3>,
+      p4Type: Class<P4>,
+      p5Type: Class<P5>,
+      p6Type: Class<P6>,
+      p7Type: Class<P7>,
+      p8Type: Class<P8>,
+      p9Type: Class<P9>,
+      p10Type: Class<P10>,
+      p11Type: Class<P11>,
+      p12Type: Class<P12>,
+      p13Type: Class<P13>,
+      p14Type: Class<P14>,
+      function: JvmFunction15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>,
+    ): LambdaCallable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14> =
+        LambdaCallable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>(LambdaContainer15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>(getVariantConverter(returnType)!!,
+        arrayOf(getVariantConverter(p0Type)!!, getVariantConverter(p1Type)!!,
+        getVariantConverter(p2Type)!!, getVariantConverter(p3Type)!!, getVariantConverter(p4Type)!!,
+        getVariantConverter(p5Type)!!, getVariantConverter(p6Type)!!, getVariantConverter(p7Type)!!,
+        getVariantConverter(p8Type)!!, getVariantConverter(p9Type)!!,
+        getVariantConverter(p10Type)!!, getVariantConverter(p11Type)!!,
+        getVariantConverter(p12Type)!!, getVariantConverter(p13Type)!!,
+        getVariantConverter(p14Type)!!), function))
 
-  public override fun bind(
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-    p14: P14,
-  ) = LambdaCallable4<R, P0, P1, P2, P3>(container,
-      arrayOf<Any?>(p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, *boundArgs))
-
-  public override fun bind(
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-    p14: P14,
-  ) = LambdaCallable5<R, P0, P1, P2, P3, P4>(container,
-      arrayOf<Any?>(p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, *boundArgs))
-
-  public override fun bind(
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-    p14: P14,
-  ) = LambdaCallable6<R, P0, P1, P2, P3, P4, P5>(container,
-      arrayOf<Any?>(p6, p7, p8, p9, p10, p11, p12, p13, p14, *boundArgs))
-
-  public override fun bind(
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-    p14: P14,
-  ) = LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>(container,
-      arrayOf<Any?>(p7, p8, p9, p10, p11, p12, p13, p14, *boundArgs))
-
-  public override fun bind(
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-    p14: P14,
-  ) = LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7>(container,
-      arrayOf<Any?>(p8, p9, p10, p11, p12, p13, p14, *boundArgs))
-
-  public override fun bind(
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-    p14: P14,
-  ) = LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>(container,
-      arrayOf<Any?>(p9, p10, p11, p12, p13, p14, *boundArgs))
-
-  public override fun bind(
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-    p14: P14,
-  ) = LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(container,
-      arrayOf<Any?>(p10, p11, p12, p13, p14, *boundArgs))
-
-  public override fun bind(
-    p11: P11,
-    p12: P12,
-    p13: P13,
-    p14: P14,
-  ) = LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(container,
-      arrayOf<Any?>(p11, p12, p13, p14, *boundArgs))
-
-  public override fun bind(
-    p12: P12,
-    p13: P13,
-    p14: P14,
-  ) = LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>(container,
-      arrayOf<Any?>(p12, p13, p14, *boundArgs))
-
-  public override fun bind(p13: P13, p14: P14) =
-      LambdaCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>(container,
-      arrayOf<Any?>(p13, p14, *boundArgs))
-
-  public override fun bind(p14: P14) =
-      LambdaCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>(container,
-      arrayOf<Any?>(p14, *boundArgs))
+    @JvmStatic
+    @JvmName("create")
+    public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14> _createJava(
+      p0Type: Class<P0>,
+      p1Type: Class<P1>,
+      p2Type: Class<P2>,
+      p3Type: Class<P3>,
+      p4Type: Class<P4>,
+      p5Type: Class<P5>,
+      p6Type: Class<P6>,
+      p7Type: Class<P7>,
+      p8Type: Class<P8>,
+      p9Type: Class<P9>,
+      p10Type: Class<P10>,
+      p11Type: Class<P11>,
+      p12Type: Class<P12>,
+      p13Type: Class<P13>,
+      p14Type: Class<P14>,
+      action: JvmAction15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>,
+    ): LambdaCallable15<Void?, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14> =
+        LambdaCallable15<Void?, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>(LambdaContainer15<Void?, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>(getVariantConverter(Void::class.java)!!,
+        arrayOf(getVariantConverter(p0Type)!!, getVariantConverter(p1Type)!!,
+        getVariantConverter(p2Type)!!, getVariantConverter(p3Type)!!, getVariantConverter(p4Type)!!,
+        getVariantConverter(p5Type)!!, getVariantConverter(p6Type)!!, getVariantConverter(p7Type)!!,
+        getVariantConverter(p8Type)!!, getVariantConverter(p9Type)!!,
+        getVariantConverter(p10Type)!!, getVariantConverter(p11Type)!!,
+        getVariantConverter(p12Type)!!, getVariantConverter(p13Type)!!,
+        getVariantConverter(p14Type)!!), object :
+        JvmFunction15<Void?, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14> {
+      override fun invoke(p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8,
+          p9: P9, p10: P10, p11: P11, p12: P12, p13: P13, p14: P14): Void? {
+        action.invoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14)
+        return null
+      }
+    }
+    ))
+  }
 }
 
 public inline fun <reified R, reified P0, reified P1, reified P2, reified P3, reified P4, reified
     P5, reified P6, reified P7, reified P8, reified P9, reified P10, reified P11, reified P12,
-    reified P13, reified P14> callable15(noinline function: (
+    reified P13, reified P14> lambdaCallable15(noinline function: (
   p0: P0,
   p1: P1,
   p2: P2,
@@ -1522,7 +2261,7 @@ public inline fun <reified R, reified P0, reified P1, reified P2, reified P3, re
   p13: P13,
   p14: P14,
 ) -> R) =
-    LambdaCallable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>(LambdaContainer15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>(variantMapper.getOrDefault(R::class, NIL), arrayOf(variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, variantMapper[P8::class]!!, variantMapper[P9::class]!!, variantMapper[P10::class]!!, variantMapper[P11::class]!!, variantMapper[P12::class]!!, variantMapper[P13::class]!!, variantMapper[P14::class]!!), function))
+    LambdaCallable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>(LambdaContainer15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>(getVariantConverter<R>()!!, arrayOf(getVariantConverter<P0>()!!, getVariantConverter<P1>()!!, getVariantConverter<P2>()!!, getVariantConverter<P3>()!!, getVariantConverter<P4>()!!, getVariantConverter<P5>()!!, getVariantConverter<P6>()!!, getVariantConverter<P7>()!!, getVariantConverter<P8>()!!, getVariantConverter<P9>()!!, getVariantConverter<P10>()!!, getVariantConverter<P11>()!!, getVariantConverter<P12>()!!, getVariantConverter<P13>()!!, getVariantConverter<P14>()!!), function))
 
 public inline fun <reified R, reified P0, reified P1, reified P2, reified P3, reified P4, reified
     P5, reified P6, reified P7, reified P8, reified P9, reified P10, reified P11, reified P12,
@@ -1542,7 +2281,7 @@ public inline fun <reified R, reified P0, reified P1, reified P2, reified P3, re
   p12: P12,
   p13: P13,
   p14: P14,
-) -> R).asCallable() = callable15(this)
+) -> R).asCallable() = lambdaCallable15(this)
 
 public class LambdaCallable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14,
     P15> @PublishedApi internal constructor(
@@ -1550,9 +2289,147 @@ public class LambdaCallable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
   boundArgs: Array<Any?> = emptyArray(),
 ) : LambdaCallable<R>(container, boundArgs),
     Callable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15> {
+  public override fun bind(p15: P15) =
+      LambdaCallable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>(container,
+      arrayOf<Any?>(p15, *boundArgs))
+
+  public override fun bind(p14: P14, p15: P15) =
+      LambdaCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>(container,
+      arrayOf<Any?>(p14, p15, *boundArgs))
+
   public override fun bind(
-    p0: P0,
-    p1: P1,
+    p13: P13,
+    p14: P14,
+    p15: P15,
+  ) = LambdaCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>(container,
+      arrayOf<Any?>(p13, p14, p15, *boundArgs))
+
+  public override fun bind(
+    p12: P12,
+    p13: P13,
+    p14: P14,
+    p15: P15,
+  ) = LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>(container,
+      arrayOf<Any?>(p12, p13, p14, p15, *boundArgs))
+
+  public override fun bind(
+    p11: P11,
+    p12: P12,
+    p13: P13,
+    p14: P14,
+    p15: P15,
+  ) = LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(container,
+      arrayOf<Any?>(p11, p12, p13, p14, p15, *boundArgs))
+
+  public override fun bind(
+    p10: P10,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+    p14: P14,
+    p15: P15,
+  ) = LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(container,
+      arrayOf<Any?>(p10, p11, p12, p13, p14, p15, *boundArgs))
+
+  public override fun bind(
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+    p14: P14,
+    p15: P15,
+  ) = LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>(container,
+      arrayOf<Any?>(p9, p10, p11, p12, p13, p14, p15, *boundArgs))
+
+  public override fun bind(
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+    p14: P14,
+    p15: P15,
+  ) = LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7>(container,
+      arrayOf<Any?>(p8, p9, p10, p11, p12, p13, p14, p15, *boundArgs))
+
+  public override fun bind(
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+    p14: P14,
+    p15: P15,
+  ) = LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>(container,
+      arrayOf<Any?>(p7, p8, p9, p10, p11, p12, p13, p14, p15, *boundArgs))
+
+  public override fun bind(
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+    p14: P14,
+    p15: P15,
+  ) = LambdaCallable6<R, P0, P1, P2, P3, P4, P5>(container,
+      arrayOf<Any?>(p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, *boundArgs))
+
+  public override fun bind(
+    p5: P5,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+    p14: P14,
+    p15: P15,
+  ) = LambdaCallable5<R, P0, P1, P2, P3, P4>(container,
+      arrayOf<Any?>(p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, *boundArgs))
+
+  public override fun bind(
+    p4: P4,
+    p5: P5,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+    p14: P14,
+    p15: P15,
+  ) = LambdaCallable4<R, P0, P1, P2, P3>(container,
+      arrayOf<Any?>(p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, *boundArgs))
+
+  public override fun bind(
+    p3: P3,
+    p4: P4,
+    p5: P5,
+    p6: P6,
+    p7: P7,
+    p8: P8,
+    p9: P9,
+    p10: P10,
+    p11: P11,
+    p12: P12,
+    p13: P13,
+    p14: P14,
+    p15: P15,
+  ) = LambdaCallable3<R, P0, P1, P2>(container,
+      arrayOf<Any?>(p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, *boundArgs))
+
+  public override fun bind(
     p2: P2,
     p3: P3,
     p4: P4,
@@ -1567,9 +2444,8 @@ public class LambdaCallable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p13: P13,
     p14: P14,
     p15: P15,
-  ) = LambdaCallable0<R>(container,
-      arrayOf<Any?>(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15,
-      *boundArgs))
+  ) = LambdaCallable2<R, P0, P1>(container,
+      arrayOf<Any?>(p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, *boundArgs))
 
   public override fun bind(
     p1: P1,
@@ -1591,6 +2467,8 @@ public class LambdaCallable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
       arrayOf<Any?>(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, *boundArgs))
 
   public override fun bind(
+    p0: P0,
+    p1: P1,
     p2: P2,
     p3: P3,
     p4: P4,
@@ -1605,153 +2483,87 @@ public class LambdaCallable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
     p13: P13,
     p14: P14,
     p15: P15,
-  ) = LambdaCallable2<R, P0, P1>(container,
-      arrayOf<Any?>(p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, *boundArgs))
+  ) = LambdaCallable0<R>(container,
+      arrayOf<Any?>(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15,
+      *boundArgs))
 
-  public override fun bind(
-    p3: P3,
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-    p14: P14,
-    p15: P15,
-  ) = LambdaCallable3<R, P0, P1, P2>(container,
-      arrayOf<Any?>(p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, *boundArgs))
+  public companion object {
+    @JvmStatic
+    @JvmName("create")
+    public fun <R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>
+        _createJava(
+      returnType: Class<R>,
+      p0Type: Class<P0>,
+      p1Type: Class<P1>,
+      p2Type: Class<P2>,
+      p3Type: Class<P3>,
+      p4Type: Class<P4>,
+      p5Type: Class<P5>,
+      p6Type: Class<P6>,
+      p7Type: Class<P7>,
+      p8Type: Class<P8>,
+      p9Type: Class<P9>,
+      p10Type: Class<P10>,
+      p11Type: Class<P11>,
+      p12Type: Class<P12>,
+      p13Type: Class<P13>,
+      p14Type: Class<P14>,
+      p15Type: Class<P15>,
+      function: JvmFunction16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>,
+    ): LambdaCallable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15> =
+        LambdaCallable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>(LambdaContainer16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>(getVariantConverter(returnType)!!,
+        arrayOf(getVariantConverter(p0Type)!!, getVariantConverter(p1Type)!!,
+        getVariantConverter(p2Type)!!, getVariantConverter(p3Type)!!, getVariantConverter(p4Type)!!,
+        getVariantConverter(p5Type)!!, getVariantConverter(p6Type)!!, getVariantConverter(p7Type)!!,
+        getVariantConverter(p8Type)!!, getVariantConverter(p9Type)!!,
+        getVariantConverter(p10Type)!!, getVariantConverter(p11Type)!!,
+        getVariantConverter(p12Type)!!, getVariantConverter(p13Type)!!,
+        getVariantConverter(p14Type)!!, getVariantConverter(p15Type)!!), function))
 
-  public override fun bind(
-    p4: P4,
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-    p14: P14,
-    p15: P15,
-  ) = LambdaCallable4<R, P0, P1, P2, P3>(container,
-      arrayOf<Any?>(p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, *boundArgs))
-
-  public override fun bind(
-    p5: P5,
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-    p14: P14,
-    p15: P15,
-  ) = LambdaCallable5<R, P0, P1, P2, P3, P4>(container,
-      arrayOf<Any?>(p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, *boundArgs))
-
-  public override fun bind(
-    p6: P6,
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-    p14: P14,
-    p15: P15,
-  ) = LambdaCallable6<R, P0, P1, P2, P3, P4, P5>(container,
-      arrayOf<Any?>(p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, *boundArgs))
-
-  public override fun bind(
-    p7: P7,
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-    p14: P14,
-    p15: P15,
-  ) = LambdaCallable7<R, P0, P1, P2, P3, P4, P5, P6>(container,
-      arrayOf<Any?>(p7, p8, p9, p10, p11, p12, p13, p14, p15, *boundArgs))
-
-  public override fun bind(
-    p8: P8,
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-    p14: P14,
-    p15: P15,
-  ) = LambdaCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7>(container,
-      arrayOf<Any?>(p8, p9, p10, p11, p12, p13, p14, p15, *boundArgs))
-
-  public override fun bind(
-    p9: P9,
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-    p14: P14,
-    p15: P15,
-  ) = LambdaCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>(container,
-      arrayOf<Any?>(p9, p10, p11, p12, p13, p14, p15, *boundArgs))
-
-  public override fun bind(
-    p10: P10,
-    p11: P11,
-    p12: P12,
-    p13: P13,
-    p14: P14,
-    p15: P15,
-  ) = LambdaCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(container,
-      arrayOf<Any?>(p10, p11, p12, p13, p14, p15, *boundArgs))
-
-  public override fun bind(
-    p11: P11,
-    p12: P12,
-    p13: P13,
-    p14: P14,
-    p15: P15,
-  ) = LambdaCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(container,
-      arrayOf<Any?>(p11, p12, p13, p14, p15, *boundArgs))
-
-  public override fun bind(
-    p12: P12,
-    p13: P13,
-    p14: P14,
-    p15: P15,
-  ) = LambdaCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>(container,
-      arrayOf<Any?>(p12, p13, p14, p15, *boundArgs))
-
-  public override fun bind(
-    p13: P13,
-    p14: P14,
-    p15: P15,
-  ) = LambdaCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>(container,
-      arrayOf<Any?>(p13, p14, p15, *boundArgs))
-
-  public override fun bind(p14: P14, p15: P15) =
-      LambdaCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>(container,
-      arrayOf<Any?>(p14, p15, *boundArgs))
-
-  public override fun bind(p15: P15) =
-      LambdaCallable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>(container,
-      arrayOf<Any?>(p15, *boundArgs))
+    @JvmStatic
+    @JvmName("create")
+    public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15> _createJava(
+      p0Type: Class<P0>,
+      p1Type: Class<P1>,
+      p2Type: Class<P2>,
+      p3Type: Class<P3>,
+      p4Type: Class<P4>,
+      p5Type: Class<P5>,
+      p6Type: Class<P6>,
+      p7Type: Class<P7>,
+      p8Type: Class<P8>,
+      p9Type: Class<P9>,
+      p10Type: Class<P10>,
+      p11Type: Class<P11>,
+      p12Type: Class<P12>,
+      p13Type: Class<P13>,
+      p14Type: Class<P14>,
+      p15Type: Class<P15>,
+      action: JvmAction16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>,
+    ): LambdaCallable16<Void?, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>
+        =
+        LambdaCallable16<Void?, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>(LambdaContainer16<Void?, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>(getVariantConverter(Void::class.java)!!,
+        arrayOf(getVariantConverter(p0Type)!!, getVariantConverter(p1Type)!!,
+        getVariantConverter(p2Type)!!, getVariantConverter(p3Type)!!, getVariantConverter(p4Type)!!,
+        getVariantConverter(p5Type)!!, getVariantConverter(p6Type)!!, getVariantConverter(p7Type)!!,
+        getVariantConverter(p8Type)!!, getVariantConverter(p9Type)!!,
+        getVariantConverter(p10Type)!!, getVariantConverter(p11Type)!!,
+        getVariantConverter(p12Type)!!, getVariantConverter(p13Type)!!,
+        getVariantConverter(p14Type)!!, getVariantConverter(p15Type)!!), object :
+        JvmFunction16<Void?, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15> {
+      override fun invoke(p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8,
+          p9: P9, p10: P10, p11: P11, p12: P12, p13: P13, p14: P14, p15: P15): Void? {
+        action.invoke(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15)
+        return null
+      }
+    }
+    ))
+  }
 }
 
 public inline fun <reified R, reified P0, reified P1, reified P2, reified P3, reified P4, reified
     P5, reified P6, reified P7, reified P8, reified P9, reified P10, reified P11, reified P12,
-    reified P13, reified P14, reified P15> callable16(noinline function: (
+    reified P13, reified P14, reified P15> lambdaCallable16(noinline function: (
   p0: P0,
   p1: P1,
   p2: P2,
@@ -1769,7 +2581,7 @@ public inline fun <reified R, reified P0, reified P1, reified P2, reified P3, re
   p14: P14,
   p15: P15,
 ) -> R) =
-    LambdaCallable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>(LambdaContainer16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>(variantMapper.getOrDefault(R::class, NIL), arrayOf(variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, variantMapper[P8::class]!!, variantMapper[P9::class]!!, variantMapper[P10::class]!!, variantMapper[P11::class]!!, variantMapper[P12::class]!!, variantMapper[P13::class]!!, variantMapper[P14::class]!!, variantMapper[P15::class]!!), function))
+    LambdaCallable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>(LambdaContainer16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>(getVariantConverter<R>()!!, arrayOf(getVariantConverter<P0>()!!, getVariantConverter<P1>()!!, getVariantConverter<P2>()!!, getVariantConverter<P3>()!!, getVariantConverter<P4>()!!, getVariantConverter<P5>()!!, getVariantConverter<P6>()!!, getVariantConverter<P7>()!!, getVariantConverter<P8>()!!, getVariantConverter<P9>()!!, getVariantConverter<P10>()!!, getVariantConverter<P11>()!!, getVariantConverter<P12>()!!, getVariantConverter<P13>()!!, getVariantConverter<P14>()!!, getVariantConverter<P15>()!!), function))
 
 public inline fun <reified R, reified P0, reified P1, reified P2, reified P3, reified P4, reified
     P5, reified P6, reified P7, reified P8, reified P9, reified P10, reified P11, reified P12,
@@ -1790,4 +2602,4 @@ public inline fun <reified R, reified P0, reified P1, reified P2, reified P3, re
   p13: P13,
   p14: P14,
   p15: P15,
-) -> R).asCallable() = callable16(this)
+) -> R).asCallable() = lambdaCallable16(this)

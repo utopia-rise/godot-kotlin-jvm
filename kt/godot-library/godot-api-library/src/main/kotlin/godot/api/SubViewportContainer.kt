@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -19,6 +21,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -127,7 +130,31 @@ public open class SubViewportContainer : Container() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setStretchName: MethodStringName1<SubViewportContainer, Unit, Boolean> =
+        MethodStringName1<SubViewportContainer, Unit, Boolean>("set_stretch")
+
+    @JvmField
+    public val isStretchEnabledName: MethodStringName0<SubViewportContainer, Boolean> =
+        MethodStringName0<SubViewportContainer, Boolean>("is_stretch_enabled")
+
+    @JvmField
+    public val setStretchShrinkName: MethodStringName1<SubViewportContainer, Unit, Int> =
+        MethodStringName1<SubViewportContainer, Unit, Int>("set_stretch_shrink")
+
+    @JvmField
+    public val getStretchShrinkName: MethodStringName0<SubViewportContainer, Int> =
+        MethodStringName0<SubViewportContainer, Int>("get_stretch_shrink")
+
+    @JvmField
+    public val setMouseTargetName: MethodStringName1<SubViewportContainer, Unit, Boolean> =
+        MethodStringName1<SubViewportContainer, Unit, Boolean>("set_mouse_target")
+
+    @JvmField
+    public val isMouseTargetEnabledName: MethodStringName0<SubViewportContainer, Boolean> =
+        MethodStringName0<SubViewportContainer, Boolean>("is_mouse_target_enabled")
+  }
 
   public object MethodBindings {
     internal val setStretchPtr: VoidPtr =

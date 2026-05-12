@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.PackedByteArray
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -22,6 +24,7 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -426,7 +429,27 @@ public open class RDShaderSPIRV : Resource() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setStageBytecodeName:
+        MethodStringName2<RDShaderSPIRV, Unit, RenderingDevice.ShaderStage, PackedByteArray> =
+        MethodStringName2<RDShaderSPIRV, Unit, RenderingDevice.ShaderStage, PackedByteArray>("set_stage_bytecode")
+
+    @JvmField
+    public val getStageBytecodeName:
+        MethodStringName1<RDShaderSPIRV, PackedByteArray, RenderingDevice.ShaderStage> =
+        MethodStringName1<RDShaderSPIRV, PackedByteArray, RenderingDevice.ShaderStage>("get_stage_bytecode")
+
+    @JvmField
+    public val setStageCompileErrorName:
+        MethodStringName2<RDShaderSPIRV, Unit, RenderingDevice.ShaderStage, String> =
+        MethodStringName2<RDShaderSPIRV, Unit, RenderingDevice.ShaderStage, String>("set_stage_compile_error")
+
+    @JvmField
+    public val getStageCompileErrorName:
+        MethodStringName1<RDShaderSPIRV, String, RenderingDevice.ShaderStage> =
+        MethodStringName1<RDShaderSPIRV, String, RenderingDevice.ShaderStage>("get_stage_compile_error")
+  }
 
   public object MethodBindings {
     internal val setStageBytecodePtr: VoidPtr =

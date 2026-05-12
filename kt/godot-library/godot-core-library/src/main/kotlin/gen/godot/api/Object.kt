@@ -15,6 +15,11 @@ import godot.core.Dictionary
 import godot.core.Error
 import godot.core.GodotEnum
 import godot.core.KtObject
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
+import godot.core.MethodStringName4
 import godot.core.NodePath
 import godot.core.Signal0
 import godot.core.StringName
@@ -37,6 +42,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -1591,6 +1597,192 @@ public open class Object : KtObject() {
   }
 
   public companion object {
+    @JvmField
+    public val getClassName: MethodStringName0<Object, String> =
+        MethodStringName0<Object, String>("get_class")
+
+    @JvmField
+    public val isClassName: MethodStringName1<Object, Boolean, String> =
+        MethodStringName1<Object, Boolean, String>("is_class")
+
+    @JvmField
+    public val setName: MethodStringName2<Object, Unit, StringName, Any?> =
+        MethodStringName2<Object, Unit, StringName, Any?>("set")
+
+    @JvmField
+    public val getName: MethodStringName1<Object, Any?, StringName> =
+        MethodStringName1<Object, Any?, StringName>("get")
+
+    @JvmField
+    public val setIndexedName: MethodStringName2<Object, Unit, NodePath, Any?> =
+        MethodStringName2<Object, Unit, NodePath, Any?>("set_indexed")
+
+    @JvmField
+    public val getIndexedName: MethodStringName1<Object, Any?, NodePath> =
+        MethodStringName1<Object, Any?, NodePath>("get_indexed")
+
+    @JvmField
+    public val getPropertyListName: MethodStringName0<Object, VariantArray<Dictionary<Any?, Any?>>>
+        = MethodStringName0<Object, VariantArray<Dictionary<Any?, Any?>>>("get_property_list")
+
+    @JvmField
+    public val getMethodListName: MethodStringName0<Object, VariantArray<Dictionary<Any?, Any?>>> =
+        MethodStringName0<Object, VariantArray<Dictionary<Any?, Any?>>>("get_method_list")
+
+    @JvmField
+    public val propertyCanRevertName: MethodStringName1<Object, Boolean, StringName> =
+        MethodStringName1<Object, Boolean, StringName>("property_can_revert")
+
+    @JvmField
+    public val propertyGetRevertName: MethodStringName1<Object, Any?, StringName> =
+        MethodStringName1<Object, Any?, StringName>("property_get_revert")
+
+    @JvmField
+    public val notificationName: MethodStringName2<Object, Unit, Int, Boolean> =
+        MethodStringName2<Object, Unit, Int, Boolean>("notification")
+
+    @JvmField
+    public val toStringName: MethodStringName0<Object, String> =
+        MethodStringName0<Object, String>("to_string")
+
+    @JvmField
+    public val getInstanceIdName: MethodStringName0<Object, Long> =
+        MethodStringName0<Object, Long>("get_instance_id")
+
+    @JvmField
+    public val setScriptName: MethodStringName1<Object, Unit, Any?> =
+        MethodStringName1<Object, Unit, Any?>("set_script")
+
+    @JvmField
+    public val getScriptName: MethodStringName0<Object, Any?> =
+        MethodStringName0<Object, Any?>("get_script")
+
+    @JvmField
+    public val setMetaName: MethodStringName2<Object, Unit, StringName, Any?> =
+        MethodStringName2<Object, Unit, StringName, Any?>("set_meta")
+
+    @JvmField
+    public val removeMetaName: MethodStringName1<Object, Unit, StringName> =
+        MethodStringName1<Object, Unit, StringName>("remove_meta")
+
+    @JvmField
+    public val getMetaName: MethodStringName2<Object, Any?, StringName, Any?> =
+        MethodStringName2<Object, Any?, StringName, Any?>("get_meta")
+
+    @JvmField
+    public val hasMetaName: MethodStringName1<Object, Boolean, StringName> =
+        MethodStringName1<Object, Boolean, StringName>("has_meta")
+
+    @JvmField
+    public val getMetaListName: MethodStringName0<Object, VariantArray<StringName>> =
+        MethodStringName0<Object, VariantArray<StringName>>("get_meta_list")
+
+    @JvmField
+    public val addUserSignalName: MethodStringName2<Object, Unit, String, VariantArray<Any?>> =
+        MethodStringName2<Object, Unit, String, VariantArray<Any?>>("add_user_signal")
+
+    @JvmField
+    public val hasUserSignalName: MethodStringName1<Object, Boolean, StringName> =
+        MethodStringName1<Object, Boolean, StringName>("has_user_signal")
+
+    @JvmField
+    public val removeUserSignalName: MethodStringName1<Object, Unit, StringName> =
+        MethodStringName1<Object, Unit, StringName>("remove_user_signal")
+
+    @JvmField
+    public val setDeferredName: MethodStringName2<Object, Unit, StringName, Any?> =
+        MethodStringName2<Object, Unit, StringName, Any?>("set_deferred")
+
+    @JvmField
+    public val callvName: MethodStringName2<Object, Any?, StringName, VariantArray<Any?>> =
+        MethodStringName2<Object, Any?, StringName, VariantArray<Any?>>("callv")
+
+    @JvmField
+    public val hasMethodName: MethodStringName1<Object, Boolean, StringName> =
+        MethodStringName1<Object, Boolean, StringName>("has_method")
+
+    @JvmField
+    public val getMethodArgumentCountName: MethodStringName1<Object, Int, StringName> =
+        MethodStringName1<Object, Int, StringName>("get_method_argument_count")
+
+    @JvmField
+    public val hasSignalName: MethodStringName1<Object, Boolean, StringName> =
+        MethodStringName1<Object, Boolean, StringName>("has_signal")
+
+    @JvmField
+    public val getSignalListName: MethodStringName0<Object, VariantArray<Dictionary<Any?, Any?>>> =
+        MethodStringName0<Object, VariantArray<Dictionary<Any?, Any?>>>("get_signal_list")
+
+    @JvmField
+    public val getSignalConnectionListName:
+        MethodStringName1<Object, VariantArray<Dictionary<Any?, Any?>>, StringName> =
+        MethodStringName1<Object, VariantArray<Dictionary<Any?, Any?>>, StringName>("get_signal_connection_list")
+
+    @JvmField
+    public val getIncomingConnectionsName:
+        MethodStringName0<Object, VariantArray<Dictionary<Any?, Any?>>> =
+        MethodStringName0<Object, VariantArray<Dictionary<Any?, Any?>>>("get_incoming_connections")
+
+    @JvmField
+    public val connectName: MethodStringName3<Object, Error, StringName, Callable, ConnectFlags> =
+        MethodStringName3<Object, Error, StringName, Callable, ConnectFlags>("connect")
+
+    @JvmField
+    public val disconnectName: MethodStringName2<Object, Unit, StringName, Callable> =
+        MethodStringName2<Object, Unit, StringName, Callable>("disconnect")
+
+    @JvmField
+    public val isConnectedName: MethodStringName2<Object, Boolean, StringName, Callable> =
+        MethodStringName2<Object, Boolean, StringName, Callable>("is_connected")
+
+    @JvmField
+    public val hasConnectionsName: MethodStringName1<Object, Boolean, StringName> =
+        MethodStringName1<Object, Boolean, StringName>("has_connections")
+
+    @JvmField
+    public val setBlockSignalsName: MethodStringName1<Object, Unit, Boolean> =
+        MethodStringName1<Object, Unit, Boolean>("set_block_signals")
+
+    @JvmField
+    public val isBlockingSignalsName: MethodStringName0<Object, Boolean> =
+        MethodStringName0<Object, Boolean>("is_blocking_signals")
+
+    @JvmField
+    public val notifyPropertyListChangedName: MethodStringName0<Object, Unit> =
+        MethodStringName0<Object, Unit>("notify_property_list_changed")
+
+    @JvmField
+    public val setMessageTranslationName: MethodStringName1<Object, Unit, Boolean> =
+        MethodStringName1<Object, Unit, Boolean>("set_message_translation")
+
+    @JvmField
+    public val canTranslateMessagesName: MethodStringName0<Object, Boolean> =
+        MethodStringName0<Object, Boolean>("can_translate_messages")
+
+    @JvmField
+    public val trName: MethodStringName2<Object, String, StringName, StringName> =
+        MethodStringName2<Object, String, StringName, StringName>("tr")
+
+    @JvmField
+    public val trNName: MethodStringName4<Object, String, StringName, StringName, Int, StringName> =
+        MethodStringName4<Object, String, StringName, StringName, Int, StringName>("tr_n")
+
+    @JvmField
+    public val getTranslationDomainName: MethodStringName0<Object, StringName> =
+        MethodStringName0<Object, StringName>("get_translation_domain")
+
+    @JvmField
+    public val setTranslationDomainName: MethodStringName1<Object, Unit, StringName> =
+        MethodStringName1<Object, Unit, StringName>("set_translation_domain")
+
+    @JvmField
+    public val isQueuedForDeletionName: MethodStringName0<Object, Boolean> =
+        MethodStringName0<Object, Boolean>("is_queued_for_deletion")
+
+    @JvmField
+    public val cancelFreeName: MethodStringName0<Object, Unit> =
+        MethodStringName0<Object, Unit>("cancel_free")
+
     /**
      * Notification received when the object is initialized, before its script is attached. Used
      * internally.

@@ -11,6 +11,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.MethodStringName1
+import godot.core.MethodStringName3
+import godot.core.MethodStringName4
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.STRING
@@ -20,6 +23,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -112,7 +116,23 @@ public open class PCKPacker : RefCounted() {
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val pckStartName: MethodStringName4<PCKPacker, Error, String, Int, String, Boolean> =
+        MethodStringName4<PCKPacker, Error, String, Int, String, Boolean>("pck_start")
+
+    @JvmField
+    public val addFileName: MethodStringName3<PCKPacker, Error, String, String, Boolean> =
+        MethodStringName3<PCKPacker, Error, String, String, Boolean>("add_file")
+
+    @JvmField
+    public val addFileRemovalName: MethodStringName1<PCKPacker, Error, String> =
+        MethodStringName1<PCKPacker, Error, String>("add_file_removal")
+
+    @JvmField
+    public val flushName: MethodStringName1<PCKPacker, Error, Boolean> =
+        MethodStringName1<PCKPacker, Error, Boolean>("flush")
+  }
 
   public object MethodBindings {
     internal val pckStartPtr: VoidPtr =

@@ -11,11 +11,14 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -164,7 +167,15 @@ public open class VisualShaderNodeColorOp : VisualShaderNode() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setOperatorName: MethodStringName1<VisualShaderNodeColorOp, Unit, Operator> =
+        MethodStringName1<VisualShaderNodeColorOp, Unit, Operator>("set_operator")
+
+    @JvmField
+    public val getOperatorName: MethodStringName0<VisualShaderNodeColorOp, Operator> =
+        MethodStringName0<VisualShaderNodeColorOp, Operator>("get_operator")
+  }
 
   public object MethodBindings {
     internal val setOperatorPtr: VoidPtr =

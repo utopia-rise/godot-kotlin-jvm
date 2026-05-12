@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -21,6 +23,7 @@ import kotlin.Double
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -374,7 +377,87 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setFadeinTimeName: MethodStringName1<AnimationNodeOneShot, Unit, Double> =
+        MethodStringName1<AnimationNodeOneShot, Unit, Double>("set_fadein_time")
+
+    @JvmField
+    public val getFadeinTimeName: MethodStringName0<AnimationNodeOneShot, Double> =
+        MethodStringName0<AnimationNodeOneShot, Double>("get_fadein_time")
+
+    @JvmField
+    public val setFadeinCurveName: MethodStringName1<AnimationNodeOneShot, Unit, Curve?> =
+        MethodStringName1<AnimationNodeOneShot, Unit, Curve?>("set_fadein_curve")
+
+    @JvmField
+    public val getFadeinCurveName: MethodStringName0<AnimationNodeOneShot, Curve?> =
+        MethodStringName0<AnimationNodeOneShot, Curve?>("get_fadein_curve")
+
+    @JvmField
+    public val setFadeoutTimeName: MethodStringName1<AnimationNodeOneShot, Unit, Double> =
+        MethodStringName1<AnimationNodeOneShot, Unit, Double>("set_fadeout_time")
+
+    @JvmField
+    public val getFadeoutTimeName: MethodStringName0<AnimationNodeOneShot, Double> =
+        MethodStringName0<AnimationNodeOneShot, Double>("get_fadeout_time")
+
+    @JvmField
+    public val setFadeoutCurveName: MethodStringName1<AnimationNodeOneShot, Unit, Curve?> =
+        MethodStringName1<AnimationNodeOneShot, Unit, Curve?>("set_fadeout_curve")
+
+    @JvmField
+    public val getFadeoutCurveName: MethodStringName0<AnimationNodeOneShot, Curve?> =
+        MethodStringName0<AnimationNodeOneShot, Curve?>("get_fadeout_curve")
+
+    @JvmField
+    public val setBreakLoopAtEndName: MethodStringName1<AnimationNodeOneShot, Unit, Boolean> =
+        MethodStringName1<AnimationNodeOneShot, Unit, Boolean>("set_break_loop_at_end")
+
+    @JvmField
+    public val isLoopBrokenAtEndName: MethodStringName0<AnimationNodeOneShot, Boolean> =
+        MethodStringName0<AnimationNodeOneShot, Boolean>("is_loop_broken_at_end")
+
+    @JvmField
+    public val setAbortOnResetName: MethodStringName1<AnimationNodeOneShot, Unit, Boolean> =
+        MethodStringName1<AnimationNodeOneShot, Unit, Boolean>("set_abort_on_reset")
+
+    @JvmField
+    public val isAbortedOnResetName: MethodStringName0<AnimationNodeOneShot, Boolean> =
+        MethodStringName0<AnimationNodeOneShot, Boolean>("is_aborted_on_reset")
+
+    @JvmField
+    public val setAutorestartName: MethodStringName1<AnimationNodeOneShot, Unit, Boolean> =
+        MethodStringName1<AnimationNodeOneShot, Unit, Boolean>("set_autorestart")
+
+    @JvmField
+    public val hasAutorestartName: MethodStringName0<AnimationNodeOneShot, Boolean> =
+        MethodStringName0<AnimationNodeOneShot, Boolean>("has_autorestart")
+
+    @JvmField
+    public val setAutorestartDelayName: MethodStringName1<AnimationNodeOneShot, Unit, Double> =
+        MethodStringName1<AnimationNodeOneShot, Unit, Double>("set_autorestart_delay")
+
+    @JvmField
+    public val getAutorestartDelayName: MethodStringName0<AnimationNodeOneShot, Double> =
+        MethodStringName0<AnimationNodeOneShot, Double>("get_autorestart_delay")
+
+    @JvmField
+    public val setAutorestartRandomDelayName: MethodStringName1<AnimationNodeOneShot, Unit, Double>
+        = MethodStringName1<AnimationNodeOneShot, Unit, Double>("set_autorestart_random_delay")
+
+    @JvmField
+    public val getAutorestartRandomDelayName: MethodStringName0<AnimationNodeOneShot, Double> =
+        MethodStringName0<AnimationNodeOneShot, Double>("get_autorestart_random_delay")
+
+    @JvmField
+    public val setMixModeName: MethodStringName1<AnimationNodeOneShot, Unit, MixMode> =
+        MethodStringName1<AnimationNodeOneShot, Unit, MixMode>("set_mix_mode")
+
+    @JvmField
+    public val getMixModeName: MethodStringName0<AnimationNodeOneShot, MixMode> =
+        MethodStringName0<AnimationNodeOneShot, MixMode>("get_mix_mode")
+  }
 
   public object MethodBindings {
     internal val setFadeinTimePtr: VoidPtr =

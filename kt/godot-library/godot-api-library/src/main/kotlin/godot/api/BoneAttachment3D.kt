@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.NodePath
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
@@ -24,6 +26,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -177,7 +180,55 @@ public open class BoneAttachment3D : Node3D() {
   public final fun setExternalSkeleton(externalSkeleton: String) =
       setExternalSkeleton(externalSkeleton.asCachedNodePath())
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val getSkeletonName: MethodStringName0<BoneAttachment3D, Skeleton3D?> =
+        MethodStringName0<BoneAttachment3D, Skeleton3D?>("get_skeleton")
+
+    @JvmField
+    public val setBoneNameName: MethodStringName1<BoneAttachment3D, Unit, String> =
+        MethodStringName1<BoneAttachment3D, Unit, String>("set_bone_name")
+
+    @JvmField
+    public val getBoneNameName: MethodStringName0<BoneAttachment3D, String> =
+        MethodStringName0<BoneAttachment3D, String>("get_bone_name")
+
+    @JvmField
+    public val setBoneIdxName: MethodStringName1<BoneAttachment3D, Unit, Int> =
+        MethodStringName1<BoneAttachment3D, Unit, Int>("set_bone_idx")
+
+    @JvmField
+    public val getBoneIdxName: MethodStringName0<BoneAttachment3D, Int> =
+        MethodStringName0<BoneAttachment3D, Int>("get_bone_idx")
+
+    @JvmField
+    public val onSkeletonUpdateName: MethodStringName0<BoneAttachment3D, Unit> =
+        MethodStringName0<BoneAttachment3D, Unit>("on_skeleton_update")
+
+    @JvmField
+    public val setOverridePoseName: MethodStringName1<BoneAttachment3D, Unit, Boolean> =
+        MethodStringName1<BoneAttachment3D, Unit, Boolean>("set_override_pose")
+
+    @JvmField
+    public val getOverridePoseName: MethodStringName0<BoneAttachment3D, Boolean> =
+        MethodStringName0<BoneAttachment3D, Boolean>("get_override_pose")
+
+    @JvmField
+    public val setUseExternalSkeletonName: MethodStringName1<BoneAttachment3D, Unit, Boolean> =
+        MethodStringName1<BoneAttachment3D, Unit, Boolean>("set_use_external_skeleton")
+
+    @JvmField
+    public val getUseExternalSkeletonName: MethodStringName0<BoneAttachment3D, Boolean> =
+        MethodStringName0<BoneAttachment3D, Boolean>("get_use_external_skeleton")
+
+    @JvmField
+    public val setExternalSkeletonName: MethodStringName1<BoneAttachment3D, Unit, NodePath> =
+        MethodStringName1<BoneAttachment3D, Unit, NodePath>("set_external_skeleton")
+
+    @JvmField
+    public val getExternalSkeletonName: MethodStringName0<BoneAttachment3D, NodePath> =
+        MethodStringName0<BoneAttachment3D, NodePath>("get_external_skeleton")
+  }
 
   public object MethodBindings {
     internal val getSkeletonPtr: VoidPtr =

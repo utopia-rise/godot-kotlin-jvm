@@ -13,6 +13,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.RID
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
@@ -589,7 +591,147 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setPathfindingAlgorithmName:
+        MethodStringName1<NavigationPathQueryParameters3D, Unit, PathfindingAlgorithm> =
+        MethodStringName1<NavigationPathQueryParameters3D, Unit, PathfindingAlgorithm>("set_pathfinding_algorithm")
+
+    @JvmField
+    public val getPathfindingAlgorithmName:
+        MethodStringName0<NavigationPathQueryParameters3D, PathfindingAlgorithm> =
+        MethodStringName0<NavigationPathQueryParameters3D, PathfindingAlgorithm>("get_pathfinding_algorithm")
+
+    @JvmField
+    public val setPathPostprocessingName:
+        MethodStringName1<NavigationPathQueryParameters3D, Unit, PathPostProcessing> =
+        MethodStringName1<NavigationPathQueryParameters3D, Unit, PathPostProcessing>("set_path_postprocessing")
+
+    @JvmField
+    public val getPathPostprocessingName:
+        MethodStringName0<NavigationPathQueryParameters3D, PathPostProcessing> =
+        MethodStringName0<NavigationPathQueryParameters3D, PathPostProcessing>("get_path_postprocessing")
+
+    @JvmField
+    public val setMapName: MethodStringName1<NavigationPathQueryParameters3D, Unit, RID> =
+        MethodStringName1<NavigationPathQueryParameters3D, Unit, RID>("set_map")
+
+    @JvmField
+    public val getMapName: MethodStringName0<NavigationPathQueryParameters3D, RID> =
+        MethodStringName0<NavigationPathQueryParameters3D, RID>("get_map")
+
+    @JvmField
+    public val setStartPositionName:
+        MethodStringName1<NavigationPathQueryParameters3D, Unit, Vector3> =
+        MethodStringName1<NavigationPathQueryParameters3D, Unit, Vector3>("set_start_position")
+
+    @JvmField
+    public val getStartPositionName: MethodStringName0<NavigationPathQueryParameters3D, Vector3> =
+        MethodStringName0<NavigationPathQueryParameters3D, Vector3>("get_start_position")
+
+    @JvmField
+    public val setTargetPositionName:
+        MethodStringName1<NavigationPathQueryParameters3D, Unit, Vector3> =
+        MethodStringName1<NavigationPathQueryParameters3D, Unit, Vector3>("set_target_position")
+
+    @JvmField
+    public val getTargetPositionName: MethodStringName0<NavigationPathQueryParameters3D, Vector3> =
+        MethodStringName0<NavigationPathQueryParameters3D, Vector3>("get_target_position")
+
+    @JvmField
+    public val setNavigationLayersName:
+        MethodStringName1<NavigationPathQueryParameters3D, Unit, Long> =
+        MethodStringName1<NavigationPathQueryParameters3D, Unit, Long>("set_navigation_layers")
+
+    @JvmField
+    public val getNavigationLayersName: MethodStringName0<NavigationPathQueryParameters3D, Long> =
+        MethodStringName0<NavigationPathQueryParameters3D, Long>("get_navigation_layers")
+
+    @JvmField
+    public val setMetadataFlagsName:
+        MethodStringName1<NavigationPathQueryParameters3D, Unit, PathMetadataFlags> =
+        MethodStringName1<NavigationPathQueryParameters3D, Unit, PathMetadataFlags>("set_metadata_flags")
+
+    @JvmField
+    public val getMetadataFlagsName:
+        MethodStringName0<NavigationPathQueryParameters3D, PathMetadataFlags> =
+        MethodStringName0<NavigationPathQueryParameters3D, PathMetadataFlags>("get_metadata_flags")
+
+    @JvmField
+    public val setSimplifyPathName:
+        MethodStringName1<NavigationPathQueryParameters3D, Unit, Boolean> =
+        MethodStringName1<NavigationPathQueryParameters3D, Unit, Boolean>("set_simplify_path")
+
+    @JvmField
+    public val getSimplifyPathName: MethodStringName0<NavigationPathQueryParameters3D, Boolean> =
+        MethodStringName0<NavigationPathQueryParameters3D, Boolean>("get_simplify_path")
+
+    @JvmField
+    public val setSimplifyEpsilonName:
+        MethodStringName1<NavigationPathQueryParameters3D, Unit, Float> =
+        MethodStringName1<NavigationPathQueryParameters3D, Unit, Float>("set_simplify_epsilon")
+
+    @JvmField
+    public val getSimplifyEpsilonName: MethodStringName0<NavigationPathQueryParameters3D, Float> =
+        MethodStringName0<NavigationPathQueryParameters3D, Float>("get_simplify_epsilon")
+
+    @JvmField
+    public val setIncludedRegionsName:
+        MethodStringName1<NavigationPathQueryParameters3D, Unit, VariantArray<RID>> =
+        MethodStringName1<NavigationPathQueryParameters3D, Unit, VariantArray<RID>>("set_included_regions")
+
+    @JvmField
+    public val getIncludedRegionsName:
+        MethodStringName0<NavigationPathQueryParameters3D, VariantArray<RID>> =
+        MethodStringName0<NavigationPathQueryParameters3D, VariantArray<RID>>("get_included_regions")
+
+    @JvmField
+    public val setExcludedRegionsName:
+        MethodStringName1<NavigationPathQueryParameters3D, Unit, VariantArray<RID>> =
+        MethodStringName1<NavigationPathQueryParameters3D, Unit, VariantArray<RID>>("set_excluded_regions")
+
+    @JvmField
+    public val getExcludedRegionsName:
+        MethodStringName0<NavigationPathQueryParameters3D, VariantArray<RID>> =
+        MethodStringName0<NavigationPathQueryParameters3D, VariantArray<RID>>("get_excluded_regions")
+
+    @JvmField
+    public val setPathReturnMaxLengthName:
+        MethodStringName1<NavigationPathQueryParameters3D, Unit, Float> =
+        MethodStringName1<NavigationPathQueryParameters3D, Unit, Float>("set_path_return_max_length")
+
+    @JvmField
+    public val getPathReturnMaxLengthName: MethodStringName0<NavigationPathQueryParameters3D, Float>
+        = MethodStringName0<NavigationPathQueryParameters3D, Float>("get_path_return_max_length")
+
+    @JvmField
+    public val setPathReturnMaxRadiusName:
+        MethodStringName1<NavigationPathQueryParameters3D, Unit, Float> =
+        MethodStringName1<NavigationPathQueryParameters3D, Unit, Float>("set_path_return_max_radius")
+
+    @JvmField
+    public val getPathReturnMaxRadiusName: MethodStringName0<NavigationPathQueryParameters3D, Float>
+        = MethodStringName0<NavigationPathQueryParameters3D, Float>("get_path_return_max_radius")
+
+    @JvmField
+    public val setPathSearchMaxPolygonsName:
+        MethodStringName1<NavigationPathQueryParameters3D, Unit, Int> =
+        MethodStringName1<NavigationPathQueryParameters3D, Unit, Int>("set_path_search_max_polygons")
+
+    @JvmField
+    public val getPathSearchMaxPolygonsName: MethodStringName0<NavigationPathQueryParameters3D, Int>
+        = MethodStringName0<NavigationPathQueryParameters3D, Int>("get_path_search_max_polygons")
+
+    @JvmField
+    public val setPathSearchMaxDistanceName:
+        MethodStringName1<NavigationPathQueryParameters3D, Unit, Float> =
+        MethodStringName1<NavigationPathQueryParameters3D, Unit, Float>("set_path_search_max_distance")
+
+    @JvmField
+    public val getPathSearchMaxDistanceName:
+        MethodStringName0<NavigationPathQueryParameters3D, Float> =
+        MethodStringName0<NavigationPathQueryParameters3D, Float>("get_path_search_max_distance")
+  }
 
   public object MethodBindings {
     internal val setPathfindingAlgorithmPtr: VoidPtr =

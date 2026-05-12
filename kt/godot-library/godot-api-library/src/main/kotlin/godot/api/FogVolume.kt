@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
@@ -20,6 +22,7 @@ import godot.core.Vector3
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -164,7 +167,31 @@ public open class FogVolume : VisualInstance3D() {
     return (TransferContext.readReturnValue(OBJECT) as Material?)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setSizeName: MethodStringName1<FogVolume, Unit, Vector3> =
+        MethodStringName1<FogVolume, Unit, Vector3>("set_size")
+
+    @JvmField
+    public val getSizeName: MethodStringName0<FogVolume, Vector3> =
+        MethodStringName0<FogVolume, Vector3>("get_size")
+
+    @JvmField
+    public val setShapeName: MethodStringName1<FogVolume, Unit, RenderingServer.FogVolumeShape> =
+        MethodStringName1<FogVolume, Unit, RenderingServer.FogVolumeShape>("set_shape")
+
+    @JvmField
+    public val getShapeName: MethodStringName0<FogVolume, RenderingServer.FogVolumeShape> =
+        MethodStringName0<FogVolume, RenderingServer.FogVolumeShape>("get_shape")
+
+    @JvmField
+    public val setMaterialName: MethodStringName1<FogVolume, Unit, Material?> =
+        MethodStringName1<FogVolume, Unit, Material?>("set_material")
+
+    @JvmField
+    public val getMaterialName: MethodStringName0<FogVolume, Material?> =
+        MethodStringName0<FogVolume, Material?>("get_material")
+  }
 
   public object MethodBindings {
     internal val setSizePtr: VoidPtr =

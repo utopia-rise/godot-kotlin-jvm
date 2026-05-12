@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.RID
 import godot.core.Rect2
 import godot.core.Signal0
@@ -27,6 +30,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
@@ -292,7 +296,93 @@ public open class NavigationRegion2D : Node2D() {
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val getRidName: MethodStringName0<NavigationRegion2D, RID> =
+        MethodStringName0<NavigationRegion2D, RID>("get_rid")
+
+    @JvmField
+    public val setNavigationPolygonName:
+        MethodStringName1<NavigationRegion2D, Unit, NavigationPolygon?> =
+        MethodStringName1<NavigationRegion2D, Unit, NavigationPolygon?>("set_navigation_polygon")
+
+    @JvmField
+    public val getNavigationPolygonName: MethodStringName0<NavigationRegion2D, NavigationPolygon?> =
+        MethodStringName0<NavigationRegion2D, NavigationPolygon?>("get_navigation_polygon")
+
+    @JvmField
+    public val setEnabledName: MethodStringName1<NavigationRegion2D, Unit, Boolean> =
+        MethodStringName1<NavigationRegion2D, Unit, Boolean>("set_enabled")
+
+    @JvmField
+    public val isEnabledName: MethodStringName0<NavigationRegion2D, Boolean> =
+        MethodStringName0<NavigationRegion2D, Boolean>("is_enabled")
+
+    @JvmField
+    public val setNavigationMapName: MethodStringName1<NavigationRegion2D, Unit, RID> =
+        MethodStringName1<NavigationRegion2D, Unit, RID>("set_navigation_map")
+
+    @JvmField
+    public val getNavigationMapName: MethodStringName0<NavigationRegion2D, RID> =
+        MethodStringName0<NavigationRegion2D, RID>("get_navigation_map")
+
+    @JvmField
+    public val setUseEdgeConnectionsName: MethodStringName1<NavigationRegion2D, Unit, Boolean> =
+        MethodStringName1<NavigationRegion2D, Unit, Boolean>("set_use_edge_connections")
+
+    @JvmField
+    public val getUseEdgeConnectionsName: MethodStringName0<NavigationRegion2D, Boolean> =
+        MethodStringName0<NavigationRegion2D, Boolean>("get_use_edge_connections")
+
+    @JvmField
+    public val setNavigationLayersName: MethodStringName1<NavigationRegion2D, Unit, Long> =
+        MethodStringName1<NavigationRegion2D, Unit, Long>("set_navigation_layers")
+
+    @JvmField
+    public val getNavigationLayersName: MethodStringName0<NavigationRegion2D, Long> =
+        MethodStringName0<NavigationRegion2D, Long>("get_navigation_layers")
+
+    @JvmField
+    public val setNavigationLayerValueName:
+        MethodStringName2<NavigationRegion2D, Unit, Int, Boolean> =
+        MethodStringName2<NavigationRegion2D, Unit, Int, Boolean>("set_navigation_layer_value")
+
+    @JvmField
+    public val getNavigationLayerValueName: MethodStringName1<NavigationRegion2D, Boolean, Int> =
+        MethodStringName1<NavigationRegion2D, Boolean, Int>("get_navigation_layer_value")
+
+    @JvmField
+    public val getRegionRidName: MethodStringName0<NavigationRegion2D, RID> =
+        MethodStringName0<NavigationRegion2D, RID>("get_region_rid")
+
+    @JvmField
+    public val setEnterCostName: MethodStringName1<NavigationRegion2D, Unit, Float> =
+        MethodStringName1<NavigationRegion2D, Unit, Float>("set_enter_cost")
+
+    @JvmField
+    public val getEnterCostName: MethodStringName0<NavigationRegion2D, Float> =
+        MethodStringName0<NavigationRegion2D, Float>("get_enter_cost")
+
+    @JvmField
+    public val setTravelCostName: MethodStringName1<NavigationRegion2D, Unit, Float> =
+        MethodStringName1<NavigationRegion2D, Unit, Float>("set_travel_cost")
+
+    @JvmField
+    public val getTravelCostName: MethodStringName0<NavigationRegion2D, Float> =
+        MethodStringName0<NavigationRegion2D, Float>("get_travel_cost")
+
+    @JvmField
+    public val bakeNavigationPolygonName: MethodStringName1<NavigationRegion2D, Unit, Boolean> =
+        MethodStringName1<NavigationRegion2D, Unit, Boolean>("bake_navigation_polygon")
+
+    @JvmField
+    public val isBakingName: MethodStringName0<NavigationRegion2D, Boolean> =
+        MethodStringName0<NavigationRegion2D, Boolean>("is_baking")
+
+    @JvmField
+    public val getBoundsName: MethodStringName0<NavigationRegion2D, Rect2> =
+        MethodStringName0<NavigationRegion2D, Rect2>("get_bounds")
+  }
 
   public object MethodBindings {
     internal val getRidPtr: VoidPtr =

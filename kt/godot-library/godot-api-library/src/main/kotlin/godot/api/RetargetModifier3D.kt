@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -232,7 +234,55 @@ public open class RetargetModifier3D : SkeletonModifier3D() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setProfileName: MethodStringName1<RetargetModifier3D, Unit, SkeletonProfile?> =
+        MethodStringName1<RetargetModifier3D, Unit, SkeletonProfile?>("set_profile")
+
+    @JvmField
+    public val getProfileName: MethodStringName0<RetargetModifier3D, SkeletonProfile?> =
+        MethodStringName0<RetargetModifier3D, SkeletonProfile?>("get_profile")
+
+    @JvmField
+    public val setUseGlobalPoseName: MethodStringName1<RetargetModifier3D, Unit, Boolean> =
+        MethodStringName1<RetargetModifier3D, Unit, Boolean>("set_use_global_pose")
+
+    @JvmField
+    public val isUsingGlobalPoseName: MethodStringName0<RetargetModifier3D, Boolean> =
+        MethodStringName0<RetargetModifier3D, Boolean>("is_using_global_pose")
+
+    @JvmField
+    public val setEnableFlagsName: MethodStringName1<RetargetModifier3D, Unit, TransformFlag> =
+        MethodStringName1<RetargetModifier3D, Unit, TransformFlag>("set_enable_flags")
+
+    @JvmField
+    public val getEnableFlagsName: MethodStringName0<RetargetModifier3D, TransformFlag> =
+        MethodStringName0<RetargetModifier3D, TransformFlag>("get_enable_flags")
+
+    @JvmField
+    public val setPositionEnabledName: MethodStringName1<RetargetModifier3D, Unit, Boolean> =
+        MethodStringName1<RetargetModifier3D, Unit, Boolean>("set_position_enabled")
+
+    @JvmField
+    public val isPositionEnabledName: MethodStringName0<RetargetModifier3D, Boolean> =
+        MethodStringName0<RetargetModifier3D, Boolean>("is_position_enabled")
+
+    @JvmField
+    public val setRotationEnabledName: MethodStringName1<RetargetModifier3D, Unit, Boolean> =
+        MethodStringName1<RetargetModifier3D, Unit, Boolean>("set_rotation_enabled")
+
+    @JvmField
+    public val isRotationEnabledName: MethodStringName0<RetargetModifier3D, Boolean> =
+        MethodStringName0<RetargetModifier3D, Boolean>("is_rotation_enabled")
+
+    @JvmField
+    public val setScaleEnabledName: MethodStringName1<RetargetModifier3D, Unit, Boolean> =
+        MethodStringName1<RetargetModifier3D, Unit, Boolean>("set_scale_enabled")
+
+    @JvmField
+    public val isScaleEnabledName: MethodStringName0<RetargetModifier3D, Boolean> =
+        MethodStringName0<RetargetModifier3D, Boolean>("is_scale_enabled")
+  }
 
   public object MethodBindings {
     internal val setProfilePtr: VoidPtr =

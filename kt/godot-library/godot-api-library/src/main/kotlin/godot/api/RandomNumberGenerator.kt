@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.PackedFloat32Array
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -21,6 +24,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
@@ -207,7 +211,51 @@ public open class RandomNumberGenerator : RefCounted() {
     TransferContext.callMethod(ptr, MethodBindings.randomizePtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setSeedName: MethodStringName1<RandomNumberGenerator, Unit, Long> =
+        MethodStringName1<RandomNumberGenerator, Unit, Long>("set_seed")
+
+    @JvmField
+    public val getSeedName: MethodStringName0<RandomNumberGenerator, Long> =
+        MethodStringName0<RandomNumberGenerator, Long>("get_seed")
+
+    @JvmField
+    public val setStateName: MethodStringName1<RandomNumberGenerator, Unit, Long> =
+        MethodStringName1<RandomNumberGenerator, Unit, Long>("set_state")
+
+    @JvmField
+    public val getStateName: MethodStringName0<RandomNumberGenerator, Long> =
+        MethodStringName0<RandomNumberGenerator, Long>("get_state")
+
+    @JvmField
+    public val randiName: MethodStringName0<RandomNumberGenerator, Long> =
+        MethodStringName0<RandomNumberGenerator, Long>("randi")
+
+    @JvmField
+    public val randfName: MethodStringName0<RandomNumberGenerator, Float> =
+        MethodStringName0<RandomNumberGenerator, Float>("randf")
+
+    @JvmField
+    public val randfnName: MethodStringName2<RandomNumberGenerator, Float, Float, Float> =
+        MethodStringName2<RandomNumberGenerator, Float, Float, Float>("randfn")
+
+    @JvmField
+    public val randfRangeName: MethodStringName2<RandomNumberGenerator, Float, Float, Float> =
+        MethodStringName2<RandomNumberGenerator, Float, Float, Float>("randf_range")
+
+    @JvmField
+    public val randiRangeName: MethodStringName2<RandomNumberGenerator, Int, Int, Int> =
+        MethodStringName2<RandomNumberGenerator, Int, Int, Int>("randi_range")
+
+    @JvmField
+    public val randWeightedName: MethodStringName1<RandomNumberGenerator, Long, PackedFloat32Array>
+        = MethodStringName1<RandomNumberGenerator, Long, PackedFloat32Array>("rand_weighted")
+
+    @JvmField
+    public val randomizeName: MethodStringName0<RandomNumberGenerator, Unit> =
+        MethodStringName0<RandomNumberGenerator, Unit>("randomize")
+  }
 
   public object MethodBindings {
     internal val setSeedPtr: VoidPtr =

@@ -13,6 +13,10 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Basis
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
 import godot.core.RID
 import godot.core.Signal0
 import godot.core.Signal1
@@ -37,6 +41,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
@@ -628,6 +633,194 @@ public open class GridMap : Node3D() {
   }
 
   public companion object {
+    @JvmField
+    public val setCollisionLayerName: MethodStringName1<GridMap, Unit, Long> =
+        MethodStringName1<GridMap, Unit, Long>("set_collision_layer")
+
+    @JvmField
+    public val getCollisionLayerName: MethodStringName0<GridMap, Long> =
+        MethodStringName0<GridMap, Long>("get_collision_layer")
+
+    @JvmField
+    public val setCollisionMaskName: MethodStringName1<GridMap, Unit, Long> =
+        MethodStringName1<GridMap, Unit, Long>("set_collision_mask")
+
+    @JvmField
+    public val getCollisionMaskName: MethodStringName0<GridMap, Long> =
+        MethodStringName0<GridMap, Long>("get_collision_mask")
+
+    @JvmField
+    public val setCollisionMaskValueName: MethodStringName2<GridMap, Unit, Int, Boolean> =
+        MethodStringName2<GridMap, Unit, Int, Boolean>("set_collision_mask_value")
+
+    @JvmField
+    public val getCollisionMaskValueName: MethodStringName1<GridMap, Boolean, Int> =
+        MethodStringName1<GridMap, Boolean, Int>("get_collision_mask_value")
+
+    @JvmField
+    public val setCollisionLayerValueName: MethodStringName2<GridMap, Unit, Int, Boolean> =
+        MethodStringName2<GridMap, Unit, Int, Boolean>("set_collision_layer_value")
+
+    @JvmField
+    public val getCollisionLayerValueName: MethodStringName1<GridMap, Boolean, Int> =
+        MethodStringName1<GridMap, Boolean, Int>("get_collision_layer_value")
+
+    @JvmField
+    public val setCollisionPriorityName: MethodStringName1<GridMap, Unit, Float> =
+        MethodStringName1<GridMap, Unit, Float>("set_collision_priority")
+
+    @JvmField
+    public val getCollisionPriorityName: MethodStringName0<GridMap, Float> =
+        MethodStringName0<GridMap, Float>("get_collision_priority")
+
+    @JvmField
+    public val setPhysicsMaterialName: MethodStringName1<GridMap, Unit, PhysicsMaterial?> =
+        MethodStringName1<GridMap, Unit, PhysicsMaterial?>("set_physics_material")
+
+    @JvmField
+    public val getPhysicsMaterialName: MethodStringName0<GridMap, PhysicsMaterial?> =
+        MethodStringName0<GridMap, PhysicsMaterial?>("get_physics_material")
+
+    @JvmField
+    public val setBakeNavigationName: MethodStringName1<GridMap, Unit, Boolean> =
+        MethodStringName1<GridMap, Unit, Boolean>("set_bake_navigation")
+
+    @JvmField
+    public val isBakingNavigationName: MethodStringName0<GridMap, Boolean> =
+        MethodStringName0<GridMap, Boolean>("is_baking_navigation")
+
+    @JvmField
+    public val setNavigationMapName: MethodStringName1<GridMap, Unit, RID> =
+        MethodStringName1<GridMap, Unit, RID>("set_navigation_map")
+
+    @JvmField
+    public val getNavigationMapName: MethodStringName0<GridMap, RID> =
+        MethodStringName0<GridMap, RID>("get_navigation_map")
+
+    @JvmField
+    public val setMeshLibraryName: MethodStringName1<GridMap, Unit, MeshLibrary?> =
+        MethodStringName1<GridMap, Unit, MeshLibrary?>("set_mesh_library")
+
+    @JvmField
+    public val getMeshLibraryName: MethodStringName0<GridMap, MeshLibrary?> =
+        MethodStringName0<GridMap, MeshLibrary?>("get_mesh_library")
+
+    @JvmField
+    public val setCellSizeName: MethodStringName1<GridMap, Unit, Vector3> =
+        MethodStringName1<GridMap, Unit, Vector3>("set_cell_size")
+
+    @JvmField
+    public val getCellSizeName: MethodStringName0<GridMap, Vector3> =
+        MethodStringName0<GridMap, Vector3>("get_cell_size")
+
+    @JvmField
+    public val setCellScaleName: MethodStringName1<GridMap, Unit, Float> =
+        MethodStringName1<GridMap, Unit, Float>("set_cell_scale")
+
+    @JvmField
+    public val getCellScaleName: MethodStringName0<GridMap, Float> =
+        MethodStringName0<GridMap, Float>("get_cell_scale")
+
+    @JvmField
+    public val setOctantSizeName: MethodStringName1<GridMap, Unit, Int> =
+        MethodStringName1<GridMap, Unit, Int>("set_octant_size")
+
+    @JvmField
+    public val getOctantSizeName: MethodStringName0<GridMap, Int> =
+        MethodStringName0<GridMap, Int>("get_octant_size")
+
+    @JvmField
+    public val setCellItemName: MethodStringName3<GridMap, Unit, Vector3i, Int, Int> =
+        MethodStringName3<GridMap, Unit, Vector3i, Int, Int>("set_cell_item")
+
+    @JvmField
+    public val getCellItemName: MethodStringName1<GridMap, Int, Vector3i> =
+        MethodStringName1<GridMap, Int, Vector3i>("get_cell_item")
+
+    @JvmField
+    public val getCellItemOrientationName: MethodStringName1<GridMap, Int, Vector3i> =
+        MethodStringName1<GridMap, Int, Vector3i>("get_cell_item_orientation")
+
+    @JvmField
+    public val getCellItemBasisName: MethodStringName1<GridMap, Basis, Vector3i> =
+        MethodStringName1<GridMap, Basis, Vector3i>("get_cell_item_basis")
+
+    @JvmField
+    public val getBasisWithOrthogonalIndexName: MethodStringName1<GridMap, Basis, Int> =
+        MethodStringName1<GridMap, Basis, Int>("get_basis_with_orthogonal_index")
+
+    @JvmField
+    public val getOrthogonalIndexFromBasisName: MethodStringName1<GridMap, Int, Basis> =
+        MethodStringName1<GridMap, Int, Basis>("get_orthogonal_index_from_basis")
+
+    @JvmField
+    public val localToMapName: MethodStringName1<GridMap, Vector3i, Vector3> =
+        MethodStringName1<GridMap, Vector3i, Vector3>("local_to_map")
+
+    @JvmField
+    public val mapToLocalName: MethodStringName1<GridMap, Vector3, Vector3i> =
+        MethodStringName1<GridMap, Vector3, Vector3i>("map_to_local")
+
+    @JvmField
+    public val resourceChangedName: MethodStringName1<GridMap, Unit, Resource?> =
+        MethodStringName1<GridMap, Unit, Resource?>("resource_changed")
+
+    @JvmField
+    public val setCenterXName: MethodStringName1<GridMap, Unit, Boolean> =
+        MethodStringName1<GridMap, Unit, Boolean>("set_center_x")
+
+    @JvmField
+    public val getCenterXName: MethodStringName0<GridMap, Boolean> =
+        MethodStringName0<GridMap, Boolean>("get_center_x")
+
+    @JvmField
+    public val setCenterYName: MethodStringName1<GridMap, Unit, Boolean> =
+        MethodStringName1<GridMap, Unit, Boolean>("set_center_y")
+
+    @JvmField
+    public val getCenterYName: MethodStringName0<GridMap, Boolean> =
+        MethodStringName0<GridMap, Boolean>("get_center_y")
+
+    @JvmField
+    public val setCenterZName: MethodStringName1<GridMap, Unit, Boolean> =
+        MethodStringName1<GridMap, Unit, Boolean>("set_center_z")
+
+    @JvmField
+    public val getCenterZName: MethodStringName0<GridMap, Boolean> =
+        MethodStringName0<GridMap, Boolean>("get_center_z")
+
+    @JvmField
+    public val clearName: MethodStringName0<GridMap, Unit> =
+        MethodStringName0<GridMap, Unit>("clear")
+
+    @JvmField
+    public val getUsedCellsName: MethodStringName0<GridMap, VariantArray<Vector3i>> =
+        MethodStringName0<GridMap, VariantArray<Vector3i>>("get_used_cells")
+
+    @JvmField
+    public val getUsedCellsByItemName: MethodStringName1<GridMap, VariantArray<Vector3i>, Int> =
+        MethodStringName1<GridMap, VariantArray<Vector3i>, Int>("get_used_cells_by_item")
+
+    @JvmField
+    public val getMeshesName: MethodStringName0<GridMap, VariantArray<Any?>> =
+        MethodStringName0<GridMap, VariantArray<Any?>>("get_meshes")
+
+    @JvmField
+    public val getBakeMeshesName: MethodStringName0<GridMap, VariantArray<Any?>> =
+        MethodStringName0<GridMap, VariantArray<Any?>>("get_bake_meshes")
+
+    @JvmField
+    public val getBakeMeshInstanceName: MethodStringName1<GridMap, RID, Int> =
+        MethodStringName1<GridMap, RID, Int>("get_bake_mesh_instance")
+
+    @JvmField
+    public val clearBakedMeshesName: MethodStringName0<GridMap, Unit> =
+        MethodStringName0<GridMap, Unit>("clear_baked_meshes")
+
+    @JvmField
+    public val makeBakedMeshesName: MethodStringName2<GridMap, Unit, Boolean, Float> =
+        MethodStringName2<GridMap, Unit, Boolean, Float>("make_baked_meshes")
+
     /**
      * Invalid cell item that can be used in [setCellItem] to clear cells (or represent an empty
      * cell in [getCellItem]).

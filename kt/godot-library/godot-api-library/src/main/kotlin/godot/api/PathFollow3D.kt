@@ -11,6 +11,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.Transform3D
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -23,6 +26,7 @@ import kotlin.Float
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmStatic
 
@@ -295,6 +299,83 @@ public open class PathFollow3D : Node3D() {
   }
 
   public companion object {
+    @JvmField
+    public val setProgressName: MethodStringName1<PathFollow3D, Unit, Float> =
+        MethodStringName1<PathFollow3D, Unit, Float>("set_progress")
+
+    @JvmField
+    public val getProgressName: MethodStringName0<PathFollow3D, Float> =
+        MethodStringName0<PathFollow3D, Float>("get_progress")
+
+    @JvmField
+    public val setHOffsetName: MethodStringName1<PathFollow3D, Unit, Float> =
+        MethodStringName1<PathFollow3D, Unit, Float>("set_h_offset")
+
+    @JvmField
+    public val getHOffsetName: MethodStringName0<PathFollow3D, Float> =
+        MethodStringName0<PathFollow3D, Float>("get_h_offset")
+
+    @JvmField
+    public val setVOffsetName: MethodStringName1<PathFollow3D, Unit, Float> =
+        MethodStringName1<PathFollow3D, Unit, Float>("set_v_offset")
+
+    @JvmField
+    public val getVOffsetName: MethodStringName0<PathFollow3D, Float> =
+        MethodStringName0<PathFollow3D, Float>("get_v_offset")
+
+    @JvmField
+    public val setProgressRatioName: MethodStringName1<PathFollow3D, Unit, Float> =
+        MethodStringName1<PathFollow3D, Unit, Float>("set_progress_ratio")
+
+    @JvmField
+    public val getProgressRatioName: MethodStringName0<PathFollow3D, Float> =
+        MethodStringName0<PathFollow3D, Float>("get_progress_ratio")
+
+    @JvmField
+    public val setRotationModeName: MethodStringName1<PathFollow3D, Unit, RotationMode> =
+        MethodStringName1<PathFollow3D, Unit, RotationMode>("set_rotation_mode")
+
+    @JvmField
+    public val getRotationModeName: MethodStringName0<PathFollow3D, RotationMode> =
+        MethodStringName0<PathFollow3D, RotationMode>("get_rotation_mode")
+
+    @JvmField
+    public val setCubicInterpolationName: MethodStringName1<PathFollow3D, Unit, Boolean> =
+        MethodStringName1<PathFollow3D, Unit, Boolean>("set_cubic_interpolation")
+
+    @JvmField
+    public val getCubicInterpolationName: MethodStringName0<PathFollow3D, Boolean> =
+        MethodStringName0<PathFollow3D, Boolean>("get_cubic_interpolation")
+
+    @JvmField
+    public val setUseModelFrontName: MethodStringName1<PathFollow3D, Unit, Boolean> =
+        MethodStringName1<PathFollow3D, Unit, Boolean>("set_use_model_front")
+
+    @JvmField
+    public val isUsingModelFrontName: MethodStringName0<PathFollow3D, Boolean> =
+        MethodStringName0<PathFollow3D, Boolean>("is_using_model_front")
+
+    @JvmField
+    public val setLoopName: MethodStringName1<PathFollow3D, Unit, Boolean> =
+        MethodStringName1<PathFollow3D, Unit, Boolean>("set_loop")
+
+    @JvmField
+    public val hasLoopName: MethodStringName0<PathFollow3D, Boolean> =
+        MethodStringName0<PathFollow3D, Boolean>("has_loop")
+
+    @JvmField
+    public val setTiltEnabledName: MethodStringName1<PathFollow3D, Unit, Boolean> =
+        MethodStringName1<PathFollow3D, Unit, Boolean>("set_tilt_enabled")
+
+    @JvmField
+    public val isTiltEnabledName: MethodStringName0<PathFollow3D, Boolean> =
+        MethodStringName0<PathFollow3D, Boolean>("is_tilt_enabled")
+
+    @JvmField
+    public val correctPostureName:
+        MethodStringName2<PathFollow3D, Transform3D, Transform3D, RotationMode> =
+        MethodStringName2<PathFollow3D, Transform3D, Transform3D, RotationMode>("correct_posture")
+
     /**
      * Correct the [transform]. [rotationMode] implicitly specifies how posture (forward, up and
      * sideway direction) is calculated.

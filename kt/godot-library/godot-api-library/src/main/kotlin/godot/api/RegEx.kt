@@ -11,6 +11,10 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.MethodStringName0
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
+import godot.core.MethodStringName5
 import godot.core.PackedStringArray
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
@@ -26,6 +30,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
@@ -233,6 +238,45 @@ public open class RegEx : RefCounted() {
   }
 
   public companion object {
+    @JvmField
+    public val createFromStringName: MethodStringName2<RegEx, RegEx?, String, Boolean> =
+        MethodStringName2<RegEx, RegEx?, String, Boolean>("create_from_string")
+
+    @JvmField
+    public val clearName: MethodStringName0<RegEx, Unit> = MethodStringName0<RegEx, Unit>("clear")
+
+    @JvmField
+    public val compileName: MethodStringName2<RegEx, Error, String, Boolean> =
+        MethodStringName2<RegEx, Error, String, Boolean>("compile")
+
+    @JvmField
+    public val searchName: MethodStringName3<RegEx, RegExMatch?, String, Int, Int> =
+        MethodStringName3<RegEx, RegExMatch?, String, Int, Int>("search")
+
+    @JvmField
+    public val searchAllName: MethodStringName3<RegEx, VariantArray<RegExMatch>, String, Int, Int> =
+        MethodStringName3<RegEx, VariantArray<RegExMatch>, String, Int, Int>("search_all")
+
+    @JvmField
+    public val subName: MethodStringName5<RegEx, String, String, String, Boolean, Int, Int> =
+        MethodStringName5<RegEx, String, String, String, Boolean, Int, Int>("sub")
+
+    @JvmField
+    public val isValidName: MethodStringName0<RegEx, Boolean> =
+        MethodStringName0<RegEx, Boolean>("is_valid")
+
+    @JvmField
+    public val getPatternName: MethodStringName0<RegEx, String> =
+        MethodStringName0<RegEx, String>("get_pattern")
+
+    @JvmField
+    public val getGroupCountName: MethodStringName0<RegEx, Int> =
+        MethodStringName0<RegEx, Int>("get_group_count")
+
+    @JvmField
+    public val getNamesName: MethodStringName0<RegEx, PackedStringArray> =
+        MethodStringName0<RegEx, PackedStringArray>("get_names")
+
     /**
      * Creates and compiles a new [RegEx] object. See also [compile].
      */

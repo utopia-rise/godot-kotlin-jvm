@@ -2,10 +2,12 @@ package godot.codegen.models.enriched
 
 import com.squareup.kotlinpoet.ClassName
 import godot.codegen.exceptions.TooManyMethodArgument
+import godot.codegen.generation.GenerationContext
 import godot.codegen.models.Method
 import godot.codegen.models.traits.CallableGeneratorTrait
 import godot.codegen.models.traits.DocumentedGenerationTrait
 import godot.codegen.models.traits.GenerationType
+import godot.codegen.models.traits.Nature
 import godot.codegen.workarounds.sanitizeApiType
 import godot.common.constants.Constraints
 import godot.common.extensions.convertToCamelCase
@@ -30,7 +32,6 @@ class EnrichedMethod(private val model: Method, override: Boolean = false) : Cal
             it
         }
     }
-    override val voidPtrVariableName = "${name}Ptr"
     override val arguments = model.arguments?.toEnriched() ?: listOf()
     override val isVararg = model.isVararg
     override var description = model.description
@@ -40,15 +41,13 @@ class EnrichedMethod(private val model: Method, override: Boolean = false) : Cal
         if (override) {
             Modifier.OVERRIDE
         } else if (model.isVirtual) {
-            if(model.isRequired) {
+            if (model.isRequired) {
                 Modifier.ABSTRACT
-            } else  {
+            } else {
                 Modifier.VIRTUAL
             }
-
         } else if (model.isStatic) {
             Modifier.STATIC
-
         } else {
             Modifier.DEFAULT
         }
@@ -63,6 +62,20 @@ class EnrichedMethod(private val model: Method, override: Boolean = false) : Cal
         get() = modifier == Modifier.OVERRIDE
 
     val originalName = model.name
+
+    val isJvmCompatible: Boolean
+        get() {
+            if (type.isNativeType()) {
+                return false
+            }
+            for (argument in arguments) {
+                if (argument.type.isNativeType()) {
+                    return false
+                }
+            }
+            return true
+        }
+
     init {
         if (arguments.size > Constraints.MAX_FUNCTION_ARG_COUNT) {
             throw TooManyMethodArgument(model)

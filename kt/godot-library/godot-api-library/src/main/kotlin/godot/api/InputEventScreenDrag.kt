@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -25,6 +27,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -430,7 +433,79 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setIndexName: MethodStringName1<InputEventScreenDrag, Unit, Int> =
+        MethodStringName1<InputEventScreenDrag, Unit, Int>("set_index")
+
+    @JvmField
+    public val getIndexName: MethodStringName0<InputEventScreenDrag, Int> =
+        MethodStringName0<InputEventScreenDrag, Int>("get_index")
+
+    @JvmField
+    public val setTiltName: MethodStringName1<InputEventScreenDrag, Unit, Vector2> =
+        MethodStringName1<InputEventScreenDrag, Unit, Vector2>("set_tilt")
+
+    @JvmField
+    public val getTiltName: MethodStringName0<InputEventScreenDrag, Vector2> =
+        MethodStringName0<InputEventScreenDrag, Vector2>("get_tilt")
+
+    @JvmField
+    public val setPressureName: MethodStringName1<InputEventScreenDrag, Unit, Float> =
+        MethodStringName1<InputEventScreenDrag, Unit, Float>("set_pressure")
+
+    @JvmField
+    public val getPressureName: MethodStringName0<InputEventScreenDrag, Float> =
+        MethodStringName0<InputEventScreenDrag, Float>("get_pressure")
+
+    @JvmField
+    public val setPenInvertedName: MethodStringName1<InputEventScreenDrag, Unit, Boolean> =
+        MethodStringName1<InputEventScreenDrag, Unit, Boolean>("set_pen_inverted")
+
+    @JvmField
+    public val getPenInvertedName: MethodStringName0<InputEventScreenDrag, Boolean> =
+        MethodStringName0<InputEventScreenDrag, Boolean>("get_pen_inverted")
+
+    @JvmField
+    public val setPositionName: MethodStringName1<InputEventScreenDrag, Unit, Vector2> =
+        MethodStringName1<InputEventScreenDrag, Unit, Vector2>("set_position")
+
+    @JvmField
+    public val getPositionName: MethodStringName0<InputEventScreenDrag, Vector2> =
+        MethodStringName0<InputEventScreenDrag, Vector2>("get_position")
+
+    @JvmField
+    public val setRelativeName: MethodStringName1<InputEventScreenDrag, Unit, Vector2> =
+        MethodStringName1<InputEventScreenDrag, Unit, Vector2>("set_relative")
+
+    @JvmField
+    public val getRelativeName: MethodStringName0<InputEventScreenDrag, Vector2> =
+        MethodStringName0<InputEventScreenDrag, Vector2>("get_relative")
+
+    @JvmField
+    public val setScreenRelativeName: MethodStringName1<InputEventScreenDrag, Unit, Vector2> =
+        MethodStringName1<InputEventScreenDrag, Unit, Vector2>("set_screen_relative")
+
+    @JvmField
+    public val getScreenRelativeName: MethodStringName0<InputEventScreenDrag, Vector2> =
+        MethodStringName0<InputEventScreenDrag, Vector2>("get_screen_relative")
+
+    @JvmField
+    public val setVelocityName: MethodStringName1<InputEventScreenDrag, Unit, Vector2> =
+        MethodStringName1<InputEventScreenDrag, Unit, Vector2>("set_velocity")
+
+    @JvmField
+    public val getVelocityName: MethodStringName0<InputEventScreenDrag, Vector2> =
+        MethodStringName0<InputEventScreenDrag, Vector2>("get_velocity")
+
+    @JvmField
+    public val setScreenVelocityName: MethodStringName1<InputEventScreenDrag, Unit, Vector2> =
+        MethodStringName1<InputEventScreenDrag, Unit, Vector2>("set_screen_velocity")
+
+    @JvmField
+    public val getScreenVelocityName: MethodStringName0<InputEventScreenDrag, Vector2> =
+        MethodStringName0<InputEventScreenDrag, Vector2>("get_screen_velocity")
+  }
 
   public object MethodBindings {
     internal val setIndexPtr: VoidPtr =

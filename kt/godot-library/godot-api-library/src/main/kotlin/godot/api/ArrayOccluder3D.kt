@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.PackedInt32Array
 import godot.core.PackedVector3Array
 import godot.core.VariantParser.NIL
@@ -21,6 +23,7 @@ import godot.core.Vector3
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -193,7 +196,20 @@ public open class ArrayOccluder3D : Occluder3D() {
     TransferContext.callMethod(ptr, MethodBindings.setIndicesPtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setArraysName:
+        MethodStringName2<ArrayOccluder3D, Unit, PackedVector3Array, PackedInt32Array> =
+        MethodStringName2<ArrayOccluder3D, Unit, PackedVector3Array, PackedInt32Array>("set_arrays")
+
+    @JvmField
+    public val setVerticesName: MethodStringName1<ArrayOccluder3D, Unit, PackedVector3Array> =
+        MethodStringName1<ArrayOccluder3D, Unit, PackedVector3Array>("set_vertices")
+
+    @JvmField
+    public val setIndicesName: MethodStringName1<ArrayOccluder3D, Unit, PackedInt32Array> =
+        MethodStringName1<ArrayOccluder3D, Unit, PackedInt32Array>("set_indices")
+  }
 
   public object MethodBindings {
     internal val setArraysPtr: VoidPtr =

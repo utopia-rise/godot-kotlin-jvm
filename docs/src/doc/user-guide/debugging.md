@@ -62,13 +62,37 @@ IntelliJ will now automatically pause when the breakpoint is hit
 
 ## Write debug code
 
-You can add code only for debug version of your project, by using `GodotJvmDefinitions`.
+You can add code only for debug version of your project by using the generated `GodotJvmBuildConfig`.
 When building your project with the release flag, those ifs are going to be automatically removed from your code, not even the condition check is left.
 
 Example:
 
+/// tab | Kotlin
 ```kotlin
-if (GodotJvmDefinitions.DEBUG) {
+import kotlincompile.definitions.GodotJvmBuildConfig
+
+if (GodotJvmBuildConfig.DEBUG) {
     // ...
 }
 ```
+///
+
+/// tab | Java
+```java
+import kotlincompile.definitions.GodotJvmBuildConfig;
+
+if (GodotJvmBuildConfig.DEBUG) {
+    // ...
+}
+```
+///
+
+/// tab | Scala
+```scala
+import kotlincompile.definitions.GodotJvmBuildConfig
+
+if (GodotJvmBuildConfig.DEBUG) {
+  // ...
+}
+```
+///

@@ -10,11 +10,13 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.OBJECT
 import kotlin.Double
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 
 /**
  * [SubtweenTweener] is used to execute a [Tween] as one step in a sequence defined by another
@@ -39,7 +41,11 @@ public open class SubtweenTweener : Tweener() {
     return (TransferContext.readReturnValue(OBJECT) as SubtweenTweener)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setDelayName: MethodStringName1<SubtweenTweener, SubtweenTweener, Double> =
+        MethodStringName1<SubtweenTweener, SubtweenTweener, Double>("set_delay")
+  }
 
   public object MethodBindings {
     internal val setDelayPtr: VoidPtr =

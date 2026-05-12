@@ -14,6 +14,9 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.Corner
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.RID
 import godot.core.Rect2
 import godot.core.Side
@@ -32,6 +35,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -717,7 +721,135 @@ public open class StyleBoxFlat : StyleBox() {
     throw NotImplementedError("StyleBoxFlat::_draw can't be called from the JVM.")
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setBgColorName: MethodStringName1<StyleBoxFlat, Unit, Color> =
+        MethodStringName1<StyleBoxFlat, Unit, Color>("set_bg_color")
+
+    @JvmField
+    public val getBgColorName: MethodStringName0<StyleBoxFlat, Color> =
+        MethodStringName0<StyleBoxFlat, Color>("get_bg_color")
+
+    @JvmField
+    public val setBorderColorName: MethodStringName1<StyleBoxFlat, Unit, Color> =
+        MethodStringName1<StyleBoxFlat, Unit, Color>("set_border_color")
+
+    @JvmField
+    public val getBorderColorName: MethodStringName0<StyleBoxFlat, Color> =
+        MethodStringName0<StyleBoxFlat, Color>("get_border_color")
+
+    @JvmField
+    public val setBorderWidthAllName: MethodStringName1<StyleBoxFlat, Unit, Int> =
+        MethodStringName1<StyleBoxFlat, Unit, Int>("set_border_width_all")
+
+    @JvmField
+    public val getBorderWidthMinName: MethodStringName0<StyleBoxFlat, Int> =
+        MethodStringName0<StyleBoxFlat, Int>("get_border_width_min")
+
+    @JvmField
+    public val setBorderWidthName: MethodStringName2<StyleBoxFlat, Unit, Side, Int> =
+        MethodStringName2<StyleBoxFlat, Unit, Side, Int>("set_border_width")
+
+    @JvmField
+    public val getBorderWidthName: MethodStringName1<StyleBoxFlat, Int, Side> =
+        MethodStringName1<StyleBoxFlat, Int, Side>("get_border_width")
+
+    @JvmField
+    public val setBorderBlendName: MethodStringName1<StyleBoxFlat, Unit, Boolean> =
+        MethodStringName1<StyleBoxFlat, Unit, Boolean>("set_border_blend")
+
+    @JvmField
+    public val getBorderBlendName: MethodStringName0<StyleBoxFlat, Boolean> =
+        MethodStringName0<StyleBoxFlat, Boolean>("get_border_blend")
+
+    @JvmField
+    public val setCornerRadiusAllName: MethodStringName1<StyleBoxFlat, Unit, Int> =
+        MethodStringName1<StyleBoxFlat, Unit, Int>("set_corner_radius_all")
+
+    @JvmField
+    public val setCornerRadiusName: MethodStringName2<StyleBoxFlat, Unit, Corner, Int> =
+        MethodStringName2<StyleBoxFlat, Unit, Corner, Int>("set_corner_radius")
+
+    @JvmField
+    public val getCornerRadiusName: MethodStringName1<StyleBoxFlat, Int, Corner> =
+        MethodStringName1<StyleBoxFlat, Int, Corner>("get_corner_radius")
+
+    @JvmField
+    public val setExpandMarginName: MethodStringName2<StyleBoxFlat, Unit, Side, Float> =
+        MethodStringName2<StyleBoxFlat, Unit, Side, Float>("set_expand_margin")
+
+    @JvmField
+    public val setExpandMarginAllName: MethodStringName1<StyleBoxFlat, Unit, Float> =
+        MethodStringName1<StyleBoxFlat, Unit, Float>("set_expand_margin_all")
+
+    @JvmField
+    public val getExpandMarginName: MethodStringName1<StyleBoxFlat, Float, Side> =
+        MethodStringName1<StyleBoxFlat, Float, Side>("get_expand_margin")
+
+    @JvmField
+    public val setDrawCenterName: MethodStringName1<StyleBoxFlat, Unit, Boolean> =
+        MethodStringName1<StyleBoxFlat, Unit, Boolean>("set_draw_center")
+
+    @JvmField
+    public val isDrawCenterEnabledName: MethodStringName0<StyleBoxFlat, Boolean> =
+        MethodStringName0<StyleBoxFlat, Boolean>("is_draw_center_enabled")
+
+    @JvmField
+    public val setSkewName: MethodStringName1<StyleBoxFlat, Unit, Vector2> =
+        MethodStringName1<StyleBoxFlat, Unit, Vector2>("set_skew")
+
+    @JvmField
+    public val getSkewName: MethodStringName0<StyleBoxFlat, Vector2> =
+        MethodStringName0<StyleBoxFlat, Vector2>("get_skew")
+
+    @JvmField
+    public val setShadowColorName: MethodStringName1<StyleBoxFlat, Unit, Color> =
+        MethodStringName1<StyleBoxFlat, Unit, Color>("set_shadow_color")
+
+    @JvmField
+    public val getShadowColorName: MethodStringName0<StyleBoxFlat, Color> =
+        MethodStringName0<StyleBoxFlat, Color>("get_shadow_color")
+
+    @JvmField
+    public val setShadowSizeName: MethodStringName1<StyleBoxFlat, Unit, Int> =
+        MethodStringName1<StyleBoxFlat, Unit, Int>("set_shadow_size")
+
+    @JvmField
+    public val getShadowSizeName: MethodStringName0<StyleBoxFlat, Int> =
+        MethodStringName0<StyleBoxFlat, Int>("get_shadow_size")
+
+    @JvmField
+    public val setShadowOffsetName: MethodStringName1<StyleBoxFlat, Unit, Vector2> =
+        MethodStringName1<StyleBoxFlat, Unit, Vector2>("set_shadow_offset")
+
+    @JvmField
+    public val getShadowOffsetName: MethodStringName0<StyleBoxFlat, Vector2> =
+        MethodStringName0<StyleBoxFlat, Vector2>("get_shadow_offset")
+
+    @JvmField
+    public val setAntiAliasedName: MethodStringName1<StyleBoxFlat, Unit, Boolean> =
+        MethodStringName1<StyleBoxFlat, Unit, Boolean>("set_anti_aliased")
+
+    @JvmField
+    public val isAntiAliasedName: MethodStringName0<StyleBoxFlat, Boolean> =
+        MethodStringName0<StyleBoxFlat, Boolean>("is_anti_aliased")
+
+    @JvmField
+    public val setAaSizeName: MethodStringName1<StyleBoxFlat, Unit, Float> =
+        MethodStringName1<StyleBoxFlat, Unit, Float>("set_aa_size")
+
+    @JvmField
+    public val getAaSizeName: MethodStringName0<StyleBoxFlat, Float> =
+        MethodStringName0<StyleBoxFlat, Float>("get_aa_size")
+
+    @JvmField
+    public val setCornerDetailName: MethodStringName1<StyleBoxFlat, Unit, Int> =
+        MethodStringName1<StyleBoxFlat, Unit, Int>("set_corner_detail")
+
+    @JvmField
+    public val getCornerDetailName: MethodStringName0<StyleBoxFlat, Int> =
+        MethodStringName0<StyleBoxFlat, Int>("get_corner_detail")
+  }
 
   public object MethodBindings {
     internal val setBgColorPtr: VoidPtr =

@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.PackedStringArray
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
@@ -28,6 +30,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -231,7 +234,64 @@ public open class OpenXRIPBinding : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.removePathPtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setActionName: MethodStringName1<OpenXRIPBinding, Unit, OpenXRAction?> =
+        MethodStringName1<OpenXRIPBinding, Unit, OpenXRAction?>("set_action")
+
+    @JvmField
+    public val getActionName: MethodStringName0<OpenXRIPBinding, OpenXRAction?> =
+        MethodStringName0<OpenXRIPBinding, OpenXRAction?>("get_action")
+
+    @JvmField
+    public val setBindingPathName: MethodStringName1<OpenXRIPBinding, Unit, String> =
+        MethodStringName1<OpenXRIPBinding, Unit, String>("set_binding_path")
+
+    @JvmField
+    public val getBindingPathName: MethodStringName0<OpenXRIPBinding, String> =
+        MethodStringName0<OpenXRIPBinding, String>("get_binding_path")
+
+    @JvmField
+    public val getBindingModifierCountName: MethodStringName0<OpenXRIPBinding, Int> =
+        MethodStringName0<OpenXRIPBinding, Int>("get_binding_modifier_count")
+
+    @JvmField
+    public val getBindingModifierName:
+        MethodStringName1<OpenXRIPBinding, OpenXRActionBindingModifier?, Int> =
+        MethodStringName1<OpenXRIPBinding, OpenXRActionBindingModifier?, Int>("get_binding_modifier")
+
+    @JvmField
+    public val setBindingModifiersName: MethodStringName1<OpenXRIPBinding, Unit, VariantArray<Any?>>
+        = MethodStringName1<OpenXRIPBinding, Unit, VariantArray<Any?>>("set_binding_modifiers")
+
+    @JvmField
+    public val getBindingModifiersName: MethodStringName0<OpenXRIPBinding, VariantArray<Any?>> =
+        MethodStringName0<OpenXRIPBinding, VariantArray<Any?>>("get_binding_modifiers")
+
+    @JvmField
+    public val setPathsName: MethodStringName1<OpenXRIPBinding, Unit, PackedStringArray> =
+        MethodStringName1<OpenXRIPBinding, Unit, PackedStringArray>("set_paths")
+
+    @JvmField
+    public val getPathsName: MethodStringName0<OpenXRIPBinding, PackedStringArray> =
+        MethodStringName0<OpenXRIPBinding, PackedStringArray>("get_paths")
+
+    @JvmField
+    public val getPathCountName: MethodStringName0<OpenXRIPBinding, Int> =
+        MethodStringName0<OpenXRIPBinding, Int>("get_path_count")
+
+    @JvmField
+    public val hasPathName: MethodStringName1<OpenXRIPBinding, Boolean, String> =
+        MethodStringName1<OpenXRIPBinding, Boolean, String>("has_path")
+
+    @JvmField
+    public val addPathName: MethodStringName1<OpenXRIPBinding, Unit, String> =
+        MethodStringName1<OpenXRIPBinding, Unit, String>("add_path")
+
+    @JvmField
+    public val removePathName: MethodStringName1<OpenXRIPBinding, Unit, String> =
+        MethodStringName1<OpenXRIPBinding, Unit, String>("remove_path")
+  }
 
   public object MethodBindings {
     internal val setActionPtr: VoidPtr =

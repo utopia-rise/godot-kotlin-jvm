@@ -11,6 +11,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.PackedInt32Array
 import godot.core.RID
 import godot.core.Signal0
@@ -33,6 +36,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -476,7 +480,136 @@ public open class CollisionObject3D internal constructor() : Node3D() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setCollisionLayerName: MethodStringName1<CollisionObject3D, Unit, Long> =
+        MethodStringName1<CollisionObject3D, Unit, Long>("set_collision_layer")
+
+    @JvmField
+    public val getCollisionLayerName: MethodStringName0<CollisionObject3D, Long> =
+        MethodStringName0<CollisionObject3D, Long>("get_collision_layer")
+
+    @JvmField
+    public val setCollisionMaskName: MethodStringName1<CollisionObject3D, Unit, Long> =
+        MethodStringName1<CollisionObject3D, Unit, Long>("set_collision_mask")
+
+    @JvmField
+    public val getCollisionMaskName: MethodStringName0<CollisionObject3D, Long> =
+        MethodStringName0<CollisionObject3D, Long>("get_collision_mask")
+
+    @JvmField
+    public val setCollisionLayerValueName: MethodStringName2<CollisionObject3D, Unit, Int, Boolean>
+        = MethodStringName2<CollisionObject3D, Unit, Int, Boolean>("set_collision_layer_value")
+
+    @JvmField
+    public val getCollisionLayerValueName: MethodStringName1<CollisionObject3D, Boolean, Int> =
+        MethodStringName1<CollisionObject3D, Boolean, Int>("get_collision_layer_value")
+
+    @JvmField
+    public val setCollisionMaskValueName: MethodStringName2<CollisionObject3D, Unit, Int, Boolean> =
+        MethodStringName2<CollisionObject3D, Unit, Int, Boolean>("set_collision_mask_value")
+
+    @JvmField
+    public val getCollisionMaskValueName: MethodStringName1<CollisionObject3D, Boolean, Int> =
+        MethodStringName1<CollisionObject3D, Boolean, Int>("get_collision_mask_value")
+
+    @JvmField
+    public val setCollisionPriorityName: MethodStringName1<CollisionObject3D, Unit, Float> =
+        MethodStringName1<CollisionObject3D, Unit, Float>("set_collision_priority")
+
+    @JvmField
+    public val getCollisionPriorityName: MethodStringName0<CollisionObject3D, Float> =
+        MethodStringName0<CollisionObject3D, Float>("get_collision_priority")
+
+    @JvmField
+    public val setDisableModeName: MethodStringName1<CollisionObject3D, Unit, DisableMode> =
+        MethodStringName1<CollisionObject3D, Unit, DisableMode>("set_disable_mode")
+
+    @JvmField
+    public val getDisableModeName: MethodStringName0<CollisionObject3D, DisableMode> =
+        MethodStringName0<CollisionObject3D, DisableMode>("get_disable_mode")
+
+    @JvmField
+    public val setRayPickableName: MethodStringName1<CollisionObject3D, Unit, Boolean> =
+        MethodStringName1<CollisionObject3D, Unit, Boolean>("set_ray_pickable")
+
+    @JvmField
+    public val isRayPickableName: MethodStringName0<CollisionObject3D, Boolean> =
+        MethodStringName0<CollisionObject3D, Boolean>("is_ray_pickable")
+
+    @JvmField
+    public val setCaptureInputOnDragName: MethodStringName1<CollisionObject3D, Unit, Boolean> =
+        MethodStringName1<CollisionObject3D, Unit, Boolean>("set_capture_input_on_drag")
+
+    @JvmField
+    public val getCaptureInputOnDragName: MethodStringName0<CollisionObject3D, Boolean> =
+        MethodStringName0<CollisionObject3D, Boolean>("get_capture_input_on_drag")
+
+    @JvmField
+    public val getRidName: MethodStringName0<CollisionObject3D, RID> =
+        MethodStringName0<CollisionObject3D, RID>("get_rid")
+
+    @JvmField
+    public val createShapeOwnerName: MethodStringName1<CollisionObject3D, Long, Object?> =
+        MethodStringName1<CollisionObject3D, Long, Object?>("create_shape_owner")
+
+    @JvmField
+    public val removeShapeOwnerName: MethodStringName1<CollisionObject3D, Unit, Long> =
+        MethodStringName1<CollisionObject3D, Unit, Long>("remove_shape_owner")
+
+    @JvmField
+    public val getShapeOwnersName: MethodStringName0<CollisionObject3D, PackedInt32Array> =
+        MethodStringName0<CollisionObject3D, PackedInt32Array>("get_shape_owners")
+
+    @JvmField
+    public val shapeOwnerSetTransformName:
+        MethodStringName2<CollisionObject3D, Unit, Long, Transform3D> =
+        MethodStringName2<CollisionObject3D, Unit, Long, Transform3D>("shape_owner_set_transform")
+
+    @JvmField
+    public val shapeOwnerGetTransformName: MethodStringName1<CollisionObject3D, Transform3D, Long> =
+        MethodStringName1<CollisionObject3D, Transform3D, Long>("shape_owner_get_transform")
+
+    @JvmField
+    public val shapeOwnerGetOwnerName: MethodStringName1<CollisionObject3D, Object?, Long> =
+        MethodStringName1<CollisionObject3D, Object?, Long>("shape_owner_get_owner")
+
+    @JvmField
+    public val shapeOwnerSetDisabledName: MethodStringName2<CollisionObject3D, Unit, Long, Boolean>
+        = MethodStringName2<CollisionObject3D, Unit, Long, Boolean>("shape_owner_set_disabled")
+
+    @JvmField
+    public val isShapeOwnerDisabledName: MethodStringName1<CollisionObject3D, Boolean, Long> =
+        MethodStringName1<CollisionObject3D, Boolean, Long>("is_shape_owner_disabled")
+
+    @JvmField
+    public val shapeOwnerAddShapeName: MethodStringName2<CollisionObject3D, Unit, Long, Shape3D> =
+        MethodStringName2<CollisionObject3D, Unit, Long, Shape3D>("shape_owner_add_shape")
+
+    @JvmField
+    public val shapeOwnerGetShapeCountName: MethodStringName1<CollisionObject3D, Int, Long> =
+        MethodStringName1<CollisionObject3D, Int, Long>("shape_owner_get_shape_count")
+
+    @JvmField
+    public val shapeOwnerGetShapeName: MethodStringName2<CollisionObject3D, Shape3D?, Long, Int> =
+        MethodStringName2<CollisionObject3D, Shape3D?, Long, Int>("shape_owner_get_shape")
+
+    @JvmField
+    public val shapeOwnerGetShapeIndexName: MethodStringName2<CollisionObject3D, Int, Long, Int> =
+        MethodStringName2<CollisionObject3D, Int, Long, Int>("shape_owner_get_shape_index")
+
+    @JvmField
+    public val shapeOwnerRemoveShapeName: MethodStringName2<CollisionObject3D, Unit, Long, Int> =
+        MethodStringName2<CollisionObject3D, Unit, Long, Int>("shape_owner_remove_shape")
+
+    @JvmField
+    public val shapeOwnerClearShapesName: MethodStringName1<CollisionObject3D, Unit, Long> =
+        MethodStringName1<CollisionObject3D, Unit, Long>("shape_owner_clear_shapes")
+
+    @JvmField
+    public val shapeFindOwnerName: MethodStringName1<CollisionObject3D, Long, Int> =
+        MethodStringName1<CollisionObject3D, Long, Int>("shape_find_owner")
+  }
 
   public object MethodBindings {
     internal val setCollisionLayerPtr: VoidPtr =

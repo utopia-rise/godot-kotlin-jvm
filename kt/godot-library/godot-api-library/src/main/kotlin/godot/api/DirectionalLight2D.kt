@@ -10,12 +10,15 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import kotlin.Double
 import kotlin.Float
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -74,7 +77,15 @@ public open class DirectionalLight2D : Light2D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setMaxDistanceName: MethodStringName1<DirectionalLight2D, Unit, Float> =
+        MethodStringName1<DirectionalLight2D, Unit, Float>("set_max_distance")
+
+    @JvmField
+    public val getMaxDistanceName: MethodStringName0<DirectionalLight2D, Float> =
+        MethodStringName0<DirectionalLight2D, Float>("get_max_distance")
+  }
 
   public object MethodBindings {
     internal val setMaxDistancePtr: VoidPtr =

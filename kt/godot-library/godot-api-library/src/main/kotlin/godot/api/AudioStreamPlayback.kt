@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.PackedVector2Array
 import godot.core.StringName
 import godot.core.VariantParser.BOOL
@@ -27,6 +30,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -189,7 +193,44 @@ public abstract class AudioStreamPlayback : RefCounted() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setSamplePlaybackName:
+        MethodStringName1<AudioStreamPlayback, Unit, AudioSamplePlayback?> =
+        MethodStringName1<AudioStreamPlayback, Unit, AudioSamplePlayback?>("set_sample_playback")
+
+    @JvmField
+    public val getSamplePlaybackName: MethodStringName0<AudioStreamPlayback, AudioSamplePlayback?> =
+        MethodStringName0<AudioStreamPlayback, AudioSamplePlayback?>("get_sample_playback")
+
+    @JvmField
+    public val mixAudioName: MethodStringName2<AudioStreamPlayback, PackedVector2Array, Float, Int>
+        = MethodStringName2<AudioStreamPlayback, PackedVector2Array, Float, Int>("mix_audio")
+
+    @JvmField
+    public val startName: MethodStringName1<AudioStreamPlayback, Unit, Double> =
+        MethodStringName1<AudioStreamPlayback, Unit, Double>("start")
+
+    @JvmField
+    public val seekName: MethodStringName1<AudioStreamPlayback, Unit, Double> =
+        MethodStringName1<AudioStreamPlayback, Unit, Double>("seek")
+
+    @JvmField
+    public val stopName: MethodStringName0<AudioStreamPlayback, Unit> =
+        MethodStringName0<AudioStreamPlayback, Unit>("stop")
+
+    @JvmField
+    public val getLoopCountName: MethodStringName0<AudioStreamPlayback, Int> =
+        MethodStringName0<AudioStreamPlayback, Int>("get_loop_count")
+
+    @JvmField
+    public val getPlaybackPositionName: MethodStringName0<AudioStreamPlayback, Double> =
+        MethodStringName0<AudioStreamPlayback, Double>("get_playback_position")
+
+    @JvmField
+    public val isPlayingName: MethodStringName0<AudioStreamPlayback, Boolean> =
+        MethodStringName0<AudioStreamPlayback, Boolean>("is_playing")
+  }
 
   public object MethodBindings {
     internal val setSamplePlaybackPtr: VoidPtr =

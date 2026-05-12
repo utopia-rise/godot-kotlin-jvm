@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.HorizontalAlignment
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -23,6 +25,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -284,7 +287,79 @@ public open class SpinBox : Range() {
     return (TransferContext.readReturnValue(OBJECT) as LineEdit?)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setHorizontalAlignmentName: MethodStringName1<SpinBox, Unit, HorizontalAlignment> =
+        MethodStringName1<SpinBox, Unit, HorizontalAlignment>("set_horizontal_alignment")
+
+    @JvmField
+    public val getHorizontalAlignmentName: MethodStringName0<SpinBox, HorizontalAlignment> =
+        MethodStringName0<SpinBox, HorizontalAlignment>("get_horizontal_alignment")
+
+    @JvmField
+    public val setSuffixName: MethodStringName1<SpinBox, Unit, String> =
+        MethodStringName1<SpinBox, Unit, String>("set_suffix")
+
+    @JvmField
+    public val getSuffixName: MethodStringName0<SpinBox, String> =
+        MethodStringName0<SpinBox, String>("get_suffix")
+
+    @JvmField
+    public val setPrefixName: MethodStringName1<SpinBox, Unit, String> =
+        MethodStringName1<SpinBox, Unit, String>("set_prefix")
+
+    @JvmField
+    public val getPrefixName: MethodStringName0<SpinBox, String> =
+        MethodStringName0<SpinBox, String>("get_prefix")
+
+    @JvmField
+    public val setEditableName: MethodStringName1<SpinBox, Unit, Boolean> =
+        MethodStringName1<SpinBox, Unit, Boolean>("set_editable")
+
+    @JvmField
+    public val setCustomArrowStepName: MethodStringName1<SpinBox, Unit, Double> =
+        MethodStringName1<SpinBox, Unit, Double>("set_custom_arrow_step")
+
+    @JvmField
+    public val getCustomArrowStepName: MethodStringName0<SpinBox, Double> =
+        MethodStringName0<SpinBox, Double>("get_custom_arrow_step")
+
+    @JvmField
+    public val setCustomArrowRoundName: MethodStringName1<SpinBox, Unit, Boolean> =
+        MethodStringName1<SpinBox, Unit, Boolean>("set_custom_arrow_round")
+
+    @JvmField
+    public val isCustomArrowRoundingName: MethodStringName0<SpinBox, Boolean> =
+        MethodStringName0<SpinBox, Boolean>("is_custom_arrow_rounding")
+
+    @JvmField
+    public val isEditableName: MethodStringName0<SpinBox, Boolean> =
+        MethodStringName0<SpinBox, Boolean>("is_editable")
+
+    @JvmField
+    public val setUpdateOnTextChangedName: MethodStringName1<SpinBox, Unit, Boolean> =
+        MethodStringName1<SpinBox, Unit, Boolean>("set_update_on_text_changed")
+
+    @JvmField
+    public val getUpdateOnTextChangedName: MethodStringName0<SpinBox, Boolean> =
+        MethodStringName0<SpinBox, Boolean>("get_update_on_text_changed")
+
+    @JvmField
+    public val setSelectAllOnFocusName: MethodStringName1<SpinBox, Unit, Boolean> =
+        MethodStringName1<SpinBox, Unit, Boolean>("set_select_all_on_focus")
+
+    @JvmField
+    public val isSelectAllOnFocusName: MethodStringName0<SpinBox, Boolean> =
+        MethodStringName0<SpinBox, Boolean>("is_select_all_on_focus")
+
+    @JvmField
+    public val applyName: MethodStringName0<SpinBox, Unit> =
+        MethodStringName0<SpinBox, Unit>("apply")
+
+    @JvmField
+    public val getLineEditName: MethodStringName0<SpinBox, LineEdit?> =
+        MethodStringName0<SpinBox, LineEdit?>("get_line_edit")
+  }
 
   public object MethodBindings {
     internal val setHorizontalAlignmentPtr: VoidPtr =

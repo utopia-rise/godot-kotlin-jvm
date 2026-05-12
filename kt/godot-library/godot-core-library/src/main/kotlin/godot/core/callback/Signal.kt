@@ -4,8 +4,9 @@ package godot.core
 
 import godot.api.Object
 import godot.api.Object.ConnectFlags
-import godot.common.extensions.convertToSnakeCase
 import godot.internal.memory.MemoryManager
+import kotlin.properties.ReadOnlyProperty
+import kotlin.reflect.KProperty
 
 open class Signal internal constructor(
     val godotObject: Object,
@@ -16,6 +17,7 @@ open class Signal internal constructor(
         godotObject.emitSignal(name, *args)
     }
 
+    @JvmOverloads
     fun connectUnsafe(
         callable: Callable,
         flags: ConnectFlags = ConnectFlags.DEFAULT
@@ -48,4 +50,14 @@ open class Signal internal constructor(
         result = 31 * result + name.hashCode()
         return result
     }
+
+    companion object {
+        internal val delegate: ReadOnlyProperty<Object, Signal> =
+            ReadOnlyProperty { thisRef, property -> Signal(thisRef, property.toGodotName()) }
+
+        @JvmStatic
+        fun createUnsafe(godotObject: Object, name: String) = Signal(godotObject, name.toGodotName())
+    }
 }
+
+fun Object.unsafeSignal() = Signal.delegate

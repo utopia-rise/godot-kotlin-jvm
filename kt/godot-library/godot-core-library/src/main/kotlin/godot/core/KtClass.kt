@@ -11,7 +11,7 @@ data class KtClass<T : KtObject>(
     val constructor: KtConstructor<T>,
     private val _properties: Map<String, KtProperty<T, *>>,
     private val _functions: Map<String, KtFunction<T, *>>,
-    private val _notificationFunctions: List<Any.(Int) -> Unit>,
+    private val _notificationFunctions: List<NotificationFunction<out KtObject>>,
     private val _signalInfos: Map<String, KtSignalInfo>,
     val baseGodotClass: String
 ) {
@@ -41,13 +41,18 @@ data class KtClass<T : KtObject>(
 
         if (reversed) {
             for (notificationFunction in _notificationFunctions) {
-                notificationFunction(instance, notification.toInt())
+                doNotification(notificationFunction, instance, notification.toInt())
             }
             return
         }
 
         for (i in _notificationFunctions.size - 1 downTo 0) {
-            _notificationFunctions[i](instance, notification.toInt())
+            doNotification(_notificationFunctions[i], instance, notification.toInt())
         }
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    private fun doNotification(notificationFunction: NotificationFunction<out KtObject>, instance: T, notification: Int) {
+        (notificationFunction as NotificationFunction<T>).invoke(instance, notification)
     }
 }

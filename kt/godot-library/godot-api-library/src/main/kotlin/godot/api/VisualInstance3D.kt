@@ -11,6 +11,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.AABB
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.RID
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -25,6 +28,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -193,7 +197,55 @@ public open class VisualInstance3D : Node3D() {
     return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setBaseName: MethodStringName1<VisualInstance3D, Unit, RID> =
+        MethodStringName1<VisualInstance3D, Unit, RID>("set_base")
+
+    @JvmField
+    public val getBaseName: MethodStringName0<VisualInstance3D, RID> =
+        MethodStringName0<VisualInstance3D, RID>("get_base")
+
+    @JvmField
+    public val getInstanceName: MethodStringName0<VisualInstance3D, RID> =
+        MethodStringName0<VisualInstance3D, RID>("get_instance")
+
+    @JvmField
+    public val setLayerMaskName: MethodStringName1<VisualInstance3D, Unit, Long> =
+        MethodStringName1<VisualInstance3D, Unit, Long>("set_layer_mask")
+
+    @JvmField
+    public val getLayerMaskName: MethodStringName0<VisualInstance3D, Long> =
+        MethodStringName0<VisualInstance3D, Long>("get_layer_mask")
+
+    @JvmField
+    public val setLayerMaskValueName: MethodStringName2<VisualInstance3D, Unit, Int, Boolean> =
+        MethodStringName2<VisualInstance3D, Unit, Int, Boolean>("set_layer_mask_value")
+
+    @JvmField
+    public val getLayerMaskValueName: MethodStringName1<VisualInstance3D, Boolean, Int> =
+        MethodStringName1<VisualInstance3D, Boolean, Int>("get_layer_mask_value")
+
+    @JvmField
+    public val setSortingOffsetName: MethodStringName1<VisualInstance3D, Unit, Float> =
+        MethodStringName1<VisualInstance3D, Unit, Float>("set_sorting_offset")
+
+    @JvmField
+    public val getSortingOffsetName: MethodStringName0<VisualInstance3D, Float> =
+        MethodStringName0<VisualInstance3D, Float>("get_sorting_offset")
+
+    @JvmField
+    public val setSortingUseAabbCenterName: MethodStringName1<VisualInstance3D, Unit, Boolean> =
+        MethodStringName1<VisualInstance3D, Unit, Boolean>("set_sorting_use_aabb_center")
+
+    @JvmField
+    public val isSortingUseAabbCenterName: MethodStringName0<VisualInstance3D, Boolean> =
+        MethodStringName0<VisualInstance3D, Boolean>("is_sorting_use_aabb_center")
+
+    @JvmField
+    public val getAabbName: MethodStringName0<VisualInstance3D, AABB> =
+        MethodStringName0<VisualInstance3D, AABB>("get_aabb")
+  }
 
   public object MethodBindings {
     internal val setBasePtr: VoidPtr =

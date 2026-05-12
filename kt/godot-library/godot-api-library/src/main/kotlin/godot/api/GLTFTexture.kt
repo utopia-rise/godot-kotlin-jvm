@@ -10,12 +10,15 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 @GodotBaseType
@@ -70,7 +73,23 @@ public open class GLTFTexture : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.setSamplerPtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val getSrcImageName: MethodStringName0<GLTFTexture, Int> =
+        MethodStringName0<GLTFTexture, Int>("get_src_image")
+
+    @JvmField
+    public val setSrcImageName: MethodStringName1<GLTFTexture, Unit, Int> =
+        MethodStringName1<GLTFTexture, Unit, Int>("set_src_image")
+
+    @JvmField
+    public val getSamplerName: MethodStringName0<GLTFTexture, Int> =
+        MethodStringName0<GLTFTexture, Int>("get_sampler")
+
+    @JvmField
+    public val setSamplerName: MethodStringName1<GLTFTexture, Unit, Int> =
+        MethodStringName1<GLTFTexture, Unit, Int>("set_sampler")
+  }
 
   public object MethodBindings {
     internal val getSrcImagePtr: VoidPtr =

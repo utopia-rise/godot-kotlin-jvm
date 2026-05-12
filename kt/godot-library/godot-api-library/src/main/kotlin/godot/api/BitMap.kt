@@ -10,6 +10,10 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
 import godot.core.PackedVector2Array
 import godot.core.Rect2i
 import godot.core.VariantArray
@@ -28,6 +32,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -175,7 +180,60 @@ public open class BitMap : Resource() {
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<PackedVector2Array>)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val createName: MethodStringName1<BitMap, Unit, Vector2i> =
+        MethodStringName1<BitMap, Unit, Vector2i>("create")
+
+    @JvmField
+    public val createFromImageAlphaName: MethodStringName2<BitMap, Unit, Image?, Float> =
+        MethodStringName2<BitMap, Unit, Image?, Float>("create_from_image_alpha")
+
+    @JvmField
+    public val setBitvName: MethodStringName2<BitMap, Unit, Vector2i, Boolean> =
+        MethodStringName2<BitMap, Unit, Vector2i, Boolean>("set_bitv")
+
+    @JvmField
+    public val setBitName: MethodStringName3<BitMap, Unit, Int, Int, Boolean> =
+        MethodStringName3<BitMap, Unit, Int, Int, Boolean>("set_bit")
+
+    @JvmField
+    public val getBitvName: MethodStringName1<BitMap, Boolean, Vector2i> =
+        MethodStringName1<BitMap, Boolean, Vector2i>("get_bitv")
+
+    @JvmField
+    public val getBitName: MethodStringName2<BitMap, Boolean, Int, Int> =
+        MethodStringName2<BitMap, Boolean, Int, Int>("get_bit")
+
+    @JvmField
+    public val setBitRectName: MethodStringName2<BitMap, Unit, Rect2i, Boolean> =
+        MethodStringName2<BitMap, Unit, Rect2i, Boolean>("set_bit_rect")
+
+    @JvmField
+    public val getTrueBitCountName: MethodStringName0<BitMap, Int> =
+        MethodStringName0<BitMap, Int>("get_true_bit_count")
+
+    @JvmField
+    public val getSizeName: MethodStringName0<BitMap, Vector2i> =
+        MethodStringName0<BitMap, Vector2i>("get_size")
+
+    @JvmField
+    public val resizeName: MethodStringName1<BitMap, Unit, Vector2i> =
+        MethodStringName1<BitMap, Unit, Vector2i>("resize")
+
+    @JvmField
+    public val growMaskName: MethodStringName2<BitMap, Unit, Int, Rect2i> =
+        MethodStringName2<BitMap, Unit, Int, Rect2i>("grow_mask")
+
+    @JvmField
+    public val convertToImageName: MethodStringName0<BitMap, Image?> =
+        MethodStringName0<BitMap, Image?>("convert_to_image")
+
+    @JvmField
+    public val opaqueToPolygonsName:
+        MethodStringName2<BitMap, VariantArray<PackedVector2Array>, Rect2i, Float> =
+        MethodStringName2<BitMap, VariantArray<PackedVector2Array>, Rect2i, Float>("opaque_to_polygons")
+  }
 
   public object MethodBindings {
     internal val createPtr: VoidPtr = TypeManager.getMethodBindPtr("BitMap", "create", 1130785943)

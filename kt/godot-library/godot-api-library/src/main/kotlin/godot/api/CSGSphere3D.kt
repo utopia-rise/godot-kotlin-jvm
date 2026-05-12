@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -22,6 +24,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -149,7 +152,47 @@ public open class CSGSphere3D : CSGPrimitive3D() {
     return (TransferContext.readReturnValue(OBJECT) as Material?)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setRadiusName: MethodStringName1<CSGSphere3D, Unit, Float> =
+        MethodStringName1<CSGSphere3D, Unit, Float>("set_radius")
+
+    @JvmField
+    public val getRadiusName: MethodStringName0<CSGSphere3D, Float> =
+        MethodStringName0<CSGSphere3D, Float>("get_radius")
+
+    @JvmField
+    public val setRadialSegmentsName: MethodStringName1<CSGSphere3D, Unit, Int> =
+        MethodStringName1<CSGSphere3D, Unit, Int>("set_radial_segments")
+
+    @JvmField
+    public val getRadialSegmentsName: MethodStringName0<CSGSphere3D, Int> =
+        MethodStringName0<CSGSphere3D, Int>("get_radial_segments")
+
+    @JvmField
+    public val setRingsName: MethodStringName1<CSGSphere3D, Unit, Int> =
+        MethodStringName1<CSGSphere3D, Unit, Int>("set_rings")
+
+    @JvmField
+    public val getRingsName: MethodStringName0<CSGSphere3D, Int> =
+        MethodStringName0<CSGSphere3D, Int>("get_rings")
+
+    @JvmField
+    public val setSmoothFacesName: MethodStringName1<CSGSphere3D, Unit, Boolean> =
+        MethodStringName1<CSGSphere3D, Unit, Boolean>("set_smooth_faces")
+
+    @JvmField
+    public val getSmoothFacesName: MethodStringName0<CSGSphere3D, Boolean> =
+        MethodStringName0<CSGSphere3D, Boolean>("get_smooth_faces")
+
+    @JvmField
+    public val setMaterialName: MethodStringName1<CSGSphere3D, Unit, Material?> =
+        MethodStringName1<CSGSphere3D, Unit, Material?>("set_material")
+
+    @JvmField
+    public val getMaterialName: MethodStringName0<CSGSphere3D, Material?> =
+        MethodStringName0<CSGSphere3D, Material?>("get_material")
+  }
 
   public object MethodBindings {
     internal val setRadiusPtr: VoidPtr =

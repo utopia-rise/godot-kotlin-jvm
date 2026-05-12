@@ -11,6 +11,11 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName5
+import godot.core.MethodStringName6
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
@@ -20,6 +25,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
@@ -150,7 +156,37 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
     return (TransferContext.readReturnValue(OBJECT) as ENetPacketPeer?)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val createServerName:
+        MethodStringName5<ENetMultiplayerPeer, Error, Int, Int, Int, Int, Int> =
+        MethodStringName5<ENetMultiplayerPeer, Error, Int, Int, Int, Int, Int>("create_server")
+
+    @JvmField
+    public val createClientName:
+        MethodStringName6<ENetMultiplayerPeer, Error, String, Int, Int, Int, Int, Int> =
+        MethodStringName6<ENetMultiplayerPeer, Error, String, Int, Int, Int, Int, Int>("create_client")
+
+    @JvmField
+    public val createMeshName: MethodStringName1<ENetMultiplayerPeer, Error, Int> =
+        MethodStringName1<ENetMultiplayerPeer, Error, Int>("create_mesh")
+
+    @JvmField
+    public val addMeshPeerName: MethodStringName2<ENetMultiplayerPeer, Error, Int, ENetConnection?>
+        = MethodStringName2<ENetMultiplayerPeer, Error, Int, ENetConnection?>("add_mesh_peer")
+
+    @JvmField
+    public val setBindIpName: MethodStringName1<ENetMultiplayerPeer, Unit, String> =
+        MethodStringName1<ENetMultiplayerPeer, Unit, String>("set_bind_ip")
+
+    @JvmField
+    public val getHostName: MethodStringName0<ENetMultiplayerPeer, ENetConnection?> =
+        MethodStringName0<ENetMultiplayerPeer, ENetConnection?>("get_host")
+
+    @JvmField
+    public val getPeerName: MethodStringName1<ENetMultiplayerPeer, ENetPacketPeer?, Int> =
+        MethodStringName1<ENetMultiplayerPeer, ENetPacketPeer?, Int>("get_peer")
+  }
 
   public object MethodBindings {
     internal val createServerPtr: VoidPtr =

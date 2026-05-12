@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.RID
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -20,6 +22,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -143,6 +146,30 @@ public abstract class Material : Resource() {
   }
 
   public companion object {
+    @JvmField
+    public val setNextPassName: MethodStringName1<Material, Unit, Material?> =
+        MethodStringName1<Material, Unit, Material?>("set_next_pass")
+
+    @JvmField
+    public val getNextPassName: MethodStringName0<Material, Material?> =
+        MethodStringName0<Material, Material?>("get_next_pass")
+
+    @JvmField
+    public val setRenderPriorityName: MethodStringName1<Material, Unit, Int> =
+        MethodStringName1<Material, Unit, Int>("set_render_priority")
+
+    @JvmField
+    public val getRenderPriorityName: MethodStringName0<Material, Int> =
+        MethodStringName0<Material, Int>("get_render_priority")
+
+    @JvmField
+    public val inspectNativeShaderCodeName: MethodStringName0<Material, Unit> =
+        MethodStringName0<Material, Unit>("inspect_native_shader_code")
+
+    @JvmField
+    public val createPlaceholderName: MethodStringName0<Material, Resource?> =
+        MethodStringName0<Material, Resource?>("create_placeholder")
+
     /**
      * Maximum value for the [renderPriority] parameter.
      */

@@ -13,6 +13,9 @@ import godot.common.interop.VoidPtr
 import godot.core.AABB
 import godot.core.Color
 import godot.core.Dictionary
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.Plane
 import godot.core.StringName
 import godot.core.VariantArray
@@ -31,6 +34,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -251,7 +255,48 @@ public open class ImmediateMesh : Mesh() {
     throw NotImplementedError("ImmediateMesh::_getAabb can't be called from the JVM.")
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val surfaceBeginName:
+        MethodStringName2<ImmediateMesh, Unit, Mesh.PrimitiveType, Material?> =
+        MethodStringName2<ImmediateMesh, Unit, Mesh.PrimitiveType, Material?>("surface_begin")
+
+    @JvmField
+    public val surfaceSetColorName: MethodStringName1<ImmediateMesh, Unit, Color> =
+        MethodStringName1<ImmediateMesh, Unit, Color>("surface_set_color")
+
+    @JvmField
+    public val surfaceSetNormalName: MethodStringName1<ImmediateMesh, Unit, Vector3> =
+        MethodStringName1<ImmediateMesh, Unit, Vector3>("surface_set_normal")
+
+    @JvmField
+    public val surfaceSetTangentName: MethodStringName1<ImmediateMesh, Unit, Plane> =
+        MethodStringName1<ImmediateMesh, Unit, Plane>("surface_set_tangent")
+
+    @JvmField
+    public val surfaceSetUvName: MethodStringName1<ImmediateMesh, Unit, Vector2> =
+        MethodStringName1<ImmediateMesh, Unit, Vector2>("surface_set_uv")
+
+    @JvmField
+    public val surfaceSetUv2Name: MethodStringName1<ImmediateMesh, Unit, Vector2> =
+        MethodStringName1<ImmediateMesh, Unit, Vector2>("surface_set_uv2")
+
+    @JvmField
+    public val surfaceAddVertexName: MethodStringName1<ImmediateMesh, Unit, Vector3> =
+        MethodStringName1<ImmediateMesh, Unit, Vector3>("surface_add_vertex")
+
+    @JvmField
+    public val surfaceAddVertex2dName: MethodStringName1<ImmediateMesh, Unit, Vector2> =
+        MethodStringName1<ImmediateMesh, Unit, Vector2>("surface_add_vertex_2d")
+
+    @JvmField
+    public val surfaceEndName: MethodStringName0<ImmediateMesh, Unit> =
+        MethodStringName0<ImmediateMesh, Unit>("surface_end")
+
+    @JvmField
+    public val clearSurfacesName: MethodStringName0<ImmediateMesh, Unit> =
+        MethodStringName0<ImmediateMesh, Unit>("clear_surfaces")
+  }
 
   public object MethodBindings {
     internal val surfaceBeginPtr: VoidPtr =

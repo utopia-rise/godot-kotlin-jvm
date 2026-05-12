@@ -14,6 +14,10 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
 import godot.core.PackedStringArray
 import godot.core.PackedVector2Array
 import godot.core.Rect2i
@@ -44,6 +48,7 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
@@ -2784,6 +2789,517 @@ public open class Window : Viewport() {
   }
 
   public companion object {
+    @JvmField
+    public val setTitleName: MethodStringName1<Window, Unit, String> =
+        MethodStringName1<Window, Unit, String>("set_title")
+
+    @JvmField
+    public val getTitleName: MethodStringName0<Window, String> =
+        MethodStringName0<Window, String>("get_title")
+
+    @JvmField
+    public val setInitialPositionName: MethodStringName1<Window, Unit, WindowInitialPosition> =
+        MethodStringName1<Window, Unit, WindowInitialPosition>("set_initial_position")
+
+    @JvmField
+    public val getInitialPositionName: MethodStringName0<Window, WindowInitialPosition> =
+        MethodStringName0<Window, WindowInitialPosition>("get_initial_position")
+
+    @JvmField
+    public val setCurrentScreenName: MethodStringName1<Window, Unit, Int> =
+        MethodStringName1<Window, Unit, Int>("set_current_screen")
+
+    @JvmField
+    public val getCurrentScreenName: MethodStringName0<Window, Int> =
+        MethodStringName0<Window, Int>("get_current_screen")
+
+    @JvmField
+    public val setPositionName: MethodStringName1<Window, Unit, Vector2i> =
+        MethodStringName1<Window, Unit, Vector2i>("set_position")
+
+    @JvmField
+    public val getPositionName: MethodStringName0<Window, Vector2i> =
+        MethodStringName0<Window, Vector2i>("get_position")
+
+    @JvmField
+    public val moveToCenterName: MethodStringName0<Window, Unit> =
+        MethodStringName0<Window, Unit>("move_to_center")
+
+    @JvmField
+    public val setSizeName: MethodStringName1<Window, Unit, Vector2i> =
+        MethodStringName1<Window, Unit, Vector2i>("set_size")
+
+    @JvmField
+    public val getSizeName: MethodStringName0<Window, Vector2i> =
+        MethodStringName0<Window, Vector2i>("get_size")
+
+    @JvmField
+    public val resetSizeName: MethodStringName0<Window, Unit> =
+        MethodStringName0<Window, Unit>("reset_size")
+
+    @JvmField
+    public val getPositionWithDecorationsName: MethodStringName0<Window, Vector2i> =
+        MethodStringName0<Window, Vector2i>("get_position_with_decorations")
+
+    @JvmField
+    public val getSizeWithDecorationsName: MethodStringName0<Window, Vector2i> =
+        MethodStringName0<Window, Vector2i>("get_size_with_decorations")
+
+    @JvmField
+    public val setMaxSizeName: MethodStringName1<Window, Unit, Vector2i> =
+        MethodStringName1<Window, Unit, Vector2i>("set_max_size")
+
+    @JvmField
+    public val getMaxSizeName: MethodStringName0<Window, Vector2i> =
+        MethodStringName0<Window, Vector2i>("get_max_size")
+
+    @JvmField
+    public val setMinSizeName: MethodStringName1<Window, Unit, Vector2i> =
+        MethodStringName1<Window, Unit, Vector2i>("set_min_size")
+
+    @JvmField
+    public val getMinSizeName: MethodStringName0<Window, Vector2i> =
+        MethodStringName0<Window, Vector2i>("get_min_size")
+
+    @JvmField
+    public val setModeName: MethodStringName1<Window, Unit, Mode> =
+        MethodStringName1<Window, Unit, Mode>("set_mode")
+
+    @JvmField
+    public val getModeName: MethodStringName0<Window, Mode> =
+        MethodStringName0<Window, Mode>("get_mode")
+
+    @JvmField
+    public val setFlagName: MethodStringName2<Window, Unit, Flags, Boolean> =
+        MethodStringName2<Window, Unit, Flags, Boolean>("set_flag")
+
+    @JvmField
+    public val getFlagName: MethodStringName1<Window, Boolean, Flags> =
+        MethodStringName1<Window, Boolean, Flags>("get_flag")
+
+    @JvmField
+    public val isMaximizeAllowedName: MethodStringName0<Window, Boolean> =
+        MethodStringName0<Window, Boolean>("is_maximize_allowed")
+
+    @JvmField
+    public val requestAttentionName: MethodStringName0<Window, Unit> =
+        MethodStringName0<Window, Unit>("request_attention")
+
+    @JvmField
+    public val moveToForegroundName: MethodStringName0<Window, Unit> =
+        MethodStringName0<Window, Unit>("move_to_foreground")
+
+    @JvmField
+    public val setVisibleName: MethodStringName1<Window, Unit, Boolean> =
+        MethodStringName1<Window, Unit, Boolean>("set_visible")
+
+    @JvmField
+    public val isVisibleName: MethodStringName0<Window, Boolean> =
+        MethodStringName0<Window, Boolean>("is_visible")
+
+    @JvmField
+    public val hideName: MethodStringName0<Window, Unit> = MethodStringName0<Window, Unit>("hide")
+
+    @JvmField
+    public val showName: MethodStringName0<Window, Unit> = MethodStringName0<Window, Unit>("show")
+
+    @JvmField
+    public val setTransientName: MethodStringName1<Window, Unit, Boolean> =
+        MethodStringName1<Window, Unit, Boolean>("set_transient")
+
+    @JvmField
+    public val isTransientName: MethodStringName0<Window, Boolean> =
+        MethodStringName0<Window, Boolean>("is_transient")
+
+    @JvmField
+    public val setTransientToFocusedName: MethodStringName1<Window, Unit, Boolean> =
+        MethodStringName1<Window, Unit, Boolean>("set_transient_to_focused")
+
+    @JvmField
+    public val isTransientToFocusedName: MethodStringName0<Window, Boolean> =
+        MethodStringName0<Window, Boolean>("is_transient_to_focused")
+
+    @JvmField
+    public val setExclusiveName: MethodStringName1<Window, Unit, Boolean> =
+        MethodStringName1<Window, Unit, Boolean>("set_exclusive")
+
+    @JvmField
+    public val isExclusiveName: MethodStringName0<Window, Boolean> =
+        MethodStringName0<Window, Boolean>("is_exclusive")
+
+    @JvmField
+    public val setUnparentWhenInvisibleName: MethodStringName1<Window, Unit, Boolean> =
+        MethodStringName1<Window, Unit, Boolean>("set_unparent_when_invisible")
+
+    @JvmField
+    public val canDrawName: MethodStringName0<Window, Boolean> =
+        MethodStringName0<Window, Boolean>("can_draw")
+
+    @JvmField
+    public val hasFocusName: MethodStringName0<Window, Boolean> =
+        MethodStringName0<Window, Boolean>("has_focus")
+
+    @JvmField
+    public val grabFocusName: MethodStringName0<Window, Unit> =
+        MethodStringName0<Window, Unit>("grab_focus")
+
+    @JvmField
+    public val startDragName: MethodStringName0<Window, Unit> =
+        MethodStringName0<Window, Unit>("start_drag")
+
+    @JvmField
+    public val startResizeName: MethodStringName1<Window, Unit, DisplayServer.WindowResizeEdge> =
+        MethodStringName1<Window, Unit, DisplayServer.WindowResizeEdge>("start_resize")
+
+    @JvmField
+    public val setImeActiveName: MethodStringName1<Window, Unit, Boolean> =
+        MethodStringName1<Window, Unit, Boolean>("set_ime_active")
+
+    @JvmField
+    public val setImePositionName: MethodStringName1<Window, Unit, Vector2i> =
+        MethodStringName1<Window, Unit, Vector2i>("set_ime_position")
+
+    @JvmField
+    public val isEmbeddedName: MethodStringName0<Window, Boolean> =
+        MethodStringName0<Window, Boolean>("is_embedded")
+
+    @JvmField
+    public val getContentsMinimumSizeName: MethodStringName0<Window, Vector2> =
+        MethodStringName0<Window, Vector2>("get_contents_minimum_size")
+
+    @JvmField
+    public val setForceNativeName: MethodStringName1<Window, Unit, Boolean> =
+        MethodStringName1<Window, Unit, Boolean>("set_force_native")
+
+    @JvmField
+    public val getForceNativeName: MethodStringName0<Window, Boolean> =
+        MethodStringName0<Window, Boolean>("get_force_native")
+
+    @JvmField
+    public val setContentScaleSizeName: MethodStringName1<Window, Unit, Vector2i> =
+        MethodStringName1<Window, Unit, Vector2i>("set_content_scale_size")
+
+    @JvmField
+    public val getContentScaleSizeName: MethodStringName0<Window, Vector2i> =
+        MethodStringName0<Window, Vector2i>("get_content_scale_size")
+
+    @JvmField
+    public val setContentScaleModeName: MethodStringName1<Window, Unit, ContentScaleMode> =
+        MethodStringName1<Window, Unit, ContentScaleMode>("set_content_scale_mode")
+
+    @JvmField
+    public val getContentScaleModeName: MethodStringName0<Window, ContentScaleMode> =
+        MethodStringName0<Window, ContentScaleMode>("get_content_scale_mode")
+
+    @JvmField
+    public val setContentScaleAspectName: MethodStringName1<Window, Unit, ContentScaleAspect> =
+        MethodStringName1<Window, Unit, ContentScaleAspect>("set_content_scale_aspect")
+
+    @JvmField
+    public val getContentScaleAspectName: MethodStringName0<Window, ContentScaleAspect> =
+        MethodStringName0<Window, ContentScaleAspect>("get_content_scale_aspect")
+
+    @JvmField
+    public val setContentScaleStretchName: MethodStringName1<Window, Unit, ContentScaleStretch> =
+        MethodStringName1<Window, Unit, ContentScaleStretch>("set_content_scale_stretch")
+
+    @JvmField
+    public val getContentScaleStretchName: MethodStringName0<Window, ContentScaleStretch> =
+        MethodStringName0<Window, ContentScaleStretch>("get_content_scale_stretch")
+
+    @JvmField
+    public val setNonclientAreaName: MethodStringName1<Window, Unit, Rect2i> =
+        MethodStringName1<Window, Unit, Rect2i>("set_nonclient_area")
+
+    @JvmField
+    public val getNonclientAreaName: MethodStringName0<Window, Rect2i> =
+        MethodStringName0<Window, Rect2i>("get_nonclient_area")
+
+    @JvmField
+    public val setKeepTitleVisibleName: MethodStringName1<Window, Unit, Boolean> =
+        MethodStringName1<Window, Unit, Boolean>("set_keep_title_visible")
+
+    @JvmField
+    public val getKeepTitleVisibleName: MethodStringName0<Window, Boolean> =
+        MethodStringName0<Window, Boolean>("get_keep_title_visible")
+
+    @JvmField
+    public val setContentScaleFactorName: MethodStringName1<Window, Unit, Float> =
+        MethodStringName1<Window, Unit, Float>("set_content_scale_factor")
+
+    @JvmField
+    public val getContentScaleFactorName: MethodStringName0<Window, Float> =
+        MethodStringName0<Window, Float>("get_content_scale_factor")
+
+    @JvmField
+    public val setMousePassthroughPolygonName: MethodStringName1<Window, Unit, PackedVector2Array> =
+        MethodStringName1<Window, Unit, PackedVector2Array>("set_mouse_passthrough_polygon")
+
+    @JvmField
+    public val getMousePassthroughPolygonName: MethodStringName0<Window, PackedVector2Array> =
+        MethodStringName0<Window, PackedVector2Array>("get_mouse_passthrough_polygon")
+
+    @JvmField
+    public val setWrapControlsName: MethodStringName1<Window, Unit, Boolean> =
+        MethodStringName1<Window, Unit, Boolean>("set_wrap_controls")
+
+    @JvmField
+    public val isWrappingControlsName: MethodStringName0<Window, Boolean> =
+        MethodStringName0<Window, Boolean>("is_wrapping_controls")
+
+    @JvmField
+    public val childControlsChangedName: MethodStringName0<Window, Unit> =
+        MethodStringName0<Window, Unit>("child_controls_changed")
+
+    @JvmField
+    public val setThemeName: MethodStringName1<Window, Unit, Theme?> =
+        MethodStringName1<Window, Unit, Theme?>("set_theme")
+
+    @JvmField
+    public val getThemeName: MethodStringName0<Window, Theme?> =
+        MethodStringName0<Window, Theme?>("get_theme")
+
+    @JvmField
+    public val setThemeTypeVariationName: MethodStringName1<Window, Unit, StringName> =
+        MethodStringName1<Window, Unit, StringName>("set_theme_type_variation")
+
+    @JvmField
+    public val getThemeTypeVariationName: MethodStringName0<Window, StringName> =
+        MethodStringName0<Window, StringName>("get_theme_type_variation")
+
+    @JvmField
+    public val beginBulkThemeOverrideName: MethodStringName0<Window, Unit> =
+        MethodStringName0<Window, Unit>("begin_bulk_theme_override")
+
+    @JvmField
+    public val endBulkThemeOverrideName: MethodStringName0<Window, Unit> =
+        MethodStringName0<Window, Unit>("end_bulk_theme_override")
+
+    @JvmField
+    public val addThemeIconOverrideName: MethodStringName2<Window, Unit, StringName, Texture2D?> =
+        MethodStringName2<Window, Unit, StringName, Texture2D?>("add_theme_icon_override")
+
+    @JvmField
+    public val addThemeStyleboxOverrideName: MethodStringName2<Window, Unit, StringName, StyleBox?>
+        = MethodStringName2<Window, Unit, StringName, StyleBox?>("add_theme_stylebox_override")
+
+    @JvmField
+    public val addThemeFontOverrideName: MethodStringName2<Window, Unit, StringName, Font?> =
+        MethodStringName2<Window, Unit, StringName, Font?>("add_theme_font_override")
+
+    @JvmField
+    public val addThemeFontSizeOverrideName: MethodStringName2<Window, Unit, StringName, Int> =
+        MethodStringName2<Window, Unit, StringName, Int>("add_theme_font_size_override")
+
+    @JvmField
+    public val addThemeColorOverrideName: MethodStringName2<Window, Unit, StringName, Color> =
+        MethodStringName2<Window, Unit, StringName, Color>("add_theme_color_override")
+
+    @JvmField
+    public val addThemeConstantOverrideName: MethodStringName2<Window, Unit, StringName, Int> =
+        MethodStringName2<Window, Unit, StringName, Int>("add_theme_constant_override")
+
+    @JvmField
+    public val removeThemeIconOverrideName: MethodStringName1<Window, Unit, StringName> =
+        MethodStringName1<Window, Unit, StringName>("remove_theme_icon_override")
+
+    @JvmField
+    public val removeThemeStyleboxOverrideName: MethodStringName1<Window, Unit, StringName> =
+        MethodStringName1<Window, Unit, StringName>("remove_theme_stylebox_override")
+
+    @JvmField
+    public val removeThemeFontOverrideName: MethodStringName1<Window, Unit, StringName> =
+        MethodStringName1<Window, Unit, StringName>("remove_theme_font_override")
+
+    @JvmField
+    public val removeThemeFontSizeOverrideName: MethodStringName1<Window, Unit, StringName> =
+        MethodStringName1<Window, Unit, StringName>("remove_theme_font_size_override")
+
+    @JvmField
+    public val removeThemeColorOverrideName: MethodStringName1<Window, Unit, StringName> =
+        MethodStringName1<Window, Unit, StringName>("remove_theme_color_override")
+
+    @JvmField
+    public val removeThemeConstantOverrideName: MethodStringName1<Window, Unit, StringName> =
+        MethodStringName1<Window, Unit, StringName>("remove_theme_constant_override")
+
+    @JvmField
+    public val getThemeIconName: MethodStringName2<Window, Texture2D?, StringName, StringName> =
+        MethodStringName2<Window, Texture2D?, StringName, StringName>("get_theme_icon")
+
+    @JvmField
+    public val getThemeStyleboxName: MethodStringName2<Window, StyleBox?, StringName, StringName> =
+        MethodStringName2<Window, StyleBox?, StringName, StringName>("get_theme_stylebox")
+
+    @JvmField
+    public val getThemeFontName: MethodStringName2<Window, Font?, StringName, StringName> =
+        MethodStringName2<Window, Font?, StringName, StringName>("get_theme_font")
+
+    @JvmField
+    public val getThemeFontSizeName: MethodStringName2<Window, Int, StringName, StringName> =
+        MethodStringName2<Window, Int, StringName, StringName>("get_theme_font_size")
+
+    @JvmField
+    public val getThemeColorName: MethodStringName2<Window, Color, StringName, StringName> =
+        MethodStringName2<Window, Color, StringName, StringName>("get_theme_color")
+
+    @JvmField
+    public val getThemeConstantName: MethodStringName2<Window, Int, StringName, StringName> =
+        MethodStringName2<Window, Int, StringName, StringName>("get_theme_constant")
+
+    @JvmField
+    public val hasThemeIconOverrideName: MethodStringName1<Window, Boolean, StringName> =
+        MethodStringName1<Window, Boolean, StringName>("has_theme_icon_override")
+
+    @JvmField
+    public val hasThemeStyleboxOverrideName: MethodStringName1<Window, Boolean, StringName> =
+        MethodStringName1<Window, Boolean, StringName>("has_theme_stylebox_override")
+
+    @JvmField
+    public val hasThemeFontOverrideName: MethodStringName1<Window, Boolean, StringName> =
+        MethodStringName1<Window, Boolean, StringName>("has_theme_font_override")
+
+    @JvmField
+    public val hasThemeFontSizeOverrideName: MethodStringName1<Window, Boolean, StringName> =
+        MethodStringName1<Window, Boolean, StringName>("has_theme_font_size_override")
+
+    @JvmField
+    public val hasThemeColorOverrideName: MethodStringName1<Window, Boolean, StringName> =
+        MethodStringName1<Window, Boolean, StringName>("has_theme_color_override")
+
+    @JvmField
+    public val hasThemeConstantOverrideName: MethodStringName1<Window, Boolean, StringName> =
+        MethodStringName1<Window, Boolean, StringName>("has_theme_constant_override")
+
+    @JvmField
+    public val hasThemeIconName: MethodStringName2<Window, Boolean, StringName, StringName> =
+        MethodStringName2<Window, Boolean, StringName, StringName>("has_theme_icon")
+
+    @JvmField
+    public val hasThemeStyleboxName: MethodStringName2<Window, Boolean, StringName, StringName> =
+        MethodStringName2<Window, Boolean, StringName, StringName>("has_theme_stylebox")
+
+    @JvmField
+    public val hasThemeFontName: MethodStringName2<Window, Boolean, StringName, StringName> =
+        MethodStringName2<Window, Boolean, StringName, StringName>("has_theme_font")
+
+    @JvmField
+    public val hasThemeFontSizeName: MethodStringName2<Window, Boolean, StringName, StringName> =
+        MethodStringName2<Window, Boolean, StringName, StringName>("has_theme_font_size")
+
+    @JvmField
+    public val hasThemeColorName: MethodStringName2<Window, Boolean, StringName, StringName> =
+        MethodStringName2<Window, Boolean, StringName, StringName>("has_theme_color")
+
+    @JvmField
+    public val hasThemeConstantName: MethodStringName2<Window, Boolean, StringName, StringName> =
+        MethodStringName2<Window, Boolean, StringName, StringName>("has_theme_constant")
+
+    @JvmField
+    public val getThemeDefaultBaseScaleName: MethodStringName0<Window, Float> =
+        MethodStringName0<Window, Float>("get_theme_default_base_scale")
+
+    @JvmField
+    public val getThemeDefaultFontName: MethodStringName0<Window, Font?> =
+        MethodStringName0<Window, Font?>("get_theme_default_font")
+
+    @JvmField
+    public val getThemeDefaultFontSizeName: MethodStringName0<Window, Int> =
+        MethodStringName0<Window, Int>("get_theme_default_font_size")
+
+    @JvmField
+    public val getWindowIdName: MethodStringName0<Window, Int> =
+        MethodStringName0<Window, Int>("get_window_id")
+
+    @JvmField
+    public val setAccessibilityNameName: MethodStringName1<Window, Unit, String> =
+        MethodStringName1<Window, Unit, String>("set_accessibility_name")
+
+    @JvmField
+    public val getAccessibilityNameName: MethodStringName0<Window, String> =
+        MethodStringName0<Window, String>("get_accessibility_name")
+
+    @JvmField
+    public val setAccessibilityDescriptionName: MethodStringName1<Window, Unit, String> =
+        MethodStringName1<Window, Unit, String>("set_accessibility_description")
+
+    @JvmField
+    public val getAccessibilityDescriptionName: MethodStringName0<Window, String> =
+        MethodStringName0<Window, String>("get_accessibility_description")
+
+    @JvmField
+    public val getFocusedWindowName: MethodStringName0<Window, Window?> =
+        MethodStringName0<Window, Window?>("get_focused_window")
+
+    @JvmField
+    public val setLayoutDirectionName: MethodStringName1<Window, Unit, LayoutDirection> =
+        MethodStringName1<Window, Unit, LayoutDirection>("set_layout_direction")
+
+    @JvmField
+    public val getLayoutDirectionName: MethodStringName0<Window, LayoutDirection> =
+        MethodStringName0<Window, LayoutDirection>("get_layout_direction")
+
+    @JvmField
+    public val isLayoutRtlName: MethodStringName0<Window, Boolean> =
+        MethodStringName0<Window, Boolean>("is_layout_rtl")
+
+    @JvmField
+    public val setAutoTranslateName: MethodStringName1<Window, Unit, Boolean> =
+        MethodStringName1<Window, Unit, Boolean>("set_auto_translate")
+
+    @JvmField
+    public val isAutoTranslatingName: MethodStringName0<Window, Boolean> =
+        MethodStringName0<Window, Boolean>("is_auto_translating")
+
+    @JvmField
+    public val setUseFontOversamplingName: MethodStringName1<Window, Unit, Boolean> =
+        MethodStringName1<Window, Unit, Boolean>("set_use_font_oversampling")
+
+    @JvmField
+    public val isUsingFontOversamplingName: MethodStringName0<Window, Boolean> =
+        MethodStringName0<Window, Boolean>("is_using_font_oversampling")
+
+    @JvmField
+    public val popupName: MethodStringName1<Window, Unit, Rect2i> =
+        MethodStringName1<Window, Unit, Rect2i>("popup")
+
+    @JvmField
+    public val popupOnParentName: MethodStringName1<Window, Unit, Rect2i> =
+        MethodStringName1<Window, Unit, Rect2i>("popup_on_parent")
+
+    @JvmField
+    public val popupCenteredName: MethodStringName1<Window, Unit, Vector2i> =
+        MethodStringName1<Window, Unit, Vector2i>("popup_centered")
+
+    @JvmField
+    public val popupCenteredRatioName: MethodStringName1<Window, Unit, Float> =
+        MethodStringName1<Window, Unit, Float>("popup_centered_ratio")
+
+    @JvmField
+    public val popupCenteredClampedName: MethodStringName2<Window, Unit, Vector2i, Float> =
+        MethodStringName2<Window, Unit, Vector2i, Float>("popup_centered_clamped")
+
+    @JvmField
+    public val popupExclusiveName: MethodStringName2<Window, Unit, Node?, Rect2i> =
+        MethodStringName2<Window, Unit, Node?, Rect2i>("popup_exclusive")
+
+    @JvmField
+    public val popupExclusiveOnParentName: MethodStringName2<Window, Unit, Node?, Rect2i> =
+        MethodStringName2<Window, Unit, Node?, Rect2i>("popup_exclusive_on_parent")
+
+    @JvmField
+    public val popupExclusiveCenteredName: MethodStringName2<Window, Unit, Node?, Vector2i> =
+        MethodStringName2<Window, Unit, Node?, Vector2i>("popup_exclusive_centered")
+
+    @JvmField
+    public val popupExclusiveCenteredRatioName: MethodStringName2<Window, Unit, Node?, Float> =
+        MethodStringName2<Window, Unit, Node?, Float>("popup_exclusive_centered_ratio")
+
+    @JvmField
+    public val popupExclusiveCenteredClampedName:
+        MethodStringName3<Window, Unit, Node?, Vector2i, Float> =
+        MethodStringName3<Window, Unit, Node?, Vector2i, Float>("popup_exclusive_centered_clamped")
+
     /**
      * Emitted when [Window]'s visibility changes, right before [signal visibility_changed].
      */

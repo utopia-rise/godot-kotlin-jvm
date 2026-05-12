@@ -12,6 +12,8 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Key
 import godot.core.KeyLocation
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -21,6 +23,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -339,7 +342,83 @@ public open class InputEventKey : InputEventWithModifiers() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setPressedName: MethodStringName1<InputEventKey, Unit, Boolean> =
+        MethodStringName1<InputEventKey, Unit, Boolean>("set_pressed")
+
+    @JvmField
+    public val setKeycodeName: MethodStringName1<InputEventKey, Unit, Key> =
+        MethodStringName1<InputEventKey, Unit, Key>("set_keycode")
+
+    @JvmField
+    public val getKeycodeName: MethodStringName0<InputEventKey, Key> =
+        MethodStringName0<InputEventKey, Key>("get_keycode")
+
+    @JvmField
+    public val setPhysicalKeycodeName: MethodStringName1<InputEventKey, Unit, Key> =
+        MethodStringName1<InputEventKey, Unit, Key>("set_physical_keycode")
+
+    @JvmField
+    public val getPhysicalKeycodeName: MethodStringName0<InputEventKey, Key> =
+        MethodStringName0<InputEventKey, Key>("get_physical_keycode")
+
+    @JvmField
+    public val setKeyLabelName: MethodStringName1<InputEventKey, Unit, Key> =
+        MethodStringName1<InputEventKey, Unit, Key>("set_key_label")
+
+    @JvmField
+    public val getKeyLabelName: MethodStringName0<InputEventKey, Key> =
+        MethodStringName0<InputEventKey, Key>("get_key_label")
+
+    @JvmField
+    public val setUnicodeName: MethodStringName1<InputEventKey, Unit, Long> =
+        MethodStringName1<InputEventKey, Unit, Long>("set_unicode")
+
+    @JvmField
+    public val getUnicodeName: MethodStringName0<InputEventKey, Long> =
+        MethodStringName0<InputEventKey, Long>("get_unicode")
+
+    @JvmField
+    public val setLocationName: MethodStringName1<InputEventKey, Unit, KeyLocation> =
+        MethodStringName1<InputEventKey, Unit, KeyLocation>("set_location")
+
+    @JvmField
+    public val getLocationName: MethodStringName0<InputEventKey, KeyLocation> =
+        MethodStringName0<InputEventKey, KeyLocation>("get_location")
+
+    @JvmField
+    public val setEchoName: MethodStringName1<InputEventKey, Unit, Boolean> =
+        MethodStringName1<InputEventKey, Unit, Boolean>("set_echo")
+
+    @JvmField
+    public val getKeycodeWithModifiersName: MethodStringName0<InputEventKey, Key> =
+        MethodStringName0<InputEventKey, Key>("get_keycode_with_modifiers")
+
+    @JvmField
+    public val getPhysicalKeycodeWithModifiersName: MethodStringName0<InputEventKey, Key> =
+        MethodStringName0<InputEventKey, Key>("get_physical_keycode_with_modifiers")
+
+    @JvmField
+    public val getKeyLabelWithModifiersName: MethodStringName0<InputEventKey, Key> =
+        MethodStringName0<InputEventKey, Key>("get_key_label_with_modifiers")
+
+    @JvmField
+    public val asTextKeycodeName: MethodStringName0<InputEventKey, String> =
+        MethodStringName0<InputEventKey, String>("as_text_keycode")
+
+    @JvmField
+    public val asTextPhysicalKeycodeName: MethodStringName0<InputEventKey, String> =
+        MethodStringName0<InputEventKey, String>("as_text_physical_keycode")
+
+    @JvmField
+    public val asTextKeyLabelName: MethodStringName0<InputEventKey, String> =
+        MethodStringName0<InputEventKey, String>("as_text_key_label")
+
+    @JvmField
+    public val asTextLocationName: MethodStringName0<InputEventKey, String> =
+        MethodStringName0<InputEventKey, String>("as_text_location")
+  }
 
   public object MethodBindings {
     internal val setPressedPtr: VoidPtr =

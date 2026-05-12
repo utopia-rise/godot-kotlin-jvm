@@ -11,6 +11,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName11
 import godot.core.PackedFloat64Array
 import godot.core.PackedStringArray
 import godot.core.PackedVector3Array
@@ -37,6 +40,7 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 
 /**
  * External XR interface plugins should inherit from this class.
@@ -337,7 +341,29 @@ public open class XRInterfaceExtension : XRInterface() {
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val getColorTextureName: MethodStringName0<XRInterfaceExtension, RID> =
+        MethodStringName0<XRInterfaceExtension, RID>("get_color_texture")
+
+    @JvmField
+    public val getDepthTextureName: MethodStringName0<XRInterfaceExtension, RID> =
+        MethodStringName0<XRInterfaceExtension, RID>("get_depth_texture")
+
+    @JvmField
+    public val getVelocityTextureName: MethodStringName0<XRInterfaceExtension, RID> =
+        MethodStringName0<XRInterfaceExtension, RID>("get_velocity_texture")
+
+    @JvmField
+    public val addBlitName:
+        MethodStringName11<XRInterfaceExtension, Unit, RID, Rect2, Rect2i, Boolean, Long, Boolean, Vector2, Double, Double, Double, Double>
+        =
+        MethodStringName11<XRInterfaceExtension, Unit, RID, Rect2, Rect2i, Boolean, Long, Boolean, Vector2, Double, Double, Double, Double>("add_blit")
+
+    @JvmField
+    public val getRenderTargetTextureName: MethodStringName1<XRInterfaceExtension, RID, RID> =
+        MethodStringName1<XRInterfaceExtension, RID, RID>("get_render_target_texture")
+  }
 
   public object MethodBindings {
     internal val getColorTexturePtr: VoidPtr =

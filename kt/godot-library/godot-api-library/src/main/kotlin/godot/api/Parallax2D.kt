@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -22,6 +24,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -480,7 +483,87 @@ public open class Parallax2D : Node2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setScrollScaleName: MethodStringName1<Parallax2D, Unit, Vector2> =
+        MethodStringName1<Parallax2D, Unit, Vector2>("set_scroll_scale")
+
+    @JvmField
+    public val getScrollScaleName: MethodStringName0<Parallax2D, Vector2> =
+        MethodStringName0<Parallax2D, Vector2>("get_scroll_scale")
+
+    @JvmField
+    public val setRepeatSizeName: MethodStringName1<Parallax2D, Unit, Vector2> =
+        MethodStringName1<Parallax2D, Unit, Vector2>("set_repeat_size")
+
+    @JvmField
+    public val getRepeatSizeName: MethodStringName0<Parallax2D, Vector2> =
+        MethodStringName0<Parallax2D, Vector2>("get_repeat_size")
+
+    @JvmField
+    public val setRepeatTimesName: MethodStringName1<Parallax2D, Unit, Int> =
+        MethodStringName1<Parallax2D, Unit, Int>("set_repeat_times")
+
+    @JvmField
+    public val getRepeatTimesName: MethodStringName0<Parallax2D, Int> =
+        MethodStringName0<Parallax2D, Int>("get_repeat_times")
+
+    @JvmField
+    public val setAutoscrollName: MethodStringName1<Parallax2D, Unit, Vector2> =
+        MethodStringName1<Parallax2D, Unit, Vector2>("set_autoscroll")
+
+    @JvmField
+    public val getAutoscrollName: MethodStringName0<Parallax2D, Vector2> =
+        MethodStringName0<Parallax2D, Vector2>("get_autoscroll")
+
+    @JvmField
+    public val setScrollOffsetName: MethodStringName1<Parallax2D, Unit, Vector2> =
+        MethodStringName1<Parallax2D, Unit, Vector2>("set_scroll_offset")
+
+    @JvmField
+    public val getScrollOffsetName: MethodStringName0<Parallax2D, Vector2> =
+        MethodStringName0<Parallax2D, Vector2>("get_scroll_offset")
+
+    @JvmField
+    public val setScreenOffsetName: MethodStringName1<Parallax2D, Unit, Vector2> =
+        MethodStringName1<Parallax2D, Unit, Vector2>("set_screen_offset")
+
+    @JvmField
+    public val getScreenOffsetName: MethodStringName0<Parallax2D, Vector2> =
+        MethodStringName0<Parallax2D, Vector2>("get_screen_offset")
+
+    @JvmField
+    public val setLimitBeginName: MethodStringName1<Parallax2D, Unit, Vector2> =
+        MethodStringName1<Parallax2D, Unit, Vector2>("set_limit_begin")
+
+    @JvmField
+    public val getLimitBeginName: MethodStringName0<Parallax2D, Vector2> =
+        MethodStringName0<Parallax2D, Vector2>("get_limit_begin")
+
+    @JvmField
+    public val setLimitEndName: MethodStringName1<Parallax2D, Unit, Vector2> =
+        MethodStringName1<Parallax2D, Unit, Vector2>("set_limit_end")
+
+    @JvmField
+    public val getLimitEndName: MethodStringName0<Parallax2D, Vector2> =
+        MethodStringName0<Parallax2D, Vector2>("get_limit_end")
+
+    @JvmField
+    public val setFollowViewportName: MethodStringName1<Parallax2D, Unit, Boolean> =
+        MethodStringName1<Parallax2D, Unit, Boolean>("set_follow_viewport")
+
+    @JvmField
+    public val getFollowViewportName: MethodStringName0<Parallax2D, Boolean> =
+        MethodStringName0<Parallax2D, Boolean>("get_follow_viewport")
+
+    @JvmField
+    public val setIgnoreCameraScrollName: MethodStringName1<Parallax2D, Unit, Boolean> =
+        MethodStringName1<Parallax2D, Unit, Boolean>("set_ignore_camera_scroll")
+
+    @JvmField
+    public val isIgnoreCameraScrollName: MethodStringName0<Parallax2D, Boolean> =
+        MethodStringName0<Parallax2D, Boolean>("is_ignore_camera_scroll")
+  }
 
   public object MethodBindings {
     internal val setScrollScalePtr: VoidPtr =

@@ -12,11 +12,14 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -219,7 +222,31 @@ public open class ParallaxLayer : Node2D() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setMotionScaleName: MethodStringName1<ParallaxLayer, Unit, Vector2> =
+        MethodStringName1<ParallaxLayer, Unit, Vector2>("set_motion_scale")
+
+    @JvmField
+    public val getMotionScaleName: MethodStringName0<ParallaxLayer, Vector2> =
+        MethodStringName0<ParallaxLayer, Vector2>("get_motion_scale")
+
+    @JvmField
+    public val setMotionOffsetName: MethodStringName1<ParallaxLayer, Unit, Vector2> =
+        MethodStringName1<ParallaxLayer, Unit, Vector2>("set_motion_offset")
+
+    @JvmField
+    public val getMotionOffsetName: MethodStringName0<ParallaxLayer, Vector2> =
+        MethodStringName0<ParallaxLayer, Vector2>("get_motion_offset")
+
+    @JvmField
+    public val setMirroringName: MethodStringName1<ParallaxLayer, Unit, Vector2> =
+        MethodStringName1<ParallaxLayer, Unit, Vector2>("set_mirroring")
+
+    @JvmField
+    public val getMirroringName: MethodStringName0<ParallaxLayer, Vector2> =
+        MethodStringName0<ParallaxLayer, Vector2>("get_mirroring")
+  }
 
   public object MethodBindings {
     internal val setMotionScalePtr: VoidPtr =

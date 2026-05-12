@@ -10,6 +10,10 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
+import godot.core.MethodStringName4
 import godot.core.PackedByteArray
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
@@ -21,6 +25,7 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -245,7 +250,51 @@ public open class Crypto : RefCounted() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val generateRandomBytesName: MethodStringName1<Crypto, PackedByteArray, Int> =
+        MethodStringName1<Crypto, PackedByteArray, Int>("generate_random_bytes")
+
+    @JvmField
+    public val generateRsaName: MethodStringName1<Crypto, CryptoKey?, Int> =
+        MethodStringName1<Crypto, CryptoKey?, Int>("generate_rsa")
+
+    @JvmField
+    public val generateSelfSignedCertificateName:
+        MethodStringName4<Crypto, X509Certificate?, CryptoKey?, String, String, String> =
+        MethodStringName4<Crypto, X509Certificate?, CryptoKey?, String, String, String>("generate_self_signed_certificate")
+
+    @JvmField
+    public val signName:
+        MethodStringName3<Crypto, PackedByteArray, HashingContext.HashType, PackedByteArray, CryptoKey?>
+        =
+        MethodStringName3<Crypto, PackedByteArray, HashingContext.HashType, PackedByteArray, CryptoKey?>("sign")
+
+    @JvmField
+    public val verifyName:
+        MethodStringName4<Crypto, Boolean, HashingContext.HashType, PackedByteArray, PackedByteArray, CryptoKey?>
+        =
+        MethodStringName4<Crypto, Boolean, HashingContext.HashType, PackedByteArray, PackedByteArray, CryptoKey?>("verify")
+
+    @JvmField
+    public val encryptName: MethodStringName2<Crypto, PackedByteArray, CryptoKey?, PackedByteArray>
+        = MethodStringName2<Crypto, PackedByteArray, CryptoKey?, PackedByteArray>("encrypt")
+
+    @JvmField
+    public val decryptName: MethodStringName2<Crypto, PackedByteArray, CryptoKey?, PackedByteArray>
+        = MethodStringName2<Crypto, PackedByteArray, CryptoKey?, PackedByteArray>("decrypt")
+
+    @JvmField
+    public val hmacDigestName:
+        MethodStringName3<Crypto, PackedByteArray, HashingContext.HashType, PackedByteArray, PackedByteArray>
+        =
+        MethodStringName3<Crypto, PackedByteArray, HashingContext.HashType, PackedByteArray, PackedByteArray>("hmac_digest")
+
+    @JvmField
+    public val constantTimeCompareName:
+        MethodStringName2<Crypto, Boolean, PackedByteArray, PackedByteArray> =
+        MethodStringName2<Crypto, Boolean, PackedByteArray, PackedByteArray>("constant_time_compare")
+  }
 
   public object MethodBindings {
     internal val generateRandomBytesPtr: VoidPtr =

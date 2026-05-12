@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.JoyButton
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -21,6 +23,7 @@ import kotlin.Float
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -90,7 +93,27 @@ public open class InputEventJoypadButton : InputEvent() {
     TransferContext.callMethod(ptr, MethodBindings.setPressedPtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setButtonIndexName: MethodStringName1<InputEventJoypadButton, Unit, JoyButton> =
+        MethodStringName1<InputEventJoypadButton, Unit, JoyButton>("set_button_index")
+
+    @JvmField
+    public val getButtonIndexName: MethodStringName0<InputEventJoypadButton, JoyButton> =
+        MethodStringName0<InputEventJoypadButton, JoyButton>("get_button_index")
+
+    @JvmField
+    public val setPressureName: MethodStringName1<InputEventJoypadButton, Unit, Float> =
+        MethodStringName1<InputEventJoypadButton, Unit, Float>("set_pressure")
+
+    @JvmField
+    public val getPressureName: MethodStringName0<InputEventJoypadButton, Float> =
+        MethodStringName0<InputEventJoypadButton, Float>("get_pressure")
+
+    @JvmField
+    public val setPressedName: MethodStringName1<InputEventJoypadButton, Unit, Boolean> =
+        MethodStringName1<InputEventJoypadButton, Unit, Boolean>("set_pressed")
+  }
 
   public object MethodBindings {
     internal val setButtonIndexPtr: VoidPtr =

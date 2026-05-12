@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -22,6 +24,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -171,7 +174,55 @@ public open class CSGTorus3D : CSGPrimitive3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setInnerRadiusName: MethodStringName1<CSGTorus3D, Unit, Float> =
+        MethodStringName1<CSGTorus3D, Unit, Float>("set_inner_radius")
+
+    @JvmField
+    public val getInnerRadiusName: MethodStringName0<CSGTorus3D, Float> =
+        MethodStringName0<CSGTorus3D, Float>("get_inner_radius")
+
+    @JvmField
+    public val setOuterRadiusName: MethodStringName1<CSGTorus3D, Unit, Float> =
+        MethodStringName1<CSGTorus3D, Unit, Float>("set_outer_radius")
+
+    @JvmField
+    public val getOuterRadiusName: MethodStringName0<CSGTorus3D, Float> =
+        MethodStringName0<CSGTorus3D, Float>("get_outer_radius")
+
+    @JvmField
+    public val setSidesName: MethodStringName1<CSGTorus3D, Unit, Int> =
+        MethodStringName1<CSGTorus3D, Unit, Int>("set_sides")
+
+    @JvmField
+    public val getSidesName: MethodStringName0<CSGTorus3D, Int> =
+        MethodStringName0<CSGTorus3D, Int>("get_sides")
+
+    @JvmField
+    public val setRingSidesName: MethodStringName1<CSGTorus3D, Unit, Int> =
+        MethodStringName1<CSGTorus3D, Unit, Int>("set_ring_sides")
+
+    @JvmField
+    public val getRingSidesName: MethodStringName0<CSGTorus3D, Int> =
+        MethodStringName0<CSGTorus3D, Int>("get_ring_sides")
+
+    @JvmField
+    public val setMaterialName: MethodStringName1<CSGTorus3D, Unit, Material?> =
+        MethodStringName1<CSGTorus3D, Unit, Material?>("set_material")
+
+    @JvmField
+    public val getMaterialName: MethodStringName0<CSGTorus3D, Material?> =
+        MethodStringName0<CSGTorus3D, Material?>("get_material")
+
+    @JvmField
+    public val setSmoothFacesName: MethodStringName1<CSGTorus3D, Unit, Boolean> =
+        MethodStringName1<CSGTorus3D, Unit, Boolean>("set_smooth_faces")
+
+    @JvmField
+    public val getSmoothFacesName: MethodStringName0<CSGTorus3D, Boolean> =
+        MethodStringName0<CSGTorus3D, Boolean>("get_smooth_faces")
+  }
 
   public object MethodBindings {
     internal val setInnerRadiusPtr: VoidPtr =

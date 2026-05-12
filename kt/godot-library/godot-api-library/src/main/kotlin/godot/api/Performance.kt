@@ -12,6 +12,9 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Callable
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName4
 import godot.core.PackedInt32Array
 import godot.core.StringName
 import godot.core.VariantArray
@@ -32,6 +35,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
@@ -54,6 +58,39 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object Performance : Object() {
+  @JvmField
+  public val getMonitorName: MethodStringName1<Performance, Double, Monitor> =
+      MethodStringName1<Performance, Double, Monitor>("get_monitor")
+
+  @JvmField
+  public val addCustomMonitorName:
+      MethodStringName4<Performance, Unit, StringName, Callable, VariantArray<Any?>, MonitorType> =
+      MethodStringName4<Performance, Unit, StringName, Callable, VariantArray<Any?>, MonitorType>("add_custom_monitor")
+
+  @JvmField
+  public val removeCustomMonitorName: MethodStringName1<Performance, Unit, StringName> =
+      MethodStringName1<Performance, Unit, StringName>("remove_custom_monitor")
+
+  @JvmField
+  public val hasCustomMonitorName: MethodStringName1<Performance, Boolean, StringName> =
+      MethodStringName1<Performance, Boolean, StringName>("has_custom_monitor")
+
+  @JvmField
+  public val getCustomMonitorName: MethodStringName1<Performance, Any?, StringName> =
+      MethodStringName1<Performance, Any?, StringName>("get_custom_monitor")
+
+  @JvmField
+  public val getMonitorModificationTimeName: MethodStringName0<Performance, Long> =
+      MethodStringName0<Performance, Long>("get_monitor_modification_time")
+
+  @JvmField
+  public val getCustomMonitorNamesName: MethodStringName0<Performance, VariantArray<StringName>> =
+      MethodStringName0<Performance, VariantArray<StringName>>("get_custom_monitor_names")
+
+  @JvmField
+  public val getCustomMonitorTypesName: MethodStringName0<Performance, PackedInt32Array> =
+      MethodStringName0<Performance, PackedInt32Array>("get_custom_monitor_types")
+
   public override fun new(scriptPtr: VoidPtr): Unit {
     getSingleton(22)
   }

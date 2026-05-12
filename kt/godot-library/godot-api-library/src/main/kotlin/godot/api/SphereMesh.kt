@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -21,6 +23,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -144,7 +147,47 @@ public open class SphereMesh : PrimitiveMesh() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setRadiusName: MethodStringName1<SphereMesh, Unit, Float> =
+        MethodStringName1<SphereMesh, Unit, Float>("set_radius")
+
+    @JvmField
+    public val getRadiusName: MethodStringName0<SphereMesh, Float> =
+        MethodStringName0<SphereMesh, Float>("get_radius")
+
+    @JvmField
+    public val setHeightName: MethodStringName1<SphereMesh, Unit, Float> =
+        MethodStringName1<SphereMesh, Unit, Float>("set_height")
+
+    @JvmField
+    public val getHeightName: MethodStringName0<SphereMesh, Float> =
+        MethodStringName0<SphereMesh, Float>("get_height")
+
+    @JvmField
+    public val setRadialSegmentsName: MethodStringName1<SphereMesh, Unit, Int> =
+        MethodStringName1<SphereMesh, Unit, Int>("set_radial_segments")
+
+    @JvmField
+    public val getRadialSegmentsName: MethodStringName0<SphereMesh, Int> =
+        MethodStringName0<SphereMesh, Int>("get_radial_segments")
+
+    @JvmField
+    public val setRingsName: MethodStringName1<SphereMesh, Unit, Int> =
+        MethodStringName1<SphereMesh, Unit, Int>("set_rings")
+
+    @JvmField
+    public val getRingsName: MethodStringName0<SphereMesh, Int> =
+        MethodStringName0<SphereMesh, Int>("get_rings")
+
+    @JvmField
+    public val setIsHemisphereName: MethodStringName1<SphereMesh, Unit, Boolean> =
+        MethodStringName1<SphereMesh, Unit, Boolean>("set_is_hemisphere")
+
+    @JvmField
+    public val getIsHemisphereName: MethodStringName0<SphereMesh, Boolean> =
+        MethodStringName0<SphereMesh, Boolean>("get_is_hemisphere")
+  }
 
   public object MethodBindings {
     internal val setRadiusPtr: VoidPtr =

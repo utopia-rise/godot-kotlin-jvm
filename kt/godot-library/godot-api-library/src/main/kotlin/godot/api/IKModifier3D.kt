@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -18,6 +20,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -89,7 +92,31 @@ public open class IKModifier3D internal constructor() : SkeletonModifier3D() {
     TransferContext.callMethod(ptr, MethodBindings.resetPtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setSettingCountName: MethodStringName1<IKModifier3D, Unit, Int> =
+        MethodStringName1<IKModifier3D, Unit, Int>("set_setting_count")
+
+    @JvmField
+    public val getSettingCountName: MethodStringName0<IKModifier3D, Int> =
+        MethodStringName0<IKModifier3D, Int>("get_setting_count")
+
+    @JvmField
+    public val clearSettingsName: MethodStringName0<IKModifier3D, Unit> =
+        MethodStringName0<IKModifier3D, Unit>("clear_settings")
+
+    @JvmField
+    public val setMutableBoneAxesName: MethodStringName1<IKModifier3D, Unit, Boolean> =
+        MethodStringName1<IKModifier3D, Unit, Boolean>("set_mutable_bone_axes")
+
+    @JvmField
+    public val areBoneAxesMutableName: MethodStringName0<IKModifier3D, Boolean> =
+        MethodStringName0<IKModifier3D, Boolean>("are_bone_axes_mutable")
+
+    @JvmField
+    public val resetName: MethodStringName0<IKModifier3D, Unit> =
+        MethodStringName0<IKModifier3D, Unit>("reset")
+  }
 
   public object MethodBindings {
     internal val setSettingCountPtr: VoidPtr =

@@ -12,6 +12,10 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Callable
 import godot.core.Error
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName4
 import godot.core.NodePath
 import godot.core.PackedByteArray
 import godot.core.PackedInt32Array
@@ -33,6 +37,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
@@ -355,7 +360,97 @@ public open class SceneMultiplayer : MultiplayerAPI() {
 
   public final fun setRootPath(path: String) = setRootPath(path.asCachedNodePath())
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setRootPathName: MethodStringName1<SceneMultiplayer, Unit, NodePath> =
+        MethodStringName1<SceneMultiplayer, Unit, NodePath>("set_root_path")
+
+    @JvmField
+    public val getRootPathName: MethodStringName0<SceneMultiplayer, NodePath> =
+        MethodStringName0<SceneMultiplayer, NodePath>("get_root_path")
+
+    @JvmField
+    public val clearName: MethodStringName0<SceneMultiplayer, Unit> =
+        MethodStringName0<SceneMultiplayer, Unit>("clear")
+
+    @JvmField
+    public val disconnectPeerName: MethodStringName1<SceneMultiplayer, Unit, Int> =
+        MethodStringName1<SceneMultiplayer, Unit, Int>("disconnect_peer")
+
+    @JvmField
+    public val getAuthenticatingPeersName: MethodStringName0<SceneMultiplayer, PackedInt32Array> =
+        MethodStringName0<SceneMultiplayer, PackedInt32Array>("get_authenticating_peers")
+
+    @JvmField
+    public val sendAuthName: MethodStringName2<SceneMultiplayer, Error, Int, PackedByteArray> =
+        MethodStringName2<SceneMultiplayer, Error, Int, PackedByteArray>("send_auth")
+
+    @JvmField
+    public val completeAuthName: MethodStringName1<SceneMultiplayer, Error, Int> =
+        MethodStringName1<SceneMultiplayer, Error, Int>("complete_auth")
+
+    @JvmField
+    public val setAuthCallbackName: MethodStringName1<SceneMultiplayer, Unit, Callable> =
+        MethodStringName1<SceneMultiplayer, Unit, Callable>("set_auth_callback")
+
+    @JvmField
+    public val getAuthCallbackName: MethodStringName0<SceneMultiplayer, Callable> =
+        MethodStringName0<SceneMultiplayer, Callable>("get_auth_callback")
+
+    @JvmField
+    public val setAuthTimeoutName: MethodStringName1<SceneMultiplayer, Unit, Double> =
+        MethodStringName1<SceneMultiplayer, Unit, Double>("set_auth_timeout")
+
+    @JvmField
+    public val getAuthTimeoutName: MethodStringName0<SceneMultiplayer, Double> =
+        MethodStringName0<SceneMultiplayer, Double>("get_auth_timeout")
+
+    @JvmField
+    public val setRefuseNewConnectionsName: MethodStringName1<SceneMultiplayer, Unit, Boolean> =
+        MethodStringName1<SceneMultiplayer, Unit, Boolean>("set_refuse_new_connections")
+
+    @JvmField
+    public val isRefusingNewConnectionsName: MethodStringName0<SceneMultiplayer, Boolean> =
+        MethodStringName0<SceneMultiplayer, Boolean>("is_refusing_new_connections")
+
+    @JvmField
+    public val setAllowObjectDecodingName: MethodStringName1<SceneMultiplayer, Unit, Boolean> =
+        MethodStringName1<SceneMultiplayer, Unit, Boolean>("set_allow_object_decoding")
+
+    @JvmField
+    public val isObjectDecodingAllowedName: MethodStringName0<SceneMultiplayer, Boolean> =
+        MethodStringName0<SceneMultiplayer, Boolean>("is_object_decoding_allowed")
+
+    @JvmField
+    public val setServerRelayEnabledName: MethodStringName1<SceneMultiplayer, Unit, Boolean> =
+        MethodStringName1<SceneMultiplayer, Unit, Boolean>("set_server_relay_enabled")
+
+    @JvmField
+    public val isServerRelayEnabledName: MethodStringName0<SceneMultiplayer, Boolean> =
+        MethodStringName0<SceneMultiplayer, Boolean>("is_server_relay_enabled")
+
+    @JvmField
+    public val sendBytesName:
+        MethodStringName4<SceneMultiplayer, Error, PackedByteArray, Int, MultiplayerPeer.TransferMode, Int>
+        =
+        MethodStringName4<SceneMultiplayer, Error, PackedByteArray, Int, MultiplayerPeer.TransferMode, Int>("send_bytes")
+
+    @JvmField
+    public val getMaxSyncPacketSizeName: MethodStringName0<SceneMultiplayer, Int> =
+        MethodStringName0<SceneMultiplayer, Int>("get_max_sync_packet_size")
+
+    @JvmField
+    public val setMaxSyncPacketSizeName: MethodStringName1<SceneMultiplayer, Unit, Int> =
+        MethodStringName1<SceneMultiplayer, Unit, Int>("set_max_sync_packet_size")
+
+    @JvmField
+    public val getMaxDeltaPacketSizeName: MethodStringName0<SceneMultiplayer, Int> =
+        MethodStringName0<SceneMultiplayer, Int>("get_max_delta_packet_size")
+
+    @JvmField
+    public val setMaxDeltaPacketSizeName: MethodStringName1<SceneMultiplayer, Unit, Int> =
+        MethodStringName1<SceneMultiplayer, Unit, Int>("set_max_delta_packet_size")
+  }
 
   public object MethodBindings {
     internal val setRootPathPtr: VoidPtr =

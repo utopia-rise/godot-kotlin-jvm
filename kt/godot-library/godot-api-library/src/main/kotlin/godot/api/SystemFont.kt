@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.PackedStringArray
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -26,6 +28,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -471,7 +474,137 @@ public open class SystemFont : Font() {
     TransferContext.callMethod(ptr, MethodBindings.setFontStretchPtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setAntialiasingName: MethodStringName1<SystemFont, Unit, TextServer.FontAntialiasing>
+        = MethodStringName1<SystemFont, Unit, TextServer.FontAntialiasing>("set_antialiasing")
+
+    @JvmField
+    public val getAntialiasingName: MethodStringName0<SystemFont, TextServer.FontAntialiasing> =
+        MethodStringName0<SystemFont, TextServer.FontAntialiasing>("get_antialiasing")
+
+    @JvmField
+    public val setDisableEmbeddedBitmapsName: MethodStringName1<SystemFont, Unit, Boolean> =
+        MethodStringName1<SystemFont, Unit, Boolean>("set_disable_embedded_bitmaps")
+
+    @JvmField
+    public val getDisableEmbeddedBitmapsName: MethodStringName0<SystemFont, Boolean> =
+        MethodStringName0<SystemFont, Boolean>("get_disable_embedded_bitmaps")
+
+    @JvmField
+    public val setGenerateMipmapsName: MethodStringName1<SystemFont, Unit, Boolean> =
+        MethodStringName1<SystemFont, Unit, Boolean>("set_generate_mipmaps")
+
+    @JvmField
+    public val getGenerateMipmapsName: MethodStringName0<SystemFont, Boolean> =
+        MethodStringName0<SystemFont, Boolean>("get_generate_mipmaps")
+
+    @JvmField
+    public val setAllowSystemFallbackName: MethodStringName1<SystemFont, Unit, Boolean> =
+        MethodStringName1<SystemFont, Unit, Boolean>("set_allow_system_fallback")
+
+    @JvmField
+    public val isAllowSystemFallbackName: MethodStringName0<SystemFont, Boolean> =
+        MethodStringName0<SystemFont, Boolean>("is_allow_system_fallback")
+
+    @JvmField
+    public val setForceAutohinterName: MethodStringName1<SystemFont, Unit, Boolean> =
+        MethodStringName1<SystemFont, Unit, Boolean>("set_force_autohinter")
+
+    @JvmField
+    public val isForceAutohinterName: MethodStringName0<SystemFont, Boolean> =
+        MethodStringName0<SystemFont, Boolean>("is_force_autohinter")
+
+    @JvmField
+    public val setModulateColorGlyphsName: MethodStringName1<SystemFont, Unit, Boolean> =
+        MethodStringName1<SystemFont, Unit, Boolean>("set_modulate_color_glyphs")
+
+    @JvmField
+    public val isModulateColorGlyphsName: MethodStringName0<SystemFont, Boolean> =
+        MethodStringName0<SystemFont, Boolean>("is_modulate_color_glyphs")
+
+    @JvmField
+    public val setHintingName: MethodStringName1<SystemFont, Unit, TextServer.Hinting> =
+        MethodStringName1<SystemFont, Unit, TextServer.Hinting>("set_hinting")
+
+    @JvmField
+    public val getHintingName: MethodStringName0<SystemFont, TextServer.Hinting> =
+        MethodStringName0<SystemFont, TextServer.Hinting>("get_hinting")
+
+    @JvmField
+    public val setSubpixelPositioningName:
+        MethodStringName1<SystemFont, Unit, TextServer.SubpixelPositioning> =
+        MethodStringName1<SystemFont, Unit, TextServer.SubpixelPositioning>("set_subpixel_positioning")
+
+    @JvmField
+    public val getSubpixelPositioningName:
+        MethodStringName0<SystemFont, TextServer.SubpixelPositioning> =
+        MethodStringName0<SystemFont, TextServer.SubpixelPositioning>("get_subpixel_positioning")
+
+    @JvmField
+    public val setKeepRoundingRemaindersName: MethodStringName1<SystemFont, Unit, Boolean> =
+        MethodStringName1<SystemFont, Unit, Boolean>("set_keep_rounding_remainders")
+
+    @JvmField
+    public val getKeepRoundingRemaindersName: MethodStringName0<SystemFont, Boolean> =
+        MethodStringName0<SystemFont, Boolean>("get_keep_rounding_remainders")
+
+    @JvmField
+    public val setMultichannelSignedDistanceFieldName: MethodStringName1<SystemFont, Unit, Boolean>
+        = MethodStringName1<SystemFont, Unit, Boolean>("set_multichannel_signed_distance_field")
+
+    @JvmField
+    public val isMultichannelSignedDistanceFieldName: MethodStringName0<SystemFont, Boolean> =
+        MethodStringName0<SystemFont, Boolean>("is_multichannel_signed_distance_field")
+
+    @JvmField
+    public val setMsdfPixelRangeName: MethodStringName1<SystemFont, Unit, Int> =
+        MethodStringName1<SystemFont, Unit, Int>("set_msdf_pixel_range")
+
+    @JvmField
+    public val getMsdfPixelRangeName: MethodStringName0<SystemFont, Int> =
+        MethodStringName0<SystemFont, Int>("get_msdf_pixel_range")
+
+    @JvmField
+    public val setMsdfSizeName: MethodStringName1<SystemFont, Unit, Int> =
+        MethodStringName1<SystemFont, Unit, Int>("set_msdf_size")
+
+    @JvmField
+    public val getMsdfSizeName: MethodStringName0<SystemFont, Int> =
+        MethodStringName0<SystemFont, Int>("get_msdf_size")
+
+    @JvmField
+    public val setOversamplingName: MethodStringName1<SystemFont, Unit, Float> =
+        MethodStringName1<SystemFont, Unit, Float>("set_oversampling")
+
+    @JvmField
+    public val getOversamplingName: MethodStringName0<SystemFont, Float> =
+        MethodStringName0<SystemFont, Float>("get_oversampling")
+
+    @JvmField
+    public val getFontNamesName: MethodStringName0<SystemFont, PackedStringArray> =
+        MethodStringName0<SystemFont, PackedStringArray>("get_font_names")
+
+    @JvmField
+    public val setFontNamesName: MethodStringName1<SystemFont, Unit, PackedStringArray> =
+        MethodStringName1<SystemFont, Unit, PackedStringArray>("set_font_names")
+
+    @JvmField
+    public val getFontItalicName: MethodStringName0<SystemFont, Boolean> =
+        MethodStringName0<SystemFont, Boolean>("get_font_italic")
+
+    @JvmField
+    public val setFontItalicName: MethodStringName1<SystemFont, Unit, Boolean> =
+        MethodStringName1<SystemFont, Unit, Boolean>("set_font_italic")
+
+    @JvmField
+    public val setFontWeightName: MethodStringName1<SystemFont, Unit, Int> =
+        MethodStringName1<SystemFont, Unit, Int>("set_font_weight")
+
+    @JvmField
+    public val setFontStretchName: MethodStringName1<SystemFont, Unit, Int> =
+        MethodStringName1<SystemFont, Unit, Int>("set_font_stretch")
+  }
 
   public object MethodBindings {
     internal val setAntialiasingPtr: VoidPtr =

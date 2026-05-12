@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.MouseButton
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -21,6 +23,7 @@ import kotlin.Float
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -138,7 +141,39 @@ public open class InputEventMouseButton : InputEventMouse() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setFactorName: MethodStringName1<InputEventMouseButton, Unit, Float> =
+        MethodStringName1<InputEventMouseButton, Unit, Float>("set_factor")
+
+    @JvmField
+    public val getFactorName: MethodStringName0<InputEventMouseButton, Float> =
+        MethodStringName0<InputEventMouseButton, Float>("get_factor")
+
+    @JvmField
+    public val setButtonIndexName: MethodStringName1<InputEventMouseButton, Unit, MouseButton> =
+        MethodStringName1<InputEventMouseButton, Unit, MouseButton>("set_button_index")
+
+    @JvmField
+    public val getButtonIndexName: MethodStringName0<InputEventMouseButton, MouseButton> =
+        MethodStringName0<InputEventMouseButton, MouseButton>("get_button_index")
+
+    @JvmField
+    public val setPressedName: MethodStringName1<InputEventMouseButton, Unit, Boolean> =
+        MethodStringName1<InputEventMouseButton, Unit, Boolean>("set_pressed")
+
+    @JvmField
+    public val setCanceledName: MethodStringName1<InputEventMouseButton, Unit, Boolean> =
+        MethodStringName1<InputEventMouseButton, Unit, Boolean>("set_canceled")
+
+    @JvmField
+    public val setDoubleClickName: MethodStringName1<InputEventMouseButton, Unit, Boolean> =
+        MethodStringName1<InputEventMouseButton, Unit, Boolean>("set_double_click")
+
+    @JvmField
+    public val isDoubleClickName: MethodStringName0<InputEventMouseButton, Boolean> =
+        MethodStringName0<InputEventMouseButton, Boolean>("is_double_click")
+  }
 
   public object MethodBindings {
     internal val setFactorPtr: VoidPtr =

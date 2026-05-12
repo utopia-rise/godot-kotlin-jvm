@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.Signal0
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
@@ -20,6 +22,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -114,7 +117,35 @@ public open class MenuButton : Button() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val getPopupName: MethodStringName0<MenuButton, PopupMenu?> =
+        MethodStringName0<MenuButton, PopupMenu?>("get_popup")
+
+    @JvmField
+    public val showPopupName: MethodStringName0<MenuButton, Unit> =
+        MethodStringName0<MenuButton, Unit>("show_popup")
+
+    @JvmField
+    public val setSwitchOnHoverName: MethodStringName1<MenuButton, Unit, Boolean> =
+        MethodStringName1<MenuButton, Unit, Boolean>("set_switch_on_hover")
+
+    @JvmField
+    public val isSwitchOnHoverName: MethodStringName0<MenuButton, Boolean> =
+        MethodStringName0<MenuButton, Boolean>("is_switch_on_hover")
+
+    @JvmField
+    public val setDisableShortcutsName: MethodStringName1<MenuButton, Unit, Boolean> =
+        MethodStringName1<MenuButton, Unit, Boolean>("set_disable_shortcuts")
+
+    @JvmField
+    public val setItemCountName: MethodStringName1<MenuButton, Unit, Int> =
+        MethodStringName1<MenuButton, Unit, Int>("set_item_count")
+
+    @JvmField
+    public val getItemCountName: MethodStringName0<MenuButton, Int> =
+        MethodStringName0<MenuButton, Int>("get_item_count")
+  }
 
   public object MethodBindings {
     internal val getPopupPtr: VoidPtr =

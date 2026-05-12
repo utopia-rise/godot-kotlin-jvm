@@ -10,12 +10,14 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 
 /**
  * A socket server.
@@ -61,7 +63,23 @@ public open class SocketServer internal constructor() : RefCounted() {
     return (TransferContext.readReturnValue(OBJECT) as StreamPeerSocket?)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val isConnectionAvailableName: MethodStringName0<SocketServer, Boolean> =
+        MethodStringName0<SocketServer, Boolean>("is_connection_available")
+
+    @JvmField
+    public val isListeningName: MethodStringName0<SocketServer, Boolean> =
+        MethodStringName0<SocketServer, Boolean>("is_listening")
+
+    @JvmField
+    public val stopName: MethodStringName0<SocketServer, Unit> =
+        MethodStringName0<SocketServer, Unit>("stop")
+
+    @JvmField
+    public val takeSocketConnectionName: MethodStringName0<SocketServer, StreamPeerSocket?> =
+        MethodStringName0<SocketServer, StreamPeerSocket?>("take_socket_connection")
+  }
 
   public object MethodBindings {
     internal val isConnectionAvailablePtr: VoidPtr =

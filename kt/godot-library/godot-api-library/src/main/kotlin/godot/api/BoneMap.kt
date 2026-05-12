@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.Signal0
 import godot.core.StringName
 import godot.core.VariantParser.NIL
@@ -19,6 +22,7 @@ import godot.core.asCachedStringName
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -127,7 +131,27 @@ public open class BoneMap : Resource() {
   public final fun findProfileBoneName(skeletonBoneName: String): StringName =
       findProfileBoneName(skeletonBoneName.asCachedStringName())
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val getProfileName: MethodStringName0<BoneMap, SkeletonProfile?> =
+        MethodStringName0<BoneMap, SkeletonProfile?>("get_profile")
+
+    @JvmField
+    public val setProfileName: MethodStringName1<BoneMap, Unit, SkeletonProfile?> =
+        MethodStringName1<BoneMap, Unit, SkeletonProfile?>("set_profile")
+
+    @JvmField
+    public val getSkeletonBoneNameName: MethodStringName1<BoneMap, StringName, StringName> =
+        MethodStringName1<BoneMap, StringName, StringName>("get_skeleton_bone_name")
+
+    @JvmField
+    public val setSkeletonBoneNameName: MethodStringName2<BoneMap, Unit, StringName, StringName> =
+        MethodStringName2<BoneMap, Unit, StringName, StringName>("set_skeleton_bone_name")
+
+    @JvmField
+    public val findProfileBoneNameName: MethodStringName1<BoneMap, StringName, StringName> =
+        MethodStringName1<BoneMap, StringName, StringName>("find_profile_bone_name")
+  }
 
   public object MethodBindings {
     internal val getProfilePtr: VoidPtr =

@@ -13,6 +13,16 @@ import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.Dictionary
 import godot.core.HorizontalAlignment
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName11
+import godot.core.MethodStringName12
+import godot.core.MethodStringName13
+import godot.core.MethodStringName14
+import godot.core.MethodStringName2
+import godot.core.MethodStringName6
+import godot.core.MethodStringName7
+import godot.core.MethodStringName9
 import godot.core.RID
 import godot.core.Transform2D
 import godot.core.VariantArray
@@ -37,6 +47,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
@@ -587,7 +598,158 @@ public open class Font internal constructor() : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setFallbacksName: MethodStringName1<Font, Unit, VariantArray<Font>> =
+        MethodStringName1<Font, Unit, VariantArray<Font>>("set_fallbacks")
+
+    @JvmField
+    public val getFallbacksName: MethodStringName0<Font, VariantArray<Font>> =
+        MethodStringName0<Font, VariantArray<Font>>("get_fallbacks")
+
+    @JvmField
+    public val findVariationName:
+        MethodStringName9<Font, RID, Dictionary<Any?, Any?>, Int, Float, Transform2D, Int, Int, Int, Int, Float>
+        =
+        MethodStringName9<Font, RID, Dictionary<Any?, Any?>, Int, Float, Transform2D, Int, Int, Int, Int, Float>("find_variation")
+
+    @JvmField
+    public val getRidsName: MethodStringName0<Font, VariantArray<RID>> =
+        MethodStringName0<Font, VariantArray<RID>>("get_rids")
+
+    @JvmField
+    public val getHeightName: MethodStringName1<Font, Float, Int> =
+        MethodStringName1<Font, Float, Int>("get_height")
+
+    @JvmField
+    public val getAscentName: MethodStringName1<Font, Float, Int> =
+        MethodStringName1<Font, Float, Int>("get_ascent")
+
+    @JvmField
+    public val getDescentName: MethodStringName1<Font, Float, Int> =
+        MethodStringName1<Font, Float, Int>("get_descent")
+
+    @JvmField
+    public val getUnderlinePositionName: MethodStringName1<Font, Float, Int> =
+        MethodStringName1<Font, Float, Int>("get_underline_position")
+
+    @JvmField
+    public val getUnderlineThicknessName: MethodStringName1<Font, Float, Int> =
+        MethodStringName1<Font, Float, Int>("get_underline_thickness")
+
+    @JvmField
+    public val getFontNameName: MethodStringName0<Font, String> =
+        MethodStringName0<Font, String>("get_font_name")
+
+    @JvmField
+    public val getFontStyleNameName: MethodStringName0<Font, String> =
+        MethodStringName0<Font, String>("get_font_style_name")
+
+    @JvmField
+    public val getOtNameStringsName: MethodStringName0<Font, Dictionary<Any?, Any?>> =
+        MethodStringName0<Font, Dictionary<Any?, Any?>>("get_ot_name_strings")
+
+    @JvmField
+    public val getFontStyleName: MethodStringName0<Font, TextServer.FontStyle> =
+        MethodStringName0<Font, TextServer.FontStyle>("get_font_style")
+
+    @JvmField
+    public val getFontWeightName: MethodStringName0<Font, Int> =
+        MethodStringName0<Font, Int>("get_font_weight")
+
+    @JvmField
+    public val getFontStretchName: MethodStringName0<Font, Int> =
+        MethodStringName0<Font, Int>("get_font_stretch")
+
+    @JvmField
+    public val getSpacingName: MethodStringName1<Font, Int, TextServer.SpacingType> =
+        MethodStringName1<Font, Int, TextServer.SpacingType>("get_spacing")
+
+    @JvmField
+    public val getOpentypeFeaturesName: MethodStringName0<Font, Dictionary<Any?, Any?>> =
+        MethodStringName0<Font, Dictionary<Any?, Any?>>("get_opentype_features")
+
+    @JvmField
+    public val setCacheCapacityName: MethodStringName2<Font, Unit, Int, Int> =
+        MethodStringName2<Font, Unit, Int, Int>("set_cache_capacity")
+
+    @JvmField
+    public val getStringSizeName:
+        MethodStringName7<Font, Vector2, String, HorizontalAlignment, Float, Int, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation>
+        =
+        MethodStringName7<Font, Vector2, String, HorizontalAlignment, Float, Int, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation>("get_string_size")
+
+    @JvmField
+    public val getMultilineStringSizeName:
+        MethodStringName9<Font, Vector2, String, HorizontalAlignment, Float, Int, Int, TextServer.LineBreakFlag, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation>
+        =
+        MethodStringName9<Font, Vector2, String, HorizontalAlignment, Float, Int, Int, TextServer.LineBreakFlag, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation>("get_multiline_string_size")
+
+    @JvmField
+    public val drawStringName:
+        MethodStringName11<Font, Unit, RID, Vector2, String, HorizontalAlignment, Float, Int, Color, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation, Float>
+        =
+        MethodStringName11<Font, Unit, RID, Vector2, String, HorizontalAlignment, Float, Int, Color, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation, Float>("draw_string")
+
+    @JvmField
+    public val drawMultilineStringName:
+        MethodStringName13<Font, Unit, RID, Vector2, String, HorizontalAlignment, Float, Int, Int, Color, TextServer.LineBreakFlag, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation, Float>
+        =
+        MethodStringName13<Font, Unit, RID, Vector2, String, HorizontalAlignment, Float, Int, Int, Color, TextServer.LineBreakFlag, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation, Float>("draw_multiline_string")
+
+    @JvmField
+    public val drawStringOutlineName:
+        MethodStringName12<Font, Unit, RID, Vector2, String, HorizontalAlignment, Float, Int, Int, Color, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation, Float>
+        =
+        MethodStringName12<Font, Unit, RID, Vector2, String, HorizontalAlignment, Float, Int, Int, Color, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation, Float>("draw_string_outline")
+
+    @JvmField
+    public val drawMultilineStringOutlineName:
+        MethodStringName14<Font, Unit, RID, Vector2, String, HorizontalAlignment, Float, Int, Int, Int, Color, TextServer.LineBreakFlag, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation, Float>
+        =
+        MethodStringName14<Font, Unit, RID, Vector2, String, HorizontalAlignment, Float, Int, Int, Int, Color, TextServer.LineBreakFlag, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation, Float>("draw_multiline_string_outline")
+
+    @JvmField
+    public val getCharSizeName: MethodStringName2<Font, Vector2, Long, Int> =
+        MethodStringName2<Font, Vector2, Long, Int>("get_char_size")
+
+    @JvmField
+    public val drawCharName: MethodStringName6<Font, Float, RID, Vector2, Long, Int, Color, Float> =
+        MethodStringName6<Font, Float, RID, Vector2, Long, Int, Color, Float>("draw_char")
+
+    @JvmField
+    public val drawCharOutlineName:
+        MethodStringName7<Font, Float, RID, Vector2, Long, Int, Int, Color, Float> =
+        MethodStringName7<Font, Float, RID, Vector2, Long, Int, Int, Color, Float>("draw_char_outline")
+
+    @JvmField
+    public val hasCharName: MethodStringName1<Font, Boolean, Long> =
+        MethodStringName1<Font, Boolean, Long>("has_char")
+
+    @JvmField
+    public val getSupportedCharsName: MethodStringName0<Font, String> =
+        MethodStringName0<Font, String>("get_supported_chars")
+
+    @JvmField
+    public val isLanguageSupportedName: MethodStringName1<Font, Boolean, String> =
+        MethodStringName1<Font, Boolean, String>("is_language_supported")
+
+    @JvmField
+    public val isScriptSupportedName: MethodStringName1<Font, Boolean, String> =
+        MethodStringName1<Font, Boolean, String>("is_script_supported")
+
+    @JvmField
+    public val getSupportedFeatureListName: MethodStringName0<Font, Dictionary<Any?, Any?>> =
+        MethodStringName0<Font, Dictionary<Any?, Any?>>("get_supported_feature_list")
+
+    @JvmField
+    public val getSupportedVariationListName: MethodStringName0<Font, Dictionary<Any?, Any?>> =
+        MethodStringName0<Font, Dictionary<Any?, Any?>>("get_supported_variation_list")
+
+    @JvmField
+    public val getFaceCountName: MethodStringName0<Font, Long> =
+        MethodStringName0<Font, Long>("get_face_count")
+  }
 
   public object MethodBindings {
     internal val setFallbacksPtr: VoidPtr =

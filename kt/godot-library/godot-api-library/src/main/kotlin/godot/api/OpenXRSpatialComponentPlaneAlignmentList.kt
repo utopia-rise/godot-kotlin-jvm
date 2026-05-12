@@ -11,10 +11,12 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 
 /**
  * Object for storing the queries plane alignment result data when calling
@@ -66,7 +68,12 @@ public open class OpenXRSpatialComponentPlaneAlignmentList : OpenXRSpatialCompon
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val getPlaneAlignmentName:
+        MethodStringName1<OpenXRSpatialComponentPlaneAlignmentList, PlaneAlignment, Long> =
+        MethodStringName1<OpenXRSpatialComponentPlaneAlignmentList, PlaneAlignment, Long>("get_plane_alignment")
+  }
 
   public object MethodBindings {
     internal val getPlaneAlignmentPtr: VoidPtr =

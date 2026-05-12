@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.NodePath
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
@@ -19,6 +21,7 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -99,7 +102,15 @@ public open class ViewportTexture : Texture2D() {
   public final fun setViewportPathInScene(path: String) =
       setViewportPathInScene(path.asCachedNodePath())
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setViewportPathInSceneName: MethodStringName1<ViewportTexture, Unit, NodePath> =
+        MethodStringName1<ViewportTexture, Unit, NodePath>("set_viewport_path_in_scene")
+
+    @JvmField
+    public val getViewportPathInSceneName: MethodStringName0<ViewportTexture, NodePath> =
+        MethodStringName0<ViewportTexture, NodePath>("get_viewport_path_in_scene")
+  }
 
   public object MethodBindings {
     internal val setViewportPathInScenePtr: VoidPtr =

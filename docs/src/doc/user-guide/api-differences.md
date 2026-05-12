@@ -15,12 +15,12 @@ The limitations are the following:
 - Your files must be located inside a valid source set defined in your gradle configuration file.
 - Scripts written in a location outside the Godot project can't be used as the engine won't be able to find them. This applies to modules and libraries.
 - If several script classes are defined inside a single file, only one of them will be usable.
-- The script is nameless. You won't be able to write code in GDScript like (doesn't apply to Kotlin code):
-    ```kotlin
-    var test_script: MyScript = load("res://pathToScript/MyScript.kt").new() // Wrong
-    var test_script: Node = load("res://pathToScript/MyScript.kt").new() // Correct
+- The script is nameless. You won't be able to write code in GDScript like:
+    ```gdscript
+    var test_script: MyScript = load("res://pathToScript/MyScript.gdj").new() # Wrong for direct source files
+    var test_script: Node = load("res://pathToScript/MyScript.kt").new() # Correct
     ```
-    The same applies if you use a Godot object with a .kt/.java/.scala attached to it
+    The same applies if you use a Godot object with a `.kt`/`.java`/`.scala` file attached to it.
 
 If those limitations don't apply to you, feel free to use Kotlin source files directly.
 
@@ -60,43 +60,110 @@ you can use them from godot and other scripting languages.
 
 ## Instance types and singletons
 
-Creating a new instance of a Godot type can be done like any Kotlin types.
+Creating a new instance of a Godot type can be done like any JVM object.
 
+/// tab | Kotlin
 ```kotlin
 val node3D = Node3D()
 val vec = Vector3()
 ```
+///
 
-Godot's singletons are mapped as Kotlin objects.
+/// tab | Java
+```java
+Node3D node3D = new Node3D();
+Vector3 vec = new Vector3();
+```
+///
 
+/// tab | Scala
+```scala
+val node3D = new Node3D()
+val vec = new Vector3()
+```
+///
+
+Godot's singletons are exposed as static access points.
+
+/// tab | Kotlin
 ```kotlin
 Physics2DServer.areaGetTransform(area)
 ```
+///
+
+/// tab | Java
+```java
+Physics2DServer.areaGetTransform(area);
+```
+///
+
+/// tab | Scala
+```scala
+Physics2DServer.areaGetTransform(area)
+```
+///
 
 ## Core types
 
 Godot's built-in types are passed by value (except for `Dictionary` and `VariantArray` - more on this later), so the following snippet won't work as expected.
 
+/// tab | Kotlin
 ```kotlin
 val node3D = Node3D()
 node3D.rotation.y += 10f
 ```
+///
+
+/// tab | Java
+```java
+Node3D node3D = new Node3D();
+node3D.getRotation().setY(node3D.getRotation().getY() + 10f);
+```
+///
+
+/// tab | Scala
+```scala
+val node3D = new Node3D()
+node3D.getRotation.setY(node3D.getRotation.getY + 10f)
+```
+///
 
 You are *actually mutating a copy* of the `rotation` property, not a reference to it. To get the desired behaviour you have to re-assign the copy back.
 
+/// tab | Kotlin
 ```kotlin
 val rotation = node3D.rotation
 rotation.y += 10f
 node3D.rotation = rotation
-``` 
+```
+///
+
+/// tab | Java
+```java
+Vector3 rotation = node3D.getRotation();
+rotation.setY(rotation.getY() + 10f);
+node3D.setRotation(rotation);
+```
+///
+
+/// tab | Scala
+```scala
+val rotation = node3D.getRotation
+rotation.setY(rotation.getY + 10f)
+node3D.setRotation(rotation)
+```
+///
 
 This approach introduces a lot of boilerplate, so this binding provides a concise way of achieving the same behaviour.
+Only in Kotlin
 
+/// tab | Kotlin
 ```kotlin
 node3D.rotationMutate {
   y += 10f
 }
 ```
+///
 
 The snippet above is functionally equivalent to the previous one.
 
@@ -104,13 +171,30 @@ The snippet above is functionally equivalent to the previous one.
 
 While `VariantArray` and `Dictionary` are passed by reference, the value returned by the retrieval methods (`VariantArray.get(...)` and `Dictionary.get(...)`) are not.
 
+/// tab | Kotlin
 ```kotlin
 array[index].y += 10f
 dictionary["foo"].y += 5f
 ```
+///
+
+/// tab | Java
+```java
+array.get(index).setY(array.get(index).getY() + 10f);
+dictionary.get("foo").setY(dictionary.get("foo").getY() + 5f);
+```
+///
+
+/// tab | Scala
+```scala
+array.get(index).setY(array.get(index).getY + 10f)
+dictionary.get("foo").setY(dictionary.get("foo").getY + 5f)
+```
+///
 
 To get the desired behaviour, you can re-assign the copy back or in a similar fashion as before, this binding provides a better alternative.
 
+/// tab | Kotlin
 ```kotlin
 array.get(index) {
   y += 10f
@@ -119,7 +203,32 @@ array.get(index) {
 dictionary.get("foo") {
   y += 5f
 }
-``` 
+```
+///
+
+/// tab | Java
+```java
+Vector3 arrayValue = array.get(index);
+arrayValue.setY(arrayValue.getY() + 10f);
+array.set(index, arrayValue);
+
+Vector3 dictionaryValue = dictionary.get("foo");
+dictionaryValue.setY(dictionaryValue.getY() + 5f);
+dictionary.set("foo", dictionaryValue);
+```
+///
+
+/// tab | Scala
+```scala
+val arrayValue = array.get(index)
+arrayValue.setY(arrayValue.getY + 10f)
+array.set(index, arrayValue)
+
+val dictionaryValue = dictionary.get("foo")
+dictionaryValue.setY(dictionaryValue.getY + 5f)
+dictionary.set("foo", dictionaryValue)
+```
+///
 
 ## Enums and constants
 
@@ -142,12 +251,12 @@ To avoid confusion and conflict with Kotlin types, the following Godot symbol is
 In GDScript, some functions are always available (such as mathematical or RNG functions).
 The complete list can be found on the following [page](https://docs.godotengine.org/en/stable/classes/class_%40gdscript.html) of Godot's documentation.
 
-In Kotlin, global functions are available inside the `GD` object singleton. However, don't forget that some functions couldn't be reproduced in Kotlin.
-E.g., the `load()` function is available but `preload()` is not.
+In Kotlin, Java, and Scala, global functions are available through the `GD` singleton helpers. However, don't forget that some functions couldn't be reproduced exactly on the JVM side.
+For example, `load()` is available but `preload()` is not.
 
 ## Additional functions
 
-For comfort, some Objects got some additional functions to enjoy some Kotlin syntax sugar.
+For comfort, some objects got some additional functions to enjoy some Kotlin syntax sugar.
 You can find them all [in this folder](https://github.com/utopia-rise/godot-kotlin-jvm/tree/master/kt/godot-library/src/main/kotlin/godot/extensions).
 
 ## Notifications
@@ -155,12 +264,37 @@ You can find them all [in this folder](https://github.com/utopia-rise/godot-kotl
 You can implement [_notification](https://docs.godotengine.org/en/stable/classes/class_object.html#class-object-private-method-notification)
 and have class hierarchy notification call without using `super` call, as in GDScript and C++. However, the syntax is a bit different:
 
+/// tab | Kotlin
 ```kotlin
 @RegisterFunction
 override fun _notification() = godotNotification {
   // ...
 }
-```  
+```
+///
+
+/// tab | Java
+```java
+@RegisterFunction
+@Override
+public GodotNotification _notification() {
+    return godotNotification((self, notification) -> {
+        // ...
+    });
+}
+```
+///
+
+/// tab | Scala
+```scala
+@RegisterFunction
+override def _notification(): GodotNotification = {
+  godotNotification((self, notification) => {
+    // ...
+  })
+}
+```
+///
 Currently this feature except abstract classes.  
 
 ## StringName and NodePath
@@ -222,8 +356,22 @@ You can also use the non-cached version of them if you simply want ease of conve
 
 If you want logs to appear both in CLI and in the Godot Editor you will have to use the print functions inside the `GD` singleton like:
 
-```kt
+/// tab | Kotlin
+```kotlin
 GD.print("Hello There!")
 ```
+///
+
+/// tab | Java
+```java
+GD.print("Hello There!");
+```
+///
+
+/// tab | Scala
+```scala
+GD.print("Hello There!")
+```
+///
 
 Kotlin's print functions, on the other hand, will only print to CLI! They won't print to Godot editor's output panel.

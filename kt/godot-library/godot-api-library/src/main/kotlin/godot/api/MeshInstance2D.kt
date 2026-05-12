@@ -10,11 +10,14 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.Signal0
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -87,7 +90,23 @@ public open class MeshInstance2D : Node2D() {
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setMeshName: MethodStringName1<MeshInstance2D, Unit, Mesh?> =
+        MethodStringName1<MeshInstance2D, Unit, Mesh?>("set_mesh")
+
+    @JvmField
+    public val getMeshName: MethodStringName0<MeshInstance2D, Mesh?> =
+        MethodStringName0<MeshInstance2D, Mesh?>("get_mesh")
+
+    @JvmField
+    public val setTextureName: MethodStringName1<MeshInstance2D, Unit, Texture2D?> =
+        MethodStringName1<MeshInstance2D, Unit, Texture2D?>("set_texture")
+
+    @JvmField
+    public val getTextureName: MethodStringName0<MeshInstance2D, Texture2D?> =
+        MethodStringName0<MeshInstance2D, Texture2D?>("get_texture")
+  }
 
   public object MethodBindings {
     internal val setMeshPtr: VoidPtr =

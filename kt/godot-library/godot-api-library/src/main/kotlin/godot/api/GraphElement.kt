@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.Signal2
@@ -22,6 +24,7 @@ import godot.core.Vector2
 import kotlin.Boolean
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -240,7 +243,55 @@ public open class GraphElement : Container() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setResizableName: MethodStringName1<GraphElement, Unit, Boolean> =
+        MethodStringName1<GraphElement, Unit, Boolean>("set_resizable")
+
+    @JvmField
+    public val isResizableName: MethodStringName0<GraphElement, Boolean> =
+        MethodStringName0<GraphElement, Boolean>("is_resizable")
+
+    @JvmField
+    public val setDraggableName: MethodStringName1<GraphElement, Unit, Boolean> =
+        MethodStringName1<GraphElement, Unit, Boolean>("set_draggable")
+
+    @JvmField
+    public val isDraggableName: MethodStringName0<GraphElement, Boolean> =
+        MethodStringName0<GraphElement, Boolean>("is_draggable")
+
+    @JvmField
+    public val setSelectableName: MethodStringName1<GraphElement, Unit, Boolean> =
+        MethodStringName1<GraphElement, Unit, Boolean>("set_selectable")
+
+    @JvmField
+    public val isSelectableName: MethodStringName0<GraphElement, Boolean> =
+        MethodStringName0<GraphElement, Boolean>("is_selectable")
+
+    @JvmField
+    public val setSelectedName: MethodStringName1<GraphElement, Unit, Boolean> =
+        MethodStringName1<GraphElement, Unit, Boolean>("set_selected")
+
+    @JvmField
+    public val isSelectedName: MethodStringName0<GraphElement, Boolean> =
+        MethodStringName0<GraphElement, Boolean>("is_selected")
+
+    @JvmField
+    public val setScalingMenusName: MethodStringName1<GraphElement, Unit, Boolean> =
+        MethodStringName1<GraphElement, Unit, Boolean>("set_scaling_menus")
+
+    @JvmField
+    public val isScalingMenusName: MethodStringName0<GraphElement, Boolean> =
+        MethodStringName0<GraphElement, Boolean>("is_scaling_menus")
+
+    @JvmField
+    public val setPositionOffsetName: MethodStringName1<GraphElement, Unit, Vector2> =
+        MethodStringName1<GraphElement, Unit, Vector2>("set_position_offset")
+
+    @JvmField
+    public val getPositionOffsetName: MethodStringName0<GraphElement, Vector2> =
+        MethodStringName0<GraphElement, Vector2>("get_position_offset")
+  }
 
   public object MethodBindings {
     internal val setResizablePtr: VoidPtr =

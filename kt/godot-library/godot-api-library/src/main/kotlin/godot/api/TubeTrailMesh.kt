@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -22,6 +24,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -221,7 +224,71 @@ public open class TubeTrailMesh : PrimitiveMesh() {
     return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setRadiusName: MethodStringName1<TubeTrailMesh, Unit, Float> =
+        MethodStringName1<TubeTrailMesh, Unit, Float>("set_radius")
+
+    @JvmField
+    public val getRadiusName: MethodStringName0<TubeTrailMesh, Float> =
+        MethodStringName0<TubeTrailMesh, Float>("get_radius")
+
+    @JvmField
+    public val setRadialStepsName: MethodStringName1<TubeTrailMesh, Unit, Int> =
+        MethodStringName1<TubeTrailMesh, Unit, Int>("set_radial_steps")
+
+    @JvmField
+    public val getRadialStepsName: MethodStringName0<TubeTrailMesh, Int> =
+        MethodStringName0<TubeTrailMesh, Int>("get_radial_steps")
+
+    @JvmField
+    public val setSectionsName: MethodStringName1<TubeTrailMesh, Unit, Int> =
+        MethodStringName1<TubeTrailMesh, Unit, Int>("set_sections")
+
+    @JvmField
+    public val getSectionsName: MethodStringName0<TubeTrailMesh, Int> =
+        MethodStringName0<TubeTrailMesh, Int>("get_sections")
+
+    @JvmField
+    public val setSectionLengthName: MethodStringName1<TubeTrailMesh, Unit, Float> =
+        MethodStringName1<TubeTrailMesh, Unit, Float>("set_section_length")
+
+    @JvmField
+    public val getSectionLengthName: MethodStringName0<TubeTrailMesh, Float> =
+        MethodStringName0<TubeTrailMesh, Float>("get_section_length")
+
+    @JvmField
+    public val setSectionRingsName: MethodStringName1<TubeTrailMesh, Unit, Int> =
+        MethodStringName1<TubeTrailMesh, Unit, Int>("set_section_rings")
+
+    @JvmField
+    public val getSectionRingsName: MethodStringName0<TubeTrailMesh, Int> =
+        MethodStringName0<TubeTrailMesh, Int>("get_section_rings")
+
+    @JvmField
+    public val setCapTopName: MethodStringName1<TubeTrailMesh, Unit, Boolean> =
+        MethodStringName1<TubeTrailMesh, Unit, Boolean>("set_cap_top")
+
+    @JvmField
+    public val isCapTopName: MethodStringName0<TubeTrailMesh, Boolean> =
+        MethodStringName0<TubeTrailMesh, Boolean>("is_cap_top")
+
+    @JvmField
+    public val setCapBottomName: MethodStringName1<TubeTrailMesh, Unit, Boolean> =
+        MethodStringName1<TubeTrailMesh, Unit, Boolean>("set_cap_bottom")
+
+    @JvmField
+    public val isCapBottomName: MethodStringName0<TubeTrailMesh, Boolean> =
+        MethodStringName0<TubeTrailMesh, Boolean>("is_cap_bottom")
+
+    @JvmField
+    public val setCurveName: MethodStringName1<TubeTrailMesh, Unit, Curve?> =
+        MethodStringName1<TubeTrailMesh, Unit, Curve?>("set_curve")
+
+    @JvmField
+    public val getCurveName: MethodStringName0<TubeTrailMesh, Curve?> =
+        MethodStringName0<TubeTrailMesh, Curve?>("get_curve")
+  }
 
   public object MethodBindings {
     internal val setRadiusPtr: VoidPtr =

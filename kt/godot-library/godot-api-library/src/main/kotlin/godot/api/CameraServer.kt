@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.VariantArray
@@ -24,6 +26,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmStatic
 
@@ -39,6 +42,34 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object CameraServer : Object() {
+  @JvmField
+  public val setMonitoringFeedsName: MethodStringName1<CameraServer, Unit, Boolean> =
+      MethodStringName1<CameraServer, Unit, Boolean>("set_monitoring_feeds")
+
+  @JvmField
+  public val isMonitoringFeedsName: MethodStringName0<CameraServer, Boolean> =
+      MethodStringName0<CameraServer, Boolean>("is_monitoring_feeds")
+
+  @JvmField
+  public val getFeedName: MethodStringName1<CameraServer, CameraFeed?, Int> =
+      MethodStringName1<CameraServer, CameraFeed?, Int>("get_feed")
+
+  @JvmField
+  public val getFeedCountName: MethodStringName0<CameraServer, Int> =
+      MethodStringName0<CameraServer, Int>("get_feed_count")
+
+  @JvmField
+  public val feedsName: MethodStringName0<CameraServer, VariantArray<CameraFeed>> =
+      MethodStringName0<CameraServer, VariantArray<CameraFeed>>("feeds")
+
+  @JvmField
+  public val addFeedName: MethodStringName1<CameraServer, Unit, CameraFeed?> =
+      MethodStringName1<CameraServer, Unit, CameraFeed?>("add_feed")
+
+  @JvmField
+  public val removeFeedName: MethodStringName1<CameraServer, Unit, CameraFeed?> =
+      MethodStringName1<CameraServer, Unit, CameraFeed?>("remove_feed")
+
   /**
    * Emitted when a [CameraFeed] is added (e.g. a webcam is plugged in).
    */

@@ -10,11 +10,13 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 
 /**
  * Once added to the scene tree and enabled using [makeCurrent], this node will override the
@@ -58,7 +60,19 @@ public open class AudioListener2D : Node2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val makeCurrentName: MethodStringName0<AudioListener2D, Unit> =
+        MethodStringName0<AudioListener2D, Unit>("make_current")
+
+    @JvmField
+    public val clearCurrentName: MethodStringName0<AudioListener2D, Unit> =
+        MethodStringName0<AudioListener2D, Unit>("clear_current")
+
+    @JvmField
+    public val isCurrentName: MethodStringName0<AudioListener2D, Boolean> =
+        MethodStringName0<AudioListener2D, Boolean>("is_current")
+  }
 
   public object MethodBindings {
     internal val makeCurrentPtr: VoidPtr =

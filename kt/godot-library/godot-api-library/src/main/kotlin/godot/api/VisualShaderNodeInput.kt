@@ -10,12 +10,15 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.Signal0
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -66,7 +69,19 @@ public open class VisualShaderNodeInput : VisualShaderNode() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setInputNameName: MethodStringName1<VisualShaderNodeInput, Unit, String> =
+        MethodStringName1<VisualShaderNodeInput, Unit, String>("set_input_name")
+
+    @JvmField
+    public val getInputNameName: MethodStringName0<VisualShaderNodeInput, String> =
+        MethodStringName0<VisualShaderNodeInput, String>("get_input_name")
+
+    @JvmField
+    public val getInputRealNameName: MethodStringName0<VisualShaderNodeInput, String> =
+        MethodStringName0<VisualShaderNodeInput, String>("get_input_real_name")
+  }
 
   public object MethodBindings {
     internal val setInputNamePtr: VoidPtr =

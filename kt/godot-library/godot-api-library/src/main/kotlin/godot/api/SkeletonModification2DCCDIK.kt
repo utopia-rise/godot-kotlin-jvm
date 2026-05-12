@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.NodePath
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -25,6 +28,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -257,7 +261,101 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
   public final fun setCcdikJointBone2dNode(jointIdx: Int, bone2dNodepath: String) =
       setCcdikJointBone2dNode(jointIdx, bone2dNodepath.asCachedNodePath())
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setTargetNodeName: MethodStringName1<SkeletonModification2DCCDIK, Unit, NodePath> =
+        MethodStringName1<SkeletonModification2DCCDIK, Unit, NodePath>("set_target_node")
+
+    @JvmField
+    public val getTargetNodeName: MethodStringName0<SkeletonModification2DCCDIK, NodePath> =
+        MethodStringName0<SkeletonModification2DCCDIK, NodePath>("get_target_node")
+
+    @JvmField
+    public val setTipNodeName: MethodStringName1<SkeletonModification2DCCDIK, Unit, NodePath> =
+        MethodStringName1<SkeletonModification2DCCDIK, Unit, NodePath>("set_tip_node")
+
+    @JvmField
+    public val getTipNodeName: MethodStringName0<SkeletonModification2DCCDIK, NodePath> =
+        MethodStringName0<SkeletonModification2DCCDIK, NodePath>("get_tip_node")
+
+    @JvmField
+    public val setCcdikDataChainLengthName:
+        MethodStringName1<SkeletonModification2DCCDIK, Unit, Int> =
+        MethodStringName1<SkeletonModification2DCCDIK, Unit, Int>("set_ccdik_data_chain_length")
+
+    @JvmField
+    public val getCcdikDataChainLengthName: MethodStringName0<SkeletonModification2DCCDIK, Int> =
+        MethodStringName0<SkeletonModification2DCCDIK, Int>("get_ccdik_data_chain_length")
+
+    @JvmField
+    public val setCcdikJointBone2dNodeName:
+        MethodStringName2<SkeletonModification2DCCDIK, Unit, Int, NodePath> =
+        MethodStringName2<SkeletonModification2DCCDIK, Unit, Int, NodePath>("set_ccdik_joint_bone2d_node")
+
+    @JvmField
+    public val getCcdikJointBone2dNodeName:
+        MethodStringName1<SkeletonModification2DCCDIK, NodePath, Int> =
+        MethodStringName1<SkeletonModification2DCCDIK, NodePath, Int>("get_ccdik_joint_bone2d_node")
+
+    @JvmField
+    public val setCcdikJointBoneIndexName:
+        MethodStringName2<SkeletonModification2DCCDIK, Unit, Int, Int> =
+        MethodStringName2<SkeletonModification2DCCDIK, Unit, Int, Int>("set_ccdik_joint_bone_index")
+
+    @JvmField
+    public val getCcdikJointBoneIndexName: MethodStringName1<SkeletonModification2DCCDIK, Int, Int>
+        = MethodStringName1<SkeletonModification2DCCDIK, Int, Int>("get_ccdik_joint_bone_index")
+
+    @JvmField
+    public val setCcdikJointRotateFromJointName:
+        MethodStringName2<SkeletonModification2DCCDIK, Unit, Int, Boolean> =
+        MethodStringName2<SkeletonModification2DCCDIK, Unit, Int, Boolean>("set_ccdik_joint_rotate_from_joint")
+
+    @JvmField
+    public val getCcdikJointRotateFromJointName:
+        MethodStringName1<SkeletonModification2DCCDIK, Boolean, Int> =
+        MethodStringName1<SkeletonModification2DCCDIK, Boolean, Int>("get_ccdik_joint_rotate_from_joint")
+
+    @JvmField
+    public val setCcdikJointEnableConstraintName:
+        MethodStringName2<SkeletonModification2DCCDIK, Unit, Int, Boolean> =
+        MethodStringName2<SkeletonModification2DCCDIK, Unit, Int, Boolean>("set_ccdik_joint_enable_constraint")
+
+    @JvmField
+    public val getCcdikJointEnableConstraintName:
+        MethodStringName1<SkeletonModification2DCCDIK, Boolean, Int> =
+        MethodStringName1<SkeletonModification2DCCDIK, Boolean, Int>("get_ccdik_joint_enable_constraint")
+
+    @JvmField
+    public val setCcdikJointConstraintAngleMinName:
+        MethodStringName2<SkeletonModification2DCCDIK, Unit, Int, Float> =
+        MethodStringName2<SkeletonModification2DCCDIK, Unit, Int, Float>("set_ccdik_joint_constraint_angle_min")
+
+    @JvmField
+    public val getCcdikJointConstraintAngleMinName:
+        MethodStringName1<SkeletonModification2DCCDIK, Float, Int> =
+        MethodStringName1<SkeletonModification2DCCDIK, Float, Int>("get_ccdik_joint_constraint_angle_min")
+
+    @JvmField
+    public val setCcdikJointConstraintAngleMaxName:
+        MethodStringName2<SkeletonModification2DCCDIK, Unit, Int, Float> =
+        MethodStringName2<SkeletonModification2DCCDIK, Unit, Int, Float>("set_ccdik_joint_constraint_angle_max")
+
+    @JvmField
+    public val getCcdikJointConstraintAngleMaxName:
+        MethodStringName1<SkeletonModification2DCCDIK, Float, Int> =
+        MethodStringName1<SkeletonModification2DCCDIK, Float, Int>("get_ccdik_joint_constraint_angle_max")
+
+    @JvmField
+    public val setCcdikJointConstraintAngleInvertName:
+        MethodStringName2<SkeletonModification2DCCDIK, Unit, Int, Boolean> =
+        MethodStringName2<SkeletonModification2DCCDIK, Unit, Int, Boolean>("set_ccdik_joint_constraint_angle_invert")
+
+    @JvmField
+    public val getCcdikJointConstraintAngleInvertName:
+        MethodStringName1<SkeletonModification2DCCDIK, Boolean, Int> =
+        MethodStringName1<SkeletonModification2DCCDIK, Boolean, Int>("get_ccdik_joint_constraint_angle_invert")
+  }
 
   public object MethodBindings {
     internal val setTargetNodePtr: VoidPtr =

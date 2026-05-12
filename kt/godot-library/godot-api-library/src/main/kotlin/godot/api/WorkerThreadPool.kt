@@ -12,6 +12,10 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Callable
 import godot.core.Error
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName3
+import godot.core.MethodStringName5
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.CALLABLE
 import godot.core.VariantParser.LONG
@@ -23,6 +27,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
@@ -80,6 +85,43 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object WorkerThreadPool : Object() {
+  @JvmField
+  public val addTaskName: MethodStringName3<WorkerThreadPool, Long, Callable, Boolean, String> =
+      MethodStringName3<WorkerThreadPool, Long, Callable, Boolean, String>("add_task")
+
+  @JvmField
+  public val isTaskCompletedName: MethodStringName1<WorkerThreadPool, Boolean, Long> =
+      MethodStringName1<WorkerThreadPool, Boolean, Long>("is_task_completed")
+
+  @JvmField
+  public val waitForTaskCompletionName: MethodStringName1<WorkerThreadPool, Error, Long> =
+      MethodStringName1<WorkerThreadPool, Error, Long>("wait_for_task_completion")
+
+  @JvmField
+  public val getCallerTaskIdName: MethodStringName0<WorkerThreadPool, Long> =
+      MethodStringName0<WorkerThreadPool, Long>("get_caller_task_id")
+
+  @JvmField
+  public val addGroupTaskName:
+      MethodStringName5<WorkerThreadPool, Long, Callable, Int, Int, Boolean, String> =
+      MethodStringName5<WorkerThreadPool, Long, Callable, Int, Int, Boolean, String>("add_group_task")
+
+  @JvmField
+  public val isGroupTaskCompletedName: MethodStringName1<WorkerThreadPool, Boolean, Long> =
+      MethodStringName1<WorkerThreadPool, Boolean, Long>("is_group_task_completed")
+
+  @JvmField
+  public val getGroupProcessedElementCountName: MethodStringName1<WorkerThreadPool, Long, Long> =
+      MethodStringName1<WorkerThreadPool, Long, Long>("get_group_processed_element_count")
+
+  @JvmField
+  public val waitForGroupTaskCompletionName: MethodStringName1<WorkerThreadPool, Unit, Long> =
+      MethodStringName1<WorkerThreadPool, Unit, Long>("wait_for_group_task_completion")
+
+  @JvmField
+  public val getCallerGroupIdName: MethodStringName0<WorkerThreadPool, Long> =
+      MethodStringName0<WorkerThreadPool, Long>("get_caller_group_id")
+
   public override fun new(scriptPtr: VoidPtr): Unit {
     getSingleton(36)
   }

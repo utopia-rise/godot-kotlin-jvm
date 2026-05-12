@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.NodePath
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
@@ -19,6 +21,7 @@ import kotlin.Boolean
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -155,7 +158,51 @@ public open class RemoteTransform2D : Node2D() {
 
   public final fun setRemoteNode(path: String) = setRemoteNode(path.asCachedNodePath())
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setRemoteNodeName: MethodStringName1<RemoteTransform2D, Unit, NodePath> =
+        MethodStringName1<RemoteTransform2D, Unit, NodePath>("set_remote_node")
+
+    @JvmField
+    public val getRemoteNodeName: MethodStringName0<RemoteTransform2D, NodePath> =
+        MethodStringName0<RemoteTransform2D, NodePath>("get_remote_node")
+
+    @JvmField
+    public val forceUpdateCacheName: MethodStringName0<RemoteTransform2D, Unit> =
+        MethodStringName0<RemoteTransform2D, Unit>("force_update_cache")
+
+    @JvmField
+    public val setUseGlobalCoordinatesName: MethodStringName1<RemoteTransform2D, Unit, Boolean> =
+        MethodStringName1<RemoteTransform2D, Unit, Boolean>("set_use_global_coordinates")
+
+    @JvmField
+    public val getUseGlobalCoordinatesName: MethodStringName0<RemoteTransform2D, Boolean> =
+        MethodStringName0<RemoteTransform2D, Boolean>("get_use_global_coordinates")
+
+    @JvmField
+    public val setUpdatePositionName: MethodStringName1<RemoteTransform2D, Unit, Boolean> =
+        MethodStringName1<RemoteTransform2D, Unit, Boolean>("set_update_position")
+
+    @JvmField
+    public val getUpdatePositionName: MethodStringName0<RemoteTransform2D, Boolean> =
+        MethodStringName0<RemoteTransform2D, Boolean>("get_update_position")
+
+    @JvmField
+    public val setUpdateRotationName: MethodStringName1<RemoteTransform2D, Unit, Boolean> =
+        MethodStringName1<RemoteTransform2D, Unit, Boolean>("set_update_rotation")
+
+    @JvmField
+    public val getUpdateRotationName: MethodStringName0<RemoteTransform2D, Boolean> =
+        MethodStringName0<RemoteTransform2D, Boolean>("get_update_rotation")
+
+    @JvmField
+    public val setUpdateScaleName: MethodStringName1<RemoteTransform2D, Unit, Boolean> =
+        MethodStringName1<RemoteTransform2D, Unit, Boolean>("set_update_scale")
+
+    @JvmField
+    public val getUpdateScaleName: MethodStringName0<RemoteTransform2D, Boolean> =
+        MethodStringName0<RemoteTransform2D, Boolean>("get_update_scale")
+  }
 
   public object MethodBindings {
     internal val setRemoteNodePtr: VoidPtr =

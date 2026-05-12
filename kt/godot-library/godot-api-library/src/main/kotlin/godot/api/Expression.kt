@@ -11,6 +11,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.MethodStringName0
+import godot.core.MethodStringName2
+import godot.core.MethodStringName4
 import godot.core.PackedStringArray
 import godot.core.VariantArray
 import godot.core.VariantCaster.ANY
@@ -26,6 +29,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -136,7 +140,24 @@ public open class Expression : RefCounted() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val parseName: MethodStringName2<Expression, Error, String, PackedStringArray> =
+        MethodStringName2<Expression, Error, String, PackedStringArray>("parse")
+
+    @JvmField
+    public val executeName:
+        MethodStringName4<Expression, Any?, VariantArray<Any?>, Object?, Boolean, Boolean> =
+        MethodStringName4<Expression, Any?, VariantArray<Any?>, Object?, Boolean, Boolean>("execute")
+
+    @JvmField
+    public val hasExecuteFailedName: MethodStringName0<Expression, Boolean> =
+        MethodStringName0<Expression, Boolean>("has_execute_failed")
+
+    @JvmField
+    public val getErrorTextName: MethodStringName0<Expression, String> =
+        MethodStringName0<Expression, String>("get_error_text")
+  }
 
   public object MethodBindings {
     internal val parsePtr: VoidPtr = TypeManager.getMethodBindPtr("Expression", "parse", 3069722906)

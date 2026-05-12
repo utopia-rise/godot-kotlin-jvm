@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import kotlin.Double
@@ -17,6 +19,7 @@ import kotlin.Float
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -149,7 +152,47 @@ public open class AudioEffectPhaser : AudioEffect() {
     throw NotImplementedError("AudioEffectPhaser::_instantiate can't be called from the JVM.")
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setRangeMinHzName: MethodStringName1<AudioEffectPhaser, Unit, Float> =
+        MethodStringName1<AudioEffectPhaser, Unit, Float>("set_range_min_hz")
+
+    @JvmField
+    public val getRangeMinHzName: MethodStringName0<AudioEffectPhaser, Float> =
+        MethodStringName0<AudioEffectPhaser, Float>("get_range_min_hz")
+
+    @JvmField
+    public val setRangeMaxHzName: MethodStringName1<AudioEffectPhaser, Unit, Float> =
+        MethodStringName1<AudioEffectPhaser, Unit, Float>("set_range_max_hz")
+
+    @JvmField
+    public val getRangeMaxHzName: MethodStringName0<AudioEffectPhaser, Float> =
+        MethodStringName0<AudioEffectPhaser, Float>("get_range_max_hz")
+
+    @JvmField
+    public val setRateHzName: MethodStringName1<AudioEffectPhaser, Unit, Float> =
+        MethodStringName1<AudioEffectPhaser, Unit, Float>("set_rate_hz")
+
+    @JvmField
+    public val getRateHzName: MethodStringName0<AudioEffectPhaser, Float> =
+        MethodStringName0<AudioEffectPhaser, Float>("get_rate_hz")
+
+    @JvmField
+    public val setFeedbackName: MethodStringName1<AudioEffectPhaser, Unit, Float> =
+        MethodStringName1<AudioEffectPhaser, Unit, Float>("set_feedback")
+
+    @JvmField
+    public val getFeedbackName: MethodStringName0<AudioEffectPhaser, Float> =
+        MethodStringName0<AudioEffectPhaser, Float>("get_feedback")
+
+    @JvmField
+    public val setDepthName: MethodStringName1<AudioEffectPhaser, Unit, Float> =
+        MethodStringName1<AudioEffectPhaser, Unit, Float>("set_depth")
+
+    @JvmField
+    public val getDepthName: MethodStringName0<AudioEffectPhaser, Float> =
+        MethodStringName0<AudioEffectPhaser, Float>("get_depth")
+  }
 
   public object MethodBindings {
     internal val setRangeMinHzPtr: VoidPtr =

@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.NodePath
 import godot.core.StringName
 import godot.core.VariantArray
@@ -23,6 +26,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
@@ -123,7 +127,41 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
   public final fun setPhysicalBoneNode(jointIdx: Int, physicalbone2dNode: String) =
       setPhysicalBoneNode(jointIdx, physicalbone2dNode.asCachedNodePath())
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setPhysicalBoneChainLengthName:
+        MethodStringName1<SkeletonModification2DPhysicalBones, Unit, Int> =
+        MethodStringName1<SkeletonModification2DPhysicalBones, Unit, Int>("set_physical_bone_chain_length")
+
+    @JvmField
+    public val getPhysicalBoneChainLengthName:
+        MethodStringName0<SkeletonModification2DPhysicalBones, Int> =
+        MethodStringName0<SkeletonModification2DPhysicalBones, Int>("get_physical_bone_chain_length")
+
+    @JvmField
+    public val setPhysicalBoneNodeName:
+        MethodStringName2<SkeletonModification2DPhysicalBones, Unit, Int, NodePath> =
+        MethodStringName2<SkeletonModification2DPhysicalBones, Unit, Int, NodePath>("set_physical_bone_node")
+
+    @JvmField
+    public val getPhysicalBoneNodeName:
+        MethodStringName1<SkeletonModification2DPhysicalBones, NodePath, Int> =
+        MethodStringName1<SkeletonModification2DPhysicalBones, NodePath, Int>("get_physical_bone_node")
+
+    @JvmField
+    public val fetchPhysicalBonesName: MethodStringName0<SkeletonModification2DPhysicalBones, Unit>
+        = MethodStringName0<SkeletonModification2DPhysicalBones, Unit>("fetch_physical_bones")
+
+    @JvmField
+    public val startSimulationName:
+        MethodStringName1<SkeletonModification2DPhysicalBones, Unit, VariantArray<StringName>> =
+        MethodStringName1<SkeletonModification2DPhysicalBones, Unit, VariantArray<StringName>>("start_simulation")
+
+    @JvmField
+    public val stopSimulationName:
+        MethodStringName1<SkeletonModification2DPhysicalBones, Unit, VariantArray<StringName>> =
+        MethodStringName1<SkeletonModification2DPhysicalBones, Unit, VariantArray<StringName>>("stop_simulation")
+  }
 
   public object MethodBindings {
     internal val setPhysicalBoneChainLengthPtr: VoidPtr =

@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -20,6 +23,7 @@ import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -211,7 +215,62 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setInputCountName: MethodStringName1<AnimationNodeTransition, Unit, Int> =
+        MethodStringName1<AnimationNodeTransition, Unit, Int>("set_input_count")
+
+    @JvmField
+    public val setInputAsAutoAdvanceName:
+        MethodStringName2<AnimationNodeTransition, Unit, Int, Boolean> =
+        MethodStringName2<AnimationNodeTransition, Unit, Int, Boolean>("set_input_as_auto_advance")
+
+    @JvmField
+    public val isInputSetAsAutoAdvanceName: MethodStringName1<AnimationNodeTransition, Boolean, Int>
+        = MethodStringName1<AnimationNodeTransition, Boolean, Int>("is_input_set_as_auto_advance")
+
+    @JvmField
+    public val setInputBreakLoopAtEndName:
+        MethodStringName2<AnimationNodeTransition, Unit, Int, Boolean> =
+        MethodStringName2<AnimationNodeTransition, Unit, Int, Boolean>("set_input_break_loop_at_end")
+
+    @JvmField
+    public val isInputLoopBrokenAtEndName: MethodStringName1<AnimationNodeTransition, Boolean, Int>
+        = MethodStringName1<AnimationNodeTransition, Boolean, Int>("is_input_loop_broken_at_end")
+
+    @JvmField
+    public val setInputResetName: MethodStringName2<AnimationNodeTransition, Unit, Int, Boolean> =
+        MethodStringName2<AnimationNodeTransition, Unit, Int, Boolean>("set_input_reset")
+
+    @JvmField
+    public val isInputResetName: MethodStringName1<AnimationNodeTransition, Boolean, Int> =
+        MethodStringName1<AnimationNodeTransition, Boolean, Int>("is_input_reset")
+
+    @JvmField
+    public val setXfadeTimeName: MethodStringName1<AnimationNodeTransition, Unit, Double> =
+        MethodStringName1<AnimationNodeTransition, Unit, Double>("set_xfade_time")
+
+    @JvmField
+    public val getXfadeTimeName: MethodStringName0<AnimationNodeTransition, Double> =
+        MethodStringName0<AnimationNodeTransition, Double>("get_xfade_time")
+
+    @JvmField
+    public val setXfadeCurveName: MethodStringName1<AnimationNodeTransition, Unit, Curve?> =
+        MethodStringName1<AnimationNodeTransition, Unit, Curve?>("set_xfade_curve")
+
+    @JvmField
+    public val getXfadeCurveName: MethodStringName0<AnimationNodeTransition, Curve?> =
+        MethodStringName0<AnimationNodeTransition, Curve?>("get_xfade_curve")
+
+    @JvmField
+    public val setAllowTransitionToSelfName:
+        MethodStringName1<AnimationNodeTransition, Unit, Boolean> =
+        MethodStringName1<AnimationNodeTransition, Unit, Boolean>("set_allow_transition_to_self")
+
+    @JvmField
+    public val isAllowTransitionToSelfName: MethodStringName0<AnimationNodeTransition, Boolean> =
+        MethodStringName0<AnimationNodeTransition, Boolean>("is_allow_transition_to_self")
+  }
 
   public object MethodBindings {
     internal val setInputCountPtr: VoidPtr =

@@ -13,6 +13,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.RID
 import godot.core.Signal0
 import godot.core.Signal1
@@ -34,6 +37,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
@@ -1077,7 +1081,241 @@ public open class RigidBody2D : PhysicsBody2D() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setMassName: MethodStringName1<RigidBody2D, Unit, Float> =
+        MethodStringName1<RigidBody2D, Unit, Float>("set_mass")
+
+    @JvmField
+    public val getMassName: MethodStringName0<RigidBody2D, Float> =
+        MethodStringName0<RigidBody2D, Float>("get_mass")
+
+    @JvmField
+    public val getInertiaName: MethodStringName0<RigidBody2D, Float> =
+        MethodStringName0<RigidBody2D, Float>("get_inertia")
+
+    @JvmField
+    public val setInertiaName: MethodStringName1<RigidBody2D, Unit, Float> =
+        MethodStringName1<RigidBody2D, Unit, Float>("set_inertia")
+
+    @JvmField
+    public val setCenterOfMassModeName: MethodStringName1<RigidBody2D, Unit, CenterOfMassMode> =
+        MethodStringName1<RigidBody2D, Unit, CenterOfMassMode>("set_center_of_mass_mode")
+
+    @JvmField
+    public val getCenterOfMassModeName: MethodStringName0<RigidBody2D, CenterOfMassMode> =
+        MethodStringName0<RigidBody2D, CenterOfMassMode>("get_center_of_mass_mode")
+
+    @JvmField
+    public val setCenterOfMassName: MethodStringName1<RigidBody2D, Unit, Vector2> =
+        MethodStringName1<RigidBody2D, Unit, Vector2>("set_center_of_mass")
+
+    @JvmField
+    public val getCenterOfMassName: MethodStringName0<RigidBody2D, Vector2> =
+        MethodStringName0<RigidBody2D, Vector2>("get_center_of_mass")
+
+    @JvmField
+    public val setPhysicsMaterialOverrideName:
+        MethodStringName1<RigidBody2D, Unit, PhysicsMaterial?> =
+        MethodStringName1<RigidBody2D, Unit, PhysicsMaterial?>("set_physics_material_override")
+
+    @JvmField
+    public val getPhysicsMaterialOverrideName: MethodStringName0<RigidBody2D, PhysicsMaterial?> =
+        MethodStringName0<RigidBody2D, PhysicsMaterial?>("get_physics_material_override")
+
+    @JvmField
+    public val setGravityScaleName: MethodStringName1<RigidBody2D, Unit, Float> =
+        MethodStringName1<RigidBody2D, Unit, Float>("set_gravity_scale")
+
+    @JvmField
+    public val getGravityScaleName: MethodStringName0<RigidBody2D, Float> =
+        MethodStringName0<RigidBody2D, Float>("get_gravity_scale")
+
+    @JvmField
+    public val setLinearDampModeName: MethodStringName1<RigidBody2D, Unit, DampMode> =
+        MethodStringName1<RigidBody2D, Unit, DampMode>("set_linear_damp_mode")
+
+    @JvmField
+    public val getLinearDampModeName: MethodStringName0<RigidBody2D, DampMode> =
+        MethodStringName0<RigidBody2D, DampMode>("get_linear_damp_mode")
+
+    @JvmField
+    public val setAngularDampModeName: MethodStringName1<RigidBody2D, Unit, DampMode> =
+        MethodStringName1<RigidBody2D, Unit, DampMode>("set_angular_damp_mode")
+
+    @JvmField
+    public val getAngularDampModeName: MethodStringName0<RigidBody2D, DampMode> =
+        MethodStringName0<RigidBody2D, DampMode>("get_angular_damp_mode")
+
+    @JvmField
+    public val setLinearDampName: MethodStringName1<RigidBody2D, Unit, Float> =
+        MethodStringName1<RigidBody2D, Unit, Float>("set_linear_damp")
+
+    @JvmField
+    public val getLinearDampName: MethodStringName0<RigidBody2D, Float> =
+        MethodStringName0<RigidBody2D, Float>("get_linear_damp")
+
+    @JvmField
+    public val setAngularDampName: MethodStringName1<RigidBody2D, Unit, Float> =
+        MethodStringName1<RigidBody2D, Unit, Float>("set_angular_damp")
+
+    @JvmField
+    public val getAngularDampName: MethodStringName0<RigidBody2D, Float> =
+        MethodStringName0<RigidBody2D, Float>("get_angular_damp")
+
+    @JvmField
+    public val setLinearVelocityName: MethodStringName1<RigidBody2D, Unit, Vector2> =
+        MethodStringName1<RigidBody2D, Unit, Vector2>("set_linear_velocity")
+
+    @JvmField
+    public val getLinearVelocityName: MethodStringName0<RigidBody2D, Vector2> =
+        MethodStringName0<RigidBody2D, Vector2>("get_linear_velocity")
+
+    @JvmField
+    public val setAngularVelocityName: MethodStringName1<RigidBody2D, Unit, Float> =
+        MethodStringName1<RigidBody2D, Unit, Float>("set_angular_velocity")
+
+    @JvmField
+    public val getAngularVelocityName: MethodStringName0<RigidBody2D, Float> =
+        MethodStringName0<RigidBody2D, Float>("get_angular_velocity")
+
+    @JvmField
+    public val setMaxContactsReportedName: MethodStringName1<RigidBody2D, Unit, Int> =
+        MethodStringName1<RigidBody2D, Unit, Int>("set_max_contacts_reported")
+
+    @JvmField
+    public val getMaxContactsReportedName: MethodStringName0<RigidBody2D, Int> =
+        MethodStringName0<RigidBody2D, Int>("get_max_contacts_reported")
+
+    @JvmField
+    public val getContactCountName: MethodStringName0<RigidBody2D, Int> =
+        MethodStringName0<RigidBody2D, Int>("get_contact_count")
+
+    @JvmField
+    public val setUseCustomIntegratorName: MethodStringName1<RigidBody2D, Unit, Boolean> =
+        MethodStringName1<RigidBody2D, Unit, Boolean>("set_use_custom_integrator")
+
+    @JvmField
+    public val isUsingCustomIntegratorName: MethodStringName0<RigidBody2D, Boolean> =
+        MethodStringName0<RigidBody2D, Boolean>("is_using_custom_integrator")
+
+    @JvmField
+    public val setContactMonitorName: MethodStringName1<RigidBody2D, Unit, Boolean> =
+        MethodStringName1<RigidBody2D, Unit, Boolean>("set_contact_monitor")
+
+    @JvmField
+    public val isContactMonitorEnabledName: MethodStringName0<RigidBody2D, Boolean> =
+        MethodStringName0<RigidBody2D, Boolean>("is_contact_monitor_enabled")
+
+    @JvmField
+    public val setContinuousCollisionDetectionModeName:
+        MethodStringName1<RigidBody2D, Unit, CCDMode> =
+        MethodStringName1<RigidBody2D, Unit, CCDMode>("set_continuous_collision_detection_mode")
+
+    @JvmField
+    public val getContinuousCollisionDetectionModeName: MethodStringName0<RigidBody2D, CCDMode> =
+        MethodStringName0<RigidBody2D, CCDMode>("get_continuous_collision_detection_mode")
+
+    @JvmField
+    public val setAxisVelocityName: MethodStringName1<RigidBody2D, Unit, Vector2> =
+        MethodStringName1<RigidBody2D, Unit, Vector2>("set_axis_velocity")
+
+    @JvmField
+    public val applyCentralImpulseName: MethodStringName1<RigidBody2D, Unit, Vector2> =
+        MethodStringName1<RigidBody2D, Unit, Vector2>("apply_central_impulse")
+
+    @JvmField
+    public val applyImpulseName: MethodStringName2<RigidBody2D, Unit, Vector2, Vector2> =
+        MethodStringName2<RigidBody2D, Unit, Vector2, Vector2>("apply_impulse")
+
+    @JvmField
+    public val applyTorqueImpulseName: MethodStringName1<RigidBody2D, Unit, Float> =
+        MethodStringName1<RigidBody2D, Unit, Float>("apply_torque_impulse")
+
+    @JvmField
+    public val applyCentralForceName: MethodStringName1<RigidBody2D, Unit, Vector2> =
+        MethodStringName1<RigidBody2D, Unit, Vector2>("apply_central_force")
+
+    @JvmField
+    public val applyForceName: MethodStringName2<RigidBody2D, Unit, Vector2, Vector2> =
+        MethodStringName2<RigidBody2D, Unit, Vector2, Vector2>("apply_force")
+
+    @JvmField
+    public val applyTorqueName: MethodStringName1<RigidBody2D, Unit, Float> =
+        MethodStringName1<RigidBody2D, Unit, Float>("apply_torque")
+
+    @JvmField
+    public val addConstantCentralForceName: MethodStringName1<RigidBody2D, Unit, Vector2> =
+        MethodStringName1<RigidBody2D, Unit, Vector2>("add_constant_central_force")
+
+    @JvmField
+    public val addConstantForceName: MethodStringName2<RigidBody2D, Unit, Vector2, Vector2> =
+        MethodStringName2<RigidBody2D, Unit, Vector2, Vector2>("add_constant_force")
+
+    @JvmField
+    public val addConstantTorqueName: MethodStringName1<RigidBody2D, Unit, Float> =
+        MethodStringName1<RigidBody2D, Unit, Float>("add_constant_torque")
+
+    @JvmField
+    public val setConstantForceName: MethodStringName1<RigidBody2D, Unit, Vector2> =
+        MethodStringName1<RigidBody2D, Unit, Vector2>("set_constant_force")
+
+    @JvmField
+    public val getConstantForceName: MethodStringName0<RigidBody2D, Vector2> =
+        MethodStringName0<RigidBody2D, Vector2>("get_constant_force")
+
+    @JvmField
+    public val setConstantTorqueName: MethodStringName1<RigidBody2D, Unit, Float> =
+        MethodStringName1<RigidBody2D, Unit, Float>("set_constant_torque")
+
+    @JvmField
+    public val getConstantTorqueName: MethodStringName0<RigidBody2D, Float> =
+        MethodStringName0<RigidBody2D, Float>("get_constant_torque")
+
+    @JvmField
+    public val setSleepingName: MethodStringName1<RigidBody2D, Unit, Boolean> =
+        MethodStringName1<RigidBody2D, Unit, Boolean>("set_sleeping")
+
+    @JvmField
+    public val isSleepingName: MethodStringName0<RigidBody2D, Boolean> =
+        MethodStringName0<RigidBody2D, Boolean>("is_sleeping")
+
+    @JvmField
+    public val setCanSleepName: MethodStringName1<RigidBody2D, Unit, Boolean> =
+        MethodStringName1<RigidBody2D, Unit, Boolean>("set_can_sleep")
+
+    @JvmField
+    public val isAbleToSleepName: MethodStringName0<RigidBody2D, Boolean> =
+        MethodStringName0<RigidBody2D, Boolean>("is_able_to_sleep")
+
+    @JvmField
+    public val setLockRotationEnabledName: MethodStringName1<RigidBody2D, Unit, Boolean> =
+        MethodStringName1<RigidBody2D, Unit, Boolean>("set_lock_rotation_enabled")
+
+    @JvmField
+    public val isLockRotationEnabledName: MethodStringName0<RigidBody2D, Boolean> =
+        MethodStringName0<RigidBody2D, Boolean>("is_lock_rotation_enabled")
+
+    @JvmField
+    public val setFreezeEnabledName: MethodStringName1<RigidBody2D, Unit, Boolean> =
+        MethodStringName1<RigidBody2D, Unit, Boolean>("set_freeze_enabled")
+
+    @JvmField
+    public val isFreezeEnabledName: MethodStringName0<RigidBody2D, Boolean> =
+        MethodStringName0<RigidBody2D, Boolean>("is_freeze_enabled")
+
+    @JvmField
+    public val setFreezeModeName: MethodStringName1<RigidBody2D, Unit, FreezeMode> =
+        MethodStringName1<RigidBody2D, Unit, FreezeMode>("set_freeze_mode")
+
+    @JvmField
+    public val getFreezeModeName: MethodStringName0<RigidBody2D, FreezeMode> =
+        MethodStringName0<RigidBody2D, FreezeMode>("get_freeze_mode")
+
+    @JvmField
+    public val getCollidingBodiesName: MethodStringName0<RigidBody2D, VariantArray<Node2D>> =
+        MethodStringName0<RigidBody2D, VariantArray<Node2D>>("get_colliding_bodies")
+  }
 
   public object MethodBindings {
     internal val setMassPtr: VoidPtr =

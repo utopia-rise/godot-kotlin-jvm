@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.Signal0
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -24,6 +26,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -436,7 +439,107 @@ public open class ScrollContainer : Container() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setHScrollName: MethodStringName1<ScrollContainer, Unit, Int> =
+        MethodStringName1<ScrollContainer, Unit, Int>("set_h_scroll")
+
+    @JvmField
+    public val getHScrollName: MethodStringName0<ScrollContainer, Int> =
+        MethodStringName0<ScrollContainer, Int>("get_h_scroll")
+
+    @JvmField
+    public val setVScrollName: MethodStringName1<ScrollContainer, Unit, Int> =
+        MethodStringName1<ScrollContainer, Unit, Int>("set_v_scroll")
+
+    @JvmField
+    public val getVScrollName: MethodStringName0<ScrollContainer, Int> =
+        MethodStringName0<ScrollContainer, Int>("get_v_scroll")
+
+    @JvmField
+    public val setHorizontalCustomStepName: MethodStringName1<ScrollContainer, Unit, Float> =
+        MethodStringName1<ScrollContainer, Unit, Float>("set_horizontal_custom_step")
+
+    @JvmField
+    public val getHorizontalCustomStepName: MethodStringName0<ScrollContainer, Float> =
+        MethodStringName0<ScrollContainer, Float>("get_horizontal_custom_step")
+
+    @JvmField
+    public val setVerticalCustomStepName: MethodStringName1<ScrollContainer, Unit, Float> =
+        MethodStringName1<ScrollContainer, Unit, Float>("set_vertical_custom_step")
+
+    @JvmField
+    public val getVerticalCustomStepName: MethodStringName0<ScrollContainer, Float> =
+        MethodStringName0<ScrollContainer, Float>("get_vertical_custom_step")
+
+    @JvmField
+    public val setHorizontalScrollModeName: MethodStringName1<ScrollContainer, Unit, ScrollMode> =
+        MethodStringName1<ScrollContainer, Unit, ScrollMode>("set_horizontal_scroll_mode")
+
+    @JvmField
+    public val getHorizontalScrollModeName: MethodStringName0<ScrollContainer, ScrollMode> =
+        MethodStringName0<ScrollContainer, ScrollMode>("get_horizontal_scroll_mode")
+
+    @JvmField
+    public val setVerticalScrollModeName: MethodStringName1<ScrollContainer, Unit, ScrollMode> =
+        MethodStringName1<ScrollContainer, Unit, ScrollMode>("set_vertical_scroll_mode")
+
+    @JvmField
+    public val getVerticalScrollModeName: MethodStringName0<ScrollContainer, ScrollMode> =
+        MethodStringName0<ScrollContainer, ScrollMode>("get_vertical_scroll_mode")
+
+    @JvmField
+    public val setDeadzoneName: MethodStringName1<ScrollContainer, Unit, Int> =
+        MethodStringName1<ScrollContainer, Unit, Int>("set_deadzone")
+
+    @JvmField
+    public val getDeadzoneName: MethodStringName0<ScrollContainer, Int> =
+        MethodStringName0<ScrollContainer, Int>("get_deadzone")
+
+    @JvmField
+    public val setScrollHintModeName: MethodStringName1<ScrollContainer, Unit, ScrollHintMode> =
+        MethodStringName1<ScrollContainer, Unit, ScrollHintMode>("set_scroll_hint_mode")
+
+    @JvmField
+    public val getScrollHintModeName: MethodStringName0<ScrollContainer, ScrollHintMode> =
+        MethodStringName0<ScrollContainer, ScrollHintMode>("get_scroll_hint_mode")
+
+    @JvmField
+    public val setTileScrollHintName: MethodStringName1<ScrollContainer, Unit, Boolean> =
+        MethodStringName1<ScrollContainer, Unit, Boolean>("set_tile_scroll_hint")
+
+    @JvmField
+    public val isScrollHintTiledName: MethodStringName0<ScrollContainer, Boolean> =
+        MethodStringName0<ScrollContainer, Boolean>("is_scroll_hint_tiled")
+
+    @JvmField
+    public val setFollowFocusName: MethodStringName1<ScrollContainer, Unit, Boolean> =
+        MethodStringName1<ScrollContainer, Unit, Boolean>("set_follow_focus")
+
+    @JvmField
+    public val isFollowingFocusName: MethodStringName0<ScrollContainer, Boolean> =
+        MethodStringName0<ScrollContainer, Boolean>("is_following_focus")
+
+    @JvmField
+    public val getHScrollBarName: MethodStringName0<ScrollContainer, HScrollBar?> =
+        MethodStringName0<ScrollContainer, HScrollBar?>("get_h_scroll_bar")
+
+    @JvmField
+    public val getVScrollBarName: MethodStringName0<ScrollContainer, VScrollBar?> =
+        MethodStringName0<ScrollContainer, VScrollBar?>("get_v_scroll_bar")
+
+    @JvmField
+    public val ensureControlVisibleName: MethodStringName1<ScrollContainer, Unit, Control?> =
+        MethodStringName1<ScrollContainer, Unit, Control?>("ensure_control_visible")
+
+    @JvmField
+    public val setDrawFocusBorderName: MethodStringName1<ScrollContainer, Unit, Boolean> =
+        MethodStringName1<ScrollContainer, Unit, Boolean>("set_draw_focus_border")
+
+    @JvmField
+    public val getDrawFocusBorderName: MethodStringName0<ScrollContainer, Boolean> =
+        MethodStringName0<ScrollContainer, Boolean>("get_draw_focus_border")
+  }
 
   public object MethodBindings {
     internal val setHScrollPtr: VoidPtr =

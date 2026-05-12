@@ -11,6 +11,10 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.MethodStringName0
+import godot.core.MethodStringName4
+import godot.core.MethodStringName5
+import godot.core.MethodStringName6
 import godot.core.RID
 import godot.core.Rect2
 import godot.core.VariantParser.BOOL
@@ -28,6 +32,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -232,7 +237,44 @@ public abstract class Texture2D : Texture() {
     return (TransferContext.readReturnValue(OBJECT) as Resource?)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val getWidthName: MethodStringName0<Texture2D, Int> =
+        MethodStringName0<Texture2D, Int>("get_width")
+
+    @JvmField
+    public val getHeightName: MethodStringName0<Texture2D, Int> =
+        MethodStringName0<Texture2D, Int>("get_height")
+
+    @JvmField
+    public val getSizeName: MethodStringName0<Texture2D, Vector2> =
+        MethodStringName0<Texture2D, Vector2>("get_size")
+
+    @JvmField
+    public val hasAlphaName: MethodStringName0<Texture2D, Boolean> =
+        MethodStringName0<Texture2D, Boolean>("has_alpha")
+
+    @JvmField
+    public val drawName: MethodStringName4<Texture2D, Unit, RID, Vector2, Color, Boolean> =
+        MethodStringName4<Texture2D, Unit, RID, Vector2, Color, Boolean>("draw")
+
+    @JvmField
+    public val drawRectName: MethodStringName5<Texture2D, Unit, RID, Rect2, Boolean, Color, Boolean>
+        = MethodStringName5<Texture2D, Unit, RID, Rect2, Boolean, Color, Boolean>("draw_rect")
+
+    @JvmField
+    public val drawRectRegionName:
+        MethodStringName6<Texture2D, Unit, RID, Rect2, Rect2, Color, Boolean, Boolean> =
+        MethodStringName6<Texture2D, Unit, RID, Rect2, Rect2, Color, Boolean, Boolean>("draw_rect_region")
+
+    @JvmField
+    public val getImageName: MethodStringName0<Texture2D, Image?> =
+        MethodStringName0<Texture2D, Image?>("get_image")
+
+    @JvmField
+    public val createPlaceholderName: MethodStringName0<Texture2D, Resource?> =
+        MethodStringName0<Texture2D, Resource?>("create_placeholder")
+  }
 
   public object MethodBindings {
     internal val getWidthPtr: VoidPtr =

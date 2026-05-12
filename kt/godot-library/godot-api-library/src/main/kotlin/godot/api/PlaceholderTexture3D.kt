@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantArray
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR3I
@@ -21,6 +23,7 @@ import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -133,7 +136,15 @@ public open class PlaceholderTexture3D : Texture3D() {
     throw NotImplementedError("PlaceholderTexture3D::_getData can't be called from the JVM.")
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setSizeName: MethodStringName1<PlaceholderTexture3D, Unit, Vector3i> =
+        MethodStringName1<PlaceholderTexture3D, Unit, Vector3i>("set_size")
+
+    @JvmField
+    public val getSizeName: MethodStringName0<PlaceholderTexture3D, Vector3i> =
+        MethodStringName0<PlaceholderTexture3D, Vector3i>("get_size")
+  }
 
   public object MethodBindings {
     internal val setSizePtr: VoidPtr =

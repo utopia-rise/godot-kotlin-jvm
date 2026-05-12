@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.RID
 import godot.core.Transform3D
 import godot.core.VariantArray
@@ -30,6 +32,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -285,7 +288,79 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
     TransferContext.callMethod(ptr, MethodBindings.setRecoveryAsCollisionEnabledPtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val getFromName: MethodStringName0<PhysicsTestMotionParameters3D, Transform3D> =
+        MethodStringName0<PhysicsTestMotionParameters3D, Transform3D>("get_from")
+
+    @JvmField
+    public val setFromName: MethodStringName1<PhysicsTestMotionParameters3D, Unit, Transform3D> =
+        MethodStringName1<PhysicsTestMotionParameters3D, Unit, Transform3D>("set_from")
+
+    @JvmField
+    public val getMotionName: MethodStringName0<PhysicsTestMotionParameters3D, Vector3> =
+        MethodStringName0<PhysicsTestMotionParameters3D, Vector3>("get_motion")
+
+    @JvmField
+    public val setMotionName: MethodStringName1<PhysicsTestMotionParameters3D, Unit, Vector3> =
+        MethodStringName1<PhysicsTestMotionParameters3D, Unit, Vector3>("set_motion")
+
+    @JvmField
+    public val getMarginName: MethodStringName0<PhysicsTestMotionParameters3D, Float> =
+        MethodStringName0<PhysicsTestMotionParameters3D, Float>("get_margin")
+
+    @JvmField
+    public val setMarginName: MethodStringName1<PhysicsTestMotionParameters3D, Unit, Float> =
+        MethodStringName1<PhysicsTestMotionParameters3D, Unit, Float>("set_margin")
+
+    @JvmField
+    public val getMaxCollisionsName: MethodStringName0<PhysicsTestMotionParameters3D, Int> =
+        MethodStringName0<PhysicsTestMotionParameters3D, Int>("get_max_collisions")
+
+    @JvmField
+    public val setMaxCollisionsName: MethodStringName1<PhysicsTestMotionParameters3D, Unit, Int> =
+        MethodStringName1<PhysicsTestMotionParameters3D, Unit, Int>("set_max_collisions")
+
+    @JvmField
+    public val isCollideSeparationRayEnabledName:
+        MethodStringName0<PhysicsTestMotionParameters3D, Boolean> =
+        MethodStringName0<PhysicsTestMotionParameters3D, Boolean>("is_collide_separation_ray_enabled")
+
+    @JvmField
+    public val setCollideSeparationRayEnabledName:
+        MethodStringName1<PhysicsTestMotionParameters3D, Unit, Boolean> =
+        MethodStringName1<PhysicsTestMotionParameters3D, Unit, Boolean>("set_collide_separation_ray_enabled")
+
+    @JvmField
+    public val getExcludeBodiesName:
+        MethodStringName0<PhysicsTestMotionParameters3D, VariantArray<RID>> =
+        MethodStringName0<PhysicsTestMotionParameters3D, VariantArray<RID>>("get_exclude_bodies")
+
+    @JvmField
+    public val setExcludeBodiesName:
+        MethodStringName1<PhysicsTestMotionParameters3D, Unit, VariantArray<RID>> =
+        MethodStringName1<PhysicsTestMotionParameters3D, Unit, VariantArray<RID>>("set_exclude_bodies")
+
+    @JvmField
+    public val getExcludeObjectsName:
+        MethodStringName0<PhysicsTestMotionParameters3D, VariantArray<Long>> =
+        MethodStringName0<PhysicsTestMotionParameters3D, VariantArray<Long>>("get_exclude_objects")
+
+    @JvmField
+    public val setExcludeObjectsName:
+        MethodStringName1<PhysicsTestMotionParameters3D, Unit, VariantArray<Long>> =
+        MethodStringName1<PhysicsTestMotionParameters3D, Unit, VariantArray<Long>>("set_exclude_objects")
+
+    @JvmField
+    public val isRecoveryAsCollisionEnabledName:
+        MethodStringName0<PhysicsTestMotionParameters3D, Boolean> =
+        MethodStringName0<PhysicsTestMotionParameters3D, Boolean>("is_recovery_as_collision_enabled")
+
+    @JvmField
+    public val setRecoveryAsCollisionEnabledName:
+        MethodStringName1<PhysicsTestMotionParameters3D, Unit, Boolean> =
+        MethodStringName1<PhysicsTestMotionParameters3D, Unit, Boolean>("set_recovery_as_collision_enabled")
+  }
 
   public object MethodBindings {
     internal val getFromPtr: VoidPtr =

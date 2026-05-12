@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -19,6 +21,7 @@ import kotlin.Float
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -248,7 +251,31 @@ public open class DirectionalLight3D : Light3D() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setShadowModeName: MethodStringName1<DirectionalLight3D, Unit, ShadowMode> =
+        MethodStringName1<DirectionalLight3D, Unit, ShadowMode>("set_shadow_mode")
+
+    @JvmField
+    public val getShadowModeName: MethodStringName0<DirectionalLight3D, ShadowMode> =
+        MethodStringName0<DirectionalLight3D, ShadowMode>("get_shadow_mode")
+
+    @JvmField
+    public val setBlendSplitsName: MethodStringName1<DirectionalLight3D, Unit, Boolean> =
+        MethodStringName1<DirectionalLight3D, Unit, Boolean>("set_blend_splits")
+
+    @JvmField
+    public val isBlendSplitsEnabledName: MethodStringName0<DirectionalLight3D, Boolean> =
+        MethodStringName0<DirectionalLight3D, Boolean>("is_blend_splits_enabled")
+
+    @JvmField
+    public val setSkyModeName: MethodStringName1<DirectionalLight3D, Unit, SkyMode> =
+        MethodStringName1<DirectionalLight3D, Unit, SkyMode>("set_sky_mode")
+
+    @JvmField
+    public val getSkyModeName: MethodStringName0<DirectionalLight3D, SkyMode> =
+        MethodStringName0<DirectionalLight3D, SkyMode>("get_sky_mode")
+  }
 
   public object MethodBindings {
     internal val setShadowModePtr: VoidPtr =

@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -23,6 +25,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -172,7 +175,47 @@ public open class PrismMesh : PrimitiveMesh() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setLeftToRightName: MethodStringName1<PrismMesh, Unit, Float> =
+        MethodStringName1<PrismMesh, Unit, Float>("set_left_to_right")
+
+    @JvmField
+    public val getLeftToRightName: MethodStringName0<PrismMesh, Float> =
+        MethodStringName0<PrismMesh, Float>("get_left_to_right")
+
+    @JvmField
+    public val setSizeName: MethodStringName1<PrismMesh, Unit, Vector3> =
+        MethodStringName1<PrismMesh, Unit, Vector3>("set_size")
+
+    @JvmField
+    public val getSizeName: MethodStringName0<PrismMesh, Vector3> =
+        MethodStringName0<PrismMesh, Vector3>("get_size")
+
+    @JvmField
+    public val setSubdivideWidthName: MethodStringName1<PrismMesh, Unit, Int> =
+        MethodStringName1<PrismMesh, Unit, Int>("set_subdivide_width")
+
+    @JvmField
+    public val getSubdivideWidthName: MethodStringName0<PrismMesh, Int> =
+        MethodStringName0<PrismMesh, Int>("get_subdivide_width")
+
+    @JvmField
+    public val setSubdivideHeightName: MethodStringName1<PrismMesh, Unit, Int> =
+        MethodStringName1<PrismMesh, Unit, Int>("set_subdivide_height")
+
+    @JvmField
+    public val getSubdivideHeightName: MethodStringName0<PrismMesh, Int> =
+        MethodStringName0<PrismMesh, Int>("get_subdivide_height")
+
+    @JvmField
+    public val setSubdivideDepthName: MethodStringName1<PrismMesh, Unit, Int> =
+        MethodStringName1<PrismMesh, Unit, Int>("set_subdivide_depth")
+
+    @JvmField
+    public val getSubdivideDepthName: MethodStringName0<PrismMesh, Int> =
+        MethodStringName0<PrismMesh, Int>("get_subdivide_depth")
+  }
 
   public object MethodBindings {
     internal val setLeftToRightPtr: VoidPtr =

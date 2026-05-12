@@ -10,12 +10,14 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
 import godot.core.Plane
 import godot.core.VariantParser.PLANE
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 
 /**
  * The [XRAnchor3D] point is an [XRNode3D] that maps a real world location identified by the AR
@@ -56,7 +58,15 @@ public open class XRAnchor3D : XRNode3D() {
     return (TransferContext.readReturnValue(PLANE) as Plane)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val getSizeName: MethodStringName0<XRAnchor3D, Vector3> =
+        MethodStringName0<XRAnchor3D, Vector3>("get_size")
+
+    @JvmField
+    public val getPlaneName: MethodStringName0<XRAnchor3D, Plane> =
+        MethodStringName0<XRAnchor3D, Plane>("get_plane")
+  }
 
   public object MethodBindings {
     internal val getSizePtr: VoidPtr =

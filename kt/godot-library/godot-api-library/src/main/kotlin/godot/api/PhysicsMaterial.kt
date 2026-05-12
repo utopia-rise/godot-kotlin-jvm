@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
@@ -18,6 +20,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -127,7 +130,39 @@ public open class PhysicsMaterial : Resource() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setFrictionName: MethodStringName1<PhysicsMaterial, Unit, Float> =
+        MethodStringName1<PhysicsMaterial, Unit, Float>("set_friction")
+
+    @JvmField
+    public val getFrictionName: MethodStringName0<PhysicsMaterial, Float> =
+        MethodStringName0<PhysicsMaterial, Float>("get_friction")
+
+    @JvmField
+    public val setRoughName: MethodStringName1<PhysicsMaterial, Unit, Boolean> =
+        MethodStringName1<PhysicsMaterial, Unit, Boolean>("set_rough")
+
+    @JvmField
+    public val isRoughName: MethodStringName0<PhysicsMaterial, Boolean> =
+        MethodStringName0<PhysicsMaterial, Boolean>("is_rough")
+
+    @JvmField
+    public val setBounceName: MethodStringName1<PhysicsMaterial, Unit, Float> =
+        MethodStringName1<PhysicsMaterial, Unit, Float>("set_bounce")
+
+    @JvmField
+    public val getBounceName: MethodStringName0<PhysicsMaterial, Float> =
+        MethodStringName0<PhysicsMaterial, Float>("get_bounce")
+
+    @JvmField
+    public val setAbsorbentName: MethodStringName1<PhysicsMaterial, Unit, Boolean> =
+        MethodStringName1<PhysicsMaterial, Unit, Boolean>("set_absorbent")
+
+    @JvmField
+    public val isAbsorbentName: MethodStringName0<PhysicsMaterial, Boolean> =
+        MethodStringName0<PhysicsMaterial, Boolean>("is_absorbent")
+  }
 
   public object MethodBindings {
     internal val setFrictionPtr: VoidPtr =

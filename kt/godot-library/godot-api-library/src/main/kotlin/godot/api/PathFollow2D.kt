@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
@@ -18,6 +20,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -207,7 +210,63 @@ public open class PathFollow2D : Node2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setProgressName: MethodStringName1<PathFollow2D, Unit, Float> =
+        MethodStringName1<PathFollow2D, Unit, Float>("set_progress")
+
+    @JvmField
+    public val getProgressName: MethodStringName0<PathFollow2D, Float> =
+        MethodStringName0<PathFollow2D, Float>("get_progress")
+
+    @JvmField
+    public val setHOffsetName: MethodStringName1<PathFollow2D, Unit, Float> =
+        MethodStringName1<PathFollow2D, Unit, Float>("set_h_offset")
+
+    @JvmField
+    public val getHOffsetName: MethodStringName0<PathFollow2D, Float> =
+        MethodStringName0<PathFollow2D, Float>("get_h_offset")
+
+    @JvmField
+    public val setVOffsetName: MethodStringName1<PathFollow2D, Unit, Float> =
+        MethodStringName1<PathFollow2D, Unit, Float>("set_v_offset")
+
+    @JvmField
+    public val getVOffsetName: MethodStringName0<PathFollow2D, Float> =
+        MethodStringName0<PathFollow2D, Float>("get_v_offset")
+
+    @JvmField
+    public val setProgressRatioName: MethodStringName1<PathFollow2D, Unit, Float> =
+        MethodStringName1<PathFollow2D, Unit, Float>("set_progress_ratio")
+
+    @JvmField
+    public val getProgressRatioName: MethodStringName0<PathFollow2D, Float> =
+        MethodStringName0<PathFollow2D, Float>("get_progress_ratio")
+
+    @JvmField
+    public val setRotatesName: MethodStringName1<PathFollow2D, Unit, Boolean> =
+        MethodStringName1<PathFollow2D, Unit, Boolean>("set_rotates")
+
+    @JvmField
+    public val isRotatingName: MethodStringName0<PathFollow2D, Boolean> =
+        MethodStringName0<PathFollow2D, Boolean>("is_rotating")
+
+    @JvmField
+    public val setCubicInterpolationName: MethodStringName1<PathFollow2D, Unit, Boolean> =
+        MethodStringName1<PathFollow2D, Unit, Boolean>("set_cubic_interpolation")
+
+    @JvmField
+    public val getCubicInterpolationName: MethodStringName0<PathFollow2D, Boolean> =
+        MethodStringName0<PathFollow2D, Boolean>("get_cubic_interpolation")
+
+    @JvmField
+    public val setLoopName: MethodStringName1<PathFollow2D, Unit, Boolean> =
+        MethodStringName1<PathFollow2D, Unit, Boolean>("set_loop")
+
+    @JvmField
+    public val hasLoopName: MethodStringName0<PathFollow2D, Boolean> =
+        MethodStringName0<PathFollow2D, Boolean>("has_loop")
+  }
 
   public object MethodBindings {
     internal val setProgressPtr: VoidPtr =

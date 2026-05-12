@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -19,6 +21,7 @@ import kotlin.Float
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -166,7 +169,15 @@ public open class ConeTwistJoint3D : Joint3D() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setParamName: MethodStringName2<ConeTwistJoint3D, Unit, Param, Float> =
+        MethodStringName2<ConeTwistJoint3D, Unit, Param, Float>("set_param")
+
+    @JvmField
+    public val getParamName: MethodStringName1<ConeTwistJoint3D, Float, Param> =
+        MethodStringName1<ConeTwistJoint3D, Float, Param>("get_param")
+  }
 
   public object MethodBindings {
     internal val setParamPtr: VoidPtr =

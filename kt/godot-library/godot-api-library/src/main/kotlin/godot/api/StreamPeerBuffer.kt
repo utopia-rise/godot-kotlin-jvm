@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.PackedByteArray
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -22,6 +24,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -157,7 +160,39 @@ public open class StreamPeerBuffer : StreamPeer() {
     return (TransferContext.readReturnValue(OBJECT) as StreamPeerBuffer?)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val seekName: MethodStringName1<StreamPeerBuffer, Unit, Int> =
+        MethodStringName1<StreamPeerBuffer, Unit, Int>("seek")
+
+    @JvmField
+    public val getSizeName: MethodStringName0<StreamPeerBuffer, Int> =
+        MethodStringName0<StreamPeerBuffer, Int>("get_size")
+
+    @JvmField
+    public val getPositionName: MethodStringName0<StreamPeerBuffer, Int> =
+        MethodStringName0<StreamPeerBuffer, Int>("get_position")
+
+    @JvmField
+    public val resizeName: MethodStringName1<StreamPeerBuffer, Unit, Int> =
+        MethodStringName1<StreamPeerBuffer, Unit, Int>("resize")
+
+    @JvmField
+    public val setDataArrayName: MethodStringName1<StreamPeerBuffer, Unit, PackedByteArray> =
+        MethodStringName1<StreamPeerBuffer, Unit, PackedByteArray>("set_data_array")
+
+    @JvmField
+    public val getDataArrayName: MethodStringName0<StreamPeerBuffer, PackedByteArray> =
+        MethodStringName0<StreamPeerBuffer, PackedByteArray>("get_data_array")
+
+    @JvmField
+    public val clearName: MethodStringName0<StreamPeerBuffer, Unit> =
+        MethodStringName0<StreamPeerBuffer, Unit>("clear")
+
+    @JvmField
+    public val duplicateName: MethodStringName0<StreamPeerBuffer, StreamPeerBuffer?> =
+        MethodStringName0<StreamPeerBuffer, StreamPeerBuffer?>("duplicate")
+  }
 
   public object MethodBindings {
     internal val seekPtr: VoidPtr =

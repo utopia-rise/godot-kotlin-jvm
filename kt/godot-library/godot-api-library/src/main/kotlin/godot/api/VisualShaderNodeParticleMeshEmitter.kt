@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -19,6 +21,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -98,7 +101,33 @@ public open class VisualShaderNodeParticleMeshEmitter : VisualShaderNodeParticle
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setMeshName: MethodStringName1<VisualShaderNodeParticleMeshEmitter, Unit, Mesh?> =
+        MethodStringName1<VisualShaderNodeParticleMeshEmitter, Unit, Mesh?>("set_mesh")
+
+    @JvmField
+    public val getMeshName: MethodStringName0<VisualShaderNodeParticleMeshEmitter, Mesh?> =
+        MethodStringName0<VisualShaderNodeParticleMeshEmitter, Mesh?>("get_mesh")
+
+    @JvmField
+    public val setUseAllSurfacesName:
+        MethodStringName1<VisualShaderNodeParticleMeshEmitter, Unit, Boolean> =
+        MethodStringName1<VisualShaderNodeParticleMeshEmitter, Unit, Boolean>("set_use_all_surfaces")
+
+    @JvmField
+    public val isUseAllSurfacesName: MethodStringName0<VisualShaderNodeParticleMeshEmitter, Boolean>
+        = MethodStringName0<VisualShaderNodeParticleMeshEmitter, Boolean>("is_use_all_surfaces")
+
+    @JvmField
+    public val setSurfaceIndexName:
+        MethodStringName1<VisualShaderNodeParticleMeshEmitter, Unit, Int> =
+        MethodStringName1<VisualShaderNodeParticleMeshEmitter, Unit, Int>("set_surface_index")
+
+    @JvmField
+    public val getSurfaceIndexName: MethodStringName0<VisualShaderNodeParticleMeshEmitter, Int> =
+        MethodStringName0<VisualShaderNodeParticleMeshEmitter, Int>("get_surface_index")
+  }
 
   public object MethodBindings {
     internal val setMeshPtr: VoidPtr =

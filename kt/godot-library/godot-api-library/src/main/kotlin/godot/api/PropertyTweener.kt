@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Callable
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.CALLABLE
 import godot.core.VariantParser.DOUBLE
@@ -20,6 +22,7 @@ import kotlin.Any
 import kotlin.Double
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 
 /**
  * [PropertyTweener] is used to interpolate a property in an object. See [Tween.tweenProperty] for
@@ -183,7 +186,37 @@ public open class PropertyTweener : Tweener() {
     return (TransferContext.readReturnValue(OBJECT) as PropertyTweener)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val fromName: MethodStringName1<PropertyTweener, PropertyTweener, Any?> =
+        MethodStringName1<PropertyTweener, PropertyTweener, Any?>("from")
+
+    @JvmField
+    public val fromCurrentName: MethodStringName0<PropertyTweener, PropertyTweener> =
+        MethodStringName0<PropertyTweener, PropertyTweener>("from_current")
+
+    @JvmField
+    public val asRelativeName: MethodStringName0<PropertyTweener, PropertyTweener> =
+        MethodStringName0<PropertyTweener, PropertyTweener>("as_relative")
+
+    @JvmField
+    public val setTransName:
+        MethodStringName1<PropertyTweener, PropertyTweener, Tween.TransitionType> =
+        MethodStringName1<PropertyTweener, PropertyTweener, Tween.TransitionType>("set_trans")
+
+    @JvmField
+    public val setEaseName: MethodStringName1<PropertyTweener, PropertyTweener, Tween.EaseType> =
+        MethodStringName1<PropertyTweener, PropertyTweener, Tween.EaseType>("set_ease")
+
+    @JvmField
+    public val setCustomInterpolatorName:
+        MethodStringName1<PropertyTweener, PropertyTweener, Callable> =
+        MethodStringName1<PropertyTweener, PropertyTweener, Callable>("set_custom_interpolator")
+
+    @JvmField
+    public val setDelayName: MethodStringName1<PropertyTweener, PropertyTweener, Double> =
+        MethodStringName1<PropertyTweener, PropertyTweener, Double>("set_delay")
+  }
 
   public object MethodBindings {
     internal val fromPtr: VoidPtr =

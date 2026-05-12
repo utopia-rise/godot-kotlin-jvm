@@ -10,11 +10,14 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -51,7 +54,15 @@ public open class AnimationNodeSync : AnimationNode() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setUseSyncName: MethodStringName1<AnimationNodeSync, Unit, Boolean> =
+        MethodStringName1<AnimationNodeSync, Unit, Boolean>("set_use_sync")
+
+    @JvmField
+    public val isUsingSyncName: MethodStringName0<AnimationNodeSync, Boolean> =
+        MethodStringName0<AnimationNodeSync, Boolean>("is_using_sync")
+  }
 
   public object MethodBindings {
     internal val setUseSyncPtr: VoidPtr =

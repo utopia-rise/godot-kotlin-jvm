@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -18,6 +20,7 @@ import kotlin.Float
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -118,7 +121,40 @@ public open class OpenXRCompositionLayerCylinder : OpenXRCompositionLayer() {
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setRadiusName: MethodStringName1<OpenXRCompositionLayerCylinder, Unit, Float> =
+        MethodStringName1<OpenXRCompositionLayerCylinder, Unit, Float>("set_radius")
+
+    @JvmField
+    public val getRadiusName: MethodStringName0<OpenXRCompositionLayerCylinder, Float> =
+        MethodStringName0<OpenXRCompositionLayerCylinder, Float>("get_radius")
+
+    @JvmField
+    public val setAspectRatioName: MethodStringName1<OpenXRCompositionLayerCylinder, Unit, Float> =
+        MethodStringName1<OpenXRCompositionLayerCylinder, Unit, Float>("set_aspect_ratio")
+
+    @JvmField
+    public val getAspectRatioName: MethodStringName0<OpenXRCompositionLayerCylinder, Float> =
+        MethodStringName0<OpenXRCompositionLayerCylinder, Float>("get_aspect_ratio")
+
+    @JvmField
+    public val setCentralAngleName: MethodStringName1<OpenXRCompositionLayerCylinder, Unit, Float> =
+        MethodStringName1<OpenXRCompositionLayerCylinder, Unit, Float>("set_central_angle")
+
+    @JvmField
+    public val getCentralAngleName: MethodStringName0<OpenXRCompositionLayerCylinder, Float> =
+        MethodStringName0<OpenXRCompositionLayerCylinder, Float>("get_central_angle")
+
+    @JvmField
+    public val setFallbackSegmentsName:
+        MethodStringName1<OpenXRCompositionLayerCylinder, Unit, Long> =
+        MethodStringName1<OpenXRCompositionLayerCylinder, Unit, Long>("set_fallback_segments")
+
+    @JvmField
+    public val getFallbackSegmentsName: MethodStringName0<OpenXRCompositionLayerCylinder, Long> =
+        MethodStringName0<OpenXRCompositionLayerCylinder, Long>("get_fallback_segments")
+  }
 
   public object MethodBindings {
     internal val setRadiusPtr: VoidPtr =

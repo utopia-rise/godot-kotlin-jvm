@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.Transform3D
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
@@ -19,6 +21,7 @@ import godot.core.VariantParser.TRANSFORM3D
 import kotlin.Boolean
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -102,7 +105,27 @@ public open class VisualShaderNodeTransformParameter : VisualShaderNodeParameter
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setDefaultValueEnabledName:
+        MethodStringName1<VisualShaderNodeTransformParameter, Unit, Boolean> =
+        MethodStringName1<VisualShaderNodeTransformParameter, Unit, Boolean>("set_default_value_enabled")
+
+    @JvmField
+    public val isDefaultValueEnabledName:
+        MethodStringName0<VisualShaderNodeTransformParameter, Boolean> =
+        MethodStringName0<VisualShaderNodeTransformParameter, Boolean>("is_default_value_enabled")
+
+    @JvmField
+    public val setDefaultValueName:
+        MethodStringName1<VisualShaderNodeTransformParameter, Unit, Transform3D> =
+        MethodStringName1<VisualShaderNodeTransformParameter, Unit, Transform3D>("set_default_value")
+
+    @JvmField
+    public val getDefaultValueName:
+        MethodStringName0<VisualShaderNodeTransformParameter, Transform3D> =
+        MethodStringName0<VisualShaderNodeTransformParameter, Transform3D>("get_default_value")
+  }
 
   public object MethodBindings {
     internal val setDefaultValueEnabledPtr: VoidPtr =

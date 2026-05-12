@@ -13,6 +13,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DICTIONARY
 import godot.core.VariantParser.DOUBLE
@@ -31,6 +33,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
@@ -270,6 +273,88 @@ public open class GLTFPhysicsShape : Resource() {
   }
 
   public companion object {
+    @JvmField
+    public val fromNodeName:
+        MethodStringName1<GLTFPhysicsShape, GLTFPhysicsShape?, CollisionShape3D?> =
+        MethodStringName1<GLTFPhysicsShape, GLTFPhysicsShape?, CollisionShape3D?>("from_node")
+
+    @JvmField
+    public val toNodeName: MethodStringName1<GLTFPhysicsShape, CollisionShape3D?, Boolean> =
+        MethodStringName1<GLTFPhysicsShape, CollisionShape3D?, Boolean>("to_node")
+
+    @JvmField
+    public val fromResourceName: MethodStringName1<GLTFPhysicsShape, GLTFPhysicsShape?, Shape3D?> =
+        MethodStringName1<GLTFPhysicsShape, GLTFPhysicsShape?, Shape3D?>("from_resource")
+
+    @JvmField
+    public val toResourceName: MethodStringName1<GLTFPhysicsShape, Shape3D?, Boolean> =
+        MethodStringName1<GLTFPhysicsShape, Shape3D?, Boolean>("to_resource")
+
+    @JvmField
+    public val fromDictionaryName:
+        MethodStringName1<GLTFPhysicsShape, GLTFPhysicsShape?, Dictionary<Any?, Any?>> =
+        MethodStringName1<GLTFPhysicsShape, GLTFPhysicsShape?, Dictionary<Any?, Any?>>("from_dictionary")
+
+    @JvmField
+    public val toDictionaryName: MethodStringName0<GLTFPhysicsShape, Dictionary<Any?, Any?>> =
+        MethodStringName0<GLTFPhysicsShape, Dictionary<Any?, Any?>>("to_dictionary")
+
+    @JvmField
+    public val getShapeTypeName: MethodStringName0<GLTFPhysicsShape, String> =
+        MethodStringName0<GLTFPhysicsShape, String>("get_shape_type")
+
+    @JvmField
+    public val setShapeTypeName: MethodStringName1<GLTFPhysicsShape, Unit, String> =
+        MethodStringName1<GLTFPhysicsShape, Unit, String>("set_shape_type")
+
+    @JvmField
+    public val getSizeName: MethodStringName0<GLTFPhysicsShape, Vector3> =
+        MethodStringName0<GLTFPhysicsShape, Vector3>("get_size")
+
+    @JvmField
+    public val setSizeName: MethodStringName1<GLTFPhysicsShape, Unit, Vector3> =
+        MethodStringName1<GLTFPhysicsShape, Unit, Vector3>("set_size")
+
+    @JvmField
+    public val getRadiusName: MethodStringName0<GLTFPhysicsShape, Float> =
+        MethodStringName0<GLTFPhysicsShape, Float>("get_radius")
+
+    @JvmField
+    public val setRadiusName: MethodStringName1<GLTFPhysicsShape, Unit, Float> =
+        MethodStringName1<GLTFPhysicsShape, Unit, Float>("set_radius")
+
+    @JvmField
+    public val getHeightName: MethodStringName0<GLTFPhysicsShape, Float> =
+        MethodStringName0<GLTFPhysicsShape, Float>("get_height")
+
+    @JvmField
+    public val setHeightName: MethodStringName1<GLTFPhysicsShape, Unit, Float> =
+        MethodStringName1<GLTFPhysicsShape, Unit, Float>("set_height")
+
+    @JvmField
+    public val getIsTriggerName: MethodStringName0<GLTFPhysicsShape, Boolean> =
+        MethodStringName0<GLTFPhysicsShape, Boolean>("get_is_trigger")
+
+    @JvmField
+    public val setIsTriggerName: MethodStringName1<GLTFPhysicsShape, Unit, Boolean> =
+        MethodStringName1<GLTFPhysicsShape, Unit, Boolean>("set_is_trigger")
+
+    @JvmField
+    public val getMeshIndexName: MethodStringName0<GLTFPhysicsShape, Int> =
+        MethodStringName0<GLTFPhysicsShape, Int>("get_mesh_index")
+
+    @JvmField
+    public val setMeshIndexName: MethodStringName1<GLTFPhysicsShape, Unit, Int> =
+        MethodStringName1<GLTFPhysicsShape, Unit, Int>("set_mesh_index")
+
+    @JvmField
+    public val getImporterMeshName: MethodStringName0<GLTFPhysicsShape, ImporterMesh?> =
+        MethodStringName0<GLTFPhysicsShape, ImporterMesh?>("get_importer_mesh")
+
+    @JvmField
+    public val setImporterMeshName: MethodStringName1<GLTFPhysicsShape, Unit, ImporterMesh?> =
+        MethodStringName1<GLTFPhysicsShape, Unit, ImporterMesh?>("set_importer_mesh")
+
     /**
      * Creates a new GLTFPhysicsShape instance from the given Godot [CollisionShape3D] node.
      */

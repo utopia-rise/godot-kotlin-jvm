@@ -10,6 +10,10 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
 import godot.core.Signal1
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.BOOL
@@ -24,6 +28,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
@@ -424,7 +429,153 @@ public open class OptionButton : Button() {
     TransferContext.callMethod(ptr, MethodBindings.setDisableShortcutsPtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val addItemName: MethodStringName2<OptionButton, Unit, String, Int> =
+        MethodStringName2<OptionButton, Unit, String, Int>("add_item")
+
+    @JvmField
+    public val addIconItemName: MethodStringName3<OptionButton, Unit, Texture2D?, String, Int> =
+        MethodStringName3<OptionButton, Unit, Texture2D?, String, Int>("add_icon_item")
+
+    @JvmField
+    public val setItemTextName: MethodStringName2<OptionButton, Unit, Int, String> =
+        MethodStringName2<OptionButton, Unit, Int, String>("set_item_text")
+
+    @JvmField
+    public val setItemIconName: MethodStringName2<OptionButton, Unit, Int, Texture2D?> =
+        MethodStringName2<OptionButton, Unit, Int, Texture2D?>("set_item_icon")
+
+    @JvmField
+    public val setItemDisabledName: MethodStringName2<OptionButton, Unit, Int, Boolean> =
+        MethodStringName2<OptionButton, Unit, Int, Boolean>("set_item_disabled")
+
+    @JvmField
+    public val setItemIdName: MethodStringName2<OptionButton, Unit, Int, Int> =
+        MethodStringName2<OptionButton, Unit, Int, Int>("set_item_id")
+
+    @JvmField
+    public val setItemMetadataName: MethodStringName2<OptionButton, Unit, Int, Any?> =
+        MethodStringName2<OptionButton, Unit, Int, Any?>("set_item_metadata")
+
+    @JvmField
+    public val setItemTooltipName: MethodStringName2<OptionButton, Unit, Int, String> =
+        MethodStringName2<OptionButton, Unit, Int, String>("set_item_tooltip")
+
+    @JvmField
+    public val setItemAutoTranslateModeName:
+        MethodStringName2<OptionButton, Unit, Int, Node.AutoTranslateMode> =
+        MethodStringName2<OptionButton, Unit, Int, Node.AutoTranslateMode>("set_item_auto_translate_mode")
+
+    @JvmField
+    public val getItemTextName: MethodStringName1<OptionButton, String, Int> =
+        MethodStringName1<OptionButton, String, Int>("get_item_text")
+
+    @JvmField
+    public val getItemIconName: MethodStringName1<OptionButton, Texture2D?, Int> =
+        MethodStringName1<OptionButton, Texture2D?, Int>("get_item_icon")
+
+    @JvmField
+    public val getItemIdName: MethodStringName1<OptionButton, Int, Int> =
+        MethodStringName1<OptionButton, Int, Int>("get_item_id")
+
+    @JvmField
+    public val getItemIndexName: MethodStringName1<OptionButton, Int, Int> =
+        MethodStringName1<OptionButton, Int, Int>("get_item_index")
+
+    @JvmField
+    public val getItemMetadataName: MethodStringName1<OptionButton, Any?, Int> =
+        MethodStringName1<OptionButton, Any?, Int>("get_item_metadata")
+
+    @JvmField
+    public val getItemTooltipName: MethodStringName1<OptionButton, String, Int> =
+        MethodStringName1<OptionButton, String, Int>("get_item_tooltip")
+
+    @JvmField
+    public val getItemAutoTranslateModeName:
+        MethodStringName1<OptionButton, Node.AutoTranslateMode, Int> =
+        MethodStringName1<OptionButton, Node.AutoTranslateMode, Int>("get_item_auto_translate_mode")
+
+    @JvmField
+    public val isItemDisabledName: MethodStringName1<OptionButton, Boolean, Int> =
+        MethodStringName1<OptionButton, Boolean, Int>("is_item_disabled")
+
+    @JvmField
+    public val isItemSeparatorName: MethodStringName1<OptionButton, Boolean, Int> =
+        MethodStringName1<OptionButton, Boolean, Int>("is_item_separator")
+
+    @JvmField
+    public val addSeparatorName: MethodStringName1<OptionButton, Unit, String> =
+        MethodStringName1<OptionButton, Unit, String>("add_separator")
+
+    @JvmField
+    public val clearName: MethodStringName0<OptionButton, Unit> =
+        MethodStringName0<OptionButton, Unit>("clear")
+
+    @JvmField
+    public val selectName: MethodStringName1<OptionButton, Unit, Int> =
+        MethodStringName1<OptionButton, Unit, Int>("select")
+
+    @JvmField
+    public val getSelectedName: MethodStringName0<OptionButton, Int> =
+        MethodStringName0<OptionButton, Int>("get_selected")
+
+    @JvmField
+    public val getSelectedIdName: MethodStringName0<OptionButton, Int> =
+        MethodStringName0<OptionButton, Int>("get_selected_id")
+
+    @JvmField
+    public val getSelectedMetadataName: MethodStringName0<OptionButton, Any?> =
+        MethodStringName0<OptionButton, Any?>("get_selected_metadata")
+
+    @JvmField
+    public val removeItemName: MethodStringName1<OptionButton, Unit, Int> =
+        MethodStringName1<OptionButton, Unit, Int>("remove_item")
+
+    @JvmField
+    public val getPopupName: MethodStringName0<OptionButton, PopupMenu?> =
+        MethodStringName0<OptionButton, PopupMenu?>("get_popup")
+
+    @JvmField
+    public val showPopupName: MethodStringName0<OptionButton, Unit> =
+        MethodStringName0<OptionButton, Unit>("show_popup")
+
+    @JvmField
+    public val setItemCountName: MethodStringName1<OptionButton, Unit, Int> =
+        MethodStringName1<OptionButton, Unit, Int>("set_item_count")
+
+    @JvmField
+    public val getItemCountName: MethodStringName0<OptionButton, Int> =
+        MethodStringName0<OptionButton, Int>("get_item_count")
+
+    @JvmField
+    public val hasSelectableItemsName: MethodStringName0<OptionButton, Boolean> =
+        MethodStringName0<OptionButton, Boolean>("has_selectable_items")
+
+    @JvmField
+    public val getSelectableItemName: MethodStringName1<OptionButton, Int, Boolean> =
+        MethodStringName1<OptionButton, Int, Boolean>("get_selectable_item")
+
+    @JvmField
+    public val setFitToLongestItemName: MethodStringName1<OptionButton, Unit, Boolean> =
+        MethodStringName1<OptionButton, Unit, Boolean>("set_fit_to_longest_item")
+
+    @JvmField
+    public val isFitToLongestItemName: MethodStringName0<OptionButton, Boolean> =
+        MethodStringName0<OptionButton, Boolean>("is_fit_to_longest_item")
+
+    @JvmField
+    public val setAllowReselectName: MethodStringName1<OptionButton, Unit, Boolean> =
+        MethodStringName1<OptionButton, Unit, Boolean>("set_allow_reselect")
+
+    @JvmField
+    public val getAllowReselectName: MethodStringName0<OptionButton, Boolean> =
+        MethodStringName0<OptionButton, Boolean>("get_allow_reselect")
+
+    @JvmField
+    public val setDisableShortcutsName: MethodStringName1<OptionButton, Unit, Boolean> =
+        MethodStringName1<OptionButton, Unit, Boolean>("set_disable_shortcuts")
+  }
 
   public object MethodBindings {
     internal val addItemPtr: VoidPtr =

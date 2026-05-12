@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.NodePath
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
@@ -24,6 +27,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -183,7 +187,64 @@ public open class SkeletonModification2DFABRIK : SkeletonModification2D() {
   public final fun setFabrikJointBone2dNode(jointIdx: Int, bone2dNodepath: String) =
       setFabrikJointBone2dNode(jointIdx, bone2dNodepath.asCachedNodePath())
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setTargetNodeName: MethodStringName1<SkeletonModification2DFABRIK, Unit, NodePath> =
+        MethodStringName1<SkeletonModification2DFABRIK, Unit, NodePath>("set_target_node")
+
+    @JvmField
+    public val getTargetNodeName: MethodStringName0<SkeletonModification2DFABRIK, NodePath> =
+        MethodStringName0<SkeletonModification2DFABRIK, NodePath>("get_target_node")
+
+    @JvmField
+    public val setFabrikDataChainLengthName:
+        MethodStringName1<SkeletonModification2DFABRIK, Unit, Int> =
+        MethodStringName1<SkeletonModification2DFABRIK, Unit, Int>("set_fabrik_data_chain_length")
+
+    @JvmField
+    public val getFabrikDataChainLengthName: MethodStringName0<SkeletonModification2DFABRIK, Int> =
+        MethodStringName0<SkeletonModification2DFABRIK, Int>("get_fabrik_data_chain_length")
+
+    @JvmField
+    public val setFabrikJointBone2dNodeName:
+        MethodStringName2<SkeletonModification2DFABRIK, Unit, Int, NodePath> =
+        MethodStringName2<SkeletonModification2DFABRIK, Unit, Int, NodePath>("set_fabrik_joint_bone2d_node")
+
+    @JvmField
+    public val getFabrikJointBone2dNodeName:
+        MethodStringName1<SkeletonModification2DFABRIK, NodePath, Int> =
+        MethodStringName1<SkeletonModification2DFABRIK, NodePath, Int>("get_fabrik_joint_bone2d_node")
+
+    @JvmField
+    public val setFabrikJointBoneIndexName:
+        MethodStringName2<SkeletonModification2DFABRIK, Unit, Int, Int> =
+        MethodStringName2<SkeletonModification2DFABRIK, Unit, Int, Int>("set_fabrik_joint_bone_index")
+
+    @JvmField
+    public val getFabrikJointBoneIndexName:
+        MethodStringName1<SkeletonModification2DFABRIK, Int, Int> =
+        MethodStringName1<SkeletonModification2DFABRIK, Int, Int>("get_fabrik_joint_bone_index")
+
+    @JvmField
+    public val setFabrikJointMagnetPositionName:
+        MethodStringName2<SkeletonModification2DFABRIK, Unit, Int, Vector2> =
+        MethodStringName2<SkeletonModification2DFABRIK, Unit, Int, Vector2>("set_fabrik_joint_magnet_position")
+
+    @JvmField
+    public val getFabrikJointMagnetPositionName:
+        MethodStringName1<SkeletonModification2DFABRIK, Vector2, Int> =
+        MethodStringName1<SkeletonModification2DFABRIK, Vector2, Int>("get_fabrik_joint_magnet_position")
+
+    @JvmField
+    public val setFabrikJointUseTargetRotationName:
+        MethodStringName2<SkeletonModification2DFABRIK, Unit, Int, Boolean> =
+        MethodStringName2<SkeletonModification2DFABRIK, Unit, Int, Boolean>("set_fabrik_joint_use_target_rotation")
+
+    @JvmField
+    public val getFabrikJointUseTargetRotationName:
+        MethodStringName1<SkeletonModification2DFABRIK, Boolean, Int> =
+        MethodStringName1<SkeletonModification2DFABRIK, Boolean, Int>("get_fabrik_joint_use_target_rotation")
+  }
 
   public object MethodBindings {
     internal val setTargetNodePtr: VoidPtr =

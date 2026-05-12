@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.JoyAxis
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -19,6 +21,7 @@ import kotlin.Float
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -76,7 +79,23 @@ public open class InputEventJoypadMotion : InputEvent() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setAxisName: MethodStringName1<InputEventJoypadMotion, Unit, JoyAxis> =
+        MethodStringName1<InputEventJoypadMotion, Unit, JoyAxis>("set_axis")
+
+    @JvmField
+    public val getAxisName: MethodStringName0<InputEventJoypadMotion, JoyAxis> =
+        MethodStringName0<InputEventJoypadMotion, JoyAxis>("get_axis")
+
+    @JvmField
+    public val setAxisValueName: MethodStringName1<InputEventJoypadMotion, Unit, Float> =
+        MethodStringName1<InputEventJoypadMotion, Unit, Float>("set_axis_value")
+
+    @JvmField
+    public val getAxisValueName: MethodStringName0<InputEventJoypadMotion, Float> =
+        MethodStringName0<InputEventJoypadMotion, Float>("get_axis_value")
+  }
 
   public object MethodBindings {
     internal val setAxisPtr: VoidPtr =

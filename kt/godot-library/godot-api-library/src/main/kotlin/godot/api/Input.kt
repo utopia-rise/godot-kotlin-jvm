@@ -16,6 +16,12 @@ import godot.core.GodotEnum
 import godot.core.JoyAxis
 import godot.core.JoyButton
 import godot.core.Key
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
+import godot.core.MethodStringName4
+import godot.core.MethodStringName5
 import godot.core.MouseButton
 import godot.core.MouseButtonMask
 import godot.core.Signal2
@@ -45,6 +51,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
@@ -60,6 +67,242 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object Input : Object() {
+  @JvmField
+  public val isAnythingPressedName: MethodStringName0<Input, Boolean> =
+      MethodStringName0<Input, Boolean>("is_anything_pressed")
+
+  @JvmField
+  public val isKeyPressedName: MethodStringName1<Input, Boolean, Key> =
+      MethodStringName1<Input, Boolean, Key>("is_key_pressed")
+
+  @JvmField
+  public val isPhysicalKeyPressedName: MethodStringName1<Input, Boolean, Key> =
+      MethodStringName1<Input, Boolean, Key>("is_physical_key_pressed")
+
+  @JvmField
+  public val isKeyLabelPressedName: MethodStringName1<Input, Boolean, Key> =
+      MethodStringName1<Input, Boolean, Key>("is_key_label_pressed")
+
+  @JvmField
+  public val isMouseButtonPressedName: MethodStringName1<Input, Boolean, MouseButton> =
+      MethodStringName1<Input, Boolean, MouseButton>("is_mouse_button_pressed")
+
+  @JvmField
+  public val isJoyButtonPressedName: MethodStringName2<Input, Boolean, Int, JoyButton> =
+      MethodStringName2<Input, Boolean, Int, JoyButton>("is_joy_button_pressed")
+
+  @JvmField
+  public val isActionPressedName: MethodStringName2<Input, Boolean, StringName, Boolean> =
+      MethodStringName2<Input, Boolean, StringName, Boolean>("is_action_pressed")
+
+  @JvmField
+  public val isActionJustPressedName: MethodStringName2<Input, Boolean, StringName, Boolean> =
+      MethodStringName2<Input, Boolean, StringName, Boolean>("is_action_just_pressed")
+
+  @JvmField
+  public val isActionJustReleasedName: MethodStringName2<Input, Boolean, StringName, Boolean> =
+      MethodStringName2<Input, Boolean, StringName, Boolean>("is_action_just_released")
+
+  @JvmField
+  public val isActionJustPressedByEventName:
+      MethodStringName3<Input, Boolean, StringName, InputEvent, Boolean> =
+      MethodStringName3<Input, Boolean, StringName, InputEvent, Boolean>("is_action_just_pressed_by_event")
+
+  @JvmField
+  public val isActionJustReleasedByEventName:
+      MethodStringName3<Input, Boolean, StringName, InputEvent, Boolean> =
+      MethodStringName3<Input, Boolean, StringName, InputEvent, Boolean>("is_action_just_released_by_event")
+
+  @JvmField
+  public val getActionStrengthName: MethodStringName2<Input, Float, StringName, Boolean> =
+      MethodStringName2<Input, Float, StringName, Boolean>("get_action_strength")
+
+  @JvmField
+  public val getActionRawStrengthName: MethodStringName2<Input, Float, StringName, Boolean> =
+      MethodStringName2<Input, Float, StringName, Boolean>("get_action_raw_strength")
+
+  @JvmField
+  public val getAxisName: MethodStringName2<Input, Float, StringName, StringName> =
+      MethodStringName2<Input, Float, StringName, StringName>("get_axis")
+
+  @JvmField
+  public val getVectorName:
+      MethodStringName5<Input, Vector2, StringName, StringName, StringName, StringName, Float> =
+      MethodStringName5<Input, Vector2, StringName, StringName, StringName, StringName, Float>("get_vector")
+
+  @JvmField
+  public val addJoyMappingName: MethodStringName2<Input, Unit, String, Boolean> =
+      MethodStringName2<Input, Unit, String, Boolean>("add_joy_mapping")
+
+  @JvmField
+  public val removeJoyMappingName: MethodStringName1<Input, Unit, String> =
+      MethodStringName1<Input, Unit, String>("remove_joy_mapping")
+
+  @JvmField
+  public val isJoyKnownName: MethodStringName1<Input, Boolean, Int> =
+      MethodStringName1<Input, Boolean, Int>("is_joy_known")
+
+  @JvmField
+  public val getJoyAxisName: MethodStringName2<Input, Float, Int, JoyAxis> =
+      MethodStringName2<Input, Float, Int, JoyAxis>("get_joy_axis")
+
+  @JvmField
+  public val getJoyNameName: MethodStringName1<Input, String, Int> =
+      MethodStringName1<Input, String, Int>("get_joy_name")
+
+  @JvmField
+  public val getJoyGuidName: MethodStringName1<Input, String, Int> =
+      MethodStringName1<Input, String, Int>("get_joy_guid")
+
+  @JvmField
+  public val getJoyInfoName: MethodStringName1<Input, Dictionary<Any?, Any?>, Int> =
+      MethodStringName1<Input, Dictionary<Any?, Any?>, Int>("get_joy_info")
+
+  @JvmField
+  public val shouldIgnoreDeviceName: MethodStringName2<Input, Boolean, Int, Int> =
+      MethodStringName2<Input, Boolean, Int, Int>("should_ignore_device")
+
+  @JvmField
+  public val getConnectedJoypadsName: MethodStringName0<Input, VariantArray<Long>> =
+      MethodStringName0<Input, VariantArray<Long>>("get_connected_joypads")
+
+  @JvmField
+  public val getJoyVibrationStrengthName: MethodStringName1<Input, Vector2, Int> =
+      MethodStringName1<Input, Vector2, Int>("get_joy_vibration_strength")
+
+  @JvmField
+  public val getJoyVibrationDurationName: MethodStringName1<Input, Float, Int> =
+      MethodStringName1<Input, Float, Int>("get_joy_vibration_duration")
+
+  @JvmField
+  public val startJoyVibrationName: MethodStringName4<Input, Unit, Int, Float, Float, Float> =
+      MethodStringName4<Input, Unit, Int, Float, Float, Float>("start_joy_vibration")
+
+  @JvmField
+  public val stopJoyVibrationName: MethodStringName1<Input, Unit, Int> =
+      MethodStringName1<Input, Unit, Int>("stop_joy_vibration")
+
+  @JvmField
+  public val vibrateHandheldName: MethodStringName2<Input, Unit, Int, Float> =
+      MethodStringName2<Input, Unit, Int, Float>("vibrate_handheld")
+
+  @JvmField
+  public val getGravityName: MethodStringName0<Input, Vector3> =
+      MethodStringName0<Input, Vector3>("get_gravity")
+
+  @JvmField
+  public val getAccelerometerName: MethodStringName0<Input, Vector3> =
+      MethodStringName0<Input, Vector3>("get_accelerometer")
+
+  @JvmField
+  public val getMagnetometerName: MethodStringName0<Input, Vector3> =
+      MethodStringName0<Input, Vector3>("get_magnetometer")
+
+  @JvmField
+  public val getGyroscopeName: MethodStringName0<Input, Vector3> =
+      MethodStringName0<Input, Vector3>("get_gyroscope")
+
+  @JvmField
+  public val setGravityName: MethodStringName1<Input, Unit, Vector3> =
+      MethodStringName1<Input, Unit, Vector3>("set_gravity")
+
+  @JvmField
+  public val setAccelerometerName: MethodStringName1<Input, Unit, Vector3> =
+      MethodStringName1<Input, Unit, Vector3>("set_accelerometer")
+
+  @JvmField
+  public val setMagnetometerName: MethodStringName1<Input, Unit, Vector3> =
+      MethodStringName1<Input, Unit, Vector3>("set_magnetometer")
+
+  @JvmField
+  public val setGyroscopeName: MethodStringName1<Input, Unit, Vector3> =
+      MethodStringName1<Input, Unit, Vector3>("set_gyroscope")
+
+  @JvmField
+  public val setJoyLightName: MethodStringName2<Input, Unit, Int, Color> =
+      MethodStringName2<Input, Unit, Int, Color>("set_joy_light")
+
+  @JvmField
+  public val hasJoyLightName: MethodStringName1<Input, Boolean, Int> =
+      MethodStringName1<Input, Boolean, Int>("has_joy_light")
+
+  @JvmField
+  public val getLastMouseVelocityName: MethodStringName0<Input, Vector2> =
+      MethodStringName0<Input, Vector2>("get_last_mouse_velocity")
+
+  @JvmField
+  public val getLastMouseScreenVelocityName: MethodStringName0<Input, Vector2> =
+      MethodStringName0<Input, Vector2>("get_last_mouse_screen_velocity")
+
+  @JvmField
+  public val getMouseButtonMaskName: MethodStringName0<Input, MouseButtonMask> =
+      MethodStringName0<Input, MouseButtonMask>("get_mouse_button_mask")
+
+  @JvmField
+  public val setMouseModeName: MethodStringName1<Input, Unit, MouseMode> =
+      MethodStringName1<Input, Unit, MouseMode>("set_mouse_mode")
+
+  @JvmField
+  public val getMouseModeName: MethodStringName0<Input, MouseMode> =
+      MethodStringName0<Input, MouseMode>("get_mouse_mode")
+
+  @JvmField
+  public val warpMouseName: MethodStringName1<Input, Unit, Vector2> =
+      MethodStringName1<Input, Unit, Vector2>("warp_mouse")
+
+  @JvmField
+  public val actionPressName: MethodStringName2<Input, Unit, StringName, Float> =
+      MethodStringName2<Input, Unit, StringName, Float>("action_press")
+
+  @JvmField
+  public val actionReleaseName: MethodStringName1<Input, Unit, StringName> =
+      MethodStringName1<Input, Unit, StringName>("action_release")
+
+  @JvmField
+  public val setDefaultCursorShapeName: MethodStringName1<Input, Unit, CursorShape> =
+      MethodStringName1<Input, Unit, CursorShape>("set_default_cursor_shape")
+
+  @JvmField
+  public val getCurrentCursorShapeName: MethodStringName0<Input, CursorShape> =
+      MethodStringName0<Input, CursorShape>("get_current_cursor_shape")
+
+  @JvmField
+  public val setCustomMouseCursorName:
+      MethodStringName3<Input, Unit, Resource?, CursorShape, Vector2> =
+      MethodStringName3<Input, Unit, Resource?, CursorShape, Vector2>("set_custom_mouse_cursor")
+
+  @JvmField
+  public val parseInputEventName: MethodStringName1<Input, Unit, InputEvent> =
+      MethodStringName1<Input, Unit, InputEvent>("parse_input_event")
+
+  @JvmField
+  public val setUseAccumulatedInputName: MethodStringName1<Input, Unit, Boolean> =
+      MethodStringName1<Input, Unit, Boolean>("set_use_accumulated_input")
+
+  @JvmField
+  public val isUsingAccumulatedInputName: MethodStringName0<Input, Boolean> =
+      MethodStringName0<Input, Boolean>("is_using_accumulated_input")
+
+  @JvmField
+  public val flushBufferedEventsName: MethodStringName0<Input, Unit> =
+      MethodStringName0<Input, Unit>("flush_buffered_events")
+
+  @JvmField
+  public val setEmulateMouseFromTouchName: MethodStringName1<Input, Unit, Boolean> =
+      MethodStringName1<Input, Unit, Boolean>("set_emulate_mouse_from_touch")
+
+  @JvmField
+  public val isEmulatingMouseFromTouchName: MethodStringName0<Input, Boolean> =
+      MethodStringName0<Input, Boolean>("is_emulating_mouse_from_touch")
+
+  @JvmField
+  public val setEmulateTouchFromMouseName: MethodStringName1<Input, Unit, Boolean> =
+      MethodStringName1<Input, Unit, Boolean>("set_emulate_touch_from_mouse")
+
+  @JvmField
+  public val isEmulatingTouchFromMouseName: MethodStringName0<Input, Boolean> =
+      MethodStringName0<Input, Boolean>("is_emulating_touch_from_mouse")
+
   /**
    * Emitted when a joypad device has been connected or disconnected.
    */

@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -21,6 +24,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -98,6 +102,31 @@ public open class AudioStreamSynchronized : AudioStream() {
   }
 
   public companion object {
+    @JvmField
+    public val setStreamCountName: MethodStringName1<AudioStreamSynchronized, Unit, Int> =
+        MethodStringName1<AudioStreamSynchronized, Unit, Int>("set_stream_count")
+
+    @JvmField
+    public val getStreamCountName: MethodStringName0<AudioStreamSynchronized, Int> =
+        MethodStringName0<AudioStreamSynchronized, Int>("get_stream_count")
+
+    @JvmField
+    public val setSyncStreamName:
+        MethodStringName2<AudioStreamSynchronized, Unit, Int, AudioStream?> =
+        MethodStringName2<AudioStreamSynchronized, Unit, Int, AudioStream?>("set_sync_stream")
+
+    @JvmField
+    public val getSyncStreamName: MethodStringName1<AudioStreamSynchronized, AudioStream?, Int> =
+        MethodStringName1<AudioStreamSynchronized, AudioStream?, Int>("get_sync_stream")
+
+    @JvmField
+    public val setSyncStreamVolumeName: MethodStringName2<AudioStreamSynchronized, Unit, Int, Float>
+        = MethodStringName2<AudioStreamSynchronized, Unit, Int, Float>("set_sync_stream_volume")
+
+    @JvmField
+    public val getSyncStreamVolumeName: MethodStringName1<AudioStreamSynchronized, Float, Int> =
+        MethodStringName1<AudioStreamSynchronized, Float, Int>("get_sync_stream_volume")
+
     /**
      * Maximum amount of streams that can be synchronized.
      */

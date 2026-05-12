@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -21,6 +23,7 @@ import kotlin.Boolean
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -142,7 +145,27 @@ public open class Shortcut : Resource() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setEventsName: MethodStringName1<Shortcut, Unit, VariantArray<Any?>> =
+        MethodStringName1<Shortcut, Unit, VariantArray<Any?>>("set_events")
+
+    @JvmField
+    public val getEventsName: MethodStringName0<Shortcut, VariantArray<Any?>> =
+        MethodStringName0<Shortcut, VariantArray<Any?>>("get_events")
+
+    @JvmField
+    public val hasValidEventName: MethodStringName0<Shortcut, Boolean> =
+        MethodStringName0<Shortcut, Boolean>("has_valid_event")
+
+    @JvmField
+    public val matchesEventName: MethodStringName1<Shortcut, Boolean, InputEvent?> =
+        MethodStringName1<Shortcut, Boolean, InputEvent?>("matches_event")
+
+    @JvmField
+    public val getAsTextName: MethodStringName0<Shortcut, String> =
+        MethodStringName0<Shortcut, String>("get_as_text")
+  }
 
   public object MethodBindings {
     internal val setEventsPtr: VoidPtr =

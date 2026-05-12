@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.PackedInt32Array
 import godot.core.PackedVector2Array
 import godot.core.RID
@@ -22,6 +24,7 @@ import godot.core.VariantParser._RID
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 
 /**
  * Object for storing the queries 2D mesh result data when calling
@@ -60,7 +63,22 @@ public open class OpenXRSpatialComponentMesh2DList : OpenXRSpatialComponentData(
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val getTransformName:
+        MethodStringName1<OpenXRSpatialComponentMesh2DList, Transform3D, Long> =
+        MethodStringName1<OpenXRSpatialComponentMesh2DList, Transform3D, Long>("get_transform")
+
+    @JvmField
+    public val getVerticesName:
+        MethodStringName2<OpenXRSpatialComponentMesh2DList, PackedVector2Array, RID, Long> =
+        MethodStringName2<OpenXRSpatialComponentMesh2DList, PackedVector2Array, RID, Long>("get_vertices")
+
+    @JvmField
+    public val getIndicesName:
+        MethodStringName2<OpenXRSpatialComponentMesh2DList, PackedInt32Array, RID, Long> =
+        MethodStringName2<OpenXRSpatialComponentMesh2DList, PackedInt32Array, RID, Long>("get_indices")
+  }
 
   public object MethodBindings {
     internal val getTransformPtr: VoidPtr =

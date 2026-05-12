@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
@@ -18,6 +20,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -127,7 +130,39 @@ public open class SpringBoneCollisionCapsule3D : SpringBoneCollision3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setRadiusName: MethodStringName1<SpringBoneCollisionCapsule3D, Unit, Float> =
+        MethodStringName1<SpringBoneCollisionCapsule3D, Unit, Float>("set_radius")
+
+    @JvmField
+    public val getRadiusName: MethodStringName0<SpringBoneCollisionCapsule3D, Float> =
+        MethodStringName0<SpringBoneCollisionCapsule3D, Float>("get_radius")
+
+    @JvmField
+    public val setHeightName: MethodStringName1<SpringBoneCollisionCapsule3D, Unit, Float> =
+        MethodStringName1<SpringBoneCollisionCapsule3D, Unit, Float>("set_height")
+
+    @JvmField
+    public val getHeightName: MethodStringName0<SpringBoneCollisionCapsule3D, Float> =
+        MethodStringName0<SpringBoneCollisionCapsule3D, Float>("get_height")
+
+    @JvmField
+    public val setMidHeightName: MethodStringName1<SpringBoneCollisionCapsule3D, Unit, Float> =
+        MethodStringName1<SpringBoneCollisionCapsule3D, Unit, Float>("set_mid_height")
+
+    @JvmField
+    public val getMidHeightName: MethodStringName0<SpringBoneCollisionCapsule3D, Float> =
+        MethodStringName0<SpringBoneCollisionCapsule3D, Float>("get_mid_height")
+
+    @JvmField
+    public val setInsideName: MethodStringName1<SpringBoneCollisionCapsule3D, Unit, Boolean> =
+        MethodStringName1<SpringBoneCollisionCapsule3D, Unit, Boolean>("set_inside")
+
+    @JvmField
+    public val isInsideName: MethodStringName0<SpringBoneCollisionCapsule3D, Boolean> =
+        MethodStringName0<SpringBoneCollisionCapsule3D, Boolean>("is_inside")
+  }
 
   public object MethodBindings {
     internal val setRadiusPtr: VoidPtr =

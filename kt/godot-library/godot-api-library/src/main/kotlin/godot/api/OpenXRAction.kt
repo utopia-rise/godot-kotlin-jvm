@@ -13,6 +13,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.PackedStringArray
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -23,6 +25,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -189,7 +192,31 @@ public open class OpenXRAction : Resource() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setLocalizedNameName: MethodStringName1<OpenXRAction, Unit, String> =
+        MethodStringName1<OpenXRAction, Unit, String>("set_localized_name")
+
+    @JvmField
+    public val getLocalizedNameName: MethodStringName0<OpenXRAction, String> =
+        MethodStringName0<OpenXRAction, String>("get_localized_name")
+
+    @JvmField
+    public val setActionTypeName: MethodStringName1<OpenXRAction, Unit, ActionType> =
+        MethodStringName1<OpenXRAction, Unit, ActionType>("set_action_type")
+
+    @JvmField
+    public val getActionTypeName: MethodStringName0<OpenXRAction, ActionType> =
+        MethodStringName0<OpenXRAction, ActionType>("get_action_type")
+
+    @JvmField
+    public val setToplevelPathsName: MethodStringName1<OpenXRAction, Unit, PackedStringArray> =
+        MethodStringName1<OpenXRAction, Unit, PackedStringArray>("set_toplevel_paths")
+
+    @JvmField
+    public val getToplevelPathsName: MethodStringName0<OpenXRAction, PackedStringArray> =
+        MethodStringName0<OpenXRAction, PackedStringArray>("get_toplevel_paths")
+  }
 
   public object MethodBindings {
     internal val setLocalizedNamePtr: VoidPtr =

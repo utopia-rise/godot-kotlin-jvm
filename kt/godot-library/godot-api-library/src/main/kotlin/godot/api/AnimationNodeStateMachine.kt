@@ -11,6 +11,10 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
 import godot.core.StringName
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
@@ -28,6 +32,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
@@ -411,7 +416,126 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val addNodeName:
+        MethodStringName3<AnimationNodeStateMachine, Unit, StringName, AnimationNode?, Vector2> =
+        MethodStringName3<AnimationNodeStateMachine, Unit, StringName, AnimationNode?, Vector2>("add_node")
+
+    @JvmField
+    public val replaceNodeName:
+        MethodStringName2<AnimationNodeStateMachine, Unit, StringName, AnimationNode?> =
+        MethodStringName2<AnimationNodeStateMachine, Unit, StringName, AnimationNode?>("replace_node")
+
+    @JvmField
+    public val getNodeName: MethodStringName1<AnimationNodeStateMachine, AnimationNode?, StringName>
+        = MethodStringName1<AnimationNodeStateMachine, AnimationNode?, StringName>("get_node")
+
+    @JvmField
+    public val removeNodeName: MethodStringName1<AnimationNodeStateMachine, Unit, StringName> =
+        MethodStringName1<AnimationNodeStateMachine, Unit, StringName>("remove_node")
+
+    @JvmField
+    public val renameNodeName:
+        MethodStringName2<AnimationNodeStateMachine, Unit, StringName, StringName> =
+        MethodStringName2<AnimationNodeStateMachine, Unit, StringName, StringName>("rename_node")
+
+    @JvmField
+    public val hasNodeName: MethodStringName1<AnimationNodeStateMachine, Boolean, StringName> =
+        MethodStringName1<AnimationNodeStateMachine, Boolean, StringName>("has_node")
+
+    @JvmField
+    public val getNodeNameName:
+        MethodStringName1<AnimationNodeStateMachine, StringName, AnimationNode?> =
+        MethodStringName1<AnimationNodeStateMachine, StringName, AnimationNode?>("get_node_name")
+
+    @JvmField
+    public val getNodeListName:
+        MethodStringName0<AnimationNodeStateMachine, VariantArray<StringName>> =
+        MethodStringName0<AnimationNodeStateMachine, VariantArray<StringName>>("get_node_list")
+
+    @JvmField
+    public val setNodePositionName:
+        MethodStringName2<AnimationNodeStateMachine, Unit, StringName, Vector2> =
+        MethodStringName2<AnimationNodeStateMachine, Unit, StringName, Vector2>("set_node_position")
+
+    @JvmField
+    public val getNodePositionName:
+        MethodStringName1<AnimationNodeStateMachine, Vector2, StringName> =
+        MethodStringName1<AnimationNodeStateMachine, Vector2, StringName>("get_node_position")
+
+    @JvmField
+    public val hasTransitionName:
+        MethodStringName2<AnimationNodeStateMachine, Boolean, StringName, StringName> =
+        MethodStringName2<AnimationNodeStateMachine, Boolean, StringName, StringName>("has_transition")
+
+    @JvmField
+    public val addTransitionName:
+        MethodStringName3<AnimationNodeStateMachine, Unit, StringName, StringName, AnimationNodeStateMachineTransition?>
+        =
+        MethodStringName3<AnimationNodeStateMachine, Unit, StringName, StringName, AnimationNodeStateMachineTransition?>("add_transition")
+
+    @JvmField
+    public val getTransitionName:
+        MethodStringName1<AnimationNodeStateMachine, AnimationNodeStateMachineTransition?, Int> =
+        MethodStringName1<AnimationNodeStateMachine, AnimationNodeStateMachineTransition?, Int>("get_transition")
+
+    @JvmField
+    public val getTransitionFromName: MethodStringName1<AnimationNodeStateMachine, StringName, Int>
+        = MethodStringName1<AnimationNodeStateMachine, StringName, Int>("get_transition_from")
+
+    @JvmField
+    public val getTransitionToName: MethodStringName1<AnimationNodeStateMachine, StringName, Int> =
+        MethodStringName1<AnimationNodeStateMachine, StringName, Int>("get_transition_to")
+
+    @JvmField
+    public val getTransitionCountName: MethodStringName0<AnimationNodeStateMachine, Int> =
+        MethodStringName0<AnimationNodeStateMachine, Int>("get_transition_count")
+
+    @JvmField
+    public val removeTransitionByIndexName: MethodStringName1<AnimationNodeStateMachine, Unit, Int>
+        = MethodStringName1<AnimationNodeStateMachine, Unit, Int>("remove_transition_by_index")
+
+    @JvmField
+    public val removeTransitionName:
+        MethodStringName2<AnimationNodeStateMachine, Unit, StringName, StringName> =
+        MethodStringName2<AnimationNodeStateMachine, Unit, StringName, StringName>("remove_transition")
+
+    @JvmField
+    public val setGraphOffsetName: MethodStringName1<AnimationNodeStateMachine, Unit, Vector2> =
+        MethodStringName1<AnimationNodeStateMachine, Unit, Vector2>("set_graph_offset")
+
+    @JvmField
+    public val getGraphOffsetName: MethodStringName0<AnimationNodeStateMachine, Vector2> =
+        MethodStringName0<AnimationNodeStateMachine, Vector2>("get_graph_offset")
+
+    @JvmField
+    public val setStateMachineTypeName:
+        MethodStringName1<AnimationNodeStateMachine, Unit, StateMachineType> =
+        MethodStringName1<AnimationNodeStateMachine, Unit, StateMachineType>("set_state_machine_type")
+
+    @JvmField
+    public val getStateMachineTypeName:
+        MethodStringName0<AnimationNodeStateMachine, StateMachineType> =
+        MethodStringName0<AnimationNodeStateMachine, StateMachineType>("get_state_machine_type")
+
+    @JvmField
+    public val setAllowTransitionToSelfName:
+        MethodStringName1<AnimationNodeStateMachine, Unit, Boolean> =
+        MethodStringName1<AnimationNodeStateMachine, Unit, Boolean>("set_allow_transition_to_self")
+
+    @JvmField
+    public val isAllowTransitionToSelfName: MethodStringName0<AnimationNodeStateMachine, Boolean> =
+        MethodStringName0<AnimationNodeStateMachine, Boolean>("is_allow_transition_to_self")
+
+    @JvmField
+    public val setResetEndsName: MethodStringName1<AnimationNodeStateMachine, Unit, Boolean> =
+        MethodStringName1<AnimationNodeStateMachine, Unit, Boolean>("set_reset_ends")
+
+    @JvmField
+    public val areEndsResetName: MethodStringName0<AnimationNodeStateMachine, Boolean> =
+        MethodStringName0<AnimationNodeStateMachine, Boolean>("are_ends_reset")
+  }
 
   public object MethodBindings {
     internal val addNodePtr: VoidPtr =

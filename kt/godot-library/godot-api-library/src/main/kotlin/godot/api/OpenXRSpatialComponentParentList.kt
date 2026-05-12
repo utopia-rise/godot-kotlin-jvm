@@ -10,12 +10,14 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName1
 import godot.core.RID
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser._RID
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 
 /**
  * Object for storing the queries parent result data when calling
@@ -36,7 +38,11 @@ public open class OpenXRSpatialComponentParentList : OpenXRSpatialComponentData(
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val getParentName: MethodStringName1<OpenXRSpatialComponentParentList, RID, Long> =
+        MethodStringName1<OpenXRSpatialComponentParentList, RID, Long>("get_parent")
+  }
 
   public object MethodBindings {
     internal val getParentPtr: VoidPtr =

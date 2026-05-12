@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.PackedVector3Array
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
@@ -21,6 +23,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -147,7 +150,24 @@ public open class ConcavePolygonShape3D : Shape3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setFacesName: MethodStringName1<ConcavePolygonShape3D, Unit, PackedVector3Array> =
+        MethodStringName1<ConcavePolygonShape3D, Unit, PackedVector3Array>("set_faces")
+
+    @JvmField
+    public val getFacesName: MethodStringName0<ConcavePolygonShape3D, PackedVector3Array> =
+        MethodStringName0<ConcavePolygonShape3D, PackedVector3Array>("get_faces")
+
+    @JvmField
+    public val setBackfaceCollisionEnabledName:
+        MethodStringName1<ConcavePolygonShape3D, Unit, Boolean> =
+        MethodStringName1<ConcavePolygonShape3D, Unit, Boolean>("set_backface_collision_enabled")
+
+    @JvmField
+    public val isBackfaceCollisionEnabledName: MethodStringName0<ConcavePolygonShape3D, Boolean> =
+        MethodStringName0<ConcavePolygonShape3D, Boolean>("is_backface_collision_enabled")
+  }
 
   public object MethodBindings {
     internal val setFacesPtr: VoidPtr =

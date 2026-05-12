@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -20,6 +22,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -190,7 +193,47 @@ public open class AudioEffectDistortion : AudioEffect() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setModeName: MethodStringName1<AudioEffectDistortion, Unit, Mode> =
+        MethodStringName1<AudioEffectDistortion, Unit, Mode>("set_mode")
+
+    @JvmField
+    public val getModeName: MethodStringName0<AudioEffectDistortion, Mode> =
+        MethodStringName0<AudioEffectDistortion, Mode>("get_mode")
+
+    @JvmField
+    public val setPreGainName: MethodStringName1<AudioEffectDistortion, Unit, Float> =
+        MethodStringName1<AudioEffectDistortion, Unit, Float>("set_pre_gain")
+
+    @JvmField
+    public val getPreGainName: MethodStringName0<AudioEffectDistortion, Float> =
+        MethodStringName0<AudioEffectDistortion, Float>("get_pre_gain")
+
+    @JvmField
+    public val setKeepHfHzName: MethodStringName1<AudioEffectDistortion, Unit, Float> =
+        MethodStringName1<AudioEffectDistortion, Unit, Float>("set_keep_hf_hz")
+
+    @JvmField
+    public val getKeepHfHzName: MethodStringName0<AudioEffectDistortion, Float> =
+        MethodStringName0<AudioEffectDistortion, Float>("get_keep_hf_hz")
+
+    @JvmField
+    public val setDriveName: MethodStringName1<AudioEffectDistortion, Unit, Float> =
+        MethodStringName1<AudioEffectDistortion, Unit, Float>("set_drive")
+
+    @JvmField
+    public val getDriveName: MethodStringName0<AudioEffectDistortion, Float> =
+        MethodStringName0<AudioEffectDistortion, Float>("get_drive")
+
+    @JvmField
+    public val setPostGainName: MethodStringName1<AudioEffectDistortion, Unit, Float> =
+        MethodStringName1<AudioEffectDistortion, Unit, Float>("set_post_gain")
+
+    @JvmField
+    public val getPostGainName: MethodStringName0<AudioEffectDistortion, Float> =
+        MethodStringName0<AudioEffectDistortion, Float>("get_post_gain")
+  }
 
   public object MethodBindings {
     internal val setModePtr: VoidPtr =

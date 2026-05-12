@@ -12,6 +12,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.RID
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -27,6 +30,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -355,7 +359,99 @@ public open class NavigationLink3D : Node3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val getRidName: MethodStringName0<NavigationLink3D, RID> =
+        MethodStringName0<NavigationLink3D, RID>("get_rid")
+
+    @JvmField
+    public val setEnabledName: MethodStringName1<NavigationLink3D, Unit, Boolean> =
+        MethodStringName1<NavigationLink3D, Unit, Boolean>("set_enabled")
+
+    @JvmField
+    public val isEnabledName: MethodStringName0<NavigationLink3D, Boolean> =
+        MethodStringName0<NavigationLink3D, Boolean>("is_enabled")
+
+    @JvmField
+    public val setNavigationMapName: MethodStringName1<NavigationLink3D, Unit, RID> =
+        MethodStringName1<NavigationLink3D, Unit, RID>("set_navigation_map")
+
+    @JvmField
+    public val getNavigationMapName: MethodStringName0<NavigationLink3D, RID> =
+        MethodStringName0<NavigationLink3D, RID>("get_navigation_map")
+
+    @JvmField
+    public val setBidirectionalName: MethodStringName1<NavigationLink3D, Unit, Boolean> =
+        MethodStringName1<NavigationLink3D, Unit, Boolean>("set_bidirectional")
+
+    @JvmField
+    public val isBidirectionalName: MethodStringName0<NavigationLink3D, Boolean> =
+        MethodStringName0<NavigationLink3D, Boolean>("is_bidirectional")
+
+    @JvmField
+    public val setNavigationLayersName: MethodStringName1<NavigationLink3D, Unit, Long> =
+        MethodStringName1<NavigationLink3D, Unit, Long>("set_navigation_layers")
+
+    @JvmField
+    public val getNavigationLayersName: MethodStringName0<NavigationLink3D, Long> =
+        MethodStringName0<NavigationLink3D, Long>("get_navigation_layers")
+
+    @JvmField
+    public val setNavigationLayerValueName: MethodStringName2<NavigationLink3D, Unit, Int, Boolean>
+        = MethodStringName2<NavigationLink3D, Unit, Int, Boolean>("set_navigation_layer_value")
+
+    @JvmField
+    public val getNavigationLayerValueName: MethodStringName1<NavigationLink3D, Boolean, Int> =
+        MethodStringName1<NavigationLink3D, Boolean, Int>("get_navigation_layer_value")
+
+    @JvmField
+    public val setStartPositionName: MethodStringName1<NavigationLink3D, Unit, Vector3> =
+        MethodStringName1<NavigationLink3D, Unit, Vector3>("set_start_position")
+
+    @JvmField
+    public val getStartPositionName: MethodStringName0<NavigationLink3D, Vector3> =
+        MethodStringName0<NavigationLink3D, Vector3>("get_start_position")
+
+    @JvmField
+    public val setEndPositionName: MethodStringName1<NavigationLink3D, Unit, Vector3> =
+        MethodStringName1<NavigationLink3D, Unit, Vector3>("set_end_position")
+
+    @JvmField
+    public val getEndPositionName: MethodStringName0<NavigationLink3D, Vector3> =
+        MethodStringName0<NavigationLink3D, Vector3>("get_end_position")
+
+    @JvmField
+    public val setGlobalStartPositionName: MethodStringName1<NavigationLink3D, Unit, Vector3> =
+        MethodStringName1<NavigationLink3D, Unit, Vector3>("set_global_start_position")
+
+    @JvmField
+    public val getGlobalStartPositionName: MethodStringName0<NavigationLink3D, Vector3> =
+        MethodStringName0<NavigationLink3D, Vector3>("get_global_start_position")
+
+    @JvmField
+    public val setGlobalEndPositionName: MethodStringName1<NavigationLink3D, Unit, Vector3> =
+        MethodStringName1<NavigationLink3D, Unit, Vector3>("set_global_end_position")
+
+    @JvmField
+    public val getGlobalEndPositionName: MethodStringName0<NavigationLink3D, Vector3> =
+        MethodStringName0<NavigationLink3D, Vector3>("get_global_end_position")
+
+    @JvmField
+    public val setEnterCostName: MethodStringName1<NavigationLink3D, Unit, Float> =
+        MethodStringName1<NavigationLink3D, Unit, Float>("set_enter_cost")
+
+    @JvmField
+    public val getEnterCostName: MethodStringName0<NavigationLink3D, Float> =
+        MethodStringName0<NavigationLink3D, Float>("get_enter_cost")
+
+    @JvmField
+    public val setTravelCostName: MethodStringName1<NavigationLink3D, Unit, Float> =
+        MethodStringName1<NavigationLink3D, Unit, Float>("set_travel_cost")
+
+    @JvmField
+    public val getTravelCostName: MethodStringName0<NavigationLink3D, Float> =
+        MethodStringName0<NavigationLink3D, Float>("get_travel_cost")
+  }
 
   public object MethodBindings {
     internal val getRidPtr: VoidPtr =

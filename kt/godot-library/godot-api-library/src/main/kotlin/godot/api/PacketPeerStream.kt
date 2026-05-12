@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
@@ -17,6 +19,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -94,7 +97,31 @@ public open class PacketPeerStream : PacketPeer() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setStreamPeerName: MethodStringName1<PacketPeerStream, Unit, StreamPeer?> =
+        MethodStringName1<PacketPeerStream, Unit, StreamPeer?>("set_stream_peer")
+
+    @JvmField
+    public val getStreamPeerName: MethodStringName0<PacketPeerStream, StreamPeer?> =
+        MethodStringName0<PacketPeerStream, StreamPeer?>("get_stream_peer")
+
+    @JvmField
+    public val setInputBufferMaxSizeName: MethodStringName1<PacketPeerStream, Unit, Int> =
+        MethodStringName1<PacketPeerStream, Unit, Int>("set_input_buffer_max_size")
+
+    @JvmField
+    public val setOutputBufferMaxSizeName: MethodStringName1<PacketPeerStream, Unit, Int> =
+        MethodStringName1<PacketPeerStream, Unit, Int>("set_output_buffer_max_size")
+
+    @JvmField
+    public val getInputBufferMaxSizeName: MethodStringName0<PacketPeerStream, Int> =
+        MethodStringName0<PacketPeerStream, Int>("get_input_buffer_max_size")
+
+    @JvmField
+    public val getOutputBufferMaxSizeName: MethodStringName0<PacketPeerStream, Int> =
+        MethodStringName0<PacketPeerStream, Int>("get_output_buffer_max_size")
+  }
 
   public object MethodBindings {
     internal val setStreamPeerPtr: VoidPtr =

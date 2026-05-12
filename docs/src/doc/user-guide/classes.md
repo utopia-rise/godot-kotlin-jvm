@@ -1,11 +1,31 @@
-To expose a class written in Kotlin it needs to extend `godot.Object` (or any of its subtype) and must be annotated with `@RegisterClass`.
+To expose a class written in Kotlin, Java, or Scala, it needs to extend `godot.Object` (or any of its subtype) and must be annotated with `@RegisterClass`.
 
-```kt
+/// tab | Kotlin
+```kotlin
 @RegisterClass
-class RotatingCube: Node3D() {
+class RotatingCube : Node3D() {
     // ...
 }
 ```
+///
+
+/// tab | Java
+```java
+@RegisterClass
+public class RotatingCube extends Node3D {
+    // ...
+}
+```
+///
+
+/// tab | Scala
+```scala
+@RegisterClass
+class RotatingCube extends Node3D {
+  // ...
+}
+```
+///
 
 Each registered classes will generate its own .gdj files. For more information, read [registration files](../user-guide/api-differences.md#registration-files-gdj).
 
@@ -92,9 +112,10 @@ This could also be useful together with the option `isFqNameRegistrationEnabled`
 If you want to be notified when initialization and destruction of your class' instance happens, use the `init` block
 and override the `_onDestroy` function respectively.
 
-```kt
+/// tab | Kotlin
+```kotlin
 @RegisterClass
-class RotatingCube: Node3D() {
+class RotatingCube : Node3D() {
     init {
         println("Initializing RotatingCube!")
     }
@@ -104,12 +125,43 @@ class RotatingCube: Node3D() {
     }
 }
 ```
+///
+
+/// tab | Java
+```java
+@RegisterClass
+public class RotatingCube extends Node3D {
+    public RotatingCube() {
+        System.out.println("Initializing RotatingCube!");
+    }
+
+    @Override
+    public void _onDestroy() {
+        System.out.println("Cleaning up RotatingCube!");
+    }
+}
+```
+///
+
+/// tab | Scala
+```scala
+@RegisterClass
+class RotatingCube extends Node3D {
+  println("Initializing RotatingCube!")
+
+  override def _onDestroy(): Unit = {
+    println("Cleaning up RotatingCube!")
+  }
+}
+```
+///
 
 ## Instance checks
 
 Checking if an object is an instance of a particular type can be done via the `is` operator.
 
-```kt
+/// tab | Kotlin
+```kotlin
 @RegisterFunction
 override fun _ready() {
     val parent = getParent()
@@ -121,13 +173,43 @@ override fun _ready() {
     }
 }
 ```
+///
+
+/// tab | Java
+```java
+@RegisterFunction
+@Override
+public void _ready() {
+    Node parent = getParent();
+    if (parent instanceof CollisionShape collisionShape) {
+        collisionShape.setShape(...);
+    } else {
+        throw new AssertionError("Unexpected parent!");
+    }
+}
+```
+///
+
+/// tab | Scala
+```scala
+@RegisterFunction
+override def _ready(): Unit = {
+  getParent() match {
+    case collisionShape: CollisionShape =>
+      collisionShape.setShape(...)
+    case _ =>
+      throw new AssertionError("Unexpected parent!")
+  }
+}
+```
+///
 
 This also works for any type you define.
 
 !!! info
     If you are sure that an object is always an instance of some type, then you can take advantage of Kotlin's [contracts](https://kotlinlang.org/docs/reference/whatsnew13.html#contracts) feature. This allows you to avoid having nested `if`s.
 
-    ```kt
+    ```kotlin
     @RegisterFunction
     override fun _ready() {
         val parent = getParent()
@@ -143,12 +225,12 @@ Godot requires you to have a default constructor on your classes. These are auto
 Registering constructor with arguments is currently not supported. But you can freely use them from Kotlin/Java/Scala
 just not from GDScript or any other non Godot Kotlin/JVM language.
 
-### Instantiate Kotlin script classes in GDScript
+### Instantiate script classes in GDScript
 
-From GDScript it is possible to create an instance of a Kotlin class using the default constructor:
+From GDScript it is possible to create an instance of a registered JVM class using the default constructor:
 
-```kt
-var instance := YourKotlinClass.new()
+```gdscript
+var instance := YourJvmClass.new()
 ```
 
 Using other constructors is not possible. Only the default no arg constructor is registered.  

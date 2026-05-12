@@ -10,11 +10,14 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.PackedColorArray
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_COLOR_ARRAY
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -51,7 +54,15 @@ public open class ColorPalette : Resource() {
     return (TransferContext.readReturnValue(PACKED_COLOR_ARRAY) as PackedColorArray)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setColorsName: MethodStringName1<ColorPalette, Unit, PackedColorArray> =
+        MethodStringName1<ColorPalette, Unit, PackedColorArray>("set_colors")
+
+    @JvmField
+    public val getColorsName: MethodStringName0<ColorPalette, PackedColorArray> =
+        MethodStringName0<ColorPalette, PackedColorArray>("get_colors")
+  }
 
   public object MethodBindings {
     internal val setColorsPtr: VoidPtr =

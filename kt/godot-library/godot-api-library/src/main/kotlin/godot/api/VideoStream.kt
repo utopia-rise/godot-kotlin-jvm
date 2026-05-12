@@ -10,12 +10,15 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -59,7 +62,15 @@ public abstract class VideoStream : Resource() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setFileName: MethodStringName1<VideoStream, Unit, String> =
+        MethodStringName1<VideoStream, Unit, String>("set_file")
+
+    @JvmField
+    public val getFileName: MethodStringName0<VideoStream, String> =
+        MethodStringName0<VideoStream, String>("get_file")
+  }
 
   public object MethodBindings {
     internal val setFilePtr: VoidPtr =

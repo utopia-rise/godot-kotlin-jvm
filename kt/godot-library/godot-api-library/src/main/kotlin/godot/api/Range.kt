@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.VariantParser.BOOL
@@ -21,6 +23,7 @@ import kotlin.Double
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -311,7 +314,99 @@ public open class Range : Control() {
     TransferContext.callMethod(ptr, MethodBindings.unsharePtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val getValueName: MethodStringName0<Range, Double> =
+        MethodStringName0<Range, Double>("get_value")
+
+    @JvmField
+    public val getMinName: MethodStringName0<Range, Double> =
+        MethodStringName0<Range, Double>("get_min")
+
+    @JvmField
+    public val getMaxName: MethodStringName0<Range, Double> =
+        MethodStringName0<Range, Double>("get_max")
+
+    @JvmField
+    public val getStepName: MethodStringName0<Range, Double> =
+        MethodStringName0<Range, Double>("get_step")
+
+    @JvmField
+    public val getPageName: MethodStringName0<Range, Double> =
+        MethodStringName0<Range, Double>("get_page")
+
+    @JvmField
+    public val getAsRatioName: MethodStringName0<Range, Double> =
+        MethodStringName0<Range, Double>("get_as_ratio")
+
+    @JvmField
+    public val setValueName: MethodStringName1<Range, Unit, Double> =
+        MethodStringName1<Range, Unit, Double>("set_value")
+
+    @JvmField
+    public val setValueNoSignalName: MethodStringName1<Range, Unit, Double> =
+        MethodStringName1<Range, Unit, Double>("set_value_no_signal")
+
+    @JvmField
+    public val setMinName: MethodStringName1<Range, Unit, Double> =
+        MethodStringName1<Range, Unit, Double>("set_min")
+
+    @JvmField
+    public val setMaxName: MethodStringName1<Range, Unit, Double> =
+        MethodStringName1<Range, Unit, Double>("set_max")
+
+    @JvmField
+    public val setStepName: MethodStringName1<Range, Unit, Double> =
+        MethodStringName1<Range, Unit, Double>("set_step")
+
+    @JvmField
+    public val setPageName: MethodStringName1<Range, Unit, Double> =
+        MethodStringName1<Range, Unit, Double>("set_page")
+
+    @JvmField
+    public val setAsRatioName: MethodStringName1<Range, Unit, Double> =
+        MethodStringName1<Range, Unit, Double>("set_as_ratio")
+
+    @JvmField
+    public val setUseRoundedValuesName: MethodStringName1<Range, Unit, Boolean> =
+        MethodStringName1<Range, Unit, Boolean>("set_use_rounded_values")
+
+    @JvmField
+    public val isUsingRoundedValuesName: MethodStringName0<Range, Boolean> =
+        MethodStringName0<Range, Boolean>("is_using_rounded_values")
+
+    @JvmField
+    public val setExpRatioName: MethodStringName1<Range, Unit, Boolean> =
+        MethodStringName1<Range, Unit, Boolean>("set_exp_ratio")
+
+    @JvmField
+    public val isRatioExpName: MethodStringName0<Range, Boolean> =
+        MethodStringName0<Range, Boolean>("is_ratio_exp")
+
+    @JvmField
+    public val setAllowGreaterName: MethodStringName1<Range, Unit, Boolean> =
+        MethodStringName1<Range, Unit, Boolean>("set_allow_greater")
+
+    @JvmField
+    public val isGreaterAllowedName: MethodStringName0<Range, Boolean> =
+        MethodStringName0<Range, Boolean>("is_greater_allowed")
+
+    @JvmField
+    public val setAllowLesserName: MethodStringName1<Range, Unit, Boolean> =
+        MethodStringName1<Range, Unit, Boolean>("set_allow_lesser")
+
+    @JvmField
+    public val isLesserAllowedName: MethodStringName0<Range, Boolean> =
+        MethodStringName0<Range, Boolean>("is_lesser_allowed")
+
+    @JvmField
+    public val shareName: MethodStringName1<Range, Unit, Node?> =
+        MethodStringName1<Range, Unit, Node?>("share")
+
+    @JvmField
+    public val unshareName: MethodStringName0<Range, Unit> =
+        MethodStringName0<Range, Unit>("unshare")
+  }
 
   public object MethodBindings {
     internal val getValuePtr: VoidPtr =

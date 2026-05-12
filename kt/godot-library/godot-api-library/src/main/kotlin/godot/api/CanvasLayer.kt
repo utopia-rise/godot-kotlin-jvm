@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.RID
 import godot.core.Signal0
 import godot.core.Transform2D
@@ -31,6 +33,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -394,7 +397,95 @@ public open class CanvasLayer : Node() {
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setLayerName: MethodStringName1<CanvasLayer, Unit, Int> =
+        MethodStringName1<CanvasLayer, Unit, Int>("set_layer")
+
+    @JvmField
+    public val getLayerName: MethodStringName0<CanvasLayer, Int> =
+        MethodStringName0<CanvasLayer, Int>("get_layer")
+
+    @JvmField
+    public val setVisibleName: MethodStringName1<CanvasLayer, Unit, Boolean> =
+        MethodStringName1<CanvasLayer, Unit, Boolean>("set_visible")
+
+    @JvmField
+    public val isVisibleName: MethodStringName0<CanvasLayer, Boolean> =
+        MethodStringName0<CanvasLayer, Boolean>("is_visible")
+
+    @JvmField
+    public val showName: MethodStringName0<CanvasLayer, Unit> =
+        MethodStringName0<CanvasLayer, Unit>("show")
+
+    @JvmField
+    public val hideName: MethodStringName0<CanvasLayer, Unit> =
+        MethodStringName0<CanvasLayer, Unit>("hide")
+
+    @JvmField
+    public val setTransformName: MethodStringName1<CanvasLayer, Unit, Transform2D> =
+        MethodStringName1<CanvasLayer, Unit, Transform2D>("set_transform")
+
+    @JvmField
+    public val getTransformName: MethodStringName0<CanvasLayer, Transform2D> =
+        MethodStringName0<CanvasLayer, Transform2D>("get_transform")
+
+    @JvmField
+    public val getFinalTransformName: MethodStringName0<CanvasLayer, Transform2D> =
+        MethodStringName0<CanvasLayer, Transform2D>("get_final_transform")
+
+    @JvmField
+    public val setOffsetName: MethodStringName1<CanvasLayer, Unit, Vector2> =
+        MethodStringName1<CanvasLayer, Unit, Vector2>("set_offset")
+
+    @JvmField
+    public val getOffsetName: MethodStringName0<CanvasLayer, Vector2> =
+        MethodStringName0<CanvasLayer, Vector2>("get_offset")
+
+    @JvmField
+    public val setRotationName: MethodStringName1<CanvasLayer, Unit, Float> =
+        MethodStringName1<CanvasLayer, Unit, Float>("set_rotation")
+
+    @JvmField
+    public val getRotationName: MethodStringName0<CanvasLayer, Float> =
+        MethodStringName0<CanvasLayer, Float>("get_rotation")
+
+    @JvmField
+    public val setScaleName: MethodStringName1<CanvasLayer, Unit, Vector2> =
+        MethodStringName1<CanvasLayer, Unit, Vector2>("set_scale")
+
+    @JvmField
+    public val getScaleName: MethodStringName0<CanvasLayer, Vector2> =
+        MethodStringName0<CanvasLayer, Vector2>("get_scale")
+
+    @JvmField
+    public val setFollowViewportName: MethodStringName1<CanvasLayer, Unit, Boolean> =
+        MethodStringName1<CanvasLayer, Unit, Boolean>("set_follow_viewport")
+
+    @JvmField
+    public val isFollowingViewportName: MethodStringName0<CanvasLayer, Boolean> =
+        MethodStringName0<CanvasLayer, Boolean>("is_following_viewport")
+
+    @JvmField
+    public val setFollowViewportScaleName: MethodStringName1<CanvasLayer, Unit, Float> =
+        MethodStringName1<CanvasLayer, Unit, Float>("set_follow_viewport_scale")
+
+    @JvmField
+    public val getFollowViewportScaleName: MethodStringName0<CanvasLayer, Float> =
+        MethodStringName0<CanvasLayer, Float>("get_follow_viewport_scale")
+
+    @JvmField
+    public val setCustomViewportName: MethodStringName1<CanvasLayer, Unit, Node?> =
+        MethodStringName1<CanvasLayer, Unit, Node?>("set_custom_viewport")
+
+    @JvmField
+    public val getCustomViewportName: MethodStringName0<CanvasLayer, Node?> =
+        MethodStringName0<CanvasLayer, Node?>("get_custom_viewport")
+
+    @JvmField
+    public val getCanvasName: MethodStringName0<CanvasLayer, RID> =
+        MethodStringName0<CanvasLayer, RID>("get_canvas")
+  }
 
   public object MethodBindings {
     internal val setLayerPtr: VoidPtr =

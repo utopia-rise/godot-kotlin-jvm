@@ -10,11 +10,14 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -96,7 +99,32 @@ public open class OpenXRFrameSynthesisExtension : OpenXRExtensionWrapper() {
     TransferContext.callMethod(ptr, MethodBindings.skipNextFramePtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val isAvailableName: MethodStringName0<OpenXRFrameSynthesisExtension, Boolean> =
+        MethodStringName0<OpenXRFrameSynthesisExtension, Boolean>("is_available")
+
+    @JvmField
+    public val isEnabledName: MethodStringName0<OpenXRFrameSynthesisExtension, Boolean> =
+        MethodStringName0<OpenXRFrameSynthesisExtension, Boolean>("is_enabled")
+
+    @JvmField
+    public val setEnabledName: MethodStringName1<OpenXRFrameSynthesisExtension, Unit, Boolean> =
+        MethodStringName1<OpenXRFrameSynthesisExtension, Unit, Boolean>("set_enabled")
+
+    @JvmField
+    public val getRelaxFrameIntervalName: MethodStringName0<OpenXRFrameSynthesisExtension, Boolean>
+        = MethodStringName0<OpenXRFrameSynthesisExtension, Boolean>("get_relax_frame_interval")
+
+    @JvmField
+    public val setRelaxFrameIntervalName:
+        MethodStringName1<OpenXRFrameSynthesisExtension, Unit, Boolean> =
+        MethodStringName1<OpenXRFrameSynthesisExtension, Unit, Boolean>("set_relax_frame_interval")
+
+    @JvmField
+    public val skipNextFrameName: MethodStringName0<OpenXRFrameSynthesisExtension, Unit> =
+        MethodStringName0<OpenXRFrameSynthesisExtension, Unit>("skip_next_frame")
+  }
 
   public object MethodBindings {
     internal val isAvailablePtr: VoidPtr =

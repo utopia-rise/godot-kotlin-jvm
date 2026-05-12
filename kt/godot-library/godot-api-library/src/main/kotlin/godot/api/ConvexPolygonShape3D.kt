@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.PackedVector3Array
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_VECTOR3_ARRAY
@@ -19,6 +21,7 @@ import godot.core.Vector3
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -115,7 +118,15 @@ public open class ConvexPolygonShape3D : Shape3D() {
     return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setPointsName: MethodStringName1<ConvexPolygonShape3D, Unit, PackedVector3Array> =
+        MethodStringName1<ConvexPolygonShape3D, Unit, PackedVector3Array>("set_points")
+
+    @JvmField
+    public val getPointsName: MethodStringName0<ConvexPolygonShape3D, PackedVector3Array> =
+        MethodStringName0<ConvexPolygonShape3D, PackedVector3Array>("get_points")
+  }
 
   public object MethodBindings {
     internal val setPointsPtr: VoidPtr =

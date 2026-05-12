@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.PackedVector2Array
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
@@ -19,6 +21,7 @@ import godot.core.Vector2
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -124,7 +127,15 @@ public open class ConcavePolygonShape2D : Shape2D() {
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setSegmentsName: MethodStringName1<ConcavePolygonShape2D, Unit, PackedVector2Array> =
+        MethodStringName1<ConcavePolygonShape2D, Unit, PackedVector2Array>("set_segments")
+
+    @JvmField
+    public val getSegmentsName: MethodStringName0<ConcavePolygonShape2D, PackedVector2Array> =
+        MethodStringName0<ConcavePolygonShape2D, PackedVector2Array>("get_segments")
+  }
 
   public object MethodBindings {
     internal val setSegmentsPtr: VoidPtr =

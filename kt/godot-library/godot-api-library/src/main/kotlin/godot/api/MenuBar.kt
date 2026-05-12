@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -21,6 +24,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -279,7 +283,103 @@ public open class MenuBar : Control() {
     return (TransferContext.readReturnValue(OBJECT) as PopupMenu?)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setSwitchOnHoverName: MethodStringName1<MenuBar, Unit, Boolean> =
+        MethodStringName1<MenuBar, Unit, Boolean>("set_switch_on_hover")
+
+    @JvmField
+    public val isSwitchOnHoverName: MethodStringName0<MenuBar, Boolean> =
+        MethodStringName0<MenuBar, Boolean>("is_switch_on_hover")
+
+    @JvmField
+    public val setDisableShortcutsName: MethodStringName1<MenuBar, Unit, Boolean> =
+        MethodStringName1<MenuBar, Unit, Boolean>("set_disable_shortcuts")
+
+    @JvmField
+    public val setPreferGlobalMenuName: MethodStringName1<MenuBar, Unit, Boolean> =
+        MethodStringName1<MenuBar, Unit, Boolean>("set_prefer_global_menu")
+
+    @JvmField
+    public val isPreferGlobalMenuName: MethodStringName0<MenuBar, Boolean> =
+        MethodStringName0<MenuBar, Boolean>("is_prefer_global_menu")
+
+    @JvmField
+    public val isNativeMenuName: MethodStringName0<MenuBar, Boolean> =
+        MethodStringName0<MenuBar, Boolean>("is_native_menu")
+
+    @JvmField
+    public val getMenuCountName: MethodStringName0<MenuBar, Int> =
+        MethodStringName0<MenuBar, Int>("get_menu_count")
+
+    @JvmField
+    public val setTextDirectionName: MethodStringName1<MenuBar, Unit, Control.TextDirection> =
+        MethodStringName1<MenuBar, Unit, Control.TextDirection>("set_text_direction")
+
+    @JvmField
+    public val getTextDirectionName: MethodStringName0<MenuBar, Control.TextDirection> =
+        MethodStringName0<MenuBar, Control.TextDirection>("get_text_direction")
+
+    @JvmField
+    public val setLanguageName: MethodStringName1<MenuBar, Unit, String> =
+        MethodStringName1<MenuBar, Unit, String>("set_language")
+
+    @JvmField
+    public val getLanguageName: MethodStringName0<MenuBar, String> =
+        MethodStringName0<MenuBar, String>("get_language")
+
+    @JvmField
+    public val setFlatName: MethodStringName1<MenuBar, Unit, Boolean> =
+        MethodStringName1<MenuBar, Unit, Boolean>("set_flat")
+
+    @JvmField
+    public val isFlatName: MethodStringName0<MenuBar, Boolean> =
+        MethodStringName0<MenuBar, Boolean>("is_flat")
+
+    @JvmField
+    public val setStartIndexName: MethodStringName1<MenuBar, Unit, Int> =
+        MethodStringName1<MenuBar, Unit, Int>("set_start_index")
+
+    @JvmField
+    public val getStartIndexName: MethodStringName0<MenuBar, Int> =
+        MethodStringName0<MenuBar, Int>("get_start_index")
+
+    @JvmField
+    public val setMenuTitleName: MethodStringName2<MenuBar, Unit, Int, String> =
+        MethodStringName2<MenuBar, Unit, Int, String>("set_menu_title")
+
+    @JvmField
+    public val getMenuTitleName: MethodStringName1<MenuBar, String, Int> =
+        MethodStringName1<MenuBar, String, Int>("get_menu_title")
+
+    @JvmField
+    public val setMenuTooltipName: MethodStringName2<MenuBar, Unit, Int, String> =
+        MethodStringName2<MenuBar, Unit, Int, String>("set_menu_tooltip")
+
+    @JvmField
+    public val getMenuTooltipName: MethodStringName1<MenuBar, String, Int> =
+        MethodStringName1<MenuBar, String, Int>("get_menu_tooltip")
+
+    @JvmField
+    public val setMenuDisabledName: MethodStringName2<MenuBar, Unit, Int, Boolean> =
+        MethodStringName2<MenuBar, Unit, Int, Boolean>("set_menu_disabled")
+
+    @JvmField
+    public val isMenuDisabledName: MethodStringName1<MenuBar, Boolean, Int> =
+        MethodStringName1<MenuBar, Boolean, Int>("is_menu_disabled")
+
+    @JvmField
+    public val setMenuHiddenName: MethodStringName2<MenuBar, Unit, Int, Boolean> =
+        MethodStringName2<MenuBar, Unit, Int, Boolean>("set_menu_hidden")
+
+    @JvmField
+    public val isMenuHiddenName: MethodStringName1<MenuBar, Boolean, Int> =
+        MethodStringName1<MenuBar, Boolean, Int>("is_menu_hidden")
+
+    @JvmField
+    public val getMenuPopupName: MethodStringName1<MenuBar, PopupMenu?, Int> =
+        MethodStringName1<MenuBar, PopupMenu?, Int>("get_menu_popup")
+  }
 
   public object MethodBindings {
     internal val setSwitchOnHoverPtr: VoidPtr =

@@ -11,6 +11,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName4
 import godot.core.RID
 import godot.core.VariantParser.DICTIONARY
 import godot.core.VariantParser.DOUBLE
@@ -28,6 +31,7 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
@@ -160,6 +164,51 @@ public open class DPITexture : Texture2D() {
   }
 
   public companion object {
+    @JvmField
+    public val createFromStringName:
+        MethodStringName4<DPITexture, DPITexture?, String, Float, Float, Dictionary<Any?, Any?>> =
+        MethodStringName4<DPITexture, DPITexture?, String, Float, Float, Dictionary<Any?, Any?>>("create_from_string")
+
+    @JvmField
+    public val setSourceName: MethodStringName1<DPITexture, Unit, String> =
+        MethodStringName1<DPITexture, Unit, String>("set_source")
+
+    @JvmField
+    public val getSourceName: MethodStringName0<DPITexture, String> =
+        MethodStringName0<DPITexture, String>("get_source")
+
+    @JvmField
+    public val setBaseScaleName: MethodStringName1<DPITexture, Unit, Float> =
+        MethodStringName1<DPITexture, Unit, Float>("set_base_scale")
+
+    @JvmField
+    public val getBaseScaleName: MethodStringName0<DPITexture, Float> =
+        MethodStringName0<DPITexture, Float>("get_base_scale")
+
+    @JvmField
+    public val setSaturationName: MethodStringName1<DPITexture, Unit, Float> =
+        MethodStringName1<DPITexture, Unit, Float>("set_saturation")
+
+    @JvmField
+    public val getSaturationName: MethodStringName0<DPITexture, Float> =
+        MethodStringName0<DPITexture, Float>("get_saturation")
+
+    @JvmField
+    public val setColorMapName: MethodStringName1<DPITexture, Unit, Dictionary<Any?, Any?>> =
+        MethodStringName1<DPITexture, Unit, Dictionary<Any?, Any?>>("set_color_map")
+
+    @JvmField
+    public val getColorMapName: MethodStringName0<DPITexture, Dictionary<Any?, Any?>> =
+        MethodStringName0<DPITexture, Dictionary<Any?, Any?>>("get_color_map")
+
+    @JvmField
+    public val setSizeOverrideName: MethodStringName1<DPITexture, Unit, Vector2i> =
+        MethodStringName1<DPITexture, Unit, Vector2i>("set_size_override")
+
+    @JvmField
+    public val getScaledRidName: MethodStringName0<DPITexture, RID> =
+        MethodStringName0<DPITexture, RID>("get_scaled_rid")
+
     /**
      * Creates a new [DPITexture] and initializes it by allocating and setting the SVG data to
      * [source].

@@ -12,6 +12,8 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
 import godot.core.HorizontalAlignment
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.Signal1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
@@ -23,6 +25,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -287,7 +290,92 @@ public open class FoldableContainer : Container() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val foldName: MethodStringName0<FoldableContainer, Unit> =
+        MethodStringName0<FoldableContainer, Unit>("fold")
+
+    @JvmField
+    public val expandName: MethodStringName0<FoldableContainer, Unit> =
+        MethodStringName0<FoldableContainer, Unit>("expand")
+
+    @JvmField
+    public val setFoldedName: MethodStringName1<FoldableContainer, Unit, Boolean> =
+        MethodStringName1<FoldableContainer, Unit, Boolean>("set_folded")
+
+    @JvmField
+    public val isFoldedName: MethodStringName0<FoldableContainer, Boolean> =
+        MethodStringName0<FoldableContainer, Boolean>("is_folded")
+
+    @JvmField
+    public val setFoldableGroupName: MethodStringName1<FoldableContainer, Unit, FoldableGroup?> =
+        MethodStringName1<FoldableContainer, Unit, FoldableGroup?>("set_foldable_group")
+
+    @JvmField
+    public val getFoldableGroupName: MethodStringName0<FoldableContainer, FoldableGroup?> =
+        MethodStringName0<FoldableContainer, FoldableGroup?>("get_foldable_group")
+
+    @JvmField
+    public val setTitleName: MethodStringName1<FoldableContainer, Unit, String> =
+        MethodStringName1<FoldableContainer, Unit, String>("set_title")
+
+    @JvmField
+    public val getTitleName: MethodStringName0<FoldableContainer, String> =
+        MethodStringName0<FoldableContainer, String>("get_title")
+
+    @JvmField
+    public val setTitleAlignmentName:
+        MethodStringName1<FoldableContainer, Unit, HorizontalAlignment> =
+        MethodStringName1<FoldableContainer, Unit, HorizontalAlignment>("set_title_alignment")
+
+    @JvmField
+    public val getTitleAlignmentName: MethodStringName0<FoldableContainer, HorizontalAlignment> =
+        MethodStringName0<FoldableContainer, HorizontalAlignment>("get_title_alignment")
+
+    @JvmField
+    public val setLanguageName: MethodStringName1<FoldableContainer, Unit, String> =
+        MethodStringName1<FoldableContainer, Unit, String>("set_language")
+
+    @JvmField
+    public val getLanguageName: MethodStringName0<FoldableContainer, String> =
+        MethodStringName0<FoldableContainer, String>("get_language")
+
+    @JvmField
+    public val setTitleTextDirectionName:
+        MethodStringName1<FoldableContainer, Unit, Control.TextDirection> =
+        MethodStringName1<FoldableContainer, Unit, Control.TextDirection>("set_title_text_direction")
+
+    @JvmField
+    public val getTitleTextDirectionName:
+        MethodStringName0<FoldableContainer, Control.TextDirection> =
+        MethodStringName0<FoldableContainer, Control.TextDirection>("get_title_text_direction")
+
+    @JvmField
+    public val setTitleTextOverrunBehaviorName:
+        MethodStringName1<FoldableContainer, Unit, TextServer.OverrunBehavior> =
+        MethodStringName1<FoldableContainer, Unit, TextServer.OverrunBehavior>("set_title_text_overrun_behavior")
+
+    @JvmField
+    public val getTitleTextOverrunBehaviorName:
+        MethodStringName0<FoldableContainer, TextServer.OverrunBehavior> =
+        MethodStringName0<FoldableContainer, TextServer.OverrunBehavior>("get_title_text_overrun_behavior")
+
+    @JvmField
+    public val setTitlePositionName: MethodStringName1<FoldableContainer, Unit, TitlePosition> =
+        MethodStringName1<FoldableContainer, Unit, TitlePosition>("set_title_position")
+
+    @JvmField
+    public val getTitlePositionName: MethodStringName0<FoldableContainer, TitlePosition> =
+        MethodStringName0<FoldableContainer, TitlePosition>("get_title_position")
+
+    @JvmField
+    public val addTitleBarControlName: MethodStringName1<FoldableContainer, Unit, Control?> =
+        MethodStringName1<FoldableContainer, Unit, Control?>("add_title_bar_control")
+
+    @JvmField
+    public val removeTitleBarControlName: MethodStringName1<FoldableContainer, Unit, Control?> =
+        MethodStringName1<FoldableContainer, Unit, Control?>("remove_title_bar_control")
+  }
 
   public object MethodBindings {
     internal val foldPtr: VoidPtr =

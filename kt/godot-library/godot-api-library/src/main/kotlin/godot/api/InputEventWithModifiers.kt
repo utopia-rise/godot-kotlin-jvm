@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.KeyModifierMask
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -18,6 +20,7 @@ import kotlin.Boolean
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -167,7 +170,56 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
     return KeyModifierMask(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setCommandOrControlAutoremapName:
+        MethodStringName1<InputEventWithModifiers, Unit, Boolean> =
+        MethodStringName1<InputEventWithModifiers, Unit, Boolean>("set_command_or_control_autoremap")
+
+    @JvmField
+    public val isCommandOrControlAutoremapName: MethodStringName0<InputEventWithModifiers, Boolean>
+        = MethodStringName0<InputEventWithModifiers, Boolean>("is_command_or_control_autoremap")
+
+    @JvmField
+    public val isCommandOrControlPressedName: MethodStringName0<InputEventWithModifiers, Boolean> =
+        MethodStringName0<InputEventWithModifiers, Boolean>("is_command_or_control_pressed")
+
+    @JvmField
+    public val setAltPressedName: MethodStringName1<InputEventWithModifiers, Unit, Boolean> =
+        MethodStringName1<InputEventWithModifiers, Unit, Boolean>("set_alt_pressed")
+
+    @JvmField
+    public val isAltPressedName: MethodStringName0<InputEventWithModifiers, Boolean> =
+        MethodStringName0<InputEventWithModifiers, Boolean>("is_alt_pressed")
+
+    @JvmField
+    public val setShiftPressedName: MethodStringName1<InputEventWithModifiers, Unit, Boolean> =
+        MethodStringName1<InputEventWithModifiers, Unit, Boolean>("set_shift_pressed")
+
+    @JvmField
+    public val isShiftPressedName: MethodStringName0<InputEventWithModifiers, Boolean> =
+        MethodStringName0<InputEventWithModifiers, Boolean>("is_shift_pressed")
+
+    @JvmField
+    public val setCtrlPressedName: MethodStringName1<InputEventWithModifiers, Unit, Boolean> =
+        MethodStringName1<InputEventWithModifiers, Unit, Boolean>("set_ctrl_pressed")
+
+    @JvmField
+    public val isCtrlPressedName: MethodStringName0<InputEventWithModifiers, Boolean> =
+        MethodStringName0<InputEventWithModifiers, Boolean>("is_ctrl_pressed")
+
+    @JvmField
+    public val setMetaPressedName: MethodStringName1<InputEventWithModifiers, Unit, Boolean> =
+        MethodStringName1<InputEventWithModifiers, Unit, Boolean>("set_meta_pressed")
+
+    @JvmField
+    public val isMetaPressedName: MethodStringName0<InputEventWithModifiers, Boolean> =
+        MethodStringName0<InputEventWithModifiers, Boolean>("is_meta_pressed")
+
+    @JvmField
+    public val getModifiersMaskName: MethodStringName0<InputEventWithModifiers, KeyModifierMask> =
+        MethodStringName0<InputEventWithModifiers, KeyModifierMask>("get_modifiers_mask")
+  }
 
   public object MethodBindings {
     internal val setCommandOrControlAutoremapPtr: VoidPtr =

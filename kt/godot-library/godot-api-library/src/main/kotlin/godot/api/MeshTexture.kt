@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR2
@@ -20,6 +22,7 @@ import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -139,7 +142,31 @@ public open class MeshTexture : Texture2D() {
     throw NotImplementedError("MeshTexture::_getHeight can't be called from the JVM.")
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setMeshName: MethodStringName1<MeshTexture, Unit, Mesh?> =
+        MethodStringName1<MeshTexture, Unit, Mesh?>("set_mesh")
+
+    @JvmField
+    public val getMeshName: MethodStringName0<MeshTexture, Mesh?> =
+        MethodStringName0<MeshTexture, Mesh?>("get_mesh")
+
+    @JvmField
+    public val setImageSizeName: MethodStringName1<MeshTexture, Unit, Vector2> =
+        MethodStringName1<MeshTexture, Unit, Vector2>("set_image_size")
+
+    @JvmField
+    public val getImageSizeName: MethodStringName0<MeshTexture, Vector2> =
+        MethodStringName0<MeshTexture, Vector2>("get_image_size")
+
+    @JvmField
+    public val setBaseTextureName: MethodStringName1<MeshTexture, Unit, Texture2D?> =
+        MethodStringName1<MeshTexture, Unit, Texture2D?>("set_base_texture")
+
+    @JvmField
+    public val getBaseTextureName: MethodStringName0<MeshTexture, Texture2D?> =
+        MethodStringName0<MeshTexture, Texture2D?>("get_base_texture")
+  }
 
   public object MethodBindings {
     internal val setMeshPtr: VoidPtr =

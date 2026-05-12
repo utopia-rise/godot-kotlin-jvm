@@ -10,6 +10,10 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName4
 import godot.core.PackedStringArray
 import godot.core.StringName
 import godot.core.VariantParser.BOOL
@@ -28,6 +32,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -336,7 +341,81 @@ public open class SpriteFrames : Resource() {
    */
   public final fun clear(anim: String) = clear(anim.asCachedStringName())
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val addAnimationName: MethodStringName1<SpriteFrames, Unit, StringName> =
+        MethodStringName1<SpriteFrames, Unit, StringName>("add_animation")
+
+    @JvmField
+    public val hasAnimationName: MethodStringName1<SpriteFrames, Boolean, StringName> =
+        MethodStringName1<SpriteFrames, Boolean, StringName>("has_animation")
+
+    @JvmField
+    public val duplicateAnimationName: MethodStringName2<SpriteFrames, Unit, StringName, StringName>
+        = MethodStringName2<SpriteFrames, Unit, StringName, StringName>("duplicate_animation")
+
+    @JvmField
+    public val removeAnimationName: MethodStringName1<SpriteFrames, Unit, StringName> =
+        MethodStringName1<SpriteFrames, Unit, StringName>("remove_animation")
+
+    @JvmField
+    public val renameAnimationName: MethodStringName2<SpriteFrames, Unit, StringName, StringName> =
+        MethodStringName2<SpriteFrames, Unit, StringName, StringName>("rename_animation")
+
+    @JvmField
+    public val getAnimationNamesName: MethodStringName0<SpriteFrames, PackedStringArray> =
+        MethodStringName0<SpriteFrames, PackedStringArray>("get_animation_names")
+
+    @JvmField
+    public val setAnimationSpeedName: MethodStringName2<SpriteFrames, Unit, StringName, Double> =
+        MethodStringName2<SpriteFrames, Unit, StringName, Double>("set_animation_speed")
+
+    @JvmField
+    public val getAnimationSpeedName: MethodStringName1<SpriteFrames, Double, StringName> =
+        MethodStringName1<SpriteFrames, Double, StringName>("get_animation_speed")
+
+    @JvmField
+    public val setAnimationLoopName: MethodStringName2<SpriteFrames, Unit, StringName, Boolean> =
+        MethodStringName2<SpriteFrames, Unit, StringName, Boolean>("set_animation_loop")
+
+    @JvmField
+    public val getAnimationLoopName: MethodStringName1<SpriteFrames, Boolean, StringName> =
+        MethodStringName1<SpriteFrames, Boolean, StringName>("get_animation_loop")
+
+    @JvmField
+    public val addFrameName:
+        MethodStringName4<SpriteFrames, Unit, StringName, Texture2D?, Float, Int> =
+        MethodStringName4<SpriteFrames, Unit, StringName, Texture2D?, Float, Int>("add_frame")
+
+    @JvmField
+    public val setFrameName:
+        MethodStringName4<SpriteFrames, Unit, StringName, Int, Texture2D?, Float> =
+        MethodStringName4<SpriteFrames, Unit, StringName, Int, Texture2D?, Float>("set_frame")
+
+    @JvmField
+    public val removeFrameName: MethodStringName2<SpriteFrames, Unit, StringName, Int> =
+        MethodStringName2<SpriteFrames, Unit, StringName, Int>("remove_frame")
+
+    @JvmField
+    public val getFrameCountName: MethodStringName1<SpriteFrames, Int, StringName> =
+        MethodStringName1<SpriteFrames, Int, StringName>("get_frame_count")
+
+    @JvmField
+    public val getFrameTextureName: MethodStringName2<SpriteFrames, Texture2D?, StringName, Int> =
+        MethodStringName2<SpriteFrames, Texture2D?, StringName, Int>("get_frame_texture")
+
+    @JvmField
+    public val getFrameDurationName: MethodStringName2<SpriteFrames, Float, StringName, Int> =
+        MethodStringName2<SpriteFrames, Float, StringName, Int>("get_frame_duration")
+
+    @JvmField
+    public val clearName: MethodStringName1<SpriteFrames, Unit, StringName> =
+        MethodStringName1<SpriteFrames, Unit, StringName>("clear")
+
+    @JvmField
+    public val clearAllName: MethodStringName0<SpriteFrames, Unit> =
+        MethodStringName0<SpriteFrames, Unit>("clear_all")
+  }
 
   public object MethodBindings {
     internal val addAnimationPtr: VoidPtr =

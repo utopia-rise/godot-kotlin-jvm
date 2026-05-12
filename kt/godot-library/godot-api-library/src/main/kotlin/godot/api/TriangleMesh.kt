@@ -11,6 +11,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.PackedVector3Array
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DICTIONARY
@@ -21,6 +24,7 @@ import kotlin.Any
 import kotlin.Boolean
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 
 /**
  * Creates a bounding volume hierarchy (BVH) tree structure around triangle geometry.
@@ -105,7 +109,25 @@ public open class TriangleMesh : RefCounted() {
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val createFromFacesName: MethodStringName1<TriangleMesh, Boolean, PackedVector3Array> =
+        MethodStringName1<TriangleMesh, Boolean, PackedVector3Array>("create_from_faces")
+
+    @JvmField
+    public val getFacesName: MethodStringName0<TriangleMesh, PackedVector3Array> =
+        MethodStringName0<TriangleMesh, PackedVector3Array>("get_faces")
+
+    @JvmField
+    public val intersectSegmentName:
+        MethodStringName2<TriangleMesh, Dictionary<Any?, Any?>, Vector3, Vector3> =
+        MethodStringName2<TriangleMesh, Dictionary<Any?, Any?>, Vector3, Vector3>("intersect_segment")
+
+    @JvmField
+    public val intersectRayName:
+        MethodStringName2<TriangleMesh, Dictionary<Any?, Any?>, Vector3, Vector3> =
+        MethodStringName2<TriangleMesh, Dictionary<Any?, Any?>, Vector3, Vector3>("intersect_ray")
+  }
 
   public object MethodBindings {
     internal val createFromFacesPtr: VoidPtr =

@@ -11,6 +11,10 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -21,6 +25,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -259,7 +264,59 @@ public open class PacketPeerUDP : PacketPeer() {
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val bindName: MethodStringName3<PacketPeerUDP, Error, Int, String, Int> =
+        MethodStringName3<PacketPeerUDP, Error, Int, String, Int>("bind")
+
+    @JvmField
+    public val closeName: MethodStringName0<PacketPeerUDP, Unit> =
+        MethodStringName0<PacketPeerUDP, Unit>("close")
+
+    @JvmField
+    public val waitName: MethodStringName0<PacketPeerUDP, Error> =
+        MethodStringName0<PacketPeerUDP, Error>("wait")
+
+    @JvmField
+    public val isBoundName: MethodStringName0<PacketPeerUDP, Boolean> =
+        MethodStringName0<PacketPeerUDP, Boolean>("is_bound")
+
+    @JvmField
+    public val connectToHostName: MethodStringName2<PacketPeerUDP, Error, String, Int> =
+        MethodStringName2<PacketPeerUDP, Error, String, Int>("connect_to_host")
+
+    @JvmField
+    public val isSocketConnectedName: MethodStringName0<PacketPeerUDP, Boolean> =
+        MethodStringName0<PacketPeerUDP, Boolean>("is_socket_connected")
+
+    @JvmField
+    public val getPacketIpName: MethodStringName0<PacketPeerUDP, String> =
+        MethodStringName0<PacketPeerUDP, String>("get_packet_ip")
+
+    @JvmField
+    public val getPacketPortName: MethodStringName0<PacketPeerUDP, Int> =
+        MethodStringName0<PacketPeerUDP, Int>("get_packet_port")
+
+    @JvmField
+    public val getLocalPortName: MethodStringName0<PacketPeerUDP, Int> =
+        MethodStringName0<PacketPeerUDP, Int>("get_local_port")
+
+    @JvmField
+    public val setDestAddressName: MethodStringName2<PacketPeerUDP, Error, String, Int> =
+        MethodStringName2<PacketPeerUDP, Error, String, Int>("set_dest_address")
+
+    @JvmField
+    public val setBroadcastEnabledName: MethodStringName1<PacketPeerUDP, Unit, Boolean> =
+        MethodStringName1<PacketPeerUDP, Unit, Boolean>("set_broadcast_enabled")
+
+    @JvmField
+    public val joinMulticastGroupName: MethodStringName2<PacketPeerUDP, Error, String, String> =
+        MethodStringName2<PacketPeerUDP, Error, String, String>("join_multicast_group")
+
+    @JvmField
+    public val leaveMulticastGroupName: MethodStringName2<PacketPeerUDP, Error, String, String> =
+        MethodStringName2<PacketPeerUDP, Error, String, String>("leave_multicast_group")
+  }
 
   public object MethodBindings {
     internal val bindPtr: VoidPtr =

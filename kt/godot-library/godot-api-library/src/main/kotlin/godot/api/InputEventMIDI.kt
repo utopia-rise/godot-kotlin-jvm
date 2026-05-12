@@ -11,12 +11,15 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.MIDIMessage
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -308,7 +311,71 @@ public open class InputEventMIDI : InputEvent() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setChannelName: MethodStringName1<InputEventMIDI, Unit, Int> =
+        MethodStringName1<InputEventMIDI, Unit, Int>("set_channel")
+
+    @JvmField
+    public val getChannelName: MethodStringName0<InputEventMIDI, Int> =
+        MethodStringName0<InputEventMIDI, Int>("get_channel")
+
+    @JvmField
+    public val setMessageName: MethodStringName1<InputEventMIDI, Unit, MIDIMessage> =
+        MethodStringName1<InputEventMIDI, Unit, MIDIMessage>("set_message")
+
+    @JvmField
+    public val getMessageName: MethodStringName0<InputEventMIDI, MIDIMessage> =
+        MethodStringName0<InputEventMIDI, MIDIMessage>("get_message")
+
+    @JvmField
+    public val setPitchName: MethodStringName1<InputEventMIDI, Unit, Int> =
+        MethodStringName1<InputEventMIDI, Unit, Int>("set_pitch")
+
+    @JvmField
+    public val getPitchName: MethodStringName0<InputEventMIDI, Int> =
+        MethodStringName0<InputEventMIDI, Int>("get_pitch")
+
+    @JvmField
+    public val setVelocityName: MethodStringName1<InputEventMIDI, Unit, Int> =
+        MethodStringName1<InputEventMIDI, Unit, Int>("set_velocity")
+
+    @JvmField
+    public val getVelocityName: MethodStringName0<InputEventMIDI, Int> =
+        MethodStringName0<InputEventMIDI, Int>("get_velocity")
+
+    @JvmField
+    public val setInstrumentName: MethodStringName1<InputEventMIDI, Unit, Int> =
+        MethodStringName1<InputEventMIDI, Unit, Int>("set_instrument")
+
+    @JvmField
+    public val getInstrumentName: MethodStringName0<InputEventMIDI, Int> =
+        MethodStringName0<InputEventMIDI, Int>("get_instrument")
+
+    @JvmField
+    public val setPressureName: MethodStringName1<InputEventMIDI, Unit, Int> =
+        MethodStringName1<InputEventMIDI, Unit, Int>("set_pressure")
+
+    @JvmField
+    public val getPressureName: MethodStringName0<InputEventMIDI, Int> =
+        MethodStringName0<InputEventMIDI, Int>("get_pressure")
+
+    @JvmField
+    public val setControllerNumberName: MethodStringName1<InputEventMIDI, Unit, Int> =
+        MethodStringName1<InputEventMIDI, Unit, Int>("set_controller_number")
+
+    @JvmField
+    public val getControllerNumberName: MethodStringName0<InputEventMIDI, Int> =
+        MethodStringName0<InputEventMIDI, Int>("get_controller_number")
+
+    @JvmField
+    public val setControllerValueName: MethodStringName1<InputEventMIDI, Unit, Int> =
+        MethodStringName1<InputEventMIDI, Unit, Int>("set_controller_value")
+
+    @JvmField
+    public val getControllerValueName: MethodStringName0<InputEventMIDI, Int> =
+        MethodStringName0<InputEventMIDI, Int>("get_controller_value")
+  }
 
   public object MethodBindings {
     internal val setChannelPtr: VoidPtr =

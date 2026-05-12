@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.StringName
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.OBJECT
@@ -19,6 +21,7 @@ import kotlin.Boolean
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 
 /**
  * Represents an object from the Java Native Interface. It can be returned from Java methods called
@@ -58,7 +61,15 @@ public open class JavaObject : RefCounted() {
   public final fun hasJavaMethod(method: String): Boolean =
       hasJavaMethod(method.asCachedStringName())
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val getJavaClassName: MethodStringName0<JavaObject, JavaClass?> =
+        MethodStringName0<JavaObject, JavaClass?>("get_java_class")
+
+    @JvmField
+    public val hasJavaMethodName: MethodStringName1<JavaObject, Boolean, StringName> =
+        MethodStringName1<JavaObject, Boolean, StringName>("has_java_method")
+  }
 
   public object MethodBindings {
     internal val getJavaClassPtr: VoidPtr =

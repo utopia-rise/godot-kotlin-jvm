@@ -10,6 +10,11 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
+import godot.core.MethodStringName4
 import godot.core.PackedStringArray
 import godot.core.StringName
 import godot.core.VariantParser.LONG
@@ -24,6 +29,7 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -278,7 +284,58 @@ public open class Translation : Resource() {
   public final fun eraseMessage(srcMessage: String, context: String) =
       eraseMessage(srcMessage.asCachedStringName(), context.asCachedStringName())
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setLocaleName: MethodStringName1<Translation, Unit, String> =
+        MethodStringName1<Translation, Unit, String>("set_locale")
+
+    @JvmField
+    public val getLocaleName: MethodStringName0<Translation, String> =
+        MethodStringName0<Translation, String>("get_locale")
+
+    @JvmField
+    public val addMessageName:
+        MethodStringName3<Translation, Unit, StringName, StringName, StringName> =
+        MethodStringName3<Translation, Unit, StringName, StringName, StringName>("add_message")
+
+    @JvmField
+    public val addPluralMessageName:
+        MethodStringName3<Translation, Unit, StringName, PackedStringArray, StringName> =
+        MethodStringName3<Translation, Unit, StringName, PackedStringArray, StringName>("add_plural_message")
+
+    @JvmField
+    public val getMessageName: MethodStringName2<Translation, StringName, StringName, StringName> =
+        MethodStringName2<Translation, StringName, StringName, StringName>("get_message")
+
+    @JvmField
+    public val getPluralMessageName:
+        MethodStringName4<Translation, StringName, StringName, StringName, Int, StringName> =
+        MethodStringName4<Translation, StringName, StringName, StringName, Int, StringName>("get_plural_message")
+
+    @JvmField
+    public val eraseMessageName: MethodStringName2<Translation, Unit, StringName, StringName> =
+        MethodStringName2<Translation, Unit, StringName, StringName>("erase_message")
+
+    @JvmField
+    public val getMessageListName: MethodStringName0<Translation, PackedStringArray> =
+        MethodStringName0<Translation, PackedStringArray>("get_message_list")
+
+    @JvmField
+    public val getTranslatedMessageListName: MethodStringName0<Translation, PackedStringArray> =
+        MethodStringName0<Translation, PackedStringArray>("get_translated_message_list")
+
+    @JvmField
+    public val getMessageCountName: MethodStringName0<Translation, Int> =
+        MethodStringName0<Translation, Int>("get_message_count")
+
+    @JvmField
+    public val setPluralRulesOverrideName: MethodStringName1<Translation, Unit, String> =
+        MethodStringName1<Translation, Unit, String>("set_plural_rules_override")
+
+    @JvmField
+    public val getPluralRulesOverrideName: MethodStringName0<Translation, String> =
+        MethodStringName0<Translation, String>("get_plural_rules_override")
+  }
 
   public object MethodBindings {
     internal val setLocalePtr: VoidPtr =

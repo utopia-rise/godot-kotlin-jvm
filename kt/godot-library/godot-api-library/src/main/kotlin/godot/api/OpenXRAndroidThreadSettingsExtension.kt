@@ -11,12 +11,14 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import kotlin.Boolean
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -78,7 +80,12 @@ public open class OpenXRAndroidThreadSettingsExtension : OpenXRExtensionWrapper(
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setApplicationThreadTypeName:
+        MethodStringName2<OpenXRAndroidThreadSettingsExtension, Boolean, ThreadType, Long> =
+        MethodStringName2<OpenXRAndroidThreadSettingsExtension, Boolean, ThreadType, Long>("set_application_thread_type")
+  }
 
   public object MethodBindings {
     internal val setApplicationThreadTypePtr: VoidPtr =

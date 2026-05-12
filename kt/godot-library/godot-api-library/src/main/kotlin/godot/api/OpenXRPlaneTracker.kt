@@ -12,6 +12,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName3
 import godot.core.PackedInt32Array
 import godot.core.PackedVector2Array
 import godot.core.Signal0
@@ -31,6 +34,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
@@ -198,7 +202,57 @@ public open class OpenXRPlaneTracker : OpenXRSpatialEntityTracker() {
     return (TransferContext.readReturnValue(OBJECT) as Shape3D?)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setBoundsSizeName: MethodStringName1<OpenXRPlaneTracker, Unit, Vector2> =
+        MethodStringName1<OpenXRPlaneTracker, Unit, Vector2>("set_bounds_size")
+
+    @JvmField
+    public val getBoundsSizeName: MethodStringName0<OpenXRPlaneTracker, Vector2> =
+        MethodStringName0<OpenXRPlaneTracker, Vector2>("get_bounds_size")
+
+    @JvmField
+    public val setPlaneAlignmentName:
+        MethodStringName1<OpenXRPlaneTracker, Unit, OpenXRSpatialComponentPlaneAlignmentList.PlaneAlignment>
+        =
+        MethodStringName1<OpenXRPlaneTracker, Unit, OpenXRSpatialComponentPlaneAlignmentList.PlaneAlignment>("set_plane_alignment")
+
+    @JvmField
+    public val getPlaneAlignmentName:
+        MethodStringName0<OpenXRPlaneTracker, OpenXRSpatialComponentPlaneAlignmentList.PlaneAlignment>
+        =
+        MethodStringName0<OpenXRPlaneTracker, OpenXRSpatialComponentPlaneAlignmentList.PlaneAlignment>("get_plane_alignment")
+
+    @JvmField
+    public val setPlaneLabelName: MethodStringName1<OpenXRPlaneTracker, Unit, String> =
+        MethodStringName1<OpenXRPlaneTracker, Unit, String>("set_plane_label")
+
+    @JvmField
+    public val getPlaneLabelName: MethodStringName0<OpenXRPlaneTracker, String> =
+        MethodStringName0<OpenXRPlaneTracker, String>("get_plane_label")
+
+    @JvmField
+    public val setMeshDataName:
+        MethodStringName3<OpenXRPlaneTracker, Unit, Transform3D, PackedVector2Array, PackedInt32Array>
+        =
+        MethodStringName3<OpenXRPlaneTracker, Unit, Transform3D, PackedVector2Array, PackedInt32Array>("set_mesh_data")
+
+    @JvmField
+    public val clearMeshDataName: MethodStringName0<OpenXRPlaneTracker, Unit> =
+        MethodStringName0<OpenXRPlaneTracker, Unit>("clear_mesh_data")
+
+    @JvmField
+    public val getMeshOffsetName: MethodStringName0<OpenXRPlaneTracker, Transform3D> =
+        MethodStringName0<OpenXRPlaneTracker, Transform3D>("get_mesh_offset")
+
+    @JvmField
+    public val getMeshName: MethodStringName0<OpenXRPlaneTracker, Mesh?> =
+        MethodStringName0<OpenXRPlaneTracker, Mesh?>("get_mesh")
+
+    @JvmField
+    public val getShapeName: MethodStringName1<OpenXRPlaneTracker, Shape3D?, Float> =
+        MethodStringName1<OpenXRPlaneTracker, Shape3D?, Float>("get_shape")
+  }
 
   public object MethodBindings {
     internal val setBoundsSizePtr: VoidPtr =

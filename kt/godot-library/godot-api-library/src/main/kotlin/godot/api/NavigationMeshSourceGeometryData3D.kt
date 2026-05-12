@@ -13,6 +13,10 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.AABB
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName4
 import godot.core.PackedFloat32Array
 import godot.core.PackedInt32Array
 import godot.core.PackedVector3Array
@@ -33,6 +37,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -336,7 +341,89 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
     return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setVerticesName:
+        MethodStringName1<NavigationMeshSourceGeometryData3D, Unit, PackedFloat32Array> =
+        MethodStringName1<NavigationMeshSourceGeometryData3D, Unit, PackedFloat32Array>("set_vertices")
+
+    @JvmField
+    public val getVerticesName:
+        MethodStringName0<NavigationMeshSourceGeometryData3D, PackedFloat32Array> =
+        MethodStringName0<NavigationMeshSourceGeometryData3D, PackedFloat32Array>("get_vertices")
+
+    @JvmField
+    public val setIndicesName:
+        MethodStringName1<NavigationMeshSourceGeometryData3D, Unit, PackedInt32Array> =
+        MethodStringName1<NavigationMeshSourceGeometryData3D, Unit, PackedInt32Array>("set_indices")
+
+    @JvmField
+    public val getIndicesName:
+        MethodStringName0<NavigationMeshSourceGeometryData3D, PackedInt32Array> =
+        MethodStringName0<NavigationMeshSourceGeometryData3D, PackedInt32Array>("get_indices")
+
+    @JvmField
+    public val appendArraysName:
+        MethodStringName2<NavigationMeshSourceGeometryData3D, Unit, PackedFloat32Array, PackedInt32Array>
+        =
+        MethodStringName2<NavigationMeshSourceGeometryData3D, Unit, PackedFloat32Array, PackedInt32Array>("append_arrays")
+
+    @JvmField
+    public val clearName: MethodStringName0<NavigationMeshSourceGeometryData3D, Unit> =
+        MethodStringName0<NavigationMeshSourceGeometryData3D, Unit>("clear")
+
+    @JvmField
+    public val hasDataName: MethodStringName0<NavigationMeshSourceGeometryData3D, Boolean> =
+        MethodStringName0<NavigationMeshSourceGeometryData3D, Boolean>("has_data")
+
+    @JvmField
+    public val addMeshName:
+        MethodStringName2<NavigationMeshSourceGeometryData3D, Unit, Mesh?, Transform3D> =
+        MethodStringName2<NavigationMeshSourceGeometryData3D, Unit, Mesh?, Transform3D>("add_mesh")
+
+    @JvmField
+    public val addMeshArrayName:
+        MethodStringName2<NavigationMeshSourceGeometryData3D, Unit, VariantArray<Any?>, Transform3D>
+        =
+        MethodStringName2<NavigationMeshSourceGeometryData3D, Unit, VariantArray<Any?>, Transform3D>("add_mesh_array")
+
+    @JvmField
+    public val addFacesName:
+        MethodStringName2<NavigationMeshSourceGeometryData3D, Unit, PackedVector3Array, Transform3D>
+        =
+        MethodStringName2<NavigationMeshSourceGeometryData3D, Unit, PackedVector3Array, Transform3D>("add_faces")
+
+    @JvmField
+    public val mergeName:
+        MethodStringName1<NavigationMeshSourceGeometryData3D, Unit, NavigationMeshSourceGeometryData3D?>
+        =
+        MethodStringName1<NavigationMeshSourceGeometryData3D, Unit, NavigationMeshSourceGeometryData3D?>("merge")
+
+    @JvmField
+    public val addProjectedObstructionName:
+        MethodStringName4<NavigationMeshSourceGeometryData3D, Unit, PackedVector3Array, Float, Float, Boolean>
+        =
+        MethodStringName4<NavigationMeshSourceGeometryData3D, Unit, PackedVector3Array, Float, Float, Boolean>("add_projected_obstruction")
+
+    @JvmField
+    public val clearProjectedObstructionsName:
+        MethodStringName0<NavigationMeshSourceGeometryData3D, Unit> =
+        MethodStringName0<NavigationMeshSourceGeometryData3D, Unit>("clear_projected_obstructions")
+
+    @JvmField
+    public val setProjectedObstructionsName:
+        MethodStringName1<NavigationMeshSourceGeometryData3D, Unit, VariantArray<Any?>> =
+        MethodStringName1<NavigationMeshSourceGeometryData3D, Unit, VariantArray<Any?>>("set_projected_obstructions")
+
+    @JvmField
+    public val getProjectedObstructionsName:
+        MethodStringName0<NavigationMeshSourceGeometryData3D, VariantArray<Any?>> =
+        MethodStringName0<NavigationMeshSourceGeometryData3D, VariantArray<Any?>>("get_projected_obstructions")
+
+    @JvmField
+    public val getBoundsName: MethodStringName0<NavigationMeshSourceGeometryData3D, AABB> =
+        MethodStringName0<NavigationMeshSourceGeometryData3D, AABB>("get_bounds")
+  }
 
   public object MethodBindings {
     internal val setVerticesPtr: VoidPtr =

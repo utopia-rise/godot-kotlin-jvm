@@ -10,12 +10,14 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 
 /**
  * Object for storing OpenXR spatial entity component data.
@@ -58,7 +60,11 @@ public open class OpenXRSpatialComponentData : RefCounted() {
     TransferContext.callMethod(ptr, MethodBindings.setCapacityPtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setCapacityName: MethodStringName1<OpenXRSpatialComponentData, Unit, Long> =
+        MethodStringName1<OpenXRSpatialComponentData, Unit, Long>("set_capacity")
+  }
 
   public object MethodBindings {
     internal val setCapacityPtr: VoidPtr =

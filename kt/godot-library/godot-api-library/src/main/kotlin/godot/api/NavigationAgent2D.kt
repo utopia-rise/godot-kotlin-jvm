@@ -14,6 +14,9 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.Dictionary
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.PackedVector2Array
 import godot.core.RID
 import godot.core.Signal0
@@ -36,6 +39,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -1168,7 +1172,338 @@ public open class NavigationAgent2D : Node() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val getRidName: MethodStringName0<NavigationAgent2D, RID> =
+        MethodStringName0<NavigationAgent2D, RID>("get_rid")
+
+    @JvmField
+    public val setAvoidanceEnabledName: MethodStringName1<NavigationAgent2D, Unit, Boolean> =
+        MethodStringName1<NavigationAgent2D, Unit, Boolean>("set_avoidance_enabled")
+
+    @JvmField
+    public val getAvoidanceEnabledName: MethodStringName0<NavigationAgent2D, Boolean> =
+        MethodStringName0<NavigationAgent2D, Boolean>("get_avoidance_enabled")
+
+    @JvmField
+    public val setPathDesiredDistanceName: MethodStringName1<NavigationAgent2D, Unit, Float> =
+        MethodStringName1<NavigationAgent2D, Unit, Float>("set_path_desired_distance")
+
+    @JvmField
+    public val getPathDesiredDistanceName: MethodStringName0<NavigationAgent2D, Float> =
+        MethodStringName0<NavigationAgent2D, Float>("get_path_desired_distance")
+
+    @JvmField
+    public val setTargetDesiredDistanceName: MethodStringName1<NavigationAgent2D, Unit, Float> =
+        MethodStringName1<NavigationAgent2D, Unit, Float>("set_target_desired_distance")
+
+    @JvmField
+    public val getTargetDesiredDistanceName: MethodStringName0<NavigationAgent2D, Float> =
+        MethodStringName0<NavigationAgent2D, Float>("get_target_desired_distance")
+
+    @JvmField
+    public val setRadiusName: MethodStringName1<NavigationAgent2D, Unit, Float> =
+        MethodStringName1<NavigationAgent2D, Unit, Float>("set_radius")
+
+    @JvmField
+    public val getRadiusName: MethodStringName0<NavigationAgent2D, Float> =
+        MethodStringName0<NavigationAgent2D, Float>("get_radius")
+
+    @JvmField
+    public val setNeighborDistanceName: MethodStringName1<NavigationAgent2D, Unit, Float> =
+        MethodStringName1<NavigationAgent2D, Unit, Float>("set_neighbor_distance")
+
+    @JvmField
+    public val getNeighborDistanceName: MethodStringName0<NavigationAgent2D, Float> =
+        MethodStringName0<NavigationAgent2D, Float>("get_neighbor_distance")
+
+    @JvmField
+    public val setMaxNeighborsName: MethodStringName1<NavigationAgent2D, Unit, Int> =
+        MethodStringName1<NavigationAgent2D, Unit, Int>("set_max_neighbors")
+
+    @JvmField
+    public val getMaxNeighborsName: MethodStringName0<NavigationAgent2D, Int> =
+        MethodStringName0<NavigationAgent2D, Int>("get_max_neighbors")
+
+    @JvmField
+    public val setTimeHorizonAgentsName: MethodStringName1<NavigationAgent2D, Unit, Float> =
+        MethodStringName1<NavigationAgent2D, Unit, Float>("set_time_horizon_agents")
+
+    @JvmField
+    public val getTimeHorizonAgentsName: MethodStringName0<NavigationAgent2D, Float> =
+        MethodStringName0<NavigationAgent2D, Float>("get_time_horizon_agents")
+
+    @JvmField
+    public val setTimeHorizonObstaclesName: MethodStringName1<NavigationAgent2D, Unit, Float> =
+        MethodStringName1<NavigationAgent2D, Unit, Float>("set_time_horizon_obstacles")
+
+    @JvmField
+    public val getTimeHorizonObstaclesName: MethodStringName0<NavigationAgent2D, Float> =
+        MethodStringName0<NavigationAgent2D, Float>("get_time_horizon_obstacles")
+
+    @JvmField
+    public val setMaxSpeedName: MethodStringName1<NavigationAgent2D, Unit, Float> =
+        MethodStringName1<NavigationAgent2D, Unit, Float>("set_max_speed")
+
+    @JvmField
+    public val getMaxSpeedName: MethodStringName0<NavigationAgent2D, Float> =
+        MethodStringName0<NavigationAgent2D, Float>("get_max_speed")
+
+    @JvmField
+    public val setPathMaxDistanceName: MethodStringName1<NavigationAgent2D, Unit, Float> =
+        MethodStringName1<NavigationAgent2D, Unit, Float>("set_path_max_distance")
+
+    @JvmField
+    public val getPathMaxDistanceName: MethodStringName0<NavigationAgent2D, Float> =
+        MethodStringName0<NavigationAgent2D, Float>("get_path_max_distance")
+
+    @JvmField
+    public val setNavigationLayersName: MethodStringName1<NavigationAgent2D, Unit, Long> =
+        MethodStringName1<NavigationAgent2D, Unit, Long>("set_navigation_layers")
+
+    @JvmField
+    public val getNavigationLayersName: MethodStringName0<NavigationAgent2D, Long> =
+        MethodStringName0<NavigationAgent2D, Long>("get_navigation_layers")
+
+    @JvmField
+    public val setNavigationLayerValueName: MethodStringName2<NavigationAgent2D, Unit, Int, Boolean>
+        = MethodStringName2<NavigationAgent2D, Unit, Int, Boolean>("set_navigation_layer_value")
+
+    @JvmField
+    public val getNavigationLayerValueName: MethodStringName1<NavigationAgent2D, Boolean, Int> =
+        MethodStringName1<NavigationAgent2D, Boolean, Int>("get_navigation_layer_value")
+
+    @JvmField
+    public val setPathfindingAlgorithmName:
+        MethodStringName1<NavigationAgent2D, Unit, NavigationPathQueryParameters2D.PathfindingAlgorithm>
+        =
+        MethodStringName1<NavigationAgent2D, Unit, NavigationPathQueryParameters2D.PathfindingAlgorithm>("set_pathfinding_algorithm")
+
+    @JvmField
+    public val getPathfindingAlgorithmName:
+        MethodStringName0<NavigationAgent2D, NavigationPathQueryParameters2D.PathfindingAlgorithm> =
+        MethodStringName0<NavigationAgent2D, NavigationPathQueryParameters2D.PathfindingAlgorithm>("get_pathfinding_algorithm")
+
+    @JvmField
+    public val setPathPostprocessingName:
+        MethodStringName1<NavigationAgent2D, Unit, NavigationPathQueryParameters2D.PathPostProcessing>
+        =
+        MethodStringName1<NavigationAgent2D, Unit, NavigationPathQueryParameters2D.PathPostProcessing>("set_path_postprocessing")
+
+    @JvmField
+    public val getPathPostprocessingName:
+        MethodStringName0<NavigationAgent2D, NavigationPathQueryParameters2D.PathPostProcessing> =
+        MethodStringName0<NavigationAgent2D, NavigationPathQueryParameters2D.PathPostProcessing>("get_path_postprocessing")
+
+    @JvmField
+    public val setPathMetadataFlagsName:
+        MethodStringName1<NavigationAgent2D, Unit, NavigationPathQueryParameters2D.PathMetadataFlags>
+        =
+        MethodStringName1<NavigationAgent2D, Unit, NavigationPathQueryParameters2D.PathMetadataFlags>("set_path_metadata_flags")
+
+    @JvmField
+    public val getPathMetadataFlagsName:
+        MethodStringName0<NavigationAgent2D, NavigationPathQueryParameters2D.PathMetadataFlags> =
+        MethodStringName0<NavigationAgent2D, NavigationPathQueryParameters2D.PathMetadataFlags>("get_path_metadata_flags")
+
+    @JvmField
+    public val setNavigationMapName: MethodStringName1<NavigationAgent2D, Unit, RID> =
+        MethodStringName1<NavigationAgent2D, Unit, RID>("set_navigation_map")
+
+    @JvmField
+    public val getNavigationMapName: MethodStringName0<NavigationAgent2D, RID> =
+        MethodStringName0<NavigationAgent2D, RID>("get_navigation_map")
+
+    @JvmField
+    public val setTargetPositionName: MethodStringName1<NavigationAgent2D, Unit, Vector2> =
+        MethodStringName1<NavigationAgent2D, Unit, Vector2>("set_target_position")
+
+    @JvmField
+    public val getTargetPositionName: MethodStringName0<NavigationAgent2D, Vector2> =
+        MethodStringName0<NavigationAgent2D, Vector2>("get_target_position")
+
+    @JvmField
+    public val setSimplifyPathName: MethodStringName1<NavigationAgent2D, Unit, Boolean> =
+        MethodStringName1<NavigationAgent2D, Unit, Boolean>("set_simplify_path")
+
+    @JvmField
+    public val getSimplifyPathName: MethodStringName0<NavigationAgent2D, Boolean> =
+        MethodStringName0<NavigationAgent2D, Boolean>("get_simplify_path")
+
+    @JvmField
+    public val setSimplifyEpsilonName: MethodStringName1<NavigationAgent2D, Unit, Float> =
+        MethodStringName1<NavigationAgent2D, Unit, Float>("set_simplify_epsilon")
+
+    @JvmField
+    public val getSimplifyEpsilonName: MethodStringName0<NavigationAgent2D, Float> =
+        MethodStringName0<NavigationAgent2D, Float>("get_simplify_epsilon")
+
+    @JvmField
+    public val setPathReturnMaxLengthName: MethodStringName1<NavigationAgent2D, Unit, Float> =
+        MethodStringName1<NavigationAgent2D, Unit, Float>("set_path_return_max_length")
+
+    @JvmField
+    public val getPathReturnMaxLengthName: MethodStringName0<NavigationAgent2D, Float> =
+        MethodStringName0<NavigationAgent2D, Float>("get_path_return_max_length")
+
+    @JvmField
+    public val setPathReturnMaxRadiusName: MethodStringName1<NavigationAgent2D, Unit, Float> =
+        MethodStringName1<NavigationAgent2D, Unit, Float>("set_path_return_max_radius")
+
+    @JvmField
+    public val getPathReturnMaxRadiusName: MethodStringName0<NavigationAgent2D, Float> =
+        MethodStringName0<NavigationAgent2D, Float>("get_path_return_max_radius")
+
+    @JvmField
+    public val setPathSearchMaxPolygonsName: MethodStringName1<NavigationAgent2D, Unit, Int> =
+        MethodStringName1<NavigationAgent2D, Unit, Int>("set_path_search_max_polygons")
+
+    @JvmField
+    public val getPathSearchMaxPolygonsName: MethodStringName0<NavigationAgent2D, Int> =
+        MethodStringName0<NavigationAgent2D, Int>("get_path_search_max_polygons")
+
+    @JvmField
+    public val setPathSearchMaxDistanceName: MethodStringName1<NavigationAgent2D, Unit, Float> =
+        MethodStringName1<NavigationAgent2D, Unit, Float>("set_path_search_max_distance")
+
+    @JvmField
+    public val getPathSearchMaxDistanceName: MethodStringName0<NavigationAgent2D, Float> =
+        MethodStringName0<NavigationAgent2D, Float>("get_path_search_max_distance")
+
+    @JvmField
+    public val getPathLengthName: MethodStringName0<NavigationAgent2D, Float> =
+        MethodStringName0<NavigationAgent2D, Float>("get_path_length")
+
+    @JvmField
+    public val getNextPathPositionName: MethodStringName0<NavigationAgent2D, Vector2> =
+        MethodStringName0<NavigationAgent2D, Vector2>("get_next_path_position")
+
+    @JvmField
+    public val setVelocityForcedName: MethodStringName1<NavigationAgent2D, Unit, Vector2> =
+        MethodStringName1<NavigationAgent2D, Unit, Vector2>("set_velocity_forced")
+
+    @JvmField
+    public val setVelocityName: MethodStringName1<NavigationAgent2D, Unit, Vector2> =
+        MethodStringName1<NavigationAgent2D, Unit, Vector2>("set_velocity")
+
+    @JvmField
+    public val getVelocityName: MethodStringName0<NavigationAgent2D, Vector2> =
+        MethodStringName0<NavigationAgent2D, Vector2>("get_velocity")
+
+    @JvmField
+    public val distanceToTargetName: MethodStringName0<NavigationAgent2D, Float> =
+        MethodStringName0<NavigationAgent2D, Float>("distance_to_target")
+
+    @JvmField
+    public val getCurrentNavigationResultName:
+        MethodStringName0<NavigationAgent2D, NavigationPathQueryResult2D?> =
+        MethodStringName0<NavigationAgent2D, NavigationPathQueryResult2D?>("get_current_navigation_result")
+
+    @JvmField
+    public val getCurrentNavigationPathName:
+        MethodStringName0<NavigationAgent2D, PackedVector2Array> =
+        MethodStringName0<NavigationAgent2D, PackedVector2Array>("get_current_navigation_path")
+
+    @JvmField
+    public val getCurrentNavigationPathIndexName: MethodStringName0<NavigationAgent2D, Int> =
+        MethodStringName0<NavigationAgent2D, Int>("get_current_navigation_path_index")
+
+    @JvmField
+    public val isTargetReachedName: MethodStringName0<NavigationAgent2D, Boolean> =
+        MethodStringName0<NavigationAgent2D, Boolean>("is_target_reached")
+
+    @JvmField
+    public val isTargetReachableName: MethodStringName0<NavigationAgent2D, Boolean> =
+        MethodStringName0<NavigationAgent2D, Boolean>("is_target_reachable")
+
+    @JvmField
+    public val isNavigationFinishedName: MethodStringName0<NavigationAgent2D, Boolean> =
+        MethodStringName0<NavigationAgent2D, Boolean>("is_navigation_finished")
+
+    @JvmField
+    public val getFinalPositionName: MethodStringName0<NavigationAgent2D, Vector2> =
+        MethodStringName0<NavigationAgent2D, Vector2>("get_final_position")
+
+    @JvmField
+    public val setAvoidanceLayersName: MethodStringName1<NavigationAgent2D, Unit, Long> =
+        MethodStringName1<NavigationAgent2D, Unit, Long>("set_avoidance_layers")
+
+    @JvmField
+    public val getAvoidanceLayersName: MethodStringName0<NavigationAgent2D, Long> =
+        MethodStringName0<NavigationAgent2D, Long>("get_avoidance_layers")
+
+    @JvmField
+    public val setAvoidanceMaskName: MethodStringName1<NavigationAgent2D, Unit, Long> =
+        MethodStringName1<NavigationAgent2D, Unit, Long>("set_avoidance_mask")
+
+    @JvmField
+    public val getAvoidanceMaskName: MethodStringName0<NavigationAgent2D, Long> =
+        MethodStringName0<NavigationAgent2D, Long>("get_avoidance_mask")
+
+    @JvmField
+    public val setAvoidanceLayerValueName: MethodStringName2<NavigationAgent2D, Unit, Int, Boolean>
+        = MethodStringName2<NavigationAgent2D, Unit, Int, Boolean>("set_avoidance_layer_value")
+
+    @JvmField
+    public val getAvoidanceLayerValueName: MethodStringName1<NavigationAgent2D, Boolean, Int> =
+        MethodStringName1<NavigationAgent2D, Boolean, Int>("get_avoidance_layer_value")
+
+    @JvmField
+    public val setAvoidanceMaskValueName: MethodStringName2<NavigationAgent2D, Unit, Int, Boolean> =
+        MethodStringName2<NavigationAgent2D, Unit, Int, Boolean>("set_avoidance_mask_value")
+
+    @JvmField
+    public val getAvoidanceMaskValueName: MethodStringName1<NavigationAgent2D, Boolean, Int> =
+        MethodStringName1<NavigationAgent2D, Boolean, Int>("get_avoidance_mask_value")
+
+    @JvmField
+    public val setAvoidancePriorityName: MethodStringName1<NavigationAgent2D, Unit, Float> =
+        MethodStringName1<NavigationAgent2D, Unit, Float>("set_avoidance_priority")
+
+    @JvmField
+    public val getAvoidancePriorityName: MethodStringName0<NavigationAgent2D, Float> =
+        MethodStringName0<NavigationAgent2D, Float>("get_avoidance_priority")
+
+    @JvmField
+    public val setDebugEnabledName: MethodStringName1<NavigationAgent2D, Unit, Boolean> =
+        MethodStringName1<NavigationAgent2D, Unit, Boolean>("set_debug_enabled")
+
+    @JvmField
+    public val getDebugEnabledName: MethodStringName0<NavigationAgent2D, Boolean> =
+        MethodStringName0<NavigationAgent2D, Boolean>("get_debug_enabled")
+
+    @JvmField
+    public val setDebugUseCustomName: MethodStringName1<NavigationAgent2D, Unit, Boolean> =
+        MethodStringName1<NavigationAgent2D, Unit, Boolean>("set_debug_use_custom")
+
+    @JvmField
+    public val getDebugUseCustomName: MethodStringName0<NavigationAgent2D, Boolean> =
+        MethodStringName0<NavigationAgent2D, Boolean>("get_debug_use_custom")
+
+    @JvmField
+    public val setDebugPathCustomColorName: MethodStringName1<NavigationAgent2D, Unit, Color> =
+        MethodStringName1<NavigationAgent2D, Unit, Color>("set_debug_path_custom_color")
+
+    @JvmField
+    public val getDebugPathCustomColorName: MethodStringName0<NavigationAgent2D, Color> =
+        MethodStringName0<NavigationAgent2D, Color>("get_debug_path_custom_color")
+
+    @JvmField
+    public val setDebugPathCustomPointSizeName: MethodStringName1<NavigationAgent2D, Unit, Float> =
+        MethodStringName1<NavigationAgent2D, Unit, Float>("set_debug_path_custom_point_size")
+
+    @JvmField
+    public val getDebugPathCustomPointSizeName: MethodStringName0<NavigationAgent2D, Float> =
+        MethodStringName0<NavigationAgent2D, Float>("get_debug_path_custom_point_size")
+
+    @JvmField
+    public val setDebugPathCustomLineWidthName: MethodStringName1<NavigationAgent2D, Unit, Float> =
+        MethodStringName1<NavigationAgent2D, Unit, Float>("set_debug_path_custom_line_width")
+
+    @JvmField
+    public val getDebugPathCustomLineWidthName: MethodStringName0<NavigationAgent2D, Float> =
+        MethodStringName0<NavigationAgent2D, Float>("get_debug_path_custom_line_width")
+  }
 
   public object MethodBindings {
     internal val getRidPtr: VoidPtr =

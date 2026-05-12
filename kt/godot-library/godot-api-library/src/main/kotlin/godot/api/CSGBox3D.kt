@@ -12,12 +12,15 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -105,7 +108,23 @@ public open class CSGBox3D : CSGPrimitive3D() {
     return (TransferContext.readReturnValue(OBJECT) as Material?)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setSizeName: MethodStringName1<CSGBox3D, Unit, Vector3> =
+        MethodStringName1<CSGBox3D, Unit, Vector3>("set_size")
+
+    @JvmField
+    public val getSizeName: MethodStringName0<CSGBox3D, Vector3> =
+        MethodStringName0<CSGBox3D, Vector3>("get_size")
+
+    @JvmField
+    public val setMaterialName: MethodStringName1<CSGBox3D, Unit, Material?> =
+        MethodStringName1<CSGBox3D, Unit, Material?>("set_material")
+
+    @JvmField
+    public val getMaterialName: MethodStringName0<CSGBox3D, Material?> =
+        MethodStringName0<CSGBox3D, Material?>("get_material")
+  }
 
   public object MethodBindings {
     internal val setSizePtr: VoidPtr =

@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -20,6 +22,7 @@ import kotlin.Float
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -280,7 +283,106 @@ public open class RDPipelineRasterizationState : RefCounted() {
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setEnableDepthClampName:
+        MethodStringName1<RDPipelineRasterizationState, Unit, Boolean> =
+        MethodStringName1<RDPipelineRasterizationState, Unit, Boolean>("set_enable_depth_clamp")
+
+    @JvmField
+    public val getEnableDepthClampName: MethodStringName0<RDPipelineRasterizationState, Boolean> =
+        MethodStringName0<RDPipelineRasterizationState, Boolean>("get_enable_depth_clamp")
+
+    @JvmField
+    public val setDiscardPrimitivesName:
+        MethodStringName1<RDPipelineRasterizationState, Unit, Boolean> =
+        MethodStringName1<RDPipelineRasterizationState, Unit, Boolean>("set_discard_primitives")
+
+    @JvmField
+    public val getDiscardPrimitivesName: MethodStringName0<RDPipelineRasterizationState, Boolean> =
+        MethodStringName0<RDPipelineRasterizationState, Boolean>("get_discard_primitives")
+
+    @JvmField
+    public val setWireframeName: MethodStringName1<RDPipelineRasterizationState, Unit, Boolean> =
+        MethodStringName1<RDPipelineRasterizationState, Unit, Boolean>("set_wireframe")
+
+    @JvmField
+    public val getWireframeName: MethodStringName0<RDPipelineRasterizationState, Boolean> =
+        MethodStringName0<RDPipelineRasterizationState, Boolean>("get_wireframe")
+
+    @JvmField
+    public val setCullModeName:
+        MethodStringName1<RDPipelineRasterizationState, Unit, RenderingDevice.PolygonCullMode> =
+        MethodStringName1<RDPipelineRasterizationState, Unit, RenderingDevice.PolygonCullMode>("set_cull_mode")
+
+    @JvmField
+    public val getCullModeName:
+        MethodStringName0<RDPipelineRasterizationState, RenderingDevice.PolygonCullMode> =
+        MethodStringName0<RDPipelineRasterizationState, RenderingDevice.PolygonCullMode>("get_cull_mode")
+
+    @JvmField
+    public val setFrontFaceName:
+        MethodStringName1<RDPipelineRasterizationState, Unit, RenderingDevice.PolygonFrontFace> =
+        MethodStringName1<RDPipelineRasterizationState, Unit, RenderingDevice.PolygonFrontFace>("set_front_face")
+
+    @JvmField
+    public val getFrontFaceName:
+        MethodStringName0<RDPipelineRasterizationState, RenderingDevice.PolygonFrontFace> =
+        MethodStringName0<RDPipelineRasterizationState, RenderingDevice.PolygonFrontFace>("get_front_face")
+
+    @JvmField
+    public val setDepthBiasEnabledName:
+        MethodStringName1<RDPipelineRasterizationState, Unit, Boolean> =
+        MethodStringName1<RDPipelineRasterizationState, Unit, Boolean>("set_depth_bias_enabled")
+
+    @JvmField
+    public val getDepthBiasEnabledName: MethodStringName0<RDPipelineRasterizationState, Boolean> =
+        MethodStringName0<RDPipelineRasterizationState, Boolean>("get_depth_bias_enabled")
+
+    @JvmField
+    public val setDepthBiasConstantFactorName:
+        MethodStringName1<RDPipelineRasterizationState, Unit, Float> =
+        MethodStringName1<RDPipelineRasterizationState, Unit, Float>("set_depth_bias_constant_factor")
+
+    @JvmField
+    public val getDepthBiasConstantFactorName:
+        MethodStringName0<RDPipelineRasterizationState, Float> =
+        MethodStringName0<RDPipelineRasterizationState, Float>("get_depth_bias_constant_factor")
+
+    @JvmField
+    public val setDepthBiasClampName: MethodStringName1<RDPipelineRasterizationState, Unit, Float> =
+        MethodStringName1<RDPipelineRasterizationState, Unit, Float>("set_depth_bias_clamp")
+
+    @JvmField
+    public val getDepthBiasClampName: MethodStringName0<RDPipelineRasterizationState, Float> =
+        MethodStringName0<RDPipelineRasterizationState, Float>("get_depth_bias_clamp")
+
+    @JvmField
+    public val setDepthBiasSlopeFactorName:
+        MethodStringName1<RDPipelineRasterizationState, Unit, Float> =
+        MethodStringName1<RDPipelineRasterizationState, Unit, Float>("set_depth_bias_slope_factor")
+
+    @JvmField
+    public val getDepthBiasSlopeFactorName: MethodStringName0<RDPipelineRasterizationState, Float> =
+        MethodStringName0<RDPipelineRasterizationState, Float>("get_depth_bias_slope_factor")
+
+    @JvmField
+    public val setLineWidthName: MethodStringName1<RDPipelineRasterizationState, Unit, Float> =
+        MethodStringName1<RDPipelineRasterizationState, Unit, Float>("set_line_width")
+
+    @JvmField
+    public val getLineWidthName: MethodStringName0<RDPipelineRasterizationState, Float> =
+        MethodStringName0<RDPipelineRasterizationState, Float>("get_line_width")
+
+    @JvmField
+    public val setPatchControlPointsName:
+        MethodStringName1<RDPipelineRasterizationState, Unit, Long> =
+        MethodStringName1<RDPipelineRasterizationState, Unit, Long>("set_patch_control_points")
+
+    @JvmField
+    public val getPatchControlPointsName: MethodStringName0<RDPipelineRasterizationState, Long> =
+        MethodStringName0<RDPipelineRasterizationState, Long>("get_patch_control_points")
+  }
 
   public object MethodBindings {
     internal val setEnableDepthClampPtr: VoidPtr =

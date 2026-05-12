@@ -10,12 +10,15 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import kotlin.Double
 import kotlin.Float
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -49,7 +52,15 @@ public open class VisualShaderNodeFloatConstant : VisualShaderNodeConstant() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setConstantName: MethodStringName1<VisualShaderNodeFloatConstant, Unit, Float> =
+        MethodStringName1<VisualShaderNodeFloatConstant, Unit, Float>("set_constant")
+
+    @JvmField
+    public val getConstantName: MethodStringName0<VisualShaderNodeFloatConstant, Float> =
+        MethodStringName0<VisualShaderNodeFloatConstant, Float>("get_constant")
+  }
 
   public object MethodBindings {
     internal val setConstantPtr: VoidPtr =

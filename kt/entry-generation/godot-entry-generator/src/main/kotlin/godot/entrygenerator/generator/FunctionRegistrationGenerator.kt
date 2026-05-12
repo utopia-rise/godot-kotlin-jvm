@@ -79,7 +79,9 @@ object FunctionRegistrationGenerator {
     }
 
     private fun RegisteredFunction.isNotificationFunction() =
-        this.isOverridee && this.name == GodotFunctions.notification
+        this.name == GodotFunctions.notification &&
+            this.parameters.isEmpty() &&
+            this.returnType?.fqName == "$godotCorePackage.GodotNotification"
 
     private fun getFunctionTemplateString(registeredFunction: RegisteredFunction) = buildString {
         val variantType = if (registeredFunction.returnType?.isEnum() == true) {

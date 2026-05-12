@@ -10,12 +10,15 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -78,7 +81,19 @@ public open class ConfirmationDialog : AcceptDialog() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val getCancelButtonName: MethodStringName0<ConfirmationDialog, Button?> =
+        MethodStringName0<ConfirmationDialog, Button?>("get_cancel_button")
+
+    @JvmField
+    public val setCancelButtonTextName: MethodStringName1<ConfirmationDialog, Unit, String> =
+        MethodStringName1<ConfirmationDialog, Unit, String>("set_cancel_button_text")
+
+    @JvmField
+    public val getCancelButtonTextName: MethodStringName0<ConfirmationDialog, String> =
+        MethodStringName0<ConfirmationDialog, String>("get_cancel_button_text")
+  }
 
   public object MethodBindings {
     internal val getCancelButtonPtr: VoidPtr =

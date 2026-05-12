@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
 import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Double
@@ -17,6 +18,7 @@ import kotlin.Float
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 
 @GodotBaseType
 public abstract class AudioStreamPlaybackResampled : AudioStreamPlayback() {
@@ -59,7 +61,11 @@ public abstract class AudioStreamPlaybackResampled : AudioStreamPlayback() {
     throw NotImplementedError("AudioStreamPlaybackResampled::_getPlaybackPosition can't be called from the JVM.")
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val beginResampleName: MethodStringName0<AudioStreamPlaybackResampled, Unit> =
+        MethodStringName0<AudioStreamPlaybackResampled, Unit>("begin_resample")
+  }
 
   public object MethodBindings {
     internal val beginResamplePtr: VoidPtr =

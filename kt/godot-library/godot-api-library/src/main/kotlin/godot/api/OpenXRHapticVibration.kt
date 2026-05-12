@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -18,6 +20,7 @@ import kotlin.Float
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -98,7 +101,31 @@ public open class OpenXRHapticVibration : OpenXRHapticBase() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setDurationName: MethodStringName1<OpenXRHapticVibration, Unit, Long> =
+        MethodStringName1<OpenXRHapticVibration, Unit, Long>("set_duration")
+
+    @JvmField
+    public val getDurationName: MethodStringName0<OpenXRHapticVibration, Long> =
+        MethodStringName0<OpenXRHapticVibration, Long>("get_duration")
+
+    @JvmField
+    public val setFrequencyName: MethodStringName1<OpenXRHapticVibration, Unit, Float> =
+        MethodStringName1<OpenXRHapticVibration, Unit, Float>("set_frequency")
+
+    @JvmField
+    public val getFrequencyName: MethodStringName0<OpenXRHapticVibration, Float> =
+        MethodStringName0<OpenXRHapticVibration, Float>("get_frequency")
+
+    @JvmField
+    public val setAmplitudeName: MethodStringName1<OpenXRHapticVibration, Unit, Float> =
+        MethodStringName1<OpenXRHapticVibration, Unit, Float>("set_amplitude")
+
+    @JvmField
+    public val getAmplitudeName: MethodStringName0<OpenXRHapticVibration, Float> =
+        MethodStringName0<OpenXRHapticVibration, Float>("get_amplitude")
+  }
 
   public object MethodBindings {
     internal val setDurationPtr: VoidPtr =

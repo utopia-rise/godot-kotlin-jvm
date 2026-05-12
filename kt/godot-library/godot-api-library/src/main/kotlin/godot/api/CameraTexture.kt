@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -19,6 +21,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -113,7 +116,31 @@ public open class CameraTexture : Texture2D() {
     throw NotImplementedError("CameraTexture::_getHeight can't be called from the JVM.")
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setCameraFeedIdName: MethodStringName1<CameraTexture, Unit, Int> =
+        MethodStringName1<CameraTexture, Unit, Int>("set_camera_feed_id")
+
+    @JvmField
+    public val getCameraFeedIdName: MethodStringName0<CameraTexture, Int> =
+        MethodStringName0<CameraTexture, Int>("get_camera_feed_id")
+
+    @JvmField
+    public val setWhichFeedName: MethodStringName1<CameraTexture, Unit, CameraServer.FeedImage> =
+        MethodStringName1<CameraTexture, Unit, CameraServer.FeedImage>("set_which_feed")
+
+    @JvmField
+    public val getWhichFeedName: MethodStringName0<CameraTexture, CameraServer.FeedImage> =
+        MethodStringName0<CameraTexture, CameraServer.FeedImage>("get_which_feed")
+
+    @JvmField
+    public val setCameraActiveName: MethodStringName1<CameraTexture, Unit, Boolean> =
+        MethodStringName1<CameraTexture, Unit, Boolean>("set_camera_active")
+
+    @JvmField
+    public val getCameraActiveName: MethodStringName0<CameraTexture, Boolean> =
+        MethodStringName0<CameraTexture, Boolean>("get_camera_active")
+  }
 
   public object MethodBindings {
     internal val setCameraFeedIdPtr: VoidPtr =

@@ -14,6 +14,15 @@ import godot.core.Color
 import godot.core.Dictionary
 import godot.core.GodotEnum
 import godot.core.InlineAlignment
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
+import godot.core.MethodStringName4
+import godot.core.MethodStringName5
+import godot.core.MethodStringName6
+import godot.core.MethodStringName7
+import godot.core.MethodStringName8
 import godot.core.PackedByteArray
 import godot.core.PackedFloat32Array
 import godot.core.PackedInt32Array
@@ -3690,7 +3699,1014 @@ public open class TextServer internal constructor() : RefCounted() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val hasFeatureName: MethodStringName1<TextServer, Boolean, Feature> =
+        MethodStringName1<TextServer, Boolean, Feature>("has_feature")
+
+    @JvmField
+    public val getNameName: MethodStringName0<TextServer, String> =
+        MethodStringName0<TextServer, String>("get_name")
+
+    @JvmField
+    public val getFeaturesName: MethodStringName0<TextServer, Long> =
+        MethodStringName0<TextServer, Long>("get_features")
+
+    @JvmField
+    public val loadSupportDataName: MethodStringName1<TextServer, Boolean, String> =
+        MethodStringName1<TextServer, Boolean, String>("load_support_data")
+
+    @JvmField
+    public val getSupportDataFilenameName: MethodStringName0<TextServer, String> =
+        MethodStringName0<TextServer, String>("get_support_data_filename")
+
+    @JvmField
+    public val getSupportDataInfoName: MethodStringName0<TextServer, String> =
+        MethodStringName0<TextServer, String>("get_support_data_info")
+
+    @JvmField
+    public val saveSupportDataName: MethodStringName1<TextServer, Boolean, String> =
+        MethodStringName1<TextServer, Boolean, String>("save_support_data")
+
+    @JvmField
+    public val getSupportDataName: MethodStringName0<TextServer, PackedByteArray> =
+        MethodStringName0<TextServer, PackedByteArray>("get_support_data")
+
+    @JvmField
+    public val isLocaleUsingSupportDataName: MethodStringName1<TextServer, Boolean, String> =
+        MethodStringName1<TextServer, Boolean, String>("is_locale_using_support_data")
+
+    @JvmField
+    public val isLocaleRightToLeftName: MethodStringName1<TextServer, Boolean, String> =
+        MethodStringName1<TextServer, Boolean, String>("is_locale_right_to_left")
+
+    @JvmField
+    public val nameToTagName: MethodStringName1<TextServer, Long, String> =
+        MethodStringName1<TextServer, Long, String>("name_to_tag")
+
+    @JvmField
+    public val tagToNameName: MethodStringName1<TextServer, String, Long> =
+        MethodStringName1<TextServer, String, Long>("tag_to_name")
+
+    @JvmField
+    public val hasName: MethodStringName1<TextServer, Boolean, RID> =
+        MethodStringName1<TextServer, Boolean, RID>("has")
+
+    @JvmField
+    public val freeRidName: MethodStringName1<TextServer, Unit, RID> =
+        MethodStringName1<TextServer, Unit, RID>("free_rid")
+
+    @JvmField
+    public val createFontName: MethodStringName0<TextServer, RID> =
+        MethodStringName0<TextServer, RID>("create_font")
+
+    @JvmField
+    public val createFontLinkedVariationName: MethodStringName1<TextServer, RID, RID> =
+        MethodStringName1<TextServer, RID, RID>("create_font_linked_variation")
+
+    @JvmField
+    public val fontSetDataName: MethodStringName2<TextServer, Unit, RID, PackedByteArray> =
+        MethodStringName2<TextServer, Unit, RID, PackedByteArray>("font_set_data")
+
+    @JvmField
+    public val fontSetFaceIndexName: MethodStringName2<TextServer, Unit, RID, Long> =
+        MethodStringName2<TextServer, Unit, RID, Long>("font_set_face_index")
+
+    @JvmField
+    public val fontGetFaceIndexName: MethodStringName1<TextServer, Long, RID> =
+        MethodStringName1<TextServer, Long, RID>("font_get_face_index")
+
+    @JvmField
+    public val fontGetFaceCountName: MethodStringName1<TextServer, Long, RID> =
+        MethodStringName1<TextServer, Long, RID>("font_get_face_count")
+
+    @JvmField
+    public val fontSetStyleName: MethodStringName2<TextServer, Unit, RID, FontStyle> =
+        MethodStringName2<TextServer, Unit, RID, FontStyle>("font_set_style")
+
+    @JvmField
+    public val fontGetStyleName: MethodStringName1<TextServer, FontStyle, RID> =
+        MethodStringName1<TextServer, FontStyle, RID>("font_get_style")
+
+    @JvmField
+    public val fontSetNameName: MethodStringName2<TextServer, Unit, RID, String> =
+        MethodStringName2<TextServer, Unit, RID, String>("font_set_name")
+
+    @JvmField
+    public val fontGetNameName: MethodStringName1<TextServer, String, RID> =
+        MethodStringName1<TextServer, String, RID>("font_get_name")
+
+    @JvmField
+    public val fontGetOtNameStringsName: MethodStringName1<TextServer, Dictionary<Any?, Any?>, RID>
+        = MethodStringName1<TextServer, Dictionary<Any?, Any?>, RID>("font_get_ot_name_strings")
+
+    @JvmField
+    public val fontSetStyleNameName: MethodStringName2<TextServer, Unit, RID, String> =
+        MethodStringName2<TextServer, Unit, RID, String>("font_set_style_name")
+
+    @JvmField
+    public val fontGetStyleNameName: MethodStringName1<TextServer, String, RID> =
+        MethodStringName1<TextServer, String, RID>("font_get_style_name")
+
+    @JvmField
+    public val fontSetWeightName: MethodStringName2<TextServer, Unit, RID, Long> =
+        MethodStringName2<TextServer, Unit, RID, Long>("font_set_weight")
+
+    @JvmField
+    public val fontGetWeightName: MethodStringName1<TextServer, Long, RID> =
+        MethodStringName1<TextServer, Long, RID>("font_get_weight")
+
+    @JvmField
+    public val fontSetStretchName: MethodStringName2<TextServer, Unit, RID, Long> =
+        MethodStringName2<TextServer, Unit, RID, Long>("font_set_stretch")
+
+    @JvmField
+    public val fontGetStretchName: MethodStringName1<TextServer, Long, RID> =
+        MethodStringName1<TextServer, Long, RID>("font_get_stretch")
+
+    @JvmField
+    public val fontSetAntialiasingName: MethodStringName2<TextServer, Unit, RID, FontAntialiasing> =
+        MethodStringName2<TextServer, Unit, RID, FontAntialiasing>("font_set_antialiasing")
+
+    @JvmField
+    public val fontGetAntialiasingName: MethodStringName1<TextServer, FontAntialiasing, RID> =
+        MethodStringName1<TextServer, FontAntialiasing, RID>("font_get_antialiasing")
+
+    @JvmField
+    public val fontSetDisableEmbeddedBitmapsName: MethodStringName2<TextServer, Unit, RID, Boolean>
+        = MethodStringName2<TextServer, Unit, RID, Boolean>("font_set_disable_embedded_bitmaps")
+
+    @JvmField
+    public val fontGetDisableEmbeddedBitmapsName: MethodStringName1<TextServer, Boolean, RID> =
+        MethodStringName1<TextServer, Boolean, RID>("font_get_disable_embedded_bitmaps")
+
+    @JvmField
+    public val fontSetGenerateMipmapsName: MethodStringName2<TextServer, Unit, RID, Boolean> =
+        MethodStringName2<TextServer, Unit, RID, Boolean>("font_set_generate_mipmaps")
+
+    @JvmField
+    public val fontGetGenerateMipmapsName: MethodStringName1<TextServer, Boolean, RID> =
+        MethodStringName1<TextServer, Boolean, RID>("font_get_generate_mipmaps")
+
+    @JvmField
+    public val fontSetMultichannelSignedDistanceFieldName:
+        MethodStringName2<TextServer, Unit, RID, Boolean> =
+        MethodStringName2<TextServer, Unit, RID, Boolean>("font_set_multichannel_signed_distance_field")
+
+    @JvmField
+    public val fontIsMultichannelSignedDistanceFieldName:
+        MethodStringName1<TextServer, Boolean, RID> =
+        MethodStringName1<TextServer, Boolean, RID>("font_is_multichannel_signed_distance_field")
+
+    @JvmField
+    public val fontSetMsdfPixelRangeName: MethodStringName2<TextServer, Unit, RID, Long> =
+        MethodStringName2<TextServer, Unit, RID, Long>("font_set_msdf_pixel_range")
+
+    @JvmField
+    public val fontGetMsdfPixelRangeName: MethodStringName1<TextServer, Long, RID> =
+        MethodStringName1<TextServer, Long, RID>("font_get_msdf_pixel_range")
+
+    @JvmField
+    public val fontSetMsdfSizeName: MethodStringName2<TextServer, Unit, RID, Long> =
+        MethodStringName2<TextServer, Unit, RID, Long>("font_set_msdf_size")
+
+    @JvmField
+    public val fontGetMsdfSizeName: MethodStringName1<TextServer, Long, RID> =
+        MethodStringName1<TextServer, Long, RID>("font_get_msdf_size")
+
+    @JvmField
+    public val fontSetFixedSizeName: MethodStringName2<TextServer, Unit, RID, Long> =
+        MethodStringName2<TextServer, Unit, RID, Long>("font_set_fixed_size")
+
+    @JvmField
+    public val fontGetFixedSizeName: MethodStringName1<TextServer, Long, RID> =
+        MethodStringName1<TextServer, Long, RID>("font_get_fixed_size")
+
+    @JvmField
+    public val fontSetFixedSizeScaleModeName:
+        MethodStringName2<TextServer, Unit, RID, FixedSizeScaleMode> =
+        MethodStringName2<TextServer, Unit, RID, FixedSizeScaleMode>("font_set_fixed_size_scale_mode")
+
+    @JvmField
+    public val fontGetFixedSizeScaleModeName: MethodStringName1<TextServer, FixedSizeScaleMode, RID>
+        = MethodStringName1<TextServer, FixedSizeScaleMode, RID>("font_get_fixed_size_scale_mode")
+
+    @JvmField
+    public val fontSetAllowSystemFallbackName: MethodStringName2<TextServer, Unit, RID, Boolean> =
+        MethodStringName2<TextServer, Unit, RID, Boolean>("font_set_allow_system_fallback")
+
+    @JvmField
+    public val fontIsAllowSystemFallbackName: MethodStringName1<TextServer, Boolean, RID> =
+        MethodStringName1<TextServer, Boolean, RID>("font_is_allow_system_fallback")
+
+    @JvmField
+    public val fontClearSystemFallbackCacheName: MethodStringName0<TextServer, Unit> =
+        MethodStringName0<TextServer, Unit>("font_clear_system_fallback_cache")
+
+    @JvmField
+    public val fontSetForceAutohinterName: MethodStringName2<TextServer, Unit, RID, Boolean> =
+        MethodStringName2<TextServer, Unit, RID, Boolean>("font_set_force_autohinter")
+
+    @JvmField
+    public val fontIsForceAutohinterName: MethodStringName1<TextServer, Boolean, RID> =
+        MethodStringName1<TextServer, Boolean, RID>("font_is_force_autohinter")
+
+    @JvmField
+    public val fontSetModulateColorGlyphsName: MethodStringName2<TextServer, Unit, RID, Boolean> =
+        MethodStringName2<TextServer, Unit, RID, Boolean>("font_set_modulate_color_glyphs")
+
+    @JvmField
+    public val fontIsModulateColorGlyphsName: MethodStringName1<TextServer, Boolean, RID> =
+        MethodStringName1<TextServer, Boolean, RID>("font_is_modulate_color_glyphs")
+
+    @JvmField
+    public val fontSetHintingName: MethodStringName2<TextServer, Unit, RID, Hinting> =
+        MethodStringName2<TextServer, Unit, RID, Hinting>("font_set_hinting")
+
+    @JvmField
+    public val fontGetHintingName: MethodStringName1<TextServer, Hinting, RID> =
+        MethodStringName1<TextServer, Hinting, RID>("font_get_hinting")
+
+    @JvmField
+    public val fontSetSubpixelPositioningName:
+        MethodStringName2<TextServer, Unit, RID, SubpixelPositioning> =
+        MethodStringName2<TextServer, Unit, RID, SubpixelPositioning>("font_set_subpixel_positioning")
+
+    @JvmField
+    public val fontGetSubpixelPositioningName:
+        MethodStringName1<TextServer, SubpixelPositioning, RID> =
+        MethodStringName1<TextServer, SubpixelPositioning, RID>("font_get_subpixel_positioning")
+
+    @JvmField
+    public val fontSetKeepRoundingRemaindersName: MethodStringName2<TextServer, Unit, RID, Boolean>
+        = MethodStringName2<TextServer, Unit, RID, Boolean>("font_set_keep_rounding_remainders")
+
+    @JvmField
+    public val fontGetKeepRoundingRemaindersName: MethodStringName1<TextServer, Boolean, RID> =
+        MethodStringName1<TextServer, Boolean, RID>("font_get_keep_rounding_remainders")
+
+    @JvmField
+    public val fontSetEmboldenName: MethodStringName2<TextServer, Unit, RID, Double> =
+        MethodStringName2<TextServer, Unit, RID, Double>("font_set_embolden")
+
+    @JvmField
+    public val fontGetEmboldenName: MethodStringName1<TextServer, Double, RID> =
+        MethodStringName1<TextServer, Double, RID>("font_get_embolden")
+
+    @JvmField
+    public val fontSetSpacingName: MethodStringName3<TextServer, Unit, RID, SpacingType, Long> =
+        MethodStringName3<TextServer, Unit, RID, SpacingType, Long>("font_set_spacing")
+
+    @JvmField
+    public val fontGetSpacingName: MethodStringName2<TextServer, Long, RID, SpacingType> =
+        MethodStringName2<TextServer, Long, RID, SpacingType>("font_get_spacing")
+
+    @JvmField
+    public val fontSetBaselineOffsetName: MethodStringName2<TextServer, Unit, RID, Double> =
+        MethodStringName2<TextServer, Unit, RID, Double>("font_set_baseline_offset")
+
+    @JvmField
+    public val fontGetBaselineOffsetName: MethodStringName1<TextServer, Double, RID> =
+        MethodStringName1<TextServer, Double, RID>("font_get_baseline_offset")
+
+    @JvmField
+    public val fontSetTransformName: MethodStringName2<TextServer, Unit, RID, Transform2D> =
+        MethodStringName2<TextServer, Unit, RID, Transform2D>("font_set_transform")
+
+    @JvmField
+    public val fontGetTransformName: MethodStringName1<TextServer, Transform2D, RID> =
+        MethodStringName1<TextServer, Transform2D, RID>("font_get_transform")
+
+    @JvmField
+    public val fontSetVariationCoordinatesName:
+        MethodStringName2<TextServer, Unit, RID, Dictionary<Any?, Any?>> =
+        MethodStringName2<TextServer, Unit, RID, Dictionary<Any?, Any?>>("font_set_variation_coordinates")
+
+    @JvmField
+    public val fontGetVariationCoordinatesName:
+        MethodStringName1<TextServer, Dictionary<Any?, Any?>, RID> =
+        MethodStringName1<TextServer, Dictionary<Any?, Any?>, RID>("font_get_variation_coordinates")
+
+    @JvmField
+    public val fontSetOversamplingName: MethodStringName2<TextServer, Unit, RID, Double> =
+        MethodStringName2<TextServer, Unit, RID, Double>("font_set_oversampling")
+
+    @JvmField
+    public val fontGetOversamplingName: MethodStringName1<TextServer, Double, RID> =
+        MethodStringName1<TextServer, Double, RID>("font_get_oversampling")
+
+    @JvmField
+    public val fontGetSizeCacheListName: MethodStringName1<TextServer, VariantArray<Vector2i>, RID>
+        = MethodStringName1<TextServer, VariantArray<Vector2i>, RID>("font_get_size_cache_list")
+
+    @JvmField
+    public val fontClearSizeCacheName: MethodStringName1<TextServer, Unit, RID> =
+        MethodStringName1<TextServer, Unit, RID>("font_clear_size_cache")
+
+    @JvmField
+    public val fontRemoveSizeCacheName: MethodStringName2<TextServer, Unit, RID, Vector2i> =
+        MethodStringName2<TextServer, Unit, RID, Vector2i>("font_remove_size_cache")
+
+    @JvmField
+    public val fontGetSizeCacheInfoName:
+        MethodStringName1<TextServer, VariantArray<Dictionary<Any?, Any?>>, RID> =
+        MethodStringName1<TextServer, VariantArray<Dictionary<Any?, Any?>>, RID>("font_get_size_cache_info")
+
+    @JvmField
+    public val fontSetAscentName: MethodStringName3<TextServer, Unit, RID, Long, Double> =
+        MethodStringName3<TextServer, Unit, RID, Long, Double>("font_set_ascent")
+
+    @JvmField
+    public val fontGetAscentName: MethodStringName2<TextServer, Double, RID, Long> =
+        MethodStringName2<TextServer, Double, RID, Long>("font_get_ascent")
+
+    @JvmField
+    public val fontSetDescentName: MethodStringName3<TextServer, Unit, RID, Long, Double> =
+        MethodStringName3<TextServer, Unit, RID, Long, Double>("font_set_descent")
+
+    @JvmField
+    public val fontGetDescentName: MethodStringName2<TextServer, Double, RID, Long> =
+        MethodStringName2<TextServer, Double, RID, Long>("font_get_descent")
+
+    @JvmField
+    public val fontSetUnderlinePositionName: MethodStringName3<TextServer, Unit, RID, Long, Double>
+        = MethodStringName3<TextServer, Unit, RID, Long, Double>("font_set_underline_position")
+
+    @JvmField
+    public val fontGetUnderlinePositionName: MethodStringName2<TextServer, Double, RID, Long> =
+        MethodStringName2<TextServer, Double, RID, Long>("font_get_underline_position")
+
+    @JvmField
+    public val fontSetUnderlineThicknessName: MethodStringName3<TextServer, Unit, RID, Long, Double>
+        = MethodStringName3<TextServer, Unit, RID, Long, Double>("font_set_underline_thickness")
+
+    @JvmField
+    public val fontGetUnderlineThicknessName: MethodStringName2<TextServer, Double, RID, Long> =
+        MethodStringName2<TextServer, Double, RID, Long>("font_get_underline_thickness")
+
+    @JvmField
+    public val fontSetScaleName: MethodStringName3<TextServer, Unit, RID, Long, Double> =
+        MethodStringName3<TextServer, Unit, RID, Long, Double>("font_set_scale")
+
+    @JvmField
+    public val fontGetScaleName: MethodStringName2<TextServer, Double, RID, Long> =
+        MethodStringName2<TextServer, Double, RID, Long>("font_get_scale")
+
+    @JvmField
+    public val fontGetTextureCountName: MethodStringName2<TextServer, Long, RID, Vector2i> =
+        MethodStringName2<TextServer, Long, RID, Vector2i>("font_get_texture_count")
+
+    @JvmField
+    public val fontClearTexturesName: MethodStringName2<TextServer, Unit, RID, Vector2i> =
+        MethodStringName2<TextServer, Unit, RID, Vector2i>("font_clear_textures")
+
+    @JvmField
+    public val fontRemoveTextureName: MethodStringName3<TextServer, Unit, RID, Vector2i, Long> =
+        MethodStringName3<TextServer, Unit, RID, Vector2i, Long>("font_remove_texture")
+
+    @JvmField
+    public val fontSetTextureImageName:
+        MethodStringName4<TextServer, Unit, RID, Vector2i, Long, Image?> =
+        MethodStringName4<TextServer, Unit, RID, Vector2i, Long, Image?>("font_set_texture_image")
+
+    @JvmField
+    public val fontGetTextureImageName: MethodStringName3<TextServer, Image?, RID, Vector2i, Long> =
+        MethodStringName3<TextServer, Image?, RID, Vector2i, Long>("font_get_texture_image")
+
+    @JvmField
+    public val fontSetTextureOffsetsName:
+        MethodStringName4<TextServer, Unit, RID, Vector2i, Long, PackedInt32Array> =
+        MethodStringName4<TextServer, Unit, RID, Vector2i, Long, PackedInt32Array>("font_set_texture_offsets")
+
+    @JvmField
+    public val fontGetTextureOffsetsName:
+        MethodStringName3<TextServer, PackedInt32Array, RID, Vector2i, Long> =
+        MethodStringName3<TextServer, PackedInt32Array, RID, Vector2i, Long>("font_get_texture_offsets")
+
+    @JvmField
+    public val fontGetGlyphListName: MethodStringName2<TextServer, PackedInt32Array, RID, Vector2i>
+        = MethodStringName2<TextServer, PackedInt32Array, RID, Vector2i>("font_get_glyph_list")
+
+    @JvmField
+    public val fontClearGlyphsName: MethodStringName2<TextServer, Unit, RID, Vector2i> =
+        MethodStringName2<TextServer, Unit, RID, Vector2i>("font_clear_glyphs")
+
+    @JvmField
+    public val fontRemoveGlyphName: MethodStringName3<TextServer, Unit, RID, Vector2i, Long> =
+        MethodStringName3<TextServer, Unit, RID, Vector2i, Long>("font_remove_glyph")
+
+    @JvmField
+    public val fontGetGlyphAdvanceName: MethodStringName3<TextServer, Vector2, RID, Long, Long> =
+        MethodStringName3<TextServer, Vector2, RID, Long, Long>("font_get_glyph_advance")
+
+    @JvmField
+    public val fontSetGlyphAdvanceName:
+        MethodStringName4<TextServer, Unit, RID, Long, Long, Vector2> =
+        MethodStringName4<TextServer, Unit, RID, Long, Long, Vector2>("font_set_glyph_advance")
+
+    @JvmField
+    public val fontGetGlyphOffsetName: MethodStringName3<TextServer, Vector2, RID, Vector2i, Long> =
+        MethodStringName3<TextServer, Vector2, RID, Vector2i, Long>("font_get_glyph_offset")
+
+    @JvmField
+    public val fontSetGlyphOffsetName:
+        MethodStringName4<TextServer, Unit, RID, Vector2i, Long, Vector2> =
+        MethodStringName4<TextServer, Unit, RID, Vector2i, Long, Vector2>("font_set_glyph_offset")
+
+    @JvmField
+    public val fontGetGlyphSizeName: MethodStringName3<TextServer, Vector2, RID, Vector2i, Long> =
+        MethodStringName3<TextServer, Vector2, RID, Vector2i, Long>("font_get_glyph_size")
+
+    @JvmField
+    public val fontSetGlyphSizeName:
+        MethodStringName4<TextServer, Unit, RID, Vector2i, Long, Vector2> =
+        MethodStringName4<TextServer, Unit, RID, Vector2i, Long, Vector2>("font_set_glyph_size")
+
+    @JvmField
+    public val fontGetGlyphUvRectName: MethodStringName3<TextServer, Rect2, RID, Vector2i, Long> =
+        MethodStringName3<TextServer, Rect2, RID, Vector2i, Long>("font_get_glyph_uv_rect")
+
+    @JvmField
+    public val fontSetGlyphUvRectName:
+        MethodStringName4<TextServer, Unit, RID, Vector2i, Long, Rect2> =
+        MethodStringName4<TextServer, Unit, RID, Vector2i, Long, Rect2>("font_set_glyph_uv_rect")
+
+    @JvmField
+    public val fontGetGlyphTextureIdxName: MethodStringName3<TextServer, Long, RID, Vector2i, Long>
+        = MethodStringName3<TextServer, Long, RID, Vector2i, Long>("font_get_glyph_texture_idx")
+
+    @JvmField
+    public val fontSetGlyphTextureIdxName:
+        MethodStringName4<TextServer, Unit, RID, Vector2i, Long, Long> =
+        MethodStringName4<TextServer, Unit, RID, Vector2i, Long, Long>("font_set_glyph_texture_idx")
+
+    @JvmField
+    public val fontGetGlyphTextureRidName: MethodStringName3<TextServer, RID, RID, Vector2i, Long> =
+        MethodStringName3<TextServer, RID, RID, Vector2i, Long>("font_get_glyph_texture_rid")
+
+    @JvmField
+    public val fontGetGlyphTextureSizeName:
+        MethodStringName3<TextServer, Vector2, RID, Vector2i, Long> =
+        MethodStringName3<TextServer, Vector2, RID, Vector2i, Long>("font_get_glyph_texture_size")
+
+    @JvmField
+    public val fontGetGlyphContoursName:
+        MethodStringName3<TextServer, Dictionary<Any?, Any?>, RID, Long, Long> =
+        MethodStringName3<TextServer, Dictionary<Any?, Any?>, RID, Long, Long>("font_get_glyph_contours")
+
+    @JvmField
+    public val fontGetKerningListName:
+        MethodStringName2<TextServer, VariantArray<Vector2i>, RID, Long> =
+        MethodStringName2<TextServer, VariantArray<Vector2i>, RID, Long>("font_get_kerning_list")
+
+    @JvmField
+    public val fontClearKerningMapName: MethodStringName2<TextServer, Unit, RID, Long> =
+        MethodStringName2<TextServer, Unit, RID, Long>("font_clear_kerning_map")
+
+    @JvmField
+    public val fontRemoveKerningName: MethodStringName3<TextServer, Unit, RID, Long, Vector2i> =
+        MethodStringName3<TextServer, Unit, RID, Long, Vector2i>("font_remove_kerning")
+
+    @JvmField
+    public val fontSetKerningName: MethodStringName4<TextServer, Unit, RID, Long, Vector2i, Vector2>
+        = MethodStringName4<TextServer, Unit, RID, Long, Vector2i, Vector2>("font_set_kerning")
+
+    @JvmField
+    public val fontGetKerningName: MethodStringName3<TextServer, Vector2, RID, Long, Vector2i> =
+        MethodStringName3<TextServer, Vector2, RID, Long, Vector2i>("font_get_kerning")
+
+    @JvmField
+    public val fontGetGlyphIndexName: MethodStringName4<TextServer, Long, RID, Long, Long, Long> =
+        MethodStringName4<TextServer, Long, RID, Long, Long, Long>("font_get_glyph_index")
+
+    @JvmField
+    public val fontGetCharFromGlyphIndexName: MethodStringName3<TextServer, Long, RID, Long, Long> =
+        MethodStringName3<TextServer, Long, RID, Long, Long>("font_get_char_from_glyph_index")
+
+    @JvmField
+    public val fontHasCharName: MethodStringName2<TextServer, Boolean, RID, Long> =
+        MethodStringName2<TextServer, Boolean, RID, Long>("font_has_char")
+
+    @JvmField
+    public val fontGetSupportedCharsName: MethodStringName1<TextServer, String, RID> =
+        MethodStringName1<TextServer, String, RID>("font_get_supported_chars")
+
+    @JvmField
+    public val fontGetSupportedGlyphsName: MethodStringName1<TextServer, PackedInt32Array, RID> =
+        MethodStringName1<TextServer, PackedInt32Array, RID>("font_get_supported_glyphs")
+
+    @JvmField
+    public val fontRenderRangeName: MethodStringName4<TextServer, Unit, RID, Vector2i, Long, Long> =
+        MethodStringName4<TextServer, Unit, RID, Vector2i, Long, Long>("font_render_range")
+
+    @JvmField
+    public val fontRenderGlyphName: MethodStringName3<TextServer, Unit, RID, Vector2i, Long> =
+        MethodStringName3<TextServer, Unit, RID, Vector2i, Long>("font_render_glyph")
+
+    @JvmField
+    public val fontDrawGlyphName:
+        MethodStringName7<TextServer, Unit, RID, RID, Long, Vector2, Long, Color, Float> =
+        MethodStringName7<TextServer, Unit, RID, RID, Long, Vector2, Long, Color, Float>("font_draw_glyph")
+
+    @JvmField
+    public val fontDrawGlyphOutlineName:
+        MethodStringName8<TextServer, Unit, RID, RID, Long, Long, Vector2, Long, Color, Float> =
+        MethodStringName8<TextServer, Unit, RID, RID, Long, Long, Vector2, Long, Color, Float>("font_draw_glyph_outline")
+
+    @JvmField
+    public val fontIsLanguageSupportedName: MethodStringName2<TextServer, Boolean, RID, String> =
+        MethodStringName2<TextServer, Boolean, RID, String>("font_is_language_supported")
+
+    @JvmField
+    public val fontSetLanguageSupportOverrideName:
+        MethodStringName3<TextServer, Unit, RID, String, Boolean> =
+        MethodStringName3<TextServer, Unit, RID, String, Boolean>("font_set_language_support_override")
+
+    @JvmField
+    public val fontGetLanguageSupportOverrideName:
+        MethodStringName2<TextServer, Boolean, RID, String> =
+        MethodStringName2<TextServer, Boolean, RID, String>("font_get_language_support_override")
+
+    @JvmField
+    public val fontRemoveLanguageSupportOverrideName:
+        MethodStringName2<TextServer, Unit, RID, String> =
+        MethodStringName2<TextServer, Unit, RID, String>("font_remove_language_support_override")
+
+    @JvmField
+    public val fontGetLanguageSupportOverridesName:
+        MethodStringName1<TextServer, PackedStringArray, RID> =
+        MethodStringName1<TextServer, PackedStringArray, RID>("font_get_language_support_overrides")
+
+    @JvmField
+    public val fontIsScriptSupportedName: MethodStringName2<TextServer, Boolean, RID, String> =
+        MethodStringName2<TextServer, Boolean, RID, String>("font_is_script_supported")
+
+    @JvmField
+    public val fontSetScriptSupportOverrideName:
+        MethodStringName3<TextServer, Unit, RID, String, Boolean> =
+        MethodStringName3<TextServer, Unit, RID, String, Boolean>("font_set_script_support_override")
+
+    @JvmField
+    public val fontGetScriptSupportOverrideName: MethodStringName2<TextServer, Boolean, RID, String>
+        = MethodStringName2<TextServer, Boolean, RID, String>("font_get_script_support_override")
+
+    @JvmField
+    public val fontRemoveScriptSupportOverrideName: MethodStringName2<TextServer, Unit, RID, String>
+        = MethodStringName2<TextServer, Unit, RID, String>("font_remove_script_support_override")
+
+    @JvmField
+    public val fontGetScriptSupportOverridesName:
+        MethodStringName1<TextServer, PackedStringArray, RID> =
+        MethodStringName1<TextServer, PackedStringArray, RID>("font_get_script_support_overrides")
+
+    @JvmField
+    public val fontSetOpentypeFeatureOverridesName:
+        MethodStringName2<TextServer, Unit, RID, Dictionary<Any?, Any?>> =
+        MethodStringName2<TextServer, Unit, RID, Dictionary<Any?, Any?>>("font_set_opentype_feature_overrides")
+
+    @JvmField
+    public val fontGetOpentypeFeatureOverridesName:
+        MethodStringName1<TextServer, Dictionary<Any?, Any?>, RID> =
+        MethodStringName1<TextServer, Dictionary<Any?, Any?>, RID>("font_get_opentype_feature_overrides")
+
+    @JvmField
+    public val fontSupportedFeatureListName:
+        MethodStringName1<TextServer, Dictionary<Any?, Any?>, RID> =
+        MethodStringName1<TextServer, Dictionary<Any?, Any?>, RID>("font_supported_feature_list")
+
+    @JvmField
+    public val fontSupportedVariationListName:
+        MethodStringName1<TextServer, Dictionary<Any?, Any?>, RID> =
+        MethodStringName1<TextServer, Dictionary<Any?, Any?>, RID>("font_supported_variation_list")
+
+    @JvmField
+    public val fontGetGlobalOversamplingName: MethodStringName0<TextServer, Double> =
+        MethodStringName0<TextServer, Double>("font_get_global_oversampling")
+
+    @JvmField
+    public val fontSetGlobalOversamplingName: MethodStringName1<TextServer, Unit, Double> =
+        MethodStringName1<TextServer, Unit, Double>("font_set_global_oversampling")
+
+    @JvmField
+    public val getHexCodeBoxSizeName: MethodStringName2<TextServer, Vector2, Long, Long> =
+        MethodStringName2<TextServer, Vector2, Long, Long>("get_hex_code_box_size")
+
+    @JvmField
+    public val drawHexCodeBoxName:
+        MethodStringName5<TextServer, Unit, RID, Long, Vector2, Long, Color> =
+        MethodStringName5<TextServer, Unit, RID, Long, Vector2, Long, Color>("draw_hex_code_box")
+
+    @JvmField
+    public val createShapedTextName: MethodStringName2<TextServer, RID, Direction, Orientation> =
+        MethodStringName2<TextServer, RID, Direction, Orientation>("create_shaped_text")
+
+    @JvmField
+    public val shapedTextClearName: MethodStringName1<TextServer, Unit, RID> =
+        MethodStringName1<TextServer, Unit, RID>("shaped_text_clear")
+
+    @JvmField
+    public val shapedTextDuplicateName: MethodStringName1<TextServer, RID, RID> =
+        MethodStringName1<TextServer, RID, RID>("shaped_text_duplicate")
+
+    @JvmField
+    public val shapedTextSetDirectionName: MethodStringName2<TextServer, Unit, RID, Direction> =
+        MethodStringName2<TextServer, Unit, RID, Direction>("shaped_text_set_direction")
+
+    @JvmField
+    public val shapedTextGetDirectionName: MethodStringName1<TextServer, Direction, RID> =
+        MethodStringName1<TextServer, Direction, RID>("shaped_text_get_direction")
+
+    @JvmField
+    public val shapedTextGetInferredDirectionName: MethodStringName1<TextServer, Direction, RID> =
+        MethodStringName1<TextServer, Direction, RID>("shaped_text_get_inferred_direction")
+
+    @JvmField
+    public val shapedTextSetBidiOverrideName:
+        MethodStringName2<TextServer, Unit, RID, VariantArray<Any?>> =
+        MethodStringName2<TextServer, Unit, RID, VariantArray<Any?>>("shaped_text_set_bidi_override")
+
+    @JvmField
+    public val shapedTextSetCustomPunctuationName: MethodStringName2<TextServer, Unit, RID, String>
+        = MethodStringName2<TextServer, Unit, RID, String>("shaped_text_set_custom_punctuation")
+
+    @JvmField
+    public val shapedTextGetCustomPunctuationName: MethodStringName1<TextServer, String, RID> =
+        MethodStringName1<TextServer, String, RID>("shaped_text_get_custom_punctuation")
+
+    @JvmField
+    public val shapedTextSetCustomEllipsisName: MethodStringName2<TextServer, Unit, RID, Long> =
+        MethodStringName2<TextServer, Unit, RID, Long>("shaped_text_set_custom_ellipsis")
+
+    @JvmField
+    public val shapedTextGetCustomEllipsisName: MethodStringName1<TextServer, Long, RID> =
+        MethodStringName1<TextServer, Long, RID>("shaped_text_get_custom_ellipsis")
+
+    @JvmField
+    public val shapedTextSetOrientationName: MethodStringName2<TextServer, Unit, RID, Orientation> =
+        MethodStringName2<TextServer, Unit, RID, Orientation>("shaped_text_set_orientation")
+
+    @JvmField
+    public val shapedTextGetOrientationName: MethodStringName1<TextServer, Orientation, RID> =
+        MethodStringName1<TextServer, Orientation, RID>("shaped_text_get_orientation")
+
+    @JvmField
+    public val shapedTextSetPreserveInvalidName: MethodStringName2<TextServer, Unit, RID, Boolean> =
+        MethodStringName2<TextServer, Unit, RID, Boolean>("shaped_text_set_preserve_invalid")
+
+    @JvmField
+    public val shapedTextGetPreserveInvalidName: MethodStringName1<TextServer, Boolean, RID> =
+        MethodStringName1<TextServer, Boolean, RID>("shaped_text_get_preserve_invalid")
+
+    @JvmField
+    public val shapedTextSetPreserveControlName: MethodStringName2<TextServer, Unit, RID, Boolean> =
+        MethodStringName2<TextServer, Unit, RID, Boolean>("shaped_text_set_preserve_control")
+
+    @JvmField
+    public val shapedTextGetPreserveControlName: MethodStringName1<TextServer, Boolean, RID> =
+        MethodStringName1<TextServer, Boolean, RID>("shaped_text_get_preserve_control")
+
+    @JvmField
+    public val shapedTextSetSpacingName: MethodStringName3<TextServer, Unit, RID, SpacingType, Long>
+        = MethodStringName3<TextServer, Unit, RID, SpacingType, Long>("shaped_text_set_spacing")
+
+    @JvmField
+    public val shapedTextGetSpacingName: MethodStringName2<TextServer, Long, RID, SpacingType> =
+        MethodStringName2<TextServer, Long, RID, SpacingType>("shaped_text_get_spacing")
+
+    @JvmField
+    public val shapedTextAddStringName:
+        MethodStringName7<TextServer, Boolean, RID, String, VariantArray<RID>, Long, Dictionary<Any?, Any?>, String, Any?>
+        =
+        MethodStringName7<TextServer, Boolean, RID, String, VariantArray<RID>, Long, Dictionary<Any?, Any?>, String, Any?>("shaped_text_add_string")
+
+    @JvmField
+    public val shapedTextAddObjectName:
+        MethodStringName6<TextServer, Boolean, RID, Any?, Vector2, InlineAlignment, Long, Double> =
+        MethodStringName6<TextServer, Boolean, RID, Any?, Vector2, InlineAlignment, Long, Double>("shaped_text_add_object")
+
+    @JvmField
+    public val shapedTextResizeObjectName:
+        MethodStringName5<TextServer, Boolean, RID, Any?, Vector2, InlineAlignment, Double> =
+        MethodStringName5<TextServer, Boolean, RID, Any?, Vector2, InlineAlignment, Double>("shaped_text_resize_object")
+
+    @JvmField
+    public val shapedTextHasObjectName: MethodStringName2<TextServer, Boolean, RID, Any?> =
+        MethodStringName2<TextServer, Boolean, RID, Any?>("shaped_text_has_object")
+
+    @JvmField
+    public val shapedGetTextName: MethodStringName1<TextServer, String, RID> =
+        MethodStringName1<TextServer, String, RID>("shaped_get_text")
+
+    @JvmField
+    public val shapedGetSpanCountName: MethodStringName1<TextServer, Long, RID> =
+        MethodStringName1<TextServer, Long, RID>("shaped_get_span_count")
+
+    @JvmField
+    public val shapedGetSpanMetaName: MethodStringName2<TextServer, Any?, RID, Long> =
+        MethodStringName2<TextServer, Any?, RID, Long>("shaped_get_span_meta")
+
+    @JvmField
+    public val shapedGetSpanEmbeddedObjectName: MethodStringName2<TextServer, Any?, RID, Long> =
+        MethodStringName2<TextServer, Any?, RID, Long>("shaped_get_span_embedded_object")
+
+    @JvmField
+    public val shapedGetSpanTextName: MethodStringName2<TextServer, String, RID, Long> =
+        MethodStringName2<TextServer, String, RID, Long>("shaped_get_span_text")
+
+    @JvmField
+    public val shapedGetSpanObjectName: MethodStringName2<TextServer, Any?, RID, Long> =
+        MethodStringName2<TextServer, Any?, RID, Long>("shaped_get_span_object")
+
+    @JvmField
+    public val shapedSetSpanUpdateFontName:
+        MethodStringName5<TextServer, Unit, RID, Long, VariantArray<RID>, Long, Dictionary<Any?, Any?>>
+        =
+        MethodStringName5<TextServer, Unit, RID, Long, VariantArray<RID>, Long, Dictionary<Any?, Any?>>("shaped_set_span_update_font")
+
+    @JvmField
+    public val shapedGetRunCountName: MethodStringName1<TextServer, Long, RID> =
+        MethodStringName1<TextServer, Long, RID>("shaped_get_run_count")
+
+    @JvmField
+    public val shapedGetRunTextName: MethodStringName2<TextServer, String, RID, Long> =
+        MethodStringName2<TextServer, String, RID, Long>("shaped_get_run_text")
+
+    @JvmField
+    public val shapedGetRunRangeName: MethodStringName2<TextServer, Vector2i, RID, Long> =
+        MethodStringName2<TextServer, Vector2i, RID, Long>("shaped_get_run_range")
+
+    @JvmField
+    public val shapedGetRunGlyphRangeName: MethodStringName2<TextServer, Vector2i, RID, Long> =
+        MethodStringName2<TextServer, Vector2i, RID, Long>("shaped_get_run_glyph_range")
+
+    @JvmField
+    public val shapedGetRunFontRidName: MethodStringName2<TextServer, RID, RID, Long> =
+        MethodStringName2<TextServer, RID, RID, Long>("shaped_get_run_font_rid")
+
+    @JvmField
+    public val shapedGetRunFontSizeName: MethodStringName2<TextServer, Int, RID, Long> =
+        MethodStringName2<TextServer, Int, RID, Long>("shaped_get_run_font_size")
+
+    @JvmField
+    public val shapedGetRunLanguageName: MethodStringName2<TextServer, String, RID, Long> =
+        MethodStringName2<TextServer, String, RID, Long>("shaped_get_run_language")
+
+    @JvmField
+    public val shapedGetRunDirectionName: MethodStringName2<TextServer, Direction, RID, Long> =
+        MethodStringName2<TextServer, Direction, RID, Long>("shaped_get_run_direction")
+
+    @JvmField
+    public val shapedGetRunObjectName: MethodStringName2<TextServer, Any?, RID, Long> =
+        MethodStringName2<TextServer, Any?, RID, Long>("shaped_get_run_object")
+
+    @JvmField
+    public val shapedTextSubstrName: MethodStringName3<TextServer, RID, RID, Long, Long> =
+        MethodStringName3<TextServer, RID, RID, Long, Long>("shaped_text_substr")
+
+    @JvmField
+    public val shapedTextGetParentName: MethodStringName1<TextServer, RID, RID> =
+        MethodStringName1<TextServer, RID, RID>("shaped_text_get_parent")
+
+    @JvmField
+    public val shapedTextFitToWidthName:
+        MethodStringName3<TextServer, Double, RID, Double, JustificationFlag> =
+        MethodStringName3<TextServer, Double, RID, Double, JustificationFlag>("shaped_text_fit_to_width")
+
+    @JvmField
+    public val shapedTextTabAlignName:
+        MethodStringName2<TextServer, Double, RID, PackedFloat32Array> =
+        MethodStringName2<TextServer, Double, RID, PackedFloat32Array>("shaped_text_tab_align")
+
+    @JvmField
+    public val shapedTextShapeName: MethodStringName1<TextServer, Boolean, RID> =
+        MethodStringName1<TextServer, Boolean, RID>("shaped_text_shape")
+
+    @JvmField
+    public val shapedTextIsReadyName: MethodStringName1<TextServer, Boolean, RID> =
+        MethodStringName1<TextServer, Boolean, RID>("shaped_text_is_ready")
+
+    @JvmField
+    public val shapedTextHasVisibleCharsName: MethodStringName1<TextServer, Boolean, RID> =
+        MethodStringName1<TextServer, Boolean, RID>("shaped_text_has_visible_chars")
+
+    @JvmField
+    public val shapedTextGetGlyphsName:
+        MethodStringName1<TextServer, VariantArray<Dictionary<Any?, Any?>>, RID> =
+        MethodStringName1<TextServer, VariantArray<Dictionary<Any?, Any?>>, RID>("shaped_text_get_glyphs")
+
+    @JvmField
+    public val shapedTextSortLogicalName:
+        MethodStringName1<TextServer, VariantArray<Dictionary<Any?, Any?>>, RID> =
+        MethodStringName1<TextServer, VariantArray<Dictionary<Any?, Any?>>, RID>("shaped_text_sort_logical")
+
+    @JvmField
+    public val shapedTextGetGlyphCountName: MethodStringName1<TextServer, Long, RID> =
+        MethodStringName1<TextServer, Long, RID>("shaped_text_get_glyph_count")
+
+    @JvmField
+    public val shapedTextGetRangeName: MethodStringName1<TextServer, Vector2i, RID> =
+        MethodStringName1<TextServer, Vector2i, RID>("shaped_text_get_range")
+
+    @JvmField
+    public val shapedTextGetLineBreaksAdvName:
+        MethodStringName5<TextServer, PackedInt32Array, RID, PackedFloat32Array, Long, Boolean, LineBreakFlag>
+        =
+        MethodStringName5<TextServer, PackedInt32Array, RID, PackedFloat32Array, Long, Boolean, LineBreakFlag>("shaped_text_get_line_breaks_adv")
+
+    @JvmField
+    public val shapedTextGetLineBreaksName:
+        MethodStringName4<TextServer, PackedInt32Array, RID, Double, Long, LineBreakFlag> =
+        MethodStringName4<TextServer, PackedInt32Array, RID, Double, Long, LineBreakFlag>("shaped_text_get_line_breaks")
+
+    @JvmField
+    public val shapedTextGetWordBreaksName:
+        MethodStringName3<TextServer, PackedInt32Array, RID, GraphemeFlag, GraphemeFlag> =
+        MethodStringName3<TextServer, PackedInt32Array, RID, GraphemeFlag, GraphemeFlag>("shaped_text_get_word_breaks")
+
+    @JvmField
+    public val shapedTextGetTrimPosName: MethodStringName1<TextServer, Long, RID> =
+        MethodStringName1<TextServer, Long, RID>("shaped_text_get_trim_pos")
+
+    @JvmField
+    public val shapedTextGetEllipsisPosName: MethodStringName1<TextServer, Long, RID> =
+        MethodStringName1<TextServer, Long, RID>("shaped_text_get_ellipsis_pos")
+
+    @JvmField
+    public val shapedTextGetEllipsisGlyphsName:
+        MethodStringName1<TextServer, VariantArray<Dictionary<Any?, Any?>>, RID> =
+        MethodStringName1<TextServer, VariantArray<Dictionary<Any?, Any?>>, RID>("shaped_text_get_ellipsis_glyphs")
+
+    @JvmField
+    public val shapedTextGetEllipsisGlyphCountName: MethodStringName1<TextServer, Long, RID> =
+        MethodStringName1<TextServer, Long, RID>("shaped_text_get_ellipsis_glyph_count")
+
+    @JvmField
+    public val shapedTextOverrunTrimToWidthName:
+        MethodStringName3<TextServer, Unit, RID, Double, TextOverrunFlag> =
+        MethodStringName3<TextServer, Unit, RID, Double, TextOverrunFlag>("shaped_text_overrun_trim_to_width")
+
+    @JvmField
+    public val shapedTextGetObjectsName: MethodStringName1<TextServer, VariantArray<Any?>, RID> =
+        MethodStringName1<TextServer, VariantArray<Any?>, RID>("shaped_text_get_objects")
+
+    @JvmField
+    public val shapedTextGetObjectRectName: MethodStringName2<TextServer, Rect2, RID, Any?> =
+        MethodStringName2<TextServer, Rect2, RID, Any?>("shaped_text_get_object_rect")
+
+    @JvmField
+    public val shapedTextGetObjectRangeName: MethodStringName2<TextServer, Vector2i, RID, Any?> =
+        MethodStringName2<TextServer, Vector2i, RID, Any?>("shaped_text_get_object_range")
+
+    @JvmField
+    public val shapedTextGetObjectGlyphName: MethodStringName2<TextServer, Long, RID, Any?> =
+        MethodStringName2<TextServer, Long, RID, Any?>("shaped_text_get_object_glyph")
+
+    @JvmField
+    public val shapedTextGetSizeName: MethodStringName1<TextServer, Vector2, RID> =
+        MethodStringName1<TextServer, Vector2, RID>("shaped_text_get_size")
+
+    @JvmField
+    public val shapedTextGetAscentName: MethodStringName1<TextServer, Double, RID> =
+        MethodStringName1<TextServer, Double, RID>("shaped_text_get_ascent")
+
+    @JvmField
+    public val shapedTextGetDescentName: MethodStringName1<TextServer, Double, RID> =
+        MethodStringName1<TextServer, Double, RID>("shaped_text_get_descent")
+
+    @JvmField
+    public val shapedTextGetWidthName: MethodStringName1<TextServer, Double, RID> =
+        MethodStringName1<TextServer, Double, RID>("shaped_text_get_width")
+
+    @JvmField
+    public val shapedTextGetUnderlinePositionName: MethodStringName1<TextServer, Double, RID> =
+        MethodStringName1<TextServer, Double, RID>("shaped_text_get_underline_position")
+
+    @JvmField
+    public val shapedTextGetUnderlineThicknessName: MethodStringName1<TextServer, Double, RID> =
+        MethodStringName1<TextServer, Double, RID>("shaped_text_get_underline_thickness")
+
+    @JvmField
+    public val shapedTextGetCaretsName:
+        MethodStringName2<TextServer, Dictionary<Any?, Any?>, RID, Long> =
+        MethodStringName2<TextServer, Dictionary<Any?, Any?>, RID, Long>("shaped_text_get_carets")
+
+    @JvmField
+    public val shapedTextGetSelectionName:
+        MethodStringName3<TextServer, PackedVector2Array, RID, Long, Long> =
+        MethodStringName3<TextServer, PackedVector2Array, RID, Long, Long>("shaped_text_get_selection")
+
+    @JvmField
+    public val shapedTextHitTestGraphemeName: MethodStringName2<TextServer, Long, RID, Double> =
+        MethodStringName2<TextServer, Long, RID, Double>("shaped_text_hit_test_grapheme")
+
+    @JvmField
+    public val shapedTextHitTestPositionName: MethodStringName2<TextServer, Long, RID, Double> =
+        MethodStringName2<TextServer, Long, RID, Double>("shaped_text_hit_test_position")
+
+    @JvmField
+    public val shapedTextGetGraphemeBoundsName: MethodStringName2<TextServer, Vector2, RID, Long> =
+        MethodStringName2<TextServer, Vector2, RID, Long>("shaped_text_get_grapheme_bounds")
+
+    @JvmField
+    public val shapedTextNextGraphemePosName: MethodStringName2<TextServer, Long, RID, Long> =
+        MethodStringName2<TextServer, Long, RID, Long>("shaped_text_next_grapheme_pos")
+
+    @JvmField
+    public val shapedTextPrevGraphemePosName: MethodStringName2<TextServer, Long, RID, Long> =
+        MethodStringName2<TextServer, Long, RID, Long>("shaped_text_prev_grapheme_pos")
+
+    @JvmField
+    public val shapedTextGetCharacterBreaksName:
+        MethodStringName1<TextServer, PackedInt32Array, RID> =
+        MethodStringName1<TextServer, PackedInt32Array, RID>("shaped_text_get_character_breaks")
+
+    @JvmField
+    public val shapedTextNextCharacterPosName: MethodStringName2<TextServer, Long, RID, Long> =
+        MethodStringName2<TextServer, Long, RID, Long>("shaped_text_next_character_pos")
+
+    @JvmField
+    public val shapedTextPrevCharacterPosName: MethodStringName2<TextServer, Long, RID, Long> =
+        MethodStringName2<TextServer, Long, RID, Long>("shaped_text_prev_character_pos")
+
+    @JvmField
+    public val shapedTextClosestCharacterPosName: MethodStringName2<TextServer, Long, RID, Long> =
+        MethodStringName2<TextServer, Long, RID, Long>("shaped_text_closest_character_pos")
+
+    @JvmField
+    public val shapedTextDrawName:
+        MethodStringName7<TextServer, Unit, RID, RID, Vector2, Double, Double, Color, Float> =
+        MethodStringName7<TextServer, Unit, RID, RID, Vector2, Double, Double, Color, Float>("shaped_text_draw")
+
+    @JvmField
+    public val shapedTextDrawOutlineName:
+        MethodStringName8<TextServer, Unit, RID, RID, Vector2, Double, Double, Long, Color, Float> =
+        MethodStringName8<TextServer, Unit, RID, RID, Vector2, Double, Double, Long, Color, Float>("shaped_text_draw_outline")
+
+    @JvmField
+    public val shapedTextGetDominantDirectionInRangeName:
+        MethodStringName3<TextServer, Direction, RID, Long, Long> =
+        MethodStringName3<TextServer, Direction, RID, Long, Long>("shaped_text_get_dominant_direction_in_range")
+
+    @JvmField
+    public val formatNumberName: MethodStringName2<TextServer, String, String, String> =
+        MethodStringName2<TextServer, String, String, String>("format_number")
+
+    @JvmField
+    public val parseNumberName: MethodStringName2<TextServer, String, String, String> =
+        MethodStringName2<TextServer, String, String, String>("parse_number")
+
+    @JvmField
+    public val percentSignName: MethodStringName1<TextServer, String, String> =
+        MethodStringName1<TextServer, String, String>("percent_sign")
+
+    @JvmField
+    public val stringGetWordBreaksName:
+        MethodStringName3<TextServer, PackedInt32Array, String, String, Long> =
+        MethodStringName3<TextServer, PackedInt32Array, String, String, Long>("string_get_word_breaks")
+
+    @JvmField
+    public val stringGetCharacterBreaksName:
+        MethodStringName2<TextServer, PackedInt32Array, String, String> =
+        MethodStringName2<TextServer, PackedInt32Array, String, String>("string_get_character_breaks")
+
+    @JvmField
+    public val isConfusableName: MethodStringName2<TextServer, Long, String, PackedStringArray> =
+        MethodStringName2<TextServer, Long, String, PackedStringArray>("is_confusable")
+
+    @JvmField
+    public val spoofCheckName: MethodStringName1<TextServer, Boolean, String> =
+        MethodStringName1<TextServer, Boolean, String>("spoof_check")
+
+    @JvmField
+    public val stripDiacriticsName: MethodStringName1<TextServer, String, String> =
+        MethodStringName1<TextServer, String, String>("strip_diacritics")
+
+    @JvmField
+    public val isValidIdentifierName: MethodStringName1<TextServer, Boolean, String> =
+        MethodStringName1<TextServer, Boolean, String>("is_valid_identifier")
+
+    @JvmField
+    public val isValidLetterName: MethodStringName1<TextServer, Boolean, Long> =
+        MethodStringName1<TextServer, Boolean, Long>("is_valid_letter")
+
+    @JvmField
+    public val stringToUpperName: MethodStringName2<TextServer, String, String, String> =
+        MethodStringName2<TextServer, String, String, String>("string_to_upper")
+
+    @JvmField
+    public val stringToLowerName: MethodStringName2<TextServer, String, String, String> =
+        MethodStringName2<TextServer, String, String, String>("string_to_lower")
+
+    @JvmField
+    public val stringToTitleName: MethodStringName2<TextServer, String, String, String> =
+        MethodStringName2<TextServer, String, String, String>("string_to_title")
+
+    @JvmField
+    public val parseStructuredTextName:
+        MethodStringName3<TextServer, VariantArray<Vector3i>, StructuredTextParser, VariantArray<Any?>, String>
+        =
+        MethodStringName3<TextServer, VariantArray<Vector3i>, StructuredTextParser, VariantArray<Any?>, String>("parse_structured_text")
+  }
 
   public object MethodBindings {
     internal val hasFeaturePtr: VoidPtr =

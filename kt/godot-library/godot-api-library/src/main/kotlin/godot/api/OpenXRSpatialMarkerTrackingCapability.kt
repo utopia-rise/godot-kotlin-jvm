@@ -10,10 +10,12 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
 import godot.core.VariantParser.BOOL
 import kotlin.Boolean
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 
 /**
  * This class handles the OpenXR marker tracking spatial entity extension.
@@ -60,7 +62,27 @@ public open class OpenXRSpatialMarkerTrackingCapability : OpenXRExtensionWrapper
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val isQrcodeSupportedName:
+        MethodStringName0<OpenXRSpatialMarkerTrackingCapability, Boolean> =
+        MethodStringName0<OpenXRSpatialMarkerTrackingCapability, Boolean>("is_qrcode_supported")
+
+    @JvmField
+    public val isMicroQrcodeSupportedName:
+        MethodStringName0<OpenXRSpatialMarkerTrackingCapability, Boolean> =
+        MethodStringName0<OpenXRSpatialMarkerTrackingCapability, Boolean>("is_micro_qrcode_supported")
+
+    @JvmField
+    public val isArucoSupportedName:
+        MethodStringName0<OpenXRSpatialMarkerTrackingCapability, Boolean> =
+        MethodStringName0<OpenXRSpatialMarkerTrackingCapability, Boolean>("is_aruco_supported")
+
+    @JvmField
+    public val isAprilTagSupportedName:
+        MethodStringName0<OpenXRSpatialMarkerTrackingCapability, Boolean> =
+        MethodStringName0<OpenXRSpatialMarkerTrackingCapability, Boolean>("is_april_tag_supported")
+  }
 
   public object MethodBindings {
     internal val isQrcodeSupportedPtr: VoidPtr =

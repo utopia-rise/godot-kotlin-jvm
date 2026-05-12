@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
@@ -18,6 +20,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 
 /**
  * A Unix Domain Socket (UDS) server. Listens to connections on a socket path and returns a
@@ -54,7 +57,15 @@ public open class UDSServer : SocketServer() {
     return (TransferContext.readReturnValue(OBJECT) as StreamPeerUDS?)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val listenName: MethodStringName1<UDSServer, Error, String> =
+        MethodStringName1<UDSServer, Error, String>("listen")
+
+    @JvmField
+    public val takeConnectionName: MethodStringName0<UDSServer, StreamPeerUDS?> =
+        MethodStringName0<UDSServer, StreamPeerUDS?>("take_connection")
+  }
 
   public object MethodBindings {
     internal val listenPtr: VoidPtr = TypeManager.getMethodBindPtr("UDSServer", "listen", 166001499)

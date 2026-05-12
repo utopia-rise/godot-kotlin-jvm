@@ -22,34 +22,28 @@ import godot.tools.common.constants.TO_GODOT_NAME_UTIL_FUNCTION
 import godot.tools.common.constants.godotCorePackage
 import godot.tools.common.constants.kotlinReflectPackage
 import java.io.File
+import kotlin.jvm.JvmName
 
 object SignalGenerationService : ISignalGenerationService {
-    private const val CALLABLE_NAME = "Callable"
-    private const val SIGNAL_CLASS_NAME = "Signal"
-
     private const val INSTANCE_PARAMETER = "instance"
     private const val NAME_PARAMETER = "name"
+    private const val CALLABLE_PARAMETER = "callable"
     private const val PROPERTY_PARAMETER = "property"
     private const val THIS_REF_PARAMETER_NAME = "thisRef"
-    private const val CONNECT_PARAMETER_NAME = "connect"
 
-    private const val EMIT_METHOD_NAME = "emit"
-    private const val CONNECT_METHOD_NAME = "connect"
-    private const val SIGNAL_METHOD_NAME = "signal"
     private const val FLAGS_PARAMETER_NAME = "flags"
 
-    private const val UNSAFE_SUFFIX = "Unsafe"
-    private const val DELEGATE_PROPERTY_NAME = "delegate"
+    private val connectFlagClassName = ClassName(godotCorePackage, OBJECT_CONNECT_FLAGS_CLASS_NAME)
+    private val propertyClassname = ClassName(kotlinReflectPackage, K_PROPERTY_CLASS_NAME).parameterizedBy(STAR)
+    private val readOnlyPropertyClassName = ClassName("kotlin.properties", READ_ONLY_PROPERTY_CLASS_NAME)
 
-    private val connectFlagClassName = ClassName(godotCorePackage, "Object.ConnectFlags")
-    private val propertyClassname = ClassName(kotlinReflectPackage, "KProperty").parameterizedBy(STAR)
-    private val readOnlyPropertyClassName = ClassName("kotlin.properties", "ReadOnlyProperty")
+    private fun kotlinJavaHelperName(baseName: String) = "_${baseName}Java"
 
     override fun generate(outputDir: File) {
-        val signalFileSpec = FileSpec.builder(godotCorePackage, "Signals")
+        val signalFileSpec = FileSpec.builder(godotCorePackage, SIGNALS_FILE_NAME)
 
         for (argCount in 0..Constraints.MAX_FUNCTION_ARG_COUNT) {
-            val signalClassName = ClassName(godotCorePackage, "$SIGNAL_CLASS_NAME$argCount")
+            val signalClassName = ClassName(godotCorePackage, "$SIGNAL_CLASS_BASENAME$argCount")
             val genericClassNameInfo = GenericClassNameInfo(signalClassName, argCount)
 
             signalFileSpec.addType(generateSignalClass(argCount, genericClassNameInfo))
@@ -74,10 +68,10 @@ object SignalGenerationService : ISignalGenerationService {
     }
 
     private fun generateSignalClass(argCount: Int, genericClassNameInfo: GenericClassNameInfo): TypeSpec {
-        val callableClassName = ClassName(godotCorePackage, CALLABLE_NAME + argCount)
+        val callableClassName = ClassName(godotCorePackage, CALLABLE_CLASS_BASENAME + argCount)
         return genericClassNameInfo
             .toTypeSpecBuilder()
-            .superclass(ClassName(godotCorePackage, SIGNAL_CLASS_NAME))
+            .superclass(ClassName(godotCorePackage, SIGNAL_CLASS_BASENAME))
             .primaryConstructor(
                 FunSpec.constructorBuilder()
                     .addModifiers(KModifier.INTERNAL)
@@ -94,7 +88,7 @@ object SignalGenerationService : ISignalGenerationService {
             .addSuperclassConstructorParameter(NAME_PARAMETER)
             .addFunctions(
                 listOf(
-                    FunSpec.builder(EMIT_METHOD_NAME)
+                    FunSpec.builder(METHOD_NAME_EMIT)
                         .returns(UNIT)
                         .addParameters(
                             genericClassNameInfo.toParameterSpecList()
@@ -102,7 +96,7 @@ object SignalGenerationService : ISignalGenerationService {
                         .addCode(
                             CodeBlock.of(
                                 buildString {
-                                    append("$EMIT_METHOD_NAME$UNSAFE_SUFFIX(")
+                                    append("$METHOD_NAME_EMIT$SUFFIX_UNSAFE(")
                                     for (i in 0..<argCount) {
                                         if (i != 0) append(",·")
                                         append("p$i")
@@ -112,12 +106,13 @@ object SignalGenerationService : ISignalGenerationService {
                             )
                         )
                         .build(),
-                    FunSpec.builder(CONNECT_METHOD_NAME)
+                    FunSpec.builder(METHOD_NAME_CONNECT)
                         .returns(UNIT)
+                        .addAnnotation(JvmOverloads::class)
                         .addParameters(
                             listOf(
                                 ParameterSpec.builder(
-                                    CONNECT_PARAMETER_NAME,
+                                    CALLABLE_PARAMETER,
                                     callableClassName.parameterizedBy(listOf(STAR) + genericClassNameInfo.genericTypes)
                                 ).build(),
                                 ParameterSpec.builder(FLAGS_PARAMETER_NAME, connectFlagClassName)
@@ -127,7 +122,23 @@ object SignalGenerationService : ISignalGenerationService {
                         )
                         .addCode(
                             CodeBlock.of(
-                                "connectUnsafe($CONNECT_PARAMETER_NAME, $FLAGS_PARAMETER_NAME)"
+                                "connectUnsafe($CALLABLE_PARAMETER, $FLAGS_PARAMETER_NAME)"
+                            )
+                        )
+                        .build(),
+                    FunSpec.builder(METHOD_NAME_DISCONNECT)
+                        .returns(UNIT)
+                        .addParameters(
+                            listOf(
+                                ParameterSpec.builder(
+                                    CALLABLE_PARAMETER,
+                                    callableClassName.parameterizedBy(listOf(STAR) + genericClassNameInfo.genericTypes)
+                                ).build(),
+                            )
+                        )
+                        .addCode(
+                            CodeBlock.of(
+                                "disconnectUnsafe($CALLABLE_PARAMETER)"
                             )
                         )
                         .build(),
@@ -144,17 +155,17 @@ object SignalGenerationService : ISignalGenerationService {
         return TypeSpec.companionObjectBuilder()
             .addProperty(
                 PropertySpec
-                    .builder(DELEGATE_PROPERTY_NAME, erasedReadOnlyPropertyClassName, KModifier.INTERNAL)
+                    .builder(PROPERTY_NAME_DELEGATE, erasedReadOnlyPropertyClassName, KModifier.INTERNAL)
                     .addAnnotation(PublishedApi::class)
                     .initializer(
-                        "%T·{·$THIS_REF_PARAMETER_NAME,·$PROPERTY_PARAMETER·->·getValue($THIS_REF_PARAMETER_NAME,·$PROPERTY_PARAMETER)·}",
+                        "%T·{·$THIS_REF_PARAMETER_NAME,·$PROPERTY_PARAMETER·->·$METHOD_NAME_GET_VALUE($THIS_REF_PARAMETER_NAME,·$PROPERTY_PARAMETER)·}",
                         readOnlyPropertyClassName
                     )
                     .build()
             )
             .addFunction(
                 genericClassNameInfo
-                    .toFunSpecBuilder("getValue")
+                    .toFunSpecBuilder(METHOD_NAME_GET_VALUE)
                     .addModifiers(KModifier.OPERATOR, KModifier.INLINE)
                     .addParameters(
                         listOf(
@@ -172,12 +183,31 @@ object SignalGenerationService : ISignalGenerationService {
                     )
                     .build()
             )
+            .addFunction(
+                genericClassNameInfo
+                    .toFunSpecBuilder(kotlinJavaHelperName(METHOD_NAME_CREATE))
+                    .addParameter(ParameterSpec.builder("godotObject", GODOT_OBJECT).build())
+                    .addParameter(ParameterSpec.builder("signalName", STRING).build())
+                    .returns(genericClassNameInfo.genericClassName)
+                    .addCode(
+                        "return·%T(godotObject,·signalName.%M())",
+                        genericClassNameInfo.className,
+                        TO_GODOT_NAME_UTIL_FUNCTION
+                    )
+                    .addAnnotation(JvmStatic::class)
+                    .addAnnotation(
+                        AnnotationSpec.builder(JvmName::class)
+                            .addMember("%S", METHOD_NAME_CREATE)
+                            .build()
+                    )
+                    .build()
+            )
             .build()
     }
 
     private fun generateFakeSignalConstructor(argCount: Int, genericClassNameInfo: GenericClassNameInfo): FunSpec {
         return FunSpec
-            .builder(SIGNAL_CLASS_NAME + argCount)
+            .builder(SIGNAL_CLASS_BASENAME + argCount)
             .receiver(GODOT_OBJECT)
             .addModifiers(KModifier.INLINE)
             .addTypeVariables(genericClassNameInfo.genericTypes)
@@ -202,14 +232,14 @@ object SignalGenerationService : ISignalGenerationService {
         val genericReadOnlyPropertyClassName = readOnlyPropertyClassName.parameterizedBy(GODOT_OBJECT, genericClassNameInfo.genericClassName)
 
         return genericClassNameInfo
-            .toFunSpecBuilder(SIGNAL_METHOD_NAME + argCount)
+            .toFunSpecBuilder(METHOD_NAME_SIGNAL + argCount)
             .addModifiers(KModifier.INLINE)
             .receiver(GODOT_OBJECT)
             .addCode(
                 if (argCount == 0) {
-                    CodeBlock.of("return·%T.$DELEGATE_PROPERTY_NAME", genericClassNameInfo.className)
+                    CodeBlock.of("return·%T.$PROPERTY_NAME_DELEGATE", genericClassNameInfo.className)
                 } else {
-                    CodeBlock.of("return·%T.$DELEGATE_PROPERTY_NAME·as·%T", genericClassNameInfo.className, genericReadOnlyPropertyClassName)
+                    CodeBlock.of("return·%T.$PROPERTY_NAME_DELEGATE·as·%T", genericClassNameInfo.className, genericReadOnlyPropertyClassName)
                 }
             )
             .apply {

@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
@@ -20,6 +22,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmStatic
 
@@ -132,6 +135,26 @@ public open class ImageTexture : Texture2D() {
   }
 
   public companion object {
+    @JvmField
+    public val createFromImageName: MethodStringName1<ImageTexture, ImageTexture?, Image?> =
+        MethodStringName1<ImageTexture, ImageTexture?, Image?>("create_from_image")
+
+    @JvmField
+    public val getFormatName: MethodStringName0<ImageTexture, Image.Format> =
+        MethodStringName0<ImageTexture, Image.Format>("get_format")
+
+    @JvmField
+    public val setImageName: MethodStringName1<ImageTexture, Unit, Image?> =
+        MethodStringName1<ImageTexture, Unit, Image?>("set_image")
+
+    @JvmField
+    public val updateName: MethodStringName1<ImageTexture, Unit, Image?> =
+        MethodStringName1<ImageTexture, Unit, Image?>("update")
+
+    @JvmField
+    public val setSizeOverrideName: MethodStringName1<ImageTexture, Unit, Vector2i> =
+        MethodStringName1<ImageTexture, Unit, Vector2i>("set_size_override")
+
     /**
      * Creates a new [ImageTexture] and initializes it by allocating and setting the data from an
      * [Image].
