@@ -9,6 +9,7 @@ import kotlin.math.sign
 
 //Taken from core/math/math_defs.h
 const val CMP_EPSILON: RealT = 0.00001
+const val SHORTEST_ARC_DOT_THRESHOLD: RealT = 0.999999999999999
 
 //This epsilon is for values related to a unit size (scalar or vector len)
 const val UNIT_EPSILON = 0.001

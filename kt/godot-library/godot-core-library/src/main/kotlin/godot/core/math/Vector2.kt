@@ -13,6 +13,7 @@ import godot.common.util.isZeroApprox
 import godot.common.util.lerp
 import godot.common.util.snapped
 import godot.common.util.toRealT
+import godot.internal.logging.GodotLogging
 import kotlincompile.definitions.GodotJvmBuildConfig
 import kotlin.math.abs
 import kotlin.math.atan2
@@ -381,20 +382,30 @@ class Vector2(
      * Returns the vector scaled to unit length. Equivalent to v / v.length().
      */
     fun normalized(): Vector2 {
-        val v: Vector2 = Vector2(this)
+        val v = Vector2(this)
 
         v.normalize()
         return v
     }
 
     internal fun normalize() {
-        val l: RealT = length()
-        if (l.isEqualApprox(0.0)) {
+        if (GodotJvmBuildConfig.DEBUG) {
+            if((!isFinite())) {
+                GodotLogging.warning("Vector2 cannot be normalized, the elements must be finite. Making (0, 0) as a fallback.")
+                x = 0.0
+                y = 0.0
+                return
+            }
+        }
+
+        val l  = lengthSquared()
+        if (l == 0.0) {
             x = 0.0
             y = 0.0
         } else {
-            x /= l
-            y /= l
+            val length = sqrt(l)
+            x /= length
+            y /= length
         }
     }
 

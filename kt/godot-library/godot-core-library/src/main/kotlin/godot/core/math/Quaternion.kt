@@ -5,6 +5,7 @@ package godot.core
 import godot.core.EulerOrder
 import godot.common.util.CMP_EPSILON
 import godot.common.util.RealT
+import godot.common.util.SHORTEST_ARC_DOT_THRESHOLD
 import godot.common.util.cubicInterpolate
 import godot.common.util.cubicInterpolateInTime
 import godot.common.util.isEqualApprox
@@ -80,15 +81,14 @@ class Quaternion(
 
     constructor(v0: Vector3, v1: Vector3) : this() {
         if (GodotJvmBuildConfig.DEBUG) {
-            require(!(v0.isZeroApprox() || v1.isZeroApprox())) { "The vectors must not be zero."}
+            require(!(v0.isZeroApprox() || v1.isZeroApprox())) { "The vectors must not be zero." }
         }
-        val almostOne = 1.0f - CMP_EPSILON;
 
         val n0 = v0.normalized();
         val n1 = v1.normalized();
         val d = n0.dot(n1);
 
-        if (abs(d) > almostOne) {
+        if (abs(d) > SHORTEST_ARC_DOT_THRESHOLD) {
             if (d >= 0) {
                 return // Vectors are same.
             }
@@ -106,6 +106,7 @@ class Quaternion(
             z = c.z * rs
             w = s * 0.5
         }
+        normalize()
     }
 
     //API
