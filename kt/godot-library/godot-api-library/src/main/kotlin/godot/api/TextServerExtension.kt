@@ -1878,3 +1878,486 @@ public abstract class TextServerExtension : TextServer() {
 
   public object MethodBindings
 }
+
+internal class TextServerExtensionDummy : TextServerExtension() {
+  public override fun _hasFeature(feature: TextServer.Feature): Boolean {
+    throw NotImplementedError("TextServerExtension::_hasFeature is only implemented by non-JVM code.")
+  }
+
+  public override fun _getName(): String {
+    throw NotImplementedError("TextServerExtension::_getName is only implemented by non-JVM code.")
+  }
+
+  public override fun _getFeatures(): Long {
+    throw NotImplementedError("TextServerExtension::_getFeatures is only implemented by non-JVM code.")
+  }
+
+  public override fun _freeRid(rid: RID): Unit {
+    throw NotImplementedError("TextServerExtension::_freeRid is only implemented by non-JVM code.")
+  }
+
+  public override fun _has(rid: RID): Boolean {
+    throw NotImplementedError("TextServerExtension::_has is only implemented by non-JVM code.")
+  }
+
+  public override fun _createFont(): RID {
+    throw NotImplementedError("TextServerExtension::_createFont is only implemented by non-JVM code.")
+  }
+
+  public override fun _fontSetFixedSize(fontRid: RID, fixedSize: Long): Unit {
+    throw NotImplementedError("TextServerExtension::_fontSetFixedSize is only implemented by non-JVM code.")
+  }
+
+  public override fun _fontGetFixedSize(fontRid: RID): Long {
+    throw NotImplementedError("TextServerExtension::_fontGetFixedSize is only implemented by non-JVM code.")
+  }
+
+  public override fun _fontSetFixedSizeScaleMode(fontRid: RID,
+      fixedSizeScaleMode: TextServer.FixedSizeScaleMode): Unit {
+    throw NotImplementedError("TextServerExtension::_fontSetFixedSizeScaleMode is only implemented by non-JVM code.")
+  }
+
+  public override fun _fontGetFixedSizeScaleMode(fontRid: RID): TextServer.FixedSizeScaleMode {
+    throw NotImplementedError("TextServerExtension::_fontGetFixedSizeScaleMode is only implemented by non-JVM code.")
+  }
+
+  public override fun _fontGetSizeCacheList(fontRid: RID): VariantArray<Vector2i> {
+    throw NotImplementedError("TextServerExtension::_fontGetSizeCacheList is only implemented by non-JVM code.")
+  }
+
+  public override fun _fontClearSizeCache(fontRid: RID): Unit {
+    throw NotImplementedError("TextServerExtension::_fontClearSizeCache is only implemented by non-JVM code.")
+  }
+
+  public override fun _fontRemoveSizeCache(fontRid: RID, size: Vector2i): Unit {
+    throw NotImplementedError("TextServerExtension::_fontRemoveSizeCache is only implemented by non-JVM code.")
+  }
+
+  public override fun _fontSetAscent(
+    fontRid: RID,
+    size: Long,
+    ascent: Double,
+  ): Unit {
+    throw NotImplementedError("TextServerExtension::_fontSetAscent is only implemented by non-JVM code.")
+  }
+
+  public override fun _fontGetAscent(fontRid: RID, size: Long): Double {
+    throw NotImplementedError("TextServerExtension::_fontGetAscent is only implemented by non-JVM code.")
+  }
+
+  public override fun _fontSetDescent(
+    fontRid: RID,
+    size: Long,
+    descent: Double,
+  ): Unit {
+    throw NotImplementedError("TextServerExtension::_fontSetDescent is only implemented by non-JVM code.")
+  }
+
+  public override fun _fontGetDescent(fontRid: RID, size: Long): Double {
+    throw NotImplementedError("TextServerExtension::_fontGetDescent is only implemented by non-JVM code.")
+  }
+
+  public override fun _fontSetUnderlinePosition(
+    fontRid: RID,
+    size: Long,
+    underlinePosition: Double,
+  ): Unit {
+    throw NotImplementedError("TextServerExtension::_fontSetUnderlinePosition is only implemented by non-JVM code.")
+  }
+
+  public override fun _fontGetUnderlinePosition(fontRid: RID, size: Long): Double {
+    throw NotImplementedError("TextServerExtension::_fontGetUnderlinePosition is only implemented by non-JVM code.")
+  }
+
+  public override fun _fontSetUnderlineThickness(
+    fontRid: RID,
+    size: Long,
+    underlineThickness: Double,
+  ): Unit {
+    throw NotImplementedError("TextServerExtension::_fontSetUnderlineThickness is only implemented by non-JVM code.")
+  }
+
+  public override fun _fontGetUnderlineThickness(fontRid: RID, size: Long): Double {
+    throw NotImplementedError("TextServerExtension::_fontGetUnderlineThickness is only implemented by non-JVM code.")
+  }
+
+  public override fun _fontSetScale(
+    fontRid: RID,
+    size: Long,
+    scale: Double,
+  ): Unit {
+    throw NotImplementedError("TextServerExtension::_fontSetScale is only implemented by non-JVM code.")
+  }
+
+  public override fun _fontGetScale(fontRid: RID, size: Long): Double {
+    throw NotImplementedError("TextServerExtension::_fontGetScale is only implemented by non-JVM code.")
+  }
+
+  public override fun _fontGetTextureCount(fontRid: RID, size: Vector2i): Long {
+    throw NotImplementedError("TextServerExtension::_fontGetTextureCount is only implemented by non-JVM code.")
+  }
+
+  public override fun _fontClearTextures(fontRid: RID, size: Vector2i): Unit {
+    throw NotImplementedError("TextServerExtension::_fontClearTextures is only implemented by non-JVM code.")
+  }
+
+  public override fun _fontRemoveTexture(
+    fontRid: RID,
+    size: Vector2i,
+    textureIndex: Long,
+  ): Unit {
+    throw NotImplementedError("TextServerExtension::_fontRemoveTexture is only implemented by non-JVM code.")
+  }
+
+  public override fun _fontSetTextureImage(
+    fontRid: RID,
+    size: Vector2i,
+    textureIndex: Long,
+    image: Image?,
+  ): Unit {
+    throw NotImplementedError("TextServerExtension::_fontSetTextureImage is only implemented by non-JVM code.")
+  }
+
+  public override fun _fontGetTextureImage(
+    fontRid: RID,
+    size: Vector2i,
+    textureIndex: Long,
+  ): Image? {
+    throw NotImplementedError("TextServerExtension::_fontGetTextureImage is only implemented by non-JVM code.")
+  }
+
+  public override fun _fontGetGlyphList(fontRid: RID, size: Vector2i): PackedInt32Array {
+    throw NotImplementedError("TextServerExtension::_fontGetGlyphList is only implemented by non-JVM code.")
+  }
+
+  public override fun _fontClearGlyphs(fontRid: RID, size: Vector2i): Unit {
+    throw NotImplementedError("TextServerExtension::_fontClearGlyphs is only implemented by non-JVM code.")
+  }
+
+  public override fun _fontRemoveGlyph(
+    fontRid: RID,
+    size: Vector2i,
+    glyph: Long,
+  ): Unit {
+    throw NotImplementedError("TextServerExtension::_fontRemoveGlyph is only implemented by non-JVM code.")
+  }
+
+  public override fun _fontGetGlyphAdvance(
+    fontRid: RID,
+    size: Long,
+    glyph: Long,
+  ): Vector2 {
+    throw NotImplementedError("TextServerExtension::_fontGetGlyphAdvance is only implemented by non-JVM code.")
+  }
+
+  public override fun _fontSetGlyphAdvance(
+    fontRid: RID,
+    size: Long,
+    glyph: Long,
+    advance: Vector2,
+  ): Unit {
+    throw NotImplementedError("TextServerExtension::_fontSetGlyphAdvance is only implemented by non-JVM code.")
+  }
+
+  public override fun _fontGetGlyphOffset(
+    fontRid: RID,
+    size: Vector2i,
+    glyph: Long,
+  ): Vector2 {
+    throw NotImplementedError("TextServerExtension::_fontGetGlyphOffset is only implemented by non-JVM code.")
+  }
+
+  public override fun _fontSetGlyphOffset(
+    fontRid: RID,
+    size: Vector2i,
+    glyph: Long,
+    offset: Vector2,
+  ): Unit {
+    throw NotImplementedError("TextServerExtension::_fontSetGlyphOffset is only implemented by non-JVM code.")
+  }
+
+  public override fun _fontGetGlyphSize(
+    fontRid: RID,
+    size: Vector2i,
+    glyph: Long,
+  ): Vector2 {
+    throw NotImplementedError("TextServerExtension::_fontGetGlyphSize is only implemented by non-JVM code.")
+  }
+
+  public override fun _fontSetGlyphSize(
+    fontRid: RID,
+    size: Vector2i,
+    glyph: Long,
+    glSize: Vector2,
+  ): Unit {
+    throw NotImplementedError("TextServerExtension::_fontSetGlyphSize is only implemented by non-JVM code.")
+  }
+
+  public override fun _fontGetGlyphUvRect(
+    fontRid: RID,
+    size: Vector2i,
+    glyph: Long,
+  ): Rect2 {
+    throw NotImplementedError("TextServerExtension::_fontGetGlyphUvRect is only implemented by non-JVM code.")
+  }
+
+  public override fun _fontSetGlyphUvRect(
+    fontRid: RID,
+    size: Vector2i,
+    glyph: Long,
+    uvRect: Rect2,
+  ): Unit {
+    throw NotImplementedError("TextServerExtension::_fontSetGlyphUvRect is only implemented by non-JVM code.")
+  }
+
+  public override fun _fontGetGlyphTextureIdx(
+    fontRid: RID,
+    size: Vector2i,
+    glyph: Long,
+  ): Long {
+    throw NotImplementedError("TextServerExtension::_fontGetGlyphTextureIdx is only implemented by non-JVM code.")
+  }
+
+  public override fun _fontSetGlyphTextureIdx(
+    fontRid: RID,
+    size: Vector2i,
+    glyph: Long,
+    textureIdx: Long,
+  ): Unit {
+    throw NotImplementedError("TextServerExtension::_fontSetGlyphTextureIdx is only implemented by non-JVM code.")
+  }
+
+  public override fun _fontGetGlyphTextureRid(
+    fontRid: RID,
+    size: Vector2i,
+    glyph: Long,
+  ): RID {
+    throw NotImplementedError("TextServerExtension::_fontGetGlyphTextureRid is only implemented by non-JVM code.")
+  }
+
+  public override fun _fontGetGlyphTextureSize(
+    fontRid: RID,
+    size: Vector2i,
+    glyph: Long,
+  ): Vector2 {
+    throw NotImplementedError("TextServerExtension::_fontGetGlyphTextureSize is only implemented by non-JVM code.")
+  }
+
+  public override fun _fontGetGlyphIndex(
+    fontRid: RID,
+    size: Long,
+    char: Long,
+    variationSelector: Long,
+  ): Long {
+    throw NotImplementedError("TextServerExtension::_fontGetGlyphIndex is only implemented by non-JVM code.")
+  }
+
+  public override fun _fontGetCharFromGlyphIndex(
+    fontRid: RID,
+    size: Long,
+    glyphIndex: Long,
+  ): Long {
+    throw NotImplementedError("TextServerExtension::_fontGetCharFromGlyphIndex is only implemented by non-JVM code.")
+  }
+
+  public override fun _fontHasChar(fontRid: RID, char: Long): Boolean {
+    throw NotImplementedError("TextServerExtension::_fontHasChar is only implemented by non-JVM code.")
+  }
+
+  public override fun _fontGetSupportedChars(fontRid: RID): String {
+    throw NotImplementedError("TextServerExtension::_fontGetSupportedChars is only implemented by non-JVM code.")
+  }
+
+  public override fun _fontGetSupportedGlyphs(fontRid: RID): PackedInt32Array {
+    throw NotImplementedError("TextServerExtension::_fontGetSupportedGlyphs is only implemented by non-JVM code.")
+  }
+
+  public override fun _fontDrawGlyph(
+    fontRid: RID,
+    canvas: RID,
+    size: Long,
+    pos: Vector2,
+    index: Long,
+    color: Color,
+    oversampling: Float,
+  ): Unit {
+    throw NotImplementedError("TextServerExtension::_fontDrawGlyph is only implemented by non-JVM code.")
+  }
+
+  public override fun _fontDrawGlyphOutline(
+    fontRid: RID,
+    canvas: RID,
+    size: Long,
+    outlineSize: Long,
+    pos: Vector2,
+    index: Long,
+    color: Color,
+    oversampling: Float,
+  ): Unit {
+    throw NotImplementedError("TextServerExtension::_fontDrawGlyphOutline is only implemented by non-JVM code.")
+  }
+
+  public override fun _createShapedText(direction: TextServer.Direction,
+      orientation: TextServer.Orientation): RID {
+    throw NotImplementedError("TextServerExtension::_createShapedText is only implemented by non-JVM code.")
+  }
+
+  public override fun _shapedTextClear(shaped: RID): Unit {
+    throw NotImplementedError("TextServerExtension::_shapedTextClear is only implemented by non-JVM code.")
+  }
+
+  public override fun _shapedTextDuplicate(shaped: RID): RID {
+    throw NotImplementedError("TextServerExtension::_shapedTextDuplicate is only implemented by non-JVM code.")
+  }
+
+  public override fun _shapedTextAddString(
+    shaped: RID,
+    text: String,
+    fonts: VariantArray<RID>,
+    size: Long,
+    opentypeFeatures: Dictionary<Any?, Any?>,
+    language: String,
+    meta: Any?,
+  ): Boolean {
+    throw NotImplementedError("TextServerExtension::_shapedTextAddString is only implemented by non-JVM code.")
+  }
+
+  public override fun _shapedTextAddObject(
+    shaped: RID,
+    key: Any?,
+    size: Vector2,
+    inlineAlign: InlineAlignment,
+    length: Long,
+    baseline: Double,
+  ): Boolean {
+    throw NotImplementedError("TextServerExtension::_shapedTextAddObject is only implemented by non-JVM code.")
+  }
+
+  public override fun _shapedTextResizeObject(
+    shaped: RID,
+    key: Any?,
+    size: Vector2,
+    inlineAlign: InlineAlignment,
+    baseline: Double,
+  ): Boolean {
+    throw NotImplementedError("TextServerExtension::_shapedTextResizeObject is only implemented by non-JVM code.")
+  }
+
+  public override fun _shapedTextHasObject(shaped: RID, key: Any?): Boolean {
+    throw NotImplementedError("TextServerExtension::_shapedTextHasObject is only implemented by non-JVM code.")
+  }
+
+  public override fun _shapedGetText(shaped: RID): String {
+    throw NotImplementedError("TextServerExtension::_shapedGetText is only implemented by non-JVM code.")
+  }
+
+  public override fun _shapedGetSpanCount(shaped: RID): Long {
+    throw NotImplementedError("TextServerExtension::_shapedGetSpanCount is only implemented by non-JVM code.")
+  }
+
+  public override fun _shapedGetSpanMeta(shaped: RID, index: Long): Any? {
+    throw NotImplementedError("TextServerExtension::_shapedGetSpanMeta is only implemented by non-JVM code.")
+  }
+
+  public override fun _shapedGetSpanEmbeddedObject(shaped: RID, index: Long): Any? {
+    throw NotImplementedError("TextServerExtension::_shapedGetSpanEmbeddedObject is only implemented by non-JVM code.")
+  }
+
+  public override fun _shapedGetSpanText(shaped: RID, index: Long): String {
+    throw NotImplementedError("TextServerExtension::_shapedGetSpanText is only implemented by non-JVM code.")
+  }
+
+  public override fun _shapedGetSpanObject(shaped: RID, index: Long): Any? {
+    throw NotImplementedError("TextServerExtension::_shapedGetSpanObject is only implemented by non-JVM code.")
+  }
+
+  public override fun _shapedSetSpanUpdateFont(
+    shaped: RID,
+    index: Long,
+    fonts: VariantArray<RID>,
+    size: Long,
+    opentypeFeatures: Dictionary<Any?, Any?>,
+  ): Unit {
+    throw NotImplementedError("TextServerExtension::_shapedSetSpanUpdateFont is only implemented by non-JVM code.")
+  }
+
+  public override fun _shapedTextSubstr(
+    shaped: RID,
+    start: Long,
+    length: Long,
+  ): RID {
+    throw NotImplementedError("TextServerExtension::_shapedTextSubstr is only implemented by non-JVM code.")
+  }
+
+  public override fun _shapedTextGetParent(shaped: RID): RID {
+    throw NotImplementedError("TextServerExtension::_shapedTextGetParent is only implemented by non-JVM code.")
+  }
+
+  public override fun _shapedTextShape(shaped: RID): Boolean {
+    throw NotImplementedError("TextServerExtension::_shapedTextShape is only implemented by non-JVM code.")
+  }
+
+  public override fun _shapedTextIsReady(shaped: RID): Boolean {
+    throw NotImplementedError("TextServerExtension::_shapedTextIsReady is only implemented by non-JVM code.")
+  }
+
+  public override fun _shapedTextGetGlyphCount(shaped: RID): Long {
+    throw NotImplementedError("TextServerExtension::_shapedTextGetGlyphCount is only implemented by non-JVM code.")
+  }
+
+  public override fun _shapedTextGetRange(shaped: RID): Vector2i {
+    throw NotImplementedError("TextServerExtension::_shapedTextGetRange is only implemented by non-JVM code.")
+  }
+
+  public override fun _shapedTextGetTrimPos(shaped: RID): Long {
+    throw NotImplementedError("TextServerExtension::_shapedTextGetTrimPos is only implemented by non-JVM code.")
+  }
+
+  public override fun _shapedTextGetEllipsisPos(shaped: RID): Long {
+    throw NotImplementedError("TextServerExtension::_shapedTextGetEllipsisPos is only implemented by non-JVM code.")
+  }
+
+  public override fun _shapedTextGetEllipsisGlyphCount(shaped: RID): Long {
+    throw NotImplementedError("TextServerExtension::_shapedTextGetEllipsisGlyphCount is only implemented by non-JVM code.")
+  }
+
+  public override fun _shapedTextGetObjects(shaped: RID): VariantArray<Any?> {
+    throw NotImplementedError("TextServerExtension::_shapedTextGetObjects is only implemented by non-JVM code.")
+  }
+
+  public override fun _shapedTextGetObjectRect(shaped: RID, key: Any?): Rect2 {
+    throw NotImplementedError("TextServerExtension::_shapedTextGetObjectRect is only implemented by non-JVM code.")
+  }
+
+  public override fun _shapedTextGetObjectRange(shaped: RID, key: Any?): Vector2i {
+    throw NotImplementedError("TextServerExtension::_shapedTextGetObjectRange is only implemented by non-JVM code.")
+  }
+
+  public override fun _shapedTextGetObjectGlyph(shaped: RID, key: Any?): Long {
+    throw NotImplementedError("TextServerExtension::_shapedTextGetObjectGlyph is only implemented by non-JVM code.")
+  }
+
+  public override fun _shapedTextGetSize(shaped: RID): Vector2 {
+    throw NotImplementedError("TextServerExtension::_shapedTextGetSize is only implemented by non-JVM code.")
+  }
+
+  public override fun _shapedTextGetAscent(shaped: RID): Double {
+    throw NotImplementedError("TextServerExtension::_shapedTextGetAscent is only implemented by non-JVM code.")
+  }
+
+  public override fun _shapedTextGetDescent(shaped: RID): Double {
+    throw NotImplementedError("TextServerExtension::_shapedTextGetDescent is only implemented by non-JVM code.")
+  }
+
+  public override fun _shapedTextGetWidth(shaped: RID): Double {
+    throw NotImplementedError("TextServerExtension::_shapedTextGetWidth is only implemented by non-JVM code.")
+  }
+
+  public override fun _shapedTextGetUnderlinePosition(shaped: RID): Double {
+    throw NotImplementedError("TextServerExtension::_shapedTextGetUnderlinePosition is only implemented by non-JVM code.")
+  }
+
+  public override fun _shapedTextGetUnderlineThickness(shaped: RID): Double {
+    throw NotImplementedError("TextServerExtension::_shapedTextGetUnderlineThickness is only implemented by non-JVM code.")
+  }
+}

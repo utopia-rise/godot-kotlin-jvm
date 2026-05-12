@@ -13,6 +13,7 @@ class FileTask(
     }
 
     val classes = subTask<EnrichedClassTask, _> { output -> builder.addType(output) }
+    val abstractDummyClasses = subTask<AbstractClassDummyTask, _> { output -> builder.addType(output) }
     val enums = subTask<EnrichedEnumTask, _> { output -> builder.addType(output) }
 
     override fun executeSingle() = builder.build()

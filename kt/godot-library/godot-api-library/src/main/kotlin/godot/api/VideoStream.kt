@@ -12,6 +12,7 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
+import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -66,5 +67,11 @@ public abstract class VideoStream : Resource() {
 
     internal val getFilePtr: VoidPtr =
         TypeManager.getMethodBindPtr("VideoStream", "get_file", 2841200299)
+  }
+}
+
+internal class VideoStreamDummy : VideoStream() {
+  public override fun _instantiatePlayback(): VideoStreamPlayback? {
+    throw NotImplementedError("VideoStream::_instantiatePlayback is only implemented by non-JVM code.")
   }
 }

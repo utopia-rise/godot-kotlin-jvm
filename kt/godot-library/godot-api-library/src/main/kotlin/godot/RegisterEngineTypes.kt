@@ -25,6 +25,7 @@ import godot.api.AnimationNodeBlendSpace1D
 import godot.api.AnimationNodeBlendSpace2D
 import godot.api.AnimationNodeBlendTree
 import godot.api.AnimationNodeExtension
+import godot.api.AnimationNodeExtensionDummy
 import godot.api.AnimationNodeOneShot
 import godot.api.AnimationNodeOutput
 import godot.api.AnimationNodeStateMachine
@@ -54,6 +55,7 @@ import godot.api.AudioEffectChorus
 import godot.api.AudioEffectCompressor
 import godot.api.AudioEffectDelay
 import godot.api.AudioEffectDistortion
+import godot.api.AudioEffectDummy
 import godot.api.AudioEffectEQ
 import godot.api.AudioEffectEQ10
 import godot.api.AudioEffectEQ21
@@ -63,6 +65,7 @@ import godot.api.AudioEffectHardLimiter
 import godot.api.AudioEffectHighPassFilter
 import godot.api.AudioEffectHighShelfFilter
 import godot.api.AudioEffectInstance
+import godot.api.AudioEffectInstanceDummy
 import godot.api.AudioEffectLimiter
 import godot.api.AudioEffectLowPassFilter
 import godot.api.AudioEffectLowShelfFilter
@@ -81,6 +84,7 @@ import godot.api.AudioSample
 import godot.api.AudioSamplePlayback
 import godot.api.AudioServer
 import godot.api.AudioStream
+import godot.api.AudioStreamDummy
 import godot.api.AudioStreamGenerator
 import godot.api.AudioStreamGeneratorPlayback
 import godot.api.AudioStreamInteractive
@@ -88,11 +92,13 @@ import godot.api.AudioStreamMP3
 import godot.api.AudioStreamMicrophone
 import godot.api.AudioStreamOggVorbis
 import godot.api.AudioStreamPlayback
+import godot.api.AudioStreamPlaybackDummy
 import godot.api.AudioStreamPlaybackInteractive
 import godot.api.AudioStreamPlaybackOggVorbis
 import godot.api.AudioStreamPlaybackPlaylist
 import godot.api.AudioStreamPlaybackPolyphonic
 import godot.api.AudioStreamPlaybackResampled
+import godot.api.AudioStreamPlaybackResampledDummy
 import godot.api.AudioStreamPlaybackSynchronized
 import godot.api.AudioStreamPlayer
 import godot.api.AudioStreamPlayer2D
@@ -363,11 +369,13 @@ import godot.api.Marker2D
 import godot.api.Marker3D
 import godot.api.Marshalls
 import godot.api.Material
+import godot.api.MaterialDummy
 import godot.api.MenuBar
 import godot.api.MenuButton
 import godot.api.Mesh
 import godot.api.MeshConvexDecompositionSettings
 import godot.api.MeshDataTool
+import godot.api.MeshDummy
 import godot.api.MeshInstance2D
 import godot.api.MeshInstance3D
 import godot.api.MeshLibrary
@@ -378,6 +386,7 @@ import godot.api.MissingResource
 import godot.api.MobileVRInterface
 import godot.api.ModifierBoneTarget3D
 import godot.api.MovieWriter
+import godot.api.MovieWriterDummy
 import godot.api.MultiMesh
 import godot.api.MultiMeshInstance2D
 import godot.api.MultiMeshInstance3D
@@ -385,6 +394,7 @@ import godot.api.MultiplayerAPI
 import godot.api.MultiplayerAPIExtension
 import godot.api.MultiplayerPeer
 import godot.api.MultiplayerPeerExtension
+import godot.api.MultiplayerPeerExtensionDummy
 import godot.api.MultiplayerSpawner
 import godot.api.MultiplayerSynchronizer
 import godot.api.Mutex
@@ -437,6 +447,7 @@ import godot.api.OpenXRAnalogThresholdModifier
 import godot.api.OpenXRAnchorTracker
 import godot.api.OpenXRAndroidThreadSettingsExtension
 import godot.api.OpenXRBindingModifier
+import godot.api.OpenXRBindingModifierDummy
 import godot.api.OpenXRCompositionLayer
 import godot.api.OpenXRCompositionLayerCylinder
 import godot.api.OpenXRCompositionLayerEquirect
@@ -497,6 +508,7 @@ import godot.api.PackedScene
 import godot.api.PacketPeer
 import godot.api.PacketPeerDTLS
 import godot.api.PacketPeerExtension
+import godot.api.PacketPeerExtensionDummy
 import godot.api.PacketPeerStream
 import godot.api.PacketPeerUDP
 import godot.api.Panel
@@ -519,12 +531,16 @@ import godot.api.PhysicsBody2D
 import godot.api.PhysicsBody3D
 import godot.api.PhysicsDirectBodyState2D
 import godot.api.PhysicsDirectBodyState2DExtension
+import godot.api.PhysicsDirectBodyState2DExtensionDummy
 import godot.api.PhysicsDirectBodyState3D
 import godot.api.PhysicsDirectBodyState3DExtension
+import godot.api.PhysicsDirectBodyState3DExtensionDummy
 import godot.api.PhysicsDirectSpaceState2D
 import godot.api.PhysicsDirectSpaceState2DExtension
+import godot.api.PhysicsDirectSpaceState2DExtensionDummy
 import godot.api.PhysicsDirectSpaceState3D
 import godot.api.PhysicsDirectSpaceState3DExtension
+import godot.api.PhysicsDirectSpaceState3DExtensionDummy
 import godot.api.PhysicsMaterial
 import godot.api.PhysicsPointQueryParameters2D
 import godot.api.PhysicsPointQueryParameters3D
@@ -535,6 +551,7 @@ import godot.api.PhysicsServer2DManager
 import godot.api.PhysicsServer3D
 import godot.api.PhysicsServer3DManager
 import godot.api.PhysicsServer3DRenderingServerHandler
+import godot.api.PhysicsServer3DRenderingServerHandlerDummy
 import godot.api.PhysicsShapeQueryParameters2D
 import godot.api.PhysicsShapeQueryParameters3D
 import godot.api.PhysicsTestMotionParameters2D
@@ -611,6 +628,7 @@ import godot.api.RenderingDevice
 import godot.api.RenderingServer
 import godot.api.Resource
 import godot.api.ResourceFormatLoader
+import godot.api.ResourceFormatLoaderDummy
 import godot.api.ResourceFormatSaver
 import godot.api.ResourceImporter
 import godot.api.ResourceLoader
@@ -632,8 +650,10 @@ import godot.api.SceneTreeTimer
 import godot.api.Script
 import godot.api.ScriptBacktrace
 import godot.api.ScriptExtension
+import godot.api.ScriptExtensionDummy
 import godot.api.ScriptLanguage
 import godot.api.ScriptLanguageExtension
+import godot.api.ScriptLanguageExtensionDummy
 import godot.api.ScrollBar
 import godot.api.ScrollContainer
 import godot.api.SegmentShape2D
@@ -697,12 +717,14 @@ import godot.api.StatusIndicator
 import godot.api.StreamPeer
 import godot.api.StreamPeerBuffer
 import godot.api.StreamPeerExtension
+import godot.api.StreamPeerExtensionDummy
 import godot.api.StreamPeerGZIP
 import godot.api.StreamPeerSocket
 import godot.api.StreamPeerTCP
 import godot.api.StreamPeerTLS
 import godot.api.StreamPeerUDS
 import godot.api.StyleBox
+import godot.api.StyleBoxDummy
 import godot.api.StyleBoxEmpty
 import godot.api.StyleBoxFlat
 import godot.api.StyleBoxLine
@@ -725,18 +747,22 @@ import godot.api.TextServer
 import godot.api.TextServerAdvanced
 import godot.api.TextServerDummy
 import godot.api.TextServerExtension
+import godot.api.TextServerExtensionDummy
 import godot.api.TextServerManager
 import godot.api.Texture
 import godot.api.Texture2D
 import godot.api.Texture2DArray
 import godot.api.Texture2DArrayRD
+import godot.api.Texture2DDummy
 import godot.api.Texture2DRD
 import godot.api.Texture3D
+import godot.api.Texture3DDummy
 import godot.api.Texture3DRD
 import godot.api.TextureButton
 import godot.api.TextureCubemapArrayRD
 import godot.api.TextureCubemapRD
 import godot.api.TextureLayered
+import godot.api.TextureLayeredDummy
 import godot.api.TextureLayeredRD
 import godot.api.TextureProgressBar
 import godot.api.TextureRect
@@ -780,7 +806,9 @@ import godot.api.VSplitContainer
 import godot.api.VehicleBody3D
 import godot.api.VehicleWheel3D
 import godot.api.VideoStream
+import godot.api.VideoStreamDummy
 import godot.api.VideoStreamPlayback
+import godot.api.VideoStreamPlaybackDummy
 import godot.api.VideoStreamPlayer
 import godot.api.VideoStreamTheora
 import godot.api.Viewport
@@ -907,9 +935,11 @@ import godot.api.VoxelGIData
 import godot.api.WeakRef
 import godot.api.WebRTCDataChannel
 import godot.api.WebRTCDataChannelExtension
+import godot.api.WebRTCDataChannelExtensionDummy
 import godot.api.WebRTCMultiplayerPeer
 import godot.api.WebRTCPeerConnection
 import godot.api.WebRTCPeerConnectionExtension
+import godot.api.WebRTCPeerConnectionExtensionDummy
 import godot.api.WebSocketMultiplayerPeer
 import godot.api.WebSocketPeer
 import godot.api.WebXRInterface
@@ -2863,7 +2893,7 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("AnimationNodeBlendSpace1D", AnimationNodeBlendSpace1D::class, ::AnimationNodeBlendSpace1D)
   TypeManager.registerEngineType("AnimationNodeBlendSpace2D", AnimationNodeBlendSpace2D::class, ::AnimationNodeBlendSpace2D)
   TypeManager.registerEngineType("AnimationNodeBlendTree", AnimationNodeBlendTree::class, ::AnimationNodeBlendTree)
-  TypeManager.registerEngineType("AnimationNodeExtension", AnimationNodeExtension::class, null)
+  TypeManager.registerEngineType("AnimationNodeExtension", AnimationNodeExtension::class, ::AnimationNodeExtensionDummy)
   TypeManager.registerEngineType("AnimationNodeOneShot", AnimationNodeOneShot::class, ::AnimationNodeOneShot)
   TypeManager.registerEngineType("AnimationNodeOutput", AnimationNodeOutput::class, ::AnimationNodeOutput)
   TypeManager.registerEngineType("AnimationNodeStateMachine", AnimationNodeStateMachine::class, ::AnimationNodeStateMachine)
@@ -2884,7 +2914,7 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("AspectRatioContainer", AspectRatioContainer::class, ::AspectRatioContainer)
   TypeManager.registerEngineType("AtlasTexture", AtlasTexture::class, ::AtlasTexture)
   TypeManager.registerEngineType("AudioBusLayout", AudioBusLayout::class, ::AudioBusLayout)
-  TypeManager.registerEngineType("AudioEffect", AudioEffect::class, null)
+  TypeManager.registerEngineType("AudioEffect", AudioEffect::class, ::AudioEffectDummy)
   TypeManager.registerEngineType("AudioEffectAmplify", AudioEffectAmplify::class, ::AudioEffectAmplify)
   TypeManager.registerEngineType("AudioEffectBandLimitFilter", AudioEffectBandLimitFilter::class, ::AudioEffectBandLimitFilter)
   TypeManager.registerEngineType("AudioEffectBandPassFilter", AudioEffectBandPassFilter::class, ::AudioEffectBandPassFilter)
@@ -2901,7 +2931,7 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("AudioEffectHardLimiter", AudioEffectHardLimiter::class, ::AudioEffectHardLimiter)
   TypeManager.registerEngineType("AudioEffectHighPassFilter", AudioEffectHighPassFilter::class, ::AudioEffectHighPassFilter)
   TypeManager.registerEngineType("AudioEffectHighShelfFilter", AudioEffectHighShelfFilter::class, ::AudioEffectHighShelfFilter)
-  TypeManager.registerEngineType("AudioEffectInstance", AudioEffectInstance::class, null)
+  TypeManager.registerEngineType("AudioEffectInstance", AudioEffectInstance::class, ::AudioEffectInstanceDummy)
   TypeManager.registerEngineType("AudioEffectLimiter", AudioEffectLimiter::class, ::AudioEffectLimiter)
   TypeManager.registerEngineType("AudioEffectLowPassFilter", AudioEffectLowPassFilter::class, ::AudioEffectLowPassFilter)
   TypeManager.registerEngineType("AudioEffectLowShelfFilter", AudioEffectLowShelfFilter::class, ::AudioEffectLowShelfFilter)
@@ -2920,19 +2950,19 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("AudioSamplePlayback", AudioSamplePlayback::class, ::AudioSamplePlayback)
   TypeManager.registerSingleton("AudioServer") { AudioServer }
   TypeManager.registerEngineType("AudioServer", AudioServer::class) { AudioServer }
-  TypeManager.registerEngineType("AudioStream", AudioStream::class, null)
+  TypeManager.registerEngineType("AudioStream", AudioStream::class, ::AudioStreamDummy)
   TypeManager.registerEngineType("AudioStreamGenerator", AudioStreamGenerator::class, ::AudioStreamGenerator)
   TypeManager.registerEngineType("AudioStreamGeneratorPlayback", AudioStreamGeneratorPlayback::class, ::AudioStreamGeneratorPlayback)
   TypeManager.registerEngineType("AudioStreamInteractive", AudioStreamInteractive::class, ::AudioStreamInteractive)
   TypeManager.registerEngineType("AudioStreamMP3", AudioStreamMP3::class, ::AudioStreamMP3)
   TypeManager.registerEngineType("AudioStreamMicrophone", AudioStreamMicrophone::class, ::AudioStreamMicrophone)
   TypeManager.registerEngineType("AudioStreamOggVorbis", AudioStreamOggVorbis::class, ::AudioStreamOggVorbis)
-  TypeManager.registerEngineType("AudioStreamPlayback", AudioStreamPlayback::class, null)
+  TypeManager.registerEngineType("AudioStreamPlayback", AudioStreamPlayback::class, ::AudioStreamPlaybackDummy)
   TypeManager.registerEngineType("AudioStreamPlaybackInteractive", AudioStreamPlaybackInteractive::class, ::AudioStreamPlaybackInteractive)
   TypeManager.registerEngineType("AudioStreamPlaybackOggVorbis", AudioStreamPlaybackOggVorbis::class, ::AudioStreamPlaybackOggVorbis)
   TypeManager.registerEngineType("AudioStreamPlaybackPlaylist", AudioStreamPlaybackPlaylist::class, ::AudioStreamPlaybackPlaylist)
   TypeManager.registerEngineType("AudioStreamPlaybackPolyphonic", AudioStreamPlaybackPolyphonic::class, ::AudioStreamPlaybackPolyphonic)
-  TypeManager.registerEngineType("AudioStreamPlaybackResampled", AudioStreamPlaybackResampled::class, null)
+  TypeManager.registerEngineType("AudioStreamPlaybackResampled", AudioStreamPlaybackResampled::class, ::AudioStreamPlaybackResampledDummy)
   TypeManager.registerEngineType("AudioStreamPlaybackSynchronized", AudioStreamPlaybackSynchronized::class, ::AudioStreamPlaybackSynchronized)
   TypeManager.registerEngineType("AudioStreamPlayer", AudioStreamPlayer::class, ::AudioStreamPlayer)
   TypeManager.registerEngineType("AudioStreamPlayer2D", AudioStreamPlayer2D::class, ::AudioStreamPlayer2D)
@@ -3216,10 +3246,10 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("Marker3D", Marker3D::class, ::Marker3D)
   TypeManager.registerSingleton("Marshalls") { Marshalls }
   TypeManager.registerEngineType("Marshalls", Marshalls::class) { Marshalls }
-  TypeManager.registerEngineType("Material", Material::class, null)
+  TypeManager.registerEngineType("Material", Material::class, ::MaterialDummy)
   TypeManager.registerEngineType("MenuBar", MenuBar::class, ::MenuBar)
   TypeManager.registerEngineType("MenuButton", MenuButton::class, ::MenuButton)
-  TypeManager.registerEngineType("Mesh", Mesh::class, null)
+  TypeManager.registerEngineType("Mesh", Mesh::class, ::MeshDummy)
   TypeManager.registerEngineType("MeshConvexDecompositionSettings", MeshConvexDecompositionSettings::class, ::MeshConvexDecompositionSettings)
   TypeManager.registerEngineType("MeshDataTool", MeshDataTool::class, ::MeshDataTool)
   TypeManager.registerEngineType("MeshInstance2D", MeshInstance2D::class, ::MeshInstance2D)
@@ -3231,14 +3261,14 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("MissingResource", MissingResource::class, ::MissingResource)
   TypeManager.registerEngineType("MobileVRInterface", MobileVRInterface::class, ::MobileVRInterface)
   TypeManager.registerEngineType("ModifierBoneTarget3D", ModifierBoneTarget3D::class, ::ModifierBoneTarget3D)
-  TypeManager.registerEngineType("MovieWriter", MovieWriter::class, null)
+  TypeManager.registerEngineType("MovieWriter", MovieWriter::class, ::MovieWriterDummy)
   TypeManager.registerEngineType("MultiMesh", MultiMesh::class, ::MultiMesh)
   TypeManager.registerEngineType("MultiMeshInstance2D", MultiMeshInstance2D::class, ::MultiMeshInstance2D)
   TypeManager.registerEngineType("MultiMeshInstance3D", MultiMeshInstance3D::class, ::MultiMeshInstance3D)
   TypeManager.registerEngineType("MultiplayerAPI", MultiplayerAPI::class, ::MultiplayerAPI)
   TypeManager.registerEngineType("MultiplayerAPIExtension", MultiplayerAPIExtension::class, ::MultiplayerAPIExtension)
   TypeManager.registerEngineType("MultiplayerPeer", MultiplayerPeer::class, ::MultiplayerPeer)
-  TypeManager.registerEngineType("MultiplayerPeerExtension", MultiplayerPeerExtension::class, null)
+  TypeManager.registerEngineType("MultiplayerPeerExtension", MultiplayerPeerExtension::class, ::MultiplayerPeerExtensionDummy)
   TypeManager.registerEngineType("MultiplayerSpawner", MultiplayerSpawner::class, ::MultiplayerSpawner)
   TypeManager.registerEngineType("MultiplayerSynchronizer", MultiplayerSynchronizer::class, ::MultiplayerSynchronizer)
   TypeManager.registerEngineType("Mutex", Mutex::class, ::Mutex)
@@ -3296,7 +3326,7 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("OpenXRAnalogThresholdModifier", OpenXRAnalogThresholdModifier::class, ::OpenXRAnalogThresholdModifier)
   TypeManager.registerEngineType("OpenXRAnchorTracker", OpenXRAnchorTracker::class, ::OpenXRAnchorTracker)
   TypeManager.registerEngineType("OpenXRAndroidThreadSettingsExtension", OpenXRAndroidThreadSettingsExtension::class, ::OpenXRAndroidThreadSettingsExtension)
-  TypeManager.registerEngineType("OpenXRBindingModifier", OpenXRBindingModifier::class, null)
+  TypeManager.registerEngineType("OpenXRBindingModifier", OpenXRBindingModifier::class, ::OpenXRBindingModifierDummy)
   TypeManager.registerEngineType("OpenXRCompositionLayer", OpenXRCompositionLayer::class, ::OpenXRCompositionLayer)
   TypeManager.registerEngineType("OpenXRCompositionLayerCylinder", OpenXRCompositionLayerCylinder::class, ::OpenXRCompositionLayerCylinder)
   TypeManager.registerEngineType("OpenXRCompositionLayerEquirect", OpenXRCompositionLayerEquirect::class, ::OpenXRCompositionLayerEquirect)
@@ -3356,7 +3386,7 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("PackedScene", PackedScene::class, ::PackedScene)
   TypeManager.registerEngineType("PacketPeer", PacketPeer::class, ::PacketPeer)
   TypeManager.registerEngineType("PacketPeerDTLS", PacketPeerDTLS::class, ::PacketPeerDTLS)
-  TypeManager.registerEngineType("PacketPeerExtension", PacketPeerExtension::class, null)
+  TypeManager.registerEngineType("PacketPeerExtension", PacketPeerExtension::class, ::PacketPeerExtensionDummy)
   TypeManager.registerEngineType("PacketPeerStream", PacketPeerStream::class, ::PacketPeerStream)
   TypeManager.registerEngineType("PacketPeerUDP", PacketPeerUDP::class, ::PacketPeerUDP)
   TypeManager.registerEngineType("Panel", Panel::class, ::Panel)
@@ -3379,13 +3409,13 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("PhysicsBody2D", PhysicsBody2D::class, ::PhysicsBody2D)
   TypeManager.registerEngineType("PhysicsBody3D", PhysicsBody3D::class, ::PhysicsBody3D)
   TypeManager.registerEngineType("PhysicsDirectBodyState2D", PhysicsDirectBodyState2D::class, ::PhysicsDirectBodyState2D)
-  TypeManager.registerEngineType("PhysicsDirectBodyState2DExtension", PhysicsDirectBodyState2DExtension::class, null)
+  TypeManager.registerEngineType("PhysicsDirectBodyState2DExtension", PhysicsDirectBodyState2DExtension::class, ::PhysicsDirectBodyState2DExtensionDummy)
   TypeManager.registerEngineType("PhysicsDirectBodyState3D", PhysicsDirectBodyState3D::class, ::PhysicsDirectBodyState3D)
-  TypeManager.registerEngineType("PhysicsDirectBodyState3DExtension", PhysicsDirectBodyState3DExtension::class, null)
+  TypeManager.registerEngineType("PhysicsDirectBodyState3DExtension", PhysicsDirectBodyState3DExtension::class, ::PhysicsDirectBodyState3DExtensionDummy)
   TypeManager.registerEngineType("PhysicsDirectSpaceState2D", PhysicsDirectSpaceState2D::class, ::PhysicsDirectSpaceState2D)
-  TypeManager.registerEngineType("PhysicsDirectSpaceState2DExtension", PhysicsDirectSpaceState2DExtension::class, null)
+  TypeManager.registerEngineType("PhysicsDirectSpaceState2DExtension", PhysicsDirectSpaceState2DExtension::class, ::PhysicsDirectSpaceState2DExtensionDummy)
   TypeManager.registerEngineType("PhysicsDirectSpaceState3D", PhysicsDirectSpaceState3D::class, ::PhysicsDirectSpaceState3D)
-  TypeManager.registerEngineType("PhysicsDirectSpaceState3DExtension", PhysicsDirectSpaceState3DExtension::class, null)
+  TypeManager.registerEngineType("PhysicsDirectSpaceState3DExtension", PhysicsDirectSpaceState3DExtension::class, ::PhysicsDirectSpaceState3DExtensionDummy)
   TypeManager.registerEngineType("PhysicsMaterial", PhysicsMaterial::class, ::PhysicsMaterial)
   TypeManager.registerEngineType("PhysicsPointQueryParameters2D", PhysicsPointQueryParameters2D::class, ::PhysicsPointQueryParameters2D)
   TypeManager.registerEngineType("PhysicsPointQueryParameters3D", PhysicsPointQueryParameters3D::class, ::PhysicsPointQueryParameters3D)
@@ -3399,7 +3429,7 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("PhysicsServer3D", PhysicsServer3D::class) { PhysicsServer3D }
   TypeManager.registerSingleton("PhysicsServer3DManager") { PhysicsServer3DManager }
   TypeManager.registerEngineType("PhysicsServer3DManager", PhysicsServer3DManager::class) { PhysicsServer3DManager }
-  TypeManager.registerEngineType("PhysicsServer3DRenderingServerHandler", PhysicsServer3DRenderingServerHandler::class, null)
+  TypeManager.registerEngineType("PhysicsServer3DRenderingServerHandler", PhysicsServer3DRenderingServerHandler::class, ::PhysicsServer3DRenderingServerHandlerDummy)
   TypeManager.registerEngineType("PhysicsShapeQueryParameters2D", PhysicsShapeQueryParameters2D::class, ::PhysicsShapeQueryParameters2D)
   TypeManager.registerEngineType("PhysicsShapeQueryParameters3D", PhysicsShapeQueryParameters3D::class, ::PhysicsShapeQueryParameters3D)
   TypeManager.registerEngineType("PhysicsTestMotionParameters2D", PhysicsTestMotionParameters2D::class, ::PhysicsTestMotionParameters2D)
@@ -3476,7 +3506,7 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerSingleton("RenderingServer") { RenderingServer }
   TypeManager.registerEngineType("RenderingServer", RenderingServer::class) { RenderingServer }
   TypeManager.registerEngineType("Resource", Resource::class, ::Resource)
-  TypeManager.registerEngineType("ResourceFormatLoader", ResourceFormatLoader::class, null)
+  TypeManager.registerEngineType("ResourceFormatLoader", ResourceFormatLoader::class, ::ResourceFormatLoaderDummy)
   TypeManager.registerEngineType("ResourceFormatSaver", ResourceFormatSaver::class, ::ResourceFormatSaver)
   TypeManager.registerEngineType("ResourceImporter", ResourceImporter::class, ::ResourceImporter)
   TypeManager.registerSingleton("ResourceLoader") { ResourceLoader }
@@ -3500,9 +3530,9 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("SceneTreeTimer", SceneTreeTimer::class, ::SceneTreeTimer)
   TypeManager.registerEngineType("Script", Script::class, ::Script)
   TypeManager.registerEngineType("ScriptBacktrace", ScriptBacktrace::class, ::ScriptBacktrace)
-  TypeManager.registerEngineType("ScriptExtension", ScriptExtension::class, null)
+  TypeManager.registerEngineType("ScriptExtension", ScriptExtension::class, ::ScriptExtensionDummy)
   TypeManager.registerEngineType("ScriptLanguage", ScriptLanguage::class, ::ScriptLanguage)
-  TypeManager.registerEngineType("ScriptLanguageExtension", ScriptLanguageExtension::class, null)
+  TypeManager.registerEngineType("ScriptLanguageExtension", ScriptLanguageExtension::class, ::ScriptLanguageExtensionDummy)
   TypeManager.registerEngineType("ScrollBar", ScrollBar::class, ::ScrollBar)
   TypeManager.registerEngineType("ScrollContainer", ScrollContainer::class, ::ScrollContainer)
   TypeManager.registerEngineType("SegmentShape2D", SegmentShape2D::class, ::SegmentShape2D)
@@ -3565,13 +3595,13 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("StatusIndicator", StatusIndicator::class, ::StatusIndicator)
   TypeManager.registerEngineType("StreamPeer", StreamPeer::class, ::StreamPeer)
   TypeManager.registerEngineType("StreamPeerBuffer", StreamPeerBuffer::class, ::StreamPeerBuffer)
-  TypeManager.registerEngineType("StreamPeerExtension", StreamPeerExtension::class, null)
+  TypeManager.registerEngineType("StreamPeerExtension", StreamPeerExtension::class, ::StreamPeerExtensionDummy)
   TypeManager.registerEngineType("StreamPeerGZIP", StreamPeerGZIP::class, ::StreamPeerGZIP)
   TypeManager.registerEngineType("StreamPeerSocket", StreamPeerSocket::class, ::StreamPeerSocket)
   TypeManager.registerEngineType("StreamPeerTCP", StreamPeerTCP::class, ::StreamPeerTCP)
   TypeManager.registerEngineType("StreamPeerTLS", StreamPeerTLS::class, ::StreamPeerTLS)
   TypeManager.registerEngineType("StreamPeerUDS", StreamPeerUDS::class, ::StreamPeerUDS)
-  TypeManager.registerEngineType("StyleBox", StyleBox::class, null)
+  TypeManager.registerEngineType("StyleBox", StyleBox::class, ::StyleBoxDummy)
   TypeManager.registerEngineType("StyleBoxEmpty", StyleBoxEmpty::class, ::StyleBoxEmpty)
   TypeManager.registerEngineType("StyleBoxFlat", StyleBoxFlat::class, ::StyleBoxFlat)
   TypeManager.registerEngineType("StyleBoxLine", StyleBoxLine::class, ::StyleBoxLine)
@@ -3593,20 +3623,20 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("TextServer", TextServer::class, ::TextServer)
   TypeManager.registerEngineType("TextServerAdvanced", TextServerAdvanced::class, ::TextServerAdvanced)
   TypeManager.registerEngineType("TextServerDummy", TextServerDummy::class, ::TextServerDummy)
-  TypeManager.registerEngineType("TextServerExtension", TextServerExtension::class, null)
+  TypeManager.registerEngineType("TextServerExtension", TextServerExtension::class, ::TextServerExtensionDummy)
   TypeManager.registerSingleton("TextServerManager") { TextServerManager }
   TypeManager.registerEngineType("TextServerManager", TextServerManager::class) { TextServerManager }
   TypeManager.registerEngineType("Texture", Texture::class, ::Texture)
-  TypeManager.registerEngineType("Texture2D", Texture2D::class, null)
+  TypeManager.registerEngineType("Texture2D", Texture2D::class, ::Texture2DDummy)
   TypeManager.registerEngineType("Texture2DArray", Texture2DArray::class, ::Texture2DArray)
   TypeManager.registerEngineType("Texture2DArrayRD", Texture2DArrayRD::class, ::Texture2DArrayRD)
   TypeManager.registerEngineType("Texture2DRD", Texture2DRD::class, ::Texture2DRD)
-  TypeManager.registerEngineType("Texture3D", Texture3D::class, null)
+  TypeManager.registerEngineType("Texture3D", Texture3D::class, ::Texture3DDummy)
   TypeManager.registerEngineType("Texture3DRD", Texture3DRD::class, ::Texture3DRD)
   TypeManager.registerEngineType("TextureButton", TextureButton::class, ::TextureButton)
   TypeManager.registerEngineType("TextureCubemapArrayRD", TextureCubemapArrayRD::class, ::TextureCubemapArrayRD)
   TypeManager.registerEngineType("TextureCubemapRD", TextureCubemapRD::class, ::TextureCubemapRD)
-  TypeManager.registerEngineType("TextureLayered", TextureLayered::class, null)
+  TypeManager.registerEngineType("TextureLayered", TextureLayered::class, ::TextureLayeredDummy)
   TypeManager.registerEngineType("TextureLayeredRD", TextureLayeredRD::class, ::TextureLayeredRD)
   TypeManager.registerEngineType("TextureProgressBar", TextureProgressBar::class, ::TextureProgressBar)
   TypeManager.registerEngineType("TextureRect", TextureRect::class, ::TextureRect)
@@ -3652,8 +3682,8 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("VSplitContainer", VSplitContainer::class, ::VSplitContainer)
   TypeManager.registerEngineType("VehicleBody3D", VehicleBody3D::class, ::VehicleBody3D)
   TypeManager.registerEngineType("VehicleWheel3D", VehicleWheel3D::class, ::VehicleWheel3D)
-  TypeManager.registerEngineType("VideoStream", VideoStream::class, null)
-  TypeManager.registerEngineType("VideoStreamPlayback", VideoStreamPlayback::class, null)
+  TypeManager.registerEngineType("VideoStream", VideoStream::class, ::VideoStreamDummy)
+  TypeManager.registerEngineType("VideoStreamPlayback", VideoStreamPlayback::class, ::VideoStreamPlaybackDummy)
   TypeManager.registerEngineType("VideoStreamPlayer", VideoStreamPlayer::class, ::VideoStreamPlayer)
   TypeManager.registerEngineType("VideoStreamTheora", VideoStreamTheora::class, ::VideoStreamTheora)
   TypeManager.registerEngineType("Viewport", Viewport::class, ::Viewport)
@@ -3779,10 +3809,10 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("VoxelGIData", VoxelGIData::class, ::VoxelGIData)
   TypeManager.registerEngineType("WeakRef", WeakRef::class, ::WeakRef)
   TypeManager.registerEngineType("WebRTCDataChannel", WebRTCDataChannel::class, ::WebRTCDataChannel)
-  TypeManager.registerEngineType("WebRTCDataChannelExtension", WebRTCDataChannelExtension::class, null)
+  TypeManager.registerEngineType("WebRTCDataChannelExtension", WebRTCDataChannelExtension::class, ::WebRTCDataChannelExtensionDummy)
   TypeManager.registerEngineType("WebRTCMultiplayerPeer", WebRTCMultiplayerPeer::class, ::WebRTCMultiplayerPeer)
   TypeManager.registerEngineType("WebRTCPeerConnection", WebRTCPeerConnection::class, ::WebRTCPeerConnection)
-  TypeManager.registerEngineType("WebRTCPeerConnectionExtension", WebRTCPeerConnectionExtension::class, null)
+  TypeManager.registerEngineType("WebRTCPeerConnectionExtension", WebRTCPeerConnectionExtension::class, ::WebRTCPeerConnectionExtensionDummy)
   TypeManager.registerEngineType("WebSocketMultiplayerPeer", WebSocketMultiplayerPeer::class, ::WebSocketMultiplayerPeer)
   TypeManager.registerEngineType("WebSocketPeer", WebSocketPeer::class, ::WebSocketPeer)
   TypeManager.registerEngineType("WebXRInterface", WebXRInterface::class, ::WebXRInterface)

@@ -174,3 +174,13 @@ public abstract class Material : Resource() {
         TypeManager.getMethodBindPtr("Material", "create_placeholder", 121922552)
   }
 }
+
+internal class MaterialDummy : Material() {
+  public override fun _getShaderRid(): RID {
+    throw NotImplementedError("Material::_getShaderRid is only implemented by non-JVM code.")
+  }
+
+  public override fun _getShaderMode(): Shader.Mode {
+    throw NotImplementedError("Material::_getShaderMode is only implemented by non-JVM code.")
+  }
+}

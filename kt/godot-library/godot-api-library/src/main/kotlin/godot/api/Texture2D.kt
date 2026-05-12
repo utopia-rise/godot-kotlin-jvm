@@ -262,3 +262,13 @@ public abstract class Texture2D : Texture() {
         TypeManager.getMethodBindPtr("Texture2D", "create_placeholder", 121922552)
   }
 }
+
+internal class Texture2DDummy : Texture2D() {
+  public override fun _getWidth(): Int {
+    throw NotImplementedError("Texture2D::_getWidth is only implemented by non-JVM code.")
+  }
+
+  public override fun _getHeight(): Int {
+    throw NotImplementedError("Texture2D::_getHeight is only implemented by non-JVM code.")
+  }
+}

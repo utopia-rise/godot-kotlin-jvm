@@ -9,6 +9,7 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
 import kotlin.Int
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -25,4 +26,14 @@ public abstract class PacketPeerExtension : PacketPeer() {
   public companion object
 
   public object MethodBindings
+}
+
+internal class PacketPeerExtensionDummy : PacketPeerExtension() {
+  public override fun _getAvailablePacketCount(): Int {
+    throw NotImplementedError("PacketPeerExtension::_getAvailablePacketCount is only implemented by non-JVM code.")
+  }
+
+  public override fun _getMaxPacketSize(): Int {
+    throw NotImplementedError("PacketPeerExtension::_getMaxPacketSize is only implemented by non-JVM code.")
+  }
 }

@@ -66,3 +66,9 @@ public abstract class AudioStreamPlaybackResampled : AudioStreamPlayback() {
         TypeManager.getMethodBindPtr("AudioStreamPlaybackResampled", "begin_resample", 3218959716)
   }
 }
+
+internal class AudioStreamPlaybackResampledDummy : AudioStreamPlaybackResampled() {
+  public override fun _getStreamSamplingRate(): Float {
+    throw NotImplementedError("AudioStreamPlaybackResampled::_getStreamSamplingRate is only implemented by non-JVM code.")
+  }
+}

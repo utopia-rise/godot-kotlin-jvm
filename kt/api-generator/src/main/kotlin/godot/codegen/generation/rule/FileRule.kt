@@ -3,6 +3,7 @@ package godot.codegen.generation.rule
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.ClassName
 import godot.codegen.generation.GenerationContext
+import godot.codegen.generation.task.AbstractClassDummyTask
 import godot.codegen.generation.task.ApiTask
 import godot.codegen.generation.task.EnrichedClassTask
 import godot.codegen.generation.task.EnrichedEnumTask
@@ -17,6 +18,9 @@ class FileRule : GodotApiRule<FileTask>() {
         val type = task.type
         if (type is EnrichedClass) {
             task.classes += EnrichedClassTask(type)
+            if (type.isAbstract) {
+                task.abstractDummyClasses += AbstractClassDummyTask(type)
+            }
         } else if (type is EnrichedEnum) {
             task.enums += EnrichedEnumTask(type)
         }

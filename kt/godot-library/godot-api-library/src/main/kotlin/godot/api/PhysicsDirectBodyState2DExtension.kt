@@ -15,6 +15,7 @@ import kotlin.Boolean
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -278,4 +279,198 @@ public abstract class PhysicsDirectBodyState2DExtension : PhysicsDirectBodyState
   public companion object
 
   public object MethodBindings
+}
+
+internal class PhysicsDirectBodyState2DExtensionDummy : PhysicsDirectBodyState2DExtension() {
+  public override fun _getTotalGravity(): Vector2 {
+    throw NotImplementedError("PhysicsDirectBodyState2DExtension::_getTotalGravity is only implemented by non-JVM code.")
+  }
+
+  public override fun _getTotalLinearDamp(): Float {
+    throw NotImplementedError("PhysicsDirectBodyState2DExtension::_getTotalLinearDamp is only implemented by non-JVM code.")
+  }
+
+  public override fun _getTotalAngularDamp(): Float {
+    throw NotImplementedError("PhysicsDirectBodyState2DExtension::_getTotalAngularDamp is only implemented by non-JVM code.")
+  }
+
+  public override fun _getCenterOfMass(): Vector2 {
+    throw NotImplementedError("PhysicsDirectBodyState2DExtension::_getCenterOfMass is only implemented by non-JVM code.")
+  }
+
+  public override fun _getCenterOfMassLocal(): Vector2 {
+    throw NotImplementedError("PhysicsDirectBodyState2DExtension::_getCenterOfMassLocal is only implemented by non-JVM code.")
+  }
+
+  public override fun _getInverseMass(): Float {
+    throw NotImplementedError("PhysicsDirectBodyState2DExtension::_getInverseMass is only implemented by non-JVM code.")
+  }
+
+  public override fun _getInverseInertia(): Float {
+    throw NotImplementedError("PhysicsDirectBodyState2DExtension::_getInverseInertia is only implemented by non-JVM code.")
+  }
+
+  public override fun _setLinearVelocity(velocity: Vector2): Unit {
+    throw NotImplementedError("PhysicsDirectBodyState2DExtension::_setLinearVelocity is only implemented by non-JVM code.")
+  }
+
+  public override fun _getLinearVelocity(): Vector2 {
+    throw NotImplementedError("PhysicsDirectBodyState2DExtension::_getLinearVelocity is only implemented by non-JVM code.")
+  }
+
+  public override fun _setAngularVelocity(velocity: Float): Unit {
+    throw NotImplementedError("PhysicsDirectBodyState2DExtension::_setAngularVelocity is only implemented by non-JVM code.")
+  }
+
+  public override fun _getAngularVelocity(): Float {
+    throw NotImplementedError("PhysicsDirectBodyState2DExtension::_getAngularVelocity is only implemented by non-JVM code.")
+  }
+
+  public override fun _setTransform(transform: Transform2D): Unit {
+    throw NotImplementedError("PhysicsDirectBodyState2DExtension::_setTransform is only implemented by non-JVM code.")
+  }
+
+  public override fun _getTransform(): Transform2D {
+    throw NotImplementedError("PhysicsDirectBodyState2DExtension::_getTransform is only implemented by non-JVM code.")
+  }
+
+  public override fun _getVelocityAtLocalPosition(localPosition: Vector2): Vector2 {
+    throw NotImplementedError("PhysicsDirectBodyState2DExtension::_getVelocityAtLocalPosition is only implemented by non-JVM code.")
+  }
+
+  public override fun _applyCentralImpulse(impulse: Vector2): Unit {
+    throw NotImplementedError("PhysicsDirectBodyState2DExtension::_applyCentralImpulse is only implemented by non-JVM code.")
+  }
+
+  public override fun _applyImpulse(impulse: Vector2, position: Vector2): Unit {
+    throw NotImplementedError("PhysicsDirectBodyState2DExtension::_applyImpulse is only implemented by non-JVM code.")
+  }
+
+  public override fun _applyTorqueImpulse(impulse: Float): Unit {
+    throw NotImplementedError("PhysicsDirectBodyState2DExtension::_applyTorqueImpulse is only implemented by non-JVM code.")
+  }
+
+  public override fun _applyCentralForce(force: Vector2): Unit {
+    throw NotImplementedError("PhysicsDirectBodyState2DExtension::_applyCentralForce is only implemented by non-JVM code.")
+  }
+
+  public override fun _applyForce(force: Vector2, position: Vector2): Unit {
+    throw NotImplementedError("PhysicsDirectBodyState2DExtension::_applyForce is only implemented by non-JVM code.")
+  }
+
+  public override fun _applyTorque(torque: Float): Unit {
+    throw NotImplementedError("PhysicsDirectBodyState2DExtension::_applyTorque is only implemented by non-JVM code.")
+  }
+
+  public override fun _addConstantCentralForce(force: Vector2): Unit {
+    throw NotImplementedError("PhysicsDirectBodyState2DExtension::_addConstantCentralForce is only implemented by non-JVM code.")
+  }
+
+  public override fun _addConstantForce(force: Vector2, position: Vector2): Unit {
+    throw NotImplementedError("PhysicsDirectBodyState2DExtension::_addConstantForce is only implemented by non-JVM code.")
+  }
+
+  public override fun _addConstantTorque(torque: Float): Unit {
+    throw NotImplementedError("PhysicsDirectBodyState2DExtension::_addConstantTorque is only implemented by non-JVM code.")
+  }
+
+  public override fun _setConstantForce(force: Vector2): Unit {
+    throw NotImplementedError("PhysicsDirectBodyState2DExtension::_setConstantForce is only implemented by non-JVM code.")
+  }
+
+  public override fun _getConstantForce(): Vector2 {
+    throw NotImplementedError("PhysicsDirectBodyState2DExtension::_getConstantForce is only implemented by non-JVM code.")
+  }
+
+  public override fun _setConstantTorque(torque: Float): Unit {
+    throw NotImplementedError("PhysicsDirectBodyState2DExtension::_setConstantTorque is only implemented by non-JVM code.")
+  }
+
+  public override fun _getConstantTorque(): Float {
+    throw NotImplementedError("PhysicsDirectBodyState2DExtension::_getConstantTorque is only implemented by non-JVM code.")
+  }
+
+  public override fun _setSleepState(enabled: Boolean): Unit {
+    throw NotImplementedError("PhysicsDirectBodyState2DExtension::_setSleepState is only implemented by non-JVM code.")
+  }
+
+  public override fun _isSleeping(): Boolean {
+    throw NotImplementedError("PhysicsDirectBodyState2DExtension::_isSleeping is only implemented by non-JVM code.")
+  }
+
+  public override fun _setCollisionLayer(layer: Long): Unit {
+    throw NotImplementedError("PhysicsDirectBodyState2DExtension::_setCollisionLayer is only implemented by non-JVM code.")
+  }
+
+  public override fun _getCollisionLayer(): Long {
+    throw NotImplementedError("PhysicsDirectBodyState2DExtension::_getCollisionLayer is only implemented by non-JVM code.")
+  }
+
+  public override fun _setCollisionMask(mask: Long): Unit {
+    throw NotImplementedError("PhysicsDirectBodyState2DExtension::_setCollisionMask is only implemented by non-JVM code.")
+  }
+
+  public override fun _getCollisionMask(): Long {
+    throw NotImplementedError("PhysicsDirectBodyState2DExtension::_getCollisionMask is only implemented by non-JVM code.")
+  }
+
+  public override fun _getContactCount(): Int {
+    throw NotImplementedError("PhysicsDirectBodyState2DExtension::_getContactCount is only implemented by non-JVM code.")
+  }
+
+  public override fun _getContactLocalPosition(contactIdx: Int): Vector2 {
+    throw NotImplementedError("PhysicsDirectBodyState2DExtension::_getContactLocalPosition is only implemented by non-JVM code.")
+  }
+
+  public override fun _getContactLocalNormal(contactIdx: Int): Vector2 {
+    throw NotImplementedError("PhysicsDirectBodyState2DExtension::_getContactLocalNormal is only implemented by non-JVM code.")
+  }
+
+  public override fun _getContactLocalShape(contactIdx: Int): Int {
+    throw NotImplementedError("PhysicsDirectBodyState2DExtension::_getContactLocalShape is only implemented by non-JVM code.")
+  }
+
+  public override fun _getContactLocalVelocityAtPosition(contactIdx: Int): Vector2 {
+    throw NotImplementedError("PhysicsDirectBodyState2DExtension::_getContactLocalVelocityAtPosition is only implemented by non-JVM code.")
+  }
+
+  public override fun _getContactCollider(contactIdx: Int): RID {
+    throw NotImplementedError("PhysicsDirectBodyState2DExtension::_getContactCollider is only implemented by non-JVM code.")
+  }
+
+  public override fun _getContactColliderPosition(contactIdx: Int): Vector2 {
+    throw NotImplementedError("PhysicsDirectBodyState2DExtension::_getContactColliderPosition is only implemented by non-JVM code.")
+  }
+
+  public override fun _getContactColliderId(contactIdx: Int): Long {
+    throw NotImplementedError("PhysicsDirectBodyState2DExtension::_getContactColliderId is only implemented by non-JVM code.")
+  }
+
+  public override fun _getContactColliderObject(contactIdx: Int): Object? {
+    throw NotImplementedError("PhysicsDirectBodyState2DExtension::_getContactColliderObject is only implemented by non-JVM code.")
+  }
+
+  public override fun _getContactColliderShape(contactIdx: Int): Int {
+    throw NotImplementedError("PhysicsDirectBodyState2DExtension::_getContactColliderShape is only implemented by non-JVM code.")
+  }
+
+  public override fun _getContactColliderVelocityAtPosition(contactIdx: Int): Vector2 {
+    throw NotImplementedError("PhysicsDirectBodyState2DExtension::_getContactColliderVelocityAtPosition is only implemented by non-JVM code.")
+  }
+
+  public override fun _getContactImpulse(contactIdx: Int): Vector2 {
+    throw NotImplementedError("PhysicsDirectBodyState2DExtension::_getContactImpulse is only implemented by non-JVM code.")
+  }
+
+  public override fun _getStep(): Float {
+    throw NotImplementedError("PhysicsDirectBodyState2DExtension::_getStep is only implemented by non-JVM code.")
+  }
+
+  public override fun _integrateForces(): Unit {
+    throw NotImplementedError("PhysicsDirectBodyState2DExtension::_integrateForces is only implemented by non-JVM code.")
+  }
+
+  public override fun _getSpaceState(): PhysicsDirectSpaceState2D {
+    throw NotImplementedError("PhysicsDirectBodyState2DExtension::_getSpaceState is only implemented by non-JVM code.")
+  }
 }

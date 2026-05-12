@@ -163,3 +163,69 @@ public abstract class MultiplayerPeerExtension : MultiplayerPeer() {
 
   public object MethodBindings
 }
+
+internal class MultiplayerPeerExtensionDummy : MultiplayerPeerExtension() {
+  public override fun _getAvailablePacketCount(): Int {
+    throw NotImplementedError("MultiplayerPeerExtension::_getAvailablePacketCount is only implemented by non-JVM code.")
+  }
+
+  public override fun _getMaxPacketSize(): Int {
+    throw NotImplementedError("MultiplayerPeerExtension::_getMaxPacketSize is only implemented by non-JVM code.")
+  }
+
+  public override fun _getPacketChannel(): Int {
+    throw NotImplementedError("MultiplayerPeerExtension::_getPacketChannel is only implemented by non-JVM code.")
+  }
+
+  public override fun _getPacketMode(): MultiplayerPeer.TransferMode {
+    throw NotImplementedError("MultiplayerPeerExtension::_getPacketMode is only implemented by non-JVM code.")
+  }
+
+  public override fun _setTransferChannel(pChannel: Int): Unit {
+    throw NotImplementedError("MultiplayerPeerExtension::_setTransferChannel is only implemented by non-JVM code.")
+  }
+
+  public override fun _getTransferChannel(): Int {
+    throw NotImplementedError("MultiplayerPeerExtension::_getTransferChannel is only implemented by non-JVM code.")
+  }
+
+  public override fun _setTransferMode(pMode: MultiplayerPeer.TransferMode): Unit {
+    throw NotImplementedError("MultiplayerPeerExtension::_setTransferMode is only implemented by non-JVM code.")
+  }
+
+  public override fun _getTransferMode(): MultiplayerPeer.TransferMode {
+    throw NotImplementedError("MultiplayerPeerExtension::_getTransferMode is only implemented by non-JVM code.")
+  }
+
+  public override fun _setTargetPeer(pPeer: Int): Unit {
+    throw NotImplementedError("MultiplayerPeerExtension::_setTargetPeer is only implemented by non-JVM code.")
+  }
+
+  public override fun _getPacketPeer(): Int {
+    throw NotImplementedError("MultiplayerPeerExtension::_getPacketPeer is only implemented by non-JVM code.")
+  }
+
+  public override fun _isServer(): Boolean {
+    throw NotImplementedError("MultiplayerPeerExtension::_isServer is only implemented by non-JVM code.")
+  }
+
+  public override fun _poll(): Unit {
+    throw NotImplementedError("MultiplayerPeerExtension::_poll is only implemented by non-JVM code.")
+  }
+
+  public override fun _close(): Unit {
+    throw NotImplementedError("MultiplayerPeerExtension::_close is only implemented by non-JVM code.")
+  }
+
+  public override fun _disconnectPeer(pPeer: Int, pForce: Boolean): Unit {
+    throw NotImplementedError("MultiplayerPeerExtension::_disconnectPeer is only implemented by non-JVM code.")
+  }
+
+  public override fun _getUniqueId(): Int {
+    throw NotImplementedError("MultiplayerPeerExtension::_getUniqueId is only implemented by non-JVM code.")
+  }
+
+  public override fun _getConnectionStatus(): MultiplayerPeer.ConnectionStatus {
+    throw NotImplementedError("MultiplayerPeerExtension::_getConnectionStatus is only implemented by non-JVM code.")
+  }
+}
