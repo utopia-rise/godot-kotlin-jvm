@@ -6,7 +6,7 @@ import godot.api.Node3D;
 import godot.global.GD;
 
 @RegisterClass
-public class Simple extends Node3D {
+public class SimpleJava extends Node3D {
     @RegisterFunction
     @Override
     public void _ready() {

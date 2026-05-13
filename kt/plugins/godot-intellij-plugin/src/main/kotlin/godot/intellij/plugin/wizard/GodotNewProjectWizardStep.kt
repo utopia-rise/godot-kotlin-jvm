@@ -25,14 +25,17 @@ class GodotNewProjectWizardStep(parent: NewProjectWizardBaseStep) : AbstractNewP
     private val baseStep = parent
 
     private var group = "com.godot.game"
-    private var language = ProjectLanguage.KOTLIN
+    private val selectedLanguages = linkedMapOf(
+        ProjectLanguage.KOTLIN to true,
+        ProjectLanguage.JAVA to true,
+        ProjectLanguage.SCALA to true,
+    )
     private var isAndroidEnabled = false
     private var d8ToolPath = ""
     private var androidCompileSdkDirectory = ""
     private var isGraalNativeImageEnabled = false
     private var graalVmHomeDirectory = ""
     private var windowsDeveloperVcVarsPath = ""
-    private var isIOSEnabled = false
 
     init {
         baseStep.defaultName = DEFAULT_PROJECT_NAME
@@ -62,13 +65,19 @@ class GodotNewProjectWizardStep(parent: NewProjectWizardBaseStep) : AbstractNewP
                     .columns(GENERAL_FIELD_COLUMNS)
             }
             row(GodotPluginBundle.message("wizard.projectSettings.general.language")) {
-                comboBox(ProjectLanguage.entries.toList())
-                    .applyToComponent {
-                        selectedItem = language
-                        addActionListener {
-                            language = selectedItem as? ProjectLanguage ?: ProjectLanguage.KOTLIN
+                panel {
+                    ProjectLanguage.entries.forEach { language ->
+                        row {
+                            checkBox(language.displayName)
+                                .selected(selectedLanguages.getValue(language))
+                                .applyToComponent {
+                                    addActionListener {
+                                        selectedLanguages[language] = isSelected
+                                    }
+                                }
                         }
                     }
+                }
             }
         }
 
@@ -78,7 +87,6 @@ class GodotNewProjectWizardStep(parent: NewProjectWizardBaseStep) : AbstractNewP
                 row {
                     isAndroidEnabledCheckBox = checkBox(GodotPluginBundle.message("wizard.projectSettings.buildSettings.android.isAndroidEnabled"))
                         .bindSelected(::isAndroidEnabled)
-                        .comment(GodotPluginBundle.message("wizard.projectSettings.buildSettings.android.enabled.comment"))
                 }
                 rowsRange {
                     row(GodotPluginBundle.message("wizard.projectSettings.buildSettings.android.d8ToolPath")) {
@@ -106,39 +114,11 @@ class GodotNewProjectWizardStep(parent: NewProjectWizardBaseStep) : AbstractNewP
                 }.visibleIf(isAndroidEnabledCheckBox.selected)
             }
 
-            lateinit var isGraalVmEnabledCheckBox: Cell<JCheckBox>
-
-            lateinit var isIOSEnabledCheckBox: Cell<JCheckBox>
-
-            group(GodotPluginBundle.message("wizard.projectSettings.buildSettings.ios.title")) {
-                row {
-                    isIOSEnabledCheckBox = checkBox(GodotPluginBundle.message("wizard.projectSettings.buildSettings.ios.isIOSEnabled"))
-                        .bindSelected(::isIOSEnabled)
-                        .applyToComponent {
-                            addActionListener {
-                                if (isSelected) {
-                                    isGraalNativeImageEnabled = true
-                                    isGraalVmEnabledCheckBox.component.isSelected = true
-                                }
-                            }
-                        }
-                        .comment(GodotPluginBundle.message("wizard.projectSettings.buildSettings.ios.enabled.comment"))
-                }
-            }
-
             group(GodotPluginBundle.message("wizard.projectSettings.buildSettings.graalvm.title")) {
+                lateinit var isGraalVmEnabledCheckBox: Cell<JCheckBox>
                 row {
                     isGraalVmEnabledCheckBox = checkBox(GodotPluginBundle.message("wizard.projectSettings.buildSettings.graalvm.isGraalVmEnabled"))
                         .bindSelected(::isGraalNativeImageEnabled)
-                        .applyToComponent {
-                            addActionListener {
-                                if (!isSelected) {
-                                    isIOSEnabled = false
-                                    isIOSEnabledCheckBox.component.isSelected = false
-                                }
-                            }
-                        }
-                        .comment(GodotPluginBundle.message("wizard.projectSettings.buildSettings.graalvm.enabled.comment"))
                 }
                 rowsRange {
                     row {
@@ -174,10 +154,18 @@ class GodotNewProjectWizardStep(parent: NewProjectWizardBaseStep) : AbstractNewP
     }
 
     override fun setupProject(project: Project) {
-        val baseDir = File(baseStep.path)
+        val baseDir = when {
+            context.isCreatingNewProject -> project.basePath?.let(::File) ?: File(baseStep.path, baseStep.name)
+            else -> File(baseStep.path)
+        }
         val packagePath = group.replace(".", "/")
+        val enabledLanguages = getEnabledLanguages()
 
-        File(baseDir, "${language.sourceRoot}/$packagePath").mkdirs()
+        baseDir.mkdirs()
+
+        enabledLanguages.forEach { language ->
+            File(baseDir, "${language.sourceRoot}/$packagePath").mkdirs()
+        }
 
         if (context.isCreatingNewProject) {
             copyTemplateFile(baseDir, "gradle/wrapper/gradle-wrapper.jar.template")
@@ -207,16 +195,18 @@ class GodotNewProjectWizardStep(parent: NewProjectWizardBaseStep) : AbstractNewP
             )
         }
 
-        copyTemplateFile(
-            baseDir,
-            language.templateName,
-            "${language.sourceRoot}/$packagePath/${language.sampleFileName}",
-        ) { outFile ->
-            outFile.writeText(
-                outFile
-                    .readText()
-                    .replace("GROUP_ID", group)
-            )
+        enabledLanguages.forEach { language ->
+            copyTemplateFile(
+                baseDir,
+                language.templateName,
+                "${language.sourceRoot}/$packagePath/${language.sampleFileName}",
+            ) { outFile ->
+                outFile.writeText(
+                    outFile
+                        .readText()
+                        .replace("GROUP_ID", group)
+                )
+            }
         }
         copyTemplateFile(baseDir, "icon.svg.intellij_template")
         copyTemplateFile(baseDir, "project.godot.intellij_template") { outFile ->
@@ -244,7 +234,7 @@ class GodotNewProjectWizardStep(parent: NewProjectWizardBaseStep) : AbstractNewP
     private fun applyBuildTemplateVariables(content: String): String {
         return content
             .replace("GODOT_KOTLIN_JVM_VERSION", GODOT_JVM_VERSION)
-            .replace("GODOT_LANGUAGES", language.gradleLanguagesLiteral)
+            .replace("GODOT_LANGUAGES", getEnabledLanguages().joinToString(", ") { it.gradleLanguagesLiteral })
             .replace("D8_TOOL_PATH", d8ToolPath.trim().takeUnless(String::isEmpty) ?: DEFAULT_D8_TOOL_PATH)
             .replace("ANDROID_COMPILE_SDK_DIR", androidCompileSdkDirectory.trim().takeUnless(String::isEmpty) ?: DEFAULT_ANDROID_COMPILE_SDK_DIR)
             .replace("GRAAL_VM_DIR", graalVmHomeDirectory.trim().takeUnless(String::isEmpty) ?: DEFAULT_GRAAL_VM_DIRECTORY)
@@ -253,7 +243,7 @@ class GodotNewProjectWizardStep(parent: NewProjectWizardBaseStep) : AbstractNewP
                 windowsDeveloperVcVarsPath.trim().takeUnless(String::isEmpty) ?: DEFAULT_WINDOWS_DEVELOPER_VC_VARS_PATH
             )
             .removeOptionalBlock("ANDROID", isAndroidEnabled)
-            .removeOptionalBlock("GRAAL", isGraalNativeImageEnabled || isIOSEnabled)
+            .removeOptionalBlock("GRAAL", isGraalNativeImageEnabled)
     }
 
     private fun String.removeOptionalBlock(name: String, isEnabled: Boolean): String {
@@ -288,6 +278,10 @@ class GodotNewProjectWizardStep(parent: NewProjectWizardBaseStep) : AbstractNewP
         modifyOutFile(outFile)
     }
 
+    private fun getEnabledLanguages(): List<ProjectLanguage> {
+        return ProjectLanguage.entries.filter { selectedLanguages[it] == true }
+    }
+
     private fun String.majorMinor(): String {
         val firstDotIndex = indexOf('.')
         require(firstDotIndex != -1) { "Version must be in x.y or x.y.z format" }
@@ -297,15 +291,15 @@ class GodotNewProjectWizardStep(parent: NewProjectWizardBaseStep) : AbstractNewP
     }
 
     private enum class ProjectLanguage(
-        private val displayName: String,
+        val displayName: String,
         val sourceRoot: String,
         val templateName: String,
         val sampleFileName: String,
         val gradleLanguagesLiteral: String,
     ) {
-        KOTLIN("Kotlin", "src/main/kotlin", "Simple.kt.intellij_template", "Simple.kt", "GodotLanguage.KOTLIN"),
-        JAVA("Java", "src/main/java", "Simple.java.intellij_template", "Simple.java", "GodotLanguage.JAVA"),
-        SCALA("Scala", "src/main/scala", "Simple.scala.intellij_template", "Simple.scala", "GodotLanguage.SCALA");
+        KOTLIN("Kotlin", "src/main/kotlin", "Simple.kt.intellij_template", "SimpleKotlin.kt", "GodotLanguage.KOTLIN"),
+        JAVA("Java", "src/main/java", "Simple.java.intellij_template", "SimpleJava.java", "GodotLanguage.JAVA"),
+        SCALA("Scala", "src/main/scala", "Simple.scala.intellij_template", "SimpleScala.scala", "GodotLanguage.SCALA");
 
         override fun toString(): String = displayName
     }

@@ -55,6 +55,10 @@ dependencies {
     }
 }
 
+intellijPlatform {
+    buildSearchableOptions = false
+}
+
 intellijPlatform.pluginVerification.ides.ide(intellijVersion)
 
 tasks {
