@@ -20,6 +20,7 @@ import godot.entrygenerator.model.RpcAnnotation
 import godot.entrygenerator.model.TypeKind
 import godot.entrygenerator.utils.asEnumName
 import godot.registration.KtFunctionArgument
+import godot.tools.common.constants.godotCorePackage
 import godot.tools.common.constants.kotlinCollectionsPackage
 import godot.tools.common.constants.notificationFunction
 

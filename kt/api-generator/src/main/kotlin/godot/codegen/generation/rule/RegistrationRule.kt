@@ -3,7 +3,7 @@ package godot.codegen.generation.rule
 import com.squareup.kotlinpoet.CodeBlock
 import godot.codegen.constants.API
 import godot.codegen.constants.Internal
-import godot.codegen.constants.VariantConverter
+import godot.codegen.constants.Utils
 import godot.codegen.generation.GenerationContext
 import godot.codegen.generation.task.ApiTask
 import godot.codegen.generation.task.RegistrationTask
@@ -37,7 +37,7 @@ class RegistrationRule : GodotApiRule<ApiTask>() {
     private fun RegistrationTask.addVariantMapping(enrichedClass: EnrichedClass) {
         variantMapper.addStatement(
             "%M(%T::class, %M)",
-            VariantConverter.MAPPER,
+            Utils.addVariantMapping,
             enrichedClass.className,
             enrichedClass.getVariantConverter()
         )
@@ -45,6 +45,7 @@ class RegistrationRule : GodotApiRule<ApiTask>() {
 
     private fun RegistrationTask.addClassRegistering(clazz: EnrichedClass) {
         val typeManager = Internal.typeManager
+
         if (clazz.isSingleton) {
             engineTypes.addCode(
                 CodeBlock.builder()
@@ -62,34 +63,21 @@ class RegistrationRule : GodotApiRule<ApiTask>() {
                     .build()
             )
         } else if (clazz.isAbstract) {
-            engineTypes.addCode(
-                CodeBlock.builder()
-                    .add("%T.registerEngineType(", typeManager)
-                    .add("%S,·", clazz.identifier)
-                    .add("%T::class", clazz.className)
-                    .add(",·null)\n")
-                    .build()
+            engineTypes.addStatement(
+                "%T.registerEngineType(%S,·%T::class,·::%T)",
+                typeManager,
+                clazz.identifier,
+                clazz.className,
+                clazz.abstractDummyClassName,
             )
         } else {
-            if(clazz.isAbstract) {
-                formatString = "%T.registerEngineType(%S,·%T::class,·::%T)"
-                engineTypes.addStatement(
-                    formatString,
-                    TYPE_MANAGER,
-                    clazz.identifier,
-                    clazz.className,
-                    clazz.abstractDummyClassName,
-                )
-            } else {
-                formatString = "%T.registerEngineType(%S,·%T::class,·::%T)"
-                engineTypes.addStatement(
-                    formatString,
-                    TYPE_MANAGER,
-                    clazz.identifier,
-                    clazz.className,
-                    clazz.className
-                )
-            }
+            engineTypes.addStatement(
+                "%T.registerEngineType(%S,·%T::class,·::%T)",
+                typeManager,
+                clazz.identifier,
+                clazz.className,
+                clazz.className
+            )
         }
     }
 

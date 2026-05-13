@@ -71,7 +71,7 @@ object AwaitGenerationService : IAwaitGenerationService {
             }
 
             awaitFile.addFunction(
-                FunSpec.builder(METHOD_NAME_AWAIT)
+                FunSpec.builder(Coroutines.awaitMethodName)
                     .addModifiers(KModifier.SUSPEND, KModifier.INLINE)
                     .receiver(receiver)
                     .apply {

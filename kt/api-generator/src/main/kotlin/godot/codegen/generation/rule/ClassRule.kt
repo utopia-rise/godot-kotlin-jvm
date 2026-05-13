@@ -1,12 +1,15 @@
 package godot.codegen.generation.rule
 
+import com.squareup.kotlinpoet.ANY
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeSpec
+import com.squareup.kotlinpoet.UNIT
 import godot.codegen.constants.API
+import godot.codegen.constants.API.getMethodStringName
 import godot.codegen.constants.Annotations
 import godot.codegen.constants.Internal
 import godot.codegen.generation.GenerationContext
@@ -206,11 +209,8 @@ class MethodNameRule : GodotApiRule<EnrichedClassTask>() {
                 if (it.isVararg || !it.isJvmCompatible) return@onEach
 
                 val argCount = it.arguments.size
-                val methodStringClassName = ClassName(
-                    godotCorePackage,
-                    "MethodStringName$argCount"
-                ).parameterizedBy(
-                    listOf(classTask.clazz.className, it.getCastedType()) + it.arguments.map { it.getCastedType()}
+                val methodStringClassName = getMethodStringName(argCount).parameterizedBy(
+                    listOf(classTask.clazz.className, it.getCastedType()) + it.arguments.map { it.getCastedType() }
                 )
 
                 classTask.companion.addProperty(

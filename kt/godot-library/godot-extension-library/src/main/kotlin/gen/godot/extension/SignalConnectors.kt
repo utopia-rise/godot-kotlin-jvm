@@ -8,7 +8,6 @@
 package godot.extension
 
 import godot.api.Object
-import godot.api.Object.ConnectFlags
 import godot.core.JvmAction0
 import godot.core.JvmAction1
 import godot.core.JvmAction10
@@ -748,8 +747,7 @@ public fun <P0, P1, P2, P3, P4, P5, P6, P7>
 ): SignalConnector {
   val connector = SignalConnector.createUnsafe(
     this,
-    LambdaCallable8._createJava(p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type,
-        action)
+    LambdaCallable8._createJava(p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, action)
   )
   connector.connect(flags)
   return connector
@@ -849,8 +847,7 @@ public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8>
 ): SignalConnector {
   val connector = SignalConnector.createUnsafe(
     this,
-    LambdaCallable9._createJava(p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type,
-        p8Type, action)
+    LambdaCallable9._createJava(p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, action)
   )
   connector.connect(flags)
   return connector
@@ -955,8 +952,7 @@ public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>
 ): SignalConnector {
   val connector = SignalConnector.createUnsafe(
     this,
-    LambdaCallable10._createJava(p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type,
-        p8Type, p9Type, action)
+    LambdaCallable10._createJava(p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, action)
   )
   connector.connect(flags)
   return connector
@@ -1065,8 +1061,7 @@ public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>
 ): SignalConnector {
   val connector = SignalConnector.createUnsafe(
     this,
-    LambdaCallable11._createJava(p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type,
-        p8Type, p9Type, p10Type, action)
+    LambdaCallable11._createJava(p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, p10Type, action)
   )
   connector.connect(flags)
   return connector
@@ -1179,8 +1174,7 @@ public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>
 ): SignalConnector {
   val connector = SignalConnector.createUnsafe(
     this,
-    LambdaCallable12._createJava(p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type,
-        p8Type, p9Type, p10Type, p11Type, action)
+    LambdaCallable12._createJava(p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, p10Type, p11Type, action)
   )
   connector.connect(flags)
   return connector
@@ -1297,8 +1291,7 @@ public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>
 ): SignalConnector {
   val connector = SignalConnector.createUnsafe(
     this,
-    LambdaCallable13._createJava(p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type,
-        p8Type, p9Type, p10Type, p11Type, p12Type, action)
+    LambdaCallable13._createJava(p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, p10Type, p11Type, p12Type, action)
   )
   connector.connect(flags)
   return connector
@@ -1419,8 +1412,7 @@ public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>
 ): SignalConnector {
   val connector = SignalConnector.createUnsafe(
     this,
-    LambdaCallable14._createJava(p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type,
-        p8Type, p9Type, p10Type, p11Type, p12Type, p13Type, action)
+    LambdaCallable14._createJava(p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, p10Type, p11Type, p12Type, p13Type, action)
   )
   connector.connect(flags)
   return connector
@@ -1546,8 +1538,7 @@ public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>
 ): SignalConnector {
   val connector = SignalConnector.createUnsafe(
     this,
-    LambdaCallable15._createJava(p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type,
-        p8Type, p9Type, p10Type, p11Type, p12Type, p13Type, p14Type, action)
+    LambdaCallable15._createJava(p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, p10Type, p11Type, p12Type, p13Type, p14Type, action)
   )
   connector.connect(flags)
   return connector
@@ -1679,8 +1670,7 @@ public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15
 ): SignalConnector {
   val connector = SignalConnector.createUnsafe(
     this,
-    LambdaCallable16._createJava(p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type,
-        p8Type, p9Type, p10Type, p11Type, p12Type, p13Type, p14Type, p15Type, action)
+    LambdaCallable16._createJava(p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, p10Type, p11Type, p12Type, p13Type, p14Type, p15Type, action)
   )
   connector.connect(flags)
   return connector

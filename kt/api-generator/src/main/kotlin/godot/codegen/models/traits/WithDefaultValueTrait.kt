@@ -39,7 +39,7 @@ interface WithDefaultValueTrait : MetaGenerationTrait {
                 .replace(",", ".0,")
                 .replace(")", ".0)") to arrayOf()
 
-            identifier == Core.callable.simpleName -> "%T()" to arrayOf(Core.callable)
+            identifier == Core.callable.simpleName -> "%T()" to arrayOf(Core.variantCallable)
 
             identifier == Core.rid.simpleName ||
                 identifier == Core.dictionary.simpleName ||

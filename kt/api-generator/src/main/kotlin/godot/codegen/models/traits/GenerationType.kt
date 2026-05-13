@@ -69,7 +69,6 @@ interface TypeGenerationTrait {
     fun isTypedArray() = nature == Nature.TYPED_ARRAY
     fun isObjectSubClass() = nature == Nature.CLASS
     fun isNullable() = isObjectSubClass() || identifier == TypeIdentifier.VARIANT.name
-    fun isNullable() = isObjectSubClass() || identifier == GodotTypes.variant
     fun isNativeType() = nature == Nature.NATIVE
 }
 

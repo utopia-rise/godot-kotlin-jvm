@@ -156,7 +156,7 @@ class MethodRule : GodotApiRule<EnrichedMethodTask>(), BaseMethodeRule {
             "%T.callMethod($ptr,·%T.%M,·%M)",
             Internal.transferContext,
             clazz.className.nestedClass(API.methodBindingsInnerClassName),
-            MemberName(API.`object`.packageName,  "${method.name}Ptr"),
+            MemberName(API.`object`.packageName, "${method.name}Ptr"),
             method.type.getVariantConverter()
         )
     }

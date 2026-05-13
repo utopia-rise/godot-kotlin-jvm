@@ -34,7 +34,7 @@ properties = [
 	scala_callable_string,
 	variant_array,
 	dictionary,
-	notification_call_count
+	notification_triggered
 ]
 functions = [
     greeting,

@@ -1,8 +1,8 @@
 package godot.codegen.services.impl
 
 import godot.codegen.generation.GenerationContext
-import godot.codegen.generation.rule.ApiRule
 import godot.codegen.generation.rule.AbstractClassDummyRule
+import godot.codegen.generation.rule.ApiRule
 import godot.codegen.generation.rule.BindingRule
 import godot.codegen.generation.rule.BitfieldExtensionRule
 import godot.codegen.generation.rule.ConstantRule

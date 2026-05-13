@@ -38,10 +38,30 @@ object API {
     val transferModeUnreliableOrdered = MemberName(ClassName(godotApiPackage, "MultiplayerPeer", "TransferMode"), "UNRELIABLE_ORDERED")
 
     const val methodBindingsInnerClassName = "MethodBindings"
+    fun getMethodStringName(count: Int) = ClassName(godotCorePackage, "MethodStringName$count")
 }
 
 
 object Core {
+    const val signalsFileName = "Signals"
+    const val signalConnectorsFileName = "SignalConnectors"
+    const val bindMethodName = "bind"
+    const val callMethodName = "call"
+    const val callDeferredMethodName = "callDeferred"
+    const val connectMethodName = "connect"
+    const val connectLambdaMethodName = "connectLambda"
+    const val connectMethodMethodName = "connectMethod"
+    const val createMethodName = "create"
+    const val createUnsafeMethodName = "createUnsafe"
+    const val disconnectMethodName = "disconnect"
+    const val emitMethodName = "emit"
+    const val getValueMethodName = "getValue"
+    const val invokeMethodName = "invoke"
+    const val signalMethodName = "signal"
+    const val toCallableMethodName = "toCallable"
+    const val delegatePropertyName = "delegate"
+    const val unsafeSuffix = "Unsafe"
+
     val string = ClassName(godotCorePackage, "String")
     val vector2 = ClassName(godotCorePackage, "Vector2")
     val vector2i = ClassName(godotCorePackage, "Vector2i")
@@ -66,6 +86,7 @@ object Core {
     val signal = ClassName(godotCorePackage, "Signal")
     val dictionary = ClassName(godotCorePackage, "Dictionary")
     val variantArray = ClassName(godotCorePackage, "VariantArray")
+    val variantCallable = ClassName(godotCorePackage, "VariantCallable")
     val packedByteArray = ClassName(godotCorePackage, "PackedByteArray")
     val packedInt32Array = ClassName(godotCorePackage, "PackedInt32Array")
     val packedInt64Array = ClassName(godotCorePackage, "PackedInt64Array")
@@ -88,7 +109,10 @@ object Core {
     val signalConnector = ClassName(godotExtensionPackage, "SignalConnector")
 
     fun callable(argCount: Int) = ClassName(godotCorePackage, "Callable$argCount")
+    fun jvmAction(argCount: Int) = ClassName(godotCorePackage, "JvmAction$argCount")
+    fun jvmFunction(argCount: Int) = ClassName(godotCorePackage, "JvmFunction$argCount")
     fun methodCallable(argCount: Int) = ClassName(godotCorePackage, "MethodCallable$argCount")
+    fun methodStringName(argCount: Int) = ClassName(godotCorePackage, "MethodStringName$argCount")
     fun lambdaCallable(argCount: Int) = ClassName(godotCorePackage, "LambdaCallable$argCount")
     fun lambdaContainer(argCount: Int) = ClassName(godotCorePackage, "LambdaContainer$argCount")
     fun signal(argCount: Int) = ClassName(godotCorePackage, "Signal$argCount")
@@ -145,12 +169,33 @@ object VariantConverter {
 }
 
 object Coroutines {
+    const val awaitMethodName = "await"
     val await = ClassName(godotCoroutinePackage, "Await")
     val promise = MemberName(godotExtensionPackage, "promise")
     val resume = MemberName(kotlinCoroutinePackage, "resume")
     val suspendCancellableCoroutine = MemberName(kotlinxCoroutinePackage, "suspendCancellableCoroutine")
     val cancellableContinuation = ClassName(kotlinxCoroutinePackage, "CancellableContinuation")
     const val cancel = "cancel"
+}
+
+object Generator {
+    const val boundArgsArgumentName = "boundArgs"
+    const val callableParameterName = "callable"
+    const val cancelParameterName = "cancel"
+    const val containerArgumentName = "container"
+    const val flagsParameterName = "flags"
+    const val functionParameterName = "function"
+    const val instanceParameterName = "instance"
+    const val lambdaCallableFunctionName = "lambdaCallable"
+    const val methodCallableFunctionName = "methodCallable"
+    const val methodNameArgumentName = "methodName"
+    const val methodParameterName = "method"
+    const val nameParameterName = "name"
+    const val propertyParameterName = "property"
+    const val returnConverterParameterName = "returnConverter"
+    const val targetArgumentName = "target"
+    const val thisRefParameterName = "thisRef"
+    const val typeConvertersParameterName = "typeConverters"
 }
 
 
@@ -165,6 +210,8 @@ object Internal {
 
 object Kotlin {
     val listOf = MemberName(kotlinCollectionsPackage, "listOf")
+    val kProperty = ClassName(kotlinReflectPackage, "KProperty")
+    val readOnlyProperty = ClassName("kotlin.properties", "ReadOnlyProperty")
     val trimIndent = MemberName(kotlinTextPackage, "trimIndent")
 
     fun kFunction(argCount: Int) = ClassName(kotlinReflectPackage, "KFunction$argCount")
@@ -172,11 +219,14 @@ object Kotlin {
 
 
 object Utils {
+    val addVariantMapping = MemberName(godotCorePackage, "addVariantMapping")
     val toGodotName = MemberName(godotCorePackage, "toGodotName")
     val variantArrayOf = MemberName(godotCorePackage, "variantArrayOf")
     val variantMapper = MemberName(godotCorePackage, "variantMapper")
+    val getVariantConverter = MemberName(godotCorePackage, "getVariantConverter")
     val asCallable = MemberName(godotCorePackage, "asCallable")
     val asCachedStringName = MemberName(godotCorePackage, "asCachedStringName")
+    val asStringName = MemberName(godotCorePackage, "asStringName")
     val asCachedNodePath = MemberName(godotCorePackage, "asCachedNodePath")
     val promise = MemberName(godotExtensionPackage, "promise")
 }
