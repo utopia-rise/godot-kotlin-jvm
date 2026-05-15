@@ -1,32 +1,68 @@
 package godot.gradle.tasks.android
 
+import godot.gradle.exception.AndroidCompileSdkNotFoundException
 import godot.gradle.projectExt.godotJvmExtension
+import org.gradle.api.DefaultTask
 import org.gradle.api.Project
 import org.gradle.api.Task
+import org.gradle.api.provider.Property
+import org.gradle.api.tasks.Input
+import org.gradle.api.tasks.Optional
+import org.gradle.api.tasks.TaskAction
 import org.gradle.api.tasks.TaskProvider
 import java.io.File
 
-fun Project.checkAndroidJarAccessibleTask(): TaskProvider<Task> {
-    return tasks.register("checkAndroidJarAccessible") {
+abstract class CheckAndroidJarAccessibleTask : DefaultTask() {
+    @get:Input
+    @get:Optional
+    abstract val androidCompileSdkDirectory: Property<String>
+
+    @TaskAction
+    fun checkAndroidJarAccessible() {
+        val androidSdkDir = resolveAndroidCompileSdkDirectory()
+        val androidJar = androidSdkDir.resolve("android.jar")
+
+        when {
+            !androidJar.isFile -> {
+                val content = androidSdkDir.listFiles()
+                    ?.joinToString { it.name }
+                    ?: "<unable to list directory>"
+                throw AndroidCompileSdkNotFoundException(
+                    "${androidSdkDir.absolutePath} does not contain android.jar. Found files: $content"
+                )
+            }
+        }
+    }
+
+    private fun resolveAndroidCompileSdkDirectory(): File {
+        val configuredPath = androidCompileSdkDirectory.orNull?.trim()
+            ?: throw AndroidCompileSdkNotFoundException("android compile SDK directory is not configured")
+
+        if (configuredPath.isEmpty()) {
+            throw AndroidCompileSdkNotFoundException("android compile SDK directory is blank")
+        }
+
+        val configuredFile = File(configuredPath)
+        if (!configuredFile.exists()) {
+            throw AndroidCompileSdkNotFoundException("${configuredFile.absolutePath} does not exist")
+        }
+        if (!configuredFile.isDirectory) {
+            throw AndroidCompileSdkNotFoundException("${configuredFile.absolutePath} is not a directory")
+        }
+        return configuredFile
+    }
+}
+
+fun Project.checkAndroidJarAccessibleTask(): TaskProvider<out Task> {
+    val androidCompileSdkDirectory = godotJvmExtension.androidCompileSdkDirectory
+
+    return tasks.register("checkAndroidJarAccessible", CheckAndroidJarAccessibleTask::class.java) {
         with(it) {
             group = "godot-kotlin-jvm"
             description =
                 "Checks if the android.jar is present in the provided androidCompileSdkDirectory. Needed for android builds only"
 
-            doLast {
-                val androidSdkDir = godotJvmExtension.androidCompileSdkDirectory.orNull?.let(::File)
-
-                when {
-                    androidSdkDir == null -> throw IllegalArgumentException("androidCompileSdkDirectory not set. Make sure you've either set the ANDROID_SDK_ROOT environment variable or set the androidCompileSdkDirectory. For more information, visit: https://godot-kotl.in/en/stable/user-guide/exporting/#android")
-                    !androidSdkDir.isDirectory -> throw IllegalArgumentException("the androidCompileSdkDirectory you provided is not a directory")
-                    else -> {
-                        val content = androidSdkDir.listFiles()
-                        if (content == null || content.none { it.name == "android.jar" }) {
-                            throw IllegalArgumentException("the androidCompileSdkDirectory you provided does not contain the necessary android.jar file. Check your Android SDK setup. Found files: ${content?.joinToString { it.name }}\nFor more information, visit: https://godot-kotl.in/en/stable/user-guide/exporting/#android")
-                        }
-                    }
-                }
-            }
+            this.androidCompileSdkDirectory.set(androidCompileSdkDirectory)
         }
     }
 }

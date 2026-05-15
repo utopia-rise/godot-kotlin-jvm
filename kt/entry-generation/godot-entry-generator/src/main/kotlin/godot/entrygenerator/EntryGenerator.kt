@@ -14,6 +14,7 @@ import godot.entrygenerator.model.JvmType
 import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.settings.Settings
 import godot.entrygenerator.utils.Logger
+import godot.tools.common.constants.generatedEntryClassName
 import godot.tools.common.constants.godotEntryBasePackage
 import java.io.BufferedWriter
 import java.io.File
@@ -40,9 +41,6 @@ object EntryGenerator {
     ) {
         serviceFile.parentFile.mkdirs()
 
-        // the package path for an entry file needs to be unique over all possible dependencies otherwise they'll override each other and only one will be used/loaded
-        val randomPackageForEntryFile = getOrCreateRandomPackageName(serviceFile)
-
         _logger = logger
         _jvmTypeFqNamesProvider = jvmTypeFqNamesProvider
 
@@ -64,14 +62,14 @@ object EntryGenerator {
                 )
             }
             registerUserTypesVariantMappings(registeredClasses)
-            build(randomPackageForEntryFile, mainBufferedWriterProvider)
+            build(godotEntryBasePackage, mainBufferedWriterProvider)
         }
 
-        generateServiceFile(randomPackageForEntryFile, serviceFile)
+        generateServiceFile(serviceFile)
     }
 
-    private fun generateServiceFile(randomPackagePathForEntryFile: String, serviceFile: File) {
-        serviceFile.writeText("$randomPackagePathForEntryFile.Entry")
+    private fun generateServiceFile(serviceFile: File) {
+        serviceFile.writeText("$godotEntryBasePackage.$generatedEntryClassName")
     }
 
     private fun executeSanityChecksUsingRegisteredClasses(
@@ -90,23 +88,5 @@ object EntryGenerator {
 
             RpcCheck(logger, registeredClasses).execute(),
         ).any { hasIssue -> hasIssue }
-    }
-
-    /**
-     * Either gets the previously generated random package path of the entry class or creates a new one.
-     */
-    private fun getOrCreateRandomPackageName(serviceFile: File): String {
-        return if (serviceFile.exists()) {
-            serviceFile.readText().trim().removeSuffix(".Entry")
-        } else {
-            "$godotEntryBasePackage.${randomPackageName()}"
-        }
-    }
-
-    private fun randomPackageName(length: Int = 20): String {
-        val allowedChars = ('A'..'Z') + ('a'..'z')
-        return (1..length)
-            .map { allowedChars.random() }
-            .joinToString("")
     }
 }

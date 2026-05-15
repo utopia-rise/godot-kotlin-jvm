@@ -21,7 +21,6 @@ import org.gradle.api.provider.Property
 import org.gradle.api.tasks.CacheableTask
 import org.gradle.api.tasks.Classpath
 import org.gradle.api.tasks.Input
-import org.gradle.api.tasks.Optional
 import org.gradle.api.tasks.OutputDirectory
 import org.gradle.api.tasks.SourceSetContainer
 import org.gradle.api.tasks.TaskAction
@@ -52,10 +51,6 @@ abstract class ClassGraphGenerateEntryFilesTask : DefaultTask() {
     @get:Input
     abstract val registrationFileLayoutMode: Property<RegistrationFileLayoutMode>
 
-    @get:Input
-    @get:Optional
-    abstract val previousServiceContent: Property<String>
-
     @get:OutputDirectory
     abstract val generatedSourceRootDir: DirectoryProperty
 
@@ -64,8 +59,6 @@ abstract class ClassGraphGenerateEntryFilesTask : DefaultTask() {
 
     @TaskAction
     fun generate() {
-        ensureBuildDirectoryIsIgnoredByGodot()
-
         val outputRoot = generatedSourceRootDir.get().asFile
         outputRoot.deleteRecursively()
         outputRoot.mkdirs()
@@ -91,11 +84,6 @@ abstract class ClassGraphGenerateEntryFilesTask : DefaultTask() {
             .resolve("META-INF")
             .resolve("services")
             .resolve(entryServiceName)
-
-        if (!previousServiceContent.orNull.isNullOrBlank()) {
-            serviceFile.parentFile.mkdirs()
-            serviceFile.writeText(previousServiceContent.get())
-        }
 
         EntryGenerator.generateEntryFilesUsingRegisteredClasses(
             settings = settings,
@@ -140,15 +128,6 @@ abstract class ClassGraphGenerateEntryFilesTask : DefaultTask() {
             generatedRegistrationRootDir = generatedRegistrationRoot,
         )
     }
-
-    private fun ensureBuildDirectoryIsIgnoredByGodot() {
-        val buildDir = project.layout.buildDirectory.asFile.get()
-        if (!buildDir.exists()) {
-            buildDir.mkdirs()
-        }
-
-        buildDir.resolve(".gdignore").createNewFile()
-    }
 }
 
 private fun generateRegistrationFiles(
@@ -175,9 +154,6 @@ fun Project.entryGenerationGenerateFilesTask(
         .getByName("main")
     val generatedSourceRootDir = layout.buildDirectory.dir("generated/entry-generation")
     val generatedRegistrationRootDir = layout.buildDirectory.dir("generated/entry-generation/registration")
-    val serviceFileProvider = generatedSourceRootDir.map { generatedRoot ->
-        generatedRoot.file("resources/META-INF/services/$entryServiceName")
-    }
 
     return tasks.register(
         "entryGenerationGenerateFiles",
@@ -197,12 +173,6 @@ fun Project.entryGenerationGenerateFilesTask(
             providers.provider { layout.projectDirectory.asFile.absolutePath }
         )
         task.registrationFileLayoutMode.convention(godotJvmExtension.registrationFilesLayoutMode)
-        task.previousServiceContent.convention(
-            providers.provider {
-                val serviceFile = serviceFileProvider.get().asFile
-                if (serviceFile.isFile) serviceFile.readText() else null
-            }
-        )
         task.generatedSourceRootDir.convention(generatedSourceRootDir)
         task.generatedRegistrationFilesRootDir.convention(generatedRegistrationRootDir)
     }

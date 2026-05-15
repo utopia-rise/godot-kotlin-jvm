@@ -46,27 +46,3 @@ tasks {
         finalizedBy(publishToMavenLocal)
     }
 }
-
-publishing {
-    publications {
-        @Suppress("UNUSED_VARIABLE")
-        val godotGradlePlugin by registering(MavenPublication::class) {
-            pom {
-                name.set(project.name)
-                description.set("Godot gradle plugin for kotlin language support.")
-            }
-            artifactId = project.name
-            description = "Godot gradle plugin for kotlin language support."
-            from(components.getByName("java"))
-        }
-    }
-}
-
-project.extra["artifacts"] = arrayOf("godotGradlePlugin")
-
-val currentCommit: org.ajoberstar.grgit.Commit = grgit.head()
-// check if the current commit is tagged
-var tagOnCurrentCommit = grgit.tag.list().firstOrNull { tag -> tag.commit.id == currentCommit.id }
-var releaseMode = tagOnCurrentCommit != null
-
-fun isSnapshotBuild(): Boolean = tagOnCurrentCommit?.name?.endsWith("SNAPSHOT") == true

@@ -8,6 +8,8 @@ Two related topics also live here because users usually look for them alongside 
 - custom Kotlin source directories
 - Gradle wrapper path in the Godot editor
 
+The plugin also works well with Gradle performance features such as parallel execution and configuration cache.
+
 ## Quick example
 
 ```kotlin
@@ -25,6 +27,17 @@ godot {
     registrationNameMode.set(RegisteredNameMode.SIMPLE_NAME)
 }
 ```
+
+## Recommended Gradle performance settings
+
+For day-to-day project builds, these Gradle properties are a good default:
+
+```properties
+org.gradle.parallel=true
+org.gradle.configuration-cache=true
+```
+
+These are regular Gradle settings, so they belong in `gradle.properties`, not in the `godot { ... }` block.
 
 ## Build languages and toolchains
 
@@ -250,6 +263,8 @@ These settings matter when you invoke:
 - `buildAndroid`
 - `buildAndroidRelease`
 
+The Android export tasks are compatible with configuration cache, so `buildAndroid` and lower-level Android packaging tasks can be run with `--configuration-cache`.
+
 ### `d8ToolPath`
 
 Path to the `d8` executable used for dex generation.
@@ -288,6 +303,8 @@ These settings matter when you invoke:
 - `buildGraalNativeImageRelease`
 - `buildIOS`
 - `buildIOSRelease`
+
+The desktop GraalVM and iOS export tasks are also compatible with configuration cache.
 
 ### `graalVmHomeDirectory`
 

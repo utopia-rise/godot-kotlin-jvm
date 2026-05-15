@@ -146,8 +146,12 @@ fun FieldInfo.hasAnnotation(annotationName: String, classInfo: ClassInfo): Boole
                 }
 
 
-fun FieldInfo.toGetterName(): String = "get${capitalizedName()}"
-fun FieldInfo.toSetterName(): String = "set${capitalizedName()}"
+fun FieldInfo.toGetterName(): String =
+    if (isKotlinBooleanIsProperty()) name else "get${capitalizedName()}"
+
+fun FieldInfo.toSetterName(): String =
+    if (isKotlinBooleanIsProperty()) "set${name.removePrefix("is")}" else "set${capitalizedName()}"
+
 fun FieldInfo.toScalaSetterName(): String = "${name}_\$eq"
 fun FieldInfo.toSyntheticAnnotations(): String = "${toGetterName()}\$annotations"
 
@@ -189,3 +193,11 @@ fun FieldInfo.getAnnotations(classInfo: ClassInfo): Collection<AnnotationInfo> =
 
 private fun FieldInfo.capitalizedName(): String = sanitizedName
     .replaceFirstChar { char -> if (char.isLowerCase()) char.titlecase() else char.toString() }
+
+private fun FieldInfo.isKotlinBooleanIsProperty(): Boolean {
+    if (!name.startsWith("is") || name.length <= 2 || !name[2].isUpperCase()) {
+        return false
+    }
+
+    return typeDescriptor.toString() in setOf("boolean", "java.lang.Boolean", "kotlin.Boolean")
+}

@@ -2,6 +2,10 @@ package godot.gradle
 
 import godot.entrygenerator.settings.RegisteredNameMode
 import godot.entrygenerator.settings.RegistrationFileLayoutMode
+import godot.gradle.ext.environmentVariable
+import godot.gradle.ext.executableFileOrNull
+import godot.gradle.ext.existingDirectoryOrNull
+import godot.gradle.ext.existingFileOrNull
 import godot.tools.common.KOTLIN_VERSION
 import godot.tools.common.constants.FileExtensions
 import org.gradle.api.Project
@@ -164,80 +168,10 @@ open class GodotExtension(objects: ObjectFactory) {
      */
     val scalaVersion: Property<String> = objects.property(String::class.java)
 
-    @Deprecated(
-        message = "Use registrationFilesDirectory instead.",
-        replaceWith = ReplaceWith("registrationFilesDirectory"),
-    )
-    val registrationFileBaseDir: DirectoryProperty
-        get() = registrationFilesDirectory
-
-    @Deprecated(
-        message = "Use registrationFilesLayoutMode instead.",
-        replaceWith = ReplaceWith("registrationFilesLayoutMode"),
-    )
-    val registrationFileLayoutMode: Property<RegistrationFileLayoutMode>
-        get() = registrationFilesLayoutMode
-
-    @Deprecated(
-        message = "Use registrationNameMode instead.",
-        replaceWith = ReplaceWith("registrationNameMode"),
-    )
-    val registeredNameMode: Property<RegisteredNameMode>
-        get() = registrationNameMode
-
-    @Deprecated(
-        message = "Use d8ToolPath instead.",
-        replaceWith = ReplaceWith("d8ToolPath"),
-    )
-    val d8ToolFile: Property<String>
-        get() = d8ToolPath
-
-    @Deprecated(
-        message = "Use androidCompileSdkDirectory instead.",
-        replaceWith = ReplaceWith("androidCompileSdkDirectory"),
-    )
-    val androidCompileSdkDir: Property<String>
-        get() = androidCompileSdkDirectory
-
-    @Deprecated(
-        message = "Use androidMinApiLevel instead.",
-        replaceWith = ReplaceWith("androidMinApiLevel"),
-    )
-    val androidMinApi: Property<Int>
-        get() = androidMinApiLevel
-
-    @Deprecated(
-        message = "Use graalVmHomeDirectory instead.",
-        replaceWith = ReplaceWith("graalVmHomeDirectory"),
-    )
-    val graalVmDirectory: Property<String>
-        get() = graalVmHomeDirectory
-
-    @Deprecated(
-        message = "Use windowsDeveloperVcVarsPath instead.",
-        replaceWith = ReplaceWith("windowsDeveloperVcVarsPath"),
-    )
-    val windowsDeveloperVcVarsFile: Property<String>
-        get() = windowsDeveloperVcVarsPath
-
-    @Deprecated(
-        message = "Use windowsDeveloperVcVarsPath instead.",
-        replaceWith = ReplaceWith("windowsDeveloperVcVarsPath"),
-    )
-    val windowsDeveloperVCVarsPath: Property<String>
-        get() = windowsDeveloperVcVarsPath
-
-    @Deprecated(
-        message = "Use isGraalNativeImageVerboseEnabled instead.",
-        replaceWith = ReplaceWith("isGraalNativeImageVerboseEnabled"),
-    )
-    val isGraalVmNativeImageGenerationVerbose: Property<Boolean>
-        get() = isGraalNativeImageVerboseEnabled
-
     internal fun configureExtensionDefaults(target: Project) {
-        val androidSdkRoot = System.getenv("ANDROID_SDK_ROOT")?.let { androidSdkRoot ->
-            File(androidSdkRoot)
-        }
+        val androidSdkRoot = environmentVariable("ANDROID_SDK_ROOT")
+            ?.let(::File)
+            ?.existingDirectoryOrNull()
 
         val buildToolsDir = androidSdkRoot?.resolve("build-tools")?.let { buildToolsDir ->
             if (buildToolsDir.exists() && buildToolsDir.isDirectory) {
@@ -253,42 +187,46 @@ open class GodotExtension(objects: ObjectFactory) {
 
         val d8Tool = buildToolsDir
             ?.listFiles()
-            ?.last { it.isDirectory }
+            ?.filter { it.isDirectory }
+            ?.maxByOrNull { it.name }
             ?.resolve("d8")
+            ?.executableFileOrNull()
 
         val androidCompileSdkDirectoryFile = platformsDir
             ?.listFiles()
-            ?.last { it.isDirectory }
+            ?.filter { it.isDirectory }
+            ?.filter { it.resolve("android.jar").existingFileOrNull() != null }
+            ?.maxByOrNull { it.name }
 
-        godotProjectDirectory.set(target.projectDir)
-        isLibrary.set(false)
-        registrationFilesDirectory.set(godotProjectDirectory.dir(FileExtensions.GodotKotlinJvm.registrationFile))
-        registrationFilesLayoutMode.set(RegistrationFileLayoutMode.FLAT)
-        registrationNameMode.set(RegisteredNameMode.SIMPLE_NAME)
-        languages.set(GodotLanguage.entries.toSet())
+        godotProjectDirectory.convention(target.layout.projectDirectory)
+        isLibrary.convention(false)
+        registrationFilesDirectory.convention(godotProjectDirectory.dir(FileExtensions.GodotKotlinJvm.registrationFile))
+        registrationFilesLayoutMode.convention(RegistrationFileLayoutMode.FLAT)
+        registrationNameMode.convention(RegisteredNameMode.SIMPLE_NAME)
+        languages.convention(GodotLanguage.entries.toSet())
 
         if (d8Tool != null) {
-            d8ToolPath.set(d8Tool.absolutePath)
+            d8ToolPath.convention(d8Tool.absolutePath)
         }
 
         if (androidCompileSdkDirectoryFile != null) {
-            androidCompileSdkDirectory.set(androidCompileSdkDirectoryFile.absolutePath)
+            androidCompileSdkDirectory.convention(androidCompileSdkDirectoryFile.absolutePath)
         }
 
-        androidMinApiLevel.set(21)
+        androidMinApiLevel.convention(21)
 
-        graalVmHomeDirectory.set(System.getenv("GRAALVM_HOME"))
-        additionalGraalJniConfigurationFiles.set(arrayOf())
-        additionalGraalReflectionConfigurationFiles.set(arrayOf())
-        additionalGraalResourceConfigurationFiles.set(arrayOf())
-        isGraalNativeImageVerboseEnabled.set(false)
+        environmentVariable("GRAALVM_HOME")?.let(graalVmHomeDirectory::convention)
+        additionalGraalJniConfigurationFiles.convention(arrayOf())
+        additionalGraalReflectionConfigurationFiles.convention(arrayOf())
+        additionalGraalResourceConfigurationFiles.convention(arrayOf())
+        isGraalNativeImageVerboseEnabled.convention(false)
 
-        isGodotCoroutinesEnabled.set(false)
+        isGodotCoroutinesEnabled.convention(false)
 
-        javaVersion.set(17)
-        kotlinVersion.set(KOTLIN_VERSION)
-        scalaVersion.set("3.6.3")
+        javaVersion.convention(17)
+        kotlinVersion.convention(KOTLIN_VERSION)
+        scalaVersion.convention("3.6.3")
 
-        windowsDeveloperVcVarsPath.set(System.getenv("VC_VARS_PATH"))
+        environmentVariable("VC_VARS_PATH")?.let(windowsDeveloperVcVarsPath::convention)
     }
 }

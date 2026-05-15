@@ -59,7 +59,7 @@ You can then set up [remote debug configuration in Intellij IDEA](https://www.je
 
 To publish our artifacts locally, you'll need to run the following command:
 ```bash
-./gradlew :common:publishToMavenLocal :tools-common:publishToMavenLocal publishToMavenLocal && ./gradlew publishToMavenLocal -Prelease=true
+./gradlew publishArtifactsToMavenLocal
 ```
 
 Check in you maven local repository what is the version you've just published, doing the following:
@@ -70,7 +70,9 @@ ls ~/.m2/repository/com/utopia-rise/godot-gradle-plugin
 
 The version should look something like this: `0.7.2-4.1.2-c8df371-SNAPSHOT`.
 
-Your test project should use `mavenLocal()` in the repositories block in `build.gradle.kts` and the following in `settings.gradle.kts`:
+Your test project should use `mavenLocal()` in its Gradle repositories and use the exact snapshot version you published from your local `~/.m2/repository/com/utopia-rise/godot-gradle-plugin/` folder.
+
+Use the following minimal `settings.gradle.kts` setup:
 
 ```kotlin
 pluginManagement {
@@ -80,14 +82,13 @@ pluginManagement {
         gradlePluginPortal()
         google()
     }
-
-    resolutionStrategy.eachPlugin {
-        if (requested.id.id == "com.utopia-rise.godot-kotlin-jvm") {
-            useModule("com.utopia-rise:godot-gradle-plugin:${requested.version}")
-        }
-    }
 }
+
+rootProject.name = "your-project-name"
 ```
+
+!!! warning
+    If you republish local changes under the same snapshot version, Gradle may reuse cached plugin artifacts. Rerun the consuming project with `--refresh-dependencies` (for example `./gradlew --refresh-dependencies build`) to force it to pick up the republished local artifacts.
 
 ## Important notes
 

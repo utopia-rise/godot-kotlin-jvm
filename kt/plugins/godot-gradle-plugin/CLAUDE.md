@@ -88,6 +88,7 @@ Performance intent:
 
 - scan once from the packaged user artifact plus runtime classpath
 - keep the generation step cacheable from Gradle's point of view
+- keep Android, GraalVM, and iOS export tasks configuration-cache-safe by modeling them as typed tasks with declared inputs and outputs instead of `Project`-capturing `doFirst` / `doLast` actions
 - avoid separate metadata re-scan passes
 - keep the scan processor narrow so scan work stays predictable
 
@@ -312,6 +313,25 @@ Be careful when changing:
 
 If those boundaries drift, warm-build performance can regress even if correctness still looks fine.
 
+### 7. Reintroducing `Project` captures in export tasks
+
+The Android and Graal/iOS export pipeline is now intentionally written in a configuration-cache-friendly style.
+
+Prefer:
+
+- typed task classes
+- declared `@Input`, `@InputFile`, `@InputDirectory`, `@OutputFile`, and `@OutputDirectory` properties
+- small task actions that only read task properties
+
+Avoid in task actions:
+
+- `doFirst { ... }` / `doLast { ... }` closures that close over `Project`
+- calling `project.layout...` from inside execution logic
+- calling `Project` extension helpers from inside task actions
+- modeling a broad directory like `build/libs` as an input when the task only needs one or two concrete files
+
+When you change export tasks, think in terms of exact file boundaries and exact task-owned outputs.
+
 ## Verification
 
 Prefer the smallest verification step that proves the change.
@@ -323,6 +343,18 @@ Useful commands from the monorepo root (`D:\Godot\Module\kotlin\modules\kotlin_j
 ```
 
 Use this after editing plugin code. It is the minimum sanity check.
+
+When you touch Android, GraalVM, or iOS export tasks, also verify configuration-cache behavior explicitly:
+
+```powershell
+cd D:\Godot\projects\godot-kotlin-3d-demo
+.\gradlew.bat createMainDexFile --no-daemon --configuration-cache
+.\gradlew.bat createGraalNativeImage --no-daemon --configuration-cache
+.\gradlew.bat createIOSStaticLibrary --no-daemon --configuration-cache
+```
+
+The Android and Graal commands should finish with `Configuration cache entry stored.`.
+The iOS command should also store the configuration cache even if the host environment is missing the full runtime prerequisites for the native-image invocation itself.
 
 For user-facing Gradle settings and examples, the canonical docs page is:
 

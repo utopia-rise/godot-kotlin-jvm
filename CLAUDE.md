@@ -37,13 +37,13 @@ cd kt/
 ./gradlew build                  # build all subprojects
 ./gradlew build -Prelease        # production/release build
 ./gradlew publishToMavenLocal    # publish artifacts locally for branch testing
+./gradlew publishArtifactsToMavenLocal  # publish all local-consumption artifacts to mavenLocal
 ```
 
 Full local publish (for testing unreleased branch changes in a user project):
 ```bash
 cd kt/
-./gradlew :tools-common:publishToMavenLocal publishToMavenLocal
-./gradlew publishToMavenLocal -Prelease=true
+./gradlew publishArtifactsToMavenLocal
 # Version will appear in ~/.m2/repository/com/utopia-rise/godot-gradle-plugin/
 ```
 
@@ -74,7 +74,7 @@ The `harness/tests/` directory is a full Godot project. It requires a built edit
 ### Testing Changes from a Feature Branch
 
 1. Publish locally (see above)
-2. Configure the user project's `settings.gradle.kts` to use `mavenLocal()` and the snapshot version (e.g. `0.10.0-4.3.0-d68f299-SNAPSHOT`)
+2. Configure the user project's Gradle repositories to use `mavenLocal()` and use the exact snapshot version you published (e.g. `0.10.0-4.3.0-d68f299-SNAPSHOT`)
 3. Run with the dev build: `./bin/godot.linuxbsd.editor.dev.x86_64.jvm` (or platform equivalent)
 
 Full workflow: `docs/src/doc/contribution/test-change-from-branch.md`

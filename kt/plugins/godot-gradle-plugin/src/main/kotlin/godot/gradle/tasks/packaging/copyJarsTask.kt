@@ -8,54 +8,95 @@ import org.gradle.api.tasks.Copy
 import org.gradle.api.tasks.TaskProvider
 import java.io.File
 
-fun Project.createCopyJarsTask(
+private fun Project.godotKotlinJvmDestinationDir(): File =
+    requireConfiguredGodotProjectDirectory().resolve(Paths.GODOT_KOTLIN_JVM_DIR)
+
+private fun Project.libsDir(): File =
+    layout.buildDirectory.asFile.get().resolve("libs")
+
+private fun Project.registerCopyTask(
+    name: String,
+    description: String,
+    dependsOnTasks: List<TaskProvider<out Task>>,
+    configureSources: Copy.(File) -> Unit,
+): TaskProvider<Copy> {
+    return tasks.register(name, Copy::class.java) {
+        with(it) {
+            group = "godot-kotlin-jvm-internal"
+            this.description = description
+
+            dependsOn(dependsOnTasks)
+
+            val libsDir = libsDir()
+            configureSources(libsDir)
+            destinationDir = godotKotlinJvmDestinationDir()
+        }
+    }
+}
+
+fun Project.createCopyDesktopJarsTask(
     packageBootstrapJarTask: TaskProvider<out Task>,
     packageMainJarTask: TaskProvider<out Task>,
+): TaskProvider<Copy> {
+    return registerCopyTask(
+        name = "copyDesktopJars",
+        description = "Internal task! Copies the desktop jars into the Godot Kotlin/JVM output directory.",
+        dependsOnTasks = listOf(packageBootstrapJarTask, packageMainJarTask),
+    ) { libsDir ->
+        from(File(libsDir, "godot-bootstrap.jar"))
+        from(File(libsDir, "main.jar"))
+    }
+}
+
+fun Project.createCopyAndroidArtifactsTask(
     createBootstrapDexJarTask: TaskProvider<out Task>,
     packageMainDexJarTask: TaskProvider<out Task>,
+): TaskProvider<Copy> {
+    return registerCopyTask(
+        name = "copyAndroidArtifacts",
+        description = "Internal task! Copies the Android dex artifacts into the Godot Kotlin/JVM output directory.",
+        dependsOnTasks = listOf(createBootstrapDexJarTask, packageMainDexJarTask),
+    ) { libsDir ->
+        from(File(libsDir, "godot-bootstrap-dex.jar"))
+        from(File(libsDir, "main-dex.jar"))
+    }
+}
+
+fun Project.createCopyGraalArtifactsTask(
     createGraalNativeImageTask: TaskProvider<out Task>,
+): TaskProvider<Copy> {
+    return registerCopyTask(
+        name = "copyGraalArtifacts",
+        description = "Internal task! Copies the GraalVM native-image outputs into the Godot Kotlin/JVM output directory.",
+        dependsOnTasks = listOf(createGraalNativeImageTask),
+    ) { libsDir ->
+        from(provider {
+            listOf(
+                File(libsDir, "usercode.dll"),
+                File(libsDir, "usercode.so"),
+                File(libsDir, "usercode.dylib"),
+            ).filter(File::exists)
+        })
+    }
+}
+
+fun Project.createCopyIOSArtifactsTask(
     createIOSTask: TaskProvider<out Task>,
 ): TaskProvider<Copy> {
-    return tasks.register("copyJars", Copy::class.java) {
+    return tasks.register("copyIOSArtifacts", Copy::class.java) {
         with(it) {
             group = "godot-kotlin-jvm-internal"
             description =
-                "Internal task! Copies the built jars into the final output dir for the cpp reloading to pick up."
+                "Internal task! Copies the iOS static library and bundled iOS JDK files into the Godot Kotlin/JVM output directory."
 
-            dependsOn(
-                packageBootstrapJarTask,
-                packageMainJarTask,
-            )
-            mustRunAfter(
-                createBootstrapDexJarTask,
-                packageMainDexJarTask,
-                createGraalNativeImageTask,
-                createIOSTask,
-            )
+            dependsOn(createIOSTask)
 
-            val libsDir = layout.buildDirectory.asFile.get().resolve("libs")
-            this.from(File(libsDir, "godot-bootstrap.jar"))
-            this.from(File(libsDir, "main.jar"))
-            this.from(provider {
-                listOf(
-                    File(libsDir, "godot-bootstrap-dex.jar"),
-                    File(libsDir, "main-dex.jar"),
-                    File(libsDir, "usercode.dll"),
-                    File(libsDir, "usercode.so"),
-                    File(libsDir, "usercode.dylib"),
-                ).filter(File::exists)
-            })
-            this.from(provider {
-                listOf(File(libsDir.resolve("ios"), "usercode.a")).filter(File::exists)
-            }) {
-                into("ios")
+            val libsDir = libsDir()
+            val iosLibsDir = libsDir.resolve("ios")
+            from(iosLibsDir) {
+                include("usercode.a", "ios-jdk/**")
             }
-            this.from(provider {
-                listOf(libsDir.resolve("ios").resolve("ios-jdk")).filter(File::exists)
-            }) {
-                into("ios")
-            }
-            this.destinationDir = requireConfiguredGodotProjectDirectory().resolve(Paths.GODOT_KOTLIN_JVM_DIR)
+            destinationDir = godotKotlinJvmDestinationDir().resolve("ios")
         }
     }
 }

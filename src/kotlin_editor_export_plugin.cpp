@@ -7,6 +7,7 @@
 #include "lifecycle/jvm_user_configuration.h"
 #include "lifecycle/paths.h"
 #include "script/jvm_script_manager.h"
+#include "script/source_script_parser.h"
 
 #include <core/config/project_settings.h>
 
@@ -205,16 +206,19 @@ void KotlinEditorExportPlugin::_export_file(const String& p_path, const String& 
         // We replace the original script with another with the same path and name but with fqname content.
         // The remap boolean ensures that the original file is not kept for the export.
 
-        String source;
+        String source_code;
         Error error;
-        String fq_name {SourceScript::parse_source_to_fqdn(p_path, source, &error) };
-
+        error = JvmResourceFormatLoader::read_all_file_utf8(p_path, source_code);
         if (error != OK) {
-            JVM_LOG_WARNING(vformat("Failed to parse source %s", p_path));
+            JVM_LOG_WARNING(vformat("Failed to read source %s", p_path));
             return;
         }
 
-        add_file(p_path, fq_name.to_utf8_buffer(), true);
+        String exported_content;
+        StringName fq_name = parse_source_script_info(source_code);
+        if (!fq_name.is_empty()) { exported_content = String(fq_name); }
+
+        add_file(p_path, exported_content.to_utf8_buffer(), true);
 
         return;
     }

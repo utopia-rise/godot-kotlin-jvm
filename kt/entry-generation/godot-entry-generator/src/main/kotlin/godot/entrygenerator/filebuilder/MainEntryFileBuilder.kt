@@ -14,7 +14,7 @@ import godot.entrygenerator.settings.Settings
 import godot.registration.ClassRegistry
 import godot.registration.Entry
 import godot.tools.common.constants.GENERATED_COMMENT
-import godot.tools.common.constants.godotEntryBasePackage
+import godot.tools.common.constants.generatedEntryClassName
 import godot.tools.common.constants.kotlinCollectionsPackage
 import java.io.BufferedWriter
 import kotlin.reflect.KClass
@@ -38,14 +38,14 @@ class MainEntryFileBuilder {
                 )
         )
 
-    fun build(randomPackageForEntryFile: String, outAppendable: () -> BufferedWriter) {
+    fun build(entryPackage: String, outAppendable: () -> BufferedWriter) {
         val entryFileSpec = FileSpec
-            .builder(randomPackageForEntryFile, "Entry")
+            .builder(entryPackage, generatedEntryClassName)
             .addFileComment(GENERATED_COMMENT)
 
         entryFileSpec.addType(
             TypeSpec
-                .classBuilder(ClassName("$godotEntryBasePackage.$randomPackageForEntryFile", "Entry"))
+                .classBuilder(ClassName(entryPackage, generatedEntryClassName))
                 .superclass(Entry::class)
                 .addFunction(initFunctionSpec.build())
                 .addFunction(registerUserTypesVariantMappingsFunSpec.build())

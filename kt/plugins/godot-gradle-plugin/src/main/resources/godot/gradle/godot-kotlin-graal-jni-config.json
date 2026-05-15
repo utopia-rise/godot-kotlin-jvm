@@ -707,6 +707,7 @@
     "methods" : [
       { "name" : "<init>", "parameterTypes" : [] },
       { "name" : "loadClasses", "parameterTypes" : ["godot.core.KtClass[]"] },
+      { "name" : "initializeEngineTypes", "parameterTypes" : [] },
       { "name" : "registerManagedEngineTypes", "parameterTypes" : ["java.lang.String[]", "java.lang.String[]"] },
       { "name" : "initJar", "parameterTypes": ["java.lang.ClassLoader"]},
       { "name" : "initNativeImage", "parameterTypes": []},
@@ -718,6 +719,8 @@
     "name":"godot.core.KtClass",
     "methods":[
       {"name":"getBaseGodotClass","parameterTypes":[] },
+      {"name":"getFqdn","parameterTypes":[] },
+      {"name":"getConstructor","parameterTypes":[] },
       {"name":"getFunctions","parameterTypes":[] },
       {"name":"getProperties","parameterTypes":[] },
       {"name":"getRegisteredName","parameterTypes":[] },

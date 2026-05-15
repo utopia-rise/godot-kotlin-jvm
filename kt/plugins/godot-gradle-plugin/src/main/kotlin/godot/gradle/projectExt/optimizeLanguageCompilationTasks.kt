@@ -7,21 +7,31 @@ import org.gradle.api.tasks.scala.ScalaCompile
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 fun Project.optimizeLanguageCompilationTasks() {
+    val kotlinEnabled = godotJvmExtension.languages.map { languages ->
+        languages.contains(GodotLanguage.KOTLIN)
+    }
+    val javaEnabled = godotJvmExtension.languages.map { languages ->
+        languages.contains(GodotLanguage.JAVA)
+    }
+    val scalaEnabled = godotJvmExtension.languages.map { languages ->
+        languages.contains(GodotLanguage.SCALA)
+    }
+
     tasks.withType(KotlinCompile::class.java).configureEach { kotlinCompile ->
         kotlinCompile.onlyIf("Skip Kotlin compilation when the language is disabled or the source tree is empty") {
-            isLanguageEnabled(GodotLanguage.KOTLIN) && !kotlinCompile.sources.isEmpty
+            kotlinEnabled.get() && !kotlinCompile.sources.isEmpty
         }
     }
 
     tasks.withType(JavaCompile::class.java).configureEach { javaCompile ->
         javaCompile.onlyIf("Skip Java compilation when the language is disabled or the source tree is empty") {
-            isLanguageEnabled(GodotLanguage.JAVA) && !javaCompile.source.isEmpty
+            javaEnabled.get() && !javaCompile.source.isEmpty
         }
     }
 
     tasks.withType(ScalaCompile::class.java).configureEach { scalaCompile ->
         scalaCompile.onlyIf("Skip Scala compilation when the language is disabled or the source tree is empty") {
-            isLanguageEnabled(GodotLanguage.SCALA) && !scalaCompile.source.isEmpty
+            scalaEnabled.get() && !scalaCompile.source.isEmpty
         }
     }
 }

@@ -8,6 +8,7 @@ import org.gradle.api.Project
 import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPublication
+import org.gradle.plugin.devel.GradlePluginDevelopmentExtension
 import org.gradle.plugins.signing.Sign
 import org.jetbrains.kotlin.gradle.dsl.kotlinExtension
 
@@ -53,9 +54,26 @@ class PublishToMavenCentralPlugin : Plugin<Project> {
                 publications { publicationContainer ->
                     publicationContainer.all { publication ->
                         if (publication is MavenPublication) {
-                            publication.groupId = "com.utopia-rise"
-                            val artifactId = publication.artifactId
-                            publication.artifactId = if (artifactId.isNullOrEmpty()) evaluatedProject.name else artifactId
+                            val isPluginMarkerPublication = publication.name.endsWith("PluginMarkerMaven")
+
+                            if (isPluginMarkerPublication) {
+                                val pluginDeclarationName = publication.name.removeSuffix("PluginMarkerMaven")
+                                val pluginDeclaration = evaluatedProject
+                                    .extensions
+                                    .findByType(GradlePluginDevelopmentExtension::class.java)
+                                    ?.plugins
+                                    ?.findByName(pluginDeclarationName)
+
+                                if (pluginDeclaration != null) {
+                                    val pluginId = pluginDeclaration.id
+                                    publication.groupId = pluginId
+                                    publication.artifactId = "$pluginId.gradle.plugin"
+                                }
+                            } else {
+                                publication.groupId = "com.utopia-rise"
+                                val artifactId = publication.artifactId
+                                publication.artifactId = if (artifactId.isNullOrEmpty()) evaluatedProject.name else artifactId
+                            }
                             publication.version = evaluatedProject.version as String
 
                             publication.pom { mavenPom ->
@@ -115,6 +133,7 @@ class PublishToMavenCentralPlugin : Plugin<Project> {
                 }
             }
         }
+
     }
 }
 

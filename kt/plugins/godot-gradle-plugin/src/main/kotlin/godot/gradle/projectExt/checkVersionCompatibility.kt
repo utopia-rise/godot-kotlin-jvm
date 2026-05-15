@@ -2,7 +2,28 @@ package godot.gradle.projectExt
 
 import godot.tools.common.KOTLIN_VERSION
 import org.gradle.api.Project
+import org.gradle.api.plugins.JavaPluginExtension
+import org.gradle.jvm.toolchain.JavaLanguageVersion
 import org.jetbrains.kotlin.gradle.plugin.KotlinPluginWrapper
+
+private const val MINIMUM_JDK_VERSION = 11
+private const val MINIMUM_SCALA_VERSION = "3.0.0"
+
+fun Project.checkJdkVersionCompatibility() {
+    afterEvaluate {
+        val configuredJdkVersion = godotJvmExtension.javaVersion.get()
+
+        require(configuredJdkVersion >= MINIMUM_JDK_VERSION) {
+            "godot.javaVersion is set to $configuredJdkVersion, but Godot-Kotlin requires at least JDK $MINIMUM_JDK_VERSION."
+        }
+
+        extensions.configure(JavaPluginExtension::class.java) { javaExtension ->
+            javaExtension.toolchain.languageVersion.set(JavaLanguageVersion.of(configuredJdkVersion))
+        }
+
+        kotlinJvmExtension.jvmToolchain(configuredJdkVersion)
+    }
+}
 
 fun Project.checkKotlinVersionCompatibility() {
     val kotlinPlugin = plugins.findPlugin(KotlinPluginWrapper::class.java)
@@ -33,6 +54,16 @@ fun Project.checkKotlinVersionCompatibility() {
                 "godot.kotlinVersion is set to $configuredKotlinVersion, but the applied Kotlin Gradle plugin version is $resolvedKotlinVersion. " +
                     "To use a custom Kotlin version, apply `org.jetbrains.kotlin.jvm` explicitly with version $configuredKotlinVersion before `com.utopia-rise.godot-kotlin-jvm`."
             )
+        }
+    }
+}
+
+fun Project.checkScalaVersionCompatibility() {
+    afterEvaluate {
+        val configuredScalaVersion = godotJvmExtension.scalaVersion.get()
+
+        require(!isVersionLowerThan(configuredScalaVersion, MINIMUM_SCALA_VERSION)) {
+            "godot.scalaVersion is set to $configuredScalaVersion, but Godot-Kotlin requires at least Scala $MINIMUM_SCALA_VERSION."
         }
     }
 }

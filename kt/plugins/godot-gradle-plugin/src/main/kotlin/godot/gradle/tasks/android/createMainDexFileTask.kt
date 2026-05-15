@@ -2,20 +2,97 @@ package godot.gradle.tasks.android
 
 import godot.gradle.GodotPlugin
 import godot.gradle.projectExt.godotJvmExtension
+import org.gradle.api.DefaultTask
 import org.gradle.api.Project
 import org.gradle.api.Task
-import org.gradle.api.tasks.Exec
+import org.gradle.api.file.RegularFileProperty
+import org.gradle.api.provider.Property
+import org.gradle.api.tasks.Input
+import org.gradle.api.tasks.InputFile
+import org.gradle.api.tasks.Optional
+import org.gradle.api.tasks.OutputFile
+import org.gradle.api.tasks.TaskAction
 import org.gradle.api.tasks.TaskProvider
 import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
 import java.io.File
 
+abstract class CreateMainDexFileTask : DefaultTask() {
+    @get:InputFile
+    abstract val mainJar: RegularFileProperty
+
+    @get:InputFile
+    abstract val bootstrapJar: RegularFileProperty
+
+    @get:OutputFile
+    abstract val mainDexRulesFile: RegularFileProperty
+
+    @get:OutputFile
+    abstract val mainDexFile: RegularFileProperty
+
+    @get:Input
+    @get:Optional
+    abstract val d8ToolPath: Property<String>
+
+    @get:Input
+    @get:Optional
+    abstract val androidJarPath: Property<String>
+
+    @get:Input
+    abstract val androidMinApiLevel: Property<Int>
+
+    @TaskAction
+    fun createMainDexFile() {
+        val libsDir = mainJar.get().asFile.parentFile
+        val mainDexRules = writeMainDexRules(mainDexRulesFile.get().asFile)
+        val command = buildList {
+            if (DefaultNativePlatform.getCurrentOperatingSystem().isWindows) {
+                add("cmd")
+                add("/c")
+            }
+            add(d8ToolPath.get())
+            add(mainJar.get().asFile.absolutePath)
+            add("--lib")
+            add(androidJarPath.get())
+            add("--classpath")
+            add(bootstrapJar.get().asFile.absolutePath)
+            add("--min-api")
+            add(androidMinApiLevel.get().toString())
+            add("--main-dex-rules")
+            add(mainDexRules.absolutePath)
+        }
+
+        val process = ProcessBuilder(command)
+            .directory(libsDir)
+            .inheritIO()
+            .start()
+
+        require(process.waitFor() == 0) {
+            "Failed to create the main dex file"
+        }
+    }
+}
+
+private fun writeMainDexRules(targetFile: File): File {
+    targetFile.parentFile.mkdirs()
+    targetFile.outputStream().use { outputStream ->
+        requireNotNull(GodotPlugin::class.java.getResourceAsStream("android/main-dex-rules.proguard"))
+            .copyTo(outputStream)
+    }
+    return targetFile
+}
+
 fun Project.createMainDexFileTask(
     checkAndroidJarAccessibleTask: TaskProvider<out Task>,
     checkD8ToolAccessibleTask: TaskProvider<out Task>,
-    packageBootstrapDexJarTask: TaskProvider<out Task>,
+    createBootstrapDexJarTask: TaskProvider<out Task>,
     packageMainJarTask: TaskProvider<out Task>
 ): TaskProvider<out Task> {
-    return tasks.register("createMainDexFile", Exec::class.java) {
+    val libsDirectory = layout.buildDirectory.dir("libs")
+    val d8ToolPath = godotJvmExtension.d8ToolPath
+    val androidCompileSdkDirectory = godotJvmExtension.androidCompileSdkDirectory
+    val androidMinApiLevel = godotJvmExtension.androidMinApiLevel
+
+    return tasks.register("createMainDexFile", CreateMainDexFileTask::class.java) {
         with(it) {
             group = "godot-kotlin-jvm"
             description = "Converts the main.jar to an android dex file. Needed for android builds only"
@@ -23,52 +100,19 @@ fun Project.createMainDexFileTask(
             dependsOn(
                 checkD8ToolAccessibleTask,
                 checkAndroidJarAccessibleTask,
+                createBootstrapDexJarTask,
                 packageMainJarTask,
-                packageBootstrapDexJarTask
             )
 
-            doFirst {
-                val libsDir = project.layout.buildDirectory.asFile.get().resolve("libs")
-                val mainJar = File(libsDir, "main.jar")
-                val godotBootstrapJar = File(libsDir, "godot-bootstrap.jar")
-                val mainDexRules = project.layout.buildDirectory.asFile.get().resolve("main-dex-rules.proguard").also { mainDexRules ->
-                    mainDexRules.outputStream().use { outputStream ->
-                        requireNotNull(GodotPlugin::class.java.getResourceAsStream("android/main-dex-rules.proguard"))
-                            .copyTo(outputStream)
-                    }
-                }.absolutePath
-
-                workingDir = libsDir
-                if (DefaultNativePlatform.getCurrentOperatingSystem().isWindows) {
-                    commandLine(
-                        "cmd",
-                        "/c",
-                        godotJvmExtension.d8ToolPath.get(),
-                        mainJar.absolutePath,
-                        "--lib",
-                        "${godotJvmExtension.androidCompileSdkDirectory.get()}${File.separator}android.jar",
-                        "--classpath",
-                        godotBootstrapJar.absolutePath,
-                        "--min-api",
-                        godotJvmExtension.androidMinApiLevel.get(),
-                        "--main-dex-rules",
-                        mainDexRules,
-                    )
-                } else {
-                    commandLine(
-                        godotJvmExtension.d8ToolPath.get(),
-                        mainJar.absolutePath,
-                        "--lib",
-                        "${godotJvmExtension.androidCompileSdkDirectory.get()}/android.jar",
-                        "--classpath",
-                        godotBootstrapJar.absolutePath,
-                        "--min-api",
-                        godotJvmExtension.androidMinApiLevel.get(),
-                        "--main-dex-rules",
-                        mainDexRules,
-                    )
-                }
-            }
+            this.mainJar.set(libsDirectory.map { directory -> directory.file("main.jar") })
+            this.bootstrapJar.set(libsDirectory.map { directory -> directory.file("godot-bootstrap.jar") })
+            this.mainDexRulesFile.set(layout.buildDirectory.file("main-dex-rules.proguard"))
+            this.mainDexFile.set(libsDirectory.map { directory -> directory.file("classes.dex") })
+            this.d8ToolPath.set(d8ToolPath)
+            this.androidJarPath.set(androidCompileSdkDirectory.map { compileSdkDirectory ->
+                File(compileSdkDirectory).resolve("android.jar").absolutePath
+            })
+            this.androidMinApiLevel.set(androidMinApiLevel)
         }
     }
 }
