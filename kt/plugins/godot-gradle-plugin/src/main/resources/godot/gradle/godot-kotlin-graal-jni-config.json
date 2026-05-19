@@ -371,7 +371,10 @@
       { "name" : "engine_call_size", "parameterTypes" : ["long"] },
       { "name" : "engine_call_slice", "parameterTypes" : ["long"] },
       { "name" : "engine_call_sort", "parameterTypes" : ["long"] },
-      { "name" : "engine_call_to_byte_array", "parameterTypes" : ["long"] }
+      { "name" : "engine_call_to_byte_array", "parameterTypes" : ["long"] },
+
+      { "name" : "engine_convert_to_godot", "parameterTypes" : ["float[]"] },
+      { "name" : "engine_convert_to_jvm", "parameterTypes" : ["long"] }
     ]
   },
   {

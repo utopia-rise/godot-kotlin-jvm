@@ -43,24 +43,17 @@ class PackedVector4Array : PackedArray<PackedVector4Array, Vector4> {
     /**
      * Constructs a new [PackedVector4Array] from an existing Kotlin [Array<Vector3>].
      */
-    constructor(from: Array<Vector4>) {
-        val floatArray = FloatArray(from.size * 4)
-        from.forEachIndexed { index, vector ->
-            val floatIndex = index * 4
-            floatArray[floatIndex] = vector.x.toFloat()
-            floatArray[floatIndex + 1] = vector.y.toFloat()
-            floatArray[floatIndex + 2] = vector.z.toFloat()
-            floatArray[floatIndex + 3] = vector.w.toFloat()
-        }
-
-        ptr = Bridge.engine_convert_to_godot(floatArray)
-        MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_VECTOR4_ARRAY)
-    }
+    constructor(from: Array<Vector4>) : this(from.toPackedVector4FloatArray())
 
     /**
      * Constructs a new [PackedVector4Array] from an existing Kotlin [Collection<Vector4>].
      */
-    constructor(from: Collection<Vector4>) : this(from.toTypedArray<Vector4>())
+    constructor(from: Collection<Vector4>) : this(from.toPackedVector4FloatArray())
+
+    private constructor(from: FloatArray) {
+        ptr = Bridge.engine_convert_to_godot(from)
+        MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_VECTOR4_ARRAY)
+    }
 
     override fun toString(): String {
         return "PoolVector4Array(${size})"
@@ -137,10 +130,32 @@ class PackedVector4Array : PackedArray<PackedVector4Array, Vector4> {
 /**
  * Convert a [Array<Vector4>] into a Godot [PackedVector4Array], this call is optimised for a large amount of data.
  */
-fun Array<Vector4>.toPackedArray() = PackedVector4Array(this)
+fun Array<Vector4>.toPackedVector4Array() = PackedVector4Array(this)
 
 
 /**
  * Convert a [Collection<Vector4>] into a Godot [PackedVector4Array], this call is optimised for a large amount of data.
  */
-fun Collection<Vector4>.toPackedArray() = PackedVector4Array(this.toTypedArray())
+fun Collection<Vector4>.toPackedVector4Array() = PackedVector4Array(this)
+
+private fun Array<Vector4>.toPackedVector4FloatArray(): FloatArray =
+    FloatArray(size * 4).also { floatArray ->
+        forEachIndexed { index, vector ->
+            val floatIndex = index * 4
+            floatArray[floatIndex] = vector.x.toFloat()
+            floatArray[floatIndex + 1] = vector.y.toFloat()
+            floatArray[floatIndex + 2] = vector.z.toFloat()
+            floatArray[floatIndex + 3] = vector.w.toFloat()
+        }
+    }
+
+private fun Collection<Vector4>.toPackedVector4FloatArray(): FloatArray =
+    FloatArray(size * 4).also { floatArray ->
+        forEachIndexed { index, vector ->
+            val floatIndex = index * 4
+            floatArray[floatIndex] = vector.x.toFloat()
+            floatArray[floatIndex + 1] = vector.y.toFloat()
+            floatArray[floatIndex + 2] = vector.z.toFloat()
+            floatArray[floatIndex + 3] = vector.w.toFloat()
+        }
+    }

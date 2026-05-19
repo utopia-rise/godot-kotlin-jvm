@@ -45,23 +45,17 @@ class PackedVector3Array : PackedArray<PackedVector3Array, Vector3> {
     /**
      * Constructs a new [PackedVector3Array] from an existing Kotlin [Array<Vector3>].
      */
-    constructor(from: Array<Vector3>) {
-        val floatArray = FloatArray(from.size * 3)
-        from.forEachIndexed { index, vector ->
-            val floatIndex = index * 3
-            floatArray[floatIndex] = vector.x.toFloat()
-            floatArray[floatIndex + 1] = vector.y.toFloat()
-            floatArray[floatIndex + 2] = vector.z.toFloat()
-        }
-
-        ptr = Bridge.engine_convert_to_godot(floatArray)
-        MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_VECTOR3_ARRAY)
-    }
+    constructor(from: Array<Vector3>) : this(from.toPackedVector3FloatArray())
 
     /**
      * Constructs a new [PackedVector3Array] from an existing Kotlin [Collection<Vector3>].
      */
-    constructor(from: Collection<Vector3>) : this(from.toTypedArray<Vector3>())
+    constructor(from: Collection<Vector3>) : this(from.toPackedVector3FloatArray())
+
+    private constructor(from: FloatArray) {
+        ptr = Bridge.engine_convert_to_godot(from)
+        MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_VECTOR3_ARRAY)
+    }
 
     override fun toString(): String {
         return "PoolVector3Array(${size})"
@@ -137,10 +131,30 @@ class PackedVector3Array : PackedArray<PackedVector3Array, Vector3> {
 /**
  * Convert a [Array<Vector3>] into a Godot [PackedVector3Array], this call is optimised for a large amount of data.
  */
-fun Array<Vector3>.toPackedArray() = PackedVector3Array(this)
+fun Array<Vector3>.toPackedVector3Array() = PackedVector3Array(this)
 
 
 /**
  * Convert a [Collection<Vector3>] into a Godot [PackedVector3Array], this call is optimised for a large amount of data.
  */
-fun Collection<Vector3>.toPackedArray() = PackedVector3Array(this.toTypedArray())
+fun Collection<Vector3>.toPackedVector3Array() = PackedVector3Array(this)
+
+private fun Array<Vector3>.toPackedVector3FloatArray(): FloatArray =
+    FloatArray(size * 3).also { floatArray ->
+        forEachIndexed { index, vector ->
+            val floatIndex = index * 3
+            floatArray[floatIndex] = vector.x.toFloat()
+            floatArray[floatIndex + 1] = vector.y.toFloat()
+            floatArray[floatIndex + 2] = vector.z.toFloat()
+        }
+    }
+
+private fun Collection<Vector3>.toPackedVector3FloatArray(): FloatArray =
+    FloatArray(size * 3).also { floatArray ->
+        forEachIndexed { index, vector ->
+            val floatIndex = index * 3
+            floatArray[floatIndex] = vector.x.toFloat()
+            floatArray[floatIndex + 1] = vector.y.toFloat()
+            floatArray[floatIndex + 2] = vector.z.toFloat()
+        }
+    }

@@ -3,7 +3,9 @@ package godot.tests.packedarray
 import godot.api.Node
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
+import godot.core.Color
 import godot.core.PackedByteArray
+import godot.core.PackedColorArray
 import godot.core.PackedFloat32Array
 import godot.core.PackedFloat64Array
 import godot.core.PackedInt32Array
@@ -14,6 +16,16 @@ import godot.core.PackedVector4Array
 import godot.core.Vector2
 import godot.core.Vector3
 import godot.core.Vector4
+import godot.core.toPackedByteArray
+import godot.core.toPackedColorArray
+import godot.core.toPackedFloat32Array
+import godot.core.toPackedFloat64Array
+import godot.core.toPackedInt32Array
+import godot.core.toPackedInt64Array
+import godot.core.toPackedVector2Array
+import godot.core.toPackedVector3Array
+import godot.core.toPackedVector4Array
+import godot.core.variantArrayOf
 
 @RegisterClass
 class PackedArrayTest : Node() {
@@ -21,49 +33,60 @@ class PackedArrayTest : Node() {
     @RegisterFunction
     fun convertByteArray(): PackedByteArray {
         val arr = byteArrayOf(0, 1, 2, 4, 8, 16, 32, 64, 127)
-        return PackedByteArray(arr);
+        return arr.toPackedByteArray();
     }
 
     @RegisterFunction
     fun convertIntArray(): PackedInt32Array {
         val arr = intArrayOf(0, 1, 2, 4, 8, 16, 32, 64, 127)
-        return PackedInt32Array(arr);
+        return arr.toPackedInt32Array();
     }
 
     @RegisterFunction
     fun convertLongArray(): PackedInt64Array {
         val arr = longArrayOf(0L, 1L, 2L, 4L, 8L, 16L, 32L, 64L, 127L)
-        return PackedInt64Array(arr);
+        return arr.toPackedInt64Array();
     }
 
     @RegisterFunction
     fun convertFloatArray(): PackedFloat32Array {
         val arr = floatArrayOf(0f, 1f, 2f, 4f, 8f, 16f, 32f, 64f, 127f)
-        return PackedFloat32Array(arr);
+        return arr.toPackedFloat32Array();
     }
 
     @RegisterFunction
     fun convertDoubleArray(): PackedFloat64Array {
         val arr = doubleArrayOf(0.0, 1.0, 2.0, 4.0, 8.0, 16.0, 32.0, 64.0, 127.0)
-        return PackedFloat64Array(arr);
+        return arr.toPackedFloat64Array();
+    }
+
+    @RegisterFunction
+    fun convertColorArray(): PackedColorArray {
+        val arr = listOf(Color(0.0, 1.0, 2.0, 3.0), Color(4.0, 5.0, 6.0, 7.0), Color(8.0, 9.0, 10.0, 11.0), Color(1024.0, 2048.0, 4096.0, 8092.0))
+        return arr.toPackedColorArray();
     }
 
     @RegisterFunction
     fun convertVector2Array(): PackedVector2Array {
         val arr = arrayOf(Vector2(0.0, 1.0), Vector2(2.0, 3.0), Vector2(4.0, 5.0), Vector2(1024.0, 2048.0))
-        return PackedVector2Array(arr);
+        return arr.toPackedVector2Array();
+    }
+
+    @RegisterFunction
+    fun convertVector2VariantArray(): PackedVector2Array {
+        return PackedVector2Array(variantArrayOf<Vector2>(Vector2(0.0, 1.0), Vector2(2.0, 3.0)))
     }
 
     @RegisterFunction
     fun convertVector3Array(): PackedVector3Array {
         val arr = arrayOf(Vector3(0.0, 1.0, 2.0), Vector3(3.0, 4.0, 5.0), Vector3(6.0, 7.0, 8.0), Vector3(1024.0, 2048.0, 4096.0))
-        return PackedVector3Array(arr);
+        return arr.toPackedVector3Array();
     }
 
     @RegisterFunction
     fun convertVector4Array(): PackedVector4Array {
         val arr = arrayOf(Vector4(0.0, 1.0, 2.0, 3.0), Vector4(4.0, 5.0, 6.0, 7.0), Vector4(8.0, 9.0, 10.0, 11.0), Vector4(1024.0, 2048.0, 4096.0, 8092.0))
-        return PackedVector4Array(arr);
+        return arr.toPackedVector4Array();
     }
 
     @RegisterFunction
@@ -93,6 +116,12 @@ class PackedArrayTest : Node() {
     @RegisterFunction
     fun getDoubleArrayValue(arr: PackedFloat64Array, index: Int): Double {
         val kotlinArr = arr.toDoubleArray()
+        return kotlinArr[index];
+    }
+
+    @RegisterFunction
+    fun getColorArrayValue(arr: PackedColorArray, index: Int): Color {
+        val kotlinArr = arr.toColorArray()
         return kotlinArr[index];
     }
 

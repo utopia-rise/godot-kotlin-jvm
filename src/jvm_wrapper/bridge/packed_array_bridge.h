@@ -122,7 +122,7 @@ namespace bridges {
         Variant args[1] = {};
         TransferContext::get_instance().read_args(env, args);
 
-        TypedArray<T> array {args[0].operator Array()};
+        TypedArray<T> array = args[0].operator Array();
         auto* ret {VariantAllocator::alloc(Vector<T>())};
         int size {array.size()};
         ret->resize(size);

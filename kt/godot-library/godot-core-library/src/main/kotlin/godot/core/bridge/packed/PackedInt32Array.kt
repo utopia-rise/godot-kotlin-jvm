@@ -49,6 +49,16 @@ class PackedInt32Array : PackedArray<PackedInt32Array, Int> {
         MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_INT_32_ARRAY)
     }
 
+    /**
+     * Constructs a new [PackedInt32Array] from an existing Kotlin [Array<Int>].
+     */
+    constructor(from: Array<Int>) : this(from.toIntArray())
+
+    /**
+     * Constructs a new [PackedInt32Array] from an existing Kotlin [Collection<Int>].
+     */
+    constructor(from: Collection<Int>) : this(from.toIntArray())
+
     override fun toString(): String {
         return "PackedInt32Array(${size})"
     }
@@ -113,4 +123,28 @@ class PackedInt32Array : PackedArray<PackedInt32Array, Int> {
 /**
  * Convert a [IntArray] into a Godot [PackedInt32Array], this call is optimised for a large amount of data.
  */
-fun IntArray.toPackedArray() = PackedInt32Array(this)
+fun IntArray.toPackedInt32Array() = PackedInt32Array(this)
+
+/**
+ * Convert a [Array<Int>] into a Godot [PackedInt32Array], this call is optimised for a large amount of data.
+ */
+fun Array<Int>.toPackedInt32Array() = PackedInt32Array(this)
+
+/**
+ * Convert a [Collection<Int>] into a Godot [PackedInt32Array], this call is optimised for a large amount of data.
+ */
+fun Collection<Int>.toPackedInt32Array() = PackedInt32Array(this)
+
+private fun Array<Int>.toIntArray(): IntArray =
+    IntArray(size).also { intArray ->
+        forEachIndexed { index, int ->
+            intArray[index] = int
+        }
+    }
+
+private fun Collection<Int>.toIntArray(): IntArray =
+    IntArray(size).also { intArray ->
+        forEachIndexed { index, int ->
+            intArray[index] = int
+        }
+    }

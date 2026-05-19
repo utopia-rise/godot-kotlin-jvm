@@ -49,6 +49,16 @@ class PackedInt64Array : PackedArray<PackedInt64Array, Long> {
         MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_INT_64_ARRAY)
     }
 
+    /**
+     * Constructs a new [PackedInt64Array] from an existing Kotlin [Array<Long>].
+     */
+    constructor(from: Array<Long>) : this(from.toLongArray())
+
+    /**
+     * Constructs a new [PackedInt64Array] from an existing Kotlin [Collection<Long>].
+     */
+    constructor(from: Collection<Long>) : this(from.toLongArray())
+
     override fun toString(): String {
         return "PackedInt64Array(${size})"
     }
@@ -113,4 +123,28 @@ class PackedInt64Array : PackedArray<PackedInt64Array, Long> {
 /**
  * Convert a [LongArray] into a Godot [PackedInt64Array], this call is optimised for a large amount of data.
  */
-fun LongArray.toPackedArray() = PackedInt64Array(this)
+fun LongArray.toPackedInt64Array() = PackedInt64Array(this)
+
+/**
+ * Convert a [Array<Long>] into a Godot [PackedInt64Array], this call is optimised for a large amount of data.
+ */
+fun Array<Long>.toPackedInt64Array() = PackedInt64Array(this)
+
+/**
+ * Convert a [Collection<Long>] into a Godot [PackedInt64Array], this call is optimised for a large amount of data.
+ */
+fun Collection<Long>.toPackedInt64Array() = PackedInt64Array(this)
+
+private fun Array<Long>.toLongArray(): LongArray =
+    LongArray(size).also { longArray ->
+        forEachIndexed { index, long ->
+            longArray[index] = long
+        }
+    }
+
+private fun Collection<Long>.toLongArray(): LongArray =
+    LongArray(size).also { longArray ->
+        forEachIndexed { index, long ->
+            longArray[index] = long
+        }
+    }

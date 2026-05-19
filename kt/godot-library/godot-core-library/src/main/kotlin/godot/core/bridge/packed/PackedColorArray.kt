@@ -41,6 +41,21 @@ class PackedColorArray : PackedArray<PackedColorArray, Color> {
         MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_COLOR_ARRAY)
     }
 
+    /**
+     * Constructs a new [PackedColorArray] from an existing Kotlin [Array<Color>].
+     */
+    constructor(from: Array<Color>) : this(from.toPackedColorFloatArray())
+
+    /**
+     * Constructs a new [PackedColorArray] from an existing Kotlin [Collection<Color>].
+     */
+    constructor(from: Collection<Color>) : this(from.toPackedColorFloatArray())
+
+    private constructor(from: FloatArray) {
+        ptr = Bridge.engine_convert_to_godot(from)
+        MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_COLOR_ARRAY)
+    }
+
     override fun toString(): String {
         return "PackedColorArray(${size})"
     }
@@ -63,6 +78,18 @@ class PackedColorArray : PackedArray<PackedColorArray, Color> {
         return ptr.hashCode()
     }
 
+    fun toColorArray(): Array<Color> {
+        val floatArray = Bridge.engine_convert_to_jvm(ptr)
+        return Array<Color>(floatArray.size / 4) { colorIndex ->
+            val floatIndex = colorIndex * 4
+            Color(
+                floatArray[floatIndex],
+                floatArray[floatIndex + 1],
+                floatArray[floatIndex + 2],
+                floatArray[floatIndex + 3]
+            )
+        }
+    }
 
     @Suppress("LocalVariableName")
     internal object Bridge : PackedArrayBridge {
@@ -95,5 +122,40 @@ class PackedColorArray : PackedArray<PackedColorArray, Color> {
         external override fun engine_call_slice(_handle: VoidPtr)
         external override fun engine_call_sort(_handle: VoidPtr)
         external override fun engine_call_to_byte_array(_handle: VoidPtr)
+
+        external fun engine_convert_to_godot(array: FloatArray): VoidPtr
+        external fun engine_convert_to_jvm(_handle: VoidPtr): FloatArray
     }
 }
+
+/**
+ * Convert a [Array<Color>] into a Godot [PackedColorArray], this call is optimised for a large amount of data.
+ */
+fun Array<Color>.toPackedColorArray() = PackedColorArray(this)
+
+/**
+ * Convert a [Collection<Color>] into a Godot [PackedColorArray], this call is optimised for a large amount of data.
+ */
+fun Collection<Color>.toPackedColorArray() = PackedColorArray(this)
+
+private fun Array<Color>.toPackedColorFloatArray(): FloatArray =
+    FloatArray(size * 4).also { floatArray ->
+        forEachIndexed { index, color ->
+            val floatIndex = index * 4
+            floatArray[floatIndex] = color.r.toFloat()
+            floatArray[floatIndex + 1] = color.g.toFloat()
+            floatArray[floatIndex + 2] = color.b.toFloat()
+            floatArray[floatIndex + 3] = color.a.toFloat()
+        }
+    }
+
+private fun Collection<Color>.toPackedColorFloatArray(): FloatArray =
+    FloatArray(size * 4).also { floatArray ->
+        forEachIndexed { index, color ->
+            val floatIndex = index * 4
+            floatArray[floatIndex] = color.r.toFloat()
+            floatArray[floatIndex + 1] = color.g.toFloat()
+            floatArray[floatIndex + 2] = color.b.toFloat()
+            floatArray[floatIndex + 3] = color.a.toFloat()
+        }
+    }

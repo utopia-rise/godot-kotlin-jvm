@@ -48,6 +48,16 @@ class PackedFloat64Array : PackedArray<PackedFloat64Array, Double> {
         MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_FLOAT_64_ARRAY)
     }
 
+    /**
+     * Constructs a new [PackedFloat64Array] from an existing Kotlin [Array<Double>].
+     */
+    constructor(from: Array<Double>) : this(from.toDoubleArray())
+
+    /**
+     * Constructs a new [PackedFloat64Array] from an existing Kotlin [Collection<Double>].
+     */
+    constructor(from: Collection<Double>) : this(from.toDoubleArray())
+
     override fun toString(): String {
         return "PackedFloat64Array(${size})"
     }
@@ -112,4 +122,28 @@ class PackedFloat64Array : PackedArray<PackedFloat64Array, Double> {
 /**
  * Convert a [DoubleArray] into a Godot [PackedFloat64Array], this call is optimised for a large amount of data.
  */
-fun DoubleArray.toPackedArray() = PackedFloat64Array(this)
+fun DoubleArray.toPackedFloat64Array() = PackedFloat64Array(this)
+
+/**
+ * Convert a [Array<Double>] into a Godot [PackedFloat64Array], this call is optimised for a large amount of data.
+ */
+fun Array<Double>.toPackedFloat64Array() = PackedFloat64Array(this)
+
+/**
+ * Convert a [Collection<Double>] into a Godot [PackedFloat64Array], this call is optimised for a large amount of data.
+ */
+fun Collection<Double>.toPackedFloat64Array() = PackedFloat64Array(this)
+
+private fun Array<Double>.toDoubleArray(): DoubleArray =
+    DoubleArray(size).also { doubleArray ->
+        forEachIndexed { index, double ->
+            doubleArray[index] = double
+        }
+    }
+
+private fun Collection<Double>.toDoubleArray(): DoubleArray =
+    DoubleArray(size).also { doubleArray ->
+        forEachIndexed { index, double ->
+            doubleArray[index] = double
+        }
+    }
