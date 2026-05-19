@@ -56,7 +56,7 @@ class PackedArrayTest : Node() {
     }
 
     @RegisterFunction
-    fun convertVector2VariantArray(): PackedVector2Array {
+    fun convertVector2FromVariantArray(): PackedVector2Array {
         val arr = variantArrayOf(Vector2(0.0, 1.0), Vector2(2.0, 3.0), Vector2(4.0, 5.0), Vector2(1024.0, 2048.0))
         return PackedVector2Array(arr)
     }

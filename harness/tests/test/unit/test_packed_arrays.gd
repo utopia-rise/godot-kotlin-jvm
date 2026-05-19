@@ -335,9 +335,9 @@ func test_packed_vector2_array_bulk_conversion() -> void:
 
 	script.free()
 
-func test_packed_vector2_variant_array_bulk_conversion() -> void:
+func test_packed_vector2_array_variant_array_conversion() -> void:
 	var script: Object = PackedArrayTest.new()
-	var packed = script.convert_vector2_variant_array()
+	var packed = script.convert_vector2_from_variant_array()
 
 	assert_eq(packed[0], Vector2(0.0, 1.0), "The Godot PackedArray value should match the values in the original Kotlin VariantArray<Vector2>")
 	assert_eq(packed[1], Vector2(2.0, 3.0), "The Godot PackedArray value should match the values in the original Kotlin VariantArray<Vector2>")
