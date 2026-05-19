@@ -14,6 +14,7 @@ import godot.core.PackedVector4Array
 import godot.core.Vector2
 import godot.core.Vector3
 import godot.core.Vector4
+import godot.core.variantArrayOf
 
 @RegisterClass
 class PackedArrayTest : Node() {
@@ -52,6 +53,12 @@ class PackedArrayTest : Node() {
     fun convertVector2Array(): PackedVector2Array {
         val arr = arrayOf(Vector2(0.0, 1.0), Vector2(2.0, 3.0), Vector2(4.0, 5.0), Vector2(1024.0, 2048.0))
         return PackedVector2Array(arr);
+    }
+
+    @RegisterFunction
+    fun convertVector2VariantArray(): PackedVector2Array {
+        val arr = variantArrayOf(Vector2(0.0, 1.0), Vector2(2.0, 3.0), Vector2(4.0, 5.0), Vector2(1024.0, 2048.0))
+        return PackedVector2Array(arr)
     }
 
     @RegisterFunction

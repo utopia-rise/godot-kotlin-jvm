@@ -35,11 +35,7 @@ class PackedVector2Array : PackedArray<PackedVector2Array, Vector2> {
     /**
      * Constructs a new [PackedVector2Array] by converting a [VariantArray]<[Vector2]>.
      */
-    constructor(from: VariantArray<Vector2>) {
-        TransferContext.writeArguments(VariantParser.ARRAY to from)
-        ptr = Bridge.engine_call_constructor_array()
-        MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_VECTOR2_ARRAY)
-    }
+    constructor(from: VariantArray<Vector2>) : this(from.toTypedArray())
 
     /**
      * Constructs a new [PackedVector2Array] from an existing Kotlin [Collection<Vector2>].
