@@ -1,18 +1,18 @@
 package godot.benchmark.bunnymark
 
-import godot.*
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 import godot.annotation.RegisterSignal
+import godot.api.*
 import godot.benchmark.bunnymark.v3.Bunny
+import godot.core.signal1
 import godot.core.Vector2
-import godot.signals.signal
 
 @RegisterClass("BunnymarkV3")
 class BunnymarkV3 : Node2D() {
 
-	@RegisterSignal
-	val benchmarkFinished by signal<Int>("bunnyCount")
+	@RegisterSignal("bunnyCount")
+	val benchmarkFinished by signal1<Int>()
 
 	private val randomNumberGenerator = RandomNumberGenerator()
 	private val bunnyTexture = ResourceLoader.load("res://images/godot_bunny.png") as Texture2D

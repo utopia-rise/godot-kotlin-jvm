@@ -1,5 +1,7 @@
 extends Node2D
 
+const GdBunny = preload("res://benchmarks/BunnymarkV3/gd/Bunny.gd")
+
 var bunny_texture := load("res://images/godot_bunny.png") as Texture2D
 var label := Label.new()
 var bunnies := Node2D.new()
@@ -16,7 +18,7 @@ func _process(delta):
     label.text = "Bunnies: " + str(bunnies.get_child_count())
 
 func add_bunny():
-    var bunny: Bunny = Bunny.new()
+    var bunny = GdBunny.new()
     bunny.set_texture(bunny_texture)
     bunny.speed = Vector2(randi() % 200 + 50, randi() % 200 + 50)
     bunnies.add_child(bunny)
@@ -26,7 +28,7 @@ func remove_bunny():
     var child_count: int = bunnies.get_child_count()
     if child_count == 0:
         return
-    var bunny: Bunny = bunnies.get_child(child_count - 1)
+    var bunny = bunnies.get_child(child_count - 1)
     bunnies.remove_child(bunny)
     bunny.queue_free()
 

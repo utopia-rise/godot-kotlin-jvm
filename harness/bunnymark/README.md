@@ -3,6 +3,7 @@
 Go in the bunnymark directory and run `gradlew build` to build this sample.  
 Open the project in Godot and inspect the root node. 
 You can choose between GdScript or Kotlin (also C# if you built the engine with mono enabled), and the benchmark as well.  
+Open the project in the editor once before command-line runs so Godot imports the texture assets into `.godot/imported`.  
 You can also run the benchmarks from the commandline:  
 Example: `../../../../bin/godot.x11.opt.tools.64.mono --bench=BunnymarkV2 --lang=kt`
 
@@ -115,4 +116,3 @@ Attempts to draw as many sprites to the screen as possible by adding Sprite node
 
 
 Original work: [@Carter Anderson](https://github.com/cart/godot3-bunnymark). Thanks to him.
-

@@ -3,15 +3,15 @@
 
 registeredName = BunnymarkV3
 fqName = godot.benchmark.bunnymark.BunnymarkV3
-relativeSourcePath = src/main/kotlin/godot/benchmark/bunnymark/BunnymarkV3.kt
 baseType = Node2D
 supertypes = [
-    godot.Node2D,
-	godot.CanvasItem,
-	godot.Node,
-	godot.Object,
+    godot.api.Node2D,
+	godot.api.CanvasItem,
+	godot.api.Node,
+	godot.api.Object,
 	godot.core.KtObject,
-	kotlin.Any
+	godot.common.interop.NativeWrapper,
+	godot.common.interop.NativePointer
 ]
 signals = [
     benchmark_finished

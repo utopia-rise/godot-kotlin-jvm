@@ -1,4 +1,3 @@
-class_name Bunny
 extends Sprite2D
 
 
