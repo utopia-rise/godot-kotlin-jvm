@@ -1,141 +1,116 @@
 package godot.gradle
 
+import godot.entrygenerator.settings.RegisteredNameMode
+import godot.entrygenerator.settings.RegistrationFileLayoutMode
+import godot.gradle.ext.environmentVariable
+import godot.gradle.ext.executableFileOrNull
+import godot.gradle.ext.existingDirectoryOrNull
+import godot.gradle.ext.existingFileOrNull
+import godot.tools.common.KOTLIN_VERSION
 import godot.tools.common.constants.FileExtensions
 import org.gradle.api.Project
-import org.gradle.api.file.RegularFileProperty
+import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.model.ObjectFactory
 import org.gradle.api.provider.Property
+import org.gradle.api.provider.SetProperty
 import java.io.File
 
 open class GodotExtension(objects: ObjectFactory) {
     /**
-     * Registers every class with this prefix. Especially useful for library authors
+     * Marks this Gradle project as a reusable Godot Kotlin/JVM library rather than a runnable Godot project.
+     *
+     * When enabled, the plugin keeps the compile setup and library dependencies, but skips entry scanning,
+     * entry generation, `.gdj` generation/synchronization, and the runtime jar packaging/copy pipeline.
+     *
+     * Defaults to `false`.
      */
-    val classPrefix: Property<String> = objects.property(String::class.java)
+    val isLibrary: Property<Boolean> = objects.property(Boolean::class.java)
 
     /**
-     * Base directory where registration files ('.gdj' files) are generated to. Defaults to `<projectDir>/gdj`
+     * Directory of the Godot project that contains `project.godot`.
+     *
+     * Defaults to the Gradle project's directory. Override this when the Gradle project lives in a subdirectory
+     * or any non-standard layout where the Godot project root is elsewhere.
      */
-    val registrationFileBaseDir: RegularFileProperty = objects.fileProperty()
+    val godotProjectDirectory: DirectoryProperty = objects.directoryProperty()
 
     /**
-     * Defines whether the registration files follow the package hierarchy or if they are all generated to the [registrationFileBaseDir]. Defaults to `true`
+     * Base directory where registration files (`.gdj` files) are generated. Defaults to `<projectDir>/gdj`.
      *
-     * Examples:
-     *
-     * **true**:
-     * ```
-     *  -[registrationFileBaseDir]
-     *      | packagePathOne
-     *          | ClassOne.gdj
-     *          | ClassTwo.gdj
-     *      | packagePathTwo
-     *          | ClassThree.gdj
-     *          | ClassFour.gdj
-     * ```
-     * **false**:
-     * ```
-     *  -[registrationFileBaseDir]
-     *      | ClassOne.gdj
-     *      | ClassTwo.gdj
-     *      | ClassThree.gdj
-     *      | ClassFour.gdj
-     * ```
+     * Files from the current project are written directly under this directory.
+     * Files from external projects are written under a subdirectory named after their source project.
      */
-    val isRegistrationFileHierarchyEnabled: Property<Boolean> = objects.property(Boolean::class.java)
+    val registrationFilesDirectory: DirectoryProperty = objects.directoryProperty()
 
     /**
-     * Defines whether classes should be registered with the full fqName or just with their simple name. Defaults to false
+     * Controls how registration files are laid out inside each project-specific directory.
      *
-     * **Note:** the custom class name in the `@RegisterClass` annotation takes precedence over this property!
+     * - [RegistrationFileLayoutMode.FLAT]: write `.gdj` files directly into the project directory.
+     * - [RegistrationFileLayoutMode.HIERARCHICAL]: mirror the package hierarchy before the `.gdj` file.
      *
-     * Examples:
+     * This setting does not change the top-level project split. External projects are always generated under
+     * `<registrationFilesDirectory>/<sourceProjectName>/...`.
      *
-     * **true**: `com.company.MyClass` -> `com_company_MyClass`
-     *
-     * **false**: `com.company.MyClass` -> `MyClass`
+     * Defaults to [RegistrationFileLayoutMode.FLAT].
      */
-    val isFqNameRegistrationEnabled: Property<Boolean> = objects.property(Boolean::class.java)
+    val registrationFilesLayoutMode: Property<RegistrationFileLayoutMode> = objects.property(RegistrationFileLayoutMode::class.java)
 
     /**
-     * Only has a visible effect when this project is used as a library. This project name defines to what directory the
-     * registration files are generated to. Defaults to the gradle project name
+     * Controls how Godot registration names are computed when `@RegisterClass` does not provide a custom name.
      *
-     * Example:
-     * ```
-     *  -[registrationFileBaseDir]
-     *      | dependencies
-     *          | <your_defined_project_name>
-     *              | ClassFromThisProject.gdj
-     *      | ClassFromConsumingProject.gdj
-     *  ```
+     * - [RegisteredNameMode.SIMPLE_NAME]: use the Kotlin class name.
+     * - [RegisteredNameMode.FQ_NAME]: use the fully qualified class name.
+     * - [RegisteredNameMode.PROJECT_PREFIX]: use the Kotlin class name for the current project, and prefix
+     *   external classes with their source project name.
+     *
+     * Defaults to [RegisteredNameMode.SIMPLE_NAME].
      */
-    val projectName: Property<String> = objects.property(String::class.java)
+    val registrationNameMode: Property<RegisteredNameMode> = objects.property(RegisteredNameMode::class.java)
 
     /**
-     * Defines whether registration files should be generated or not. Defaults to `true`.
+     * JVM source languages enabled for the project's initial compilation pass.
      *
-     * Only really useful for library authors to disable the registration file generation if a project is only used as a
-     * library where the registration files are not needed.
+     * This controls which language-specific compile tasks and support dependencies are wired into the
+     * regular `classes` phase that feeds entry generation and packaging.
+     *
+     * Defaults to Kotlin, Java, and Scala.
      */
-    val isRegistrationFileGenerationEnabled: Property<Boolean> = objects.property(Boolean::class.java)
+    val languages: SetProperty<GodotLanguage> = objects.setProperty(GodotLanguage::class.java)
 
     /**
-     * enable android export
-     *
-     * is set to true, d8 tool and androidCompileSdk dir have to be resolvable
-     */
-    val isAndroidExportEnabled: Property<Boolean> = objects.property(Boolean::class.java)
-
-    /**
-     * path to the d8 tool used for desugaring and converting the jar to a dex file
+     * File path to the d8 executable used for desugaring and converting jars to dex files.
      *
      * example: "${System.getenv("ANDROID_SDK_ROOT")}/build-tools/36.0.0/d8"
      */
-    var d8ToolPath: RegularFileProperty = objects.fileProperty()
+    val d8ToolPath: Property<String> = objects.property(String::class.java)
 
     /**
-     * path to the sdk dir for your target sdk compilation dir
+     * Directory of the Android SDK platform used for compilation.
      *
      * example: "${System.getenv("ANDROID_SDK_ROOT")}/platforms/android-36"
      */
-    var androidCompileSdkDir: RegularFileProperty = objects.fileProperty()
+    val androidCompileSdkDirectory: Property<String> = objects.property(String::class.java)
 
     /**
-     * Min android api version.
+     * Minimum Android API level passed to d8.
      *
      * example: 21
      */
-    var androidMinApi: Property<Int> = objects.property(Int::class.java)
+    val androidMinApiLevel: Property<Int> = objects.property(Int::class.java)
 
     /**
-     * enable Graal Native Image Export
-     *
-     * if is set to true, native-image tool and graalvm home has to be resolvable
-     */
-    val isGraalNativeImageExportEnabled: Property<Boolean> = objects.property(Boolean::class.java)
-
-    /**
-     * enable ios Export, if true, [isGraalNativeImageExportEnabled] should be set to true
-     *
-     * if is set to true, native-image tool and graalvm home has to be resolvable
-     */
-    val isIOSExportEnabled: Property<Boolean> = objects.property(Boolean::class.java)
-
-    /**
-     * path to the native-image tool used to convert jar to native.
+     * GraalVM home directory used to locate the `native-image` executable.
      *
      * example: "${System.getenv("GRAALVM_HOME")}"
      */
-    val graalVmDirectory: RegularFileProperty = objects.fileProperty()
+    val graalVmHomeDirectory: Property<String> = objects.property(String::class.java)
 
     /**
-     * Windows specific.
-     * Path to Visual Studio VCVARS to initialize native developer tools.
+     * Windows-specific file path to the Visual Studio VCVARS script used to initialize native developer tools.
      *
      * example: ${System.getenv("VC_VARS_PATH")}
      */
-    val windowsDeveloperVCVarsPath: RegularFileProperty = objects.fileProperty()
+    val windowsDeveloperVcVarsPath: Property<String> = objects.property(String::class.java)
 
     /**
      * Additional Graal JNI configurations.
@@ -163,25 +138,40 @@ open class GodotExtension(objects: ObjectFactory) {
      *
      * If set to true, native-image tool will be in verbose mode.
      */
-    val isGraalVmNativeImageGenerationVerbose: Property<Boolean> = objects.property(Boolean::class.java)
+    val isGraalNativeImageVerboseEnabled: Property<Boolean> = objects.property(Boolean::class.java)
 
 
     /**
-     * Enable the use of coroutines in the context of Godot lifecycle callbacks (signals)
+     * Enables the use of coroutines in the context of Godot lifecycle callbacks (signals).
      *
-     * If set to true, import godot-coroutine-library
+     * If set to true, the plugin adds `godot-coroutine-library`.
      */
     val isGodotCoroutinesEnabled: Property<Boolean> = objects.property(Boolean::class.java)
 
     /**
-     * Sets the scala version used to support scala language, default 3.6.3
+     * JDK/toolchain version to use for Java and Kotlin compilation.
+     *
+     * Defaults to the current built-in JDK toolchain version and must be at least 11.
+     */
+    val javaVersion: Property<Int> = objects.property(Int::class.java)
+
+    /**
+     * Kotlin Gradle plugin version to use for the build.
+     *
+     * Defaults to the Kotlin version this Godot Kotlin/JVM release was built with.
+     * If you override it, it must be at least that version.
+     */
+    val kotlinVersion: Property<String> = objects.property(String::class.java)
+
+    /**
+     * Scala language version used for Scala support.
      */
     val scalaVersion: Property<String> = objects.property(String::class.java)
 
     internal fun configureExtensionDefaults(target: Project) {
-        val androidSdkRoot = System.getenv("ANDROID_SDK_ROOT")?.let { androidSdkRoot ->
-            File(androidSdkRoot)
-        }
+        val androidSdkRoot = environmentVariable("ANDROID_SDK_ROOT")
+            ?.let(::File)
+            ?.existingDirectoryOrNull()
 
         val buildToolsDir = androidSdkRoot?.resolve("build-tools")?.let { buildToolsDir ->
             if (buildToolsDir.exists() && buildToolsDir.isDirectory) {
@@ -197,48 +187,46 @@ open class GodotExtension(objects: ObjectFactory) {
 
         val d8Tool = buildToolsDir
             ?.listFiles()
-            ?.last { it.isDirectory }
+            ?.filter { it.isDirectory }
+            ?.maxByOrNull { it.name }
             ?.resolve("d8")
+            ?.executableFileOrNull()
 
-        val androidCompileSdkDirFile = platformsDir
+        val androidCompileSdkDirectoryFile = platformsDir
             ?.listFiles()
-            ?.last { it.isDirectory }
+            ?.filter { it.isDirectory }
+            ?.filter { it.resolve("android.jar").existingFileOrNull() != null }
+            ?.maxByOrNull { it.name }
 
-        registrationFileBaseDir.set(target.projectDir.resolve(FileExtensions.GodotKotlinJvm.registrationFile))
-        isRegistrationFileHierarchyEnabled.set(true)
-        isFqNameRegistrationEnabled.set(false)
-
-        isAndroidExportEnabled.set(false)
+        godotProjectDirectory.convention(target.layout.projectDirectory)
+        isLibrary.convention(false)
+        registrationFilesDirectory.convention(godotProjectDirectory.dir(FileExtensions.GodotKotlinJvm.registrationFile))
+        registrationFilesLayoutMode.convention(RegistrationFileLayoutMode.FLAT)
+        registrationNameMode.convention(RegisteredNameMode.SIMPLE_NAME)
+        languages.convention(GodotLanguage.entries.toSet())
 
         if (d8Tool != null) {
-            d8ToolPath.set(d8Tool)
+            d8ToolPath.convention(d8Tool.absolutePath)
         }
 
-        if (androidCompileSdkDirFile != null) {
-            androidCompileSdkDir.set(androidCompileSdkDirFile)
+        if (androidCompileSdkDirectoryFile != null) {
+            androidCompileSdkDirectory.convention(androidCompileSdkDirectoryFile.absolutePath)
         }
 
-        androidMinApi.set(21)
+        androidMinApiLevel.convention(21)
 
-        isGraalNativeImageExportEnabled.set(false)
-        graalVmDirectory.set(
-            System.getenv("GRAALVM_HOME")?.let {
-                File(it)
-            }
-        )
-        additionalGraalJniConfigurationFiles.set(arrayOf())
-        additionalGraalReflectionConfigurationFiles.set(arrayOf())
-        additionalGraalResourceConfigurationFiles.set(arrayOf())
-        isGraalVmNativeImageGenerationVerbose.set(false)
+        environmentVariable("GRAALVM_HOME")?.let(graalVmHomeDirectory::convention)
+        additionalGraalJniConfigurationFiles.convention(arrayOf())
+        additionalGraalReflectionConfigurationFiles.convention(arrayOf())
+        additionalGraalResourceConfigurationFiles.convention(arrayOf())
+        isGraalNativeImageVerboseEnabled.convention(false)
 
-        isGodotCoroutinesEnabled.set(false)
+        isGodotCoroutinesEnabled.convention(false)
 
-        scalaVersion.set("3.6.3")
+        javaVersion.convention(17)
+        kotlinVersion.convention(KOTLIN_VERSION)
+        scalaVersion.convention("3.6.3")
 
-        System.getenv("VC_VARS_PATH")?.let {
-            windowsDeveloperVCVarsPath.set(File(it))
-        }
-
-        isIOSExportEnabled.set(false)
+        environmentVariable("VC_VARS_PATH")?.let(windowsDeveloperVcVarsPath::convention)
     }
 }

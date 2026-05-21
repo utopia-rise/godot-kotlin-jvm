@@ -23,11 +23,6 @@ jobs:
         with:
           cache-read-only: ${{ github.ref != 'refs/heads/master' }}
 
-      - name: Generate changelog
-        shell: sh
-        run: |
-          kt/gradlew -p kt/ generateChangelog --stacktrace
-
       - name: Create draft release
         id: create_release
         uses: actions/create-release@v1
@@ -38,7 +33,6 @@ jobs:
           release_name: ${{ github.ref }}
           draft: true
           prerelease: false
-          body_path: kt/build/changelog.md
 
       - name: Output release url file
         run: echo "${{ steps.create_release.outputs.upload_url }}" > deploy_release_url.txt

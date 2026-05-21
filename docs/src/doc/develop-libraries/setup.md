@@ -3,10 +3,25 @@ Head over to the corresponding [getting started](../getting-started/requirements
 
 ## Library specific setup
 
-The following configuration properties for customizing the behaviour of your library are available to you in the `build.gradle.kts` file:
+To build a reusable Godot Kotlin/JVM library, enable library mode:
 
-| Property                              | default value             | usage                                                                                                                                                                                                                                                                                                                         |
-|---------------------------------------|---------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `classPrefix`                         | _not set_                 | Allows you to define a prefix with which each registered class is prefixed. This helps prevent naming conflicts in the users project. Use this if you register classes which names are pretty generic.                                                                                                                        |
-| `projectName`                         | _the gradle project name_ | Defines the name of your project. For the user, this is the directory to which the `gdj` registration files are generated to. For example: `gdj/dependencies/<your_library_name>/ARegisteredClassFromYourLibrary.gdj`                                                                                                         |
-| `isRegistrationFileGenerationEnabled` | true                      | Defines whether `gdj` files are generated during the build of your library. Safe to turn off if you don't have any sample projects or tests in your library project which depend on these registration files. The registration files for the consumer are not affected. These are generated from special metadata annotaions. |
+```kotlin
+godot {
+    isLibrary.set(true)
+}
+```
+
+In this mode the plugin:
+
+- keeps the enabled language compile setup and Godot dependencies
+- skips entry scanning, entry generation, and `.gdj` generation
+- skips `main.jar`, `godot-bootstrap.jar`, and the Godot project copy pipeline
+- produces a regular library jar named after the Gradle project
+
+The consuming Godot Kotlin/JVM project will scan the library classes from its dependency graph and generate its own entry files and `.gdj` files for them.
+
+The main library-specific Gradle setting is `isLibrary`:
+
+- `isLibrary = true` tells the plugin to build a reusable Godot Kotlin/JVM library jar instead of running the local runtime packaging and registration pipeline
+
+All registration-related settings only matter in the consuming Godot project, because that is where entry files and `.gdj` files are actually generated.

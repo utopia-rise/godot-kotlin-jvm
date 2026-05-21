@@ -196,8 +196,7 @@ public object Geometry3D : Object() {
     q2: Vector3,
   ): PackedVector3Array {
     TransferContext.writeArguments(VECTOR3 to p1, VECTOR3 to p2, VECTOR3 to q1, VECTOR3 to q2)
-    TransferContext.callMethod(ptr, MethodBindings.getClosestPointsBetweenSegmentsPtr,
-        PACKED_VECTOR3_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getClosestPointsBetweenSegmentsPtr, PACKED_VECTOR3_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
 
@@ -320,8 +319,7 @@ public object Geometry3D : Object() {
     radius: Float,
   ): PackedVector3Array {
     TransferContext.writeArguments(VECTOR3 to from, VECTOR3 to to, DOUBLE to height.toDouble(), DOUBLE to radius.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.segmentIntersectsCylinderPtr,
-        PACKED_VECTOR3_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.segmentIntersectsCylinderPtr, PACKED_VECTOR3_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
 

@@ -6,11 +6,16 @@ import godot.entrygenerator.ext.fqNameIsJvmType
 import godot.entrygenerator.model.JvmType
 import godot.entrygenerator.model.Range
 import godot.entrygenerator.model.RangeHintAnnotation
+import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.model.RegisteredProperty
+import godot.entrygenerator.settings.Settings
 import java.util.*
 
-class RangeHintStringGenerator(registeredProperty: RegisteredProperty):
-    PropertyHintStringGenerator<RangeHintAnnotation<Number>>(registeredProperty) {
+class RangeHintStringGenerator(
+    registeredProperty: RegisteredProperty,
+    settings: Settings,
+    registeredClassesByFqName: Map<String, RegisteredClass>,
+) : PropertyHintStringGenerator<RangeHintAnnotation<Number>>(registeredProperty, settings, registeredClassesByFqName) {
     override fun getHintString(): String {
         if (!registeredProperty.type.fqName.fqNameIsJvmType(JvmType.DOUBLE, JvmType.FLOAT, JvmType.INT, JvmType.LONG)) {
             throw WrongAnnotationUsageException(

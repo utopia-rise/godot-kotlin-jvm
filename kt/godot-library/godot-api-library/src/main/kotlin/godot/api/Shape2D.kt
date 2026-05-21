@@ -162,8 +162,7 @@ public open class Shape2D internal constructor() : Resource() {
     shapeMotion: Vector2,
   ): PackedVector2Array {
     TransferContext.writeArguments(TRANSFORM2D to localXform, VECTOR2 to localMotion, OBJECT to withShape, TRANSFORM2D to shapeXform, VECTOR2 to shapeMotion)
-    TransferContext.callMethod(ptr, MethodBindings.collideWithMotionAndGetContactsPtr,
-        PACKED_VECTOR2_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.collideWithMotionAndGetContactsPtr, PACKED_VECTOR2_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 

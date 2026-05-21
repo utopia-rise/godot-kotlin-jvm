@@ -4,6 +4,7 @@
 #include "language/names.h"
 #include "script/jvm_script.h"
 #include "script/jvm_script_manager.h"
+#include "script/source_script_parser.h"
 #include "script/language/gdj_script.h"
 #include "script/language/java_script.h"
 #include "script/language/kotlin_script.h"
@@ -42,7 +43,6 @@ bool JvmResourceFormatLoader::handles_type(const String& p_type) const {
 }
 
 Error JvmResourceFormatLoader::read_all_file_utf8(const String& p_path, String& r_content) {
-    Vector<uint8_t> source_file;
     Error err;
     Ref<FileAccess> file_access {FileAccess::open(p_path, FileAccess::READ, &err)};
     JVM_ERR_FAIL_COND_V_MSG(err != OK, err, "Cannot open file '" + p_path + "'.");
@@ -58,19 +58,29 @@ Ref<Resource> JvmResourceFormatLoader::load(const String& p_path, const String& 
     Ref<JvmScript> jvm_script;
 
     String extension = p_path.get_extension();
+    String source_code;
     bool script_is_new = true;
     bool is_source;
+
+    Error read_error = read_all_file_utf8(p_path, source_code);
+    if (r_error) {
+        *r_error = read_error;
+    }
+    if (read_error != OK) {
+        return nullptr;
+    }
+
     if (extension == GODOT_JVM_REGISTRATION_FILE_EXTENSION) {
         jvm_script = JvmScriptManager::get_instance()->get_or_create_named_script<GdjScript>(p_path, &script_is_new);
         is_source = false;
     } else if (extension == GODOT_KOTLIN_SCRIPT_EXTENSION) {
-        jvm_script = JvmScriptManager::get_instance()->get_or_create_source_script<KotlinScript>(p_path, &script_is_new, r_error);
+        jvm_script = JvmScriptManager::get_instance()->get_or_create_source_script<KotlinScript>(source_code, &script_is_new);
         is_source = true;
     } else if (extension == GODOT_JAVA_SCRIPT_EXTENSION) {
-        jvm_script = JvmScriptManager::get_instance()->get_or_create_source_script<JavaScript>(p_path, &script_is_new, r_error);
+        jvm_script = JvmScriptManager::get_instance()->get_or_create_source_script<JavaScript>(source_code, &script_is_new);
         is_source = true;
     } else if (extension == GODOT_SCALA_SCRIPT_EXTENSION) {
-        jvm_script = JvmScriptManager::get_instance()->get_or_create_source_script<ScalaScript>(p_path, &script_is_new, r_error);
+        jvm_script = JvmScriptManager::get_instance()->get_or_create_source_script<ScalaScript>(source_code, &script_is_new);
         is_source = true;
     } else {
         if (r_error) { *r_error = Error::ERR_FILE_UNRECOGNIZED; }
@@ -78,6 +88,8 @@ Ref<Resource> JvmResourceFormatLoader::load(const String& p_path, const String& 
     }
 
     if (jvm_script.is_valid()) {
+        jvm_script->set_source_code(source_code);
+
 #ifdef TOOLS_ENABLED
         if (!script_is_new && is_source) {
             MessageQueue::get_singleton()->push_callable(
@@ -95,15 +107,37 @@ Ref<Resource> JvmResourceFormatLoader::load(const String& p_path, const String& 
 ResourceUID::ID JvmResourceFormatLoader::get_resource_uid(const String& p_path) const {
     String extension = p_path.get_extension();
     ResourceUID::ID id = ResourceUID::INVALID_ID;
+    String source_code;
+    Error parse_error = OK;
+
+    bool is_kotlin_source = extension == GODOT_KOTLIN_SCRIPT_EXTENSION;
+    bool is_java_source = extension == GODOT_JAVA_SCRIPT_EXTENSION;
+    bool is_scala_source = extension == GODOT_SCALA_SCRIPT_EXTENSION;
+    bool is_source = is_kotlin_source || is_java_source || is_scala_source;
+
     if (extension == GODOT_JVM_REGISTRATION_FILE_EXTENSION) {
-        id = (JvmScript::get_script_file_name(p_path) + UUID_HASH_SEED).hash64();
+        id = (JvmScript::get_script_file_name(p_path) + GDJ_UUID_HASH_SEED).hash64();
         id &= 0x7FFFFFFFFFFFFFFF;
-    } else if (extension == GODOT_KOTLIN_SCRIPT_EXTENSION || extension == GODOT_JAVA_SCRIPT_EXTENSION || extension == GODOT_SCALA_SCRIPT_EXTENSION) {
-        String source;
-        Error error;
-        id = (String(SourceScript::parse_source_to_fqdn(p_path, source, &error)) + UUID_HASH_SEED).hash64();
+    } else if (is_source) {
+        parse_error = read_all_file_utf8(p_path, source_code);
+        if (parse_error != OK) { return id; }
+
+        StringName fq_name = parse_source_script_info(source_code);
+        if (fq_name.is_empty()) { return id; }
+
+        String seed;
+        if (is_java_source) {
+            seed = JAVA_UUID_HASH_SEED;
+        } else if (is_scala_source) {
+            seed = SCALA_UUID_HASH_SEED;
+        } else {
+            seed = KOTLIN_UUID_HASH_SEED;
+        }
+
+        id = (String(fq_name) + seed).hash64();
         id &= 0x7FFFFFFFFFFFFFFF;
     }
+
     return id;
 }
 

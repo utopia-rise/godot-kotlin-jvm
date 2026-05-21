@@ -1,6 +1,6 @@
 import org.jetbrains.changelog.Changelog
 import org.jetbrains.changelog.markdownToHTML
-import versioninfo.fullGodotKotlinJvmVersion
+import versioninfo.fullBuildVersion
 import versioninfo.isSnapshot
 
 plugins {
@@ -28,7 +28,7 @@ repositories {
     }
 }
 
-version = fullGodotKotlinJvmVersion
+version = fullBuildVersion
 group = "com.utopia-rise"
 
 val intellijVersion: String = project.properties["godot.plugins.intellij.version"]?.toString() ?: libs.versions.ideaPluginDefaultIntellijVersion.get()
@@ -38,10 +38,9 @@ kotlin {
 }
 
 dependencies {
-    implementation("com.utopia-rise:tools-common:$fullGodotKotlinJvmVersion")
-    implementation("com.utopia-rise:jvm-godot-resource-serialization:0.1.0")
-    implementation(project(":godot-build-props"))
-    implementation(project(":godot-plugins-common"))
+    implementation("com.utopia-rise:tools-common:$fullBuildVersion")
+    implementation(project(":godot-bootstrap-library"))
+    implementation(project(":godot-core-library"))
 
     // https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin.html
     intellijPlatform {
@@ -49,11 +48,15 @@ dependencies {
 
         bundledPlugin("com.intellij.java")
         bundledPlugin("org.jetbrains.kotlin")
-        bundledPlugin("com.intellij.gradle")
+        plugin("org.intellij.scala", "2025.1.4")
 
         pluginVerifier()
         zipSigner()
     }
+}
+
+intellijPlatform {
+    buildSearchableOptions = false
 }
 
 intellijPlatform.pluginVerification.ides.ide(intellijVersion)
@@ -91,9 +94,6 @@ tasks {
                     subList(indexOf(start) + 1, indexOf(end))
                 }.joinToString("\n").run { markdownToHTML(this) }
         )
-
-        // Get the latest available change notes from the changelog file
-        changeNotes.set(changelog.renderItem(changelog.getLatest(), Changelog.OutputType.HTML))
     }
 
     publishPlugin {

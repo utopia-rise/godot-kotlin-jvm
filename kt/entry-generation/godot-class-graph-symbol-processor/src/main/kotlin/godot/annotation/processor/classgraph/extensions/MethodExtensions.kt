@@ -1,14 +1,15 @@
 package godot.annotation.processor.classgraph.extensions
 
-import godot.annotation.processor.classgraph.Settings
+import godot.annotation.processor.classgraph.Context
 import godot.annotation.processor.classgraph.models.TypeDescriptor
 import godot.entrygenerator.model.FunctionAnnotation
 import godot.entrygenerator.model.RegisteredFunction
+import godot.entrygenerator.settings.Settings
 import io.github.classgraph.ClassInfo
 import io.github.classgraph.MethodInfo
 
 fun MethodInfo.mapMethodToRegisteredFunction(currentClass: ClassInfo, settings: Settings): RegisteredFunction {
-    val parameters = parameterInfo.map { it.mapToValueParameter(settings) }
+    val parameters = parameterInfo.mapIndexed { index, parameter -> parameter.mapToValueParameter(settings, index) }
     val annotations = annotationInfo.mapNotNull { it.mapToGodotAnnotation(this, fqName) as? FunctionAnnotation }
 
     val typeDescriptor = TypeDescriptor(this)
@@ -19,31 +20,32 @@ fun MethodInfo.mapMethodToRegisteredFunction(currentClass: ClassInfo, settings: 
         parameters = parameters,
         returnType = if (typeDescriptor.isVoid) null else typeDescriptor.getMappedType(settings),
         annotations = annotations.toList(),
-        symbolProcessorSource = this
     )
 }
 
 val MethodInfo.isOverridee: Boolean
-    get() {
-        for (superclass in classInfo.superclasses) {
-            if (isOverrideInHierarchyOf(superclass)) {
-                return true
-            }
+    get() = classInfo.collectSuperMethodSignatures().contains(methodSignature)
+
+private val MethodInfo.methodSignature: String
+    get() = "$name:$typeDescriptor"
+
+private fun ClassInfo.collectSuperMethodSignatures(): Set<String> {
+    val signatures = mutableSetOf<String>()
+    for (superclass in superclasses) {
+        signatures += superclass.collectHierarchyMethodSignatures()
+    }
+    return signatures
+}
+
+private fun ClassInfo.collectHierarchyMethodSignatures(): Set<String> {
+    return Context.hierarchyMethodSignaturesByClass.getOrPut(name) {
+        val signatures = mutableSetOf<String>()
+        for (method in methodInfo) {
+            signatures += "${method.name}:${method.typeDescriptor}"
         }
-
-        return false
-    }
-
-private fun MethodInfo.isOverrideInHierarchyOf(classInfo: ClassInfo): Boolean {
-    if (classInfo.methodInfo.any { name == it.name && typeDescriptor == it.typeDescriptor }) {
-        return true
-    }
-
-    for (superclass in classInfo.superclasses) {
-        if (isOverrideInHierarchyOf(superclass)) {
-            return true
+        for (superclass in superclasses) {
+            signatures += superclass.collectHierarchyMethodSignatures()
         }
+        signatures
     }
-
-    return false
 }

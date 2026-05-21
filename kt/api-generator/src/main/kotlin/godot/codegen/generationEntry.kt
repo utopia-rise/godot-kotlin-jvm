@@ -6,8 +6,8 @@ import godot.codegen.models.ApiDescription
 import godot.codegen.services.IApiGenerationService
 import godot.codegen.services.impl.ApiGenerationService
 import godot.codegen.services.impl.AwaitGenerationService
-import godot.codegen.services.impl.ConnectorGenerationService
 import godot.codegen.services.impl.CallableGenerationService
+import godot.codegen.services.impl.ConnectorGenerationService
 import godot.codegen.services.impl.SignalGenerationService
 import java.io.File
 

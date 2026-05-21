@@ -1,15 +1,15 @@
 package godot.codegen.generation.rule
 
-import com.squareup.kotlinpoet.MemberName
+import com.squareup.kotlinpoet.CodeBlock
+import godot.codegen.constants.API
+import godot.codegen.constants.Internal
+import godot.codegen.constants.Utils
 import godot.codegen.generation.GenerationContext
 import godot.codegen.generation.task.ApiTask
 import godot.codegen.generation.task.RegistrationTask
 import godot.codegen.models.enriched.EnrichedClass
-import godot.codegen.services.impl.methodBindingsInnerClassName
-import godot.tools.common.constants.TYPE_MANAGER
-import godot.tools.common.constants.godotCorePackage
 
-class RegistrationRule() : GodotApiRule<ApiTask>() {
+class RegistrationRule : GodotApiRule<ApiTask>() {
     override fun apply(task: ApiTask, context: GenerationContext) {
         val coreTypes = context
             .classList
@@ -19,13 +19,13 @@ class RegistrationRule() : GodotApiRule<ApiTask>() {
             .classList
             .filter { !it.isCoreModule() }
 
-
         val registrationTask = RegistrationTask()
         (coreTypes + apiTypes)
-            .filter { clazz ->  //Remove class extending singletons
+            .filter { clazz ->
                 val parent = clazz.parent
                 parent == null || !parent.isSingleton
-            }.onEach { clazz ->
+            }
+            .onEach { clazz ->
                 registrationTask.addVariantMapping(clazz)
                 registrationTask.addClassRegistering(clazz)
                 registrationTask.addMethodBindings(clazz)
@@ -36,52 +36,55 @@ class RegistrationRule() : GodotApiRule<ApiTask>() {
 
     private fun RegistrationTask.addVariantMapping(enrichedClass: EnrichedClass) {
         variantMapper.addStatement(
-            "%M(%T::class, %T)",
-            MemberName(godotCorePackage, "addVariantMapping"),
+            "%M(%T::class, %M)",
+            Utils.addVariantMapping,
             enrichedClass.className,
             enrichedClass.getVariantConverter()
         )
     }
 
     private fun RegistrationTask.addClassRegistering(clazz: EnrichedClass) {
-        val formatString: String
+        val typeManager = Internal.typeManager
+
         if (clazz.isSingleton) {
-            engineTypes.addStatement("%T.registerSingleton(%S)·{·%T·}", TYPE_MANAGER, clazz.identifier, clazz.className)
-            formatString = "%T.registerEngineType(%S,·%T::class)·{·%T·}"
+            engineTypes.addCode(
+                CodeBlock.builder()
+                    .add("%T.registerSingleton(", typeManager)
+                    .add("%S", clazz.identifier)
+                    .add(")·{·%T·}\n", clazz.className)
+                    .build()
+            )
+            engineTypes.addCode(
+                CodeBlock.builder()
+                    .add("%T.registerEngineType(", typeManager)
+                    .add("%S,·", clazz.identifier)
+                    .add("%T::class", clazz.className)
+                    .add(")·{·%T·}\n", clazz.className)
+                    .build()
+            )
+        } else if (clazz.isAbstract) {
             engineTypes.addStatement(
-                formatString,
-                TYPE_MANAGER,
+                "%T.registerEngineType(%S,·%T::class,·::%T)",
+                typeManager,
+                clazz.identifier,
+                clazz.className,
+                clazz.abstractDummyClassName,
+            )
+        } else {
+            engineTypes.addStatement(
+                "%T.registerEngineType(%S,·%T::class,·::%T)",
+                typeManager,
                 clazz.identifier,
                 clazz.className,
                 clazz.className
             )
-        } else {
-            if(clazz.isAbstract) {
-                formatString = "%T.registerEngineType(%S,·%T::class,·::%T)"
-                engineTypes.addStatement(
-                    formatString,
-                    TYPE_MANAGER,
-                    clazz.identifier,
-                    clazz.className,
-                    clazz.abstractDummyClassName,
-                )
-            } else {
-                formatString = "%T.registerEngineType(%S,·%T::class,·::%T)"
-                engineTypes.addStatement(
-                    formatString,
-                    TYPE_MANAGER,
-                    clazz.identifier,
-                    clazz.className,
-                    clazz.className
-                )
-            }
         }
     }
 
     private fun RegistrationTask.addMethodBindings(clazz: EnrichedClass) {
         engineMethods.addStatement(
             "%T",
-            clazz.className.nestedClass(methodBindingsInnerClassName)
+            clazz.className.nestedClass(API.methodBindingsInnerClassName)
         )
     }
 }

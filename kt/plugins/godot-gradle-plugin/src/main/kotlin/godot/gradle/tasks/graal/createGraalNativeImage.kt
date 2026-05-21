@@ -1,5 +1,8 @@
 package godot.gradle.tasks.graal
 
+import godot.gradle.exception.GraalNativeImageToolNotFountException
+import godot.gradle.ext.existingFileOrNull
+import godot.gradle.ext.resolveExecutable
 import godot.gradle.projectExt.godotJvmExtension
 import org.gradle.api.Project
 import org.gradle.api.Task
@@ -14,6 +17,24 @@ fun Project.createGraalNativeImageTask(
     packageMainJarTask: TaskProvider<out Task>,
     packageBootstrapJarTask: TaskProvider<out Task>
 ): TaskProvider<out Task> {
+    val libsDirectory = layout.buildDirectory.dir("libs")
+    val graalDirectory = layout.buildDirectory.dir("graal")
+    val graalVmHomeDirectory = godotJvmExtension.graalVmHomeDirectory
+    val windowsDeveloperVcVarsPath = godotJvmExtension.windowsDeveloperVcVarsPath
+    val isVerboseEnabled = godotJvmExtension.isGraalNativeImageVerboseEnabled
+    val projectBaseDir = projectDir
+    val additionalJniConfigurationFiles = godotJvmExtension.additionalGraalJniConfigurationFiles.map { configFiles ->
+        configFiles.joinToString(",") { configFile ->
+            projectBaseDir.resolve("graal").resolve(configFile).absolutePath
+        }
+    }
+    val additionalReflectionConfigurationFiles = godotJvmExtension
+        .additionalGraalReflectionConfigurationFiles
+        .map { configFiles -> configFiles.joinToString(",") }
+    val additionalResourceConfigurationFiles = godotJvmExtension
+        .additionalGraalResourceConfigurationFiles
+        .map { configFiles -> configFiles.joinToString(",") }
+
     return tasks.register("createGraalNativeImage", Exec::class.java) {
         with(it) {
             group = "godot-kotlin-jvm"
@@ -26,8 +47,17 @@ fun Project.createGraalNativeImageTask(
                 packageBootstrapJarTask
             )
 
+            inputs.dir(libsDirectory)
+            inputs.dir(graalDirectory)
+            inputs.property("graalVmHomeDirectory", graalVmHomeDirectory)
+            inputs.property("windowsDeveloperVcVarsPath", windowsDeveloperVcVarsPath)
+            inputs.property("isGraalNativeImageVerboseEnabled", isVerboseEnabled)
+            inputs.property("additionalGraalJniConfigurationFiles", additionalJniConfigurationFiles)
+            inputs.property("additionalGraalReflectionConfigurationFiles", additionalReflectionConfigurationFiles)
+            inputs.property("additionalGraalResourceConfigurationFiles", additionalResourceConfigurationFiles)
+
             doFirst {
-                val libsDir = project.layout.buildDirectory.asFile.get().resolve("libs")
+                val libsDir = libsDirectory.get().asFile
 
                 val mainJar = File(libsDir, "main.jar")
                 val godotBootstrapJar = File(libsDir, "godot-bootstrap.jar")
@@ -35,48 +65,57 @@ fun Project.createGraalNativeImageTask(
 
                 workingDir = libsDir
 
-                val graalDirectory = layout.buildDirectory.asFile.get().resolve("graal")
+                val graalBuildDirectory = graalDirectory.get().asFile
 
                 val jniConfigurationFilesArgument = "-H:JNIConfigurationFiles=" +
-                    graalDirectory.resolve("godot-kotlin-graal-jni-config.json").absolutePath + "," +
-                    getGraalVmAdditionalJniConfigs()
+                    graalBuildDirectory.resolve("godot-kotlin-graal-jni-config.json").absolutePath + "," +
+                    additionalJniConfigurationFiles.get()
 
 
-                val additionalConfigFiles = getAdditionalGraalReflectionConfigurationFiles()
+                val additionalConfigFiles = additionalReflectionConfigurationFiles.get()
                 val reflectionConfigurationFilesArgument = if (additionalConfigFiles.isNotEmpty()) {
-                    "-H:ReflectionConfigurationFiles=${getAdditionalGraalReflectionConfigurationFiles()}"
+                    "-H:ReflectionConfigurationFiles=$additionalConfigFiles"
                 } else {
                     ""
                 }
 
-                val resourceConfigFiles = getAdditionalGraalResourceConfigurationFiles()
+                val resourceConfigFiles = additionalResourceConfigurationFiles.get()
                 val resourceConfigurationFilesArgument = if (resourceConfigFiles.isNotEmpty()) {
-                    "-H:ResourceConfigurationFiles=${getAdditionalGraalResourceConfigurationFiles()}"
+                    "-H:ResourceConfigurationFiles=$resourceConfigFiles"
                 } else {
                     ""
                 }
 
-                val verboseArgument = if (godotJvmExtension.isGraalVmNativeImageGenerationVerbose.get()) {
+                val verboseArgument = if (isVerboseEnabled.get()) {
                     "--verbose"
                 } else {
                     ""
                 }
 
-                val graalBinDir = godotJvmExtension
-                    .graalVmDirectory
-                    .get()
-                    .asFile
-                    .resolve("bin")
+                val graalHome = graalVmHomeDirectory.orNull?.trim()
+                    ?.takeUnless(String::isEmpty)
+                    ?: throw GraalNativeImageToolNotFountException("GraalVM home directory is not configured")
+                val graalHomeDir = File(graalHome)
+                val graalBinDir = graalHomeDir.resolve("bin")
 
 
                 val arguments = if (DefaultNativePlatform.getCurrentOperatingSystem().isWindows) {
+                    val vcVarsPath = windowsDeveloperVcVarsPath.orNull?.trim()
+                        ?.takeUnless(String::isEmpty)
+                        ?: throw IllegalArgumentException(
+                            "Windows developer vcvars path is not configured. Set it to the Visual Studio vcvars script before building a GraalVM native image on Windows."
+                        )
+                    val vcVarsFile = File(vcVarsPath).existingFileOrNull()
+                        ?: throw IllegalArgumentException(
+                            "The configured Visual Studio vcvars script does not exist or is not a file: ${File(vcVarsPath).absolutePath}"
+                        )
                     mutableListOf(
                         "cmd",
                         "/c",
 
                         "(",
 
-                        godotJvmExtension.windowsDeveloperVCVarsPath.get().asFile.absolutePath,
+                        vcVarsFile.absolutePath,
 
                         "&&",
 
@@ -93,8 +132,7 @@ fun Project.createGraalNativeImageTask(
 
                 } else {
                     mutableListOf(
-                        graalBinDir
-                            .resolve("native-image"),
+                        graalHomeDir.resolveExecutable("native-image"),
                         "-cp",
                         "${godotBootstrapJar.absolutePath}:${mainJar.absolutePath}",
                         "--shared",
@@ -105,11 +143,11 @@ fun Project.createGraalNativeImageTask(
                     )
                 }
 
-                if(additionalConfigFiles.isNotEmpty()){
+                if (additionalConfigFiles.isNotEmpty()) {
                     arguments.add(reflectionConfigurationFilesArgument)
                 }
 
-                if(resourceConfigFiles.isNotEmpty()){
+                if (resourceConfigFiles.isNotEmpty()) {
                     arguments.add(resourceConfigurationFilesArgument)
                 }
 

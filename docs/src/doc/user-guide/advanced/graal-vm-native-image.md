@@ -8,12 +8,11 @@ On desktop platform, you can choose to build a [GraalVM native image](https://ww
 
 On Windows, you should add `VC_VARS_PATH` environment variable to point to vcvars bat file. This is mandatory so that we can initialize visual studio tools. (Example: `C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat`)
 
-In order to build a native image, you should add the following configuration to gradle plugin to enable building of native-image:
+In order to build a native image, configure the Gradle plugin like this and then invoke `buildGraalNativeImage` or `buildGraalNativeImageRelease`:
 ```kotlin
 godot {
-    isGraalNativeImageExportEnabled.set(true)
-    graalVmDirectory.set(File(System.getenv("GRAALVM_HOME")))
-    windowsDeveloperVCVarsPath.set(File(System.getenv("VC_VARS_PATH")))
+    graalVmHomeDirectory.set(File(System.getenv("GRAALVM_HOME")))
+    windowsDeveloperVcVarsPath.set(File(System.getenv("VC_VARS_PATH")))
 }
 ```
 
@@ -28,9 +27,8 @@ In order to append those configurations add the json in `graal` folder of your p
 
 ```kotlin
 godot {
-    isGraalNativeImageExportEnabled.set(true)
-    graalVmDirectory.set(File(System.getenv("GRAALVM_HOME")))
-    windowsDeveloperVCVarsPath.set(File(System.getenv("VC_VARS_PATH")))
+    graalVmHomeDirectory.set(File(System.getenv("GRAALVM_HOME")))
+    windowsDeveloperVcVarsPath.set(File(System.getenv("VC_VARS_PATH")))
     
     additionalGraalJniConfigurationFiles.set(arrayOf("my-jni-configuration-file.json", "another-conf.json"))
     additionalGraalReflectionConfigurationFiles.set(arrayOf("my-reflection-configuration-file.json", "another-conf.json"))
@@ -41,9 +39,8 @@ The same applies for resource files which should be added (basically any files i
 
 ```kotlin
 godot {
-    isGraalNativeImageExportEnabled.set(true)
-    graalVmDirectory.set(File(System.getenv("GRAALVM_HOME")))
-    windowsDeveloperVCVarsPath.set(File(System.getenv("VC_VARS_PATH")))
+    graalVmHomeDirectory.set(File(System.getenv("GRAALVM_HOME")))
+    windowsDeveloperVcVarsPath.set(File(System.getenv("VC_VARS_PATH")))
     
     additionalGraalJniConfigurationFiles.set(arrayOf("my-jni-configuration-file.json", "another-conf.json"))
     additionalGraalReflectionConfigurationFiles.set(arrayOf("my-reflection-configuration-file.json", "another-conf.json"))

@@ -1,5 +1,13 @@
 package godot.gradle.exception
 
-class D8ToolNotFoundException : IllegalArgumentException(
-    "d8 tool not set! Make sure you've either set the ANDROID_SDK_ROOT environment variable or set the d8ToolPath. For more information, visit: https://godot-kotl.in/en/stable/user-guide/exporting/#android"
+class D8ToolNotFoundException(reason: String? = null) : IllegalArgumentException(
+    buildString {
+        append("d8 tool not set or not usable")
+        if (!reason.isNullOrBlank()) {
+            append(": ")
+            append(reason)
+        }
+        append(". Set ANDROID_SDK_ROOT to a valid Android SDK, or set godot.d8ToolPath to the d8 executable.")
+        append(" For more information, visit: https://godot-kotl.in/en/stable/user-guide/exporting/#android")
+    }
 )

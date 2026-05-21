@@ -10,7 +10,6 @@ import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.TypeName
 import com.squareup.kotlinpoet.TypeSpec
 import com.squareup.kotlinpoet.TypeVariableName
-import org.gradle.declarative.dsl.schema.FqName.Empty.packageName
 
 /**
  * Provides utilities to handle generic classes and generate KotlinPoet builders for them.

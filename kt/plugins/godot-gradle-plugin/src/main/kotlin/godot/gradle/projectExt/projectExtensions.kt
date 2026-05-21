@@ -1,30 +1,33 @@
 package godot.gradle.projectExt
 
 import godot.gradle.GodotExtension
+import godot.gradle.GodotLanguage
 import org.gradle.api.Project
-import org.gradle.plugins.ide.idea.model.IdeaModel
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
-import java.io.File
 
 val Project.godotJvmExtension: GodotExtension
     get() = extensions.getByType(GodotExtension::class.java)
+
+fun Project.isLanguageEnabled(language: GodotLanguage): Boolean = godotJvmExtension.languages.get().contains(language)
 
 val Project.kotlinJvmExtension: KotlinJvmProjectExtension
     get() = extensions
         .findByType(KotlinJvmProjectExtension::class.java)
         ?: rootProject.extensions.getByType(KotlinJvmProjectExtension::class.java)
 
-
-val Project.ideaExtension: IdeaModel
-    get() = requireNotNull(
-        extensions
-            .findByType(IdeaModel::class.java)
-    ) {
-        "idea extension not found"
-    }
-
 val Project.isRelease: Boolean
-    get() = hasProperty("release")
+    get() = hasProperty("release") || gradle.startParameter.taskNames
+        .asSequence()
+        .map { taskPath -> taskPath.substringAfterLast(':') }
+        .any { taskName ->
+            taskName in setOf(
+                "buildRelease",
+                "buildAndroidRelease",
+                "buildGraalNativeImageRelease",
+                "buildIOSRelease",
+                "exportRelease",
+            )
+        }
 
 val Project.godotInternalArtifactName: String
     get() = "godot-internal-library-${if (isRelease) "release" else "debug"}"
@@ -43,6 +46,3 @@ val Project.godotExtensionArtifactName: String
 
 val Project.godotCoroutineLibraryArtifactName: String
     get() = "godot-coroutine-library-${if (isRelease) "release" else "debug"}"
-
-val Project.classGraphGeneratedDirectory: File
-    get() = layout.buildDirectory.asFile.get().resolve("generated/classgraph/")

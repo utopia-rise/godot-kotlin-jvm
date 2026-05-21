@@ -92,17 +92,6 @@ public:
     ~SourceScript() override = default;
     StringName get_functional_name() const;
     StringName get_global_name() const override;
-    static StringName parse_source_to_fqdn(const String& p_path, String& r_source, Error* r_error);
-
-protected:
-    static constexpr const char* PACKAGE_KEYWORD = "package";
-    static constexpr const char* CLASS_KEYWORD = "class";
-    static constexpr const char* REGISTER_CLASS_ANNOTATION = "@RegisterClass";
-    static bool is_whitespace_or_linebreak(char32_t character);
-    static bool is_package_end(char32_t character);
-    static bool is_class_name_end(char32_t character);
-    static bool skip_spaces_and_newlines(const String& source, int& start_index);
-    static bool skip_comments(const String& source, const String& p_path, int& start_index);
 
 private:
     StringName _functional_name;

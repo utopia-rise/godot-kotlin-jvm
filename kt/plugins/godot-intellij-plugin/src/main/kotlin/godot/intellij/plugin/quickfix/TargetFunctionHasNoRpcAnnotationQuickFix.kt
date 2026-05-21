@@ -1,11 +1,11 @@
-package godot.intellij.plugin.quickfix
+﻿package godot.intellij.plugin.quickfix
 
 import com.intellij.codeInspection.LocalQuickFix
 import com.intellij.codeInspection.ProblemDescriptor
 import com.intellij.openapi.project.Project
+import godot.annotation.Rpc
 import godot.intellij.plugin.GodotPluginBundle
-import godot.intellij.plugin.data.model.RPC_ANNOTATION
-import godot.intellij.plugin.extension.asClassId
+import org.jetbrains.kotlin.scripting.resolve.classId
 import org.jetbrains.kotlin.idea.references.mainReference
 import org.jetbrains.kotlin.idea.util.addAnnotation
 import org.jetbrains.kotlin.psi.KtCallableReferenceExpression
@@ -20,6 +20,6 @@ class TargetFunctionHasNoRpcAnnotationQuickFix : LocalQuickFix {
             ?.mainReference
             ?.resolve() as? KtNamedFunction
 
-        ktNamedFunction?.addAnnotation(asClassId(RPC_ANNOTATION))
+        ktNamedFunction?.addAnnotation(Rpc::class.classId)
     }
 }

@@ -3,6 +3,7 @@
 
 #include "jvm_script.h"
 #include "resource_format/jvm_resource_format_loader.h"
+#include "script/source_script_parser.h"
 
 // TODO: Transform this class into JarResource when moving to CPP reloading.
 class JvmScriptManager: public Object {
@@ -41,7 +42,7 @@ public:
     template<class SCRIPT>
     Ref<SCRIPT> get_or_create_named_script(const String& p_path, bool* created);
     template<class SCRIPT>
-    Ref<SCRIPT> get_or_create_source_script(const String& p_path, bool* created, Error* r_error);
+    Ref<SCRIPT> get_or_create_source_script(const String& p_source_code, bool* created);
 
     static void finalize();
 
@@ -71,21 +72,25 @@ Ref<SCRIPT> JvmScriptManager::get_or_create_named_script(const String& p_path, b
 }
 
 template<class SCRIPT>
-Ref<SCRIPT> JvmScriptManager::get_or_create_source_script(const String& p_path, bool* created, Error* r_error) {
+Ref<SCRIPT> JvmScriptManager::get_or_create_source_script(const String& p_source_code, bool* created) {
     if constexpr (!std::is_base_of<JvmScript, SCRIPT>()) { return {}; }
     // Placeholder scripts have to be registered in the TypeManager in order to be transformed in valid scripts when the jar is built.
 
     *created = false;
-    // If a named script weak ref is already created and valid, we return it, otherwise we create the script
-    String source_code;
-    StringName fqdn { SourceScript::parse_source_to_fqdn(p_path, source_code, r_error) };
+    StringName fqdn {parse_source_script_info(p_source_code)};
+    if (fqdn.is_empty()) {
+        Ref<SCRIPT> jvm_script;
+        jvm_script.instantiate();
+        *created = true;
+        return jvm_script;
+    }
+
     Ref<SCRIPT> jvm_script = get_script_from_fqdn(fqdn);
     if (jvm_script.is_null()) {
         jvm_script.instantiate();
         jvm_script->kotlin_class = fqdn_to_kt_class[fqdn];
         *created = true;
 
-        jvm_script->set_source_code(source_code);
         jvm_script->_functional_name = fqdn;
 
         Ref<WeakRef> weak_ref;

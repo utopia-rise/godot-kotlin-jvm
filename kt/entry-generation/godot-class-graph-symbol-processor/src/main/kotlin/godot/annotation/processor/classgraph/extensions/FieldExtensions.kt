@@ -1,7 +1,6 @@
 package godot.annotation.processor.classgraph.extensions
 
 import godot.annotation.RegisterSignal
-import godot.annotation.processor.classgraph.Settings
 import godot.annotation.processor.classgraph.models.TypeDescriptor
 import godot.entrygenerator.ext.hasAnnotation
 import godot.entrygenerator.ext.isJavaCollection
@@ -11,6 +10,7 @@ import godot.entrygenerator.model.EnumListHintStringAnnotation
 import godot.entrygenerator.model.PropertyAnnotation
 import godot.entrygenerator.model.RegisteredProperty
 import godot.entrygenerator.model.RegisteredSignal
+import godot.entrygenerator.settings.Settings
 import io.github.classgraph.AnnotationInfo
 import io.github.classgraph.ClassInfo
 import io.github.classgraph.FieldInfo
@@ -32,14 +32,13 @@ fun FieldInfo.mapToRegisteredProperty(settings: Settings, classInfo: ClassInfo):
 
         if (!annotations.hasAnnotation<EnumAnnotation>() && typeClassInfo.isEnum) {
             annotations.add(
-                EnumHintStringAnnotation(
-                    enumValueNames = typeClassInfo.fieldInfo
-                        .filter { it.isEnum }
-                        .map { it.name },
-                    source = this
+                    EnumHintStringAnnotation(
+                        enumValueNames = typeClassInfo.fieldInfo
+                            .filter { it.isEnum }
+                            .map { it.name }
+                    )
                 )
-            )
-        }
+            }
 
         // Check if the property is a collection of enums
         if (!annotations.hasAnnotation<EnumAnnotation>() &&
@@ -50,8 +49,7 @@ fun FieldInfo.mapToRegisteredProperty(settings: Settings, classInfo: ClassInfo):
                     EnumListHintStringAnnotation(
                         enumValueNames = containedTypeDeclaration.fieldInfo
                             .filter { it.isEnum }
-                            .map { it.name },
-                        source = this
+                            .map { it.name }
                     )
                 )
             }
@@ -85,7 +83,6 @@ fun FieldInfo.mapToRegisteredProperty(settings: Settings, classInfo: ClassInfo):
         isLateinit = typeDescriptor.isLateInit,
         isOverridee = isOverridee,
         annotations = annotations.toList(),
-        symbolProcessorSource = this
     )
 }
 
@@ -115,14 +112,13 @@ fun FieldInfo.mapFieldToRegisteredSignal(settings: Settings, classInfo: ClassInf
     return RegisteredSignal(
         fqName = fqName.replace("$", "."),
         type = type,
-        parameterTypes = type.arguments(),
+        parameterTypes = type.arguments,
         parameterNames = (
                 parameterValues
                     .getValue(signalParametersName) as Array<String>
                 ).toList(),
         isOverridee = isOverridee,
         annotations = annotations.mapNotNull { it.mapToGodotAnnotation(this, fqName) as? PropertyAnnotation },
-        symbolProcessorSource = this
     )
 }
 
@@ -150,8 +146,12 @@ fun FieldInfo.hasAnnotation(annotationName: String, classInfo: ClassInfo): Boole
                 }
 
 
-fun FieldInfo.toGetterName(): String = "get${capitalizedName()}"
-fun FieldInfo.toSetterName(): String = "set${capitalizedName()}"
+fun FieldInfo.toGetterName(): String =
+    if (isKotlinBooleanIsProperty()) name else "get${capitalizedName()}"
+
+fun FieldInfo.toSetterName(): String =
+    if (isKotlinBooleanIsProperty()) "set${name.removePrefix("is")}" else "set${capitalizedName()}"
+
 fun FieldInfo.toScalaSetterName(): String = "${name}_\$eq"
 fun FieldInfo.toSyntheticAnnotations(): String = "${toGetterName()}\$annotations"
 
@@ -193,3 +193,11 @@ fun FieldInfo.getAnnotations(classInfo: ClassInfo): Collection<AnnotationInfo> =
 
 private fun FieldInfo.capitalizedName(): String = sanitizedName
     .replaceFirstChar { char -> if (char.isLowerCase()) char.titlecase() else char.toString() }
+
+private fun FieldInfo.isKotlinBooleanIsProperty(): Boolean {
+    if (!name.startsWith("is") || name.length <= 2 || !name[2].isUpperCase()) {
+        return false
+    }
+
+    return typeDescriptor.toString() in setOf("boolean", "java.lang.Boolean", "kotlin.Boolean")
+}

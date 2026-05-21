@@ -60,11 +60,6 @@ subdir("entry-generation") {
 subdir("plugins") {
     include("godot-gradle-plugin")
     include("godot-intellij-plugin")
-    include("godot-plugins-common")
-}
-
-subdir("utils") {
-    include("godot-build-props")
 }
 
 includeBuild("common") {

@@ -1,12 +1,12 @@
 package godot.entrygenerator.checks
 
+import godot.annotation.TransferMode
 import godot.entrygenerator.ext.getAnnotationUnsafe
 import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.model.RpcAnnotation
-import godot.entrygenerator.model.TransferMode
 import godot.entrygenerator.utils.Logger
 
-class RpcCheck(logger: Logger, registeredClasses: List<RegisteredClass>): BaseCheck(logger, registeredClasses) {
+class RpcCheck(logger: Logger, registeredClasses: List<RegisteredClass>) : BaseCheck(logger, registeredClasses) {
     override fun execute(): Boolean {
         registeredClasses
             .flatMap { it.functions }

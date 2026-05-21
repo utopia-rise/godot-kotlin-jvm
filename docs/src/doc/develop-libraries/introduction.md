@@ -6,5 +6,13 @@ but specifically for the use in other Godot Kotlin/JVM projects like Games or Ap
 
 ## Overview
 
-A Godot Kotlin/JVM library is just a regular JVM library with additional metadata annotations for registered classes.
-For registered classes in a library registration files are generated and provided to the consumer, so they can be used in the consuming project.
+A Godot Kotlin/JVM library is a regular JVM library built with the Godot Gradle plugin in library mode.
+
+Library mode keeps the Godot Kotlin/JVM compile setup, but skips:
+
+- entry scanning
+- entry generation
+- `.gdj` generation and synchronization
+- runtime jar packaging for a standalone Godot project
+
+Registered classes can still live inside the library. The important difference is that the consuming Godot Kotlin/JVM project scans its dependencies and generates the needed entry files and `.gdj` files itself.

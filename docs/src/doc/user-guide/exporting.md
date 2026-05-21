@@ -83,12 +83,13 @@ Don't forget to remove them when writing an uninstaller for your game.
 !!! warning
     If you plan to export your game to android, make sure the libraries you use, are actually compatible with android.
 
-In order to build for Android, set the `isAndroidExportEnabled` flag to `true` in your build file.
+In order to build for Android, use the dedicated `buildAndroid` or `buildAndroidRelease` Gradle task.
 
 /// tab | build.gradke.kts
 ```kt
 godot {
-    isAndroidExportEnabled.set(true)
+    d8ToolPath.set(File("${System.getenv("ANDROID_SDK_ROOT")}/build-tools/36.0.0/d8"))
+    androidCompileSdkDirectory.set(File("${System.getenv("ANDROID_SDK_ROOT")}/platforms/android-36"))
 }
 ```
 ///
@@ -105,21 +106,21 @@ While our gradle plugin is able to automatically find the newest installed build
 - Setting the `d8` tool:
     ```kt
     godot {
-        d8ToolPath = File("${System.getenv("ANDROID_SDK_ROOT")}/build-tools/36.0.0/d8")
+        d8ToolPath.set(File("${System.getenv("ANDROID_SDK_ROOT")}/build-tools/36.0.0/d8"))
     }
     ```
 
-- Setting the `androidCompileSdkDir` to your target SDK version (most of the time, you want to set it to the newest version available):
+- Setting the `androidCompileSdkDirectory` to your target SDK version (most of the time, you want to set it to the newest version available):
     ```kt
     godot {
-        androidCompileSdkDir = File("${System.getenv("ANDROID_SDK_ROOT")}/platforms/android-36")
+        androidCompileSdkDirectory.set(File("${System.getenv("ANDROID_SDK_ROOT")}/platforms/android-36"))
     }
     ```
 
-- Setting the `androidMinApi` (equivalent to `--min-api` argument of `d8` tool), default is `21`:
+- Setting the `androidMinApiLevel` (equivalent to the `--min-api` argument of `d8`), default is `21`:
     ```kt
     godot {
-        androidMinApi = 22
+        androidMinApiLevel.set(22)
     }
     ```
 
@@ -131,7 +132,7 @@ While our gradle plugin is able to automatically find the newest installed build
 !!! warning
     GraalVM Native Image is an advanced feature and requires a lot of work to support. Especially if you rely on many third party libraries.
 
-In order to build for graalvm, follow `GraalVM native-image` section in [advanced user guide](./advanced/graal-vm-native-image.md).
+In order to build for graalvm, configure `graalVmHomeDirectory` and then use `buildGraalNativeImage` or `buildGraalNativeImageRelease`. See the `GraalVM native-image` section in [advanced user guide](./advanced/graal-vm-native-image.md).
 
 The `main.jar` and `godot-bootstrap.jar` are compiled into a single `usercode` shared library is copied into `pck` during the export process. Similar to the regular export versions, the `usercode` shared library is copied to the `user://` dir. Don't forget to delete it when creating an uninstaller.
 
@@ -143,11 +144,10 @@ You can also use `export-all-jvm` to export both the JVM and the Native Image. B
 !!! warning
     With this export you don't have a choice regarding JVM version you use. Please use [GraalVM 23.1.3](https://download.oracle.com/graalvm/21/latest/graalvm-jdk-21_macos-aarch64_bin.tar.gz).
 
-Additionally, to the regular GraalVM configuration mentioned above, add the following in `build.gradle.kts`:
+Additionally, to the regular GraalVM configuration mentioned above, add the following in `build.gradle.kts`, then invoke `buildIOS` or `buildIOSRelease`:
 
 ```kotlin
 godot {
-    graalVmDirectory.set(File("Path to your graalVM install")) // or setup GRAALVM_HOME environment variable.
-    isIOSExportEnabled.set(true)
+    graalVmHomeDirectory.set(File("Path to your GraalVM install")) // or set up GRAALVM_HOME.
 }
 ```

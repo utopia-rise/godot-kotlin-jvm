@@ -1,8 +1,8 @@
 package godot.codegen.services.impl
 
 import godot.codegen.generation.GenerationContext
-import godot.codegen.generation.rule.ApiRule
 import godot.codegen.generation.rule.AbstractClassDummyRule
+import godot.codegen.generation.rule.ApiRule
 import godot.codegen.generation.rule.BindingRule
 import godot.codegen.generation.rule.BitfieldExtensionRule
 import godot.codegen.generation.rule.ConstantRule
@@ -34,8 +34,6 @@ import godot.codegen.generation.task.FileTask
 import godot.codegen.models.ApiDescription
 import godot.codegen.services.IApiGenerationService
 import java.io.File
-
-const val methodBindingsInnerClassName = "MethodBindings"
 
 class ApiGenerationService(
     val api: ApiDescription,

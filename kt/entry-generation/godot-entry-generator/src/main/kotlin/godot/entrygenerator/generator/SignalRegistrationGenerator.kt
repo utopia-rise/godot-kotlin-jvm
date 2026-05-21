@@ -4,14 +4,13 @@ import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.MemberName.Companion.member
+import godot.core.VariantCaster
 import godot.entrygenerator.EntryGenerator
-import godot.entrygenerator.ext.toKtVariantType
+import godot.entrygenerator.ext.toKtVariantMemberName
 import godot.entrygenerator.model.JvmType
 import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.model.RegisteredSignal
-import godot.tools.common.constants.GodotKotlinJvmTypes
-import godot.tools.common.constants.VARIANT_CASTER_ANY
-import godot.tools.common.constants.godotRegistrationPackage
+import godot.registration.KtFunctionArgument
 
 object SignalRegistrationGenerator {
     fun generate(registeredClass: RegisteredClass, className: ClassName, registerClassControlFlow: FunSpec.Builder) {
@@ -27,37 +26,35 @@ object SignalRegistrationGenerator {
     }
 
     private fun getStringTemplate(registeredSignal: RegisteredSignal): String = buildString {
-        append("signal(%L") //signalPropertyReference
-
-        //a KtFunctionArgument per signal argument
-        (0 until kotlin.math.max(registeredSignal.parameterTypes.size, registeredSignal.parameterNames.size)).forEach { _ ->
-            append(",·%T(%T,·%S,·%S)")
+        append("signal(%L")
+        repeat(kotlin.math.max(registeredSignal.parameterTypes.size, registeredSignal.parameterNames.size)) {
+            append(", %T(%M, %S, %S)")
         }
-
-        append(")") //signal closing
+        append(")")
     }
 
     private fun getTemplateArguments(
         registeredSignal: RegisteredSignal,
         className: ClassName
     ) = buildList {
-        add(getPropertyReference(registeredSignal, className)) //signalPropertyReference
+        add(getPropertyReference(registeredSignal, className))
 
         if (registeredSignal.parameterTypes.size >= registeredSignal.parameterNames.size) {
-            //a KtFunctionArgument per signal argument
             registeredSignal.parameterTypes.forEachIndexed { index, argumentType ->
                 val argumentName = registeredSignal.parameterNames.getOrNull(index) ?: "p$index"
-                add(ClassName(godotRegistrationPackage, GodotKotlinJvmTypes.ktFunctionArgument))
-                add(argumentType.toKtVariantType())
+                add(KtFunctionArgument::class)
+                add(argumentType.toKtVariantMemberName())
                 add(argumentType.fqName)
                 add(argumentName)
             }
         } else {
             registeredSignal.parameterNames.forEachIndexed { index, argumentName ->
-                val argumentTypeVariantType = registeredSignal.parameterTypes.getOrNull(index)?.toKtVariantType() ?: VARIANT_CASTER_ANY
-                val argumentTypeFqName = registeredSignal.parameterTypes.getOrNull(index)?.fqName ?: EntryGenerator.jvmTypeFqNamesProvider(JvmType.ANY).first()
+                val argumentTypeVariantType = registeredSignal.parameterTypes.getOrNull(index)?.toKtVariantMemberName()
+                    ?: VariantCaster.ANY
+                val argumentTypeFqName = registeredSignal.parameterTypes.getOrNull(index)?.fqName
+                    ?: EntryGenerator.jvmTypeFqNamesProvider(JvmType.ANY).first()
 
-                add(ClassName(godotRegistrationPackage, GodotKotlinJvmTypes.ktFunctionArgument))
+                add(KtFunctionArgument::class)
                 add(argumentTypeVariantType)
                 add(argumentTypeFqName)
                 add(argumentName)
@@ -71,3 +68,4 @@ object SignalRegistrationGenerator {
             .reference()
     }
 }
+

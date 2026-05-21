@@ -8,7 +8,6 @@
 package godot.extension
 
 import godot.api.Object
-import godot.api.Object.ConnectFlags
 import godot.core.JvmAction0
 import godot.core.JvmAction1
 import godot.core.JvmAction10
@@ -112,7 +111,7 @@ import godot.core.Signal6
 import godot.core.Signal7
 import godot.core.Signal8
 import godot.core.Signal9
-import godot.core.VariantParser
+import godot.core.VariantParser.NIL
 import godot.core.asCallable
 import godot.core.getVariantConverter
 import godot.core.toGodotName
@@ -176,7 +175,7 @@ public fun <T : Object, R> Signal0._connectMethod0Java(
 }
 
 public inline fun Signal0.promise(noinline method: () -> Unit, noinline cancel: () -> Unit): Unit {
-  LambdaContainer0<Unit>(VariantParser.NIL, arrayOf(), method).setAsCancellable(this, cancel)
+  LambdaContainer0<Unit>(NIL, arrayOf(), method).setAsCancellable(this, cancel)
 }
 
 public inline fun <reified P0> Signal1<P0>.connectLambda(flags: Object.ConnectFlags =
@@ -235,7 +234,7 @@ public fun <T : Object, R, P0> Signal1<P0>._connectMethod1Java(
 
 public inline fun <reified P0> Signal1<P0>.promise(noinline method: (p0: P0) -> Unit, noinline
     cancel: () -> Unit): Unit {
-  LambdaContainer1<Unit, P0>(VariantParser.NIL, arrayOf(getVariantConverter(P0::class)!!), method).setAsCancellable(this, cancel)
+  LambdaContainer1<Unit, P0>(NIL, arrayOf(getVariantConverter(P0::class)!!), method).setAsCancellable(this, cancel)
 }
 
 public inline fun <reified P0, reified P1> Signal2<P0, P1>.connectLambda(flags: Object.ConnectFlags
@@ -295,7 +294,7 @@ public fun <T : Object, R, P0, P1> Signal2<P0, P1>._connectMethod2Java(
 
 public inline fun <reified P0, reified P1> Signal2<P0, P1>.promise(noinline method: (p0: P0,
     p1: P1) -> Unit, noinline cancel: () -> Unit): Unit {
-  LambdaContainer2<Unit, P0, P1>(VariantParser.NIL, arrayOf(getVariantConverter(P0::class)!!, getVariantConverter(P1::class)!!), method).setAsCancellable(this, cancel)
+  LambdaContainer2<Unit, P0, P1>(NIL, arrayOf(getVariantConverter(P0::class)!!, getVariantConverter(P1::class)!!), method).setAsCancellable(this, cancel)
 }
 
 public inline fun <reified P0, reified P1, reified P2>
@@ -369,7 +368,7 @@ public inline fun <reified P0, reified P1, reified P2> Signal3<P0, P1, P2>.promi
   p1: P1,
   p2: P2,
 ) -> Unit, noinline cancel: () -> Unit): Unit {
-  LambdaContainer3<Unit, P0, P1, P2>(VariantParser.NIL, arrayOf(getVariantConverter(P0::class)!!, getVariantConverter(P1::class)!!, getVariantConverter(P2::class)!!), method).setAsCancellable(this, cancel)
+  LambdaContainer3<Unit, P0, P1, P2>(NIL, arrayOf(getVariantConverter(P0::class)!!, getVariantConverter(P1::class)!!, getVariantConverter(P2::class)!!), method).setAsCancellable(this, cancel)
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3>
@@ -447,7 +446,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3>
   p2: P2,
   p3: P3,
 ) -> Unit, noinline cancel: () -> Unit): Unit {
-  LambdaContainer4<Unit, P0, P1, P2, P3>(VariantParser.NIL, arrayOf(getVariantConverter(P0::class)!!, getVariantConverter(P1::class)!!, getVariantConverter(P2::class)!!, getVariantConverter(P3::class)!!), method).setAsCancellable(this, cancel)
+  LambdaContainer4<Unit, P0, P1, P2, P3>(NIL, arrayOf(getVariantConverter(P0::class)!!, getVariantConverter(P1::class)!!, getVariantConverter(P2::class)!!, getVariantConverter(P3::class)!!), method).setAsCancellable(this, cancel)
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4>
@@ -529,7 +528,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4>
   p3: P3,
   p4: P4,
 ) -> Unit, noinline cancel: () -> Unit): Unit {
-  LambdaContainer5<Unit, P0, P1, P2, P3, P4>(VariantParser.NIL, arrayOf(getVariantConverter(P0::class)!!, getVariantConverter(P1::class)!!, getVariantConverter(P2::class)!!, getVariantConverter(P3::class)!!, getVariantConverter(P4::class)!!), method).setAsCancellable(this, cancel)
+  LambdaContainer5<Unit, P0, P1, P2, P3, P4>(NIL, arrayOf(getVariantConverter(P0::class)!!, getVariantConverter(P1::class)!!, getVariantConverter(P2::class)!!, getVariantConverter(P3::class)!!, getVariantConverter(P4::class)!!), method).setAsCancellable(this, cancel)
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5>
@@ -616,7 +615,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p4: P4,
   p5: P5,
 ) -> Unit, noinline cancel: () -> Unit): Unit {
-  LambdaContainer6<Unit, P0, P1, P2, P3, P4, P5>(VariantParser.NIL, arrayOf(getVariantConverter(P0::class)!!, getVariantConverter(P1::class)!!, getVariantConverter(P2::class)!!, getVariantConverter(P3::class)!!, getVariantConverter(P4::class)!!, getVariantConverter(P5::class)!!), method).setAsCancellable(this, cancel)
+  LambdaContainer6<Unit, P0, P1, P2, P3, P4, P5>(NIL, arrayOf(getVariantConverter(P0::class)!!, getVariantConverter(P1::class)!!, getVariantConverter(P2::class)!!, getVariantConverter(P3::class)!!, getVariantConverter(P4::class)!!, getVariantConverter(P5::class)!!), method).setAsCancellable(this, cancel)
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -708,7 +707,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p5: P5,
   p6: P6,
 ) -> Unit, noinline cancel: () -> Unit): Unit {
-  LambdaContainer7<Unit, P0, P1, P2, P3, P4, P5, P6>(VariantParser.NIL, arrayOf(getVariantConverter(P0::class)!!, getVariantConverter(P1::class)!!, getVariantConverter(P2::class)!!, getVariantConverter(P3::class)!!, getVariantConverter(P4::class)!!, getVariantConverter(P5::class)!!, getVariantConverter(P6::class)!!), method).setAsCancellable(this, cancel)
+  LambdaContainer7<Unit, P0, P1, P2, P3, P4, P5, P6>(NIL, arrayOf(getVariantConverter(P0::class)!!, getVariantConverter(P1::class)!!, getVariantConverter(P2::class)!!, getVariantConverter(P3::class)!!, getVariantConverter(P4::class)!!, getVariantConverter(P5::class)!!, getVariantConverter(P6::class)!!), method).setAsCancellable(this, cancel)
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -748,8 +747,7 @@ public fun <P0, P1, P2, P3, P4, P5, P6, P7>
 ): SignalConnector {
   val connector = SignalConnector.createUnsafe(
     this,
-    LambdaCallable8._createJava(p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type,
-        action)
+    LambdaCallable8._createJava(p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, action)
   )
   connector.connect(flags)
   return connector
@@ -806,7 +804,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p6: P6,
   p7: P7,
 ) -> Unit, noinline cancel: () -> Unit): Unit {
-  LambdaContainer8<Unit, P0, P1, P2, P3, P4, P5, P6, P7>(VariantParser.NIL, arrayOf(getVariantConverter(P0::class)!!, getVariantConverter(P1::class)!!, getVariantConverter(P2::class)!!, getVariantConverter(P3::class)!!, getVariantConverter(P4::class)!!, getVariantConverter(P5::class)!!, getVariantConverter(P6::class)!!, getVariantConverter(P7::class)!!), method).setAsCancellable(this, cancel)
+  LambdaContainer8<Unit, P0, P1, P2, P3, P4, P5, P6, P7>(NIL, arrayOf(getVariantConverter(P0::class)!!, getVariantConverter(P1::class)!!, getVariantConverter(P2::class)!!, getVariantConverter(P3::class)!!, getVariantConverter(P4::class)!!, getVariantConverter(P5::class)!!, getVariantConverter(P6::class)!!, getVariantConverter(P7::class)!!), method).setAsCancellable(this, cancel)
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -849,8 +847,7 @@ public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8>
 ): SignalConnector {
   val connector = SignalConnector.createUnsafe(
     this,
-    LambdaCallable9._createJava(p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type,
-        p8Type, action)
+    LambdaCallable9._createJava(p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, action)
   )
   connector.connect(flags)
   return connector
@@ -910,7 +907,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p7: P7,
   p8: P8,
 ) -> Unit, noinline cancel: () -> Unit): Unit {
-  LambdaContainer9<Unit, P0, P1, P2, P3, P4, P5, P6, P7, P8>(VariantParser.NIL, arrayOf(getVariantConverter(P0::class)!!, getVariantConverter(P1::class)!!, getVariantConverter(P2::class)!!, getVariantConverter(P3::class)!!, getVariantConverter(P4::class)!!, getVariantConverter(P5::class)!!, getVariantConverter(P6::class)!!, getVariantConverter(P7::class)!!, getVariantConverter(P8::class)!!), method).setAsCancellable(this, cancel)
+  LambdaContainer9<Unit, P0, P1, P2, P3, P4, P5, P6, P7, P8>(NIL, arrayOf(getVariantConverter(P0::class)!!, getVariantConverter(P1::class)!!, getVariantConverter(P2::class)!!, getVariantConverter(P3::class)!!, getVariantConverter(P4::class)!!, getVariantConverter(P5::class)!!, getVariantConverter(P6::class)!!, getVariantConverter(P7::class)!!, getVariantConverter(P8::class)!!), method).setAsCancellable(this, cancel)
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -955,8 +952,7 @@ public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>
 ): SignalConnector {
   val connector = SignalConnector.createUnsafe(
     this,
-    LambdaCallable10._createJava(p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type,
-        p8Type, p9Type, action)
+    LambdaCallable10._createJava(p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, action)
   )
   connector.connect(flags)
   return connector
@@ -1018,7 +1014,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p8: P8,
   p9: P9,
 ) -> Unit, noinline cancel: () -> Unit): Unit {
-  LambdaContainer10<Unit, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(VariantParser.NIL, arrayOf(getVariantConverter(P0::class)!!, getVariantConverter(P1::class)!!, getVariantConverter(P2::class)!!, getVariantConverter(P3::class)!!, getVariantConverter(P4::class)!!, getVariantConverter(P5::class)!!, getVariantConverter(P6::class)!!, getVariantConverter(P7::class)!!, getVariantConverter(P8::class)!!, getVariantConverter(P9::class)!!), method).setAsCancellable(this, cancel)
+  LambdaContainer10<Unit, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(NIL, arrayOf(getVariantConverter(P0::class)!!, getVariantConverter(P1::class)!!, getVariantConverter(P2::class)!!, getVariantConverter(P3::class)!!, getVariantConverter(P4::class)!!, getVariantConverter(P5::class)!!, getVariantConverter(P6::class)!!, getVariantConverter(P7::class)!!, getVariantConverter(P8::class)!!, getVariantConverter(P9::class)!!), method).setAsCancellable(this, cancel)
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -1065,8 +1061,7 @@ public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>
 ): SignalConnector {
   val connector = SignalConnector.createUnsafe(
     this,
-    LambdaCallable11._createJava(p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type,
-        p8Type, p9Type, p10Type, action)
+    LambdaCallable11._createJava(p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, p10Type, action)
   )
   connector.connect(flags)
   return connector
@@ -1130,7 +1125,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p9: P9,
   p10: P10,
 ) -> Unit, noinline cancel: () -> Unit): Unit {
-  LambdaContainer11<Unit, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(VariantParser.NIL, arrayOf(getVariantConverter(P0::class)!!, getVariantConverter(P1::class)!!, getVariantConverter(P2::class)!!, getVariantConverter(P3::class)!!, getVariantConverter(P4::class)!!, getVariantConverter(P5::class)!!, getVariantConverter(P6::class)!!, getVariantConverter(P7::class)!!, getVariantConverter(P8::class)!!, getVariantConverter(P9::class)!!, getVariantConverter(P10::class)!!), method).setAsCancellable(this, cancel)
+  LambdaContainer11<Unit, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(NIL, arrayOf(getVariantConverter(P0::class)!!, getVariantConverter(P1::class)!!, getVariantConverter(P2::class)!!, getVariantConverter(P3::class)!!, getVariantConverter(P4::class)!!, getVariantConverter(P5::class)!!, getVariantConverter(P6::class)!!, getVariantConverter(P7::class)!!, getVariantConverter(P8::class)!!, getVariantConverter(P9::class)!!, getVariantConverter(P10::class)!!), method).setAsCancellable(this, cancel)
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -1179,8 +1174,7 @@ public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>
 ): SignalConnector {
   val connector = SignalConnector.createUnsafe(
     this,
-    LambdaCallable12._createJava(p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type,
-        p8Type, p9Type, p10Type, p11Type, action)
+    LambdaCallable12._createJava(p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, p10Type, p11Type, action)
   )
   connector.connect(flags)
   return connector
@@ -1246,7 +1240,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p10: P10,
   p11: P11,
 ) -> Unit, noinline cancel: () -> Unit): Unit {
-  LambdaContainer12<Unit, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>(VariantParser.NIL, arrayOf(getVariantConverter(P0::class)!!, getVariantConverter(P1::class)!!, getVariantConverter(P2::class)!!, getVariantConverter(P3::class)!!, getVariantConverter(P4::class)!!, getVariantConverter(P5::class)!!, getVariantConverter(P6::class)!!, getVariantConverter(P7::class)!!, getVariantConverter(P8::class)!!, getVariantConverter(P9::class)!!, getVariantConverter(P10::class)!!, getVariantConverter(P11::class)!!), method).setAsCancellable(this, cancel)
+  LambdaContainer12<Unit, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>(NIL, arrayOf(getVariantConverter(P0::class)!!, getVariantConverter(P1::class)!!, getVariantConverter(P2::class)!!, getVariantConverter(P3::class)!!, getVariantConverter(P4::class)!!, getVariantConverter(P5::class)!!, getVariantConverter(P6::class)!!, getVariantConverter(P7::class)!!, getVariantConverter(P8::class)!!, getVariantConverter(P9::class)!!, getVariantConverter(P10::class)!!, getVariantConverter(P11::class)!!), method).setAsCancellable(this, cancel)
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -1297,8 +1291,7 @@ public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>
 ): SignalConnector {
   val connector = SignalConnector.createUnsafe(
     this,
-    LambdaCallable13._createJava(p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type,
-        p8Type, p9Type, p10Type, p11Type, p12Type, action)
+    LambdaCallable13._createJava(p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, p10Type, p11Type, p12Type, action)
   )
   connector.connect(flags)
   return connector
@@ -1366,7 +1359,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p11: P11,
   p12: P12,
 ) -> Unit, noinline cancel: () -> Unit): Unit {
-  LambdaContainer13<Unit, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>(VariantParser.NIL, arrayOf(getVariantConverter(P0::class)!!, getVariantConverter(P1::class)!!, getVariantConverter(P2::class)!!, getVariantConverter(P3::class)!!, getVariantConverter(P4::class)!!, getVariantConverter(P5::class)!!, getVariantConverter(P6::class)!!, getVariantConverter(P7::class)!!, getVariantConverter(P8::class)!!, getVariantConverter(P9::class)!!, getVariantConverter(P10::class)!!, getVariantConverter(P11::class)!!, getVariantConverter(P12::class)!!), method).setAsCancellable(this, cancel)
+  LambdaContainer13<Unit, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>(NIL, arrayOf(getVariantConverter(P0::class)!!, getVariantConverter(P1::class)!!, getVariantConverter(P2::class)!!, getVariantConverter(P3::class)!!, getVariantConverter(P4::class)!!, getVariantConverter(P5::class)!!, getVariantConverter(P6::class)!!, getVariantConverter(P7::class)!!, getVariantConverter(P8::class)!!, getVariantConverter(P9::class)!!, getVariantConverter(P10::class)!!, getVariantConverter(P11::class)!!, getVariantConverter(P12::class)!!), method).setAsCancellable(this, cancel)
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -1419,8 +1412,7 @@ public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>
 ): SignalConnector {
   val connector = SignalConnector.createUnsafe(
     this,
-    LambdaCallable14._createJava(p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type,
-        p8Type, p9Type, p10Type, p11Type, p12Type, p13Type, action)
+    LambdaCallable14._createJava(p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, p10Type, p11Type, p12Type, p13Type, action)
   )
   connector.connect(flags)
   return connector
@@ -1490,7 +1482,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p12: P12,
   p13: P13,
 ) -> Unit, noinline cancel: () -> Unit): Unit {
-  LambdaContainer14<Unit, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>(VariantParser.NIL, arrayOf(getVariantConverter(P0::class)!!, getVariantConverter(P1::class)!!, getVariantConverter(P2::class)!!, getVariantConverter(P3::class)!!, getVariantConverter(P4::class)!!, getVariantConverter(P5::class)!!, getVariantConverter(P6::class)!!, getVariantConverter(P7::class)!!, getVariantConverter(P8::class)!!, getVariantConverter(P9::class)!!, getVariantConverter(P10::class)!!, getVariantConverter(P11::class)!!, getVariantConverter(P12::class)!!, getVariantConverter(P13::class)!!), method).setAsCancellable(this, cancel)
+  LambdaContainer14<Unit, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>(NIL, arrayOf(getVariantConverter(P0::class)!!, getVariantConverter(P1::class)!!, getVariantConverter(P2::class)!!, getVariantConverter(P3::class)!!, getVariantConverter(P4::class)!!, getVariantConverter(P5::class)!!, getVariantConverter(P6::class)!!, getVariantConverter(P7::class)!!, getVariantConverter(P8::class)!!, getVariantConverter(P9::class)!!, getVariantConverter(P10::class)!!, getVariantConverter(P11::class)!!, getVariantConverter(P12::class)!!, getVariantConverter(P13::class)!!), method).setAsCancellable(this, cancel)
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -1546,8 +1538,7 @@ public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>
 ): SignalConnector {
   val connector = SignalConnector.createUnsafe(
     this,
-    LambdaCallable15._createJava(p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type,
-        p8Type, p9Type, p10Type, p11Type, p12Type, p13Type, p14Type, action)
+    LambdaCallable15._createJava(p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, p10Type, p11Type, p12Type, p13Type, p14Type, action)
   )
   connector.connect(flags)
   return connector
@@ -1621,7 +1612,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p13: P13,
   p14: P14,
 ) -> Unit, noinline cancel: () -> Unit): Unit {
-  LambdaContainer15<Unit, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>(VariantParser.NIL, arrayOf(getVariantConverter(P0::class)!!, getVariantConverter(P1::class)!!, getVariantConverter(P2::class)!!, getVariantConverter(P3::class)!!, getVariantConverter(P4::class)!!, getVariantConverter(P5::class)!!, getVariantConverter(P6::class)!!, getVariantConverter(P7::class)!!, getVariantConverter(P8::class)!!, getVariantConverter(P9::class)!!, getVariantConverter(P10::class)!!, getVariantConverter(P11::class)!!, getVariantConverter(P12::class)!!, getVariantConverter(P13::class)!!, getVariantConverter(P14::class)!!), method).setAsCancellable(this, cancel)
+  LambdaContainer15<Unit, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>(NIL, arrayOf(getVariantConverter(P0::class)!!, getVariantConverter(P1::class)!!, getVariantConverter(P2::class)!!, getVariantConverter(P3::class)!!, getVariantConverter(P4::class)!!, getVariantConverter(P5::class)!!, getVariantConverter(P6::class)!!, getVariantConverter(P7::class)!!, getVariantConverter(P8::class)!!, getVariantConverter(P9::class)!!, getVariantConverter(P10::class)!!, getVariantConverter(P11::class)!!, getVariantConverter(P12::class)!!, getVariantConverter(P13::class)!!, getVariantConverter(P14::class)!!), method).setAsCancellable(this, cancel)
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -1679,8 +1670,7 @@ public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15
 ): SignalConnector {
   val connector = SignalConnector.createUnsafe(
     this,
-    LambdaCallable16._createJava(p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type,
-        p8Type, p9Type, p10Type, p11Type, p12Type, p13Type, p14Type, p15Type, action)
+    LambdaCallable16._createJava(p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, p10Type, p11Type, p12Type, p13Type, p14Type, p15Type, action)
   )
   connector.connect(flags)
   return connector
@@ -1756,5 +1746,5 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p14: P14,
   p15: P15,
 ) -> Unit, noinline cancel: () -> Unit): Unit {
-  LambdaContainer16<Unit, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>(VariantParser.NIL, arrayOf(getVariantConverter(P0::class)!!, getVariantConverter(P1::class)!!, getVariantConverter(P2::class)!!, getVariantConverter(P3::class)!!, getVariantConverter(P4::class)!!, getVariantConverter(P5::class)!!, getVariantConverter(P6::class)!!, getVariantConverter(P7::class)!!, getVariantConverter(P8::class)!!, getVariantConverter(P9::class)!!, getVariantConverter(P10::class)!!, getVariantConverter(P11::class)!!, getVariantConverter(P12::class)!!, getVariantConverter(P13::class)!!, getVariantConverter(P14::class)!!, getVariantConverter(P15::class)!!), method).setAsCancellable(this, cancel)
+  LambdaContainer16<Unit, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>(NIL, arrayOf(getVariantConverter(P0::class)!!, getVariantConverter(P1::class)!!, getVariantConverter(P2::class)!!, getVariantConverter(P3::class)!!, getVariantConverter(P4::class)!!, getVariantConverter(P5::class)!!, getVariantConverter(P6::class)!!, getVariantConverter(P7::class)!!, getVariantConverter(P8::class)!!, getVariantConverter(P9::class)!!, getVariantConverter(P10::class)!!, getVariantConverter(P11::class)!!, getVariantConverter(P12::class)!!, getVariantConverter(P13::class)!!, getVariantConverter(P14::class)!!, getVariantConverter(P15::class)!!), method).setAsCancellable(this, cancel)
 }

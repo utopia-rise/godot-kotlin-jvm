@@ -2495,28 +2495,24 @@ public open class Environment : Resource() {
 
   public final fun setVolumetricFogTemporalReprojectionEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.setVolumetricFogTemporalReprojectionEnabledPtr,
-        NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setVolumetricFogTemporalReprojectionEnabledPtr, NIL)
   }
 
   public final fun isVolumetricFogTemporalReprojectionEnabled(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isVolumetricFogTemporalReprojectionEnabledPtr,
-        BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isVolumetricFogTemporalReprojectionEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setVolumetricFogTemporalReprojectionAmount(temporalReprojectionAmount: Float):
       Unit {
     TransferContext.writeArguments(DOUBLE to temporalReprojectionAmount.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setVolumetricFogTemporalReprojectionAmountPtr,
-        NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setVolumetricFogTemporalReprojectionAmountPtr, NIL)
   }
 
   public final fun getVolumetricFogTemporalReprojectionAmount(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getVolumetricFogTemporalReprojectionAmountPtr,
-        DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getVolumetricFogTemporalReprojectionAmountPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 

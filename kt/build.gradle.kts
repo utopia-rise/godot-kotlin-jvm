@@ -1,4 +1,4 @@
-import versioninfo.fullGodotKotlinJvmVersion
+import versioninfo.fullBuildVersion
 import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
 
 plugins {
@@ -9,9 +9,14 @@ plugins {
     alias(libs.plugins.ideaSync) apply false
 }
 
-version = fullGodotKotlinJvmVersion
+version = fullBuildVersion
 
 val versionString = project.version.toString()
+
+fun gradleWrapperCommand(vararg args: String): List<String> = when {
+    DefaultNativePlatform.getCurrentOperatingSystem().isWindows -> listOf("cmd", "/c", "gradlew.bat", *args)
+    else -> listOf("./gradlew", *args)
+}
 
 subprojects {
     group = "com.utopia-rise"
@@ -19,39 +24,49 @@ subprojects {
 }
 
 tasks {
-    @Suppress("UNUSED_VARIABLE")
-    val generateChangelog by registering {
-        group = "godot-kotlin-jvm"
-
-        doLast {
-            val tags = grgit.tag.list().reversed().filter { it.name != "stable" }
-            val fromTag = tags.getOrNull(1)
-            val toTag = tags.getOrNull(0)
-            val changeLogPrefix = """
-                The files prefixed with `godot-kotlin-jvm_editor_` are the editors.
-                `release` editors are the editors you use normally. `debug` editors provide debug symbols and are intended to provide better stacktraces in case of crashes of the editor. Please use those when submitting bugreports.
-                
-                `godot-kotlin-jvm_export_templates_$fullGodotKotlinJvmVersion.tpz` is the archive for all export templates . See [exporting](https://godot-kotl.in/en/latest/user-guide/exporting/) documentation on how to use it.
-                
-                **Changelog:**
-                
-            """.trimIndent()
-
-            val changelogString = grgit.log {
-                range(fromTag?.name, toTag?.name)
-            }
-                .joinToString(separator = "\n", prefix = changeLogPrefix) { commit ->
-                    val link = "https://github.com/utopia-rise/godot-kotlin-jvm/commit/${commit.id}"
-                    "- [${commit.abbreviatedId}]($link) ${commit.shortMessage}"
-                }
-
-            project.layout.buildDirectory.asFile.get().resolve("changelog.md").also {
-                if (!it.parentFile.exists()) {
-                    it.parentFile.mkdirs()
-                }
-            }.writeText(changelogString)
-        }
+    val publishCommonToMavenLocal by registering(Exec::class) {
+        group = "publishing"
+        description = "Publishes the common included build to mavenLocal."
+        workingDir = projectDir
+        commandLine(gradleWrapperCommand("-p", "common", "publishToMavenLocal"))
     }
+
+    val publishToolsCommonToMavenLocal by registering(Exec::class) {
+        group = "publishing"
+        description = "Publishes the tools-common included build to mavenLocal."
+        workingDir = projectDir
+        commandLine(gradleWrapperCommand("-p", "tools-common", "publishToMavenLocal"))
+        mustRunAfter(publishCommonToMavenLocal)
+    }
+
+    val publishMainBuildToMavenLocal by registering(Exec::class) {
+        group = "publishing"
+        description = "Publishes the main Kotlin/JVM build to mavenLocal."
+        workingDir = projectDir
+        commandLine(gradleWrapperCommand("publishToMavenLocal"))
+        mustRunAfter(publishToolsCommonToMavenLocal)
+    }
+
+    val publishReleaseBuildToMavenLocal by registering(Exec::class) {
+        group = "publishing"
+        description = "Publishes the release-flavored main Kotlin/JVM build to mavenLocal."
+        workingDir = projectDir
+        commandLine(gradleWrapperCommand("publishToMavenLocal", "-Prelease=true"))
+        mustRunAfter(publishMainBuildToMavenLocal)
+    }
+
+    @Suppress("UNUSED_VARIABLE")
+    val publishArtifactsToMavenLocal by registering {
+        group = "publishing"
+        description = "Publishes all artifacts needed to consume Godot-JVM from mavenLocal."
+        dependsOn(
+            publishCommonToMavenLocal,
+            publishToolsCommonToMavenLocal,
+            publishMainBuildToMavenLocal,
+            publishReleaseBuildToMavenLocal
+        )
+    }
+
     val buildEngineDebug by registering(Exec::class) {
         group = "godot-kotlin-jvm"
 

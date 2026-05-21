@@ -1,3 +1,5 @@
+import godot.entrygenerator.settings.RegistrationFileLayoutMode
+
 plugins {
     id("com.utopia-rise.godot-kotlin-jvm")
 }
@@ -7,6 +9,6 @@ repositories {
 }
 
 godot {
-    registrationFileBaseDir.set(projectDir.resolve("scripts"))
-    isRegistrationFileHierarchyEnabled.set(true)
+    registrationFilesDirectory.set(projectDir.resolve("scripts"))
+    registrationFilesLayoutMode.set(RegistrationFileLayoutMode.HIERARCHICAL)
 }

@@ -1,10 +1,14 @@
 package godot.entrygenerator.generator.hintstring
 
 import godot.entrygenerator.model.PropertyHintAnnotation
+import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.model.RegisteredProperty
+import godot.entrygenerator.settings.Settings
 
-abstract class PropertyHintStringGenerator<ANNOTATION_TYPE: PropertyHintAnnotation> (
-    val registeredProperty: RegisteredProperty
+abstract class PropertyHintStringGenerator<ANNOTATION_TYPE : PropertyHintAnnotation>(
+    val registeredProperty: RegisteredProperty,
+    protected val settings: Settings,
+    protected val registeredClassesByFqName: Map<String, RegisteredClass>,
 ) {
     @Suppress("UNCHECKED_CAST")
     protected val propertyHintAnnotation = registeredProperty

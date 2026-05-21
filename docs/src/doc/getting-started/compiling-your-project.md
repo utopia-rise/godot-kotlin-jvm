@@ -38,19 +38,21 @@ gradlew build
 ## Targets
 
 We have two targets: `debug` and `release`.
-In order to build in release, you should add `release` parameter to your Gradle build command.
+In order to build in release, use the dedicated `buildRelease` task or add `release` parameter to your Gradle build command.
 
 Example:
 
 /// tab | Windows
 ```shell
 gradlew build -Prelease
+gradlew buildRelease
 ```
 ///
 
 /// tab | Unix
 ```bash
 ./gradlew build -Prelease
+./gradlew buildRelease
 ```
 ///
 

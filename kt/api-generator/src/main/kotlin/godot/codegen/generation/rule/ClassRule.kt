@@ -1,13 +1,17 @@
 package godot.codegen.generation.rule
 
 import com.squareup.kotlinpoet.ANY
-import com.squareup.kotlinpoet.ClassName
+import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeSpec
 import com.squareup.kotlinpoet.UNIT
+import godot.codegen.constants.API
+import godot.codegen.constants.API.getMethodStringName
+import godot.codegen.constants.Annotations
+import godot.codegen.constants.Internal
 import godot.codegen.generation.GenerationContext
 import godot.codegen.generation.task.AbstractClassDummyTask
 import godot.codegen.generation.task.EnrichedClassTask
@@ -19,11 +23,6 @@ import godot.codegen.generation.task.SignalTask
 import godot.codegen.models.enriched.EnrichedClass
 import godot.codegen.models.enriched.EnrichedMethod
 import godot.codegen.models.traits.addKdoc
-import godot.tools.common.constants.GODOT_BASE_TYPE
-import godot.tools.common.constants.KT_OBJECT
-import godot.tools.common.constants.TYPE_MANAGER
-import godot.tools.common.constants.VOID_PTR
-import godot.tools.common.constants.godotCorePackage
 
 
 class MemberRule : GodotApiRule<EnrichedClassTask>() {
@@ -39,7 +38,7 @@ class MemberRule : GodotApiRule<EnrichedClassTask>() {
         }
 
         for (method in clazz.methods) {
-            if(!canGenerateMethod(method)) continue
+            if (!canGenerateMethod(method)) continue
 
             if (method.isStatic) {
                 task.enrichedStaticMethods.add(EnrichedMethodTask(method, clazz))
@@ -59,7 +58,7 @@ class MemberRule : GodotApiRule<EnrichedClassTask>() {
             task.enums.add(EnrichedEnumTask(enum))
         }
 
-        val baseClass = task.clazz.parent?.className ?: KT_OBJECT
+        val baseClass = task.clazz.parent?.className ?: API.ktObject
         superclass(baseClass)
 
         if (task.clazz.isSingleton) {
@@ -67,7 +66,7 @@ class MemberRule : GodotApiRule<EnrichedClassTask>() {
         } else {
             if (clazz.isAbstract) {
                 addModifiers(KModifier.ABSTRACT)
-            } else if (!clazz.isInstantiable){
+            } else if (!clazz.isInstantiable) {
                 primaryConstructor(
                     FunSpec.constructorBuilder()
                         .addModifiers(KModifier.INTERNAL)
@@ -82,11 +81,13 @@ class MemberRule : GodotApiRule<EnrichedClassTask>() {
         }
 
         addKdoc(clazz)
-        addAnnotation(GODOT_BASE_TYPE)
+        addAnnotation(
+            AnnotationSpec.builder(Annotations.GODOT_BASE_TYPE).build()
+        )
 
-        val parent = task.clazz.parent?: return@configure
+        val parent = task.clazz.parent ?: return@configure
         for (method in parent.methods.filter { it.isAbstract }) {
-            if(!canGenerateMethod(method)) continue
+            if (!canGenerateMethod(method)) continue
             val overrideMethod = method.override()
             task.enrichedMethods.add(EnrichedMethodTask(overrideMethod, clazz))
         }
@@ -103,7 +104,7 @@ class MemberRule : GodotApiRule<EnrichedClassTask>() {
         addFunction(
             FunSpec.builder("new")
                 .addModifiers(KModifier.OVERRIDE)
-                .addParameter("scriptPtr", VOID_PTR)
+                .addParameter("scriptPtr", Internal.voidPtr)
                 .returns(Unit::class)
                 .addStatement(
                     "createNativeObject(${context.getNextEngineClassIndex()}, scriptPtr)"
@@ -117,7 +118,7 @@ class MemberRule : GodotApiRule<EnrichedClassTask>() {
         addFunction(
             FunSpec.builder("new")
                 .addModifiers(KModifier.OVERRIDE)
-                .addParameter("scriptPtr", VOID_PTR)
+                .addParameter("scriptPtr", Internal.voidPtr)
                 .returns(Unit::class)
                 .addStatement(
                     "getSingleton(${context.getNextSingletonIndex()})"
@@ -183,11 +184,11 @@ class BindingRule : GodotApiRule<EnrichedClassTask>() {
             .onEach {
                 task.bindings.addProperty(
                     PropertySpec
-                        .builder("${it.name}Ptr", VOID_PTR)
+                        .builder("${it.name}Ptr", Internal.voidPtr)
                         .addModifiers(KModifier.INTERNAL)
                         .initializer(
                             "%T.getMethodBindPtr(%S,·%S,·%L)",
-                            TYPE_MANAGER,
+                            Internal.typeManager,
                             clazz.identifier,
                             it.originalName,
                             it.hash
@@ -208,11 +209,8 @@ class MethodNameRule : GodotApiRule<EnrichedClassTask>() {
                 if (it.isVararg || !it.isJvmCompatible) return@onEach
 
                 val argCount = it.arguments.size
-                val methodStringClassName = ClassName(
-                    godotCorePackage,
-                    "MethodStringName$argCount"
-                ).parameterizedBy(
-                    listOf(classTask.clazz.className, it.getCastedType()) + it.arguments.map { it.getCastedType()}
+                val methodStringClassName = getMethodStringName(argCount).parameterizedBy(
+                    listOf(classTask.clazz.className, it.getCastedType()) + it.arguments.map { it.getCastedType() }
                 )
 
                 classTask.companion.addProperty(
