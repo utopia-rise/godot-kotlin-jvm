@@ -319,6 +319,22 @@ func test_packed_double_array_bulk_conversion() -> void:
 
 	script.free()
 
+func test_packed_color_array_bulk_conversion() -> void:
+	var script: Object = PackedArrayTest.new()
+	var packed = script.convert_color_array()
+
+	assert_eq(packed[0], Color(0.0, 1.0, 2.0, 3.0), "The Godot PackedArray value should match the values in the original Kotlin Color")
+	assert_eq(packed[1], Color(4.0, 5.0, 6.0, 7.0), "The Godot PackedArray value should match the values in the original Kotlin Color")
+	assert_eq(packed[2], Color(8.0, 9.0, 10.0, 11.0), "The Godot PackedArray value should match the values in the original Kotlin Color")
+	assert_eq(packed[3], Color(1024.0, 2048.0, 4096.0, 8092.0), "The Godot PackedArray value should match the values in the original Kotlin Color")
+
+	assert_eq(script.get_color_array_value(packed, 0), Color(0.0, 1.0, 2.0, 3.0), "The original Godot PackedArray value should match the values in the Kotlin Color")
+	assert_eq(script.get_color_array_value(packed, 1), Color(4.0, 5.0, 6.0, 7.0), "The original Godot PackedArray value should match the values in the Kotlin Color")
+	assert_eq(script.get_color_array_value(packed, 2), Color(8.0, 9.0, 10.0, 11.0), "The original Godot PackedArray value should match the values in the Kotlin Color")
+	assert_eq(script.get_color_array_value(packed, 3), Color(1024.0, 2048.0, 4096.0, 8092.0), "The original Godot PackedArray value should match the values in the Kotlin Color")
+
+	script.free()
+
 func test_packed_vector2_array_bulk_conversion() -> void:
 	var script: Object = PackedArrayTest.new()
 	var packed = script.convert_vector2_array()
@@ -332,6 +348,17 @@ func test_packed_vector2_array_bulk_conversion() -> void:
 	assert_eq(script.get_vector2_array_value(packed, 1), Vector2(2.0, 3.0), "The original Godot PackedArray value should match the values in the Kotlin Vector2")
 	assert_eq(script.get_vector2_array_value(packed, 2), Vector2(4.0, 5.0), "The original Godot PackedArray value should match the values in the Kotlin Vector2")
 	assert_eq(script.get_vector2_array_value(packed, 3), Vector2(1024.0, 2048.0), "The original Godot PackedArray value should match the values in the Kotlin Vector2")
+
+	script.free()
+
+func test_packed_vector2_array_from_variant_array() -> void:
+	var script: Object = PackedArrayTest.new()
+	var packed = script.convert_vector2_variant_array()
+
+	assert_eq(packed[0], Vector2(0.0, 1.0), "The Godot PackedArray value should match the Vector2 stored in the Kotlin VariantArray")
+	assert_eq(packed[1], Vector2(2.0, 3.0), "The Godot PackedArray value should match the Vector2 stored in the Kotlin VariantArray")
+	assert_eq(script.get_vector2_array_value(packed, 0), Vector2(0.0, 1.0), "The original Godot PackedArray value should match the values in the Kotlin Vector2 array")
+	assert_eq(script.get_vector2_array_value(packed, 1), Vector2(2.0, 3.0), "The original Godot PackedArray value should match the values in the Kotlin Vector2 array")
 
 	script.free()
 

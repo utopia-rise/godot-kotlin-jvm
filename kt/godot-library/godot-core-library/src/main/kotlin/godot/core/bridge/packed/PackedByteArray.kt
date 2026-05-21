@@ -74,6 +74,16 @@ class PackedByteArray : PackedArray<PackedByteArray, Byte> {
         MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_BYTE_ARRAY)
     }
 
+    /**
+     * Constructs a new [PackedByteArray] from an existing Kotlin [Array<Byte>].
+     */
+    constructor(from: Array<Byte>) : this(from.toByteArray())
+
+    /**
+     * Constructs a new [PackedByteArray] from an existing Kotlin [Collection<Byte>].
+     */
+    constructor(from: Collection<Byte>) : this(from.toByteArray())
+
     //PACKED BYTE ARRAY API
     /**
      * Returns a new PoolByteArray with the data compressed.
@@ -551,4 +561,29 @@ class PackedByteArray : PackedArray<PackedByteArray, Byte> {
 /**
  * Convert a [ByteArray] into a Godot [PackedByteArray], this call is optimised for a large amount of data.
  */
-fun ByteArray.toPackedArray() = PackedByteArray(this)
+fun ByteArray.toPackedByteArray() = PackedByteArray(this)
+
+/**
+ * Convert a [Array<Byte>] into a Godot [PackedByteArray], this call is optimised for a large amount of data.
+ */
+fun Array<Byte>.toPackedByteArray() = PackedByteArray(this)
+
+
+/**
+ * Convert a [Collection<Byte>] into a Godot [PackedByteArray], this call is optimised for a large amount of data.
+ */
+fun Collection<Byte>.toPackedByteArray() = PackedByteArray(this)
+
+private fun Array<Byte>.toByteArray(): ByteArray =
+    ByteArray(size).also { byteArray ->
+        forEachIndexed { index, byte ->
+            byteArray[index] = byte
+        }
+    }
+
+private fun Collection<Byte>.toByteArray(): ByteArray =
+    ByteArray(size).also { byteArray ->
+        forEachIndexed { index, byte ->
+            byteArray[index] = byte
+        }
+    }

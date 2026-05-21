@@ -51,6 +51,16 @@ class PackedFloat32Array : PackedArray<PackedFloat32Array, Float> {
         MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_FLOAT_32_ARRAY)
     }
 
+    /**
+     * Constructs a new [PackedFloat32Array] from an existing Kotlin [Array<Float>].
+     */
+    constructor(from: Array<Float>) : this(from.toFloatArray())
+
+    /**
+     * Constructs a new [PackedFloat32Array] from an existing Kotlin [Collection<Float>].
+     */
+    constructor(from: Collection<Float>) : this(from.toFloatArray())
+
     override fun toString(): String {
         return "PackedFloat32Array(${size})"
     }
@@ -115,4 +125,28 @@ class PackedFloat32Array : PackedArray<PackedFloat32Array, Float> {
 /**
  * Convert a [FloatArray] into a Godot [PackedFloat32Array], this call is optimised for a large amount of data.
  */
-fun FloatArray.toPackedArray() = PackedFloat32Array(this)
+fun FloatArray.toPackedFloat32Array() = PackedFloat32Array(this)
+
+/**
+ * Convert a [Array<Float>] into a Godot [PackedFloat32Array], this call is optimised for a large amount of data.
+ */
+fun Array<Float>.toPackedFloat32Array() = PackedFloat32Array(this)
+
+/**
+ * Convert a [Collection<Float>] into a Godot [PackedFloat32Array], this call is optimised for a large amount of data.
+ */
+fun Collection<Float>.toPackedFloat32Array() = PackedFloat32Array(this)
+
+private fun Array<Float>.toFloatArray(): FloatArray =
+    FloatArray(size).also { floatArray ->
+        forEachIndexed { index, float ->
+            floatArray[index] = float
+        }
+    }
+
+private fun Collection<Float>.toFloatArray(): FloatArray =
+    FloatArray(size).also { floatArray ->
+        forEachIndexed { index, float ->
+            floatArray[index] = float
+        }
+    }
