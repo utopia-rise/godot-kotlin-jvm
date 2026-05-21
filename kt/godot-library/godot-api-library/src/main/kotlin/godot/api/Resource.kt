@@ -397,7 +397,7 @@ public open class Resource : RefCounted() {
     `value`: Long,
   ) : GodotEnum {
     /**
-     * No subresorces at all are duplicated. This is useful even in a deep duplication to have all
+     * No subresources at all are duplicated. This is useful even in a deep duplication to have all
      * the arrays and dictionaries duplicated but still pointing to the original resources.
      */
     NONE(0),
