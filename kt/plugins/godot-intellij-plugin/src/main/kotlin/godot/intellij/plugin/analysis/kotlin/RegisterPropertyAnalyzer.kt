@@ -14,6 +14,7 @@ import godot.intellij.plugin.project.isGodotPrimitive
 import godot.intellij.plugin.project.isNullable
 import godot.intellij.plugin.project.isOrInheritsType
 import godot.intellij.plugin.project.isSupportedJvmType
+import godot.intellij.plugin.project.withType
 import godot.intellij.plugin.quickfix.PropertyNotRegisteredQuickFix
 import godot.intellij.plugin.quickfix.RegisterPropertyMutabilityQuickFix
 import godot.tools.common.constants.isCollectionsType
@@ -78,9 +79,9 @@ object RegisterPropertyAnalyzer {
     @OptIn(KaExperimentalApi::class)
     private fun checkRegisteredType(property: KtProperty): List<GodotProblem> {
         val problems = mutableListOf<GodotProblem>()
-        val isEnumCollection = analyze(property) {
-            property.returnType.symbol?.classId?.asFqNameString()?.let(::isCollectionsType) == true
-                && property.returnType.symbol?.typeParameters?.firstOrNull()?.defaultType?.isEnum() == true
+        val isEnumCollection = property.withType { propertyType ->
+            propertyType.symbol?.classId?.asFqNameString()?.let(::isCollectionsType) == true
+                && propertyType.symbol?.typeParameters?.firstOrNull()?.defaultType?.isEnum() == true
         }
         if (isEnumCollection && property.findAnnotation(EnumFlag::class.classId) == null) {
             problems += GodotProblem(
@@ -89,9 +90,9 @@ object RegisterPropertyAnalyzer {
             )
         }
 
-        val isEnumVariantArray = analyze(property) {
-            property.returnType.symbol?.classId?.asFqNameString()?.startsWith(VariantArray::class.qualifiedName!!) == true
-                && property.returnType.symbol?.typeParameters?.firstOrNull()?.defaultType?.isEnum() == true
+        val isEnumVariantArray = property.withType { propertyType ->
+            propertyType.symbol?.classId?.asFqNameString()?.startsWith(VariantArray::class.qualifiedName!!) == true
+                && propertyType.symbol?.typeParameters?.firstOrNull()?.defaultType?.isEnum() == true
         }
         if (isEnumVariantArray) {
             problems += GodotProblem(
