@@ -435,11 +435,11 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
 
             // The nullable check can't be inside the regular constructor because of Java
             if (GodotJvmBuildConfig.DEBUG) {
-                if (cantBeNullable<K>()) {
+                if (hasInvalidNullability<K>()) {
                     error("Can't create a Dictionary with generic key ${K::class} as nullable.")
                 }
 
-                if (cantBeNullable<V>()) {
+                if (hasInvalidNullability<V>()) {
                     error("Can't create a Dictionary with generic value ${V::class} as nullable.")
                 }
             }
