@@ -6,43 +6,43 @@ fqName = godot.tests.ScalaTestClass
 baseType = Node
 supertypes = [
     godot.api.Node,
-	godot.api.Object,
-	godot.core.KtObject,
-	godot.common.interop.NativeWrapper,
-	godot.common.interop.NativePointer
+    godot.api.Object,
+    godot.core.KtObject,
+    godot.common.interop.NativeWrapper,
+    godot.common.interop.NativePointer
 ]
 signals = [
     test_signal1,
-	lambda_signal_no_param,
-	lambda_signal_with_params
+    lambda_signal_no_param,
+    lambda_signal_with_params
 ]
 properties = [
     exported_int,
-	exported_long,
-	exported_float,
-	exported_double,
-	exported_boolean,
-	exported_string,
-	exported_byte,
-	exported_button,
-	signal_emitted,
-	has_signal_no_param_been_triggered,
-	signal_string,
-	signal_long,
-	signal_node,
-	scala_callable,
-	scala_callable_string,
-	variant_array,
-	dictionary,
-	notification_triggered
+    exported_long,
+    exported_float,
+    exported_double,
+    exported_boolean,
+    exported_string,
+    exported_byte,
+    exported_button,
+    signal_emitted,
+    has_signal_no_param_been_triggered,
+    signal_string,
+    signal_long,
+    signal_node,
+    scala_callable,
+    scala_callable_string,
+    variant_array,
+    dictionary,
+    notification_triggered
 ]
 functions = [
     greeting,
-	_ready,
-	connect_and_trigger_signal,
-	_notification,
-	signal_callback,
-	signal_callback_with_value,
-	emit_lambda_signal_no_param,
-	emit_lambda_signal_with_param
+    _ready,
+    connect_and_trigger_signal,
+    _notification,
+    signal_callback,
+    signal_callback_with_value,
+    emit_lambda_signal_no_param,
+    emit_lambda_signal_with_param
 ]

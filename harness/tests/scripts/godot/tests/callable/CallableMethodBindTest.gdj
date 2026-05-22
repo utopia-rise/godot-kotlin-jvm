@@ -6,10 +6,10 @@ fqName = godot.tests.callable.CallableMethodBindTest
 baseType = Node
 supertypes = [
     godot.api.Node,
-	godot.api.Object,
-	godot.core.KtObject,
-	godot.common.interop.NativeWrapper,
-	godot.common.interop.NativePointer
+    godot.api.Object,
+    godot.core.KtObject,
+    godot.common.interop.NativeWrapper,
+    godot.common.interop.NativePointer
 ]
 signals = [
     
@@ -19,8 +19,8 @@ properties = [
 ]
 functions = [
     call_with_method_with_all_binds,
-	call_with_method_with_two_binds,
-	call_with_method_with_one_bind,
-	call_with_method_with_no_bind,
-	ready_signal_method_bind_test
+    call_with_method_with_two_binds,
+    call_with_method_with_one_bind,
+    call_with_method_with_no_bind,
+    ready_signal_method_bind_test
 ]

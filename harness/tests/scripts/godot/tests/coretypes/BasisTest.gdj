@@ -6,10 +6,10 @@ fqName = godot.tests.coretypes.BasisTest
 baseType = Node
 supertypes = [
     godot.api.Node,
-	godot.api.Object,
-	godot.core.KtObject,
-	godot.common.interop.NativeWrapper,
-	godot.common.interop.NativePointer
+    godot.api.Object,
+    godot.core.KtObject,
+    godot.common.interop.NativeWrapper,
+    godot.common.interop.NativePointer
 ]
 signals = [
     
@@ -19,8 +19,8 @@ properties = [
 ]
 functions = [
     get_from_basis,
-	set_in_basis,
-	get_rotation_quat,
-	new_jvm_basis,
-	is_equal_approx_jvm
+    set_in_basis,
+    get_rotation_quat,
+    new_jvm_basis,
+    is_equal_approx_jvm
 ]

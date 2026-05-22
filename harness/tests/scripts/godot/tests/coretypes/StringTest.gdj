@@ -6,10 +6,10 @@ fqName = godot.tests.coretypes.StringTest
 baseType = Node
 supertypes = [
     godot.api.Node,
-	godot.api.Object,
-	godot.core.KtObject,
-	godot.common.interop.NativeWrapper,
-	godot.common.interop.NativePointer
+    godot.api.Object,
+    godot.core.KtObject,
+    godot.common.interop.NativeWrapper,
+    godot.common.interop.NativePointer
 ]
 signals = [
     
@@ -19,12 +19,12 @@ properties = [
 ]
 functions = [
     identity,
-	fill_the_buffer,
-	mix_string_and_variant,
-	get_short_string,
-	get_longest_short_string,
-	get_shortest_long_string,
-	get_long_string,
-	get_length,
-	get_as_string_name
+    fill_the_buffer,
+    mix_string_and_variant,
+    get_short_string,
+    get_longest_short_string,
+    get_shortest_long_string,
+    get_long_string,
+    get_length,
+    get_as_string_name
 ]

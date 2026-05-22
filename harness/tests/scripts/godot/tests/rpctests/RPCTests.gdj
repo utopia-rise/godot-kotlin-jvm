@@ -6,10 +6,10 @@ fqName = godot.tests.rpctests.RpcTests
 baseType = Node
 supertypes = [
     godot.api.Node,
-	godot.api.Object,
-	godot.core.KtObject,
-	godot.common.interop.NativeWrapper,
-	godot.common.interop.NativePointer
+    godot.api.Object,
+    godot.core.KtObject,
+    godot.common.interop.NativeWrapper,
+    godot.common.interop.NativePointer
 ]
 signals = [
     
@@ -19,5 +19,5 @@ properties = [
 ]
 functions = [
     remote_sync_test,
-	trigger_function_remote_sync_call
+    trigger_function_remote_sync_call
 ]

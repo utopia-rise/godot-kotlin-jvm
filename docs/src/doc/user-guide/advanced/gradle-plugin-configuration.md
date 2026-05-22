@@ -201,6 +201,29 @@ godot {
 }
 ```
 
+### `registrationFilesIndentation`
+
+Controls the indentation used inside generated `.gdj` files.
+
+Values:
+
+- `RegistrationFileIndentation.SPACE`
+- `RegistrationFileIndentation.TAB`
+
+Default:
+
+- `RegistrationFileIndentation.SPACE`
+
+Example:
+
+```kotlin
+import godot.entrygenerator.settings.RegistrationFileIndentation
+
+godot {
+    registrationFilesIndentation.set(RegistrationFileIndentation.TAB)
+}
+```
+
 ### `registrationNameMode`
 
 Controls how default registered names are computed when `@RegisterClass` does not provide a custom name.

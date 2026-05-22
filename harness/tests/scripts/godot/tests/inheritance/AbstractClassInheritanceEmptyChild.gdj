@@ -6,15 +6,15 @@ fqName = godot.tests.inheritance.AbstractClassInheritanceEmptyChild
 baseType = CharacterBody3D
 supertypes = [
     godot.tests.inheritance.AbstractClassInheritanceEmptyParent,
-	godot.api.CharacterBody3D,
-	godot.api.PhysicsBody3D,
-	godot.api.CollisionObject3D,
-	godot.api.Node3D,
-	godot.api.Node,
-	godot.api.Object,
-	godot.core.KtObject,
-	godot.common.interop.NativeWrapper,
-	godot.common.interop.NativePointer
+    godot.api.CharacterBody3D,
+    godot.api.PhysicsBody3D,
+    godot.api.CollisionObject3D,
+    godot.api.Node3D,
+    godot.api.Node,
+    godot.api.Object,
+    godot.core.KtObject,
+    godot.common.interop.NativeWrapper,
+    godot.common.interop.NativePointer
 ]
 signals = [
     

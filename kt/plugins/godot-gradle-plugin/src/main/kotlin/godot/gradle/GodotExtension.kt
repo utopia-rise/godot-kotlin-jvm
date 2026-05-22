@@ -1,6 +1,7 @@
 package godot.gradle
 
 import godot.entrygenerator.settings.RegisteredNameMode
+import godot.entrygenerator.settings.RegistrationFileIndentation
 import godot.entrygenerator.settings.RegistrationFileLayoutMode
 import godot.gradle.ext.environmentVariable
 import godot.gradle.ext.executableFileOrNull
@@ -54,6 +55,16 @@ open class GodotExtension(objects: ObjectFactory) {
      * Defaults to [RegistrationFileLayoutMode.FLAT].
      */
     val registrationFilesLayoutMode: Property<RegistrationFileLayoutMode> = objects.property(RegistrationFileLayoutMode::class.java)
+
+    /**
+     * Controls the indentation used inside generated `.gdj` registration files.
+     *
+     * - [RegistrationFileIndentation.SPACE]: indent multiline lists with four spaces.
+     * - [RegistrationFileIndentation.TAB]: indent multiline lists with tab characters.
+     *
+     * Defaults to [RegistrationFileIndentation.SPACE].
+     */
+    val registrationFilesIndentation: Property<RegistrationFileIndentation> = objects.property(RegistrationFileIndentation::class.java)
 
     /**
      * Controls how Godot registration names are computed when `@RegisterClass` does not provide a custom name.
@@ -202,6 +213,7 @@ open class GodotExtension(objects: ObjectFactory) {
         isLibrary.convention(false)
         registrationFilesDirectory.convention(godotProjectDirectory.dir(FileExtensions.GodotKotlinJvm.registrationFile))
         registrationFilesLayoutMode.convention(RegistrationFileLayoutMode.FLAT)
+        registrationFilesIndentation.convention(RegistrationFileIndentation.SPACE)
         registrationNameMode.convention(RegisteredNameMode.SIMPLE_NAME)
         languages.convention(GodotLanguage.entries.toSet())
 

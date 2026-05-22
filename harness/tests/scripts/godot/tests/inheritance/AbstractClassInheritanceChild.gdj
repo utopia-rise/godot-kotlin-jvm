@@ -6,25 +6,25 @@ fqName = godot.tests.inheritance.AbstractClassInheritanceChild
 baseType = Node
 supertypes = [
     godot.tests.inheritance.AbstractClassInheritanceParent,
-	godot.api.Node,
-	godot.api.Object,
-	godot.core.KtObject,
-	godot.common.interop.NativeWrapper,
-	godot.common.interop.NativePointer
+    godot.api.Node,
+    godot.api.Object,
+    godot.core.KtObject,
+    godot.common.interop.NativeWrapper,
+    godot.common.interop.NativePointer
 ]
 signals = [
     test_overridden,
-	test_not_overridden
+    test_not_overridden
 ]
 properties = [
     child_open_function_has_been_called,
-	open_var,
-	speed,
-	registered_exported_property_in_parent,
-	closed_function_has_been_called,
-	closed_var
+    open_var,
+    speed,
+    registered_exported_property_in_parent,
+    closed_function_has_been_called,
+    closed_var
 ]
 functions = [
     open_function,
-	closed_function
+    closed_function
 ]
