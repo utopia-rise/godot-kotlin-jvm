@@ -32,6 +32,7 @@ import godot.core.KtRpcConfig
 import godot.core.KtSignalInfo
 import godot.core.NotificationFunction
 import godot.core.PropertyHint
+import godot.core.Signal
 import godot.internal.reflection.TypeManager
 import godot.core.VariantParser
 import godot.core.toVariantArray
@@ -1185,12 +1186,12 @@ class ClassBuilderDsl<T : KtObject>(
         )
     }
 
-    fun <T> signal(kProperty: KProperty<T>, vararg parameters: KtFunctionArgument) = signal(
+    fun <T> signalProperty(kProperty: KProperty<T>, vararg parameters: KtFunctionArgument) = signal(
         kProperty.name.convertToSnakeCase(),
         *parameters
     )
 
-    fun <T> signal(kFunction: KFunction<T>, vararg parameters: KtFunctionArgument) = signal(
+    fun <T : Signal> signalFunction(kFunction: KFunction<T>, vararg parameters: KtFunctionArgument) = signal(
         kFunction.name.convertToSnakeCase(),
         *parameters
     )
