@@ -5,6 +5,7 @@ data class RegisteredSignal(
     val type: Type,
     val parameterTypes: List<Type>,
     val parameterNames: List<String>,
+    val isFunctionReference: Boolean = false,
     val isOverridee: Boolean = false,
     val annotations: List<PropertyAnnotation> = emptyList(),
 ) {

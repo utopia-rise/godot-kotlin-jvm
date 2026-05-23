@@ -117,6 +117,7 @@ fun FieldInfo.mapFieldToRegisteredSignal(settings: Settings, classInfo: ClassInf
                 parameterValues
                     .getValue(signalParametersName) as Array<String>
                 ).toList(),
+        isFunctionReference = classInfo.isScala,
         isOverridee = isOverridee,
         annotations = annotations.mapNotNull { it.mapToGodotAnnotation(this, fqName) as? PropertyAnnotation },
     )

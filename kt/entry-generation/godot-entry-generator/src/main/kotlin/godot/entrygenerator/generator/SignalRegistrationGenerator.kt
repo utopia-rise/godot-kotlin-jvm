@@ -26,7 +26,7 @@ object SignalRegistrationGenerator {
     }
 
     private fun getStringTemplate(registeredSignal: RegisteredSignal): String = buildString {
-        append("signal(%L")
+        append(if (registeredSignal.isFunctionReference) "signalFunction(%L" else "signalProperty(%L")
         repeat(kotlin.math.max(registeredSignal.parameterTypes.size, registeredSignal.parameterNames.size)) {
             append(", %T(%M, %S, %S)")
         }
@@ -68,4 +68,3 @@ object SignalRegistrationGenerator {
             .reference()
     }
 }
-
