@@ -1,13 +1,15 @@
 import org.jetbrains.changelog.Changelog
 import org.jetbrains.changelog.markdownToHTML
+import org.jetbrains.intellij.platform.gradle.IntelliJPlatformType
 import versioninfo.fullBuildVersion
 import versioninfo.isSnapshot
+
+extra["kotlin.stdlib.default.dependency"] = "false"
 
 plugins {
     // Java support
     id("java")
     // Kotlin support
-    alias(libs.plugins.kotlin.jvm)
     // gradle-intellij-plugin - read more: https://github.com/JetBrains/gradle-intellij-plugin
     alias(libs.plugins.gradleIntelliJPlugin)
     // gradle-changelog-plugin - read more: https://github.com/JetBrains/gradle-changelog-plugin
@@ -15,6 +17,8 @@ plugins {
 
     id("com.utopia-rise.versioninfo")
 }
+
+apply(plugin = "org.jetbrains.kotlin.jvm")
 
 // needed as the intellij plugin does add its own repositories and thus the ones defined in the settings.gradle.kts are ignored. Hence, we need to redefine them here
 repositories {
@@ -33,7 +37,7 @@ group = "com.utopia-rise"
 
 val intellijVersion: String = project.properties["godot.plugins.intellij.version"]?.toString() ?: libs.versions.ideaPluginDefaultIntellijVersion.get()
 
-kotlin {
+extensions.configure<org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension> {
     jvmToolchain(21)
 }
 
@@ -41,6 +45,7 @@ dependencies {
     implementation("com.utopia-rise:tools-common:$fullBuildVersion")
     implementation(project(":godot-bootstrap-library"))
     implementation(project(":godot-core-library"))
+    compileOnly(kotlin("stdlib"))
 
     // https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin.html
     intellijPlatform {
@@ -57,9 +62,15 @@ dependencies {
 
 intellijPlatform {
     buildSearchableOptions = false
-}
 
-intellijPlatform.pluginVerification.ides.ide(intellijVersion)
+    pluginVerification {
+        ides {
+            create(IntelliJPlatformType.IntellijIdeaCommunity, "2025.1")
+            create(IntelliJPlatformType.IntellijIdeaCommunity, "2025.2")
+            create(IntelliJPlatformType.IntellijIdea, "2026.1")
+        }
+    }
+}
 
 tasks {
     runIde {
@@ -78,9 +89,6 @@ tasks {
             this.pluginVersion.set("${project.version}-IJ$intellijVersion")
         }
         sinceBuild.set("251.1")
-        // magic values like 999.* are no longer supported. But we can support current version +2 years. Example: current 242.3 (2024.2.3) until 279.* (2027.9.*)
-        // this prevents us from needing to update the ide plugin with every ide version update and gives us ~2 years time for that after the last release
-        untilBuild.set("289.*") // until the end of 2028
 
         // Extract the <!-- Plugin description --> section from README.md and provide for the plugin's manifest
         pluginDescription.set(

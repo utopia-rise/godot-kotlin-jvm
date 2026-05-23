@@ -19,6 +19,7 @@ import godot.core.Color
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.analysis.GodotProblem
 import godot.intellij.plugin.project.fqName
+import godot.intellij.plugin.project.withType
 import godot.intellij.plugin.quickfix.PropertyNotExportedQuickFix
 import godot.intellij.plugin.quickfix.PropertyNotRegisteredQuickFix
 import org.jetbrains.kotlin.analysis.api.analyze
@@ -137,7 +138,7 @@ object PropertyHintAnalyzer {
     }
 
     private fun checkIntFlag(property: KtProperty): List<GodotProblem> {
-        val isInt = analyze(property) { property.returnType.isIntType }
+        val isInt = property.withType { propertyType -> propertyType.isIntType }
         if (isInt) return emptyList()
         return listOf(
             GodotProblem(
@@ -161,12 +162,12 @@ object PropertyHintAnalyzer {
             )
         }
 
-        val numberOfEnumEntriesInEnum = analyze(property) {
-            ((property.returnType as? KaClassType)
+        val numberOfEnumEntriesInEnum = property.withType { propertyType ->
+            ((propertyType as? KaClassType)
                 ?.typeArguments
                 ?.firstOrNull()
                 ?.type
-                ?: property.returnType)
+                ?: propertyType)
                 .symbol
                 ?.psi
                 ?.let { it as? KtClass }
@@ -187,7 +188,7 @@ object PropertyHintAnalyzer {
     }
 
     private fun checkEnumTypeHint(property: KtProperty): List<GodotProblem> {
-        val isEnum = analyze(property) { property.returnType.isEnum() }
+        val isEnum = property.withType { propertyType -> propertyType.isEnum() }
         if (isEnum) return emptyList()
         return listOf(
             GodotProblem(
@@ -204,9 +205,8 @@ object PropertyHintAnalyzer {
     }
 
     private fun checkRealTypeProperty(property: KtProperty, annotation: KClass<*>): List<GodotProblem> {
-        val isRealType = analyze(property) {
-            val type = property.returnType
-            type.isFloatType || type.isDoubleType
+        val isRealType = property.withType { propertyType ->
+            propertyType.isFloatType || propertyType.isDoubleType
         }
         if (isRealType) return emptyList()
         return listOf(
@@ -220,7 +220,7 @@ object PropertyHintAnalyzer {
     }
 
     private fun checkDoubleRange(property: KtProperty): List<GodotProblem> {
-        val isDouble = analyze(property) { property.returnType.isDoubleType }
+        val isDouble = property.withType { propertyType -> propertyType.isDoubleType }
         if (isDouble) return emptyList()
         return listOf(
             GodotProblem(
@@ -233,7 +233,7 @@ object PropertyHintAnalyzer {
     }
 
     private fun checkFloatRange(property: KtProperty): List<GodotProblem> {
-        val isFloat = analyze(property) { property.returnType.isFloatType }
+        val isFloat = property.withType { propertyType -> propertyType.isFloatType }
         if (isFloat) return emptyList()
         return listOf(
             GodotProblem(
@@ -246,7 +246,7 @@ object PropertyHintAnalyzer {
     }
 
     private fun checkLongRange(property: KtProperty): List<GodotProblem> {
-        val isLong = analyze(property) { property.returnType.isLongType }
+        val isLong = property.withType { propertyType -> propertyType.isLongType }
         if (isLong) return emptyList()
         return listOf(
             GodotProblem(
@@ -259,7 +259,7 @@ object PropertyHintAnalyzer {
     }
 
     private fun checkIntRange(property: KtProperty): List<GodotProblem> {
-        val isInt = analyze(property) { property.returnType.isIntType }
+        val isInt = property.withType { propertyType -> propertyType.isIntType }
         if (isInt) return emptyList()
         return listOf(
             GodotProblem(

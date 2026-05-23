@@ -5,8 +5,8 @@ import godot.common.util.RealT
 import godot.core.CoreType
 import godot.tools.common.constants.isCollectionsType
 import org.jetbrains.kotlin.analysis.api.KaSession
-import org.jetbrains.kotlin.analysis.api.analyze
 import org.jetbrains.kotlin.analysis.api.types.KaType
+import org.jetbrains.kotlin.analysis.api.types.KaTypeNullability
 import org.jetbrains.kotlin.analysis.api.types.symbol
 import org.jetbrains.kotlin.idea.codeinsight.utils.isEnum
 import org.jetbrains.kotlin.name.ClassId
@@ -14,16 +14,12 @@ import org.jetbrains.kotlin.psi.KtDeclaration
 import org.jetbrains.kotlin.scripting.resolve.classId
 
 fun KtDeclaration.isType(classId: ClassId): Boolean {
-    return analyze(this) {
-        returnType.isClassType(classId)
-    }
+    return withType { declarationType -> declarationType.isClassType(classId) }
 }
 
 
 fun KtDeclaration.isOrInheritsType(classId: ClassId): Boolean {
-    return analyze(this) {
-        returnType.isOrInheritsType(classId, this)
-    }
+    return withType { declarationType -> declarationType.isOrInheritsType(classId, this) }
 }
 
 
@@ -34,9 +30,7 @@ private fun KaType.isOrInheritsType(classId: ClassId, session: KaSession): Boole
 }
 
 fun KtDeclaration.isCoreType(): Boolean {
-    return analyze(this) {
-        returnType.isCoreType(this)
-    }
+    return withType { declarationType -> declarationType.isCoreType(this) }
 }
 
 private fun KaType.isCoreType(session: KaSession): Boolean {
@@ -47,7 +41,7 @@ private fun KaType.isCoreType(session: KaSession): Boolean {
 }
 
 fun KtDeclaration.isSupportedJvmType(): Boolean {
-    return analyze(this) { returnType.isSupportedJvmType(this) }
+    return withType { declarationType -> declarationType.isSupportedJvmType(this) }
 }
 
 private fun KaType.isSupportedJvmType(session: KaSession): Boolean {
@@ -63,9 +57,7 @@ private fun KaType.isSupportedJvmType(session: KaSession): Boolean {
 }
 
 fun KtDeclaration.isGodotPrimitive(): Boolean {
-    return analyze(this) {
-        returnType.isGodotPrimitive(this)
-    }
+    return withType { declarationType -> declarationType.isGodotPrimitive(this) }
 }
 
 private fun KaType.isGodotPrimitive(session: KaSession): Boolean {
@@ -84,7 +76,5 @@ private fun KaType.isGodotPrimitive(session: KaSession): Boolean {
 }
 
 fun KtDeclaration.isNullable(): Boolean {
-    return analyze(this) {
-        returnType.isMarkedNullable
-    }
+    return withType { declarationType -> declarationType.nullability == KaTypeNullability.NULLABLE }
 }

@@ -1,4 +1,4 @@
-<idea-plugin require-restart="true">
+<idea-plugin require-restart="false">
     <id>com.utopia-rise.godotjvmideaplugin</id>
     <name>Godot Kotlin/Jvm</name>
     <vendor url="https://github.com/utopia-rise/" email="meisels27@yahoo.fr">Utopia-Rise</vendor>
