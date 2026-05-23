@@ -118,4 +118,21 @@ inline fun getVariantConverter(clazz: Class<*>) = variantMapper[Reflection.getOr
 
 @PublishedApi
 internal val KtObjectClass = KtObject::class.java
-inline fun <reified T> cantBeNullable(): Boolean = isNullable<T>() && !KtObjectClass.isAssignableFrom(T::class.java)
+
+@PublishedApi
+internal val nullableVariantWhitelist = hashSetOf(
+    Any::class,
+    java.lang.Object::class,
+)
+
+inline fun <reified T> hasInvalidNullability(): Boolean {
+    if (!isNullable<T>()) {
+        return false
+    }
+
+    if (T::class in nullableVariantWhitelist) {
+        return false
+    }
+
+    return !KtObjectClass.isAssignableFrom(T::class.java)
+}
