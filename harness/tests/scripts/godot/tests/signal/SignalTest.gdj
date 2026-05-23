@@ -6,26 +6,26 @@ fqName = godot.tests.signal.SignalTest
 baseType = Node
 supertypes = [
     godot.api.Node,
-	godot.api.Object,
-	godot.core.KtObject,
-	godot.common.interop.NativeWrapper,
-	godot.common.interop.NativePointer
+    godot.api.Object,
+    godot.core.KtObject,
+    godot.common.interop.NativeWrapper,
+    godot.common.interop.NativePointer
 ]
 signals = [
     no_param_signal_delegate,
-	one_param_signal_delegate,
-	two_param_signal_delegate,
-	no_param_signal_field,
-	one_param_signal_field,
-	two_param_signal_field,
-	signal_with_multiple_targets
+    one_param_signal_delegate,
+    two_param_signal_delegate,
+    no_param_signal_field,
+    one_param_signal_field,
+    two_param_signal_field,
+    signal_with_multiple_targets
 ]
 properties = [
     other_script,
-	array
+    array
 ]
 functions = [
     _ready,
-	target_function_one,
-	target_function_two
+    target_function_one,
+    target_function_two
 ]

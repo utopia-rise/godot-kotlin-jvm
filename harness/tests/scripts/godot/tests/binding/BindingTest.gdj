@@ -6,9 +6,9 @@ fqName = godot.tests.binding.BindingTest
 baseType = Object
 supertypes = [
     godot.api.Object,
-	godot.core.KtObject,
-	godot.common.interop.NativeWrapper,
-	godot.common.interop.NativePointer
+    godot.core.KtObject,
+    godot.common.interop.NativeWrapper,
+    godot.common.interop.NativePointer
 ]
 signals = [
     

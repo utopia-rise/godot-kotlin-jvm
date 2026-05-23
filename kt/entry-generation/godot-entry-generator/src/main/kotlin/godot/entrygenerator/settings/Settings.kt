@@ -8,5 +8,6 @@ data class Settings(
     val projectBaseDir: File,
     val userCodeClassPathRoots: Set<File>,
     val registrationFileLayoutMode: RegistrationFileLayoutMode,
+    val registrationFileIndentation: RegistrationFileIndentation,
     val generatedSourceRootDir: File
 )

@@ -12,6 +12,8 @@ class RegistrationFileGenerator(
 ) {
     fun build() {
         val registeredClassName = registeredClass.getRegisteredName(settings)
+        val listItemIndent = settings.registrationFileIndentation.indentString
+        val multilineListSeparator = ",\n$listItemIndent"
         registrationFileAppendableProvider(registeredClass).use { bufferedWriter ->
             bufferedWriter.write(
                 """
@@ -22,16 +24,16 @@ class RegistrationFileGenerator(
                     |fqName = ${registeredClass.fqName}
                     |baseType = ${registeredClass.godotBaseClass}
                     |supertypes = [
-                    |    ${registeredClass.supertypes.joinToString(",\n\t") { it.fqName.trim() }}
+                    |$listItemIndent${registeredClass.supertypes.joinToString(multilineListSeparator) { it.fqName.trim() }}
                     |]
                     |signals = [
-                    |    ${registeredClass.signals.joinToString(",\n\t") { it.fqName.substringAfterLast(".").trim().convertToSnakeCase() }}
+                    |$listItemIndent${registeredClass.signals.joinToString(multilineListSeparator) { it.fqName.substringAfterLast(".").trim().convertToSnakeCase() }}
                     |]
                     |properties = [
-                    |    ${registeredClass.properties.joinToString(",\n\t") { it.fqName.substringAfterLast(".").trim().convertToSnakeCase() }}
+                    |$listItemIndent${registeredClass.properties.joinToString(multilineListSeparator) { it.fqName.substringAfterLast(".").trim().convertToSnakeCase() }}
                     |]
                     |functions = [
-                    |    ${registeredClass.functions.joinToString(",\n\t") { it.fqName.substringAfterLast(".").trim().convertToSnakeCase() }}
+                    |$listItemIndent${registeredClass.functions.joinToString(multilineListSeparator) { it.fqName.substringAfterLast(".").trim().convertToSnakeCase() }}
                     |]
                 """.trimMargin()
             )

@@ -6,28 +6,28 @@ fqName = godot.tests.FuncRefTest
 baseType = Node
 supertypes = [
     godot.api.Node,
-	godot.api.Object,
-	godot.core.KtObject,
-	godot.common.interop.NativeWrapper,
-	godot.common.interop.NativePointer
+    godot.api.Object,
+    godot.core.KtObject,
+    godot.common.interop.NativeWrapper,
+    godot.common.interop.NativePointer
 ]
 signals = [
     test
 ]
 properties = [
     blubb,
-	call_flag,
-	call_with_param_flag,
-	signal_call_flag
+    call_flag,
+    call_with_param_flag,
+    signal_call_flag
 ]
 functions = [
     _ready,
-	test_signal_callback,
-	test_signal_call,
-	without_param_callback,
-	test_call_without_param,
-	test_call_deferred_without_param,
-	with_param_callback,
-	test_call_with_param,
-	test_call_deferred_with_param
+    test_signal_callback,
+    test_signal_call,
+    without_param_callback,
+    test_call_without_param,
+    test_call_deferred_without_param,
+    with_param_callback,
+    test_call_with_param,
+    test_call_deferred_with_param
 ]

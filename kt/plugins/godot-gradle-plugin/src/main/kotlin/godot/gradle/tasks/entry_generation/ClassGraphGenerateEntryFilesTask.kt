@@ -8,6 +8,7 @@ import godot.entrygenerator.ext.shouldGenerateGdjFile
 import godot.entrygenerator.filebuilder.RegistrationFileGenerator
 import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.settings.RegisteredNameMode
+import godot.entrygenerator.settings.RegistrationFileIndentation
 import godot.entrygenerator.settings.RegistrationFileLayoutMode
 import godot.entrygenerator.settings.Settings
 import godot.entrygenerator.utils.DefaultJvmTypeProvider
@@ -51,6 +52,9 @@ abstract class ClassGraphGenerateEntryFilesTask : DefaultTask() {
     @get:Input
     abstract val registrationFileLayoutMode: Property<RegistrationFileLayoutMode>
 
+    @get:Input
+    abstract val registrationFileIndentation: Property<RegistrationFileIndentation>
+
     @get:OutputDirectory
     abstract val generatedSourceRootDir: DirectoryProperty
 
@@ -72,6 +76,7 @@ abstract class ClassGraphGenerateEntryFilesTask : DefaultTask() {
             projectBaseDir = File(projectBaseDirPath.get()),
             userCodeClassPathRoots = userCodeClassPathRoots.files.map { it.canonicalFile }.toSet(),
             registrationFileLayoutMode = registrationFileLayoutMode.get(),
+            registrationFileIndentation = registrationFileIndentation.get(),
             generatedSourceRootDir = outputRoot,
         )
         val allRegisteredClasses = ClassGraphProcessor.process(
@@ -173,6 +178,7 @@ fun Project.entryGenerationGenerateFilesTask(
             providers.provider { layout.projectDirectory.asFile.absolutePath }
         )
         task.registrationFileLayoutMode.convention(godotJvmExtension.registrationFilesLayoutMode)
+        task.registrationFileIndentation.convention(godotJvmExtension.registrationFilesIndentation)
         task.generatedSourceRootDir.convention(generatedSourceRootDir)
         task.generatedRegistrationFilesRootDir.convention(generatedRegistrationRootDir)
     }
