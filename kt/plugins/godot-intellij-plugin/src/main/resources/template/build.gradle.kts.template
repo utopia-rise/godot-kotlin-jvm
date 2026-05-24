@@ -1,5 +1,6 @@
 import godot.entrygenerator.settings.RegisteredNameMode
 import godot.entrygenerator.settings.RegistrationFileLayoutMode
+//import godot.entrygenerator.settings.RegistrationFileIndentation
 import godot.gradle.GodotLanguage
 
 plugins {
@@ -18,16 +19,36 @@ godot {
 
     registrationFilesLayoutMode.set(RegistrationFileLayoutMode.FLAT)
     registrationNameMode.set(RegisteredNameMode.SIMPLE_NAME)
+    //registrationFilesIndentation.set(RegistrationFileIndentation.SPACE)
+
+    // Enable to mark this Gradle project as a reusable library rather than a runnable Godot project.
+    //isLibrary.set(true)
+
+    // Disable .gdj registration file handling while keeping class scanning and entry generation enabled.
+    //disableGdj.set(true)
+
+    // Enable coroutines integration with Godot signal/lifecycle callbacks.
+    //isGodotCoroutinesEnabled.set(true)
+
+    // --------- Toolchain ---------
+    //javaVersion.set(17)
+    //kotlinVersion.set("2.3.20")
+    //scalaVersion.set("3.6.3")
 
     // BEGIN_OPTIONAL_ANDROID
     // --------- Android ---------
     d8ToolPath.set(File("D8_TOOL_PATH"))
     androidCompileSdkDirectory.set(File("ANDROID_COMPILE_SDK_DIR"))
+    //androidMinApiLevel.set(21)
     // END_OPTIONAL_ANDROID
 
     // BEGIN_OPTIONAL_GRAAL
     // --------- Graal / iOS ---------
     graalVmHomeDirectory.set(File("GRAAL_VM_DIR"))
     windowsDeveloperVcVarsPath.set(File("WINDOWS_DEVELOPER_VS_VARS_PATH"))
+    //additionalGraalJniConfigurationFiles.set(arrayOf("my-jni-configuration-file.json"))
+    //additionalGraalReflectionConfigurationFiles.set(arrayOf("my-reflection-configuration-file.json"))
+    //additionalGraalResourceConfigurationFiles.set(arrayOf("my-resource-configuration-file.json"))
+    //isGraalNativeImageVerboseEnabled.set(true)
     // END_OPTIONAL_GRAAL
 }
