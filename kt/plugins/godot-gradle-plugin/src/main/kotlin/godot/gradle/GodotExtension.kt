@@ -44,6 +44,17 @@ open class GodotExtension(objects: ObjectFactory) {
     val registrationFilesDirectory: DirectoryProperty = objects.directoryProperty()
 
     /**
+     * Disables `.gdj` registration file handling while keeping class scanning and entry generation enabled.
+     *
+     * When enabled, the plugin still scans compiled user code and generates entry sources/resources,
+     * but it skips generated `.gdj` staging, skips scanning the Godot project for existing `.gdj` files,
+     * and skips synchronizing `.gdj` files into the Godot project.
+     *
+     * Defaults to `false`.
+     */
+    val disableGdj: Property<Boolean> = objects.property(Boolean::class.java)
+
+    /**
      * Controls how registration files are laid out inside each project-specific directory.
      *
      * - [RegistrationFileLayoutMode.FLAT]: write `.gdj` files directly into the project directory.
@@ -211,6 +222,7 @@ open class GodotExtension(objects: ObjectFactory) {
 
         godotProjectDirectory.convention(target.layout.projectDirectory)
         isLibrary.convention(false)
+        disableGdj.convention(false)
         registrationFilesDirectory.convention(godotProjectDirectory.dir(FileExtensions.GodotKotlinJvm.registrationFile))
         registrationFilesLayoutMode.convention(RegistrationFileLayoutMode.FLAT)
         registrationFilesIndentation.convention(RegistrationFileIndentation.SPACE)

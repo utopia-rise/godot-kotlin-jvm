@@ -22,6 +22,7 @@ godot {
     javaVersion.set(17)
 
     godotProjectDirectory.set(file("."))
+    disableGdj.set(false)
     registrationFilesDirectory.set(file("gdj"))
     registrationFilesLayoutMode.set(RegistrationFileLayoutMode.FLAT)
     registrationNameMode.set(RegisteredNameMode.SIMPLE_NAME)
@@ -182,6 +183,30 @@ godot {
 }
 ```
 
+### `disableGdj`
+
+Disables `.gdj` registration file handling while keeping class scanning and entry generation enabled.
+
+Default:
+
+- `false`
+
+Example:
+
+```kotlin
+godot {
+    disableGdj.set(true)
+}
+```
+
+When enabled, the plugin:
+
+- still scans compiled user code for registered classes
+- still generates entry sources/resources
+- skips scanning the Godot project for existing `.gdj` files
+- skips staged `.gdj` generation
+- skips copying, replacing, or deleting `.gdj` files in the Godot project
+
 ### `registrationFilesLayoutMode`
 
 Controls how `.gdj` files are laid out inside each project directory.
@@ -266,6 +291,32 @@ When enabled, the plugin:
 - skips entry scanning and `.gdj` generation for the local project
 - skips the runnable-project packaging flow
 - leaves a regular library jar as the final artifact
+
+Unlike `disableGdj`, `isLibrary` turns off the whole local runtime-registration pipeline rather than only the `.gdj` part of it.
+
+## Build tasks
+
+The plugin adds a few higher-level tasks on top of the normal Gradle lifecycle.
+
+### `fastBuild`
+
+Builds fresh desktop jars while reusing the last generated entry-registration artifacts instead of rescanning registered classes and regenerating `.gdj` files.
+
+Use this when you only changed implementation details that do not affect registration structure, for example method bodies.
+
+Example:
+
+```shell
+./gradlew fastBuild
+```
+
+Rules:
+
+- requires a previous successful full build so the generated entry-registration jar already exists
+- still recompiles the project and rebuilds `main.jar`
+- still rebuilds and copies `godot-bootstrap.jar`
+- keeps the registration-related tasks in the Gradle task graph, but skips executing them via `onlyIf`
+- should not be used after adding, removing, renaming, or structurally changing registered classes, functions, properties, or signals
 
 ### `isGodotCoroutinesEnabled`
 

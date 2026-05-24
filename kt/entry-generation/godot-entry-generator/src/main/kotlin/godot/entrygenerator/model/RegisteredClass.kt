@@ -30,24 +30,25 @@ data class RegisteredClass(
         }
 
     fun getRegisteredName(settings: Settings): String {
-        customName?.takeIf { it.isNotBlank() }?.let { return it }
-
-        val defaultRegisteredName = when (settings.registeredNameMode) {
-            RegisteredNameMode.SIMPLE_NAME,
-            RegisteredNameMode.PROJECT_PREFIX -> fqName.substringAfterLast(".")
-
-            RegisteredNameMode.FQ_NAME -> fqName
-        }
+        val baseRegisteredName = customName
+            ?.takeIf { it.isNotBlank() }
+            ?: fqName.substringAfterLast(".")
 
         return when (settings.registeredNameMode) {
-            RegisteredNameMode.SIMPLE_NAME,
-            RegisteredNameMode.FQ_NAME -> defaultRegisteredName
+            RegisteredNameMode.SIMPLE_NAME -> baseRegisteredName
+            RegisteredNameMode.FQ_NAME -> fqName.substringBeforeLast(".", missingDelimiterValue = "").let { packageName ->
+                if (packageName.isBlank()) {
+                    baseRegisteredName
+                } else {
+                    "$packageName.$baseRegisteredName"
+                }
+            }
 
             RegisteredNameMode.PROJECT_PREFIX -> {
                 if (sourceProjectName == settings.projectName) {
-                    defaultRegisteredName
+                    baseRegisteredName
                 } else {
-                    "${sourceProjectName}_$defaultRegisteredName"
+                    "${sourceProjectName}_$baseRegisteredName"
                 }
             }
         }

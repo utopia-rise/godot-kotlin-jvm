@@ -104,6 +104,7 @@ void GodotKotlinJvmEditor::_notification(int notification) {
 
             tool_bar_gradle_task_choice->set_flat(true);
             tool_bar_gradle_task_choice->add_item("Build", GradleTaskRunner::Task::BUILD_DEBUG);
+            tool_bar_gradle_task_choice->add_item("Fast Build", GradleTaskRunner::Task::FAST_BUILD);
             tool_bar_gradle_task_choice->add_item("Build Release", GradleTaskRunner::Task::BUILD_RELEASE);
             tool_bar_gradle_task_choice->add_item("Build Android", GradleTaskRunner::Task::BUILD_ANDROID_DEBUG);
             tool_bar_gradle_task_choice->add_item("Build Android Release", GradleTaskRunner::Task::BUILD_ANDROID_RELEASE);
