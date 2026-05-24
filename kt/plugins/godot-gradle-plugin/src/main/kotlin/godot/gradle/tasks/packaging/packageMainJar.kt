@@ -5,6 +5,7 @@ import godot.gradle.projectExt.godotApiArtifactName
 import godot.gradle.projectExt.godotBootstrapArtifactName
 import godot.gradle.projectExt.godotCoreArtifactName
 import godot.gradle.projectExt.godotExtensionArtifactName
+import org.gradle.api.GradleException
 import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.tasks.TaskProvider
@@ -27,10 +28,26 @@ fun Project.packageMainJarTask(
             dependsOn(userClassesTask)
             dependsOn(generatedEntryJarTask)
             dependsOn(updateRegistrationFilesTask)
-            from(generatedEntryJarTask.map { generatedJar ->
-                zipTree(generatedJar.archiveFile)
-            }) {
-                exclude("META-INF/MANIFEST.MF")
+
+            if (isFastBuildRequested()) {
+                from(provider {
+                    val generatedJar = generatedEntryJarTask.get().archiveFile.get().asFile
+                    if (!generatedJar.isFile) {
+                        throw GradleException(
+                            "entryGenerationJar output is missing. Run a full build first before using fastBuild. " +
+                                "Expected file: ${generatedJar.absolutePath}"
+                        )
+                    }
+                    zipTree(generatedJar)
+                }) {
+                    exclude("META-INF/MANIFEST.MF")
+                }
+            } else {
+                from(generatedEntryJarTask.map { generatedJar ->
+                    zipTree(generatedJar.archiveFile)
+                }) {
+                    exclude("META-INF/MANIFEST.MF")
+                }
             }
 
             // merges all service files from all dependencies into on
@@ -47,3 +64,8 @@ fun Project.packageMainJarTask(
         }
     }
 }
+
+private fun Project.isFastBuildRequested(): Boolean =
+    gradle.startParameter.taskNames.any { taskName ->
+        taskName == "fastBuild" || taskName.endsWith(":fastBuild")
+    }

@@ -7,7 +7,6 @@ import org.gradle.api.GradleException
 import org.gradle.api.Project
 import org.gradle.api.file.ConfigurableFileCollection
 import org.gradle.api.file.RegularFileProperty
-import org.gradle.api.logging.Logger
 import org.gradle.api.provider.Property
 import org.gradle.api.tasks.CacheableTask
 import org.gradle.api.tasks.Input
@@ -20,15 +19,13 @@ import org.gradle.api.tasks.TaskProvider
 import java.io.File
 
 private const val godotProjectFileName = "project.godot"
-private val gdjFqNameRegex = Regex("^fqName\\s*=\\s*(.+)$", setOf(RegexOption.MULTILINE))
-
 internal data class ExistingRegistrationFileIndexEntry(
-    val fqName: String,
+    val registrationFileName: String,
     val relativePath: String,
 )
 
 internal data class GeneratedRegistrationFile(
-    val fqName: String,
+    val registrationFileName: String,
     val relativePath: String,
     val file: File,
 )
@@ -49,43 +46,39 @@ abstract class ClassGraphIndexExistingRegistrationFilesTask : DefaultTask() {
     @TaskAction
     fun index() {
         val godotProjectDir = File(godotProjectDirPath.get())
-        val indexEntries = existingRegistrationFiles.files
+        val indexEntriesByFileName = linkedMapOf<String, ExistingRegistrationFileIndexEntry>()
+
+        existingRegistrationFiles.files
             .asSequence()
             .filter(File::isFile)
-            .mapNotNull { registrationFile ->
-                val fqName = registrationFile.extractRegistrationFqName()
-                if (fqName == null) {
-                    logger.warn("Skipping registration file without fqName entry: ${registrationFile.absolutePath}")
-                    null
-                } else {
-                    ExistingRegistrationFileIndexEntry(
-                        fqName = fqName,
-                        relativePath = registrationFile.relativeTo(godotProjectDir).invariantSeparatorsPath
+            .sortedBy { it.relativeTo(godotProjectDir).invariantSeparatorsPath }
+            .forEach { registrationFile ->
+                val registrationFileName = registrationFile.nameWithoutExtension
+                val indexEntry = ExistingRegistrationFileIndexEntry(
+                    registrationFileName = registrationFileName,
+                    relativePath = registrationFile.relativeTo(godotProjectDir).invariantSeparatorsPath
+                )
+                val previousValue = indexEntriesByFileName.putIfAbsent(registrationFileName, indexEntry)
+                if (previousValue != null) {
+                    logger.warn(
+                        "Multiple existing registration files share basename $registrationFileName. " +
+                            "Keeping ${previousValue.relativePath} and ignoring ${indexEntry.relativePath}."
                     )
                 }
             }
-            .sortedWith(compareBy(ExistingRegistrationFileIndexEntry::fqName, ExistingRegistrationFileIndexEntry::relativePath))
+
+        val indexEntries = indexEntriesByFileName.values
+            .sortedWith(compareBy(ExistingRegistrationFileIndexEntry::registrationFileName, ExistingRegistrationFileIndexEntry::relativePath))
             .toList()
 
         val indexFile = existingRegistrationFilesIndexFile.get().asFile
         indexFile.parentFile.mkdirs()
         indexFile.writeText(
             indexEntries.joinToString(separator = "\n", postfix = if (indexEntries.isNotEmpty()) "\n" else "") { entry ->
-                "${entry.fqName}\t${entry.relativePath}"
+                "${entry.registrationFileName}\t${entry.relativePath}"
             }
         )
     }
-}
-
-internal fun findGodotProjectRoot(start: File): File {
-    var current: File? = start.takeIf { it.isDirectory } ?: start.parentFile
-    while (current != null) {
-        if (current.resolve(godotProjectFileName).isFile) {
-            return current
-        }
-        current = current.parentFile
-    }
-    return start
 }
 
 internal fun Project.requireConfiguredGodotProjectDirectory(): File {
@@ -108,10 +101,6 @@ internal fun Project.godotRegistrationFileTree(rootDir: File) = fileTree(rootDir
     patternFilterable.exclude("**/.*/**")
 }
 
-internal fun File.extractRegistrationFqName(): String? {
-    return gdjFqNameRegex.find(readText())?.groupValues?.get(1)?.trim()?.takeIf { it.isNotEmpty() }
-}
-
 internal fun readExistingRegistrationFileIndex(indexFile: File): List<ExistingRegistrationFileIndexEntry> {
     if (!indexFile.isFile) {
         return emptyList()
@@ -126,7 +115,7 @@ internal fun readExistingRegistrationFileIndex(indexFile: File): List<ExistingRe
                 null
             } else {
                 ExistingRegistrationFileIndexEntry(
-                    fqName = line.substring(0, separatorIndex),
+                    registrationFileName = line.substring(0, separatorIndex),
                     relativePath = line.substring(separatorIndex + 1)
                 )
             }
@@ -134,32 +123,30 @@ internal fun readExistingRegistrationFileIndex(indexFile: File): List<ExistingRe
         .toList()
 }
 
-internal fun readGeneratedRegistrationFiles(generatedRoot: File, logger: Logger): Map<String, GeneratedRegistrationFile> {
-    val generatedFilesByFqName = linkedMapOf<String, GeneratedRegistrationFile>()
+internal fun readGeneratedRegistrationFiles(generatedRoot: File, logger: org.gradle.api.logging.Logger): Map<String, GeneratedRegistrationFile> {
+    val generatedFilesByFileName = linkedMapOf<String, GeneratedRegistrationFile>()
 
     generatedRoot
         .walkTopDown()
         .filter { it.isFile && it.extension == FileExtensions.GodotKotlinJvm.registrationFile }
+        .sortedBy { it.relativeTo(generatedRoot).invariantSeparatorsPath }
         .forEach { generatedFile ->
-            val fqName = generatedFile.extractRegistrationFqName()
-            if (fqName == null) {
-                logger.warn("Skipping generated registration file without fqName entry: ${generatedFile.absolutePath}")
-            } else {
-                val generatedRegistrationFile = GeneratedRegistrationFile(
-                    fqName = fqName,
-                    relativePath = generatedFile.relativeTo(generatedRoot).invariantSeparatorsPath,
-                    file = generatedFile
+            val registrationFileName = generatedFile.nameWithoutExtension
+            val generatedRegistrationFile = GeneratedRegistrationFile(
+                registrationFileName = registrationFileName,
+                relativePath = generatedFile.relativeTo(generatedRoot).invariantSeparatorsPath,
+                file = generatedFile
+            )
+            val previousValue = generatedFilesByFileName.putIfAbsent(registrationFileName, generatedRegistrationFile)
+            if (previousValue != null) {
+                logger.warn(
+                    "Multiple generated registration files share basename $registrationFileName. " +
+                        "Keeping ${previousValue.file.absolutePath} and ignoring ${generatedFile.absolutePath}."
                 )
-                val previousValue = generatedFilesByFqName.putIfAbsent(fqName, generatedRegistrationFile)
-                if (previousValue != null) {
-                    logger.warn(
-                        "Multiple generated registration files share fqName $fqName. Keeping ${previousValue.file.absolutePath} and ignoring ${generatedFile.absolutePath}."
-                    )
-                }
             }
         }
 
-    return generatedFilesByFqName
+    return generatedFilesByFileName
 }
 
 fun Project.entryGenerationIndexExistingRegistrationFilesTask(): TaskProvider<ClassGraphIndexExistingRegistrationFilesTask> {

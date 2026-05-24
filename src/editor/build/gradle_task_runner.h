@@ -12,6 +12,7 @@ class GradleTaskRunner {
 public:
     enum Task {
         BUILD_DEBUG,
+        FAST_BUILD,
         BUILD_RELEASE,
         BUILD_ANDROID_DEBUG,
         BUILD_ANDROID_RELEASE,

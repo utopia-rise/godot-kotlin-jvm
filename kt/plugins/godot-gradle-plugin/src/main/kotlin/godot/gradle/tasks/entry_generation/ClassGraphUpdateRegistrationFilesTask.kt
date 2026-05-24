@@ -48,19 +48,19 @@ abstract class ClassGraphUpdateRegistrationFilesTask : DefaultTask() {
         val generatedRoot = generatedRegistrationFilesRootDir.get().asFile
         val godotProjectDir = File(godotProjectDirPath.get())
         val existingRegistrationFileIndex = readExistingRegistrationFileIndex(existingRegistrationFilesIndexFile.get().asFile)
-        val generatedFilesByFqName = readGeneratedRegistrationFiles(generatedRoot, logger)
+        val generatedFilesByFileName = readGeneratedRegistrationFiles(generatedRoot, logger)
         val targetRoot = registrationFilesOutputDir.get().asFile
-        val matchedFqNames = mutableSetOf<String>()
+        val matchedFileNames = mutableSetOf<String>()
         val candidateEmptyDirs = mutableSetOf<File>()
 
         targetRoot.mkdirs()
 
         existingRegistrationFileIndex.forEach { indexEntry ->
             val existingFile = godotProjectDir.resolve(indexEntry.relativePath)
-            val generatedFile = generatedFilesByFqName[indexEntry.fqName]
+            val generatedFile = generatedFilesByFileName[indexEntry.registrationFileName]
 
             if (generatedFile != null) {
-                matchedFqNames.add(indexEntry.fqName)
+                matchedFileNames.add(indexEntry.registrationFileName)
                 existingFile.parentFile.mkdirs()
                 generatedFile.file.copyTo(existingFile, overwrite = true)
             } else if (existingFile.exists()) {
@@ -72,9 +72,9 @@ abstract class ClassGraphUpdateRegistrationFilesTask : DefaultTask() {
             }
         }
 
-        generatedFilesByFqName.values
+        generatedFilesByFileName.values
             .asSequence()
-            .filter { generatedFile -> generatedFile.fqName !in matchedFqNames }
+            .filter { generatedFile -> generatedFile.registrationFileName !in matchedFileNames }
             .forEach { generatedFile ->
                 val targetFile = targetRoot.resolve(generatedFile.relativePath)
                 targetFile.parentFile.mkdirs()
@@ -110,7 +110,7 @@ fun Project.entryGenerationSyncRegistrationFilesTask(
             )
             .relativeTo(projectDir)
             .path
-            .replace(java.io.File.separator, "/")
+            .replace(File.separator, "/")
             .removePrefix("/")
             .removeSuffix("/")
     }
@@ -135,22 +135,22 @@ fun Project.entryGenerationSyncRegistrationFilesTask(
         )
         task.synchronizedRegistrationFiles.from(providers.provider {
             val generatedRoot = task.generatedRegistrationFilesRootDir.get().asFile
-            val generatedFilesByFqName = readGeneratedRegistrationFiles(generatedRoot, logger)
+            val generatedFilesByFileName = readGeneratedRegistrationFiles(generatedRoot, logger)
             val existingRegistrationFileIndex = readExistingRegistrationFileIndex(task.existingRegistrationFilesIndexFile.get().asFile)
-            val matchedFqNames = mutableSetOf<String>()
+            val matchedFileNames = mutableSetOf<String>()
             val synchronizedFiles = mutableListOf<File>()
             val targetRoot = task.registrationFilesOutputDir.get().asFile
 
             existingRegistrationFileIndex.forEach { indexEntry ->
-                if (generatedFilesByFqName.containsKey(indexEntry.fqName)) {
-                    matchedFqNames.add(indexEntry.fqName)
+                if (generatedFilesByFileName.containsKey(indexEntry.registrationFileName)) {
+                    matchedFileNames.add(indexEntry.registrationFileName)
                     synchronizedFiles.add(File(task.godotProjectDirPath.get()).resolve(indexEntry.relativePath))
                 }
             }
 
-            generatedFilesByFqName.values
+            generatedFilesByFileName.values
                 .asSequence()
-                .filter { generatedFile -> generatedFile.fqName !in matchedFqNames }
+                .filter { generatedFile -> generatedFile.registrationFileName !in matchedFileNames }
                 .mapTo(synchronizedFiles) { generatedFile ->
                     targetRoot.resolve(generatedFile.relativePath)
                 }

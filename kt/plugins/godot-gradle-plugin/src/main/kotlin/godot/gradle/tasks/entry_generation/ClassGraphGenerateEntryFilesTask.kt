@@ -55,6 +55,9 @@ abstract class ClassGraphGenerateEntryFilesTask : DefaultTask() {
     @get:Input
     abstract val registrationFileIndentation: Property<RegistrationFileIndentation>
 
+    @get:Input
+    abstract val disableGdj: Property<Boolean>
+
     @get:OutputDirectory
     abstract val generatedSourceRootDir: DirectoryProperty
 
@@ -68,7 +71,9 @@ abstract class ClassGraphGenerateEntryFilesTask : DefaultTask() {
         outputRoot.mkdirs()
         val generatedRegistrationRoot = generatedRegistrationFilesRootDir.get().asFile
         generatedRegistrationRoot.deleteRecursively()
-        generatedRegistrationRoot.mkdirs()
+        if (!disableGdj.get()) {
+            generatedRegistrationRoot.mkdirs()
+        }
 
         val settings = Settings(
             registeredNameMode = registeredNameMode.get(),
@@ -127,11 +132,13 @@ abstract class ClassGraphGenerateEntryFilesTask : DefaultTask() {
             serviceFile = serviceFile,
         )
 
-        generateRegistrationFiles(
-            settings = settings,
-            registeredClasses = allRegisteredClasses.filter { it.shouldGenerateGdjFile },
-            generatedRegistrationRootDir = generatedRegistrationRoot,
-        )
+        if (!disableGdj.get()) {
+            generateRegistrationFiles(
+                settings = settings,
+                registeredClasses = allRegisteredClasses.filter { it.shouldGenerateGdjFile },
+                generatedRegistrationRootDir = generatedRegistrationRoot,
+            )
+        }
     }
 }
 
@@ -179,6 +186,7 @@ fun Project.entryGenerationGenerateFilesTask(
         )
         task.registrationFileLayoutMode.convention(godotJvmExtension.registrationFilesLayoutMode)
         task.registrationFileIndentation.convention(godotJvmExtension.registrationFilesIndentation)
+        task.disableGdj.convention(godotJvmExtension.disableGdj)
         task.generatedSourceRootDir.convention(generatedSourceRootDir)
         task.generatedRegistrationFilesRootDir.convention(generatedRegistrationRootDir)
     }

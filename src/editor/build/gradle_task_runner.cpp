@@ -38,6 +38,9 @@ Error GradleTaskRunner::run_task(int task_id, String& log, bool blocking) {
         case Task::BUILD_DEBUG:
             args.push_back("build");
             break;
+        case Task::FAST_BUILD:
+            args.push_back("fastBuild");
+            break;
         case Task::BUILD_RELEASE:
             args.push_back("buildRelease");
             break;
