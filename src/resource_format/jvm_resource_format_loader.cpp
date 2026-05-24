@@ -62,12 +62,16 @@ Ref<Resource> JvmResourceFormatLoader::load(const String& p_path, const String& 
     bool script_is_new = true;
     bool is_source;
 
-    Error read_error = read_all_file_utf8(p_path, source_code);
-    if (r_error) {
-        *r_error = read_error;
-    }
-    if (read_error != OK) {
-        return nullptr;
+    // Virtual jvm:// paths have no backing file on disk — only read the source
+    // when the path points to a real resource.
+    if (!p_path.begins_with(GODOT_JVM_VIRTUAL_PATH_PREFIX)) {
+        Error read_error = read_all_file_utf8(p_path, source_code);
+        if (r_error) {
+            *r_error = read_error;
+        }
+        if (read_error != OK) {
+            return nullptr;
+        }
     }
 
     if (extension == GODOT_JVM_REGISTRATION_FILE_EXTENSION) {

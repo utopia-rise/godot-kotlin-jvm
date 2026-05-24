@@ -33,7 +33,6 @@ void JvmScriptManager::create_and_update_scripts(Vector<KtClass*>& classes) {
     for (int i = 0; i < classes.size(); i++) {
         KtClass* kotlin_class = classes[i];
         String script_name = kotlin_class->registered_class_name;
-        String script_path = _get_virtual_gdj_path(kotlin_class->registered_class_name);
 
 #ifdef TOOLS_ENABLED
 
@@ -48,14 +47,15 @@ void JvmScriptManager::create_and_update_scripts(Vector<KtClass*>& classes) {
             named_scripts_map[script_name] = named_script;
 
             named_script->export_dirty_flag = true;
-            named_script->set_path(script_path, true);
+            // Do not overwrite the existing path on reload — preserve whatever path
+            // (res:// or jvm://) the script was previously loaded with.
             TypeManager::get_instance().assign_script_to_class(env, i, named_script);
             JVM_DEV_VERBOSE("JVM Script updated: %s", script_name);
         } else {
 #endif
             Ref<GdjScript> gdj_script;
             gdj_script.instantiate();
-            gdj_script->set_path(script_path, true);
+            gdj_script->set_path(_get_virtual_gdj_path(kotlin_class->registered_class_name), true);
             gdj_script->kotlin_class = kotlin_class;
             named_scripts_map[script_name] = gdj_script;
             TypeManager::get_instance().assign_script_to_class(env, i, gdj_script);
