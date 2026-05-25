@@ -34,7 +34,7 @@ data class RegisteredClass(
             ?.takeIf { it.isNotBlank() }
             ?: fqName.substringAfterLast(".")
 
-        return when (settings.registeredNameMode) {
+        val rawName = when (settings.registeredNameMode) {
             RegisteredNameMode.SIMPLE_NAME -> baseRegisteredName
             RegisteredNameMode.FQ_NAME -> fqName.substringBeforeLast(".", missingDelimiterValue = "").let { packageName ->
                 if (packageName.isBlank()) {
@@ -52,5 +52,7 @@ data class RegisteredClass(
                 }
             }
         }
+
+        return rawName.replace('.', '_').replace('-', '_')
     }
 }
