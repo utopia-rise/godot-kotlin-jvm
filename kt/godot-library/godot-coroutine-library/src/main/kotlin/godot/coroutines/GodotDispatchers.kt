@@ -11,6 +11,7 @@ import kotlinx.coroutines.Runnable
 import java.util.concurrent.locks.ReentrantLock
 import kotlin.concurrent.withLock
 import kotlin.coroutines.CoroutineContext
+import godot.api.Thread as GodotThread
 
 object GodotDispatchers {
 
@@ -20,6 +21,23 @@ object GodotDispatchers {
     val PhysicsFrame: CoroutineDispatcher = GodotPhysicsFrameCoroutineDispatcher
 
     private object GodotMainThreadCoroutineDispatcher : CoroutineDispatcher() {
+        @Volatile
+        private var cachedMainThread: Thread? = null
+
+        override fun isDispatchNeeded(context: CoroutineContext): Boolean {
+            val current = Thread.currentThread()
+            val cached = cachedMainThread
+            // Already on the main thread → no dispatch needed.
+            if (cached != null) return cached !== current
+
+            // Slow path: ask Godot. Caches on success so subsequent checks are JNI-free.
+            if (GodotThread.isMainThread()) {
+                cachedMainThread = current
+                return false
+            }
+            return true
+        }
+
         override fun dispatch(context: CoroutineContext, block: Runnable) {
             { block.run() }.asCallable().callDeferred()
         }
