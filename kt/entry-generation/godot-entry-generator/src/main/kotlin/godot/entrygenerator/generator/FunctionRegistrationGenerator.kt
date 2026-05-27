@@ -13,11 +13,13 @@ import godot.core.KtRpcConfig
 import godot.entrygenerator.ext.VariantConverterNames
 import godot.entrygenerator.ext.getAnnotation
 import godot.entrygenerator.ext.isEnum
+import godot.entrygenerator.ext.toGodotClassName
 import godot.entrygenerator.ext.toKtVariantMemberName
 import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.model.RegisteredFunction
 import godot.entrygenerator.model.RpcAnnotation
 import godot.entrygenerator.model.TypeKind
+import godot.entrygenerator.settings.Settings
 import godot.entrygenerator.utils.asEnumName
 import godot.registration.KtFunctionArgument
 import godot.tools.common.constants.godotCorePackage
@@ -25,7 +27,13 @@ import godot.tools.common.constants.kotlinCollectionsPackage
 import godot.tools.common.constants.notificationFunction
 
 object FunctionRegistrationGenerator {
-    fun generate(registeredClass: RegisteredClass, className: ClassName, registerClassControlFlow: FunSpec.Builder) {
+    fun generate(
+        registeredClass: RegisteredClass,
+        settings: Settings,
+        className: ClassName,
+        registerClassControlFlow: FunSpec.Builder,
+        registeredClassesByFqName: Map<String, RegisteredClass>,
+    ) {
         val notificationFunctions = mapOf(
             *registeredClass.functions.filter { registeredFunction ->
                 registeredFunction.isNotificationFunction() && registeredFunction.isDeclaredInThisClass
@@ -74,7 +82,7 @@ object FunctionRegistrationGenerator {
             registerClassControlFlow
                 .addStatement(
                     getFunctionTemplateString(registeredFunction),
-                    *getTemplateArgs(registeredFunction, className).toTypedArray()
+                    *getTemplateArgs(registeredFunction, settings, className, registeredClassesByFqName).toTypedArray()
                 )
         }
     }
@@ -105,14 +113,15 @@ object FunctionRegistrationGenerator {
         append(",·%T($variantType,·%S),·%T(%M.ordinal,·%L,·%M.ordinal,·%L))")
     }
 
-    private fun getTemplateArgs(registeredFunction: RegisteredFunction, className: ClassName): List<Any> {
+    private fun getTemplateArgs(
+        registeredFunction: RegisteredFunction,
+        settings: Settings,
+        className: ClassName,
+        registeredClassesByFqName: Map<String, RegisteredClass>,
+    ): List<Any> {
         val ktFunctionArgumentClassName = KtFunctionArgument::class.asClassName()
 
-        val returnType = if (registeredFunction.returnType?.kind == TypeKind.ENUM_CLASS) {
-            "Int"
-        } else {
-            registeredFunction.returnType?.fqName ?: requireNotNull(Unit::class.qualifiedName)
-        }
+        val returnType = registeredFunction.returnType.toGodotClassName(settings, registeredClassesByFqName)
 
         val typeClassName = registeredFunction.returnType?.let { returnTypeInfo ->
             ClassName(
@@ -138,7 +147,7 @@ object FunctionRegistrationGenerator {
                 registeredFunction.parameters.forEach { valueParameter ->
                     add(ktFunctionArgumentClassName)
                     add(valueParameter.type.toKtVariantMemberName())
-                    add(valueParameter.type.fqName)
+                    add(valueParameter.type.toGodotClassName(settings, registeredClassesByFqName))
                     add(valueParameter.name)
                 }
             }

@@ -71,8 +71,8 @@ class ClassRegistrarFileBuilder(
 
         if (!registeredClass.isAbstract) {
             ConstructorRegistrationGenerator.generate(className, registerClassControlFlow)
-            FunctionRegistrationGenerator.generate(registeredClass, className, registerClassControlFlow)
-            SignalRegistrationGenerator.generate(registeredClass, className, registerClassControlFlow)
+            FunctionRegistrationGenerator.generate(registeredClass, settings, className, registerClassControlFlow, registeredClassesByFqName)
+            SignalRegistrationGenerator.generate(registeredClass, settings, className, registerClassControlFlow, registeredClassesByFqName)
             PropertyRegistrationGenerator.generate(registeredClass, settings, className, registerClassControlFlow, registeredClassesByFqName)
         }
 
@@ -104,4 +104,3 @@ class ClassRegistrarFileBuilder(
         )
     }
 }
-

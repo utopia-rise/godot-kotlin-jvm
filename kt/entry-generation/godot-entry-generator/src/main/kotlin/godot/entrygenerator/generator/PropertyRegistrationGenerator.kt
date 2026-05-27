@@ -12,6 +12,7 @@ import godot.core.PropertyUsageFlags
 import godot.entrygenerator.ext.hasAnnotation
 import godot.entrygenerator.ext.isEnum
 import godot.entrygenerator.ext.isJavaCollection
+import godot.entrygenerator.ext.toGodotClassName
 import godot.entrygenerator.ext.toGodotVariantMemberName
 import godot.entrygenerator.ext.toKtVariantMemberName
 import godot.entrygenerator.ext.toTypeName
@@ -66,8 +67,11 @@ object PropertyRegistrationGenerator {
         className: ClassName,
         registeredClassesByFqName: Map<String, RegisteredClass>
     ) {
-        val typeFqName = if (registeredProperty.type.isEnum()) "Int" else registeredProperty.type.fqName
-        val typeFqNameWithNullability = if (registeredProperty.type.isNullable) "$typeFqName?" else typeFqName
+        val typeGodotName = if (registeredProperty.type.isEnum()) {
+            "int"
+        } else {
+            registeredProperty.type.toGodotClassName(settings, registeredClassesByFqName)
+        }
 
         val variantType = if (registeredProperty.type.isEnum()) {
             "%M(%T.entries.toTypedArray())"
@@ -106,7 +110,7 @@ object PropertyRegistrationGenerator {
                     typeClassName,
                     registeredProperty.type.toGodotVariantMemberName(),
                     typeClassName,
-                    typeFqNameWithNullability,
+                    typeGodotName,
                     PropertyTypeHintProvider.provide(registeredProperty),
                     PropertyHintStringGeneratorProvider
                         .provide(registeredProperty, settings, registeredClassesByFqName)
@@ -122,7 +126,7 @@ object PropertyRegistrationGenerator {
                     getSetterReference(registeredProperty, className),
                     registeredProperty.type.toKtVariantMemberName(),
                     registeredProperty.type.toGodotVariantMemberName(),
-                    typeFqNameWithNullability,
+                    typeGodotName,
                     PropertyTypeHintProvider.provide(registeredProperty),
                     PropertyHintStringGeneratorProvider
                         .provide(registeredProperty, settings, registeredClassesByFqName)
@@ -138,7 +142,7 @@ object PropertyRegistrationGenerator {
             "property(%L,·$variantType,·$variantType,·%S,·%M,·%S,·%L.flag)",
             getPropertyReference(registeredProperty, className),
             *variantTypeArguments.toTypedArray(),
-            typeFqNameWithNullability,
+            typeGodotName,
             PropertyTypeHintProvider.provide(registeredProperty),
             PropertyHintStringGeneratorProvider
                 .provide(registeredProperty, settings, registeredClassesByFqName)
