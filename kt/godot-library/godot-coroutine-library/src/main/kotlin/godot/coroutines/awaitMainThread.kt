@@ -1,22 +1,21 @@
 package godot.coroutines
 
-import kotlinx.coroutines.async
+import kotlinx.coroutines.withContext
 
 
 /**
- * Suspends the current coroutine until the given block is executed.
+ * Suspends the current coroutine until the given block is executed on Godot's main thread.
  *
- * The block will be executed at the end of the frame on the main thread.
+ * If the caller is already on the main thread, the block runs synchronously on the current stack.
+ * Otherwise the block is posted to the main thread via `callDeferred` and runs at the end of the
+ * current frame.
  *
- * Use it to call not thread safe code from godot and wait for the execution of it.
+ * Use it to call not-thread-safe Godot code and wait for its result.
  *
- * @param block the code block to execute at the end of the frame
+ * @param block the code block to execute on the main thread
  */
 suspend inline fun <R> awaitMainThread(
     crossinline block: () -> R
-): R {
-    val job = GodotCoroutine.async(GodotDispatchers.MainThread) {
-        block()
-    }
-    return job.await()
+): R = withContext(GodotDispatchers.MainThread) {
+    block()
 }

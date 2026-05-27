@@ -3,7 +3,7 @@ package godot.coroutines
 import godot.api.Resource
 import godot.api.ResourceLoader
 import godot.api.ResourceLoader.CacheMode
-import kotlinx.coroutines.async
+import kotlinx.coroutines.withContext
 
 
 /**
@@ -14,7 +14,7 @@ import kotlinx.coroutines.async
  * @param cacheMode The cache mode to be used while loading the resource.
  * @return The loaded resource, or null if there was an error.
  */
-public suspend inline fun ResourceLoader.awaitLoad(
+suspend inline fun ResourceLoader.awaitLoad(
     path: String,
     typeHint: String = "",
     cacheMode: CacheMode = CacheMode.REUSE,
@@ -24,12 +24,11 @@ public suspend inline fun ResourceLoader.awaitLoad(
         return load(path)
     }
 
-    // Start a new job so we have a suspension point in case the coroutine is currently in the main thread.
-    val job = GodotCoroutine.async(GodotDispatchers.ThreadPool) {
+    // Switch to the worker thread pool so the load doesn't block the caller's thread
+    // (especially important when the caller is on the main thread).
+    return withContext(GodotDispatchers.ThreadPool) {
         load(path, typeHint, cacheMode)
     }
-
-    return job.await()
 }
 
 /**
@@ -40,7 +39,7 @@ public suspend inline fun ResourceLoader.awaitLoad(
  * @param cacheMode The cache mode to be used while loading the resource.
  * @return The loaded resource, or null if there was an error.
  */
-public suspend inline fun <R> ResourceLoader.awaitLoadAs(
+suspend inline fun <R> ResourceLoader.awaitLoadAs(
     path: String,
     typeHint: String = "",
     cacheMode: CacheMode = CacheMode.REUSE,

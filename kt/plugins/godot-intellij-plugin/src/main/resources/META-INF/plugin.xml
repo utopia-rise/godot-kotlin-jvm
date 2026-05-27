@@ -22,7 +22,7 @@
 
     <resource-bundle>messages.generalLabels</resource-bundle>
 
-    <depends>com.intellij.modules.java</depends>
+    <depends>com.intellij.java</depends>
     <depends>org.jetbrains.kotlin</depends>
     <depends optional="true" config-file="godotjvmideaplugin-with-scala.xml">org.intellij.scala</depends>
 </idea-plugin>
