@@ -10,7 +10,7 @@ class RegistrationTask(
     val builder = FileSpec.builder(godotPackage, "RegisterEngineTypes")
 
     val variantMapper = FunSpec.builder("registerVariantMapping")
-    val engineMethods = FunSpec.builder("registerEngineTypeMethods")
+    val engineMethods = FunSpec.builder("warmEngineTypes")
     val engineTypes = FunSpec.builder("registerEngineTypes")
 
     override fun executeSingle(): FileSpec {

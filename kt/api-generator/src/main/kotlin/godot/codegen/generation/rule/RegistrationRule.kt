@@ -83,6 +83,12 @@ class RegistrationRule : GodotApiRule<ApiTask>() {
 
     private fun RegistrationTask.addMethodBindings(clazz: EnrichedClass) {
         engineMethods.addStatement(
+            "%T.forName(%T::class.java.name,·true,·%T::class.java.classLoader)",
+            Class::class,
+            clazz.className,
+            clazz.className
+        )
+        engineMethods.addStatement(
             "%T",
             clazz.className.nestedClass(API.methodBindingsInnerClassName)
         )

@@ -975,6 +975,7 @@ import godot.api.ZIPPacker
 import godot.api.ZIPReader
 import godot.core.VariantParser.OBJECT
 import godot.core.addVariantMapping
+import java.lang.Class
 import kotlin.Unit
 
 public fun registerVariantMapping(): Unit {
@@ -1922,948 +1923,1890 @@ public fun registerVariantMapping(): Unit {
   addVariantMapping(ZIPReader::class, OBJECT)
 }
 
-public fun registerEngineTypeMethods(): Unit {
+public fun warmEngineTypes(): Unit {
+  Class.forName(Object::class.java.name, true, Object::class.java.classLoader)
   Object.MethodBindings
+  Class.forName(RefCounted::class.java.name, true, RefCounted::class.java.classLoader)
   RefCounted.MethodBindings
+  Class.forName(AESContext::class.java.name, true, AESContext::class.java.classLoader)
   AESContext.MethodBindings
+  Class.forName(AStar2D::class.java.name, true, AStar2D::class.java.classLoader)
   AStar2D.MethodBindings
+  Class.forName(AStar3D::class.java.name, true, AStar3D::class.java.classLoader)
   AStar3D.MethodBindings
+  Class.forName(AStarGrid2D::class.java.name, true, AStarGrid2D::class.java.classLoader)
   AStarGrid2D.MethodBindings
+  Class.forName(AcceptDialog::class.java.name, true, AcceptDialog::class.java.classLoader)
   AcceptDialog.MethodBindings
+  Class.forName(AimModifier3D::class.java.name, true, AimModifier3D::class.java.classLoader)
   AimModifier3D.MethodBindings
+  Class.forName(AnimatableBody2D::class.java.name, true, AnimatableBody2D::class.java.classLoader)
   AnimatableBody2D.MethodBindings
+  Class.forName(AnimatableBody3D::class.java.name, true, AnimatableBody3D::class.java.classLoader)
   AnimatableBody3D.MethodBindings
+  Class.forName(AnimatedSprite2D::class.java.name, true, AnimatedSprite2D::class.java.classLoader)
   AnimatedSprite2D.MethodBindings
+  Class.forName(AnimatedSprite3D::class.java.name, true, AnimatedSprite3D::class.java.classLoader)
   AnimatedSprite3D.MethodBindings
+  Class.forName(AnimatedTexture::class.java.name, true, AnimatedTexture::class.java.classLoader)
   AnimatedTexture.MethodBindings
+  Class.forName(Animation::class.java.name, true, Animation::class.java.classLoader)
   Animation.MethodBindings
+  Class.forName(AnimationLibrary::class.java.name, true, AnimationLibrary::class.java.classLoader)
   AnimationLibrary.MethodBindings
+  Class.forName(AnimationMixer::class.java.name, true, AnimationMixer::class.java.classLoader)
   AnimationMixer.MethodBindings
+  Class.forName(AnimationNode::class.java.name, true, AnimationNode::class.java.classLoader)
   AnimationNode.MethodBindings
+  Class.forName(AnimationNodeAdd2::class.java.name, true, AnimationNodeAdd2::class.java.classLoader)
   AnimationNodeAdd2.MethodBindings
+  Class.forName(AnimationNodeAdd3::class.java.name, true, AnimationNodeAdd3::class.java.classLoader)
   AnimationNodeAdd3.MethodBindings
+  Class.forName(AnimationNodeAnimation::class.java.name, true, AnimationNodeAnimation::class.java.classLoader)
   AnimationNodeAnimation.MethodBindings
+  Class.forName(AnimationNodeBlend2::class.java.name, true, AnimationNodeBlend2::class.java.classLoader)
   AnimationNodeBlend2.MethodBindings
+  Class.forName(AnimationNodeBlend3::class.java.name, true, AnimationNodeBlend3::class.java.classLoader)
   AnimationNodeBlend3.MethodBindings
+  Class.forName(AnimationNodeBlendSpace1D::class.java.name, true, AnimationNodeBlendSpace1D::class.java.classLoader)
   AnimationNodeBlendSpace1D.MethodBindings
+  Class.forName(AnimationNodeBlendSpace2D::class.java.name, true, AnimationNodeBlendSpace2D::class.java.classLoader)
   AnimationNodeBlendSpace2D.MethodBindings
+  Class.forName(AnimationNodeBlendTree::class.java.name, true, AnimationNodeBlendTree::class.java.classLoader)
   AnimationNodeBlendTree.MethodBindings
+  Class.forName(AnimationNodeExtension::class.java.name, true, AnimationNodeExtension::class.java.classLoader)
   AnimationNodeExtension.MethodBindings
+  Class.forName(AnimationNodeOneShot::class.java.name, true, AnimationNodeOneShot::class.java.classLoader)
   AnimationNodeOneShot.MethodBindings
+  Class.forName(AnimationNodeOutput::class.java.name, true, AnimationNodeOutput::class.java.classLoader)
   AnimationNodeOutput.MethodBindings
+  Class.forName(AnimationNodeStateMachine::class.java.name, true, AnimationNodeStateMachine::class.java.classLoader)
   AnimationNodeStateMachine.MethodBindings
+  Class.forName(AnimationNodeStateMachinePlayback::class.java.name, true, AnimationNodeStateMachinePlayback::class.java.classLoader)
   AnimationNodeStateMachinePlayback.MethodBindings
+  Class.forName(AnimationNodeStateMachineTransition::class.java.name, true, AnimationNodeStateMachineTransition::class.java.classLoader)
   AnimationNodeStateMachineTransition.MethodBindings
+  Class.forName(AnimationNodeSub2::class.java.name, true, AnimationNodeSub2::class.java.classLoader)
   AnimationNodeSub2.MethodBindings
+  Class.forName(AnimationNodeSync::class.java.name, true, AnimationNodeSync::class.java.classLoader)
   AnimationNodeSync.MethodBindings
+  Class.forName(AnimationNodeTimeScale::class.java.name, true, AnimationNodeTimeScale::class.java.classLoader)
   AnimationNodeTimeScale.MethodBindings
+  Class.forName(AnimationNodeTimeSeek::class.java.name, true, AnimationNodeTimeSeek::class.java.classLoader)
   AnimationNodeTimeSeek.MethodBindings
+  Class.forName(AnimationNodeTransition::class.java.name, true, AnimationNodeTransition::class.java.classLoader)
   AnimationNodeTransition.MethodBindings
+  Class.forName(AnimationPlayer::class.java.name, true, AnimationPlayer::class.java.classLoader)
   AnimationPlayer.MethodBindings
+  Class.forName(AnimationRootNode::class.java.name, true, AnimationRootNode::class.java.classLoader)
   AnimationRootNode.MethodBindings
+  Class.forName(AnimationTree::class.java.name, true, AnimationTree::class.java.classLoader)
   AnimationTree.MethodBindings
+  Class.forName(Area2D::class.java.name, true, Area2D::class.java.classLoader)
   Area2D.MethodBindings
+  Class.forName(Area3D::class.java.name, true, Area3D::class.java.classLoader)
   Area3D.MethodBindings
+  Class.forName(ArrayMesh::class.java.name, true, ArrayMesh::class.java.classLoader)
   ArrayMesh.MethodBindings
+  Class.forName(ArrayOccluder3D::class.java.name, true, ArrayOccluder3D::class.java.classLoader)
   ArrayOccluder3D.MethodBindings
+  Class.forName(AspectRatioContainer::class.java.name, true, AspectRatioContainer::class.java.classLoader)
   AspectRatioContainer.MethodBindings
+  Class.forName(AtlasTexture::class.java.name, true, AtlasTexture::class.java.classLoader)
   AtlasTexture.MethodBindings
+  Class.forName(AudioBusLayout::class.java.name, true, AudioBusLayout::class.java.classLoader)
   AudioBusLayout.MethodBindings
+  Class.forName(AudioEffect::class.java.name, true, AudioEffect::class.java.classLoader)
   AudioEffect.MethodBindings
+  Class.forName(AudioEffectAmplify::class.java.name, true, AudioEffectAmplify::class.java.classLoader)
   AudioEffectAmplify.MethodBindings
+  Class.forName(AudioEffectBandLimitFilter::class.java.name, true, AudioEffectBandLimitFilter::class.java.classLoader)
   AudioEffectBandLimitFilter.MethodBindings
+  Class.forName(AudioEffectBandPassFilter::class.java.name, true, AudioEffectBandPassFilter::class.java.classLoader)
   AudioEffectBandPassFilter.MethodBindings
+  Class.forName(AudioEffectCapture::class.java.name, true, AudioEffectCapture::class.java.classLoader)
   AudioEffectCapture.MethodBindings
+  Class.forName(AudioEffectChorus::class.java.name, true, AudioEffectChorus::class.java.classLoader)
   AudioEffectChorus.MethodBindings
+  Class.forName(AudioEffectCompressor::class.java.name, true, AudioEffectCompressor::class.java.classLoader)
   AudioEffectCompressor.MethodBindings
+  Class.forName(AudioEffectDelay::class.java.name, true, AudioEffectDelay::class.java.classLoader)
   AudioEffectDelay.MethodBindings
+  Class.forName(AudioEffectDistortion::class.java.name, true, AudioEffectDistortion::class.java.classLoader)
   AudioEffectDistortion.MethodBindings
+  Class.forName(AudioEffectEQ::class.java.name, true, AudioEffectEQ::class.java.classLoader)
   AudioEffectEQ.MethodBindings
+  Class.forName(AudioEffectEQ10::class.java.name, true, AudioEffectEQ10::class.java.classLoader)
   AudioEffectEQ10.MethodBindings
+  Class.forName(AudioEffectEQ21::class.java.name, true, AudioEffectEQ21::class.java.classLoader)
   AudioEffectEQ21.MethodBindings
+  Class.forName(AudioEffectEQ6::class.java.name, true, AudioEffectEQ6::class.java.classLoader)
   AudioEffectEQ6.MethodBindings
+  Class.forName(AudioEffectFilter::class.java.name, true, AudioEffectFilter::class.java.classLoader)
   AudioEffectFilter.MethodBindings
+  Class.forName(AudioEffectHardLimiter::class.java.name, true, AudioEffectHardLimiter::class.java.classLoader)
   AudioEffectHardLimiter.MethodBindings
+  Class.forName(AudioEffectHighPassFilter::class.java.name, true, AudioEffectHighPassFilter::class.java.classLoader)
   AudioEffectHighPassFilter.MethodBindings
+  Class.forName(AudioEffectHighShelfFilter::class.java.name, true, AudioEffectHighShelfFilter::class.java.classLoader)
   AudioEffectHighShelfFilter.MethodBindings
+  Class.forName(AudioEffectInstance::class.java.name, true, AudioEffectInstance::class.java.classLoader)
   AudioEffectInstance.MethodBindings
+  Class.forName(AudioEffectLimiter::class.java.name, true, AudioEffectLimiter::class.java.classLoader)
   AudioEffectLimiter.MethodBindings
+  Class.forName(AudioEffectLowPassFilter::class.java.name, true, AudioEffectLowPassFilter::class.java.classLoader)
   AudioEffectLowPassFilter.MethodBindings
+  Class.forName(AudioEffectLowShelfFilter::class.java.name, true, AudioEffectLowShelfFilter::class.java.classLoader)
   AudioEffectLowShelfFilter.MethodBindings
+  Class.forName(AudioEffectNotchFilter::class.java.name, true, AudioEffectNotchFilter::class.java.classLoader)
   AudioEffectNotchFilter.MethodBindings
+  Class.forName(AudioEffectPanner::class.java.name, true, AudioEffectPanner::class.java.classLoader)
   AudioEffectPanner.MethodBindings
+  Class.forName(AudioEffectPhaser::class.java.name, true, AudioEffectPhaser::class.java.classLoader)
   AudioEffectPhaser.MethodBindings
+  Class.forName(AudioEffectPitchShift::class.java.name, true, AudioEffectPitchShift::class.java.classLoader)
   AudioEffectPitchShift.MethodBindings
+  Class.forName(AudioEffectRecord::class.java.name, true, AudioEffectRecord::class.java.classLoader)
   AudioEffectRecord.MethodBindings
+  Class.forName(AudioEffectReverb::class.java.name, true, AudioEffectReverb::class.java.classLoader)
   AudioEffectReverb.MethodBindings
+  Class.forName(AudioEffectSpectrumAnalyzer::class.java.name, true, AudioEffectSpectrumAnalyzer::class.java.classLoader)
   AudioEffectSpectrumAnalyzer.MethodBindings
+  Class.forName(AudioEffectSpectrumAnalyzerInstance::class.java.name, true, AudioEffectSpectrumAnalyzerInstance::class.java.classLoader)
   AudioEffectSpectrumAnalyzerInstance.MethodBindings
+  Class.forName(AudioEffectStereoEnhance::class.java.name, true, AudioEffectStereoEnhance::class.java.classLoader)
   AudioEffectStereoEnhance.MethodBindings
+  Class.forName(AudioListener2D::class.java.name, true, AudioListener2D::class.java.classLoader)
   AudioListener2D.MethodBindings
+  Class.forName(AudioListener3D::class.java.name, true, AudioListener3D::class.java.classLoader)
   AudioListener3D.MethodBindings
+  Class.forName(AudioSample::class.java.name, true, AudioSample::class.java.classLoader)
   AudioSample.MethodBindings
+  Class.forName(AudioSamplePlayback::class.java.name, true, AudioSamplePlayback::class.java.classLoader)
   AudioSamplePlayback.MethodBindings
+  Class.forName(AudioServer::class.java.name, true, AudioServer::class.java.classLoader)
   AudioServer.MethodBindings
+  Class.forName(AudioStream::class.java.name, true, AudioStream::class.java.classLoader)
   AudioStream.MethodBindings
+  Class.forName(AudioStreamGenerator::class.java.name, true, AudioStreamGenerator::class.java.classLoader)
   AudioStreamGenerator.MethodBindings
+  Class.forName(AudioStreamGeneratorPlayback::class.java.name, true, AudioStreamGeneratorPlayback::class.java.classLoader)
   AudioStreamGeneratorPlayback.MethodBindings
+  Class.forName(AudioStreamInteractive::class.java.name, true, AudioStreamInteractive::class.java.classLoader)
   AudioStreamInteractive.MethodBindings
+  Class.forName(AudioStreamMP3::class.java.name, true, AudioStreamMP3::class.java.classLoader)
   AudioStreamMP3.MethodBindings
+  Class.forName(AudioStreamMicrophone::class.java.name, true, AudioStreamMicrophone::class.java.classLoader)
   AudioStreamMicrophone.MethodBindings
+  Class.forName(AudioStreamOggVorbis::class.java.name, true, AudioStreamOggVorbis::class.java.classLoader)
   AudioStreamOggVorbis.MethodBindings
+  Class.forName(AudioStreamPlayback::class.java.name, true, AudioStreamPlayback::class.java.classLoader)
   AudioStreamPlayback.MethodBindings
+  Class.forName(AudioStreamPlaybackInteractive::class.java.name, true, AudioStreamPlaybackInteractive::class.java.classLoader)
   AudioStreamPlaybackInteractive.MethodBindings
+  Class.forName(AudioStreamPlaybackOggVorbis::class.java.name, true, AudioStreamPlaybackOggVorbis::class.java.classLoader)
   AudioStreamPlaybackOggVorbis.MethodBindings
+  Class.forName(AudioStreamPlaybackPlaylist::class.java.name, true, AudioStreamPlaybackPlaylist::class.java.classLoader)
   AudioStreamPlaybackPlaylist.MethodBindings
+  Class.forName(AudioStreamPlaybackPolyphonic::class.java.name, true, AudioStreamPlaybackPolyphonic::class.java.classLoader)
   AudioStreamPlaybackPolyphonic.MethodBindings
+  Class.forName(AudioStreamPlaybackResampled::class.java.name, true, AudioStreamPlaybackResampled::class.java.classLoader)
   AudioStreamPlaybackResampled.MethodBindings
+  Class.forName(AudioStreamPlaybackSynchronized::class.java.name, true, AudioStreamPlaybackSynchronized::class.java.classLoader)
   AudioStreamPlaybackSynchronized.MethodBindings
+  Class.forName(AudioStreamPlayer::class.java.name, true, AudioStreamPlayer::class.java.classLoader)
   AudioStreamPlayer.MethodBindings
+  Class.forName(AudioStreamPlayer2D::class.java.name, true, AudioStreamPlayer2D::class.java.classLoader)
   AudioStreamPlayer2D.MethodBindings
+  Class.forName(AudioStreamPlayer3D::class.java.name, true, AudioStreamPlayer3D::class.java.classLoader)
   AudioStreamPlayer3D.MethodBindings
+  Class.forName(AudioStreamPlaylist::class.java.name, true, AudioStreamPlaylist::class.java.classLoader)
   AudioStreamPlaylist.MethodBindings
+  Class.forName(AudioStreamPolyphonic::class.java.name, true, AudioStreamPolyphonic::class.java.classLoader)
   AudioStreamPolyphonic.MethodBindings
+  Class.forName(AudioStreamRandomizer::class.java.name, true, AudioStreamRandomizer::class.java.classLoader)
   AudioStreamRandomizer.MethodBindings
+  Class.forName(AudioStreamSynchronized::class.java.name, true, AudioStreamSynchronized::class.java.classLoader)
   AudioStreamSynchronized.MethodBindings
+  Class.forName(AudioStreamWAV::class.java.name, true, AudioStreamWAV::class.java.classLoader)
   AudioStreamWAV.MethodBindings
+  Class.forName(BackBufferCopy::class.java.name, true, BackBufferCopy::class.java.classLoader)
   BackBufferCopy.MethodBindings
+  Class.forName(BaseButton::class.java.name, true, BaseButton::class.java.classLoader)
   BaseButton.MethodBindings
+  Class.forName(BaseMaterial3D::class.java.name, true, BaseMaterial3D::class.java.classLoader)
   BaseMaterial3D.MethodBindings
+  Class.forName(BitMap::class.java.name, true, BitMap::class.java.classLoader)
   BitMap.MethodBindings
+  Class.forName(Bone2D::class.java.name, true, Bone2D::class.java.classLoader)
   Bone2D.MethodBindings
+  Class.forName(BoneAttachment3D::class.java.name, true, BoneAttachment3D::class.java.classLoader)
   BoneAttachment3D.MethodBindings
+  Class.forName(BoneConstraint3D::class.java.name, true, BoneConstraint3D::class.java.classLoader)
   BoneConstraint3D.MethodBindings
+  Class.forName(BoneMap::class.java.name, true, BoneMap::class.java.classLoader)
   BoneMap.MethodBindings
+  Class.forName(BoneTwistDisperser3D::class.java.name, true, BoneTwistDisperser3D::class.java.classLoader)
   BoneTwistDisperser3D.MethodBindings
+  Class.forName(BoxContainer::class.java.name, true, BoxContainer::class.java.classLoader)
   BoxContainer.MethodBindings
+  Class.forName(BoxMesh::class.java.name, true, BoxMesh::class.java.classLoader)
   BoxMesh.MethodBindings
+  Class.forName(BoxOccluder3D::class.java.name, true, BoxOccluder3D::class.java.classLoader)
   BoxOccluder3D.MethodBindings
+  Class.forName(BoxShape3D::class.java.name, true, BoxShape3D::class.java.classLoader)
   BoxShape3D.MethodBindings
+  Class.forName(Button::class.java.name, true, Button::class.java.classLoader)
   Button.MethodBindings
+  Class.forName(ButtonGroup::class.java.name, true, ButtonGroup::class.java.classLoader)
   ButtonGroup.MethodBindings
+  Class.forName(CCDIK3D::class.java.name, true, CCDIK3D::class.java.classLoader)
   CCDIK3D.MethodBindings
+  Class.forName(CPUParticles2D::class.java.name, true, CPUParticles2D::class.java.classLoader)
   CPUParticles2D.MethodBindings
+  Class.forName(CPUParticles3D::class.java.name, true, CPUParticles3D::class.java.classLoader)
   CPUParticles3D.MethodBindings
+  Class.forName(CSGBox3D::class.java.name, true, CSGBox3D::class.java.classLoader)
   CSGBox3D.MethodBindings
+  Class.forName(CSGCombiner3D::class.java.name, true, CSGCombiner3D::class.java.classLoader)
   CSGCombiner3D.MethodBindings
+  Class.forName(CSGCylinder3D::class.java.name, true, CSGCylinder3D::class.java.classLoader)
   CSGCylinder3D.MethodBindings
+  Class.forName(CSGMesh3D::class.java.name, true, CSGMesh3D::class.java.classLoader)
   CSGMesh3D.MethodBindings
+  Class.forName(CSGPolygon3D::class.java.name, true, CSGPolygon3D::class.java.classLoader)
   CSGPolygon3D.MethodBindings
+  Class.forName(CSGPrimitive3D::class.java.name, true, CSGPrimitive3D::class.java.classLoader)
   CSGPrimitive3D.MethodBindings
+  Class.forName(CSGShape3D::class.java.name, true, CSGShape3D::class.java.classLoader)
   CSGShape3D.MethodBindings
+  Class.forName(CSGSphere3D::class.java.name, true, CSGSphere3D::class.java.classLoader)
   CSGSphere3D.MethodBindings
+  Class.forName(CSGTorus3D::class.java.name, true, CSGTorus3D::class.java.classLoader)
   CSGTorus3D.MethodBindings
+  Class.forName(CallbackTweener::class.java.name, true, CallbackTweener::class.java.classLoader)
   CallbackTweener.MethodBindings
+  Class.forName(Camera2D::class.java.name, true, Camera2D::class.java.classLoader)
   Camera2D.MethodBindings
+  Class.forName(Camera3D::class.java.name, true, Camera3D::class.java.classLoader)
   Camera3D.MethodBindings
+  Class.forName(CameraAttributes::class.java.name, true, CameraAttributes::class.java.classLoader)
   CameraAttributes.MethodBindings
+  Class.forName(CameraAttributesPhysical::class.java.name, true, CameraAttributesPhysical::class.java.classLoader)
   CameraAttributesPhysical.MethodBindings
+  Class.forName(CameraAttributesPractical::class.java.name, true, CameraAttributesPractical::class.java.classLoader)
   CameraAttributesPractical.MethodBindings
+  Class.forName(CameraFeed::class.java.name, true, CameraFeed::class.java.classLoader)
   CameraFeed.MethodBindings
+  Class.forName(CameraServer::class.java.name, true, CameraServer::class.java.classLoader)
   CameraServer.MethodBindings
+  Class.forName(CameraTexture::class.java.name, true, CameraTexture::class.java.classLoader)
   CameraTexture.MethodBindings
+  Class.forName(CanvasGroup::class.java.name, true, CanvasGroup::class.java.classLoader)
   CanvasGroup.MethodBindings
+  Class.forName(CanvasItem::class.java.name, true, CanvasItem::class.java.classLoader)
   CanvasItem.MethodBindings
+  Class.forName(CanvasItemMaterial::class.java.name, true, CanvasItemMaterial::class.java.classLoader)
   CanvasItemMaterial.MethodBindings
+  Class.forName(CanvasLayer::class.java.name, true, CanvasLayer::class.java.classLoader)
   CanvasLayer.MethodBindings
+  Class.forName(CanvasModulate::class.java.name, true, CanvasModulate::class.java.classLoader)
   CanvasModulate.MethodBindings
+  Class.forName(CanvasTexture::class.java.name, true, CanvasTexture::class.java.classLoader)
   CanvasTexture.MethodBindings
+  Class.forName(CapsuleMesh::class.java.name, true, CapsuleMesh::class.java.classLoader)
   CapsuleMesh.MethodBindings
+  Class.forName(CapsuleShape2D::class.java.name, true, CapsuleShape2D::class.java.classLoader)
   CapsuleShape2D.MethodBindings
+  Class.forName(CapsuleShape3D::class.java.name, true, CapsuleShape3D::class.java.classLoader)
   CapsuleShape3D.MethodBindings
+  Class.forName(CenterContainer::class.java.name, true, CenterContainer::class.java.classLoader)
   CenterContainer.MethodBindings
+  Class.forName(ChainIK3D::class.java.name, true, ChainIK3D::class.java.classLoader)
   ChainIK3D.MethodBindings
+  Class.forName(CharFXTransform::class.java.name, true, CharFXTransform::class.java.classLoader)
   CharFXTransform.MethodBindings
+  Class.forName(CharacterBody2D::class.java.name, true, CharacterBody2D::class.java.classLoader)
   CharacterBody2D.MethodBindings
+  Class.forName(CharacterBody3D::class.java.name, true, CharacterBody3D::class.java.classLoader)
   CharacterBody3D.MethodBindings
+  Class.forName(CheckBox::class.java.name, true, CheckBox::class.java.classLoader)
   CheckBox.MethodBindings
+  Class.forName(CheckButton::class.java.name, true, CheckButton::class.java.classLoader)
   CheckButton.MethodBindings
+  Class.forName(CircleShape2D::class.java.name, true, CircleShape2D::class.java.classLoader)
   CircleShape2D.MethodBindings
+  Class.forName(ClassDB::class.java.name, true, ClassDB::class.java.classLoader)
   ClassDB.MethodBindings
+  Class.forName(CodeEdit::class.java.name, true, CodeEdit::class.java.classLoader)
   CodeEdit.MethodBindings
+  Class.forName(CodeHighlighter::class.java.name, true, CodeHighlighter::class.java.classLoader)
   CodeHighlighter.MethodBindings
+  Class.forName(CollisionObject2D::class.java.name, true, CollisionObject2D::class.java.classLoader)
   CollisionObject2D.MethodBindings
+  Class.forName(CollisionObject3D::class.java.name, true, CollisionObject3D::class.java.classLoader)
   CollisionObject3D.MethodBindings
+  Class.forName(CollisionPolygon2D::class.java.name, true, CollisionPolygon2D::class.java.classLoader)
   CollisionPolygon2D.MethodBindings
+  Class.forName(CollisionPolygon3D::class.java.name, true, CollisionPolygon3D::class.java.classLoader)
   CollisionPolygon3D.MethodBindings
+  Class.forName(CollisionShape2D::class.java.name, true, CollisionShape2D::class.java.classLoader)
   CollisionShape2D.MethodBindings
+  Class.forName(CollisionShape3D::class.java.name, true, CollisionShape3D::class.java.classLoader)
   CollisionShape3D.MethodBindings
+  Class.forName(ColorPalette::class.java.name, true, ColorPalette::class.java.classLoader)
   ColorPalette.MethodBindings
+  Class.forName(ColorPicker::class.java.name, true, ColorPicker::class.java.classLoader)
   ColorPicker.MethodBindings
+  Class.forName(ColorPickerButton::class.java.name, true, ColorPickerButton::class.java.classLoader)
   ColorPickerButton.MethodBindings
+  Class.forName(ColorRect::class.java.name, true, ColorRect::class.java.classLoader)
   ColorRect.MethodBindings
+  Class.forName(Compositor::class.java.name, true, Compositor::class.java.classLoader)
   Compositor.MethodBindings
+  Class.forName(CompositorEffect::class.java.name, true, CompositorEffect::class.java.classLoader)
   CompositorEffect.MethodBindings
+  Class.forName(CompressedCubemap::class.java.name, true, CompressedCubemap::class.java.classLoader)
   CompressedCubemap.MethodBindings
+  Class.forName(CompressedCubemapArray::class.java.name, true, CompressedCubemapArray::class.java.classLoader)
   CompressedCubemapArray.MethodBindings
+  Class.forName(CompressedTexture2D::class.java.name, true, CompressedTexture2D::class.java.classLoader)
   CompressedTexture2D.MethodBindings
+  Class.forName(CompressedTexture2DArray::class.java.name, true, CompressedTexture2DArray::class.java.classLoader)
   CompressedTexture2DArray.MethodBindings
+  Class.forName(CompressedTexture3D::class.java.name, true, CompressedTexture3D::class.java.classLoader)
   CompressedTexture3D.MethodBindings
+  Class.forName(CompressedTextureLayered::class.java.name, true, CompressedTextureLayered::class.java.classLoader)
   CompressedTextureLayered.MethodBindings
+  Class.forName(ConcavePolygonShape2D::class.java.name, true, ConcavePolygonShape2D::class.java.classLoader)
   ConcavePolygonShape2D.MethodBindings
+  Class.forName(ConcavePolygonShape3D::class.java.name, true, ConcavePolygonShape3D::class.java.classLoader)
   ConcavePolygonShape3D.MethodBindings
+  Class.forName(ConeTwistJoint3D::class.java.name, true, ConeTwistJoint3D::class.java.classLoader)
   ConeTwistJoint3D.MethodBindings
+  Class.forName(ConfigFile::class.java.name, true, ConfigFile::class.java.classLoader)
   ConfigFile.MethodBindings
+  Class.forName(ConfirmationDialog::class.java.name, true, ConfirmationDialog::class.java.classLoader)
   ConfirmationDialog.MethodBindings
+  Class.forName(Container::class.java.name, true, Container::class.java.classLoader)
   Container.MethodBindings
+  Class.forName(Control::class.java.name, true, Control::class.java.classLoader)
   Control.MethodBindings
+  Class.forName(ConvertTransformModifier3D::class.java.name, true, ConvertTransformModifier3D::class.java.classLoader)
   ConvertTransformModifier3D.MethodBindings
+  Class.forName(ConvexPolygonShape2D::class.java.name, true, ConvexPolygonShape2D::class.java.classLoader)
   ConvexPolygonShape2D.MethodBindings
+  Class.forName(ConvexPolygonShape3D::class.java.name, true, ConvexPolygonShape3D::class.java.classLoader)
   ConvexPolygonShape3D.MethodBindings
+  Class.forName(CopyTransformModifier3D::class.java.name, true, CopyTransformModifier3D::class.java.classLoader)
   CopyTransformModifier3D.MethodBindings
+  Class.forName(Crypto::class.java.name, true, Crypto::class.java.classLoader)
   Crypto.MethodBindings
+  Class.forName(CryptoKey::class.java.name, true, CryptoKey::class.java.classLoader)
   CryptoKey.MethodBindings
+  Class.forName(Cubemap::class.java.name, true, Cubemap::class.java.classLoader)
   Cubemap.MethodBindings
+  Class.forName(CubemapArray::class.java.name, true, CubemapArray::class.java.classLoader)
   CubemapArray.MethodBindings
+  Class.forName(Curve::class.java.name, true, Curve::class.java.classLoader)
   Curve.MethodBindings
+  Class.forName(Curve2D::class.java.name, true, Curve2D::class.java.classLoader)
   Curve2D.MethodBindings
+  Class.forName(Curve3D::class.java.name, true, Curve3D::class.java.classLoader)
   Curve3D.MethodBindings
+  Class.forName(CurveTexture::class.java.name, true, CurveTexture::class.java.classLoader)
   CurveTexture.MethodBindings
+  Class.forName(CurveXYZTexture::class.java.name, true, CurveXYZTexture::class.java.classLoader)
   CurveXYZTexture.MethodBindings
+  Class.forName(CylinderMesh::class.java.name, true, CylinderMesh::class.java.classLoader)
   CylinderMesh.MethodBindings
+  Class.forName(CylinderShape3D::class.java.name, true, CylinderShape3D::class.java.classLoader)
   CylinderShape3D.MethodBindings
+  Class.forName(DPITexture::class.java.name, true, DPITexture::class.java.classLoader)
   DPITexture.MethodBindings
+  Class.forName(DTLSServer::class.java.name, true, DTLSServer::class.java.classLoader)
   DTLSServer.MethodBindings
+  Class.forName(DampedSpringJoint2D::class.java.name, true, DampedSpringJoint2D::class.java.classLoader)
   DampedSpringJoint2D.MethodBindings
+  Class.forName(Decal::class.java.name, true, Decal::class.java.classLoader)
   Decal.MethodBindings
+  Class.forName(DirAccess::class.java.name, true, DirAccess::class.java.classLoader)
   DirAccess.MethodBindings
+  Class.forName(DirectionalLight2D::class.java.name, true, DirectionalLight2D::class.java.classLoader)
   DirectionalLight2D.MethodBindings
+  Class.forName(DirectionalLight3D::class.java.name, true, DirectionalLight3D::class.java.classLoader)
   DirectionalLight3D.MethodBindings
+  Class.forName(DisplayServer::class.java.name, true, DisplayServer::class.java.classLoader)
   DisplayServer.MethodBindings
+  Class.forName(ENetConnection::class.java.name, true, ENetConnection::class.java.classLoader)
   ENetConnection.MethodBindings
+  Class.forName(ENetMultiplayerPeer::class.java.name, true, ENetMultiplayerPeer::class.java.classLoader)
   ENetMultiplayerPeer.MethodBindings
+  Class.forName(ENetPacketPeer::class.java.name, true, ENetPacketPeer::class.java.classLoader)
   ENetPacketPeer.MethodBindings
+  Class.forName(EncodedObjectAsID::class.java.name, true, EncodedObjectAsID::class.java.classLoader)
   EncodedObjectAsID.MethodBindings
+  Class.forName(Engine::class.java.name, true, Engine::class.java.classLoader)
   Engine.MethodBindings
+  Class.forName(EngineDebugger::class.java.name, true, EngineDebugger::class.java.classLoader)
   EngineDebugger.MethodBindings
+  Class.forName(EngineProfiler::class.java.name, true, EngineProfiler::class.java.classLoader)
   EngineProfiler.MethodBindings
+  Class.forName(Environment::class.java.name, true, Environment::class.java.classLoader)
   Environment.MethodBindings
+  Class.forName(Expression::class.java.name, true, Expression::class.java.classLoader)
   Expression.MethodBindings
+  Class.forName(ExternalTexture::class.java.name, true, ExternalTexture::class.java.classLoader)
   ExternalTexture.MethodBindings
+  Class.forName(FABRIK3D::class.java.name, true, FABRIK3D::class.java.classLoader)
   FABRIK3D.MethodBindings
+  Class.forName(FBXDocument::class.java.name, true, FBXDocument::class.java.classLoader)
   FBXDocument.MethodBindings
+  Class.forName(FBXState::class.java.name, true, FBXState::class.java.classLoader)
   FBXState.MethodBindings
+  Class.forName(FastNoiseLite::class.java.name, true, FastNoiseLite::class.java.classLoader)
   FastNoiseLite.MethodBindings
+  Class.forName(FileAccess::class.java.name, true, FileAccess::class.java.classLoader)
   FileAccess.MethodBindings
+  Class.forName(FileDialog::class.java.name, true, FileDialog::class.java.classLoader)
   FileDialog.MethodBindings
+  Class.forName(FlowContainer::class.java.name, true, FlowContainer::class.java.classLoader)
   FlowContainer.MethodBindings
+  Class.forName(FogMaterial::class.java.name, true, FogMaterial::class.java.classLoader)
   FogMaterial.MethodBindings
+  Class.forName(FogVolume::class.java.name, true, FogVolume::class.java.classLoader)
   FogVolume.MethodBindings
+  Class.forName(FoldableContainer::class.java.name, true, FoldableContainer::class.java.classLoader)
   FoldableContainer.MethodBindings
+  Class.forName(FoldableGroup::class.java.name, true, FoldableGroup::class.java.classLoader)
   FoldableGroup.MethodBindings
+  Class.forName(Font::class.java.name, true, Font::class.java.classLoader)
   Font.MethodBindings
+  Class.forName(FontFile::class.java.name, true, FontFile::class.java.classLoader)
   FontFile.MethodBindings
+  Class.forName(FontVariation::class.java.name, true, FontVariation::class.java.classLoader)
   FontVariation.MethodBindings
+  Class.forName(FramebufferCacheRD::class.java.name, true, FramebufferCacheRD::class.java.classLoader)
   FramebufferCacheRD.MethodBindings
+  Class.forName(GDExtension::class.java.name, true, GDExtension::class.java.classLoader)
   GDExtension.MethodBindings
+  Class.forName(GDExtensionManager::class.java.name, true, GDExtensionManager::class.java.classLoader)
   GDExtensionManager.MethodBindings
+  Class.forName(GDScript::class.java.name, true, GDScript::class.java.classLoader)
   GDScript.MethodBindings
+  Class.forName(GLTFAccessor::class.java.name, true, GLTFAccessor::class.java.classLoader)
   GLTFAccessor.MethodBindings
+  Class.forName(GLTFAnimation::class.java.name, true, GLTFAnimation::class.java.classLoader)
   GLTFAnimation.MethodBindings
+  Class.forName(GLTFBufferView::class.java.name, true, GLTFBufferView::class.java.classLoader)
   GLTFBufferView.MethodBindings
+  Class.forName(GLTFCamera::class.java.name, true, GLTFCamera::class.java.classLoader)
   GLTFCamera.MethodBindings
+  Class.forName(GLTFDocument::class.java.name, true, GLTFDocument::class.java.classLoader)
   GLTFDocument.MethodBindings
+  Class.forName(GLTFDocumentExtension::class.java.name, true, GLTFDocumentExtension::class.java.classLoader)
   GLTFDocumentExtension.MethodBindings
+  Class.forName(GLTFDocumentExtensionConvertImporterMesh::class.java.name, true, GLTFDocumentExtensionConvertImporterMesh::class.java.classLoader)
   GLTFDocumentExtensionConvertImporterMesh.MethodBindings
+  Class.forName(GLTFLight::class.java.name, true, GLTFLight::class.java.classLoader)
   GLTFLight.MethodBindings
+  Class.forName(GLTFMesh::class.java.name, true, GLTFMesh::class.java.classLoader)
   GLTFMesh.MethodBindings
+  Class.forName(GLTFNode::class.java.name, true, GLTFNode::class.java.classLoader)
   GLTFNode.MethodBindings
+  Class.forName(GLTFObjectModelProperty::class.java.name, true, GLTFObjectModelProperty::class.java.classLoader)
   GLTFObjectModelProperty.MethodBindings
+  Class.forName(GLTFPhysicsBody::class.java.name, true, GLTFPhysicsBody::class.java.classLoader)
   GLTFPhysicsBody.MethodBindings
+  Class.forName(GLTFPhysicsShape::class.java.name, true, GLTFPhysicsShape::class.java.classLoader)
   GLTFPhysicsShape.MethodBindings
+  Class.forName(GLTFSkeleton::class.java.name, true, GLTFSkeleton::class.java.classLoader)
   GLTFSkeleton.MethodBindings
+  Class.forName(GLTFSkin::class.java.name, true, GLTFSkin::class.java.classLoader)
   GLTFSkin.MethodBindings
+  Class.forName(GLTFSpecGloss::class.java.name, true, GLTFSpecGloss::class.java.classLoader)
   GLTFSpecGloss.MethodBindings
+  Class.forName(GLTFState::class.java.name, true, GLTFState::class.java.classLoader)
   GLTFState.MethodBindings
+  Class.forName(GLTFTexture::class.java.name, true, GLTFTexture::class.java.classLoader)
   GLTFTexture.MethodBindings
+  Class.forName(GLTFTextureSampler::class.java.name, true, GLTFTextureSampler::class.java.classLoader)
   GLTFTextureSampler.MethodBindings
+  Class.forName(GPUParticles2D::class.java.name, true, GPUParticles2D::class.java.classLoader)
   GPUParticles2D.MethodBindings
+  Class.forName(GPUParticles3D::class.java.name, true, GPUParticles3D::class.java.classLoader)
   GPUParticles3D.MethodBindings
+  Class.forName(GPUParticlesAttractor3D::class.java.name, true, GPUParticlesAttractor3D::class.java.classLoader)
   GPUParticlesAttractor3D.MethodBindings
+  Class.forName(GPUParticlesAttractorBox3D::class.java.name, true, GPUParticlesAttractorBox3D::class.java.classLoader)
   GPUParticlesAttractorBox3D.MethodBindings
+  Class.forName(GPUParticlesAttractorSphere3D::class.java.name, true, GPUParticlesAttractorSphere3D::class.java.classLoader)
   GPUParticlesAttractorSphere3D.MethodBindings
+  Class.forName(GPUParticlesAttractorVectorField3D::class.java.name, true, GPUParticlesAttractorVectorField3D::class.java.classLoader)
   GPUParticlesAttractorVectorField3D.MethodBindings
+  Class.forName(GPUParticlesCollision3D::class.java.name, true, GPUParticlesCollision3D::class.java.classLoader)
   GPUParticlesCollision3D.MethodBindings
+  Class.forName(GPUParticlesCollisionBox3D::class.java.name, true, GPUParticlesCollisionBox3D::class.java.classLoader)
   GPUParticlesCollisionBox3D.MethodBindings
+  Class.forName(GPUParticlesCollisionHeightField3D::class.java.name, true, GPUParticlesCollisionHeightField3D::class.java.classLoader)
   GPUParticlesCollisionHeightField3D.MethodBindings
+  Class.forName(GPUParticlesCollisionSDF3D::class.java.name, true, GPUParticlesCollisionSDF3D::class.java.classLoader)
   GPUParticlesCollisionSDF3D.MethodBindings
+  Class.forName(GPUParticlesCollisionSphere3D::class.java.name, true, GPUParticlesCollisionSphere3D::class.java.classLoader)
   GPUParticlesCollisionSphere3D.MethodBindings
+  Class.forName(Generic6DOFJoint3D::class.java.name, true, Generic6DOFJoint3D::class.java.classLoader)
   Generic6DOFJoint3D.MethodBindings
+  Class.forName(Geometry2D::class.java.name, true, Geometry2D::class.java.classLoader)
   Geometry2D.MethodBindings
+  Class.forName(Geometry3D::class.java.name, true, Geometry3D::class.java.classLoader)
   Geometry3D.MethodBindings
+  Class.forName(GeometryInstance3D::class.java.name, true, GeometryInstance3D::class.java.classLoader)
   GeometryInstance3D.MethodBindings
+  Class.forName(GodotInstance::class.java.name, true, GodotInstance::class.java.classLoader)
   GodotInstance.MethodBindings
+  Class.forName(Gradient::class.java.name, true, Gradient::class.java.classLoader)
   Gradient.MethodBindings
+  Class.forName(GradientTexture1D::class.java.name, true, GradientTexture1D::class.java.classLoader)
   GradientTexture1D.MethodBindings
+  Class.forName(GradientTexture2D::class.java.name, true, GradientTexture2D::class.java.classLoader)
   GradientTexture2D.MethodBindings
+  Class.forName(GraphEdit::class.java.name, true, GraphEdit::class.java.classLoader)
   GraphEdit.MethodBindings
+  Class.forName(GraphElement::class.java.name, true, GraphElement::class.java.classLoader)
   GraphElement.MethodBindings
+  Class.forName(GraphFrame::class.java.name, true, GraphFrame::class.java.classLoader)
   GraphFrame.MethodBindings
+  Class.forName(GraphNode::class.java.name, true, GraphNode::class.java.classLoader)
   GraphNode.MethodBindings
+  Class.forName(GridContainer::class.java.name, true, GridContainer::class.java.classLoader)
   GridContainer.MethodBindings
+  Class.forName(GridMap::class.java.name, true, GridMap::class.java.classLoader)
   GridMap.MethodBindings
+  Class.forName(GrooveJoint2D::class.java.name, true, GrooveJoint2D::class.java.classLoader)
   GrooveJoint2D.MethodBindings
+  Class.forName(HBoxContainer::class.java.name, true, HBoxContainer::class.java.classLoader)
   HBoxContainer.MethodBindings
+  Class.forName(HFlowContainer::class.java.name, true, HFlowContainer::class.java.classLoader)
   HFlowContainer.MethodBindings
+  Class.forName(HMACContext::class.java.name, true, HMACContext::class.java.classLoader)
   HMACContext.MethodBindings
+  Class.forName(HScrollBar::class.java.name, true, HScrollBar::class.java.classLoader)
   HScrollBar.MethodBindings
+  Class.forName(HSeparator::class.java.name, true, HSeparator::class.java.classLoader)
   HSeparator.MethodBindings
+  Class.forName(HSlider::class.java.name, true, HSlider::class.java.classLoader)
   HSlider.MethodBindings
+  Class.forName(HSplitContainer::class.java.name, true, HSplitContainer::class.java.classLoader)
   HSplitContainer.MethodBindings
+  Class.forName(HTTPClient::class.java.name, true, HTTPClient::class.java.classLoader)
   HTTPClient.MethodBindings
+  Class.forName(HTTPRequest::class.java.name, true, HTTPRequest::class.java.classLoader)
   HTTPRequest.MethodBindings
+  Class.forName(HashingContext::class.java.name, true, HashingContext::class.java.classLoader)
   HashingContext.MethodBindings
+  Class.forName(HeightMapShape3D::class.java.name, true, HeightMapShape3D::class.java.classLoader)
   HeightMapShape3D.MethodBindings
+  Class.forName(HingeJoint3D::class.java.name, true, HingeJoint3D::class.java.classLoader)
   HingeJoint3D.MethodBindings
+  Class.forName(IKModifier3D::class.java.name, true, IKModifier3D::class.java.classLoader)
   IKModifier3D.MethodBindings
+  Class.forName(IP::class.java.name, true, IP::class.java.classLoader)
   IP.MethodBindings
+  Class.forName(Image::class.java.name, true, Image::class.java.classLoader)
   Image.MethodBindings
+  Class.forName(ImageFormatLoader::class.java.name, true, ImageFormatLoader::class.java.classLoader)
   ImageFormatLoader.MethodBindings
+  Class.forName(ImageFormatLoaderExtension::class.java.name, true, ImageFormatLoaderExtension::class.java.classLoader)
   ImageFormatLoaderExtension.MethodBindings
+  Class.forName(ImageTexture::class.java.name, true, ImageTexture::class.java.classLoader)
   ImageTexture.MethodBindings
+  Class.forName(ImageTexture3D::class.java.name, true, ImageTexture3D::class.java.classLoader)
   ImageTexture3D.MethodBindings
+  Class.forName(ImageTextureLayered::class.java.name, true, ImageTextureLayered::class.java.classLoader)
   ImageTextureLayered.MethodBindings
+  Class.forName(ImmediateMesh::class.java.name, true, ImmediateMesh::class.java.classLoader)
   ImmediateMesh.MethodBindings
+  Class.forName(ImporterMesh::class.java.name, true, ImporterMesh::class.java.classLoader)
   ImporterMesh.MethodBindings
+  Class.forName(ImporterMeshInstance3D::class.java.name, true, ImporterMeshInstance3D::class.java.classLoader)
   ImporterMeshInstance3D.MethodBindings
+  Class.forName(Input::class.java.name, true, Input::class.java.classLoader)
   Input.MethodBindings
+  Class.forName(InputEvent::class.java.name, true, InputEvent::class.java.classLoader)
   InputEvent.MethodBindings
+  Class.forName(InputEventAction::class.java.name, true, InputEventAction::class.java.classLoader)
   InputEventAction.MethodBindings
+  Class.forName(InputEventFromWindow::class.java.name, true, InputEventFromWindow::class.java.classLoader)
   InputEventFromWindow.MethodBindings
+  Class.forName(InputEventGesture::class.java.name, true, InputEventGesture::class.java.classLoader)
   InputEventGesture.MethodBindings
+  Class.forName(InputEventJoypadButton::class.java.name, true, InputEventJoypadButton::class.java.classLoader)
   InputEventJoypadButton.MethodBindings
+  Class.forName(InputEventJoypadMotion::class.java.name, true, InputEventJoypadMotion::class.java.classLoader)
   InputEventJoypadMotion.MethodBindings
+  Class.forName(InputEventKey::class.java.name, true, InputEventKey::class.java.classLoader)
   InputEventKey.MethodBindings
+  Class.forName(InputEventMIDI::class.java.name, true, InputEventMIDI::class.java.classLoader)
   InputEventMIDI.MethodBindings
+  Class.forName(InputEventMagnifyGesture::class.java.name, true, InputEventMagnifyGesture::class.java.classLoader)
   InputEventMagnifyGesture.MethodBindings
+  Class.forName(InputEventMouse::class.java.name, true, InputEventMouse::class.java.classLoader)
   InputEventMouse.MethodBindings
+  Class.forName(InputEventMouseButton::class.java.name, true, InputEventMouseButton::class.java.classLoader)
   InputEventMouseButton.MethodBindings
+  Class.forName(InputEventMouseMotion::class.java.name, true, InputEventMouseMotion::class.java.classLoader)
   InputEventMouseMotion.MethodBindings
+  Class.forName(InputEventPanGesture::class.java.name, true, InputEventPanGesture::class.java.classLoader)
   InputEventPanGesture.MethodBindings
+  Class.forName(InputEventScreenDrag::class.java.name, true, InputEventScreenDrag::class.java.classLoader)
   InputEventScreenDrag.MethodBindings
+  Class.forName(InputEventScreenTouch::class.java.name, true, InputEventScreenTouch::class.java.classLoader)
   InputEventScreenTouch.MethodBindings
+  Class.forName(InputEventShortcut::class.java.name, true, InputEventShortcut::class.java.classLoader)
   InputEventShortcut.MethodBindings
+  Class.forName(InputEventWithModifiers::class.java.name, true, InputEventWithModifiers::class.java.classLoader)
   InputEventWithModifiers.MethodBindings
+  Class.forName(InputMap::class.java.name, true, InputMap::class.java.classLoader)
   InputMap.MethodBindings
+  Class.forName(InstancePlaceholder::class.java.name, true, InstancePlaceholder::class.java.classLoader)
   InstancePlaceholder.MethodBindings
+  Class.forName(IntervalTweener::class.java.name, true, IntervalTweener::class.java.classLoader)
   IntervalTweener.MethodBindings
+  Class.forName(ItemList::class.java.name, true, ItemList::class.java.classLoader)
   ItemList.MethodBindings
+  Class.forName(IterateIK3D::class.java.name, true, IterateIK3D::class.java.classLoader)
   IterateIK3D.MethodBindings
+  Class.forName(JNISingleton::class.java.name, true, JNISingleton::class.java.classLoader)
   JNISingleton.MethodBindings
+  Class.forName(JSON::class.java.name, true, JSON::class.java.classLoader)
   JSON.MethodBindings
+  Class.forName(JSONRPC::class.java.name, true, JSONRPC::class.java.classLoader)
   JSONRPC.MethodBindings
+  Class.forName(JacobianIK3D::class.java.name, true, JacobianIK3D::class.java.classLoader)
   JacobianIK3D.MethodBindings
+  Class.forName(JavaClass::class.java.name, true, JavaClass::class.java.classLoader)
   JavaClass.MethodBindings
+  Class.forName(JavaClassWrapper::class.java.name, true, JavaClassWrapper::class.java.classLoader)
   JavaClassWrapper.MethodBindings
+  Class.forName(JavaObject::class.java.name, true, JavaObject::class.java.classLoader)
   JavaObject.MethodBindings
+  Class.forName(JavaScriptBridge::class.java.name, true, JavaScriptBridge::class.java.classLoader)
   JavaScriptBridge.MethodBindings
+  Class.forName(JavaScriptObject::class.java.name, true, JavaScriptObject::class.java.classLoader)
   JavaScriptObject.MethodBindings
+  Class.forName(Joint2D::class.java.name, true, Joint2D::class.java.classLoader)
   Joint2D.MethodBindings
+  Class.forName(Joint3D::class.java.name, true, Joint3D::class.java.classLoader)
   Joint3D.MethodBindings
+  Class.forName(JointLimitation3D::class.java.name, true, JointLimitation3D::class.java.classLoader)
   JointLimitation3D.MethodBindings
+  Class.forName(JointLimitationCone3D::class.java.name, true, JointLimitationCone3D::class.java.classLoader)
   JointLimitationCone3D.MethodBindings
+  Class.forName(KinematicCollision2D::class.java.name, true, KinematicCollision2D::class.java.classLoader)
   KinematicCollision2D.MethodBindings
+  Class.forName(KinematicCollision3D::class.java.name, true, KinematicCollision3D::class.java.classLoader)
   KinematicCollision3D.MethodBindings
+  Class.forName(Label::class.java.name, true, Label::class.java.classLoader)
   Label.MethodBindings
+  Class.forName(Label3D::class.java.name, true, Label3D::class.java.classLoader)
   Label3D.MethodBindings
+  Class.forName(LabelSettings::class.java.name, true, LabelSettings::class.java.classLoader)
   LabelSettings.MethodBindings
+  Class.forName(Light2D::class.java.name, true, Light2D::class.java.classLoader)
   Light2D.MethodBindings
+  Class.forName(Light3D::class.java.name, true, Light3D::class.java.classLoader)
   Light3D.MethodBindings
+  Class.forName(LightOccluder2D::class.java.name, true, LightOccluder2D::class.java.classLoader)
   LightOccluder2D.MethodBindings
+  Class.forName(LightmapGI::class.java.name, true, LightmapGI::class.java.classLoader)
   LightmapGI.MethodBindings
+  Class.forName(LightmapGIData::class.java.name, true, LightmapGIData::class.java.classLoader)
   LightmapGIData.MethodBindings
+  Class.forName(LightmapProbe::class.java.name, true, LightmapProbe::class.java.classLoader)
   LightmapProbe.MethodBindings
+  Class.forName(Lightmapper::class.java.name, true, Lightmapper::class.java.classLoader)
   Lightmapper.MethodBindings
+  Class.forName(LightmapperRD::class.java.name, true, LightmapperRD::class.java.classLoader)
   LightmapperRD.MethodBindings
+  Class.forName(LimitAngularVelocityModifier3D::class.java.name, true, LimitAngularVelocityModifier3D::class.java.classLoader)
   LimitAngularVelocityModifier3D.MethodBindings
+  Class.forName(Line2D::class.java.name, true, Line2D::class.java.classLoader)
   Line2D.MethodBindings
+  Class.forName(LineEdit::class.java.name, true, LineEdit::class.java.classLoader)
   LineEdit.MethodBindings
+  Class.forName(LinkButton::class.java.name, true, LinkButton::class.java.classLoader)
   LinkButton.MethodBindings
+  Class.forName(Logger::class.java.name, true, Logger::class.java.classLoader)
   Logger.MethodBindings
+  Class.forName(LookAtModifier3D::class.java.name, true, LookAtModifier3D::class.java.classLoader)
   LookAtModifier3D.MethodBindings
+  Class.forName(MainLoop::class.java.name, true, MainLoop::class.java.classLoader)
   MainLoop.MethodBindings
+  Class.forName(MarginContainer::class.java.name, true, MarginContainer::class.java.classLoader)
   MarginContainer.MethodBindings
+  Class.forName(Marker2D::class.java.name, true, Marker2D::class.java.classLoader)
   Marker2D.MethodBindings
+  Class.forName(Marker3D::class.java.name, true, Marker3D::class.java.classLoader)
   Marker3D.MethodBindings
+  Class.forName(Marshalls::class.java.name, true, Marshalls::class.java.classLoader)
   Marshalls.MethodBindings
+  Class.forName(Material::class.java.name, true, Material::class.java.classLoader)
   Material.MethodBindings
+  Class.forName(MenuBar::class.java.name, true, MenuBar::class.java.classLoader)
   MenuBar.MethodBindings
+  Class.forName(MenuButton::class.java.name, true, MenuButton::class.java.classLoader)
   MenuButton.MethodBindings
+  Class.forName(Mesh::class.java.name, true, Mesh::class.java.classLoader)
   Mesh.MethodBindings
+  Class.forName(MeshConvexDecompositionSettings::class.java.name, true, MeshConvexDecompositionSettings::class.java.classLoader)
   MeshConvexDecompositionSettings.MethodBindings
+  Class.forName(MeshDataTool::class.java.name, true, MeshDataTool::class.java.classLoader)
   MeshDataTool.MethodBindings
+  Class.forName(MeshInstance2D::class.java.name, true, MeshInstance2D::class.java.classLoader)
   MeshInstance2D.MethodBindings
+  Class.forName(MeshInstance3D::class.java.name, true, MeshInstance3D::class.java.classLoader)
   MeshInstance3D.MethodBindings
+  Class.forName(MeshLibrary::class.java.name, true, MeshLibrary::class.java.classLoader)
   MeshLibrary.MethodBindings
+  Class.forName(MeshTexture::class.java.name, true, MeshTexture::class.java.classLoader)
   MeshTexture.MethodBindings
+  Class.forName(MethodTweener::class.java.name, true, MethodTweener::class.java.classLoader)
   MethodTweener.MethodBindings
+  Class.forName(MissingNode::class.java.name, true, MissingNode::class.java.classLoader)
   MissingNode.MethodBindings
+  Class.forName(MissingResource::class.java.name, true, MissingResource::class.java.classLoader)
   MissingResource.MethodBindings
+  Class.forName(MobileVRInterface::class.java.name, true, MobileVRInterface::class.java.classLoader)
   MobileVRInterface.MethodBindings
+  Class.forName(ModifierBoneTarget3D::class.java.name, true, ModifierBoneTarget3D::class.java.classLoader)
   ModifierBoneTarget3D.MethodBindings
+  Class.forName(MovieWriter::class.java.name, true, MovieWriter::class.java.classLoader)
   MovieWriter.MethodBindings
+  Class.forName(MultiMesh::class.java.name, true, MultiMesh::class.java.classLoader)
   MultiMesh.MethodBindings
+  Class.forName(MultiMeshInstance2D::class.java.name, true, MultiMeshInstance2D::class.java.classLoader)
   MultiMeshInstance2D.MethodBindings
+  Class.forName(MultiMeshInstance3D::class.java.name, true, MultiMeshInstance3D::class.java.classLoader)
   MultiMeshInstance3D.MethodBindings
+  Class.forName(MultiplayerAPI::class.java.name, true, MultiplayerAPI::class.java.classLoader)
   MultiplayerAPI.MethodBindings
+  Class.forName(MultiplayerAPIExtension::class.java.name, true, MultiplayerAPIExtension::class.java.classLoader)
   MultiplayerAPIExtension.MethodBindings
+  Class.forName(MultiplayerPeer::class.java.name, true, MultiplayerPeer::class.java.classLoader)
   MultiplayerPeer.MethodBindings
+  Class.forName(MultiplayerPeerExtension::class.java.name, true, MultiplayerPeerExtension::class.java.classLoader)
   MultiplayerPeerExtension.MethodBindings
+  Class.forName(MultiplayerSpawner::class.java.name, true, MultiplayerSpawner::class.java.classLoader)
   MultiplayerSpawner.MethodBindings
+  Class.forName(MultiplayerSynchronizer::class.java.name, true, MultiplayerSynchronizer::class.java.classLoader)
   MultiplayerSynchronizer.MethodBindings
+  Class.forName(Mutex::class.java.name, true, Mutex::class.java.classLoader)
   Mutex.MethodBindings
+  Class.forName(NativeMenu::class.java.name, true, NativeMenu::class.java.classLoader)
   NativeMenu.MethodBindings
+  Class.forName(NavigationAgent2D::class.java.name, true, NavigationAgent2D::class.java.classLoader)
   NavigationAgent2D.MethodBindings
+  Class.forName(NavigationAgent3D::class.java.name, true, NavigationAgent3D::class.java.classLoader)
   NavigationAgent3D.MethodBindings
+  Class.forName(NavigationLink2D::class.java.name, true, NavigationLink2D::class.java.classLoader)
   NavigationLink2D.MethodBindings
+  Class.forName(NavigationLink3D::class.java.name, true, NavigationLink3D::class.java.classLoader)
   NavigationLink3D.MethodBindings
+  Class.forName(NavigationMesh::class.java.name, true, NavigationMesh::class.java.classLoader)
   NavigationMesh.MethodBindings
+  Class.forName(NavigationMeshGenerator::class.java.name, true, NavigationMeshGenerator::class.java.classLoader)
   NavigationMeshGenerator.MethodBindings
+  Class.forName(NavigationMeshSourceGeometryData2D::class.java.name, true, NavigationMeshSourceGeometryData2D::class.java.classLoader)
   NavigationMeshSourceGeometryData2D.MethodBindings
+  Class.forName(NavigationMeshSourceGeometryData3D::class.java.name, true, NavigationMeshSourceGeometryData3D::class.java.classLoader)
   NavigationMeshSourceGeometryData3D.MethodBindings
+  Class.forName(NavigationObstacle2D::class.java.name, true, NavigationObstacle2D::class.java.classLoader)
   NavigationObstacle2D.MethodBindings
+  Class.forName(NavigationObstacle3D::class.java.name, true, NavigationObstacle3D::class.java.classLoader)
   NavigationObstacle3D.MethodBindings
+  Class.forName(NavigationPathQueryParameters2D::class.java.name, true, NavigationPathQueryParameters2D::class.java.classLoader)
   NavigationPathQueryParameters2D.MethodBindings
+  Class.forName(NavigationPathQueryParameters3D::class.java.name, true, NavigationPathQueryParameters3D::class.java.classLoader)
   NavigationPathQueryParameters3D.MethodBindings
+  Class.forName(NavigationPathQueryResult2D::class.java.name, true, NavigationPathQueryResult2D::class.java.classLoader)
   NavigationPathQueryResult2D.MethodBindings
+  Class.forName(NavigationPathQueryResult3D::class.java.name, true, NavigationPathQueryResult3D::class.java.classLoader)
   NavigationPathQueryResult3D.MethodBindings
+  Class.forName(NavigationPolygon::class.java.name, true, NavigationPolygon::class.java.classLoader)
   NavigationPolygon.MethodBindings
+  Class.forName(NavigationRegion2D::class.java.name, true, NavigationRegion2D::class.java.classLoader)
   NavigationRegion2D.MethodBindings
+  Class.forName(NavigationRegion3D::class.java.name, true, NavigationRegion3D::class.java.classLoader)
   NavigationRegion3D.MethodBindings
+  Class.forName(NavigationServer2D::class.java.name, true, NavigationServer2D::class.java.classLoader)
   NavigationServer2D.MethodBindings
+  Class.forName(NavigationServer2DManager::class.java.name, true, NavigationServer2DManager::class.java.classLoader)
   NavigationServer2DManager.MethodBindings
+  Class.forName(NavigationServer3D::class.java.name, true, NavigationServer3D::class.java.classLoader)
   NavigationServer3D.MethodBindings
+  Class.forName(NavigationServer3DManager::class.java.name, true, NavigationServer3DManager::class.java.classLoader)
   NavigationServer3DManager.MethodBindings
+  Class.forName(NinePatchRect::class.java.name, true, NinePatchRect::class.java.classLoader)
   NinePatchRect.MethodBindings
+  Class.forName(Node::class.java.name, true, Node::class.java.classLoader)
   Node.MethodBindings
+  Class.forName(Node2D::class.java.name, true, Node2D::class.java.classLoader)
   Node2D.MethodBindings
+  Class.forName(Node3D::class.java.name, true, Node3D::class.java.classLoader)
   Node3D.MethodBindings
+  Class.forName(Node3DGizmo::class.java.name, true, Node3DGizmo::class.java.classLoader)
   Node3DGizmo.MethodBindings
+  Class.forName(Noise::class.java.name, true, Noise::class.java.classLoader)
   Noise.MethodBindings
+  Class.forName(NoiseTexture2D::class.java.name, true, NoiseTexture2D::class.java.classLoader)
   NoiseTexture2D.MethodBindings
+  Class.forName(NoiseTexture3D::class.java.name, true, NoiseTexture3D::class.java.classLoader)
   NoiseTexture3D.MethodBindings
+  Class.forName(ORMMaterial3D::class.java.name, true, ORMMaterial3D::class.java.classLoader)
   ORMMaterial3D.MethodBindings
+  Class.forName(OS::class.java.name, true, OS::class.java.classLoader)
   OS.MethodBindings
+  Class.forName(Occluder3D::class.java.name, true, Occluder3D::class.java.classLoader)
   Occluder3D.MethodBindings
+  Class.forName(OccluderInstance3D::class.java.name, true, OccluderInstance3D::class.java.classLoader)
   OccluderInstance3D.MethodBindings
+  Class.forName(OccluderPolygon2D::class.java.name, true, OccluderPolygon2D::class.java.classLoader)
   OccluderPolygon2D.MethodBindings
+  Class.forName(OfflineMultiplayerPeer::class.java.name, true, OfflineMultiplayerPeer::class.java.classLoader)
   OfflineMultiplayerPeer.MethodBindings
+  Class.forName(OggPacketSequence::class.java.name, true, OggPacketSequence::class.java.classLoader)
   OggPacketSequence.MethodBindings
+  Class.forName(OggPacketSequencePlayback::class.java.name, true, OggPacketSequencePlayback::class.java.classLoader)
   OggPacketSequencePlayback.MethodBindings
+  Class.forName(OmniLight3D::class.java.name, true, OmniLight3D::class.java.classLoader)
   OmniLight3D.MethodBindings
+  Class.forName(OpenXRAPIExtension::class.java.name, true, OpenXRAPIExtension::class.java.classLoader)
   OpenXRAPIExtension.MethodBindings
+  Class.forName(OpenXRAction::class.java.name, true, OpenXRAction::class.java.classLoader)
   OpenXRAction.MethodBindings
+  Class.forName(OpenXRActionBindingModifier::class.java.name, true, OpenXRActionBindingModifier::class.java.classLoader)
   OpenXRActionBindingModifier.MethodBindings
+  Class.forName(OpenXRActionMap::class.java.name, true, OpenXRActionMap::class.java.classLoader)
   OpenXRActionMap.MethodBindings
+  Class.forName(OpenXRActionSet::class.java.name, true, OpenXRActionSet::class.java.classLoader)
   OpenXRActionSet.MethodBindings
+  Class.forName(OpenXRAnalogThresholdModifier::class.java.name, true, OpenXRAnalogThresholdModifier::class.java.classLoader)
   OpenXRAnalogThresholdModifier.MethodBindings
+  Class.forName(OpenXRAnchorTracker::class.java.name, true, OpenXRAnchorTracker::class.java.classLoader)
   OpenXRAnchorTracker.MethodBindings
+  Class.forName(OpenXRAndroidThreadSettingsExtension::class.java.name, true, OpenXRAndroidThreadSettingsExtension::class.java.classLoader)
   OpenXRAndroidThreadSettingsExtension.MethodBindings
+  Class.forName(OpenXRBindingModifier::class.java.name, true, OpenXRBindingModifier::class.java.classLoader)
   OpenXRBindingModifier.MethodBindings
+  Class.forName(OpenXRCompositionLayer::class.java.name, true, OpenXRCompositionLayer::class.java.classLoader)
   OpenXRCompositionLayer.MethodBindings
+  Class.forName(OpenXRCompositionLayerCylinder::class.java.name, true, OpenXRCompositionLayerCylinder::class.java.classLoader)
   OpenXRCompositionLayerCylinder.MethodBindings
+  Class.forName(OpenXRCompositionLayerEquirect::class.java.name, true, OpenXRCompositionLayerEquirect::class.java.classLoader)
   OpenXRCompositionLayerEquirect.MethodBindings
+  Class.forName(OpenXRCompositionLayerQuad::class.java.name, true, OpenXRCompositionLayerQuad::class.java.classLoader)
   OpenXRCompositionLayerQuad.MethodBindings
+  Class.forName(OpenXRDpadBindingModifier::class.java.name, true, OpenXRDpadBindingModifier::class.java.classLoader)
   OpenXRDpadBindingModifier.MethodBindings
+  Class.forName(OpenXRExtensionWrapper::class.java.name, true, OpenXRExtensionWrapper::class.java.classLoader)
   OpenXRExtensionWrapper.MethodBindings
+  Class.forName(OpenXRExtensionWrapperExtension::class.java.name, true, OpenXRExtensionWrapperExtension::class.java.classLoader)
   OpenXRExtensionWrapperExtension.MethodBindings
+  Class.forName(OpenXRFrameSynthesisExtension::class.java.name, true, OpenXRFrameSynthesisExtension::class.java.classLoader)
   OpenXRFrameSynthesisExtension.MethodBindings
+  Class.forName(OpenXRFutureExtension::class.java.name, true, OpenXRFutureExtension::class.java.classLoader)
   OpenXRFutureExtension.MethodBindings
+  Class.forName(OpenXRFutureResult::class.java.name, true, OpenXRFutureResult::class.java.classLoader)
   OpenXRFutureResult.MethodBindings
+  Class.forName(OpenXRHand::class.java.name, true, OpenXRHand::class.java.classLoader)
   OpenXRHand.MethodBindings
+  Class.forName(OpenXRHapticBase::class.java.name, true, OpenXRHapticBase::class.java.classLoader)
   OpenXRHapticBase.MethodBindings
+  Class.forName(OpenXRHapticVibration::class.java.name, true, OpenXRHapticVibration::class.java.classLoader)
   OpenXRHapticVibration.MethodBindings
+  Class.forName(OpenXRIPBinding::class.java.name, true, OpenXRIPBinding::class.java.classLoader)
   OpenXRIPBinding.MethodBindings
+  Class.forName(OpenXRIPBindingModifier::class.java.name, true, OpenXRIPBindingModifier::class.java.classLoader)
   OpenXRIPBindingModifier.MethodBindings
+  Class.forName(OpenXRInteractionProfile::class.java.name, true, OpenXRInteractionProfile::class.java.classLoader)
   OpenXRInteractionProfile.MethodBindings
+  Class.forName(OpenXRInteractionProfileMetadata::class.java.name, true, OpenXRInteractionProfileMetadata::class.java.classLoader)
   OpenXRInteractionProfileMetadata.MethodBindings
+  Class.forName(OpenXRInterface::class.java.name, true, OpenXRInterface::class.java.classLoader)
   OpenXRInterface.MethodBindings
+  Class.forName(OpenXRMarkerTracker::class.java.name, true, OpenXRMarkerTracker::class.java.classLoader)
   OpenXRMarkerTracker.MethodBindings
+  Class.forName(OpenXRPlaneTracker::class.java.name, true, OpenXRPlaneTracker::class.java.classLoader)
   OpenXRPlaneTracker.MethodBindings
+  Class.forName(OpenXRRenderModel::class.java.name, true, OpenXRRenderModel::class.java.classLoader)
   OpenXRRenderModel.MethodBindings
+  Class.forName(OpenXRRenderModelExtension::class.java.name, true, OpenXRRenderModelExtension::class.java.classLoader)
   OpenXRRenderModelExtension.MethodBindings
+  Class.forName(OpenXRRenderModelManager::class.java.name, true, OpenXRRenderModelManager::class.java.classLoader)
   OpenXRRenderModelManager.MethodBindings
+  Class.forName(OpenXRSpatialAnchorCapability::class.java.name, true, OpenXRSpatialAnchorCapability::class.java.classLoader)
   OpenXRSpatialAnchorCapability.MethodBindings
+  Class.forName(OpenXRSpatialCapabilityConfigurationAnchor::class.java.name, true, OpenXRSpatialCapabilityConfigurationAnchor::class.java.classLoader)
   OpenXRSpatialCapabilityConfigurationAnchor.MethodBindings
+  Class.forName(OpenXRSpatialCapabilityConfigurationAprilTag::class.java.name, true, OpenXRSpatialCapabilityConfigurationAprilTag::class.java.classLoader)
   OpenXRSpatialCapabilityConfigurationAprilTag.MethodBindings
+  Class.forName(OpenXRSpatialCapabilityConfigurationAruco::class.java.name, true, OpenXRSpatialCapabilityConfigurationAruco::class.java.classLoader)
   OpenXRSpatialCapabilityConfigurationAruco.MethodBindings
+  Class.forName(OpenXRSpatialCapabilityConfigurationBaseHeader::class.java.name, true, OpenXRSpatialCapabilityConfigurationBaseHeader::class.java.classLoader)
   OpenXRSpatialCapabilityConfigurationBaseHeader.MethodBindings
+  Class.forName(OpenXRSpatialCapabilityConfigurationMicroQrCode::class.java.name, true, OpenXRSpatialCapabilityConfigurationMicroQrCode::class.java.classLoader)
   OpenXRSpatialCapabilityConfigurationMicroQrCode.MethodBindings
+  Class.forName(OpenXRSpatialCapabilityConfigurationPlaneTracking::class.java.name, true, OpenXRSpatialCapabilityConfigurationPlaneTracking::class.java.classLoader)
   OpenXRSpatialCapabilityConfigurationPlaneTracking.MethodBindings
+  Class.forName(OpenXRSpatialCapabilityConfigurationQrCode::class.java.name, true, OpenXRSpatialCapabilityConfigurationQrCode::class.java.classLoader)
   OpenXRSpatialCapabilityConfigurationQrCode.MethodBindings
+  Class.forName(OpenXRSpatialComponentAnchorList::class.java.name, true, OpenXRSpatialComponentAnchorList::class.java.classLoader)
   OpenXRSpatialComponentAnchorList.MethodBindings
+  Class.forName(OpenXRSpatialComponentBounded2DList::class.java.name, true, OpenXRSpatialComponentBounded2DList::class.java.classLoader)
   OpenXRSpatialComponentBounded2DList.MethodBindings
+  Class.forName(OpenXRSpatialComponentBounded3DList::class.java.name, true, OpenXRSpatialComponentBounded3DList::class.java.classLoader)
   OpenXRSpatialComponentBounded3DList.MethodBindings
+  Class.forName(OpenXRSpatialComponentData::class.java.name, true, OpenXRSpatialComponentData::class.java.classLoader)
   OpenXRSpatialComponentData.MethodBindings
+  Class.forName(OpenXRSpatialComponentMarkerList::class.java.name, true, OpenXRSpatialComponentMarkerList::class.java.classLoader)
   OpenXRSpatialComponentMarkerList.MethodBindings
+  Class.forName(OpenXRSpatialComponentMesh2DList::class.java.name, true, OpenXRSpatialComponentMesh2DList::class.java.classLoader)
   OpenXRSpatialComponentMesh2DList.MethodBindings
+  Class.forName(OpenXRSpatialComponentMesh3DList::class.java.name, true, OpenXRSpatialComponentMesh3DList::class.java.classLoader)
   OpenXRSpatialComponentMesh3DList.MethodBindings
+  Class.forName(OpenXRSpatialComponentParentList::class.java.name, true, OpenXRSpatialComponentParentList::class.java.classLoader)
   OpenXRSpatialComponentParentList.MethodBindings
+  Class.forName(OpenXRSpatialComponentPersistenceList::class.java.name, true, OpenXRSpatialComponentPersistenceList::class.java.classLoader)
   OpenXRSpatialComponentPersistenceList.MethodBindings
+  Class.forName(OpenXRSpatialComponentPlaneAlignmentList::class.java.name, true, OpenXRSpatialComponentPlaneAlignmentList::class.java.classLoader)
   OpenXRSpatialComponentPlaneAlignmentList.MethodBindings
+  Class.forName(OpenXRSpatialComponentPlaneSemanticLabelList::class.java.name, true, OpenXRSpatialComponentPlaneSemanticLabelList::class.java.classLoader)
   OpenXRSpatialComponentPlaneSemanticLabelList.MethodBindings
+  Class.forName(OpenXRSpatialComponentPolygon2DList::class.java.name, true, OpenXRSpatialComponentPolygon2DList::class.java.classLoader)
   OpenXRSpatialComponentPolygon2DList.MethodBindings
+  Class.forName(OpenXRSpatialContextPersistenceConfig::class.java.name, true, OpenXRSpatialContextPersistenceConfig::class.java.classLoader)
   OpenXRSpatialContextPersistenceConfig.MethodBindings
+  Class.forName(OpenXRSpatialEntityExtension::class.java.name, true, OpenXRSpatialEntityExtension::class.java.classLoader)
   OpenXRSpatialEntityExtension.MethodBindings
+  Class.forName(OpenXRSpatialEntityTracker::class.java.name, true, OpenXRSpatialEntityTracker::class.java.classLoader)
   OpenXRSpatialEntityTracker.MethodBindings
+  Class.forName(OpenXRSpatialMarkerTrackingCapability::class.java.name, true, OpenXRSpatialMarkerTrackingCapability::class.java.classLoader)
   OpenXRSpatialMarkerTrackingCapability.MethodBindings
+  Class.forName(OpenXRSpatialPlaneTrackingCapability::class.java.name, true, OpenXRSpatialPlaneTrackingCapability::class.java.classLoader)
   OpenXRSpatialPlaneTrackingCapability.MethodBindings
+  Class.forName(OpenXRSpatialQueryResultData::class.java.name, true, OpenXRSpatialQueryResultData::class.java.classLoader)
   OpenXRSpatialQueryResultData.MethodBindings
+  Class.forName(OpenXRStructureBase::class.java.name, true, OpenXRStructureBase::class.java.classLoader)
   OpenXRStructureBase.MethodBindings
+  Class.forName(OpenXRVisibilityMask::class.java.name, true, OpenXRVisibilityMask::class.java.classLoader)
   OpenXRVisibilityMask.MethodBindings
+  Class.forName(OptimizedTranslation::class.java.name, true, OptimizedTranslation::class.java.classLoader)
   OptimizedTranslation.MethodBindings
+  Class.forName(OptionButton::class.java.name, true, OptionButton::class.java.classLoader)
   OptionButton.MethodBindings
+  Class.forName(PCKPacker::class.java.name, true, PCKPacker::class.java.classLoader)
   PCKPacker.MethodBindings
+  Class.forName(PackedDataContainer::class.java.name, true, PackedDataContainer::class.java.classLoader)
   PackedDataContainer.MethodBindings
+  Class.forName(PackedDataContainerRef::class.java.name, true, PackedDataContainerRef::class.java.classLoader)
   PackedDataContainerRef.MethodBindings
+  Class.forName(PackedScene::class.java.name, true, PackedScene::class.java.classLoader)
   PackedScene.MethodBindings
+  Class.forName(PacketPeer::class.java.name, true, PacketPeer::class.java.classLoader)
   PacketPeer.MethodBindings
+  Class.forName(PacketPeerDTLS::class.java.name, true, PacketPeerDTLS::class.java.classLoader)
   PacketPeerDTLS.MethodBindings
+  Class.forName(PacketPeerExtension::class.java.name, true, PacketPeerExtension::class.java.classLoader)
   PacketPeerExtension.MethodBindings
+  Class.forName(PacketPeerStream::class.java.name, true, PacketPeerStream::class.java.classLoader)
   PacketPeerStream.MethodBindings
+  Class.forName(PacketPeerUDP::class.java.name, true, PacketPeerUDP::class.java.classLoader)
   PacketPeerUDP.MethodBindings
+  Class.forName(Panel::class.java.name, true, Panel::class.java.classLoader)
   Panel.MethodBindings
+  Class.forName(PanelContainer::class.java.name, true, PanelContainer::class.java.classLoader)
   PanelContainer.MethodBindings
+  Class.forName(PanoramaSkyMaterial::class.java.name, true, PanoramaSkyMaterial::class.java.classLoader)
   PanoramaSkyMaterial.MethodBindings
+  Class.forName(Parallax2D::class.java.name, true, Parallax2D::class.java.classLoader)
   Parallax2D.MethodBindings
+  Class.forName(ParallaxBackground::class.java.name, true, ParallaxBackground::class.java.classLoader)
   ParallaxBackground.MethodBindings
+  Class.forName(ParallaxLayer::class.java.name, true, ParallaxLayer::class.java.classLoader)
   ParallaxLayer.MethodBindings
+  Class.forName(ParticleProcessMaterial::class.java.name, true, ParticleProcessMaterial::class.java.classLoader)
   ParticleProcessMaterial.MethodBindings
+  Class.forName(Path2D::class.java.name, true, Path2D::class.java.classLoader)
   Path2D.MethodBindings
+  Class.forName(Path3D::class.java.name, true, Path3D::class.java.classLoader)
   Path3D.MethodBindings
+  Class.forName(PathFollow2D::class.java.name, true, PathFollow2D::class.java.classLoader)
   PathFollow2D.MethodBindings
+  Class.forName(PathFollow3D::class.java.name, true, PathFollow3D::class.java.classLoader)
   PathFollow3D.MethodBindings
+  Class.forName(Performance::class.java.name, true, Performance::class.java.classLoader)
   Performance.MethodBindings
+  Class.forName(PhysicalBone2D::class.java.name, true, PhysicalBone2D::class.java.classLoader)
   PhysicalBone2D.MethodBindings
+  Class.forName(PhysicalBone3D::class.java.name, true, PhysicalBone3D::class.java.classLoader)
   PhysicalBone3D.MethodBindings
+  Class.forName(PhysicalBoneSimulator3D::class.java.name, true, PhysicalBoneSimulator3D::class.java.classLoader)
   PhysicalBoneSimulator3D.MethodBindings
+  Class.forName(PhysicalSkyMaterial::class.java.name, true, PhysicalSkyMaterial::class.java.classLoader)
   PhysicalSkyMaterial.MethodBindings
+  Class.forName(PhysicsBody2D::class.java.name, true, PhysicsBody2D::class.java.classLoader)
   PhysicsBody2D.MethodBindings
+  Class.forName(PhysicsBody3D::class.java.name, true, PhysicsBody3D::class.java.classLoader)
   PhysicsBody3D.MethodBindings
+  Class.forName(PhysicsDirectBodyState2D::class.java.name, true, PhysicsDirectBodyState2D::class.java.classLoader)
   PhysicsDirectBodyState2D.MethodBindings
+  Class.forName(PhysicsDirectBodyState2DExtension::class.java.name, true, PhysicsDirectBodyState2DExtension::class.java.classLoader)
   PhysicsDirectBodyState2DExtension.MethodBindings
+  Class.forName(PhysicsDirectBodyState3D::class.java.name, true, PhysicsDirectBodyState3D::class.java.classLoader)
   PhysicsDirectBodyState3D.MethodBindings
+  Class.forName(PhysicsDirectBodyState3DExtension::class.java.name, true, PhysicsDirectBodyState3DExtension::class.java.classLoader)
   PhysicsDirectBodyState3DExtension.MethodBindings
+  Class.forName(PhysicsDirectSpaceState2D::class.java.name, true, PhysicsDirectSpaceState2D::class.java.classLoader)
   PhysicsDirectSpaceState2D.MethodBindings
+  Class.forName(PhysicsDirectSpaceState2DExtension::class.java.name, true, PhysicsDirectSpaceState2DExtension::class.java.classLoader)
   PhysicsDirectSpaceState2DExtension.MethodBindings
+  Class.forName(PhysicsDirectSpaceState3D::class.java.name, true, PhysicsDirectSpaceState3D::class.java.classLoader)
   PhysicsDirectSpaceState3D.MethodBindings
+  Class.forName(PhysicsDirectSpaceState3DExtension::class.java.name, true, PhysicsDirectSpaceState3DExtension::class.java.classLoader)
   PhysicsDirectSpaceState3DExtension.MethodBindings
+  Class.forName(PhysicsMaterial::class.java.name, true, PhysicsMaterial::class.java.classLoader)
   PhysicsMaterial.MethodBindings
+  Class.forName(PhysicsPointQueryParameters2D::class.java.name, true, PhysicsPointQueryParameters2D::class.java.classLoader)
   PhysicsPointQueryParameters2D.MethodBindings
+  Class.forName(PhysicsPointQueryParameters3D::class.java.name, true, PhysicsPointQueryParameters3D::class.java.classLoader)
   PhysicsPointQueryParameters3D.MethodBindings
+  Class.forName(PhysicsRayQueryParameters2D::class.java.name, true, PhysicsRayQueryParameters2D::class.java.classLoader)
   PhysicsRayQueryParameters2D.MethodBindings
+  Class.forName(PhysicsRayQueryParameters3D::class.java.name, true, PhysicsRayQueryParameters3D::class.java.classLoader)
   PhysicsRayQueryParameters3D.MethodBindings
+  Class.forName(PhysicsServer2D::class.java.name, true, PhysicsServer2D::class.java.classLoader)
   PhysicsServer2D.MethodBindings
+  Class.forName(PhysicsServer2DManager::class.java.name, true, PhysicsServer2DManager::class.java.classLoader)
   PhysicsServer2DManager.MethodBindings
+  Class.forName(PhysicsServer3D::class.java.name, true, PhysicsServer3D::class.java.classLoader)
   PhysicsServer3D.MethodBindings
+  Class.forName(PhysicsServer3DManager::class.java.name, true, PhysicsServer3DManager::class.java.classLoader)
   PhysicsServer3DManager.MethodBindings
+  Class.forName(PhysicsServer3DRenderingServerHandler::class.java.name, true, PhysicsServer3DRenderingServerHandler::class.java.classLoader)
   PhysicsServer3DRenderingServerHandler.MethodBindings
+  Class.forName(PhysicsShapeQueryParameters2D::class.java.name, true, PhysicsShapeQueryParameters2D::class.java.classLoader)
   PhysicsShapeQueryParameters2D.MethodBindings
+  Class.forName(PhysicsShapeQueryParameters3D::class.java.name, true, PhysicsShapeQueryParameters3D::class.java.classLoader)
   PhysicsShapeQueryParameters3D.MethodBindings
+  Class.forName(PhysicsTestMotionParameters2D::class.java.name, true, PhysicsTestMotionParameters2D::class.java.classLoader)
   PhysicsTestMotionParameters2D.MethodBindings
+  Class.forName(PhysicsTestMotionParameters3D::class.java.name, true, PhysicsTestMotionParameters3D::class.java.classLoader)
   PhysicsTestMotionParameters3D.MethodBindings
+  Class.forName(PhysicsTestMotionResult2D::class.java.name, true, PhysicsTestMotionResult2D::class.java.classLoader)
   PhysicsTestMotionResult2D.MethodBindings
+  Class.forName(PhysicsTestMotionResult3D::class.java.name, true, PhysicsTestMotionResult3D::class.java.classLoader)
   PhysicsTestMotionResult3D.MethodBindings
+  Class.forName(PinJoint2D::class.java.name, true, PinJoint2D::class.java.classLoader)
   PinJoint2D.MethodBindings
+  Class.forName(PinJoint3D::class.java.name, true, PinJoint3D::class.java.classLoader)
   PinJoint3D.MethodBindings
+  Class.forName(PlaceholderCubemap::class.java.name, true, PlaceholderCubemap::class.java.classLoader)
   PlaceholderCubemap.MethodBindings
+  Class.forName(PlaceholderCubemapArray::class.java.name, true, PlaceholderCubemapArray::class.java.classLoader)
   PlaceholderCubemapArray.MethodBindings
+  Class.forName(PlaceholderMaterial::class.java.name, true, PlaceholderMaterial::class.java.classLoader)
   PlaceholderMaterial.MethodBindings
+  Class.forName(PlaceholderMesh::class.java.name, true, PlaceholderMesh::class.java.classLoader)
   PlaceholderMesh.MethodBindings
+  Class.forName(PlaceholderTexture2D::class.java.name, true, PlaceholderTexture2D::class.java.classLoader)
   PlaceholderTexture2D.MethodBindings
+  Class.forName(PlaceholderTexture2DArray::class.java.name, true, PlaceholderTexture2DArray::class.java.classLoader)
   PlaceholderTexture2DArray.MethodBindings
+  Class.forName(PlaceholderTexture3D::class.java.name, true, PlaceholderTexture3D::class.java.classLoader)
   PlaceholderTexture3D.MethodBindings
+  Class.forName(PlaceholderTextureLayered::class.java.name, true, PlaceholderTextureLayered::class.java.classLoader)
   PlaceholderTextureLayered.MethodBindings
+  Class.forName(PlaneMesh::class.java.name, true, PlaneMesh::class.java.classLoader)
   PlaneMesh.MethodBindings
+  Class.forName(PointLight2D::class.java.name, true, PointLight2D::class.java.classLoader)
   PointLight2D.MethodBindings
+  Class.forName(PointMesh::class.java.name, true, PointMesh::class.java.classLoader)
   PointMesh.MethodBindings
+  Class.forName(Polygon2D::class.java.name, true, Polygon2D::class.java.classLoader)
   Polygon2D.MethodBindings
+  Class.forName(PolygonOccluder3D::class.java.name, true, PolygonOccluder3D::class.java.classLoader)
   PolygonOccluder3D.MethodBindings
+  Class.forName(PolygonPathFinder::class.java.name, true, PolygonPathFinder::class.java.classLoader)
   PolygonPathFinder.MethodBindings
+  Class.forName(Popup::class.java.name, true, Popup::class.java.classLoader)
   Popup.MethodBindings
+  Class.forName(PopupMenu::class.java.name, true, PopupMenu::class.java.classLoader)
   PopupMenu.MethodBindings
+  Class.forName(PopupPanel::class.java.name, true, PopupPanel::class.java.classLoader)
   PopupPanel.MethodBindings
+  Class.forName(PortableCompressedTexture2D::class.java.name, true, PortableCompressedTexture2D::class.java.classLoader)
   PortableCompressedTexture2D.MethodBindings
+  Class.forName(PrimitiveMesh::class.java.name, true, PrimitiveMesh::class.java.classLoader)
   PrimitiveMesh.MethodBindings
+  Class.forName(PrismMesh::class.java.name, true, PrismMesh::class.java.classLoader)
   PrismMesh.MethodBindings
+  Class.forName(ProceduralSkyMaterial::class.java.name, true, ProceduralSkyMaterial::class.java.classLoader)
   ProceduralSkyMaterial.MethodBindings
+  Class.forName(ProgressBar::class.java.name, true, ProgressBar::class.java.classLoader)
   ProgressBar.MethodBindings
+  Class.forName(ProjectSettings::class.java.name, true, ProjectSettings::class.java.classLoader)
   ProjectSettings.MethodBindings
+  Class.forName(PropertyTweener::class.java.name, true, PropertyTweener::class.java.classLoader)
   PropertyTweener.MethodBindings
+  Class.forName(QuadMesh::class.java.name, true, QuadMesh::class.java.classLoader)
   QuadMesh.MethodBindings
+  Class.forName(QuadOccluder3D::class.java.name, true, QuadOccluder3D::class.java.classLoader)
   QuadOccluder3D.MethodBindings
+  Class.forName(RDAttachmentFormat::class.java.name, true, RDAttachmentFormat::class.java.classLoader)
   RDAttachmentFormat.MethodBindings
+  Class.forName(RDFramebufferPass::class.java.name, true, RDFramebufferPass::class.java.classLoader)
   RDFramebufferPass.MethodBindings
+  Class.forName(RDPipelineColorBlendState::class.java.name, true, RDPipelineColorBlendState::class.java.classLoader)
   RDPipelineColorBlendState.MethodBindings
+  Class.forName(RDPipelineColorBlendStateAttachment::class.java.name, true, RDPipelineColorBlendStateAttachment::class.java.classLoader)
   RDPipelineColorBlendStateAttachment.MethodBindings
+  Class.forName(RDPipelineDepthStencilState::class.java.name, true, RDPipelineDepthStencilState::class.java.classLoader)
   RDPipelineDepthStencilState.MethodBindings
+  Class.forName(RDPipelineMultisampleState::class.java.name, true, RDPipelineMultisampleState::class.java.classLoader)
   RDPipelineMultisampleState.MethodBindings
+  Class.forName(RDPipelineRasterizationState::class.java.name, true, RDPipelineRasterizationState::class.java.classLoader)
   RDPipelineRasterizationState.MethodBindings
+  Class.forName(RDPipelineSpecializationConstant::class.java.name, true, RDPipelineSpecializationConstant::class.java.classLoader)
   RDPipelineSpecializationConstant.MethodBindings
+  Class.forName(RDSamplerState::class.java.name, true, RDSamplerState::class.java.classLoader)
   RDSamplerState.MethodBindings
+  Class.forName(RDShaderFile::class.java.name, true, RDShaderFile::class.java.classLoader)
   RDShaderFile.MethodBindings
+  Class.forName(RDShaderSPIRV::class.java.name, true, RDShaderSPIRV::class.java.classLoader)
   RDShaderSPIRV.MethodBindings
+  Class.forName(RDShaderSource::class.java.name, true, RDShaderSource::class.java.classLoader)
   RDShaderSource.MethodBindings
+  Class.forName(RDTextureFormat::class.java.name, true, RDTextureFormat::class.java.classLoader)
   RDTextureFormat.MethodBindings
+  Class.forName(RDTextureView::class.java.name, true, RDTextureView::class.java.classLoader)
   RDTextureView.MethodBindings
+  Class.forName(RDUniform::class.java.name, true, RDUniform::class.java.classLoader)
   RDUniform.MethodBindings
+  Class.forName(RDVertexAttribute::class.java.name, true, RDVertexAttribute::class.java.classLoader)
   RDVertexAttribute.MethodBindings
+  Class.forName(RandomNumberGenerator::class.java.name, true, RandomNumberGenerator::class.java.classLoader)
   RandomNumberGenerator.MethodBindings
+  Class.forName(Range::class.java.name, true, Range::class.java.classLoader)
   Range.MethodBindings
+  Class.forName(RayCast2D::class.java.name, true, RayCast2D::class.java.classLoader)
   RayCast2D.MethodBindings
+  Class.forName(RayCast3D::class.java.name, true, RayCast3D::class.java.classLoader)
   RayCast3D.MethodBindings
+  Class.forName(RectangleShape2D::class.java.name, true, RectangleShape2D::class.java.classLoader)
   RectangleShape2D.MethodBindings
+  Class.forName(ReferenceRect::class.java.name, true, ReferenceRect::class.java.classLoader)
   ReferenceRect.MethodBindings
+  Class.forName(ReflectionProbe::class.java.name, true, ReflectionProbe::class.java.classLoader)
   ReflectionProbe.MethodBindings
+  Class.forName(RegEx::class.java.name, true, RegEx::class.java.classLoader)
   RegEx.MethodBindings
+  Class.forName(RegExMatch::class.java.name, true, RegExMatch::class.java.classLoader)
   RegExMatch.MethodBindings
+  Class.forName(RemoteTransform2D::class.java.name, true, RemoteTransform2D::class.java.classLoader)
   RemoteTransform2D.MethodBindings
+  Class.forName(RemoteTransform3D::class.java.name, true, RemoteTransform3D::class.java.classLoader)
   RemoteTransform3D.MethodBindings
+  Class.forName(RenderData::class.java.name, true, RenderData::class.java.classLoader)
   RenderData.MethodBindings
+  Class.forName(RenderDataExtension::class.java.name, true, RenderDataExtension::class.java.classLoader)
   RenderDataExtension.MethodBindings
+  Class.forName(RenderDataRD::class.java.name, true, RenderDataRD::class.java.classLoader)
   RenderDataRD.MethodBindings
+  Class.forName(RenderSceneBuffers::class.java.name, true, RenderSceneBuffers::class.java.classLoader)
   RenderSceneBuffers.MethodBindings
+  Class.forName(RenderSceneBuffersConfiguration::class.java.name, true, RenderSceneBuffersConfiguration::class.java.classLoader)
   RenderSceneBuffersConfiguration.MethodBindings
+  Class.forName(RenderSceneBuffersExtension::class.java.name, true, RenderSceneBuffersExtension::class.java.classLoader)
   RenderSceneBuffersExtension.MethodBindings
+  Class.forName(RenderSceneBuffersRD::class.java.name, true, RenderSceneBuffersRD::class.java.classLoader)
   RenderSceneBuffersRD.MethodBindings
+  Class.forName(RenderSceneData::class.java.name, true, RenderSceneData::class.java.classLoader)
   RenderSceneData.MethodBindings
+  Class.forName(RenderSceneDataExtension::class.java.name, true, RenderSceneDataExtension::class.java.classLoader)
   RenderSceneDataExtension.MethodBindings
+  Class.forName(RenderSceneDataRD::class.java.name, true, RenderSceneDataRD::class.java.classLoader)
   RenderSceneDataRD.MethodBindings
+  Class.forName(RenderingDevice::class.java.name, true, RenderingDevice::class.java.classLoader)
   RenderingDevice.MethodBindings
+  Class.forName(RenderingServer::class.java.name, true, RenderingServer::class.java.classLoader)
   RenderingServer.MethodBindings
+  Class.forName(Resource::class.java.name, true, Resource::class.java.classLoader)
   Resource.MethodBindings
+  Class.forName(ResourceFormatLoader::class.java.name, true, ResourceFormatLoader::class.java.classLoader)
   ResourceFormatLoader.MethodBindings
+  Class.forName(ResourceFormatSaver::class.java.name, true, ResourceFormatSaver::class.java.classLoader)
   ResourceFormatSaver.MethodBindings
+  Class.forName(ResourceImporter::class.java.name, true, ResourceImporter::class.java.classLoader)
   ResourceImporter.MethodBindings
+  Class.forName(ResourceLoader::class.java.name, true, ResourceLoader::class.java.classLoader)
   ResourceLoader.MethodBindings
+  Class.forName(ResourcePreloader::class.java.name, true, ResourcePreloader::class.java.classLoader)
   ResourcePreloader.MethodBindings
+  Class.forName(ResourceSaver::class.java.name, true, ResourceSaver::class.java.classLoader)
   ResourceSaver.MethodBindings
+  Class.forName(ResourceUID::class.java.name, true, ResourceUID::class.java.classLoader)
   ResourceUID.MethodBindings
+  Class.forName(RetargetModifier3D::class.java.name, true, RetargetModifier3D::class.java.classLoader)
   RetargetModifier3D.MethodBindings
+  Class.forName(RibbonTrailMesh::class.java.name, true, RibbonTrailMesh::class.java.classLoader)
   RibbonTrailMesh.MethodBindings
+  Class.forName(RichTextEffect::class.java.name, true, RichTextEffect::class.java.classLoader)
   RichTextEffect.MethodBindings
+  Class.forName(RichTextLabel::class.java.name, true, RichTextLabel::class.java.classLoader)
   RichTextLabel.MethodBindings
+  Class.forName(RigidBody2D::class.java.name, true, RigidBody2D::class.java.classLoader)
   RigidBody2D.MethodBindings
+  Class.forName(RigidBody3D::class.java.name, true, RigidBody3D::class.java.classLoader)
   RigidBody3D.MethodBindings
+  Class.forName(RootMotionView::class.java.name, true, RootMotionView::class.java.classLoader)
   RootMotionView.MethodBindings
+  Class.forName(SceneMultiplayer::class.java.name, true, SceneMultiplayer::class.java.classLoader)
   SceneMultiplayer.MethodBindings
+  Class.forName(SceneReplicationConfig::class.java.name, true, SceneReplicationConfig::class.java.classLoader)
   SceneReplicationConfig.MethodBindings
+  Class.forName(SceneState::class.java.name, true, SceneState::class.java.classLoader)
   SceneState.MethodBindings
+  Class.forName(SceneTree::class.java.name, true, SceneTree::class.java.classLoader)
   SceneTree.MethodBindings
+  Class.forName(SceneTreeTimer::class.java.name, true, SceneTreeTimer::class.java.classLoader)
   SceneTreeTimer.MethodBindings
+  Class.forName(Script::class.java.name, true, Script::class.java.classLoader)
   Script.MethodBindings
+  Class.forName(ScriptBacktrace::class.java.name, true, ScriptBacktrace::class.java.classLoader)
   ScriptBacktrace.MethodBindings
+  Class.forName(ScriptExtension::class.java.name, true, ScriptExtension::class.java.classLoader)
   ScriptExtension.MethodBindings
+  Class.forName(ScriptLanguage::class.java.name, true, ScriptLanguage::class.java.classLoader)
   ScriptLanguage.MethodBindings
+  Class.forName(ScriptLanguageExtension::class.java.name, true, ScriptLanguageExtension::class.java.classLoader)
   ScriptLanguageExtension.MethodBindings
+  Class.forName(ScrollBar::class.java.name, true, ScrollBar::class.java.classLoader)
   ScrollBar.MethodBindings
+  Class.forName(ScrollContainer::class.java.name, true, ScrollContainer::class.java.classLoader)
   ScrollContainer.MethodBindings
+  Class.forName(SegmentShape2D::class.java.name, true, SegmentShape2D::class.java.classLoader)
   SegmentShape2D.MethodBindings
+  Class.forName(Semaphore::class.java.name, true, Semaphore::class.java.classLoader)
   Semaphore.MethodBindings
+  Class.forName(SeparationRayShape2D::class.java.name, true, SeparationRayShape2D::class.java.classLoader)
   SeparationRayShape2D.MethodBindings
+  Class.forName(SeparationRayShape3D::class.java.name, true, SeparationRayShape3D::class.java.classLoader)
   SeparationRayShape3D.MethodBindings
+  Class.forName(Separator::class.java.name, true, Separator::class.java.classLoader)
   Separator.MethodBindings
+  Class.forName(Shader::class.java.name, true, Shader::class.java.classLoader)
   Shader.MethodBindings
+  Class.forName(ShaderGlobalsOverride::class.java.name, true, ShaderGlobalsOverride::class.java.classLoader)
   ShaderGlobalsOverride.MethodBindings
+  Class.forName(ShaderInclude::class.java.name, true, ShaderInclude::class.java.classLoader)
   ShaderInclude.MethodBindings
+  Class.forName(ShaderIncludeDB::class.java.name, true, ShaderIncludeDB::class.java.classLoader)
   ShaderIncludeDB.MethodBindings
+  Class.forName(ShaderMaterial::class.java.name, true, ShaderMaterial::class.java.classLoader)
   ShaderMaterial.MethodBindings
+  Class.forName(Shape2D::class.java.name, true, Shape2D::class.java.classLoader)
   Shape2D.MethodBindings
+  Class.forName(Shape3D::class.java.name, true, Shape3D::class.java.classLoader)
   Shape3D.MethodBindings
+  Class.forName(ShapeCast2D::class.java.name, true, ShapeCast2D::class.java.classLoader)
   ShapeCast2D.MethodBindings
+  Class.forName(ShapeCast3D::class.java.name, true, ShapeCast3D::class.java.classLoader)
   ShapeCast3D.MethodBindings
+  Class.forName(Shortcut::class.java.name, true, Shortcut::class.java.classLoader)
   Shortcut.MethodBindings
+  Class.forName(Skeleton2D::class.java.name, true, Skeleton2D::class.java.classLoader)
   Skeleton2D.MethodBindings
+  Class.forName(Skeleton3D::class.java.name, true, Skeleton3D::class.java.classLoader)
   Skeleton3D.MethodBindings
+  Class.forName(SkeletonIK3D::class.java.name, true, SkeletonIK3D::class.java.classLoader)
   SkeletonIK3D.MethodBindings
+  Class.forName(SkeletonModification2D::class.java.name, true, SkeletonModification2D::class.java.classLoader)
   SkeletonModification2D.MethodBindings
+  Class.forName(SkeletonModification2DCCDIK::class.java.name, true, SkeletonModification2DCCDIK::class.java.classLoader)
   SkeletonModification2DCCDIK.MethodBindings
+  Class.forName(SkeletonModification2DFABRIK::class.java.name, true, SkeletonModification2DFABRIK::class.java.classLoader)
   SkeletonModification2DFABRIK.MethodBindings
+  Class.forName(SkeletonModification2DJiggle::class.java.name, true, SkeletonModification2DJiggle::class.java.classLoader)
   SkeletonModification2DJiggle.MethodBindings
+  Class.forName(SkeletonModification2DLookAt::class.java.name, true, SkeletonModification2DLookAt::class.java.classLoader)
   SkeletonModification2DLookAt.MethodBindings
+  Class.forName(SkeletonModification2DPhysicalBones::class.java.name, true, SkeletonModification2DPhysicalBones::class.java.classLoader)
   SkeletonModification2DPhysicalBones.MethodBindings
+  Class.forName(SkeletonModification2DStackHolder::class.java.name, true, SkeletonModification2DStackHolder::class.java.classLoader)
   SkeletonModification2DStackHolder.MethodBindings
+  Class.forName(SkeletonModification2DTwoBoneIK::class.java.name, true, SkeletonModification2DTwoBoneIK::class.java.classLoader)
   SkeletonModification2DTwoBoneIK.MethodBindings
+  Class.forName(SkeletonModificationStack2D::class.java.name, true, SkeletonModificationStack2D::class.java.classLoader)
   SkeletonModificationStack2D.MethodBindings
+  Class.forName(SkeletonModifier3D::class.java.name, true, SkeletonModifier3D::class.java.classLoader)
   SkeletonModifier3D.MethodBindings
+  Class.forName(SkeletonProfile::class.java.name, true, SkeletonProfile::class.java.classLoader)
   SkeletonProfile.MethodBindings
+  Class.forName(SkeletonProfileHumanoid::class.java.name, true, SkeletonProfileHumanoid::class.java.classLoader)
   SkeletonProfileHumanoid.MethodBindings
+  Class.forName(Skin::class.java.name, true, Skin::class.java.classLoader)
   Skin.MethodBindings
+  Class.forName(SkinReference::class.java.name, true, SkinReference::class.java.classLoader)
   SkinReference.MethodBindings
+  Class.forName(Sky::class.java.name, true, Sky::class.java.classLoader)
   Sky.MethodBindings
+  Class.forName(Slider::class.java.name, true, Slider::class.java.classLoader)
   Slider.MethodBindings
+  Class.forName(SliderJoint3D::class.java.name, true, SliderJoint3D::class.java.classLoader)
   SliderJoint3D.MethodBindings
+  Class.forName(SocketServer::class.java.name, true, SocketServer::class.java.classLoader)
   SocketServer.MethodBindings
+  Class.forName(SoftBody3D::class.java.name, true, SoftBody3D::class.java.classLoader)
   SoftBody3D.MethodBindings
+  Class.forName(SphereMesh::class.java.name, true, SphereMesh::class.java.classLoader)
   SphereMesh.MethodBindings
+  Class.forName(SphereOccluder3D::class.java.name, true, SphereOccluder3D::class.java.classLoader)
   SphereOccluder3D.MethodBindings
+  Class.forName(SphereShape3D::class.java.name, true, SphereShape3D::class.java.classLoader)
   SphereShape3D.MethodBindings
+  Class.forName(SpinBox::class.java.name, true, SpinBox::class.java.classLoader)
   SpinBox.MethodBindings
+  Class.forName(SplineIK3D::class.java.name, true, SplineIK3D::class.java.classLoader)
   SplineIK3D.MethodBindings
+  Class.forName(SplitContainer::class.java.name, true, SplitContainer::class.java.classLoader)
   SplitContainer.MethodBindings
+  Class.forName(SpotLight3D::class.java.name, true, SpotLight3D::class.java.classLoader)
   SpotLight3D.MethodBindings
+  Class.forName(SpringArm3D::class.java.name, true, SpringArm3D::class.java.classLoader)
   SpringArm3D.MethodBindings
+  Class.forName(SpringBoneCollision3D::class.java.name, true, SpringBoneCollision3D::class.java.classLoader)
   SpringBoneCollision3D.MethodBindings
+  Class.forName(SpringBoneCollisionCapsule3D::class.java.name, true, SpringBoneCollisionCapsule3D::class.java.classLoader)
   SpringBoneCollisionCapsule3D.MethodBindings
+  Class.forName(SpringBoneCollisionPlane3D::class.java.name, true, SpringBoneCollisionPlane3D::class.java.classLoader)
   SpringBoneCollisionPlane3D.MethodBindings
+  Class.forName(SpringBoneCollisionSphere3D::class.java.name, true, SpringBoneCollisionSphere3D::class.java.classLoader)
   SpringBoneCollisionSphere3D.MethodBindings
+  Class.forName(SpringBoneSimulator3D::class.java.name, true, SpringBoneSimulator3D::class.java.classLoader)
   SpringBoneSimulator3D.MethodBindings
+  Class.forName(Sprite2D::class.java.name, true, Sprite2D::class.java.classLoader)
   Sprite2D.MethodBindings
+  Class.forName(Sprite3D::class.java.name, true, Sprite3D::class.java.classLoader)
   Sprite3D.MethodBindings
+  Class.forName(SpriteBase3D::class.java.name, true, SpriteBase3D::class.java.classLoader)
   SpriteBase3D.MethodBindings
+  Class.forName(SpriteFrames::class.java.name, true, SpriteFrames::class.java.classLoader)
   SpriteFrames.MethodBindings
+  Class.forName(StandardMaterial3D::class.java.name, true, StandardMaterial3D::class.java.classLoader)
   StandardMaterial3D.MethodBindings
+  Class.forName(StaticBody2D::class.java.name, true, StaticBody2D::class.java.classLoader)
   StaticBody2D.MethodBindings
+  Class.forName(StaticBody3D::class.java.name, true, StaticBody3D::class.java.classLoader)
   StaticBody3D.MethodBindings
+  Class.forName(StatusIndicator::class.java.name, true, StatusIndicator::class.java.classLoader)
   StatusIndicator.MethodBindings
+  Class.forName(StreamPeer::class.java.name, true, StreamPeer::class.java.classLoader)
   StreamPeer.MethodBindings
+  Class.forName(StreamPeerBuffer::class.java.name, true, StreamPeerBuffer::class.java.classLoader)
   StreamPeerBuffer.MethodBindings
+  Class.forName(StreamPeerExtension::class.java.name, true, StreamPeerExtension::class.java.classLoader)
   StreamPeerExtension.MethodBindings
+  Class.forName(StreamPeerGZIP::class.java.name, true, StreamPeerGZIP::class.java.classLoader)
   StreamPeerGZIP.MethodBindings
+  Class.forName(StreamPeerSocket::class.java.name, true, StreamPeerSocket::class.java.classLoader)
   StreamPeerSocket.MethodBindings
+  Class.forName(StreamPeerTCP::class.java.name, true, StreamPeerTCP::class.java.classLoader)
   StreamPeerTCP.MethodBindings
+  Class.forName(StreamPeerTLS::class.java.name, true, StreamPeerTLS::class.java.classLoader)
   StreamPeerTLS.MethodBindings
+  Class.forName(StreamPeerUDS::class.java.name, true, StreamPeerUDS::class.java.classLoader)
   StreamPeerUDS.MethodBindings
+  Class.forName(StyleBox::class.java.name, true, StyleBox::class.java.classLoader)
   StyleBox.MethodBindings
+  Class.forName(StyleBoxEmpty::class.java.name, true, StyleBoxEmpty::class.java.classLoader)
   StyleBoxEmpty.MethodBindings
+  Class.forName(StyleBoxFlat::class.java.name, true, StyleBoxFlat::class.java.classLoader)
   StyleBoxFlat.MethodBindings
+  Class.forName(StyleBoxLine::class.java.name, true, StyleBoxLine::class.java.classLoader)
   StyleBoxLine.MethodBindings
+  Class.forName(StyleBoxTexture::class.java.name, true, StyleBoxTexture::class.java.classLoader)
   StyleBoxTexture.MethodBindings
+  Class.forName(SubViewport::class.java.name, true, SubViewport::class.java.classLoader)
   SubViewport.MethodBindings
+  Class.forName(SubViewportContainer::class.java.name, true, SubViewportContainer::class.java.classLoader)
   SubViewportContainer.MethodBindings
+  Class.forName(SubtweenTweener::class.java.name, true, SubtweenTweener::class.java.classLoader)
   SubtweenTweener.MethodBindings
+  Class.forName(SurfaceTool::class.java.name, true, SurfaceTool::class.java.classLoader)
   SurfaceTool.MethodBindings
+  Class.forName(SyntaxHighlighter::class.java.name, true, SyntaxHighlighter::class.java.classLoader)
   SyntaxHighlighter.MethodBindings
+  Class.forName(SystemFont::class.java.name, true, SystemFont::class.java.classLoader)
   SystemFont.MethodBindings
+  Class.forName(TCPServer::class.java.name, true, TCPServer::class.java.classLoader)
   TCPServer.MethodBindings
+  Class.forName(TLSOptions::class.java.name, true, TLSOptions::class.java.classLoader)
   TLSOptions.MethodBindings
+  Class.forName(TabBar::class.java.name, true, TabBar::class.java.classLoader)
   TabBar.MethodBindings
+  Class.forName(TabContainer::class.java.name, true, TabContainer::class.java.classLoader)
   TabContainer.MethodBindings
+  Class.forName(TextEdit::class.java.name, true, TextEdit::class.java.classLoader)
   TextEdit.MethodBindings
+  Class.forName(TextLine::class.java.name, true, TextLine::class.java.classLoader)
   TextLine.MethodBindings
+  Class.forName(TextMesh::class.java.name, true, TextMesh::class.java.classLoader)
   TextMesh.MethodBindings
+  Class.forName(TextParagraph::class.java.name, true, TextParagraph::class.java.classLoader)
   TextParagraph.MethodBindings
+  Class.forName(TextServer::class.java.name, true, TextServer::class.java.classLoader)
   TextServer.MethodBindings
+  Class.forName(TextServerAdvanced::class.java.name, true, TextServerAdvanced::class.java.classLoader)
   TextServerAdvanced.MethodBindings
+  Class.forName(TextServerDummy::class.java.name, true, TextServerDummy::class.java.classLoader)
   TextServerDummy.MethodBindings
+  Class.forName(TextServerExtension::class.java.name, true, TextServerExtension::class.java.classLoader)
   TextServerExtension.MethodBindings
+  Class.forName(TextServerManager::class.java.name, true, TextServerManager::class.java.classLoader)
   TextServerManager.MethodBindings
+  Class.forName(Texture::class.java.name, true, Texture::class.java.classLoader)
   Texture.MethodBindings
+  Class.forName(Texture2D::class.java.name, true, Texture2D::class.java.classLoader)
   Texture2D.MethodBindings
+  Class.forName(Texture2DArray::class.java.name, true, Texture2DArray::class.java.classLoader)
   Texture2DArray.MethodBindings
+  Class.forName(Texture2DArrayRD::class.java.name, true, Texture2DArrayRD::class.java.classLoader)
   Texture2DArrayRD.MethodBindings
+  Class.forName(Texture2DRD::class.java.name, true, Texture2DRD::class.java.classLoader)
   Texture2DRD.MethodBindings
+  Class.forName(Texture3D::class.java.name, true, Texture3D::class.java.classLoader)
   Texture3D.MethodBindings
+  Class.forName(Texture3DRD::class.java.name, true, Texture3DRD::class.java.classLoader)
   Texture3DRD.MethodBindings
+  Class.forName(TextureButton::class.java.name, true, TextureButton::class.java.classLoader)
   TextureButton.MethodBindings
+  Class.forName(TextureCubemapArrayRD::class.java.name, true, TextureCubemapArrayRD::class.java.classLoader)
   TextureCubemapArrayRD.MethodBindings
+  Class.forName(TextureCubemapRD::class.java.name, true, TextureCubemapRD::class.java.classLoader)
   TextureCubemapRD.MethodBindings
+  Class.forName(TextureLayered::class.java.name, true, TextureLayered::class.java.classLoader)
   TextureLayered.MethodBindings
+  Class.forName(TextureLayeredRD::class.java.name, true, TextureLayeredRD::class.java.classLoader)
   TextureLayeredRD.MethodBindings
+  Class.forName(TextureProgressBar::class.java.name, true, TextureProgressBar::class.java.classLoader)
   TextureProgressBar.MethodBindings
+  Class.forName(TextureRect::class.java.name, true, TextureRect::class.java.classLoader)
   TextureRect.MethodBindings
+  Class.forName(Theme::class.java.name, true, Theme::class.java.classLoader)
   Theme.MethodBindings
+  Class.forName(ThemeDB::class.java.name, true, ThemeDB::class.java.classLoader)
   ThemeDB.MethodBindings
+  Class.forName(Thread::class.java.name, true, Thread::class.java.classLoader)
   Thread.MethodBindings
+  Class.forName(TileData::class.java.name, true, TileData::class.java.classLoader)
   TileData.MethodBindings
+  Class.forName(TileMap::class.java.name, true, TileMap::class.java.classLoader)
   TileMap.MethodBindings
+  Class.forName(TileMapLayer::class.java.name, true, TileMapLayer::class.java.classLoader)
   TileMapLayer.MethodBindings
+  Class.forName(TileMapPattern::class.java.name, true, TileMapPattern::class.java.classLoader)
   TileMapPattern.MethodBindings
+  Class.forName(TileSet::class.java.name, true, TileSet::class.java.classLoader)
   TileSet.MethodBindings
+  Class.forName(TileSetAtlasSource::class.java.name, true, TileSetAtlasSource::class.java.classLoader)
   TileSetAtlasSource.MethodBindings
+  Class.forName(TileSetScenesCollectionSource::class.java.name, true, TileSetScenesCollectionSource::class.java.classLoader)
   TileSetScenesCollectionSource.MethodBindings
+  Class.forName(TileSetSource::class.java.name, true, TileSetSource::class.java.classLoader)
   TileSetSource.MethodBindings
+  Class.forName(Time::class.java.name, true, Time::class.java.classLoader)
   Time.MethodBindings
+  Class.forName(Timer::class.java.name, true, Timer::class.java.classLoader)
   Timer.MethodBindings
+  Class.forName(TorusMesh::class.java.name, true, TorusMesh::class.java.classLoader)
   TorusMesh.MethodBindings
+  Class.forName(TouchScreenButton::class.java.name, true, TouchScreenButton::class.java.classLoader)
   TouchScreenButton.MethodBindings
+  Class.forName(Translation::class.java.name, true, Translation::class.java.classLoader)
   Translation.MethodBindings
+  Class.forName(TranslationDomain::class.java.name, true, TranslationDomain::class.java.classLoader)
   TranslationDomain.MethodBindings
+  Class.forName(TranslationServer::class.java.name, true, TranslationServer::class.java.classLoader)
   TranslationServer.MethodBindings
+  Class.forName(Tree::class.java.name, true, Tree::class.java.classLoader)
   Tree.MethodBindings
+  Class.forName(TreeItem::class.java.name, true, TreeItem::class.java.classLoader)
   TreeItem.MethodBindings
+  Class.forName(TriangleMesh::class.java.name, true, TriangleMesh::class.java.classLoader)
   TriangleMesh.MethodBindings
+  Class.forName(TubeTrailMesh::class.java.name, true, TubeTrailMesh::class.java.classLoader)
   TubeTrailMesh.MethodBindings
+  Class.forName(Tween::class.java.name, true, Tween::class.java.classLoader)
   Tween.MethodBindings
+  Class.forName(Tweener::class.java.name, true, Tweener::class.java.classLoader)
   Tweener.MethodBindings
+  Class.forName(TwoBoneIK3D::class.java.name, true, TwoBoneIK3D::class.java.classLoader)
   TwoBoneIK3D.MethodBindings
+  Class.forName(UDPServer::class.java.name, true, UDPServer::class.java.classLoader)
   UDPServer.MethodBindings
+  Class.forName(UDSServer::class.java.name, true, UDSServer::class.java.classLoader)
   UDSServer.MethodBindings
+  Class.forName(UPNP::class.java.name, true, UPNP::class.java.classLoader)
   UPNP.MethodBindings
+  Class.forName(UPNPDevice::class.java.name, true, UPNPDevice::class.java.classLoader)
   UPNPDevice.MethodBindings
+  Class.forName(UndoRedo::class.java.name, true, UndoRedo::class.java.classLoader)
   UndoRedo.MethodBindings
+  Class.forName(UniformSetCacheRD::class.java.name, true, UniformSetCacheRD::class.java.classLoader)
   UniformSetCacheRD.MethodBindings
+  Class.forName(VBoxContainer::class.java.name, true, VBoxContainer::class.java.classLoader)
   VBoxContainer.MethodBindings
+  Class.forName(VFlowContainer::class.java.name, true, VFlowContainer::class.java.classLoader)
   VFlowContainer.MethodBindings
+  Class.forName(VScrollBar::class.java.name, true, VScrollBar::class.java.classLoader)
   VScrollBar.MethodBindings
+  Class.forName(VSeparator::class.java.name, true, VSeparator::class.java.classLoader)
   VSeparator.MethodBindings
+  Class.forName(VSlider::class.java.name, true, VSlider::class.java.classLoader)
   VSlider.MethodBindings
+  Class.forName(VSplitContainer::class.java.name, true, VSplitContainer::class.java.classLoader)
   VSplitContainer.MethodBindings
+  Class.forName(VehicleBody3D::class.java.name, true, VehicleBody3D::class.java.classLoader)
   VehicleBody3D.MethodBindings
+  Class.forName(VehicleWheel3D::class.java.name, true, VehicleWheel3D::class.java.classLoader)
   VehicleWheel3D.MethodBindings
+  Class.forName(VideoStream::class.java.name, true, VideoStream::class.java.classLoader)
   VideoStream.MethodBindings
+  Class.forName(VideoStreamPlayback::class.java.name, true, VideoStreamPlayback::class.java.classLoader)
   VideoStreamPlayback.MethodBindings
+  Class.forName(VideoStreamPlayer::class.java.name, true, VideoStreamPlayer::class.java.classLoader)
   VideoStreamPlayer.MethodBindings
+  Class.forName(VideoStreamTheora::class.java.name, true, VideoStreamTheora::class.java.classLoader)
   VideoStreamTheora.MethodBindings
+  Class.forName(Viewport::class.java.name, true, Viewport::class.java.classLoader)
   Viewport.MethodBindings
+  Class.forName(ViewportTexture::class.java.name, true, ViewportTexture::class.java.classLoader)
   ViewportTexture.MethodBindings
+  Class.forName(VisibleOnScreenEnabler2D::class.java.name, true, VisibleOnScreenEnabler2D::class.java.classLoader)
   VisibleOnScreenEnabler2D.MethodBindings
+  Class.forName(VisibleOnScreenEnabler3D::class.java.name, true, VisibleOnScreenEnabler3D::class.java.classLoader)
   VisibleOnScreenEnabler3D.MethodBindings
+  Class.forName(VisibleOnScreenNotifier2D::class.java.name, true, VisibleOnScreenNotifier2D::class.java.classLoader)
   VisibleOnScreenNotifier2D.MethodBindings
+  Class.forName(VisibleOnScreenNotifier3D::class.java.name, true, VisibleOnScreenNotifier3D::class.java.classLoader)
   VisibleOnScreenNotifier3D.MethodBindings
+  Class.forName(VisualInstance3D::class.java.name, true, VisualInstance3D::class.java.classLoader)
   VisualInstance3D.MethodBindings
+  Class.forName(VisualShader::class.java.name, true, VisualShader::class.java.classLoader)
   VisualShader.MethodBindings
+  Class.forName(VisualShaderNode::class.java.name, true, VisualShaderNode::class.java.classLoader)
   VisualShaderNode.MethodBindings
+  Class.forName(VisualShaderNodeBillboard::class.java.name, true, VisualShaderNodeBillboard::class.java.classLoader)
   VisualShaderNodeBillboard.MethodBindings
+  Class.forName(VisualShaderNodeBooleanConstant::class.java.name, true, VisualShaderNodeBooleanConstant::class.java.classLoader)
   VisualShaderNodeBooleanConstant.MethodBindings
+  Class.forName(VisualShaderNodeBooleanParameter::class.java.name, true, VisualShaderNodeBooleanParameter::class.java.classLoader)
   VisualShaderNodeBooleanParameter.MethodBindings
+  Class.forName(VisualShaderNodeClamp::class.java.name, true, VisualShaderNodeClamp::class.java.classLoader)
   VisualShaderNodeClamp.MethodBindings
+  Class.forName(VisualShaderNodeColorConstant::class.java.name, true, VisualShaderNodeColorConstant::class.java.classLoader)
   VisualShaderNodeColorConstant.MethodBindings
+  Class.forName(VisualShaderNodeColorFunc::class.java.name, true, VisualShaderNodeColorFunc::class.java.classLoader)
   VisualShaderNodeColorFunc.MethodBindings
+  Class.forName(VisualShaderNodeColorOp::class.java.name, true, VisualShaderNodeColorOp::class.java.classLoader)
   VisualShaderNodeColorOp.MethodBindings
+  Class.forName(VisualShaderNodeColorParameter::class.java.name, true, VisualShaderNodeColorParameter::class.java.classLoader)
   VisualShaderNodeColorParameter.MethodBindings
+  Class.forName(VisualShaderNodeComment::class.java.name, true, VisualShaderNodeComment::class.java.classLoader)
   VisualShaderNodeComment.MethodBindings
+  Class.forName(VisualShaderNodeCompare::class.java.name, true, VisualShaderNodeCompare::class.java.classLoader)
   VisualShaderNodeCompare.MethodBindings
+  Class.forName(VisualShaderNodeConstant::class.java.name, true, VisualShaderNodeConstant::class.java.classLoader)
   VisualShaderNodeConstant.MethodBindings
+  Class.forName(VisualShaderNodeCubemap::class.java.name, true, VisualShaderNodeCubemap::class.java.classLoader)
   VisualShaderNodeCubemap.MethodBindings
+  Class.forName(VisualShaderNodeCubemapParameter::class.java.name, true, VisualShaderNodeCubemapParameter::class.java.classLoader)
   VisualShaderNodeCubemapParameter.MethodBindings
+  Class.forName(VisualShaderNodeCurveTexture::class.java.name, true, VisualShaderNodeCurveTexture::class.java.classLoader)
   VisualShaderNodeCurveTexture.MethodBindings
+  Class.forName(VisualShaderNodeCurveXYZTexture::class.java.name, true, VisualShaderNodeCurveXYZTexture::class.java.classLoader)
   VisualShaderNodeCurveXYZTexture.MethodBindings
+  Class.forName(VisualShaderNodeCustom::class.java.name, true, VisualShaderNodeCustom::class.java.classLoader)
   VisualShaderNodeCustom.MethodBindings
+  Class.forName(VisualShaderNodeDerivativeFunc::class.java.name, true, VisualShaderNodeDerivativeFunc::class.java.classLoader)
   VisualShaderNodeDerivativeFunc.MethodBindings
+  Class.forName(VisualShaderNodeDeterminant::class.java.name, true, VisualShaderNodeDeterminant::class.java.classLoader)
   VisualShaderNodeDeterminant.MethodBindings
+  Class.forName(VisualShaderNodeDistanceFade::class.java.name, true, VisualShaderNodeDistanceFade::class.java.classLoader)
   VisualShaderNodeDistanceFade.MethodBindings
+  Class.forName(VisualShaderNodeDotProduct::class.java.name, true, VisualShaderNodeDotProduct::class.java.classLoader)
   VisualShaderNodeDotProduct.MethodBindings
+  Class.forName(VisualShaderNodeExpression::class.java.name, true, VisualShaderNodeExpression::class.java.classLoader)
   VisualShaderNodeExpression.MethodBindings
+  Class.forName(VisualShaderNodeFaceForward::class.java.name, true, VisualShaderNodeFaceForward::class.java.classLoader)
   VisualShaderNodeFaceForward.MethodBindings
+  Class.forName(VisualShaderNodeFloatConstant::class.java.name, true, VisualShaderNodeFloatConstant::class.java.classLoader)
   VisualShaderNodeFloatConstant.MethodBindings
+  Class.forName(VisualShaderNodeFloatFunc::class.java.name, true, VisualShaderNodeFloatFunc::class.java.classLoader)
   VisualShaderNodeFloatFunc.MethodBindings
+  Class.forName(VisualShaderNodeFloatOp::class.java.name, true, VisualShaderNodeFloatOp::class.java.classLoader)
   VisualShaderNodeFloatOp.MethodBindings
+  Class.forName(VisualShaderNodeFloatParameter::class.java.name, true, VisualShaderNodeFloatParameter::class.java.classLoader)
   VisualShaderNodeFloatParameter.MethodBindings
+  Class.forName(VisualShaderNodeFrame::class.java.name, true, VisualShaderNodeFrame::class.java.classLoader)
   VisualShaderNodeFrame.MethodBindings
+  Class.forName(VisualShaderNodeFresnel::class.java.name, true, VisualShaderNodeFresnel::class.java.classLoader)
   VisualShaderNodeFresnel.MethodBindings
+  Class.forName(VisualShaderNodeGlobalExpression::class.java.name, true, VisualShaderNodeGlobalExpression::class.java.classLoader)
   VisualShaderNodeGlobalExpression.MethodBindings
+  Class.forName(VisualShaderNodeGroupBase::class.java.name, true, VisualShaderNodeGroupBase::class.java.classLoader)
   VisualShaderNodeGroupBase.MethodBindings
+  Class.forName(VisualShaderNodeIf::class.java.name, true, VisualShaderNodeIf::class.java.classLoader)
   VisualShaderNodeIf.MethodBindings
+  Class.forName(VisualShaderNodeInput::class.java.name, true, VisualShaderNodeInput::class.java.classLoader)
   VisualShaderNodeInput.MethodBindings
+  Class.forName(VisualShaderNodeIntConstant::class.java.name, true, VisualShaderNodeIntConstant::class.java.classLoader)
   VisualShaderNodeIntConstant.MethodBindings
+  Class.forName(VisualShaderNodeIntFunc::class.java.name, true, VisualShaderNodeIntFunc::class.java.classLoader)
   VisualShaderNodeIntFunc.MethodBindings
+  Class.forName(VisualShaderNodeIntOp::class.java.name, true, VisualShaderNodeIntOp::class.java.classLoader)
   VisualShaderNodeIntOp.MethodBindings
+  Class.forName(VisualShaderNodeIntParameter::class.java.name, true, VisualShaderNodeIntParameter::class.java.classLoader)
   VisualShaderNodeIntParameter.MethodBindings
+  Class.forName(VisualShaderNodeIs::class.java.name, true, VisualShaderNodeIs::class.java.classLoader)
   VisualShaderNodeIs.MethodBindings
+  Class.forName(VisualShaderNodeLinearSceneDepth::class.java.name, true, VisualShaderNodeLinearSceneDepth::class.java.classLoader)
   VisualShaderNodeLinearSceneDepth.MethodBindings
+  Class.forName(VisualShaderNodeMix::class.java.name, true, VisualShaderNodeMix::class.java.classLoader)
   VisualShaderNodeMix.MethodBindings
+  Class.forName(VisualShaderNodeMultiplyAdd::class.java.name, true, VisualShaderNodeMultiplyAdd::class.java.classLoader)
   VisualShaderNodeMultiplyAdd.MethodBindings
+  Class.forName(VisualShaderNodeOuterProduct::class.java.name, true, VisualShaderNodeOuterProduct::class.java.classLoader)
   VisualShaderNodeOuterProduct.MethodBindings
+  Class.forName(VisualShaderNodeOutput::class.java.name, true, VisualShaderNodeOutput::class.java.classLoader)
   VisualShaderNodeOutput.MethodBindings
+  Class.forName(VisualShaderNodeParameter::class.java.name, true, VisualShaderNodeParameter::class.java.classLoader)
   VisualShaderNodeParameter.MethodBindings
+  Class.forName(VisualShaderNodeParameterRef::class.java.name, true, VisualShaderNodeParameterRef::class.java.classLoader)
   VisualShaderNodeParameterRef.MethodBindings
+  Class.forName(VisualShaderNodeParticleAccelerator::class.java.name, true, VisualShaderNodeParticleAccelerator::class.java.classLoader)
   VisualShaderNodeParticleAccelerator.MethodBindings
+  Class.forName(VisualShaderNodeParticleBoxEmitter::class.java.name, true, VisualShaderNodeParticleBoxEmitter::class.java.classLoader)
   VisualShaderNodeParticleBoxEmitter.MethodBindings
+  Class.forName(VisualShaderNodeParticleConeVelocity::class.java.name, true, VisualShaderNodeParticleConeVelocity::class.java.classLoader)
   VisualShaderNodeParticleConeVelocity.MethodBindings
+  Class.forName(VisualShaderNodeParticleEmit::class.java.name, true, VisualShaderNodeParticleEmit::class.java.classLoader)
   VisualShaderNodeParticleEmit.MethodBindings
+  Class.forName(VisualShaderNodeParticleEmitter::class.java.name, true, VisualShaderNodeParticleEmitter::class.java.classLoader)
   VisualShaderNodeParticleEmitter.MethodBindings
+  Class.forName(VisualShaderNodeParticleMeshEmitter::class.java.name, true, VisualShaderNodeParticleMeshEmitter::class.java.classLoader)
   VisualShaderNodeParticleMeshEmitter.MethodBindings
+  Class.forName(VisualShaderNodeParticleMultiplyByAxisAngle::class.java.name, true, VisualShaderNodeParticleMultiplyByAxisAngle::class.java.classLoader)
   VisualShaderNodeParticleMultiplyByAxisAngle.MethodBindings
+  Class.forName(VisualShaderNodeParticleOutput::class.java.name, true, VisualShaderNodeParticleOutput::class.java.classLoader)
   VisualShaderNodeParticleOutput.MethodBindings
+  Class.forName(VisualShaderNodeParticleRandomness::class.java.name, true, VisualShaderNodeParticleRandomness::class.java.classLoader)
   VisualShaderNodeParticleRandomness.MethodBindings
+  Class.forName(VisualShaderNodeParticleRingEmitter::class.java.name, true, VisualShaderNodeParticleRingEmitter::class.java.classLoader)
   VisualShaderNodeParticleRingEmitter.MethodBindings
+  Class.forName(VisualShaderNodeParticleSphereEmitter::class.java.name, true, VisualShaderNodeParticleSphereEmitter::class.java.classLoader)
   VisualShaderNodeParticleSphereEmitter.MethodBindings
+  Class.forName(VisualShaderNodeProximityFade::class.java.name, true, VisualShaderNodeProximityFade::class.java.classLoader)
   VisualShaderNodeProximityFade.MethodBindings
+  Class.forName(VisualShaderNodeRandomRange::class.java.name, true, VisualShaderNodeRandomRange::class.java.classLoader)
   VisualShaderNodeRandomRange.MethodBindings
+  Class.forName(VisualShaderNodeRemap::class.java.name, true, VisualShaderNodeRemap::class.java.classLoader)
   VisualShaderNodeRemap.MethodBindings
+  Class.forName(VisualShaderNodeReroute::class.java.name, true, VisualShaderNodeReroute::class.java.classLoader)
   VisualShaderNodeReroute.MethodBindings
+  Class.forName(VisualShaderNodeResizableBase::class.java.name, true, VisualShaderNodeResizableBase::class.java.classLoader)
   VisualShaderNodeResizableBase.MethodBindings
+  Class.forName(VisualShaderNodeRotationByAxis::class.java.name, true, VisualShaderNodeRotationByAxis::class.java.classLoader)
   VisualShaderNodeRotationByAxis.MethodBindings
+  Class.forName(VisualShaderNodeSDFRaymarch::class.java.name, true, VisualShaderNodeSDFRaymarch::class.java.classLoader)
   VisualShaderNodeSDFRaymarch.MethodBindings
+  Class.forName(VisualShaderNodeSDFToScreenUV::class.java.name, true, VisualShaderNodeSDFToScreenUV::class.java.classLoader)
   VisualShaderNodeSDFToScreenUV.MethodBindings
+  Class.forName(VisualShaderNodeSample3D::class.java.name, true, VisualShaderNodeSample3D::class.java.classLoader)
   VisualShaderNodeSample3D.MethodBindings
+  Class.forName(VisualShaderNodeScreenNormalWorldSpace::class.java.name, true, VisualShaderNodeScreenNormalWorldSpace::class.java.classLoader)
   VisualShaderNodeScreenNormalWorldSpace.MethodBindings
+  Class.forName(VisualShaderNodeScreenUVToSDF::class.java.name, true, VisualShaderNodeScreenUVToSDF::class.java.classLoader)
   VisualShaderNodeScreenUVToSDF.MethodBindings
+  Class.forName(VisualShaderNodeSmoothStep::class.java.name, true, VisualShaderNodeSmoothStep::class.java.classLoader)
   VisualShaderNodeSmoothStep.MethodBindings
+  Class.forName(VisualShaderNodeStep::class.java.name, true, VisualShaderNodeStep::class.java.classLoader)
   VisualShaderNodeStep.MethodBindings
+  Class.forName(VisualShaderNodeSwitch::class.java.name, true, VisualShaderNodeSwitch::class.java.classLoader)
   VisualShaderNodeSwitch.MethodBindings
+  Class.forName(VisualShaderNodeTexture::class.java.name, true, VisualShaderNodeTexture::class.java.classLoader)
   VisualShaderNodeTexture.MethodBindings
+  Class.forName(VisualShaderNodeTexture2DArray::class.java.name, true, VisualShaderNodeTexture2DArray::class.java.classLoader)
   VisualShaderNodeTexture2DArray.MethodBindings
+  Class.forName(VisualShaderNodeTexture2DArrayParameter::class.java.name, true, VisualShaderNodeTexture2DArrayParameter::class.java.classLoader)
   VisualShaderNodeTexture2DArrayParameter.MethodBindings
+  Class.forName(VisualShaderNodeTexture2DParameter::class.java.name, true, VisualShaderNodeTexture2DParameter::class.java.classLoader)
   VisualShaderNodeTexture2DParameter.MethodBindings
+  Class.forName(VisualShaderNodeTexture3D::class.java.name, true, VisualShaderNodeTexture3D::class.java.classLoader)
   VisualShaderNodeTexture3D.MethodBindings
+  Class.forName(VisualShaderNodeTexture3DParameter::class.java.name, true, VisualShaderNodeTexture3DParameter::class.java.classLoader)
   VisualShaderNodeTexture3DParameter.MethodBindings
+  Class.forName(VisualShaderNodeTextureParameter::class.java.name, true, VisualShaderNodeTextureParameter::class.java.classLoader)
   VisualShaderNodeTextureParameter.MethodBindings
+  Class.forName(VisualShaderNodeTextureParameterTriplanar::class.java.name, true, VisualShaderNodeTextureParameterTriplanar::class.java.classLoader)
   VisualShaderNodeTextureParameterTriplanar.MethodBindings
+  Class.forName(VisualShaderNodeTextureSDF::class.java.name, true, VisualShaderNodeTextureSDF::class.java.classLoader)
   VisualShaderNodeTextureSDF.MethodBindings
+  Class.forName(VisualShaderNodeTextureSDFNormal::class.java.name, true, VisualShaderNodeTextureSDFNormal::class.java.classLoader)
   VisualShaderNodeTextureSDFNormal.MethodBindings
+  Class.forName(VisualShaderNodeTransformCompose::class.java.name, true, VisualShaderNodeTransformCompose::class.java.classLoader)
   VisualShaderNodeTransformCompose.MethodBindings
+  Class.forName(VisualShaderNodeTransformConstant::class.java.name, true, VisualShaderNodeTransformConstant::class.java.classLoader)
   VisualShaderNodeTransformConstant.MethodBindings
+  Class.forName(VisualShaderNodeTransformDecompose::class.java.name, true, VisualShaderNodeTransformDecompose::class.java.classLoader)
   VisualShaderNodeTransformDecompose.MethodBindings
+  Class.forName(VisualShaderNodeTransformFunc::class.java.name, true, VisualShaderNodeTransformFunc::class.java.classLoader)
   VisualShaderNodeTransformFunc.MethodBindings
+  Class.forName(VisualShaderNodeTransformOp::class.java.name, true, VisualShaderNodeTransformOp::class.java.classLoader)
   VisualShaderNodeTransformOp.MethodBindings
+  Class.forName(VisualShaderNodeTransformParameter::class.java.name, true, VisualShaderNodeTransformParameter::class.java.classLoader)
   VisualShaderNodeTransformParameter.MethodBindings
+  Class.forName(VisualShaderNodeTransformVecMult::class.java.name, true, VisualShaderNodeTransformVecMult::class.java.classLoader)
   VisualShaderNodeTransformVecMult.MethodBindings
+  Class.forName(VisualShaderNodeUIntConstant::class.java.name, true, VisualShaderNodeUIntConstant::class.java.classLoader)
   VisualShaderNodeUIntConstant.MethodBindings
+  Class.forName(VisualShaderNodeUIntFunc::class.java.name, true, VisualShaderNodeUIntFunc::class.java.classLoader)
   VisualShaderNodeUIntFunc.MethodBindings
+  Class.forName(VisualShaderNodeUIntOp::class.java.name, true, VisualShaderNodeUIntOp::class.java.classLoader)
   VisualShaderNodeUIntOp.MethodBindings
+  Class.forName(VisualShaderNodeUIntParameter::class.java.name, true, VisualShaderNodeUIntParameter::class.java.classLoader)
   VisualShaderNodeUIntParameter.MethodBindings
+  Class.forName(VisualShaderNodeUVFunc::class.java.name, true, VisualShaderNodeUVFunc::class.java.classLoader)
   VisualShaderNodeUVFunc.MethodBindings
+  Class.forName(VisualShaderNodeUVPolarCoord::class.java.name, true, VisualShaderNodeUVPolarCoord::class.java.classLoader)
   VisualShaderNodeUVPolarCoord.MethodBindings
+  Class.forName(VisualShaderNodeVarying::class.java.name, true, VisualShaderNodeVarying::class.java.classLoader)
   VisualShaderNodeVarying.MethodBindings
+  Class.forName(VisualShaderNodeVaryingGetter::class.java.name, true, VisualShaderNodeVaryingGetter::class.java.classLoader)
   VisualShaderNodeVaryingGetter.MethodBindings
+  Class.forName(VisualShaderNodeVaryingSetter::class.java.name, true, VisualShaderNodeVaryingSetter::class.java.classLoader)
   VisualShaderNodeVaryingSetter.MethodBindings
+  Class.forName(VisualShaderNodeVec2Constant::class.java.name, true, VisualShaderNodeVec2Constant::class.java.classLoader)
   VisualShaderNodeVec2Constant.MethodBindings
+  Class.forName(VisualShaderNodeVec2Parameter::class.java.name, true, VisualShaderNodeVec2Parameter::class.java.classLoader)
   VisualShaderNodeVec2Parameter.MethodBindings
+  Class.forName(VisualShaderNodeVec3Constant::class.java.name, true, VisualShaderNodeVec3Constant::class.java.classLoader)
   VisualShaderNodeVec3Constant.MethodBindings
+  Class.forName(VisualShaderNodeVec3Parameter::class.java.name, true, VisualShaderNodeVec3Parameter::class.java.classLoader)
   VisualShaderNodeVec3Parameter.MethodBindings
+  Class.forName(VisualShaderNodeVec4Constant::class.java.name, true, VisualShaderNodeVec4Constant::class.java.classLoader)
   VisualShaderNodeVec4Constant.MethodBindings
+  Class.forName(VisualShaderNodeVec4Parameter::class.java.name, true, VisualShaderNodeVec4Parameter::class.java.classLoader)
   VisualShaderNodeVec4Parameter.MethodBindings
+  Class.forName(VisualShaderNodeVectorBase::class.java.name, true, VisualShaderNodeVectorBase::class.java.classLoader)
   VisualShaderNodeVectorBase.MethodBindings
+  Class.forName(VisualShaderNodeVectorCompose::class.java.name, true, VisualShaderNodeVectorCompose::class.java.classLoader)
   VisualShaderNodeVectorCompose.MethodBindings
+  Class.forName(VisualShaderNodeVectorDecompose::class.java.name, true, VisualShaderNodeVectorDecompose::class.java.classLoader)
   VisualShaderNodeVectorDecompose.MethodBindings
+  Class.forName(VisualShaderNodeVectorDistance::class.java.name, true, VisualShaderNodeVectorDistance::class.java.classLoader)
   VisualShaderNodeVectorDistance.MethodBindings
+  Class.forName(VisualShaderNodeVectorFunc::class.java.name, true, VisualShaderNodeVectorFunc::class.java.classLoader)
   VisualShaderNodeVectorFunc.MethodBindings
+  Class.forName(VisualShaderNodeVectorLen::class.java.name, true, VisualShaderNodeVectorLen::class.java.classLoader)
   VisualShaderNodeVectorLen.MethodBindings
+  Class.forName(VisualShaderNodeVectorOp::class.java.name, true, VisualShaderNodeVectorOp::class.java.classLoader)
   VisualShaderNodeVectorOp.MethodBindings
+  Class.forName(VisualShaderNodeVectorRefract::class.java.name, true, VisualShaderNodeVectorRefract::class.java.classLoader)
   VisualShaderNodeVectorRefract.MethodBindings
+  Class.forName(VisualShaderNodeWorldPositionFromDepth::class.java.name, true, VisualShaderNodeWorldPositionFromDepth::class.java.classLoader)
   VisualShaderNodeWorldPositionFromDepth.MethodBindings
+  Class.forName(VoxelGI::class.java.name, true, VoxelGI::class.java.classLoader)
   VoxelGI.MethodBindings
+  Class.forName(VoxelGIData::class.java.name, true, VoxelGIData::class.java.classLoader)
   VoxelGIData.MethodBindings
+  Class.forName(WeakRef::class.java.name, true, WeakRef::class.java.classLoader)
   WeakRef.MethodBindings
+  Class.forName(WebRTCDataChannel::class.java.name, true, WebRTCDataChannel::class.java.classLoader)
   WebRTCDataChannel.MethodBindings
+  Class.forName(WebRTCDataChannelExtension::class.java.name, true, WebRTCDataChannelExtension::class.java.classLoader)
   WebRTCDataChannelExtension.MethodBindings
+  Class.forName(WebRTCMultiplayerPeer::class.java.name, true, WebRTCMultiplayerPeer::class.java.classLoader)
   WebRTCMultiplayerPeer.MethodBindings
+  Class.forName(WebRTCPeerConnection::class.java.name, true, WebRTCPeerConnection::class.java.classLoader)
   WebRTCPeerConnection.MethodBindings
+  Class.forName(WebRTCPeerConnectionExtension::class.java.name, true, WebRTCPeerConnectionExtension::class.java.classLoader)
   WebRTCPeerConnectionExtension.MethodBindings
+  Class.forName(WebSocketMultiplayerPeer::class.java.name, true, WebSocketMultiplayerPeer::class.java.classLoader)
   WebSocketMultiplayerPeer.MethodBindings
+  Class.forName(WebSocketPeer::class.java.name, true, WebSocketPeer::class.java.classLoader)
   WebSocketPeer.MethodBindings
+  Class.forName(WebXRInterface::class.java.name, true, WebXRInterface::class.java.classLoader)
   WebXRInterface.MethodBindings
+  Class.forName(Window::class.java.name, true, Window::class.java.classLoader)
   Window.MethodBindings
+  Class.forName(WorkerThreadPool::class.java.name, true, WorkerThreadPool::class.java.classLoader)
   WorkerThreadPool.MethodBindings
+  Class.forName(World2D::class.java.name, true, World2D::class.java.classLoader)
   World2D.MethodBindings
+  Class.forName(World3D::class.java.name, true, World3D::class.java.classLoader)
   World3D.MethodBindings
+  Class.forName(WorldBoundaryShape2D::class.java.name, true, WorldBoundaryShape2D::class.java.classLoader)
   WorldBoundaryShape2D.MethodBindings
+  Class.forName(WorldBoundaryShape3D::class.java.name, true, WorldBoundaryShape3D::class.java.classLoader)
   WorldBoundaryShape3D.MethodBindings
+  Class.forName(WorldEnvironment::class.java.name, true, WorldEnvironment::class.java.classLoader)
   WorldEnvironment.MethodBindings
+  Class.forName(X509Certificate::class.java.name, true, X509Certificate::class.java.classLoader)
   X509Certificate.MethodBindings
+  Class.forName(XMLParser::class.java.name, true, XMLParser::class.java.classLoader)
   XMLParser.MethodBindings
+  Class.forName(XRAnchor3D::class.java.name, true, XRAnchor3D::class.java.classLoader)
   XRAnchor3D.MethodBindings
+  Class.forName(XRBodyModifier3D::class.java.name, true, XRBodyModifier3D::class.java.classLoader)
   XRBodyModifier3D.MethodBindings
+  Class.forName(XRBodyTracker::class.java.name, true, XRBodyTracker::class.java.classLoader)
   XRBodyTracker.MethodBindings
+  Class.forName(XRCamera3D::class.java.name, true, XRCamera3D::class.java.classLoader)
   XRCamera3D.MethodBindings
+  Class.forName(XRController3D::class.java.name, true, XRController3D::class.java.classLoader)
   XRController3D.MethodBindings
+  Class.forName(XRControllerTracker::class.java.name, true, XRControllerTracker::class.java.classLoader)
   XRControllerTracker.MethodBindings
+  Class.forName(XRFaceModifier3D::class.java.name, true, XRFaceModifier3D::class.java.classLoader)
   XRFaceModifier3D.MethodBindings
+  Class.forName(XRFaceTracker::class.java.name, true, XRFaceTracker::class.java.classLoader)
   XRFaceTracker.MethodBindings
+  Class.forName(XRHandModifier3D::class.java.name, true, XRHandModifier3D::class.java.classLoader)
   XRHandModifier3D.MethodBindings
+  Class.forName(XRHandTracker::class.java.name, true, XRHandTracker::class.java.classLoader)
   XRHandTracker.MethodBindings
+  Class.forName(XRInterface::class.java.name, true, XRInterface::class.java.classLoader)
   XRInterface.MethodBindings
+  Class.forName(XRInterfaceExtension::class.java.name, true, XRInterfaceExtension::class.java.classLoader)
   XRInterfaceExtension.MethodBindings
+  Class.forName(XRNode3D::class.java.name, true, XRNode3D::class.java.classLoader)
   XRNode3D.MethodBindings
+  Class.forName(XROrigin3D::class.java.name, true, XROrigin3D::class.java.classLoader)
   XROrigin3D.MethodBindings
+  Class.forName(XRPose::class.java.name, true, XRPose::class.java.classLoader)
   XRPose.MethodBindings
+  Class.forName(XRPositionalTracker::class.java.name, true, XRPositionalTracker::class.java.classLoader)
   XRPositionalTracker.MethodBindings
+  Class.forName(XRServer::class.java.name, true, XRServer::class.java.classLoader)
   XRServer.MethodBindings
+  Class.forName(XRTracker::class.java.name, true, XRTracker::class.java.classLoader)
   XRTracker.MethodBindings
+  Class.forName(XRVRS::class.java.name, true, XRVRS::class.java.classLoader)
   XRVRS.MethodBindings
+  Class.forName(ZIPPacker::class.java.name, true, ZIPPacker::class.java.classLoader)
   ZIPPacker.MethodBindings
+  Class.forName(ZIPReader::class.java.name, true, ZIPReader::class.java.classLoader)
   ZIPReader.MethodBindings
 }
 
