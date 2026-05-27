@@ -98,22 +98,20 @@ fun Project.entryGenerationSyncRegistrationFilesTask(
     generateEntryFilesTask: TaskProvider<ClassGraphGenerateEntryFilesTask>,
     indexExistingRegistrationFilesTask: TaskProvider<ClassGraphIndexExistingRegistrationFilesTask>,
 ): TaskProvider<ClassGraphUpdateRegistrationFilesTask> {
-    val registrationFilesOutputDir = providers.provider {
-        (
-            godotJvmExtension
-                .registrationFilesDirectory
-                .orNull
-                ?.asFile
-                ?: projectDir
-                    .resolve("gdj")
-                    .apply { mkdirs() }
-            )
-            .relativeTo(projectDir)
-            .path
-            .replace(File.separator, "/")
-            .removePrefix("/")
-            .removeSuffix("/")
-    }
+    val godotProjectDir = requireConfiguredGodotProjectDirectory()
+    val registrationFilesOutputDirPath = (
+        godotJvmExtension
+            .registrationFilesDirectory
+            .orNull
+            ?.asFile
+            ?: projectDir.resolve("gdj")
+        )
+        .relativeTo(projectDir)
+        .path
+        .replace(File.separator, "/")
+        .removePrefix("/")
+        .removeSuffix("/")
+    val registrationFilesOutputDir = layout.projectDirectory.dir(registrationFilesOutputDirPath)
 
     return tasks.register(
         "entryGenerationSyncRegistrationFiles",
@@ -126,25 +124,25 @@ fun Project.entryGenerationSyncRegistrationFilesTask(
         task.generatedRegistrationFilesRootDir.convention(
             generateEntryFilesTask.flatMap { it.generatedRegistrationFilesRootDir }
         )
-        task.godotProjectDirPath.convention(providers.provider { requireConfiguredGodotProjectDirectory().absolutePath })
+        task.godotProjectDirPath.convention(godotProjectDir.absolutePath)
         task.existingRegistrationFilesIndexFile.convention(
             indexExistingRegistrationFilesTask.flatMap { it.existingRegistrationFilesIndexFile }
         )
-        task.registrationFilesOutputDir.convention(
-            project.layout.projectDirectory.dir(registrationFilesOutputDir)
-        )
+        task.registrationFilesOutputDir.convention(registrationFilesOutputDir)
         task.synchronizedRegistrationFiles.from(providers.provider {
-            val generatedRoot = task.generatedRegistrationFilesRootDir.get().asFile
+            val generatedRoot = generateEntryFilesTask.get().generatedRegistrationFilesRootDir.get().asFile
             val generatedFilesByFileName = readGeneratedRegistrationFiles(generatedRoot, logger)
-            val existingRegistrationFileIndex = readExistingRegistrationFileIndex(task.existingRegistrationFilesIndexFile.get().asFile)
+            val existingRegistrationFileIndex = readExistingRegistrationFileIndex(
+                indexExistingRegistrationFilesTask.get().existingRegistrationFilesIndexFile.get().asFile
+            )
             val matchedFileNames = mutableSetOf<String>()
             val synchronizedFiles = mutableListOf<File>()
-            val targetRoot = task.registrationFilesOutputDir.get().asFile
+            val targetRoot = registrationFilesOutputDir.asFile
 
             existingRegistrationFileIndex.forEach { indexEntry ->
                 if (generatedFilesByFileName.containsKey(indexEntry.registrationFileName)) {
                     matchedFileNames.add(indexEntry.registrationFileName)
-                    synchronizedFiles.add(File(task.godotProjectDirPath.get()).resolve(indexEntry.relativePath))
+                    synchronizedFiles.add(godotProjectDir.resolve(indexEntry.relativePath))
                 }
             }
 
