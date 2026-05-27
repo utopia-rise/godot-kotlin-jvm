@@ -150,14 +150,17 @@ internal fun readGeneratedRegistrationFiles(generatedRoot: File, logger: org.gra
 }
 
 fun Project.entryGenerationIndexExistingRegistrationFilesTask(): TaskProvider<ClassGraphIndexExistingRegistrationFilesTask> {
+    val godotProjectDir = requireConfiguredGodotProjectDirectory()
+    val registrationFileTree = godotRegistrationFileTree(godotProjectDir)
+
     return tasks.register(
         "entryGenerationIndexExistingRegistrationFiles",
         ClassGraphIndexExistingRegistrationFilesTask::class.java
     ) { task ->
         task.group = "godot-kotlin-jvm-internal"
         task.description = "Indexes existing .gdj files across the Godot project."
-        task.godotProjectDirPath.convention(providers.provider { requireConfiguredGodotProjectDirectory().absolutePath })
-        task.existingRegistrationFiles.from(providers.provider { godotRegistrationFileTree(requireConfiguredGodotProjectDirectory()) })
+        task.godotProjectDirPath.convention(godotProjectDir.absolutePath)
+        task.existingRegistrationFiles.from(registrationFileTree)
         task.existingRegistrationFilesIndexFile.convention(
             layout.buildDirectory.file("intermediates/entry-generation/existing-registration-files.idx")
         )

@@ -158,6 +158,7 @@ private fun Project.registerUserFacingBuildTasks() {
 private fun Project.setupEntryGenerationTasks(
     classesTask: TaskProvider<out Task>,
 ): EntryGenerationTasks {
+    val fastBuildRequested = isFastBuildRequested()
     val packageUserJarTask = packageUserJarTask(
         userClassesTask = classesTask,
     )
@@ -165,7 +166,7 @@ private fun Project.setupEntryGenerationTasks(
         packageUserJarTask = packageUserJarTask,
     )
     generateEntryFilesTask.configure { task ->
-        task.onlyIf { !isFastBuildRequested() }
+        task.onlyIf { !fastBuildRequested }
     }
 
     val updateRegistrationFilesTask = if (godotJvmExtension.disableGdj.get()) {
@@ -173,14 +174,14 @@ private fun Project.setupEntryGenerationTasks(
     } else {
         val indexExistingRegistrationFilesTask = entryGenerationIndexExistingRegistrationFilesTask()
         indexExistingRegistrationFilesTask.configure { task ->
-            task.onlyIf { !isFastBuildRequested() }
+            task.onlyIf { !fastBuildRequested }
         }
         entryGenerationSyncRegistrationFilesTask(
             generateEntryFilesTask = generateEntryFilesTask,
             indexExistingRegistrationFilesTask = indexExistingRegistrationFilesTask,
         ).also { taskProvider ->
             taskProvider.configure { task ->
-                task.onlyIf { !isFastBuildRequested() }
+                task.onlyIf { !fastBuildRequested }
             }
         }
     }
@@ -189,7 +190,7 @@ private fun Project.setupEntryGenerationTasks(
         generateEntryFilesTask = generateEntryFilesTask,
     )
     generatedEntryJarTask.configure { task ->
-        task.onlyIf { !isFastBuildRequested() }
+        task.onlyIf { !fastBuildRequested }
     }
 
     return EntryGenerationTasks(
