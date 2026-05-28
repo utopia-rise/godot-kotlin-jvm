@@ -3,10 +3,9 @@ package godot.intellij.plugin.project
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.util.Key
 import com.intellij.openapi.vfs.VirtualFile
+import com.intellij.openapi.module.ModuleUtilCore
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
-import org.jetbrains.kotlin.idea.util.projectStructure.getModule
-import org.jetbrains.kotlin.idea.util.projectStructure.module
 import java.io.File
 
 private const val godotProjectFileName = "project.godot"
@@ -25,7 +24,7 @@ fun VirtualFile.isInGodotRoot(project: Project): Boolean = getGodotRoot(project)
 
 fun VirtualFile.getGodotRoot(project: Project): GodotRoot? {
     return getCachedGodotRoot(path) {
-        getModule(project)?.godotRoot ?: findGodotRootFromPath(path)
+        ModuleUtilCore.findModuleForFile(this, project)?.godotRoot ?: findGodotRootFromPath(path)
     }
 }
 
@@ -34,7 +33,7 @@ fun PsiFile.isInGodotRoot(): Boolean = getGodotRoot() != null
 fun PsiFile.getGodotRoot(): GodotRoot? {
     val file = virtualFile ?: return null
     return file.getCachedGodotRoot(file.path) {
-        module?.godotRoot ?: findGodotRootFromPath(file.path)
+        ModuleUtilCore.findModuleForFile(file, project)?.godotRoot ?: findGodotRootFromPath(file.path)
     }
 }
 
@@ -43,7 +42,7 @@ fun PsiElement.isInGodotRoot(): Boolean = getGodotRoot() != null
 fun PsiElement.getGodotRoot(): GodotRoot? {
     val file = containingFile?.virtualFile ?: return null
     return file.getCachedGodotRoot(file.path) {
-        module?.godotRoot ?: findGodotRootFromPath(file.path)
+        ModuleUtilCore.findModuleForPsiElement(this)?.godotRoot ?: findGodotRootFromPath(file.path)
     }
 }
 

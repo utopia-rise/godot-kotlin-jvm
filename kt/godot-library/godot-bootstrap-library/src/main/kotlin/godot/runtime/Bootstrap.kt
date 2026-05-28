@@ -6,9 +6,9 @@ import godot.core.VariantParser
 import godot.core.addVariantMapping
 import godot.internal.logging.JVMLogging
 import godot.internal.reflection.TypeManager
-import godot.registerEngineTypeMethods
 import godot.registerEngineTypes
 import godot.registerVariantMapping
+import godot.warmEngineTypes
 import godot.registration.ClassRegistry
 import godot.registration.Entry
 import java.util.ServiceLoader
@@ -38,7 +38,6 @@ internal class Bootstrap {
     fun initializeEngineTypes() {
         registerVariantMapping()
         registerEngineTypes()
-        registerEngineTypeMethods()
 
         registerManagedEngineTypes(
             TypeManager.engineTypeNames.toTypedArray(),
@@ -82,6 +81,7 @@ internal class Bootstrap {
 
         TypeManager.clearScriptClassCache()
 
+        warmEngineTypes()
         forceJvmInitializationOfSingletons()
         // END: order matters!
 

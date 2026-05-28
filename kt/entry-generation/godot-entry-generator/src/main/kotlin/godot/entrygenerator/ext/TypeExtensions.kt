@@ -47,6 +47,47 @@ import godot.core.Vector4
 import godot.core.Vector4i
 import godot.entrygenerator.model.Type
 import godot.entrygenerator.model.TypeKind
+import godot.entrygenerator.model.RegisteredClass
+import godot.entrygenerator.settings.Settings
+import godot.tools.common.constants.GODOT_AABB
+import godot.tools.common.constants.GODOT_ARRAY
+import godot.tools.common.constants.GODOT_BOOL
+import godot.tools.common.constants.GODOT_CALLABLE
+import godot.tools.common.constants.GODOT_COLOR
+import godot.tools.common.constants.GODOT_DICTIONARY
+import godot.tools.common.constants.GODOT_FLOAT
+import godot.tools.common.constants.GODOT_INT
+import godot.tools.common.constants.GODOT_NIL
+import godot.tools.common.constants.GODOT_NODE_PATH
+import godot.tools.common.constants.GODOT_OBJECT
+import godot.tools.common.constants.GODOT_PLANE
+import godot.tools.common.constants.GODOT_PACKED_BYTE_ARRAY
+import godot.tools.common.constants.GODOT_PACKED_COLOR_ARRAY
+import godot.tools.common.constants.GODOT_PACKED_FLOAT32_ARRAY
+import godot.tools.common.constants.GODOT_PACKED_FLOAT64_ARRAY
+import godot.tools.common.constants.GODOT_PACKED_INT32_ARRAY
+import godot.tools.common.constants.GODOT_PACKED_INT64_ARRAY
+import godot.tools.common.constants.GODOT_PACKED_STRING_ARRAY
+import godot.tools.common.constants.GODOT_PACKED_VECTOR2_ARRAY
+import godot.tools.common.constants.GODOT_PACKED_VECTOR3_ARRAY
+import godot.tools.common.constants.GODOT_PACKED_VECTOR4_ARRAY
+import godot.tools.common.constants.GODOT_PROJECTION
+import godot.tools.common.constants.GODOT_QUATERNION
+import godot.tools.common.constants.GODOT_RECT2
+import godot.tools.common.constants.GODOT_RECT2I
+import godot.tools.common.constants.GODOT_RID
+import godot.tools.common.constants.GODOT_SIGNAL
+import godot.tools.common.constants.GODOT_STRING
+import godot.tools.common.constants.GODOT_STRING_NAME
+import godot.tools.common.constants.GODOT_TRANSFORM2D
+import godot.tools.common.constants.GODOT_TRANSFORM3D
+import godot.tools.common.constants.GODOT_BASIS
+import godot.tools.common.constants.GODOT_VECTOR2
+import godot.tools.common.constants.GODOT_VECTOR2I
+import godot.tools.common.constants.GODOT_VECTOR3
+import godot.tools.common.constants.GODOT_VECTOR3I
+import godot.tools.common.constants.GODOT_VECTOR4
+import godot.tools.common.constants.GODOT_VECTOR4I
 import godot.tools.common.constants.godotApiPackage
 import godot.tools.common.constants.godotCorePackage
 import godot.tools.common.constants.isCollectionsType
@@ -150,6 +191,60 @@ fun Type.baseGodotType(): Type? {
     } else {
         allSuperTypes.firstOrNull { supertype -> supertype.fqName.isFromPackage(godotApiPackage) }
     }
+}
+
+fun Type?.toGodotClassName(
+    settings: Settings,
+    registeredClassesByFqName: Map<String, RegisteredClass>,
+): String = when {
+    this == null || fqName == Unit::class.qualifiedName || fqName == Any::class.qualifiedName -> ""
+    kind == TypeKind.ENUM_CLASS -> fqName.substringAfterLast(".")
+    fqName == Boolean::class.qualifiedName -> GODOT_BOOL
+    fqName == Byte::class.qualifiedName ||
+        fqName == Short::class.qualifiedName ||
+        fqName == Int::class.qualifiedName ||
+        fqName == NaturalT::class.qualifiedName ||
+        fqName == Long::class.qualifiedName -> GODOT_INT
+    fqName == Float::class.qualifiedName ||
+        fqName == RealT::class.qualifiedName ||
+        fqName == Double::class.qualifiedName -> GODOT_FLOAT
+    fqName == String::class.qualifiedName -> GODOT_STRING
+    fqName == Vector2::class.qualifiedName -> GODOT_VECTOR2
+    fqName == Vector2i::class.qualifiedName -> GODOT_VECTOR2I
+    fqName == Rect2::class.qualifiedName -> GODOT_RECT2
+    fqName == Rect2i::class.qualifiedName -> GODOT_RECT2I
+    fqName == Vector3::class.qualifiedName -> GODOT_VECTOR3
+    fqName == Vector3i::class.qualifiedName -> GODOT_VECTOR3I
+    fqName == Vector4::class.qualifiedName -> GODOT_VECTOR4
+    fqName == Vector4i::class.qualifiedName -> GODOT_VECTOR4I
+    fqName == Plane::class.qualifiedName -> GODOT_PLANE
+    fqName == Quaternion::class.qualifiedName -> GODOT_QUATERNION
+    fqName == AABB::class.qualifiedName -> GODOT_AABB
+    fqName == Basis::class.qualifiedName -> GODOT_BASIS
+    fqName == Color::class.qualifiedName -> GODOT_COLOR
+    fqName == Transform2D::class.qualifiedName -> GODOT_TRANSFORM2D
+    fqName == Transform3D::class.qualifiedName -> GODOT_TRANSFORM3D
+    fqName == Projection::class.qualifiedName -> GODOT_PROJECTION
+    fqName == StringName::class.qualifiedName -> GODOT_STRING_NAME
+    fqName == NodePath::class.qualifiedName -> GODOT_NODE_PATH
+    fqName == RID::class.qualifiedName -> GODOT_RID
+    fqName == Callable::class.qualifiedName || fqName.startsWith(LambdaCallable::class.qualifiedName!!) -> GODOT_CALLABLE
+    fqName == Signal::class.qualifiedName -> GODOT_SIGNAL
+    fqName == Dictionary::class.qualifiedName -> GODOT_DICTIONARY
+    fqName == VariantArray::class.qualifiedName -> GODOT_ARRAY
+    fqName == PackedByteArray::class.qualifiedName -> GODOT_PACKED_BYTE_ARRAY
+    fqName == PackedInt32Array::class.qualifiedName -> GODOT_PACKED_INT32_ARRAY
+    fqName == PackedInt64Array::class.qualifiedName -> GODOT_PACKED_INT64_ARRAY
+    fqName == PackedFloat32Array::class.qualifiedName -> GODOT_PACKED_FLOAT32_ARRAY
+    fqName == PackedFloat64Array::class.qualifiedName -> GODOT_PACKED_FLOAT64_ARRAY
+    fqName == PackedStringArray::class.qualifiedName -> GODOT_PACKED_STRING_ARRAY
+    fqName == PackedVector2Array::class.qualifiedName -> GODOT_PACKED_VECTOR2_ARRAY
+    fqName == PackedVector3Array::class.qualifiedName -> GODOT_PACKED_VECTOR3_ARRAY
+    fqName == PackedVector4Array::class.qualifiedName -> GODOT_PACKED_VECTOR4_ARRAY
+    fqName == PackedColorArray::class.qualifiedName -> GODOT_PACKED_COLOR_ARRAY
+    baseGodotType() != null -> registeredClassesByFqName[fqName]?.getRegisteredName(settings)
+        ?: baseGodotType()!!.fqName.substringAfterLast(".")
+    else -> fqName.substringAfterLast(".").ifEmpty { GODOT_NIL }.let { if (it == "Object") GODOT_OBJECT else it }
 }
 
 fun Type.toTypeName(): TypeName = ClassName(

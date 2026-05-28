@@ -442,15 +442,24 @@ object CallableGenerationService : ICallableGenerationService {
                     )
                     .returns(returnTypeParameter)
                     .addCode(
-                        CodeBlock.of(
-                            buildString {
-                                append("return·(${Generator.functionParameterName}·as?·%T)?.invoke(")
-                                append(containerInfo.toArgumentsString("args[INDEX]", "INDEX"))
-                                append(")?:·throw·%T()")
-                            },
-                            containerInfo.toErasedLambdaTypeName(returnType = returnTypeParameter),
-                            Core.invalidJvmLambdaException
-                        )
+                        CodeBlock
+                            .builder()
+                            .addStatement(
+                                "val function = %N as? %T ?: throw %T()",
+                                Generator.functionParameterName,
+                                containerInfo.toErasedLambdaTypeName(returnType = returnTypeParameter),
+                                Core.invalidJvmLambdaException
+                            )
+                            .add(
+                                CodeBlock.of(
+                                    buildString {
+                                        append("return function.invoke(")
+                                        append(containerInfo.toArgumentsString("args[INDEX]", "INDEX"))
+                                        append(")")
+                                    }
+                                )
+                            )
+                            .build()
                     )
                     .build()
 
@@ -716,6 +725,5 @@ object CallableGenerationService : ICallableGenerationService {
             .writeTo(dir)
     }
 }
-
 
 
