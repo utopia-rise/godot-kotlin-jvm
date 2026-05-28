@@ -1,9 +1,9 @@
 package godot.benchmark.bunnymark.v3
 
-import godot.RandomNumberGenerator
-import godot.Sprite2D
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
+import godot.api.RandomNumberGenerator
+import godot.api.Sprite2D
 import godot.core.Vector2
 
 @RegisterClass

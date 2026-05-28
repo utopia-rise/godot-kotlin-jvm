@@ -1,17 +1,16 @@
 package godot.benchmark.bunnymark
 
-import godot.core.*
-import godot.*
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 import godot.annotation.RegisterSignal
-import godot.signals.signal
+import godot.api.*
+import godot.core.*
 
 @RegisterClass("BunnymarkV1Sprites")
 class BunnymarkV1Sprites : Node2D() {
 
-	@RegisterSignal
-	val benchmarkFinished by signal<Int>("bunnyCount")
+	@RegisterSignal("bunnyCount")
+	val benchmarkFinished by signal1<Int>()
 
 	private data class Bunny(var sprite: Sprite2D, var speed: Vector2)
 

@@ -3,16 +3,16 @@
 
 registeredName = Bunny
 fqName = godot.benchmark.bunnymark.v3.Bunny
-relativeSourcePath = src/main/kotlin/godot/benchmark/bunnymark/v3/Bunny.kt
 baseType = Sprite2D
 supertypes = [
-    godot.Sprite2D,
-	godot.Node2D,
-	godot.CanvasItem,
-	godot.Node,
-	godot.Object,
+    godot.api.Sprite2D,
+	godot.api.Node2D,
+	godot.api.CanvasItem,
+	godot.api.Node,
+	godot.api.Object,
 	godot.core.KtObject,
-	kotlin.Any
+	godot.common.interop.NativeWrapper,
+	godot.common.interop.NativePointer
 ]
 signals = [
     
