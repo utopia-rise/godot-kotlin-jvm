@@ -10,7 +10,6 @@ import godot.entrygenerator.ext.toKtVariantMemberName
 import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.model.RegisteredSignal
 import godot.entrygenerator.settings.Settings
-import godot.registration.KtFunctionArgument
 
 object SignalRegistrationGenerator {
     fun generate(
@@ -34,7 +33,7 @@ object SignalRegistrationGenerator {
     private fun getStringTemplate(registeredSignal: RegisteredSignal): String = buildString {
         append(if (registeredSignal.isFunctionReference) "signalFunction(%L" else "signalProperty(%L")
         repeat(kotlin.math.max(registeredSignal.parameterTypes.size, registeredSignal.parameterNames.size)) {
-            append(", %T(%M, %S, %S)")
+            append(",·argument(%M,·%S,·%S)")
         }
         append(")")
     }
@@ -50,7 +49,6 @@ object SignalRegistrationGenerator {
         if (registeredSignal.parameterTypes.size >= registeredSignal.parameterNames.size) {
             registeredSignal.parameterTypes.forEachIndexed { index, argumentType ->
                 val argumentName = registeredSignal.parameterNames.getOrNull(index) ?: "p$index"
-                add(KtFunctionArgument::class)
                 add(argumentType.toKtVariantMemberName())
                 add(argumentType.toGodotClassName(settings, registeredClassesByFqName))
                 add(argumentName)
@@ -63,7 +61,6 @@ object SignalRegistrationGenerator {
                     ?.toGodotClassName(settings, registeredClassesByFqName)
                     ?: ""
 
-                add(KtFunctionArgument::class)
                 add(argumentTypeVariantType)
                 add(argumentTypeFqName)
                 add(argumentName)

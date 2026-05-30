@@ -492,7 +492,6 @@ enum class VariantParser(override val id: Int) : VariantConverter {
     }
 }
 
-//TODO: Unify VariantCaster with Meta in the API gen + use it in entry gen. Or maybe get rid of it and just have both with their own solution.
 sealed class VariantCaster(val coreVariant: VariantParser) : VariantConverter {
     override val id by coreVariant::id
 

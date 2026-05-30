@@ -1,4 +1,4 @@
-package godot.registration
+package godot.annotation
 
 enum class Range {
     NONE,

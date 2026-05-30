@@ -99,16 +99,16 @@ abstract class KtObject : NativeWrapper {
     protected external fun getSingleton(classIndex: Int)
     private external fun freeObject(rawPtr: VoidPtr)
 
-    internal companion object {
+    companion object {
         private val initConfig = ThreadLocal.withInitial { InitConfiguration() }
-        private inline fun <T> withConfig(ptr: VoidPtr, id: ObjectID, block: () -> T) = initConfig.get().let {
+        private fun <T> withConfig(ptr: VoidPtr, id: ObjectID, block: () -> T) = initConfig.get().let {
             it.ptr = ptr
             it.objectID = id
             block()
         }
 
         /** When using this constructor, the newly created instances doesn't register itself to the MemoryManager, the caller must do it.*/
-        inline fun <T : NativeWrapper> createScriptInstance(rawPtr: VoidPtr, id: ObjectID, constructor: () -> T) = withConfig(rawPtr, id) {
+        fun <T : NativeWrapper> createScriptInstance(rawPtr: VoidPtr, id: ObjectID, constructor: () -> T) = withConfig(rawPtr, id) {
             val obj = constructor()
             MemoryManager.registerExistingNativeObject(obj)
             obj

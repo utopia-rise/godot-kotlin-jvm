@@ -1,6 +1,7 @@
-package godot.core
+package godot.registration
 
 import godot.common.interop.VariantConverter
+import godot.core.*
 import godot.internal.logging.GodotLogging
 import godot.internal.memory.TransferContext
 
@@ -16,6 +17,18 @@ data class KtPropertyInfo(
         PropertyUsageFlags.NONE.flag
     }
 ) {
+    constructor(
+        type: VariantConverter,
+        className: String,
+        name: String = ""
+    ) : this(
+        _type = type,
+        name = name,
+        className = className,
+        _hint = PropertyHint.NONE,
+        hintString = "",
+    )
+
     val type: Int
         get() = _type.id
 
@@ -98,4 +111,3 @@ class KtEnumListProperty<T : KtObject, P : Enum<P>, L : Collection<P>>(
         setter(instance, setValueConverter(arg))
     }
 }
-

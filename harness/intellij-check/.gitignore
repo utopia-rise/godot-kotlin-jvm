@@ -1,0 +1,11 @@
+.gradle/
+.idea/
+build/
+out/
+
+*.class
+*.log
+
+# Kotlin/Scala/JVM incremental compilation caches
+.kotlin/
+*.hprof

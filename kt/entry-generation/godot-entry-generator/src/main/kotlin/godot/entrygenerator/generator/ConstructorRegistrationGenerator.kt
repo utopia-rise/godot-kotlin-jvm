@@ -2,7 +2,7 @@ package godot.entrygenerator.generator
 
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.FunSpec
-import godot.core.KtConstructor
+import godot.registration.KtConstructor
 
 object ConstructorRegistrationGenerator {
 
@@ -14,4 +14,3 @@ object ConstructorRegistrationGenerator {
         )
     }
 }
-

@@ -9,7 +9,6 @@ import com.squareup.kotlinpoet.asClassName
 import godot.annotation.RpcMode
 import godot.annotation.Sync
 import godot.api.MultiplayerPeer
-import godot.core.KtRpcConfig
 import godot.entrygenerator.ext.VariantConverterNames
 import godot.entrygenerator.ext.getAnnotation
 import godot.entrygenerator.ext.isEnum
@@ -21,18 +20,15 @@ import godot.entrygenerator.model.RpcAnnotation
 import godot.entrygenerator.model.TypeKind
 import godot.entrygenerator.settings.Settings
 import godot.entrygenerator.utils.asEnumName
-import godot.registration.KtFunctionArgument
 import godot.tools.common.constants.godotCorePackage
+import godot.tools.common.constants.godotRegistrationPackage
 import godot.tools.common.constants.kotlinCollectionsPackage
 import godot.tools.common.constants.notificationFunction
 
 object FunctionRegistrationGenerator {
-    fun generate(
+    fun generateNotifications(
         registeredClass: RegisteredClass,
-        settings: Settings,
-        className: ClassName,
         registerClassControlFlow: FunSpec.Builder,
-        registeredClassesByFqName: Map<String, RegisteredClass>,
     ) {
         val notificationFunctions = mapOf(
             *registeredClass.functions.filter { registeredFunction ->
@@ -77,6 +73,16 @@ object FunctionRegistrationGenerator {
             registerClassControlFlow
                 .addStatement("notificationFunctionClass$i.free()")
         }
+    }
+
+    fun generateFunctions(
+        registeredClass: RegisteredClass,
+        settings: Settings,
+        className: ClassName,
+        registerClassControlFlow: FunSpec.Builder,
+        registeredClassesByFqName: Map<String, RegisteredClass>,
+    ) {
+        val otherFunctions = registeredClass.functions.filter { it.name != notificationFunction }
 
         otherFunctions.forEach { registeredFunction ->
             registerClassControlFlow
@@ -99,18 +105,15 @@ object FunctionRegistrationGenerator {
             "%M"
         }
 
-        append("function(%L,·$variantType")
+        append("function(%L,·rpc(%M,·%L,·%M,·%L),·returns($variantType,·%S)")
 
         if (registeredFunction.parameters.isNotEmpty()) {
             registeredFunction.parameters.forEach { _ ->
-                append(",·%M")
-            }
-            registeredFunction.parameters.forEach { _ ->
-                append(",·%T(%M,·%S,·%S)")
+                append(",·argument(%M,·%S,·%S)")
             }
         }
 
-        append(",·%T($variantType,·%S),·%T(%M.ordinal,·%L,·%M.ordinal,·%L))")
+        append(")")
     }
 
     private fun getTemplateArgs(
@@ -119,8 +122,6 @@ object FunctionRegistrationGenerator {
         className: ClassName,
         registeredClassesByFqName: Map<String, RegisteredClass>,
     ): List<Any> {
-        val ktFunctionArgumentClassName = KtFunctionArgument::class.asClassName()
-
         val returnType = registeredFunction.returnType.toGodotClassName(settings, registeredClassesByFqName)
 
         val typeClassName = registeredFunction.returnType?.let { returnTypeInfo ->
@@ -132,27 +133,10 @@ object FunctionRegistrationGenerator {
 
         return buildList {
             add(getFunctionReference(registeredFunction, className))
-
-            if (registeredFunction.returnType?.isEnum() == true) {
-                add(registeredFunction.returnType.toKtVariantMemberName())
-                typeClassName?.let { add(it) }
-            } else {
-                add(registeredFunction.returnType?.toKtVariantMemberName() ?: VariantConverterNames.nil)
-            }
-
-            if (registeredFunction.parameters.isNotEmpty()) {
-                registeredFunction.parameters.forEach { parameter ->
-                    add(parameter.type.toKtVariantMemberName())
-                }
-                registeredFunction.parameters.forEach { valueParameter ->
-                    add(ktFunctionArgumentClassName)
-                    add(valueParameter.type.toKtVariantMemberName())
-                    add(valueParameter.type.toGodotClassName(settings, registeredClassesByFqName))
-                    add(valueParameter.name)
-                }
-            }
-
-            add(ktFunctionArgumentClassName)
+            add(getRpcModeEnum(registeredFunction))
+            add(getRpcCallLocal(registeredFunction))
+            add(getRpcTransferModeEnum(registeredFunction))
+            add(getRpcChannel(registeredFunction))
 
             if (registeredFunction.returnType?.isEnum() == true) {
                 add(registeredFunction.returnType.toKtVariantMemberName())
@@ -162,11 +146,14 @@ object FunctionRegistrationGenerator {
             }
 
             add(returnType)
-            add(KtRpcConfig::class.asClassName())
-            add(getRpcModeEnum(registeredFunction))
-            add(getRpcCallLocal(registeredFunction))
-            add(getRpcTransferModeEnum(registeredFunction))
-            add(getRpcChannel(registeredFunction))
+
+            if (registeredFunction.parameters.isNotEmpty()) {
+                registeredFunction.parameters.forEach { valueParameter ->
+                    add(valueParameter.type.toKtVariantMemberName())
+                    add(valueParameter.type.toGodotClassName(settings, registeredClassesByFqName))
+                    add(valueParameter.name)
+                }
+            }
         }
     }
 

@@ -82,14 +82,9 @@ object PropertyRegistrationGenerator {
         val typeClassName = registeredProperty.type.toTypeName()
 
         val variantTypeArguments = buildList {
+            add(registeredProperty.type.toKtVariantMemberName())
             if (registeredProperty.type.isEnum()) {
-                add(registeredProperty.type.toKtVariantMemberName())
                 add(typeClassName)
-                add(registeredProperty.type.toGodotVariantMemberName())
-                add(typeClassName)
-            } else {
-                add(registeredProperty.type.toKtVariantMemberName())
-                add(registeredProperty.type.toGodotVariantMemberName())
             }
         }
 
@@ -102,13 +97,11 @@ object PropertyRegistrationGenerator {
 
             if (registeredProperty.type.isEnum()) {
                 addStatement(
-                    "property(%S,·%L,·%L,·%M(%T.entries.toTypedArray()),·%M(%T.entries.toTypedArray()),·%S,·%M,·%S,·%L.flag)",
+                    "property(%S,·%L,·%L,·%M(%T.entries.toTypedArray()),·%S,·%M,·%S,·%T.%L)",
                     registeredProperty.name.convertToSnakeCase(),
                     getGetterReference(registeredProperty, className),
                     getSetterReference(registeredProperty, className),
                     registeredProperty.type.toKtVariantMemberName(),
-                    typeClassName,
-                    registeredProperty.type.toGodotVariantMemberName(),
                     typeClassName,
                     typeGodotName,
                     PropertyTypeHintProvider.provide(registeredProperty),
@@ -116,30 +109,29 @@ object PropertyRegistrationGenerator {
                         .provide(registeredProperty, settings, registeredClassesByFqName)
                         .getHintString()
                         .replace("?", ""),
-                    getPropertyUsage(registeredProperty),
+                    PropertyUsageFlags::class, getPropertyUsage(registeredProperty),
                 )
             } else {
                 addStatement(
-                    "property(%S,·%L,·%L,·%M,·%M,·%S,·%M,·%S,·%L.flag)",
+                    "property(%S,·%L,·%L,·%M,·%S,·%M,·%S,·%T.%L)",
                     registeredProperty.name.convertToSnakeCase(),
                     getGetterReference(registeredProperty, className),
                     getSetterReference(registeredProperty, className),
                     registeredProperty.type.toKtVariantMemberName(),
-                    registeredProperty.type.toGodotVariantMemberName(),
                     typeGodotName,
                     PropertyTypeHintProvider.provide(registeredProperty),
                     PropertyHintStringGeneratorProvider
                         .provide(registeredProperty, settings, registeredClassesByFqName)
                         .getHintString()
                         .replace("?", ""),
-                    getPropertyUsage(registeredProperty),
+                    PropertyUsageFlags::class, getPropertyUsage(registeredProperty),
                 )
             }
             return
         }
 
         addStatement(
-            "property(%L,·$variantType,·$variantType,·%S,·%M,·%S,·%L.flag)",
+            "property(%L,·$variantType,·%S,·%M,·%S,·%T.%L)",
             getPropertyReference(registeredProperty, className),
             *variantTypeArguments.toTypedArray(),
             typeGodotName,
@@ -148,7 +140,7 @@ object PropertyRegistrationGenerator {
                 .provide(registeredProperty, settings, registeredClassesByFqName)
                 .getHintString()
                 .replace("?", ""),
-            getPropertyUsage(registeredProperty),
+            PropertyUsageFlags::class, getPropertyUsage(registeredProperty),
         )
     }
 
@@ -166,11 +158,11 @@ object PropertyRegistrationGenerator {
             }
 
             addStatement(
-                "enumListProperty(%S,·%L,·%L,·%L.flag,·%S)",
+                "enumListProperty(%S,·%L,·%L,·%T.%L,·%S)",
                 registeredProperty.name.convertToSnakeCase(),
                 getGetterReference(registeredProperty, className),
                 getSetterReference(registeredProperty, className),
-                getPropertyUsage(registeredProperty),
+                PropertyUsageFlags::class, getPropertyUsage(registeredProperty),
                 PropertyHintStringGeneratorProvider
                     .provide(registeredProperty, settings, registeredClassesByFqName)
                     .getHintString()
@@ -180,9 +172,9 @@ object PropertyRegistrationGenerator {
         }
 
         addStatement(
-            "enumListProperty(%L,·%L.flag,·%S)",
+            "enumListProperty(%L,·%T.%L,·%S)",
             getPropertyReference(registeredProperty, className),
-            getPropertyUsage(registeredProperty),
+            PropertyUsageFlags::class, getPropertyUsage(registeredProperty),
             PropertyHintStringGeneratorProvider
                 .provide(registeredProperty, settings, registeredClassesByFqName)
                 .getHintString()
@@ -205,11 +197,11 @@ object PropertyRegistrationGenerator {
             }
 
             registerClassControlFlow.addStatement(
-                "enumFlagProperty(%S,·%L,·%L,·%L.flag,·%S)",
+                "enumFlagProperty(%S,·%L,·%L,·%T.%L,·%S)",
                 registeredProperty.name.convertToCamelCase(),
                 getGetterReference(registeredProperty, className),
                 getSetterReference(registeredProperty, className),
-                getPropertyUsage(registeredProperty),
+                PropertyUsageFlags::class, getPropertyUsage(registeredProperty),
                 PropertyHintStringGeneratorProvider
                     .provide(registeredProperty, settings, registeredClassesByFqName)
                     .getHintString()
@@ -219,9 +211,9 @@ object PropertyRegistrationGenerator {
         }
 
         registerClassControlFlow.addStatement(
-            "enumFlagProperty(%L,·%L.flag,·%S)",
+            "enumFlagProperty(%L,·%T.%L,·%S)",
             getPropertyReference(registeredProperty, className),
-            getPropertyUsage(registeredProperty),
+            PropertyUsageFlags::class, getPropertyUsage(registeredProperty),
             PropertyHintStringGeneratorProvider
                 .provide(registeredProperty, settings, registeredClassesByFqName)
                 .getHintString()
@@ -251,12 +243,11 @@ object PropertyRegistrationGenerator {
         return className.member(setterName).reference()
     }
 
-    private fun getPropertyUsage(registeredProperty: RegisteredProperty): MemberName {
-        val classname = PropertyUsageFlags::class.asClassName()
+    private fun getPropertyUsage(registeredProperty: RegisteredProperty): String {
         return if (registeredProperty.annotations.hasAnnotation<ExportAnnotation>()) {
-            MemberName(classname, "DEFAULT")
+            "DEFAULT"
         } else {
-            MemberName(classname, "NONE")
+            "NONE"
         }
     }
 }

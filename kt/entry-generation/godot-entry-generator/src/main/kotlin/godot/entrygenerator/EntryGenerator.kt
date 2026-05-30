@@ -9,12 +9,10 @@ import godot.entrygenerator.checks.RpcCheck
 import godot.entrygenerator.checks.SignalTypeCheck
 import godot.entrygenerator.exceptions.ChecksFailedException
 import godot.entrygenerator.filebuilder.ClassRegistrarFileBuilder
-import godot.entrygenerator.filebuilder.MainEntryFileBuilder
 import godot.entrygenerator.model.JvmType
 import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.settings.Settings
 import godot.entrygenerator.utils.Logger
-import godot.tools.common.constants.generatedEntryClassName
 import godot.tools.common.constants.godotEntryBasePackage
 import java.io.BufferedWriter
 import java.io.File
@@ -36,7 +34,6 @@ object EntryGenerator {
         registeredClasses: List<RegisteredClass>,
         jvmTypeFqNamesProvider: (JvmType) -> Set<String>,
         classRegistrarAppendableProvider: (RegisteredClass) -> BufferedWriter,
-        mainBufferedWriterProvider: () -> BufferedWriter,
         serviceFile: File
     ) {
         serviceFile.parentFile.mkdirs()
@@ -49,27 +46,32 @@ object EntryGenerator {
         }
 
         val registeredClassesByFqName = registeredClasses.associateBy { it.fqName }
-        with(MainEntryFileBuilder()) {
-            registeredClasses.forEach { registeredClass ->
-                registerClassRegistrar(
-                    ClassRegistrarFileBuilder(
-                        registeredClass = registeredClass,
-                        settings = settings,
-                        registrarAppendableProvider = classRegistrarAppendableProvider,
-                        registeredClassesByFqName = registeredClassesByFqName,
-                    ),
-                    settings
-                )
-            }
-            registerUserTypesVariantMappings(registeredClasses)
-            build(godotEntryBasePackage, mainBufferedWriterProvider)
+        registeredClasses.forEach { registeredClass ->
+            ClassRegistrarFileBuilder(
+                registeredClass = registeredClass,
+                settings = settings,
+                registrarAppendableProvider = classRegistrarAppendableProvider,
+                registeredClassesByFqName = registeredClassesByFqName,
+            ).build(settings)
         }
 
-        generateServiceFile(serviceFile)
+        generateServiceFile(
+            serviceFile = serviceFile,
+            registeredClasses = registeredClasses,
+            settings = settings,
+        )
     }
 
-    private fun generateServiceFile(serviceFile: File) {
-        serviceFile.writeText("$godotEntryBasePackage.$generatedEntryClassName")
+    private fun generateServiceFile(
+        serviceFile: File,
+        registeredClasses: List<RegisteredClass>,
+        settings: Settings
+    ) {
+        serviceFile.writeText(
+            registeredClasses.joinToString(separator = "\n") { registeredClass ->
+                "$godotEntryBasePackage.${registeredClass.getRegisteredName(settings)}Registrar"
+            }
+        )
     }
 
     private fun executeSanityChecksUsingRegisteredClasses(

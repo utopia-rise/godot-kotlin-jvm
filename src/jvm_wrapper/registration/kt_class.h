@@ -10,7 +10,7 @@
 #include "kt_object.h"
 #include "kt_signal_info.h"
 
-JVM_INSTANCE_WRAPPER(KtClass, "godot.core.KtClass") {
+JVM_INSTANCE_WRAPPER(KtClass, "godot.registration.KtClass") {
     JVM_CLASS(KtClass)
 
     // clang-format off
@@ -30,10 +30,10 @@ JVM_INSTANCE_WRAPPER(KtClass, "godot.core.KtClass") {
         INIT_JNI_METHOD(GET_FQDN, "getFqdn", "()Ljava/lang/String;")
         INIT_JNI_METHOD(GET_REGISTERED_SUPERTYPES, "getRegisteredSupertypes", "()[Ljava/lang/String;")
         INIT_JNI_METHOD(GET_BASE_GODOT_CLASS, "getBaseGodotClass", "()Ljava/lang/String;")
-        INIT_JNI_METHOD(GET_FUNCTIONS, "getFunctions", "()[Lgodot/core/KtFunction;")
-        INIT_JNI_METHOD(GET_PROPERTIES, "getProperties", "()[Lgodot/core/KtProperty;")
-        INIT_JNI_METHOD(GET_SIGNAL_INFOS, "getSignalInfos", "()[Lgodot/core/KtSignalInfo;")
-        INIT_JNI_METHOD(GET_CONSTRUCTOR, "getConstructor", "()Lgodot/core/KtConstructor;")
+        INIT_JNI_METHOD(GET_FUNCTIONS, "getFunctions", "()[Lgodot/registration/KtFunction;")
+        INIT_JNI_METHOD(GET_PROPERTIES, "getProperties", "()[Lgodot/registration/KtProperty;")
+        INIT_JNI_METHOD(GET_SIGNAL_INFOS, "getSignalInfos", "()[Lgodot/registration/KtSignalInfo;")
+        INIT_JNI_METHOD(GET_CONSTRUCTOR, "getConstructor", "()Lgodot/registration/KtConstructor;")
         INIT_JNI_METHOD(GET_HAS_NOTIFICATION, "getHasNotification", "()Z")
         INIT_JNI_METHOD(DO_NOTIFICATION, "doNotification", "(Lgodot/core/KtObject;)V")
     )

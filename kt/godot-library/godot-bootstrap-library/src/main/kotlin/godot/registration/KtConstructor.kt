@@ -1,9 +1,10 @@
 @file:Suppress("UNCHECKED_CAST", "unused")
 
-package godot.core
+package godot.registration
 
 import godot.common.interop.ObjectID
 import godot.common.interop.VoidPtr
+import godot.core.KtObject
 
 class KtConstructor<T : KtObject>(
     private val constructor: () -> T

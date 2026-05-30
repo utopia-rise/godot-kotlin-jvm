@@ -1,28 +1,27 @@
 package godot.runtime
 
 import godot.common.GODOT_JVM_VERSION
-import godot.core.KtClass
 import godot.core.VariantParser
 import godot.core.addVariantMapping
 import godot.internal.logging.JVMLogging
 import godot.internal.reflection.TypeManager
 import godot.registerEngineTypes
 import godot.registerVariantMapping
+import godot.registration.ClassRegistrar
+import godot.registration.KtClass
 import godot.warmEngineTypes
-import godot.registration.ClassRegistry
-import godot.registration.Entry
-import java.util.ServiceLoader
+import java.util.*
 
 internal class Bootstrap {
-    private lateinit var serviceLoader: ServiceLoader<Entry>
+    private lateinit var serviceLoader: ServiceLoader<ClassRegistrar>
 
     fun initJar(loader: ClassLoader) {
-        serviceLoader = ServiceLoader.load(Entry::class.java, loader)
+        serviceLoader = ServiceLoader.load(ClassRegistrar::class.java, loader)
         initializeUsingEntry()
     }
 
     fun initNativeImage() {
-        serviceLoader = ServiceLoader.load(Entry::class.java)
+        serviceLoader = ServiceLoader.load(ClassRegistrar::class.java)
         initializeUsingEntry()
     }
 
@@ -48,36 +47,26 @@ internal class Bootstrap {
     private fun initializeUsingEntry() {
         val entryIterator = serviceLoader.iterator()
         if (!entryIterator.hasNext()) {
-            JVMLogging.error("Unable to find Entry class, no classes will be loaded")
+            JVMLogging.error("Unable to find class registrars, no classes will be loaded")
         }
 
-        val entries = buildList {
+        val registrars = buildList {
             while (entryIterator.hasNext()) {
                 add(entryIterator.next())
             }
         }
 
-        val classRegistries = mutableListOf<ClassRegistry>()
-
-        entries.forEach { entry ->
-            val registry = ClassRegistry()
-
-            classRegistries.add(registry)
-
-            with(entry) {
-                for (clazz in registry.getRegisteredClasses()) {
-                    addVariantMapping(clazz, VariantParser.OBJECT)
-                }
-                registry.init()
+        val classes = buildList {
+            registrars.forEach { registrar ->
+                val ktClass = registrar.register()
+                TypeManager.registerUserType(ktClass.registeredName, ktClass.kClass)
+                addVariantMapping(ktClass.kClass, VariantParser.OBJECT)
+                add(ktClass)
             }
         }
 
-        val classes = classRegistries
-            .flatMap { registry -> registry.classes }
-            .toTypedArray()
-
         // START: order matters!
-        loadClasses(classes)
+        loadClasses(classes.toTypedArray())
 
         TypeManager.clearScriptClassCache()
 
@@ -87,13 +76,10 @@ internal class Bootstrap {
 
         fun forceJvmInitializationOfScripts() {
             // Has to run after all classes are initialized in case a static block needs a Godot type
-            entries.zip(classRegistries).forEach { (entry, registry) ->
-                with(entry) {
-                    registry.getRegisteredClasses().forEach { clazz ->
-                    // Force init of the class so any static block runs.
-                    Class.forName(clazz.java.name, true, clazz.java.classLoader)
-                }
-                }
+            classes.forEach { ktClass ->
+                val clazz = ktClass.kClass
+                // Force init of the class so any static block runs.
+                Class.forName(clazz.java.name, true, clazz.java.classLoader)
             }
         }
 

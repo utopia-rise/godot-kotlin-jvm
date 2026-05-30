@@ -38,7 +38,7 @@ import godot.core.Vector2
 import godot.core.Vector3
 import godot.core.dictionaryOf
 import godot.core.variantArrayOf
-import godot.registration.Range
+import godot.annotation.Range
 import godot.tests.subpackage.OtherScript
 import godot.common.util.RealT
 import godot.extension.api.getNodeAs

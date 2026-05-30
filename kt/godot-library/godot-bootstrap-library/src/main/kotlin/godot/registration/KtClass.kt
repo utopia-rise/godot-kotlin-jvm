@@ -1,11 +1,16 @@
-package godot.core
+package godot.registration
 
+import godot.core.KtObject
+import godot.core.NotificationFunction
+import godot.core.VariantParser
 import godot.internal.memory.TransferContext
+import kotlin.reflect.KClass
 
 @Suppress("unused")
 data class KtClass<T : KtObject>(
     val registeredName: String,
     val fqdn: String,
+    val kClass: KClass<out KtObject>,
     private val _registeredSupertypes: List<String>,
     val constructor: KtConstructor<T>,
     private val _properties: Map<String, KtProperty<T, *>>,
@@ -51,7 +56,11 @@ data class KtClass<T : KtObject>(
     }
 
     @Suppress("UNCHECKED_CAST")
-    private fun doNotification(notificationFunction: NotificationFunction<out KtObject>, instance: T, notification: Int) {
+    private fun doNotification(
+        notificationFunction: NotificationFunction<out KtObject>,
+        instance: T,
+        notification: Int
+    ) {
         (notificationFunction as NotificationFunction<T>).invoke(instance, notification)
     }
 }

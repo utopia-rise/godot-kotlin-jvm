@@ -30,7 +30,7 @@ import org.gradle.api.tasks.bundling.Jar
 import java.io.File
 import java.io.FileOutputStream
 
-private const val entryServiceName = "$godotRegistrationPackage.Entry"
+private const val entryServiceName = "$godotRegistrationPackage.ClassRegistrar"
 
 @CacheableTask
 abstract class ClassGraphGenerateEntryFilesTask : DefaultTask() {
@@ -107,20 +107,6 @@ abstract class ClassGraphGenerateEntryFilesTask : DefaultTask() {
                     .resolve("godot")
                     .resolve("entry")
                     .resolve("${registeredClass.getRegisteredName(settings)}Registrar.kt")
-
-                file.parentFile.mkdirs()
-                if (!file.exists()) {
-                    file.createNewFile()
-                }
-
-                FileOutputStream(file).bufferedWriter()
-            },
-            mainBufferedWriterProvider = {
-                val file = outputRoot
-                    .resolve("main")
-                    .resolve("kotlin")
-                    .resolve("godot")
-                    .resolve("Entry.kt")
 
                 file.parentFile.mkdirs()
                 if (!file.exists()) {

@@ -1,4 +1,4 @@
-package godot.core
+package godot.registration
 
 data class KtSignalInfo(
     val name: String,
