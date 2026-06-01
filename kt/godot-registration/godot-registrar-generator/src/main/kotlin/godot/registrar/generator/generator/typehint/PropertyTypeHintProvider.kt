@@ -2,12 +2,16 @@ package godot.registrar.generator.generator.typehint
 
 import com.squareup.kotlinpoet.MemberName
 import godot.core.PropertyHint
+import godot.registrar.generator.ext.isCompatibleList
+import godot.registrar.generator.ext.isDictionary
 import godot.registrar.generator.generator.typehint.array.JvmArrayAndDictionaryTypeHintGenerator
 import godot.registrar.generator.generator.typehint.coretypes.JvmCoreTypeTypeHintGenerator
 import godot.registrar.generator.generator.typehint.primitives.JvmPrimitivesTypeHintGenerator
 import godot.registrar.generator.utils.asEnumName
 import godot.registration.model.RegisteredProperty
-import godot.registration.model.ext.*
+import godot.registration.model.ext.isCoreType
+import godot.registration.model.ext.isNodeType
+import godot.registration.model.ext.isRefCounted
 import godot.registration.model.hint.property.IntFlagHint
 import godot.registration.model.hint.property.MultilineTextHint
 import godot.registration.model.hint.property.PlaceHolderTextHint
@@ -64,4 +68,3 @@ object PropertyTypeHintProvider {
         }
     }
 }
-

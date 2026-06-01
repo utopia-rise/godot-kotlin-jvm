@@ -3,7 +3,7 @@ package godot.registrar.generator.generator.hintstring
 import godot.registrar.generator.ext.getRegisteredName
 import godot.registrar.generator.settings.Settings
 import godot.registration.model.RegisteredProperty
-import godot.registration.model.ext.baseGodotType
+import godot.registrar.generator.ext.baseGodotType
 import godot.registration.model.hint.property.PropertyHint
 import godot.registration.model.types.ScriptClass
 

@@ -1,8 +1,8 @@
-package godot.annotation.processor.classgraph.logging
+package godot.registration.model.logging
 
 import org.slf4j.Logger
 
-class LoggerWrapper(private val logger: Logger) : godot.registration.model.util.Logger {
+class LoggerWrapper(private val logger: Logger) : godot.registration.model.logging.Logger {
     override fun logging(message: String, sourceElement: Any?) = logger.info(format(message, sourceElement))
 
     override fun info(message: String, sourceElement: Any?) = logger.info(format(message, sourceElement))

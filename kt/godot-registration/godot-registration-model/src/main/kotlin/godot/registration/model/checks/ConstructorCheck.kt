@@ -1,7 +1,7 @@
 package godot.registration.model.checks
 
 import godot.registration.model.types.ScriptClass
-import godot.registration.model.util.Logger
+import godot.registration.model.logging.Logger
 
 /**
  * Warns when a registered, instantiable class has no public no-argument constructor, since Godot needs one

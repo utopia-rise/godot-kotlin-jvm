@@ -1,0 +1,30 @@
+flowchart TD
+    A["ClassGraphProcessor<br/>scan + top-level selection"] --> B["ProcessorContext<br/>scanResult, settings, caches, errors"]
+    A --> C["JvmShapeResolvers<br/>pick language strategy"]
+    A --> D["AnnotationMapper<br/>AnnotationInfo -> RpcConfig / hints"]
+    A --> E["TypeMapper<br/>TypeDescriptor / TypeArgument -> Type"]
+    A --> F["MemberMapper<br/>constructors / properties / functions / signals"]
+    A --> G["ClassMapper<br/>ScriptClass / GodotBaseClass / ScriptInterface"]
+
+    B --> D
+    B --> E
+    B --> F
+    B --> G
+
+    C --> C1["ScalaShapeResolver"]
+    C --> C2["JavaShapeResolver"]
+    C --> C3["KotlinShapeResolver"]
+    C --> CX["LanguageNotIdentified"]
+
+    G --> F
+    G --> E
+    G --> D
+    G --> C
+
+    F --> D
+    F --> E
+    F --> C
+
+    E --> H["registration-model Type / ScriptFamily"]
+    F --> I["RegisteredConstructor / RegisteredProperty / RegisteredFunction / RegisteredSignal"]
+    G --> J["ScriptClass / GodotBaseClass / ScriptInterface"]

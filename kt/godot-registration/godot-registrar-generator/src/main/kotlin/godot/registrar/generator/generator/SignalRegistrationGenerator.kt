@@ -5,10 +5,10 @@ import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.MemberName.Companion.member
 import godot.core.VariantCaster
+import godot.registrar.generator.ext.toKtVariantMemberName
 import godot.registrar.generator.ext.toGodotClassName
 import godot.registrar.generator.settings.Settings
 import godot.registration.model.RegisteredSignal
-import godot.registration.model.ext.toKtVariantMemberName
 import godot.registration.model.types.ScriptClass
 
 object SignalRegistrationGenerator {

@@ -1,15 +1,12 @@
 package godot.annotation.processor.classgraph.models
 
-import godot.annotation.processor.classgraph.Context
-import godot.annotation.processor.classgraph.ProcessorSettings
+import godot.annotation.processor.classgraph.ProcessorContext
 import godot.annotation.processor.classgraph.constants.JVM_OBJECT
 import godot.annotation.processor.classgraph.constants.VOID
 import godot.annotation.processor.classgraph.constants.isGodotPrimitive
 import godot.annotation.processor.classgraph.constants.jvmPrimitivesToKotlinPrimitives
-import godot.annotation.processor.classgraph.extensions.getJavaLangObjectType
-import godot.annotation.processor.classgraph.extensions.hasAnnotation
-import godot.annotation.processor.classgraph.extensions.mapToType
 import godot.annotation.processor.classgraph.extensions.toStringWithoutAnnotations
+import godot.annotation.processor.classgraph.shape.JvmShapeResolver
 import godot.registration.model.types.Type
 import godot.registration.model.types.TypeKind
 import io.github.classgraph.*
@@ -21,13 +18,13 @@ class TypeDescriptor private constructor(
     val nullable: Boolean,
     val isLateInit: Boolean,
 ) {
-    private val rawDescriptor = descriptor.toStringWithoutAnnotations()
+    val rawDescriptor: String = descriptor.toStringWithoutAnnotations()
 
-    constructor(fieldInfo: FieldInfo, classInfo: ClassInfo) : this(
+    constructor(fieldInfo: FieldInfo, classInfo: ClassInfo, shapeResolver: JvmShapeResolver) : this(
         fieldInfo.typeDescriptor,
         (fieldInfo.typeSignature as? ClassRefTypeSignature)?.typeArguments ?: listOf(),
-        !fieldInfo.hasAnnotation(NotNull::class.java, classInfo),
-        fieldInfo.hasAnnotation("kotlin.Lateinit", classInfo),
+        !shapeResolver.hasAnnotation(fieldInfo, classInfo, NotNull::class.java.name),
+        shapeResolver.isLateinit(fieldInfo, classInfo),
     )
 
     constructor(parameterInfo: MethodParameterInfo) : this(
@@ -53,8 +50,7 @@ class TypeDescriptor private constructor(
 
     val isGodotPrimitive: Boolean = rawDescriptor.isGodotPrimitive
 
-    // Primitives have no ClassInfo to inspect, so their model Type is built directly with kind = PRIMITIVE.
-    private val primitiveType = when {
+    val primitiveType: Type? = when {
         isGodotPrimitive -> Type(
             fqName = requireNotNull(jvmPrimitivesToKotlinPrimitives[rawDescriptor]),
             kind = TypeKind.PRIMITIVE,
@@ -64,34 +60,12 @@ class TypeDescriptor private constructor(
         else -> null
     }
 
-    val isPrimitive = primitiveType != null
-    val isVoid = rawDescriptor == VOID
-    val isObject = rawDescriptor == JVM_OBJECT
+    val isPrimitive: Boolean = primitiveType != null
+    val isVoid: Boolean = rawDescriptor == VOID
+    val isObject: Boolean = rawDescriptor == JVM_OBJECT
 
-    val typeClassInfo: ClassInfo
-        get() = requireNotNull(Context.getClassInfoOrNull(rawDescriptor)) {
+    fun typeClassInfo(context: ProcessorContext): ClassInfo =
+        requireNotNull(context.getClassInfoOrNull(rawDescriptor)) {
             "Could not resolve class info for descriptor: $rawDescriptor"
         }
-
-    fun getMappedType(settings: ProcessorSettings): Type = primitiveType ?: if (isObject) {
-        getJavaLangObjectType()
-    } else {
-        typeClassInfo.mapToType(typeArguments, settings)
-    }
-
-    /** Like [getMappedType] but carries the property's nullability on the returned [Type.isNullable]. */
-    fun getMappedPropertyType(settings: ProcessorSettings): Type {
-        val base = getMappedType(settings)
-        val propertyNullable = !isGodotPrimitive && base.kind != TypeKind.CORE_TYPE && !isLateInit && nullable
-        if (base.kind == TypeKind.CLASS || base.kind == TypeKind.INTERFACE) {
-            return base
-        }
-
-        return Type(
-            fqName = base.fqName,
-            kind = base.kind,
-            isNullable = propertyNullable,
-            genericArguments = base.genericArguments,
-        )
-    }
 }

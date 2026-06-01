@@ -5,7 +5,7 @@ import godot.common.util.RealT
 import godot.core.*
 import godot.registrar.generator.settings.RegisteredNameMode
 import godot.registrar.generator.settings.Settings
-import godot.registration.model.ext.baseGodotType
+import godot.registrar.generator.ext.baseGodotType
 import godot.registration.model.types.ScriptClass
 import godot.registration.model.types.Type
 import godot.registration.model.types.TypeKind

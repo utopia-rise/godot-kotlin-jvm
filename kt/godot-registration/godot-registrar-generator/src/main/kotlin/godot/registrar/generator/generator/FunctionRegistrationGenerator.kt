@@ -9,12 +9,12 @@ import godot.annotation.RpcMode
 import godot.annotation.Sync
 import godot.api.MultiplayerPeer
 import godot.registrar.generator.ext.flattenedHierarchy
+import godot.registrar.generator.ext.toKtVariantMemberName
 import godot.registrar.generator.ext.toGodotClassName
 import godot.registrar.generator.settings.Settings
 import godot.registrar.generator.utils.asEnumName
 import godot.registration.model.RegisteredFunction
 import godot.registration.model.ext.isEnum
-import godot.registration.model.ext.toKtVariantMemberName
 import godot.registration.model.types.ScriptClass
 import godot.tools.common.constants.godotCorePackage
 import godot.tools.common.constants.kotlinCollectionsPackage

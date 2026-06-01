@@ -1,10 +1,10 @@
 package godot.registrar.generator.generator.hintstring
 
 import godot.registrar.generator.RegistrarGenerator
+import godot.registrar.generator.ext.isCompatibleList
+import godot.registrar.generator.ext.isDictionary
 import godot.registrar.generator.settings.Settings
 import godot.registration.model.RegisteredProperty
-import godot.registration.model.ext.isCompatibleList
-import godot.registration.model.ext.isDictionary
 import godot.registration.model.ext.isNodeType
 import godot.registration.model.ext.isRefCounted
 import godot.registration.model.hint.property.*

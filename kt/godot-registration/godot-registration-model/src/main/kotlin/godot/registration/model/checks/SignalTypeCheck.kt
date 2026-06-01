@@ -2,7 +2,7 @@ package godot.registration.model.checks
 
 import godot.core.Signal
 import godot.registration.model.types.ScriptClass
-import godot.registration.model.util.Logger
+import godot.registration.model.logging.Logger
 
 class SignalTypeCheck(logger: Logger, registeredClasses: List<ScriptClass>) : BaseCheck(logger, registeredClasses) {
     override fun execute(): Boolean {

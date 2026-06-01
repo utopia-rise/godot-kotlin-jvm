@@ -7,15 +7,15 @@ import com.squareup.kotlinpoet.MemberName.Companion.member
 import godot.common.extensions.convertToCamelCase
 import godot.common.extensions.convertToSnakeCase
 import godot.core.PropertyUsageFlags
+import godot.registrar.generator.ext.toKtVariantMemberName
 import godot.registrar.generator.ext.toGodotClassName
+import godot.registrar.generator.ext.toTypeName
 import godot.registrar.generator.generator.hintstring.PropertyHintStringGeneratorProvider
 import godot.registrar.generator.generator.typehint.PropertyTypeHintProvider
 import godot.registrar.generator.settings.Settings
 import godot.registration.model.RegisteredProperty
 import godot.registration.model.ext.isEnum
 import godot.registration.model.ext.isJavaCollection
-import godot.registration.model.ext.toKtVariantMemberName
-import godot.registration.model.ext.toTypeName
 import godot.registration.model.hint.property.EnumHint
 import godot.registration.model.types.ScriptClass
 import godot.registration.model.types.TypeKind

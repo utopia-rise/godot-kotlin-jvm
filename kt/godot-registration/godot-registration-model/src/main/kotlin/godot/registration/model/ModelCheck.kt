@@ -2,7 +2,7 @@ package godot.registration.model
 
 import godot.registration.model.checks.*
 import godot.registration.model.types.ScriptClass
-import godot.registration.model.util.Logger
+import godot.registration.model.logging.Logger
 
 /**
  * Runs every sanity check against the registration model.

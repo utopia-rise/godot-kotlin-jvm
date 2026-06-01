@@ -2,7 +2,7 @@ package godot.registration.model.checks
 
 import godot.common.constants.Constraints
 import godot.registration.model.types.ScriptClass
-import godot.registration.model.util.Logger
+import godot.registration.model.logging.Logger
 
 class FunctionArgCountCheck(logger: Logger, registeredClasses: List<ScriptClass>) :
     BaseCheck(logger, registeredClasses) {

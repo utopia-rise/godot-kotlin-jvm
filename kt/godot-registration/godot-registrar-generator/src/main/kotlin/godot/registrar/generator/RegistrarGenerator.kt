@@ -5,7 +5,7 @@ import godot.registrar.generator.filebuilder.ClassRegistrarFileBuilder
 import godot.registrar.generator.settings.Settings
 import godot.registration.model.JvmType
 import godot.registration.model.types.ScriptClass
-import godot.registration.model.util.Logger
+import godot.registration.model.logging.Logger
 import godot.tools.common.constants.godotRegistrarBasePackage
 import java.io.File
 

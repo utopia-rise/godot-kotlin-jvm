@@ -17,5 +17,4 @@ dependencies {
     implementation(project(":godot-registration-model"))
 
     implementation(libs.classGraph)
-    api(libs.slf4jApi)
 }

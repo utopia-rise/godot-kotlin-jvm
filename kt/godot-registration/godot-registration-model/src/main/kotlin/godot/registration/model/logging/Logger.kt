@@ -1,4 +1,4 @@
-package godot.registration.model.util
+package godot.registration.model.logging
 
 interface Logger {
     fun logging(message: String, sourceElement: Any? = null)

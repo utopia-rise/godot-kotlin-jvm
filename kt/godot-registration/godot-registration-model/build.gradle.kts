@@ -16,5 +16,5 @@ dependencies {
     api("com.utopia-rise:tools-common:$fullBuildVersion")
     api(project(":godot-bootstrap-library"))
     api(project(":godot-core-library"))
-    api(libs.kotlinPoet)
+    api(libs.slf4jApi)
 }

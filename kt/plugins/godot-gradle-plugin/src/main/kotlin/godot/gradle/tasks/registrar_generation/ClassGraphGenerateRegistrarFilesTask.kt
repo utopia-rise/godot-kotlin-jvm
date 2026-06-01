@@ -2,7 +2,7 @@ package godot.gradle.tasks
 
 import godot.annotation.processor.classgraph.ClassGraphProcessor
 import godot.annotation.processor.classgraph.ProcessorSettings
-import godot.annotation.processor.classgraph.logging.LoggerWrapper
+import godot.registration.model.logging.LoggerWrapper
 import godot.registrar.generator.RegistrarGenerator
 import godot.registrar.generator.ext.getRegisteredName
 import godot.registrar.generator.ext.provideRegistrationFileRelativePath

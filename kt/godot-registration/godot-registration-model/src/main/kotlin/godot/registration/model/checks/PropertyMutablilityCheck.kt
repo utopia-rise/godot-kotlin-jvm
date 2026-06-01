@@ -1,7 +1,7 @@
 package godot.registration.model.checks
 
 import godot.registration.model.types.ScriptClass
-import godot.registration.model.util.Logger
+import godot.registration.model.logging.Logger
 
 class PropertyMutablilityCheck(logger: Logger, registeredClasses: List<ScriptClass>) :
     BaseCheck(logger, registeredClasses) {
