@@ -8,7 +8,7 @@ It is responsible for:
 
 1. configuring the user project so the enabled JVM source languages compile against the Godot Kotlin/JVM libraries
 2. scanning compiled user code to discover Godot-registered classes
-3. generating entry sources/resources and `.gdj` registration files
+3. generating registrar sources/resources and `.gdj` registration files
 4. packaging the runtime jars consumed by Godot Kotlin/JVM
 5. optionally deriving Android and GraalVM export artifacts
 
@@ -62,7 +62,7 @@ Key properties:
 Library mode is intentionally different:
 
 - keep the compile-time Godot dependencies and compiler setup
-- skip entry scanning and all generated entry/`.gdj` work
+- skip registrar scanning and all generated registrar/`.gdj` work
 - skip `main.jar` / `godot-bootstrap.jar` packaging and Godot-project copy tasks
 - leave the project with a regular publishable jar named after the Gradle project
 
@@ -82,7 +82,7 @@ The scan processor is intentionally narrow now:
 - it maps matching classes to `RegisteredClass`
 - it returns `List<RegisteredClass>`
 
-All naming and `.gdj` layout policy lives in the entry-generation layer and is driven by [`Settings`](D:/Godot/Module/kotlin/modules/kotlin_jvm/kt/entry-generation/godot-entry-generator/src/main/kotlin/godot/entrygenerator/settings/Settings.kt).
+All naming and `.gdj` layout policy lives in the registrar-generation layer and is driven by [`Settings`](D:/Godot/Module/kotlin/modules/kotlin_jvm/kt/godot-registration/godot-registrar-generator/src/main/kotlin/godot/registrar/generator/settings/Settings.kt).
 
 Performance intent:
 
@@ -98,22 +98,22 @@ The end-to-end workflow is:
 
 1. normal project compilation runs
 2. `packageUserJar` packages the regular `main` source set output into `user.jar`
-3. `entryGenerationGenerateFiles` scans `user.jar` plus the runtime classpath, builds `RegisteredClass` instances, generates entry sources/resources, and stages generated `.gdj` files under `build/generated/entry-generation/registration`
-4. `entryGenerationIndexExistingRegistrationFiles` scans the configured Godot project root for existing `.gdj` files and writes an index keyed by fqName
-5. `entryGenerationSyncRegistrationFiles` syncs staged `.gdj` files by updating indexed matches in place, deleting obsolete indexed files, and copying new files into the configured registration directory
-6. `entryGenerationJar` compiles generated entry code into its own intermediary jar
+3. `registrarGenerationGenerateFiles` scans `user.jar` plus the runtime classpath, builds `RegisteredClass` instances, generates registrar sources/resources, and stages generated `.gdj` files under `build/generated/registrar-generation/registration`
+4. `registrarGenerationIndexExistingRegistrationFiles` scans the configured Godot project root for existing `.gdj` files and writes an index keyed by fqName
+5. `registrarGenerationSyncRegistrationFiles` syncs staged `.gdj` files by updating indexed matches in place, deleting obsolete indexed files, and copying new files into the configured registration directory
+6. `registrarGenerationJar` compiles generated registrar code into its own intermediary jar
 7. `packageBootstrapJar` builds `bootstrap.jar`
-8. `packageMainJar` builds `main.jar`, merging in the generated-entry jar
+8. `packageMainJar` builds `main.jar`, merging in the generated-registrar jar
 9. Android and Graal tasks derive export artifacts from the packaged jars
 
 When `godot.isLibrary` is `true`, this whole runtime pipeline is skipped after normal JVM compilation and the plain `jar` task becomes the final artifact.
 
 The main split is now:
 
-- scan + generate in `entryGenerationGenerateFiles`
-- index existing `.gdj` files in `entryGenerationIndexExistingRegistrationFiles`
-- sync staged `.gdj` files in `entryGenerationSyncRegistrationFiles`
-- compile generated sources in `entryGenerationJar`
+- scan + generate in `registrarGenerationGenerateFiles`
+- index existing `.gdj` files in `registrarGenerationIndexExistingRegistrationFiles`
+- sync staged `.gdj` files in `registrarGenerationSyncRegistrationFiles`
+- compile generated sources in `registrarGenerationJar`
 
 ## Important Artifacts
 
@@ -127,14 +127,14 @@ Defined by:
 - used as the current-project scan root
 - not the final runtime jar
 
-### Generated entry output
+### Generated registrar output
 
 Produced by:
-[`tasks/entry_generation/ClassGraphGenerateEntryFilesTask.kt`](D:/Godot/Module/kotlin/modules/kotlin_jvm/kt/plugins/godot-gradle-plugin/src/main/kotlin/godot/gradle/tasks/entry_generation/ClassGraphGenerateEntryFilesTask.kt)
+[`tasks/registrar_generation/ClassGraphGenerateRegistrarFilesTask.kt`](D:/Godot/Module/kotlin/modules/kotlin_jvm/kt/plugins/godot-gradle-plugin/src/main/kotlin/godot/gradle/tasks/registrar_generation/ClassGraphGenerateRegistrarFilesTask.kt)
 
-- generated Kotlin entry sources under `build/generated/entry-generation`
-- generated service metadata under `build/generated/entry-generation/resources/META-INF/services`
-- staged `.gdj` files under `build/generated/entry-generation/registration`
+- generated Kotlin registrar sources under `build/generated/registrar-generation`
+- generated service metadata under `build/generated/registrar-generation/resources/META-INF/services`
+- staged `.gdj` files under `build/generated/registrar-generation/registration`
 - `build/.gdignore` is created so Godot does not index generated build output
 
 ### `bootstrap.jar`
@@ -153,16 +153,16 @@ Defined by:
 
 - final packaged runtime jar
 - built from `shadowJar`
-- merges in the generated-entry jar
+- merges in the generated-registrar jar
 - merges service files so runtime `ServiceLoader` discovery works
 
 ## Settings That Matter
 
-The shared entry-generation settings now live in:
+The shared registrar-generation settings now live in:
 
-- [`Settings.kt`](D:/Godot/Module/kotlin/modules/kotlin_jvm/kt/entry-generation/godot-entry-generator/src/main/kotlin/godot/entrygenerator/settings/Settings.kt)
-- [`RegisteredNameMode.kt`](D:/Godot/Module/kotlin/modules/kotlin_jvm/kt/entry-generation/godot-entry-generator/src/main/kotlin/godot/entrygenerator/settings/RegisteredNameMode.kt)
-- [`RegistrationFileLayoutMode.kt`](D:/Godot/Module/kotlin/modules/kotlin_jvm/kt/entry-generation/godot-entry-generator/src/main/kotlin/godot/entrygenerator/settings/RegistrationFileLayoutMode.kt)
+- [`Settings.kt`](D:/Godot/Module/kotlin/modules/kotlin_jvm/kt/godot-registration/godot-registrar-generator/src/main/kotlin/godot/registrar/generator/settings/Settings.kt)
+- [`RegisteredNameMode.kt`](D:/Godot/Module/kotlin/modules/kotlin_jvm/kt/godot-registration/godot-registrar-generator/src/main/kotlin/godot/registrar/generator/settings/RegisteredNameMode.kt)
+- [`RegistrationFileLayoutMode.kt`](D:/Godot/Module/kotlin/modules/kotlin_jvm/kt/godot-registration/godot-registrar-generator/src/main/kotlin/godot/registrar/generator/settings/RegistrationFileLayoutMode.kt)
 
 Important behavior:
 
@@ -178,7 +178,7 @@ Important behavior:
 - `RegistrationFileLayoutMode.FLAT` is the default
 - `RegistrationFileLayoutMode.HIERARCHICAL` mirrors the package path inside each project directory
 - `registrationFilesDirectory` defaults to `<godotProjectDirectory>/gdj`
-- all scanned registered classes are generated through the same entry pipeline regardless of origin
+- all scanned registered classes are generated through the same registrar pipeline regardless of origin
 
 `.gdj` layout is always project-aware:
 
@@ -201,23 +201,23 @@ Project-level setup.
 - `checkScalaVersionCompatibility.kt`: validates the configured Scala language version
 - `versionComparison.kt`: shared semantic-ish version comparison helper for Kotlin and Scala guards
 
-### [`src/main/kotlin/godot/gradle/tasks/entry_generation`](D:/Godot/Module/kotlin/modules/kotlin_jvm/kt/plugins/godot-gradle-plugin/src/main/kotlin/godot/gradle/tasks/entry_generation)
+### [`src/main/kotlin/godot/gradle/tasks/registrar_generation`](D:/Godot/Module/kotlin/modules/kotlin_jvm/kt/plugins/godot-gradle-plugin/src/main/kotlin/godot/gradle/tasks/registrar_generation)
 
-Entry-generation and generated-artifact pipeline.
+Registrar-generation and generated-artifact pipeline.
 
 Important files:
 
-- [`ClassGraphGenerateEntryFilesTask.kt`](D:/Godot/Module/kotlin/modules/kotlin_jvm/kt/plugins/godot-gradle-plugin/src/main/kotlin/godot/gradle/tasks/entry_generation/ClassGraphGenerateEntryFilesTask.kt)  
-  Cacheable task that packages scan settings, calls the scan processor, generates entry files, and stages `.gdj` files.
+- [`ClassGraphGenerateRegistrarFilesTask.kt`](D:/Godot/Module/kotlin/modules/kotlin_jvm/kt/plugins/godot-gradle-plugin/src/main/kotlin/godot/gradle/tasks/registrar_generation/ClassGraphGenerateRegistrarFilesTask.kt)  
+  Cacheable task that packages scan settings, calls the scan processor, generates registrar files, and stages `.gdj` files.
 
-- [`ClassGraphIndexExistingRegistrationFilesTask.kt`](D:/Godot/Module/kotlin/modules/kotlin_jvm/kt/plugins/godot-gradle-plugin/src/main/kotlin/godot/gradle/tasks/entry_generation/ClassGraphIndexExistingRegistrationFilesTask.kt)  
+- [`ClassGraphIndexExistingRegistrationFilesTask.kt`](D:/Godot/Module/kotlin/modules/kotlin_jvm/kt/plugins/godot-gradle-plugin/src/main/kotlin/godot/gradle/tasks/registrar_generation/ClassGraphIndexExistingRegistrationFilesTask.kt)  
   Cacheable task that scans the configured Godot project and records the current `.gdj` ownership map by fqName.
 
-- [`ClassGraphUpdateRegistrationFilesTask.kt`](D:/Godot/Module/kotlin/modules/kotlin_jvm/kt/plugins/godot-gradle-plugin/src/main/kotlin/godot/gradle/tasks/entry_generation/ClassGraphUpdateRegistrationFilesTask.kt)  
+- [`ClassGraphUpdateRegistrationFilesTask.kt`](D:/Godot/Module/kotlin/modules/kotlin_jvm/kt/plugins/godot-gradle-plugin/src/main/kotlin/godot/gradle/tasks/registrar_generation/ClassGraphUpdateRegistrationFilesTask.kt)  
   Applies staged `.gdj` files by updating existing project files in place, deleting obsolete indexed files, and copying new ones into the registration directory.
 
-- [`classGraphGeneratedEntryJarTask.kt`](D:/Godot/Module/kotlin/modules/kotlin_jvm/kt/plugins/godot-gradle-plugin/src/main/kotlin/godot/gradle/tasks/entry_generation/classGraphGeneratedEntryJarTask.kt)  
-  Compiles generated entry sources into a reusable jar.
+- [`classGraphGeneratedRegistrarJarTask.kt`](D:/Godot/Module/kotlin/modules/kotlin_jvm/kt/plugins/godot-gradle-plugin/src/main/kotlin/godot/gradle/tasks/registrar_generation/classGraphGeneratedRegistrarJarTask.kt)  
+  Compiles generated registrar sources into a reusable jar.
 
 ### [`src/main/kotlin/godot/gradle/tasks/packaging`](D:/Godot/Module/kotlin/modules/kotlin_jvm/kt/plugins/godot-gradle-plugin/src/main/kotlin/godot/gradle/tasks/packaging)
 
@@ -268,7 +268,7 @@ Using the stable version for published artifact coordinates will break snapshot/
 
 The scan processor should stay a scan-and-map component.
 
-Naming mode and registration-file layout belong to the entry-generation layer because both entry files and `.gdj` files depend on the same policy.
+Naming mode and registration-file layout belong to the registrar-generation layer because both registrar files and `.gdj` files depend on the same policy.
 
 ### 3. Mixing generated resources into source resources
 
@@ -302,7 +302,7 @@ That is now the important ownership signal for:
 
 ### 6. Accidentally defeating task caching
 
-`entryGenerationGenerateFiles` is intentionally modeled as a cacheable generation step.
+`registrarGenerationGenerateFiles` is intentionally modeled as a cacheable generation step.
 
 Be careful when changing:
 
@@ -360,11 +360,11 @@ For user-facing Gradle settings and examples, the canonical docs page is:
 
 - [docs/src/doc/user-guide/advanced/gradle-plugin-configuration.md](D:/Godot/Module/kotlin/modules/kotlin_jvm/docs/src/doc/user-guide/advanced/gradle-plugin-configuration.md)
 
-For entry-generation changes, verify the task pipeline explicitly from a harness project, for example:
+For registrar-generation changes, verify the task pipeline explicitly from a harness project, for example:
 
 ```powershell
 cd D:\Godot\Module\kotlin\modules\kotlin_jvm\harness\tests
-.\gradlew.bat packageUserJar entryGenerationGenerateFiles entryGenerationIndexExistingRegistrationFiles entryGenerationSyncRegistrationFiles entryGenerationJar --rerun-tasks --no-build-cache
+.\gradlew.bat packageUserJar registrarGenerationGenerateFiles registrarGenerationIndexExistingRegistrationFiles registrarGenerationSyncRegistrationFiles registrarGenerationJar --rerun-tasks --no-build-cache
 ```
 
 When you are touching `.gdj` logic, also inspect the registration directory afterward rather than trusting task success alone.

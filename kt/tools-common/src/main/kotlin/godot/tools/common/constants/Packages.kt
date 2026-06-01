@@ -18,7 +18,7 @@ const val godotExtensionPackage = "godot.extension"
 //Bootstrap
 const val godotAnnotationPackage = "godot.annotation"
 const val godotRegistrationPackage = "godot.registration"
-const val godotEntryBasePackage = "godot.entry"
+const val godotRegistrarBasePackage = "godot.registrar"
 
 //Lang
 const val kotlinPackage = "kotlin"

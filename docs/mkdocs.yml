@@ -93,7 +93,7 @@ nav:
     - Test changes from branch: contribution/test-change-from-branch.md
     - Knowledge base:
         - Artifact differentiation: contribution/knowledge-base/artifact-differentiation.md
-        - Entry generation: contribution/knowledge-base/entry-generation.md
+        - Registrar generation: contribution/knowledge-base/registrar-generation.md
         - Signal and callable generation: contribution/knowledge-base/signals-and-callables-generation.md
         - Shared buffer: contribution/knowledge-base/shared-buffer.md
         - Memory management: contribution/knowledge-base/memory-management.md

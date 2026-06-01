@@ -11,10 +11,10 @@ import godot.gradle.tasks.createCopyAndroidArtifactsTask
 import godot.gradle.tasks.createCopyDesktopJarsTask
 import godot.gradle.tasks.createCopyGraalArtifactsTask
 import godot.gradle.tasks.createCopyIOSArtifactsTask
-import godot.gradle.tasks.entryGenerationGenerateFilesTask
-import godot.gradle.tasks.entryGenerationJarTask
-import godot.gradle.tasks.entryGenerationSyncRegistrationFilesTask
-import godot.gradle.tasks.entry_generation.entryGenerationIndexExistingRegistrationFilesTask
+import godot.gradle.tasks.registrarGenerationGenerateFilesTask
+import godot.gradle.tasks.registrarGenerationJarTask
+import godot.gradle.tasks.registrarGenerationSyncRegistrationFilesTask
+import godot.gradle.tasks.registrar_generation.registrarGenerationIndexExistingRegistrationFilesTask
 import godot.gradle.tasks.generateGdIgnoreFilesTask
 import godot.gradle.tasks.graal.checkNativeImageToolAccessibleTask
 import godot.gradle.tasks.graal.copyDefaultGraalJniConfigTask
@@ -35,12 +35,12 @@ import org.gradle.api.tasks.bundling.Jar
 import org.gradle.api.tasks.SourceSetContainer
 import org.gradle.api.tasks.TaskProvider
 
-private const val legacyEntryServiceRelativePath = "META-INF/services/$godotRegistrationPackage.Entry"
+private const val legacyRegistrarServiceRelativePath = "META-INF/services/$godotRegistrationPackage.Registrar"
 
-private data class EntryGenerationTasks(
-    val generateEntryFilesTask: TaskProvider<out Task>,
+private data class RegistrarGenerationTasks(
+    val generateRegistrarFilesTask: TaskProvider<out Task>,
     val updateRegistrationFilesTask: TaskProvider<out Task>,
-    val generatedEntryJarTask: TaskProvider<Jar>,
+    val generatedRegistrarJarTask: TaskProvider<Jar>,
 )
 
 private data class DesktopPackagingTasks(
@@ -87,11 +87,11 @@ fun Project.setupTasks() {
                 return@with
             }
 
-            configureLegacyEntryServiceMigration()
+            configureLegacyRegistrarServiceMigration()
 
             val classesTask = tasks.named("classes")
-            val entryGenerationTasks = setupEntryGenerationTasks(classesTask)
-            val desktopPackagingTasks = setupDesktopPackagingTasks(classesTask, entryGenerationTasks)
+            val registrarGenerationTasks = setupRegistrarGenerationTasks(classesTask)
+            val desktopPackagingTasks = setupDesktopPackagingTasks(classesTask, registrarGenerationTasks)
             val androidPackagingTasks = setupAndroidPackagingTasks(desktopPackagingTasks)
             val nativePackagingTasks = setupNativePackagingTasks(desktopPackagingTasks)
             val copyTasks = setupCopyTasks(
@@ -121,7 +121,7 @@ private fun Project.registerUserFacingBuildTasks() {
     tasks.register("fastBuild") { task ->
         task.group = "build"
         task.description =
-            "Builds fresh desktop jars while reusing the last generated entry-registration artifacts instead of rescanning registrations."
+            "Builds fresh desktop jars while reusing the last generated registrar-registration artifacts instead of rescanning registrations."
     }
 
     tasks.register("buildAndroid") { task ->
@@ -155,29 +155,29 @@ private fun Project.registerUserFacingBuildTasks() {
     }
 }
 
-private fun Project.setupEntryGenerationTasks(
+private fun Project.setupRegistrarGenerationTasks(
     classesTask: TaskProvider<out Task>,
-): EntryGenerationTasks {
+): RegistrarGenerationTasks {
     val fastBuildRequested = isFastBuildRequested()
     val packageUserJarTask = packageUserJarTask(
         userClassesTask = classesTask,
     )
-    val generateEntryFilesTask = entryGenerationGenerateFilesTask(
+    val generateRegistrarFilesTask = registrarGenerationGenerateFilesTask(
         packageUserJarTask = packageUserJarTask,
     )
-    generateEntryFilesTask.configure { task ->
+    generateRegistrarFilesTask.configure { task ->
         task.onlyIf { !fastBuildRequested }
     }
 
     val updateRegistrationFilesTask = if (godotJvmExtension.disableGdj.get()) {
-        generateEntryFilesTask
+        generateRegistrarFilesTask
     } else {
-        val indexExistingRegistrationFilesTask = entryGenerationIndexExistingRegistrationFilesTask()
+        val indexExistingRegistrationFilesTask = registrarGenerationIndexExistingRegistrationFilesTask()
         indexExistingRegistrationFilesTask.configure { task ->
             task.onlyIf { !fastBuildRequested }
         }
-        entryGenerationSyncRegistrationFilesTask(
-            generateEntryFilesTask = generateEntryFilesTask,
+        registrarGenerationSyncRegistrationFilesTask(
+            generateRegistrarFilesTask = generateRegistrarFilesTask,
             indexExistingRegistrationFilesTask = indexExistingRegistrationFilesTask,
         ).also { taskProvider ->
             taskProvider.configure { task ->
@@ -186,28 +186,28 @@ private fun Project.setupEntryGenerationTasks(
         }
     }
 
-    val generatedEntryJarTask = entryGenerationJarTask(
-        generateEntryFilesTask = generateEntryFilesTask,
+    val generatedRegistrarJarTask = registrarGenerationJarTask(
+        generateRegistrarFilesTask = generateRegistrarFilesTask,
     )
-    generatedEntryJarTask.configure { task ->
+    generatedRegistrarJarTask.configure { task ->
         task.onlyIf { !fastBuildRequested }
     }
 
-    return EntryGenerationTasks(
-        generateEntryFilesTask = generateEntryFilesTask,
+    return RegistrarGenerationTasks(
+        generateRegistrarFilesTask = generateRegistrarFilesTask,
         updateRegistrationFilesTask = updateRegistrationFilesTask,
-        generatedEntryJarTask = generatedEntryJarTask,
+        generatedRegistrarJarTask = generatedRegistrarJarTask,
     )
 }
 
 private fun Project.setupDesktopPackagingTasks(
     classesTask: TaskProvider<out Task>,
-    entryGenerationTasks: EntryGenerationTasks,
+    registrarGenerationTasks: RegistrarGenerationTasks,
 ): DesktopPackagingTasks {
     val packageBootstrapJarTask = packageBootstrapJarTask()
     val packageMainJarTask = packageMainJarTask(
-        generatedEntryJarTask = entryGenerationTasks.generatedEntryJarTask,
-        updateRegistrationFilesTask = entryGenerationTasks.updateRegistrationFilesTask,
+        generatedRegistrarJarTask = registrarGenerationTasks.generatedRegistrarJarTask,
+        updateRegistrationFilesTask = registrarGenerationTasks.updateRegistrationFilesTask,
         userClassesTask = classesTask,
     )
 
@@ -305,18 +305,18 @@ private fun Project.setupCopyTasks(
     )
 }
 
-private fun Project.configureLegacyEntryServiceMigration() {
+private fun Project.configureLegacyRegistrarServiceMigration() {
     val mainSourceSet = extensions
         .getByType(SourceSetContainer::class.java)
         .getByName("main")
 
-    mainSourceSet.resources.exclude(legacyEntryServiceRelativePath)
+    mainSourceSet.resources.exclude(legacyRegistrarServiceRelativePath)
 
-    val legacyServiceFile = file("src/main/resources/$legacyEntryServiceRelativePath")
+    val legacyServiceFile = file("src/main/resources/$legacyRegistrarServiceRelativePath")
     if (legacyServiceFile.isFile) {
         logger.warn(
             "Legacy service file detected at ${legacyServiceFile.relativeTo(projectDir).invariantSeparatorsPath}. " +
-                "It is now ignored because Entry metadata is generated under build/. " +
+                "It is now ignored because Registrar metadata is generated under build/. " +
                 "You can safely delete the legacy file from src/main/resources."
         )
     }

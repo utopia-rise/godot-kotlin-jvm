@@ -12,7 +12,7 @@ fun Project.packageMainDexJarTask(
         with(it) {
             group = "godot-kotlin-jvm"
             description =
-                "Packs the android dex file of main, together with the needed entry service file into a jar. Needed for android builds only"
+                "Packs the android dex file of main, together with the needed registrar service file into a jar. Needed for android builds only"
 
             archiveBaseName.set("main-dex")
 

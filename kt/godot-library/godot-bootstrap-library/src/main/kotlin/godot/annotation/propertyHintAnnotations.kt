@@ -1,7 +1,7 @@
 package godot.annotation
 
 /*
-All type checks will happen at the entry-generator at the moment.
+All type checks will happen at the registrar generator at the moment.
 We should move that to the idea plugin at some point in time to provide IDE help and not just compilation errors.
 
 The following annotations are implemented based on https://github.com/godotengine/godot/blob/3.2/core/object.h

@@ -1,8 +1,8 @@
 package godot.gradle
 
-import godot.entrygenerator.settings.RegisteredNameMode
-import godot.entrygenerator.settings.RegistrationFileIndentation
-import godot.entrygenerator.settings.RegistrationFileLayoutMode
+import godot.registrar.generator.settings.RegisteredNameMode
+import godot.registrar.generator.settings.RegistrationFileIndentation
+import godot.registrar.generator.settings.RegistrationFileLayoutMode
 import godot.gradle.ext.environmentVariable
 import godot.gradle.ext.executableFileOrNull
 import godot.gradle.ext.existingDirectoryOrNull
@@ -20,8 +20,8 @@ open class GodotExtension(objects: ObjectFactory) {
     /**
      * Marks this Gradle project as a reusable Godot Kotlin/JVM library rather than a runnable Godot project.
      *
-     * When enabled, the plugin keeps the compile setup and library dependencies, but skips entry scanning,
-     * entry generation, `.gdj` generation/synchronization, and the runtime jar packaging/copy pipeline.
+     * When enabled, the plugin keeps the compile setup and library dependencies, but skips registrar scanning,
+     * registrar generation, `.gdj` generation/synchronization, and the runtime jar packaging/copy pipeline.
      *
      * Defaults to `false`.
      */
@@ -44,9 +44,9 @@ open class GodotExtension(objects: ObjectFactory) {
     val registrationFilesDirectory: DirectoryProperty = objects.directoryProperty()
 
     /**
-     * Disables `.gdj` registration file handling while keeping class scanning and entry generation enabled.
+     * Disables `.gdj` registration file handling while keeping class scanning and registrar generation enabled.
      *
-     * When enabled, the plugin still scans compiled user code and generates entry sources/resources,
+     * When enabled, the plugin still scans compiled user code and generates registrar sources/resources,
      * but it skips generated `.gdj` staging, skips scanning the Godot project for existing `.gdj` files,
      * and skips synchronizing `.gdj` files into the Godot project.
      *
@@ -93,7 +93,7 @@ open class GodotExtension(objects: ObjectFactory) {
      * JVM source languages enabled for the project's initial compilation pass.
      *
      * This controls which language-specific compile tasks and support dependencies are wired into the
-     * regular `classes` phase that feeds entry generation and packaging.
+     * regular `classes` phase that feeds registrar generation and packaging.
      *
      * Defaults to Kotlin, Java, and Scala.
      */

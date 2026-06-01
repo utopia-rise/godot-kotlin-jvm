@@ -1,6 +1,6 @@
-import godot.entrygenerator.settings.RegisteredNameMode
-import godot.entrygenerator.settings.RegistrationFileLayoutMode
-//import godot.entrygenerator.settings.RegistrationFileIndentation
+import godot.registrar.generator.settings.RegisteredNameMode
+import godot.registrar.generator.settings.RegistrationFileLayoutMode
+//import godot.registrar.generator.settings.RegistrationFileIndentation
 import godot.gradle.GodotLanguage
 
 plugins {
@@ -25,7 +25,7 @@ godot {
     // Enable to mark this Gradle project as a reusable library rather than a runnable Godot project.
     //isLibrary.set(true)
 
-    // Disable .gdj registration file handling while keeping class scanning and entry generation enabled.
+    // Disable .gdj registration file handling while keeping class scanning and registrar generation enabled.
     //disableGdj.set(true)
 
     // Enable coroutines integration with Godot signal/lifecycle callbacks.

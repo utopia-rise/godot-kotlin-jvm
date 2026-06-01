@@ -13,8 +13,8 @@ The plugin also works well with Gradle performance features such as parallel exe
 ## Quick example
 
 ```kotlin
-import godot.entrygenerator.settings.RegisteredNameMode
-import godot.entrygenerator.settings.RegistrationFileLayoutMode
+import godot.registrar.generator.settings.RegisteredNameMode
+import godot.registrar.generator.settings.RegistrationFileLayoutMode
 import godot.gradle.GodotLanguage
 
 godot {
@@ -185,7 +185,7 @@ godot {
 
 ### `disableGdj`
 
-Disables `.gdj` registration file handling while keeping class scanning and entry generation enabled.
+Disables `.gdj` registration file handling while keeping class scanning and registrar generation enabled.
 
 Default:
 
@@ -202,7 +202,7 @@ godot {
 When enabled, the plugin:
 
 - still scans compiled user code for registered classes
-- still generates entry sources/resources
+- still generates registrar sources/resources
 - skips scanning the Godot project for existing `.gdj` files
 - skips staged `.gdj` generation
 - skips copying, replacing, or deleting `.gdj` files in the Godot project
@@ -219,7 +219,7 @@ Values:
 Example:
 
 ```kotlin
-import godot.entrygenerator.settings.RegistrationFileLayoutMode
+import godot.registrar.generator.settings.RegistrationFileLayoutMode
 
 godot {
     registrationFilesLayoutMode.set(RegistrationFileLayoutMode.HIERARCHICAL)
@@ -242,7 +242,7 @@ Default:
 Example:
 
 ```kotlin
-import godot.entrygenerator.settings.RegistrationFileIndentation
+import godot.registrar.generator.settings.RegistrationFileIndentation
 
 godot {
     registrationFilesIndentation.set(RegistrationFileIndentation.TAB)
@@ -262,7 +262,7 @@ Values:
 Example:
 
 ```kotlin
-import godot.entrygenerator.settings.RegisteredNameMode
+import godot.registrar.generator.settings.RegisteredNameMode
 
 godot {
     registrationNameMode.set(RegisteredNameMode.FQ_NAME)
@@ -288,7 +288,7 @@ godot {
 When enabled, the plugin:
 
 - keeps compile setup and Godot dependencies
-- skips entry scanning and `.gdj` generation for the local project
+- skips registrar scanning and `.gdj` generation for the local project
 - skips the runnable-project packaging flow
 - leaves a regular library jar as the final artifact
 
@@ -300,7 +300,7 @@ The plugin adds a few higher-level tasks on top of the normal Gradle lifecycle.
 
 ### `fastBuild`
 
-Builds fresh desktop jars while reusing the last generated entry-registration artifacts instead of rescanning registered classes and regenerating `.gdj` files.
+Builds fresh desktop jars while reusing the last generated registrar artifacts instead of rescanning registered classes and regenerating `.gdj` files.
 
 Use this when you only changed implementation details that do not affect registration structure, for example method bodies.
 
@@ -312,7 +312,7 @@ Example:
 
 Rules:
 
-- requires a previous successful full build so the generated entry-registration jar already exists
+- requires a previous successful full build so the generated registrar jar already exists
 - still recompiles the project and rebuilds `main.jar`
 - still rebuilds and copies `godot-bootstrap.jar`
 - keeps the registration-related tasks in the Gradle task graph, but skips executing them via `onlyIf`

@@ -3,13 +3,10 @@
 
 registeredName = ClassInheritanceParent
 fqName = godot.tests.inheritance.ClassInheritanceParent
-baseType = Node
+baseType = godot.api.Node
 supertypes = [
     godot.api.Node,
-    godot.api.Object,
-    godot.core.KtObject,
-    godot.common.interop.NativeWrapper,
-    godot.common.interop.NativePointer
+    godot.api.Object
 ]
 signals = [
     test_not_overridden,

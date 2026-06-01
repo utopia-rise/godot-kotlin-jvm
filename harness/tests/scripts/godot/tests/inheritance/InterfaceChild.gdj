@@ -3,14 +3,11 @@
 
 registeredName = InterfaceChild
 fqName = godot.tests.inheritance.InterfaceChild
-baseType = Node
+baseType = godot.api.Node
 supertypes = [
-    godot.api.Node,
-    godot.api.Object,
-    godot.core.KtObject,
     godot.tests.inheritance.TestInterface,
-    godot.common.interop.NativeWrapper,
-    godot.common.interop.NativePointer
+    godot.api.Node,
+    godot.api.Object
 ]
 signals = [
     

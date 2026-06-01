@@ -14,11 +14,11 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
  * General overview of what this plugin sets up around the user's regular project compilation:
  * - Configures the normal `main` source set dependencies so Kotlin, Java, and Scala user code compile against the
  *   Godot Kotlin/JVM libraries and Scala runtime.
- * - Configures compiler flags that the entry-generation scan relies on, such as parameter metadata for Java and Kotlin.
+ * - Configures compiler flags that the registrar-generation scan relies on, such as parameter metadata for Java and Kotlin.
  * - Creates a dedicated `bootstrap` configuration used to build `bootstrap.jar`, which contains the glue code for the
  *   `cpp -> jvm -> cpp` communication but no user project classes.
- * - The user's normal compiled output is later packaged into an intermediary `user.jar`, then used by entry generation to
- *   produce generated entry sources and `.gdj` files, then merged into the final `main.jar`.
+ * - The user's normal compiled output is later packaged into an intermediary `user.jar`, then used by registrar generation to
+ *   produce generated registrar sources and `.gdj` files, then merged into the final `main.jar`.
  * - At runtime, the module uses `godot-bootstrap.jar` together with `main.jar`.
  */
 fun Project.setupConfigurationsAndCompilations() {
@@ -48,7 +48,7 @@ fun Project.setupConfigurationsAndCompilations() {
         if (!godotJvmExtension.isLibrary.get()) {
             dependencies.add(
                 "compileOnly",
-                "com.utopia-rise:godot-class-graph-symbol-processor:$BUILD_VERSION"
+                "com.utopia-rise:godot-registration:$BUILD_VERSION"
             )
         }
     }

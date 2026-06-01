@@ -35,10 +35,8 @@ dependencies {
     // used for idea sync gradle task integration (ex. generateGdIgnoreFilesTask)
     implementation(libs.ideaSync)
 
-    implementation(project(":godot-entry-generator"))
+    implementation(project(":godot-registration"))
     implementation("com.utopia-rise:tools-common:$fullBuildVersion")
-
-    implementation(project(":godot-class-graph-symbol-processor"))
 }
 
 tasks {

@@ -3,7 +3,7 @@
 
 registeredName = AbstractClassInheritanceEmptyChild
 fqName = godot.tests.inheritance.AbstractClassInheritanceEmptyChild
-baseType = CharacterBody3D
+baseType = godot.api.CharacterBody3D
 supertypes = [
     godot.tests.inheritance.AbstractClassInheritanceEmptyParent,
     godot.api.CharacterBody3D,
@@ -11,10 +11,7 @@ supertypes = [
     godot.api.CollisionObject3D,
     godot.api.Node3D,
     godot.api.Node,
-    godot.api.Object,
-    godot.core.KtObject,
-    godot.common.interop.NativeWrapper,
-    godot.common.interop.NativePointer
+    godot.api.Object
 ]
 signals = [
     

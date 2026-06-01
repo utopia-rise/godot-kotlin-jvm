@@ -52,9 +52,12 @@ subdir("godot-library") {
     include("godot-coroutine-library")
 }
 
-subdir("entry-generation") {
+include("godot-registration")
+
+subdir("godot-registration") {
     include("godot-class-graph-symbol-processor")
-    include("godot-entry-generator")
+    include("godot-registration-model")
+    include("godot-registrar-generator")
 }
 
 subdir("plugins") {

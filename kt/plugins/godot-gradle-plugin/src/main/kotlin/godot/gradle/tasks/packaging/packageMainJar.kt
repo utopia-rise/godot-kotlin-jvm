@@ -12,7 +12,7 @@ import org.gradle.api.tasks.TaskProvider
 import org.gradle.api.tasks.bundling.Jar
 
 fun Project.packageMainJarTask(
-    generatedEntryJarTask: TaskProvider<Jar>,
+    generatedRegistrarJarTask: TaskProvider<Jar>,
     updateRegistrationFilesTask: TaskProvider<out Task>,
     userClassesTask: TaskProvider<out Task>,
 ): TaskProvider<out Task> {
@@ -26,15 +26,15 @@ fun Project.packageMainJarTask(
             archiveClassifier.set("")
 
             dependsOn(userClassesTask)
-            dependsOn(generatedEntryJarTask)
+            dependsOn(generatedRegistrarJarTask)
             dependsOn(updateRegistrationFilesTask)
 
             if (isFastBuildRequested()) {
                 from(provider {
-                    val generatedJar = generatedEntryJarTask.get().archiveFile.get().asFile
+                    val generatedJar = generatedRegistrarJarTask.get().archiveFile.get().asFile
                     if (!generatedJar.isFile) {
                         throw GradleException(
-                            "entryGenerationJar output is missing. Run a full build first before using fastBuild. " +
+                            "registrarGenerationJar output is missing. Run a full build first before using fastBuild. " +
                                 "Expected file: ${generatedJar.absolutePath}"
                         )
                     }
@@ -43,7 +43,7 @@ fun Project.packageMainJarTask(
                     exclude("META-INF/MANIFEST.MF")
                 }
             } else {
-                from(generatedEntryJarTask.map { generatedJar ->
+                from(generatedRegistrarJarTask.map { generatedJar ->
                     zipTree(generatedJar.archiveFile)
                 }) {
                     exclude("META-INF/MANIFEST.MF")
@@ -51,7 +51,7 @@ fun Project.packageMainJarTask(
             }
 
             // merges all service files from all dependencies into on
-            // needed so we can loop over and load all entry files from within Bootstrap.kt
+            // needed so we can loop over and load all registrar files from within Bootstrap.kt
             mergeServiceFiles()
 
             dependencies { dependencyFilter ->
