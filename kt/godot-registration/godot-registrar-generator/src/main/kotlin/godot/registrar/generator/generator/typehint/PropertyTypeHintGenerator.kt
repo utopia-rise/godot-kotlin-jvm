@@ -7,6 +7,6 @@ import godot.registration.model.hint.property.PropertyHint
 abstract class PropertyTypeHintGenerator(
     registeredProperty: RegisteredProperty
 ) {
-    protected val propertyHintAnnotation = registeredProperty.hints.firstOrNull { it is PropertyHint } as PropertyHint?
+    protected val propertyHintAnnotation = registeredProperty.hints.filterIsInstance<PropertyHint>().firstOrNull()
     abstract fun getPropertyTypeHint(): MemberName
 }

@@ -5,17 +5,13 @@ import godot.annotation.processor.classgraph.ProcessorSettings
 import godot.registration.model.logging.LoggerWrapper
 import godot.registrar.generator.RegistrarGenerator
 import godot.registrar.generator.ext.getRegisteredName
-import godot.registrar.generator.ext.provideRegistrationFileRelativePath
-import godot.registrar.generator.ext.shouldGenerateGdjFile
-import godot.registrar.generator.filebuilder.RegistrationFileGenerator
 import godot.registration.model.types.ScriptClass
 import godot.registration.model.checks.ChecksFailedException
 import godot.registration.model.ModelCheck
-import godot.registrar.generator.settings.RegisteredNameMode
-import godot.registrar.generator.settings.RegistrationFileIndentation
-import godot.registrar.generator.settings.RegistrationFileLayoutMode
-import godot.registrar.generator.settings.Settings
-import godot.registrar.generator.utils.DefaultJvmTypeProvider
+import godot.registrar.generator.RegisteredNameMode
+import godot.registrar.generator.RegistrationFileIndentation
+import godot.registrar.generator.RegistrationFileLayoutMode
+import godot.registrar.generator.Settings
 import godot.gradle.projectExt.godotJvmExtension
 import godot.tools.common.constants.godotRegistrationPackage
 import org.gradle.api.DefaultTask
@@ -31,7 +27,6 @@ import org.gradle.api.tasks.SourceSetContainer
 import org.gradle.api.tasks.TaskAction
 import org.gradle.api.tasks.TaskProvider
 import org.gradle.api.tasks.bundling.Jar
-import java.io.File
 
 private const val registrarServiceName = "$godotRegistrationPackage.ClassRegistrar"
 
@@ -115,31 +110,10 @@ abstract class ClassGraphGenerateRegistrarFilesTask : DefaultTask() {
             settings = settings,
             registeredClasses = allRegisteredClasses,
             logger = modelLogger,
-            jvmTypeFqNamesProvider = DefaultJvmTypeProvider(),
             sourceOutputDir = outputRoot.resolve("main").resolve("kotlin"),
             serviceFile = serviceFile,
+            registrationOutputDir = generatedRegistrationRoot.takeUnless { disableGdj.get() },
         )
-
-        if (!disableGdj.get()) {
-            generateRegistrationFiles(
-                settings = settings,
-                registeredClasses = allRegisteredClasses.filter { it.shouldGenerateGdjFile },
-                generatedRegistrationRootDir = generatedRegistrationRoot,
-            )
-        }
-    }
-}
-
-private fun generateRegistrationFiles(
-    settings: Settings,
-    registeredClasses: List<ScriptClass>,
-    generatedRegistrationRootDir: File,
-) {
-    registeredClasses.forEach { registeredClass ->
-        val targetFile = generatedRegistrationRootDir
-            .resolve(registeredClass.provideRegistrationFileRelativePath(settings))
-
-        RegistrationFileGenerator(registeredClass, settings, targetFile).build()
     }
 }
 

@@ -55,8 +55,7 @@ Important details:
 - Requires non-empty `ProcessorSettings.userCodeClassPathRoots`; compilation must happen before scanning.
 - Selects classes annotated with `@RegisterClass`, subclassing `KtObject`, and not annotated
   `@GodotBaseType`.
-- Resets `Context` once per scan and uses it for per-scan ClassGraph/type caches.
-- `ErrorsDatabase` collects mapping errors and must be empty before returning.
+- Uses `ProcessorContext` as per-run state for scan result access, caches, settings, and errors.
 - Maps class hierarchy into `ScriptClass`, `GodotBaseClass`, `ScriptInterface`, and lightweight referenced
   type nodes.
 
@@ -70,11 +69,13 @@ Package: `godot.registration.model`
 The model is the shared IR between processor and generator. It owns:
 
 - Registered members: `RegisteredConstructor`, `RegisteredFunction`, `RegisteredProperty`,
-  `RegisteredSignal`, `ValueParameter`, `JvmType`.
+  `RegisteredSignal`, `ValueParameter`.
 - Type nodes: `Type`, `TypeKind`, `ScriptFamily`, `GodotClass`, `ScriptClass`, `GodotBaseClass`,
   `ScriptInterface`, `ReferencedGodotClass`, `ReferencedScriptInterface`.
 - Property hint models under `hint/property/`.
 - Sanity checks under `checks/`.
+
+`JvmType` no longer lives here. It is generator-only and now lives in `godot-registrar-generator`.
 
 ### Hierarchy Model
 
@@ -165,12 +166,26 @@ The generator writes:
 
 Useful areas:
 
-- `filebuilder/`: registrar and `.gdj` file builders.
+- `GeneratorContext.kt`: per-run generator state.
+- `builder/`: per-class registrar spec building.
+- `source/`: Kotlin registrar class emission.
+- `service/`: service file emission.
+- `filebuilder/RegistrationFileGenerator.kt`: `.gdj` file generation.
 - `generator/`: constructor, function, property, and signal registration generators.
 - `generator/hintstring/`: property hint string generation.
 - `generator/typehint/`: property type hint selection.
 - `ext/NamingExtensions.kt`: registered-name and Godot class-name mapping.
 - `ext/RegisteredClassExtensions.kt`: `.gdj` file path and generator-side hierarchy flattening.
+
+The top-level split is:
+
+- `RegistrarGenerator`: orchestration entry point only.
+- `RegistrarClassGenerator`: iterates registered classes and writes registrar Kotlin files.
+- `ClassRegistrarSpecBuilder`: builds the full registrar `FileSpec` for one `ScriptClass`.
+- `RegistrarServiceFileGenerator`: writes the `META-INF/services` file.
+
+`JvmType` is generator-owned and lives beside these back-end pieces because it is used only for generator
+JVM type bucketing and hint validation.
 
 `RegisteredNameMode` lives in generator settings:
 

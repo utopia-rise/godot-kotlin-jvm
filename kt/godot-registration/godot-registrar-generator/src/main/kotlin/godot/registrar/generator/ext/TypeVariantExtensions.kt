@@ -1,7 +1,6 @@
 package godot.registrar.generator.ext
 
 import godot.api.Object
-import godot.api.Resource
 import godot.common.util.NaturalT
 import godot.common.util.RealT
 import godot.core.AABB
@@ -38,34 +37,7 @@ import godot.core.Vector3i
 import godot.core.Vector4
 import godot.core.Vector4i
 import godot.registration.model.types.Type
-import godot.registration.model.types.TypeKind
-import godot.tools.common.constants.godotApiPackage
 import godot.tools.common.constants.godotCorePackage
-import godot.tools.common.constants.isFromPackage
-
-private fun Type.isSubtypeOf(target: Class<*>): Boolean = runCatching {
-    target.isAssignableFrom(Class.forName(fqName))
-}.getOrDefault(false)
-
-fun Type.baseGodotType(): Type? {
-    if (fqName.isFromPackage(godotApiPackage)) return this
-    val loaded = runCatching { Class.forName(fqName) }.getOrNull() ?: return null
-    var current: Class<*>? = loaded.superclass
-    while (current != null) {
-        if (current.name.isFromPackage(godotApiPackage)) {
-            return Type(fqName = current.name, kind = TypeKind.CLASS, isNullable = false)
-        }
-        current = current.superclass
-    }
-    return null
-}
-
-fun Type.isCompatibleList(): Boolean = isSubtypeOf(VariantArray::class.java)
-
-fun Type.isDictionary(): Boolean = isSubtypeOf(Dictionary::class.java)
-
-fun Type.isResource(): Boolean =
-    fqName == requireNotNull(Resource::class.qualifiedName) || baseGodotType()?.fqName == Resource::class.qualifiedName
 
 // ordinals can be found in core/variant/variant.h
 fun Type.getAsVariantTypeOrdinal(): Int? = when (fqName) {

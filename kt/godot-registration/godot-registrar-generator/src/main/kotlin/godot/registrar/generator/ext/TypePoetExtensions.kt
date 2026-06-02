@@ -108,3 +108,5 @@ fun Type.toTypeName(): TypeName = ClassName(
     fqName.substringBeforeLast("."),
     fqName.substringAfterLast(".")
 )
+
+fun <T : Enum<T>> T.asEnumName() = MemberName(this::class.asClassName(), this.name)

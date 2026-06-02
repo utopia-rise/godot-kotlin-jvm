@@ -1,16 +1,14 @@
 package godot.registrar.generator.generator.hintstring
 
-import godot.registrar.generator.settings.Settings
+import godot.registrar.generator.GeneratorContext
 import godot.registration.model.RegisteredProperty
 import godot.registration.model.hint.property.MultilineTextHint
-import godot.registration.model.types.ScriptClass
 
 
 class MultilineTextHintStringGenerator(
     registeredProperty: RegisteredProperty,
-    settings: Settings,
-    registeredClassesByFqName: Map<String, ScriptClass>,
-) : PropertyHintStringGenerator<MultilineTextHint>(registeredProperty, settings, registeredClassesByFqName) {
+    context: GeneratorContext,
+) : PropertyHintStringGenerator<MultilineTextHint>(registeredProperty, context) {
 
     override fun getHintString(): String = ""
 }

@@ -5,7 +5,7 @@ import godot.common.interop.VariantConverter
 import godot.core.*
 import kotlin.reflect.*
 
-class KtClassBuilder<T : KtObject> private constructor(
+class KtClassBuilder<T : KtObject>(
     @PublishedApi
     internal val registeredName: String,
     private val superClasses: List<String>,
@@ -21,10 +21,6 @@ class KtClassBuilder<T : KtObject> private constructor(
     internal val properties = mutableMapOf<String, KtProperty<T, *>>()
 
     private val signals = mutableMapOf<String, KtSignalInfo>()
-
-    fun constructor(constructor: KtConstructor<T>) {
-        constructorField = constructor
-    }
 
     fun constructor(constructor: () -> T) {
         constructorField = KtConstructor(constructor)
@@ -47,25 +43,6 @@ class KtClassBuilder<T : KtObject> private constructor(
         transferMode: Enum<*>,
         channel: Int,
     ): KtRpcConfig = KtRpcConfig(rpcMode.ordinal, callLocal, transferMode.ordinal, channel)
-
-    companion object {
-        operator fun <T : KtObject> invoke(
-            registeredName: String,
-            registeredSupertypes: List<String>,
-            baseGodotClass: String,
-            kClass: KClass<T>,
-            block: KtClassBuilder<T>.() -> Unit
-        ): KtClass<T> {
-            val builder = KtClassBuilder(
-                registeredName = registeredName,
-                superClasses = registeredSupertypes,
-                baseGodotClass = baseGodotClass,
-                kClassField = kClass,
-            )
-            builder.block()
-            return builder.build()
-        }
-    }
 
     fun <P : Any?> property(
         kProperty: KMutableProperty1<T, P>,

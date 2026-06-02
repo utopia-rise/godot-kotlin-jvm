@@ -12,5 +12,14 @@ interface ClassRegistrar {
         baseGodotClass: String,
         kClass: KClass<T>,
         block: KtClassBuilder<T>.() -> Unit,
-    ): KtClass<T> = KtClassBuilder(registeredName, registeredSupertypes, baseGodotClass, kClass, block)
+    ): KtClass<T> {
+        val builder = KtClassBuilder(
+            registeredName = registeredName,
+            superClasses = registeredSupertypes,
+            baseGodotClass = baseGodotClass,
+            kClassField = kClass,
+        )
+        builder.block()
+        return builder.build()
+    }
 }

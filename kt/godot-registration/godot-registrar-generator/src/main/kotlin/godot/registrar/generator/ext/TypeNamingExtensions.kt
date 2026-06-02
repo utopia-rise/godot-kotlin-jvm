@@ -3,50 +3,14 @@ package godot.registrar.generator.ext
 import godot.common.util.NaturalT
 import godot.common.util.RealT
 import godot.core.*
-import godot.registrar.generator.settings.RegisteredNameMode
-import godot.registrar.generator.settings.Settings
-import godot.registrar.generator.ext.baseGodotType
-import godot.registration.model.types.ScriptClass
+import godot.registrar.generator.GeneratorContext
 import godot.registration.model.types.Type
 import godot.registration.model.types.TypeKind
 import godot.tools.common.constants.*
 
-/**
- * Naming policy lives with the generator (it depends on [Settings]); the model stays config-free.
- *
- * Computes the registered name of a class according to the configured [RegisteredNameMode].
- */
-fun ScriptClass.getRegisteredName(settings: Settings): String {
-    val baseRegisteredName = customName
-        ?.takeIf { it.isNotBlank() }
-        ?: fqName.substringAfterLast(".")
-
-    val rawName = when (settings.registeredNameMode) {
-        RegisteredNameMode.SIMPLE_NAME -> baseRegisteredName
-        RegisteredNameMode.FQ_NAME -> fqName.substringBeforeLast(".", missingDelimiterValue = "").let { packageName ->
-            if (packageName.isBlank()) {
-                baseRegisteredName
-            } else {
-                "$packageName.$baseRegisteredName"
-            }
-        }
-
-        RegisteredNameMode.PROJECT_PREFIX -> {
-            if (sourceProjectName == settings.projectName) {
-                baseRegisteredName
-            } else {
-                "${sourceProjectName}_$baseRegisteredName"
-            }
-        }
-    }
-
-    return rawName.replace('.', '_').replace('-', '_')
-}
-
 /** Maps a model [Type] to the Godot class name used in generated registration code. */
 fun Type?.toGodotClassName(
-    settings: Settings,
-    registeredClassesByFqName: Map<String, ScriptClass>,
+    context: GeneratorContext,
 ): String = when {
     this == null || fqName == Unit::class.qualifiedName || fqName == Any::class.qualifiedName -> ""
     kind == TypeKind.ENUM -> fqName.substringAfterLast(".")
@@ -95,8 +59,17 @@ fun Type?.toGodotClassName(
     fqName == PackedVector3Array::class.qualifiedName -> GODOT_PACKED_VECTOR3_ARRAY
     fqName == PackedVector4Array::class.qualifiedName -> GODOT_PACKED_VECTOR4_ARRAY
     fqName == PackedColorArray::class.qualifiedName -> GODOT_PACKED_COLOR_ARRAY
-    baseGodotType() != null -> registeredClassesByFqName[fqName]?.getRegisteredName(settings)
-        ?: baseGodotType()!!.fqName.substringAfterLast(".")
+    else -> registeredOrBaseGodotClassName(context)
+}
 
-    else -> fqName.substringAfterLast(".").ifEmpty { GODOT_NIL }.let { if (it == "Object") GODOT_OBJECT else it }
+private fun Type.registeredOrBaseGodotClassName(context: GeneratorContext): String {
+    val baseGodotType = baseGodotType()
+    if (baseGodotType != null) {
+        return context.registeredClassesByFqName[fqName]?.getRegisteredName(context.settings)
+            ?: baseGodotType.fqName.substringAfterLast(".")
+    }
+
+    return fqName.substringAfterLast(".")
+        .ifEmpty { GODOT_NIL }
+        .let { if (it == "Object") GODOT_OBJECT else it }
 }

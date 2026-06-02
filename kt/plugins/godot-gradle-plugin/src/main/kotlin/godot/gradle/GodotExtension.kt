@@ -1,8 +1,8 @@
 package godot.gradle
 
-import godot.registrar.generator.settings.RegisteredNameMode
-import godot.registrar.generator.settings.RegistrationFileIndentation
-import godot.registrar.generator.settings.RegistrationFileLayoutMode
+import godot.registrar.generator.RegisteredNameMode
+import godot.registrar.generator.RegistrationFileIndentation
+import godot.registrar.generator.RegistrationFileLayoutMode
 import godot.gradle.ext.environmentVariable
 import godot.gradle.ext.executableFileOrNull
 import godot.gradle.ext.existingDirectoryOrNull

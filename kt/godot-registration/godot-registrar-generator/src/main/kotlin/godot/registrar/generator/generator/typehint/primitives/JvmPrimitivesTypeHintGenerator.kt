@@ -2,9 +2,8 @@ package godot.registrar.generator.generator.typehint.primitives
 
 import com.squareup.kotlinpoet.MemberName
 import godot.core.PropertyHint
-import godot.registrar.generator.exceptions.WrongAnnotationUsageException
 import godot.registrar.generator.generator.typehint.PropertyTypeHintGenerator
-import godot.registrar.generator.utils.asEnumName
+import godot.registrar.generator.ext.asEnumName
 import godot.registration.model.RegisteredProperty
 import godot.registration.model.hint.property.*
 
@@ -30,8 +29,7 @@ class JvmPrimitivesTypeHintGenerator(
             is MultilineTextHint -> PropertyHint.MULTILINE_TEXT.asEnumName()
             is PlaceHolderTextHint -> PropertyHint.PLACEHOLDER_TEXT.asEnumName()
             null -> PropertyHint.NONE.asEnumName()
-
-            else -> throw WrongAnnotationUsageException(registeredProperty, propertyHintAnnotation)
+            else -> PropertyHint.NONE.asEnumName()
         }
     }
 }

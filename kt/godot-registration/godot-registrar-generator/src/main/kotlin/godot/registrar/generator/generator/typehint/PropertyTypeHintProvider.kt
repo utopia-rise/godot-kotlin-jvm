@@ -7,7 +7,7 @@ import godot.registrar.generator.ext.isDictionary
 import godot.registrar.generator.generator.typehint.array.JvmArrayAndDictionaryTypeHintGenerator
 import godot.registrar.generator.generator.typehint.coretypes.JvmCoreTypeTypeHintGenerator
 import godot.registrar.generator.generator.typehint.primitives.JvmPrimitivesTypeHintGenerator
-import godot.registrar.generator.utils.asEnumName
+import godot.registrar.generator.ext.asEnumName
 import godot.registration.model.RegisteredProperty
 import godot.registration.model.ext.isCoreType
 import godot.registration.model.ext.isNodeType

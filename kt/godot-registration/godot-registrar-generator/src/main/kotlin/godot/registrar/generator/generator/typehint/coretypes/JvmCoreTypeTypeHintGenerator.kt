@@ -2,9 +2,8 @@ package godot.registrar.generator.generator.typehint.coretypes
 
 import com.squareup.kotlinpoet.MemberName
 import godot.core.PropertyHint
-import godot.registrar.generator.exceptions.WrongAnnotationUsageException
 import godot.registrar.generator.generator.typehint.PropertyTypeHintGenerator
-import godot.registrar.generator.utils.asEnumName
+import godot.registrar.generator.ext.asEnumName
 import godot.registration.model.RegisteredProperty
 import godot.registration.model.hint.property.ColorNoAlphaHint
 
@@ -19,7 +18,7 @@ class JvmCoreTypeTypeHintGenerator(
             //TODO: implement NodePathToEditedNode
             //TODO: implement NodePathValidTypes
             null -> PropertyHint.NONE.asEnumName()
-            else -> throw WrongAnnotationUsageException(registeredProperty, propertyHintAnnotation)
+            else -> PropertyHint.NONE.asEnumName()
         }
     }
 }

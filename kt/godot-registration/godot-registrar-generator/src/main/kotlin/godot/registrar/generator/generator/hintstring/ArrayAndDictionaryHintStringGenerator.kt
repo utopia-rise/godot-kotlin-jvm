@@ -2,6 +2,7 @@ package godot.registrar.generator.generator.hintstring
 
 import godot.core.PropertyHint
 import godot.core.VariantParser
+import godot.registrar.generator.GeneratorContext
 import godot.registrar.generator.ext.baseGodotType
 import godot.registrar.generator.ext.getAsVariantTypeOrdinal
 import godot.registrar.generator.ext.getGodotCoreTypeName
@@ -9,21 +10,18 @@ import godot.registrar.generator.ext.getRegisteredName
 import godot.registrar.generator.ext.isCompatibleList
 import godot.registrar.generator.ext.isDictionary
 import godot.registrar.generator.ext.isResource
-import godot.registrar.generator.settings.Settings
 import godot.registration.model.RegisteredProperty
 import godot.registration.model.ext.isCoreType
 import godot.registration.model.ext.isGodotPrimitive
 import godot.registration.model.ext.isNodeType
 import godot.registration.model.hint.property.EnumHint
-import godot.registration.model.types.ScriptClass
 import godot.registration.model.types.Type
 import godot.registration.model.types.TypeKind
 
 class ArrayAndDictionaryHintStringGenerator(
     registeredProperty: RegisteredProperty,
-    settings: Settings,
-    registeredClassesByFqName: Map<String, ScriptClass>,
-) : PropertyHintStringGenerator<EnumHint>(registeredProperty, settings, registeredClassesByFqName) {
+    context: GeneratorContext,
+) : PropertyHintStringGenerator<EnumHint>(registeredProperty, context) {
 
 
     /**
@@ -108,7 +106,7 @@ class ArrayAndDictionaryHintStringGenerator(
                         val objectVariantType = VariantParser.OBJECT.id
 
                         val className =
-                            registeredClassesByFqName[currentElementType.fqName]?.getRegisteredName(settings)
+                            context.registeredClassesByFqName[currentElementType.fqName]?.getRegisteredName(context.settings)
                                 ?: currentElementType.baseGodotType()?.fqName?.substringAfterLast(".")
 
                         val subTypeString = if (className != null) {
@@ -125,7 +123,7 @@ class ArrayAndDictionaryHintStringGenerator(
                         val objectVariantType = VariantParser.OBJECT.id
 
                         val className =
-                            registeredClassesByFqName[currentElementType.fqName]?.getRegisteredName(settings)
+                            context.registeredClassesByFqName[currentElementType.fqName]?.getRegisteredName(context.settings)
                                 ?: currentElementType.baseGodotType()?.fqName?.substringAfterLast(".")
 
                         val subTypeString = if (className != null) {

@@ -1,18 +1,28 @@
-package godot.registrar.generator.filebuilder
+package godot.registrar.generator.builder
 
 import godot.common.extensions.convertToSnakeCase
 import godot.registrar.generator.ext.flattenedHierarchy
 import godot.registrar.generator.ext.getRegisteredName
-import godot.registrar.generator.settings.Settings
+import godot.registrar.generator.ext.provideRegistrationFileRelativePath
+import godot.registrar.generator.ext.shouldGenerateGdjFile
+import godot.registrar.generator.Settings
 import godot.registration.model.types.ScriptClass
 import java.io.File
 
-class RegistrationFileGenerator(
-    private val registeredClass: ScriptClass,
+class RegistrationFileBuilder(
     private val settings: Settings,
-    private val outputFile: File,
+    private val outputDir: File,
 ) {
-    fun build() {
+    fun generate(registeredClasses: List<ScriptClass>) {
+        registeredClasses
+            .filter { it.shouldGenerateGdjFile }
+            .forEach { registeredClass ->
+                val outputFile = outputDir.resolve(registeredClass.provideRegistrationFileRelativePath(settings))
+                build(registeredClass, outputFile)
+            }
+    }
+
+    private fun build(registeredClass: ScriptClass, outputFile: File) {
         val registeredClassName = registeredClass.getRegisteredName(settings)
         val listItemIndent = settings.registrationFileIndentation.indentString
         val multilineListSeparator = ",\n$listItemIndent"
