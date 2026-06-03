@@ -87,7 +87,7 @@ public open class OpenXRFutureResult internal constructor() : RefCounted() {
   }
 
   public enum class ResultStatus(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The asynchronous function is running.
@@ -102,11 +102,6 @@ public open class OpenXRFutureResult internal constructor() : RefCounted() {
      */
     CANCELLED(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): ResultStatus = entries.single { it.`value` == `value` }

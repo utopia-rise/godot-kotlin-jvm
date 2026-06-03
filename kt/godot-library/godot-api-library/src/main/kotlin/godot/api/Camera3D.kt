@@ -687,7 +687,7 @@ public open class Camera3D : Node3D() {
   }
 
   public enum class ProjectionType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Perspective projection. Objects on the screen becomes smaller when they are far away.
@@ -705,18 +705,13 @@ public open class Camera3D : Node3D() {
     FRUSTUM(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ProjectionType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class KeepAspect(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Preserves the horizontal aspect ratio; also known as Vert- scaling. This is usually the best
@@ -732,18 +727,13 @@ public open class Camera3D : Node3D() {
     HEIGHT(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): KeepAspect = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class DopplerTracking(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Disables [url=https://en.wikipedia.org/wiki/Doppler_effect]Doppler effect[/url] simulation
@@ -765,11 +755,6 @@ public open class Camera3D : Node3D() {
      */
     PHYSICS_STEP(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): DopplerTracking = entries.single { it.`value` == `value` }

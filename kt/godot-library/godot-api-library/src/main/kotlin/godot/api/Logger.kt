@@ -81,7 +81,7 @@ public open class Logger : RefCounted() {
   }
 
   public enum class ErrorType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The message received is an error.
@@ -100,11 +100,6 @@ public open class Logger : RefCounted() {
      */
     SHADER(3),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): ErrorType = entries.single { it.`value` == `value` }

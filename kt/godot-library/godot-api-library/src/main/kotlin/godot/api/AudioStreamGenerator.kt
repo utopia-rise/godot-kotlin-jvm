@@ -194,7 +194,7 @@ public open class AudioStreamGenerator : AudioStream() {
   }
 
   public enum class AudioStreamGeneratorMixRate(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Current [AudioServer] output mixing rate.
@@ -213,11 +213,6 @@ public open class AudioStreamGenerator : AudioStream() {
      */
     MIX_RATE_MAX(3),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): AudioStreamGeneratorMixRate =

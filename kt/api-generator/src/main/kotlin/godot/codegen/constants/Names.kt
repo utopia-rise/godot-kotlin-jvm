@@ -104,6 +104,7 @@ object Core {
     val lambdaCallable = ClassName(godotCorePackage, "LambdaCallable")
     val lambdaContainer = ClassName(godotCorePackage, "LambdaContainer")
     val godotEnum = ClassName(godotCorePackage, "GodotEnum")
+    val bitFieldBase = ClassName(godotCorePackage, "BitFieldBase")
     val error = ClassName(godotCorePackage, "Error")
     val variantType = ClassName(godotCorePackage, "VariantType")
     val ktRpcConfig = ClassName(godotRegistrationPackage, "KtRpcConfig")

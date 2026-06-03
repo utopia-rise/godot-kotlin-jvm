@@ -1344,7 +1344,7 @@ public open class Theme : Resource() {
       renameType(oldThemeType.asCachedStringName(), themeType.asCachedStringName())
 
   public enum class DataType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Theme's [Color] item type.
@@ -1375,11 +1375,6 @@ public open class Theme : Resource() {
      */
     MAX(6),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): DataType = entries.single { it.`value` == `value` }

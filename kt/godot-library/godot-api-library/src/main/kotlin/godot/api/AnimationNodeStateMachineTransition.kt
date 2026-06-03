@@ -280,7 +280,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
       setAdvanceCondition(name.asCachedStringName())
 
   public enum class SwitchMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Switch to the next state immediately. The current state will end and blend into the beginning
@@ -299,18 +299,13 @@ public open class AnimationNodeStateMachineTransition : Resource() {
     AT_END(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): SwitchMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class AdvanceMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Don't use this transition.
@@ -326,11 +321,6 @@ public open class AnimationNodeStateMachineTransition : Resource() {
      */
     AUTO(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): AdvanceMode = entries.single { it.`value` == `value` }

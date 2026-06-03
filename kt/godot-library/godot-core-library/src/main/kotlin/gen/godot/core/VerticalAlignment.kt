@@ -10,7 +10,7 @@ import kotlin.Long
 import kotlin.Suppress
 
 public enum class VerticalAlignment(
-  `value`: Long,
+  public override val `value`: Long,
 ) : GodotEnum {
   /**
    * Vertical top alignment, usually for text-derived classes.
@@ -29,11 +29,6 @@ public enum class VerticalAlignment(
    */
   FILL(3),
   ;
-
-  public override val `value`: Long
-  init {
-    this.`value` = `value`
-  }
 
   public companion object {
     public fun from(`value`: Long): VerticalAlignment = entries.single { it.`value` == `value` }

@@ -246,7 +246,7 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
   }
 
   public enum class Hint(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The parameter will not constrain its value.
@@ -270,11 +270,6 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
      */
     MAX(4),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): Hint = entries.single { it.`value` == `value` }

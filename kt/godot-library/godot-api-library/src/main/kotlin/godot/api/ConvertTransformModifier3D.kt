@@ -256,7 +256,7 @@ public open class ConvertTransformModifier3D : BoneConstraint3D() {
   }
 
   public enum class TransformMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Convert with position. Transfer the difference.
@@ -271,11 +271,6 @@ public open class ConvertTransformModifier3D : BoneConstraint3D() {
      */
     SCALE(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): TransformMode = entries.single { it.`value` == `value` }

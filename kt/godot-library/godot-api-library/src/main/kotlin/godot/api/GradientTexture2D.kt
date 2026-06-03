@@ -284,7 +284,7 @@ public open class GradientTexture2D : Texture2D() {
   }
 
   public enum class Fill(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The colors are linearly interpolated in a straight line.
@@ -300,18 +300,13 @@ public open class GradientTexture2D : Texture2D() {
     SQUARE(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): Fill = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Repeat(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The gradient fill is restricted to the range defined by [fillFrom] to [fillTo] offsets.
@@ -328,11 +323,6 @@ public open class GradientTexture2D : Texture2D() {
      */
     MIRROR(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): Repeat = entries.single { it.`value` == `value` }

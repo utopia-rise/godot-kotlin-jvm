@@ -370,7 +370,7 @@ public open class ScrollContainer : Container() {
   }
 
   public enum class ScrollMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Scrolling disabled, scrollbar will be invisible.
@@ -397,18 +397,13 @@ public open class ScrollContainer : Container() {
     RESERVE(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ScrollMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ScrollHintMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Scroll hints will never be shown.
@@ -428,11 +423,6 @@ public open class ScrollContainer : Container() {
      */
     BOTTOM_AND_RIGHT(3),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): ScrollHintMode = entries.single { it.`value` == `value` }

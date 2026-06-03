@@ -549,7 +549,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
       getInstanceShaderParameter(name.asCachedStringName())
 
   public enum class ShadowCastingSetting(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Will not cast any shadows. Use this to improve performance for small geometry that is
@@ -579,11 +579,6 @@ public open class GeometryInstance3D : VisualInstance3D() {
     SHADOWS_ONLY(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ShadowCastingSetting =
           entries.single { it.`value` == `value` }
@@ -591,7 +586,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   }
 
   public enum class GIMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Disabled global illumination mode. Use for dynamic objects that do not contribute to global
@@ -615,18 +610,13 @@ public open class GeometryInstance3D : VisualInstance3D() {
     DYNAMIC(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): GIMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class LightmapScale(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The standard texel density for lightmapping with [LightmapGI].
@@ -653,18 +643,13 @@ public open class GeometryInstance3D : VisualInstance3D() {
     MAX(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): LightmapScale = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class VisibilityRangeFadeMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Will not fade itself nor its visibility dependencies, hysteresis will be used instead. This
@@ -695,11 +680,6 @@ public open class GeometryInstance3D : VisualInstance3D() {
      */
     DEPENDENCIES(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): VisibilityRangeFadeMode =

@@ -120,7 +120,7 @@ public open class ConeTwistJoint3D : Joint3D() {
   }
 
   public enum class Param(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Swing is rotation from side to side, around the axis perpendicular to the twist axis.
@@ -158,11 +158,6 @@ public open class ConeTwistJoint3D : Joint3D() {
      */
     MAX(5),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): Param = entries.single { it.`value` == `value` }

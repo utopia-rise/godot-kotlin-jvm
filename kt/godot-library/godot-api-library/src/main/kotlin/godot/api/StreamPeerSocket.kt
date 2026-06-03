@@ -56,7 +56,7 @@ public open class StreamPeerSocket internal constructor() : StreamPeer() {
   }
 
   public enum class Status(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The initial status of the [StreamPeerSocket]. This is also the status after disconnecting.
@@ -75,11 +75,6 @@ public open class StreamPeerSocket internal constructor() : StreamPeer() {
      */
     ERROR(3),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): Status = entries.single { it.`value` == `value` }

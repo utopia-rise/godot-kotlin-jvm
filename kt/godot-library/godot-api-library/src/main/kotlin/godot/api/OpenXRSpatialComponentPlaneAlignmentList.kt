@@ -38,7 +38,7 @@ public open class OpenXRSpatialComponentPlaneAlignmentList : OpenXRSpatialCompon
   }
 
   public enum class PlaneAlignment(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Plane is facing upward.
@@ -57,11 +57,6 @@ public open class OpenXRSpatialComponentPlaneAlignmentList : OpenXRSpatialCompon
      */
     ARBITRARY(3),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): PlaneAlignment = entries.single { it.`value` == `value` }

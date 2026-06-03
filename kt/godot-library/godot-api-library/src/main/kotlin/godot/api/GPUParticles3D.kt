@@ -874,7 +874,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public final fun setSubEmitter(path: String) = setSubEmitter(path.asCachedNodePath())
 
   public enum class DrawOrder(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Particles are drawn in the order emitted.
@@ -896,18 +896,13 @@ public open class GPUParticles3D : GeometryInstance3D() {
     VIEW_DEPTH(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): DrawOrder = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class EmitFlags(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Particle starts at the specified position.
@@ -932,29 +927,19 @@ public open class GPUParticles3D : GeometryInstance3D() {
     CUSTOM(16),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): EmitFlags = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class TransformAlign(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     DISABLED(0),
     Z_BILLBOARD(1),
     Y_TO_VELOCITY(2),
     Z_BILLBOARD_Y_TO_VELOCITY(3),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): TransformAlign = entries.single { it.`value` == `value` }

@@ -63,7 +63,7 @@ public open class OpenXRSpatialComponentMarkerList : OpenXRSpatialComponentData(
   }
 
   public enum class MarkerType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Unknown or unset marker type.
@@ -90,11 +90,6 @@ public open class OpenXRSpatialComponentMarkerList : OpenXRSpatialComponentData(
      */
     MAX(5),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): MarkerType = entries.single { it.`value` == `value` }

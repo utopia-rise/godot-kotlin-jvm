@@ -170,7 +170,7 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
   }
 
   public enum class Hint(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * No hint used.
@@ -192,11 +192,6 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
      */
     MAX(3),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): Hint = entries.single { it.`value` == `value` }

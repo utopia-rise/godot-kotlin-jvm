@@ -4,7 +4,7 @@ interface GodotEnum {
     val value: Long
 }
 
-val Enum<*>.godotOrdinal: Long
+val Enum<*>.godotValue: Long
     get() {
         return if (this is GodotEnum) {
             this.value
@@ -13,8 +13,8 @@ val Enum<*>.godotOrdinal: Long
         }
     }
 
-inline fun <reified T : Enum<T>> enumFromGodotOrdinal(ordinal: Number): T {
-    return requireNotNull(enumValues<T>().firstOrNull { it.godotOrdinal == ordinal.toLong() }) {
-        "No enum entry with godotOrdinal $ordinal found in ${T::class.qualifiedName} with entries: [${enumValues<T>().joinToString()}]"
+inline fun <reified T : Enum<T>> Long.toEnum(): T {
+    return requireNotNull(enumValues<T>().firstOrNull { it.godotValue == this }) {
+        "No enum entry with godotValue $this found in ${T::class.qualifiedName} with entries: [${enumValues<T>().joinToString()}]"
     }
 }

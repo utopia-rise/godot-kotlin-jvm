@@ -708,7 +708,7 @@ public open class TabBar : Control() {
   }
 
   public enum class AlignmentMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Aligns tabs to the left.
@@ -728,18 +728,13 @@ public open class TabBar : Control() {
     MAX(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): AlignmentMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CloseButtonDisplayPolicy(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Never show the close buttons.
@@ -758,11 +753,6 @@ public open class TabBar : Control() {
      */
     MAX(3),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): CloseButtonDisplayPolicy =

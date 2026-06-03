@@ -394,7 +394,7 @@ public open class Resource : RefCounted() {
   }
 
   public enum class DeepDuplicateMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * No subresources at all are duplicated. This is useful even in a deep duplication to have all
@@ -411,11 +411,6 @@ public open class Resource : RefCounted() {
      */
     ALL(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): DeepDuplicateMode = entries.single { it.`value` == `value` }

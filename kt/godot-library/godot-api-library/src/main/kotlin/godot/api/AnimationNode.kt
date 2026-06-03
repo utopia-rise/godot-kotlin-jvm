@@ -436,7 +436,7 @@ public open class AnimationNode : Resource() {
   public final fun getParameter(name: String): Any? = getParameter(name.asCachedStringName())
 
   public enum class FilterAction(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Do not use filtering.
@@ -455,11 +455,6 @@ public open class AnimationNode : Resource() {
      */
     BLEND(3),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): FilterAction = entries.single { it.`value` == `value` }

@@ -2,10 +2,10 @@ package godot.codegen.generation.rule
 
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FunSpec
-import com.squareup.kotlinpoet.INT
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.LONG
 import com.squareup.kotlinpoet.ParameterSpec
+import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeSpec
 import godot.codegen.constants.Core
@@ -16,6 +16,8 @@ import godot.codegen.models.enriched.EnrichedEnum
 import godot.codegen.models.traits.addKdoc
 
 private const val BIT_FLAG_VALUE_MEMBER = "flag"
+private const val ENUM_VALUE_PARAMETER = "value"
+private const val ENUM_VALUE_PROPERTY = "value"
 
 class EnumRule : GodotApiRule<EnrichedEnumTask>() {
 
@@ -33,148 +35,69 @@ class EnumRule : GodotApiRule<EnrichedEnumTask>() {
 
         primaryConstructor(
             FunSpec.constructorBuilder()
-                .addParameter("value", Long::class)
-                .addStatement("this.%N = %N", "value", "value")
+                .addParameter(ENUM_VALUE_PARAMETER, Long::class)
                 .build()
         )
-        addProperty("value", Long::class, KModifier.OVERRIDE)
+        addProperty(
+            PropertySpec.builder(ENUM_VALUE_PROPERTY, Long::class, KModifier.OVERRIDE)
+                .initializer(ENUM_VALUE_PARAMETER)
+                .build()
+        )
 
         for (value in enum.values) {
-            val valueName = value.name
             addEnumConstant(
-                valueName,
+                value.name,
                 TypeSpec.anonymousClassBuilder()
                     .addSuperclassConstructorParameter("%L", value.value)
-                    .also {
-                        it.addKdoc(value)
-                    }
+                    .also { it.addKdoc(value) }
                     .build()
             )
         }
 
-        val companion = TypeSpec.companionObjectBuilder()
-            .addFunction(
-                FunSpec.builder("from")
-                    .returns(enum.className)
-                    .addParameter("value", Long::class)
-                    .addStatement("return·entries.single·{·it.%N·==·%N·}", "value", "value")
-                    .build()
-            )
-            .build()
-
-        addType(companion)
+        addType(
+            TypeSpec.companionObjectBuilder()
+                .addFunction(
+                    FunSpec.builder("from")
+                        .returns(enum.className)
+                        .addParameter("value", Long::class)
+                        .addStatement("return·entries.single·{·it.%N·==·%N·}", "value", "value")
+                        .build()
+                )
+                .build()
+        )
     }
 
     fun TypeSpec.Builder.generateBitfield(enum: EnrichedEnum) {
         val className = enum.className
+        superclass(Core.bitFieldBase.parameterizedBy(className))
 
         primaryConstructor(
             FunSpec.constructorBuilder()
-                .addParameter(
-                    ParameterSpec
-                        .builder(BIT_FLAG_VALUE_MEMBER, LONG)
-                        .build()
-                )
+                .addParameter(ParameterSpec.builder(BIT_FLAG_VALUE_MEMBER, LONG).build())
                 .build()
         )
-        addProperty(
-            PropertySpec.builder(BIT_FLAG_VALUE_MEMBER, LONG)
-                .initializer(BIT_FLAG_VALUE_MEMBER)
+        addSuperclassConstructorParameter(BIT_FLAG_VALUE_MEMBER)
+        addFunction(
+            FunSpec.builder("wrap")
+                .addModifiers(KModifier.OVERRIDE, KModifier.PROTECTED)
+                .addParameter(BIT_FLAG_VALUE_MEMBER, LONG)
+                .returns(className)
+                .addCode(CodeBlock.of("return·%T(%N)", className, BIT_FLAG_VALUE_MEMBER))
                 .build()
         )
 
-        val logicalOperations = arrayOf("or", "xor", "and")
-        generateOperatorMethods(logicalOperations, enum)
-
-        val unaryOperations = arrayOf("unaryPlus", "unaryMinus", "inv")
-        for (unaryOperation in unaryOperations) {
-            addFunction(
-                FunSpec.builder(unaryOperation)
-                    .returns(className)
-                    .addCode(CodeBlock.of("return·%L(%L.%L())", enum.simpleName, BIT_FLAG_VALUE_MEMBER, unaryOperation))
-                    .build()
-            )
-        }
-
-        val shiftOperations = arrayOf("shl", "shr", "ushr")
-        val shiftOperationsParameterName = "bits"
-        for (shiftOperation in shiftOperations) {
-            addFunction(
-                FunSpec.builder(shiftOperation)
-                    .addModifiers(KModifier.INFIX)
-                    .addParameter(shiftOperationsParameterName, INT)
-                    .returns(className)
-                    .addCode(
-                        CodeBlock.of(
-                            "return·%L(%L·%L·%L)",
-                            enum.simpleName, BIT_FLAG_VALUE_MEMBER, shiftOperation, shiftOperationsParameterName
-                        )
-                    )
-                    .build()
-            )
-        }
-
-        val bitfieldCompanion = TypeSpec.companionObjectBuilder()
+        val companion = TypeSpec.companionObjectBuilder()
         for (value in enum.values) {
-            bitfieldCompanion
-                .addProperty(
-                    PropertySpec.builder(value.name, className)
-                        .addAnnotation(JvmField::class)
-                        .initializer(CodeBlock.of("%T(%L)", className, value.value))
-                        .addKdoc(value)
-                        .build()
-                )
-        }
-
-        addType(bitfieldCompanion.build())
-    }
-
-    private fun TypeSpec.Builder.generateOperatorMethods(
-        operations: Array<String>,
-        enum: EnrichedEnum,
-        isOperator: Boolean = false
-    ) {
-
-        val bitFieldInterfaceName = enum.className
-
-        val operatorModifier = if (isOperator) KModifier.OPERATOR else KModifier.INFIX
-
-        for (operation in operations) {
-            this.addFunction(
-                FunSpec.builder(operation)
-                    .addModifiers(operatorModifier)
-                    .addParameter(
-                        ParameterSpec
-                            .builder("other", bitFieldInterfaceName)
-                            .build()
-                    )
-                    .returns(bitFieldInterfaceName)
-                    .addCode(
-                        CodeBlock.of(
-                            "return·%L(%L.%L(other.%L))",
-                            enum.simpleName,
-                            BIT_FLAG_VALUE_MEMBER,
-                            operation,
-                            BIT_FLAG_VALUE_MEMBER
-                        )
-                    )
-                    .build()
-            )
-            this.addFunction(
-                FunSpec.builder(operation)
-                    .addModifiers(operatorModifier)
-                    .addParameter(
-                        ParameterSpec
-                            .builder("other", LONG)
-                            .build()
-                    )
-                    .returns(bitFieldInterfaceName)
-                    .addCode(
-                        CodeBlock.of("return·%L(%L.%L(other))", enum.simpleName, BIT_FLAG_VALUE_MEMBER, operation)
-                    )
+            companion.addProperty(
+                PropertySpec.builder(value.name, className)
+                    .addAnnotation(JvmField::class)
+                    .initializer(CodeBlock.of("%T(%L)", className, value.value))
+                    .addKdoc(value)
                     .build()
             )
         }
+
+        addType(companion.build())
     }
 }
 
@@ -185,32 +108,24 @@ class BitfieldExtensionRule : GodotApiRule<FileTask>() {
         enums.filter { it.enum.isBitField() }
             .forEach { enum ->
                 val logicalOperations = arrayOf("or", "xor", "and")
-                generateBitFlagExtensionsOperators(logicalOperations, enum.enum).forEach {
+                generateBitFieldExtensionsOperators(logicalOperations, enum.enum).forEach {
                     addFunction(it)
                 }
             }
     }
 
-    fun generateBitFlagExtensionsOperators(
+    fun generateBitFieldExtensionsOperators(
         bitOperations: Array<String>,
         enum: EnrichedEnum,
     ): List<FunSpec> {
-
-        return bitOperations
-            .map {
-                FunSpec.builder(it)
-                    .addModifiers(KModifier.INFIX)
-                    .receiver(LONG)
-                    .addParameter(
-                        ParameterSpec
-                            .builder("other", enum.className)
-                            .build()
-                    )
-                    .returns(LONG)
-                    .addCode(
-                        CodeBlock.of("return·this.%L(other.%L)", it, BIT_FLAG_VALUE_MEMBER)
-                    ).build()
-            }
+        return bitOperations.map { operation ->
+            FunSpec.builder(operation)
+                .addModifiers(KModifier.INFIX)
+                .receiver(LONG)
+                .addParameter(ParameterSpec.builder("other", enum.className).build())
+                .returns(LONG)
+                .addCode(CodeBlock.of("return·this.%L(other.%L)", operation, BIT_FLAG_VALUE_MEMBER))
+                .build()
+        }
     }
 }
-

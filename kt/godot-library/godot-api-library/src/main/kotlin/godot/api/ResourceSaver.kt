@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.BitFieldBase
 import godot.core.Error
 import godot.core.MethodStringName1
 import godot.core.MethodStringName2
@@ -22,7 +23,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -162,31 +162,9 @@ public object ResourceSaver : Object() {
   }
 
   public class SaverFlags(
-    public val flag: Long,
-  ) {
-    public infix fun or(other: SaverFlags): SaverFlags = SaverFlags(flag.or(other.flag))
-
-    public infix fun or(other: Long): SaverFlags = SaverFlags(flag.or(other))
-
-    public infix fun xor(other: SaverFlags): SaverFlags = SaverFlags(flag.xor(other.flag))
-
-    public infix fun xor(other: Long): SaverFlags = SaverFlags(flag.xor(other))
-
-    public infix fun and(other: SaverFlags): SaverFlags = SaverFlags(flag.and(other.flag))
-
-    public infix fun and(other: Long): SaverFlags = SaverFlags(flag.and(other))
-
-    public fun unaryPlus(): SaverFlags = SaverFlags(flag.unaryPlus())
-
-    public fun unaryMinus(): SaverFlags = SaverFlags(flag.unaryMinus())
-
-    public fun inv(): SaverFlags = SaverFlags(flag.inv())
-
-    public infix fun shl(bits: Int): SaverFlags = SaverFlags(flag shl bits)
-
-    public infix fun shr(bits: Int): SaverFlags = SaverFlags(flag shr bits)
-
-    public infix fun ushr(bits: Int): SaverFlags = SaverFlags(flag ushr bits)
+    flag: Long,
+  ) : BitFieldBase<SaverFlags>(flag) {
+    protected override fun wrap(flag: Long): SaverFlags = SaverFlags(flag)
 
     public companion object {
       /**

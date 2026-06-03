@@ -612,7 +612,7 @@ public open class NavigationPolygon : Resource() {
       setSourceGeometryGroupName(groupName.asCachedStringName())
 
   public enum class SamplePartitionType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Convex partitioning that results in a navigation mesh with convex polygons.
@@ -628,18 +628,13 @@ public open class NavigationPolygon : Resource() {
     MAX(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): SamplePartitionType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ParsedGeometryType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Parses mesh instances as obstruction geometry. This includes [Polygon2D], [MeshInstance2D],
@@ -663,18 +658,13 @@ public open class NavigationPolygon : Resource() {
     MAX(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ParsedGeometryType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class SourceGeometryMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Scans the child nodes of the root node recursively for geometry.
@@ -694,11 +684,6 @@ public open class NavigationPolygon : Resource() {
      */
     MAX(3),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): SourceGeometryMode = entries.single { it.`value` == `value` }

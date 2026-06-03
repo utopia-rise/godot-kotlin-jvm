@@ -125,7 +125,7 @@ public open class AspectRatioContainer : Container() {
   }
 
   public enum class StretchMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The height of child controls is automatically adjusted based on the width of the container.
@@ -151,18 +151,13 @@ public open class AspectRatioContainer : Container() {
     COVER(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): StretchMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class AlignmentMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Aligns child controls with the beginning (left or top) of the container.
@@ -177,11 +172,6 @@ public open class AspectRatioContainer : Container() {
      */
     END(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): AlignmentMode = entries.single { it.`value` == `value` }

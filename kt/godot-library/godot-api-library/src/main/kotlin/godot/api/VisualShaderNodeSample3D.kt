@@ -53,7 +53,7 @@ public open class VisualShaderNodeSample3D internal constructor() : VisualShader
   }
 
   public enum class Source(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Creates internal uniform and provides a way to assign it within node.
@@ -68,11 +68,6 @@ public open class VisualShaderNodeSample3D internal constructor() : VisualShader
      */
     MAX(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): Source = entries.single { it.`value` == `value` }

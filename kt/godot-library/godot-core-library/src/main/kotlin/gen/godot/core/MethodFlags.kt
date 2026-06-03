@@ -6,7 +6,6 @@
 
 package godot.core
 
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.jvm.JvmField
@@ -18,31 +17,9 @@ public infix fun Long.xor(other: MethodFlags): Long = this.xor(other.flag)
 public infix fun Long.and(other: MethodFlags): Long = this.and(other.flag)
 
 public class MethodFlags(
-  public val flag: Long,
-) {
-  public infix fun or(other: MethodFlags): MethodFlags = MethodFlags(flag.or(other.flag))
-
-  public infix fun or(other: Long): MethodFlags = MethodFlags(flag.or(other))
-
-  public infix fun xor(other: MethodFlags): MethodFlags = MethodFlags(flag.xor(other.flag))
-
-  public infix fun xor(other: Long): MethodFlags = MethodFlags(flag.xor(other))
-
-  public infix fun and(other: MethodFlags): MethodFlags = MethodFlags(flag.and(other.flag))
-
-  public infix fun and(other: Long): MethodFlags = MethodFlags(flag.and(other))
-
-  public fun unaryPlus(): MethodFlags = MethodFlags(flag.unaryPlus())
-
-  public fun unaryMinus(): MethodFlags = MethodFlags(flag.unaryMinus())
-
-  public fun inv(): MethodFlags = MethodFlags(flag.inv())
-
-  public infix fun shl(bits: Int): MethodFlags = MethodFlags(flag shl bits)
-
-  public infix fun shr(bits: Int): MethodFlags = MethodFlags(flag shr bits)
-
-  public infix fun ushr(bits: Int): MethodFlags = MethodFlags(flag ushr bits)
+  flag: Long,
+) : BitFieldBase<MethodFlags>(flag) {
+  protected override fun wrap(flag: Long): MethodFlags = MethodFlags(flag)
 
   public companion object {
     /**

@@ -3,7 +3,7 @@ package godot.tests
 import godot.annotation.{Export, RegisterClass, RegisterFunction, RegisterProperty, RegisterSignal}
 import godot.api.Object.ConnectFlags
 import godot.api.{Button, Node, RenderingServer}
-import godot.core.{Callable, Callable1, Dictionary, GodotNotification, LambdaCallable, LambdaCallable0, LambdaCallable1, LambdaCallable3, MethodCallable1, MethodStringName1, NotificationFunction, Signal0, Signal1, Signal2, Signal3, StringNames, VariantArray}
+import godot.core.{BitField, Callable, Callable1, Dictionary, GodotNotification, LambdaCallable, LambdaCallable0, LambdaCallable1, LambdaCallable3, MethodCallable1, MethodStringName1, NotificationFunction, Signal0, Signal1, Signal2, Signal3, StringNames, VariantArray}
 import org.jetbrains.annotations.NotNull
 
 @RegisterClass
@@ -48,6 +48,22 @@ class ScalaTestClass extends Node {
   @Export
   @RegisterProperty
   var exportedButton: Button = null
+
+  @Export
+  @RegisterProperty
+  var scalaEnum: ScalaEnum = ScalaEnum.SCALA_ENUM_1
+
+  @Export
+  @RegisterProperty
+  var scalaFlag: BitField[ScalaEnum] = BitField.of(ScalaEnum.SCALA_ENUM_1, ScalaEnum.SCALA_ENUM_2)
+
+  @Export
+  @RegisterProperty
+  var scalaEnumList: java.util.List[ScalaEnum] = new java.util.ArrayList(java.util.List.of(ScalaEnum.SCALA_ENUM_1))
+
+  @Export
+  @RegisterProperty
+  var scalaGodotFlag: BitField[ScalaGodotEnum] = BitField.of(ScalaGodotEnum.A, ScalaGodotEnum.B)
 
   @RegisterFunction
   def greeting: String = {

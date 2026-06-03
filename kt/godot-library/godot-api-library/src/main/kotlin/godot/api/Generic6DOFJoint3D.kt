@@ -105,7 +105,7 @@ public open class Generic6DOFJoint3D : Joint3D() {
   }
 
   public enum class Param(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The minimum difference between the pivot points' axes.
@@ -184,18 +184,13 @@ public open class Generic6DOFJoint3D : Joint3D() {
     MAX(22),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): Param = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Flag(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * If enabled, linear motion is possible within the given limits.
@@ -220,11 +215,6 @@ public open class Generic6DOFJoint3D : Joint3D() {
      */
     MAX(6),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): Flag = entries.single { it.`value` == `value` }

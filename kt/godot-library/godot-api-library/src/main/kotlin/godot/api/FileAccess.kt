@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.BitFieldBase
 import godot.core.Error
 import godot.core.GodotEnum
 import godot.core.MethodStringName0
@@ -740,7 +741,7 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   public enum class ModeFlags(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Opens the file for read operations. The file cursor is positioned at the beginning of the
@@ -771,18 +772,13 @@ public open class FileAccess internal constructor() : RefCounted() {
     WRITE_READ(7),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ModeFlags = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CompressionMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Uses the [url=https://fastlz.org/]FastLZ[/url] compression method.
@@ -807,45 +803,15 @@ public open class FileAccess internal constructor() : RefCounted() {
     BROTLI(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): CompressionMode = entries.single { it.`value` == `value` }
     }
   }
 
   public class UnixPermissionFlags(
-    public val flag: Long,
-  ) {
-    public infix fun or(other: UnixPermissionFlags): UnixPermissionFlags =
-        UnixPermissionFlags(flag.or(other.flag))
-
-    public infix fun or(other: Long): UnixPermissionFlags = UnixPermissionFlags(flag.or(other))
-
-    public infix fun xor(other: UnixPermissionFlags): UnixPermissionFlags =
-        UnixPermissionFlags(flag.xor(other.flag))
-
-    public infix fun xor(other: Long): UnixPermissionFlags = UnixPermissionFlags(flag.xor(other))
-
-    public infix fun and(other: UnixPermissionFlags): UnixPermissionFlags =
-        UnixPermissionFlags(flag.and(other.flag))
-
-    public infix fun and(other: Long): UnixPermissionFlags = UnixPermissionFlags(flag.and(other))
-
-    public fun unaryPlus(): UnixPermissionFlags = UnixPermissionFlags(flag.unaryPlus())
-
-    public fun unaryMinus(): UnixPermissionFlags = UnixPermissionFlags(flag.unaryMinus())
-
-    public fun inv(): UnixPermissionFlags = UnixPermissionFlags(flag.inv())
-
-    public infix fun shl(bits: Int): UnixPermissionFlags = UnixPermissionFlags(flag shl bits)
-
-    public infix fun shr(bits: Int): UnixPermissionFlags = UnixPermissionFlags(flag shr bits)
-
-    public infix fun ushr(bits: Int): UnixPermissionFlags = UnixPermissionFlags(flag ushr bits)
+    flag: Long,
+  ) : BitFieldBase<UnixPermissionFlags>(flag) {
+    protected override fun wrap(flag: Long): UnixPermissionFlags = UnixPermissionFlags(flag)
 
     public companion object {
       /**

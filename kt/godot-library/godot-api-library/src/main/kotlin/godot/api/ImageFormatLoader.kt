@@ -8,7 +8,7 @@ package godot.api
 
 import godot.`annotation`.GodotBaseType
 import godot.common.interop.VoidPtr
-import kotlin.Int
+import godot.core.BitFieldBase
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -32,31 +32,9 @@ public open class ImageFormatLoader internal constructor() : RefCounted() {
   }
 
   public class LoaderFlags(
-    public val flag: Long,
-  ) {
-    public infix fun or(other: LoaderFlags): LoaderFlags = LoaderFlags(flag.or(other.flag))
-
-    public infix fun or(other: Long): LoaderFlags = LoaderFlags(flag.or(other))
-
-    public infix fun xor(other: LoaderFlags): LoaderFlags = LoaderFlags(flag.xor(other.flag))
-
-    public infix fun xor(other: Long): LoaderFlags = LoaderFlags(flag.xor(other))
-
-    public infix fun and(other: LoaderFlags): LoaderFlags = LoaderFlags(flag.and(other.flag))
-
-    public infix fun and(other: Long): LoaderFlags = LoaderFlags(flag.and(other))
-
-    public fun unaryPlus(): LoaderFlags = LoaderFlags(flag.unaryPlus())
-
-    public fun unaryMinus(): LoaderFlags = LoaderFlags(flag.unaryMinus())
-
-    public fun inv(): LoaderFlags = LoaderFlags(flag.inv())
-
-    public infix fun shl(bits: Int): LoaderFlags = LoaderFlags(flag shl bits)
-
-    public infix fun shr(bits: Int): LoaderFlags = LoaderFlags(flag shr bits)
-
-    public infix fun ushr(bits: Int): LoaderFlags = LoaderFlags(flag ushr bits)
+    flag: Long,
+  ) : BitFieldBase<LoaderFlags>(flag) {
+    protected override fun wrap(flag: Long): LoaderFlags = LoaderFlags(flag)
 
     public companion object {
       @JvmField

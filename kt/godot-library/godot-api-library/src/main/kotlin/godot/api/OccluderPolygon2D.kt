@@ -151,7 +151,7 @@ public open class OccluderPolygon2D : Resource() {
   }
 
   public enum class CullMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Culling is disabled. See [cullMode].
@@ -166,11 +166,6 @@ public open class OccluderPolygon2D : Resource() {
      */
     COUNTER_CLOCKWISE(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): CullMode = entries.single { it.`value` == `value` }

@@ -3,7 +3,6 @@ package godot.inspection
 import godot.annotation.ColorNoAlpha
 import godot.annotation.Dir
 import godot.annotation.DoubleRange
-import godot.annotation.EnumFlag
 import godot.annotation.EnumTypeHint
 import godot.annotation.ExpEasing
 import godot.annotation.Export
@@ -23,6 +22,7 @@ import godot.annotation.RpcMode
 import godot.annotation.Tool
 import godot.annotation.TransferMode
 import godot.api.Node
+import godot.core.BitField
 import godot.core.Signal0
 import godot.core.VariantArray
 import godot.core.Vector2
@@ -153,11 +153,6 @@ class RegisterPropertyProblemFixture : Node() {
     @RegisterProperty
     var unsupportedExportedType = UnsupportedExportedType()
 
-    // Expected red: Kotlin collections of enums need `@EnumFlag` to describe
-    // how they should be exported.
-    @RegisterProperty
-    var enumSetWithoutEnumFlag = setOf(SmallEnum.A)
-
     // Expected red: `VariantArray<Enum>` is explicitly rejected by the
     // inspection.
     @RegisterProperty
@@ -196,28 +191,15 @@ class PropertyHintProblemFixture : Node() {
     @EnumTypeHint
     var enumTypeHintWrongType = 1
 
-    // Expected red: `@EnumFlag` only makes sense on `Set<Enum>` or
-    // `MutableSet<Enum>`.
-    @EnumFlag
-    var enumFlagWrongType = 1
-
-    // Expected red: enum flags are capped at 32 enum entries, and this enum is
-    // intentionally larger.
-    @Export
-    @RegisterProperty
-    @EnumFlag
-    var enumFlagTooManyEntries = setOf(
-        LargeEnum.E01, LargeEnum.E02, LargeEnum.E03, LargeEnum.E04, LargeEnum.E05, LargeEnum.E06,
-        LargeEnum.E07, LargeEnum.E08, LargeEnum.E09, LargeEnum.E10, LargeEnum.E11, LargeEnum.E12,
-        LargeEnum.E13, LargeEnum.E14, LargeEnum.E15, LargeEnum.E16, LargeEnum.E17, LargeEnum.E18,
-        LargeEnum.E19, LargeEnum.E20, LargeEnum.E21, LargeEnum.E22, LargeEnum.E23, LargeEnum.E24,
-        LargeEnum.E25, LargeEnum.E26, LargeEnum.E27, LargeEnum.E28, LargeEnum.E29, LargeEnum.E30,
-        LargeEnum.E31, LargeEnum.E32, LargeEnum.E33,
-    )
-
     // Expected red: `@IntFlag` only makes sense on `Int` properties.
     @IntFlag("a")
     var intFlagWrongType = ""
+
+    // Expected red: a bitfield is capped at 32 entries, and this enum is
+    // intentionally larger.
+    @Export
+    @RegisterProperty
+    var bitFlagTooManyEntries: BitField<LargeEnum> = BitField.of(LargeEnum.E01)
 
     // Expected red: `@File` only makes sense on `String` properties.
     @File

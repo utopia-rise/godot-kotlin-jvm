@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.BitFieldBase
 import godot.core.GodotEnum
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
@@ -473,18 +474,13 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
   }
 
   public enum class PathfindingAlgorithm(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The path query uses the default A* pathfinding algorithm.
      */
     ASTAR(0),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): PathfindingAlgorithm =
@@ -493,7 +489,7 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
   }
 
   public enum class PathPostProcessing(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Applies a funnel algorithm to the raw path corridor found by the pathfinding algorithm. This
@@ -516,45 +512,15 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
     POSTPROCESSING_NONE(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): PathPostProcessing = entries.single { it.`value` == `value` }
     }
   }
 
   public class PathMetadataFlags(
-    public val flag: Long,
-  ) {
-    public infix fun or(other: PathMetadataFlags): PathMetadataFlags =
-        PathMetadataFlags(flag.or(other.flag))
-
-    public infix fun or(other: Long): PathMetadataFlags = PathMetadataFlags(flag.or(other))
-
-    public infix fun xor(other: PathMetadataFlags): PathMetadataFlags =
-        PathMetadataFlags(flag.xor(other.flag))
-
-    public infix fun xor(other: Long): PathMetadataFlags = PathMetadataFlags(flag.xor(other))
-
-    public infix fun and(other: PathMetadataFlags): PathMetadataFlags =
-        PathMetadataFlags(flag.and(other.flag))
-
-    public infix fun and(other: Long): PathMetadataFlags = PathMetadataFlags(flag.and(other))
-
-    public fun unaryPlus(): PathMetadataFlags = PathMetadataFlags(flag.unaryPlus())
-
-    public fun unaryMinus(): PathMetadataFlags = PathMetadataFlags(flag.unaryMinus())
-
-    public fun inv(): PathMetadataFlags = PathMetadataFlags(flag.inv())
-
-    public infix fun shl(bits: Int): PathMetadataFlags = PathMetadataFlags(flag shl bits)
-
-    public infix fun shr(bits: Int): PathMetadataFlags = PathMetadataFlags(flag shr bits)
-
-    public infix fun ushr(bits: Int): PathMetadataFlags = PathMetadataFlags(flag ushr bits)
+    flag: Long,
+  ) : BitFieldBase<PathMetadataFlags>(flag) {
+    protected override fun wrap(flag: Long): PathMetadataFlags = PathMetadataFlags(flag)
 
     public companion object {
       /**

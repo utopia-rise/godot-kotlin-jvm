@@ -102,7 +102,7 @@ public open class OmniLight3D : Light3D() {
   }
 
   public enum class ShadowMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Shadows are rendered to a dual-paraboloid texture. Faster than [SHADOW_CUBE], but
@@ -114,11 +114,6 @@ public open class OmniLight3D : Light3D() {
      */
     CUBE(1),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): ShadowMode = entries.single { it.`value` == `value` }

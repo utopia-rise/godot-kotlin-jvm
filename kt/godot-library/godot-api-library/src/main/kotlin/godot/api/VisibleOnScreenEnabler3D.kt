@@ -95,7 +95,7 @@ public open class VisibleOnScreenEnabler3D : VisibleOnScreenNotifier3D() {
   public final fun setEnableNodePath(path: String) = setEnableNodePath(path.asCachedNodePath())
 
   public enum class EnableMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Corresponds to [Node.PROCESS_MODE_INHERIT].
@@ -110,11 +110,6 @@ public open class VisibleOnScreenEnabler3D : VisibleOnScreenNotifier3D() {
      */
     WHEN_PAUSED(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): EnableMode = entries.single { it.`value` == `value` }

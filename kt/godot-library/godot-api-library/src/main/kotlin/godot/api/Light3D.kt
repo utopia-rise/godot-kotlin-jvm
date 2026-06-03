@@ -651,7 +651,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   }
 
   public enum class Param(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Constant for accessing [lightEnergy].
@@ -744,18 +744,13 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     MAX(21),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): Param = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class BakeMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Light is ignored when baking. This is the fastest mode, but the light will not be taken into
@@ -785,11 +780,6 @@ public open class Light3D internal constructor() : VisualInstance3D() {
      */
     DYNAMIC(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): BakeMode = entries.single { it.`value` == `value` }

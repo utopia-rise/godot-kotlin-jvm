@@ -1,6 +1,5 @@
 package godot.intellij.plugin.analysis.kotlin
 
-import godot.annotation.EnumFlag
 import godot.annotation.Export
 import godot.annotation.RegisterProperty
 import godot.core.KtObject
@@ -9,6 +8,7 @@ import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.analysis.GodotProblem
 import godot.intellij.plugin.analysis.jvm.GenericRegistrationAnalyzer
 import org.jetbrains.kotlin.scripting.resolve.classId
+import godot.intellij.plugin.project.isBitField
 import godot.intellij.plugin.project.isCoreType
 import godot.intellij.plugin.project.isGodotPrimitive
 import godot.intellij.plugin.project.isNullable
@@ -17,16 +17,20 @@ import godot.intellij.plugin.project.isSupportedJvmType
 import godot.intellij.plugin.project.withType
 import godot.intellij.plugin.quickfix.PropertyNotRegisteredQuickFix
 import godot.intellij.plugin.quickfix.RegisterPropertyMutabilityQuickFix
-import godot.tools.common.constants.isCollectionsType
 import org.jetbrains.kotlin.analysis.api.KaExperimentalApi
 import org.jetbrains.kotlin.analysis.api.analyze
 import org.jetbrains.kotlin.analysis.api.symbols.typeParameters
+import org.jetbrains.kotlin.analysis.api.types.KaClassType
 import org.jetbrains.kotlin.analysis.api.types.symbol
 import org.jetbrains.kotlin.asJava.toLightElements
 import org.jetbrains.kotlin.idea.codeinsight.utils.isEnum
 import org.jetbrains.kotlin.idea.util.findAnnotation
+import org.jetbrains.kotlin.psi.KtClass
+import org.jetbrains.kotlin.psi.KtEnumEntry
 import org.jetbrains.kotlin.psi.KtProperty
 import org.jetbrains.kotlin.utils.addToStdlib.firstIsInstance
+
+private const val MAX_ENUM_ENTRIES_FOR_BIT_FLAG = 32
 
 object RegisterPropertyAnalyzer {
     private val mutabilityQuickFix = RegisterPropertyMutabilityQuickFix()
@@ -79,16 +83,6 @@ object RegisterPropertyAnalyzer {
     @OptIn(KaExperimentalApi::class)
     private fun checkRegisteredType(property: KtProperty): List<GodotProblem> {
         val problems = mutableListOf<GodotProblem>()
-        val isEnumCollection = property.withType { propertyType ->
-            propertyType.symbol?.classId?.asFqNameString()?.let(::isCollectionsType) == true
-                && propertyType.symbol?.typeParameters?.firstOrNull()?.defaultType?.isEnum() == true
-        }
-        if (isEnumCollection && property.findAnnotation(EnumFlag::class.classId) == null) {
-            problems += GodotProblem(
-                GodotPluginBundle.message("problem.property.registeredKotlinCollection"),
-                property.initializer?.psiOrParent ?: property.nameIdentifier ?: property.navigationElement
-            )
-        }
 
         val isEnumVariantArray = property.withType { propertyType ->
             propertyType.symbol?.classId?.asFqNameString()?.startsWith(VariantArray::class.qualifiedName!!) == true
@@ -107,6 +101,27 @@ object RegisterPropertyAnalyzer {
                 GodotPluginBundle.message("problem.property.export.triedToExportUnsupportedType"),
                 property.nameIdentifier ?: property.navigationElement
             )
+        }
+
+        if (property.isBitField()) {
+            val enumEntryCount = property.withType { propertyType ->
+                (propertyType as? KaClassType)
+                    ?.typeArguments
+                    ?.firstOrNull()
+                    ?.type
+                    ?.symbol
+                    ?.psi
+                    ?.let { it as? KtClass }
+                    ?.declarations
+                    ?.filterIsInstance<KtEnumEntry>()
+                    ?.size ?: 0
+            }
+            if (enumEntryCount > MAX_ENUM_ENTRIES_FOR_BIT_FLAG) {
+                problems += GodotProblem(
+                    GodotPluginBundle.message("problem.property.hint.toManyEnumEntries"),
+                    property.initializer?.psiOrParent ?: property.nameIdentifier ?: property.navigationElement
+                )
+            }
         }
 
         return problems

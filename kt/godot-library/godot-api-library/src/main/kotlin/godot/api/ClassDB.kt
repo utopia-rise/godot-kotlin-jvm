@@ -808,7 +808,7 @@ public object ClassDB : Object() {
       isClassEnabled(`class`.asCachedStringName())
 
   public enum class APIType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Native Core class type.
@@ -831,11 +831,6 @@ public object ClassDB : Object() {
      */
     NONE(4),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): APIType = entries.single { it.`value` == `value` }

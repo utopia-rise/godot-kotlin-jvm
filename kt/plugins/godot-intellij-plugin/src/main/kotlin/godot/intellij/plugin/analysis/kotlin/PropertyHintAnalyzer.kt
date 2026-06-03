@@ -3,7 +3,6 @@ package godot.intellij.plugin.analysis.kotlin
 import godot.annotation.ColorNoAlpha
 import godot.annotation.Dir
 import godot.annotation.DoubleRange
-import godot.annotation.EnumFlag
 import godot.annotation.EnumTypeHint
 import godot.annotation.ExpEasing
 import godot.annotation.Export
@@ -22,18 +21,11 @@ import godot.intellij.plugin.project.fqName
 import godot.intellij.plugin.project.withType
 import godot.intellij.plugin.quickfix.PropertyNotExportedQuickFix
 import godot.intellij.plugin.quickfix.PropertyNotRegisteredQuickFix
-import org.jetbrains.kotlin.analysis.api.analyze
-import org.jetbrains.kotlin.analysis.api.types.KaClassType
-import org.jetbrains.kotlin.analysis.api.types.symbol
 import org.jetbrains.kotlin.idea.codeinsight.utils.isEnum
 import org.jetbrains.kotlin.idea.util.findAnnotation
-import org.jetbrains.kotlin.psi.KtClass
-import org.jetbrains.kotlin.psi.KtEnumEntry
 import org.jetbrains.kotlin.psi.KtProperty
 import org.jetbrains.kotlin.scripting.resolve.classId
 import kotlin.reflect.KClass
-
-private const val MAX_ENUM_ENTRIES_FOR_ENUM_FLAGS = 32
 
 object PropertyHintAnalyzer {
     private val propertyNotRegisteredQuickFix by lazy { PropertyNotRegisteredQuickFix() }
@@ -63,10 +55,6 @@ object PropertyHintAnalyzer {
 
             property.findAnnotation(EnumTypeHint::class.classId) != null -> {
                 checkForRegistrationAnnotations(property) + checkEnumTypeHint(property)
-            }
-
-            property.findAnnotation(EnumFlag::class.classId) != null -> {
-                checkForRegistrationAnnotations(property) + checkEnumFlag(property)
             }
 
             property.findAnnotation(IntFlag::class.classId) != null -> {
@@ -144,43 +132,6 @@ object PropertyHintAnalyzer {
             GodotProblem(
                 GodotPluginBundle.message("problem.property.hint.wrongType", Int::class.qualifiedName!!),
                 property.findAnnotation(IntFlag::class.classId)?.psiOrParent
-                    ?: property.nameIdentifier
-                    ?: property.navigationElement
-            )
-        )
-    }
-
-    private fun checkEnumFlag(property: KtProperty): List<GodotProblem> {
-        if (property.fqName()?.let { it == Set::class.qualifiedName || it == MutableSet::class.qualifiedName } == false) {
-            return listOf(
-                GodotProblem(
-                    GodotPluginBundle.message("problem.property.hint.wrongType", "${Set::class.qualifiedName} or ${MutableSet::class.qualifiedName}"),
-                    property.findAnnotation(EnumFlag::class.classId)?.psiOrParent
-                        ?: property.nameIdentifier
-                        ?: property.navigationElement
-                )
-            )
-        }
-
-        val numberOfEnumEntriesInEnum = property.withType { propertyType ->
-            ((propertyType as? KaClassType)
-                ?.typeArguments
-                ?.firstOrNull()
-                ?.type
-                ?: propertyType)
-                .symbol
-                ?.psi
-                ?.let { it as? KtClass }
-                ?.declarations
-                ?.filterIsInstance<KtEnumEntry>()
-                ?.size ?: 0
-        }
-
-        if (numberOfEnumEntriesInEnum <= MAX_ENUM_ENTRIES_FOR_ENUM_FLAGS) return emptyList()
-        return listOf(
-            GodotProblem(
-                GodotPluginBundle.message("problem.property.hint.toManyEnumEntries"),
-                property.findAnnotation(EnumFlag::class.classId)?.psiOrParent
                     ?: property.nameIdentifier
                     ?: property.navigationElement
             )

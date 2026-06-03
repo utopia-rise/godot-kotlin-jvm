@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.BitFieldBase
 import godot.core.GodotEnum
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
@@ -20,7 +21,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.TRANSFORM3D
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -131,31 +131,9 @@ public open class XRBodyTracker : XRPositionalTracker() {
   }
 
   public class BodyFlags(
-    public val flag: Long,
-  ) {
-    public infix fun or(other: BodyFlags): BodyFlags = BodyFlags(flag.or(other.flag))
-
-    public infix fun or(other: Long): BodyFlags = BodyFlags(flag.or(other))
-
-    public infix fun xor(other: BodyFlags): BodyFlags = BodyFlags(flag.xor(other.flag))
-
-    public infix fun xor(other: Long): BodyFlags = BodyFlags(flag.xor(other))
-
-    public infix fun and(other: BodyFlags): BodyFlags = BodyFlags(flag.and(other.flag))
-
-    public infix fun and(other: Long): BodyFlags = BodyFlags(flag.and(other))
-
-    public fun unaryPlus(): BodyFlags = BodyFlags(flag.unaryPlus())
-
-    public fun unaryMinus(): BodyFlags = BodyFlags(flag.unaryMinus())
-
-    public fun inv(): BodyFlags = BodyFlags(flag.inv())
-
-    public infix fun shl(bits: Int): BodyFlags = BodyFlags(flag shl bits)
-
-    public infix fun shr(bits: Int): BodyFlags = BodyFlags(flag shr bits)
-
-    public infix fun ushr(bits: Int): BodyFlags = BodyFlags(flag ushr bits)
+    flag: Long,
+  ) : BitFieldBase<BodyFlags>(flag) {
+    protected override fun wrap(flag: Long): BodyFlags = BodyFlags(flag)
 
     public companion object {
       /**
@@ -179,7 +157,7 @@ public open class XRBodyTracker : XRPositionalTracker() {
   }
 
   public enum class Joint(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Root joint.
@@ -535,42 +513,15 @@ public open class XRBodyTracker : XRPositionalTracker() {
     MAX(87),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): Joint = entries.single { it.`value` == `value` }
     }
   }
 
   public class JointFlags(
-    public val flag: Long,
-  ) {
-    public infix fun or(other: JointFlags): JointFlags = JointFlags(flag.or(other.flag))
-
-    public infix fun or(other: Long): JointFlags = JointFlags(flag.or(other))
-
-    public infix fun xor(other: JointFlags): JointFlags = JointFlags(flag.xor(other.flag))
-
-    public infix fun xor(other: Long): JointFlags = JointFlags(flag.xor(other))
-
-    public infix fun and(other: JointFlags): JointFlags = JointFlags(flag.and(other.flag))
-
-    public infix fun and(other: Long): JointFlags = JointFlags(flag.and(other))
-
-    public fun unaryPlus(): JointFlags = JointFlags(flag.unaryPlus())
-
-    public fun unaryMinus(): JointFlags = JointFlags(flag.unaryMinus())
-
-    public fun inv(): JointFlags = JointFlags(flag.inv())
-
-    public infix fun shl(bits: Int): JointFlags = JointFlags(flag shl bits)
-
-    public infix fun shr(bits: Int): JointFlags = JointFlags(flag shr bits)
-
-    public infix fun ushr(bits: Int): JointFlags = JointFlags(flag ushr bits)
+    flag: Long,
+  ) : BitFieldBase<JointFlags>(flag) {
+    protected override fun wrap(flag: Long): JointFlags = JointFlags(flag)
 
     public companion object {
       /**

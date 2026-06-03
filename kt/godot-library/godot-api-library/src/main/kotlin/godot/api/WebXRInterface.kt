@@ -531,7 +531,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
   }
 
   public enum class TargetRayMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * We don't know the target ray mode.
@@ -550,11 +550,6 @@ public open class WebXRInterface internal constructor() : XRInterface() {
      */
     SCREEN(3),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): TargetRayMode = entries.single { it.`value` == `value` }

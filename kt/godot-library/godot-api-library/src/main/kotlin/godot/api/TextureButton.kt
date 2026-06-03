@@ -276,7 +276,7 @@ public open class TextureButton : BaseButton() {
   }
 
   public enum class StretchMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Scale to fit the node's bounding rectangle.
@@ -310,11 +310,6 @@ public open class TextureButton : BaseButton() {
      */
     KEEP_ASPECT_COVERED(6),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): StretchMode = entries.single { it.`value` == `value` }

@@ -220,7 +220,7 @@ public open class CollisionPolygon2D : Node2D() {
   }
 
   public enum class BuildMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Collisions will include the polygon and its contained area. In this mode the node has the
@@ -236,11 +236,6 @@ public open class CollisionPolygon2D : Node2D() {
      */
     SEGMENTS(1),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): BuildMode = entries.single { it.`value` == `value` }

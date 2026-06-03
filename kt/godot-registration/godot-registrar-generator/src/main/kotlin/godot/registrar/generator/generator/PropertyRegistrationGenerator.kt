@@ -4,7 +4,6 @@ import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.MemberName.Companion.member
-import godot.common.extensions.convertToCamelCase
 import godot.common.extensions.convertToSnakeCase
 import godot.core.PropertyUsageFlags
 import godot.registrar.generator.GeneratorContext
@@ -14,11 +13,10 @@ import godot.registrar.generator.ext.toTypeName
 import godot.registrar.generator.generator.hintstring.PropertyHintStringGeneratorProvider
 import godot.registrar.generator.generator.typehint.PropertyTypeHintProvider
 import godot.registration.model.RegisteredProperty
+import godot.registration.model.ext.isBitField
 import godot.registration.model.ext.isEnum
-import godot.registration.model.ext.isJavaCollection
-import godot.registration.model.hint.property.EnumHint
+import godot.registration.model.hint.property.EnumListHintStringHint
 import godot.registration.model.types.ScriptClass
-import godot.registration.model.types.TypeKind
 
 fun FunSpec.Builder.addPropertyRegistrations(
     registeredClass: ScriptClass,
@@ -27,19 +25,13 @@ fun FunSpec.Builder.addPropertyRegistrations(
 ) {
     registeredClass.properties.forEach { registeredProperty ->
         when {
-            registeredProperty.type.fqName.matches(Regex("^kotlin\\.collections\\..*Set$")) &&
-                registeredProperty.type.genericArguments.firstOrNull()?.kind == TypeKind.ENUM &&
-                registeredProperty.hints.any { it is EnumHint } -> registerEnumFlagProperty(
+            registeredProperty.type.isBitField() -> registerBitFieldProperty(
                 registeredProperty,
                 context,
                 className,
             )
 
-            (
-                registeredProperty.type.fqName.matches(Regex("^kotlin\\.collections\\..*$")) ||
-                    registeredProperty.type.isJavaCollection()
-                ) &&
-                registeredProperty.type.genericArguments.firstOrNull()?.kind == TypeKind.ENUM -> registerEnumListProperty(
+            registeredProperty.hints.any { it is EnumListHintStringHint } -> registerEnumListProperty(
                 registeredProperty,
                 context,
                 className,
@@ -147,7 +139,7 @@ private fun FunSpec.Builder.registerEnumListProperty(
     )
 }
 
-private fun FunSpec.Builder.registerEnumFlagProperty(
+private fun FunSpec.Builder.registerBitFieldProperty(
     registeredProperty: RegisteredProperty,
     context: GeneratorContext,
     className: ClassName,
@@ -160,8 +152,8 @@ private fun FunSpec.Builder.registerEnumFlagProperty(
         }
 
         addStatement(
-            "enumFlagProperty(%S, %L, %L, %T.%L, %S)",
-            registeredProperty.name.convertToCamelCase(),
+            "bitFieldProperty(%S, %L, %L, %T.%L, %S)",
+            registeredProperty.name.convertToSnakeCase(),
             getGetterReference(registeredProperty, className),
             getSetterReference(registeredProperty, className),
             PropertyUsageFlags::class, getPropertyUsage(registeredProperty),
@@ -171,7 +163,7 @@ private fun FunSpec.Builder.registerEnumFlagProperty(
     }
 
     addStatement(
-        "enumFlagProperty(%L, %T.%L, %S)",
+        "bitFieldProperty(%L, %T.%L, %S)",
         getPropertyReference(registeredProperty, className),
         PropertyUsageFlags::class, getPropertyUsage(registeredProperty),
         buildHintString(registeredProperty, context),

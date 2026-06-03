@@ -171,7 +171,7 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
   }
 
   public enum class WriteMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Tells the channel to send data over this channel as text. An external peer (non-Godot) would
@@ -185,18 +185,13 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
     BINARY(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): WriteMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ChannelState(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The channel was created, but it's still trying to connect.
@@ -216,11 +211,6 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
      */
     STATE_CLOSED(3),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): ChannelState = entries.single { it.`value` == `value` }

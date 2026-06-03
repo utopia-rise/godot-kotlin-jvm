@@ -512,7 +512,7 @@ public open class HTTPRequest : Node() {
   }
 
   public enum class Result(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Request successful.
@@ -575,11 +575,6 @@ public open class HTTPRequest : Node() {
      */
     TIMEOUT(13),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): Result = entries.single { it.`value` == `value` }

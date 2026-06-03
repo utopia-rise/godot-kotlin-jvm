@@ -287,7 +287,7 @@ public open class GLTFObjectModelProperty : RefCounted() {
       appendPathToProperty(nodePath.asCachedNodePath(), propName.asCachedStringName())
 
   public enum class GLTFObjectModelType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Unknown or not set object model type. If the object model type is set to this value, the real
@@ -347,11 +347,6 @@ public open class GLTFObjectModelProperty : RefCounted() {
      */
     INT(10),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): GLTFObjectModelType = entries.single { it.`value` == `value` }

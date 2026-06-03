@@ -143,7 +143,7 @@ public abstract class TextureLayered : Texture() {
   }
 
   public enum class LayeredType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Texture is a generic [Texture2DArray].
@@ -158,11 +158,6 @@ public abstract class TextureLayered : Texture() {
      */
     CUBEMAP_ARRAY(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): LayeredType = entries.single { it.`value` == `value` }

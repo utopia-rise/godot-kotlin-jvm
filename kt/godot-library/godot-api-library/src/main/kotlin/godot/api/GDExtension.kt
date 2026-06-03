@@ -55,7 +55,7 @@ public open class GDExtension : Resource() {
   }
 
   public enum class InitializationLevel(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The library is initialized at the same time as the core features of the engine.
@@ -76,11 +76,6 @@ public open class GDExtension : Resource() {
      */
     EDITOR(3),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): InitializationLevel = entries.single { it.`value` == `value` }

@@ -53,7 +53,7 @@ public open class VisualShaderNodeIntFunc : VisualShaderNode() {
   }
 
   public enum class Function(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Returns the absolute value of the parameter. Translates to `abs(x)` in the Godot Shader
@@ -78,11 +78,6 @@ public open class VisualShaderNodeIntFunc : VisualShaderNode() {
      */
     MAX(4),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): Function = entries.single { it.`value` == `value` }

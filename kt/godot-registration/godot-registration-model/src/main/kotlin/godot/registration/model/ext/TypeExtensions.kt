@@ -55,6 +55,8 @@ fun Type.isJavaCollection(): Boolean = javaCollection.contains(fqName)
 
 fun Type.isEnum(): Boolean = kind == TypeKind.ENUM
 
+fun Type.isBitField(): Boolean = kind == TypeKind.BITFIELD
+
 fun Type.isRefCounted(): Boolean =
     hasGodotAncestor(requireNotNull(RefCounted::class.qualifiedName))
 

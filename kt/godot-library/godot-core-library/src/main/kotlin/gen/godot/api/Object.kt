@@ -1537,7 +1537,7 @@ public open class Object : KtObject() {
       setTranslationDomain(domain.asCachedStringName())
 
   public enum class ConnectFlags(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Default connections that are immediately emitted
@@ -1585,11 +1585,6 @@ public open class Object : KtObject() {
      */
     APPEND_SOURCE_OBJECT(16),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): ConnectFlags = entries.single { it.`value` == `value` }

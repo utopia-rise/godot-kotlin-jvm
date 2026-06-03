@@ -54,7 +54,7 @@ public open class VisualShaderNodeUVFunc : VisualShaderNode() {
   }
 
   public enum class Function(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Translates `uv` by using `scale` and `offset` values using the following formula: `uv = uv +
@@ -71,11 +71,6 @@ public open class VisualShaderNodeUVFunc : VisualShaderNode() {
      */
     MAX(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): Function = entries.single { it.`value` == `value` }

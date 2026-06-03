@@ -706,7 +706,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
   }
 
   public enum class MotionMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Apply when notions of walls, ceiling and floor are relevant. In this mode the body motion
@@ -722,18 +722,13 @@ public open class CharacterBody3D : PhysicsBody3D() {
     FLOATING(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): MotionMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class PlatformOnLeave(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Add the last platform velocity to the [velocity] when you leave a moving platform.
@@ -750,11 +745,6 @@ public open class CharacterBody3D : PhysicsBody3D() {
      */
     DO_NOTHING(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): PlatformOnLeave = entries.single { it.`value` == `value` }

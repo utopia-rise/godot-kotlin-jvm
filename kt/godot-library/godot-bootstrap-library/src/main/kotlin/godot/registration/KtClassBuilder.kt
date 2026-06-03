@@ -114,13 +114,13 @@ class KtClassBuilder<T : KtObject>(
             setter,
             { enumList: Collection<P>? ->
                 (enumList
-                    ?.map { it.godotOrdinal.toInt() }
+                    ?.map { it.godotValue.toInt() }
                     ?.toVariantArray()
                     ?: variantArrayOf())
             },
             { enumOrdinalVariantArray ->
                 @Suppress("UNCHECKED_CAST")
-                (enumOrdinalVariantArray.map { enumFromGodotOrdinal<P>(it) } as L)
+                (enumOrdinalVariantArray.map { it.toLong().toEnum<P>() } as L)
             }
         )
     }
@@ -137,22 +137,10 @@ class KtClassBuilder<T : KtObject>(
         hintString
     )
 
-    @JvmName("enumFlagPropertyMutable")
-    @Suppress("UNCHECKED_CAST")
-    inline fun <reified P : Enum<P>> enumFlagProperty(
-        kProperty: KMutableProperty1<T, MutableSet<P>>,
-        usage: PropertyUsageFlags,
-        hintString: String
-    ) = enumFlagProperty(
-        kProperty as KMutableProperty1<T, Set<P>>,
-        usage,
-        hintString,
-    )
-
-    inline fun <reified P : Enum<P>> enumFlagProperty(
+    fun <E : Enum<E>> bitFieldProperty(
         name: String,
-        noinline getter: (T) -> Set<P>,
-        noinline setter: (T, Set<P>) -> Unit,
+        getter: (T) -> BitField<E>,
+        setter: (T, BitField<E>) -> Unit,
         usage: PropertyUsageFlags,
         hintString: String
     ) {
@@ -160,11 +148,9 @@ class KtClassBuilder<T : KtObject>(
             "Found two properties with name $name for class $registeredName"
         }
 
-        val variantCaster = VariantCaster.ENUM(enumValues<P>())
-
-        properties[name] = KtEnumFlagProperty(
+        properties[name] = KtBitFieldProperty(
             KtPropertyInfo(
-                variantCaster,
+                VariantCaster.INT,
                 name,
                 "Int",
                 PropertyHint.FLAGS,
@@ -173,43 +159,19 @@ class KtClassBuilder<T : KtObject>(
             ),
             getter,
             setter,
-            { enumSet ->
-                var intFlag = 0
-                enumSet?.forEach { enum ->
-                    intFlag += 1 shl enum.godotOrdinal.toInt()
-                }
-                intFlag
-            },
-            { value ->
-                val intFlag = (value as P).godotOrdinal.toInt()
-
-                val enums = mutableSetOf<P>()
-                var bit = 1
-
-                for (i in 0 until Int.SIZE_BITS) {
-                    if ((intFlag and bit) > 0) {
-                        val element = enumValues<P>().firstOrNull { it.godotOrdinal.toInt() == i }
-                        if (element != null) {
-                            enums.add(element)
-                        }
-                    }
-                    bit = bit shl 1
-                    if (bit > intFlag) break
-                }
-
-                enums
-            }
+            { bitField -> bitField?.flag?.toInt() ?: 0 },
+            { value -> BitField<E>(value.toLong()) }
         )
     }
 
-    inline fun <reified P : Enum<P>> enumFlagProperty(
-        kProperty: KMutableProperty1<T, Set<P>>,
+    fun <E : Enum<E>> bitFieldProperty(
+        kProperty: KMutableProperty1<T, BitField<E>>,
         usage: PropertyUsageFlags,
         hintString: String
-    ) = enumFlagProperty(
+    ) = bitFieldProperty(
         kProperty.name.convertToSnakeCase(),
         { instance: T -> kProperty.get(instance) },
-        { instance: T, set: Set<P> -> kProperty.set(instance, set) },
+        { instance: T, value: BitField<E> -> kProperty.set(instance, value) },
         usage,
         hintString
     )

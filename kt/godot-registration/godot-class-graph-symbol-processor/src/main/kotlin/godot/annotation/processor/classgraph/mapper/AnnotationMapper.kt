@@ -1,21 +1,16 @@
 package godot.annotation.processor.classgraph.mapper
 
 import godot.annotation.*
-import godot.annotation.processor.classgraph.ProcessorContext
-import godot.annotation.processor.classgraph.constants.SET
 import godot.registration.model.RpcConfig
 import godot.registration.model.hint.property.*
 import godot.registration.model.hint.property.Range
 import io.github.classgraph.AnnotationEnumValue
 import io.github.classgraph.AnnotationInfo
-import io.github.classgraph.ClassRefTypeSignature
-import io.github.classgraph.FieldInfo
 
-class AnnotationMapper(private val context: ProcessorContext) {
+class AnnotationMapper {
     @Suppress("UNCHECKED_CAST")
-    fun toPropertyHint(annotationInfo: AnnotationInfo, fieldInfo: FieldInfo): PropertyHint? =
+    fun toPropertyHint(annotationInfo: AnnotationInfo): PropertyHint? =
         when (annotationInfo.name) {
-            EnumFlag::class.java.name -> fieldInfo.toEnumFlagHint()
             IntFlag::class.java.name -> IntFlagHint(
                 annotationInfo.parameterValues.getValue("values") as? List<String> ?: emptyList()
             )
@@ -50,24 +45,6 @@ class AnnotationMapper(private val context: ProcessorContext) {
         transferMode = annotationInfo.getTransferMode(),
         transferChannel = annotationInfo.parameterValues.getValue("transferChannel") as Int,
     )
-
-    private fun FieldInfo.toEnumFlagHint(): EnumFlagHintStringHint {
-        val typeSignature = this.typeSignature
-        if (typeSignature !is ClassRefTypeSignature || typeSignature.fullyQualifiedClassName != SET) {
-            return EnumFlagHintStringHint(enumValueNames = listOf())
-        }
-
-        val typeArgument = typeSignature.typeArguments.first().typeSignature as ClassRefTypeSignature
-        val enumValues = context.enumValueNamesByClass.getOrPut(typeArgument.fullyQualifiedClassName) {
-            requireNotNull(context.getClassInfoOrNull(typeArgument.fullyQualifiedClassName)) {
-                "Could not resolve enum class info for ${typeArgument.fullyQualifiedClassName}"
-            }
-                .fieldInfo
-                .filter { field -> field.typeDescriptor == typeArgument }
-                .map { field -> field.name }
-        }
-        return EnumFlagHintStringHint(enumValueNames = enumValues)
-    }
 
     private fun AnnotationInfo.getRpcMode(): RpcMode {
         val rpcModeName = parameterValues.getValue("rpcMode")?.toString()

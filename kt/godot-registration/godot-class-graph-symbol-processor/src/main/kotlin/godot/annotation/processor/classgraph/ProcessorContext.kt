@@ -11,7 +11,6 @@ class ProcessorContext(
 ) {
     val mappedFamilyByFqName = mutableMapOf<String, ScriptFamily>()
     val mappedTypeByKey = mutableMapOf<TypeCacheKey, Type>()
-    val enumValueNamesByClass = mutableMapOf<String, List<String>>()
     val hierarchyMethodSignaturesByClass = mutableMapOf<String, Set<String>>()
     val errors = mutableListOf<String>()
 

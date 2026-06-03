@@ -462,7 +462,7 @@ public open class SurfaceTool : RefCounted() {
   }
 
   public enum class CustomFormat(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Limits range of data passed to [setCustom] to unsigned normalized 0 to 1 stored in 8 bits per
@@ -510,18 +510,13 @@ public open class SurfaceTool : RefCounted() {
     MAX(8),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): CustomFormat = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class SkinWeightCount(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Each individual vertex can be influenced by only 4 bone weights.
@@ -532,11 +527,6 @@ public open class SurfaceTool : RefCounted() {
      */
     SKIN_8_WEIGHTS(1),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): SkinWeightCount = entries.single { it.`value` == `value` }

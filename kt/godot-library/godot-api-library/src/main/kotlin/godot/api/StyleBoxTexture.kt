@@ -412,7 +412,7 @@ public open class StyleBoxTexture : StyleBox() {
   }
 
   public enum class AxisStretchMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Stretch the stylebox's texture. This results in visible distortion unless the texture size
@@ -431,11 +431,6 @@ public open class StyleBoxTexture : StyleBox() {
      */
     TILE_FIT(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): AxisStretchMode = entries.single { it.`value` == `value` }

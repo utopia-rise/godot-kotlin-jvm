@@ -267,7 +267,7 @@ public open class FoldableContainer : Container() {
   }
 
   public enum class TitlePosition(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Makes the title appear at the top of the container.
@@ -279,11 +279,6 @@ public open class FoldableContainer : Container() {
      */
     POSITION_BOTTOM(1),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): TitlePosition = entries.single { it.`value` == `value` }

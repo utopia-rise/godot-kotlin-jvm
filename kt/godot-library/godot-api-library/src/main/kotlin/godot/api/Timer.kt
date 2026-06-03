@@ -254,7 +254,7 @@ public open class Timer : Node() {
   }
 
   public enum class TimerProcessCallback(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Update the timer every physics process frame (see
@@ -266,11 +266,6 @@ public open class Timer : Node() {
      */
     IDLE(1),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): TimerProcessCallback =

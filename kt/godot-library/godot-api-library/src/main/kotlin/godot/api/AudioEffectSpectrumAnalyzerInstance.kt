@@ -55,7 +55,7 @@ public open class AudioEffectSpectrumAnalyzerInstance internal constructor() : A
   }
 
   public enum class MagnitudeMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Use the average value across the frequency range as magnitude.
@@ -66,11 +66,6 @@ public open class AudioEffectSpectrumAnalyzerInstance internal constructor() : A
      */
     MAX(1),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): MagnitudeMode = entries.single { it.`value` == `value` }

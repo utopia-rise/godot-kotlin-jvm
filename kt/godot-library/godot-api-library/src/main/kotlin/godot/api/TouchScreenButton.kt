@@ -270,7 +270,7 @@ public open class TouchScreenButton : Node2D() {
   }
 
   public enum class VisibilityMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Always visible.
@@ -281,11 +281,6 @@ public open class TouchScreenButton : Node2D() {
      */
     TOUCHSCREEN_ONLY(1),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): VisibilityMode = entries.single { it.`value` == `value` }

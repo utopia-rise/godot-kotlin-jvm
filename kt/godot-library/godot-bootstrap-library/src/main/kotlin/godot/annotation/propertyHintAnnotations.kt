@@ -97,17 +97,6 @@ annotation class ExpEasing(val attenuation: Boolean = false, val isPositiveOnly:
 //annotation class Lenght(val lenght: Int = -1)
 
 /**
- * Flag Property hint supporting enums
- *
- * Can only be used on Set<Enum> or MutableSet<Enum> properties!
- *
- * **Note:** The used enum can not have more than 32 Entries!
- */
-@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
-@Retention(AnnotationRetention.RUNTIME)
-annotation class EnumFlag
-
-/**
  * Flag Property hint supporting Int's
  *
  * Can only be used on Int properties!

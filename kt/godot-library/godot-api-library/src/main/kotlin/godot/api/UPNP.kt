@@ -347,7 +347,7 @@ public open class UPNP : RefCounted() {
   }
 
   public enum class UPNPResult(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * UPNP command or discovery was successful.
@@ -473,11 +473,6 @@ public open class UPNP : RefCounted() {
      */
     UNKNOWN_ERROR(28),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): UPNPResult = entries.single { it.`value` == `value` }

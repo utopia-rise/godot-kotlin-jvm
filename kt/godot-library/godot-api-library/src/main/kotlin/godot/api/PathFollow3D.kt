@@ -263,7 +263,7 @@ public open class PathFollow3D : Node3D() {
   }
 
   public enum class RotationMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Forbids the PathFollow3D to rotate.
@@ -287,11 +287,6 @@ public open class PathFollow3D : Node3D() {
      */
     ORIENTED(4),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): RotationMode = entries.single { it.`value` == `value` }

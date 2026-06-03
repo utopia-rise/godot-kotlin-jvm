@@ -98,7 +98,7 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
   }
 
   public enum class OpType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * A floating-point scalar.
@@ -122,18 +122,13 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
     MAX(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): OpType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Function(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Sum of absolute derivative in `x` and `y`.
@@ -153,18 +148,13 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
     MAX(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): Function = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Precision(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * No precision is specified, the GPU driver is allowed to use whatever level of precision it
@@ -190,11 +180,6 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
      */
     MAX(3),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): Precision = entries.single { it.`value` == `value` }

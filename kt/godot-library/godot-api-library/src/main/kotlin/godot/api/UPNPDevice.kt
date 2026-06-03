@@ -221,7 +221,7 @@ public open class UPNPDevice : RefCounted() {
   }
 
   public enum class IGDStatus(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * OK.
@@ -264,11 +264,6 @@ public open class UPNPDevice : RefCounted() {
      */
     UNKNOWN_ERROR(9),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): IGDStatus = entries.single { it.`value` == `value` }

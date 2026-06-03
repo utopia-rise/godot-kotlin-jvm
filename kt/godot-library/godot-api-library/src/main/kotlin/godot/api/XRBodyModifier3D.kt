@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.BitFieldBase
 import godot.core.GodotEnum
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
@@ -18,7 +19,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING_NAME
 import godot.core.asCachedStringName
-import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -118,31 +118,9 @@ public open class XRBodyModifier3D : SkeletonModifier3D() {
       setBodyTracker(trackerName.asCachedStringName())
 
   public class BodyUpdate(
-    public val flag: Long,
-  ) {
-    public infix fun or(other: BodyUpdate): BodyUpdate = BodyUpdate(flag.or(other.flag))
-
-    public infix fun or(other: Long): BodyUpdate = BodyUpdate(flag.or(other))
-
-    public infix fun xor(other: BodyUpdate): BodyUpdate = BodyUpdate(flag.xor(other.flag))
-
-    public infix fun xor(other: Long): BodyUpdate = BodyUpdate(flag.xor(other))
-
-    public infix fun and(other: BodyUpdate): BodyUpdate = BodyUpdate(flag.and(other.flag))
-
-    public infix fun and(other: Long): BodyUpdate = BodyUpdate(flag.and(other))
-
-    public fun unaryPlus(): BodyUpdate = BodyUpdate(flag.unaryPlus())
-
-    public fun unaryMinus(): BodyUpdate = BodyUpdate(flag.unaryMinus())
-
-    public fun inv(): BodyUpdate = BodyUpdate(flag.inv())
-
-    public infix fun shl(bits: Int): BodyUpdate = BodyUpdate(flag shl bits)
-
-    public infix fun shr(bits: Int): BodyUpdate = BodyUpdate(flag shr bits)
-
-    public infix fun ushr(bits: Int): BodyUpdate = BodyUpdate(flag ushr bits)
+    flag: Long,
+  ) : BitFieldBase<BodyUpdate>(flag) {
+    protected override fun wrap(flag: Long): BodyUpdate = BodyUpdate(flag)
 
     public companion object {
       /**
@@ -166,7 +144,7 @@ public open class XRBodyModifier3D : SkeletonModifier3D() {
   }
 
   public enum class BoneUpdate(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The skeleton's bones are fully updated (both position and rotation) to match the tracked
@@ -183,11 +161,6 @@ public open class XRBodyModifier3D : SkeletonModifier3D() {
      */
     MAX(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): BoneUpdate = entries.single { it.`value` == `value` }

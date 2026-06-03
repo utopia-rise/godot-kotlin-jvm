@@ -6,6 +6,7 @@ enum class TypeKind {
     INTERFACE,
     CLASS,
     ENUM,
+    BITFIELD,
     OTHER,
 }
 

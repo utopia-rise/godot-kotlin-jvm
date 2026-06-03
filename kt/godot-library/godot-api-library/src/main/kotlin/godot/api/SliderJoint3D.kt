@@ -52,7 +52,7 @@ public open class SliderJoint3D : Joint3D() {
   }
 
   public enum class Param(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Constant for accessing [linearLimit/upperDistance]. The maximum difference between the pivot
@@ -167,11 +167,6 @@ public open class SliderJoint3D : Joint3D() {
      */
     MAX(22),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): Param = entries.single { it.`value` == `value` }

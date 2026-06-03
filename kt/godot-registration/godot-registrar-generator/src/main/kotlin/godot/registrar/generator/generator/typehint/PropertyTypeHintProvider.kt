@@ -52,6 +52,7 @@ object PropertyTypeHintProvider {
                 .getPropertyTypeHint()
 
             registeredProperty.type.kind == TypeKind.ENUM -> PropertyHint.ENUM.asEnumName()
+            registeredProperty.type.kind == TypeKind.BITFIELD -> PropertyHint.FLAGS.asEnumName()
 
             registeredProperty.type.isCoreType() && !registeredProperty.type.isCompatibleList() && !registeredProperty.type.isDictionary() -> JvmCoreTypeTypeHintGenerator(
                 registeredProperty

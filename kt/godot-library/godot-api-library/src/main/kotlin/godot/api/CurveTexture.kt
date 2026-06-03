@@ -115,7 +115,7 @@ public open class CurveTexture : Texture2D() {
   }
 
   public enum class TextureMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Store the curve equally across the red, green and blue channels. This uses more video memory,
@@ -128,11 +128,6 @@ public open class CurveTexture : Texture2D() {
      */
     RED(1),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): TextureMode = entries.single { it.`value` == `value` }

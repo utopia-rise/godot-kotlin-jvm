@@ -143,7 +143,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
   }
 
   public enum class TextureType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * No hints are added to the uniform declaration.
@@ -169,18 +169,13 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
     TYPE_MAX(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): TextureType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ColorDefault(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Defaults to fully opaque white color.
@@ -200,18 +195,13 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
     MAX(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ColorDefault = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class TextureFilter(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Sample the texture using the filter determined by the node this shader is attached to.
@@ -281,18 +271,13 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
     FILTER_MAX(7),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): TextureFilter = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class TextureRepeat(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Sample the texture using the repeat mode determined by the node this shader is attached to.
@@ -312,18 +297,13 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
     REPEAT_MAX(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): TextureRepeat = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class TextureSource(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The texture source is not specified in the shader.
@@ -346,11 +326,6 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
      */
     SOURCE_MAX(4),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): TextureSource = entries.single { it.`value` == `value` }

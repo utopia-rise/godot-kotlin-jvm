@@ -45,7 +45,7 @@ class PropertyHintCheck(logger: Logger, registeredClasses: List<ScriptClass>) : 
             is IntFlagHint -> propertyType.fqName == intType
             is ColorNoAlphaHint -> propertyType.fqName == colorType
             is EnumHintStringHint -> propertyType.kind == TypeKind.ENUM
-            is EnumFlagHintStringHint -> propertyType.fqName == intType || propertyType.supportsEnumListHint()
+            is EnumFlagHintStringHint -> propertyType.kind == TypeKind.BITFIELD
             is EnumListHintStringHint -> propertyType.supportsEnumListHint()
         }
     }

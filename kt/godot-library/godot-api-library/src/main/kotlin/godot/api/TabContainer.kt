@@ -617,7 +617,7 @@ public open class TabContainer : Container() {
   }
 
   public enum class TabPosition(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Places the tab bar at the top.
@@ -632,11 +632,6 @@ public open class TabContainer : Container() {
      */
     POSITION_MAX(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): TabPosition = entries.single { it.`value` == `value` }

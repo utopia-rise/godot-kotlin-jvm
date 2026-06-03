@@ -962,17 +962,12 @@ public open class AnimationPlayer : AnimationMixer() {
   public final fun setRoot(path: String) = setRoot(path.asCachedNodePath())
 
   public enum class AnimationProcessCallback(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     PHYSICS(0),
     IDLE(1),
     MANUAL(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): AnimationProcessCallback =
@@ -981,16 +976,11 @@ public open class AnimationPlayer : AnimationMixer() {
   }
 
   public enum class AnimationMethodCallMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     DEFERRED(0),
     IMMEDIATE(1),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): AnimationMethodCallMode =

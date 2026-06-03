@@ -245,7 +245,7 @@ public open class XRPositionalTracker : XRTracker() {
       setInput(name.asCachedStringName(), value)
 
   public enum class TrackerHand(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The hand this tracker is held in is unknown or not applicable.
@@ -264,11 +264,6 @@ public open class XRPositionalTracker : XRTracker() {
      */
     MAX(3),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): TrackerHand = entries.single { it.`value` == `value` }

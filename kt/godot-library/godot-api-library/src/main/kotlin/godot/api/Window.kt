@@ -2428,7 +2428,7 @@ public open class Window : Viewport() {
       hasThemeConstant(name.asCachedStringName(), themeType.asCachedStringName())
 
   public enum class Mode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Windowed mode, i.e. [Window] doesn't occupy the whole screen (unless set to the size of the
@@ -2492,18 +2492,13 @@ public open class Window : Viewport() {
     EXCLUSIVE_FULLSCREEN(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): Mode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Flags(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The window can't be resized by dragging its resize grip. It's still possible to resize the
@@ -2602,18 +2597,13 @@ public open class Window : Viewport() {
     MAX(13),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): Flags = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ContentScaleMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The content will not be scaled to match the [Window]'s size ([contentScaleSize] is ignored).
@@ -2631,18 +2621,13 @@ public open class Window : Viewport() {
     VIEWPORT(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ContentScaleMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ContentScaleAspect(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The aspect will be ignored. Scaling will simply stretch the content to fit the target size.
@@ -2671,18 +2656,13 @@ public open class Window : Viewport() {
     EXPAND(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ContentScaleAspect = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ContentScaleStretch(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The content will be stretched according to a fractional factor. This fills all the space
@@ -2696,18 +2676,13 @@ public open class Window : Viewport() {
     INTEGER(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ContentScaleStretch = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class LayoutDirection(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Automatic layout direction, determined from the parent window layout direction.
@@ -2736,18 +2711,13 @@ public open class Window : Viewport() {
     LOCALE(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): LayoutDirection = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class WindowInitialPosition(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Initial window position is determined by [position].
@@ -2775,11 +2745,6 @@ public open class Window : Viewport() {
      */
     CENTER_SCREEN_WITH_KEYBOARD_FOCUS(5),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): WindowInitialPosition =

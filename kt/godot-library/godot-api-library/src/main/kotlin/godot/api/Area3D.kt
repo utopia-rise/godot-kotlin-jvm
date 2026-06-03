@@ -819,7 +819,7 @@ public open class Area3D : CollisionObject3D() {
   public final fun setReverbBusName(name: String) = setReverbBusName(name.asCachedStringName())
 
   public enum class SpaceOverride(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * This area does not affect gravity/damping.
@@ -845,11 +845,6 @@ public open class Area3D : CollisionObject3D() {
      */
     REPLACE_COMBINE(4),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): SpaceOverride = entries.single { it.`value` == `value` }

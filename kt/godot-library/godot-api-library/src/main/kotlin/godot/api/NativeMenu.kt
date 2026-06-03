@@ -1462,7 +1462,7 @@ public object NativeMenu : Object() {
   }
 
   public enum class Feature(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * [NativeMenu] supports native global main menu.
@@ -1486,18 +1486,13 @@ public object NativeMenu : Object() {
     KEY_CALLBACK(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): Feature = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class SystemMenus(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Invalid special system menu ID.
@@ -1526,11 +1521,6 @@ public object NativeMenu : Object() {
      */
     DOCK_MENU_ID(5),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): SystemMenus = entries.single { it.`value` == `value` }

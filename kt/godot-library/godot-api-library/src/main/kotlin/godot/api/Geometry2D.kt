@@ -607,7 +607,7 @@ public object Geometry2D : Object() {
   }
 
   public enum class PolyBooleanOperation(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Create regions where either subject or clip polygons (or both) are filled.
@@ -628,11 +628,6 @@ public object Geometry2D : Object() {
     OPERATION_XOR(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): PolyBooleanOperation =
           entries.single { it.`value` == `value` }
@@ -640,7 +635,7 @@ public object Geometry2D : Object() {
   }
 
   public enum class PolyJoinType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Squaring is applied uniformally at all convex edge joins at `1 * delta`.
@@ -659,18 +654,13 @@ public object Geometry2D : Object() {
     JOIN_MITER(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): PolyJoinType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class PolyEndType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Endpoints are joined using the [PolyJoinType] value and the path filled as a polygon.
@@ -693,11 +683,6 @@ public object Geometry2D : Object() {
      */
     END_ROUND(4),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): PolyEndType = entries.single { it.`value` == `value` }

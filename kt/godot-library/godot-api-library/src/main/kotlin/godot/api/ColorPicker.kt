@@ -411,7 +411,7 @@ public open class ColorPicker : VBoxContainer() {
   }
 
   public enum class ColorModeType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Allows editing the color with Red/Green/Blue sliders in sRGB color space.
@@ -438,18 +438,13 @@ public open class ColorPicker : VBoxContainer() {
     MODE_OKHSL(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ColorModeType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class PickerShapeType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * HSV Color Model rectangle color space.
@@ -481,11 +476,6 @@ public open class ColorPicker : VBoxContainer() {
      */
     SHAPE_OK_HL_RECTANGLE(6),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): PickerShapeType = entries.single { it.`value` == `value` }

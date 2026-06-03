@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.BitFieldBase
 import godot.core.Color
 import godot.core.Dictionary
 import godot.core.GodotEnum
@@ -2728,7 +2729,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   public enum class FontAntialiasing(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Font glyphs are rasterized as 1-bit bitmaps.
@@ -2750,18 +2751,13 @@ public open class TextServer internal constructor() : RefCounted() {
     LCD(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): FontAntialiasing = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class FontLCDSubpixelLayout(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Unknown or unsupported subpixel layout, LCD subpixel antialiasing is disabled.
@@ -2789,11 +2785,6 @@ public open class TextServer internal constructor() : RefCounted() {
     MAX(5),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): FontLCDSubpixelLayout =
           entries.single { it.`value` == `value` }
@@ -2801,7 +2792,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   public enum class Direction(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Text direction is determined based on contents and current locale.
@@ -2822,18 +2813,13 @@ public open class TextServer internal constructor() : RefCounted() {
     INHERITED(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): Direction = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Orientation(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Text is written horizontally.
@@ -2847,45 +2833,15 @@ public open class TextServer internal constructor() : RefCounted() {
     VERTICAL(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): Orientation = entries.single { it.`value` == `value` }
     }
   }
 
   public class JustificationFlag(
-    public val flag: Long,
-  ) {
-    public infix fun or(other: JustificationFlag): JustificationFlag =
-        JustificationFlag(flag.or(other.flag))
-
-    public infix fun or(other: Long): JustificationFlag = JustificationFlag(flag.or(other))
-
-    public infix fun xor(other: JustificationFlag): JustificationFlag =
-        JustificationFlag(flag.xor(other.flag))
-
-    public infix fun xor(other: Long): JustificationFlag = JustificationFlag(flag.xor(other))
-
-    public infix fun and(other: JustificationFlag): JustificationFlag =
-        JustificationFlag(flag.and(other.flag))
-
-    public infix fun and(other: Long): JustificationFlag = JustificationFlag(flag.and(other))
-
-    public fun unaryPlus(): JustificationFlag = JustificationFlag(flag.unaryPlus())
-
-    public fun unaryMinus(): JustificationFlag = JustificationFlag(flag.unaryMinus())
-
-    public fun inv(): JustificationFlag = JustificationFlag(flag.inv())
-
-    public infix fun shl(bits: Int): JustificationFlag = JustificationFlag(flag shl bits)
-
-    public infix fun shr(bits: Int): JustificationFlag = JustificationFlag(flag shr bits)
-
-    public infix fun ushr(bits: Int): JustificationFlag = JustificationFlag(flag ushr bits)
+    flag: Long,
+  ) : BitFieldBase<JustificationFlag>(flag) {
+    protected override fun wrap(flag: Long): JustificationFlag = JustificationFlag(flag)
 
     public companion object {
       /**
@@ -2948,7 +2904,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   public enum class AutowrapMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Autowrap is disabled.
@@ -2970,42 +2926,15 @@ public open class TextServer internal constructor() : RefCounted() {
     WORD_SMART(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): AutowrapMode = entries.single { it.`value` == `value` }
     }
   }
 
   public class LineBreakFlag(
-    public val flag: Long,
-  ) {
-    public infix fun or(other: LineBreakFlag): LineBreakFlag = LineBreakFlag(flag.or(other.flag))
-
-    public infix fun or(other: Long): LineBreakFlag = LineBreakFlag(flag.or(other))
-
-    public infix fun xor(other: LineBreakFlag): LineBreakFlag = LineBreakFlag(flag.xor(other.flag))
-
-    public infix fun xor(other: Long): LineBreakFlag = LineBreakFlag(flag.xor(other))
-
-    public infix fun and(other: LineBreakFlag): LineBreakFlag = LineBreakFlag(flag.and(other.flag))
-
-    public infix fun and(other: Long): LineBreakFlag = LineBreakFlag(flag.and(other))
-
-    public fun unaryPlus(): LineBreakFlag = LineBreakFlag(flag.unaryPlus())
-
-    public fun unaryMinus(): LineBreakFlag = LineBreakFlag(flag.unaryMinus())
-
-    public fun inv(): LineBreakFlag = LineBreakFlag(flag.inv())
-
-    public infix fun shl(bits: Int): LineBreakFlag = LineBreakFlag(flag shl bits)
-
-    public infix fun shr(bits: Int): LineBreakFlag = LineBreakFlag(flag shr bits)
-
-    public infix fun ushr(bits: Int): LineBreakFlag = LineBreakFlag(flag ushr bits)
+    flag: Long,
+  ) : BitFieldBase<LineBreakFlag>(flag) {
+    protected override fun wrap(flag: Long): LineBreakFlag = LineBreakFlag(flag)
 
     public companion object {
       /**
@@ -3072,7 +3001,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   public enum class VisibleCharactersBehavior(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Trims text before the shaping. e.g, increasing [Label.visibleCharacters] or
@@ -3103,11 +3032,6 @@ public open class TextServer internal constructor() : RefCounted() {
     VC_GLYPHS_RTL(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): VisibleCharactersBehavior =
           entries.single { it.`value` == `value` }
@@ -3115,7 +3039,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   public enum class OverrunBehavior(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * No text trimming is performed.
@@ -3151,45 +3075,15 @@ public open class TextServer internal constructor() : RefCounted() {
     TRIM_WORD_ELLIPSIS_FORCE(6),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): OverrunBehavior = entries.single { it.`value` == `value` }
     }
   }
 
   public class TextOverrunFlag(
-    public val flag: Long,
-  ) {
-    public infix fun or(other: TextOverrunFlag): TextOverrunFlag =
-        TextOverrunFlag(flag.or(other.flag))
-
-    public infix fun or(other: Long): TextOverrunFlag = TextOverrunFlag(flag.or(other))
-
-    public infix fun xor(other: TextOverrunFlag): TextOverrunFlag =
-        TextOverrunFlag(flag.xor(other.flag))
-
-    public infix fun xor(other: Long): TextOverrunFlag = TextOverrunFlag(flag.xor(other))
-
-    public infix fun and(other: TextOverrunFlag): TextOverrunFlag =
-        TextOverrunFlag(flag.and(other.flag))
-
-    public infix fun and(other: Long): TextOverrunFlag = TextOverrunFlag(flag.and(other))
-
-    public fun unaryPlus(): TextOverrunFlag = TextOverrunFlag(flag.unaryPlus())
-
-    public fun unaryMinus(): TextOverrunFlag = TextOverrunFlag(flag.unaryMinus())
-
-    public fun inv(): TextOverrunFlag = TextOverrunFlag(flag.inv())
-
-    public infix fun shl(bits: Int): TextOverrunFlag = TextOverrunFlag(flag shl bits)
-
-    public infix fun shr(bits: Int): TextOverrunFlag = TextOverrunFlag(flag shr bits)
-
-    public infix fun ushr(bits: Int): TextOverrunFlag = TextOverrunFlag(flag ushr bits)
+    flag: Long,
+  ) : BitFieldBase<TextOverrunFlag>(flag) {
+    protected override fun wrap(flag: Long): TextOverrunFlag = TextOverrunFlag(flag)
 
     public companion object {
       /**
@@ -3239,31 +3133,9 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   public class GraphemeFlag(
-    public val flag: Long,
-  ) {
-    public infix fun or(other: GraphemeFlag): GraphemeFlag = GraphemeFlag(flag.or(other.flag))
-
-    public infix fun or(other: Long): GraphemeFlag = GraphemeFlag(flag.or(other))
-
-    public infix fun xor(other: GraphemeFlag): GraphemeFlag = GraphemeFlag(flag.xor(other.flag))
-
-    public infix fun xor(other: Long): GraphemeFlag = GraphemeFlag(flag.xor(other))
-
-    public infix fun and(other: GraphemeFlag): GraphemeFlag = GraphemeFlag(flag.and(other.flag))
-
-    public infix fun and(other: Long): GraphemeFlag = GraphemeFlag(flag.and(other))
-
-    public fun unaryPlus(): GraphemeFlag = GraphemeFlag(flag.unaryPlus())
-
-    public fun unaryMinus(): GraphemeFlag = GraphemeFlag(flag.unaryMinus())
-
-    public fun inv(): GraphemeFlag = GraphemeFlag(flag.inv())
-
-    public infix fun shl(bits: Int): GraphemeFlag = GraphemeFlag(flag shl bits)
-
-    public infix fun shr(bits: Int): GraphemeFlag = GraphemeFlag(flag shr bits)
-
-    public infix fun ushr(bits: Int): GraphemeFlag = GraphemeFlag(flag ushr bits)
+    flag: Long,
+  ) : BitFieldBase<GraphemeFlag>(flag) {
+    protected override fun wrap(flag: Long): GraphemeFlag = GraphemeFlag(flag)
 
     public companion object {
       /**
@@ -3354,7 +3226,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   public enum class Hinting(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Disables font hinting (smoother but less crisp).
@@ -3373,18 +3245,13 @@ public open class TextServer internal constructor() : RefCounted() {
     NORMAL(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): Hinting = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class SubpixelPositioning(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Glyph horizontal position is rounded to the whole pixel size, each glyph is rasterized once.
@@ -3424,18 +3291,13 @@ public open class TextServer internal constructor() : RefCounted() {
     ONE_QUARTER_MAX_SIZE(16),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): SubpixelPositioning = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Feature(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * TextServer supports simple text layouts.
@@ -3501,18 +3363,13 @@ public open class TextServer internal constructor() : RefCounted() {
     UNICODE_SECURITY(16384),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): Feature = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ContourPointTag(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Contour point is on the curve.
@@ -3529,18 +3386,13 @@ public open class TextServer internal constructor() : RefCounted() {
     CURVE_TAG_OFF_CUBIC(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ContourPointTag = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class SpacingType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Spacing for each glyph.
@@ -3564,42 +3416,15 @@ public open class TextServer internal constructor() : RefCounted() {
     MAX(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): SpacingType = entries.single { it.`value` == `value` }
     }
   }
 
   public class FontStyle(
-    public val flag: Long,
-  ) {
-    public infix fun or(other: FontStyle): FontStyle = FontStyle(flag.or(other.flag))
-
-    public infix fun or(other: Long): FontStyle = FontStyle(flag.or(other))
-
-    public infix fun xor(other: FontStyle): FontStyle = FontStyle(flag.xor(other.flag))
-
-    public infix fun xor(other: Long): FontStyle = FontStyle(flag.xor(other))
-
-    public infix fun and(other: FontStyle): FontStyle = FontStyle(flag.and(other.flag))
-
-    public infix fun and(other: Long): FontStyle = FontStyle(flag.and(other))
-
-    public fun unaryPlus(): FontStyle = FontStyle(flag.unaryPlus())
-
-    public fun unaryMinus(): FontStyle = FontStyle(flag.unaryMinus())
-
-    public fun inv(): FontStyle = FontStyle(flag.inv())
-
-    public infix fun shl(bits: Int): FontStyle = FontStyle(flag shl bits)
-
-    public infix fun shr(bits: Int): FontStyle = FontStyle(flag shr bits)
-
-    public infix fun ushr(bits: Int): FontStyle = FontStyle(flag ushr bits)
+    flag: Long,
+  ) : BitFieldBase<FontStyle>(flag) {
+    protected override fun wrap(flag: Long): FontStyle = FontStyle(flag)
 
     public companion object {
       /**
@@ -3623,7 +3448,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   public enum class StructuredTextParser(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Use default Unicode BiDi algorithm.
@@ -3655,11 +3480,6 @@ public open class TextServer internal constructor() : RefCounted() {
     CUSTOM(6),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): StructuredTextParser =
           entries.single { it.`value` == `value` }
@@ -3667,7 +3487,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   public enum class FixedSizeScaleMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Bitmap font is not scaled.
@@ -3684,11 +3504,6 @@ public open class TextServer internal constructor() : RefCounted() {
      */
     ENABLED(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): FixedSizeScaleMode = entries.single { it.`value` == `value` }

@@ -28,6 +28,7 @@ object ModelCheck {
 
             PropertyTypeCheck(logger, registeredClasses).execute(),
             PropertyHintCheck(logger, registeredClasses).execute(),
+            BitFieldEntryCountCheck(logger, registeredClasses).execute(),
             PropertyMutablilityCheck(logger, registeredClasses).execute(),
             LateinitPropertyCheck(logger, registeredClasses).execute(),
             NullablePropertyCheck(logger, registeredClasses).execute(),

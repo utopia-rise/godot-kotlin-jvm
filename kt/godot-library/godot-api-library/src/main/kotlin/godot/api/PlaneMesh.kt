@@ -208,7 +208,7 @@ public open class PlaneMesh : PrimitiveMesh() {
   }
 
   public enum class Orientation(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * [PlaneMesh] will face the positive X-axis.
@@ -225,11 +225,6 @@ public open class PlaneMesh : PrimitiveMesh() {
      */
     FACE_Z(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): Orientation = entries.single { it.`value` == `value` }

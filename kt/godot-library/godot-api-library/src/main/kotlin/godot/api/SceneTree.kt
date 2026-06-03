@@ -951,7 +951,7 @@ public open class SceneTree : MainLoop() {
       getMultiplayer(forPath.asCachedNodePath())
 
   public enum class GroupCallFlags(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Call nodes within a group with no special behavior (default).
@@ -976,11 +976,6 @@ public open class SceneTree : MainLoop() {
      */
     UNIQUE(4),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): GroupCallFlags = entries.single { it.`value` == `value` }

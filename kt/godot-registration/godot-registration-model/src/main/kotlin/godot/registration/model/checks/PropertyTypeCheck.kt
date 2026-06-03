@@ -10,18 +10,27 @@ class PropertyTypeCheck(logger: Logger, registeredClasses: List<ScriptClass>) : 
         registeredClasses
             .flatMap { it.properties }
             .forEach { exportedProperty ->
-                if (
-                    !exportedProperty.type.isGodotPrimitive()
-                    && !exportedProperty.type.isCoreType()
-                    && !exportedProperty.type.isNodeType()
-                    && !exportedProperty.type.isRefCounted()
-                    && !exportedProperty.type.isKotlinCollection()
-                    && !exportedProperty.type.isJavaCollection()
-                    && !exportedProperty.type.isEnum()
-                ) {
+                val type = exportedProperty.type
+                val isAllowed = type.isGodotPrimitive()
+                    || type.isCoreType()
+                    || type.isNodeType()
+                    || type.isRefCounted()
+                    || type.isKotlinCollection()
+                    || type.isJavaCollection()
+                    || type.isEnum()
+                    || type.isBitField()
+
+                if (!isAllowed) {
                     hasIssue = true
                     logger.error(
                         "Registered property can only be of type primitive, core type, node type or ref counted",
+                        exportedProperty
+                    )
+                } else if (type.isBitField() && type.genericArguments.firstOrNull()?.isEnum() != true) {
+                    hasIssue = true
+                    logger.error(
+                        "A bitfield property must be a BitField<E> where E is an enum. " +
+                            "Engine bitfields cannot be exported directly; wrap your enum in BitField<…>.",
                         exportedProperty
                     )
                 }

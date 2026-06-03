@@ -388,7 +388,7 @@ public open class BoneTwistDisperser3D : SkeletonModifier3D() {
   }
 
   public enum class DisperseMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Assign amounts so that they monotonically increase from `0.0` to `1.0`, ensuring all weights
@@ -409,11 +409,6 @@ public open class BoneTwistDisperser3D : SkeletonModifier3D() {
      */
     CUSTOM(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): DisperseMode = entries.single { it.`value` == `value` }

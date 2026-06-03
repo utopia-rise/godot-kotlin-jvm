@@ -2755,7 +2755,7 @@ public open class ParticleProcessMaterial : Material() {
   }
 
   public enum class Parameter(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Use with [setParamMin], [setParamMax], and [setParamTexture] to set initial velocity
@@ -2848,18 +2848,13 @@ public open class ParticleProcessMaterial : Material() {
     TURB_INFLUENCE_OVER_LIFE(12),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): Parameter = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ParticleFlags(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Use with [setParticleFlag] to set [particleFlagAlignY].
@@ -2880,18 +2875,13 @@ public open class ParticleProcessMaterial : Material() {
     MAX(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ParticleFlags = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class EmissionShape(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * All particles will be emitted from a single point.
@@ -2930,18 +2920,13 @@ public open class ParticleProcessMaterial : Material() {
     MAX(7),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): EmissionShape = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class SubEmitterMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     DISABLED(0),
     CONSTANT(1),
@@ -2954,18 +2939,13 @@ public open class ParticleProcessMaterial : Material() {
     MAX(5),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): SubEmitterMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CollisionMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * No collision for particles. Particles will go through [GPUParticlesCollision3D] nodes.
@@ -2986,11 +2966,6 @@ public open class ParticleProcessMaterial : Material() {
      */
     MAX(3),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): CollisionMode = entries.single { it.`value` == `value` }

@@ -205,7 +205,7 @@ public open class BoneConstraint3D : SkeletonModifier3D() {
       setReferenceNode(index, node.asCachedNodePath())
 
   public enum class ReferenceType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The reference target is a bone. In this case, the reference target spaces is local space.
@@ -219,11 +219,6 @@ public open class BoneConstraint3D : SkeletonModifier3D() {
      */
     NODE(1),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): ReferenceType = entries.single { it.`value` == `value` }

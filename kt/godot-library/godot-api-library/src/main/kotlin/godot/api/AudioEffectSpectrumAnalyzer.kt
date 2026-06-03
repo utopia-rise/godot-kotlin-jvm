@@ -115,7 +115,7 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
   }
 
   public enum class FFTSize(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Use a buffer of 256 samples for the Fast Fourier transform. Lowest latency, but least stable
@@ -147,11 +147,6 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
      */
     MAX(5),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): FFTSize = entries.single { it.`value` == `value` }

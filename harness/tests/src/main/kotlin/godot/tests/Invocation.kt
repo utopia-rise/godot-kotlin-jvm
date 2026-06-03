@@ -8,7 +8,6 @@ import godot.api.XRServer
 import godot.annotation.ColorNoAlpha
 import godot.annotation.Dir
 import godot.annotation.DoubleRange
-import godot.annotation.EnumFlag
 import godot.annotation.EnumTypeHint
 import godot.annotation.ExpEasing
 import godot.annotation.Export
@@ -22,6 +21,7 @@ import godot.annotation.PlaceHolderText
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
+import godot.core.BitField
 import godot.core.Color
 import godot.core.Dictionary
 import godot.core.NodePath
@@ -252,18 +252,15 @@ class Invocation : Node3D() {
 
 	@Export
 	@RegisterProperty
-	@EnumFlag
-	var p9 = setOf(TestEnum.ENUM_1)
+	var p9 = BitField.of(TestEnum.ENUM_1)
 
 	@Export
 	@RegisterProperty
-	@EnumFlag
-	var p10 = mutableSetOf(TestEnum.ENUM_1)
+	var p10 = BitField.of(TestEnum.ENUM_1, TestEnum.ENUM_2)
 
 	@Export
 	@RegisterProperty
-	@EnumFlag
-	var p11 = mutableSetOf<TestEnum>()
+	var p11 = BitField<TestEnum>(0)
 
 	@Export
 	@RegisterProperty

@@ -161,7 +161,7 @@ public open class Slider internal constructor() : Range() {
   }
 
   public enum class TickPosition(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Places the ticks at the bottom of the [HSlider], or right of the [VSlider].
@@ -180,11 +180,6 @@ public open class Slider internal constructor() : Range() {
      */
     CENTER(3),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): TickPosition = entries.single { it.`value` == `value` }

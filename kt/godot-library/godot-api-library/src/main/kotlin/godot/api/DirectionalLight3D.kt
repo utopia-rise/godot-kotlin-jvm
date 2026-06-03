@@ -191,7 +191,7 @@ public open class DirectionalLight3D : Light3D() {
   }
 
   public enum class ShadowMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Renders the entire scene's shadow map from an orthogonal point of view. This is the fastest
@@ -210,18 +210,13 @@ public open class DirectionalLight3D : Light3D() {
     PARALLEL_4_SPLITS(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ShadowMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class SkyMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Makes the light visible in both scene lighting and sky rendering.
@@ -240,11 +235,6 @@ public open class DirectionalLight3D : Light3D() {
      */
     SKY_ONLY(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): SkyMode = entries.single { it.`value` == `value` }

@@ -53,7 +53,7 @@ public open class VisualShaderNodeVectorOp : VisualShaderNodeVectorBase() {
   }
 
   public enum class Operator(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Adds two vectors.
@@ -110,11 +110,6 @@ public open class VisualShaderNodeVectorOp : VisualShaderNodeVectorBase() {
      */
     ENUM_SIZE(12),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): Operator = entries.single { it.`value` == `value` }

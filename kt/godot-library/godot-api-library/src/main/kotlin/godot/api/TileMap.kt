@@ -924,7 +924,7 @@ public open class TileMap : Node2D() {
   }
 
   public enum class VisibilityMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Use the debug settings to determine visibility.
@@ -939,11 +939,6 @@ public open class TileMap : Node2D() {
      */
     FORCE_SHOW(1),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): VisibilityMode = entries.single { it.`value` == `value` }

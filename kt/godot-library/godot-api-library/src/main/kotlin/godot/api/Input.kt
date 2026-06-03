@@ -1431,7 +1431,7 @@ public object Input : Object() {
   public final fun actionRelease(action: String) = actionRelease(action.asCachedStringName())
 
   public enum class MouseMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Makes the mouse cursor visible if it is hidden.
@@ -1463,18 +1463,13 @@ public object Input : Object() {
     MAX(5),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): MouseMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CursorShape(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Arrow cursor. Standard, default pointing cursor.
@@ -1561,11 +1556,6 @@ public object Input : Object() {
      */
     HELP(16),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): CursorShape = entries.single { it.`value` == `value` }

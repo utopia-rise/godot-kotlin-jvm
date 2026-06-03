@@ -52,7 +52,7 @@ public open class PinJoint3D : Joint3D() {
   }
 
   public enum class Param(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The force with which the pinned objects stay in positional relation to each other. The
@@ -69,11 +69,6 @@ public open class PinJoint3D : Joint3D() {
      */
     IMPULSE_CLAMP(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): Param = entries.single { it.`value` == `value` }

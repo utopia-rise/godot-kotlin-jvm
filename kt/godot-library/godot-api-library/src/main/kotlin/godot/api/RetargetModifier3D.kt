@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.BitFieldBase
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
@@ -17,7 +18,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -181,31 +181,9 @@ public open class RetargetModifier3D : SkeletonModifier3D() {
   }
 
   public class TransformFlag(
-    public val flag: Long,
-  ) {
-    public infix fun or(other: TransformFlag): TransformFlag = TransformFlag(flag.or(other.flag))
-
-    public infix fun or(other: Long): TransformFlag = TransformFlag(flag.or(other))
-
-    public infix fun xor(other: TransformFlag): TransformFlag = TransformFlag(flag.xor(other.flag))
-
-    public infix fun xor(other: Long): TransformFlag = TransformFlag(flag.xor(other))
-
-    public infix fun and(other: TransformFlag): TransformFlag = TransformFlag(flag.and(other.flag))
-
-    public infix fun and(other: Long): TransformFlag = TransformFlag(flag.and(other))
-
-    public fun unaryPlus(): TransformFlag = TransformFlag(flag.unaryPlus())
-
-    public fun unaryMinus(): TransformFlag = TransformFlag(flag.unaryMinus())
-
-    public fun inv(): TransformFlag = TransformFlag(flag.inv())
-
-    public infix fun shl(bits: Int): TransformFlag = TransformFlag(flag shl bits)
-
-    public infix fun shr(bits: Int): TransformFlag = TransformFlag(flag shr bits)
-
-    public infix fun ushr(bits: Int): TransformFlag = TransformFlag(flag ushr bits)
+    flag: Long,
+  ) : BitFieldBase<TransformFlag>(flag) {
+    protected override fun wrap(flag: Long): TransformFlag = TransformFlag(flag)
 
     public companion object {
       /**

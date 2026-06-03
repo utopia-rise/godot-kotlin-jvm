@@ -12,6 +12,7 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.AABB
 import godot.core.Basis
+import godot.core.BitFieldBase
 import godot.core.Callable
 import godot.core.Color
 import godot.core.Dictionary
@@ -9280,7 +9281,7 @@ public object RenderingServer : Object() {
       globalShaderParameterGetType(name.asCachedStringName())
 
   public enum class TextureType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * 2D texture.
@@ -9296,18 +9297,13 @@ public object RenderingServer : Object() {
     TEXTURE_TYPE_3D(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): TextureType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class TextureLayeredType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Array of 2-dimensional textures (see [Texture2DArray]).
@@ -9323,18 +9319,13 @@ public object RenderingServer : Object() {
     CUBEMAP_ARRAY(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): TextureLayeredType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CubeMapLayer(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Left face of a [Cubemap].
@@ -9362,18 +9353,13 @@ public object RenderingServer : Object() {
     CUBEMAP_LAYER_BACK(5),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): CubeMapLayer = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ShaderMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Shader is a 3D shader.
@@ -9401,18 +9387,13 @@ public object RenderingServer : Object() {
     MAX(5),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ShaderMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ArrayType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Array is a vertex position array.
@@ -9472,18 +9453,13 @@ public object RenderingServer : Object() {
     MAX(13),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ArrayType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ArrayCustomFormat(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Custom data array contains 8-bit-per-channel red/green/blue/alpha color data. Values are
@@ -9531,42 +9507,15 @@ public object RenderingServer : Object() {
     MAX(8),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ArrayCustomFormat = entries.single { it.`value` == `value` }
     }
   }
 
   public class ArrayFormat(
-    public val flag: Long,
-  ) {
-    public infix fun or(other: ArrayFormat): ArrayFormat = ArrayFormat(flag.or(other.flag))
-
-    public infix fun or(other: Long): ArrayFormat = ArrayFormat(flag.or(other))
-
-    public infix fun xor(other: ArrayFormat): ArrayFormat = ArrayFormat(flag.xor(other.flag))
-
-    public infix fun xor(other: Long): ArrayFormat = ArrayFormat(flag.xor(other))
-
-    public infix fun and(other: ArrayFormat): ArrayFormat = ArrayFormat(flag.and(other.flag))
-
-    public infix fun and(other: Long): ArrayFormat = ArrayFormat(flag.and(other))
-
-    public fun unaryPlus(): ArrayFormat = ArrayFormat(flag.unaryPlus())
-
-    public fun unaryMinus(): ArrayFormat = ArrayFormat(flag.unaryMinus())
-
-    public fun inv(): ArrayFormat = ArrayFormat(flag.inv())
-
-    public infix fun shl(bits: Int): ArrayFormat = ArrayFormat(flag shl bits)
-
-    public infix fun shr(bits: Int): ArrayFormat = ArrayFormat(flag shr bits)
-
-    public infix fun ushr(bits: Int): ArrayFormat = ArrayFormat(flag ushr bits)
+    flag: Long,
+  ) : BitFieldBase<ArrayFormat>(flag) {
+    protected override fun wrap(flag: Long): ArrayFormat = ArrayFormat(flag)
 
     public companion object {
       /**
@@ -9786,7 +9735,7 @@ public object RenderingServer : Object() {
   }
 
   public enum class PrimitiveType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Primitive to draw consists of points.
@@ -9815,18 +9764,13 @@ public object RenderingServer : Object() {
     MAX(5),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): PrimitiveType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class BlendShapeMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Blend shapes are normalized.
@@ -9838,18 +9782,13 @@ public object RenderingServer : Object() {
     RELATIVE(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): BlendShapeMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class MultimeshTransformFormat(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Use [Transform2D] to store MultiMesh transform.
@@ -9861,11 +9800,6 @@ public object RenderingServer : Object() {
     MULTIMESH_TRANSFORM_3D(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): MultimeshTransformFormat =
           entries.single { it.`value` == `value` }
@@ -9873,7 +9807,7 @@ public object RenderingServer : Object() {
   }
 
   public enum class MultimeshPhysicsInterpolationQuality(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * MultiMesh physics interpolation favors speed over quality.
@@ -9885,11 +9819,6 @@ public object RenderingServer : Object() {
     INTERP_QUALITY_HIGH(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): MultimeshPhysicsInterpolationQuality =
           entries.single { it.`value` == `value` }
@@ -9897,7 +9826,7 @@ public object RenderingServer : Object() {
   }
 
   public enum class LightProjectorFilter(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Nearest-neighbor filter for light projectors (use for pixel art light projectors). No mipmaps
@@ -9941,11 +9870,6 @@ public object RenderingServer : Object() {
     LINEAR_MIPMAPS_ANISOTROPIC(5),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): LightProjectorFilter =
           entries.single { it.`value` == `value` }
@@ -9953,7 +9877,7 @@ public object RenderingServer : Object() {
   }
 
   public enum class LightType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Directional (sun/moon) light (see [DirectionalLight3D]).
@@ -9969,18 +9893,13 @@ public object RenderingServer : Object() {
     SPOT(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): LightType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class LightParam(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The light's energy multiplier.
@@ -10084,18 +10003,13 @@ public object RenderingServer : Object() {
     MAX(21),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): LightParam = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class LightBakeMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Light is ignored when baking. This is the fastest mode, but the light will be taken into
@@ -10121,18 +10035,13 @@ public object RenderingServer : Object() {
     DYNAMIC(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): LightBakeMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class LightOmniShadowMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Use a dual paraboloid shadow map for omni lights.
@@ -10144,18 +10053,13 @@ public object RenderingServer : Object() {
     CUBE(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): LightOmniShadowMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class LightDirectionalShadowMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Use orthogonal shadow projection for directional light.
@@ -10171,11 +10075,6 @@ public object RenderingServer : Object() {
     PARALLEL_4_SPLITS(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): LightDirectionalShadowMode =
           entries.single { it.`value` == `value` }
@@ -10183,7 +10082,7 @@ public object RenderingServer : Object() {
   }
 
   public enum class LightDirectionalSkyMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Use DirectionalLight3D in both sky rendering and scene lighting.
@@ -10199,11 +10098,6 @@ public object RenderingServer : Object() {
     SKY_ONLY(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): LightDirectionalSkyMode =
           entries.single { it.`value` == `value` }
@@ -10211,7 +10105,7 @@ public object RenderingServer : Object() {
   }
 
   public enum class ShadowQuality(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Lowest shadow filtering quality (fastest). Soft shadows are not available with this quality
@@ -10261,18 +10155,13 @@ public object RenderingServer : Object() {
     MAX(6),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ShadowQuality = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ReflectionProbeUpdateMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Reflection probe will update reflections once and then stop.
@@ -10284,11 +10173,6 @@ public object RenderingServer : Object() {
     ALWAYS(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ReflectionProbeUpdateMode =
           entries.single { it.`value` == `value` }
@@ -10296,7 +10180,7 @@ public object RenderingServer : Object() {
   }
 
   public enum class ReflectionProbeAmbientMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Do not apply any ambient lighting inside the reflection probe's box defined by its size.
@@ -10314,11 +10198,6 @@ public object RenderingServer : Object() {
     COLOR(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ReflectionProbeAmbientMode =
           entries.single { it.`value` == `value` }
@@ -10326,7 +10205,7 @@ public object RenderingServer : Object() {
   }
 
   public enum class DecalTexture(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Albedo texture slot in a decal ([Decal.textureAlbedo]).
@@ -10350,18 +10229,13 @@ public object RenderingServer : Object() {
     MAX(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): DecalTexture = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class DecalFilter(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Nearest-neighbor filter for decals (use for pixel art decals). No mipmaps are used for
@@ -10405,18 +10279,13 @@ public object RenderingServer : Object() {
     LINEAR_MIPMAPS_ANISOTROPIC(5),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): DecalFilter = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class VoxelGIQuality(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Low [VoxelGI] rendering quality using 4 cones.
@@ -10428,18 +10297,13 @@ public object RenderingServer : Object() {
     HIGH(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): VoxelGIQuality = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ParticlesMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * 2D particles.
@@ -10451,29 +10315,19 @@ public object RenderingServer : Object() {
     PARTICLES_MODE_3D(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ParticlesMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ParticlesTransformAlign(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     DISABLED(0),
     Z_BILLBOARD(1),
     Y_TO_VELOCITY(2),
     Z_BILLBOARD_Y_TO_VELOCITY(3),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): ParticlesTransformAlign =
@@ -10482,7 +10336,7 @@ public object RenderingServer : Object() {
   }
 
   public enum class ParticlesDrawOrder(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Draw particles in the order that they appear in the particles array.
@@ -10504,18 +10358,13 @@ public object RenderingServer : Object() {
     VIEW_DEPTH(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ParticlesDrawOrder = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ParticlesCollisionType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     SPHERE_ATTRACT(0),
     BOX_ATTRACT(1),
@@ -10526,11 +10375,6 @@ public object RenderingServer : Object() {
     HEIGHTFIELD_COLLIDE(6),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ParticlesCollisionType =
           entries.single { it.`value` == `value` }
@@ -10538,7 +10382,7 @@ public object RenderingServer : Object() {
   }
 
   public enum class ParticlesCollisionHeightfieldResolution(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     PARTICLES_COLLISION_HEIGHTFIELD_RESOLUTION_256(0),
     PARTICLES_COLLISION_HEIGHTFIELD_RESOLUTION_512(1),
@@ -10552,11 +10396,6 @@ public object RenderingServer : Object() {
     MAX(6),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ParticlesCollisionHeightfieldResolution =
           entries.single { it.`value` == `value` }
@@ -10564,7 +10403,7 @@ public object RenderingServer : Object() {
   }
 
   public enum class FogVolumeShape(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * [FogVolume] will be shaped like an ellipsoid (stretched sphere).
@@ -10597,18 +10436,13 @@ public object RenderingServer : Object() {
     MAX(5),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): FogVolumeShape = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ViewportScaling3DMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Use bilinear scaling for the viewport's 3D buffer. The amount of scaling can be set using
@@ -10657,11 +10491,6 @@ public object RenderingServer : Object() {
     VIEWPORT_SCALING_3D_MODE_MAX(5),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ViewportScaling3DMode =
           entries.single { it.`value` == `value` }
@@ -10669,7 +10498,7 @@ public object RenderingServer : Object() {
   }
 
   public enum class ViewportUpdateMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Do not update the viewport's render target.
@@ -10693,18 +10522,13 @@ public object RenderingServer : Object() {
     ALWAYS(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ViewportUpdateMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ViewportClearMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Always clear the viewport's render target before drawing.
@@ -10720,18 +10544,13 @@ public object RenderingServer : Object() {
     ONLY_NEXT_FRAME(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ViewportClearMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ViewportEnvironmentMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Disable rendering of 3D environment over 2D canvas.
@@ -10753,11 +10572,6 @@ public object RenderingServer : Object() {
     MAX(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ViewportEnvironmentMode =
           entries.single { it.`value` == `value` }
@@ -10765,7 +10579,7 @@ public object RenderingServer : Object() {
   }
 
   public enum class ViewportSDFOversize(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Do not oversize the 2D signed distance field. Occluders may disappear when touching the
@@ -10794,18 +10608,13 @@ public object RenderingServer : Object() {
     MAX(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ViewportSDFOversize = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ViewportSDFScale(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Full resolution 2D signed distance field scale. This has the highest GPU requirements.
@@ -10827,18 +10636,13 @@ public object RenderingServer : Object() {
     MAX(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ViewportSDFScale = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ViewportMSAA(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Multisample antialiasing for 3D is disabled. This is the default value, and also the fastest
@@ -10866,18 +10670,13 @@ public object RenderingServer : Object() {
     MAX(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ViewportMSAA = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ViewportAnisotropicFiltering(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Anisotropic filtering is disabled.
@@ -10905,11 +10704,6 @@ public object RenderingServer : Object() {
     ANISOTROPY_MAX(5),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ViewportAnisotropicFiltering =
           entries.single { it.`value` == `value` }
@@ -10917,7 +10711,7 @@ public object RenderingServer : Object() {
   }
 
   public enum class ViewportScreenSpaceAA(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Do not perform any antialiasing in the full screen post-process.
@@ -10940,11 +10734,6 @@ public object RenderingServer : Object() {
     MAX(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ViewportScreenSpaceAA =
           entries.single { it.`value` == `value` }
@@ -10952,7 +10741,7 @@ public object RenderingServer : Object() {
   }
 
   public enum class ViewportOcclusionCullingBuildQuality(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Low occlusion culling BVH build quality (as defined by Embree). Results in the lowest CPU
@@ -10970,11 +10759,6 @@ public object RenderingServer : Object() {
     BUILD_QUALITY_HIGH(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ViewportOcclusionCullingBuildQuality =
           entries.single { it.`value` == `value` }
@@ -10982,7 +10766,7 @@ public object RenderingServer : Object() {
   }
 
   public enum class ViewportRenderInfo(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Number of objects drawn in a single frame.
@@ -11002,18 +10786,13 @@ public object RenderingServer : Object() {
     MAX(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ViewportRenderInfo = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ViewportRenderInfoType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Visible render pass (excluding shadows).
@@ -11034,11 +10813,6 @@ public object RenderingServer : Object() {
     MAX(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ViewportRenderInfoType =
           entries.single { it.`value` == `value` }
@@ -11046,7 +10820,7 @@ public object RenderingServer : Object() {
   }
 
   public enum class ViewportDebugDraw(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Debug draw is disabled. Default setting.
@@ -11248,18 +11022,13 @@ public object RenderingServer : Object() {
     INTERNAL_BUFFER(26),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ViewportDebugDraw = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ViewportVRSMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Variable rate shading is disabled.
@@ -11281,18 +11050,13 @@ public object RenderingServer : Object() {
     MAX(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ViewportVRSMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ViewportVRSUpdateMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The input texture for variable rate shading will not be processed.
@@ -11312,11 +11076,6 @@ public object RenderingServer : Object() {
     MAX(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ViewportVRSUpdateMode =
           entries.single { it.`value` == `value` }
@@ -11324,7 +11083,7 @@ public object RenderingServer : Object() {
   }
 
   public enum class SkyMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Automatically selects the appropriate process mode based on your sky shader. If your shader
@@ -11361,18 +11120,13 @@ public object RenderingServer : Object() {
     REALTIME(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): SkyMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CompositorEffectFlags(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The rendering effect requires the color buffer to be resolved if MSAA is enabled.
@@ -11396,11 +11150,6 @@ public object RenderingServer : Object() {
     NEEDS_SEPARATE_SPECULAR(16),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): CompositorEffectFlags =
           entries.single { it.`value` == `value` }
@@ -11408,7 +11157,7 @@ public object RenderingServer : Object() {
   }
 
   public enum class CompositorEffectCallbackType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The callback is called before our opaque rendering pass, but after depth prepass (if
@@ -11437,11 +11186,6 @@ public object RenderingServer : Object() {
     ANY(-1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): CompositorEffectCallbackType =
           entries.single { it.`value` == `value` }
@@ -11449,7 +11193,7 @@ public object RenderingServer : Object() {
   }
 
   public enum class EnvironmentBG(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Use the clear color as background.
@@ -11482,18 +11226,13 @@ public object RenderingServer : Object() {
     MAX(6),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): EnvironmentBG = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class EnvironmentAmbientSource(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Gather ambient light from whichever source is specified as the background.
@@ -11513,11 +11252,6 @@ public object RenderingServer : Object() {
     SKY(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): EnvironmentAmbientSource =
           entries.single { it.`value` == `value` }
@@ -11525,7 +11259,7 @@ public object RenderingServer : Object() {
   }
 
   public enum class EnvironmentReflectionSource(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Use the background for reflections.
@@ -11541,11 +11275,6 @@ public object RenderingServer : Object() {
     SKY(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): EnvironmentReflectionSource =
           entries.single { it.`value` == `value` }
@@ -11553,7 +11282,7 @@ public object RenderingServer : Object() {
   }
 
   public enum class EnvironmentGlowBlendMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Additive glow blending mode. Mostly used for particles, glows (bloom), lens flare, bright
@@ -11582,11 +11311,6 @@ public object RenderingServer : Object() {
     MIX(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): EnvironmentGlowBlendMode =
           entries.single { it.`value` == `value` }
@@ -11594,7 +11318,7 @@ public object RenderingServer : Object() {
   }
 
   public enum class EnvironmentFogMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Use a physically-based fog model defined primarily by fog density.
@@ -11607,18 +11331,13 @@ public object RenderingServer : Object() {
     DEPTH(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): EnvironmentFogMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class EnvironmentToneMapper(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Does not modify color data, resulting in a linear tonemapping curve which unnaturally clips
@@ -11653,11 +11372,6 @@ public object RenderingServer : Object() {
     AGX(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): EnvironmentToneMapper =
           entries.single { it.`value` == `value` }
@@ -11665,7 +11379,7 @@ public object RenderingServer : Object() {
   }
 
   public enum class EnvironmentSSRRoughnessQuality(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Lowest quality of roughness filter for screen-space reflections. Rough materials will not
@@ -11687,11 +11401,6 @@ public object RenderingServer : Object() {
     HIGH(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): EnvironmentSSRRoughnessQuality =
           entries.single { it.`value` == `value` }
@@ -11699,7 +11408,7 @@ public object RenderingServer : Object() {
   }
 
   public enum class EnvironmentSSAOQuality(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Lowest quality of screen-space ambient occlusion.
@@ -11724,11 +11433,6 @@ public object RenderingServer : Object() {
     ULTRA(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): EnvironmentSSAOQuality =
           entries.single { it.`value` == `value` }
@@ -11736,7 +11440,7 @@ public object RenderingServer : Object() {
   }
 
   public enum class EnvironmentSSILQuality(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Lowest quality of screen-space indirect lighting.
@@ -11761,11 +11465,6 @@ public object RenderingServer : Object() {
     ULTRA(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): EnvironmentSSILQuality =
           entries.single { it.`value` == `value` }
@@ -11773,7 +11472,7 @@ public object RenderingServer : Object() {
   }
 
   public enum class EnvironmentSDFGIYScale(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Use 50&#37; scale for SDFGI on the Y (vertical) axis. SDFGI cells will be twice as short as
@@ -11795,11 +11494,6 @@ public object RenderingServer : Object() {
     Y_SCALE_100_PERCENT(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): EnvironmentSDFGIYScale =
           entries.single { it.`value` == `value` }
@@ -11807,7 +11501,7 @@ public object RenderingServer : Object() {
   }
 
   public enum class EnvironmentSDFGIRayCount(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Throw 4 rays per frame when converging SDFGI. This has the lowest GPU requirements, but
@@ -11845,11 +11539,6 @@ public object RenderingServer : Object() {
     MAX(7),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): EnvironmentSDFGIRayCount =
           entries.single { it.`value` == `value` }
@@ -11857,7 +11546,7 @@ public object RenderingServer : Object() {
   }
 
   public enum class EnvironmentSDFGIFramesToConverge(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Converge SDFGI over 5 frames. This is the most responsive, but creates the most noisy result
@@ -11891,11 +11580,6 @@ public object RenderingServer : Object() {
     CONVERGE_MAX(6),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): EnvironmentSDFGIFramesToConverge =
           entries.single { it.`value` == `value` }
@@ -11903,7 +11587,7 @@ public object RenderingServer : Object() {
   }
 
   public enum class EnvironmentSDFGIFramesToUpdateLight(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Update indirect light from dynamic lights in SDFGI over 1 frame. This is the most responsive,
@@ -11933,11 +11617,6 @@ public object RenderingServer : Object() {
     UPDATE_LIGHT_MAX(5),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): EnvironmentSDFGIFramesToUpdateLight =
           entries.single { it.`value` == `value` }
@@ -11945,7 +11624,7 @@ public object RenderingServer : Object() {
   }
 
   public enum class SubSurfaceScatteringQuality(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Disables subsurface scattering entirely, even on materials that have
@@ -11966,11 +11645,6 @@ public object RenderingServer : Object() {
     HIGH(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): SubSurfaceScatteringQuality =
           entries.single { it.`value` == `value` }
@@ -11978,7 +11652,7 @@ public object RenderingServer : Object() {
   }
 
   public enum class DOFBokehShape(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Calculate the DOF blur using a box filter. The fastest option, but results in obvious lines
@@ -11997,18 +11671,13 @@ public object RenderingServer : Object() {
     CIRCLE(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): DOFBokehShape = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class DOFBlurQuality(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Lowest quality DOF blur. This is the fastest setting, but you may be able to see filtering
@@ -12030,18 +11699,13 @@ public object RenderingServer : Object() {
     HIGH(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): DOFBlurQuality = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class InstanceType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The instance does not have a type.
@@ -12105,18 +11769,13 @@ public object RenderingServer : Object() {
     GEOMETRY_MASK(14),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): InstanceType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class InstanceFlags(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Allows the instance to be used in baked lighting.
@@ -12141,18 +11800,13 @@ public object RenderingServer : Object() {
     MAX(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): InstanceFlags = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ShadowCastingSetting(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Disable shadows from this instance.
@@ -12173,11 +11827,6 @@ public object RenderingServer : Object() {
     SHADOWS_ONLY(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ShadowCastingSetting =
           entries.single { it.`value` == `value` }
@@ -12185,7 +11834,7 @@ public object RenderingServer : Object() {
   }
 
   public enum class VisibilityRangeFadeMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Disable visibility range fading for the given instance.
@@ -12201,11 +11850,6 @@ public object RenderingServer : Object() {
     DEPENDENCIES(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): VisibilityRangeFadeMode =
           entries.single { it.`value` == `value` }
@@ -12213,7 +11857,7 @@ public object RenderingServer : Object() {
   }
 
   public enum class BakeChannels(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Index of [Image] in array of [Image]s returned by [bakeRenderUv2]. Image uses
@@ -12242,18 +11886,13 @@ public object RenderingServer : Object() {
     EMISSION(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): BakeChannels = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CanvasTextureChannel(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Diffuse canvas texture ([CanvasTexture.diffuseTexture]).
@@ -12269,11 +11908,6 @@ public object RenderingServer : Object() {
     SPECULAR(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): CanvasTextureChannel =
           entries.single { it.`value` == `value` }
@@ -12281,7 +11915,7 @@ public object RenderingServer : Object() {
   }
 
   public enum class NinePatchAxisMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The nine patch gets stretched where needed.
@@ -12297,18 +11931,13 @@ public object RenderingServer : Object() {
     TILE_FIT(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): NinePatchAxisMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CanvasItemTextureFilter(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Uses the default filter mode for this [Viewport].
@@ -12378,11 +12007,6 @@ public object RenderingServer : Object() {
     MAX(7),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): CanvasItemTextureFilter =
           entries.single { it.`value` == `value` }
@@ -12390,7 +12014,7 @@ public object RenderingServer : Object() {
   }
 
   public enum class CanvasItemTextureRepeat(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Uses the default repeat mode for this [Viewport].
@@ -12418,11 +12042,6 @@ public object RenderingServer : Object() {
     MAX(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): CanvasItemTextureRepeat =
           entries.single { it.`value` == `value` }
@@ -12430,7 +12049,7 @@ public object RenderingServer : Object() {
   }
 
   public enum class CanvasGroupMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Child draws over parent and is not clipped.
@@ -12449,18 +12068,13 @@ public object RenderingServer : Object() {
     TRANSPARENT(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): CanvasGroupMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CanvasLightMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * 2D point light (see [PointLight2D]).
@@ -12472,18 +12086,13 @@ public object RenderingServer : Object() {
     DIRECTIONAL(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): CanvasLightMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CanvasLightBlendMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Adds light color additive to the canvas.
@@ -12499,11 +12108,6 @@ public object RenderingServer : Object() {
     MIX(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): CanvasLightBlendMode =
           entries.single { it.`value` == `value` }
@@ -12511,7 +12115,7 @@ public object RenderingServer : Object() {
   }
 
   public enum class CanvasLightShadowFilter(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Do not apply a filter to canvas light shadows.
@@ -12531,11 +12135,6 @@ public object RenderingServer : Object() {
     FILTER_MAX(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): CanvasLightShadowFilter =
           entries.single { it.`value` == `value` }
@@ -12543,7 +12142,7 @@ public object RenderingServer : Object() {
   }
 
   public enum class CanvasOccluderPolygonCullMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Culling of the canvas occluder is disabled.
@@ -12559,11 +12158,6 @@ public object RenderingServer : Object() {
     COUNTER_CLOCKWISE(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): CanvasOccluderPolygonCullMode =
           entries.single { it.`value` == `value` }
@@ -12571,7 +12165,7 @@ public object RenderingServer : Object() {
   }
 
   public enum class GlobalShaderParameterType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Boolean global shader parameter (`global uniform bool ...`).
@@ -12709,11 +12303,6 @@ public object RenderingServer : Object() {
     VAR_TYPE_MAX(29),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): GlobalShaderParameterType =
           entries.single { it.`value` == `value` }
@@ -12721,7 +12310,7 @@ public object RenderingServer : Object() {
   }
 
   public enum class RenderingInfo(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Number of objects rendered in the current 3D scene. This varies depending on camera position
@@ -12784,18 +12373,13 @@ public object RenderingServer : Object() {
     PIPELINE_COMPILATIONS_SPECIALIZATION(10),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): RenderingInfo = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class PipelineSource(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Pipeline compilation that was triggered by the 2D canvas renderer.
@@ -12824,18 +12408,13 @@ public object RenderingServer : Object() {
     MAX(5),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): PipelineSource = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class SplashStretchMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * No stretching is applied.
@@ -12863,27 +12442,17 @@ public object RenderingServer : Object() {
     IGNORE(5),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): SplashStretchMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Features(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     SHADERS(0),
     MULTITHREADED(1),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): Features = entries.single { it.`value` == `value` }

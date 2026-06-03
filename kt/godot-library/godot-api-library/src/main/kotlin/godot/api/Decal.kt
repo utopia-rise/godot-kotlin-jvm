@@ -542,7 +542,7 @@ public open class Decal : VisualInstance3D() {
   }
 
   public enum class DecalTexture(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * [Texture2D] corresponding to [textureAlbedo].
@@ -565,11 +565,6 @@ public open class Decal : VisualInstance3D() {
      */
     TEXTURE_MAX(4),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): DecalTexture = entries.single { it.`value` == `value` }

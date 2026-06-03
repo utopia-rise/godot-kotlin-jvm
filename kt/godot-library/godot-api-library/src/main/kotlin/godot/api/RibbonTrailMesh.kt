@@ -177,7 +177,7 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
   }
 
   public enum class Shape(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Gives the mesh a single flat face.
@@ -188,11 +188,6 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
      */
     CROSS(1),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): Shape = entries.single { it.`value` == `value` }

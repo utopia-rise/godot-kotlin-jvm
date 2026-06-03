@@ -114,7 +114,7 @@ public open class BackBufferCopy : Node2D() {
   }
 
   public enum class CopyMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Disables the buffering mode. This means the [BackBufferCopy] node will directly use the
@@ -130,11 +130,6 @@ public open class BackBufferCopy : Node2D() {
      */
     VIEWPORT(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): CopyMode = entries.single { it.`value` == `value` }

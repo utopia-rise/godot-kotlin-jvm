@@ -233,7 +233,7 @@ public open class AudioStreamRandomizer : AudioStream() {
   }
 
   public enum class PlaybackMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Pick a stream at random according to the probability weights chosen for each stream, but
@@ -252,11 +252,6 @@ public open class AudioStreamRandomizer : AudioStream() {
      */
     SEQUENTIAL(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): PlaybackMode = entries.single { it.`value` == `value` }

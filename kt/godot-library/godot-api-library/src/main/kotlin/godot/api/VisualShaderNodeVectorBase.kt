@@ -53,7 +53,7 @@ public open class VisualShaderNodeVectorBase internal constructor() : VisualShad
   }
 
   public enum class OpType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * A 2D vector type.
@@ -72,11 +72,6 @@ public open class VisualShaderNodeVectorBase internal constructor() : VisualShad
      */
     MAX(3),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): OpType = entries.single { it.`value` == `value` }

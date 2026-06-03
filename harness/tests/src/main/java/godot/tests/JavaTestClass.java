@@ -34,6 +34,18 @@ public class JavaTestClass extends Node {
 
     @Export
     @RegisterProperty
+    public BitField<JavaEnum> javaFlag = BitField.of(JavaEnum.JAVA_ENUM_1, JavaEnum.JAVA_ENUM_2);
+
+    @Export
+    @RegisterProperty
+    public java.util.List<JavaEnum> javaEnumList = new java.util.ArrayList<>(java.util.List.of(JavaEnum.JAVA_ENUM_1));
+
+    @Export
+    @RegisterProperty
+    public BitField<JavaGodotEnum> javaGodotFlag = BitField.of(JavaGodotEnum.A, JavaGodotEnum.B);
+
+    @Export
+    @RegisterProperty
     public int exportedInt = 1;
 
     @Export

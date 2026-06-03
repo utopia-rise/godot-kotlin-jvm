@@ -6,7 +6,6 @@
 
 package godot.core
 
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.jvm.JvmField
@@ -18,34 +17,9 @@ public infix fun Long.xor(other: KeyModifierMask): Long = this.xor(other.flag)
 public infix fun Long.and(other: KeyModifierMask): Long = this.and(other.flag)
 
 public class KeyModifierMask(
-  public val flag: Long,
-) {
-  public infix fun or(other: KeyModifierMask): KeyModifierMask =
-      KeyModifierMask(flag.or(other.flag))
-
-  public infix fun or(other: Long): KeyModifierMask = KeyModifierMask(flag.or(other))
-
-  public infix fun xor(other: KeyModifierMask): KeyModifierMask =
-      KeyModifierMask(flag.xor(other.flag))
-
-  public infix fun xor(other: Long): KeyModifierMask = KeyModifierMask(flag.xor(other))
-
-  public infix fun and(other: KeyModifierMask): KeyModifierMask =
-      KeyModifierMask(flag.and(other.flag))
-
-  public infix fun and(other: Long): KeyModifierMask = KeyModifierMask(flag.and(other))
-
-  public fun unaryPlus(): KeyModifierMask = KeyModifierMask(flag.unaryPlus())
-
-  public fun unaryMinus(): KeyModifierMask = KeyModifierMask(flag.unaryMinus())
-
-  public fun inv(): KeyModifierMask = KeyModifierMask(flag.inv())
-
-  public infix fun shl(bits: Int): KeyModifierMask = KeyModifierMask(flag shl bits)
-
-  public infix fun shr(bits: Int): KeyModifierMask = KeyModifierMask(flag shr bits)
-
-  public infix fun ushr(bits: Int): KeyModifierMask = KeyModifierMask(flag ushr bits)
+  flag: Long,
+) : BitFieldBase<KeyModifierMask>(flag) {
+  protected override fun wrap(flag: Long): KeyModifierMask = KeyModifierMask(flag)
 
   public companion object {
     /**

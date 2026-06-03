@@ -453,7 +453,7 @@ public open class Light2D internal constructor() : Node2D() {
   }
 
   public enum class ShadowFilter(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * No filter applies to the shadow map. This provides hard shadow edges and is the fastest to
@@ -472,18 +472,13 @@ public open class Light2D internal constructor() : Node2D() {
     PCF13(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ShadowFilter = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class BlendMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Adds the value of pixels corresponding to the Light2D to the values of pixels under it. This
@@ -501,11 +496,6 @@ public open class Light2D internal constructor() : Node2D() {
      */
     MIX(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): BlendMode = entries.single { it.`value` == `value` }

@@ -13,6 +13,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.AABB
+import godot.core.BitFieldBase
 import godot.core.Dictionary
 import godot.core.GodotEnum
 import godot.core.MethodStringName0
@@ -318,7 +319,7 @@ public abstract class Mesh : Resource() {
   }
 
   public enum class PrimitiveType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Render array as points (one vertex equals one point).
@@ -342,18 +343,13 @@ public abstract class Mesh : Resource() {
     TRIANGLE_STRIP(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): PrimitiveType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ArrayType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * [PackedVector3Array], [PackedVector2Array], or [Array] of vertex positions.
@@ -440,18 +436,13 @@ public abstract class Mesh : Resource() {
     MAX(13),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ArrayType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ArrayCustomFormat(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Indicates this custom channel contains unsigned normalized byte colors from 0 to 1, encoded
@@ -498,42 +489,15 @@ public abstract class Mesh : Resource() {
     MAX(8),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ArrayCustomFormat = entries.single { it.`value` == `value` }
     }
   }
 
   public class ArrayFormat(
-    public val flag: Long,
-  ) {
-    public infix fun or(other: ArrayFormat): ArrayFormat = ArrayFormat(flag.or(other.flag))
-
-    public infix fun or(other: Long): ArrayFormat = ArrayFormat(flag.or(other))
-
-    public infix fun xor(other: ArrayFormat): ArrayFormat = ArrayFormat(flag.xor(other.flag))
-
-    public infix fun xor(other: Long): ArrayFormat = ArrayFormat(flag.xor(other))
-
-    public infix fun and(other: ArrayFormat): ArrayFormat = ArrayFormat(flag.and(other.flag))
-
-    public infix fun and(other: Long): ArrayFormat = ArrayFormat(flag.and(other))
-
-    public fun unaryPlus(): ArrayFormat = ArrayFormat(flag.unaryPlus())
-
-    public fun unaryMinus(): ArrayFormat = ArrayFormat(flag.unaryMinus())
-
-    public fun inv(): ArrayFormat = ArrayFormat(flag.inv())
-
-    public infix fun shl(bits: Int): ArrayFormat = ArrayFormat(flag shl bits)
-
-    public infix fun shr(bits: Int): ArrayFormat = ArrayFormat(flag shr bits)
-
-    public infix fun ushr(bits: Int): ArrayFormat = ArrayFormat(flag ushr bits)
+    flag: Long,
+  ) : BitFieldBase<ArrayFormat>(flag) {
+    protected override fun wrap(flag: Long): ArrayFormat = ArrayFormat(flag)
 
     public companion object {
       /**
@@ -712,7 +676,7 @@ public abstract class Mesh : Resource() {
   }
 
   public enum class BlendShapeMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Blend shapes are normalized.
@@ -723,11 +687,6 @@ public abstract class Mesh : Resource() {
      */
     RELATIVE(1),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): BlendShapeMode = entries.single { it.`value` == `value` }

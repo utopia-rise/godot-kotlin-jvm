@@ -16,6 +16,9 @@ signals = [
 ]
 properties = [
     java_enum,
+    java_flag,
+    java_enum_list,
+    java_godot_flag,
     exported_int,
     exported_long,
     exported_float,

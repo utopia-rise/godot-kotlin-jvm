@@ -68,7 +68,7 @@ open class KtProperty<T : KtObject, P : Any?>(
     }
 }
 
-class KtEnumFlagProperty<T : KtObject, P : Any>(
+class KtBitFieldProperty<T : KtObject, P : BitFieldBase<*>>(
     ktPropertyInfo: KtPropertyInfo,
     getter: (T) -> P,
     setter: (T, P) -> Unit,

@@ -31,7 +31,7 @@ object ClassGraphProcessor {
 
             val context = ProcessorContext(scanResult = it, settings = settings)
             val shapeResolvers = JvmShapeResolvers()
-            val annotationMapper = AnnotationMapper(context)
+            val annotationMapper = AnnotationMapper()
             lateinit var classMapper: ClassMapper
             val typeMapper = TypeMapper(context) { classMapper }
             val memberMapper = MemberMapper(context, typeMapper, annotationMapper, shapeResolvers)

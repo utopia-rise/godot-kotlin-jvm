@@ -117,7 +117,7 @@ public open class Thread : RefCounted() {
   }
 
   public enum class Priority(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * A thread running with lower priority than normally.
@@ -132,11 +132,6 @@ public open class Thread : RefCounted() {
      */
     HIGH(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): Priority = entries.single { it.`value` == `value` }

@@ -3,6 +3,8 @@ package godot.annotation.processor.classgraph.mapper
 import godot.annotation.GodotBaseType
 import godot.annotation.processor.classgraph.ProcessorContext
 import godot.annotation.processor.classgraph.TypeCacheKey
+import godot.annotation.processor.classgraph.constants.BIT_FIELD
+import godot.annotation.processor.classgraph.constants.BIT_FIELD_BASE
 import godot.annotation.processor.classgraph.constants.KOTLIN_ANY
 import godot.annotation.processor.classgraph.models.TypeDescriptor
 import godot.registration.model.types.*
@@ -101,6 +103,7 @@ val ClassInfo.modelTypeKind: TypeKind
     get() = when {
         isCoreType -> TypeKind.CORE_TYPE
         isEnum -> TypeKind.ENUM
+        isBitField -> TypeKind.BITFIELD
         isInterface -> TypeKind.INTERFACE
         isStandardClass -> TypeKind.CLASS
         else -> TypeKind.OTHER
@@ -110,3 +113,9 @@ private val ClassInfo.isCoreType: Boolean
     get() = name == CORE_TYPE_FQ_NAME ||
         superclasses.any { superclass -> superclass.name == CORE_TYPE_FQ_NAME } ||
         interfaces.any { iface -> iface.name == CORE_TYPE_FQ_NAME }
+
+internal val ClassInfo.isBitField: Boolean
+    get() = name == BIT_FIELD ||
+        superclasses.any { superclass -> superclass.name == BIT_FIELD } ||
+        name == BIT_FIELD_BASE ||
+        superclasses.any { superclass -> superclass.name == BIT_FIELD_BASE }

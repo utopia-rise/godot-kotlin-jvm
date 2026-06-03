@@ -79,7 +79,7 @@ public open class VisualShaderNodeBillboard : VisualShaderNode() {
   }
 
   public enum class BillboardType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Billboarding is disabled and the node does nothing.
@@ -102,11 +102,6 @@ public open class VisualShaderNodeBillboard : VisualShaderNode() {
      */
     MAX(4),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): BillboardType = entries.single { it.`value` == `value` }

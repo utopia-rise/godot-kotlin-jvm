@@ -8,6 +8,7 @@ import godot.annotation.processor.classgraph.extensions.fqName
 import godot.annotation.processor.classgraph.models.TypeDescriptor
 import godot.annotation.processor.classgraph.shape.JvmShapeResolvers
 import godot.registration.model.*
+import godot.registration.model.hint.property.EnumFlagHintStringHint
 import godot.registration.model.hint.property.EnumHint
 import godot.registration.model.hint.property.EnumHintStringHint
 import godot.registration.model.hint.property.EnumListHintStringHint
@@ -98,38 +99,30 @@ class MemberMapper(
         annotations: Collection<AnnotationInfo>,
     ): List<PropertyHint> {
         val hints = annotations
-            .mapNotNull { annotation -> annotationMapper.toPropertyHint(annotation, fieldInfo) }
+            .mapNotNull { annotation -> annotationMapper.toPropertyHint(annotation) }
             .toMutableList()
 
         val fieldType = fieldInfo.typeDescriptor?.toString() ?: throw IllegalStateException("Type cannot be null")
 
-        if (!typeDescriptor.isPrimitive) {
+        if (!typeDescriptor.isPrimitive && hints.none { hint -> hint is EnumHint }) {
             val typeClassInfo = typeDescriptor.typeClassInfo(context)
-
-            if (hints.none { hint -> hint is EnumHint } && typeClassInfo.isEnum) {
-                hints.add(
-                    EnumHintStringHint(
-                        enumValueNames = typeClassInfo.fieldInfo
-                            .filter { field -> field.isEnum }
-                            .map { field -> field.name },
-                    ),
-                )
+            val containedEnum = {
+                typeDescriptor.typeArguments.firstOrNull()
+                    ?.let(typeMapper::typeArgumentClassInfo)
+                    ?.takeIf { contained -> contained.isEnum }
             }
 
-            if (hints.none { hint -> hint is EnumHint } &&
-                (fieldType.startsWith("kotlin.collections") || fieldType.isJavaCollectionDescriptor())
-            ) {
-                val containedTypeDeclaration = typeDescriptor.typeArguments.firstOrNull()
-                    ?.let(typeMapper::typeArgumentClassInfo)
-                if (containedTypeDeclaration?.isEnum == true) {
-                    hints.add(
-                        EnumListHintStringHint(
-                            enumValueNames = containedTypeDeclaration.fieldInfo
-                                .filter { field -> field.isEnum }
-                                .map { field -> field.name },
-                        ),
-                    )
-                }
+            when {
+                // Single enum -> dropdown.
+                typeClassInfo.isEnum -> hints.add(EnumHintStringHint(typeClassInfo.toEnumValues()))
+
+                // BitField<E> -> bitmask, hint read from the backing enum E.
+                typeClassInfo.isBitField -> containedEnum()
+                    ?.let { enum -> hints.add(EnumFlagHintStringHint(enum.toEnumValues())) }
+
+                // Any Collection<Enum> -> list of dropdowns.
+                fieldType.startsWith("kotlin.collections") || fieldType.isJavaCollectionDescriptor() ->
+                    containedEnum()?.let { enum -> hints.add(EnumListHintStringHint(enum.toEnumValues())) }
             }
         }
 

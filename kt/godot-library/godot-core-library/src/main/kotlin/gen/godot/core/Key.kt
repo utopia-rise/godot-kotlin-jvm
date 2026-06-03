@@ -10,7 +10,7 @@ import kotlin.Long
 import kotlin.Suppress
 
 public enum class Key(
-  `value`: Long,
+  public override val `value`: Long,
 ) : GodotEnum {
   /**
    * Enum value which doesn't correspond to any key. This is used to initialize [Key] properties
@@ -786,11 +786,6 @@ public enum class Key(
    */
   SECTION(167),
   ;
-
-  public override val `value`: Long
-  init {
-    this.`value` = `value`
-  }
 
   public companion object {
     public fun from(`value`: Long): Key = entries.single { it.`value` == `value` }

@@ -329,7 +329,7 @@ public open class AudioStreamWAV : AudioStream() {
   }
 
   public enum class Format(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * 8-bit PCM audio codec.
@@ -349,18 +349,13 @@ public open class AudioStreamWAV : AudioStream() {
     QOA(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): Format = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class LoopMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Audio does not loop.
@@ -379,11 +374,6 @@ public open class AudioStreamWAV : AudioStream() {
      */
     BACKWARD(3),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): LoopMode = entries.single { it.`value` == `value` }

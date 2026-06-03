@@ -418,7 +418,7 @@ public open class HTTPClient : RefCounted() {
   }
 
   public enum class Method(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * HTTP GET method. The GET method requests a representation of the specified resource. Requests
@@ -472,18 +472,13 @@ public open class HTTPClient : RefCounted() {
     MAX(9),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): Method = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Status(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Status: Disconnected from the server.
@@ -527,18 +522,13 @@ public open class HTTPClient : RefCounted() {
     TLS_HANDSHAKE_ERROR(9),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): Status = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ResponseCode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * HTTP status code `100 Continue`. Interim response that indicates everything so far is OK and
@@ -890,11 +880,6 @@ public open class HTTPClient : RefCounted() {
      */
     NETWORK_AUTH_REQUIRED(511),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): ResponseCode = entries.single { it.`value` == `value` }
