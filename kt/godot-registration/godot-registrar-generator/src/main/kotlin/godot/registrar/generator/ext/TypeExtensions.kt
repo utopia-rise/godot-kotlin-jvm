@@ -12,6 +12,7 @@ import godot.registrar.generator.GeneratorContext
 import godot.registration.model.types.GodotBaseClass
 import godot.registration.model.types.GodotClass
 import godot.registration.model.types.ScriptFamily
+import godot.registration.model.types.ScriptClass
 import godot.registration.model.types.Type
 import godot.registration.model.types.TypeKind
 import godot.registration.model.types.Type.Companion.aabbType
@@ -273,7 +274,10 @@ internal fun ScriptFamily.parentScriptFamily(): ScriptFamily? =
 private fun Type.registeredOrBaseGodotClassName(context: GeneratorContext): String {
     val baseGodotType = baseGodotType()
     if (baseGodotType != null) {
-        return context.registeredClassesByFqName[fqName]?.getRegisteredName(context.settings)
+        return (this as? ScriptClass)
+            ?.takeIf { scriptClass -> scriptClass.isRegistered }
+            ?.getRegisteredName(context.settings)
+            ?: context.registeredClassesByFqName[fqName]?.getRegisteredName(context.settings)
             ?: baseGodotType.fqName.substringAfterLast(".")
     }
 

@@ -90,6 +90,16 @@ open class GodotExtension(objects: ObjectFactory) {
     val registrationNameMode: Property<RegisteredNameMode> = objects.property(RegisteredNameMode::class.java)
 
     /**
+     * Maximum number of changed logical classes for which registrar generation still uses the incremental path.
+     *
+     * When more than this many classes change between two successful builds, the plugin falls back to a full
+     * registrar generation run instead of paying the incremental prepass overhead.
+     *
+     * Defaults to `32`.
+     */
+    val registrarIncrementalFullBuildThreshold: Property<Int> = objects.property(Int::class.java)
+
+    /**
      * JVM source languages enabled for the project's initial compilation pass.
      *
      * This controls which language-specific compile tasks and support dependencies are wired into the
@@ -227,6 +237,7 @@ open class GodotExtension(objects: ObjectFactory) {
         registrationFilesLayoutMode.convention(RegistrationFileLayoutMode.FLAT)
         registrationFilesIndentation.convention(RegistrationFileIndentation.SPACE)
         registrationNameMode.convention(RegisteredNameMode.SIMPLE_NAME)
+        registrarIncrementalFullBuildThreshold.convention(32)
         languages.convention(GodotLanguage.entries.toSet())
 
         if (d8Tool != null) {

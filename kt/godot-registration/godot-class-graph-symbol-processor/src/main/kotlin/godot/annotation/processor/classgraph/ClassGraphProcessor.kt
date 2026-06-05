@@ -10,11 +10,37 @@ import godot.annotation.processor.classgraph.shape.JvmShapeResolvers
 import godot.core.KtObject
 import godot.registration.model.types.ScriptClass
 import io.github.classgraph.ClassGraph
+import io.github.classgraph.ScanResult
 import java.io.File
 
 object ClassGraphProcessor {
+    data class IncrementalProcessResult(
+        val dirtyClassNames: Set<String>,
+        val registeredClasses: List<ScriptClass>,
+    )
+
     fun process(runtimeClassPathFiles: Set<File>, settings: ProcessorSettings): List<ScriptClass> {
-        val scanResult = ClassGraph()
+        return scan(runtimeClassPathFiles).use { scanResult ->
+            mapRegisteredClasses(scanResult, settings)
+        }
+    }
+
+    fun processIncrementally(
+        runtimeClassPathFiles: Set<File>,
+        settings: ProcessorSettings,
+        seedClassNames: Set<String>,
+    ): IncrementalProcessResult {
+        return scan(runtimeClassPathFiles).use { scanResult ->
+            val dirtyClassNames = expandDirtyClassNames(scanResult, seedClassNames)
+            IncrementalProcessResult(
+                dirtyClassNames = dirtyClassNames,
+                registeredClasses = mapRegisteredClasses(scanResult, settings, dirtyClassNames)
+            )
+        }
+    }
+
+    private fun scan(runtimeClassPathFiles: Set<File>): ScanResult {
+        return ClassGraph()
             .overrideClasspath(runtimeClassPathFiles)
             .enableClassInfo()
             .enableAnnotationInfo()
@@ -23,35 +49,60 @@ object ClassGraphProcessor {
             .ignoreFieldVisibility()
             .ignoreMethodVisibility()
             .scan()
+    }
 
-        scanResult.use {
-            require(settings.userCodeClassPathRoots.isNotEmpty()) {
-                "No user code classpath roots were provided for ClassGraph symbol processing. Ensure compilation ran before classGraph tasks and check that the build directory contains compiled user classes."
-            }
+    private fun mapRegisteredClasses(
+        scanResult: ScanResult,
+        settings: ProcessorSettings,
+        dirtyClassNames: Set<String>? = null,
+    ): List<ScriptClass> {
+        require(settings.userCodeClassPathRoots.isNotEmpty()) {
+            "No user code classpath roots were provided for ClassGraph symbol processing. Ensure compilation ran before classGraph tasks and check that the build directory contains compiled user classes."
+        }
 
-            val context = ProcessorContext(scanResult = it, settings = settings)
-            val shapeResolvers = JvmShapeResolvers()
-            val annotationMapper = AnnotationMapper()
-            lateinit var classMapper: ClassMapper
-            val typeMapper = TypeMapper(context) { classMapper }
-            val memberMapper = MemberMapper(context, typeMapper, annotationMapper, shapeResolvers)
-            classMapper = ClassMapper(context, memberMapper, shapeResolvers)
+        val context = ProcessorContext(scanResult = scanResult, settings = settings)
+        val shapeResolvers = JvmShapeResolvers()
+        val annotationMapper = AnnotationMapper()
+        lateinit var classMapper: ClassMapper
+        val typeMapper = TypeMapper(context) { classMapper }
+        val memberMapper = MemberMapper(context, typeMapper, annotationMapper, shapeResolvers)
+        classMapper = ClassMapper(context, memberMapper, shapeResolvers)
 
-            val scriptClasses = it.getClassesWithAnnotation(RegisterClass::class.java.name)
-                .intersect(it.getSubclasses(KtObject::class.java))
-                .filter { classInfo -> !classInfo.hasAnnotation(GodotBaseType::class.java) }
-                .map { classInfo -> classMapper.mapScriptClass(classInfo) }
-                .distinctBy { scriptClass -> scriptClass.fqName }
+        val scriptClasses = scanResult.getClassesWithAnnotation(RegisterClass::class.java.name)
+            .intersect(scanResult.getSubclasses(KtObject::class.java))
+            .filter { classInfo -> !classInfo.hasAnnotation(GodotBaseType::class.java) }
+            .filter { classInfo -> dirtyClassNames == null || classInfo.name in dirtyClassNames }
+            .map { classInfo -> classMapper.mapScriptClass(classInfo) }
+            .distinctBy { scriptClass -> scriptClass.fqName }
 
-            require(context.errors.isEmpty()) {
-                buildString {
-                    for (error in context.errors) {
-                        appendLine(error)
-                    }
+        require(context.errors.isEmpty()) {
+            buildString {
+                for (error in context.errors) {
+                    appendLine(error)
                 }
             }
-
-            return scriptClasses
         }
+
+        return scriptClasses
+    }
+
+    private fun expandDirtyClassNames(
+        scanResult: ScanResult,
+        seedClassNames: Set<String>,
+    ): Set<String> {
+        val dirtyClassNames = linkedSetOf<String>()
+
+        seedClassNames.forEach { seedClassName ->
+            dirtyClassNames += seedClassName
+
+            val seedClassInfo = scanResult.getClassInfo(seedClassName) ?: return@forEach
+            if (seedClassInfo.isInterface) {
+                dirtyClassNames += scanResult.getClassesImplementing(seedClassName).map { it.name }
+            } else {
+                dirtyClassNames += scanResult.getSubclasses(seedClassName).map { it.name }
+            }
+        }
+
+        return dirtyClassNames
     }
 }

@@ -15,6 +15,7 @@ import godot.registration.model.ext.isCoreType
 import godot.registration.model.ext.isGodotPrimitive
 import godot.registration.model.ext.isNodeType
 import godot.registration.model.hint.property.EnumHint
+import godot.registration.model.types.ScriptClass
 import godot.registration.model.types.Type
 
 class ArrayAndDictionaryHintStringGenerator(
@@ -106,7 +107,10 @@ class ArrayAndDictionaryHintStringGenerator(
                         val objectVariantType = VariantParser.OBJECT.id
 
                         val className =
-                            context.registeredClassesByFqName[currentElementType.fqName]?.getRegisteredName(context.settings)
+                            (currentElementType as? ScriptClass)
+                                ?.takeIf { scriptClass -> scriptClass.isRegistered }
+                                ?.getRegisteredName(context.settings)
+                                ?: context.registeredClassesByFqName[currentElementType.fqName]?.getRegisteredName(context.settings)
                                 ?: currentElementType.baseGodotType()?.fqName?.substringAfterLast(".")
 
                         val subTypeString = if (className != null) {
@@ -123,7 +127,10 @@ class ArrayAndDictionaryHintStringGenerator(
                         val objectVariantType = VariantParser.OBJECT.id
 
                         val className =
-                            context.registeredClassesByFqName[currentElementType.fqName]?.getRegisteredName(context.settings)
+                            (currentElementType as? ScriptClass)
+                                ?.takeIf { scriptClass -> scriptClass.isRegistered }
+                                ?.getRegisteredName(context.settings)
+                                ?: context.registeredClassesByFqName[currentElementType.fqName]?.getRegisteredName(context.settings)
                                 ?: currentElementType.baseGodotType()?.fqName?.substringAfterLast(".")
 
                         val subTypeString = if (className != null) {

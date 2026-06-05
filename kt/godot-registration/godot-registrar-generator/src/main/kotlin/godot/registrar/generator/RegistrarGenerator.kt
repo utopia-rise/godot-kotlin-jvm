@@ -22,8 +22,33 @@ object RegistrarGenerator {
             registeredClassesByFqName = registeredClasses.associateBy { it.fqName },
         )
 
-        RegistrarClassGenerator(context, sourceOutputDir).generate(registeredClasses)
+        generateClassArtifactsUsingRegisteredClasses(context, settings, registeredClasses, sourceOutputDir, registrationOutputDir)
         RegistrarServiceFileBuilder(context, serviceFile).generate(registeredClasses)
+    }
+
+    fun generateClassArtifactsUsingRegisteredClasses(
+        settings: Settings,
+        logger: Logger,
+        registeredClasses: List<ScriptClass>,
+        sourceOutputDir: File,
+        registrationOutputDir: File? = null,
+    ) {
+        val context = GeneratorContext(
+            settings = settings,
+            logger = logger,
+            registeredClassesByFqName = registeredClasses.associateBy { it.fqName },
+        )
+        generateClassArtifactsUsingRegisteredClasses(context, settings, registeredClasses, sourceOutputDir, registrationOutputDir)
+    }
+
+    private fun generateClassArtifactsUsingRegisteredClasses(
+        context: GeneratorContext,
+        settings: Settings,
+        registeredClasses: List<ScriptClass>,
+        sourceOutputDir: File,
+        registrationOutputDir: File? = null,
+    ) {
+        RegistrarClassGenerator(context, sourceOutputDir).generate(registeredClasses)
         registrationOutputDir?.let { outputDir ->
             RegistrationFileBuilder(settings, outputDir).generate(registeredClasses)
         }

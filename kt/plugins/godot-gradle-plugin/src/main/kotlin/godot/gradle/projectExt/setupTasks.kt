@@ -26,11 +26,11 @@ import godot.gradle.tasks.graal.ios.downloadIOSCapCacheFiles
 import godot.gradle.tasks.graal.ios.downloadIOSJdkStaticLibraries
 import godot.gradle.tasks.packageBootstrapJarTask
 import godot.gradle.tasks.packageMainJarTask
-import godot.gradle.tasks.packageUserJarTask
 import godot.tools.common.constants.godotRegistrationPackage
 import org.gradle.api.GradleException
 import org.gradle.api.Project
 import org.gradle.api.Task
+import org.gradle.api.file.DuplicatesStrategy
 import org.gradle.api.tasks.bundling.Jar
 import org.gradle.api.tasks.SourceSetContainer
 import org.gradle.api.tasks.TaskProvider
@@ -76,12 +76,32 @@ fun Project.setupTasks() {
     afterEvaluate {
         with(it) {
             if (godotJvmExtension.isLibrary.get()) {
+                val mainSourceSet = extensions
+                    .getByType(SourceSetContainer::class.java)
+                    .getByName("main")
+
                 tasks.named("jar", Jar::class.java) { jarTask ->
                     jarTask.group = "godot-kotlin-jvm"
                     jarTask.description = "Builds the reusable Godot Kotlin/JVM library jar."
                     jarTask.archiveBaseName.set(project.name)
                     jarTask.archiveVersion.set("")
                     jarTask.archiveClassifier.set("")
+                    jarTask.duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+                    val runtimeClasspath = configurations.getByName(mainSourceSet.runtimeClasspathConfigurationName)
+                    val bundledDependencies = runtimeClasspath.filter { dependencyFile ->
+                        dependencyFile.isFile && dependencyFile.name !in setOf(
+                            "$godotInternalArtifactName.jar",
+                            "$godotCoreArtifactName.jar",
+                            "$godotApiArtifactName.jar",
+                            "$godotBootstrapArtifactName.jar",
+                            "$godotExtensionArtifactName.jar",
+                        )
+                    }
+
+                    jarTask.from(bundledDependencies.map { dependencyJar ->
+                        zipTree(dependencyJar)
+                    })
                 }
                 setupLibraryModeBuildLifecycleTasks()
                 return@with
@@ -159,11 +179,8 @@ private fun Project.setupRegistrarGenerationTasks(
     classesTask: TaskProvider<out Task>,
 ): RegistrarGenerationTasks {
     val fastBuildRequested = isFastBuildRequested()
-    val packageUserJarTask = packageUserJarTask(
-        userClassesTask = classesTask,
-    )
     val generateRegistrarFilesTask = registrarGenerationGenerateFilesTask(
-        packageUserJarTask = packageUserJarTask,
+        classesTask = classesTask,
     )
     generateRegistrarFilesTask.configure { task ->
         task.onlyIf { !fastBuildRequested }
