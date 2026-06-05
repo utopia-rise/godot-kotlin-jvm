@@ -25,6 +25,7 @@ object ModelCheck {
             } ?: false,
 
             SignalTypeCheck(logger, registeredClasses).execute(),
+            SourceClassCheck(logger, registeredClasses).execute(),
 
             PropertyTypeCheck(logger, registeredClasses).execute(),
             PropertyHintCheck(logger, registeredClasses).execute(),

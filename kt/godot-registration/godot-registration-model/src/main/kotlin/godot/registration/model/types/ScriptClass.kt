@@ -28,19 +28,18 @@ class ScriptClass(
     override val fqName: String,
     val customName: String?,
     val sourceProjectName: String,
-    val isRegistered: Boolean = true,
+    var isRegistered: Boolean = true,
     val isAbstract: Boolean = false,
     val isTool: Boolean = false,
     override val parent: GodotClass?,
-    override val interfaces: List<ScriptFamily>,
-    val constructors: List<RegisteredConstructor>,
-    override val signals: List<RegisteredSignal>,
-    override val properties: List<RegisteredProperty>,
-    override val functions: List<RegisteredFunction>,
-) : Type(fqName, TypeKind.CLASS, isNullable = false), GodotClass {
-    override val allAncestry: List<ScriptFamily> by lazy(LazyThreadSafetyMode.NONE) {
-        flattenedAncestry(parent = parent, interfaces = interfaces)
-    }
+    override var interfaces: List<ScriptFamily> = emptyList(),
+    var constructors: List<RegisteredConstructor> = emptyList(),
+    override var signals: List<RegisteredSignal> = emptyList(),
+    override var properties: List<RegisteredProperty> = emptyList(),
+    override var functions: List<RegisteredFunction> = emptyList(),
+) : SourceClass(fqName), GodotClass {
+    override val allAncestry: List<ScriptFamily>
+        get() = flattenedAncestry(parent = parent, interfaces = interfaces)
 
     // Empty when the parent chain never reaches a GodotBaseClass; a model check flags that case.
     override val baseGodotClass: String = parent?.baseGodotClass ?: ""

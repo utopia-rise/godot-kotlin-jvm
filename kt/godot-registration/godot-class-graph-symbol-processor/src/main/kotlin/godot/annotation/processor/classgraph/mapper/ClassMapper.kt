@@ -28,6 +28,17 @@ class ClassMapper(
     fun mapScriptClass(classInfo: ClassInfo): ScriptClass {
         (context.mappedFamilyByFqName[classInfo.name] as? ScriptClass)?.let { scriptClass -> return scriptClass }
 
+        val scriptClass = ScriptClass(
+            fqName = classInfo.name.replace("$", "."),
+            customName = classInfo.provideCustomName(),
+            sourceProjectName = classInfo.provideSourceProjectName(),
+            isRegistered = false,
+            isAbstract = classInfo.isAbstract,
+            isTool = classInfo.hasAnnotation(Tool::class.java),
+            parent = classInfo.superclass?.let(::mapGodotClass),
+        )
+        context.mappedFamilyByFqName[classInfo.name] = scriptClass
+
         val functions = classInfo.methodInfo
             .filter { method -> method.hasAnnotation(RegisterFunction::class.java) }
             .map(memberMapper::mapFunction)
@@ -40,24 +51,14 @@ class ClassMapper(
             .filter { field -> shapeHasAnnotation(field, classInfo, RegisterSignal::class.java.name) }
             .map { field -> memberMapper.mapSignal(field, classInfo) }
 
-        val scriptClass = ScriptClass(
-            fqName = classInfo.name.replace("$", "."),
-            customName = classInfo.provideCustomName(),
-            sourceProjectName = classInfo.provideSourceProjectName(),
-            isRegistered = classInfo.isRegistered(functions, properties, signals),
-            isAbstract = classInfo.isAbstract,
-            isTool = classInfo.hasAnnotation(Tool::class.java),
-            parent = classInfo.superclass?.let(::mapGodotClass),
-            interfaces = directSuperInterfaces(classInfo).map(::mapScriptInterface),
-            constructors = classInfo.constructorInfo
-                .filter { constructor -> constructor.isPublic }
-                .map(memberMapper::mapConstructor),
-            signals = signals,
-            properties = properties,
-            functions = functions,
-        )
-
-        context.mappedFamilyByFqName[classInfo.name] = scriptClass
+        scriptClass.interfaces = directSuperInterfaces(classInfo).map(::mapScriptInterface)
+        scriptClass.constructors = classInfo.constructorInfo
+            .filter { constructor -> constructor.isPublic }
+            .map(memberMapper::mapConstructor)
+        scriptClass.signals = signals
+        scriptClass.properties = properties
+        scriptClass.functions = functions
+        scriptClass.isRegistered = classInfo.isRegistered(functions, properties, signals)
         return scriptClass
     }
 
@@ -84,15 +85,12 @@ class ClassMapper(
             return scriptInterface
         }
 
-        val scriptInterface = ScriptInterface(
-            fqName = classInfo.name.replace("$", "."),
-            interfaces = directSuperInterfaces(classInfo).map(::mapScriptInterface),
-            functions = classInfo.methodInfo
-                .filter { method -> method.hasAnnotation(RegisterFunction::class.java) }
-                .map(memberMapper::mapFunction),
-        )
-
+        val scriptInterface = ScriptInterface(fqName = classInfo.name.replace("$", "."))
         context.mappedFamilyByFqName[classInfo.name] = scriptInterface
+        scriptInterface.interfaces = directSuperInterfaces(classInfo).map(::mapScriptInterface)
+        scriptInterface.functions = classInfo.methodInfo
+            .filter { method -> method.hasAnnotation(RegisterFunction::class.java) }
+            .map(memberMapper::mapFunction)
         return scriptInterface
     }
 

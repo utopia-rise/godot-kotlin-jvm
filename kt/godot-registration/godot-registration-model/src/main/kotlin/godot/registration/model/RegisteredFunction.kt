@@ -4,6 +4,7 @@ import godot.annotation.RpcMode
 import godot.annotation.Sync
 import godot.annotation.TransferMode
 import godot.registration.model.types.Type
+import godot.registration.model.types.TYPE_VOID
 
 data class ValueParameter(
     val name: String,
@@ -26,7 +27,7 @@ data class RpcConfig(
 data class RegisteredFunction(
     val fqName: String,
     val parameters: List<ValueParameter> = emptyList(),
-    val returnType: Type? = null,
+    val returnType: Type = Type.nilType,
     val rpcConfig: RpcConfig? = null,
 ) {
     val name: String

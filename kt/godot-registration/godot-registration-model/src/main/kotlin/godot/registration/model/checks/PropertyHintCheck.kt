@@ -9,6 +9,11 @@ import godot.registration.model.ext.isKotlinCollection
 import godot.registration.model.hint.property.*
 import godot.registration.model.logging.Logger
 import godot.registration.model.types.ScriptClass
+import godot.registration.model.types.TYPE_DOUBLE
+import godot.registration.model.types.TYPE_FLOAT
+import godot.registration.model.types.TYPE_INT
+import godot.registration.model.types.TYPE_LONG
+import godot.registration.model.types.TYPE_KOTLIN_STRING
 import godot.registration.model.types.TypeKind
 
 class PropertyHintCheck(logger: Logger, registeredClasses: List<ScriptClass>) : BaseCheck(logger, registeredClasses) {
@@ -63,18 +68,18 @@ class PropertyHintCheck(logger: Logger, registeredClasses: List<ScriptClass>) : 
             ?: "Unknown"
 
     companion object {
-        private val stringType = requireNotNull(String::class.qualifiedName)
-        private val intType = requireNotNull(Int::class.qualifiedName)
+        private const val stringType = TYPE_KOTLIN_STRING
+        private const val intType = TYPE_INT
         private val colorType = requireNotNull(Color::class.qualifiedName)
         private val numericTypes = setOf(
-            requireNotNull(Int::class.qualifiedName),
-            requireNotNull(Long::class.qualifiedName),
-            requireNotNull(Float::class.qualifiedName),
-            requireNotNull(Double::class.qualifiedName),
+            TYPE_INT,
+            TYPE_LONG,
+            TYPE_FLOAT,
+            TYPE_DOUBLE,
         )
         private val fractionalTypes = setOf(
-            requireNotNull(Float::class.qualifiedName),
-            requireNotNull(Double::class.qualifiedName),
+            TYPE_FLOAT,
+            TYPE_DOUBLE,
         )
     }
 }

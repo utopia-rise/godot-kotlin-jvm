@@ -3,10 +3,9 @@ package godot.annotation.processor.classgraph.extensions
 import io.github.classgraph.TypeSignature
 
 fun TypeSignature.toStringWithoutAnnotations(): String {
-    var result = this.toString()
+    if (typeAnnotationInfo == null) return toString()
 
-    if (typeAnnotationInfo == null) return result
-
+    var result = toString()
     typeAnnotationInfo.forEach {
         result = result.removePrefix(it.toString())
     }

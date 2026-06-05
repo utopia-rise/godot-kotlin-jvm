@@ -20,8 +20,5 @@ class ScalaShapeResolver : JvmShapeResolver {
         return "${split.dropLast(1).joinToString(".")}$${split.last()}"
     }
 
-    override fun signalTypeDescriptor(fieldInfo: FieldInfo, owner: ClassInfo) =
-        godot.annotation.processor.classgraph.models.TypeDescriptor(getter(fieldInfo, owner))
-
     override fun isFunctionReferenceSignal(fieldInfo: FieldInfo, owner: ClassInfo): Boolean = true
 }

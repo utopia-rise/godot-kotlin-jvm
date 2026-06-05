@@ -1,5 +1,6 @@
 package godot.registration.model.types
 
+import godot.core.VariantParser
 import godot.registration.model.RegisteredFunction
 import godot.registration.model.RegisteredProperty
 import godot.registration.model.RegisteredSignal
@@ -15,8 +16,8 @@ import godot.registration.model.RegisteredSignal
  */
 class ScriptInterface(
     override val fqName: String,
-    override val interfaces: List<ScriptFamily> = emptyList(),
-    override val functions: List<RegisteredFunction> = emptyList(),
+    override var interfaces: List<ScriptFamily> = emptyList(),
+    override var functions: List<RegisteredFunction> = emptyList(),
 ) : Type(fqName, TypeKind.INTERFACE, isNullable = false), ScriptFamily {
     override val signals: List<RegisteredSignal> = emptyList()
     override val properties: List<RegisteredProperty> = emptyList()

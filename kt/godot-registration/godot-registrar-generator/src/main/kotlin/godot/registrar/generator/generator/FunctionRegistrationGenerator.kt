@@ -86,10 +86,10 @@ fun FunSpec.Builder.addFunctionRegistrations(
 private fun RegisteredFunction.isNotificationFunction() =
     name == notificationFunction &&
         parameters.isEmpty() &&
-        returnType?.fqName == "$godotCorePackage.GodotNotification"
+        returnType.fqName == "$godotCorePackage.GodotNotification"
 
 private fun getFunctionTemplateString(registeredFunction: RegisteredFunction) = buildString {
-    val variantType = if (registeredFunction.returnType?.isEnum() == true) {
+    val variantType = if (registeredFunction.returnType.isEnum()) {
         "%M(%T.entries.toTypedArray())"
     } else {
         "%M"
@@ -112,11 +112,13 @@ private fun getTemplateArgs(
     className: ClassName,
 ): List<Any> {
     val returnType = registeredFunction.returnType.toGodotClassName(context)
-    val typeClassName = registeredFunction.returnType?.let { returnTypeInfo ->
+    val typeClassName = if (registeredFunction.returnType.isEnum()) {
         ClassName(
-            returnTypeInfo.fqName.substringBeforeLast("."),
-            returnTypeInfo.fqName.substringAfterLast("."),
+            registeredFunction.returnType.fqName.substringBeforeLast("."),
+            registeredFunction.returnType.fqName.substringAfterLast("."),
         )
+    } else {
+        null
     }
 
     return buildList {
@@ -126,7 +128,7 @@ private fun getTemplateArgs(
         add(getRpcTransferModeEnum(registeredFunction))
         add(getRpcChannel(registeredFunction))
 
-        if (registeredFunction.returnType?.isEnum() == true) {
+        if (registeredFunction.returnType.isEnum()) {
             add(registeredFunction.returnType.toKtVariantMemberName())
             typeClassName?.let { add(it) }
         } else {

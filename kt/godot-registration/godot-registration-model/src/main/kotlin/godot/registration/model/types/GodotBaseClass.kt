@@ -1,9 +1,9 @@
 package godot.registration.model.types
 
+import godot.registration.model.ext.isRefCounted
 import godot.registration.model.RegisteredFunction
 import godot.registration.model.RegisteredProperty
 import godot.registration.model.RegisteredSignal
-import godot.registration.model.ext.isRefCounted
 
 /**
  * A built-in Godot base class that a registered class ultimately derives from (e.g. `Node`, `Resource`).
@@ -15,15 +15,14 @@ import godot.registration.model.ext.isRefCounted
  */
 class GodotBaseClass(
     override val fqName: String,
-    override val parent: GodotClass? = null,
-) : Type(fqName, TypeKind.CLASS, isNullable = false), GodotClass {
+    override val parent: GodotBaseClass? = null,
+) : SourceClass(fqName), GodotClass {
     override val interfaces: List<ScriptFamily> = emptyList()
     override val signals: List<RegisteredSignal> = emptyList()
     override val properties: List<RegisteredProperty> = emptyList()
     override val functions: List<RegisteredFunction> = emptyList()
-    override val allAncestry: List<ScriptFamily> by lazy(LazyThreadSafetyMode.NONE) {
-        flattenedAncestry(parent = parent)
-    }
+    override val allAncestry: List<ScriptFamily>
+        get() = flattenedAncestry(parent = parent)
     override val baseGodotClass: String = this.fqName
     override val inheritsRefCounted: Boolean = isRefCounted()
 }

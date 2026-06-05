@@ -15,6 +15,11 @@ import godot.registration.model.ext.isRefCounted
 import godot.registration.model.hint.property.IntFlagHint
 import godot.registration.model.hint.property.MultilineTextHint
 import godot.registration.model.hint.property.PlaceHolderTextHint
+import godot.registration.model.types.TYPE_BOOLEAN
+import godot.registration.model.types.TYPE_DOUBLE
+import godot.registration.model.types.TYPE_FLOAT
+import godot.registration.model.types.TYPE_INT
+import godot.registration.model.types.TYPE_LONG
 import godot.registration.model.types.TypeKind
 
 object PropertyTypeHintProvider {
@@ -23,7 +28,7 @@ object PropertyTypeHintProvider {
         registeredProperty: RegisteredProperty
     ): MemberName {
         return when {
-            registeredProperty.type.fqName == Int::class.qualifiedName -> if (registeredProperty.hints.any { it is IntFlagHint }) {
+            registeredProperty.type.fqName == TYPE_INT -> if (registeredProperty.hints.any { it is IntFlagHint }) {
                 PropertyHint.FLAGS.asEnumName()
             } else {
                 JvmPrimitivesTypeHintGenerator(registeredProperty).getPropertyTypeHint()
@@ -43,10 +48,10 @@ object PropertyTypeHintProvider {
                 }
             }
 
-            registeredProperty.type.fqName == Long::class.qualifiedName ||
-                registeredProperty.type.fqName == Float::class.qualifiedName ||
-                registeredProperty.type.fqName == Double::class.qualifiedName ||
-                registeredProperty.type.fqName == Boolean::class.qualifiedName -> JvmPrimitivesTypeHintGenerator(
+            registeredProperty.type.fqName == TYPE_LONG ||
+                registeredProperty.type.fqName == TYPE_FLOAT ||
+                registeredProperty.type.fqName == TYPE_DOUBLE ||
+                registeredProperty.type.fqName == TYPE_BOOLEAN -> JvmPrimitivesTypeHintGenerator(
                 registeredProperty
             )
                 .getPropertyTypeHint()

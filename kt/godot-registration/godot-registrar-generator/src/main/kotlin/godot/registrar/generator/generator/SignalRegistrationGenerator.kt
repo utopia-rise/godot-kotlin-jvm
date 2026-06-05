@@ -48,8 +48,9 @@ private fun getSignalTemplateArguments(
         }
     } else {
         registeredSignal.parameterNames.forEachIndexed { index, argumentName ->
-            add(registeredSignal.parameterTypes.getOrNull(index)?.toKtVariantMemberName() ?: VariantCaster.ANY)
-            add(registeredSignal.parameterTypes.getOrNull(index)?.toGodotClassName(context) ?: "")
+            val argumentType = registeredSignal.parameterTypes.getOrNull(index)
+            add(argumentType?.toKtVariantMemberName() ?: VariantCaster.ANY)
+            add(argumentType?.toGodotClassName(context) ?: "")
             add(argumentName)
         }
     }

@@ -49,7 +49,7 @@ class ArrayAndDictionaryHintStringGenerator(
                 buildString {
                     if (elementType == null) {
                         val compatibleListType = registeredProperty.type.getAsVariantTypeOrdinal()
-                        if (compatibleListType != null) {
+                        if (compatibleListType != VariantParser.ARRAY.id) {
                             append(":${compatibleListType}")
                         }
                     }

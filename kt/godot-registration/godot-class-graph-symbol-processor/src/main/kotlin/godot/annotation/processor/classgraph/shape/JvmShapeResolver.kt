@@ -3,7 +3,8 @@ package godot.annotation.processor.classgraph.shape
 import godot.annotation.processor.classgraph.ProcessorContext
 import godot.annotation.processor.classgraph.extensions.DELEGATE_SUFFIX
 import godot.annotation.processor.classgraph.extensions.sanitizedName
-import godot.annotation.processor.classgraph.models.TypeDescriptor
+import godot.registration.model.types.TYPE_BOOLEAN
+import godot.registration.model.types.TYPE_BOXED_BOOLEAN
 import io.github.classgraph.AnnotationInfo
 import io.github.classgraph.ClassInfo
 import io.github.classgraph.FieldInfo
@@ -47,13 +48,6 @@ interface JvmShapeResolver {
 
     fun propertyGetterFqName(fieldInfo: FieldInfo, owner: ClassInfo): String? = null
     fun propertySetterFqName(fieldInfo: FieldInfo, owner: ClassInfo): String? = null
-
-    fun signalTypeDescriptor(fieldInfo: FieldInfo, owner: ClassInfo): TypeDescriptor =
-        if (fieldInfo.name.endsWith(DELEGATE_SUFFIX)) {
-            TypeDescriptor(getter(fieldInfo, owner))
-        } else {
-            TypeDescriptor(fieldInfo, owner, this)
-        }
 
     fun isFunctionReferenceSignal(fieldInfo: FieldInfo, owner: ClassInfo): Boolean = false
 
@@ -106,5 +100,5 @@ internal fun FieldInfo.isKotlinBooleanIsProperty(): Boolean {
         return false
     }
 
-    return typeDescriptor.toString() in setOf("boolean", "java.lang.Boolean", "kotlin.Boolean")
+    return typeDescriptor.toString() in setOf(TYPE_BOOLEAN, TYPE_BOXED_BOOLEAN, kotlin.Boolean::class.qualifiedName)
 }

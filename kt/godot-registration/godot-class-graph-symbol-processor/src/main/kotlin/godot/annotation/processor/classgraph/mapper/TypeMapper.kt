@@ -5,11 +5,11 @@ import godot.annotation.processor.classgraph.ProcessorContext
 import godot.annotation.processor.classgraph.TypeCacheKey
 import godot.annotation.processor.classgraph.constants.BIT_FIELD
 import godot.annotation.processor.classgraph.constants.BIT_FIELD_BASE
-import godot.annotation.processor.classgraph.constants.KOTLIN_ANY
-import godot.annotation.processor.classgraph.models.TypeDescriptor
+import godot.annotation.processor.classgraph.extensions.toStringWithoutAnnotations
+import godot.annotation.processor.classgraph.shape.JvmShapeResolver
 import godot.registration.model.types.*
-import io.github.classgraph.ClassInfo
-import io.github.classgraph.TypeArgument
+import io.github.classgraph.*
+import org.jetbrains.annotations.NotNull
 
 private const val CORE_TYPE_FQ_NAME = "godot.core.CoreType"
 
@@ -17,32 +17,73 @@ class TypeMapper(
     private val context: ProcessorContext,
     private val classMapperProvider: () -> ClassMapper,
 ) {
-    fun map(descriptor: TypeDescriptor): Type = descriptor.primitiveType ?: if (descriptor.isObject) {
-        getJavaLangObjectType()
-    } else {
-        mapClassInfo(descriptor.typeClassInfo(context), descriptor.typeArguments)
+    fun map(parameterInfo: MethodParameterInfo): Type = mapRaw(
+        rawDescriptor = parameterInfo.typeDescriptor.toStringWithoutAnnotations(),
+        typeArguments = (parameterInfo.typeSignature as? ClassRefTypeSignature)?.typeArguments ?: listOf(),
+    )
+
+    fun mapFieldType(fieldInfo: FieldInfo): Type = mapRaw(
+        rawDescriptor = fieldInfo.typeDescriptor.toStringWithoutAnnotations(),
+        typeArguments = (fieldInfo.typeSignature as? ClassRefTypeSignature)?.typeArguments ?: listOf(),
+    )
+
+    fun mapReturnType(methodInfo: MethodInfo): Type {
+        val rawDescriptor = methodInfo.typeDescriptor.resultType.toStringWithoutAnnotations()
+        return mapRaw(
+            rawDescriptor = rawDescriptor,
+            typeArguments = (methodInfo.typeSignature?.resultType as? ClassRefTypeSignature)?.typeArguments ?: listOf(),
+        )
     }
 
-    fun mapProperty(descriptor: TypeDescriptor): Type {
-        val base = map(descriptor)
-        val propertyNullable = !descriptor.isGodotPrimitive &&
+    fun mapProperty(fieldInfo: FieldInfo, owner: ClassInfo, shapeResolver: JvmShapeResolver): Type {
+        val rawDescriptor = fieldInfo.typeDescriptor.toStringWithoutAnnotations()
+        val base = mapRaw(
+            rawDescriptor = rawDescriptor,
+            typeArguments = (fieldInfo.typeSignature as? ClassRefTypeSignature)?.typeArguments ?: listOf(),
+        )
+        val isLateInit = shapeResolver.isLateinit(fieldInfo, owner)
+        val isGodotPrimitive = Type.getCoreType(rawDescriptor)?.kind == TypeKind.PRIMITIVE
+        val nullable = !shapeResolver.hasAnnotation(fieldInfo, owner, NotNull::class.java.name)
+        val propertyNullable = !isGodotPrimitive &&
             base.kind != TypeKind.CORE_TYPE &&
-            !descriptor.isLateInit &&
-            descriptor.nullable
+            !isLateInit &&
+            nullable
 
         if (base.kind == TypeKind.CLASS || base.kind == TypeKind.INTERFACE) {
             return base
         }
 
-        return Type(
-            fqName = base.fqName,
-            kind = base.kind,
+        return base.with(
             isNullable = propertyNullable,
             genericArguments = base.genericArguments,
         )
     }
 
-    fun map(typeArgument: TypeArgument): Type = map(TypeDescriptor(typeArgument))
+    fun mapSignalType(fieldInfo: FieldInfo, owner: ClassInfo, shapeResolver: JvmShapeResolver): Type =
+        if (fieldInfo.name.endsWith(godot.annotation.processor.classgraph.extensions.DELEGATE_SUFFIX)) {
+            mapReturnType(shapeResolver.getter(fieldInfo, owner))
+        } else {
+            mapFieldType(fieldInfo)
+        }
+
+    fun map(typeArgument: TypeArgument): Type = mapRaw(
+        rawDescriptor = typeArgument.typeSignature.toStringWithoutAnnotations(),
+        typeArguments = (typeArgument.typeSignature as? ClassRefTypeSignature)?.typeArguments ?: listOf(),
+    )
+
+    private fun mapRaw(rawDescriptor: String, typeArguments: List<TypeArgument>): Type {
+        val mappedTypeArguments = typeArguments.map(::map)
+        return Type.getCoreType(rawDescriptor, genericArguments = mappedTypeArguments) ?: if (rawDescriptor == TYPE_JAVA_OBJECT) {
+            getJavaLangObjectType()
+        } else {
+            mapClassInfo(
+                requireNotNull(context.getClassInfoOrNull(rawDescriptor)) {
+                    "Could not resolve class info for descriptor: $rawDescriptor"
+                },
+                typeArguments
+            )
+        }
+    }
 
     fun typeArgumentClassInfo(typeArgument: TypeArgument): ClassInfo =
         requireNotNull(context.getClassInfoOrNull(typeArgument.typeSignature.toString())) {
@@ -58,42 +99,41 @@ class TypeMapper(
 
         val mappedTypeArguments = typeArguments.map { typeArgument -> map(typeArgument) }
 
+        val fqName = classInfo.name.replace("$", ".")
         val type = when (classInfo.modelTypeKind) {
-            TypeKind.CLASS -> mapReferencedGodotClass(classInfo)
-            TypeKind.INTERFACE -> mapReferencedScriptInterface(classInfo)
-            else -> Type(
-                fqName = classInfo.name.replace("$", "."),
-                kind = classInfo.modelTypeKind,
+            TypeKind.CLASS -> mapReferencedClass(classInfo)
+            TypeKind.INTERFACE -> classMapperProvider().mapScriptInterface(classInfo)
+            TypeKind.CORE_TYPE -> requireNotNull(Type.getCoreType(fqName, genericArguments = mappedTypeArguments))
+            TypeKind.ENUM -> Type.getEnum(fqName, genericArguments = mappedTypeArguments)
+            TypeKind.BITFIELD -> Type.getBitField(fqName, genericArguments = mappedTypeArguments)
+            TypeKind.OTHER -> Type(
+                fqName = fqName,
+                kind = TypeKind.OTHER,
                 isNullable = false,
                 genericArguments = mappedTypeArguments,
             )
+            TypeKind.PRIMITIVE -> Type.getCoreType(fqName, genericArguments = mappedTypeArguments)
+                ?: Type(
+                    fqName = fqName,
+                    kind = TypeKind.OTHER,
+                    isNullable = false,
+                    genericArguments = mappedTypeArguments,
+                )
         }
 
         context.mappedTypeByKey[cacheKey] = type
         return type
     }
 
-    fun mapReferencedGodotClass(classInfo: ClassInfo): Type =
-        if (classInfo.hasAnnotation(GodotBaseType::class.java)) {
-            classMapperProvider().mapGodotBaseClass(classInfo)
+    fun mapReferencedClass(classInfo: ClassInfo): Type =
+        if (classInfo.isGodotCompatibleClass) {
+            classMapperProvider().mapGodotClass(classInfo) as Type
         } else {
-            ReferencedGodotClass(
-                fqName = classInfo.name.replace("$", "."),
-                parent = classInfo.superclass?.let { superclass -> mapReferencedGodotClass(superclass) as GodotClass },
-                interfaces = classMapperProvider().directSuperInterfaces(classInfo)
-                    .map { iface -> mapReferencedScriptInterface(iface) as ScriptFamily },
-            )
+            SourceClass(fqName = classInfo.name.replace("$", "."))
         }
 
-    fun mapReferencedScriptInterface(classInfo: ClassInfo): Type =
-        ReferencedScriptInterface(
-            fqName = classInfo.name.replace("$", "."),
-            interfaces = classMapperProvider().directSuperInterfaces(classInfo)
-                .map { iface -> mapReferencedScriptInterface(iface) as ScriptFamily },
-        )
-
     private fun getJavaLangObjectType() = Type(
-        fqName = KOTLIN_ANY,
+        fqName = TYPE_KOTLIN_ANY,
         kind = TypeKind.CLASS,
         isNullable = false,
     )
@@ -119,3 +159,7 @@ internal val ClassInfo.isBitField: Boolean
         superclasses.any { superclass -> superclass.name == BIT_FIELD } ||
         name == BIT_FIELD_BASE ||
         superclasses.any { superclass -> superclass.name == BIT_FIELD_BASE }
+
+private val ClassInfo.isGodotCompatibleClass: Boolean
+    get() = hasAnnotation(GodotBaseType::class.java) ||
+        superclasses.any { superclass -> superclass.hasAnnotation(GodotBaseType::class.java) }
