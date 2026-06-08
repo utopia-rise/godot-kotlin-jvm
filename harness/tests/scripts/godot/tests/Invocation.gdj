@@ -3,11 +3,9 @@
 
 registeredName = Invocation
 fqName = godot.tests.Invocation
-baseType = godot.api.Node3D
+baseType = Node3D
 supertypes = [
-    godot.api.Node3D,
-    godot.api.Node,
-    godot.api.Object
+    
 ]
 signals = [
     
@@ -79,6 +77,7 @@ functions = [
     init_nullables,
     _enter_tree,
     _ready,
+    _on_destroy,
     get_rid_id,
     get_nav_mesh_rid,
     append_to_any_dict,

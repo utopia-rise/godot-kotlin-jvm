@@ -3,9 +3,9 @@
 
 registeredName = BindingTest
 fqName = godot.tests.binding.BindingTest
-baseType = godot.api.Object
+baseType = Object
 supertypes = [
-    godot.api.Object
+    
 ]
 signals = [
     

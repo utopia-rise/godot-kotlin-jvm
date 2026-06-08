@@ -9,4 +9,5 @@ package godot.registration.model.types
  */
 open class SourceClass(
     override val fqName: String,
-) : Type(fqName, TypeKind.CLASS, isNullable = false)
+    protected val sourceKind: TypeKind = TypeKind.OTHER,
+) : Type(fqName, sourceKind, isNullable = false)

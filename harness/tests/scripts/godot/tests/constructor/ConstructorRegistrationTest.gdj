@@ -3,10 +3,9 @@
 
 registeredName = ConstructorRegistrationTest
 fqName = godot.tests.constructor.ConstructorRegistrationTest
-baseType = godot.api.Node
+baseType = Node
 supertypes = [
-    godot.api.Node,
-    godot.api.Object
+    
 ]
 signals = [
     

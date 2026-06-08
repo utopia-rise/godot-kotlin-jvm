@@ -1,5 +1,6 @@
 package godot.gradle
 
+import godot.annotation.processor.classgraph.AnnotationProcessingMode
 import godot.registrar.generator.RegisteredNameMode
 import godot.registrar.generator.RegistrationFileIndentation
 import godot.registrar.generator.RegistrationFileLayoutMode
@@ -78,7 +79,7 @@ open class GodotExtension(objects: ObjectFactory) {
     val registrationFilesIndentation: Property<RegistrationFileIndentation> = objects.property(RegistrationFileIndentation::class.java)
 
     /**
-     * Controls how Godot registration names are computed when `@RegisterClass` does not provide a custom name.
+     * Controls how Godot registration names are computed when `@Script` does not provide a custom name.
      *
      * - [RegisteredNameMode.SIMPLE_NAME]: use the Kotlin class name.
      * - [RegisteredNameMode.FQ_NAME]: use the fully qualified class name.
@@ -98,6 +99,18 @@ open class GodotExtension(objects: ObjectFactory) {
      * Defaults to `32`.
      */
     val registrarIncrementalFullBuildThreshold: Property<Int> = objects.property(Int::class.java)
+
+    /**
+     * Controls how registrar scanning reads annotations from compiled classes and members.
+     *
+     * - [AnnotationProcessingMode.Explicit]: use only directly declared annotations.
+     * - [AnnotationProcessingMode.Inferred]: use direct annotations plus meta-annotations recursively.
+     * - [AnnotationProcessingMode.Automatic]: register every compatible Godot class member automatically, while still
+     *   using annotations as optional metadata.
+     *
+     * Defaults to [AnnotationProcessingMode.Inferred].
+     */
+    val annotationProcessingMode: Property<AnnotationProcessingMode> = objects.property(AnnotationProcessingMode::class.java)
 
     /**
      * JVM source languages enabled for the project's initial compilation pass.
@@ -238,6 +251,7 @@ open class GodotExtension(objects: ObjectFactory) {
         registrationFilesIndentation.convention(RegistrationFileIndentation.SPACE)
         registrationNameMode.convention(RegisteredNameMode.SIMPLE_NAME)
         registrarIncrementalFullBuildThreshold.convention(32)
+        annotationProcessingMode.convention(AnnotationProcessingMode.Inferred)
         languages.convention(GodotLanguage.entries.toSet())
 
         if (d8Tool != null) {
@@ -265,3 +279,5 @@ open class GodotExtension(objects: ObjectFactory) {
         environmentVariable("VC_VARS_PATH")?.let(windowsDeveloperVcVarsPath::convention)
     }
 }
+
+

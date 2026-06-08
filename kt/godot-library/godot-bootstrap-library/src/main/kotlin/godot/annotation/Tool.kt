@@ -3,8 +3,10 @@ package godot.annotation
 /**
  * Mark a class as tool class.
  *
- * The class needs to have the @[RegisterClass] annotation added as well
+ * The class needs to have the @[Script] annotation added as well
  */
-@Target(AnnotationTarget.CLASS)
+@Script
+@Target(AnnotationTarget.CLASS, AnnotationTarget.ANNOTATION_CLASS)
 @Retention(AnnotationRetention.RUNTIME)
 annotation class Tool
+

@@ -9,7 +9,7 @@ import com.intellij.openapi.project.Project
 import godot.intellij.plugin.GodotPluginBundle
 import org.jetbrains.kotlin.psi.KtPsiFactory
 
-class RegisterSignalMutabilityQuickFix : LocalQuickFix {
+class EmitMutabilityQuickFix : LocalQuickFix {
     override fun getFamilyName(): String = GodotPluginBundle.message("quickFix.signal.mutability.familyName")
 
     override fun applyFix(project: Project, descriptor: ProblemDescriptor) {
@@ -32,3 +32,4 @@ class RegisterSignalMutabilityQuickFix : LocalQuickFix {
         }
     }
 }
+

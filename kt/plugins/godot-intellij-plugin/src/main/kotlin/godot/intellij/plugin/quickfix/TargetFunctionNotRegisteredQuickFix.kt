@@ -1,9 +1,9 @@
-﻿package godot.intellij.plugin.quickfix
+package godot.intellij.plugin.quickfix
 
 import com.intellij.codeInspection.LocalQuickFix
 import com.intellij.codeInspection.ProblemDescriptor
 import com.intellij.openapi.project.Project
-import godot.annotation.RegisterFunction
+import godot.annotation.Register
 import godot.intellij.plugin.GodotPluginBundle
 import org.jetbrains.kotlin.scripting.resolve.classId
 import org.jetbrains.kotlin.idea.references.mainReference
@@ -20,6 +20,7 @@ class TargetFunctionNotRegisteredQuickFix : LocalQuickFix {
             ?.mainReference
             ?.resolve() as? KtNamedFunction
 
-        ktNamedFunction?.addAnnotation(RegisterFunction::class.classId)
+        ktNamedFunction?.addAnnotation(Register::class.classId)
     }
 }
+

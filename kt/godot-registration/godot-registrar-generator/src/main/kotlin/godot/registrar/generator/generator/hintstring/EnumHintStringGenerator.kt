@@ -9,6 +9,6 @@ class EnumHintStringGenerator(
     context: GeneratorContext,
 ) : PropertyHintStringGenerator<EnumHint>(registeredProperty, context) {
     override fun getHintString(): String {
-        return propertyHintAnnotation?.enumValues?.toGodotHintString() ?: ""
+        return ""
     }
 }

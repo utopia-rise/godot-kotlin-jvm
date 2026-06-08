@@ -3,10 +3,9 @@
 
 registeredName = BindingA
 fqName = godot.tests.binding.BindingA
-baseType = godot.api.Node
+baseType = Node
 supertypes = [
-    godot.api.Node,
-    godot.api.Object
+    
 ]
 signals = [
     

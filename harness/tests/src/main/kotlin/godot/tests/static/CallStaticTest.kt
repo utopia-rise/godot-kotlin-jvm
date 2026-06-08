@@ -3,14 +3,16 @@ package godot.tests.static
 import godot.api.DirAccess
 import godot.api.Node
 import godot.api.ProjectSettings
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
+import godot.annotation.Script
+import godot.annotation.Register
 
-@RegisterClass
+@Script
 class CallStaticTest: Node() {
 
-    @RegisterFunction
+    @Register
     fun testStaticCall(): Boolean {
         return DirAccess.dirExistsAbsolute(ProjectSettings.globalizePath("res://scripts"))
     }
 }
+
+

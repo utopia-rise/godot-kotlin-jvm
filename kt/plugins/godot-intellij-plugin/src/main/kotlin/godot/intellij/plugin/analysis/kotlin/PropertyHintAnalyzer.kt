@@ -13,14 +13,12 @@ import godot.annotation.IntRange
 import godot.annotation.LongRange
 import godot.annotation.MultilineText
 import godot.annotation.PlaceHolderText
-import godot.annotation.RegisterProperty
 import godot.core.Color
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.analysis.GodotProblem
 import godot.intellij.plugin.project.fqName
 import godot.intellij.plugin.project.withType
 import godot.intellij.plugin.quickfix.PropertyNotExportedQuickFix
-import godot.intellij.plugin.quickfix.PropertyNotRegisteredQuickFix
 import org.jetbrains.kotlin.idea.codeinsight.utils.isEnum
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.psi.KtProperty
@@ -28,7 +26,6 @@ import org.jetbrains.kotlin.scripting.resolve.classId
 import kotlin.reflect.KClass
 
 object PropertyHintAnalyzer {
-    private val propertyNotRegisteredQuickFix by lazy { PropertyNotRegisteredQuickFix() }
     private val propertyNotExportedQuickFix by lazy { PropertyNotExportedQuickFix() }
 
     fun analyze(property: KtProperty): List<GodotProblem> {
@@ -224,15 +221,6 @@ object PropertyHintAnalyzer {
 
     private fun checkForRegistrationAnnotations(property: KtProperty): List<GodotProblem> {
         return buildList {
-            if (property.findAnnotation(RegisterProperty::class.classId) == null) {
-                add(
-                    GodotProblem(
-                        GodotPluginBundle.message("problem.property.hint.notRegistered"),
-                        property.nameIdentifier ?: property.navigationElement,
-                        arrayOf(propertyNotRegisteredQuickFix)
-                    )
-                )
-            }
             if (property.findAnnotation(Export::class.classId) == null) {
                 add(
                     GodotProblem(
@@ -245,3 +233,4 @@ object PropertyHintAnalyzer {
         }
     }
 }
+

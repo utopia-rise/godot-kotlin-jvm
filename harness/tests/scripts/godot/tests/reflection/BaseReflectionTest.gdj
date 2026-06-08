@@ -3,10 +3,9 @@
 
 registeredName = BaseReflectionTest
 fqName = godot.tests.reflection.BaseReflectionTest
-baseType = godot.api.Node
+baseType = Node
 supertypes = [
-    godot.api.Node,
-    godot.api.Object
+    
 ]
 signals = [
     
@@ -15,5 +14,5 @@ properties = [
     
 ]
 functions = [
-    has_register_class_annotation
+    has_godot_script_annotation
 ]

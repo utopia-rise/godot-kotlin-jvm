@@ -3,9 +3,9 @@
 
 registeredName = ObjectInstance
 fqName = godot.tests.instance.ObjectInstance
-baseType = godot.api.Object
+baseType = Object
 supertypes = [
-    godot.api.Object
+    
 ]
 signals = [
     

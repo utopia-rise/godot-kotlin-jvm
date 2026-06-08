@@ -53,11 +53,48 @@ Important details:
 
 - Uses ClassGraph with class, annotation, field, and method info enabled.
 - Requires non-empty `ProcessorSettings.userCodeClassPathRoots`; compilation must happen before scanning.
-- Selects classes annotated with `@RegisterClass`, subclassing `KtObject`, and not annotated
+- Selects classes annotated with `@Script`, subclassing `KtObject`, and not annotated
   `@GodotBaseType`.
 - Uses `ProcessorContext` as per-run state for scan result access, caches, settings, and errors.
 - Maps class hierarchy into `ScriptClass`, `GodotBaseClass`, `ScriptInterface`, and lightweight referenced
   type nodes.
+- Uses only declared/local fields and methods when reconstructing logical members. Inherited Godot API members
+  are not supposed to enter the local model shape.
+
+### Language Detection
+
+JVM language selection is intentionally simple and symmetric:
+
+- `.kt` source file -> `KotlinJvmLanguage`
+- `.scala` source file -> `ScalaJvmLanguage`
+- `.java` source file -> `JavaJvmLanguage`
+
+If a candidate script class cannot be matched to one of those source file origins, the mapper should warn and
+skip that class rather than fail the whole processing run.
+
+### Property Shape vs Registration Intent
+
+Keep the front-end and mapper split clear:
+
+- `JvmLanguage` detects JVM property shape.
+- `RegistrationMapper` decides whether an accessor-shaped member registers as a property, a function, or
+  both.
+
+Accessor-shaped methods currently resolve like this:
+
+- `@Visible`: property intent
+- `@Register`: function intent
+- no annotation: property intent
+- both annotations: register both a property and a function
+
+That rule exists so Java-style custom `getX()` / `setX()` methods and Kotlin computed properties can still
+be represented without forcing all accessor-shaped methods to become property-only.
+
+The generated property binding form is also chosen here, not in the generator:
+
+- Kotlin logical properties use property references
+- Java field-only properties use property references
+- Java bean and Scala accessor properties use accessor-method references
 
 When adding annotation support, parse user-facing annotations here and map them into model fields or
 property hints. Do not add misuse checks here unless the mapping itself cannot be completed.
@@ -76,6 +113,12 @@ The model is the shared IR between processor and generator. It owns:
 - Sanity checks under `checks/`.
 
 `JvmType` no longer lives here. It is generator-only and now lives in `godot-registrar-generator`.
+
+Thin one-field configuration wrappers were removed from the registered-member model:
+
+- `RegisteredFunction` stores `rpcConfig` directly
+- `RegisteredSignal` stores `parameterNames` directly
+- `RegisteredProperty` stores `isExported`, binding kind, and accessor names directly
 
 ### Hierarchy Model
 
@@ -97,6 +140,16 @@ The model is the shared IR between processor and generator. It owns:
 Every `ScriptFamily` exposes cached `allAncestry`. It is built from direct parent plus direct interfaces,
 then each ancestor's own cached ancestry, deduped by fqName. Use it for model-backed hierarchy checks such
 as `Type.isNodeType()`, `Type.isRefCounted()`, and `Type.isResource()`.
+
+Member lists on `ScriptClass` and `ScriptInterface` remain local-only. Parent and interface links carry the
+hierarchy; inherited effective member views are a generator concern.
+
+`RegisteredProperty` now carries the generator-side binding choice explicitly:
+
+- `PROPERTY_REFERENCE`
+- `ACCESSOR_METHODS`
+
+That exists so the generator does not try to infer source-language intent from JVM accessor names.
 
 ### Registered vs Abstract
 
@@ -164,6 +217,22 @@ The generator writes:
 - The `META-INF/services/godot.registration.ClassRegistrar` service file.
 - `.gdj` registration files through `RegistrationFileGenerator`.
 
+For one registrar, generation is effective-inherited rather than local-only:
+
+- it starts with the class's local properties, functions, and signals
+- it walks parent classes and interfaces through the model references
+- it appends inherited members
+- it deduplicates at the end with child-first precedence
+
+Current dedup rules are:
+
+- properties by property name
+- signals by signal name
+- functions by function signature
+
+Because local members are added first, child overrides win and inherited duplicates are dropped in the
+generated registrar.
+
 Useful areas:
 
 - `GeneratorContext.kt`: per-run generator state.
@@ -186,6 +255,10 @@ The top-level split is:
 
 `JvmType` is generator-owned and lives beside these back-end pieces because it is used only for generator
 JVM type bucketing and hint validation.
+
+Do not move property-binding decisions into the generator. The generator should only emit the binding already
+stored in `RegisteredProperty`, including escaped Kotlin references for Scala setter names such as
+`` `name_$eq` ``.
 
 `RegisteredNameMode` lives in generator settings:
 
@@ -231,5 +304,8 @@ harness/tests/build/generated/registrar-generation/registration
 - Do not reintroduce entry-generation terminology such as `Clazz`, `RegisteredClass`, or `CanBeParent`.
 - Property hints are model hints, not parsed annotation mirrors. Prefer `XHint` names in the model.
 - Only properties carry `hints`; class/function/signal metadata lives as direct model fields.
+- In explicit mode, methods require `@Register`. Godot base overrides auto-register only in inferred mode.
 - Do not manually edit generated Godot API classes referenced by this module.
 - Submodules are not published individually; the umbrella module publishes the self-contained shadow jar.
+
+

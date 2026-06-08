@@ -20,7 +20,7 @@ Java and Scala support are welcome when they naturally fit the same JVM-facing i
 Adds focused K2-only code insight for Godot Kotlin/JVM projects in IntelliJ IDEA.
 
 Features:
-- validates `@RegisterClass`, `@RegisterProperty`, `@RegisterFunction`, `@RegisterSignal`, `@Export`, and `@Rpc` usage
+- validates `@Script`, `@Visible`, `@Register`, `@Emit`, `@Export`, and `@Rpc` usage
 - validates common callable-reference usage for Godot signal, `call`, and `rpc` patterns
 - detects nested mutation through `@CoreTypeLocalCopy` getter results in simple assignment chains
 - offers quick fixes for common registration and mutability mistakes
@@ -63,7 +63,7 @@ That split is meant to keep each file easy to scan:
 
 ### Class registration
 
-Checks around `@RegisterClass`, including:
+Checks around `@Script`, including:
 
 - invalid Godot inheritance
 - generic classes
@@ -74,11 +74,11 @@ Checks around `@RegisterClass`, including:
 Relevant files:
 
 - [JvmInspection.kt](src/main/kotlin/godot/intellij/plugin/inspection/JvmInspection.kt)
-- [RegisterClassAnalyzer.kt](src/main/kotlin/godot/intellij/plugin/analysis/jvm/RegisterClassAnalyzer.kt)
+- [GodotScriptAnalyzer.kt](src/main/kotlin/godot/intellij/plugin/analysis/jvm/GodotScriptAnalyzer.kt)
 
 ### Property and export checks
 
-Checks around `@RegisterProperty` and `@Export`, including:
+Checks around `@Visible` and `@Export`, including:
 
 - mutability
 - missing property registration
@@ -89,12 +89,12 @@ Checks around `@RegisterProperty` and `@Export`, including:
 Relevant files:
 
 - [KotlinInspection.kt](src/main/kotlin/godot/intellij/plugin/inspection/KotlinInspection.kt)
-- [RegisterPropertyAnalyzer.kt](src/main/kotlin/godot/intellij/plugin/analysis/kotlin/RegisterPropertyAnalyzer.kt)
+- [VisibleAnalyzer.kt](src/main/kotlin/godot/intellij/plugin/analysis/kotlin/VisibleAnalyzer.kt)
 - [PropertyHintAnalyzer.kt](src/main/kotlin/godot/intellij/plugin/analysis/kotlin/PropertyHintAnalyzer.kt)
 
 ### Function and RPC checks
 
-Checks around `@RegisterFunction` and `@Rpc`, including:
+Checks around `@Register` and `@Rpc`, including:
 
 - generic registered functions
 - argument-count limits
@@ -107,17 +107,17 @@ Relevant files:
 - [JvmInspection.kt](src/main/kotlin/godot/intellij/plugin/inspection/JvmInspection.kt)
 - [KotlinInspection.kt](src/main/kotlin/godot/intellij/plugin/inspection/KotlinInspection.kt)
 - [RegisterMethodAnalyzer.kt](src/main/kotlin/godot/intellij/plugin/analysis/jvm/RegisterMethodAnalyzer.kt)
-- [RegisterFunctionAnalyzer.kt](src/main/kotlin/godot/intellij/plugin/analysis/kotlin/RegisterFunctionAnalyzer.kt)
+- [RegisterAnalyzer.kt](src/main/kotlin/godot/intellij/plugin/analysis/kotlin/RegisterAnalyzer.kt)
 - [RpcAnnotationAnalyzer.kt](src/main/kotlin/godot/intellij/plugin/analysis/kotlin/RpcAnnotationAnalyzer.kt)
 
 ### Signal and callable-reference checks
 
-Checks around `@RegisterSignal` and callable references used in Godot patterns such as signal connect, `call`, and `rpc`.
+Checks around `@Emit` and callable references used in Godot patterns such as signal connect, `call`, and `rpc`.
 
 Relevant files:
 
 - [KotlinInspection.kt](src/main/kotlin/godot/intellij/plugin/inspection/KotlinInspection.kt)
-- [RegisterSignalAnalyzer.kt](src/main/kotlin/godot/intellij/plugin/analysis/kotlin/RegisterSignalAnalyzer.kt)
+- [EmitAnalyzer.kt](src/main/kotlin/godot/intellij/plugin/analysis/kotlin/EmitAnalyzer.kt)
 - [CallFunctionReferenceAnalyzer.kt](src/main/kotlin/godot/intellij/plugin/analysis/kotlin/reference/CallFunctionReferenceAnalyzer.kt)
 - [RpcFunctionReferenceAnalyzer.kt](src/main/kotlin/godot/intellij/plugin/analysis/kotlin/reference/RpcFunctionReferenceAnalyzer.kt)
 - [SignalFunctionReferenceAnalyzer.kt](src/main/kotlin/godot/intellij/plugin/analysis/kotlin/reference/SignalFunctionReferenceAnalyzer.kt)
@@ -226,8 +226,8 @@ There are no substantial checked-in tests yet, so verification is mostly manual.
 
 Recommended checks after `runIde`:
 
-- `@RegisterProperty` on a `val`
-- `@Export` without `@RegisterProperty`
+- `@Visible` on a `val`
+- `@Export` without `@Visible`
 - duplicate registered class names
 - invalid `@Rpc` channel usage
 - callable reference to a non-registered function
@@ -242,3 +242,5 @@ If you are working on the codebase itself, also read:
 - [CLAUDE.md](CLAUDE.md)
 
 That file explains the internal mental model, startup flow, and the best files to read first.
+
+

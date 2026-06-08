@@ -1,22 +1,22 @@
 package godot.tests.subpackage
 
 import godot.api.Node
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
+import godot.annotation.Script
+import godot.annotation.Register
 
-@RegisterClass
+@Script
 class OtherScript : Node() {
-    @RegisterFunction
+    @Register
     fun hookNoParam() {
         println("Hook was called with no param.")
     }
 
-    @RegisterFunction
+    @Register
     fun hookOneParam(b: Boolean) {
         println("Hook was called with parameter: $b")
     }
 
-    @RegisterFunction
+    @Register
     fun hookTwoParam(str: String, inv: Node) {
         println("Hook was called with parameters: $str, $inv")
     }
@@ -31,3 +31,5 @@ class OtherScript : Node() {
 //	}
 
 }
+
+

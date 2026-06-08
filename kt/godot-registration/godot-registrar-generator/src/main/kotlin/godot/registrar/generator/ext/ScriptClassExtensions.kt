@@ -1,8 +1,13 @@
 package godot.registrar.generator.ext
 
+import godot.registrar.generator.GeneratorContext
 import godot.registrar.generator.RegisteredNameMode
 import godot.registrar.generator.RegistrationFileLayoutMode
 import godot.registrar.generator.Settings
+import godot.registration.model.types.GodotClass
+import godot.registration.model.RegisteredFunction
+import godot.registration.model.RegisteredProperty
+import godot.registration.model.RegisteredSignal
 import godot.registration.model.types.ScriptClass
 import godot.registration.model.types.ScriptFamily
 import godot.tools.common.constants.FileExtensions
@@ -10,11 +15,6 @@ import godot.tools.common.constants.FileExtensions
 val ScriptClass.shouldGenerateGdjFile: Boolean
     get() = !isAbstract
 
-/**
- * Naming policy lives with the generator (it depends on [Settings]); the model stays config-free.
- *
- * Computes the registered name of a class according to the configured [RegisteredNameMode].
- */
 fun ScriptClass.getRegisteredName(settings: Settings): String {
     val baseRegisteredName = customName
         ?.takeIf { it.isNotBlank() }
@@ -68,11 +68,16 @@ fun ScriptClass.provideRegistrationFileRelativePath(settings: Settings): String 
     }
 }
 
-/**
- * All ancestors of this node — the parent class chain plus every interface — gathered transitively,
- * flattened and de-duplicated (insertion order), excluding `this`.
- */
-fun ScriptFamily.flattenedHierarchy(): List<ScriptFamily> {
+fun ScriptClass.baseGodotClassName(): String =
+    godotBaseClass
+        ?.fqName
+        .orEmpty()
+
+fun ScriptClass.inheritsRefCounted(): Boolean =
+    generateSequence(this as GodotClass?) { godotClass -> godotClass.parent }
+        .any { godotClass -> godotClass.fqName == godot.api.RefCounted::class.java.name }
+
+fun ScriptClass.flattenedHierarchy(context: GeneratorContext): List<ScriptFamily> {
     val accumulator = LinkedHashSet<ScriptFamily>()
 
     fun visit(node: ScriptFamily) {
@@ -81,9 +86,11 @@ fun ScriptFamily.flattenedHierarchy(): List<ScriptFamily> {
                 visit(iface)
             }
         }
-        node.parentScriptFamily()?.let { parent ->
-            if (accumulator.add(parent)) {
-                visit(parent)
+        if (node is GodotClass) {
+            node.parent?.let { parent ->
+                if (parent is ScriptFamily && accumulator.add(parent)) {
+                    visit(parent)
+                }
             }
         }
     }
@@ -91,3 +98,18 @@ fun ScriptFamily.flattenedHierarchy(): List<ScriptFamily> {
     visit(this)
     return accumulator.toList()
 }
+
+fun ScriptClass.effectiveSignals(context: GeneratorContext): List<RegisteredSignal> =
+    (signals + flattenedHierarchy(context).flatMap { family -> family.signals })
+        .distinctBy { signal -> signal.name }
+
+fun ScriptClass.effectiveProperties(context: GeneratorContext): List<RegisteredProperty> =
+    (properties + flattenedHierarchy(context).flatMap { family -> family.properties })
+        .distinctBy { property -> property.name }
+
+fun ScriptClass.effectiveFunctions(context: GeneratorContext): List<RegisteredFunction> =
+    (functions + flattenedHierarchy(context).flatMap { family -> family.functions })
+        .distinctBy { function -> function.signatureKey }
+
+private val RegisteredFunction.signatureKey: String
+    get() = "$name(${parameters.joinToString(",") { parameter -> parameter.type.fqName }})"

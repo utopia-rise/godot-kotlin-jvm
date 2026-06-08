@@ -3,11 +3,9 @@
 
 registeredName = AbstractClassInheritanceChild
 fqName = godot.tests.inheritance.AbstractClassInheritanceChild
-baseType = godot.api.Node
+baseType = Node
 supertypes = [
-    godot.tests.inheritance.AbstractClassInheritanceParent,
-    godot.api.Node,
-    godot.api.Object
+    AbstractClassInheritanceParent
 ]
 signals = [
     test_overridden,
@@ -15,11 +13,11 @@ signals = [
 ]
 properties = [
     child_open_function_has_been_called,
-    open_var,
     speed,
     registered_exported_property_in_parent,
     closed_function_has_been_called,
-    closed_var
+    closed_var,
+    open_var
 ]
 functions = [
     open_function,

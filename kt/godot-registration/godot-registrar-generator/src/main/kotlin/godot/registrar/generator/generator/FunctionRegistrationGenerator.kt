@@ -9,7 +9,9 @@ import godot.annotation.RpcMode
 import godot.annotation.Sync
 import godot.api.MultiplayerPeer
 import godot.registrar.generator.GeneratorContext
+import godot.registrar.generator.ext.effectiveFunctions
 import godot.registrar.generator.ext.flattenedHierarchy
+import godot.registrar.generator.ext.inheritsRefCounted
 import godot.registrar.generator.ext.toGodotClassName
 import godot.registrar.generator.ext.toKtVariantMemberName
 import godot.registrar.generator.ext.asEnumName
@@ -22,13 +24,14 @@ import godot.tools.common.constants.notificationFunction
 
 fun FunSpec.Builder.addNotificationRegistrations(
     registeredClass: ScriptClass,
+    context: GeneratorContext,
 ) {
     val notificationFunctions = mapOf(
         *registeredClass.functions
             .filter { registeredFunction -> registeredFunction.isNotificationFunction() }
             .map { registeredClass to it }
             .toTypedArray(),
-        *registeredClass.flattenedHierarchy()
+        *registeredClass.flattenedHierarchy(context)
             .filterIsInstance<ScriptClass>()
             .flatMap { registeredSuperClass ->
                 registeredSuperClass.functions
@@ -62,7 +65,7 @@ fun FunSpec.Builder.addNotificationRegistrations(
 
     for (i in notificationClasses.indices) {
         val notificationClass = notificationClasses[i]
-        if (!notificationClass.inheritsRefCounted) {
+        if (!notificationClass.inheritsRefCounted()) {
             addStatement("notificationFunctionClass$i.free()")
         }
     }
@@ -73,7 +76,7 @@ fun FunSpec.Builder.addFunctionRegistrations(
     context: GeneratorContext,
     className: ClassName,
 ) {
-    registeredClass.functions
+    registeredClass.effectiveFunctions(context)
         .filter { it.name != notificationFunction }
         .forEach { registeredFunction ->
             addStatement(

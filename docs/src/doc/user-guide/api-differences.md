@@ -276,7 +276,7 @@ and have class hierarchy notification call without using `super` call, as in GDS
 
 /// tab | Kotlin
 ```kotlin
-@RegisterFunction
+@Register
 override fun _notification() = godotNotification {
   // ...
 }
@@ -285,7 +285,7 @@ override fun _notification() = godotNotification {
 
 /// tab | Java
 ```java
-@RegisterFunction
+@Register
 @Override
 public GodotNotification _notification() {
     return godotNotification((self, notification) -> {
@@ -297,7 +297,7 @@ public GodotNotification _notification() {
 
 /// tab | Scala
 ```scala
-@RegisterFunction
+@Register
 override def _notification(): GodotNotification = {
   godotNotification((self, notification) => {
     // ...
@@ -385,3 +385,4 @@ GD.print("Hello There!")
 ///
 
 Kotlin's print functions, on the other hand, will only print to CLI! They won't print to Godot editor's output panel.
+

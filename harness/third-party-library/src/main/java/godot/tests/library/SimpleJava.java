@@ -1,20 +1,22 @@
 package godot.tests.library;
 
 import godot.annotation.Export;
-import godot.annotation.RegisterClass;
-import godot.annotation.RegisterFunction;
-import godot.annotation.RegisterProperty;
+import godot.annotation.Script;
+import godot.annotation.Register;
+import godot.annotation.Visible;
 import godot.api.Node;
 
-@RegisterClass
+@Script
 public class SimpleJava extends Node {
 
     @Export
-    @RegisterProperty
+    @Visible
     public String testProperty = "Hello from third-party-library!";
 
-    @RegisterFunction
+    @Register
     public String provideGreeting() {
         return testProperty;
     }
 }
+
+

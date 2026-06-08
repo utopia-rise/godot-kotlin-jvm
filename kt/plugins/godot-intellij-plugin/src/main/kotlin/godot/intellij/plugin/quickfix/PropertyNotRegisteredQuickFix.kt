@@ -1,9 +1,9 @@
-﻿package godot.intellij.plugin.quickfix
+package godot.intellij.plugin.quickfix
 
 import com.intellij.codeInspection.LocalQuickFix
 import com.intellij.codeInspection.ProblemDescriptor
 import com.intellij.openapi.project.Project
-import godot.annotation.RegisterProperty
+import godot.annotation.Visible
 import godot.intellij.plugin.GodotPluginBundle
 import org.jetbrains.kotlin.scripting.resolve.classId
 import org.jetbrains.kotlin.idea.util.addAnnotation
@@ -17,6 +17,7 @@ class PropertyNotRegisteredQuickFix : LocalQuickFix {
         val ktProperty = descriptor.psiElement as? KtProperty ?: descriptor.psiElement.parent
         ktProperty
             .let { it as? KtModifierListOwner }
-            ?.addAnnotation(RegisterProperty::class.classId)
+            ?.addAnnotation(Visible::class.classId)
     }
 }
+

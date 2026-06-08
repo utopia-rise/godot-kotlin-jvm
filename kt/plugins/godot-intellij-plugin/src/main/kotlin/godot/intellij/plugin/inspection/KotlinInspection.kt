@@ -3,12 +3,12 @@ package godot.intellij.plugin.inspection
 import com.intellij.codeInspection.ProblemsHolder
 import com.intellij.psi.PsiElement
 import godot.intellij.plugin.analysis.GodotProblem
-import godot.intellij.plugin.analysis.jvm.RegisterClassAnalyzer
+import godot.intellij.plugin.analysis.jvm.GodotScriptAnalyzer
 import godot.intellij.plugin.analysis.jvm.RegisterMethodAnalyzer
 import godot.intellij.plugin.analysis.kotlin.PropertyHintAnalyzer
-import godot.intellij.plugin.analysis.kotlin.RegisterFunctionAnalyzer
-import godot.intellij.plugin.analysis.kotlin.RegisterPropertyAnalyzer
-import godot.intellij.plugin.analysis.kotlin.RegisterSignalAnalyzer
+import godot.intellij.plugin.analysis.kotlin.RegisterAnalyzer
+import godot.intellij.plugin.analysis.kotlin.VisibleAnalyzer
+import godot.intellij.plugin.analysis.kotlin.EmitAnalyzer
 import godot.intellij.plugin.analysis.kotlin.RpcAnnotationAnalyzer
 import godot.intellij.plugin.analysis.kotlin.reference.CallFunctionReferenceAnalyzer
 import godot.intellij.plugin.analysis.kotlin.reference.RpcFunctionReferenceAnalyzer
@@ -27,20 +27,20 @@ class KotlinInspection : GodotInspection() {
     override fun checkElement(element: PsiElement, holder: ProblemsHolder, isOnTheFly: Boolean) {
         when (element) {
             is KtClass -> {
-                holder.registerProblems(RegisterClassAnalyzer.analyze(element).withPhysicalAnchor(element))
+                holder.registerProblems(GodotScriptAnalyzer.analyze(element).withPhysicalAnchor(element))
             }
 
             is KtProperty -> {
-                holder.registerProblems(RegisterPropertyAnalyzer.analyze(element))
+                holder.registerProblems(VisibleAnalyzer.analyze(element))
                 holder.registerProblems(PropertyHintAnalyzer.analyze(element))
-                holder.registerProblems(RegisterSignalAnalyzer.analyze(element))
+                holder.registerProblems(EmitAnalyzer.analyze(element))
             }
 
             is KtNamedFunction -> {
                 element.toLightMethods().forEach { lightMethod ->
                     holder.registerProblems(RegisterMethodAnalyzer.analyze(lightMethod).withPhysicalAnchor(element))
                 }
-                holder.registerProblems(RegisterFunctionAnalyzer.analyze(element))
+                holder.registerProblems(RegisterAnalyzer.analyze(element))
             }
 
             is KtCallableReferenceExpression -> {
@@ -88,3 +88,4 @@ class KotlinInspection : GodotInspection() {
             ?: sourceElement
     }
 }
+

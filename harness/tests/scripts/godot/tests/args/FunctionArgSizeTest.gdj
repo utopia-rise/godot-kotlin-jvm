@@ -3,10 +3,9 @@
 
 registeredName = FunctionArgSizeTest
 fqName = godot.tests.args.FunctionArgSizeTest
-baseType = godot.api.Node
+baseType = Node
 supertypes = [
-    godot.api.Node,
-    godot.api.Object
+    
 ]
 signals = [
     

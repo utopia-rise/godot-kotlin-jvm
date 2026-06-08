@@ -4,7 +4,7 @@ import com.intellij.psi.util.parentOfType
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.analysis.GodotProblem
 import godot.intellij.plugin.project.isOrInheritsType
-import godot.annotation.RegisterFunction
+import godot.annotation.Register
 import godot.core.Signal
 import godot.intellij.plugin.quickfix.TargetFunctionNotRegisteredQuickFix
 import org.jetbrains.kotlin.idea.references.KtSimpleNameReference
@@ -35,7 +35,7 @@ object SignalFunctionReferenceAnalyzer {
                 .mainReference
                 .resolve() as? KtNamedFunction
 
-            if (targetFunction != null && targetFunction.findAnnotation(RegisterFunction::class.classId) == null) {
+            if (targetFunction != null && targetFunction.findAnnotation(Register::class.classId) == null) {
                 return listOf(
                     GodotProblem(
                         GodotPluginBundle.message("problem.signal.connection.connectedFunctionNotRegistered"),
@@ -49,3 +49,4 @@ object SignalFunctionReferenceAnalyzer {
         return emptyList()
     }
 }
+

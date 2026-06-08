@@ -1,10 +1,10 @@
 package godot.intellij.plugin.analysis.jvm
 
 import com.intellij.psi.PsiClass
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
-import godot.annotation.RegisterProperty
-import godot.annotation.RegisterSignal
+import godot.annotation.Script
+import godot.annotation.Register
+import godot.annotation.Visible
+import godot.annotation.Emit
 import godot.annotation.Tool
 import godot.core.KtObject
 import godot.intellij.plugin.GodotPluginBundle
@@ -25,7 +25,7 @@ import org.jetbrains.kotlin.psi.KtNamedFunction
 import org.jetbrains.kotlin.psi.psiUtil.isAbstract
 import org.jetbrains.kotlin.scripting.resolve.classId
 
-object RegisterClassAnalyzer {
+object GodotScriptAnalyzer {
     private val classNotRegisteredQuickFix = ClassNotRegisteredQuickFix()
 
     fun analyze(ktClass: KtClass): List<GodotProblem> {
@@ -41,7 +41,7 @@ object RegisterClassAnalyzer {
                         )
                     )
                 }
-                if (!ktClass.isAbstract() && ktClass.anyPropertyHasAnnotation(RegisterProperty::class.simpleName!!)) {
+                if (!ktClass.isAbstract() && ktClass.anyPropertyHasAnnotation(Visible::class.simpleName!!)) {
                     add(
                         GodotProblem(
                             GodotPluginBundle.message("problem.class.notRegistered.properties"),
@@ -50,7 +50,7 @@ object RegisterClassAnalyzer {
                         )
                     )
                 }
-                if (!ktClass.isAbstract() && ktClass.anyPropertyHasAnnotation(RegisterSignal::class.simpleName!!)) {
+                if (!ktClass.isAbstract() && ktClass.anyPropertyHasAnnotation(Emit::class.simpleName!!)) {
                     add(
                         GodotProblem(
                             GodotPluginBundle.message("problem.class.notRegistered.signals"),
@@ -59,7 +59,7 @@ object RegisterClassAnalyzer {
                         )
                     )
                 }
-                if (!ktClass.isAbstract() && ktClass.anyFunctionHasAnnotation(RegisterFunction::class.simpleName!!)) {
+                if (!ktClass.isAbstract() && ktClass.anyFunctionHasAnnotation(Register::class.simpleName!!)) {
                     add(
                         GodotProblem(
                             GodotPluginBundle.message("problem.class.notRegistered.functions"),
@@ -103,7 +103,7 @@ object RegisterClassAnalyzer {
 
     fun analyze(psiClass: PsiClass): List<GodotProblem> {
         return buildList {
-            if (psiClass.getAnnotation(RegisterClass::class.qualifiedName!!) == null) {
+            if (psiClass.getAnnotation(Script::class.qualifiedName!!) == null) {
                 val errorLocation = psiClass.nameIdentifier ?: psiClass.navigationElement
                 if (psiClass.getAnnotation(Tool::class.qualifiedName!!) != null) {
                     add(
@@ -114,7 +114,7 @@ object RegisterClassAnalyzer {
                         )
                     )
                 }
-                if (!psiClass.isAbstract && psiClass.anyPropertyHasAnnotation(RegisterProperty::class)) {
+                if (!psiClass.isAbstract && psiClass.anyPropertyHasAnnotation(Visible::class)) {
                     add(
                         GodotProblem(
                             GodotPluginBundle.message("problem.class.notRegistered.properties"),
@@ -123,7 +123,7 @@ object RegisterClassAnalyzer {
                         )
                     )
                 }
-                if (!psiClass.isAbstract && psiClass.anyPropertyHasAnnotation(RegisterSignal::class)) {
+                if (!psiClass.isAbstract && psiClass.anyPropertyHasAnnotation(Emit::class)) {
                     add(
                         GodotProblem(
                             GodotPluginBundle.message("problem.class.notRegistered.signals"),
@@ -132,7 +132,7 @@ object RegisterClassAnalyzer {
                         )
                     )
                 }
-                if (!psiClass.isAbstract && psiClass.anyFunctionHasAnnotation(RegisterFunction::class)) {
+                if (!psiClass.isAbstract && psiClass.anyFunctionHasAnnotation(Register::class)) {
                     add(
                         GodotProblem(
                             GodotPluginBundle.message("problem.class.notRegistered.functions"),
@@ -177,7 +177,7 @@ object RegisterClassAnalyzer {
             return null
         }
 
-        val registerClassAnnotation = ktClass.findAnnotation(RegisterClass::class.classId)
+        val registerClassAnnotation = ktClass.findAnnotation(Script::class.classId)
         val psiElement = registerClassAnnotation?.valueArgumentList?.arguments?.firstOrNull { argument ->
             argument.getArgumentName()?.asName?.asString() == "className" || !argument.isNamed()
         } ?: registerClassAnnotation ?: ktClass.nameIdentifier ?: ktClass.navigationElement
@@ -204,7 +204,7 @@ object RegisterClassAnalyzer {
             return null
         }
 
-        val registerClassAnnotation = psiClass.getAnnotation(RegisterClass::class.qualifiedName!!)
+        val registerClassAnnotation = psiClass.getAnnotation(Script::class.qualifiedName!!)
         val psiElement = if (registerClassAnnotation == null) {
             psiClass.nameIdentifier ?: psiClass.navigationElement
         } else {
@@ -226,7 +226,7 @@ object RegisterClassAnalyzer {
         }
     }
 
-    private fun KtClass.isRegistered(): Boolean = findAnnotation(RegisterClass::class.classId) != null
+    private fun KtClass.isRegistered(): Boolean = findAnnotation(Script::class.classId) != null
 
     private fun KtClass.anyFunctionHasAnnotation(annotation: String): Boolean {
         return declarations
@@ -273,3 +273,5 @@ object RegisterClassAnalyzer {
         }
     }
 }
+
+

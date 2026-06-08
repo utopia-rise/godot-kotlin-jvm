@@ -3,9 +3,9 @@ package godot.tests.inheritance
 import godot.api.Node
 import godot.annotation.DoubleRange
 import godot.annotation.Export
-import godot.annotation.RegisterFunction
-import godot.annotation.RegisterProperty
-import godot.annotation.RegisterSignal
+import godot.annotation.Register
+import godot.annotation.Visible
+import godot.annotation.Emit
 import godot.core.signal1
 import godot.core.signal2
 
@@ -13,38 +13,39 @@ import godot.core.signal2
 abstract class AbstractClassInheritanceParent : Node() {
     // GH-731
     @DoubleRange(1.0, 100.0)
-    @RegisterProperty
+    @Visible
     @Export
     var speed: Double = 100.0
 
     @Export
-    @RegisterProperty
+    @Visible
     var registeredExportedPropertyInParent = false
 
-    @RegisterSignal("blubb")
+    @Emit("blubb")
     val testNotOverridden by signal1<String>()
 
-    @RegisterSignal("blubb", "habbalubb")
+    @Emit("blubb", "habbalubb")
     open val testOverridden  by signal2<String, Int>()
 
     //---------------- Here to check ------------------
 
-    @RegisterProperty
+    @Visible
     var closedFunctionHasBeenCalled = false
 
     //-------------------------------------------------
 
-    @RegisterProperty
+    @Visible
     var closedVar = 0
 
-    @RegisterProperty
+    @Visible
     open var openVar = 0
 
-    @RegisterFunction
+    @Register
     fun closedFunction() {
         closedFunctionHasBeenCalled = true
     }
 
-    @RegisterFunction
+    @Register
     abstract fun openFunction()
 }
+

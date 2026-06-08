@@ -1,16 +1,16 @@
 import godot.api.Node3D
 import godot.annotation.Export
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterProperty
+import godot.annotation.Script
+import godot.annotation.Visible
 import godot.core.Basis
 import godot.core.Transform3D
 import godot.core.Vector3
 
-@RegisterClass
+@Script
 class CopyModificationCheckTestClass : Node3D() {
 
     @Export
-    @RegisterProperty
+    @Visible
     lateinit var node3D: Node3D
 
     class Blubb {
@@ -56,3 +56,5 @@ class CopyModificationCheckTestClass : Node3D() {
         testTransform3D.basis.x.x = 1.0 // not allowed
     }
 }
+
+

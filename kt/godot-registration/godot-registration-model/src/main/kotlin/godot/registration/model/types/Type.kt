@@ -31,7 +31,7 @@ enum class TypeKind {
     PRIMITIVE,
     CORE_TYPE,
     INTERFACE,
-    CLASS,
+    GODOT_CLASS,
     ENUM,
     BITFIELD,
     OTHER,
@@ -133,7 +133,7 @@ open class Type(
         val packedColorArrayType = knownType(PackedColorArray::class.qualifiedName!!, TypeKind.CORE_TYPE)
         val packedVector4ArrayType = knownType(PackedVector4Array::class.qualifiedName!!, TypeKind.CORE_TYPE)
 
-        private val knownTypesByFqName = buildMap {
+        private val primitiveTypesByFqName = buildMap {
             put(TYPE_VOID, nilType)
             put(TYPE_KOTLIN_UNIT, nilType)
             put(TYPE_BOOLEAN, booleanType)
@@ -154,7 +154,11 @@ open class Type(
             put(TYPE_BOXED_DOUBLE, doubleType)
             put(TYPE_KOTLIN_STRING, stringType)
             put(TYPE_JAVA_STRING, stringType)
+        }
 
+        private val coreTypesByFqName = buildMap {
+            put(TYPE_JAVA_OBJECT, nilType)
+            put(TYPE_KOTLIN_ANY, nilType)
             put(vector2Type.fqName, vector2Type)
             put(vector2iType.fqName, vector2iType)
             put(rect2Type.fqName, rect2Type)
@@ -190,19 +194,44 @@ open class Type(
             put(packedVector4ArrayType.fqName, packedVector4ArrayType)
         }
 
+        fun findPrimitiveType(
+            fqName: String,
+            isNullable: Boolean = false,
+            genericArguments: List<Type> = emptyList(),
+        ): Type? = primitiveTypesByFqName[fqName]?.with(
+            isNullable = isNullable,
+            genericArguments = genericArguments,
+        )
+
+        fun findCoreType(
+            fqName: String,
+            isNullable: Boolean = false,
+            genericArguments: List<Type> = emptyList(),
+        ): Type? {
+            val base = coreTypesByFqName[fqName]
+                ?: when {
+                    isAssignableTo(fqName, Callable::class.java) -> knownType(fqName, TypeKind.CORE_TYPE)
+                    isAssignableTo(fqName, Signal::class.java) -> knownType(fqName, TypeKind.CORE_TYPE)
+                    else -> null
+                }
+
+            return base?.with(isNullable = isNullable, genericArguments = genericArguments)
+        }
+
+        fun getPrimitiveType(
+            fqName: String,
+            isNullable: Boolean = false,
+            genericArguments: List<Type> = emptyList(),
+        ): Type = requireNotNull(findPrimitiveType(fqName, isNullable, genericArguments)) {
+            "$fqName is not a primitive type"
+        }
+
         fun getCoreType(
             fqName: String,
             isNullable: Boolean = false,
             genericArguments: List<Type> = emptyList(),
-        ): Type {
-            val base = knownTypesByFqName[fqName]
-                ?: when {
-                    isAssignableTo(fqName, Callable::class.java) -> knownType(fqName, TypeKind.CORE_TYPE)
-                    isAssignableTo(fqName, Signal::class.java) -> knownType(fqName, TypeKind.CORE_TYPE)
-                    else -> knownType(fqName, TypeKind.OTHER)
-                }
-
-            return base.with(isNullable = isNullable, genericArguments = genericArguments)
+        ): Type = requireNotNull(findCoreType(fqName, isNullable, genericArguments)) {
+            "$fqName is not a core type"
         }
 
         fun getEnum(

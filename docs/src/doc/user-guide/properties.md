@@ -1,14 +1,14 @@
 Any property of a registered class can be registered as long as it is public, mutable and can be converted to a `Variant`.
-To register a property annotate it with `@RegisterProperty`.
+To register a property annotate it with `@Visible`.
 
 /// tab | Kotlin
 ```kotlin
-@RegisterClass
+@Script
 class RotatingCube : Node3D() {
-    @RegisterProperty
+    @Visible
     var someString: String = "Hello there :-)"
 
-    @RegisterProperty
+    @Visible
     var propertyWithDefaultValue: Float = 2f
 }
 ```
@@ -16,12 +16,12 @@ class RotatingCube : Node3D() {
 
 /// tab | Java
 ```java
-@RegisterClass
+@Script
 public class RotatingCube extends Node3D {
-    @RegisterProperty
+    @Visible
     public String someString = "Hello there :-)";
 
-    @RegisterProperty
+    @Visible
     public float propertyWithDefaultValue = 2f;
 }
 ```
@@ -29,12 +29,12 @@ public class RotatingCube extends Node3D {
 
 /// tab | Scala
 ```scala
-@RegisterClass
+@Script
 class RotatingCube extends Node3D {
-  @RegisterProperty
+  @Visible
   var someString: String = "Hello there :-)"
 
-  @RegisterProperty
+  @Visible
   var propertyWithDefaultValue: Float = 2f
 }
 ```
@@ -56,10 +56,10 @@ A property can be exported if it is a core type, a primitive or inherits from `g
 
 /// tab | Kotlin
 ```kotlin
-@RegisterClass
+@Script
 class RotatingCube : Node3D() {
     @Export
-    @RegisterProperty
+    @Visible
     var speed: Float = 2f
 }
 ```
@@ -67,10 +67,10 @@ class RotatingCube : Node3D() {
 
 /// tab | Java
 ```java
-@RegisterClass
+@Script
 public class RotatingCube extends Node3D {
     @Export
-    @RegisterProperty
+    @Visible
     public float speed = 2f;
 }
 ```
@@ -78,10 +78,10 @@ public class RotatingCube extends Node3D {
 
 /// tab | Scala
 ```scala
-@RegisterClass
+@Script
 class RotatingCube extends Node3D {
   @Export
-  @RegisterProperty
+  @Visible
   var speed: Float = 2f
 }
 ```
@@ -148,10 +148,10 @@ Declare a property whose type is an enum:
 ```kotlin
 enum class Element { FIRE, WATER, EARTH }
 
-@RegisterClass
+@Script
 class Spell : Node() {
     @Export
-    @RegisterProperty
+    @Visible
     var element = Element.FIRE
 }
 ```
@@ -160,10 +160,10 @@ class Spell : Node() {
 ```java
 public enum Element { FIRE, WATER, EARTH }
 
-@RegisterClass
+@Script
 public class Spell extends Node {
     @Export
-    @RegisterProperty
+    @Visible
     public Element element = Element.FIRE;
 }
 ```
@@ -174,10 +174,10 @@ enum Element extends java.lang.Enum[Element] {
   case FIRE, WATER, EARTH
 }
 
-@RegisterClass
+@Script
 class Spell extends Node {
   @Export
-  @RegisterProperty
+  @Visible
   var element: Element = Element.FIRE
 }
 ```
@@ -190,21 +190,21 @@ Use `BitField<MyEnum>` (from `godot.core`) when several enum values can be selec
 /// tab | Kotlin
 ```kotlin
 @Export
-@RegisterProperty
+@Visible
 var elements: BitField<Element> = BitField.of(Element.FIRE, Element.WATER)
 ```
 ///
 /// tab | Java
 ```java
 @Export
-@RegisterProperty
+@Visible
 public BitField<Element> elements = BitField.of(Element.FIRE, Element.WATER);
 ```
 ///
 /// tab | Scala
 ```scala
 @Export
-@RegisterProperty
+@Visible
 var elements: BitField[Element] = BitField.of(Element.FIRE, Element.WATER)
 ```
 ///
@@ -218,21 +218,21 @@ Any `Collection<MyEnum>` (`List`, `Set`, …) becomes a resizable list where eac
 /// tab | Kotlin
 ```kotlin
 @Export
-@RegisterProperty
+@Visible
 var elements = listOf(Element.FIRE)
 ```
 ///
 /// tab | Java
 ```java
 @Export
-@RegisterProperty
+@Visible
 public java.util.List<Element> elements = new java.util.ArrayList<>(java.util.List.of(Element.FIRE));
 ```
 ///
 /// tab | Scala
 ```scala
 @Export
-@RegisterProperty
+@Visible
 var elements: java.util.List[Element] = new java.util.ArrayList(java.util.List.of(Element.FIRE))
 ```
 ///
@@ -280,3 +280,5 @@ enum Element(val v: Long) extends java.lang.Enum[Element], GodotEnum {
 ///
 
 The dropdown, enum list, and `BitField` then use those exact values.
+
+

@@ -3,10 +3,9 @@
 
 registeredName = ScalaTestClass
 fqName = godot.tests.ScalaTestClass
-baseType = godot.api.Node
+baseType = Node
 supertypes = [
-    godot.api.Node,
-    godot.api.Object
+    
 ]
 signals = [
     test_signal1,

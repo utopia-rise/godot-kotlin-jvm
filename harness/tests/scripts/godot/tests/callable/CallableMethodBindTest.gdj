@@ -3,10 +3,9 @@
 
 registeredName = CallableMethodBindTest
 fqName = godot.tests.callable.CallableMethodBindTest
-baseType = godot.api.Node
+baseType = Node
 supertypes = [
-    godot.api.Node,
-    godot.api.Object
+    
 ]
 signals = [
     

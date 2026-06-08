@@ -21,12 +21,12 @@ class BitFieldEntryCountCheck(
             .flatMap { scriptClass -> scriptClass.properties }
             .forEach { property ->
                 val flagHint = property.hints.filterIsInstance<EnumFlagHintStringHint>().firstOrNull()
-                if (flagHint != null && flagHint.enumValues.size > MAX_BIT_FIELD_ENTRIES) {
+                if (flagHint != null && flagHint.entryCount > MAX_BIT_FIELD_ENTRIES) {
                     hasIssue = true
                     val enumName = property.type.genericArguments.firstOrNull()?.fqName ?: "the enum"
                     logger.error(
                         "A bitfield (BitField) can have at most $MAX_BIT_FIELD_ENTRIES entries, but $enumName " +
-                            "has ${flagHint.enumValues.size}.",
+                            "has ${flagHint.entryCount}.",
                         property,
                     )
                 }

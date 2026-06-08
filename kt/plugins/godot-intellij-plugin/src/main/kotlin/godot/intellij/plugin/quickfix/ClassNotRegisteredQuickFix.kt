@@ -4,7 +4,7 @@ import com.intellij.codeInspection.LocalQuickFix
 import com.intellij.codeInspection.ProblemDescriptor
 import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiClass
-import godot.annotation.RegisterClass
+import godot.annotation.Script
 import godot.intellij.plugin.GodotPluginBundle
 import org.jetbrains.kotlin.asJava.classes.KtUltraLightClass
 import org.jetbrains.kotlin.idea.util.addAnnotation
@@ -21,8 +21,10 @@ class ClassNotRegisteredQuickFix : LocalQuickFix {
         } ?: return
 
         when (psiClass) {
-            is KtUltraLightClass -> psiClass.kotlinOrigin.addAnnotation(RegisterClass::class.classId)
-            else -> psiClass.modifierList?.addAnnotation(RegisterClass::class.qualifiedName!!)
+            is KtUltraLightClass -> psiClass.kotlinOrigin.addAnnotation(Script::class.classId)
+            else -> psiClass.modifierList?.addAnnotation(Script::class.qualifiedName!!)
         }
     }
 }
+
+

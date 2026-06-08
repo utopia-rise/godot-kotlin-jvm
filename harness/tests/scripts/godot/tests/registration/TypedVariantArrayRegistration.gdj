@@ -3,10 +3,9 @@
 
 registeredName = TypedVariantArrayRegistration
 fqName = godot.tests.registration.TypedVariantArrayRegistration
-baseType = godot.api.Node
+baseType = Node
 supertypes = [
-    godot.api.Node,
-    godot.api.Object
+    
 ]
 signals = [
     

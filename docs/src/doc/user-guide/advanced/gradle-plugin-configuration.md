@@ -251,7 +251,7 @@ godot {
 
 ### `registrationNameMode`
 
-Controls how default registered names are computed when `@RegisterClass` does not provide a custom name.
+Controls how default registered names are computed when `@Script` does not provide a custom name.
 
 Values:
 
@@ -473,3 +473,5 @@ In that case, the Godot editor may not find the wrapper automatically because it
 To support that layout, set the Gradle wrapper path from the Godot project settings:
 
 ![Example project setup](../../assets/img/change_gradle_wrapper_path.png)
+
+

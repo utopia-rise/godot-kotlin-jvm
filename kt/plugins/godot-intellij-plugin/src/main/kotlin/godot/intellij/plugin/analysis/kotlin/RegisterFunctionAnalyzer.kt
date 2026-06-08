@@ -1,7 +1,7 @@
 package godot.intellij.plugin.analysis.kotlin
 
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
+import godot.annotation.Script
+import godot.annotation.Register
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.analysis.GodotProblem
 import org.jetbrains.kotlin.scripting.resolve.classId
@@ -11,7 +11,7 @@ import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.psi.KtNamedFunction
 import org.jetbrains.kotlin.psi.psiUtil.containingClass
 
-object RegisterFunctionAnalyzer {
+object RegisterAnalyzer {
     private val functionNotRegisteredQuickFix = FunctionNotRegisteredQuickFix()
 
     fun analyze(function: KtNamedFunction): List<GodotProblem> {
@@ -31,10 +31,12 @@ object RegisterFunctionAnalyzer {
 
     private fun overriddenRegisteredAbstractFunctionNotRegistered(element: KtNamedFunction): Boolean {
         val hasRegisterAnnotation = analyze(element) {
-            element.symbol.allOverriddenSymbols.any { it.annotations.contains(RegisterFunction::class.classId) }
+            element.symbol.allOverriddenSymbols.any { it.annotations.contains(Register::class.classId) }
         }
-        return element.containingClass()?.findAnnotation(RegisterClass::class.classId) != null &&
-            element.findAnnotation(RegisterFunction::class.classId) == null &&
+        return element.containingClass()?.findAnnotation(Script::class.classId) != null &&
+            element.findAnnotation(Register::class.classId) == null &&
             hasRegisterAnnotation
     }
 }
+
+

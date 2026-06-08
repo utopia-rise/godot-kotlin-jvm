@@ -28,13 +28,6 @@ class ArrayAndDictionaryHintStringGenerator(
      * Hint string array formatting: https://github.com/godotengine/godot/blob/30b0aadab65fcafb9a160dba2c9abfd005bb62a5/editor/editor_properties_array_dict.cpp#L1085
      */
     override fun getHintString(): String {
-        // A collection of enums carries its element names/values in the hint itself. We use them directly
-        // because interface-typed collections (e.g. List) drop their generic argument in the model.
-        // example: 2/2:ENUM_1,ENUM_2 (or 2/2:A:2,B:8 for a GodotEnum with explicit values)
-        propertyHintAnnotation?.enumValues?.takeIf { it.isNotEmpty() }?.let { enumValues ->
-            return "${VariantParser.LONG.id}/${VariantParser.LONG.id}:${enumValues.toGodotHintString()}"
-        }
-
         val elementType = registeredProperty.type.genericArguments.firstOrNull()
 
         return when {

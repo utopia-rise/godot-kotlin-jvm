@@ -3,18 +3,21 @@ package godot.registrar.generator.generator
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FunSpec
-import com.squareup.kotlinpoet.MemberName.Companion.member
+import com.squareup.kotlinpoet.MemberName
 import godot.common.extensions.convertToSnakeCase
 import godot.core.PropertyUsageFlags
 import godot.registrar.generator.GeneratorContext
+import godot.registrar.generator.ext.effectiveProperties
 import godot.registrar.generator.ext.toGodotClassName
 import godot.registrar.generator.ext.toKtVariantMemberName
 import godot.registrar.generator.ext.toTypeName
 import godot.registrar.generator.generator.hintstring.PropertyHintStringGeneratorProvider
 import godot.registrar.generator.generator.typehint.PropertyTypeHintProvider
 import godot.registration.model.RegisteredProperty
+import godot.registration.model.RegisteredPropertyBindingKind
 import godot.registration.model.ext.isBitField
 import godot.registration.model.ext.isEnum
+import godot.registration.model.hint.property.EnumHint
 import godot.registration.model.hint.property.EnumListHintStringHint
 import godot.registration.model.types.ScriptClass
 
@@ -23,7 +26,7 @@ fun FunSpec.Builder.addPropertyRegistrations(
     context: GeneratorContext,
     className: ClassName,
 ) {
-    registeredClass.properties.forEach { registeredProperty ->
+    registeredClass.effectiveProperties(context).forEach { registeredProperty ->
         when {
             registeredProperty.type.isBitField() -> registerBitFieldProperty(
                 registeredProperty,
@@ -61,9 +64,12 @@ private fun FunSpec.Builder.registerProperty(
         }
     }
 
-    val getterFqName = registeredProperty.getterFqName
-    val setterFqName = registeredProperty.setterFqName
-    if (getterFqName != null) {
+    if (registeredProperty.bindingKind == RegisteredPropertyBindingKind.ACCESSOR_METHODS) {
+        val getterFqName = registeredProperty.getterFqName
+        val setterFqName = registeredProperty.setterFqName
+        requireNotNull(getterFqName) {
+            "Property ${registeredProperty.name} should have a getter when using accessor binding"
+        }
         requireNotNull(setterFqName) {
             "Property ${registeredProperty.name} with getter $getterFqName should also have a setter"
         }
@@ -78,19 +84,19 @@ private fun FunSpec.Builder.registerProperty(
                 typeClassName,
                 typeGodotName,
                 PropertyTypeHintProvider.provide(registeredProperty),
-                buildHintString(registeredProperty, context),
+                buildHintStringCode(registeredProperty, context),
                 PropertyUsageFlags::class, getPropertyUsage(registeredProperty),
             )
         } else {
             addStatement(
-                "property(%S, %L, %L, %M, %S, %M, %S, %T.%L)",
+                "property(%S, %L, %L, %M, %S, %M, %L, %T.%L)",
                 registeredProperty.name.convertToSnakeCase(),
                 getGetterReference(registeredProperty, className),
                 getSetterReference(registeredProperty, className),
                 registeredProperty.type.toKtVariantMemberName(),
                 typeGodotName,
                 PropertyTypeHintProvider.provide(registeredProperty),
-                buildHintString(registeredProperty, context),
+                buildHintStringCode(registeredProperty, context),
                 PropertyUsageFlags::class, getPropertyUsage(registeredProperty),
             )
         }
@@ -98,12 +104,12 @@ private fun FunSpec.Builder.registerProperty(
     }
 
     addStatement(
-        "property(%L, $variantType, %S, %M, %S, %T.%L)",
+        "property(%L, $variantType, %S, %M, %L, %T.%L)",
         getPropertyReference(registeredProperty, className),
         *variantTypeArguments.toTypedArray(),
         typeGodotName,
         PropertyTypeHintProvider.provide(registeredProperty),
-        buildHintString(registeredProperty, context),
+        buildHintStringCode(registeredProperty, context),
         PropertyUsageFlags::class, getPropertyUsage(registeredProperty),
     )
 }
@@ -113,29 +119,32 @@ private fun FunSpec.Builder.registerEnumListProperty(
     context: GeneratorContext,
     className: ClassName,
 ) {
-    val getterFqName = registeredProperty.getterFqName
-    val setterFqName = registeredProperty.setterFqName
-    if (getterFqName != null) {
+    if (registeredProperty.bindingKind == RegisteredPropertyBindingKind.ACCESSOR_METHODS) {
+        val getterFqName = registeredProperty.getterFqName
+        val setterFqName = registeredProperty.setterFqName
+        requireNotNull(getterFqName) {
+            "Property ${registeredProperty.name} should have a getter when using accessor binding"
+        }
         requireNotNull(setterFqName) {
             "Property ${registeredProperty.name} with getter $getterFqName should also have a setter"
         }
 
         addStatement(
-            "enumListProperty(%S, %L, %L, %T.%L, %S)",
+            "enumListProperty(%S, %L, %L, %T.%L, %L)",
             registeredProperty.name.convertToSnakeCase(),
             getGetterReference(registeredProperty, className),
             getSetterReference(registeredProperty, className),
             PropertyUsageFlags::class, getPropertyUsage(registeredProperty),
-            buildHintString(registeredProperty, context),
+            buildHintStringCode(registeredProperty, context),
         )
         return
     }
 
     addStatement(
-        "enumListProperty(%L, %T.%L, %S)",
+        "enumListProperty(%L, %T.%L, %L)",
         getPropertyReference(registeredProperty, className),
         PropertyUsageFlags::class, getPropertyUsage(registeredProperty),
-        buildHintString(registeredProperty, context),
+        buildHintStringCode(registeredProperty, context),
     )
 }
 
@@ -144,57 +153,100 @@ private fun FunSpec.Builder.registerBitFieldProperty(
     context: GeneratorContext,
     className: ClassName,
 ) {
-    val getterFqName = registeredProperty.getterFqName
-    val setterFqName = registeredProperty.setterFqName
-    if (getterFqName != null) {
+    if (registeredProperty.bindingKind == RegisteredPropertyBindingKind.ACCESSOR_METHODS) {
+        val getterFqName = registeredProperty.getterFqName
+        val setterFqName = registeredProperty.setterFqName
+        requireNotNull(getterFqName) {
+            "Property ${registeredProperty.name} should have a getter when using accessor binding"
+        }
         requireNotNull(setterFqName) {
             "Property ${registeredProperty.name} with getter $getterFqName should also have a setter"
         }
 
         addStatement(
-            "bitFieldProperty(%S, %L, %L, %T.%L, %S)",
+            "bitFieldProperty(%S, %L, %L, %T.%L, %L)",
             registeredProperty.name.convertToSnakeCase(),
             getGetterReference(registeredProperty, className),
             getSetterReference(registeredProperty, className),
             PropertyUsageFlags::class, getPropertyUsage(registeredProperty),
-            buildHintString(registeredProperty, context),
+            buildHintStringCode(registeredProperty, context),
         )
         return
     }
 
     addStatement(
-        "bitFieldProperty(%L, %T.%L, %S)",
+        "bitFieldProperty(%L, %T.%L, %L)",
         getPropertyReference(registeredProperty, className),
         PropertyUsageFlags::class, getPropertyUsage(registeredProperty),
-        buildHintString(registeredProperty, context),
+        buildHintStringCode(registeredProperty, context),
     )
 }
 
-private fun buildHintString(
+private val enumHintStringMember = MemberName("godot.registration", "enumHintString")
+private val enumListHintStringMember = MemberName("godot.registration", "enumListHintString")
+
+private fun buildHintStringCode(
     registeredProperty: RegisteredProperty,
     context: GeneratorContext,
-): String = PropertyHintStringGeneratorProvider
-    .provide(registeredProperty, context)
-    .getHintString()
-    .replace("?", "")
+): CodeBlock {
+    val enumHint = registeredProperty.hints.filterIsInstance<EnumHint>().firstOrNull()
+    if (enumHint != null) {
+        val enumClassName = ClassName(
+            enumHint.enumFqName.substringBeforeLast("."),
+            enumHint.enumFqName.substringAfterLast("."),
+        )
+        val helper = if (enumHint is EnumListHintStringHint) enumListHintStringMember else enumHintStringMember
+        return CodeBlock.of("%M(%T.entries.toTypedArray())", helper, enumClassName)
+    }
+
+    return CodeBlock.of(
+        "%S",
+        PropertyHintStringGeneratorProvider
+            .provide(registeredProperty, context)
+            .getHintString()
+            .replace("?", "")
+    )
+}
 
 private fun getPropertyReference(registeredProperty: RegisteredProperty, className: ClassName): CodeBlock {
-    return className.member(registeredProperty.name).reference()
+    return memberReference(className, registeredProperty.name)
 }
 
 private fun getGetterReference(registeredProperty: RegisteredProperty, className: ClassName): CodeBlock {
     val getterName = requireNotNull(registeredProperty.getterName) {
         "Property ${registeredProperty.fqName} does not have a getter."
     }
-    return className.member(getterName).reference()
+    return memberReference(className, getterName)
 }
 
 private fun getSetterReference(registeredProperty: RegisteredProperty, className: ClassName): CodeBlock {
     val setterName = requireNotNull(registeredProperty.setterName) {
         "Property ${registeredProperty.fqName} does not have a setter."
     }
-    return className.member(setterName).reference()
+    return memberReference(className, setterName)
 }
+
+private fun memberReference(className: ClassName, memberName: String): CodeBlock =
+    if (memberName.isPlainKotlinIdentifier()) {
+        CodeBlock.of("%T::%L", className, memberName)
+    } else {
+        CodeBlock.builder()
+            .add("%T::", className)
+            .add("`")
+            .add(memberName)
+            .add("`")
+            .build()
+    }
 
 private fun getPropertyUsage(registeredProperty: RegisteredProperty): String =
     if (registeredProperty.isExported) "DEFAULT" else "NONE"
+
+private fun String.isPlainKotlinIdentifier(): Boolean {
+    if (isEmpty()) {
+        return false
+    }
+    if (!(first() == '_' || first().isLetter())) {
+        return false
+    }
+    return drop(1).all { char -> char == '_' || char.isLetterOrDigit() }
+}

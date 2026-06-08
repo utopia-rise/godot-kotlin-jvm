@@ -7,6 +7,7 @@ package godot.annotation
  *
  * Also you can only register functions that receive and return either primitives, Objects derived from Godot classes or Objects wrapped in `Variant`
  */
-@Target(AnnotationTarget.FUNCTION)
+@Target(AnnotationTarget.FUNCTION, AnnotationTarget.ANNOTATION_CLASS)
 @Retention(AnnotationRetention.RUNTIME)
-annotation class RegisterFunction
+annotation class Register
+

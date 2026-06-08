@@ -76,6 +76,7 @@ nav:
     - Consuming libraries: user-guide/consuming-libraries.md
     - Advanced:
       - Abstract classes: user-guide/advanced/abstract-classes.md
+      - Registration logic: user-guide/advanced/registration-logic.md
       - Cleanup operations: user-guide/advanced/cleanup-operations.md
       - Gradle plugin configuration: user-guide/advanced/gradle-plugin-configuration.md
       - Command-line and configuration arguments: user-guide/advanced/commandline-args-and-configuration.md
@@ -94,6 +95,8 @@ nav:
     - Knowledge base:
         - Artifact differentiation: contribution/knowledge-base/artifact-differentiation.md
         - Registrar generation: contribution/knowledge-base/registrar-generation.md
+        - Annotation placement across languages: contribution/knowledge-base/annotation-placement-across-languages.md
+        - Reconstructing shapes from bytecode: contribution/knowledge-base/reconstructing-shapes-from-bytecode.md
         - Signal and callable generation: contribution/knowledge-base/signals-and-callables-generation.md
         - Shared buffer: contribution/knowledge-base/shared-buffer.md
         - Memory management: contribution/knowledge-base/memory-management.md

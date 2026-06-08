@@ -10,8 +10,6 @@ import godot.common.util.RealT
 import godot.core.*
 import godot.registrar.generator.GeneratorContext
 import godot.registration.model.types.GodotBaseClass
-import godot.registration.model.types.GodotClass
-import godot.registration.model.types.ScriptFamily
 import godot.registration.model.types.ScriptClass
 import godot.registration.model.types.Type
 import godot.registration.model.types.TypeKind
@@ -153,7 +151,8 @@ private object TypeMetadataRegistry {
         -> when {
             type.fqName == callableType.fqName || isAssignableTo(type, Callable::class.java) -> callableType
             type.fqName == signalType.fqName || isAssignableTo(type, Signal::class.java) -> signalType
-            else -> Type.getCoreType(type.fqName)
+            type.kind == TypeKind.PRIMITIVE -> Type.findPrimitiveType(type.fqName)
+            else -> Type.findCoreType(type.fqName)
         }
         TypeKind.OTHER -> if (type.fqName == TYPE_VOID) {
             nilType
@@ -185,7 +184,7 @@ private object TypeMetadataRegistry {
             godotTypeName = GODOT_INT,
         )
 
-        TypeKind.CLASS,
+        TypeKind.GODOT_CLASS,
         TypeKind.INTERFACE,
         -> parserMetadata(
             memberName = "OBJECT",
@@ -213,7 +212,7 @@ private fun typeVariantTypeOrdinal(type: Type): Int? = when (type.kind) {
     TypeKind.ENUM,
     TypeKind.BITFIELD,
     -> VariantParser.LONG.id
-    TypeKind.CLASS,
+    TypeKind.GODOT_CLASS,
     TypeKind.INTERFACE,
     -> VariantParser.OBJECT.id
 }
@@ -267,9 +266,6 @@ fun Type.isDictionary(): Boolean = isSubtypeOf(Dictionary::class.java)
 
 fun Type.isResource(): Boolean =
     fqName == requireNotNull(Resource::class.qualifiedName) || baseGodotType()?.fqName == Resource::class.qualifiedName
-
-internal fun ScriptFamily.parentScriptFamily(): ScriptFamily? =
-    (this as? GodotClass)?.parent as? ScriptFamily
 
 private fun Type.registeredOrBaseGodotClassName(context: GeneratorContext): String {
     val baseGodotType = baseGodotType()

@@ -1,7 +1,7 @@
 package godot.intellij.plugin.project
 
 import com.intellij.psi.PsiClass
-import godot.annotation.RegisterClass
+import godot.annotation.Script
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.psi.KtClass
 import org.jetbrains.kotlin.psi.KtValueArgument
@@ -9,7 +9,7 @@ import org.jetbrains.kotlin.scripting.resolve.classId
 
 fun KtClass.getRegisteredClassName(): Pair<String, String>? {
     val fqName = fqName?.asString() ?: return null
-    val registerClassAnnotation = findAnnotation(RegisterClass::class.classId)
+    val registerClassAnnotation = findAnnotation(Script::class.classId)
     val customName = registerClassAnnotation
         ?.valueArgumentList
         ?.arguments
@@ -25,7 +25,7 @@ fun KtClass.getRegisteredClassName(): Pair<String, String>? {
 
 fun PsiClass.getRegisteredClassName(): Pair<String, String>? {
     val fqName = qualifiedName ?: return null
-    val customName = getAnnotation(RegisterClass::class.qualifiedName!!)
+    val customName = getAnnotation(Script::class.qualifiedName!!)
         ?.findAttributeValue("className")
         ?.text
         ?.removeSurrounding("\"")
@@ -40,3 +40,5 @@ private fun List<KtValueArgument>.firstNamedOrPositionalClassNameArgument(): KtV
     return firstOrNull { argument -> argument.getArgumentName()?.asName?.asString() == "className" }
         ?: firstOrNull { argument -> !argument.isNamed() }
 }
+
+

@@ -1,7 +1,7 @@
 # godot-registration
 
-Tooling that turns compiled user code annotated with `@RegisterClass`, `@RegisterFunction`,
-`@RegisterProperty`, and `@RegisterSignal` into the registrar source and `.gdj` registration files Godot
+Tooling that turns compiled user code annotated with `@Script`, `@Register`,
+`@Visible`, and `@Emit` into the registrar source and `.gdj` registration files Godot
 needs at runtime.
 
 This directory is an umbrella Gradle module. During development its three child modules are separate jars;
@@ -35,6 +35,32 @@ orchestrates the whole flow.
 | `godot-registration-model`           | Shared IR and validation layer. Owns `ScriptClass`, registered members, type hierarchy nodes, property hints, and model checks. | `ModelCheck.check(...)`                                                |
 | `godot-registrar-generator`          | Back-end. Consumes validated models and emits registrar Kotlin source, service metadata, and generator-side JVM type helpers.   | `RegistrarGenerator.generateRegistrarFilesUsingRegisteredClasses(...)` |
 
+## Property And Method Intent
+
+The symbol processor rebuilds JVM property shape before registration selection. A method can be
+accessor-shaped without being forced to register only as a property.
+
+The current split is:
+
+- `godot-class-graph-symbol-processor` detects property shape from JVM fields and accessor-shaped methods.
+- `RegistrationMapper` resolves registration intent.
+
+For accessor-shaped methods:
+
+- `@Visible` marks property intent.
+- `@Register` marks function intent.
+- no annotation defaults to property intent.
+- both annotations register both a property and a function.
+
+This is especially important for Java custom `getX()` / `setX()` APIs and Kotlin computed properties.
+
+In explicit mode, method registration is now truly annotation-only:
+
+- `@Register` is required for methods
+- overriding a Godot base method does not auto-register it
+
+Godot base overrides are only auto-selected in inferred mode.
+
 ## Model Shape
 
 The main top-level output is `ScriptClass`, not the old entry-generation `Clazz` or `RegisteredClass`.
@@ -55,8 +81,26 @@ The symbol processor also uses lightweight referenced hierarchy nodes for proper
 `ReferencedGodotClass` and `ReferencedScriptInterface`. They preserve ancestry for checks like
 `Type.isNodeType()` without recursively materializing all registered members of referenced classes.
 
+The member lists on `ScriptClass` and `ScriptInterface` are local-only. Parent and interface links are
+preserved separately.
+
+`RegisteredFunctionConfiguration`, `RegisteredPropertyConfiguration`, and `RegisteredSignalConfiguration`
+were removed. The final model now stores direct values instead of one-field configuration wrappers:
+
+- `RegisteredFunction` stores `rpcConfig` directly
+- `RegisteredSignal` stores `parameterNames` directly
+- `RegisteredProperty` stores `isExported`, binding strategy, and accessor names directly
+
 `JvmType` is not part of this shared model. It now lives in `godot-registrar-generator` because it is only a
 generator-side JVM type bucketing helper used by hint validation and fqname matching.
+
+Properties also carry their generator binding strategy explicitly:
+
+- `PROPERTY_REFERENCE`
+- `ACCESSOR_METHODS`
+
+This keeps the generator dumb. It no longer has to guess whether a property should be emitted as
+`Class::property` or `Class::getter` / `Class::setter`.
 
 ## Validation
 
@@ -80,6 +124,39 @@ The generator computes registered names with `ScriptClass.getRegisteredName(sett
 
 The final name is sanitized by replacing `.` and `-` with `_`.
 
+## Generator Hierarchy Behavior
+
+The generator is not local-only even though the model is.
+
+For one registrar, `godot-registrar-generator` walks parent classes and interfaces through the preserved
+hierarchy references, then generates an effective inherited view:
+
+- properties: local + inherited, deduplicated by property name
+- signals: local + inherited, deduplicated by signal name
+- functions: local + inherited, deduplicated by function signature
+
+Local members are added first, so child overrides win and inherited duplicates are dropped during
+generation.
+
+For property emission, the generator follows the property binding already chosen by the processor:
+
+- Kotlin properties use `Class::property`
+- Java field-only properties use `Class::property`
+- Java bean-style and Scala accessor properties use explicit accessor references
+
+Scala setter names such as `name_$eq` are emitted with escaped Kotlin member references.
+
+## Language Detection
+
+`JvmLanguage` selection is source-file based:
+
+- `.kt` -> Kotlin
+- `.scala` -> Scala
+- `.java` -> Java
+
+If a candidate script class cannot be matched to one of those source origins, the processor emits a warning
+and skips that class instead of failing the whole run.
+
 ## Building
 
 From the `kt/` Gradle build:
@@ -98,3 +175,5 @@ cd harness/tests
 
 The thin jar carries the `thin` classifier. The shadow jar is the primary `godot-registration` artifact and
 is published without external POM dependencies because the runtime dependencies are bundled.
+
+

@@ -126,7 +126,7 @@ cd kt/
 ### Data Flow (User Code → Runtime)
 
 ```
-User writes @RegisterClass Kotlin code
+User writes @GodotScript Kotlin code
   → Kotlin compiler + ClassGraph bytecode processor
   → registrar-generator produces registration glue
   → godot-gradle-plugin packages godot-bootstrap.jar + main.jar
@@ -195,3 +195,4 @@ Workflows in `.github/workflows/`. The canonical Godot version and JDK version (
 - Building with C# (Mono): `docs/src/doc/contribution/build-with-csharp-support.md`
 
 Serve docs locally: `cd docs/ && ./run.sh`
+

@@ -10,6 +10,7 @@ import com.squareup.kotlinpoet.STAR
 import com.squareup.kotlinpoet.TypeSpec
 import com.squareup.kotlinpoet.asClassName
 import godot.registrar.generator.GeneratorContext
+import godot.registrar.generator.ext.baseGodotClassName
 import godot.registrar.generator.ext.flattenedHierarchy
 import godot.registrar.generator.ext.getRegisteredName
 import godot.registrar.generator.generator.addFunctionRegistrations
@@ -57,11 +58,11 @@ class RegistrarClassGenerator(
             )
         }
 
-        classRegistrarBuilder.addFunction(buildRegisterFunction(registeredClass, registeredClassName))
+        classRegistrarBuilder.addFunction(buildRegister(registeredClass, registeredClassName))
         return classRegistrarBuilder.build()
     }
 
-    private fun buildRegisterFunction(
+    private fun buildRegister(
         registeredClass: ScriptClass,
         registeredClassName: String,
     ): FunSpec {
@@ -75,9 +76,9 @@ class RegistrarClassGenerator(
 
         if (!registeredClass.isAbstract) {
             registerFunctionBuilder.addStatement("constructor(::%T)", className)
-            registerFunctionBuilder.addSignalRegistrations(registeredClass, context, className)
+            registerFunctionBuilder.addSignalRegistrations(registeredClass, context)
             registerFunctionBuilder.addPropertyRegistrations(registeredClass, context, className)
-            registerFunctionBuilder.addNotificationRegistrations(registeredClass)
+            registerFunctionBuilder.addNotificationRegistrations(registeredClass, context)
             registerFunctionBuilder.addFunctionRegistrations(registeredClass, context, className)
         }
 
@@ -90,7 +91,7 @@ class RegistrarClassGenerator(
         registeredClassName: String,
         className: ClassName,
     ): CodeBlock {
-        val superClasses = registeredClass.flattenedHierarchy()
+        val superClasses = registeredClass.flattenedHierarchy(context)
             .filterIsInstance<ScriptClass>()
             .filter { it.isRegistered && !it.isAbstract }
             .joinToString(",") { "\"${it.getRegisteredName(context.settings)}\"" }
@@ -100,7 +101,7 @@ class RegistrarClassGenerator(
             .indent()
             .add("%S,\n", registeredClassName)
             .add("listOf($superClasses),\n")
-            .add("%S,\n", registeredClass.baseGodotClass)
+            .add("%S,\n", registeredClass.baseGodotClassName())
             .add("%T::class\n", className)
             .unindent()
             .add(") {\n")
@@ -108,3 +109,4 @@ class RegistrarClassGenerator(
             .build()
     }
 }
+

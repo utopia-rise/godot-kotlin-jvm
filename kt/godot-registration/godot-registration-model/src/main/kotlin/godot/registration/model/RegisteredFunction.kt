@@ -32,8 +32,4 @@ data class RegisteredFunction(
 ) {
     val name: String
         get() = fqName.substringAfterLast(".")
-
-    val isRpc: Boolean
-        get() = rpcConfig != null
 }
-

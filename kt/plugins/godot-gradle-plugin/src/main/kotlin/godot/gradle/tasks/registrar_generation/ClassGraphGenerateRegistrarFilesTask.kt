@@ -1,5 +1,6 @@
 package godot.gradle.tasks
 
+import godot.annotation.processor.classgraph.AnnotationProcessingMode
 import godot.annotation.processor.classgraph.ClassGraphProcessor
 import godot.annotation.processor.classgraph.ProcessorSettings
 import godot.gradle.projectExt.godotJvmExtension
@@ -69,6 +70,9 @@ abstract class ClassGraphGenerateRegistrarFilesTask : DefaultTask() {
 
     @get:Input
     abstract val fullRebuildThreshold: Property<Int>
+
+    @get:Input
+    abstract val annotationProcessingMode: Property<AnnotationProcessingMode>
 
     @get:OutputDirectory
     abstract val generatedSourceRootDir: DirectoryProperty
@@ -161,17 +165,18 @@ abstract class ClassGraphGenerateRegistrarFilesTask : DefaultTask() {
         }
 
         val serviceFile = registrarServiceFile(outputRoot)
-        val allRegisteredClasses = ClassGraphProcessor.process(
+        val scriptClasses = ClassGraphProcessor.process(
             runtimeClassPathFiles = runtimeClassPath,
             settings = processorSettings,
         )
+        val allRegisteredClasses = scriptClasses.filter { scriptClass -> scriptClass.isRegistered }
 
         validateRegisteredClasses(allRegisteredClasses, settings, modelLogger)
 
-        RegistrarGenerator.generateClassArtifactsUsingRegisteredClasses(
+        RegistrarGenerator.generateClassArtifacts(
             settings = settings,
             logger = modelLogger,
-            registeredClasses = allRegisteredClasses,
+            scriptClasses = scriptClasses,
             sourceOutputDir = outputRoot.resolve("main").resolve("kotlin"),
             registrationOutputDir = generatedRegistrationRoot.takeUnless { disableGdj.get() },
         )
@@ -207,10 +212,12 @@ abstract class ClassGraphGenerateRegistrarFilesTask : DefaultTask() {
             seedClassNames = changedClassNames,
         )
 
-        validateRegisteredClasses(incrementalResult.registeredClasses, settings, modelLogger)
-
         val dirtyClassNames = incrementalResult.dirtyClassNames + changedClassNames
-        val newEntriesBySourceFqName = incrementalResult.registeredClasses
+        val registeredClasses = incrementalResult.scriptClasses
+            .filter { scriptClass -> scriptClass.isRegistered && scriptClass.fqName in dirtyClassNames }
+        validateRegisteredClasses(registeredClasses, settings, modelLogger)
+
+        val newEntriesBySourceFqName = registeredClasses
             .associate { scriptClass ->
                 scriptClass.fqName to scriptClass.toGeneratedRegistrarManifestEntry(
                     settings = settings,
@@ -225,12 +232,13 @@ abstract class ClassGraphGenerateRegistrarFilesTask : DefaultTask() {
         validateRegisteredNames(nextManifestEntries.values, settings)
         deleteDirtyArtifacts(previousManifest, dirtyClassNames, outputRoot, generatedRegistrationRoot)
 
-        RegistrarGenerator.generateClassArtifactsUsingRegisteredClasses(
+        RegistrarGenerator.generateClassArtifacts(
             settings = settings,
             logger = modelLogger,
-            registeredClasses = incrementalResult.registeredClasses,
+            scriptClasses = incrementalResult.scriptClasses,
             sourceOutputDir = outputRoot.resolve("main").resolve("kotlin"),
             registrationOutputDir = generatedRegistrationRoot.takeUnless { disableGdj.get() },
+            generatedClassFqNames = dirtyClassNames,
         )
 
         writeRegistrarServiceFile(serviceFile, nextManifestEntries.values)
@@ -248,6 +256,7 @@ abstract class ClassGraphGenerateRegistrarFilesTask : DefaultTask() {
     private fun buildProcessorSettings() = ProcessorSettings(
         projectName = projectName.get(),
         userCodeClassPathRoots = userCodeClassPathRoots.files.map { it.canonicalFile }.toSet(),
+        annotationProcessingMode = annotationProcessingMode.get(),
     )
 
     private fun registrarServiceFile(outputRoot: File): File = outputRoot
@@ -497,6 +506,7 @@ fun Project.registrarGenerationGenerateFilesTask(
         task.registrationFileIndentation.convention(godotJvmExtension.registrationFilesIndentation)
         task.disableGdj.convention(godotJvmExtension.disableGdj)
         task.fullRebuildThreshold.convention(godotJvmExtension.registrarIncrementalFullBuildThreshold)
+        task.annotationProcessingMode.convention(godotJvmExtension.annotationProcessingMode)
         task.generatedSourceRootDir.convention(generatedSourceRootDir)
         task.generatedRegistrationFilesRootDir.convention(generatedRegistrationRootDir)
         task.generatedRegistrarManifestFile.convention(

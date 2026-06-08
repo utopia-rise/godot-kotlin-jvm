@@ -3,12 +3,12 @@
 
 registeredName = SignalTest
 fqName = godot.tests.signal.SignalTest
-baseType = godot.api.Node
+baseType = Node
 supertypes = [
-    godot.api.Node,
-    godot.api.Object
+    
 ]
 signals = [
+    inferred_no_param_signal_delegate,
     no_param_signal_delegate,
     one_param_signal_delegate,
     two_param_signal_delegate,

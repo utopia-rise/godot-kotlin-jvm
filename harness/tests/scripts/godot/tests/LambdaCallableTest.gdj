@@ -3,10 +3,9 @@
 
 registeredName = LambdaCallableTest
 fqName = godot.tests.LambdaCallableTest
-baseType = godot.api.Node
+baseType = Node
 supertypes = [
-    godot.api.Node,
-    godot.api.Object
+    
 ]
 signals = [
     signal_no_param,

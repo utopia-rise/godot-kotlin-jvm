@@ -3,10 +3,9 @@
 
 registeredName = GH571_ReflectionTest
 fqName = godot.tests.reflection.GH571_ReflectionTest
-baseType = godot.api.Node
+baseType = Node
 supertypes = [
-    godot.api.Node,
-    godot.api.Object
+    
 ]
 signals = [
     

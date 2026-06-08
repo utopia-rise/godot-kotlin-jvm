@@ -1,6 +1,6 @@
 package godot.intellij.plugin.analysis.kotlin.reference
 
-import godot.annotation.RegisterFunction
+import godot.annotation.Register
 import godot.core.KtObject
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.analysis.GodotProblem
@@ -35,7 +35,7 @@ object CallFunctionReferenceAnalyzer {
                 .mainReference
                 .resolve() as? KtNamedFunction
 
-            val registerFunctionAnnotation = targetFunction?.findAnnotation(RegisterFunction::class.classId)
+            val registerFunctionAnnotation = targetFunction?.findAnnotation(Register::class.classId)
             if (targetFunction != null && registerFunctionAnnotation == null) {
                 return listOf(
                     GodotProblem(
@@ -59,3 +59,4 @@ object CallFunctionReferenceAnalyzer {
             (callReference.mainReference.resolve() as? KtNamedFunction)?.fqName?.asString() == godotApiPackage + ".${callReference.text}"
     }
 }
+

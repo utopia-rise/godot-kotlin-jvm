@@ -3,10 +3,9 @@
 
 registeredName = FreeformRegistrationFileTestClass
 fqName = godot.tests.freeform.FreeformRegistrationFileTestClass
-baseType = godot.api.Node
+baseType = Node
 supertypes = [
-    godot.api.Node,
-    godot.api.Object
+    
 ]
 signals = [
     

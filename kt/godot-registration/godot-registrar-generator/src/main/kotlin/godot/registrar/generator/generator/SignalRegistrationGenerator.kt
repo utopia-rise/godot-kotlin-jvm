@@ -1,11 +1,9 @@
 package godot.registrar.generator.generator
 
-import com.squareup.kotlinpoet.ClassName
-import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FunSpec
-import com.squareup.kotlinpoet.MemberName.Companion.member
 import godot.core.VariantCaster
 import godot.registrar.generator.GeneratorContext
+import godot.registrar.generator.ext.effectiveSignals
 import godot.registrar.generator.ext.toGodotClassName
 import godot.registrar.generator.ext.toKtVariantMemberName
 import godot.registration.model.RegisteredSignal
@@ -14,18 +12,17 @@ import godot.registration.model.types.ScriptClass
 fun FunSpec.Builder.addSignalRegistrations(
     registeredClass: ScriptClass,
     context: GeneratorContext,
-    className: ClassName,
 ) {
-    registeredClass.signals.forEach { registeredSignal ->
+    registeredClass.effectiveSignals(context).forEach { registeredSignal ->
         addStatement(
             getSignalTemplate(registeredSignal),
-            *getSignalTemplateArguments(registeredSignal, context, className)
+            *getSignalTemplateArguments(registeredSignal, context)
         )
     }
 }
 
 private fun getSignalTemplate(registeredSignal: RegisteredSignal): String = buildString {
-    append(if (registeredSignal.isFunctionReference) "signalFunction(%L" else "signalProperty(%L")
+    append("signal(%S")
     repeat(maxOf(registeredSignal.parameterTypes.size, registeredSignal.parameterNames.size)) {
         append(", argument(%M, %S, %S)")
     }
@@ -35,9 +32,8 @@ private fun getSignalTemplate(registeredSignal: RegisteredSignal): String = buil
 private fun getSignalTemplateArguments(
     registeredSignal: RegisteredSignal,
     context: GeneratorContext,
-    className: ClassName,
 ): Array<Any> = buildList {
-    add(getSignalReference(registeredSignal, className))
+    add(registeredSignal.name)
 
     if (registeredSignal.parameterTypes.size >= registeredSignal.parameterNames.size) {
         registeredSignal.parameterTypes.forEachIndexed { index, argumentType ->
@@ -55,7 +51,3 @@ private fun getSignalTemplateArguments(
         }
     }
 }.toTypedArray()
-
-private fun getSignalReference(registeredSignal: RegisteredSignal, className: ClassName): CodeBlock {
-    return className.member(registeredSignal.name).reference()
-}

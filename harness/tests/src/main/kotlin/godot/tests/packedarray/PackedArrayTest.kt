@@ -1,8 +1,8 @@
 package godot.tests.packedarray
 
 import godot.api.Node
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
+import godot.annotation.Script
+import godot.annotation.Register
 import godot.core.Color
 import godot.core.PackedByteArray
 import godot.core.PackedColorArray
@@ -27,119 +27,121 @@ import godot.core.toPackedVector3Array
 import godot.core.toPackedVector4Array
 import godot.core.variantArrayOf
 
-@RegisterClass
+@Script
 class PackedArrayTest : Node() {
 
-    @RegisterFunction
+    @Register
     fun convertByteArray(): PackedByteArray {
         val arr = byteArrayOf(0, 1, 2, 4, 8, 16, 32, 64, 127)
         return arr.toPackedByteArray();
     }
 
-    @RegisterFunction
+    @Register
     fun convertIntArray(): PackedInt32Array {
         val arr = intArrayOf(0, 1, 2, 4, 8, 16, 32, 64, 127)
         return arr.toPackedInt32Array();
     }
 
-    @RegisterFunction
+    @Register
     fun convertLongArray(): PackedInt64Array {
         val arr = longArrayOf(0L, 1L, 2L, 4L, 8L, 16L, 32L, 64L, 127L)
         return arr.toPackedInt64Array();
     }
 
-    @RegisterFunction
+    @Register
     fun convertFloatArray(): PackedFloat32Array {
         val arr = floatArrayOf(0f, 1f, 2f, 4f, 8f, 16f, 32f, 64f, 127f)
         return arr.toPackedFloat32Array();
     }
 
-    @RegisterFunction
+    @Register
     fun convertDoubleArray(): PackedFloat64Array {
         val arr = doubleArrayOf(0.0, 1.0, 2.0, 4.0, 8.0, 16.0, 32.0, 64.0, 127.0)
         return arr.toPackedFloat64Array();
     }
 
-    @RegisterFunction
+    @Register
     fun convertColorArray(): PackedColorArray {
         val arr = listOf(Color(0.0, 1.0, 2.0, 3.0), Color(4.0, 5.0, 6.0, 7.0), Color(8.0, 9.0, 10.0, 11.0), Color(1024.0, 2048.0, 4096.0, 8092.0))
         return arr.toPackedColorArray();
     }
 
-    @RegisterFunction
+    @Register
     fun convertVector2Array(): PackedVector2Array {
         val arr = arrayOf(Vector2(0.0, 1.0), Vector2(2.0, 3.0), Vector2(4.0, 5.0), Vector2(1024.0, 2048.0))
         return arr.toPackedVector2Array();
     }
 
-    @RegisterFunction
+    @Register
     fun convertVector2VariantArray(): PackedVector2Array {
         return PackedVector2Array(variantArrayOf<Vector2>(Vector2(0.0, 1.0), Vector2(2.0, 3.0)))
     }
 
-    @RegisterFunction
+    @Register
     fun convertVector3Array(): PackedVector3Array {
         val arr = arrayOf(Vector3(0.0, 1.0, 2.0), Vector3(3.0, 4.0, 5.0), Vector3(6.0, 7.0, 8.0), Vector3(1024.0, 2048.0, 4096.0))
         return arr.toPackedVector3Array();
     }
 
-    @RegisterFunction
+    @Register
     fun convertVector4Array(): PackedVector4Array {
         val arr = arrayOf(Vector4(0.0, 1.0, 2.0, 3.0), Vector4(4.0, 5.0, 6.0, 7.0), Vector4(8.0, 9.0, 10.0, 11.0), Vector4(1024.0, 2048.0, 4096.0, 8092.0))
         return arr.toPackedVector4Array();
     }
 
-    @RegisterFunction
+    @Register
     fun getByteArrayValue(arr: PackedByteArray, index: Int): Byte {
         val kotlinArr = arr.toByteArray()
         return kotlinArr[index];
     }
 
-    @RegisterFunction
+    @Register
     fun getIntArrayValue(arr: PackedInt32Array, index: Int): Int {
         val kotlinArr = arr.toIntArray()
         return kotlinArr[index];
     }
 
-    @RegisterFunction
+    @Register
     fun getLongArrayValue(arr: PackedInt64Array, index: Int): Long {
         val kotlinArr = arr.toLongArray()
         return kotlinArr[index];
     }
 
-    @RegisterFunction
+    @Register
     fun getFloatArrayValue(arr: PackedFloat32Array, index: Int): Float {
         val kotlinArr = arr.toFloatArray()
         return kotlinArr[index];
     }
 
-    @RegisterFunction
+    @Register
     fun getDoubleArrayValue(arr: PackedFloat64Array, index: Int): Double {
         val kotlinArr = arr.toDoubleArray()
         return kotlinArr[index];
     }
 
-    @RegisterFunction
+    @Register
     fun getColorArrayValue(arr: PackedColorArray, index: Int): Color {
         val kotlinArr = arr.toColorArray()
         return kotlinArr[index];
     }
 
-    @RegisterFunction
+    @Register
     fun getVector2ArrayValue(arr: PackedVector2Array, index: Int): Vector2 {
         val kotlinArr = arr.toVector2Array()
         return kotlinArr[index];
     }
 
-    @RegisterFunction
+    @Register
     fun getVector3ArrayValue(arr: PackedVector3Array, index: Int): Vector3 {
         val kotlinArr = arr.toVector3Array()
         return kotlinArr[index];
     }
 
-    @RegisterFunction
+    @Register
     fun getVector4ArrayValue(arr: PackedVector4Array, index: Int): Vector4 {
         val kotlinArr = arr.toVector4Array()
         return kotlinArr[index];
     }
 }
+
+

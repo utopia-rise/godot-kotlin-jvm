@@ -3,10 +3,9 @@
 
 registeredName = PackedArrayTest
 fqName = godot.tests.packedarray.PackedArrayTest
-baseType = godot.api.Node
+baseType = Node
 supertypes = [
-    godot.api.Node,
-    godot.api.Object
+    
 ]
 signals = [
     

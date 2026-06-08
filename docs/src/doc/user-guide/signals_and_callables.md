@@ -55,19 +55,19 @@ Here, the signal and callable arity is part of the type:
 
 /// tab | Kotlin
 ```kotlin
-@RegisterClass
+@Script
 class Player : Node() {
-    @RegisterSignal("current", "max")
+    @Emit("current", "max")
     val healthChanged by signal2<Int, Int>()
 
-    @RegisterFunction
+    @Register
     override fun _ready() {
         val onHealthChangedCallable = methodCallable2(this, Player::onHealthChanged)
         healthChanged.connect(onHealthChangedCallable)
         healthChanged.emit(24, 100)
     }
 
-    @RegisterFunction
+    @Register
     fun onHealthChanged(current: Int, max: Int) {
         println("$current / $max")
     }
@@ -78,12 +78,12 @@ class Player : Node() {
 
 /// tab | Java
 ```java
-@RegisterClass
+@Script
 public class Player extends Node {
-    @RegisterSignal
+    @Emit
     private final Signal0 finished = Signal0.create(this, "finished");
 
-    @RegisterFunction
+    @Register
     @Override
     public void _ready() {
         AnimatedSprite2D sprite = new AnimatedSprite2D();
@@ -99,12 +99,12 @@ public class Player extends Node {
 
 /// tab | Scala
 ```scala
-@RegisterClass
+@Script
 class Player extends Node {
-  @RegisterSignal
+  @Emit
   val finished: Signal0 = Signal0.create(this, "finished")
 
-  @RegisterFunction
+  @Register
   override def _ready(): Unit = {
     val sprite = new AnimatedSprite2D()
     val pauseCallable = MethodCallable0.create(sprite, AnimatedSprite2D.pauseName)
@@ -159,9 +159,9 @@ The conversion to Godot's `snake_case` name happens automatically.
 Kotlin also provides a delegate syntax, which is usually the recommended form for Kotlin classes:
 
 ```kotlin
-@RegisterClass
+@Script
 class Player : Node() {
-    @RegisterSignal("current", "max")
+    @Emit("current", "max")
     val healthChanged by signal2<Int, Int>()
 }
 ```
@@ -217,9 +217,9 @@ Kotlin and Java/Scala reach that goal differently:
 #### Kotlin
 
 ```kotlin
-@RegisterClass
+@Script
 class UiController : Node() {
-    @RegisterFunction
+    @Register
     fun onHealthChanged(current: Int, max: Int) {
         println("UI update: $current / $max")
     }
@@ -595,9 +595,9 @@ This avoids having to rebuild the same callable manually later or keep the raw s
 
 /// tab | Kotlin
 ```kotlin
-@RegisterClass
+@Script
 class Player : Node() {
-    @RegisterSignal("current", "max")
+    @Emit("current", "max")
     val healthChanged by signal2<Int, Int>()
 
     fun damage(amount: Int) {
@@ -605,15 +605,15 @@ class Player : Node() {
     }
 }
 
-@RegisterClass
+@Script
 class UiController : Node() {
-    @RegisterFunction
+    @Register
     fun onHealthChanged(current: Int, max: Int) {
         println("UI update: $current / $max")
     }
 }
 
-@RegisterClass
+@Script
 class GameScene : Node() {
     private val player = Player()
     private val ui = UiController()
@@ -635,9 +635,9 @@ class GameScene : Node() {
 
 /// tab | Java
 ```java
-@RegisterClass
+@Script
 public class Player extends Node {
-    @RegisterSignal(parameters = {"current", "max"})
+    @Emit(parameters = {"current", "max"})
     public final Signal2<Integer, Integer> healthChanged = Signal2.create(this, "healthChanged");
 
     public void damage(int amount) {
@@ -645,15 +645,15 @@ public class Player extends Node {
     }
 }
 
-@RegisterClass
+@Script
 public class UiController extends Node {
-    @RegisterFunction
+    @Register
     public void onHealthChanged(int current, int max) {
         System.out.println("UI update: " + current + " / " + max);
     }
 }
 
-@RegisterClass
+@Script
 public class GameScene extends Node {
     private final Player player = new Player();
     private final AnimatedSprite2D sprite = new AnimatedSprite2D();
@@ -681,9 +681,9 @@ public class GameScene extends Node {
 
 /// tab | Scala
 ```scala
-@RegisterClass
+@Script
 class Player extends Node {
-  @RegisterSignal(parameters = Array("current", "max"))
+  @Emit(parameters = Array("current", "max"))
   val healthChanged: Signal2[Integer, Integer] = Signal2.create(this, "healthChanged")
 
   def damage(amount: Int): Unit = {
@@ -691,15 +691,15 @@ class Player extends Node {
   }
 }
 
-@RegisterClass
+@Script
 class UiController extends Node {
-  @RegisterFunction
+  @Register
   def onHealthChanged(current: Int, max: Int): Unit = {
     println(s"UI update: $current / $max")
   }
 }
 
-@RegisterClass
+@Script
 class GameScene extends Node {
   private val player = new Player()
   private val sprite = new AnimatedSprite2D()
@@ -732,3 +732,5 @@ For consistency with Godot, signals are registered to Godot in `snake_case`.
 For example, a property named `healthChanged` is exposed to Godot as `health_changed`.
 When you create a signal wrapper manually with `SignalN.create(...)`, pass the original property name.
 The wrapper converts it to the Godot name automatically.
+
+

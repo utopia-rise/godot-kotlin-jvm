@@ -9,7 +9,7 @@ import com.intellij.openapi.project.Project
 import godot.intellij.plugin.GodotPluginBundle
 import org.jetbrains.kotlin.psi.KtPsiFactory
 
-class RegisterPropertyMutabilityQuickFix : LocalQuickFix {
+class VisibleMutabilityQuickFix : LocalQuickFix {
     override fun getFamilyName(): String = GodotPluginBundle.message("quickFix.property.mutability.familyName")
 
     override fun applyFix(project: Project, descriptor: ProblemDescriptor) {
@@ -32,3 +32,4 @@ class RegisterPropertyMutabilityQuickFix : LocalQuickFix {
         }
     }
 }
+

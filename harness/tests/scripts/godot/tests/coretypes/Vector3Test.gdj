@@ -3,10 +3,9 @@
 
 registeredName = Vector3Test
 fqName = godot.tests.coretypes.Vector3Test
-baseType = godot.api.Node
+baseType = Node
 supertypes = [
-    godot.api.Node,
-    godot.api.Object
+    
 ]
 signals = [
     

@@ -1,8 +1,8 @@
 package godot.tests.inheritance
 
-import godot.annotation.RegisterFunction
+import godot.annotation.Register
 
 interface TestInterface {
-    @RegisterFunction
+    @Register
     fun doThing()
 }

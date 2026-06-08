@@ -3,9 +3,9 @@
 
 registeredName = CoroutineTest
 fqName = godot.tests.coroutine.CoroutineTest
-baseType = godot.api.Object
+baseType = Object
 supertypes = [
-    godot.api.Object
+    
 ]
 signals = [
     signal_without_parameter,

@@ -1,15 +1,16 @@
 package GROUP_ID
 
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
+import godot.annotation.GodotScript
+import godot.annotation.Register
 import godot.api.Node3D
 import godot.global.GD
 
-@RegisterClass
+@GodotScript
 class SimpleScala extends Node3D {
 
-    @RegisterFunction
+    @Register
     override def _ready(): Unit = {
         GD.print("Hello world!")
     }
 }
+

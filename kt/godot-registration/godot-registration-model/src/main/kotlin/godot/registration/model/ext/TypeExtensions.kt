@@ -1,7 +1,5 @@
 package godot.registration.model.ext
 
-import godot.api.Node
-import godot.api.RefCounted
 import godot.common.util.NaturalT
 import godot.common.util.RealT
 import godot.registration.model.types.GodotClass
@@ -17,19 +15,10 @@ import godot.registration.model.types.TYPE_LONG
 import godot.registration.model.types.TYPE_SHORT
 import godot.tools.common.constants.isCollectionsType
 
-private fun Type.hasGodotAncestor(fqName: String): Boolean {
-    if (kind != TypeKind.CLASS) {
-        return false
-    }
-
-    val godotClass = this as? GodotClass ?: return false
-    return godotClass.fqName == fqName || godotClass.allAncestry.any { it.fqName == fqName }
-}
-
 fun Type.isCoreType(): Boolean = kind == TypeKind.CORE_TYPE
 
 fun Type.isNodeType(): Boolean {
-    return hasGodotAncestor(requireNotNull(Node::class.qualifiedName))
+    return (this as? GodotClass)?.isOrInherits(godot.api.Node::class.java.name) == true
 }
 
 fun Type.isKotlinCollection(): Boolean = isCollectionsType(fqName)
@@ -66,7 +55,18 @@ fun Type.isEnum(): Boolean = kind == TypeKind.ENUM
 fun Type.isBitField(): Boolean = kind == TypeKind.BITFIELD
 
 fun Type.isRefCounted(): Boolean =
-    hasGodotAncestor(requireNotNull(RefCounted::class.qualifiedName))
+    (this as? GodotClass)?.isOrInherits(godot.api.RefCounted::class.java.name) == true
+
+private fun GodotClass.isOrInherits(targetFqName: String): Boolean {
+    var current: GodotClass? = this
+    while (current != null) {
+        if (current.fqName == targetFqName) {
+            return true
+        }
+        current = current.parent
+    }
+    return false
+}
 
 fun Type.isGodotPrimitive(): Boolean = when (fqName) {
     TYPE_INT,

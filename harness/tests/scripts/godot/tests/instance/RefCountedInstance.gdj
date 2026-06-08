@@ -3,10 +3,9 @@
 
 registeredName = RefCountedInstance
 fqName = godot.tests.instance.RefCountedInstance
-baseType = godot.api.RefCounted
+baseType = RefCounted
 supertypes = [
-    godot.api.RefCounted,
-    godot.api.Object
+    
 ]
 signals = [
     

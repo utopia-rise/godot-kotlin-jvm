@@ -3,10 +3,9 @@
 
 registeredName = HelloFromScala
 fqName = godot.tests.HelloFromScala
-baseType = godot.api.Node
+baseType = Node
 supertypes = [
-    godot.api.Node,
-    godot.api.Object
+    
 ]
 signals = [
     

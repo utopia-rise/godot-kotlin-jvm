@@ -265,19 +265,9 @@ class KtClassBuilder<T : KtObject>(
         functions[function.functionInfo.name] = function
     }
 
-    fun <T> signalProperty(kProperty: KProperty<T>, vararg parameters: KtPropertyInfo) = signal(
-        kProperty.name.convertToSnakeCase(),
-        *parameters
-    )
-
-    fun <T : Signal> signalFunction(kFunction: KFunction<T>, vararg parameters: KtPropertyInfo) = signal(
-        kFunction.name.convertToSnakeCase(),
-        *parameters
-    )
-
-    private fun signal(name: String, vararg parameters: KtPropertyInfo) {
+    fun signal(name: String, vararg parameters: KtPropertyInfo) {
         val signalInfo = KtSignalInfo(
-            name,
+            name.convertToSnakeCase(),
             parameters.toList()
         )
         require(!signals.containsKey(signalInfo.name)) {

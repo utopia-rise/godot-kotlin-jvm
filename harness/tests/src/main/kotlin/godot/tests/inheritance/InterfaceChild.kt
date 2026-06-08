@@ -1,13 +1,14 @@
 package godot.tests.inheritance
 
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
+import godot.annotation.Script
+import godot.annotation.Register
 import godot.api.Node
 
-@RegisterClass
+@Script
 class InterfaceChild : Node(), TestInterface {
-    @RegisterFunction
+    @Register
     override fun doThing() {
 
     }
 }
+

@@ -5,7 +5,7 @@
 namespace {
 constexpr const char* PACKAGE_KEYWORD = "package";
 constexpr const char* CLASS_KEYWORD = "class";
-constexpr const char* REGISTER_CLASS_ANNOTATION = "@RegisterClass";
+constexpr const char* REGISTER_CLASS_ANNOTATION = "@GodotScript";
 
 _FORCE_INLINE_ bool is_end_of_source(const String& source, int index) {
     return index >= source.length();
@@ -189,7 +189,7 @@ void skip_register_class_annotation_arguments(const String& source, int register
             }
 
             if (is_end_of_source(source, current_index)) {
-                JVM_LOG_WARNING("Cannot parse @RegisterClass argument, found unclosed string literal");
+                JVM_LOG_WARNING("Cannot parse @GodotScript argument, found unclosed string literal");
                 r_class_search_index = source.length();
                 return;
             }
@@ -251,3 +251,4 @@ StringName parse_source_script_info(const String& p_source_code) {
     return fq_name.is_empty() ? StringName() : StringName(fq_name);
 }
 #endif
+

@@ -5,8 +5,10 @@ package godot.annotation
  *
  * Only core types and references can be exported.
  *
- * The property needs to have the @[RegisterProperty] annotation added as well
+ * The property needs to have the @[Visible] annotation added as well
  */
-@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
+
+@Target(AnnotationTarget.FIELD, AnnotationTarget.ANNOTATION_CLASS)
 @Retention(AnnotationRetention.RUNTIME)
+@Visible
 annotation class Export

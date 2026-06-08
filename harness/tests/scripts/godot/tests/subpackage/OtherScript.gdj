@@ -3,10 +3,9 @@
 
 registeredName = OtherScript
 fqName = godot.tests.subpackage.OtherScript
-baseType = godot.api.Node
+baseType = Node
 supertypes = [
-    godot.api.Node,
-    godot.api.Object
+    
 ]
 signals = [
     

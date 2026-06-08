@@ -3,10 +3,9 @@
 
 registeredName = SimpleJava
 fqName = godot.tests.library.SimpleJava
-baseType = godot.api.Node
+baseType = Node
 supertypes = [
-    godot.api.Node,
-    godot.api.Object
+    
 ]
 signals = [
     

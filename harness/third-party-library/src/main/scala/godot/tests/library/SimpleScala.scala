@@ -1,14 +1,16 @@
 package godot.tests.library
 
-import godot.annotation.{Export, RegisterClass, RegisterFunction, RegisterProperty}
+import godot.annotation.{Export, Script, Register, Visible}
 import godot.api.Node
 
-@RegisterClass
+@Script
 class SimpleScala extends Node:
 
   @Export
-  @RegisterProperty
+  @Visible
   var testProperty: String = "Hello from third-party-library!"
 
-  @RegisterFunction
+  @Register
   def provideGreeting(): String = testProperty
+
+

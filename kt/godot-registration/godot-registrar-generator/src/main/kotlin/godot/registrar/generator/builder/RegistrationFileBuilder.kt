@@ -1,6 +1,11 @@
 package godot.registrar.generator.builder
 
 import godot.common.extensions.convertToSnakeCase
+import godot.registrar.generator.GeneratorContext
+import godot.registrar.generator.ext.baseGodotClassName
+import godot.registrar.generator.ext.effectiveFunctions
+import godot.registrar.generator.ext.effectiveProperties
+import godot.registrar.generator.ext.effectiveSignals
 import godot.registrar.generator.ext.flattenedHierarchy
 import godot.registrar.generator.ext.getRegisteredName
 import godot.registrar.generator.ext.provideRegistrationFileRelativePath
@@ -10,6 +15,7 @@ import godot.registration.model.types.ScriptClass
 import java.io.File
 
 class RegistrationFileBuilder(
+    private val context: GeneratorContext,
     private val settings: Settings,
     private val outputDir: File,
 ) {
@@ -34,24 +40,24 @@ class RegistrationFileBuilder(
                     |
                     |registeredName = $registeredClassName
                     |fqName = ${registeredClass.fqName}
-                    |baseType = ${registeredClass.baseGodotClass}
+                    |baseType = ${registeredClass.baseGodotClassName().simpleName()}
                     |supertypes = [
                     |$listItemIndent${
-                registeredClass.flattenedHierarchy().joinToString(multilineListSeparator) { it.fqName.trim() }
+                registeredClass.flattenedHierarchy(context).joinToString(multilineListSeparator) {
+                    it.fqName.simpleName()
+                }
             }
                     |]
                     |signals = [
                     |$listItemIndent${
-                registeredClass.signals.joinToString(multilineListSeparator) {
-                    it.fqName.substringAfterLast(
-                        "."
-                    ).trim().convertToSnakeCase()
+                registeredClass.effectiveSignals(context).joinToString(multilineListSeparator) {
+                    it.name.trim().convertToSnakeCase()
                 }
             }
                     |]
                     |properties = [
                     |$listItemIndent${
-                registeredClass.properties.joinToString(multilineListSeparator) {
+                registeredClass.effectiveProperties(context).joinToString(multilineListSeparator) {
                     it.fqName.substringAfterLast(
                         "."
                     ).trim().convertToSnakeCase()
@@ -60,7 +66,7 @@ class RegistrationFileBuilder(
                     |]
                     |functions = [
                     |$listItemIndent${
-                registeredClass.functions.joinToString(multilineListSeparator) {
+                registeredClass.effectiveFunctions(context).joinToString(multilineListSeparator) {
                     it.fqName.substringAfterLast(
                         "."
                     ).trim().convertToSnakeCase()
@@ -70,4 +76,6 @@ class RegistrationFileBuilder(
                 """.trimMargin()
         )
     }
+
+    private fun String.simpleName(): String = substringAfterLast(".").trim()
 }
