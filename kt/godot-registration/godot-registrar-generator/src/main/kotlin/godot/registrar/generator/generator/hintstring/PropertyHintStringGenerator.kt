@@ -7,7 +7,7 @@ import godot.registration.model.hint.property.PropertyHint
 abstract class PropertyHintStringGenerator<ANNOTATION_TYPE : PropertyHint>(
     val registeredProperty: RegisteredProperty,
     protected val context: GeneratorContext,
-) {
+) : HintStringGenerator {
     @Suppress("UNCHECKED_CAST")
     protected val propertyHintAnnotation = registeredProperty
         .hints
@@ -17,4 +17,6 @@ abstract class PropertyHintStringGenerator<ANNOTATION_TYPE : PropertyHint>(
      * Hint string formatting: https://github.com/godotengine/godot/blob/dcd11faad3802679a43b27155f1b6bc59aa39b60/core/object.h
      */
     abstract fun getHintString(): String
+
+    override fun generate(): String = getHintString()
 }

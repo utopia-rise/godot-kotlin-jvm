@@ -4,6 +4,7 @@ package godot.annotation.processor.classgraph.policy
 
 import godot.annotation.Emit
 import godot.annotation.Export
+import godot.annotation.Notification
 import godot.annotation.Register
 import godot.annotation.Script
 import godot.annotation.Visible
@@ -68,7 +69,8 @@ private class ExplicitRegistrationPolicy(
     override fun selectSignal(signal: LogicalSignal): Boolean = hasAnnotation(signal, Emit::class)
 
     override fun selectMethod(method: LogicalMethod, owner: ClassInfo): Boolean =
-        hasAnnotation(method, Register::class)
+        hasAnnotation(method, Register::class) ||
+            hasAnnotation(method, Notification::class)
 
     override fun isPropertyExported(property: LogicalProperty): Boolean = hasAnnotation(property, Export::class)
 }

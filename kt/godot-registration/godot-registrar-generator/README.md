@@ -46,7 +46,17 @@ Functions:
 - deduplicated by function signature
 - the current signature key is function name + parameter type fqNames
 
-Notification functions are also collected through the hierarchy before generation.
+Notification handlers:
+
+- stored as regular functions with notification metadata
+- selected by `RegisteredFunction.notification`
+- generated through repeated `notification(id, Class::method)` calls
+- not exposed as regular callable Godot methods
+- not deduplicated by notification id, so several methods can handle the same notification
+
+Notification handlers are collected through the hierarchy before generation. They are registered in child-to-parent
+order, matching the runtime storage order. At dispatch time, normal Godot notification delivery walks that list in
+reverse for parent-to-child calls, while reversed delivery walks it forward for child-to-parent calls.
 
 ## Override Behavior
 

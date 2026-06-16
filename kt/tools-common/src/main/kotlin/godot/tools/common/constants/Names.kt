@@ -53,8 +53,6 @@ const val GODOT_SCRIPT = "Script"
 const val GODOT_MULTIPLAYER_API = "MultiplayerAPI"
 const val GODOT_MULTIPLAYER_PEER = "MultiplayerPeer"
 
-
-const val notificationFunction = "_notification"
 val lifecycleFunctions = listOf(
     "_ready",
     "_enterTree",

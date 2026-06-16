@@ -2,6 +2,7 @@ package godot.annotation.processor.classgraph.mapper
 
 import godot.annotation.Emit
 import godot.annotation.GodotBaseType
+import godot.annotation.Notification
 import godot.annotation.Register
 import godot.annotation.Rpc
 import godot.annotation.RpcMode
@@ -359,8 +360,14 @@ class RegistrationMapper(
                         typeArguments = methodInfo.returnTypeArguments(),
                     ),
                     rpcConfig = functionRpcConfig(method),
+                    notification = notification(method),
                 )
             }
+
+            fun notification(method: LogicalMethod): Int? =
+                policy.findAnnotation(method, Notification::class)
+                    ?.parameterValues
+                    ?.getValue("value") as? Int
 
             fun mapProperty(
                 property: LogicalProperty,

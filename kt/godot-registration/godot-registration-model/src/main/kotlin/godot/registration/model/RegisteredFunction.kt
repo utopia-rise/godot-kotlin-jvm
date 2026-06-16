@@ -29,6 +29,7 @@ data class RegisteredFunction(
     val parameters: List<ValueParameter> = emptyList(),
     val returnType: Type = Type.nilType,
     val rpcConfig: RpcConfig? = null,
+    val notification: Int? = null,
 ) {
     val name: String
         get() = fqName.substringAfterLast(".")

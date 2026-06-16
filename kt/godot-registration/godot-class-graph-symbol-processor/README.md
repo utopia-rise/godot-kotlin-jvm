@@ -106,8 +106,9 @@ For a method that is both accessor-shaped and callable-shaped:
 
 - `@Visible` marks property intent
 - `@Register` marks function intent
+- `@Notification` marks notification handler intent
 - no annotation defaults to property intent
-- both annotations register both a property and a function
+- combined annotations can register both a property and a callable or notification function
 
 `JvmLanguage` only detects the language shape. The mapper decides whether an accessor-shaped method is registered as a property, a function, or both.
 
@@ -135,7 +136,7 @@ Only directly annotated symbols are registered.
 
 - class: `@Script`
 - property: `@Visible`
-- method: `@Register`
+- method: `@Register` or `@Notification`
 - signal: `@Emit`
 
 Meta-annotations are not expanded.
@@ -149,7 +150,7 @@ Meta-annotations are expanded.
 - class: anything carrying `@Script`
 - property: anything carrying `@Visible`
 - signal: any logical signal
-- method: anything carrying `@Register`
+- method: anything carrying `@Register` or `@Notification`
 
 Godot base method overrides are also registered when their JVM signature is mappable.
 
@@ -163,6 +164,10 @@ Everything compatible is registered.
 - property: every logical property with a mappable type
 
 Automatic properties are exported by default.
+
+`@Notification` is still required for a selected method to become a notification handler in every mode. The mapper
+stores the annotation value on the resulting `RegisteredFunction`; the generator later uses that value to emit
+notification registration instead of normal method registration.
 
 ## Boundaries
 

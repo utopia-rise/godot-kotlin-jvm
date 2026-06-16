@@ -20,6 +20,7 @@ object ModelCheck {
             ConstructorCheck(logger, registeredClasses).execute(),
 
             FunctionArgCountCheck(logger, registeredClasses).execute(),
+            NotificationFunctionCheck(logger, registeredClasses).execute(),
             registeredNameProvider?.let { provider ->
                 RegisteredNameUniquenessCheck(logger, registeredClasses, provider).execute()
             } ?: false,
@@ -28,6 +29,7 @@ object ModelCheck {
             SourceClassCheck(logger, registeredClasses).execute(),
 
             PropertyTypeCheck(logger, registeredClasses).execute(),
+            PropertyHintCountCheck(logger, registeredClasses).execute(),
             PropertyHintCheck(logger, registeredClasses).execute(),
             BitFieldEntryCountCheck(logger, registeredClasses).execute(),
             LateinitPropertyCheck(logger, registeredClasses).execute(),

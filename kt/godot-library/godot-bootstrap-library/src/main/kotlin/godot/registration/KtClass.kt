@@ -1,10 +1,15 @@
 package godot.registration
 
 import godot.core.KtObject
-import godot.core.NotificationFunction
 import godot.core.VariantParser
 import godot.internal.memory.TransferContext
 import kotlin.reflect.KClass
+import kotlin.reflect.KFunction1
+
+data class KtNotification<T : KtObject>(
+    val notification: Int,
+    val function: KFunction1<T, Unit>,
+)
 
 @Suppress("unused")
 data class KtClass<T : KtObject>(
@@ -15,7 +20,7 @@ data class KtClass<T : KtObject>(
     val constructor: KtConstructor<T>,
     private val _properties: Map<String, KtProperty<T, *>>,
     private val _functions: Map<String, KtFunction<T, *>>,
-    private val _notificationFunctions: List<NotificationFunction<out KtObject>>,
+    private val _notifications: List<KtNotification<T>>,
     private val _signalInfos: Map<String, KtSignalInfo>,
     val baseGodotClass: String
 ) {
@@ -27,8 +32,11 @@ data class KtClass<T : KtObject>(
         get() = _properties.values.toTypedArray()
     val signalInfos: Array<KtSignalInfo>
         get() = _signalInfos.values.toTypedArray()
-    val hasNotification: Boolean
-        get() = _notificationFunctions.isNotEmpty()
+    val handledNotifications: IntArray
+        get() = _notifications
+            .map { registeredNotification -> registeredNotification.notification }
+            .distinct()
+            .toIntArray()
 
     fun doNotification(instance: T) {
         val parameters = arrayOfNulls<Any>(2)
@@ -44,23 +52,24 @@ data class KtClass<T : KtObject>(
         require(reversed is Boolean)
 
         if (reversed) {
-            for (notificationFunction in _notificationFunctions) {
-                doNotification(notificationFunction, instance, notification.toInt())
+            for (registeredNotification in _notifications) {
+                doNotification(registeredNotification, instance, notification.toInt())
             }
             return
         }
 
-        for (i in _notificationFunctions.size - 1 downTo 0) {
-            doNotification(_notificationFunctions[i], instance, notification.toInt())
+        for (i in _notifications.size - 1 downTo 0) {
+            doNotification(_notifications[i], instance, notification.toInt())
         }
     }
 
-    @Suppress("UNCHECKED_CAST")
     private fun doNotification(
-        notificationFunction: NotificationFunction<out KtObject>,
+        registeredNotification: KtNotification<T>,
         instance: T,
         notification: Int
     ) {
-        (notificationFunction as NotificationFunction<T>).invoke(instance, notification)
+        if (registeredNotification.notification == notification) {
+            registeredNotification.function(instance)
+        }
     }
 }

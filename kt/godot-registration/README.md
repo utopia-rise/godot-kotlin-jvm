@@ -1,7 +1,7 @@
 # godot-registration
 
 Tooling that turns compiled user code annotated with `@Script`, `@Register`,
-`@Visible`, and `@Emit` into the registrar source and `.gdj` registration files Godot
+`@Notification`, `@Visible`, and `@Emit` into the registrar source and `.gdj` registration files Godot
 needs at runtime.
 
 This directory is an umbrella Gradle module. During development its three child modules are separate jars;
@@ -57,9 +57,15 @@ This is especially important for Java custom `getX()` / `setX()` APIs and Kotlin
 In explicit mode, method registration is now truly annotation-only:
 
 - `@Register` is required for methods
+- `@Notification` is required for notification handlers
 - overriding a Godot base method does not auto-register it
 
 Godot base overrides are only auto-selected in inferred mode.
+
+Notification handlers stay in `ScriptClass.functions` as `RegisteredFunction` entries with a notification id.
+The generator emits them through the registrar's `notification(id, Class::method)` API instead of exposing them
+as regular callable methods. A notification handler must be public, take no arguments, return `Unit`, and must not
+be an RPC function.
 
 ## Model Shape
 
@@ -88,6 +94,7 @@ preserved separately.
 were removed. The final model now stores direct values instead of one-field configuration wrappers:
 
 - `RegisteredFunction` stores `rpcConfig` directly
+- `RegisteredFunction.notification` stores the handled notification id, when the function is a notification handler
 - `RegisteredSignal` stores `parameterNames` directly
 - `RegisteredProperty` stores `isExported`, binding strategy, and accessor names directly
 
@@ -108,8 +115,8 @@ Validation belongs in `godot-registration-model`, under `checks/`. The processor
 objects; the generator assumes the model was already checked.
 
 `ModelCheck` executes every check and reports all issues before returning failure. Current checks cover
-constructor shape, function argument count, signal type usage, property type/mutability/lateinit/nullability,
-RPC usage, and optional registered-name uniqueness.
+constructor shape, function argument count, notification handler shape, signal type usage,
+property type/mutability/lateinit/nullability, RPC usage, and optional registered-name uniqueness.
 
 Registered-name uniqueness is enabled by the Gradle task only for `RegisteredNameMode.SIMPLE_NAME`, where
 two classes from different packages can otherwise collapse to the same Godot registered name.

@@ -164,6 +164,10 @@ class Invocation : Node3D() {
 
 	@Export
 	@Visible
+	var nestedDictionary: Dictionary<Int, Dictionary<Int, Int>> = dictionaryOf()
+
+	@Export
+	@Visible
 	var nullableDictionary = dictionaryOf(
 		"notnull" to NavigationMesh(),
 		"null" to null

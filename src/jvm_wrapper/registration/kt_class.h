@@ -3,6 +3,7 @@
 
 #include "constraints.h"
 #include "core/object/ref_counted.h"
+#include "core/templates/hash_set.h"
 #include "jni/wrapper.h"
 #include "jvm_wrapper/jvm_instance_wrapper.h"
 #include "kt_constructor.h"
@@ -22,7 +23,7 @@ JVM_INSTANCE_WRAPPER(KtClass, "godot.registration.KtClass") {
     JNI_OBJECT_METHOD(GET_PROPERTIES)
     JNI_OBJECT_METHOD(GET_SIGNAL_INFOS)
     JNI_OBJECT_METHOD(GET_CONSTRUCTOR)
-    JNI_BOOLEAN_METHOD(GET_HAS_NOTIFICATION)
+    JNI_OBJECT_METHOD(GET_HANDLED_NOTIFICATIONS)
     JNI_VOID_METHOD(DO_NOTIFICATION)
 
     INIT_JNI_BINDINGS(
@@ -34,7 +35,7 @@ JVM_INSTANCE_WRAPPER(KtClass, "godot.registration.KtClass") {
         INIT_JNI_METHOD(GET_PROPERTIES, "getProperties", "()[Lgodot/registration/KtProperty;")
         INIT_JNI_METHOD(GET_SIGNAL_INFOS, "getSignalInfos", "()[Lgodot/registration/KtSignalInfo;")
         INIT_JNI_METHOD(GET_CONSTRUCTOR, "getConstructor", "()Lgodot/registration/KtConstructor;")
-        INIT_JNI_METHOD(GET_HAS_NOTIFICATION, "getHasNotification", "()Z")
+        INIT_JNI_METHOD(GET_HANDLED_NOTIFICATIONS, "getHandledNotifications", "()[I")
         INIT_JNI_METHOD(DO_NOTIFICATION, "doNotification", "(Lgodot/core/KtObject;)V")
     )
 
@@ -74,8 +75,8 @@ private:
     HashMap<StringName, KtFunction*> methods;
     HashMap<StringName, KtProperty*> properties;
     HashMap<StringName, KtSignalInfo*> signal_infos;
+    HashSet<int> handled_notifications;
     KtConstructor* kt_constructor;
-    bool _has_notification;
 
     String get_registered_name(jni::Env& env);
 
@@ -83,7 +84,7 @@ private:
 
     StringName get_base_godot_class(jni::Env& env);
 
-    bool get_has_notification(jni::Env& env);
+    void fetch_handled_notifications(jni::Env& env);
 
     void fetch_registered_supertypes(jni::Env& env);
 

@@ -9,6 +9,9 @@ import godot.common.util.NaturalT
 import godot.common.util.RealT
 import godot.core.*
 import godot.registrar.generator.GeneratorContext
+import godot.registration.model.ext.isCoreType
+import godot.registration.model.ext.isGodotPrimitive
+import godot.registration.model.ext.isNodeType
 import godot.registration.model.types.GodotBaseClass
 import godot.registration.model.types.ScriptClass
 import godot.registration.model.types.Type

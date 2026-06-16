@@ -15,7 +15,7 @@ class KtClassBuilder<T : KtObject>(
     private lateinit var constructorField: KtConstructor<T>
 
     private val functions = mutableMapOf<String, KtFunction<T, *>>()
-    private var notificationFunctions = listOf<NotificationFunction<out KtObject>>()
+    private val notifications = mutableListOf<KtNotification<T>>()
 
     @PublishedApi
     internal val properties = mutableMapOf<String, KtProperty<T, *>>()
@@ -186,20 +186,11 @@ class KtClassBuilder<T : KtObject>(
     internal fun propertyUsage(usage: PropertyUsageFlags, isMutable: Boolean): Long =
         if (isMutable) usage.flag else usage.flag or PropertyUsageFlags.READ_ONLY
 
-    /**
-     * Notification functions of class hierarchy
-     *
-     * Order: child to parent
-     *
-     * Only present if the notification function is registered and is overriding [KtObject._notification].
-     *
-     * **Note:** Manually declared functions with name `_notification` are not supposed to be added to this list even if
-     * the return type and parameters match!
-     */
-    fun notificationFunctions(
-        notificationFunctionsOfClassHierarchy: List<NotificationFunction<out KtObject>>
+    fun notification(
+        notification: Int,
+        function: KFunction1<T, Unit>,
     ) {
-        notificationFunctions = notificationFunctionsOfClassHierarchy
+        notifications.add(KtNotification(notification, function))
     }
 
     @Suppress("UNCHECKED_CAST")
@@ -301,7 +292,7 @@ class KtClassBuilder<T : KtObject>(
             constructor = constructorField,
             _properties = properties,
             _functions = functions,
-            _notificationFunctions = notificationFunctions,
+            _notifications = notifications,
             _signalInfos = signals,
             baseGodotClass = baseGodotClass
         )

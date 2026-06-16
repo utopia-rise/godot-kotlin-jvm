@@ -11,63 +11,37 @@ import godot.api.MultiplayerPeer
 import godot.registrar.generator.GeneratorContext
 import godot.registrar.generator.ext.effectiveFunctions
 import godot.registrar.generator.ext.flattenedHierarchy
-import godot.registrar.generator.ext.inheritsRefCounted
 import godot.registrar.generator.ext.toGodotClassName
 import godot.registrar.generator.ext.toKtVariantMemberName
 import godot.registrar.generator.ext.asEnumName
 import godot.registration.model.RegisteredFunction
 import godot.registration.model.ext.isEnum
 import godot.registration.model.types.ScriptClass
-import godot.tools.common.constants.godotCorePackage
-import godot.tools.common.constants.kotlinCollectionsPackage
-import godot.tools.common.constants.notificationFunction
 
 fun FunSpec.Builder.addNotificationRegistrations(
     registeredClass: ScriptClass,
     context: GeneratorContext,
 ) {
-    val notificationFunctions = mapOf(
-        *registeredClass.functions
-            .filter { registeredFunction -> registeredFunction.isNotificationFunction() }
-            .map { registeredClass to it }
-            .toTypedArray(),
-        *registeredClass.flattenedHierarchy(context)
+    val notificationFunctions = registeredClass.functions
+        .filter { registeredFunction -> registeredFunction.notification != null }
+        .map { registeredClass to it } +
+        registeredClass.flattenedHierarchy(context)
             .filterIsInstance<ScriptClass>()
             .flatMap { registeredSuperClass ->
                 registeredSuperClass.functions
-                    .filter { registeredSuperClassFunction -> registeredSuperClassFunction.isNotificationFunction() }
+                    .filter { registeredSuperClassFunction -> registeredSuperClassFunction.notification != null }
                     .map { registeredSuperClass to it }
             }
-            .toTypedArray()
-    )
 
-    val notificationClasses = notificationFunctions.keys.toList()
-
-    for (i in notificationClasses.indices) {
-        val notificationClass = notificationClasses[i]
+    notificationFunctions.forEach { (notificationClass, registeredFunction) ->
         addStatement(
-            "val notificationFunctionClass$i = %T()",
-            ClassName(notificationClass.containingPackage, notificationClass.name)
+            "notification(%L, %L)",
+            registeredFunction.notification!!,
+            getFunctionReference(
+                registeredFunction,
+                ClassName(notificationClass.containingPackage, notificationClass.name),
+            ),
         )
-    }
-
-    addStatement(
-        "notificationFunctions(%M(${(0 until notificationFunctions.size).joinToString(", ") { "%L.%L().%L" }}))",
-        MemberName(kotlinCollectionsPackage, "listOf"),
-        *notificationClasses.indices.flatMap {
-            listOf(
-                "notificationFunctionClass$it",
-                notificationFunction,
-                "block"
-            )
-        }.toTypedArray()
-    )
-
-    for (i in notificationClasses.indices) {
-        val notificationClass = notificationClasses[i]
-        if (!notificationClass.inheritsRefCounted()) {
-            addStatement("notificationFunctionClass$i.free()")
-        }
     }
 }
 
@@ -77,7 +51,7 @@ fun FunSpec.Builder.addFunctionRegistrations(
     className: ClassName,
 ) {
     registeredClass.effectiveFunctions(context)
-        .filter { it.name != notificationFunction }
+        .filter { registeredFunction -> registeredFunction.notification == null }
         .forEach { registeredFunction ->
             addStatement(
                 getFunctionTemplateString(registeredFunction),
@@ -85,11 +59,6 @@ fun FunSpec.Builder.addFunctionRegistrations(
             )
         }
 }
-
-private fun RegisteredFunction.isNotificationFunction() =
-    name == notificationFunction &&
-        parameters.isEmpty() &&
-        returnType.fqName == "$godotCorePackage.GodotNotification"
 
 private fun getFunctionTemplateString(registeredFunction: RegisteredFunction) = buildString {
     val variantType = if (registeredFunction.returnType.isEnum()) {

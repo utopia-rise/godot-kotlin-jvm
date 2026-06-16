@@ -1,7 +1,6 @@
 package godot.registration.model.checks
 
 import godot.core.Dictionary
-import godot.core.GodotNotification
 import godot.core.VariantArray
 import godot.registration.model.logging.Logger
 import godot.registration.model.ext.isJavaCollection
@@ -52,7 +51,6 @@ class SourceClassCheck(logger: Logger, registeredClasses: List<ScriptClass>) : B
             .flatMap(Type::relevantSignatureTypes)
             .filterIsInstance<SourceClass>()
             .filter { sourceClass -> sourceClass::class == SourceClass::class }
-            .filterNot { sourceClass -> sourceClass.fqName == GodotNotification::class.qualifiedName }
             .distinctBy(SourceClass::fqName)
             .forEach { sourceClass ->
                 hasIssue = true

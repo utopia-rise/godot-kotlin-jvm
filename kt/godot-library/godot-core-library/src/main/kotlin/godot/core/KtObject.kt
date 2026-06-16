@@ -10,12 +10,6 @@ import godot.internal.memory.TransferContext
 import godot.internal.reflection.TypeManager
 import kotlin.contracts.ExperimentalContracts
 
-class GodotNotification(val block: NotificationFunction<out KtObject>)
-
-fun interface NotificationFunction<T : KtObject> {
-    fun invoke(obj: T, notification: Int)
-}
-
 @OptIn(ExperimentalContracts::class)
 @Suppress("LeakingThis", "FunctionName")
 abstract class KtObject : NativeWrapper {
@@ -66,17 +60,6 @@ abstract class KtObject : NativeWrapper {
     open fun _set(name: StringName, value: Any): Unit = throw NotImplementedError("_set is not implemented for Object")
     open fun _toString(): String = throw NotImplementedError("_toString is not implemented for Object")
     open fun _validateProperty(): Boolean = throw NotImplementedError("_validateProperty is not implemented for Object")
-
-
-    open fun _notification(): GodotNotification = GodotNotification { _, _ -> }
-
-    @JvmName("kotlinNotification")
-    protected inline fun <T : KtObject> T.godotNotification(crossinline block: T.(Int) -> Unit): GodotNotification {
-        return GodotNotification(NotificationFunction<T> { obj, notification -> obj.block(notification) })
-    }
-
-    @JvmName("godotNotification")
-    protected fun <T : KtObject> godotNotification(block: NotificationFunction<T>) = GodotNotification(block)
 
     fun free() = freeObject(ptr)
 
