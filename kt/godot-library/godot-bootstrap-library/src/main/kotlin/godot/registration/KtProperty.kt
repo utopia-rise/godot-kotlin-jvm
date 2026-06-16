@@ -39,7 +39,7 @@ data class KtPropertyInfo(
 open class KtProperty<T : KtObject, P : Any?>(
     @Suppress("unused") val ktPropertyInfo: KtPropertyInfo,
     protected val getter: (T) -> P,
-    protected val setter: (T, P) -> Unit,
+    protected val setter: ((T, P) -> Unit)?,
     protected val variantConverter: VariantConverter,
 ) {
     open fun callGet(instance: T) {
@@ -53,6 +53,7 @@ open class KtProperty<T : KtObject, P : Any?>(
 
     open fun callSet(instance: T) {
         val arg = extractSetterArgument<P>()
+        val setter = setter ?: return
         try {
             setter(instance, arg)
         } catch (t: Throwable) {
@@ -71,7 +72,7 @@ open class KtProperty<T : KtObject, P : Any?>(
 class KtBitFieldProperty<T : KtObject, P : BitFieldBase<*>>(
     ktPropertyInfo: KtPropertyInfo,
     getter: (T) -> P,
-    setter: (T, P) -> Unit,
+    setter: ((T, P) -> Unit)?,
     val getValueConverter: (P?) -> Int,
     val setValueConverter: (Int) -> P
 ) : KtProperty<T, P>(
@@ -86,14 +87,14 @@ class KtBitFieldProperty<T : KtObject, P : BitFieldBase<*>>(
 
     override fun callSet(instance: T) {
         val arg = extractSetterArgument<Int>()
-        setter(instance, setValueConverter(arg))
+        setter?.invoke(instance, setValueConverter(arg))
     }
 }
 
 class KtEnumListProperty<T : KtObject, P : Enum<P>, L : Collection<P>>(
     ktPropertyInfo: KtPropertyInfo,
     getter: (T) -> L,
-    setter: (T, L) -> Unit,
+    setter: ((T, L) -> Unit)?,
     val getValueConverter: (L?) -> VariantArray<Int>,
     val setValueConverter: (VariantArray<Int>) -> L
 ) : KtProperty<T, L>(
@@ -108,6 +109,6 @@ class KtEnumListProperty<T : KtObject, P : Enum<P>, L : Collection<P>>(
 
     override fun callSet(instance: T) {
         val arg = extractSetterArgument<VariantArray<Int>>()
-        setter(instance, setValueConverter(arg))
+        setter?.invoke(instance, setValueConverter(arg))
     }
 }

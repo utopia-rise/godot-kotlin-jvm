@@ -45,7 +45,7 @@ class KtClassBuilder<T : KtObject>(
     ): KtRpcConfig = KtRpcConfig(rpcMode.ordinal, callLocal, transferMode.ordinal, channel)
 
     fun <P : Any?> property(
-        kProperty: KMutableProperty1<T, P>,
+        kProperty: KProperty1<T, P>,
         variantType: VariantConverter,
         className: String,
         hint: PropertyHint = PropertyHint.NONE,
@@ -54,7 +54,9 @@ class KtClassBuilder<T : KtObject>(
     ) = property(
         kProperty.name.convertToSnakeCase(),
         { instance: T -> kProperty.get(instance) },
-        { instance: T, p: P -> kProperty.set(instance, p) },
+        (kProperty as? KMutableProperty1<T, P>)?.let { mutableProperty ->
+            { instance: T, p: P -> mutableProperty.set(instance, p) }
+        },
         variantType,
         className,
         hint,
@@ -65,7 +67,7 @@ class KtClassBuilder<T : KtObject>(
     fun <P : Any?> property(
         name: String,
         getter: (T) -> P,
-        setter: (T, P) -> Unit,
+        setter: ((T, P) -> Unit)? = null,
         variantType: VariantConverter,
         className: String,
         hint: PropertyHint = PropertyHint.NONE,
@@ -82,7 +84,7 @@ class KtClassBuilder<T : KtObject>(
                 className,
                 hint,
                 hintString,
-                usage.flag
+                propertyUsage(usage, setter != null)
             ),
             getter,
             setter,
@@ -93,7 +95,7 @@ class KtClassBuilder<T : KtObject>(
     inline fun <reified P : Enum<P>, L : Collection<P>> enumListProperty(
         name: String,
         noinline getter: (T) -> L,
-        noinline setter: (T, L) -> Unit,
+        noinline setter: ((T, L) -> Unit)? = null,
         usage: PropertyUsageFlags,
         hintString: String
     ) {
@@ -108,7 +110,7 @@ class KtClassBuilder<T : KtObject>(
                 "Int",
                 PropertyHint.ENUM,
                 hintString,
-                usage.flag,
+                propertyUsage(usage, setter != null),
             ),
             getter,
             setter,
@@ -126,13 +128,15 @@ class KtClassBuilder<T : KtObject>(
     }
 
     inline fun <reified P : Enum<P>, L : Collection<P>> enumListProperty(
-        kProperty: KMutableProperty1<T, L>,
+        kProperty: KProperty1<T, L>,
         usage: PropertyUsageFlags,
         hintString: String
     ) = enumListProperty(
         kProperty.name.convertToSnakeCase(),
         { instance: T -> kProperty.get(instance) },
-        { instance: T, l: L -> kProperty.set(instance, l) },
+        (kProperty as? KMutableProperty1<T, L>)?.let { mutableProperty ->
+            { instance: T, l: L -> mutableProperty.set(instance, l) }
+        },
         usage,
         hintString
     )
@@ -140,7 +144,7 @@ class KtClassBuilder<T : KtObject>(
     fun <E : Enum<E>> bitFieldProperty(
         name: String,
         getter: (T) -> BitField<E>,
-        setter: (T, BitField<E>) -> Unit,
+        setter: ((T, BitField<E>) -> Unit)? = null,
         usage: PropertyUsageFlags,
         hintString: String
     ) {
@@ -155,7 +159,7 @@ class KtClassBuilder<T : KtObject>(
                 "Int",
                 PropertyHint.FLAGS,
                 hintString,
-                usage.flag,
+                propertyUsage(usage, setter != null),
             ),
             getter,
             setter,
@@ -165,16 +169,22 @@ class KtClassBuilder<T : KtObject>(
     }
 
     fun <E : Enum<E>> bitFieldProperty(
-        kProperty: KMutableProperty1<T, BitField<E>>,
+        kProperty: KProperty1<T, BitField<E>>,
         usage: PropertyUsageFlags,
         hintString: String
     ) = bitFieldProperty(
         kProperty.name.convertToSnakeCase(),
         { instance: T -> kProperty.get(instance) },
-        { instance: T, value: BitField<E> -> kProperty.set(instance, value) },
+        (kProperty as? KMutableProperty1<T, BitField<E>>)?.let { mutableProperty ->
+            { instance: T, value: BitField<E> -> mutableProperty.set(instance, value) }
+        },
         usage,
         hintString
     )
+
+    @PublishedApi
+    internal fun propertyUsage(usage: PropertyUsageFlags, isMutable: Boolean): Long =
+        if (isMutable) usage.flag else usage.flag or PropertyUsageFlags.READ_ONLY
 
     /**
      * Notification functions of class hierarchy

@@ -70,47 +70,55 @@ private fun FunSpec.Builder.registerProperty(
         requireNotNull(getterFqName) {
             "Property ${registeredProperty.name} should have a getter when using accessor binding"
         }
-        requireNotNull(setterFqName) {
-            "Property ${registeredProperty.name} with getter $getterFqName should also have a setter"
-        }
-
         if (registeredProperty.type.isEnum()) {
             addStatement(
-                "property(%S, %L, %L, %M(%T.entries.toTypedArray()), %S, %M, %S, %T.%L)",
+                if (setterFqName == null) {
+                    "property(%S, %L, %M(%T.entries.toTypedArray()), %S, %M, %S, %L)"
+                } else {
+                    "property(%S, %L, %L, %M(%T.entries.toTypedArray()), %S, %M, %S, %L)"
+                },
                 registeredProperty.name.convertToSnakeCase(),
                 getGetterReference(registeredProperty, className),
-                getSetterReference(registeredProperty, className),
-                registeredProperty.type.toKtVariantMemberName(),
-                typeClassName,
-                typeGodotName,
-                PropertyTypeHintProvider.provide(registeredProperty),
-                buildHintStringCode(registeredProperty, context),
-                PropertyUsageFlags::class, getPropertyUsage(registeredProperty),
+                *listOfNotNull(
+                    setterFqName?.let { getSetterReference(registeredProperty, className) },
+                    registeredProperty.type.toKtVariantMemberName(),
+                    typeClassName,
+                    typeGodotName,
+                    PropertyTypeHintProvider.provide(registeredProperty),
+                    buildHintStringCode(registeredProperty, context),
+                    getPropertyUsage(registeredProperty),
+                ).toTypedArray(),
             )
         } else {
             addStatement(
-                "property(%S, %L, %L, %M, %S, %M, %L, %T.%L)",
+                if (setterFqName == null) {
+                    "property(%S, %L, %M, %S, %M, %L, %L)"
+                } else {
+                    "property(%S, %L, %L, %M, %S, %M, %L, %L)"
+                },
                 registeredProperty.name.convertToSnakeCase(),
                 getGetterReference(registeredProperty, className),
-                getSetterReference(registeredProperty, className),
-                registeredProperty.type.toKtVariantMemberName(),
-                typeGodotName,
-                PropertyTypeHintProvider.provide(registeredProperty),
-                buildHintStringCode(registeredProperty, context),
-                PropertyUsageFlags::class, getPropertyUsage(registeredProperty),
+                *listOfNotNull(
+                    setterFqName?.let { getSetterReference(registeredProperty, className) },
+                    registeredProperty.type.toKtVariantMemberName(),
+                    typeGodotName,
+                    PropertyTypeHintProvider.provide(registeredProperty),
+                    buildHintStringCode(registeredProperty, context),
+                    getPropertyUsage(registeredProperty),
+                ).toTypedArray(),
             )
         }
         return
     }
 
     addStatement(
-        "property(%L, $variantType, %S, %M, %L, %T.%L)",
+        "property(%L, $variantType, %S, %M, %L, %L)",
         getPropertyReference(registeredProperty, className),
         *variantTypeArguments.toTypedArray(),
         typeGodotName,
         PropertyTypeHintProvider.provide(registeredProperty),
         buildHintStringCode(registeredProperty, context),
-        PropertyUsageFlags::class, getPropertyUsage(registeredProperty),
+        getPropertyUsage(registeredProperty),
     )
 }
 
@@ -125,25 +133,28 @@ private fun FunSpec.Builder.registerEnumListProperty(
         requireNotNull(getterFqName) {
             "Property ${registeredProperty.name} should have a getter when using accessor binding"
         }
-        requireNotNull(setterFqName) {
-            "Property ${registeredProperty.name} with getter $getterFqName should also have a setter"
-        }
 
         addStatement(
-            "enumListProperty(%S, %L, %L, %T.%L, %L)",
+            if (setterFqName == null) {
+                "enumListProperty(%S, %L, %L, %L)"
+            } else {
+                "enumListProperty(%S, %L, %L, %L, %L)"
+            },
             registeredProperty.name.convertToSnakeCase(),
             getGetterReference(registeredProperty, className),
-            getSetterReference(registeredProperty, className),
-            PropertyUsageFlags::class, getPropertyUsage(registeredProperty),
-            buildHintStringCode(registeredProperty, context),
+            *listOfNotNull(
+                setterFqName?.let { getSetterReference(registeredProperty, className) },
+                getPropertyUsage(registeredProperty),
+                buildHintStringCode(registeredProperty, context),
+            ).toTypedArray(),
         )
         return
     }
 
     addStatement(
-        "enumListProperty(%L, %T.%L, %L)",
+        "enumListProperty(%L, %L, %L)",
         getPropertyReference(registeredProperty, className),
-        PropertyUsageFlags::class, getPropertyUsage(registeredProperty),
+        getPropertyUsage(registeredProperty),
         buildHintStringCode(registeredProperty, context),
     )
 }
@@ -159,25 +170,28 @@ private fun FunSpec.Builder.registerBitFieldProperty(
         requireNotNull(getterFqName) {
             "Property ${registeredProperty.name} should have a getter when using accessor binding"
         }
-        requireNotNull(setterFqName) {
-            "Property ${registeredProperty.name} with getter $getterFqName should also have a setter"
-        }
 
         addStatement(
-            "bitFieldProperty(%S, %L, %L, %T.%L, %L)",
+            if (setterFqName == null) {
+                "bitFieldProperty(%S, %L, %L, %L)"
+            } else {
+                "bitFieldProperty(%S, %L, %L, %L, %L)"
+            },
             registeredProperty.name.convertToSnakeCase(),
             getGetterReference(registeredProperty, className),
-            getSetterReference(registeredProperty, className),
-            PropertyUsageFlags::class, getPropertyUsage(registeredProperty),
-            buildHintStringCode(registeredProperty, context),
+            *listOfNotNull(
+                setterFqName?.let { getSetterReference(registeredProperty, className) },
+                getPropertyUsage(registeredProperty),
+                buildHintStringCode(registeredProperty, context),
+            ).toTypedArray(),
         )
         return
     }
 
     addStatement(
-        "bitFieldProperty(%L, %T.%L, %L)",
+        "bitFieldProperty(%L, %L, %L)",
         getPropertyReference(registeredProperty, className),
-        PropertyUsageFlags::class, getPropertyUsage(registeredProperty),
+        getPropertyUsage(registeredProperty),
         buildHintStringCode(registeredProperty, context),
     )
 }
@@ -238,8 +252,19 @@ private fun memberReference(className: ClassName, memberName: String): CodeBlock
             .build()
     }
 
-private fun getPropertyUsage(registeredProperty: RegisteredProperty): String =
-    if (registeredProperty.isExported) "DEFAULT" else "NONE"
+private fun getPropertyUsage(registeredProperty: RegisteredProperty): CodeBlock {
+    val baseUsage = if (registeredProperty.isExported) {
+        CodeBlock.of("%T.DEFAULT", PropertyUsageFlags::class)
+    } else {
+        CodeBlock.of("%T.NONE", PropertyUsageFlags::class)
+    }
+
+    if (registeredProperty.isMutable) {
+        return baseUsage
+    }
+
+    return CodeBlock.of("%L or %T.READ_ONLY", baseUsage, PropertyUsageFlags::class)
+}
 
 private fun String.isPlainKotlinIdentifier(): Boolean {
     if (isEmpty()) {

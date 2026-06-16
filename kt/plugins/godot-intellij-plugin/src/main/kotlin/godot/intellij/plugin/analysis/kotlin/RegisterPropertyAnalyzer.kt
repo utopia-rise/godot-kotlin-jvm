@@ -28,7 +28,6 @@ import godot.intellij.plugin.project.isOrInheritsType
 import godot.intellij.plugin.project.isSupportedJvmType
 import godot.intellij.plugin.project.withType
 import godot.intellij.plugin.quickfix.PropertyNotRegisteredQuickFix
-import godot.intellij.plugin.quickfix.VisibleMutabilityQuickFix
 import org.jetbrains.kotlin.analysis.api.KaExperimentalApi
 import org.jetbrains.kotlin.analysis.api.analyze
 import org.jetbrains.kotlin.analysis.api.symbols.typeParameters
@@ -42,24 +41,13 @@ import org.jetbrains.kotlin.psi.KtEnumEntry
 import org.jetbrains.kotlin.psi.KtProperty
 import org.jetbrains.kotlin.utils.addToStdlib.firstIsInstance
 
-private const val MAX_ENUM_ENTRIES_FOR_BIT_FLAG = 32
-
 object VisibleAnalyzer {
-    private val mutabilityQuickFix = VisibleMutabilityQuickFix()
+    private const val MAX_ENUM_ENTRIES_FOR_BIT_FLAG = 32
 
     fun analyze(property: KtProperty): List<GodotProblem> {
         return buildList {
             if (property.isRegisteredPropertyLike()) {
                 addAll(GenericRegistrationAnalyzer.analyze(property.toLightElements().firstIsInstance()))
-                if (!property.isVar) {
-                    add(
-                        GodotProblem(
-                            GodotPluginBundle.message("problem.property.mutability"),
-                            property.valOrVarKeyword,
-                            arrayOf(mutabilityQuickFix)
-                        )
-                    )
-                }
                 addAll(checkRegisteredType(property))
                 if (property.hasModifier(org.jetbrains.kotlin.lexer.KtTokens.LATEINIT_KEYWORD) && (property.isCoreType() || property.isGodotPrimitive())) {
                     add(
