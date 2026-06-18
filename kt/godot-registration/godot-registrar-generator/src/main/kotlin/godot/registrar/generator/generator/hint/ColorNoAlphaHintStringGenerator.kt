@@ -1,6 +1,6 @@
-package godot.registrar.generator.generator.hintstring
+package godot.registrar.generator.generator.hint
 
-import godot.core.Color
+import godot.core.PropertyHint as GodotPropertyHint
 import godot.registrar.generator.GeneratorContext
 import godot.registration.model.RegisteredProperty
 import godot.registration.model.hint.property.ColorNoAlphaHint
@@ -9,8 +9,7 @@ class ColorNoAlphaHintStringGenerator(
     registeredProperty: RegisteredProperty,
     context: GeneratorContext,
 ) : PropertyHintStringGenerator<ColorNoAlphaHint>(registeredProperty, context) {
+    override fun getTypeHint(): GodotPropertyHint = GodotPropertyHint.COLOR_NO_ALPHA
 
-    override fun getHintString(): String {
-        return "" //hint string is empty for this typehint
-    }
+    override fun getHintString(): String = ""
 }

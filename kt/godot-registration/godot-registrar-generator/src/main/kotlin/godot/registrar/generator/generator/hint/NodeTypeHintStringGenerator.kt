@@ -1,23 +1,24 @@
-package godot.registrar.generator.generator.hintstring
+package godot.registrar.generator.generator.hint
 
+import godot.core.PropertyHint as GodotPropertyHint
 import godot.registrar.generator.GeneratorContext
 import godot.registrar.generator.ext.getRegisteredName
-import godot.registration.model.RegisteredProperty
-import godot.registration.model.hint.property.PropertyHint
 import godot.registration.model.types.ScriptClass
+import godot.registration.model.RegisteredProperty
+import godot.registrar.generator.ext.baseGodotType
+import godot.registration.model.hint.property.PropertyHint
 
-class ResourceHintStringGenerator(
+class NodeTypeHintStringGenerator(
     registeredProperty: RegisteredProperty,
     context: GeneratorContext,
 ) : PropertyHintStringGenerator<PropertyHint>(registeredProperty, context) {
+    override fun getTypeHint(): GodotPropertyHint = GodotPropertyHint.NODE_TYPE
 
     override fun getHintString(): String {
-        // we first try to use the registered class name in case it's a user type extending a godot type
-        // if that is not the case (null) we get the simple name instead
         return (registeredProperty.type as? ScriptClass)
             ?.takeIf { scriptClass -> scriptClass.isRegistered }
             ?.getRegisteredName(context.settings)
             ?: context.registeredClassesByFqName[registeredProperty.type.fqName]?.getRegisteredName(context.settings)
-            ?: registeredProperty.type.fqName.substringAfterLast(".")
+            ?: registeredProperty.type.baseGodotType()?.fqName?.substringAfterLast(".") ?: ""
     }
 }

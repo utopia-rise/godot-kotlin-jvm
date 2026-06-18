@@ -1,5 +1,6 @@
-package godot.registrar.generator.generator.hintstring
+package godot.registrar.generator.generator.hint
 
+import godot.core.PropertyHint as GodotPropertyHint
 import godot.registrar.generator.GeneratorContext
 import godot.registration.model.RegisteredProperty
 import godot.registration.model.hint.property.Range
@@ -10,6 +11,8 @@ class RangeHintStringGenerator(
     registeredProperty: RegisteredProperty,
     context: GeneratorContext,
 ) : PropertyHintStringGenerator<RangeHint<Number>>(registeredProperty, context) {
+    override fun getTypeHint(): GodotPropertyHint = GodotPropertyHint.RANGE
+
     override fun getHintString(): String {
         if (propertyHintAnnotation == null) {
             return ""

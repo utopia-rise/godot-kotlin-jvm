@@ -1,28 +1,27 @@
-package godot.registrar.generator.generator.hintstring
+package godot.registrar.generator.generator.hint
 
+import godot.core.PropertyHint as GodotPropertyHint
 import godot.core.VariantParser
 import godot.registrar.generator.ext.getAsVariantTypeOrdinal
 import godot.registration.model.RegisteredProperty
 
 internal class ArrayHintStringGenerator(
-    private val elementGenerator: HintStringGenerator?,
+    private val elementHintString: String?,
     private val prefix: String = "",
     private val isUntyped: Boolean = false,
-) : HintStringGenerator {
+) : HintGenerator {
     constructor(
         registeredProperty: RegisteredProperty,
-        elementGenerator: HintStringGenerator?,
+        elementHintString: String?,
     ) : this(
-        elementGenerator = elementGenerator,
+        elementHintString = elementHintString,
         prefix = propertyPrefix(registeredProperty),
         isUntyped = isUntypedProperty(registeredProperty),
     )
 
-    override fun generate(): String = if (isUntyped) {
-        ""
-    } else {
-        "$prefix${VariantParser.ARRAY.id}${elementGenerator?.generate().orEmpty()}"
-    }
+    fun getHintString(): String = if (isUntyped) "" else "$prefix${VariantParser.ARRAY.id}${elementHintString.orEmpty()}"
+
+    override fun generate(): GeneratedPropertyHint = GeneratedPropertyHint(GodotPropertyHint.TYPE_STRING, getHintString())
 
     companion object {
         private fun propertyPrefix(registeredProperty: RegisteredProperty): String {

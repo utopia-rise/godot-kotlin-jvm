@@ -1,31 +1,32 @@
-package godot.registrar.generator.generator.hintstring
+package godot.registrar.generator.generator.hint
 
+import godot.core.PropertyHint as GodotPropertyHint
 import godot.core.VariantParser
 import godot.registration.model.RegisteredProperty
 
 internal class DictionaryHintStringGenerator(
-    private val keyGenerator: HintStringGenerator?,
-    private val valueGenerator: HintStringGenerator?,
+    private val keyHintString: String?,
+    private val valueHintString: String?,
     private val isUntyped: Boolean = false,
-) : HintStringGenerator {
+) : HintGenerator {
     constructor(
         registeredProperty: RegisteredProperty,
-        keyGenerator: HintStringGenerator?,
-        valueGenerator: HintStringGenerator?,
+        keyHintString: String?,
+        valueHintString: String?,
     ) : this(
-        keyGenerator = keyGenerator,
-        valueGenerator = valueGenerator,
+        keyHintString = keyHintString,
+        valueHintString = valueHintString,
         isUntyped = registeredProperty.type.genericArguments.firstOrNull()?.fqName == Any::class.qualifiedName,
     )
 
-    override fun generate(): String {
+    fun getHintString(): String {
         if (isUntyped) {
             return ""
         }
 
         val subHintString = listOfNotNull(
-            keyGenerator?.generate(),
-            valueGenerator?.generate(),
+            keyHintString,
+            valueHintString,
         ).joinToString(";")
 
         return if (subHintString.isEmpty()) {
@@ -34,4 +35,6 @@ internal class DictionaryHintStringGenerator(
             "${VariantParser.DICTIONARY.id}/$subHintString"
         }
     }
+
+    override fun generate(): GeneratedPropertyHint = GeneratedPropertyHint(GodotPropertyHint.TYPE_STRING, getHintString())
 }

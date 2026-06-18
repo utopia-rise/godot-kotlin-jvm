@@ -1,5 +1,6 @@
-﻿package godot.registrar.generator.generator.hintstring
+package godot.registrar.generator.generator.hint
 
+import godot.core.PropertyHint as GodotPropertyHint
 import godot.registrar.generator.GeneratorContext
 import godot.registration.model.RegisteredProperty
 import godot.registration.model.hint.property.DirHint
@@ -8,8 +9,8 @@ class DirHintStringGenerator(
     registeredProperty: RegisteredProperty,
     context: GeneratorContext,
 ) : PropertyHintStringGenerator<DirHint>(registeredProperty, context) {
+    override fun getTypeHint(): GodotPropertyHint =
+        if (propertyHintAnnotation?.global == true) GodotPropertyHint.GLOBAL_DIR else GodotPropertyHint.DIR
 
-    override fun getHintString(): String {
-        return "" //hint string is empty for this typehint
-    }
+    override fun getHintString(): String = ""
 }

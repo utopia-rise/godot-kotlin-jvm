@@ -1,5 +1,6 @@
-package godot.registrar.generator.generator.hintstring
+package godot.registrar.generator.generator.hint
 
+import godot.core.PropertyHint as GodotPropertyHint
 import godot.registrar.generator.GeneratorContext
 import godot.registration.model.RegisteredProperty
 import godot.registration.model.hint.property.PropertyHint
@@ -7,16 +8,14 @@ import godot.registration.model.hint.property.PropertyHint
 abstract class PropertyHintStringGenerator<ANNOTATION_TYPE : PropertyHint>(
     val registeredProperty: RegisteredProperty,
     protected val context: GeneratorContext,
-) : HintStringGenerator {
+) : HintGenerator {
     @Suppress("UNCHECKED_CAST")
     protected val propertyHintAnnotation = registeredProperty
         .hints
-        .firstOrNull() as ANNOTATION_TYPE?
+        .singleOrNull() as ANNOTATION_TYPE?
 
-    /**
-     * Hint string formatting: https://github.com/godotengine/godot/blob/dcd11faad3802679a43b27155f1b6bc59aa39b60/core/object.h
-     */
+    protected abstract fun getTypeHint(): GodotPropertyHint
     abstract fun getHintString(): String
 
-    override fun generate(): String = getHintString()
+    override fun generate(): GeneratedPropertyHint = GeneratedPropertyHint(getTypeHint(), getHintString())
 }

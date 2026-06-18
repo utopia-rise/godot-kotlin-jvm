@@ -3,7 +3,6 @@ package godot.registrar.generator.generator
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FunSpec
-import com.squareup.kotlinpoet.MemberName
 import godot.common.extensions.convertToSnakeCase
 import godot.core.PropertyUsageFlags
 import godot.registrar.generator.GeneratorContext
@@ -11,13 +10,11 @@ import godot.registrar.generator.ext.effectiveProperties
 import godot.registrar.generator.ext.toGodotClassName
 import godot.registrar.generator.ext.toKtVariantMemberName
 import godot.registrar.generator.ext.toTypeName
-import godot.registrar.generator.generator.hintstring.PropertyHintStringGeneratorProvider
-import godot.registrar.generator.generator.typehint.PropertyTypeHintProvider
+import godot.registrar.generator.generator.hint.PropertyHintProvider
 import godot.registration.model.RegisteredProperty
 import godot.registration.model.RegisteredPropertyBindingKind
 import godot.registration.model.ext.isBitField
 import godot.registration.model.ext.isEnum
-import godot.registration.model.hint.property.EnumHint
 import godot.registration.model.hint.property.EnumListHintStringHint
 import godot.registration.model.types.ScriptClass
 
@@ -54,6 +51,7 @@ private fun FunSpec.Builder.registerProperty(
     context: GeneratorContext,
     className: ClassName,
 ) {
+    val propertyHint = PropertyHintProvider.provide(registeredProperty, context).generate()
     val typeGodotName = if (registeredProperty.type.isEnum()) "int" else registeredProperty.type.toGodotClassName(context)
     val variantType = if (registeredProperty.type.isEnum()) "%M(%T.entries.toTypedArray())" else "%M"
     val typeClassName = registeredProperty.type.toTypeName()
@@ -84,17 +82,17 @@ private fun FunSpec.Builder.registerProperty(
                     registeredProperty.type.toKtVariantMemberName(),
                     typeClassName,
                     typeGodotName,
-                    PropertyTypeHintProvider.provide(registeredProperty),
-                    buildHintStringCode(registeredProperty, context),
+                    propertyHint.typeHint,
+                    propertyHint.hintString,
                     getPropertyUsage(registeredProperty),
                 ).toTypedArray(),
             )
         } else {
             addStatement(
                 if (setterFqName == null) {
-                    "property(%S, %L, %M, %S, %M, %L, %L)"
+                    "property(%S, %L, %M, %S, %M, %S, %L)"
                 } else {
-                    "property(%S, %L, %L, %M, %S, %M, %L, %L)"
+                    "property(%S, %L, %L, %M, %S, %M, %S, %L)"
                 },
                 registeredProperty.name.convertToSnakeCase(),
                 getGetterReference(registeredProperty, className),
@@ -102,8 +100,8 @@ private fun FunSpec.Builder.registerProperty(
                     setterFqName?.let { getSetterReference(registeredProperty, className) },
                     registeredProperty.type.toKtVariantMemberName(),
                     typeGodotName,
-                    PropertyTypeHintProvider.provide(registeredProperty),
-                    buildHintStringCode(registeredProperty, context),
+                    propertyHint.typeHint,
+                    propertyHint.hintString,
                     getPropertyUsage(registeredProperty),
                 ).toTypedArray(),
             )
@@ -112,12 +110,12 @@ private fun FunSpec.Builder.registerProperty(
     }
 
     addStatement(
-        "property(%L, $variantType, %S, %M, %L, %L)",
+        "property(%L, $variantType, %S, %M, %S, %L)",
         getPropertyReference(registeredProperty, className),
         *variantTypeArguments.toTypedArray(),
         typeGodotName,
-        PropertyTypeHintProvider.provide(registeredProperty),
-        buildHintStringCode(registeredProperty, context),
+        propertyHint.typeHint,
+        propertyHint.hintString,
         getPropertyUsage(registeredProperty),
     )
 }
@@ -127,6 +125,7 @@ private fun FunSpec.Builder.registerEnumListProperty(
     context: GeneratorContext,
     className: ClassName,
 ) {
+    val propertyHint = PropertyHintProvider.provide(registeredProperty, context).generate()
     if (registeredProperty.bindingKind == RegisteredPropertyBindingKind.ACCESSOR_METHODS) {
         val getterFqName = registeredProperty.getterFqName
         val setterFqName = registeredProperty.setterFqName
@@ -136,26 +135,26 @@ private fun FunSpec.Builder.registerEnumListProperty(
 
         addStatement(
             if (setterFqName == null) {
-                "enumListProperty(%S, %L, %L, %L)"
+                "enumListProperty(%S, %L, %L, %S)"
             } else {
-                "enumListProperty(%S, %L, %L, %L, %L)"
+                "enumListProperty(%S, %L, %L, %L, %S)"
             },
             registeredProperty.name.convertToSnakeCase(),
             getGetterReference(registeredProperty, className),
             *listOfNotNull(
                 setterFqName?.let { getSetterReference(registeredProperty, className) },
                 getPropertyUsage(registeredProperty),
-                buildHintStringCode(registeredProperty, context),
+                propertyHint.hintString,
             ).toTypedArray(),
         )
         return
     }
 
     addStatement(
-        "enumListProperty(%L, %L, %L)",
+        "enumListProperty(%L, %L, %S)",
         getPropertyReference(registeredProperty, className),
         getPropertyUsage(registeredProperty),
-        buildHintStringCode(registeredProperty, context),
+        propertyHint.hintString,
     )
 }
 
@@ -164,6 +163,7 @@ private fun FunSpec.Builder.registerBitFieldProperty(
     context: GeneratorContext,
     className: ClassName,
 ) {
+    val propertyHint = PropertyHintProvider.provide(registeredProperty, context).generate()
     if (registeredProperty.bindingKind == RegisteredPropertyBindingKind.ACCESSOR_METHODS) {
         val getterFqName = registeredProperty.getterFqName
         val setterFqName = registeredProperty.setterFqName
@@ -173,52 +173,26 @@ private fun FunSpec.Builder.registerBitFieldProperty(
 
         addStatement(
             if (setterFqName == null) {
-                "bitFieldProperty(%S, %L, %L, %L)"
+                "bitFieldProperty(%S, %L, %L, %S)"
             } else {
-                "bitFieldProperty(%S, %L, %L, %L, %L)"
+                "bitFieldProperty(%S, %L, %L, %L, %S)"
             },
             registeredProperty.name.convertToSnakeCase(),
             getGetterReference(registeredProperty, className),
             *listOfNotNull(
                 setterFqName?.let { getSetterReference(registeredProperty, className) },
                 getPropertyUsage(registeredProperty),
-                buildHintStringCode(registeredProperty, context),
+                propertyHint.hintString,
             ).toTypedArray(),
         )
         return
     }
 
     addStatement(
-        "bitFieldProperty(%L, %L, %L)",
+        "bitFieldProperty(%L, %L, %S)",
         getPropertyReference(registeredProperty, className),
         getPropertyUsage(registeredProperty),
-        buildHintStringCode(registeredProperty, context),
-    )
-}
-
-private val enumHintStringMember = MemberName("godot.registration", "enumHintString")
-private val enumListHintStringMember = MemberName("godot.registration", "enumListHintString")
-
-private fun buildHintStringCode(
-    registeredProperty: RegisteredProperty,
-    context: GeneratorContext,
-): CodeBlock {
-    val enumHint = registeredProperty.hints.filterIsInstance<EnumHint>().firstOrNull()
-    if (enumHint != null) {
-        val enumClassName = ClassName(
-            enumHint.enumFqName.substringBeforeLast("."),
-            enumHint.enumFqName.substringAfterLast("."),
-        )
-        val helper = if (enumHint is EnumListHintStringHint) enumListHintStringMember else enumHintStringMember
-        return CodeBlock.of("%M(%T.entries.toTypedArray())", helper, enumClassName)
-    }
-
-    return CodeBlock.of(
-        "%S",
-        PropertyHintStringGeneratorProvider
-            .provide(registeredProperty, context)
-            .getHintString()
-            .replace("?", "")
+        propertyHint.hintString,
     )
 }
 
