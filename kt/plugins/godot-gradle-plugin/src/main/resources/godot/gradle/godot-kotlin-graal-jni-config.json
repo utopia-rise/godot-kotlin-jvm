@@ -729,6 +729,7 @@
       {"name":"getRegisteredName","parameterTypes":[] },
       {"name":"getSignalInfos","parameterTypes":[] },
       {"name":"getRegisteredSupertypes","parameterTypes":[] },
+      {"name":"isAbstract","parameterTypes":[] },
       {"name":"getHandledNotifications","parameterTypes":[] },
       {"name":"doNotification","parameterTypes": ["godot.core.KtObject"] }
     ]
@@ -743,7 +744,6 @@
     "name":"godot.registration.KtFunction",
     "methods":[
       {"name":"getFunctionInfo","parameterTypes":[] },
-      {"name":"getParameterCount","parameterTypes":[] },
       {"name":"invoke","parameterTypes":["godot.core.KtObject"] },
       {"name":"invokeWithReturn","parameterTypes":["godot.core.KtObject"] }
     ]

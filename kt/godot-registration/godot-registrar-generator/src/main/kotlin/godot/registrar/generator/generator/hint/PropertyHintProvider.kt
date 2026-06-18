@@ -1,6 +1,5 @@
 package godot.registrar.generator.generator.hint
 
-import godot.core.PropertyHint as GodotPropertyHint
 import godot.registrar.generator.GeneratorContext
 import godot.registrar.generator.ext.asEnumName
 import godot.registrar.generator.ext.baseGodotType
@@ -31,6 +30,7 @@ import godot.registration.model.types.TYPE_INT
 import godot.registration.model.types.TYPE_LONG
 import godot.registration.model.types.Type
 import godot.registration.model.types.TypeKind
+import godot.core.PropertyHint as GodotPropertyHint
 
 object PropertyHintProvider {
     // TODO: implement GodotPropertyHint.ENUM_SUGGESTION
@@ -123,11 +123,8 @@ object PropertyHintProvider {
             isUntyped = type.firstGenericArgumentIsAny(),
         )
 
-        type.kind == TypeKind.ENUM -> StaticHintGenerator(GodotPropertyHint.ENUM, enumHintString(type.fqName))
-        type.kind == TypeKind.BITFIELD -> StaticHintGenerator(
-            GodotPropertyHint.FLAGS,
-            type.genericArguments.firstOrNull()?.fqName?.let(::enumHintString).orEmpty(),
-        )
+        type.kind == TypeKind.ENUM -> StaticHintGenerator(GodotPropertyHint.ENUM, "")
+        type.kind == TypeKind.BITFIELD -> StaticHintGenerator(GodotPropertyHint.FLAGS, "")
 
         type.isGodotPrimitive() || type.isCoreType() -> StaticHintGenerator(GodotPropertyHint.NONE, type.getGodotCoreTypeName())
         type.isNodeType() -> StaticHintGenerator(GodotPropertyHint.NODE_TYPE, objectHintString(type, context, useBaseTypeName = true))
@@ -166,26 +163,13 @@ object PropertyHintProvider {
 
     private fun GeneratedPropertyHint.toContainerElementHintString(variantTypeOrdinal: Int): String =
         if (typeHint == GodotPropertyHint.NONE.asEnumName()) {
-            "$variantTypeOrdinal:$hintString"
+            "$variantTypeOrdinal:${hintString.toLiteralString()}"
         } else {
-            "$variantTypeOrdinal/${GodotPropertyHint.valueOf(typeHint.simpleName).value}:$hintString"
+            "$variantTypeOrdinal/${GodotPropertyHint.valueOf(typeHint.simpleName).value}:${hintString.toLiteralString()}"
         }
 
-    private fun enumHintString(enumFqName: String): String {
-        if (enumFqName.isEmpty()) {
-            return ""
-        }
-
-        val enumClass = Class.forName(enumFqName)
-        val entries = enumClass.enumConstants
-            ?.filterIsInstance<Enum<*>>()
-            .orEmpty()
-
-        return entries.joinToString(",") { entry ->
-            val godotEnum = entry as? godot.core.GodotEnum
-            if (godotEnum != null) "${entry.name}:${godotEnum.value}" else entry.name
-        }
-    }
+    private fun com.squareup.kotlinpoet.CodeBlock.toLiteralString(): String =
+        toString().removePrefix("\"").removeSuffix("\"")
 
     private fun Type.nestedArrayPrefix(): String {
         val elementType = genericArguments.firstOrNull()

@@ -33,6 +33,7 @@ properties = [
     nullable_array,
     any_to_any_dictionary,
     nav_meshes_dictionary,
+    nested_dictionary,
     nullable_dictionary,
     color,
     rid,

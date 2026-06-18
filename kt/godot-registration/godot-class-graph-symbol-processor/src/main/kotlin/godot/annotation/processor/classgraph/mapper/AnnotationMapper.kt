@@ -1,8 +1,24 @@
 package godot.annotation.processor.classgraph.mapper
 
-import godot.annotation.*
-import godot.registration.model.hint.property.*
+import godot.annotation.ColorNoAlpha
+import godot.annotation.Dir
+import godot.annotation.DoubleRange
+import godot.annotation.ExpEasing
+import godot.annotation.File
+import godot.annotation.FloatRange
+import godot.annotation.IntFlag
+import godot.annotation.MultilineText
+import godot.annotation.PlaceHolderText
+import godot.registration.model.hint.property.ColorNoAlphaHint
+import godot.registration.model.hint.property.DirHint
+import godot.registration.model.hint.property.ExpEasingHint
+import godot.registration.model.hint.property.FileHint
+import godot.registration.model.hint.property.IntFlagHint
+import godot.registration.model.hint.property.MultilineTextHint
+import godot.registration.model.hint.property.PlaceHolderTextHint
+import godot.registration.model.hint.property.PropertyHint
 import godot.registration.model.hint.property.Range
+import godot.registration.model.hint.property.RangeHint
 import io.github.classgraph.AnnotationEnumValue
 import io.github.classgraph.AnnotationInfo
 
@@ -13,6 +29,7 @@ object AnnotationMapper {
             IntFlag::class.java.name -> IntFlagHint(
                 annotationInfo.parameterValues.getValue("values") as? List<String> ?: emptyList()
             )
+
             MultilineText::class.java.name -> MultilineTextHint()
             PlaceHolderText::class.java.name -> PlaceHolderTextHint()
             ColorNoAlpha::class.java.name -> ColorNoAlphaHint()
@@ -24,13 +41,16 @@ object AnnotationMapper {
                 attenuation = annotationInfo.parameterValues.getValue("attenuation") as? Boolean ?: false,
                 isPositiveOnly = annotationInfo.parameterValues.getValue("isPositiveOnly") as? Boolean ?: false,
             )
+
             File::class.java.name -> FileHint(
                 extensions = annotationInfo.parameterValues.getValue("extensions") as? List<String> ?: emptyList(),
                 global = annotationInfo.parameterValues.getValue("global") as? Boolean ?: false,
             )
+
             Dir::class.java.name -> DirHint(
                 global = annotationInfo.parameterValues.getValue("global") as? Boolean ?: false,
             )
+
             else -> null
         }
 

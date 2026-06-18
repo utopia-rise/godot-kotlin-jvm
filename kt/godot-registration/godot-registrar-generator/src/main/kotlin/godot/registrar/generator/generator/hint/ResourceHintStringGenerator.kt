@@ -1,11 +1,11 @@
 package godot.registrar.generator.generator.hint
 
-import godot.core.PropertyHint as GodotPropertyHint
 import godot.registrar.generator.GeneratorContext
 import godot.registrar.generator.ext.getRegisteredName
 import godot.registration.model.RegisteredProperty
 import godot.registration.model.hint.property.PropertyHint
 import godot.registration.model.types.ScriptClass
+import godot.core.PropertyHint as GodotPropertyHint
 
 class ResourceHintStringGenerator(
     registeredProperty: RegisteredProperty,

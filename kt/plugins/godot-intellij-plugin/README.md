@@ -67,7 +67,6 @@ Checks around `@Script`, including:
 
 - invalid Godot inheritance
 - generic classes
-- default constructor requirements
 - missing registration on classes that use registered members
 - duplicate registered names
 

@@ -2,9 +2,9 @@ package godot.registration.model.checks
 
 import godot.core.Dictionary
 import godot.core.VariantArray
-import godot.registration.model.logging.Logger
 import godot.registration.model.ext.isJavaCollection
 import godot.registration.model.ext.isKotlinCollection
+import godot.registration.model.logging.Logger
 import godot.registration.model.types.ScriptClass
 import godot.registration.model.types.SourceClass
 import godot.registration.model.types.Type

@@ -1,8 +1,15 @@
 package godot.registration.model.checks
 
-import godot.registration.model.ext.*
-import godot.registration.model.types.ScriptClass
+import godot.registration.model.ext.isBitField
+import godot.registration.model.ext.isCoreType
+import godot.registration.model.ext.isEnum
+import godot.registration.model.ext.isGodotPrimitive
+import godot.registration.model.ext.isJavaCollection
+import godot.registration.model.ext.isKotlinCollection
+import godot.registration.model.ext.isNodeType
+import godot.registration.model.ext.isRefCounted
 import godot.registration.model.logging.Logger
+import godot.registration.model.types.ScriptClass
 
 class PropertyTypeCheck(logger: Logger, registeredClasses: List<ScriptClass>) : BaseCheck(logger, registeredClasses) {
     override fun execute(): Boolean {

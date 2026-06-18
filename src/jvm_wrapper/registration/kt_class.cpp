@@ -5,11 +5,13 @@
 
 KtClass::KtClass(jni::Env& p_env, jni::JObject p_wrapped) :
   JvmInstanceWrapper(p_env, p_wrapped),
+  is_abstract {false},
   kt_constructor {nullptr} {
     LOCAL_FRAME(5);
     registered_class_name = get_registered_name(p_env);
     fqdn = get_fqdn(p_env);
     base_godot_class = get_base_godot_class(p_env);
+    is_abstract = wrapped.call_boolean_method(p_env, IS_ABSTRACT);
     fetch_handled_notifications(p_env);
 }
 
@@ -79,14 +81,16 @@ void KtClass::fetch_handled_notifications(jni::Env& env) {
     notifications.delete_local_ref(env);
 }
 
+bool KtClass::can_instantiate() const {
+    return !is_abstract && kt_constructor != nullptr;
+}
+
 void KtClass::fetch_registered_supertypes(jni::Env& env) {
-    jni::JObjectArray classesArray {wrapped.call_object_method(env, GET_REGISTERED_SUPERTYPES)};
-    for (int i = 0; i < classesArray.length(env); i++) {
-        StringName parent_name = StringName(env.from_jstring(jni::JString(classesArray.get(env, i))));
-        registered_supertypes.append(parent_name);
-        JVM_DEV_VERBOSE("%s user type is parent of %s.", parent_name, registered_class_name);
+    jni::JObjectArray classes_array {wrapped.call_object_method(env, GET_REGISTERED_SUPERTYPES)};
+    for (int i = 0; i < classes_array.length(env); i++) {
+        registered_supertypes.append(StringName(env.from_jstring(jni::JString(classes_array.get(env, i)))));
     }
-    classesArray.delete_local_ref(env);
+    classes_array.delete_local_ref(env);
 }
 
 void KtClass::fetch_methods(jni::Env& env) {

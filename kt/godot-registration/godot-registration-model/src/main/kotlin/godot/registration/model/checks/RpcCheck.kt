@@ -1,8 +1,8 @@
 package godot.registration.model.checks
 
 import godot.annotation.TransferMode
-import godot.registration.model.types.ScriptClass
 import godot.registration.model.logging.Logger
+import godot.registration.model.types.ScriptClass
 
 class RpcCheck(logger: Logger, registeredClasses: List<ScriptClass>) : BaseCheck(logger, registeredClasses) {
     override fun execute(): Boolean {

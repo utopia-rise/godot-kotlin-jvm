@@ -5,17 +5,17 @@ import com.squareup.kotlinpoet.MemberName
 import com.squareup.kotlinpoet.TypeName
 import com.squareup.kotlinpoet.asClassName
 import godot.api.Resource
-import godot.common.util.NaturalT
-import godot.common.util.RealT
-import godot.core.*
+import godot.core.Callable
+import godot.core.Dictionary
+import godot.core.Signal
+import godot.core.VariantArray
+import godot.core.VariantCaster
+import godot.core.VariantParser
 import godot.registrar.generator.GeneratorContext
-import godot.registration.model.ext.isCoreType
-import godot.registration.model.ext.isGodotPrimitive
-import godot.registration.model.ext.isNodeType
 import godot.registration.model.types.GodotBaseClass
 import godot.registration.model.types.ScriptClass
+import godot.registration.model.types.TYPE_VOID
 import godot.registration.model.types.Type
-import godot.registration.model.types.TypeKind
 import godot.registration.model.types.Type.Companion.aabbType
 import godot.registration.model.types.Type.Companion.basisType
 import godot.registration.model.types.Type.Companion.booleanType
@@ -60,8 +60,48 @@ import godot.registration.model.types.Type.Companion.vector3Type
 import godot.registration.model.types.Type.Companion.vector3iType
 import godot.registration.model.types.Type.Companion.vector4Type
 import godot.registration.model.types.Type.Companion.vector4iType
-import godot.registration.model.types.TYPE_VOID
-import godot.tools.common.constants.*
+import godot.registration.model.types.TypeKind
+import godot.tools.common.constants.GODOT_AABB
+import godot.tools.common.constants.GODOT_ARRAY
+import godot.tools.common.constants.GODOT_BASIS
+import godot.tools.common.constants.GODOT_BOOL
+import godot.tools.common.constants.GODOT_CALLABLE
+import godot.tools.common.constants.GODOT_COLOR
+import godot.tools.common.constants.GODOT_DICTIONARY
+import godot.tools.common.constants.GODOT_FLOAT
+import godot.tools.common.constants.GODOT_INT
+import godot.tools.common.constants.GODOT_NIL
+import godot.tools.common.constants.GODOT_NODE_PATH
+import godot.tools.common.constants.GODOT_OBJECT
+import godot.tools.common.constants.GODOT_PACKED_BYTE_ARRAY
+import godot.tools.common.constants.GODOT_PACKED_COLOR_ARRAY
+import godot.tools.common.constants.GODOT_PACKED_FLOAT32_ARRAY
+import godot.tools.common.constants.GODOT_PACKED_FLOAT64_ARRAY
+import godot.tools.common.constants.GODOT_PACKED_INT32_ARRAY
+import godot.tools.common.constants.GODOT_PACKED_INT64_ARRAY
+import godot.tools.common.constants.GODOT_PACKED_STRING_ARRAY
+import godot.tools.common.constants.GODOT_PACKED_VECTOR2_ARRAY
+import godot.tools.common.constants.GODOT_PACKED_VECTOR3_ARRAY
+import godot.tools.common.constants.GODOT_PACKED_VECTOR4_ARRAY
+import godot.tools.common.constants.GODOT_PLANE
+import godot.tools.common.constants.GODOT_PROJECTION
+import godot.tools.common.constants.GODOT_QUATERNION
+import godot.tools.common.constants.GODOT_RECT2
+import godot.tools.common.constants.GODOT_RECT2I
+import godot.tools.common.constants.GODOT_RID
+import godot.tools.common.constants.GODOT_SIGNAL
+import godot.tools.common.constants.GODOT_STRING
+import godot.tools.common.constants.GODOT_STRING_NAME
+import godot.tools.common.constants.GODOT_TRANSFORM2D
+import godot.tools.common.constants.GODOT_TRANSFORM3D
+import godot.tools.common.constants.GODOT_VECTOR2
+import godot.tools.common.constants.GODOT_VECTOR2I
+import godot.tools.common.constants.GODOT_VECTOR3
+import godot.tools.common.constants.GODOT_VECTOR3I
+import godot.tools.common.constants.GODOT_VECTOR4
+import godot.tools.common.constants.GODOT_VECTOR4I
+import godot.tools.common.constants.godotApiPackage
+import godot.tools.common.constants.isFromPackage
 
 private data class TypeMetadata(
     val variantMember: MemberName,
@@ -89,6 +129,7 @@ private object TypeMetadataRegistry {
     ) = TypeMetadata(
         variantMember = MemberName(VariantCaster::class.asClassName(), memberName),
         variantTypeOrdinal = when (memberName) {
+            "ANY" -> VariantParser.NIL.id
             "BYTE", "INT", "ENUM" -> VariantParser.LONG.id
             "FLOAT" -> VariantParser.DOUBLE.id
             else -> error("Unsupported caster metadata member $memberName")
@@ -109,6 +150,7 @@ private object TypeMetadataRegistry {
         realType to parserMetadata("DOUBLE", GODOT_FLOAT),
         doubleType to parserMetadata("DOUBLE", GODOT_FLOAT),
         stringType to parserMetadata("STRING", GODOT_STRING),
+        Type.anyType to casterMetadata("ANY", GODOT_NIL, ""),
         vector2Type to parserMetadata("VECTOR2", GODOT_VECTOR2),
         vector2iType to parserMetadata("VECTOR2I", GODOT_VECTOR2I),
         rect2Type to parserMetadata("RECT2", GODOT_RECT2),
@@ -151,16 +193,19 @@ private object TypeMetadataRegistry {
     private fun canonicalKey(type: Type): Type? = when (type.kind) {
         TypeKind.PRIMITIVE,
         TypeKind.CORE_TYPE,
-        -> when {
+            -> when {
             type.fqName == callableType.fqName || isAssignableTo(type, Callable::class.java) -> callableType
             type.fqName == signalType.fqName || isAssignableTo(type, Signal::class.java) -> signalType
             type.kind == TypeKind.PRIMITIVE -> Type.findPrimitiveType(type.fqName)
             else -> Type.findCoreType(type.fqName)
         }
-        TypeKind.OTHER -> if (type.fqName == TYPE_VOID) {
-            nilType
-        } else {
-            null
+
+        TypeKind.OTHER -> when (type.fqName) {
+            TYPE_VOID -> nilType
+            Any::class.qualifiedName,
+            java.lang.Object::class.qualifiedName,
+                -> Type.anyType
+            else -> null
         }
 
         else -> null
@@ -169,7 +214,7 @@ private object TypeMetadataRegistry {
     fun metadataOrNull(type: Type): TypeMetadata? = when (type.kind) {
         TypeKind.PRIMITIVE,
         TypeKind.CORE_TYPE,
-        -> knownMetadataByType[canonicalKey(type)]
+            -> knownMetadataByType[canonicalKey(type)]
 
         TypeKind.OTHER -> knownMetadataByType[canonicalKey(type)]
         else -> null
@@ -189,7 +234,7 @@ private object TypeMetadataRegistry {
 
         TypeKind.GODOT_CLASS,
         TypeKind.INTERFACE,
-        -> parserMetadata(
+            -> parserMetadata(
             memberName = "OBJECT",
             godotTypeName = GODOT_OBJECT,
             godotClassName = if (type.fqName == Any::class.qualifiedName) "" else null,
@@ -203,7 +248,7 @@ private object TypeMetadataRegistry {
 
         TypeKind.PRIMITIVE,
         TypeKind.CORE_TYPE,
-        -> error("Unsupported known type ${type.fqName}")
+            -> error("Unsupported known type ${type.fqName}")
     }
 }
 
@@ -211,13 +256,15 @@ private fun typeVariantTypeOrdinal(type: Type): Int? = when (type.kind) {
     TypeKind.PRIMITIVE,
     TypeKind.CORE_TYPE,
     TypeKind.OTHER,
-    -> TypeMetadataRegistry.metadataOrNull(type)?.variantTypeOrdinal
+        -> TypeMetadataRegistry.metadataOrNull(type)?.variantTypeOrdinal
+
     TypeKind.ENUM,
     TypeKind.BITFIELD,
-    -> VariantParser.LONG.id
+        -> VariantParser.LONG.id
+
     TypeKind.GODOT_CLASS,
     TypeKind.INTERFACE,
-    -> VariantParser.OBJECT.id
+        -> VariantParser.OBJECT.id
 }
 
 fun Type.toKtVariantMemberName(): MemberName = TypeMetadataRegistry.metadata(this).variantMember

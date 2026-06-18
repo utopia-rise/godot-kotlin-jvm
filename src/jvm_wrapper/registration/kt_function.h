@@ -40,20 +40,17 @@ JVM_INSTANCE_WRAPPER(KtFunction, "godot.registration.KtFunction") {
 
     // clang-format off
     JNI_OBJECT_METHOD(GET_FUNCTION_INFO)
-    JNI_INT_METHOD(GET_PARAMETER_COUNT)
     JNI_VOID_METHOD(INVOKE)
     JNI_OBJECT_METHOD(INVOKE_WITH_RETURN)
 
     INIT_JNI_BINDINGS(
         INIT_JNI_METHOD(GET_FUNCTION_INFO, "getFunctionInfo", "()Lgodot/registration/KtFunctionInfo;")
-        INIT_JNI_METHOD(GET_PARAMETER_COUNT, "getParameterCount", "()I")
         INIT_JNI_METHOD(INVOKE, "invoke", "(Lgodot/core/KtObject;)V")
         INIT_JNI_METHOD(INVOKE_WITH_RETURN, "invokeWithReturn", "(Lgodot/core/KtObject;)Ljava/lang/Object;")
     )
     // clang-format on
 
 private:
-    int parameter_count;
     KtFunctionInfo* method_info;
     bool has_return_value;
 
@@ -62,7 +59,6 @@ public:
     ~KtFunction();
 
     StringName get_name() const;
-    int get_parameter_count() const;
     KtRpcConfig* get_rpc_config() const;
 
     MethodInfo get_member_info();

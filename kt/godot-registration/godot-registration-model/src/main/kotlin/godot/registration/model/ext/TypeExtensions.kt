@@ -3,8 +3,6 @@ package godot.registration.model.ext
 import godot.common.util.NaturalT
 import godot.common.util.RealT
 import godot.registration.model.types.GodotClass
-import godot.registration.model.types.Type
-import godot.registration.model.types.TypeKind
 import godot.registration.model.types.TYPE_BOOLEAN
 import godot.registration.model.types.TYPE_BYTE
 import godot.registration.model.types.TYPE_DOUBLE
@@ -13,6 +11,8 @@ import godot.registration.model.types.TYPE_INT
 import godot.registration.model.types.TYPE_KOTLIN_STRING
 import godot.registration.model.types.TYPE_LONG
 import godot.registration.model.types.TYPE_SHORT
+import godot.registration.model.types.Type
+import godot.registration.model.types.TypeKind
 import godot.tools.common.constants.isCollectionsType
 
 fun Type.isCoreType(): Boolean = kind == TypeKind.CORE_TYPE

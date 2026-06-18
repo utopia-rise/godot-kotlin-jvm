@@ -2,7 +2,8 @@
 
 This module turns registration models into registrar source files.
 
-It does not rebuild bytecode shape or decide what should be registered. It consumes `ScriptClass` models that already contain local signals, properties, functions, and parent/interface references.
+It does not rebuild bytecode shape or decide what should be registered. It consumes `ScriptClass` models that already contain local signals, properties,
+functions, and parent/interface references.
 
 ## Local Model, Effective Generation
 
@@ -12,7 +13,8 @@ The registration model is local-only:
 - `ScriptClass.functions` contains the class's local functions
 - `ScriptClass.signals` contains the class's local signals
 
-Parent classes and interfaces are still linked from the model, so the generator can rebuild the effective inherited registration view when generating one registrar.
+Parent classes and interfaces are still linked from the model, so the generator can rebuild the effective inherited registration view when generating one
+registrar.
 
 For a given `ScriptClass`, the generator walks:
 

@@ -18,6 +18,7 @@ JVM_INSTANCE_WRAPPER(KtClass, "godot.registration.KtClass") {
     JNI_OBJECT_METHOD(GET_REGISTERED_NAME)
     JNI_OBJECT_METHOD(GET_FQDN)
     JNI_OBJECT_METHOD(GET_REGISTERED_SUPERTYPES)
+    JNI_BOOLEAN_METHOD(IS_ABSTRACT)
     JNI_OBJECT_METHOD(GET_BASE_GODOT_CLASS)
     JNI_OBJECT_METHOD(GET_FUNCTIONS)
     JNI_OBJECT_METHOD(GET_PROPERTIES)
@@ -30,6 +31,7 @@ JVM_INSTANCE_WRAPPER(KtClass, "godot.registration.KtClass") {
         INIT_JNI_METHOD(GET_REGISTERED_NAME, "getRegisteredName", "()Ljava/lang/String;")
         INIT_JNI_METHOD(GET_FQDN, "getFqdn", "()Ljava/lang/String;")
         INIT_JNI_METHOD(GET_REGISTERED_SUPERTYPES, "getRegisteredSupertypes", "()[Ljava/lang/String;")
+        INIT_JNI_METHOD(IS_ABSTRACT, "isAbstract", "()Z")
         INIT_JNI_METHOD(GET_BASE_GODOT_CLASS, "getBaseGodotClass", "()Ljava/lang/String;")
         INIT_JNI_METHOD(GET_FUNCTIONS, "getFunctions", "()[Lgodot/registration/KtFunction;")
         INIT_JNI_METHOD(GET_PROPERTIES, "getProperties", "()[Lgodot/registration/KtProperty;")
@@ -46,12 +48,15 @@ public:
     StringName fqdn;
     Vector<StringName> registered_supertypes;
     StringName base_godot_class;
+    bool is_abstract;
 
     explicit KtClass(jni::Env& p_env, jni::JObject p_wrapped);
 
     ~KtClass();
 
     KtObject* create_instance(jni::Env& env, Object* p_owner);
+
+    bool can_instantiate() const;
 
     KtFunction* get_method(const StringName& methodName);
 

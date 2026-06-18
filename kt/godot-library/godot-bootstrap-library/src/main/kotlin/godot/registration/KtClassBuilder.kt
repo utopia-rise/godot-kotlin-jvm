@@ -8,11 +8,12 @@ import kotlin.reflect.*
 class KtClassBuilder<T : KtObject>(
     @PublishedApi
     internal val registeredName: String,
-    private val superClasses: List<String>,
+    private val registeredSupertypes: List<String>,
     private val baseGodotClass: String,
+    private val isAbstract: Boolean,
     private val kClassField: KClass<T>,
 ) {
-    private lateinit var constructorField: KtConstructor<T>
+    private var constructorField: KtConstructor<T>? = null
 
     private val functions = mutableMapOf<String, KtFunction<T, *>>()
     private val notifications = mutableListOf<KtNotification<T>>()
@@ -278,9 +279,6 @@ class KtClassBuilder<T : KtObject>(
     }
 
     internal fun build(): KtClass<T> {
-        check(this::constructorField.isInitialized) {
-            "Please provide a default constructor."
-        }
         val fqdn = requireNotNull(kClassField.qualifiedName) {
             "Registered class $registeredName must have a qualified name."
         }
@@ -288,13 +286,14 @@ class KtClassBuilder<T : KtObject>(
             registeredName = registeredName,
             fqdn = fqdn,
             kClass = kClassField,
-            _registeredSupertypes = superClasses,
+            _registeredSupertypes = registeredSupertypes,
             constructor = constructorField,
             _properties = properties,
             _functions = functions,
             _notifications = notifications,
             _signalInfos = signals,
-            baseGodotClass = baseGodotClass
+            baseGodotClass = baseGodotClass,
+            isAbstract = isAbstract,
         )
     }
 }

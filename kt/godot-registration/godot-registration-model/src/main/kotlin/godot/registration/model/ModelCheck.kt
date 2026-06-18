@@ -1,8 +1,19 @@
 package godot.registration.model
 
-import godot.registration.model.checks.*
-import godot.registration.model.types.ScriptClass
+import godot.registration.model.checks.BitFieldEntryCountCheck
+import godot.registration.model.checks.FunctionArgCountCheck
+import godot.registration.model.checks.LateinitPropertyCheck
+import godot.registration.model.checks.NotificationFunctionCheck
+import godot.registration.model.checks.NullablePropertyCheck
+import godot.registration.model.checks.PropertyHintCheck
+import godot.registration.model.checks.PropertyHintCountCheck
+import godot.registration.model.checks.PropertyTypeCheck
+import godot.registration.model.checks.RegisteredNameUniquenessCheck
+import godot.registration.model.checks.RpcCheck
+import godot.registration.model.checks.SignalTypeCheck
+import godot.registration.model.checks.SourceClassCheck
 import godot.registration.model.logging.Logger
+import godot.registration.model.types.ScriptClass
 
 /**
  * Runs every sanity check against the registration model.
@@ -17,8 +28,6 @@ object ModelCheck {
         registeredNameProvider: ((ScriptClass) -> String)? = null,
     ): Boolean {
         val hasIssue = listOf(
-            ConstructorCheck(logger, registeredClasses).execute(),
-
             FunctionArgCountCheck(logger, registeredClasses).execute(),
             NotificationFunctionCheck(logger, registeredClasses).execute(),
             registeredNameProvider?.let { provider ->

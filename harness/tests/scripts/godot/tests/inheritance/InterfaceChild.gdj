@@ -5,7 +5,7 @@ registeredName = InterfaceChild
 fqName = godot.tests.inheritance.InterfaceChild
 baseType = Node
 supertypes = [
-    TestInterface
+    
 ]
 signals = [
     

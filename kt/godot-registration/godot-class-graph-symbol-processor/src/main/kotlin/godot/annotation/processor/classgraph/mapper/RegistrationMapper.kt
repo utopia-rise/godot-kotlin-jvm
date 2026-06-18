@@ -161,7 +161,7 @@ class RegistrationMapper(
 
                 scriptClass.parent = classInfo.superclass?.let(typeMapper::mapClass) as? GodotClass
                 scriptClass.interfaces = classInfo.directSuperInterfaces().map(::getOrCreateInterface)
-                scriptClass.constructors = classInfo.constructorInfo
+                scriptClass.constructors = classInfo.declaredConstructorInfo.orEmpty()
                     .filter { constructor -> constructor.isPublic }
                     .map { constructor ->
                         RegisteredConstructor(
@@ -450,7 +450,7 @@ class RegistrationMapper(
                     when {
                         typeClassInfo.isEnum -> hints.add(
                             EnumHintStringHint(
-                                enumFqName = typeClassInfo.registrationFqName,
+                                enumType = typeMapper.mapRaw(rawDescriptor, emptyList()),
                                 entryCount = typeClassInfo.enumEntryCount,
                             )
                         )
@@ -458,7 +458,7 @@ class RegistrationMapper(
                         typeClassInfo.isProcessorBitField -> containedEnum()?.let { enum ->
                             hints.add(
                                 EnumFlagHintStringHint(
-                                    enumFqName = enum.registrationFqName,
+                                    enumType = typeMapper.mapRaw(enum.name, emptyList()),
                                     entryCount = enum.enumEntryCount,
                                 )
                             )
@@ -468,7 +468,7 @@ class RegistrationMapper(
                             containedEnum()?.let { enum ->
                                 hints.add(
                                     EnumListHintStringHint(
-                                        enumFqName = enum.registrationFqName,
+                                        enumType = typeMapper.mapRaw(enum.name, emptyList()),
                                         entryCount = enum.enumEntryCount,
                                     )
                                 )
@@ -494,7 +494,7 @@ class RegistrationMapper(
             private fun superMethodSignaturesOf(classInfo: ClassInfo): Set<String> =
                 context.getOrPutHierarchyMethodSignatures(classInfo) {
                     classInfo.superMethodSignatures()
-            }
+                }
         }
     }
 }

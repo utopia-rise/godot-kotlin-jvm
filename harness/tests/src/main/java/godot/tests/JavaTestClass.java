@@ -155,13 +155,9 @@ public class JavaTestClass extends Node {
         testSignal1.emit("test");
     }
 
-    @Register
-    @NotNull
-    @Override
-    public GodotNotification _notification() {
-        return godotNotification(
-                (JavaTestClass myself, int notification) -> myself.notificationTriggered = true
-        );
+    @Notification(0)
+    public void _notification() {
+        notificationTriggered = true;
     }
 
     @Register

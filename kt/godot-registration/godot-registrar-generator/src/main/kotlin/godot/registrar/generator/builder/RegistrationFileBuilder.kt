@@ -2,15 +2,15 @@ package godot.registrar.generator.builder
 
 import godot.common.extensions.convertToSnakeCase
 import godot.registrar.generator.GeneratorContext
+import godot.registrar.generator.Settings
 import godot.registrar.generator.ext.baseGodotClassName
 import godot.registrar.generator.ext.effectiveFunctions
 import godot.registrar.generator.ext.effectiveProperties
 import godot.registrar.generator.ext.effectiveSignals
-import godot.registrar.generator.ext.flattenedHierarchy
 import godot.registrar.generator.ext.getRegisteredName
 import godot.registrar.generator.ext.provideRegistrationFileRelativePath
+import godot.registrar.generator.ext.registeredSupertypes
 import godot.registrar.generator.ext.shouldGenerateGdjFile
-import godot.registrar.generator.Settings
 import godot.registration.model.types.ScriptClass
 import java.io.File
 
@@ -43,8 +43,8 @@ class RegistrationFileBuilder(
                     |baseType = ${registeredClass.baseGodotClassName().simpleName()}
                     |supertypes = [
                     |$listItemIndent${
-                registeredClass.flattenedHierarchy(context).joinToString(multilineListSeparator) {
-                    it.fqName.simpleName()
+                registeredClass.registeredSupertypes().joinToString(multilineListSeparator) { supertype ->
+                    supertype.getRegisteredName(settings)
                 }
             }
                     |]

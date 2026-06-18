@@ -4,12 +4,13 @@ import godot.api.Node
 import godot.annotation.DoubleRange
 import godot.annotation.Export
 import godot.annotation.Register
+import godot.annotation.Script
 import godot.annotation.Visible
 import godot.annotation.Emit
 import godot.core.signal1
 import godot.core.signal2
 
-// register class annotation is optional for abstract classes
+@Script
 abstract class AbstractClassInheritanceParent : Node() {
     // GH-731
     @DoubleRange(1.0, 100.0)

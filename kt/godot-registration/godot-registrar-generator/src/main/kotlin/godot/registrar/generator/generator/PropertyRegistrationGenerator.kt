@@ -71,9 +71,9 @@ private fun FunSpec.Builder.registerProperty(
         if (registeredProperty.type.isEnum()) {
             addStatement(
                 if (setterFqName == null) {
-                    "property(%S, %L, %M(%T.entries.toTypedArray()), %S, %M, %S, %L)"
+                    "property(%S, %L, %M(%T.entries.toTypedArray()), %S, %M, %L, %L)"
                 } else {
-                    "property(%S, %L, %L, %M(%T.entries.toTypedArray()), %S, %M, %S, %L)"
+                    "property(%S, %L, %L, %M(%T.entries.toTypedArray()), %S, %M, %L, %L)"
                 },
                 registeredProperty.name.convertToSnakeCase(),
                 getGetterReference(registeredProperty, className),
@@ -90,9 +90,9 @@ private fun FunSpec.Builder.registerProperty(
         } else {
             addStatement(
                 if (setterFqName == null) {
-                    "property(%S, %L, %M, %S, %M, %S, %L)"
+                    "property(%S, %L, %M, %S, %M, %L, %L)"
                 } else {
-                    "property(%S, %L, %L, %M, %S, %M, %S, %L)"
+                    "property(%S, %L, %L, %M, %S, %M, %L, %L)"
                 },
                 registeredProperty.name.convertToSnakeCase(),
                 getGetterReference(registeredProperty, className),
@@ -110,7 +110,7 @@ private fun FunSpec.Builder.registerProperty(
     }
 
     addStatement(
-        "property(%L, $variantType, %S, %M, %S, %L)",
+        "property(%L, $variantType, %S, %M, %L, %L)",
         getPropertyReference(registeredProperty, className),
         *variantTypeArguments.toTypedArray(),
         typeGodotName,
@@ -135,9 +135,9 @@ private fun FunSpec.Builder.registerEnumListProperty(
 
         addStatement(
             if (setterFqName == null) {
-                "enumListProperty(%S, %L, %L, %S)"
+                "enumListProperty(%S, %L, %L, %L)"
             } else {
-                "enumListProperty(%S, %L, %L, %L, %S)"
+                "enumListProperty(%S, %L, %L, %L, %L)"
             },
             registeredProperty.name.convertToSnakeCase(),
             getGetterReference(registeredProperty, className),
@@ -151,7 +151,7 @@ private fun FunSpec.Builder.registerEnumListProperty(
     }
 
     addStatement(
-        "enumListProperty(%L, %L, %S)",
+        "enumListProperty(%L, %L, %L)",
         getPropertyReference(registeredProperty, className),
         getPropertyUsage(registeredProperty),
         propertyHint.hintString,
@@ -173,9 +173,9 @@ private fun FunSpec.Builder.registerBitFieldProperty(
 
         addStatement(
             if (setterFqName == null) {
-                "bitFieldProperty(%S, %L, %L, %S)"
+                "bitFieldProperty(%S, %L, %L, %L)"
             } else {
-                "bitFieldProperty(%S, %L, %L, %L, %S)"
+                "bitFieldProperty(%S, %L, %L, %L, %L)"
             },
             registeredProperty.name.convertToSnakeCase(),
             getGetterReference(registeredProperty, className),
@@ -189,7 +189,7 @@ private fun FunSpec.Builder.registerBitFieldProperty(
     }
 
     addStatement(
-        "bitFieldProperty(%L, %L, %S)",
+        "bitFieldProperty(%L, %L, %L)",
         getPropertyReference(registeredProperty, className),
         getPropertyUsage(registeredProperty),
         propertyHint.hintString,

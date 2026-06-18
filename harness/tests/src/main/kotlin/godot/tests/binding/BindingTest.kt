@@ -6,9 +6,6 @@ import godot.annotation.Register
 
 @Script
 class BindingTest : Object() {
-    @Register
-    fun getClassName(obj: Object) = obj::class.simpleName
+	@Register
+	fun getClassName(obj: Object) = obj::class.simpleName
 }
-
-
-

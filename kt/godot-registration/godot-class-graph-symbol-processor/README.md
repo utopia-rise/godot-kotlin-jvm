@@ -93,7 +93,8 @@ Kotlin can rebuild:
 
 Delegated properties are reconstructed as normal logical properties. The delegate object itself is not modeled separately.
 
-Kotlin also merges property annotations from synthetic `$annotations` carrier methods, which is why `lateinit` and annotation-based registration still work even when the annotation is not stored directly on the backing field.
+Kotlin also merges property annotations from synthetic `$annotations` carrier methods, which is why `lateinit` and annotation-based registration still work even
+when the annotation is not stored directly on the backing field.
 
 Kotlin logical properties always map to property-reference code generation later, even when the source
 property is getter-only, computed, delegated, or otherwise not field-backed in a simple JVM sense.

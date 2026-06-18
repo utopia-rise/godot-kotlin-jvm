@@ -1,9 +1,9 @@
 package godot.registrar.generator.generator.hint
 
-import godot.core.PropertyHint as GodotPropertyHint
 import godot.registrar.generator.GeneratorContext
 import godot.registration.model.RegisteredProperty
 import godot.registration.model.hint.property.PropertyHint
+import godot.core.PropertyHint as GodotPropertyHint
 
 abstract class PropertyHintStringGenerator<ANNOTATION_TYPE : PropertyHint>(
     val registeredProperty: RegisteredProperty,
@@ -15,7 +15,7 @@ abstract class PropertyHintStringGenerator<ANNOTATION_TYPE : PropertyHint>(
         .singleOrNull() as ANNOTATION_TYPE?
 
     protected abstract fun getTypeHint(): GodotPropertyHint
-    abstract fun getHintString(): String
+    protected abstract fun getHintString(): String
 
     override fun generate(): GeneratedPropertyHint = GeneratedPropertyHint(getTypeHint(), getHintString())
 }

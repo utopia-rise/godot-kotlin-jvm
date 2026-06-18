@@ -1,9 +1,9 @@
 package godot.registrar.generator.generator.hint
 
-import godot.core.PropertyHint as GodotPropertyHint
 import godot.core.VariantParser
 import godot.registrar.generator.ext.getAsVariantTypeOrdinal
 import godot.registration.model.RegisteredProperty
+import godot.core.PropertyHint as GodotPropertyHint
 
 internal class ArrayHintStringGenerator(
     private val elementHintString: String?,

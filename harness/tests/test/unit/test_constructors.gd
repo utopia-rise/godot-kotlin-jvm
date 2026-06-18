@@ -1,7 +1,7 @@
 extends "res://addons/gut/test.gd"
 
 
-func test_should_call_default_constructor() -> void:
-	var test_instance = ConstructorRegistrationTest.new()
-	assert_true(test_instance.default_constructor_has_been_called, "Default constructor should have been called")
-	test_instance.free()
+func test_script_without_zero_arg_constructor_is_not_instantiable_from_godot() -> void:
+	var script := load("res://scripts/godot/tests/constructor/ConstructorRegistrationTest.gdj") as Script
+	assert_not_null(script)
+	assert_false(script.can_instantiate(), "Godot should not instantiate registered scripts without a zero-arg constructor")

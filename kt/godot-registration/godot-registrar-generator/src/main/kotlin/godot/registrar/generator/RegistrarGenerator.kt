@@ -1,10 +1,10 @@
 package godot.registrar.generator
 
-import godot.registrar.generator.builder.RegistrationFileBuilder
-import godot.registrar.generator.builder.RegistrarServiceFileBuilder
 import godot.registrar.generator.builder.RegistrarClassGenerator
-import godot.registration.model.types.ScriptClass
+import godot.registrar.generator.builder.RegistrarServiceFileBuilder
+import godot.registrar.generator.builder.RegistrationFileBuilder
 import godot.registration.model.logging.Logger
+import godot.registration.model.types.ScriptClass
 import java.io.File
 
 object RegistrarGenerator {

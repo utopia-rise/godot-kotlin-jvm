@@ -5,7 +5,7 @@ import godot.annotation.Script
 import godot.annotation.Visible
 
 @Script
-class ConstructorRegistrationTest(): Node() {
+class ConstructorRegistrationTest(private val value: Int): Node() {
     @Visible
     var defaultConstructorHasBeenCalled = false
 

@@ -6,14 +6,25 @@ import godot.core.VariantArray
 import godot.registration.model.RegisteredProperty
 import godot.registration.model.ext.isJavaCollection
 import godot.registration.model.ext.isKotlinCollection
-import godot.registration.model.hint.property.*
+import godot.registration.model.hint.property.ColorNoAlphaHint
+import godot.registration.model.hint.property.DirHint
+import godot.registration.model.hint.property.EnumFlagHintStringHint
+import godot.registration.model.hint.property.EnumHintStringHint
+import godot.registration.model.hint.property.EnumListHintStringHint
+import godot.registration.model.hint.property.ExpEasingHint
+import godot.registration.model.hint.property.FileHint
+import godot.registration.model.hint.property.IntFlagHint
+import godot.registration.model.hint.property.MultilineTextHint
+import godot.registration.model.hint.property.PlaceHolderTextHint
+import godot.registration.model.hint.property.PropertyHint
+import godot.registration.model.hint.property.RangeHint
 import godot.registration.model.logging.Logger
 import godot.registration.model.types.ScriptClass
 import godot.registration.model.types.TYPE_DOUBLE
 import godot.registration.model.types.TYPE_FLOAT
 import godot.registration.model.types.TYPE_INT
-import godot.registration.model.types.TYPE_LONG
 import godot.registration.model.types.TYPE_KOTLIN_STRING
+import godot.registration.model.types.TYPE_LONG
 import godot.registration.model.types.TypeKind
 
 class PropertyHintCheck(logger: Logger, registeredClasses: List<ScriptClass>) : BaseCheck(logger, registeredClasses) {

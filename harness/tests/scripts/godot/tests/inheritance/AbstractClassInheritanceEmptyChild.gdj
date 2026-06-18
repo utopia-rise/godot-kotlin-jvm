@@ -5,7 +5,7 @@ registeredName = AbstractClassInheritanceEmptyChild
 fqName = godot.tests.inheritance.AbstractClassInheritanceEmptyChild
 baseType = CharacterBody3D
 supertypes = [
-    AbstractClassInheritanceEmptyParent
+    
 ]
 signals = [
     

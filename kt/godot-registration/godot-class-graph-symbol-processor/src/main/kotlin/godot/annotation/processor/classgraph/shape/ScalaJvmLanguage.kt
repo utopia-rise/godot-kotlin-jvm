@@ -45,10 +45,12 @@ class ScalaJvmLanguage : JvmLanguage() {
     override fun propertyAccessorsOf(methodInfo: MethodInfo, classInfo: ClassInfo): List<PropertyAccessor> = when {
         methodInfo.parameterInfo.isEmpty() && methodInfo.returnRawDescriptor() != TYPE_VOID ->
             listOf(PropertyAccessor.Getter(methodInfo.name))
+
         methodInfo.parameterInfo.size == 1 &&
             methodInfo.returnRawDescriptor() == TYPE_VOID &&
             methodInfo.name.endsWith($$"_$eq") ->
             listOf(PropertyAccessor.Setter(methodInfo.name.removeSuffix($$"_$eq")))
+
         else -> emptyList()
     }
 

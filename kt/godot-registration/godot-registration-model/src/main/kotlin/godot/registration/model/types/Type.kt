@@ -2,7 +2,39 @@ package godot.registration.model.types
 
 import godot.common.util.NaturalT
 import godot.common.util.RealT
-import godot.core.*
+import godot.core.AABB
+import godot.core.Basis
+import godot.core.Callable
+import godot.core.Color
+import godot.core.Dictionary
+import godot.core.NodePath
+import godot.core.PackedByteArray
+import godot.core.PackedColorArray
+import godot.core.PackedFloat32Array
+import godot.core.PackedFloat64Array
+import godot.core.PackedInt32Array
+import godot.core.PackedInt64Array
+import godot.core.PackedStringArray
+import godot.core.PackedVector2Array
+import godot.core.PackedVector3Array
+import godot.core.PackedVector4Array
+import godot.core.Plane
+import godot.core.Projection
+import godot.core.Quaternion
+import godot.core.RID
+import godot.core.Rect2
+import godot.core.Rect2i
+import godot.core.Signal
+import godot.core.StringName
+import godot.core.Transform2D
+import godot.core.Transform3D
+import godot.core.VariantArray
+import godot.core.Vector2
+import godot.core.Vector2i
+import godot.core.Vector3
+import godot.core.Vector3i
+import godot.core.Vector4
+import godot.core.Vector4i
 
 const val TYPE_VOID = "void"
 const val TYPE_BOOLEAN = "boolean"
@@ -98,6 +130,7 @@ open class Type(
         val realType = knownType(RealT::class.qualifiedName!!, TypeKind.PRIMITIVE)
         val doubleType = knownType(TYPE_DOUBLE, TypeKind.PRIMITIVE)
         val stringType = knownType(TYPE_KOTLIN_STRING, TypeKind.PRIMITIVE)
+        val anyType = knownType(TYPE_KOTLIN_ANY, TypeKind.OTHER)
 
         val vector2Type = knownType(Vector2::class.qualifiedName!!, TypeKind.CORE_TYPE)
         val vector2iType = knownType(Vector2i::class.qualifiedName!!, TypeKind.CORE_TYPE)
@@ -157,8 +190,8 @@ open class Type(
         }
 
         private val coreTypesByFqName = buildMap {
-            put(TYPE_JAVA_OBJECT, nilType)
-            put(TYPE_KOTLIN_ANY, nilType)
+            put(TYPE_JAVA_OBJECT, anyType)
+            put(TYPE_KOTLIN_ANY, anyType)
             put(vector2Type.fqName, vector2Type)
             put(vector2iType.fqName, vector2iType)
             put(rect2Type.fqName, rect2Type)

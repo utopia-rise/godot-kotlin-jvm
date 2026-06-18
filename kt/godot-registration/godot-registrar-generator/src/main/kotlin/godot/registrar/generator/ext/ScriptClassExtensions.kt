@@ -4,10 +4,10 @@ import godot.registrar.generator.GeneratorContext
 import godot.registrar.generator.RegisteredNameMode
 import godot.registrar.generator.RegistrationFileLayoutMode
 import godot.registrar.generator.Settings
-import godot.registration.model.types.GodotClass
 import godot.registration.model.RegisteredFunction
 import godot.registration.model.RegisteredProperty
 import godot.registration.model.RegisteredSignal
+import godot.registration.model.types.GodotClass
 import godot.registration.model.types.ScriptClass
 import godot.registration.model.types.ScriptFamily
 import godot.tools.common.constants.FileExtensions
@@ -71,6 +71,7 @@ fun ScriptClass.provideRegistrationFileRelativePath(settings: Settings): String 
 fun ScriptClass.baseGodotClassName(): String =
     godotBaseClass
         ?.fqName
+        ?.substringAfterLast(".")
         .orEmpty()
 
 fun ScriptClass.inheritsRefCounted(): Boolean =
@@ -98,6 +99,12 @@ fun ScriptClass.flattenedHierarchy(context: GeneratorContext): List<ScriptFamily
     visit(this)
     return accumulator.toList()
 }
+
+fun ScriptClass.registeredSupertypes(): List<ScriptClass> =
+    generateSequence(parent) { godotClass -> godotClass.parent }
+        .filterIsInstance<ScriptClass>()
+        .filter { scriptClass -> scriptClass.isRegistered }
+        .toList()
 
 fun ScriptClass.effectiveSignals(context: GeneratorContext): List<RegisteredSignal> =
     (signals + flattenedHierarchy(context).flatMap { family -> family.signals })

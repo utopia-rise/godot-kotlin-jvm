@@ -17,12 +17,13 @@ data class KtClass<T : KtObject>(
     val fqdn: String,
     val kClass: KClass<out KtObject>,
     private val _registeredSupertypes: List<String>,
-    val constructor: KtConstructor<T>,
+    val constructor: KtConstructor<T>?,
     private val _properties: Map<String, KtProperty<T, *>>,
     private val _functions: Map<String, KtFunction<T, *>>,
     private val _notifications: List<KtNotification<T>>,
     private val _signalInfos: Map<String, KtSignalInfo>,
-    val baseGodotClass: String
+    val baseGodotClass: String,
+    val isAbstract: Boolean,
 ) {
     val registeredSupertypes: Array<String>
         get() = _registeredSupertypes.toTypedArray()

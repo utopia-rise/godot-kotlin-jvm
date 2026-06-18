@@ -1,7 +1,7 @@
 package godot.registration.model.checks
 
-import godot.registration.model.types.ScriptClass
 import godot.registration.model.logging.Logger
+import godot.registration.model.types.ScriptClass
 
 class RegisteredNameUniquenessCheck(
     logger: Logger,

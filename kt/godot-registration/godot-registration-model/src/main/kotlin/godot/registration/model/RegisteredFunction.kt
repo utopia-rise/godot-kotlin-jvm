@@ -4,7 +4,6 @@ import godot.annotation.RpcMode
 import godot.annotation.Sync
 import godot.annotation.TransferMode
 import godot.registration.model.types.Type
-import godot.registration.model.types.TYPE_VOID
 
 data class ValueParameter(
     val name: String,

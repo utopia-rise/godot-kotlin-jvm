@@ -1,6 +1,7 @@
 package godot.tests.inheritance
 
 import godot.annotation.Script
+import godot.annotation.Notification
 import godot.annotation.Register
 import godot.annotation.Visible
 import godot.annotation.Emit
@@ -27,9 +28,9 @@ class ClassInheritanceChild : ClassInheritanceParent() {
         childOpenFunctionHasBeenCalled = true
     }
 
-    @Register
-    override fun _notification() = godotNotification { it ->
-        GD.print("Called ClassInheritanceChild::_notification on $this with $it")
+    @Notification(0)
+    override fun _notification() {
+        GD.print("Called ClassInheritanceChild::_notification on $this")
         notificationCallBitFlag += notificationCallBitFlag or 2
     }
 }

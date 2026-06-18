@@ -90,14 +90,6 @@ object GodotScriptAnalyzer {
                 )
             }
 
-            if (ktClass.isRegistered() && !ktClass.hasExactlyOneParameterlessConstructor()) {
-                add(
-                    GodotProblem(
-                        GodotPluginBundle.message("problem.class.constructor.defaultConstructorMissing"),
-                        ktClass.nameIdentifier ?: ktClass.navigationElement
-                    )
-                )
-            }
         }
     }
 
@@ -147,14 +139,6 @@ object GodotScriptAnalyzer {
                     add(
                         GodotProblem(
                             GodotPluginBundle.message("problem.class.inheritance.notInheritingGodotObject"),
-                            psiClass.nameIdentifier ?: psiClass.navigationElement
-                        )
-                    )
-                }
-                if (psiClass.constructors.isNotEmpty() && psiClass.constructors.count { constructor -> !constructor.hasParameters() } != 1) {
-                    add(
-                        GodotProblem(
-                            GodotPluginBundle.message("problem.class.constructor.defaultConstructorMissing"),
                             psiClass.nameIdentifier ?: psiClass.navigationElement
                         )
                     )
@@ -237,19 +221,6 @@ object GodotScriptAnalyzer {
     private fun KtClass.anyPropertyHasAnnotation(annotation: String): Boolean {
         return getProperties()
             .any { property -> property.annotationEntries.any { it.shortName?.asString() == annotation } }
-    }
-
-    private fun KtClass.hasExactlyOneParameterlessConstructor(): Boolean {
-        val constructors = buildList {
-            primaryConstructor?.let(::add)
-            addAll(secondaryConstructors)
-        }
-
-        if (constructors.isEmpty()) {
-            return true
-        }
-
-        return constructors.count { constructor -> constructor.valueParameters.isEmpty() } == 1
     }
 
     private fun KtClass.isOrInheritsType(classId: ClassId): Boolean {

@@ -1,9 +1,9 @@
 package godot.tests
 
-import godot.annotation.{Export, Script, Register, Visible, Emit}
+import godot.annotation.{Emit, Export, Notification, Register, Script, Visible}
 import godot.api.Object.ConnectFlags
 import godot.api.{Button, Node, RenderingServer}
-import godot.core.{BitField, Callable, Callable1, Dictionary, GodotNotification, LambdaCallable, LambdaCallable0, LambdaCallable1, LambdaCallable3, MethodCallable1, MethodStringName1, NotificationFunction, Signal0, Signal1, Signal2, Signal3, StringNames, VariantArray}
+import godot.core.{BitField, Callable, Callable1, Dictionary, LambdaCallable, LambdaCallable0, LambdaCallable1, LambdaCallable3, MethodCallable1, MethodStringName1, Signal0, Signal1, Signal2, Signal3, StringNames, VariantArray}
 import org.jetbrains.annotations.NotNull
 
 @Script
@@ -139,9 +139,10 @@ class ScalaTestClass extends Node {
     testSignal1.emit("test")
   }
 
-  @Register
-  @NotNull
-  override def _notification(): GodotNotification = godotNotification((myself: ScalaTestClass, notification: Int) => myself.notificationTriggered = true)
+  @Notification(0)
+  def _notification(): Unit = {
+    notificationTriggered = true
+  }
 
 
   @Register

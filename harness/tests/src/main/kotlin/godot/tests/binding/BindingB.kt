@@ -6,5 +6,3 @@ import godot.annotation.Script
 @Script
 class BindingB : Node() {
 }
-
-

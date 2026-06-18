@@ -7,5 +7,3 @@ import godot.annotation.Script
 @Script
 class BindingA : Node() {
 }
-
-

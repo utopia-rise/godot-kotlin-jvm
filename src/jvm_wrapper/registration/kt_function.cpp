@@ -5,9 +5,8 @@
 
 KtFunction::KtFunction(jni::Env& p_env, jni::JObject p_wrapped) :
   JvmInstanceWrapper(p_env, p_wrapped),
-  parameter_count(-1) {
+  has_return_value(false) {
     method_info = new KtFunctionInfo(p_env, wrapped.call_object_method(p_env, GET_FUNCTION_INFO));
-    parameter_count = wrapped.call_int_method(p_env, GET_PARAMETER_COUNT);
     has_return_value = method_info->return_val->type != Variant::NIL || (method_info->return_val->usage & PropertyUsageFlags::PROPERTY_USAGE_NIL_IS_VARIANT) != 0;
 }
 
@@ -21,10 +20,6 @@ MethodInfo KtFunction::get_member_info() {
 
 StringName KtFunction::get_name() const {
     return method_info->name;
-}
-
-int KtFunction::get_parameter_count() const {
-    return parameter_count;
 }
 
 KtRpcConfig* KtFunction::get_rpc_config() const {

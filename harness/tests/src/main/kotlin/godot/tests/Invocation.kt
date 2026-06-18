@@ -4,6 +4,7 @@ import godot.api.Button
 import godot.api.NavigationMesh
 import godot.api.Node3D
 import godot.api.Object
+import godot.api.Tween
 import godot.api.XRServer
 import godot.annotation.ColorNoAlpha
 import godot.annotation.Dir
@@ -45,12 +46,6 @@ import godot.extension.api.getNodeAs
 import godot.extension.connectMethod
 import org.joda.time.DateTime
 
-enum class TestEnum {
-	ENUM_1,
-	ENUM_2
-}
-
-
 @Script
 class Invocation : Node3D() {
 	@Export
@@ -59,14 +54,14 @@ class Invocation : Node3D() {
 
 	@Export
 	@Visible
-	var enumList = listOf(TestEnum.ENUM_1)
+	var enumList = listOf(Tween.EaseType.IN)
 
 	@Visible
 	var vectorList = PackedVector3Array()
 
 	@Export
 	@Visible
-	var enumListMutable = mutableListOf(TestEnum.ENUM_1, TestEnum.ENUM_2)
+	var enumListMutable = mutableListOf(Tween.EaseType.IN, Tween.EaseType.OUT)
 
 	// Can't export nullable coretypes
     //@Export
@@ -128,7 +123,7 @@ class Invocation : Node3D() {
 
 	@Export
 	@Visible
-	var enumTest = TestEnum.ENUM_1
+	var enumTest = Tween.EaseType.IN
 
 	@Export
 	@Visible
@@ -242,7 +237,7 @@ class Invocation : Node3D() {
 	@Export
 	@Visible
 	@EnumTypeHint
-	var p6 = TestEnum.ENUM_1
+	var p6 = Tween.EaseType.IN
 
 	@Export
 	@Visible
@@ -256,15 +251,15 @@ class Invocation : Node3D() {
 
 	@Export
 	@Visible
-	var p9 = BitField.of(TestEnum.ENUM_1)
+	var p9 = BitField.of(Tween.EaseType.IN)
 
 	@Export
 	@Visible
-	var p10 = BitField.of(TestEnum.ENUM_1, TestEnum.ENUM_2)
+	var p10 = BitField.of(Tween.EaseType.IN, Tween.EaseType.OUT)
 
 	@Export
 	@Visible
-	var p11 = BitField<TestEnum>(0)
+	var p11 = BitField<Tween.EaseType>(0)
 
 	@Export
 	@Visible

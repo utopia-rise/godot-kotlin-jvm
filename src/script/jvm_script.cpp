@@ -22,6 +22,9 @@ Variant JvmScript::_new() {
 
 Object* JvmScript::_object_create() {
     ERR_FAIL_NULL_V_MSG(kotlin_class, nullptr, "Cannot instantiate JVM script: no KtClass is associated with this script resource.");
+#ifdef DEBUG_ENABLED
+    JVM_ERR_FAIL_COND_V_MSG(!kotlin_class->can_instantiate(), nullptr, "Cannot instantiate JVM script %s: no public zero-argument constructor is registered.", kotlin_class->registered_class_name);
+#endif
 
     Object* owner {ClassDB::instantiate(kotlin_class->base_godot_class)};
 
@@ -40,10 +43,10 @@ bool JvmScript::can_instantiate() const {
     if (Engine::get_singleton()->is_editor_hint()) {
         return false;
     } else {
-        return is_valid();
+        return is_valid() && kotlin_class->can_instantiate();
     }
 #else
-    return is_valid();
+    return is_valid() && kotlin_class->can_instantiate();
     ;
 #endif
 }
@@ -56,13 +59,19 @@ bool JvmScript::inherits_script(const Ref<Script>& p_script) const {
     KtClass* parent_class {kotlin_script->kotlin_class};
     if (kotlin_class == parent_class) { return true; }
 
-    return kotlin_class->registered_supertypes.find(parent_class->registered_class_name);
+    Ref<Script> current = get_base_script();
+    while (current.is_valid()) {
+        Ref<JvmScript> current_jvm_script {current};
+        if (current_jvm_script.is_null()) { return false; }
+        if (current_jvm_script->kotlin_class == parent_class) { return true; }
+        current = current_jvm_script->get_base_script();
+    }
+    return false;
 }
 
 Ref<Script> JvmScript::get_base_script() const {
-    if (!is_valid() || kotlin_class->registered_supertypes.size() == 0) { return {}; }
-    StringName parent_name = kotlin_class->registered_supertypes[0];
-    return JvmScriptManager::get_instance()->get_script_from_name(parent_name);
+    if (!is_valid() || kotlin_class->registered_supertypes.is_empty()) { return {}; }
+    return JvmScriptManager::get_instance()->get_script_from_name(kotlin_class->registered_supertypes[0]);
 }
 
 StringName JvmScript::get_instance_base_type() const {
@@ -144,8 +153,7 @@ bool JvmScript::is_placeholder_fallback_enabled() const {
 }
 
 bool JvmScript::is_abstract() const {
-    // TODO/4.2
-    return false;
+    return is_valid() && kotlin_class->is_abstract;
 }
 
 bool JvmScript::has_script_signal(const StringName& p_signal) const {
@@ -255,8 +263,13 @@ void JvmScript::update_script_exports() {
 
     exported_members_default_value_cache.clear();
     if (!is_valid()) { return; }
+    if (!can_instantiate()) {
+        export_dirty_flag = false;
+        return;
+    }
 
     Object* tmp_object = _object_create();
+    ERR_FAIL_NULL(tmp_object);
     JvmInstance* kotlin_script_instance {reinterpret_cast<JvmInstance*>(tmp_object->get_script_instance())};
 
     List<PropertyInfo> exported_properties;

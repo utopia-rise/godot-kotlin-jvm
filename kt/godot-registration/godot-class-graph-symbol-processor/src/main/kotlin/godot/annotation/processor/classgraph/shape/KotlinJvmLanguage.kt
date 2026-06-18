@@ -43,10 +43,13 @@ class KotlinJvmLanguage : JvmLanguage() {
             when {
                 methodInfo.name.startsWith("get") && methodInfo.name.length > 3 ->
                     listOf(PropertyAccessor.Getter(methodInfo.name.removePrefix("get").decapitalized()))
+
                 methodInfo.name.startsWith("is") && methodInfo.name.length > 2 ->
                     listOf(PropertyAccessor.Getter(methodInfo.name))
+
                 else -> emptyList()
             }
+
         methodInfo.parameterInfo.size == 1 &&
             methodInfo.returnRawDescriptor() == TYPE_VOID &&
             methodInfo.name.startsWith("set") &&
@@ -57,6 +60,7 @@ class KotlinJvmLanguage : JvmLanguage() {
                     PropertyAccessor.Setter("is$suffix"),
                 )
             }
+
         else -> emptyList()
     }
 

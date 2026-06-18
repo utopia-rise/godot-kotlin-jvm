@@ -7,16 +7,20 @@ import godot.annotation.Visible
 import godot.api.Node
 import godot.api.Tween
 import godot.core.Error
-import godot.tests.TestEnum
 
 // GH-835
+enum class RegistrationTestEnum {
+    ENUM_1,
+    ENUM_2
+}
+
 @Script
 class EnumRegistration: Node() {
     // do not test enums with ordinal 0 here! On the GDScript side, failed returns are returned as NULL which will equal ordinal 0 and thus tests might pass even if they should not
 
     @Export
     @Visible
-    var enumValue = TestEnum.ENUM_2
+    var enumValue = RegistrationTestEnum.ENUM_2
 
     @Export
     @Visible
