@@ -13,6 +13,9 @@ signals = [
 properties = [
     
 ]
+notifications = [
+    
+]
 functions = [
     has_godot_script_annotation
 ]

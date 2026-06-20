@@ -15,6 +15,9 @@ properties = [
     button_variant_array,
     texture_variant_array
 ]
+notifications = [
+    
+]
 functions = [
     
 ]

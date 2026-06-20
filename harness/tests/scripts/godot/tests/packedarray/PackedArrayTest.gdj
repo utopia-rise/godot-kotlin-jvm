@@ -13,6 +13,9 @@ signals = [
 properties = [
     
 ]
+notifications = [
+    
+]
 functions = [
     convert_byte_array,
     convert_int_array,

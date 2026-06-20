@@ -6,6 +6,7 @@ namespace {
 constexpr const char* PACKAGE_KEYWORD = "package";
 constexpr const char* CLASS_KEYWORD = "class";
 constexpr const char* REGISTER_CLASS_ANNOTATION = "@Script";
+constexpr const char* TOOL_CLASS_ANNOTATION = "@Tool";
 
 _FORCE_INLINE_ bool is_end_of_source(const String& source, int index) {
     return index >= source.length();
@@ -165,8 +166,8 @@ String get_package_name(const String& source, int& r_register_class_search_start
     return source.substr(package_index, package_end_index - package_index);
 }
 
-void skip_register_class_annotation_arguments(const String& source, int register_class_index, int& r_class_search_index) {
-    int current_index = register_class_index + String(REGISTER_CLASS_ANNOTATION).length();
+void skip_annotation_arguments(const String& source, int annotation_index, const String& annotation, int& r_class_search_index) {
+    int current_index = annotation_index + annotation.length();
     skip_non_code(source, current_index);
 
     if (is_end_of_source(source, current_index) || source[current_index] != U'(') {
@@ -206,47 +207,77 @@ void skip_register_class_annotation_arguments(const String& source, int register
     skip_non_code(source, current_index);
     r_class_search_index = current_index;
 }
+
+String find_class_name(const String& source, int search_start, const String& expected_name = {}) {
+    static String class_keyword {CLASS_KEYWORD};
+    int class_keyword_index = find_token(source, search_start, class_keyword, true);
+    while (class_keyword_index != -1) {
+        int class_index = class_keyword_index + class_keyword.length();
+        skip_non_code(source, class_index);
+        if (is_end_of_source(source, class_index)) { return {}; }
+
+        int class_end_index = class_index;
+        while (!is_end_of_source(source, class_end_index) && !is_class_name_end(source[class_end_index])) {
+            ++class_end_index;
+        }
+
+        String class_name = source.substr(class_index, class_end_index - class_index);
+        if (expected_name.is_empty() || class_name == expected_name) { return class_name; }
+        class_keyword_index = find_token(source, class_keyword_index + class_keyword.length(), class_keyword, true);
+    }
+    return {};
+}
 } // namespace
 
 #ifdef TOOLS_ENABLED
-StringName parse_source_script_info(const String& p_source_code) {
+StringName parse_source_script_info(const String& p_source_code, const String& p_source_path) {
     if (p_source_code.is_empty()) { return {}; }
 
     static String register_class_annotation {REGISTER_CLASS_ANNOTATION};
-    int register_class_search_start = 0;
-    String package_name = get_package_name(p_source_code, register_class_search_start);
-    const int register_class_index = find_token(p_source_code, register_class_search_start, register_class_annotation, false);
-    if (register_class_index == -1) {
-        return {};
+    static String tool_class_annotation {TOOL_CLASS_ANNOTATION};
+    int class_search_start = 0;
+
+    // Read the package first and keep the returned index as the starting point for class discovery.
+    String package_name = get_package_name(p_source_code, class_search_start);
+
+    // Prefer the explicit Godot script annotation and use the class declaration following it.
+    int annotation_index = find_token(p_source_code, class_search_start, register_class_annotation, true);
+    String class_name;
+    if (annotation_index != -1) {
+        int annotated_class_search_start = 0;
+        skip_annotation_arguments(p_source_code, annotation_index, register_class_annotation, annotated_class_search_start);
+        class_name = find_class_name(p_source_code, annotated_class_search_start);
     }
 
-    int class_search_index = 0;
-    skip_register_class_annotation_arguments(p_source_code, register_class_index, class_search_index);
-
-    static String class_keyword {CLASS_KEYWORD};
-    int class_keyword_index = find_token(p_source_code, class_search_index, class_keyword, true);
-    if (class_keyword_index == -1) {
-        return {};
+    // In inferred mode, repeat that search for @Tool when @Script is absent.
+    if (class_name.is_empty()) {
+        annotation_index = find_token(p_source_code, class_search_start, tool_class_annotation, true);
+        if (annotation_index != -1) {
+            int annotated_class_search_start = 0;
+            skip_annotation_arguments(p_source_code, annotation_index, tool_class_annotation, annotated_class_search_start);
+            class_name = find_class_name(p_source_code, annotated_class_search_start);
+        }
     }
 
-    int class_index = class_keyword_index + class_keyword.length();
-    skip_non_code(p_source_code, class_index);
-
-    char32_t next_character = p_source_code[class_index];
-    int class_end_index = class_index;
-    while (!is_end_of_source(p_source_code, class_end_index) && !is_class_name_end(next_character)) {
-        next_character = p_source_code[++class_end_index];
+    // In auto mode, scan class declarations for one matching the source file name.
+    if (class_name.is_empty()) {
+        const String file_class_name = p_source_path.get_file().get_basename();
+        if (!file_class_name.is_empty()) {
+            class_name = find_class_name(p_source_code, class_search_start, file_class_name);
+        }
     }
 
-    String class_name = p_source_code.substr(class_index, class_end_index - class_index);
     if (class_name.is_empty()) { return {}; }
+
+    // Rebuild the fully qualified name from the discovered class and optional package.
     const String fq_name = package_name.is_empty() ? class_name : vformat("%s.%s", package_name, class_name);
     return StringName(fq_name);
 }
 #else
-StringName parse_source_script_info(const String& p_source_code) {
+StringName parse_source_script_info(const String& p_source_code, const String& p_source_path) {
     if (p_source_code.is_empty()) { return {}; }
 
+    (void)p_source_path;
     const String fq_name = p_source_code.strip_edges();
     return fq_name.is_empty() ? StringName() : StringName(fq_name);
 }

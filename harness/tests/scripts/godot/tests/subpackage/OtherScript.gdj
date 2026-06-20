@@ -13,6 +13,9 @@ signals = [
 properties = [
     
 ]
+notifications = [
+    
+]
 functions = [
     hook_no_param,
     hook_one_param,

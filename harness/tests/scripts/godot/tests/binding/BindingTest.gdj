@@ -13,6 +13,9 @@ signals = [
 properties = [
     
 ]
+notifications = [
+    
+]
 functions = [
     get_class_name
 ]

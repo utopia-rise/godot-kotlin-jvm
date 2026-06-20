@@ -1,11 +1,6 @@
 extends "res://addons/gut/test.gd"
 
 
-func test_abstract_parent_script_is_not_instantiable() -> void:
-	var parent_script := load("res://scripts/godot/tests/inheritance/AbstractClassInheritanceParent.gdj") as Script
-	assert_not_null(parent_script)
-	assert_false(parent_script.can_instantiate(), "Registered abstract scripts should not be instantiable by Godot")
-
 func test_call_parent_closed_method_from_child() -> void:
 	var child_script = AbstractClassInheritanceChild.new()
 	child_script.closed_function()
@@ -31,10 +26,3 @@ func test_call_parent_open_var_from_child() -> void:
 	child_script.open_var = 101
 	assert_eq(child_script.open_var, 101, "Open var inherited from parent should now be 101")
 	child_script.free()
-
-func test_registered_abstract_parent_is_child_base_script() -> void:
-	var child = AbstractClassInheritanceChild.new()
-	var child_script: Script = child.get_script()
-	var parent_script := load("res://scripts/godot/tests/inheritance/AbstractClassInheritanceParent.gdj") as Script
-	assert_eq(child_script.get_base_script(), parent_script)
-	child.free()

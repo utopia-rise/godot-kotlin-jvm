@@ -19,6 +19,9 @@ properties = [
     closed_var,
     open_var
 ]
+notifications = [
+    
+]
 functions = [
     open_function,
     closed_function

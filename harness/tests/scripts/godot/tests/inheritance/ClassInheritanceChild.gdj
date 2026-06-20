@@ -19,8 +19,13 @@ properties = [
     open_var,
     notification_call_bit_flag
 ]
+notifications = [
+    on_child_notification:0,
+    on_parent_notification:0
+]
 functions = [
     open_function,
-    _notification,
-    closed_function
+    on_child_notification,
+    closed_function,
+    on_parent_notification
 ]

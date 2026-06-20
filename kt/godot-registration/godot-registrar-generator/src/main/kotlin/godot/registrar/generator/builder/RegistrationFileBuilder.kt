@@ -5,6 +5,7 @@ import godot.registrar.generator.GeneratorContext
 import godot.registrar.generator.Settings
 import godot.registrar.generator.ext.baseGodotClassName
 import godot.registrar.generator.ext.effectiveFunctions
+import godot.registrar.generator.ext.effectiveNotifications
 import godot.registrar.generator.ext.effectiveProperties
 import godot.registrar.generator.ext.effectiveSignals
 import godot.registrar.generator.ext.getRegisteredName
@@ -61,6 +62,13 @@ class RegistrationFileBuilder(
                     it.fqName.substringAfterLast(
                         "."
                     ).trim().convertToSnakeCase()
+                }
+            }
+                    |]
+                    |notifications = [
+                    |$listItemIndent${
+                registeredClass.effectiveNotifications(context).joinToString(multilineListSeparator) {
+                    it.toString()
                 }
             }
                     |]

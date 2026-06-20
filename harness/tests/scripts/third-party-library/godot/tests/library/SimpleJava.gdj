@@ -13,6 +13,9 @@ signals = [
 properties = [
     test_property
 ]
+notifications = [
+    
+]
 functions = [
     provide_greeting
 ]

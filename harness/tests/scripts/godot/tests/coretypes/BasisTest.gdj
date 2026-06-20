@@ -13,6 +13,9 @@ signals = [
 properties = [
     
 ]
+notifications = [
+    
+]
 functions = [
     get_from_basis,
     set_in_basis,

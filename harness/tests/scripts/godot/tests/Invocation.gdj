@@ -67,6 +67,9 @@ properties = [
     ascii_string,
     utf8_string
 ]
+notifications = [
+    
+]
 functions = [
     int_value,
     long_value,

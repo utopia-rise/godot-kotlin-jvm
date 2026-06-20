@@ -107,6 +107,9 @@ In this mode, registration is mostly based on whether something looks like a val
 
 A class that inherits a Godot base class can be picked up automatically.
 
+The source file name must match the class name so Godot can identify it without an annotation. For example, `Player`
+must be declared in `Player.kt`, `Player.java`, or `Player.scala`.
+
 ### Functions and properties
 
 Functions and properties can be picked up automatically as long as they use types that Godot can understand.

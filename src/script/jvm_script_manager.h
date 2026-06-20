@@ -42,7 +42,7 @@ public:
     template<class SCRIPT>
     Ref<SCRIPT> get_or_create_named_script(const String& p_path, bool* created);
     template<class SCRIPT>
-    Ref<SCRIPT> get_or_create_source_script(const String& p_source_code, bool* created);
+    Ref<SCRIPT> get_or_create_source_script(const String& p_source_code, const String& p_source_path, bool* created);
 
     static void finalize();
 
@@ -72,12 +72,12 @@ Ref<SCRIPT> JvmScriptManager::get_or_create_named_script(const String& p_path, b
 }
 
 template<class SCRIPT>
-Ref<SCRIPT> JvmScriptManager::get_or_create_source_script(const String& p_source_code, bool* created) {
+Ref<SCRIPT> JvmScriptManager::get_or_create_source_script(const String& p_source_code, const String& p_source_path, bool* created) {
     if constexpr (!std::is_base_of<JvmScript, SCRIPT>()) { return {}; }
     // Placeholder scripts have to be registered in the TypeManager in order to be transformed in valid scripts when the jar is built.
 
     *created = false;
-    StringName fqdn {parse_source_script_info(p_source_code)};
+    StringName fqdn {parse_source_script_info(p_source_code, p_source_path)};
     if (fqdn.is_empty()) {
         Ref<SCRIPT> jvm_script;
         jvm_script.instantiate();

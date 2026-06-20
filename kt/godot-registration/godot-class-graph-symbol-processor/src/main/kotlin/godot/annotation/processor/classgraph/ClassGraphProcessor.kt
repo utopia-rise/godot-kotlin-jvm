@@ -77,10 +77,10 @@ object ClassGraphProcessor {
             dirtyClassNames += seedClassName
 
             val seedClassInfo = scanResult.getClassInfo(seedClassName) ?: return@forEach
-            if (seedClassInfo.isInterface) {
-                dirtyClassNames += scanResult.getClassesImplementing(seedClassName).map { it.name }
+            dirtyClassNames += if (seedClassInfo.isInterface) {
+                scanResult.getClassesImplementing(seedClassName).map { it.name }
             } else {
-                dirtyClassNames += scanResult.getSubclasses(seedClassName).map { it.name }
+                scanResult.getSubclasses(seedClassName).map { it.name }
             }
         }
 

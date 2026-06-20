@@ -16,6 +16,9 @@ properties = [
     call_with_param_flag,
     signal_call_flag
 ]
+notifications = [
+    
+]
 functions = [
     _ready,
     test_signal_callback,

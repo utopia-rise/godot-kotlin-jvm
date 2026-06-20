@@ -22,6 +22,9 @@ properties = [
     vector2,
     vector3
 ]
+notifications = [
+    
+]
 functions = [
     aabb,
     basis,

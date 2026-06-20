@@ -15,6 +15,9 @@ properties = [
     godot_error_enum_value,
     godot_enum_value
 ]
+notifications = [
+    
+]
 functions = [
     provide_enum_value,
     provide_godot_error_enum_value,

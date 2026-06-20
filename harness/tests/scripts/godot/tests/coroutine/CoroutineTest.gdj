@@ -19,6 +19,9 @@ properties = [
     was_child_cancelled,
     was_parent_cancelled
 ]
+notifications = [
+    
+]
 functions = [
     start_coroutine_without_parameter,
     start_coroutine_with_one_parameter,

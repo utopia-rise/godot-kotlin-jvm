@@ -13,6 +13,9 @@ signals = [
 properties = [
     remote_sync_called
 ]
+notifications = [
+    
+]
 functions = [
     remote_sync_test,
     trigger_function_remote_sync_call

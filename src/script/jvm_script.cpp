@@ -263,7 +263,7 @@ void JvmScript::update_script_exports() {
 
     exported_members_default_value_cache.clear();
     if (!is_valid()) { return; }
-    if (!can_instantiate()) {
+    if (!kotlin_class->can_instantiate()) {
         export_dirty_flag = false;
         return;
     }

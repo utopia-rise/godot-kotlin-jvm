@@ -21,6 +21,9 @@ properties = [
     other_script,
     array
 ]
+notifications = [
+    
+]
 functions = [
     _ready,
     target_function_one,

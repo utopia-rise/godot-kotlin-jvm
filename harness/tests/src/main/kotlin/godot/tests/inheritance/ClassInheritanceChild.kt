@@ -29,9 +29,9 @@ class ClassInheritanceChild : ClassInheritanceParent() {
     }
 
     @Notification(0)
-    override fun _notification() {
-        GD.print("Called ClassInheritanceChild::_notification on $this")
-        notificationCallBitFlag += notificationCallBitFlag or 2
+    fun onChildNotification() {
+        GD.print("Called ClassInheritanceChild::onChildNotification on $this")
+        notificationCallBitFlag = notificationCallBitFlag or 2
     }
 }
 

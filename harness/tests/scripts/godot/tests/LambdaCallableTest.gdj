@@ -19,6 +19,9 @@ properties = [
     kt_callable,
     kt_callable_string
 ]
+notifications = [
+    
+]
 functions = [
     _ready,
     emit_signal_no_param,

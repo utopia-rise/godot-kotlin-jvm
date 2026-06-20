@@ -13,6 +13,9 @@ signals = [
 properties = [
     method_binds
 ]
+notifications = [
+    
+]
 functions = [
     call_with_method_with_all_binds,
     call_with_method_with_two_binds,

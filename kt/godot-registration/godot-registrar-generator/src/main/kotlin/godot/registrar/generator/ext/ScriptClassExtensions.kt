@@ -1,5 +1,6 @@
 package godot.registrar.generator.ext
 
+import godot.common.extensions.convertToSnakeCase
 import godot.registrar.generator.GeneratorContext
 import godot.registrar.generator.RegisteredNameMode
 import godot.registrar.generator.RegistrationFileLayoutMode
@@ -117,6 +118,14 @@ fun ScriptClass.effectiveProperties(context: GeneratorContext): List<RegisteredP
 fun ScriptClass.effectiveFunctions(context: GeneratorContext): List<RegisteredFunction> =
     (functions + flattenedHierarchy(context).flatMap { family -> family.functions })
         .distinctBy { function -> function.signatureKey }
+
+fun ScriptClass.effectiveNotifications(context: GeneratorContext): List<String> =
+    (functions + flattenedHierarchy(context).flatMap { family -> family.functions })
+        .mapNotNull { function ->
+            function.notification?.let { notification ->
+                "${function.fqName.substringAfterLast(".").trim().convertToSnakeCase()}:$notification"
+            }
+        }
 
 private val RegisteredFunction.signatureKey: String
     get() = "$name(${parameters.joinToString(",") { parameter -> parameter.type.fqName }})"

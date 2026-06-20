@@ -185,6 +185,7 @@ class RegistrationMapper(
                 when {
                     property.getter != null || property.setter != null ->
                         listOfNotNull(property.getter, property.setter).all(MethodInfo::isPublic)
+
                     else -> property.fieldInfo?.isPublic == true
                 }
 

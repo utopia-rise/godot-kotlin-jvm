@@ -36,6 +36,9 @@ properties = [
     dictionary,
     notification_triggered
 ]
+notifications = [
+    _notification:0
+]
 functions = [
     greeting,
     _ready,

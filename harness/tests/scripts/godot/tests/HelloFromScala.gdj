@@ -13,6 +13,9 @@ signals = [
 properties = [
     my_int
 ]
+notifications = [
+    
+]
 functions = [
     _ready,
     say_hello

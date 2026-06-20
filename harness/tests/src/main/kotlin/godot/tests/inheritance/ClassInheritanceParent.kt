@@ -49,8 +49,8 @@ open class ClassInheritanceParent : Node() {
     var notificationCallBitFlag = 0
 
     @Notification(0)
-    open fun _notification() {
-        GD.print("Called ClassInheritanceParent::_notification on $this")
+    open fun onParentNotification() {
+        GD.print("Called ClassInheritanceParent::onParentNotification on $this")
         notificationCallBitFlag = notificationCallBitFlag or 1
         GD.print(notificationCallBitFlag)
     }
