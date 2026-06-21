@@ -52,14 +52,14 @@ jobs:
       - name: Download macos export template
         uses: actions/download-artifact@v4
         with:
-          name: export_template_test_all_macos
+          name: export_template_all_macos
           path: "./"
 
       - name: Prepare export
         run: |
           chmod +x harness/tests/bin/godot.*
           mkdir -p harness/tests/export
-          mv export_template_test_all_macos.zip harness/tests/export_template_all_macos.zip
+          mv export_template_all_macos.zip harness/tests/export_template_all_macos.zip
 
       - name: Build tests project
         run: |
@@ -97,3 +97,13 @@ jobs:
           cd harness/tests/
           ./gradlew runExportedGDTests
         timeout-minutes: 30
+
+      - name: Upload GDUnit reports
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: gdunit_reports_macos_exports_${{ matrix.target }}
+          path: |
+            harness/tests/export/reports
+            harness/tests/export/**/*.app/**/reports
+          if-no-files-found: ignore

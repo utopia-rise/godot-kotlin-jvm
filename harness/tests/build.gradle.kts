@@ -131,7 +131,11 @@ tasks {
         dependsOn(importResources)
 
         setupTestExecution {
-            provideEditorExecutable().absolutePath
+            TestExecutionCommand(
+                executable = provideEditorExecutable().absolutePath,
+                useProjectPathOverride = true,
+                reportDirectory = "//reports",
+            )
         }
     }
     register<Exec>("runExportedGDTests") {
@@ -158,62 +162,65 @@ tasks {
             ?.absolutePath
 
         setupTestExecution {
-            executable ?: "no_test_executable_found"
+            TestExecutionCommand(
+                executable = executable ?: "no_test_executable_found",
+                useProjectPathOverride = false,
+                reportDirectory = "//reports",
+            )
         }
     }
 }
 
-fun Exec.setupTestExecution(executableProvider: () -> String) {
-    var didAllTestsPass = false
-    var isJvmClosed = false
-    val testOutputFile = File("${projectDir}/test_output.txt")
-    this.standardOutput = testOutputFile.outputStream()
-    this.errorOutput = testOutputFile.outputStream()
+data class TestExecutionCommand(
+    val executable: String,
+    val useProjectPathOverride: Boolean,
+    val reportDirectory: String,
+)
 
-    this.doLast {
-        val testOutput = testOutputFile.readText()
-        val outputLines = testOutput.split("\n")
-
-        outputLines.forEach { line ->
-            when {
-                line.contains("Exit code: 101") or line.contains("Exit code: 0") -> {
-                    didAllTestsPass = true
-                }
-
-                line.contains("JVM Memory cleaned") -> {
-                    isJvmClosed = true
-                }
-            }
-        }
-
-        val error = when {
-            !didAllTestsPass -> Exception("ERROR: Some assertions failed")
-            !isJvmClosed -> Exception("ERROR: JVM has not closed properly")
-            else -> null
-        }
-
-        println(testOutput)
-
-        error?.let { throw it }
-    }
-
-    this.isIgnoreExitValue = true
+fun Exec.setupTestExecution(commandProvider: () -> TestExecutionCommand) {
+    this.isIgnoreExitValue = false
 
     doFirst {
+        val command = commandProvider()
+        val projectPathArgs = if (command.useProjectPathOverride) {
+            listOf("--path", projectDir.absolutePath)
+        } else {
+            emptyList()
+        }
+        val gdUnitArgs = listOf(
+            "-s",
+            "-d",
+            "--remote-debug",
+            "tcp://127.0.0.1:0",
+            "res://addons/gdUnit4/bin/GdUnitCmdTool.gd",
+            "-rd",
+            command.reportDirectory,
+            "-a",
+            "test",
+            "-c",
+        )
+
         if (HostManager.hostIsMingw) {
             this@setupTestExecution.commandLine(
                 "cmd",
                 "/c",
-                "${executableProvider().replace(" ", "\\ ")} --path $projectDir -s -d addons/gdUnit4/bin/GdUnitCmdTool.gd  -a test",
+                buildString {
+                    append(windowsQuote(command.executable))
+                    append(' ')
+                    append((projectPathArgs + gdUnitArgs).joinToString(" ", transform = ::windowsQuote))
+                },
             )
         } else {
-            this@setupTestExecution.commandLine(
-                "bash",
-                "-c",
-                "${executableProvider().replace(" ", "\\ ")} --path $projectDir -s -d addons/gdUnit4/bin/GdUnitCmdTool.gd  -a test",
-            )
+            this@setupTestExecution.commandLine(command.executable, *(projectPathArgs + gdUnitArgs).toTypedArray())
         }
     }
+}
+
+fun windowsQuote(argument: String): String {
+    if (!argument.contains(" ")) {
+        return argument
+    }
+    return "\"$argument\""
 }
 
 fun provideEditorExecutable(): File = (
