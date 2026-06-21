@@ -92,7 +92,7 @@ public object Performance : Object() {
       MethodStringName0<Performance, PackedInt32Array>("get_custom_monitor_types")
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(22)
+    getSingleton(23)
   }
 
   /**

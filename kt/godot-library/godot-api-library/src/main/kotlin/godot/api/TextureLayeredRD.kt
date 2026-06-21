@@ -45,7 +45,7 @@ public open class TextureLayeredRD internal constructor() : TextureLayered() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(736, scriptPtr)
+    createNativeObject(750, scriptPtr)
   }
 
   public final fun setTextureRdRid(textureRdRid: RID): Unit {

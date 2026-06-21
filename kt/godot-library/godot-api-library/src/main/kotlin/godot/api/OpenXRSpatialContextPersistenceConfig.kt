@@ -10,10 +10,14 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.RID
+import godot.core.VariantArray
+import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser._RID
+import kotlin.Any
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmField
@@ -26,7 +30,7 @@ import kotlin.jvm.JvmField
 @GodotBaseType
 public open class OpenXRSpatialContextPersistenceConfig : OpenXRStructureBase() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(480, scriptPtr)
+    createNativeObject(489, scriptPtr)
   }
 
   /**
@@ -47,6 +51,15 @@ public open class OpenXRSpatialContextPersistenceConfig : OpenXRStructureBase() 
     TransferContext.callMethod(ptr, MethodBindings.removePersistenceContextPtr, NIL)
   }
 
+  /**
+   * Gets the persistence context(s) (as [RID]s) received by [addPersistenceContext].
+   */
+  public final fun getPersistenceContexts(): VariantArray<Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getPersistenceContextsPtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
+  }
+
   public companion object {
     @JvmField
     public val addPersistenceContextName:
@@ -57,6 +70,11 @@ public open class OpenXRSpatialContextPersistenceConfig : OpenXRStructureBase() 
     public val removePersistenceContextName:
         MethodStringName1<OpenXRSpatialContextPersistenceConfig, Unit, RID> =
         MethodStringName1<OpenXRSpatialContextPersistenceConfig, Unit, RID>("remove_persistence_context")
+
+    @JvmField
+    public val getPersistenceContextsName:
+        MethodStringName0<OpenXRSpatialContextPersistenceConfig, VariantArray<Any?>> =
+        MethodStringName0<OpenXRSpatialContextPersistenceConfig, VariantArray<Any?>>("get_persistence_contexts")
   }
 
   public object MethodBindings {
@@ -65,5 +83,8 @@ public open class OpenXRSpatialContextPersistenceConfig : OpenXRStructureBase() 
 
     internal val removePersistenceContextPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRSpatialContextPersistenceConfig", "remove_persistence_context", 2722037293)
+
+    internal val getPersistenceContextsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRSpatialContextPersistenceConfig", "get_persistence_contexts", 3995934104)
   }
 }

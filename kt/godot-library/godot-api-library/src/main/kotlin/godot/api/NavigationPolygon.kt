@@ -261,7 +261,7 @@ public open class NavigationPolygon : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(404, scriptPtr)
+    createNativeObject(413, scriptPtr)
   }
 
   /**

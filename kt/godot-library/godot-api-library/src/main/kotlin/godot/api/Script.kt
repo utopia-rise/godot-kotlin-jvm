@@ -61,7 +61,7 @@ public open class Script internal constructor() : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(628, scriptPtr)
+    createNativeObject(642, scriptPtr)
   }
 
   /**
@@ -70,15 +70,6 @@ public open class Script internal constructor() : Resource() {
   public final fun canInstantiate(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.canInstantiatePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
-  }
-
-  /**
-   * Returns `true` if [baseObject] is an instance of this script.
-   */
-  public final fun instanceHas(baseObject: Object?): Boolean {
-    TransferContext.writeArguments(OBJECT to baseObject)
-    TransferContext.callMethod(ptr, MethodBindings.instanceHasPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -162,6 +153,15 @@ public open class Script internal constructor() : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getGlobalNamePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
+  }
+
+  /**
+   * Returns `true` if the script, or a base class, defines a method with the given name.
+   */
+  public final fun hasScriptMethod(methodName: StringName): Boolean {
+    TransferContext.writeArguments(STRING_NAME to methodName)
+    TransferContext.callMethod(ptr, MethodBindings.hasScriptMethodPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -256,6 +256,21 @@ public open class Script internal constructor() : Resource() {
   }
 
   /**
+   * Returns `true` if [baseObject] is an instance of this script.
+   */
+  public final fun instanceHas(baseObject: Object?): Boolean {
+    TransferContext.writeArguments(OBJECT to baseObject)
+    TransferContext.callMethod(ptr, MethodBindings.instanceHasPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Returns `true` if the script, or a base class, defines a method with the given name.
+   */
+  public final fun hasScriptMethod(methodName: String): Boolean =
+      hasScriptMethod(methodName.asCachedStringName())
+
+  /**
    * Returns `true` if the script, or a base class, defines a signal with the given name.
    */
   public final fun hasScriptSignal(signalName: String): Boolean =
@@ -271,10 +286,6 @@ public open class Script internal constructor() : Resource() {
     @JvmField
     public val canInstantiateName: MethodStringName0<Script, Boolean> =
         MethodStringName0<Script, Boolean>("can_instantiate")
-
-    @JvmField
-    public val instanceHasName: MethodStringName1<Script, Boolean, Object?> =
-        MethodStringName1<Script, Boolean, Object?>("instance_has")
 
     @JvmField
     public val hasSourceCodeName: MethodStringName0<Script, Boolean> =
@@ -303,6 +314,10 @@ public open class Script internal constructor() : Resource() {
     @JvmField
     public val getGlobalNameName: MethodStringName0<Script, StringName> =
         MethodStringName0<Script, StringName>("get_global_name")
+
+    @JvmField
+    public val hasScriptMethodName: MethodStringName1<Script, Boolean, StringName> =
+        MethodStringName1<Script, Boolean, StringName>("has_script_method")
 
     @JvmField
     public val hasScriptSignalName: MethodStringName1<Script, Boolean, StringName> =
@@ -342,14 +357,15 @@ public open class Script internal constructor() : Resource() {
     @JvmField
     public val getRpcConfigName: MethodStringName0<Script, Any?> =
         MethodStringName0<Script, Any?>("get_rpc_config")
+
+    @JvmField
+    public val instanceHasName: MethodStringName1<Script, Boolean, Object?> =
+        MethodStringName1<Script, Boolean, Object?>("instance_has")
   }
 
   public object MethodBindings {
     internal val canInstantiatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Script", "can_instantiate", 36873697)
-
-    internal val instanceHasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Script", "instance_has", 397768994)
 
     internal val hasSourceCodePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Script", "has_source_code", 36873697)
@@ -370,6 +386,9 @@ public open class Script internal constructor() : Resource() {
 
     internal val getGlobalNamePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Script", "get_global_name", 2002593661)
+
+    internal val hasScriptMethodPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Script", "has_script_method", 2619796661)
 
     internal val hasScriptSignalPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Script", "has_script_signal", 2619796661)
@@ -396,5 +415,8 @@ public open class Script internal constructor() : Resource() {
 
     internal val getRpcConfigPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Script", "get_rpc_config", 1214101251)
+
+    internal val instanceHasPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Script", "instance_has", 397768994)
   }
 }

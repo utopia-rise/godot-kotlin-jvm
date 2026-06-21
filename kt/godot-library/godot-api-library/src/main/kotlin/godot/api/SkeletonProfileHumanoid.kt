@@ -137,7 +137,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class SkeletonProfileHumanoid : SkeletonProfile() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(664, scriptPtr)
+    createNativeObject(678, scriptPtr)
   }
 
   public companion object

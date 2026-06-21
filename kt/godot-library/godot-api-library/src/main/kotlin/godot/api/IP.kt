@@ -91,7 +91,7 @@ public object IP : Object() {
   public final const val RESOLVER_INVALID_ID: Long = -1
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(9)
+    getSingleton(10)
   }
 
   /**

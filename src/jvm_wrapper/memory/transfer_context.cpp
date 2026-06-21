@@ -2,6 +2,8 @@
 
 #include "script/jvm_instance.h"
 
+#include <core/object/method_bind.h>
+
 const int MAX_STACK_SIZE = MAX_FUNCTION_ARG_COUNT * 8;
 
 thread_local static Variant variant_args[MAX_STACK_SIZE];// NOLINT(cert-err58-cpp)

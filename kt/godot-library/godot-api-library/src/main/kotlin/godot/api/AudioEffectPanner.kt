@@ -23,12 +23,17 @@ import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
- * Determines how much of an audio signal is sent to the left and right buses.
+ * Determines how much of the audio signal is sent to the left and right channels. This helps with
+ * audio spatialization, giving sounds distinct places in a mix.
+ *
+ * [AudioStreamPlayer2D] and [AudioStreamPlayer3D] handle panning automatically, following where the
+ * source of the sound is on the screen.
  */
 @GodotBaseType
 public open class AudioEffectPanner : AudioEffect() {
   /**
-   * Pan position. Value can range from -1 (fully left) to 1 (fully right).
+   * Pan position. Negative values pan the sound to the left, positive pan to the right. Value can
+   * range from -1 to 1.
    */
   public final inline var pan: Float
     @JvmName("panProperty")
@@ -39,7 +44,7 @@ public open class AudioEffectPanner : AudioEffect() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(68, scriptPtr)
+    createNativeObject(70, scriptPtr)
   }
 
   public final fun setPan(cpanume: Float): Unit {

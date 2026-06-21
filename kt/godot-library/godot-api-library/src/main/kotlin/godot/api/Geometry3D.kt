@@ -118,7 +118,7 @@ public object Geometry3D : Object() {
       MethodStringName1<Geometry3D, PackedInt32Array, PackedVector3Array>("tetrahedralize_delaunay")
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(8)
+    getSingleton(9)
   }
 
   /**

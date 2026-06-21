@@ -2,6 +2,8 @@
 
 #include "jvm_wrapper/memory/type_manager.h"
 
+#include <core/object/class_db.h>
+
 
 void KotlinBinding::init(Object* p_object) {
     StringName class_name {p_object->get_class_name()};

@@ -30,7 +30,7 @@ import kotlin.jvm.JvmField
 @GodotBaseType
 public open class ImageFormatLoaderExtension : ImageFormatLoader() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(296, scriptPtr)
+    createNativeObject(302, scriptPtr)
   }
 
   /**

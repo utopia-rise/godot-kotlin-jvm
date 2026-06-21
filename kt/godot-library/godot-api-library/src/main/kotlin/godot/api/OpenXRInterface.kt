@@ -119,6 +119,14 @@ public open class OpenXRInterface : XRInterface() {
   public val gpuLevelChanged: Signal3<Long, Long, Long> by Signal3
 
   /**
+   * Signal emitted when the user presence value changes.
+   *
+   * **Note:** This signal will not be emitted during application startup and application shutdown.
+   * Developers should assume user presence is gained on startup and lost on shutdown.
+   */
+  public val userPresenceChanged: Signal1<Boolean> by Signal1
+
+  /**
    * The display refresh rate for the current HMD. Only functional if this feature is supported by
    * the OpenXR runtime and after the interface has been initialized.
    */
@@ -145,8 +153,6 @@ public open class OpenXRInterface : XRInterface() {
   /**
    * The foveation level, from `0` (off) to `3` (high). The interface must be initialized before
    * this is accessible.
-   *
-   * **Note:** Only works on the Compatibility renderer.
    */
   public final inline var foveationLevel: Int
     @JvmName("foveationLevelProperty")
@@ -160,8 +166,6 @@ public open class OpenXRInterface : XRInterface() {
    * If `true`, enables dynamic foveation adjustment. The interface must be initialized before this
    * is accessible. If enabled, foveation will automatically be adjusted between low and
    * [foveationLevel].
-   *
-   * **Note:** Only works on the Compatibility renderer.
    */
   public final inline var foveationDynamic: Boolean
     @JvmName("foveationDynamicProperty")
@@ -169,6 +173,18 @@ public open class OpenXRInterface : XRInterface() {
     @JvmName("foveationDynamicProperty")
     set(`value`) {
       setFoveationDynamic(value)
+    }
+
+  /**
+   * If `true`, enables subsampled images with foveation, which can provide a performance boost on
+   * Vulkan.
+   */
+  public final inline var foveationWithSubsampledImages: Boolean
+    @JvmName("foveationWithSubsampledImagesProperty")
+    get() = getFoveationWithSubsampledImages()
+    @JvmName("foveationWithSubsampledImagesProperty")
+    set(`value`) {
+      setFoveationWithSubsampledImages(value)
     }
 
   /**
@@ -202,7 +218,7 @@ public open class OpenXRInterface : XRInterface() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(454, scriptPtr)
+    createNativeObject(463, scriptPtr)
   }
 
   /**
@@ -212,6 +228,26 @@ public open class OpenXRInterface : XRInterface() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSessionStatePtr, LONG)
     return SessionState.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Returns `true` if OpenXR's user presence extension is supported and enabled.
+   *
+   * **Note:** This only returns a valid value after OpenXR has been initialized.
+   */
+  public final fun isUserPresenceSupported(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isUserPresenceSupportedPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Returns `true` if system has detected the presence of a user in the XR experience.
+   */
+  public final fun isUserPresent(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isUserPresentPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getDisplayRefreshRate(): Float {
@@ -269,6 +305,17 @@ public open class OpenXRInterface : XRInterface() {
   public final fun setFoveationDynamic(foveationDynamic: Boolean): Unit {
     TransferContext.writeArguments(BOOL to foveationDynamic)
     TransferContext.callMethod(ptr, MethodBindings.setFoveationDynamicPtr, NIL)
+  }
+
+  public final fun getFoveationWithSubsampledImages(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getFoveationWithSubsampledImagesPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setFoveationWithSubsampledImages(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(ptr, MethodBindings.setFoveationWithSubsampledImagesPtr, NIL)
   }
 
   /**
@@ -859,6 +906,14 @@ public open class OpenXRInterface : XRInterface() {
         MethodStringName0<OpenXRInterface, SessionState>("get_session_state")
 
     @JvmField
+    public val isUserPresenceSupportedName: MethodStringName0<OpenXRInterface, Boolean> =
+        MethodStringName0<OpenXRInterface, Boolean>("is_user_presence_supported")
+
+    @JvmField
+    public val isUserPresentName: MethodStringName0<OpenXRInterface, Boolean> =
+        MethodStringName0<OpenXRInterface, Boolean>("is_user_present")
+
+    @JvmField
     public val getDisplayRefreshRateName: MethodStringName0<OpenXRInterface, Float> =
         MethodStringName0<OpenXRInterface, Float>("get_display_refresh_rate")
 
@@ -893,6 +948,15 @@ public open class OpenXRInterface : XRInterface() {
     @JvmField
     public val setFoveationDynamicName: MethodStringName1<OpenXRInterface, Unit, Boolean> =
         MethodStringName1<OpenXRInterface, Unit, Boolean>("set_foveation_dynamic")
+
+    @JvmField
+    public val getFoveationWithSubsampledImagesName: MethodStringName0<OpenXRInterface, Boolean> =
+        MethodStringName0<OpenXRInterface, Boolean>("get_foveation_with_subsampled_images")
+
+    @JvmField
+    public val setFoveationWithSubsampledImagesName:
+        MethodStringName1<OpenXRInterface, Unit, Boolean> =
+        MethodStringName1<OpenXRInterface, Unit, Boolean>("set_foveation_with_subsampled_images")
 
     @JvmField
     public val isActionSetActiveName: MethodStringName1<OpenXRInterface, Boolean, String> =
@@ -994,6 +1058,12 @@ public open class OpenXRInterface : XRInterface() {
     internal val getSessionStatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRInterface", "get_session_state", 896364779)
 
+    internal val isUserPresenceSupportedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRInterface", "is_user_presence_supported", 36873697)
+
+    internal val isUserPresentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRInterface", "is_user_present", 36873697)
+
     internal val getDisplayRefreshRatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRInterface", "get_display_refresh_rate", 1740695150)
 
@@ -1020,6 +1090,12 @@ public open class OpenXRInterface : XRInterface() {
 
     internal val setFoveationDynamicPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRInterface", "set_foveation_dynamic", 2586408642)
+
+    internal val getFoveationWithSubsampledImagesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRInterface", "get_foveation_with_subsampled_images", 36873697)
+
+    internal val setFoveationWithSubsampledImagesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRInterface", "set_foveation_with_subsampled_images", 2586408642)
 
     internal val isActionSetActivePtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRInterface", "is_action_set_active", 3927539163)

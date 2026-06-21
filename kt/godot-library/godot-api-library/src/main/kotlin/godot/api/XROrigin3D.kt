@@ -67,7 +67,7 @@ public open class XROrigin3D : Node3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(934, scriptPtr)
+    createNativeObject(949, scriptPtr)
   }
 
   public final fun setWorldScale(worldScale: Float): Unit {

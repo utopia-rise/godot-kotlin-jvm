@@ -497,7 +497,7 @@ public open class RigidBody2D : PhysicsBody2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(620, scriptPtr)
+    createNativeObject(633, scriptPtr)
   }
 
   /**

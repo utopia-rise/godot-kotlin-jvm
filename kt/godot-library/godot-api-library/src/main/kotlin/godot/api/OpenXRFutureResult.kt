@@ -35,7 +35,7 @@ public open class OpenXRFutureResult internal constructor() : RefCounted() {
   public val completed: Signal1<OpenXRFutureResult> by Signal1
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(446, scriptPtr)
+    createNativeObject(455, scriptPtr)
   }
 
   /**

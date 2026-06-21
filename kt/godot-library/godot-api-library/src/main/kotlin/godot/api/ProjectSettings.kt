@@ -54,7 +54,8 @@ import kotlin.jvm.JvmStatic
  * (debug, release, ...) using [url=$DOCS_URL/tutorials/export/feature_tags.html]feature tags[/url].
  *
  * **Overriding:** Any project setting can be overridden by creating a file named `override.cfg` in
- * the project's root directory. This can also be used in exported projects by placing this file in the
+ * the project's root directory. This file is in the same format as `project.godot`, and can also be
+ * written using [ConfigFile]. This can also be used in exported projects by placing this file in the
  * same directory as the project binary. Overriding will still take the base project settings'
  * [url=$DOCS_URL/tutorials/export/feature_tags.html]feature tags[/url] in account. Therefore, make
  * sure to *also* override the setting with the desired feature tags if you want them to override base
@@ -155,7 +156,7 @@ public object ProjectSettings : Object() {
   public val settingsChanged: Signal0 by Signal0
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(27)
+    getSingleton(28)
   }
 
   /**
@@ -469,7 +470,7 @@ public object ProjectSettings : Object() {
    *
    * **Note:** This method is intended to be used by editor plugins, as modified [ProjectSettings]
    * can't be loaded back in the running app. If you want to change project settings in exported
-   * projects, use [saveCustom] to save `override.cfg` file.
+   * projects, use [saveCustom] to save an `override.cfg` file.
    */
   @JvmStatic
   public final fun save(): Error {
@@ -506,7 +507,7 @@ public object ProjectSettings : Object() {
 
   /**
    * Saves the configuration to a custom file. The file extension must be `.godot` (to save in
-   * text-based [ConfigFile] format) or `.binary` (to save in binary format). You can also save
+   * text-based [ConfigFile] format) or `.binary` (to save in binary format). You can also save an
    * `override.cfg` file, which is also text, but can be used in exported projects unlike other
    * formats.
    */

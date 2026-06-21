@@ -96,7 +96,7 @@ public object JavaScriptBridge : Object() {
   public val pwaUpdateAvailable: Signal0 by Signal0
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(13)
+    getSingleton(14)
   }
 
   /**
@@ -146,8 +146,8 @@ public object JavaScriptBridge : Object() {
 
   /**
    * Returns `true` if the given [javascriptObject] is of type
-   * [url=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer]`ArrayBuffer`[/url],
-   * [url=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView]`DataView`[/url],
+   * [url=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer]ArrayBuffer[/url],
+   * [url=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView]DataView[/url],
    * or one of the many
    * [url=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray]typed
    * array objects[/url].

@@ -31,7 +31,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public open class ShaderIncludeDB : Object() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(643, scriptPtr)
+    createNativeObject(657, scriptPtr)
   }
 
   public companion object {

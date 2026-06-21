@@ -76,13 +76,13 @@ public object ResourceLoader : Object() {
 
   @JvmField
   public val addResourceFormatLoaderName:
-      MethodStringName2<ResourceLoader, Unit, ResourceFormatLoader?, Boolean> =
-      MethodStringName2<ResourceLoader, Unit, ResourceFormatLoader?, Boolean>("add_resource_format_loader")
+      MethodStringName2<ResourceLoader, Unit, ResourceFormatLoader, Boolean> =
+      MethodStringName2<ResourceLoader, Unit, ResourceFormatLoader, Boolean>("add_resource_format_loader")
 
   @JvmField
   public val removeResourceFormatLoaderName:
-      MethodStringName1<ResourceLoader, Unit, ResourceFormatLoader?> =
-      MethodStringName1<ResourceLoader, Unit, ResourceFormatLoader?>("remove_resource_format_loader")
+      MethodStringName1<ResourceLoader, Unit, ResourceFormatLoader> =
+      MethodStringName1<ResourceLoader, Unit, ResourceFormatLoader>("remove_resource_format_loader")
 
   @JvmField
   public val setAbortOnMissingResourcesName: MethodStringName1<ResourceLoader, Unit, Boolean> =
@@ -113,7 +113,7 @@ public object ResourceLoader : Object() {
       MethodStringName1<ResourceLoader, PackedStringArray, String>("list_directory")
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(29)
+    getSingleton(30)
   }
 
   /**
@@ -230,7 +230,7 @@ public object ResourceLoader : Object() {
    */
   @JvmOverloads
   @JvmStatic
-  public final fun addResourceFormatLoader(formatLoader: ResourceFormatLoader?, atFront: Boolean =
+  public final fun addResourceFormatLoader(formatLoader: ResourceFormatLoader, atFront: Boolean =
       false): Unit {
     TransferContext.writeArguments(OBJECT to formatLoader, BOOL to atFront)
     TransferContext.callMethod(ptr, MethodBindings.addResourceFormatLoaderPtr, NIL)
@@ -240,7 +240,7 @@ public object ResourceLoader : Object() {
    * Unregisters the given [ResourceFormatLoader].
    */
   @JvmStatic
-  public final fun removeResourceFormatLoader(formatLoader: ResourceFormatLoader?): Unit {
+  public final fun removeResourceFormatLoader(formatLoader: ResourceFormatLoader): Unit {
     TransferContext.writeArguments(OBJECT to formatLoader)
     TransferContext.callMethod(ptr, MethodBindings.removeResourceFormatLoaderPtr, NIL)
   }

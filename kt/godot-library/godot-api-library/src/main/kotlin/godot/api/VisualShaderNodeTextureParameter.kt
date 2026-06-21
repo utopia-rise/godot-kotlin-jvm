@@ -84,7 +84,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(866, scriptPtr)
+    createNativeObject(881, scriptPtr)
   }
 
   public final fun setTextureType(type: TextureType): Unit {

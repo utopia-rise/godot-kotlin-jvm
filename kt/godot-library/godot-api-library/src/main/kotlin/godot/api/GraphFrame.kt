@@ -123,7 +123,7 @@ public open class GraphFrame : GraphElement() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(275, scriptPtr)
+    createNativeObject(281, scriptPtr)
   }
 
   /**

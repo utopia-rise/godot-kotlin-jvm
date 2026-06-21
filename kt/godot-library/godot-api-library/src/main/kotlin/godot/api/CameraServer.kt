@@ -37,8 +37,8 @@ import kotlin.jvm.JvmStatic
  * It is notably used to provide AR modules with a video feed from the camera.
  *
  * **Note:** This class is currently only implemented on Linux, Android, macOS, and iOS. On other
- * platforms no [CameraFeed]s will be available. To get a [CameraFeed] on iOS, the camera plugin from
- * [url=https://github.com/godotengine/godot-ios-plugins]godot-ios-plugins[/url] is required.
+ * platforms no [CameraFeed]s will be available. To get a [CameraFeed] on iOS, enable
+ * [EditorExportPlatformIOS.modules/camera].
  */
 @GodotBaseType
 public object CameraServer : Object() {
@@ -131,7 +131,7 @@ public object CameraServer : Object() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(1)
+    getSingleton(2)
   }
 
   @JvmStatic

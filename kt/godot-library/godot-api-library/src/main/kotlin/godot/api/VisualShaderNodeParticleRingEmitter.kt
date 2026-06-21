@@ -18,7 +18,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeParticleRingEmitter : VisualShaderNodeParticleEmitter() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(844, scriptPtr)
+    createNativeObject(859, scriptPtr)
   }
 
   public companion object

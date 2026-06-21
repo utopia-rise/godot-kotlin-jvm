@@ -12,6 +12,7 @@ import godot.core.Color
 import godot.core.Dictionary
 import godot.core.InlineAlignment
 import godot.core.PackedByteArray
+import godot.core.PackedColorArray
 import godot.core.PackedFloat32Array
 import godot.core.PackedInt32Array
 import godot.core.PackedStringArray
@@ -40,7 +41,7 @@ import kotlin.Unit
 @GodotBaseType
 public abstract class TextServerExtension : TextServer() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(723, scriptPtr)
+    createNativeObject(737, scriptPtr)
   }
 
   /**
@@ -421,6 +422,60 @@ public abstract class TextServerExtension : TextServer() {
    */
   public open fun _fontIsModulateColorGlyphs(fontRid: RID): Boolean {
     throw NotImplementedError("TextServerExtension::_fontIsModulateColorGlyphs is not implemented.")
+  }
+
+  /**
+   * Returns the number of predefined color palettes. Palette contains all colors used to render
+   * font glyphs. Each palette has the same number of colors.
+   */
+  public open fun _fontGetPaletteCount(fontRid: RID): Long {
+    throw NotImplementedError("TextServerExtension::_fontGetPaletteCount is not implemented.")
+  }
+
+  /**
+   * Returns the name of the predefined color palette at [index]. Palette contains all colors used
+   * to render font glyphs. Each palette has the same number of colors.
+   */
+  public open fun _fontGetPaletteName(fontRid: RID, index: Long): String {
+    throw NotImplementedError("TextServerExtension::_fontGetPaletteName is not implemented.")
+  }
+
+  /**
+   * Returns the array in the predefined color palette at [index]. Palette contains all colors used
+   * to render font glyphs. Each palette has the same number of colors. Colors can be overridden using
+   * [_fontSetPaletteCustomColors].
+   */
+  public open fun _fontGetPaletteColors(fontRid: RID, index: Long): PackedColorArray {
+    throw NotImplementedError("TextServerExtension::_fontGetPaletteColors is not implemented.")
+  }
+
+  /**
+   * Sets array of custom colors to override predefined palette. Set to empty array to reset
+   * overrides. Use `Color(0, 0, 0, 0)`, to keep predefined palette color at specific position.
+   */
+  public open fun _fontSetPaletteCustomColors(fontRid: RID, colors: PackedColorArray): Unit {
+    throw NotImplementedError("TextServerExtension::_fontSetPaletteCustomColors is not implemented.")
+  }
+
+  /**
+   * Returns array of custom colors to override predefined palette.
+   */
+  public open fun _fontGetPaletteCustomColors(fontRid: RID): PackedColorArray {
+    throw NotImplementedError("TextServerExtension::_fontGetPaletteCustomColors is not implemented.")
+  }
+
+  /**
+   * Returns used palette index.
+   */
+  public open fun _fontGetUsedPalette(fontRid: RID): Long {
+    throw NotImplementedError("TextServerExtension::_fontGetUsedPalette is not implemented.")
+  }
+
+  /**
+   * Sets used palette index.
+   */
+  public open fun _fontSetUsedPalette(fontRid: RID, index: Long): Unit {
+    throw NotImplementedError("TextServerExtension::_fontSetUsedPalette is not implemented.")
   }
 
   /**

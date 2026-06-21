@@ -79,7 +79,7 @@ public open class CurveXYZTexture : Texture2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(196, scriptPtr)
+    createNativeObject(200, scriptPtr)
   }
 
   public final fun setWidth(width: Int): Unit {

@@ -48,8 +48,8 @@ import kotlin.jvm.JvmName
  * camera image in the background.
  *
  * **Note:** This class is currently only implemented on Linux, Android, macOS, and iOS. On other
- * platforms no [CameraFeed]s will be available. To get a [CameraFeed] on iOS, the camera plugin from
- * [url=https://github.com/godotengine/godot-ios-plugins]godot-ios-plugins[/url] is required.
+ * platforms no [CameraFeed]s will be available. To get a [CameraFeed] on iOS, enable
+ * [EditorExportPlatformIOS.modules/camera].
  */
 @GodotBaseType
 public open class CameraFeed : RefCounted() {
@@ -101,7 +101,7 @@ public open class CameraFeed : RefCounted() {
     get() = getFormats()
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(136, scriptPtr)
+    createNativeObject(140, scriptPtr)
   }
 
   /**
@@ -136,6 +136,20 @@ public open class CameraFeed : RefCounted() {
    */
   public open fun _deactivateFeed(): Unit {
     throw NotImplementedError("CameraFeed::_deactivateFeed is not implemented.")
+  }
+
+  /**
+   * Override this method to set the format of the camera feed.
+   */
+  public open fun _setFormat(index: Int, parameters: Dictionary<Any?, Any?>): Boolean {
+    throw NotImplementedError("CameraFeed::_setFormat is not implemented.")
+  }
+
+  /**
+   * Override this method to define supported formats of the camera feed.
+   */
+  public open fun _getFormats(): VariantArray<Any?> {
+    throw NotImplementedError("CameraFeed::_getFormats is not implemented.")
   }
 
   /**

@@ -352,7 +352,7 @@ public object AudioServer : Object() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(0)
+    getSingleton(1)
   }
 
   @JvmStatic
@@ -772,7 +772,7 @@ public object AudioServer : Object() {
   }
 
   /**
-   * Returns the relative time until the next mix occurs.
+   * Returns the relative time until the next mix occurs, in seconds.
    */
   @JvmStatic
   public final fun getTimeToNextMix(): Double {
@@ -782,7 +782,7 @@ public object AudioServer : Object() {
   }
 
   /**
-   * Returns the relative time since the last mix occurred.
+   * Returns the relative time since the last mix occurred, in seconds.
    */
   @JvmStatic
   public final fun getTimeSinceLastMix(): Double {

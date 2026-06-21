@@ -51,6 +51,35 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class CSGShape3D internal constructor() : GeometryInstance3D() {
   /**
+   * Enables automatic smoothing. This overrides any smoothing on the CSG node and instead uses
+   * [smoothingAngle] to calculate normals based on the angle between faces.
+   *
+   * Children of a [CSGCombiner3D] node will be treated as a single mesh.
+   */
+  public final inline var autosmooth: Boolean
+    @JvmName("autosmoothProperty")
+    get() = isAutosmooth()
+    @JvmName("autosmoothProperty")
+    set(`value`) {
+      setAutosmooth(value)
+    }
+
+  /**
+   * When autosmooth is enabled, faces with an angle between them greater than this will be
+   * smoothed, while faces with a smaller angle will remain sharp.
+   *
+   * Note: An angle lower than 0.1 will cause all smoothing to be disabled, this can be used to
+   * increase performance.
+   */
+  public final inline var smoothingAngle: Float
+    @JvmName("smoothingAngleProperty")
+    get() = getSmoothingAngle()
+    @JvmName("smoothingAngleProperty")
+    set(`value`) {
+      setSmoothingAngle(value)
+    }
+
+  /**
    * The operation that is performed on this shape. This is ignored for the first CSG child node as
    * the operation is between this node and the previous child of this nodes parent.
    */
@@ -148,7 +177,7 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(127, scriptPtr)
+    createNativeObject(131, scriptPtr)
   }
 
   /**
@@ -325,6 +354,28 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
     return (TransferContext.readReturnValue(OBJECT) as ArrayMesh?)
   }
 
+  public final fun setAutosmooth(autosmooth: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to autosmooth)
+    TransferContext.callMethod(ptr, MethodBindings.setAutosmoothPtr, NIL)
+  }
+
+  public final fun isAutosmooth(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isAutosmoothPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setSmoothingAngle(smoothingAngle: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to smoothingAngle.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.setSmoothingAnglePtr, NIL)
+  }
+
+  public final fun getSmoothingAngle(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getSmoothingAnglePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
   public enum class Operation(
     public override val `value`: Long,
   ) : GodotEnum {
@@ -435,6 +486,22 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
     @JvmField
     public val bakeStaticMeshName: MethodStringName0<CSGShape3D, ArrayMesh?> =
         MethodStringName0<CSGShape3D, ArrayMesh?>("bake_static_mesh")
+
+    @JvmField
+    public val setAutosmoothName: MethodStringName1<CSGShape3D, Unit, Boolean> =
+        MethodStringName1<CSGShape3D, Unit, Boolean>("set_autosmooth")
+
+    @JvmField
+    public val isAutosmoothName: MethodStringName0<CSGShape3D, Boolean> =
+        MethodStringName0<CSGShape3D, Boolean>("is_autosmooth")
+
+    @JvmField
+    public val setSmoothingAngleName: MethodStringName1<CSGShape3D, Unit, Float> =
+        MethodStringName1<CSGShape3D, Unit, Float>("set_smoothing_angle")
+
+    @JvmField
+    public val getSmoothingAngleName: MethodStringName0<CSGShape3D, Float> =
+        MethodStringName0<CSGShape3D, Float>("get_smoothing_angle")
   }
 
   public object MethodBindings {
@@ -503,5 +570,17 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
 
     internal val bakeStaticMeshPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CSGShape3D", "bake_static_mesh", 1605880883)
+
+    internal val setAutosmoothPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGShape3D", "set_autosmooth", 2586408642)
+
+    internal val isAutosmoothPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGShape3D", "is_autosmooth", 36873697)
+
+    internal val setSmoothingAnglePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGShape3D", "set_smoothing_angle", 373806689)
+
+    internal val getSmoothingAnglePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGShape3D", "get_smoothing_angle", 1740695150)
   }
 }

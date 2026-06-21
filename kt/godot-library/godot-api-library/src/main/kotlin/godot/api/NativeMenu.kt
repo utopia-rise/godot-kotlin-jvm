@@ -356,6 +356,10 @@ public object NativeMenu : Object() {
       MethodStringName3<NativeMenu, Unit, RID, Int, Int>("set_item_indentation_level")
 
   @JvmField
+  public val setItemIndexName: MethodStringName3<NativeMenu, Int, RID, Int, Int> =
+      MethodStringName3<NativeMenu, Int, RID, Int, Int>("set_item_index")
+
+  @JvmField
   public val getItemCountName: MethodStringName1<NativeMenu, Int, RID> =
       MethodStringName1<NativeMenu, Int, RID>("get_item_count")
 
@@ -372,7 +376,7 @@ public object NativeMenu : Object() {
       MethodStringName1<NativeMenu, Unit, RID>("clear")
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(15)
+    getSingleton(16)
   }
 
   /**
@@ -891,7 +895,7 @@ public object NativeMenu : Object() {
 
   /**
    * Returns the index of the item with the specified [text]. Indices are automatically assigned to
-   * each item by the engine, and cannot be set manually.
+   * each item by the engine.
    *
    * **Note:** This method is implemented on macOS and Windows.
    */
@@ -904,7 +908,7 @@ public object NativeMenu : Object() {
 
   /**
    * Returns the index of the item with the specified [tag]. Indices are automatically assigned to
-   * each item by the engine, and cannot be set manually.
+   * each item by the engine.
    *
    * **Note:** This method is implemented on macOS and Windows.
    */
@@ -917,7 +921,7 @@ public object NativeMenu : Object() {
 
   /**
    * Returns the index of the item with the submenu specified by [submenuRid]. Indices are
-   * automatically assigned to each item by the engine, and cannot be set manually.
+   * automatically assigned to each item by the engine.
    *
    * **Note:** This method is implemented on macOS and Windows.
    */
@@ -1414,6 +1418,28 @@ public object NativeMenu : Object() {
   }
 
   /**
+   * Changes the index of the item at index [idx] to be at index [targetIdx]. This can be used to
+   * move an item above other items.
+   *
+   * Returns the new index of the moved item, it's not guaranteed to be the same as [targetIdx].
+   *
+   * **Note:** The indices of any items between index [idx] and index [targetIdx] will be shifted by
+   * one.
+   *
+   * **Note:** This method is implemented on macOS and Windows.
+   */
+  @JvmStatic
+  public final fun setItemIndex(
+    rid: RID,
+    idx: Int,
+    targetIdx: Int,
+  ): Int {
+    TransferContext.writeArguments(_RID to rid, LONG to idx.toLong(), LONG to targetIdx.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.setItemIndexPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  /**
    * Returns number of items in the global menu [rid].
    *
    * **Note:** This method is implemented on macOS and Windows.
@@ -1718,6 +1744,9 @@ public object NativeMenu : Object() {
 
     internal val setItemIndentationLevelPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NativeMenu", "set_item_indentation_level", 4288446313)
+
+    internal val setItemIndexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NativeMenu", "set_item_index", 23951185)
 
     internal val getItemCountPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NativeMenu", "get_item_count", 2198884583)

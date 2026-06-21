@@ -27,13 +27,23 @@ import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
- * Adds a chorus audio effect. The effect applies a filter with voices to duplicate the audio source
- * and manipulate it through the filter.
+ * A "chorus" effect creates multiple copies of the original audio (called "voices") with variations
+ * in pitch, and layers on top of the original, giving the impression that the sound comes from
+ * multiple sources. This creates spectral and spatial movement.
+ *
+ * Each voice is played a short period of time after the original audio, controlled by `delay`. An
+ * internal low-frequency oscillator (LFO) controls their pitch, and `depth` controls the LFO's maximum
+ * amount.
+ *
+ * In the real world, this kind of effect is found in pianos, choirs, and instrument ensembles.
+ *
+ * This effect can also be used to widen mono audio and make digital sounds have a more natural or
+ * analog quality.
  */
 @GodotBaseType
 public open class AudioEffectChorus : AudioEffect() {
   /**
-   * The number of voices in the effect.
+   * The number of voices in the effect. Value can range from 1 to 4.
    */
   public final inline var voiceCount: Int
     @JvmName("voiceCountProperty")
@@ -44,7 +54,7 @@ public open class AudioEffectChorus : AudioEffect() {
     }
 
   /**
-   * The effect's raw signal.
+   * The volume ratio of the original audio. Value can range from 0 to 1.
    */
   public final inline var dry: Float
     @JvmName("dryProperty")
@@ -55,7 +65,7 @@ public open class AudioEffectChorus : AudioEffect() {
     }
 
   /**
-   * The effect's processed signal.
+   * The volume ratio of all voices. Value can range from 0 to 1.
    */
   public final inline var wet: Float
     @JvmName("wetProperty")
@@ -66,7 +76,7 @@ public open class AudioEffectChorus : AudioEffect() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(51, scriptPtr)
+    createNativeObject(53, scriptPtr)
   }
 
   public final fun setVoiceCount(voices: Int): Unit {
@@ -80,66 +90,109 @@ public open class AudioEffectChorus : AudioEffect() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
+  /**
+   * Sets the delay of a given [voiceIdx] in milliseconds, compared to the original audio. Value can
+   * range from 0 to 50.
+   */
   public final fun setVoiceDelayMs(voiceIdx: Int, delayMs: Float): Unit {
     TransferContext.writeArguments(LONG to voiceIdx.toLong(), DOUBLE to delayMs.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setVoiceDelayMsPtr, NIL)
   }
 
+  /**
+   * Returns the delay of a given [voiceIdx] in milliseconds, compared to the original audio.
+   */
   public final fun getVoiceDelayMs(voiceIdx: Int): Float {
     TransferContext.writeArguments(LONG to voiceIdx.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getVoiceDelayMsPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
+  /**
+   * Sets the rate of a given [voiceIdx]'s low-frequency oscillator in Hz. Value can range from 0.1
+   * to 20.
+   */
   public final fun setVoiceRateHz(voiceIdx: Int, rateHz: Float): Unit {
     TransferContext.writeArguments(LONG to voiceIdx.toLong(), DOUBLE to rateHz.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setVoiceRateHzPtr, NIL)
   }
 
+  /**
+   * Returns the rate of a given [voiceIdx]'s low-frequency oscillator in Hz.
+   */
   public final fun getVoiceRateHz(voiceIdx: Int): Float {
     TransferContext.writeArguments(LONG to voiceIdx.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getVoiceRateHzPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
+  /**
+   * Sets the depth of a given [voiceIdx]'s low-frequency oscillator in milliseconds. Value can
+   * range from 0 to 20.
+   */
   public final fun setVoiceDepthMs(voiceIdx: Int, depthMs: Float): Unit {
     TransferContext.writeArguments(LONG to voiceIdx.toLong(), DOUBLE to depthMs.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setVoiceDepthMsPtr, NIL)
   }
 
+  /**
+   * Returns the depth of a given [voiceIdx]'s low-frequency oscillator in milliseconds.
+   */
   public final fun getVoiceDepthMs(voiceIdx: Int): Float {
     TransferContext.writeArguments(LONG to voiceIdx.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getVoiceDepthMsPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
+  /**
+   * Sets the gain of a given [voiceIdx] in dB. Value can range from -60 to 24.
+   */
   public final fun setVoiceLevelDb(voiceIdx: Int, levelDb: Float): Unit {
     TransferContext.writeArguments(LONG to voiceIdx.toLong(), DOUBLE to levelDb.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setVoiceLevelDbPtr, NIL)
   }
 
+  /**
+   * Returns the gain of a given [voiceIdx] in dB.
+   */
   public final fun getVoiceLevelDb(voiceIdx: Int): Float {
     TransferContext.writeArguments(LONG to voiceIdx.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getVoiceLevelDbPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
+  /**
+   * Sets the frequency threshold of a given [voiceIdx]'s low-pass filter in Hz. Frequencies above
+   * [cutoffHz] are removed from [voiceIdx]. Value can range from 1 to 20500.
+   */
   public final fun setVoiceCutoffHz(voiceIdx: Int, cutoffHz: Float): Unit {
     TransferContext.writeArguments(LONG to voiceIdx.toLong(), DOUBLE to cutoffHz.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setVoiceCutoffHzPtr, NIL)
   }
 
+  /**
+   * Returns the frequency threshold of a given [voiceIdx]'s low-pass filter in Hz. Frequencies
+   * above this value are removed from the voice.
+   */
   public final fun getVoiceCutoffHz(voiceIdx: Int): Float {
     TransferContext.writeArguments(LONG to voiceIdx.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getVoiceCutoffHzPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
+  /**
+   * Sets the pan position of a given [voiceIdx]. Negative values pan the sound to the left,
+   * positive pan to the right. Value can range from -1 to 1.
+   */
   public final fun setVoicePan(voiceIdx: Int, pan: Float): Unit {
     TransferContext.writeArguments(LONG to voiceIdx.toLong(), DOUBLE to pan.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setVoicePanPtr, NIL)
   }
 
+  /**
+   * Returns the pan position of a given [voiceIdx]. Negative values mean the left channel, positive
+   * mean the right.
+   */
   public final fun getVoicePan(voiceIdx: Int): Float {
     TransferContext.writeArguments(LONG to voiceIdx.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getVoicePanPtr, DOUBLE)

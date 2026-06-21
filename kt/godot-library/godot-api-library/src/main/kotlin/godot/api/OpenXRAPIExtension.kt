@@ -53,7 +53,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public open class OpenXRAPIExtension : RefCounted() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(428, scriptPtr)
+    createNativeObject(437, scriptPtr)
   }
 
   /**
@@ -189,6 +189,27 @@ public open class OpenXRAPIExtension : RefCounted() {
   public final fun insertDebugLabel(labelName: String): Unit {
     TransferContext.writeArguments(STRING to labelName)
     TransferContext.callMethod(ptr, MethodBindings.insertDebugLabelPtr, NIL)
+  }
+
+  /**
+   * Returns the number of views. It is usually two, one for each eye, but may differ with different
+   * view configurations.
+   */
+  public final fun getViewCount(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getViewCountPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Returns the view configuration type, which is an
+   * [url=https://registry.khronos.org/OpenXR/specs/1.0/man/html/XrViewConfigurationType.html]XrViewConfigurationType[/url]
+   * cast to an integer.
+   */
+  public final fun getViewConfiguration(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getViewConfigurationPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -342,6 +363,28 @@ public open class OpenXRAPIExtension : RefCounted() {
   public final fun unregisterFrameInfoExtension(extension: OpenXRExtensionWrapper?): Unit {
     TransferContext.writeArguments(OBJECT to extension)
     TransferContext.callMethod(ptr, MethodBindings.unregisterFrameInfoExtensionPtr, NIL)
+  }
+
+  /**
+   * Registers the given extension as modifying `XrCompositionLayerProjection` via the
+   * [OpenXRExtensionWrapper.SetProjectionLayerAndGetNextPointer] virtual method.
+   *
+   * **Note:** This cannot be called after the OpenXR session has started. However, it can be called
+   * in [OpenXRExtensionWrapper.OnSessionCreated].
+   */
+  public final fun registerProjectionLayerExtension(extension: OpenXRExtensionWrapper?): Unit {
+    TransferContext.writeArguments(OBJECT to extension)
+    TransferContext.callMethod(ptr, MethodBindings.registerProjectionLayerExtensionPtr, NIL)
+  }
+
+  /**
+   * Unregisters the given extension as modifying `XrCompositionLayerProjection`.
+   *
+   * **Note:** This cannot be called while the OpenXR session is still running.
+   */
+  public final fun unregisterProjectionLayerExtension(extension: OpenXRExtensionWrapper?): Unit {
+    TransferContext.writeArguments(OBJECT to extension)
+    TransferContext.callMethod(ptr, MethodBindings.unregisterProjectionLayerExtensionPtr, NIL)
   }
 
   /**
@@ -583,6 +626,14 @@ public open class OpenXRAPIExtension : RefCounted() {
         MethodStringName1<OpenXRAPIExtension, Unit, String>("insert_debug_label")
 
     @JvmField
+    public val getViewCountName: MethodStringName0<OpenXRAPIExtension, Long> =
+        MethodStringName0<OpenXRAPIExtension, Long>("get_view_count")
+
+    @JvmField
+    public val getViewConfigurationName: MethodStringName0<OpenXRAPIExtension, Long> =
+        MethodStringName0<OpenXRAPIExtension, Long>("get_view_configuration")
+
+    @JvmField
     public val isInitializedName: MethodStringName0<OpenXRAPIExtension, Boolean> =
         MethodStringName0<OpenXRAPIExtension, Boolean>("is_initialized")
 
@@ -647,6 +698,16 @@ public open class OpenXRAPIExtension : RefCounted() {
     public val unregisterFrameInfoExtensionName:
         MethodStringName1<OpenXRAPIExtension, Unit, OpenXRExtensionWrapper?> =
         MethodStringName1<OpenXRAPIExtension, Unit, OpenXRExtensionWrapper?>("unregister_frame_info_extension")
+
+    @JvmField
+    public val registerProjectionLayerExtensionName:
+        MethodStringName1<OpenXRAPIExtension, Unit, OpenXRExtensionWrapper?> =
+        MethodStringName1<OpenXRAPIExtension, Unit, OpenXRExtensionWrapper?>("register_projection_layer_extension")
+
+    @JvmField
+    public val unregisterProjectionLayerExtensionName:
+        MethodStringName1<OpenXRAPIExtension, Unit, OpenXRExtensionWrapper?> =
+        MethodStringName1<OpenXRAPIExtension, Unit, OpenXRExtensionWrapper?>("unregister_projection_layer_extension")
 
     @JvmField
     public val getRenderStateZNearName: MethodStringName0<OpenXRAPIExtension, Double> =
@@ -774,6 +835,12 @@ public open class OpenXRAPIExtension : RefCounted() {
     internal val insertDebugLabelPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRAPIExtension", "insert_debug_label", 83702148)
 
+    internal val getViewCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_view_count", 3905245786)
+
+    internal val getViewConfigurationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_view_configuration", 3905245786)
+
     internal val isInitializedPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRAPIExtension", "is_initialized", 2240911060)
 
@@ -821,6 +888,12 @@ public open class OpenXRAPIExtension : RefCounted() {
 
     internal val unregisterFrameInfoExtensionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRAPIExtension", "unregister_frame_info_extension", 1477360496)
+
+    internal val registerProjectionLayerExtensionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "register_projection_layer_extension", 1477360496)
+
+    internal val unregisterProjectionLayerExtensionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "unregister_projection_layer_extension", 1477360496)
 
     internal val getRenderStateZNearPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_render_state_z_near", 191475506)

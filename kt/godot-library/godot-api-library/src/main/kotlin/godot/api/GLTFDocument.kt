@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.BitFieldBase
 import godot.core.Error
 import godot.core.GodotEnum
 import godot.core.MethodStringName0
@@ -42,6 +43,12 @@ import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
+
+public infix fun Long.or(other: GLTFDocument.ImportFlags): Long = this.or(other.flag)
+
+public infix fun Long.xor(other: GLTFDocument.ImportFlags): Long = this.xor(other.flag)
+
+public infix fun Long.and(other: GLTFDocument.ImportFlags): Long = this.and(other.flag)
 
 /**
  * GLTFDocument supports reading data from a glTF file, buffer, or Godot scene. This data can then
@@ -136,6 +143,22 @@ public open class GLTFDocument : Resource() {
     }
 
   /**
+   * How to handle texture maps during import. The default and recommended value is
+   * [TEXTURE_MAP_MODE_REMAP_TO_STANDARD_MATERIAL], which automatically remaps from glTF's flexible
+   * texture map system to the more specific texture map slots in Godot's [StandardMaterial3D] class.
+   * Alternatively, [TEXTURE_MAP_MODE_DO_NOT_REMAP] can be used to preserve the original texture maps
+   * from the glTF file, which may be desirable if using the glTF file with custom shaders, but may not
+   * display correctly with Godot's built-in materials.
+   */
+  public final inline var textureMapMode: TextureMapMode
+    @JvmName("textureMapModeProperty")
+    get() = getTextureMapMode()
+    @JvmName("textureMapModeProperty")
+    set(`value`) {
+      setTextureMapMode(value)
+    }
+
+  /**
    * How to deal with node visibility during export. This setting does nothing if all nodes are
    * visible. The default and recommended value is [VISIBILITY_MODE_INCLUDE_REQUIRED], which uses the
    * `KHR_node_visibility` extension.
@@ -149,7 +172,7 @@ public open class GLTFDocument : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(239, scriptPtr)
+    createNativeObject(244, scriptPtr)
   }
 
   public final fun setImageFormat(imageFormat: String): Unit {
@@ -205,6 +228,17 @@ public open class GLTFDocument : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRootNodeModePtr, LONG)
     return RootNodeMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setTextureMapMode(textureMapMode: TextureMapMode): Unit {
+    TransferContext.writeArguments(LONG to textureMapMode.value)
+    TransferContext.callMethod(ptr, MethodBindings.setTextureMapModePtr, NIL)
+  }
+
+  public final fun getTextureMapMode(): TextureMapMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getTextureMapModePtr, LONG)
+    return TextureMapMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setVisibilityMode(visibilityMode: VisibilityMode): Unit {
@@ -337,6 +371,28 @@ public open class GLTFDocument : Resource() {
     }
   }
 
+  public enum class TextureMapMode(
+    public override val `value`: Long,
+  ) : GodotEnum {
+    /**
+     * Import the texture maps in the glTF file as they are, without trying to fit them into
+     * specific texture slots suitable for Godot's built-in materials. This may be desirable if using
+     * the glTF file with custom shaders, but may not display correctly with Godot's built-in
+     * materials. This is equivalent to the behavior in Godot 4.6 and earlier.
+     */
+    DO_NOT_REMAP(0),
+    /**
+     * Import the texture maps in the glTF file remapped to the most suitable texture slots based on
+     * Godot's [StandardMaterial3D] class. This is the default behavior.
+     */
+    REMAP_TO_STANDARD_MATERIAL(1),
+    ;
+
+    public companion object {
+      public fun from(`value`: Long): TextureMapMode = entries.single { it.`value` == `value` }
+    }
+  }
+
   public enum class VisibilityMode(
     public override val `value`: Long,
   ) : GodotEnum {
@@ -362,6 +418,69 @@ public open class GLTFDocument : Resource() {
 
     public companion object {
       public fun from(`value`: Long): VisibilityMode = entries.single { it.`value` == `value` }
+    }
+  }
+
+  public class ImportFlags(
+    flag: Long,
+  ) : BitFieldBase<ImportFlags>(flag) {
+    protected override fun wrap(flag: Long): ImportFlags = ImportFlags(flag)
+
+    public companion object {
+      /**
+       * If `true`, generate vertex tangents using [url=http://www.mikktspace.com/]Mikktspace[/url]
+       * if the input meshes don't have tangent data. When possible, it's recommended to let the 3D
+       * modeling software generate tangents on export instead of relying on this option. Tangents are
+       * required for correct display of normal and height maps, along with any material/shader
+       * features that require tangents.
+       *
+       * If you don't need material features that require tangents, disabling this can reduce output
+       * file size and speed up importing if the source 3D file doesn't contain tangents.
+       */
+      @JvmField
+      public val GENERATE_TANGENT_ARRAYS: ImportFlags = ImportFlags(8)
+
+      /**
+       * If checked, use named [Skin]s for animation. The [MeshInstance3D] node contains 3
+       * properties of relevance here: a skeleton [NodePath] pointing to the [Skeleton3D] node (usually
+       * `..`), a mesh, and a skin:
+       *
+       * - The [Skeleton3D] node contains a list of bones with names, their pose and rest, a name,
+       * and a parent bone.
+       *
+       * - The mesh is all of the raw vertex data needed to display a mesh. In terms of the mesh, it
+       * knows how vertices are weight-painted and uses some internal numbering often imported from 3D
+       * modeling software.
+       *
+       * - The skin contains the information necessary to bind this mesh onto this Skeleton3D. For
+       * each of the internal bone IDs chosen by the 3D modeling software, it contains two things.
+       * Firstly, a matrix known as the Bind Pose Matrix, Inverse Bind Matrix, or IBM for short.
+       * Secondly, the [Skin] contains each bone's name (if this flag is enabled), or the bone's index
+       * within the [Skeleton3D] list (if this flag is disabled).
+       *
+       * Together, this information is enough to tell Godot how to use the bone poses in the
+       * [Skeleton3D] node to render the mesh from each [MeshInstance3D]. Note that each
+       * [MeshInstance3D] may share binds, as is common in models exported from Blender, or each
+       * [MeshInstance3D] may use a separate [Skin] object, as is common in models exported from other
+       * tools such as Maya.
+       */
+      @JvmField
+      public val USE_NAMED_SKIN_BINDS: ImportFlags = ImportFlags(16)
+
+      /**
+       * Ignore meshes and materials on import. When importing a scene as an [AnimationLibrary],
+       * this flag is always enabled.
+       */
+      @JvmField
+      public val DISCARD_MESHES_AND_MATERIALS: ImportFlags = ImportFlags(32)
+
+      /**
+       * If `true`, mesh compression will not be used. Consider enabling if you notice blocky
+       * artifacts in your mesh normals or UVs, or if you have meshes that are larger than a few
+       * thousand meters in each direction.
+       */
+      @JvmField
+      public val FORCE_DISABLE_MESH_COMPRESSION: ImportFlags = ImportFlags(64)
     }
   }
 
@@ -405,6 +524,14 @@ public open class GLTFDocument : Resource() {
     @JvmField
     public val getRootNodeModeName: MethodStringName0<GLTFDocument, RootNodeMode> =
         MethodStringName0<GLTFDocument, RootNodeMode>("get_root_node_mode")
+
+    @JvmField
+    public val setTextureMapModeName: MethodStringName1<GLTFDocument, Unit, TextureMapMode> =
+        MethodStringName1<GLTFDocument, Unit, TextureMapMode>("set_texture_map_mode")
+
+    @JvmField
+    public val getTextureMapModeName: MethodStringName0<GLTFDocument, TextureMapMode> =
+        MethodStringName0<GLTFDocument, TextureMapMode>("get_texture_map_mode")
 
     @JvmField
     public val setVisibilityModeName: MethodStringName1<GLTFDocument, Unit, VisibilityMode> =
@@ -585,6 +712,12 @@ public open class GLTFDocument : Resource() {
 
     internal val getRootNodeModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFDocument", "get_root_node_mode", 948057992)
+
+    internal val setTextureMapModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFDocument", "set_texture_map_mode", 3144426102)
+
+    internal val getTextureMapModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFDocument", "get_texture_map_mode", 2113256994)
 
     internal val setVisibilityModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFDocument", "set_visibility_mode", 2803579218)

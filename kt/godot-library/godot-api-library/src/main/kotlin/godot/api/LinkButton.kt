@@ -152,7 +152,7 @@ public open class LinkButton : BaseButton() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(355, scriptPtr)
+    createNativeObject(364, scriptPtr)
   }
 
   public final fun setText(text: String): Unit {

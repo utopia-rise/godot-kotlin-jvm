@@ -45,7 +45,7 @@ public open class AnimatableBody3D : StaticBody3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(9, scriptPtr)
+    createNativeObject(10, scriptPtr)
   }
 
   public final fun setSyncToPhysics(enable: Boolean): Unit {

@@ -10,10 +10,10 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.BitFieldBase
 import godot.core.Callable
 import godot.core.Dictionary
 import godot.core.Error
-import godot.core.GodotEnum
 import godot.core.KtObject
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
@@ -44,6 +44,12 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
+
+public infix fun Long.or(other: Object.ConnectFlags): Long = this.or(other.flag)
+
+public infix fun Long.xor(other: Object.ConnectFlags): Long = this.xor(other.flag)
+
+public infix fun Long.and(other: Object.ConnectFlags): Long = this.and(other.flag)
 
 /**
  * An advanced [Variant] type. All classes in the engine inherit from Object. Each class may define
@@ -157,8 +163,8 @@ public open class Object : KtObject() {
    *
    * **Note:** This method ignores `class_name` declarations in the object's script.
    */
-  public final fun isClass(`class`: String): Boolean {
-    TransferContext.writeArguments(STRING to `class`)
+  public final fun isClass(`class`: StringName): Boolean {
+    TransferContext.writeArguments(STRING_NAME to `class`)
     TransferContext.callMethod(ptr, MethodBindings.isClassPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -857,7 +863,7 @@ public open class Object : KtObject() {
     callable: Callable,
     flags: ConnectFlags = Object.ConnectFlags.DEFAULT,
   ): Error {
-    TransferContext.writeArguments(STRING_NAME to signal, CALLABLE to callable, LONG to flags.value)
+    TransferContext.writeArguments(STRING_NAME to signal, CALLABLE to callable, LONG to flags.flag)
     TransferContext.callMethod(ptr, MethodBindings.connectPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1015,7 +1021,11 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Returns `true` if the [Node.queueFree] method was called for the object.
+   * Returns `true` if the methods [Node.queueFree] or [SceneTree.queueDelete] was called for the
+   * object.
+   *
+   * **Note:** This method does not return `true` on children of the node that [Node.queueFree] has
+   * been called on, even though they will be freed together with the parent.
    */
   public final fun isQueuedForDeletion(): Boolean {
     TransferContext.writeArguments()
@@ -1032,6 +1042,29 @@ public open class Object : KtObject() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.cancelFreePtr, NIL)
   }
+
+  /**
+   * Returns `true` if the object inherits from the given [class]. See also [getClass].
+   *
+   * ```gdscript
+   * //gdscript
+   * var sprite2d = Sprite2D.new()
+   * sprite2d.is_class("Sprite2D") # Returns true
+   * sprite2d.is_class("Node")     # Returns true
+   * sprite2d.is_class("Node3D")   # Returns false
+   * ```
+   *
+   * ```csharp
+   * //csharp
+   * var sprite2D = new Sprite2D();
+   * sprite2D.IsClass("Sprite2D"); // Returns true
+   * sprite2D.IsClass("Node");     // Returns true
+   * sprite2D.IsClass("Node3D");   // Returns false
+   * ```
+   *
+   * **Note:** This method ignores `class_name` declarations in the object's script.
+   */
+  public final fun isClass(`class`: String): Boolean = isClass(`class`.asCachedStringName())
 
   /**
    * Assigns [value] to the given [property]. If the property does not exist or the given [value]'s
@@ -1536,58 +1569,69 @@ public open class Object : KtObject() {
   public final fun setTranslationDomain(domain: String) =
       setTranslationDomain(domain.asCachedStringName())
 
-  public enum class ConnectFlags(
-    public override val `value`: Long,
-  ) : GodotEnum {
-    /**
-     * Default connections that are immediately emitted
-     */
-    DEFAULT(0),
-    /**
-     * Deferred connections trigger their [Callable]s on idle time (at the end of the frame), rather
-     * than instantly.
-     */
-    DEFERRED(1),
-    /**
-     * Persisting connections are stored when the object is serialized (such as when using
-     * [PackedScene.pack]). In the editor, connections created through the Signals dock are always
-     * persisting.
-     *
-     * **Note:** Connections to lambda functions (that is, when the function code is embedded in the
-     * [connect] call) cannot be made persistent.
-     */
-    PERSIST(2),
-    /**
-     * One-shot connections disconnect themselves after emission.
-     */
-    ONE_SHOT(4),
-    /**
-     * Reference-counted connections can be assigned to the same [Callable] multiple times. Each
-     * disconnection decreases the internal counter. The signal fully disconnects only when the counter
-     * reaches 0.
-     */
-    REFERENCE_COUNTED(8),
-    /**
-     * On signal emission, the source object is automatically appended after the original arguments
-     * of the signal, regardless of the connected [Callable]'s unbinds which affect only the original
-     * arguments of the signal (see [Callable.unbind], [Callable.getUnboundArgumentsCount]).
-     *
-     * ```
-     * extends Object
-     *
-     * signal test_signal
-     *
-     * func test():
-     * 	print(self) # Prints e.g. <Object#35332818393>
-     * 	test_signal.connect(prints.unbind(1), CONNECT_APPEND_SOURCE_OBJECT)
-     * 	test_signal.emit("emit_arg_1", "emit_arg_2") # Prints emit_arg_1 <Object#35332818393>
-     * ```
-     */
-    APPEND_SOURCE_OBJECT(16),
-    ;
+  public class ConnectFlags(
+    flag: Long,
+  ) : BitFieldBase<ConnectFlags>(flag) {
+    protected override fun wrap(flag: Long): ConnectFlags = ConnectFlags(flag)
 
     public companion object {
-      public fun from(`value`: Long): ConnectFlags = entries.single { it.`value` == `value` }
+      /**
+       * Default connections that are immediately emitted
+       */
+      @JvmField
+      public val DEFAULT: ConnectFlags = ConnectFlags(0)
+
+      /**
+       * Deferred connections trigger their [Callable]s on idle time (at the end of the frame),
+       * rather than instantly.
+       */
+      @JvmField
+      public val DEFERRED: ConnectFlags = ConnectFlags(1)
+
+      /**
+       * Persisting connections are stored when the object is serialized (such as when using
+       * [PackedScene.pack]). In the editor, connections created through the Signals dock are always
+       * persisting.
+       *
+       * **Note:** Connections to lambda functions (that is, when the function code is embedded in
+       * the [connect] call) cannot be made persistent.
+       */
+      @JvmField
+      public val PERSIST: ConnectFlags = ConnectFlags(2)
+
+      /**
+       * One-shot connections disconnect themselves after emission.
+       */
+      @JvmField
+      public val ONE_SHOT: ConnectFlags = ConnectFlags(4)
+
+      /**
+       * Reference-counted connections can be assigned to the same [Callable] multiple times. Each
+       * disconnection decreases the internal counter. The signal fully disconnects only when the
+       * counter reaches 0.
+       */
+      @JvmField
+      public val REFERENCE_COUNTED: ConnectFlags = ConnectFlags(8)
+
+      /**
+       * On signal emission, the source object is automatically appended after the original
+       * arguments of the signal, regardless of the connected [Callable]'s unbinds which affect only
+       * the original arguments of the signal (see [Callable.unbind],
+       * [Callable.getUnboundArgumentsCount]).
+       *
+       * ```
+       * extends Object
+       *
+       * signal test_signal
+       *
+       * func test():
+       * 	print(self) # Prints e.g. <Object#35332818393>
+       * 	test_signal.connect(prints.unbind(1), CONNECT_APPEND_SOURCE_OBJECT)
+       * 	test_signal.emit("emit_arg_1", "emit_arg_2") # Prints emit_arg_1 <Object#35332818393>
+       * ```
+       */
+      @JvmField
+      public val APPEND_SOURCE_OBJECT: ConnectFlags = ConnectFlags(16)
     }
   }
 
@@ -1597,8 +1641,8 @@ public open class Object : KtObject() {
         MethodStringName0<Object, String>("get_class")
 
     @JvmField
-    public val isClassName: MethodStringName1<Object, Boolean, String> =
-        MethodStringName1<Object, Boolean, String>("is_class")
+    public val isClassName: MethodStringName1<Object, Boolean, StringName> =
+        MethodStringName1<Object, Boolean, StringName>("is_class")
 
     @JvmField
     public val setName: MethodStringName2<Object, Unit, StringName, Any?> =
@@ -1804,7 +1848,7 @@ public open class Object : KtObject() {
         TypeManager.getMethodBindPtr("Object", "get_class", 201670096)
 
     internal val isClassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Object", "is_class", 3927539163)
+        TypeManager.getMethodBindPtr("Object", "is_class", 2619796661)
 
     internal val setPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "set", 3776071444)
 

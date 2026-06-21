@@ -124,7 +124,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
    * have precise control over the [MeshInstance3D]'s bounding box. To use the default AABB, set value
    * to an [AABB] with all fields set to `0.0`. To avoid frustum culling, set [customAabb] to a very
    * large AABB that covers your entire game world such as `AABB(-10000, -10000, -10000, 20000, 20000,
-   * 20000)`. To disable all forms of culling (including occlusion culling), call
+   * 20000)`. To disable all forms of culling (including occlusion and layer culling), call
    * [RenderingServer.instanceSetIgnoreCulling] on the [GeometryInstance3D]'s [RID].
    *
    * **Warning:**
@@ -291,7 +291,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(268, scriptPtr)
+    createNativeObject(274, scriptPtr)
   }
 
   /**
@@ -310,7 +310,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
    * have precise control over the [MeshInstance3D]'s bounding box. To use the default AABB, set value
    * to an [AABB] with all fields set to `0.0`. To avoid frustum culling, set [customAabb] to a very
    * large AABB that covers your entire game world such as `AABB(-10000, -10000, -10000, 20000, 20000,
-   * 20000)`. To disable all forms of culling (including occlusion culling), call
+   * 20000)`. To disable all forms of culling (including occlusion and layer culling), call
    * [RenderingServer.instanceSetIgnoreCulling] on the [GeometryInstance3D]'s [RID].
    */
   @CoreTypeHelper

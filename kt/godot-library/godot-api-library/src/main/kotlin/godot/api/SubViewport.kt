@@ -21,6 +21,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2I
 import godot.core.Vector2i
 import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -95,6 +96,17 @@ public open class SubViewport : Viewport() {
     }
 
   /**
+   * The number of view layers we are rendering to. Set this to `2` to enable stereo rendering.
+   */
+  public final inline var viewCount: Int
+    @JvmName("viewCountProperty")
+    get() = getViewCount()
+    @JvmName("viewCountProperty")
+    set(`value`) {
+      setViewCount(value)
+    }
+
+  /**
    * The clear mode when the sub-viewport is used as a render target.
    *
    * **Note:** This property is intended for 2D usage.
@@ -119,7 +131,7 @@ public open class SubViewport : Viewport() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(706, scriptPtr)
+    createNativeObject(720, scriptPtr)
   }
 
   /**
@@ -197,6 +209,17 @@ public open class SubViewport : Viewport() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isSize2dOverrideStretchEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setViewCount(viewCount: Int): Unit {
+    TransferContext.writeArguments(LONG to viewCount.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.setViewCountPtr, NIL)
+  }
+
+  public final fun getViewCount(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getViewCountPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setUpdateMode(mode: UpdateMode): Unit {
@@ -299,6 +322,14 @@ public open class SubViewport : Viewport() {
         MethodStringName0<SubViewport, Boolean>("is_size_2d_override_stretch_enabled")
 
     @JvmField
+    public val setViewCountName: MethodStringName1<SubViewport, Unit, Int> =
+        MethodStringName1<SubViewport, Unit, Int>("set_view_count")
+
+    @JvmField
+    public val getViewCountName: MethodStringName0<SubViewport, Int> =
+        MethodStringName0<SubViewport, Int>("get_view_count")
+
+    @JvmField
     public val setUpdateModeName: MethodStringName1<SubViewport, Unit, UpdateMode> =
         MethodStringName1<SubViewport, Unit, UpdateMode>("set_update_mode")
 
@@ -333,6 +364,12 @@ public open class SubViewport : Viewport() {
 
     internal val isSize2dOverrideStretchEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("SubViewport", "is_size_2d_override_stretch_enabled", 36873697)
+
+    internal val setViewCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SubViewport", "set_view_count", 1286410249)
+
+    internal val getViewCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SubViewport", "get_view_count", 3905245786)
 
     internal val setUpdateModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("SubViewport", "set_update_mode", 1295690030)

@@ -31,7 +31,7 @@ import kotlin.jvm.JvmField
 @GodotBaseType
 public open class Skin : Resource() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(665, scriptPtr)
+    createNativeObject(679, scriptPtr)
   }
 
   public final fun setBindCount(bindCount: Int): Unit {

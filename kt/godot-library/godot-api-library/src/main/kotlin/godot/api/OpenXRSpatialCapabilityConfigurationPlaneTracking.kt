@@ -28,7 +28,7 @@ import kotlin.jvm.JvmField
 public open class OpenXRSpatialCapabilityConfigurationPlaneTracking :
     OpenXRSpatialCapabilityConfigurationBaseHeader() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(466, scriptPtr)
+    createNativeObject(475, scriptPtr)
   }
 
   /**

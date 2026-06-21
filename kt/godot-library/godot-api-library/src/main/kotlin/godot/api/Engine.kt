@@ -154,8 +154,8 @@ public object Engine : Object() {
       MethodStringName1<Engine, Object?, StringName>("get_singleton")
 
   @JvmField
-  public val registerSingletonName: MethodStringName2<Engine, Unit, StringName, Object?> =
-      MethodStringName2<Engine, Unit, StringName, Object?>("register_singleton")
+  public val registerSingletonName: MethodStringName2<Engine, Unit, StringName, Object> =
+      MethodStringName2<Engine, Unit, StringName, Object>("register_singleton")
 
   @JvmField
   public val unregisterSingletonName: MethodStringName1<Engine, Unit, StringName> =
@@ -166,12 +166,12 @@ public object Engine : Object() {
       MethodStringName0<Engine, PackedStringArray>("get_singleton_list")
 
   @JvmField
-  public val registerScriptLanguageName: MethodStringName1<Engine, Error, ScriptLanguage?> =
-      MethodStringName1<Engine, Error, ScriptLanguage?>("register_script_language")
+  public val registerScriptLanguageName: MethodStringName1<Engine, Error, ScriptLanguage> =
+      MethodStringName1<Engine, Error, ScriptLanguage>("register_script_language")
 
   @JvmField
-  public val unregisterScriptLanguageName: MethodStringName1<Engine, Error, ScriptLanguage?> =
-      MethodStringName1<Engine, Error, ScriptLanguage?>("unregister_script_language")
+  public val unregisterScriptLanguageName: MethodStringName1<Engine, Error, ScriptLanguage> =
+      MethodStringName1<Engine, Error, ScriptLanguage>("unregister_script_language")
 
   @JvmField
   public val getScriptLanguageCountName: MethodStringName0<Engine, Int> =
@@ -387,7 +387,7 @@ public object Engine : Object() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(4)
+    getSingleton(5)
   }
 
   @JvmStatic
@@ -791,7 +791,7 @@ public object Engine : Object() {
    * for plugins.
    */
   @JvmStatic
-  public final fun registerSingleton(name: StringName, instance: Object?): Unit {
+  public final fun registerSingleton(name: StringName, instance: Object): Unit {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to instance)
     TransferContext.callMethod(ptr, MethodBindings.registerSingletonPtr, NIL)
   }
@@ -830,7 +830,7 @@ public object Engine : Object() {
    * extension/name/type.
    */
   @JvmStatic
-  public final fun registerScriptLanguage(language: ScriptLanguage?): Error {
+  public final fun registerScriptLanguage(language: ScriptLanguage): Error {
     TransferContext.writeArguments(OBJECT to language)
     TransferContext.callMethod(ptr, MethodBindings.registerScriptLanguagePtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
@@ -846,7 +846,7 @@ public object Engine : Object() {
    * - [ERR_DOES_NOT_EXIST] if the language is not registered in `ScriptServer`.
    */
   @JvmStatic
-  public final fun unregisterScriptLanguage(language: ScriptLanguage?): Error {
+  public final fun unregisterScriptLanguage(language: ScriptLanguage): Error {
     TransferContext.writeArguments(OBJECT to language)
     TransferContext.callMethod(ptr, MethodBindings.unregisterScriptLanguagePtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
@@ -1027,7 +1027,7 @@ public object Engine : Object() {
    * for plugins.
    */
   @JvmStatic
-  public final fun registerSingleton(name: String, instance: Object?) =
+  public final fun registerSingleton(name: String, instance: Object) =
       registerSingleton(name.asCachedStringName(), instance)
 
   /**

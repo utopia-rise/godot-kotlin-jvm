@@ -180,11 +180,12 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     }
 
   /**
-   * The size of the light in Godot units. Only available for [OmniLight3D]s and [SpotLight3D]s.
-   * Increasing this value will make the light fade out slower and shadows appear blurrier (also called
-   * percentage-closer soft shadows, or PCSS). This can be used to simulate area lights to an extent.
-   * Increasing this value above `0.0` for lights with shadows enabled will have a noticeable
-   * performance cost due to PCSS.
+   * The simulated size of the light in Godot units, affecting shading and shadows. For
+   * [OmniLight3D]s and [SpotLight3D]s, increasing this value simulates a spherical area light,
+   * expanding the size of specular highlights. If shadows are enabled, a penumbra is rendered, making
+   * shadows appear blurrier. For [AreaLight3D]s, only the shadows are affected. Penumbras are
+   * simulated with percentage-closer soft shadows, or PCSS, which has a noticeable performance cost
+   * for values above `0.0`.
    *
    * **Note:** [lightSize] is not affected by [Node3D.scale] (the light's scale or its parent's
    * scale).
@@ -445,7 +446,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(345, scriptPtr)
+    createNativeObject(354, scriptPtr)
   }
 
   /**

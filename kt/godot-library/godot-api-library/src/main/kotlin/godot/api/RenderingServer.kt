@@ -41,6 +41,7 @@ import godot.core.PackedVector3Array
 import godot.core.Plane
 import godot.core.RID
 import godot.core.Rect2
+import godot.core.Rect2i
 import godot.core.Signal0
 import godot.core.StringName
 import godot.core.Transform2D
@@ -65,6 +66,7 @@ import godot.core.VariantParser.PACKED_INT_64_ARRAY
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
 import godot.core.VariantParser.PACKED_VECTOR3_ARRAY
 import godot.core.VariantParser.RECT2
+import godot.core.VariantParser.RECT2I
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.TRANSFORM2D
@@ -167,6 +169,11 @@ public object RenderingServer : Object() {
       MethodStringName8<RenderingServer, RID, TextureType, Image.Format, Long, Int, Int, Int, Int, TextureLayeredType>("texture_create_from_native_handle")
 
   @JvmField
+  public val textureDrawableCreateName:
+      MethodStringName5<RenderingServer, RID, Int, Int, TextureDrawableFormat, Color, Boolean> =
+      MethodStringName5<RenderingServer, RID, Int, Int, TextureDrawableFormat, Color, Boolean>("texture_drawable_create")
+
+  @JvmField
   public val texture2dUpdateName: MethodStringName3<RenderingServer, Unit, RID, Image?, Int> =
       MethodStringName3<RenderingServer, Unit, RID, Image?, Int>("texture_2d_update")
 
@@ -177,6 +184,12 @@ public object RenderingServer : Object() {
   @JvmField
   public val textureProxyUpdateName: MethodStringName2<RenderingServer, Unit, RID, RID> =
       MethodStringName2<RenderingServer, Unit, RID, RID>("texture_proxy_update")
+
+  @JvmField
+  public val textureDrawableBlitRectName:
+      MethodStringName6<RenderingServer, Unit, VariantArray<RID>, Rect2i, RID, Color, VariantArray<RID>, Int>
+      =
+      MethodStringName6<RenderingServer, Unit, VariantArray<RID>, Rect2i, RID, Color, VariantArray<RID>, Int>("texture_drawable_blit_rect")
 
   @JvmField
   public val texture2dPlaceholderCreateName: MethodStringName0<RenderingServer, RID> =
@@ -202,6 +215,14 @@ public object RenderingServer : Object() {
   @JvmField
   public val texture3dGetName: MethodStringName1<RenderingServer, VariantArray<Image>, RID> =
       MethodStringName1<RenderingServer, VariantArray<Image>, RID>("texture_3d_get")
+
+  @JvmField
+  public val textureDrawableGenerateMipmapsName: MethodStringName1<RenderingServer, Unit, RID> =
+      MethodStringName1<RenderingServer, Unit, RID>("texture_drawable_generate_mipmaps")
+
+  @JvmField
+  public val textureDrawableGetDefaultMaterialName: MethodStringName0<RenderingServer, RID> =
+      MethodStringName0<RenderingServer, RID>("texture_drawable_get_default_material")
 
   @JvmField
   public val textureReplaceName: MethodStringName2<RenderingServer, Unit, RID, RID> =
@@ -605,6 +626,10 @@ public object RenderingServer : Object() {
       MethodStringName0<RenderingServer, RID>("spot_light_create")
 
   @JvmField
+  public val areaLightCreateName: MethodStringName0<RenderingServer, RID> =
+      MethodStringName0<RenderingServer, RID>("area_light_create")
+
+  @JvmField
   public val lightSetColorName: MethodStringName2<RenderingServer, Unit, RID, Color> =
       MethodStringName2<RenderingServer, Unit, RID, Color>("light_set_color")
 
@@ -668,6 +693,14 @@ public object RenderingServer : Object() {
   public val lightDirectionalSetSkyModeName:
       MethodStringName2<RenderingServer, Unit, RID, LightDirectionalSkyMode> =
       MethodStringName2<RenderingServer, Unit, RID, LightDirectionalSkyMode>("light_directional_set_sky_mode")
+
+  @JvmField
+  public val lightAreaSetSizeName: MethodStringName2<RenderingServer, Unit, RID, Vector2> =
+      MethodStringName2<RenderingServer, Unit, RID, Vector2>("light_area_set_size")
+
+  @JvmField
+  public val lightAreaSetNormalizeEnergyName: MethodStringName2<RenderingServer, Unit, RID, Boolean>
+      = MethodStringName2<RenderingServer, Unit, RID, Boolean>("light_area_set_normalize_energy")
 
   @JvmField
   public val lightProjectorsSetFilterName:
@@ -980,8 +1013,9 @@ public object RenderingServer : Object() {
       MethodStringName2<RenderingServer, Unit, RID, Double>("particles_set_pre_process_time")
 
   @JvmField
-  public val particlesRequestProcessTimeName: MethodStringName2<RenderingServer, Unit, RID, Float> =
-      MethodStringName2<RenderingServer, Unit, RID, Float>("particles_request_process_time")
+  public val particlesRequestProcessTimeName:
+      MethodStringName3<RenderingServer, Unit, RID, Float, Float> =
+      MethodStringName3<RenderingServer, Unit, RID, Float, Float>("particles_request_process_time")
 
   @JvmField
   public val particlesSetExplosivenessRatioName:
@@ -1037,6 +1071,16 @@ public object RenderingServer : Object() {
   public val particlesSetTransformAlignName:
       MethodStringName2<RenderingServer, Unit, RID, ParticlesTransformAlign> =
       MethodStringName2<RenderingServer, Unit, RID, ParticlesTransformAlign>("particles_set_transform_align")
+
+  @JvmField
+  public val particlesSetTransformAlignChannelFilterName:
+      MethodStringName2<RenderingServer, Unit, RID, ParticlesTransformAlignCustomSrc> =
+      MethodStringName2<RenderingServer, Unit, RID, ParticlesTransformAlignCustomSrc>("particles_set_transform_align_channel_filter")
+
+  @JvmField
+  public val particlesSetTransformAlignAxisName:
+      MethodStringName2<RenderingServer, Unit, RID, ParticlesTransformAlignAxis> =
+      MethodStringName2<RenderingServer, Unit, RID, ParticlesTransformAlignAxis>("particles_set_transform_align_axis")
 
   @JvmField
   public val particlesSetTrailsName: MethodStringName3<RenderingServer, Unit, RID, Boolean, Float> =
@@ -1237,8 +1281,8 @@ public object RenderingServer : Object() {
       MethodStringName2<RenderingServer, Unit, RID, Boolean>("viewport_set_use_xr")
 
   @JvmField
-  public val viewportSetSizeName: MethodStringName3<RenderingServer, Unit, RID, Int, Int> =
-      MethodStringName3<RenderingServer, Unit, RID, Int, Int>("viewport_set_size")
+  public val viewportSetSizeName: MethodStringName4<RenderingServer, Unit, RID, Int, Int, Int> =
+      MethodStringName4<RenderingServer, Unit, RID, Int, Int, Int>("viewport_set_size")
 
   @JvmField
   public val viewportSetActiveName: MethodStringName2<RenderingServer, Unit, RID, Boolean> =
@@ -2582,18 +2626,34 @@ public object RenderingServer : Object() {
    */
   public final const val ARRAY_CUSTOM_COUNT: Long = 4
 
+  /**
+   * Particle starts at the specified position.
+   */
   public final const val PARTICLES_EMIT_FLAG_POSITION: Long = 1
 
+  /**
+   * Particle starts with specified rotation and scale.
+   */
   public final const val PARTICLES_EMIT_FLAG_ROTATION_SCALE: Long = 2
 
+  /**
+   * Particle starts with the specified velocity vector, which defines the emission direction and
+   * speed.
+   */
   public final const val PARTICLES_EMIT_FLAG_VELOCITY: Long = 4
 
+  /**
+   * Particle starts with specified color.
+   */
   public final const val PARTICLES_EMIT_FLAG_COLOR: Long = 8
 
+  /**
+   * Particle starts with specified `CUSTOM` data.
+   */
   public final const val PARTICLES_EMIT_FLAG_CUSTOM: Long = 16
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(28)
+    getSingleton(29)
   }
 
   /**
@@ -2686,6 +2746,29 @@ public object RenderingServer : Object() {
   }
 
   /**
+   * Creates a 2-dimensional texture and adds it to the RenderingServer. It can be accessed with the
+   * RID that is returned. This RID will be used in all `texture_drawable*` RenderingServer functions.
+   *
+   * Once finished with your RID, you will want to free the RID using the RenderingServer's
+   * [freeRid] method.
+   *
+   * **Note:** The equivalent resource is [DrawableTexture2D].
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun textureDrawableCreate(
+    width: Int,
+    height: Int,
+    format: TextureDrawableFormat,
+    color: Color = Color(Color(1, 1, 1, 1)),
+    withMipmaps: Boolean = false,
+  ): RID {
+    TransferContext.writeArguments(LONG to width.toLong(), LONG to height.toLong(), LONG to format.value, COLOR to color, BOOL to withMipmaps)
+    TransferContext.callMethod(ptr, MethodBindings.textureDrawableCreatePtr, _RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
+  }
+
+  /**
    * Updates the texture specified by the [texture] [RID] with the data in [image]. A [layer] must
    * also be specified, which should be `0` when updating a single-layer texture ([Texture2D]).
    *
@@ -2724,6 +2807,27 @@ public object RenderingServer : Object() {
   public final fun textureProxyUpdate(texture: RID, proxyTo: RID): Unit {
     TransferContext.writeArguments(_RID to texture, _RID to proxyTo)
     TransferContext.callMethod(ptr, MethodBindings.textureProxyUpdatePtr, NIL)
+  }
+
+  /**
+   * Draws to [rect] on up to 4 given Drawable [textures], using a TextureBlit Shader from
+   * [material]. [modulate] and up to 4 [sourceTextures] are uniforms for the Shader to process with.
+   * [toMipmap] can specify to perform this draw to a lower mipmap level.
+   *
+   * **Note:** All [textures] must be the same size and format.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun textureDrawableBlitRect(
+    textures: VariantArray<RID>,
+    rect: Rect2i,
+    material: RID,
+    modulate: Color,
+    sourceTextures: VariantArray<RID>,
+    toMipmap: Int = 0,
+  ): Unit {
+    TransferContext.writeArguments(ARRAY to textures, RECT2I to rect, _RID to material, COLOR to modulate, ARRAY to sourceTextures, LONG to toMipmap.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.textureDrawableBlitRectPtr, NIL)
   }
 
   /**
@@ -2815,6 +2919,25 @@ public object RenderingServer : Object() {
   }
 
   /**
+   * Calculates new MipMaps for the given Drawable [texture].
+   */
+  @JvmStatic
+  public final fun textureDrawableGenerateMipmaps(texture: RID): Unit {
+    TransferContext.writeArguments(_RID to texture)
+    TransferContext.callMethod(ptr, MethodBindings.textureDrawableGenerateMipmapsPtr, NIL)
+  }
+
+  /**
+   * Returns a ShaderMaterial with the default texture_blit Shader.
+   */
+  @JvmStatic
+  public final fun textureDrawableGetDefaultMaterial(): RID {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.textureDrawableGetDefaultMaterialPtr, _RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
+  }
+
+  /**
    * Replaces [texture]'s texture data by the texture specified by the [byTexture] RID, without
    * changing [texture]'s RID.
    */
@@ -2824,6 +2947,11 @@ public object RenderingServer : Object() {
     TransferContext.callMethod(ptr, MethodBindings.textureReplacePtr, NIL)
   }
 
+  /**
+   * Sets the size at which the texture should be *displayed* in 2D, ignoring its original size.
+   * This does not rescale the texture data itself, only how it is drawn in 2D. Set [width] and
+   * [height] to 0 to disable the size override.
+   */
   @JvmStatic
   public final fun textureSetSizeOverride(
     texture: RID,
@@ -2834,12 +2962,22 @@ public object RenderingServer : Object() {
     TransferContext.callMethod(ptr, MethodBindings.textureSetSizeOverridePtr, NIL)
   }
 
+  /**
+   * Sets the resource path for this texture RID. See also [textureGetPath].
+   *
+   * **Note:** This is purely a hint and does not cause the texture to be automatically saved when
+   * set to a `res://` path.
+   */
   @JvmStatic
   public final fun textureSetPath(texture: RID, path: String): Unit {
     TransferContext.writeArguments(_RID to texture, STRING to path)
     TransferContext.callMethod(ptr, MethodBindings.textureSetPathPtr, NIL)
   }
 
+  /**
+   * Returns the resource path (starting with `res://` or `uid://`) for the specified texture RID.
+   * Returns an empty [String] if the resource is built-in. See also [textureSetPath].
+   */
   @JvmStatic
   public final fun textureGetPath(texture: RID): String {
     TransferContext.writeArguments(_RID to texture)
@@ -2857,6 +2995,10 @@ public object RenderingServer : Object() {
     return Image.Format.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
+  /**
+   * Sets whether the texture RID should force redrawing when it's visible on screen when
+   * [OS.lowProcessorUsageMode] is `true`. This is used by [AnimatedTexture] to force redrawing.
+   */
   @JvmStatic
   public final fun textureSetForceRedrawIfVisible(texture: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to texture, BOOL to enable)
@@ -3096,6 +3238,25 @@ public object RenderingServer : Object() {
     TransferContext.callMethod(ptr, MethodBindings.materialSetUseDebandingPtr, NIL)
   }
 
+  /**
+   * Creates a new mesh with predefined surfaces for it and adds the mesh to the RenderingServer. It
+   * can be accessed with the RID that is returned. This RID will be used in all `mesh_*`
+   * RenderingServer functions. This method is more efficient for creating meshes with multiple
+   * surfaces compared to creating an empty mesh with [meshCreate] and adding surfaces one by one with
+   * [meshAddSurface].
+   *
+   * Each element in the [surfaces] array must follow the same structure as described in
+   * [meshAddSurface]. The [blendShapeCount] parameter must match the blend shape data defined in all
+   * surfaces.
+   *
+   * Once finished with your RID, you will want to free the RID using the RenderingServer's
+   * [freeRid] method.
+   *
+   * To place in a scene, attach this mesh to an instance using [instanceSetBase] using the returned
+   * RID.
+   *
+   * **Note:** The equivalent resource is [Mesh].
+   */
   @JvmOverloads
   @JvmStatic
   public final fun meshCreateFromSurfaces(surfaces: VariantArray<Dictionary<Any?, Any?>>,
@@ -3194,12 +3355,85 @@ public object RenderingServer : Object() {
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
+  /**
+   * Creates a new surface on the given [mesh]. Equivalent to [meshAddSurfaceFromArrays], but takes
+   * a single [Dictionary] argument instead of separate arguments. The dictionary must follow this
+   * structure:
+   *
+   * ```
+   * {
+   * 	# Required:
+   *     "primitive": RenderingServer.PrimitiveType,
+   *     "format": RenderingServer.ArrayFormat,
+   *     "vertex_data": PackedByteArray,
+   *     "vertex_count": int,
+   *     "aabb": AABB,
+   *
+   * 	# Optional:
+   * 	"attribute_data": PackedByteArray,
+   * 	"skin_data": PackedByteArray,
+   * 	"index_data": PackedByteArray,
+   * 	"index_count": int, # Required if `index_data` is specified.
+   * 	"uv_scale": Vector4,
+   * 	"lods": [
+   * 		# Both values are required for each LOD level.
+   * 		{
+   * 			"edge_length": float,
+   * 			"index_data": PackedByteArray,
+   * 		},
+   * 	],
+   * 	"bone_aabbs": Array[AABB],
+   * 	"blend_shape_data": PackedByteArray,
+   * 	"material": Material,
+   * }
+   * ```
+   *
+   * See also [meshGetSurface], which returns data in the same structure defined above.
+   */
   @JvmStatic
   public final fun meshAddSurface(mesh: RID, surface: Dictionary<Any?, Any?>): Unit {
     TransferContext.writeArguments(_RID to mesh, DICTIONARY to surface)
     TransferContext.callMethod(ptr, MethodBindings.meshAddSurfacePtr, NIL)
   }
 
+  /**
+   * Creates a new surface on the given [mesh]. [meshGetSurfaceCount] will become the surface index
+   * for this new surface.
+   *
+   * Surfaces are created to be rendered using a [primitive], which may be any of the values defined
+   * in [Mesh.PrimitiveType].
+   *
+   * The [arrays] argument is an array of arrays. Each of the [Mesh.ARRAY_MAX] elements contains an
+   * array with some of the mesh data for this surface as described by the corresponding member of
+   * [Mesh.ArrayType] or `null` if it is not used by the surface. For example, `arrays[0]` is the array
+   * of vertices. That first vertex sub-array is always required; the others are optional. Adding an
+   * index array puts this surface into "index mode" where the vertex and other arrays become the
+   * sources of data and the index array defines the vertex order. All sub-arrays must have the same
+   * length as the vertex array (or be an exact multiple of the vertex array's length, when multiple
+   * elements of a sub-array correspond to a single vertex) or be empty, except for [Mesh.ARRAY_INDEX]
+   * if it is used.
+   *
+   * The [blendShapes] argument is an array of vertex data for each blend shape. Each element is an
+   * array of the same structure as [arrays], but [Mesh.ARRAY_VERTEX], [Mesh.ARRAY_NORMAL], and
+   * [Mesh.ARRAY_TANGENT] are set if and only if they are set in [arrays] and all other entries are
+   * `null`.
+   *
+   * The [lods] argument is a dictionary with [float] keys and [PackedInt32Array] values. Each entry
+   * in the dictionary represents an LOD level of the surface, where the value is the
+   * [Mesh.ARRAY_INDEX] array to use for the LOD level and the key is roughly proportional to the
+   * distance at which the LOD stats being used. I.e., increasing the key of an LOD also increases the
+   * distance that the objects has to be from the camera before the LOD is used.
+   *
+   * The [compressFormat] argument is the bitwise OR of, as required: One value of [ArrayFormat]
+   * left shifted by `ARRAY_FORMAT_CUSTOMn_SHIFT` for each custom channel in use,
+   * [ARRAY_FLAG_USE_DYNAMIC_UPDATE], [ARRAY_FLAG_USE_8_BONE_WEIGHTS], or
+   * [ARRAY_FLAG_USES_EMPTY_VERTEX_ARRAY].
+   *
+   * See [ArrayMesh.addSurfaceFromArrays] and [ImporterMesh.addSurface] for higher-level equivalents
+   * of this method.
+   *
+   * **Note:** When using indices, it is recommended to only use points, lines, or triangles.
+   */
   @JvmOverloads
   @JvmStatic
   public final fun meshAddSurfaceFromArrays(
@@ -3266,6 +3500,10 @@ public object RenderingServer : Object() {
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
+  /**
+   * Returns a mesh's surface as a dictionary following the same structure as described in
+   * [meshAddSurface].
+   */
   @JvmStatic
   public final fun meshGetSurface(mesh: RID, surface: Int): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(_RID to mesh, LONG to surface.toLong())
@@ -3342,6 +3580,18 @@ public object RenderingServer : Object() {
     TransferContext.callMethod(ptr, MethodBindings.meshClearPtr, NIL)
   }
 
+  /**
+   * Updates the vertex buffer of the mesh surface with the given [data]. The expected data per
+   * vertex is 8 or 12 bytes (4 bytes per float, 2 floats per [Vector2], and 3 floats per [Vector3])
+   * depending on if the mesh is using [Vector2] or [Vector3] vertices. This value can be determined
+   * with [meshSurfaceGetFormatVertexStride] instead.
+   *
+   * The starting point of the updates can be changed with [offset]. The value of [offset] should be
+   * a multiple of 12 bytes in most cases to align to each vertex.
+   *
+   * A [PackedVector3Array] of vertex locations can be converted into a [PackedByteArray] using
+   * [PackedVector3Array.toByteArray] for use in [data].
+   */
   @JvmStatic
   public final fun meshSurfaceUpdateVertexRegion(
     mesh: RID,
@@ -3353,6 +3603,18 @@ public object RenderingServer : Object() {
     TransferContext.callMethod(ptr, MethodBindings.meshSurfaceUpdateVertexRegionPtr, NIL)
   }
 
+  /**
+   * Updates the attribute buffer of the mesh surface with the given [data]. The expected data per
+   * attribute is 8 or 12 bytes (4 bytes per float, 2 floats per [Vector2], and 3 floats per [Vector3])
+   * depending on if the mesh is using [Vector2] or [Vector3] vertices. This value can be determined
+   * with [meshSurfaceGetFormatAttributeStride] instead.
+   *
+   * The starting point of the updates can be changed with [offset]. The value of [offset] should be
+   * a multiple of 12 bytes in most cases to align to each attribute.
+   *
+   * A [PackedVector3Array] of attribute locations can be converted into a [PackedByteArray] using
+   * [PackedVector3Array.toByteArray] for use in [data].
+   */
   @JvmStatic
   public final fun meshSurfaceUpdateAttributeRegion(
     mesh: RID,
@@ -3364,6 +3626,18 @@ public object RenderingServer : Object() {
     TransferContext.callMethod(ptr, MethodBindings.meshSurfaceUpdateAttributeRegionPtr, NIL)
   }
 
+  /**
+   * Updates the skin buffer of the mesh surface with the given [data]. The expected data per skin
+   * is 8 or 12 bytes (4 bytes per float, 2 floats per [Vector2], and 3 floats per [Vector3]) depending
+   * on if the mesh is using [Vector2] or [Vector3] vertices. This value can be determined with
+   * [meshSurfaceGetFormatSkinStride] instead.
+   *
+   * The starting point of the updates can be changed with [offset]. The value of [offset] should be
+   * a multiple of 12 bytes in most cases to align to each skin.
+   *
+   * A [PackedVector3Array] of skin locations can be converted into a [PackedByteArray] using
+   * [PackedVector3Array.toByteArray] for use in [data].
+   */
   @JvmStatic
   public final fun meshSurfaceUpdateSkinRegion(
     mesh: RID,
@@ -3390,6 +3664,15 @@ public object RenderingServer : Object() {
     TransferContext.callMethod(ptr, MethodBindings.meshSurfaceUpdateIndexRegionPtr, NIL)
   }
 
+  /**
+   * Sets an optional second mesh which can be used for rendering shadows and the depth prepass. Can
+   * be used to increase performance by supplying a mesh with fused vertices and only vertex position
+   * data (without normals, UVs, colors, etc.).
+   *
+   * **Note:** This mesh must have exactly the same vertex positions as the source mesh (including
+   * the source mesh's LODs, if present). If vertex positions differ, then the mesh will not draw
+   * correctly.
+   */
   @JvmStatic
   public final fun meshSetShadowMesh(mesh: RID, shadowMesh: RID): Unit {
     TransferContext.writeArguments(_RID to mesh, _RID to shadowMesh)
@@ -3415,6 +3698,15 @@ public object RenderingServer : Object() {
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
+  /**
+   * Sets up the multimesh using the specified data. The number of instances is set by [instances].
+   * The format of the instance transforms is set by [transformFormat], which should be set according
+   * to whether the multimesh is meant to be rendered in 2D or 3D. If [colorFormat] is `true`, each
+   * instance will have a color associated with it. If [customDataFormat] is `true`, each instance will
+   * have a custom data vector associated with it. If [useIndirect] is `true`, an indirect command
+   * buffer will be created for this multimesh, allowing the instance count to be modified directly on
+   * the GPU. See also [multimeshGetCommandBufferRdRid].
+   */
   @JvmOverloads
   @JvmStatic
   public final fun multimeshAllocateData(
@@ -3676,7 +3968,7 @@ public object RenderingServer : Object() {
    *
    *   4 - firstInstance;
    *
-   * Non Indexed:
+   * Non-indexed:
    *
    *   0 - vertexCount;
    *
@@ -3798,6 +4090,11 @@ public object RenderingServer : Object() {
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
+  /**
+   * Allocates data for this skeleton using the number of bones specified in [bones]. If
+   * [is2dSkeleton] is `true`, the skeleton will be treated as a 2D skeleton instead of a 3D skeleton.
+   * See also [skeletonGetBoneCount].
+   */
   @JvmOverloads
   @JvmStatic
   public final fun skeletonAllocateData(
@@ -3810,7 +4107,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns the number of bones allocated for this skeleton.
+   * Returns the number of bones allocated for this skeleton. See also [skeletonAllocateData].
    */
   @JvmStatic
   public final fun skeletonGetBoneCount(skeleton: RID): Int {
@@ -3865,6 +4162,9 @@ public object RenderingServer : Object() {
     return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
   }
 
+  /**
+   * Sets the base [Transform2D] to use for the specified skeleton.
+   */
   @JvmStatic
   public final fun skeletonSetBaseTransform2d(skeleton: RID, baseTransform: Transform2D): Unit {
     TransferContext.writeArguments(_RID to skeleton, TRANSFORM2D to baseTransform)
@@ -3923,6 +4223,25 @@ public object RenderingServer : Object() {
   public final fun spotLightCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.spotLightCreatePtr, _RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
+  }
+
+  /**
+   * Creates a new area light and adds it to the RenderingServer. It can be accessed with the RID
+   * that is returned. This RID can be used in most `light_*` RenderingServer functions.
+   *
+   * Once finished with your RID, you will want to free the RID using the RenderingServer's
+   * [freeRid] method.
+   *
+   * To place in a scene, attach this area light to an instance using [instanceSetBase] using the
+   * returned RID.
+   *
+   * **Note:** The equivalent node is [AreaLight3D].
+   */
+  @JvmStatic
+  public final fun areaLightCreate(): RID {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.areaLightCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -4085,6 +4404,27 @@ public object RenderingServer : Object() {
   public final fun lightDirectionalSetSkyMode(light: RID, mode: LightDirectionalSkyMode): Unit {
     TransferContext.writeArguments(_RID to light, LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.lightDirectionalSetSkyModePtr, NIL)
+  }
+
+  /**
+   * Sets the extents (width and height) in meters for this area light. Equivalent to
+   * [AreaLight3D.areaSize].
+   */
+  @JvmStatic
+  public final fun lightAreaSetSize(light: RID, size: Vector2): Unit {
+    TransferContext.writeArguments(_RID to light, VECTOR2 to size)
+    TransferContext.callMethod(ptr, MethodBindings.lightAreaSetSizePtr, NIL)
+  }
+
+  /**
+   * Defines whether the energy of an [AreaLight3D] is normalized (divided) by its area. If set to
+   * `true`, changing the size does not affect the total energy output. Equivalent to
+   * [AreaLight3D.areaNormalizeEnergy].
+   */
+  @JvmStatic
+  public final fun lightAreaSetNormalizeEnergy(light: RID, enable: Boolean): Unit {
+    TransferContext.writeArguments(_RID to light, BOOL to enable)
+    TransferContext.callMethod(ptr, MethodBindings.lightAreaSetNormalizeEnergyPtr, NIL)
   }
 
   /**
@@ -4477,6 +4817,11 @@ public object RenderingServer : Object() {
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
+  /**
+   * Allocates and initializes the voxel GI data for the specified [voxelGi] RID. [octreeCells] must
+   * be a multiple of 32. [octreeCells] must be double the size of [dataCells]. The allocated data can
+   * be retrieved later using the various `voxel_gi_get_*` methods.
+   */
   @JvmStatic
   public final fun voxelGiAllocateData(
     voxelGi: RID,
@@ -4492,6 +4837,12 @@ public object RenderingServer : Object() {
     TransferContext.callMethod(ptr, MethodBindings.voxelGiAllocateDataPtr, NIL)
   }
 
+  /**
+   * Returns the octree size for the specified voxel GI data instance, which corresponds to the
+   * number of subdivisions per axis. This can be viewed in the editor by hovering the **Bake VoxelGI**
+   * button at the top of the 3D editor viewport when a [VoxelGI] node is selected and looking at the
+   * **Subdivisions** field in the tooltip.
+   */
   @JvmStatic
   public final fun voxelGiGetOctreeSize(voxelGi: RID): Vector3i {
     TransferContext.writeArguments(_RID to voxelGi)
@@ -4499,6 +4850,10 @@ public object RenderingServer : Object() {
     return (TransferContext.readReturnValue(VECTOR3I) as Vector3i)
   }
 
+  /**
+   * Returns the octree cell data for the specified voxel GI data instance. See also
+   * [voxelGiAllocateData].
+   */
   @JvmStatic
   public final fun voxelGiGetOctreeCells(voxelGi: RID): PackedByteArray {
     TransferContext.writeArguments(_RID to voxelGi)
@@ -4506,6 +4861,10 @@ public object RenderingServer : Object() {
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
+  /**
+   * Returns the data cells for the specified voxel GI data instance. See also
+   * [voxelGiAllocateData].
+   */
   @JvmStatic
   public final fun voxelGiGetDataCells(voxelGi: RID): PackedByteArray {
     TransferContext.writeArguments(_RID to voxelGi)
@@ -4513,6 +4872,10 @@ public object RenderingServer : Object() {
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
+  /**
+   * Returns the distance field data for the specified voxel GI data instance. See also
+   * [voxelGiAllocateData].
+   */
   @JvmStatic
   public final fun voxelGiGetDistanceField(voxelGi: RID): PackedByteArray {
     TransferContext.writeArguments(_RID to voxelGi)
@@ -4520,6 +4883,10 @@ public object RenderingServer : Object() {
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
+  /**
+   * Returns the level counts for the specified voxel GI data instance. See also
+   * [voxelGiAllocateData].
+   */
   @JvmStatic
   public final fun voxelGiGetLevelCounts(voxelGi: RID): PackedInt32Array {
     TransferContext.writeArguments(_RID to voxelGi)
@@ -4527,6 +4894,10 @@ public object RenderingServer : Object() {
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
+  /**
+   * Returns the transform to cell space for the specified voxel GI data instance. See also
+   * [voxelGiAllocateData].
+   */
   @JvmStatic
   public final fun voxelGiGetToCellXform(voxelGi: RID): Transform3D {
     TransferContext.writeArguments(_RID to voxelGi)
@@ -4651,18 +5022,32 @@ public object RenderingServer : Object() {
     TransferContext.callMethod(ptr, MethodBindings.lightmapSetTexturesPtr, NIL)
   }
 
+  /**
+   * Sets the bounds that this lightmap instance should visually affect, both in terms of static
+   * lightmap baking and probe-based global illumination.
+   */
   @JvmStatic
   public final fun lightmapSetProbeBounds(lightmap: RID, bounds: AABB): Unit {
     TransferContext.writeArguments(_RID to lightmap, godot.core.VariantParser.AABB to bounds)
     TransferContext.callMethod(ptr, MethodBindings.lightmapSetProbeBoundsPtr, NIL)
   }
 
+  /**
+   * Sets whether the lightmap instance should be considered as interior (when [interior] is
+   * `true`). If the lightmap is marked as interior, environment lighting is ignored when baking
+   * lightmaps.
+   */
   @JvmStatic
   public final fun lightmapSetProbeInterior(lightmap: RID, interior: Boolean): Unit {
     TransferContext.writeArguments(_RID to lightmap, BOOL to interior)
     TransferContext.callMethod(ptr, MethodBindings.lightmapSetProbeInteriorPtr, NIL)
   }
 
+  /**
+   * Sets the probe capture data for the given lightmap instance. See
+   * [lightmapGetProbeCapturePoints], [lightmapGetProbeCaptureSh], [lightmapGetProbeCaptureTetrahedra],
+   * and [lightmapGetProbeCaptureBspTree] for the expected data formats.
+   */
   @JvmStatic
   public final fun lightmapSetProbeCaptureData(
     lightmap: RID,
@@ -4675,6 +5060,11 @@ public object RenderingServer : Object() {
     TransferContext.callMethod(ptr, MethodBindings.lightmapSetProbeCaptureDataPtr, NIL)
   }
 
+  /**
+   * Returns the *local space* positions of each lightmap probe capture point. Keep in mind the
+   * lightmap instance may have a non-zero transform, which will affect the position of the probe
+   * capture points. See also [lightmapSetProbeCaptureData].
+   */
   @JvmStatic
   public final fun lightmapGetProbeCapturePoints(lightmap: RID): PackedVector3Array {
     TransferContext.writeArguments(_RID to lightmap)
@@ -4682,6 +5072,12 @@ public object RenderingServer : Object() {
     return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
 
+  /**
+   * Returns the L0, L1, and L2 [url=https://en.wikipedia.org/wiki/Spherical_harmonics]spherical
+   * harmonics[/url] data for each lightmap probe capture point. This is specified as 9 [Color] values
+   * per probe, which means the size of the returned data is always 9 times the number of probe points.
+   * See also [lightmapSetProbeCaptureData].
+   */
   @JvmStatic
   public final fun lightmapGetProbeCaptureSh(lightmap: RID): PackedColorArray {
     TransferContext.writeArguments(_RID to lightmap)
@@ -4689,6 +5085,12 @@ public object RenderingServer : Object() {
     return (TransferContext.readReturnValue(PACKED_COLOR_ARRAY) as PackedColorArray)
   }
 
+  /**
+   * Returns the tetrahedralization data used for interpolating between lightmap probe capture
+   * points. Each tetrahedron is specified as a series of 4 numbers, each being an index into the probe
+   * capture points array returned by [lightmapGetProbeCapturePoints]. See also
+   * [lightmapSetProbeCaptureData].
+   */
   @JvmStatic
   public final fun lightmapGetProbeCaptureTetrahedra(lightmap: RID): PackedInt32Array {
     TransferContext.writeArguments(_RID to lightmap)
@@ -4696,6 +5098,13 @@ public object RenderingServer : Object() {
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
+  /**
+   * Returns the BSP tree data used for accelerating probe lookups. The BSP data is structured as a
+   * series of six signed 32-bit values per BSP node in this order: `float plane_x`, `float plane_y`,
+   * `float plane_z`, `float plane_distance`, `int32_t over`, `int32_t under`. An empty leaf is denoted
+   * by the value `-2147483648` (the minimum 32-bit signed integer). See also
+   * [lightmapSetProbeCaptureData].
+   */
   @JvmStatic
   public final fun lightmapGetProbeCaptureBspTree(lightmap: RID): PackedInt32Array {
     TransferContext.writeArguments(_RID to lightmap)
@@ -4716,6 +5125,13 @@ public object RenderingServer : Object() {
     TransferContext.callMethod(ptr, MethodBindings.lightmapSetBakedExposureNormalizationPtr, NIL)
   }
 
+  /**
+   * The framerate-independent update speed when representing dynamic object lighting from
+   * [LightmapProbe]s. Higher values make dynamic object lighting update faster. Higher values can
+   * prevent fast-moving objects from having "outdated" indirect lighting displayed on them, at the
+   * cost of possible flickering when an object moves from a bright area to a shaded area. See also
+   * [ProjectSettings.rendering/lightmapping/probeCapture/updateSpeed].
+   */
   @JvmStatic
   public final fun lightmapSetProbeCaptureUpdateSpeed(speed: Float): Unit {
     TransferContext.writeArguments(DOUBLE to speed.toDouble())
@@ -4825,11 +5241,21 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Requests particles to process for extra process time during a single frame.
+   * Requests the particles to process for extra process time during a single frame.
+   *
+   * [processTime] defines the time that the particles will process while emitting is on.
+   * [processTimeResidual] defines the time that particles will process with emitting turned off for
+   * the simulation. When combined with the particles' speed scale set to `0.0`, this is useful to be
+   * able to seek a particle system timeline.
    */
+  @JvmOverloads
   @JvmStatic
-  public final fun particlesRequestProcessTime(particles: RID, time: Float): Unit {
-    TransferContext.writeArguments(_RID to particles, DOUBLE to time.toDouble())
+  public final fun particlesRequestProcessTime(
+    particles: RID,
+    processTime: Float,
+    processTimeResidual: Float = 0.0f,
+  ): Unit {
+    TransferContext.writeArguments(_RID to particles, DOUBLE to processTime.toDouble(), DOUBLE to processTimeResidual.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.particlesRequestProcessTimePtr, NIL)
   }
 
@@ -4923,6 +5349,10 @@ public object RenderingServer : Object() {
     TransferContext.callMethod(ptr, MethodBindings.particlesSetFixedFpsPtr, NIL)
   }
 
+  /**
+   * Sets whether particles should use interpolation between fixed steps. Equivalent to
+   * [GPUParticles3D.interpolate].
+   */
   @JvmStatic
   public final fun particlesSetInterpolate(particles: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to particles, BOOL to enable)
@@ -4939,17 +5369,44 @@ public object RenderingServer : Object() {
     TransferContext.callMethod(ptr, MethodBindings.particlesSetFractionalDeltaPtr, NIL)
   }
 
+  /**
+   * Sets the base size for particle collision. Equivalent to [GPUParticles3D.collisionBaseSize].
+   */
   @JvmStatic
   public final fun particlesSetCollisionBaseSize(particles: RID, size: Float): Unit {
     TransferContext.writeArguments(_RID to particles, DOUBLE to size.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.particlesSetCollisionBaseSizePtr, NIL)
   }
 
+  /**
+   * Sets the transform alignment for the particle system. Equivalent to
+   * [GPUParticles3D.transformAlign].
+   */
   @JvmStatic
   public final fun particlesSetTransformAlign(particles: RID, align: ParticlesTransformAlign):
       Unit {
     TransferContext.writeArguments(_RID to particles, LONG to align.value)
     TransferContext.callMethod(ptr, MethodBindings.particlesSetTransformAlignPtr, NIL)
+  }
+
+  /**
+   * When using Z-Billboarding, which CUSTOM channel to read from.
+   */
+  @JvmStatic
+  public final fun particlesSetTransformAlignChannelFilter(particles: RID,
+      channelFilter: ParticlesTransformAlignCustomSrc): Unit {
+    TransferContext.writeArguments(_RID to particles, LONG to channelFilter.value)
+    TransferContext.callMethod(ptr, MethodBindings.particlesSetTransformAlignChannelFilterPtr, NIL)
+  }
+
+  /**
+   * Sets which axis to use for transform alignment.
+   */
+  @JvmStatic
+  public final fun particlesSetTransformAlignAxis(particles: RID,
+      rotationAxis: ParticlesTransformAlignAxis): Unit {
+    TransferContext.writeArguments(_RID to particles, LONG to rotationAxis.value)
+    TransferContext.callMethod(ptr, MethodBindings.particlesSetTransformAlignAxisPtr, NIL)
   }
 
   /**
@@ -4966,6 +5423,12 @@ public object RenderingServer : Object() {
     TransferContext.callMethod(ptr, MethodBindings.particlesSetTrailsPtr, NIL)
   }
 
+  /**
+   * Sets the trail bind poses for the particle system. This specified as an array of [Transform3D]s
+   * representing the bind pose for each draw pass. See [GPUParticles3D.drawSkin], [Skin.getBindCount],
+   * and [Skin.getBindPose]. Set the value for each draw pass to [Transform3D.IDENTITY] to use the
+   * default behavior, which is what built-in trails use ([RibbonTrailMesh] and [TubeTrailMesh]).
+   */
   @JvmStatic
   public final fun particlesSetTrailBindPoses(particles: RID, bindPoses: VariantArray<Transform3D>):
       Unit {
@@ -5003,6 +5466,10 @@ public object RenderingServer : Object() {
     TransferContext.callMethod(ptr, MethodBindings.particlesRestartPtr, NIL)
   }
 
+  /**
+   * Sets the subemitter particles for the particle system. Equivalent to
+   * [GPUParticles3D.subEmitter].
+   */
   @JvmStatic
   public final fun particlesSetSubemitter(particles: RID, subemitterParticles: RID): Unit {
     TransferContext.writeArguments(_RID to particles, _RID to subemitterParticles)
@@ -5283,12 +5750,18 @@ public object RenderingServer : Object() {
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
+  /**
+   * Sets the AABB of the specified visibility notifier.
+   */
   @JvmStatic
   public final fun visibilityNotifierSetAabb(notifier: RID, aabb: AABB): Unit {
     TransferContext.writeArguments(_RID to notifier, godot.core.VariantParser.AABB to aabb)
     TransferContext.callMethod(ptr, MethodBindings.visibilityNotifierSetAabbPtr, NIL)
   }
 
+  /**
+   * Sets the methods to be called when the notifier enters or exits the view.
+   */
   @JvmStatic
   public final fun visibilityNotifierSetCallbacks(
     notifier: RID,
@@ -5474,15 +5947,18 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the viewport's width and height in pixels.
+   * Sets the viewport's [width] and [height] in pixels. Optionally the [viewCount] can be set to
+   * increase the number of view layers for stereo rendering.
    */
+  @JvmOverloads
   @JvmStatic
   public final fun viewportSetSize(
     viewport: RID,
     width: Int,
     height: Int,
+    viewCount: Int = 1,
   ): Unit {
-    TransferContext.writeArguments(_RID to viewport, LONG to width.toLong(), LONG to height.toLong())
+    TransferContext.writeArguments(_RID to viewport, LONG to width.toLong(), LONG to height.toLong(), LONG to viewCount.toLong())
     TransferContext.callMethod(ptr, MethodBindings.viewportSetSizePtr, NIL)
   }
 
@@ -5617,6 +6093,10 @@ public object RenderingServer : Object() {
    * **Note:** When the 3D scaling mode is set to FSR 1.0, this value is used to adjust the
    * automatic mipmap bias which is calculated internally based on the scale factor. The formula for
    * this is `-log2(1.0 / scale) + mipmap_bias`.
+   *
+   * **Note:** This method is only supported in the Forward+ and Mobile renderers, not
+   * Compatibility. In Compatibility, this method is always treated as if [mipmapBias] was set to
+   * `0.0`.
    */
   @JvmStatic
   public final fun viewportSetTextureMipmapBias(viewport: RID, mipmapBias: Float): Unit {
@@ -6584,14 +7064,14 @@ public object RenderingServer : Object() {
     emissionEnergy: Float,
     anisotropy: Float,
     length: Float,
-    pDetailSpread: Float,
+    detailSpread: Float,
     giInject: Float,
     temporalReprojection: Boolean,
     temporalReprojectionAmount: Float,
     ambientInject: Float,
     skyAffect: Float,
   ): Unit {
-    TransferContext.writeArguments(_RID to env, BOOL to enable, DOUBLE to density.toDouble(), COLOR to albedo, COLOR to emission, DOUBLE to emissionEnergy.toDouble(), DOUBLE to anisotropy.toDouble(), DOUBLE to length.toDouble(), DOUBLE to pDetailSpread.toDouble(), DOUBLE to giInject.toDouble(), BOOL to temporalReprojection, DOUBLE to temporalReprojectionAmount.toDouble(), DOUBLE to ambientInject.toDouble(), DOUBLE to skyAffect.toDouble())
+    TransferContext.writeArguments(_RID to env, BOOL to enable, DOUBLE to density.toDouble(), COLOR to albedo, COLOR to emission, DOUBLE to emissionEnergy.toDouble(), DOUBLE to anisotropy.toDouble(), DOUBLE to length.toDouble(), DOUBLE to detailSpread.toDouble(), DOUBLE to giInject.toDouble(), BOOL to temporalReprojection, DOUBLE to temporalReprojectionAmount.toDouble(), DOUBLE to ambientInject.toDouble(), DOUBLE to skyAffect.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.environmentSetVolumetricFogPtr, NIL)
   }
 
@@ -7144,9 +7624,10 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * If `true`, ignores both frustum and occlusion culling on the specified 3D geometry instance.
-   * This is not the same as [GeometryInstance3D.ignoreOcclusionCulling], which only ignores occlusion
-   * culling and leaves frustum culling intact.
+   * If `true`, ignores all culling on the specified 3D geometry instance, including frustum
+   * culling, occlusion culling, and layer culling. This is not the same as
+   * [GeometryInstance3D.ignoreOcclusionCulling], which only ignores occlusion culling but leaves
+   * frustum and layer culling intact.
    */
   @JvmStatic
   public final fun instanceSetIgnoreCulling(instance: RID, enabled: Boolean): Unit {
@@ -7425,6 +7906,17 @@ public object RenderingServer : Object() {
     TransferContext.callMethod(ptr, MethodBindings.canvasSetModulatePtr, NIL)
   }
 
+  /**
+   * If [disable] is `true`, makes 2D rendering ignore the canvas scale defined for each canvas
+   * layer. This affects [CanvasLayer]s with the [CanvasLayer.followViewportEnabled] property set to
+   * `true`.
+   *
+   * In the editor, this is set to `true` by default, and set to `false` when **View > Preview
+   * Canvas Scale** is enabled at the top of the 2D editor viewport.
+   *
+   * **Note:** Setting this to `true` does not impact the behavior of [CanvasLayer.scale],
+   * [Node2D.scale], or [Control.scale].
+   */
   @JvmStatic
   public final fun canvasSetDisableScale(disable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to disable)
@@ -8507,6 +8999,10 @@ public object RenderingServer : Object() {
     TransferContext.callMethod(ptr, MethodBindings.canvasLightOccluderSetPolygonPtr, NIL)
   }
 
+  /**
+   * Enables or disables using the light occluder as a signed distance field for 2D particle
+   * collision.
+   */
   @JvmStatic
   public final fun canvasLightOccluderSetAsSdfCollision(occluder: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to occluder, BOOL to enable)
@@ -8998,7 +9494,7 @@ public object RenderingServer : Object() {
    * since they slow down loading of assets and take up VRAM.
    *
    * **Note:** You must call this method before loading any meshes when using the Compatibility
-   * renderer, otherwise wireframes will not be used.
+   * renderer. Otherwise, wireframes will not be used.
    */
   @JvmStatic
   public final fun setDebugGenerateWireframes(generate: Boolean): Unit {
@@ -9358,6 +9854,37 @@ public object RenderingServer : Object() {
     }
   }
 
+  public enum class TextureDrawableFormat(
+    public override val `value`: Long,
+  ) : GodotEnum {
+    /**
+     * OpenGL texture format RGBA with four components, each with a bitdepth of 8.
+     */
+    RGBA8(0),
+    /**
+     * OpenGL texture format RGBA with four components, each with a bitdepth of 8.
+     *
+     * When drawn to, an sRGB to linear color space conversion is performed.
+     */
+    RGBA8_SRGB(1),
+    /**
+     * OpenGL texture format GL_RGBA16F where there are four components, each a 16-bit
+     * "half-precision" floating-point value.
+     */
+    RGBAH(2),
+    /**
+     * OpenGL texture format GL_RGBA32F where there are four components, each a 32-bit
+     * floating-point value.
+     */
+    RGBAF(3),
+    ;
+
+    public companion object {
+      public fun from(`value`: Long): TextureDrawableFormat =
+          entries.single { it.`value` == `value` }
+    }
+  }
+
   public enum class ShaderMode(
     public override val `value`: Long,
   ) : GodotEnum {
@@ -9382,9 +9909,13 @@ public object RenderingServer : Object() {
      */
     FOG(4),
     /**
+     * Shader is a texture_blit shader.
+     */
+    TEXTURE_BLIT(5),
+    /**
      * Represents the size of the [ShaderMode] enum.
      */
-    MAX(5),
+    MAX(6),
     ;
 
     public companion object {
@@ -9891,6 +10422,10 @@ public object RenderingServer : Object() {
      * Spot light (see [SpotLight3D]).
      */
     SPOT(2),
+    /**
+     * Area light (see [AreaLight3D]).
+     */
+    AREA(3),
     ;
 
     public companion object {
@@ -10323,14 +10858,80 @@ public object RenderingServer : Object() {
   public enum class ParticlesTransformAlign(
     public override val `value`: Long,
   ) : GodotEnum {
+    /**
+     * Do not align particle transforms relative to the camera or velocity.
+     */
     DISABLED(0),
+    /**
+     * Align each particle's Z axis to face the camera.
+     */
     Z_BILLBOARD(1),
+    /**
+     * Align each particle's Y axis to the velocity vector.
+     */
     Y_TO_VELOCITY(2),
+    /**
+     * Align each particle's Z axis to face the camera and Y axis to the velocity vector.
+     */
     Z_BILLBOARD_Y_TO_VELOCITY(3),
+    /**
+     * Billboard each particles around a local axis.
+     */
+    LOCAL_BILLBOARD(4),
     ;
 
     public companion object {
       public fun from(`value`: Long): ParticlesTransformAlign =
+          entries.single { it.`value` == `value` }
+    }
+  }
+
+  public enum class ParticlesTransformAlignCustomSrc(
+    public override val `value`: Long,
+  ) : GodotEnum {
+    /**
+     * Do not read from CUSTOM when performing billboarding.
+     */
+    ALIGN_CHANNEL_FILTER_DISABLED(0),
+    /**
+     * Read from `CUSTOM.x` when performing billboarding and use it as an angle, in radians.
+     */
+    ALIGN_CHANNEL_FILTER_X(1),
+    /**
+     * Read from `CUSTOM.y` when performing billboarding and use it as an angle, in radians.
+     */
+    ALIGN_CHANNEL_FILTER_Y(2),
+    /**
+     * Read from `CUSTOM.z` when performing billboarding and use it as an angle, in radians.
+     */
+    ALIGN_CHANNEL_FILTER_Z(3),
+    /**
+     * Read from `CUSTOM.w` when performing billboarding and use it as an angle, in radians.
+     */
+    ALIGN_CHANNEL_FILTER_W(4),
+    ;
+
+    public companion object {
+      public fun from(`value`: Long): ParticlesTransformAlignCustomSrc =
+          entries.single { it.`value` == `value` }
+    }
+  }
+
+  public enum class ParticlesTransformAlignAxis(
+    public override val `value`: Long,
+  ) : GodotEnum {
+    /**
+     * Use the X axis for local billboarding.
+     */
+    ALIGN_AXIS_X(0),
+    /**
+     * Use the Y axis for local billboarding.
+     */
+    ALIGN_AXIS_Y(1),
+    ;
+
+    public companion object {
+      public fun from(`value`: Long): ParticlesTransformAlignAxis =
           entries.single { it.`value` == `value` }
     }
   }
@@ -10366,12 +10967,33 @@ public object RenderingServer : Object() {
   public enum class ParticlesCollisionType(
     public override val `value`: Long,
   ) : GodotEnum {
+    /**
+     * Sphere attractor type for [GPUParticles3D] (see [GPUParticlesAttractorSphere3D]).
+     */
     SPHERE_ATTRACT(0),
+    /**
+     * Box attractor type for [GPUParticles3D] (see [GPUParticlesAttractorBox3D]).
+     */
     BOX_ATTRACT(1),
+    /**
+     * Vector field attractor type for [GPUParticles3D] (see [GPUParticlesAttractorVectorField3D]).
+     */
     VECTOR_FIELD_ATTRACT(2),
+    /**
+     * Sphere collision type for [GPUParticles3D] (see [GPUParticlesCollisionSphere3D]).
+     */
     SPHERE_COLLIDE(3),
+    /**
+     * Box collision type for [GPUParticles3D] (see [GPUParticlesCollisionBox3D]).
+     */
     BOX_COLLIDE(4),
+    /**
+     * Signed distance field collision type for [GPUParticles3D] (see [GPUParticlesCollisionSDF3D]).
+     */
     SDF_COLLIDE(5),
+    /**
+     * Heightfield collision type for [GPUParticles3D] (see [GPUParticlesCollisionHeightField3D]).
+     */
     HEIGHTFIELD_COLLIDE(6),
     ;
 
@@ -10384,11 +11006,29 @@ public object RenderingServer : Object() {
   public enum class ParticlesCollisionHeightfieldResolution(
     public override val `value`: Long,
   ) : GodotEnum {
+    /**
+     * 256×256 heightfield resolution for [GPUParticlesCollisionHeightField3D].
+     */
     PARTICLES_COLLISION_HEIGHTFIELD_RESOLUTION_256(0),
+    /**
+     * 512×512 heightfield resolution for [GPUParticlesCollisionHeightField3D].
+     */
     PARTICLES_COLLISION_HEIGHTFIELD_RESOLUTION_512(1),
+    /**
+     * 1024×1024 heightfield resolution for [GPUParticlesCollisionHeightField3D].
+     */
     PARTICLES_COLLISION_HEIGHTFIELD_RESOLUTION_1024(2),
+    /**
+     * 2048×2048 heightfield resolution for [GPUParticlesCollisionHeightField3D].
+     */
     PARTICLES_COLLISION_HEIGHTFIELD_RESOLUTION_2048(3),
+    /**
+     * 4096×4096 heightfield resolution for [GPUParticlesCollisionHeightField3D].
+     */
     PARTICLES_COLLISION_HEIGHTFIELD_RESOLUTION_4096(4),
+    /**
+     * 8192×8192 heightfield resolution for [GPUParticlesCollisionHeightField3D].
+     */
     PARTICLES_COLLISION_HEIGHTFIELD_RESOLUTION_8192(5),
     /**
      * Represents the size of the [ParticlesCollisionHeightfieldResolution] enum.
@@ -10486,9 +11126,20 @@ public object RenderingServer : Object() {
      */
     VIEWPORT_SCALING_3D_MODE_METALFX_TEMPORAL(4),
     /**
+     * Use nearest-neighbor filtering for the viewport's 3D buffer. This looks crisper than
+     * [VIEWPORT_SCALING_3D_MODE_BILINEAR] and has no additional rendering cost. The amount of scaling
+     * can be set using [Viewport.scaling3dScale]. Values greater than `1.0` are not supported and
+     * bilinear downsampling will be used instead. A value of `1.0` disables scaling.
+     *
+     * **Note:** When using the **Nearest** scaling mode, to avoid uneven pixel scaling, it's highly
+     * recommended to use a value equal to an integer divisor with a dividend of `1`. For example, it's
+     * best to use a scale of `0.5` (1/2), `0.3333` (1/3), `0.25` (1/4), `0.2` (1/5), and so on.
+     */
+    VIEWPORT_SCALING_3D_MODE_NEAREST(5),
+    /**
      * Represents the size of the [ViewportScaling3DMode] enum.
      */
-    VIEWPORT_SCALING_3D_MODE_MAX(5),
+    VIEWPORT_SCALING_3D_MODE_MAX(6),
     ;
 
     public companion object {
@@ -10853,6 +11504,10 @@ public object RenderingServer : Object() {
      *
      * **Note:** [setDebugGenerateWireframes] must be called before loading any meshes for
      * wireframes to be visible when using the Compatibility renderer.
+     *
+     * **Note:** In the Compatibility renderer, backfaces are always visible when using wireframe
+     * rendering. In the Forward+ and Mobile renderers, wireframes follow the material's backface
+     * culling properties instead.
      */
     WIREFRAME(4),
     /**
@@ -11285,28 +11940,39 @@ public object RenderingServer : Object() {
     public override val `value`: Long,
   ) : GodotEnum {
     /**
-     * Additive glow blending mode. Mostly used for particles, glows (bloom), lens flare, bright
-     * sources.
+     * Adds the glow effect to the scene.
      */
     ADDITIVE(0),
     /**
-     * Screen glow blending mode. Increases brightness, used frequently with bloom.
+     * Adds the glow effect to the scene after modifying the glow influence based on the scene
+     * value; dark values will be highly influenced by glow and bright values will not be influenced by
+     * glow. This approach avoids bright values becoming overly bright from the glow effect.
+     * [Environment.tonemapWhite] is used to determine the maximum scene value where the glow should
+     * have no influence. When [Environment.tonemapMode] is set to [Environment.TONE_MAPPER_LINEAR] and
+     * [Viewport.useHdr2d] is `true`, the parent window's [Window.getOutputMaxLinearValue] will be used
+     * as the maximum scene value.
      */
     SCREEN(1),
     /**
-     * Soft light glow blending mode. Modifies contrast, exposes shadows and highlights (vivid
-     * bloom).
+     * Adds the glow effect to the tonemapped image after modifying the glow influence based on the
+     * image value; dark values and bright values will not be influenced by glow and mid-range values
+     * will be highly influenced by glow. This approach avoids bright values becoming overly bright
+     * from the glow effect. The glow will have the largest influence on image values of `0.25` and
+     * will have no influence when applied to image values greater than `1.0`.
+     *
+     * **Note:** This blend mode does not support HDR output because expects a maximum output value
+     * of `1.0`. It is recommended to use a different blend mode when rendering to an HDR screen.
      */
     SOFTLIGHT(2),
     /**
-     * Replace glow blending mode. Replaces all pixels' color by the glow value. This can be used to
-     * simulate a full-screen blur effect by tweaking the glow parameters to match the original image's
-     * brightness.
+     * Replaces all pixels' color by the glow effect. This can be used to simulate a full-screen
+     * blur effect by tweaking the glow parameters to match the original image's brightness or to
+     * preview glow configuration in the editor.
      */
     REPLACE(3),
     /**
-     * Mixes the glow with the underlying color to avoid increasing brightness as much while still
-     * maintaining a glow effect.
+     * Mixes the glow image with the scene image. Best used with [Environment.glowBloom] to avoid
+     * darkening the scene.
      */
     MIX(4),
     ;
@@ -11355,6 +12021,9 @@ public object RenderingServer : Object() {
     /**
      * Uses a film-like tonemapping curve to prevent clipping of bright values and provide better
      * contrast than [ENV_TONE_MAPPER_REINHARD]. Slightly slower than [ENV_TONE_MAPPER_REINHARD].
+     *
+     * **Note:** This tonemapper does not support HDR output because it produces output in the SDR
+     * range. It is recommended to use a different tonemapper when rendering to an HDR screen.
      */
     FILMIC(2),
     /**
@@ -11362,6 +12031,9 @@ public object RenderingServer : Object() {
      * realistic appearance. Slightly slower than [ENV_TONE_MAPPER_FILMIC].
      *
      * **Note:** This tonemapping operator is called "ACES Fitted" in Godot 3.x.
+     *
+     * **Note:** This tonemapper does not support HDR output because it produces output in the SDR
+     * range. It is recommended to use a different tonemapper when rendering to an HDR screen.
      */
     ACES(3),
     /**
@@ -12475,6 +13147,9 @@ public object RenderingServer : Object() {
     internal val textureCreateFromNativeHandlePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "texture_create_from_native_handle", 1682977582)
 
+    internal val textureDrawableCreatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "texture_drawable_create", 1993613667)
+
     internal val texture2dUpdatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "texture_2d_update", 999539803)
 
@@ -12483,6 +13158,9 @@ public object RenderingServer : Object() {
 
     internal val textureProxyUpdatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "texture_proxy_update", 395945892)
+
+    internal val textureDrawableBlitRectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "texture_drawable_blit_rect", 4077763890)
 
     internal val texture2dPlaceholderCreatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "texture_2d_placeholder_create", 529393457)
@@ -12501,6 +13179,12 @@ public object RenderingServer : Object() {
 
     internal val texture3dGetPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "texture_3d_get", 2684255073)
+
+    internal val textureDrawableGenerateMipmapsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "texture_drawable_generate_mipmaps", 2722037293)
+
+    internal val textureDrawableGetDefaultMaterialPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "texture_drawable_get_default_material", 2944877500)
 
     internal val textureReplacePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "texture_replace", 395945892)
@@ -12772,6 +13456,9 @@ public object RenderingServer : Object() {
     internal val spotLightCreatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "spot_light_create", 529393457)
 
+    internal val areaLightCreatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "area_light_create", 529393457)
+
     internal val lightSetColorPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "light_set_color", 2948539648)
 
@@ -12816,6 +13503,12 @@ public object RenderingServer : Object() {
 
     internal val lightDirectionalSetSkyModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "light_directional_set_sky_mode", 2559740754)
+
+    internal val lightAreaSetSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "light_area_set_size", 3201125042)
+
+    internal val lightAreaSetNormalizeEnergyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "light_area_set_normalize_energy", 1265174801)
 
     internal val lightProjectorsSetFilterPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "light_projectors_set_filter", 43944325)
@@ -13031,7 +13724,7 @@ public object RenderingServer : Object() {
         TypeManager.getMethodBindPtr("RenderingServer", "particles_set_pre_process_time", 1794382983)
 
     internal val particlesRequestProcessTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "particles_request_process_time", 1794382983)
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_request_process_time", 1515254041)
 
     internal val particlesSetExplosivenessRatioPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "particles_set_explosiveness_ratio", 1794382983)
@@ -13071,6 +13764,12 @@ public object RenderingServer : Object() {
 
     internal val particlesSetTransformAlignPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "particles_set_transform_align", 3264971368)
+
+    internal val particlesSetTransformAlignChannelFilterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_transform_align_channel_filter", 1303285813)
+
+    internal val particlesSetTransformAlignAxisPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_transform_align_axis", 3065310065)
 
     internal val particlesSetTrailsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "particles_set_trails", 2010054925)
@@ -13208,7 +13907,7 @@ public object RenderingServer : Object() {
         TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_use_xr", 1265174801)
 
     internal val viewportSetSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_size", 4288446313)
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_size", 3313592705)
 
     internal val viewportSetActivePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_active", 1265174801)

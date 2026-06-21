@@ -23,17 +23,20 @@ import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
- * A limiter is similar to a compressor, but it's less flexible and designed to disallow sound going
- * over a given dB threshold. Adding one in the Master bus is always recommended to reduce the effects
- * of clipping.
+ * A "limiter" is an audio effect designed to stop audio signals from exceeding a specified volume
+ * threshold level, and usually works by decreasing the volume or soft-clipping the audio. Adding one
+ * in the Master bus is always recommended to prevent clipping when the volume goes above 0 dB.
  *
- * Soft clipping starts to reduce the peaks a little below the threshold level and progressively
- * increases its effect as the input level increases such that the threshold is never exceeded.
+ * Soft clipping starts to decrease the peaks a little below the volume threshold level and
+ * progressively increases its effect as the input volume increases such that the threshold level is
+ * never exceeded.
+ *
+ * If hard clipping is desired, consider [AudioEffectDistortion.MODE_CLIP].
  */
 @GodotBaseType
 public open class AudioEffectLimiter : AudioEffect() {
   /**
-   * The waveform's maximum allowed value, in decibels. Value can range from -20 to -0.1.
+   * The waveform's maximum allowed value, in dB. Value can range from -20 to -0.1.
    */
   public final inline var ceilingDb: Float
     @JvmName("ceilingDbProperty")
@@ -44,8 +47,8 @@ public open class AudioEffectLimiter : AudioEffect() {
     }
 
   /**
-   * Threshold from which the limiter begins to be active, in decibels. Value can range from -30 to
-   * 0.
+   * The volume threshold level from which the limiter begins to be active, in dB. Value can range
+   * from -30 to 0.
    */
   public final inline var thresholdDb: Float
     @JvmName("thresholdDbProperty")
@@ -56,7 +59,7 @@ public open class AudioEffectLimiter : AudioEffect() {
     }
 
   /**
-   * Applies a gain to the limited waves, in decibels. Value can range from 0 to 6.
+   * Modifies the volume of the limited waves, in dB. Value can range from 0 to 6.
    */
   public final inline var softClipDb: Float
     @JvmName("softClipDbProperty")
@@ -66,6 +69,10 @@ public open class AudioEffectLimiter : AudioEffect() {
       setSoftClipDb(value)
     }
 
+  /**
+   * This property has no effect on the audio. Use [AudioEffectHardLimiter] instead, as this Limiter
+   * effect is deprecated.
+   */
   public final inline var softClipRatio: Float
     @JvmName("softClipRatioProperty")
     get() = getSoftClipRatio()
@@ -75,7 +82,7 @@ public open class AudioEffectLimiter : AudioEffect() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(64, scriptPtr)
+    createNativeObject(66, scriptPtr)
   }
 
   public final fun setCeilingDb(ceiling: Float): Unit {

@@ -26,19 +26,18 @@ import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
- * This audio effect does not affect sound output, but can be used for real-time audio
- * visualizations.
+ * Calculates a Fourier Transform of the audio signal. This effect does not alter the audio. Can be
+ * used for creating real-time audio visualizations, like a spectrogram.
  *
  * This resource configures an [AudioEffectSpectrumAnalyzerInstance], which performs the actual
- * analysis at runtime. An instance can be obtained with [AudioServer.getBusEffectInstance].
- *
- * See also [AudioStreamGenerator] for procedurally generating sounds.
+ * analysis at runtime. An instance should be obtained with [AudioServer.getBusEffectInstance] to make
+ * use of this effect.
  */
 @GodotBaseType
 public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
   /**
-   * The length of the buffer to keep (in seconds). Higher values keep data around for longer, but
-   * require more memory.
+   * The length of the buffer to keep, in seconds. Higher values keep data around for longer, but
+   * require more memory. Value can range from 0.1 to 4.
    */
   public final inline var bufferLength: Float
     @JvmName("bufferLengthProperty")
@@ -46,14 +45,6 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
     @JvmName("bufferLengthProperty")
     set(`value`) {
       setBufferLength(value)
-    }
-
-  public final inline var tapBackPos: Float
-    @JvmName("tapBackPosProperty")
-    get() = getTapBackPos()
-    @JvmName("tapBackPosProperty")
-    set(`value`) {
-      setTapBackPos(value)
     }
 
   /**
@@ -71,7 +62,7 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(73, scriptPtr)
+    createNativeObject(75, scriptPtr)
   }
 
   public final fun setBufferLength(seconds: Float): Unit {
@@ -82,17 +73,6 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
   public final fun getBufferLength(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBufferLengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
-  }
-
-  public final fun setTapBackPos(seconds: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to seconds.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setTapBackPosPtr, NIL)
-  }
-
-  public final fun getTapBackPos(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getTapBackPosPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -163,14 +143,6 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
         MethodStringName0<AudioEffectSpectrumAnalyzer, Float>("get_buffer_length")
 
     @JvmField
-    public val setTapBackPosName: MethodStringName1<AudioEffectSpectrumAnalyzer, Unit, Float> =
-        MethodStringName1<AudioEffectSpectrumAnalyzer, Unit, Float>("set_tap_back_pos")
-
-    @JvmField
-    public val getTapBackPosName: MethodStringName0<AudioEffectSpectrumAnalyzer, Float> =
-        MethodStringName0<AudioEffectSpectrumAnalyzer, Float>("get_tap_back_pos")
-
-    @JvmField
     public val setFftSizeName: MethodStringName1<AudioEffectSpectrumAnalyzer, Unit, FFTSize> =
         MethodStringName1<AudioEffectSpectrumAnalyzer, Unit, FFTSize>("set_fft_size")
 
@@ -185,12 +157,6 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
 
     internal val getBufferLengthPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AudioEffectSpectrumAnalyzer", "get_buffer_length", 1740695150)
-
-    internal val setTapBackPosPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectSpectrumAnalyzer", "set_tap_back_pos", 373806689)
-
-    internal val getTapBackPosPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectSpectrumAnalyzer", "get_tap_back_pos", 1740695150)
 
     internal val setFftSizePtr: VoidPtr =
         TypeManager.getMethodBindPtr("AudioEffectSpectrumAnalyzer", "set_fft_size", 1202879215)

@@ -14,8 +14,10 @@ import godot.core.Error
 import godot.core.MethodStringName1
 import godot.core.MethodStringName3
 import godot.core.MethodStringName4
+import godot.core.PackedByteArray
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
+import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.STRING
 import kotlin.Boolean
 import kotlin.Int
@@ -55,7 +57,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class PCKPacker : RefCounted() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(490, scriptPtr)
+    createNativeObject(499, scriptPtr)
   }
 
   /**
@@ -87,6 +89,22 @@ public open class PCKPacker : RefCounted() {
   ): Error {
     TransferContext.writeArguments(STRING to targetPath, STRING to sourcePath, BOOL to encrypt)
     TransferContext.callMethod(ptr, MethodBindings.addFilePtr, LONG)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Adds the [data] to the current PCK package at the [targetPath] internal path. The `res://`
+   * prefix for [targetPath] is optional and stripped internally. File content is immediately written
+   * to the PCK.
+   */
+  @JvmOverloads
+  public final fun addFileFromBuffer(
+    targetPath: String,
+    `data`: PackedByteArray,
+    encrypt: Boolean = false,
+  ): Error {
+    TransferContext.writeArguments(STRING to targetPath, PACKED_BYTE_ARRAY to data, BOOL to encrypt)
+    TransferContext.callMethod(ptr, MethodBindings.addFileFromBufferPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -126,6 +144,11 @@ public open class PCKPacker : RefCounted() {
         MethodStringName3<PCKPacker, Error, String, String, Boolean>("add_file")
 
     @JvmField
+    public val addFileFromBufferName:
+        MethodStringName3<PCKPacker, Error, String, PackedByteArray, Boolean> =
+        MethodStringName3<PCKPacker, Error, String, PackedByteArray, Boolean>("add_file_from_buffer")
+
+    @JvmField
     public val addFileRemovalName: MethodStringName1<PCKPacker, Error, String> =
         MethodStringName1<PCKPacker, Error, String>("add_file_removal")
 
@@ -140,6 +163,9 @@ public open class PCKPacker : RefCounted() {
 
     internal val addFilePtr: VoidPtr =
         TypeManager.getMethodBindPtr("PCKPacker", "add_file", 2215643711)
+
+    internal val addFileFromBufferPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PCKPacker", "add_file_from_buffer", 1131482346)
 
     internal val addFileRemovalPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PCKPacker", "add_file_removal", 166001499)

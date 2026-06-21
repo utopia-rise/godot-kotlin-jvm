@@ -41,7 +41,7 @@ import kotlin.jvm.JvmField
 @GodotBaseType
 public open class VisualShaderNodeCustom : VisualShaderNode() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(806, scriptPtr)
+    createNativeObject(821, scriptPtr)
   }
 
   /**

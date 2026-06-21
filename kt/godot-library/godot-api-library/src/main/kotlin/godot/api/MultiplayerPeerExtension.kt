@@ -24,7 +24,7 @@ import kotlin.Unit
 @GodotBaseType
 public abstract class MultiplayerPeerExtension : MultiplayerPeer() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(385, scriptPtr)
+    createNativeObject(394, scriptPtr)
   }
 
   /**
@@ -49,7 +49,7 @@ public abstract class MultiplayerPeerExtension : MultiplayerPeer() {
    * Called when a packet needs to be sent by the [MultiplayerAPI], if [_putPacket] isn't
    * implemented. Use this when extending this class via GDScript.
    */
-  public open fun _putPacketScript(pBuffer: PackedByteArray): Error {
+  public open fun _putPacketScript(buffer: PackedByteArray): Error {
     throw NotImplementedError("MultiplayerPeerExtension::_putPacketScript is not implemented.")
   }
 
@@ -69,7 +69,7 @@ public abstract class MultiplayerPeerExtension : MultiplayerPeer() {
    * Called when the channel to use is set for this [MultiplayerPeer] (see
    * [MultiplayerPeer.transferChannel]).
    */
-  public abstract fun _setTransferChannel(pChannel: Int): Unit
+  public abstract fun _setTransferChannel(channel: Int): Unit
 
   /**
    * Called when the transfer channel to use is read on this [MultiplayerPeer] (see
@@ -81,7 +81,7 @@ public abstract class MultiplayerPeerExtension : MultiplayerPeer() {
    * Called when the transfer mode is set on this [MultiplayerPeer] (see
    * [MultiplayerPeer.transferMode]).
    */
-  public abstract fun _setTransferMode(pMode: MultiplayerPeer.TransferMode): Unit
+  public abstract fun _setTransferMode(mode: MultiplayerPeer.TransferMode): Unit
 
   /**
    * Called when the transfer mode to use is read on this [MultiplayerPeer] (see
@@ -93,7 +93,7 @@ public abstract class MultiplayerPeerExtension : MultiplayerPeer() {
    * Called when the target peer to use is set for this [MultiplayerPeer] (see
    * [MultiplayerPeer.setTargetPeer]).
    */
-  public abstract fun _setTargetPeer(pPeer: Int): Unit
+  public abstract fun _setTargetPeer(peer: Int): Unit
 
   /**
    * Called when the ID of the [MultiplayerPeer] who sent the most recent packet is requested (see
@@ -118,10 +118,10 @@ public abstract class MultiplayerPeerExtension : MultiplayerPeer() {
   public abstract fun _close(): Unit
 
   /**
-   * Called when the connected [pPeer] should be forcibly disconnected (see
+   * Called when the connected [peer] should be forcibly disconnected (see
    * [MultiplayerPeer.disconnectPeer]).
    */
-  public abstract fun _disconnectPeer(pPeer: Int, pForce: Boolean): Unit
+  public abstract fun _disconnectPeer(peer: Int, force: Boolean): Unit
 
   /**
    * Called when the unique ID of this [MultiplayerPeer] is requested (see
@@ -133,7 +133,7 @@ public abstract class MultiplayerPeerExtension : MultiplayerPeer() {
    * Called when the "refuse new connections" status is set on this [MultiplayerPeer] (see
    * [MultiplayerPeer.refuseNewConnections]).
    */
-  public open fun _setRefuseNewConnections(pEnable: Boolean): Unit {
+  public open fun _setRefuseNewConnections(enable: Boolean): Unit {
     throw NotImplementedError("MultiplayerPeerExtension::_setRefuseNewConnections is not implemented.")
   }
 
@@ -181,7 +181,7 @@ internal class MultiplayerPeerExtensionDummy : MultiplayerPeerExtension() {
     throw NotImplementedError("MultiplayerPeerExtension::_getPacketMode is only implemented by non-JVM code.")
   }
 
-  public override fun _setTransferChannel(pChannel: Int): Unit {
+  public override fun _setTransferChannel(channel: Int): Unit {
     throw NotImplementedError("MultiplayerPeerExtension::_setTransferChannel is only implemented by non-JVM code.")
   }
 
@@ -189,7 +189,7 @@ internal class MultiplayerPeerExtensionDummy : MultiplayerPeerExtension() {
     throw NotImplementedError("MultiplayerPeerExtension::_getTransferChannel is only implemented by non-JVM code.")
   }
 
-  public override fun _setTransferMode(pMode: MultiplayerPeer.TransferMode): Unit {
+  public override fun _setTransferMode(mode: MultiplayerPeer.TransferMode): Unit {
     throw NotImplementedError("MultiplayerPeerExtension::_setTransferMode is only implemented by non-JVM code.")
   }
 
@@ -197,7 +197,7 @@ internal class MultiplayerPeerExtensionDummy : MultiplayerPeerExtension() {
     throw NotImplementedError("MultiplayerPeerExtension::_getTransferMode is only implemented by non-JVM code.")
   }
 
-  public override fun _setTargetPeer(pPeer: Int): Unit {
+  public override fun _setTargetPeer(peer: Int): Unit {
     throw NotImplementedError("MultiplayerPeerExtension::_setTargetPeer is only implemented by non-JVM code.")
   }
 
@@ -217,7 +217,7 @@ internal class MultiplayerPeerExtensionDummy : MultiplayerPeerExtension() {
     throw NotImplementedError("MultiplayerPeerExtension::_close is only implemented by non-JVM code.")
   }
 
-  public override fun _disconnectPeer(pPeer: Int, pForce: Boolean): Unit {
+  public override fun _disconnectPeer(peer: Int, force: Boolean): Unit {
     throw NotImplementedError("MultiplayerPeerExtension::_disconnectPeer is only implemented by non-JVM code.")
   }
 

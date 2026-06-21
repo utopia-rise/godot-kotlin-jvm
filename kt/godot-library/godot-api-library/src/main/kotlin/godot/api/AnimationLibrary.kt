@@ -40,30 +40,30 @@ import kotlin.jvm.JvmField
 @GodotBaseType
 public open class AnimationLibrary : Resource() {
   /**
-   * Emitted when an [Animation] is added, under the key [name].
+   * Emitted when an [Animation] is added, under the key [animName].
    */
   public val animationAdded: Signal1<StringName> by Signal1
 
   /**
-   * Emitted when an [Animation] stored with the key [name] is removed.
+   * Emitted when an [Animation] stored with the key [animName] is removed.
    */
   public val animationRemoved: Signal1<StringName> by Signal1
 
   /**
-   * Emitted when the key for an [Animation] is changed, from [name] to [toName].
+   * Emitted when the key for an [Animation] is changed, from [oldName] to [newName].
    */
   public val animationRenamed: Signal2<StringName, StringName> by Signal2
 
   /**
    * Emitted when there's a change in one of the animations, e.g. tracks are added, moved or have
-   * changed paths. [name] is the key of the animation that was changed.
+   * changed paths. [animName] is the key of the animation that was changed.
    *
    * See also [signal Resource.changed], which this acts as a relay for.
    */
   public val animationChanged: Signal1<StringName> by Signal1
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(14, scriptPtr)
+    createNativeObject(15, scriptPtr)
   }
 
   /**

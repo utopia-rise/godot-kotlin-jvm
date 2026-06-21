@@ -243,7 +243,7 @@ public open class SceneTree : MainLoop() {
    * **Warning:** Do not delete this node. This will result in unstable behavior, followed by a
    * crash.
    */
-  public final inline val root: Window?
+  public final inline val root: Window
     @JvmName("rootProperty")
     get() = getRoot()
 
@@ -283,13 +283,13 @@ public open class SceneTree : MainLoop() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(626, scriptPtr)
+    createNativeObject(640, scriptPtr)
   }
 
-  public final fun getRoot(): Window? {
+  public final fun getRoot(): Window {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRootPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Window?)
+    return (TransferContext.readReturnValue(OBJECT) as Window)
   }
 
   /**
@@ -787,10 +787,10 @@ public open class SceneTree : MainLoop() {
    * searches the parent paths until one is found. If the path is empty, or none is found, the default
    * one is returned. See [setMultiplayer].
    */
-  public final fun getMultiplayer(forPath: NodePath = NodePath("")): MultiplayerAPI? {
+  public final fun getMultiplayer(forPath: NodePath = NodePath("")): MultiplayerAPI {
     TransferContext.writeArguments(NODE_PATH to forPath)
     TransferContext.callMethod(ptr, MethodBindings.getMultiplayerPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as MultiplayerAPI?)
+    return (TransferContext.readReturnValue(OBJECT) as MultiplayerAPI)
   }
 
   public final fun setMultiplayerPollEnabled(enabled: Boolean): Unit {
@@ -947,7 +947,7 @@ public open class SceneTree : MainLoop() {
    * searches the parent paths until one is found. If the path is empty, or none is found, the default
    * one is returned. See [setMultiplayer].
    */
-  public final fun getMultiplayer(forPath: String): MultiplayerAPI? =
+  public final fun getMultiplayer(forPath: String): MultiplayerAPI =
       getMultiplayer(forPath.asCachedNodePath())
 
   public enum class GroupCallFlags(
@@ -984,8 +984,8 @@ public open class SceneTree : MainLoop() {
 
   public companion object {
     @JvmField
-    public val getRootName: MethodStringName0<SceneTree, Window?> =
-        MethodStringName0<SceneTree, Window?>("get_root")
+    public val getRootName: MethodStringName0<SceneTree, Window> =
+        MethodStringName0<SceneTree, Window>("get_root")
 
     @JvmField
     public val hasGroupName: MethodStringName1<SceneTree, Boolean, StringName> =
@@ -1153,8 +1153,8 @@ public open class SceneTree : MainLoop() {
         MethodStringName2<SceneTree, Unit, MultiplayerAPI?, NodePath>("set_multiplayer")
 
     @JvmField
-    public val getMultiplayerName: MethodStringName1<SceneTree, MultiplayerAPI?, NodePath> =
-        MethodStringName1<SceneTree, MultiplayerAPI?, NodePath>("get_multiplayer")
+    public val getMultiplayerName: MethodStringName1<SceneTree, MultiplayerAPI, NodePath> =
+        MethodStringName1<SceneTree, MultiplayerAPI, NodePath>("get_multiplayer")
 
     @JvmField
     public val setMultiplayerPollEnabledName: MethodStringName1<SceneTree, Unit, Boolean> =

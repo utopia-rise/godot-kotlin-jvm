@@ -28,7 +28,7 @@ import kotlin.jvm.JvmField
 @GodotBaseType
 public open class RenderSceneBuffers internal constructor() : RefCounted() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(599, scriptPtr)
+    createNativeObject(612, scriptPtr)
   }
 
   /**

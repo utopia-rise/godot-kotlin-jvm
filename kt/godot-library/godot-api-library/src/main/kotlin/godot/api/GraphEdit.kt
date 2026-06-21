@@ -498,7 +498,7 @@ public open class GraphEdit : Control() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(273, scriptPtr)
+    createNativeObject(279, scriptPtr)
   }
 
   /**

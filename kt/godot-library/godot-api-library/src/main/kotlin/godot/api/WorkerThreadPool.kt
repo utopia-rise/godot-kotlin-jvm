@@ -123,7 +123,7 @@ public object WorkerThreadPool : Object() {
       MethodStringName0<WorkerThreadPool, Long>("get_caller_group_id")
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(36)
+    getSingleton(37)
   }
 
   /**

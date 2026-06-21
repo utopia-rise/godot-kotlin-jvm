@@ -30,7 +30,7 @@ import kotlin.Unit
 @GodotBaseType
 public abstract class PhysicsDirectBodyState3DExtension : PhysicsDirectBodyState3D() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(520, scriptPtr)
+    createNativeObject(529, scriptPtr)
   }
 
   public abstract fun _getTotalGravity(): Vector3

@@ -109,7 +109,7 @@ public open class RootMotionView : VisualInstance3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(622, scriptPtr)
+    createNativeObject(635, scriptPtr)
   }
 
   /**

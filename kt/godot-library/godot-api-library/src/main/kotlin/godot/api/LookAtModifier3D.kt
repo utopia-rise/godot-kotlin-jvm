@@ -121,9 +121,9 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
    * rotation is applied relative to the rest. It means to replace the current pose with the
    * [LookAtModifier3D]'s result.
    *
-   * **Note:** This option affects the base angle for [useAngleLimitation] unlike [IterateIK3D]'s
-   * [JointLimitation3D]. Since the [LookAtModifier3D] relies strongly on Euler rotation, the axis that
-   * determines the limitation and the actual rotation are strongly tied together.
+   * **Note:** This option affects the base angle for [useAngleLimitation]. Since the
+   * [LookAtModifier3D] relies strongly on Euler rotation, the axis that determines the limitation and
+   * the actual rotation are strongly tied together.
    */
   public final inline var relative: Boolean
     @JvmName("relativeProperty")
@@ -432,7 +432,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(357, scriptPtr)
+    createNativeObject(366, scriptPtr)
   }
 
   /**

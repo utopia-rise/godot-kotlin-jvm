@@ -14,10 +14,14 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * Playback component of [AudioStreamPlaylist]. Handles the playback of multiple [AudioStream]s in
+ * sequence.
+ */
 @GodotBaseType
 public open class AudioStreamPlaybackPlaylist internal constructor() : AudioStreamPlayback() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(91, scriptPtr)
+    createNativeObject(93, scriptPtr)
   }
 
   /**

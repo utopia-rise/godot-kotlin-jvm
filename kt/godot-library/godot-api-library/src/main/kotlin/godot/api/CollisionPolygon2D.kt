@@ -21,6 +21,7 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
+import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import kotlin.Boolean
 import kotlin.Double
@@ -94,6 +95,9 @@ public open class CollisionPolygon2D : Node2D() {
    *
    * **Note:** This property has no effect if this [CollisionPolygon2D] is a child of an [Area2D]
    * node.
+   *
+   * **Note:** The one way collision direction can be configured by setting
+   * [oneWayCollisionDirection].
    */
   public final inline var oneWayCollision: Boolean
     @JvmName("oneWayCollisionProperty")
@@ -115,8 +119,27 @@ public open class CollisionPolygon2D : Node2D() {
       setOneWayCollisionMargin(value)
     }
 
+  /**
+   * The direction used for one-way collision.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
+  @CoreTypeLocalCopy
+  public final inline var oneWayCollisionDirection: Vector2
+    @JvmName("oneWayCollisionDirectionProperty")
+    get() = getOneWayCollisionDirection()
+    @JvmName("oneWayCollisionDirectionProperty")
+    set(`value`) {
+      setOneWayCollisionDirection(value)
+    }
+
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(161, scriptPtr)
+    createNativeObject(165, scriptPtr)
   }
 
   /**
@@ -162,6 +185,27 @@ public open class CollisionPolygon2D : Node2D() {
          this[index] = value
      }
      polygon = this
+  }
+
+  /**
+   * This is a helper function for [oneWayCollisionDirection] to make dealing with local copies
+   * easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = collisionpolygon2d.oneWayCollisionDirection
+   * //Your changes
+   * collisionpolygon2d.oneWayCollisionDirection = myCoreType
+   * ``````
+   *
+   * The direction used for one-way collision.
+   */
+  @CoreTypeHelper
+  public final fun oneWayCollisionDirectionMutate(block: Vector2.() -> Unit): Vector2 =
+      oneWayCollisionDirection.apply {
+     block(this)
+     oneWayCollisionDirection = this
   }
 
   public final fun setPolygon(polygon: PackedVector2Array): Unit {
@@ -217,6 +261,17 @@ public open class CollisionPolygon2D : Node2D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOneWayCollisionMarginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  public final fun setOneWayCollisionDirection(direction: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to direction)
+    TransferContext.callMethod(ptr, MethodBindings.setOneWayCollisionDirectionPtr, NIL)
+  }
+
+  public final fun getOneWayCollisionDirection(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getOneWayCollisionDirectionPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public enum class BuildMode(
@@ -282,6 +337,14 @@ public open class CollisionPolygon2D : Node2D() {
     @JvmField
     public val getOneWayCollisionMarginName: MethodStringName0<CollisionPolygon2D, Float> =
         MethodStringName0<CollisionPolygon2D, Float>("get_one_way_collision_margin")
+
+    @JvmField
+    public val setOneWayCollisionDirectionName: MethodStringName1<CollisionPolygon2D, Unit, Vector2>
+        = MethodStringName1<CollisionPolygon2D, Unit, Vector2>("set_one_way_collision_direction")
+
+    @JvmField
+    public val getOneWayCollisionDirectionName: MethodStringName0<CollisionPolygon2D, Vector2> =
+        MethodStringName0<CollisionPolygon2D, Vector2>("get_one_way_collision_direction")
   }
 
   public object MethodBindings {
@@ -314,5 +377,11 @@ public open class CollisionPolygon2D : Node2D() {
 
     internal val getOneWayCollisionMarginPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CollisionPolygon2D", "get_one_way_collision_margin", 1740695150)
+
+    internal val setOneWayCollisionDirectionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CollisionPolygon2D", "set_one_way_collision_direction", 743155724)
+
+    internal val getOneWayCollisionDirectionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CollisionPolygon2D", "get_one_way_collision_direction", 3341600327)
   }
 }

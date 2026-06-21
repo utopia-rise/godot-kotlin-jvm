@@ -12,7 +12,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.AABB
 import godot.core.Basis
+import godot.core.GodotEnum
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.MethodStringName2
@@ -216,6 +218,18 @@ public open class GridMap : Node3D() {
     }
 
   /**
+   * Show or hide the [GridMap]'s collision shapes. If set to [DEBUG_VISIBILITY_MODE_DEFAULT], this
+   * depends on the show collision debug settings.
+   */
+  public final inline var collisionVisibilityMode: DebugVisibilityMode
+    @JvmName("collisionVisibilityModeProperty")
+    get() = getCollisionVisibilityMode()
+    @JvmName("collisionVisibilityModeProperty")
+    set(`value`) {
+      setCollisionVisibilityMode(value)
+    }
+
+  /**
    * If `true`, this GridMap creates a navigation region for each cell that uses a [meshLibrary]
    * item with a navigation mesh. The created navigation region will use the navigation layers bitmask
    * assigned to the [MeshLibrary]'s item.
@@ -229,7 +243,7 @@ public open class GridMap : Node3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(278, scriptPtr)
+    createNativeObject(284, scriptPtr)
   }
 
   /**
@@ -322,6 +336,17 @@ public open class GridMap : Node3D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCollisionPriorityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  public final fun setCollisionVisibilityMode(visibilityMode: DebugVisibilityMode): Unit {
+    TransferContext.writeArguments(LONG to visibilityMode.value)
+    TransferContext.callMethod(ptr, MethodBindings.setCollisionVisibilityModePtr, NIL)
+  }
+
+  public final fun getCollisionVisibilityMode(): DebugVisibilityMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getCollisionVisibilityModePtr, LONG)
+    return DebugVisibilityMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setPhysicsMaterial(material: PhysicsMaterial?): Unit {
@@ -571,6 +596,77 @@ public open class GridMap : Node3D() {
   }
 
   /**
+   * Returns an array of [Vector3i]s with the octant coordinates of the non-empty octants in the
+   * grid map.
+   */
+  public final fun getUsedOctants(): VariantArray<Vector3i> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getUsedOctantsPtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Vector3i>)
+  }
+
+  /**
+   * Returns an array of [Vector3i]s with the octant coordinates of the octants that use the
+   * specified [item] in the grid map.
+   */
+  public final fun getUsedOctantsByItem(item: Int): VariantArray<Vector3i> {
+    TransferContext.writeArguments(LONG to item.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.getUsedOctantsByItemPtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Vector3i>)
+  }
+
+  /**
+   * Returns an array of [Vector3i]s with the cell coordinates of non-empty cells inside the octant
+   * at [octantCoords].
+   */
+  public final fun getUsedCellsInOctant(octantCoords: Vector3i): VariantArray<Vector3i> {
+    TransferContext.writeArguments(VECTOR3I to octantCoords)
+    TransferContext.callMethod(ptr, MethodBindings.getUsedCellsInOctantPtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Vector3i>)
+  }
+
+  /**
+   * Returns an array of [Vector3i]s with the cell coordinates of cells inside the octant at
+   * [octantCoords] that use the specified cell [item].
+   */
+  public final fun getUsedCellsInOctantByItem(octantCoords: Vector3i, item: Int):
+      VariantArray<Vector3i> {
+    TransferContext.writeArguments(VECTOR3I to octantCoords, LONG to item.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.getUsedCellsInOctantByItemPtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Vector3i>)
+  }
+
+  /**
+   * Returns an array of [Vector3i] octant coordinates that are inside the given [bounds], including
+   * octants that have no cells in use.
+   */
+  public final fun getOctantsInBounds(bounds: AABB): VariantArray<Vector3i> {
+    TransferContext.writeArguments(godot.core.VariantParser.AABB to bounds)
+    TransferContext.callMethod(ptr, MethodBindings.getOctantsInBoundsPtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Vector3i>)
+  }
+
+  /**
+   * Returns an array of [Vector3i]s with the octant coordinates of non-empty octants that are
+   * inside the local [bounds].
+   */
+  public final fun getUsedOctantsInBounds(bounds: AABB): VariantArray<Vector3i> {
+    TransferContext.writeArguments(godot.core.VariantParser.AABB to bounds)
+    TransferContext.callMethod(ptr, MethodBindings.getUsedOctantsInBoundsPtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Vector3i>)
+  }
+
+  /**
+   * Returns the [Vector3i] octant coordinates of the octant that the cell at [cellCoords] belongs
+   * to.
+   */
+  public final fun getOctantCoordsFromCellCoords(cellCoords: Vector3i): Vector3i {
+    TransferContext.writeArguments(VECTOR3I to cellCoords)
+    TransferContext.callMethod(ptr, MethodBindings.getOctantCoordsFromCellCoordsPtr, VECTOR3I)
+    return (TransferContext.readReturnValue(VECTOR3I) as Vector3i)
+  }
+
+  /**
    * Returns an array of [Transform3D] and [Mesh] references corresponding to the non-empty cells in
    * the grid. The transforms are specified in local space. Even indices contain [Transform3D]s, while
    * odd indices contain [Mesh]es related to the [Transform3D] in the index preceding it.
@@ -632,6 +728,29 @@ public open class GridMap : Node3D() {
     TransferContext.callMethod(ptr, MethodBindings.makeBakedMeshesPtr, NIL)
   }
 
+  public enum class DebugVisibilityMode(
+    public override val `value`: Long,
+  ) : GodotEnum {
+    /**
+     * Hide the collisions debug shapes in the editor, and use the debug settings to determine their
+     * visibility in game (i.e. [SceneTree.debugCollisionsHint] or [SceneTree.debugNavigationHint]).
+     */
+    DEFAULT(0),
+    /**
+     * Always show the collisions debug shapes.
+     */
+    FORCE_SHOW(1),
+    /**
+     * Always hide the collisions debug shapes.
+     */
+    FORCE_HIDE(2),
+    ;
+
+    public companion object {
+      public fun from(`value`: Long): DebugVisibilityMode = entries.single { it.`value` == `value` }
+    }
+  }
+
   public companion object {
     @JvmField
     public val setCollisionLayerName: MethodStringName1<GridMap, Unit, Long> =
@@ -672,6 +791,14 @@ public open class GridMap : Node3D() {
     @JvmField
     public val getCollisionPriorityName: MethodStringName0<GridMap, Float> =
         MethodStringName0<GridMap, Float>("get_collision_priority")
+
+    @JvmField
+    public val setCollisionVisibilityModeName: MethodStringName1<GridMap, Unit, DebugVisibilityMode>
+        = MethodStringName1<GridMap, Unit, DebugVisibilityMode>("set_collision_visibility_mode")
+
+    @JvmField
+    public val getCollisionVisibilityModeName: MethodStringName0<GridMap, DebugVisibilityMode> =
+        MethodStringName0<GridMap, DebugVisibilityMode>("get_collision_visibility_mode")
 
     @JvmField
     public val setPhysicsMaterialName: MethodStringName1<GridMap, Unit, PhysicsMaterial?> =
@@ -802,6 +929,36 @@ public open class GridMap : Node3D() {
         MethodStringName1<GridMap, VariantArray<Vector3i>, Int>("get_used_cells_by_item")
 
     @JvmField
+    public val getUsedOctantsName: MethodStringName0<GridMap, VariantArray<Vector3i>> =
+        MethodStringName0<GridMap, VariantArray<Vector3i>>("get_used_octants")
+
+    @JvmField
+    public val getUsedOctantsByItemName: MethodStringName1<GridMap, VariantArray<Vector3i>, Int> =
+        MethodStringName1<GridMap, VariantArray<Vector3i>, Int>("get_used_octants_by_item")
+
+    @JvmField
+    public val getUsedCellsInOctantName:
+        MethodStringName1<GridMap, VariantArray<Vector3i>, Vector3i> =
+        MethodStringName1<GridMap, VariantArray<Vector3i>, Vector3i>("get_used_cells_in_octant")
+
+    @JvmField
+    public val getUsedCellsInOctantByItemName:
+        MethodStringName2<GridMap, VariantArray<Vector3i>, Vector3i, Int> =
+        MethodStringName2<GridMap, VariantArray<Vector3i>, Vector3i, Int>("get_used_cells_in_octant_by_item")
+
+    @JvmField
+    public val getOctantsInBoundsName: MethodStringName1<GridMap, VariantArray<Vector3i>, AABB> =
+        MethodStringName1<GridMap, VariantArray<Vector3i>, AABB>("get_octants_in_bounds")
+
+    @JvmField
+    public val getUsedOctantsInBoundsName: MethodStringName1<GridMap, VariantArray<Vector3i>, AABB>
+        = MethodStringName1<GridMap, VariantArray<Vector3i>, AABB>("get_used_octants_in_bounds")
+
+    @JvmField
+    public val getOctantCoordsFromCellCoordsName: MethodStringName1<GridMap, Vector3i, Vector3i> =
+        MethodStringName1<GridMap, Vector3i, Vector3i>("get_octant_coords_from_cell_coords")
+
+    @JvmField
     public val getMeshesName: MethodStringName0<GridMap, VariantArray<Any?>> =
         MethodStringName0<GridMap, VariantArray<Any?>>("get_meshes")
 
@@ -858,6 +1015,12 @@ public open class GridMap : Node3D() {
 
     internal val getCollisionPriorityPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GridMap", "get_collision_priority", 1740695150)
+
+    internal val setCollisionVisibilityModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GridMap", "set_collision_visibility_mode", 4160694578)
+
+    internal val getCollisionVisibilityModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GridMap", "get_collision_visibility_mode", 3729798365)
 
     internal val setPhysicsMaterialPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GridMap", "set_physics_material", 1784508650)
@@ -953,6 +1116,27 @@ public open class GridMap : Node3D() {
 
     internal val getUsedCellsByItemPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GridMap", "get_used_cells_by_item", 663333327)
+
+    internal val getUsedOctantsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GridMap", "get_used_octants", 3995934104)
+
+    internal val getUsedOctantsByItemPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GridMap", "get_used_octants_by_item", 663333327)
+
+    internal val getUsedCellsInOctantPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GridMap", "get_used_cells_in_octant", 2658725580)
+
+    internal val getUsedCellsInOctantByItemPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GridMap", "get_used_cells_in_octant_by_item", 2384667821)
+
+    internal val getOctantsInBoundsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GridMap", "get_octants_in_bounds", 2489849902)
+
+    internal val getUsedOctantsInBoundsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GridMap", "get_used_octants_in_bounds", 2489849902)
+
+    internal val getOctantCoordsFromCellCoordsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GridMap", "get_octant_coords_from_cell_coords", 2075501597)
 
     internal val getMeshesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GridMap", "get_meshes", 3995934104)

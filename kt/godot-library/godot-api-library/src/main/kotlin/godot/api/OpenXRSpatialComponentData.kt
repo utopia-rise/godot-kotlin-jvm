@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -25,11 +26,11 @@ import kotlin.jvm.JvmField
 @GodotBaseType
 public open class OpenXRSpatialComponentData : RefCounted() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(471, scriptPtr)
+    createNativeObject(480, scriptPtr)
   }
 
   /**
-   * Set the expected capacity as provided by the spatial entities query system. Buffers should be
+   * Sets the expected capacity as provided by the spatial entities query system. Buffers should be
    * initialized with the correct storage.
    */
   public open fun _setCapacity(capacity: Long): Unit {
@@ -52,7 +53,7 @@ public open class OpenXRSpatialComponentData : RefCounted() {
   }
 
   /**
-   * Set the expected capacity as provided by the spatial entities query system. Buffers should be
+   * Sets the expected capacity as provided by the spatial entities query system. Buffers should be
    * initialized with the correct storage.
    */
   public final fun setCapacity(capacity: Long): Unit {
@@ -60,14 +61,30 @@ public open class OpenXRSpatialComponentData : RefCounted() {
     TransferContext.callMethod(ptr, MethodBindings.setCapacityPtr, NIL)
   }
 
+  /**
+   * Gets this [OpenXRSpatialComponentData]'s `XrSpatialComponentTypeEXT`.
+   */
+  public final fun getComponentType(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getComponentTypePtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long)
+  }
+
   public companion object {
     @JvmField
     public val setCapacityName: MethodStringName1<OpenXRSpatialComponentData, Unit, Long> =
         MethodStringName1<OpenXRSpatialComponentData, Unit, Long>("set_capacity")
+
+    @JvmField
+    public val getComponentTypeName: MethodStringName0<OpenXRSpatialComponentData, Long> =
+        MethodStringName0<OpenXRSpatialComponentData, Long>("get_component_type")
   }
 
   public object MethodBindings {
     internal val setCapacityPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRSpatialComponentData", "set_capacity", 1286410249)
+
+    internal val getComponentTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRSpatialComponentData", "get_component_type", 3905245786)
   }
 }

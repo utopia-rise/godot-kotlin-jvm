@@ -110,7 +110,7 @@ public abstract class StyleBox : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(701, scriptPtr)
+    createNativeObject(715, scriptPtr)
   }
 
   public abstract fun _draw(toCanvasItem: RID, rect: Rect2): Unit

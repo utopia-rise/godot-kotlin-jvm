@@ -435,7 +435,7 @@ public open class Camera2D : Node2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(131, scriptPtr)
+    createNativeObject(135, scriptPtr)
   }
 
   /**

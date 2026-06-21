@@ -211,6 +211,61 @@ public open class PopupMenu : Popup() {
     }
 
   /**
+   * If `true`, shows a search bar at the top of the [PopupMenu] for filtering items. See
+   * [searchBarMinItemCount] for dynamically controlling its visibility based on the number of items.
+   *
+   * **Note:** When enabled, [allowSearch] is ignored.
+   */
+  public final inline var searchBarEnabled: Boolean
+    @JvmName("searchBarEnabledProperty")
+    get() = isSearchBarEnabled()
+    @JvmName("searchBarEnabledProperty")
+    set(`value`) {
+      setSearchBarEnabled(value)
+    }
+
+  /**
+   * Sets the minimum number of items required for the search bar to be visible. [searchBarEnabled]
+   * must be `true` for this to have any effect. Separator items are not counted.
+   */
+  public final inline var searchBarMinItemCount: Int
+    @JvmName("searchBarMinItemCountProperty")
+    get() = getSearchBarMinItemCount()
+    @JvmName("searchBarMinItemCountProperty")
+    set(`value`) {
+      setSearchBarMinItemCount(value)
+    }
+
+  /**
+   * If `true`, enables fuzzy searching in the [PopupMenu] search bar. This allows the search
+   * results to include items that almost match the search query, as well items that match the
+   * individual characters of the search query, but not in sequence.
+   *
+   * Use [searchBarFuzzySearchMaxMisses] to set the maximum number of mismatches allowed in the
+   * search results.
+   */
+  public final inline var searchBarFuzzySearchEnabled: Boolean
+    @JvmName("searchBarFuzzySearchEnabledProperty")
+    get() = isSearchBarFuzzySearchEnabled()
+    @JvmName("searchBarFuzzySearchEnabledProperty")
+    set(`value`) {
+      setSearchBarFuzzySearchEnabled(value)
+    }
+
+  /**
+   * Sets the maximum number of mismatches allowed in each search result when fuzzy searching is
+   * enabled for the [PopupMenu] search bar. Any item with more mismatches will be hidden from the
+   * search results.
+   */
+  public final inline var searchBarFuzzySearchMaxMisses: Int
+    @JvmName("searchBarFuzzySearchMaxMissesProperty")
+    get() = getSearchBarFuzzySearchMaxMisses()
+    @JvmName("searchBarFuzzySearchMaxMissesProperty")
+    set(`value`) {
+      setSearchBarFuzzySearchMaxMisses(value)
+    }
+
+  /**
    * The number of items currently in the list.
    */
   public final inline var itemCount: Int
@@ -222,7 +277,7 @@ public open class PopupMenu : Popup() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(558, scriptPtr)
+    createNativeObject(567, scriptPtr)
   }
 
   /**
@@ -791,6 +846,19 @@ public open class PopupMenu : Popup() {
   }
 
   /**
+   * Changes the index of the item at index [index] to be at index [targetIndex]. This can be used
+   * to move an item above other items. The moved item will keep the same ID, even if it was generated
+   * from the original index.
+   *
+   * **Note:** The indices of any items between index [index] and index [targetIndex] will be
+   * shifted by one.
+   */
+  public final fun setItemIndex(index: Int, targetIndex: Int): Unit {
+    TransferContext.writeArguments(LONG to index.toLong(), LONG to targetIndex.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.setItemIndexPtr, NIL)
+  }
+
+  /**
    * Toggles the check state of the item at the given [index].
    */
   public final fun toggleItemChecked(index: Int): Unit {
@@ -879,8 +947,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Returns the ID of the item at the given [index]. `id` can be manually assigned, while index can
-   * not.
+   * Returns the ID of the item at the given [index].
    */
   public final fun getItemId(index: Int): Int {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -889,8 +956,8 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Returns the index of the item containing the specified [id]. Index is automatically assigned to
-   * each item by the engine and can not be set manually.
+   * Returns the index of the item containing the specified [id]. The index is automatically
+   * assigned to each item by the engine when added and represents the order items will be displayed.
    */
   public final fun getItemIndex(id: Int): Int {
     TransferContext.writeArguments(LONG to id.toLong())
@@ -1187,6 +1254,50 @@ public open class PopupMenu : Popup() {
     return NativeMenu.SystemMenus.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
+  public final fun setSearchBarEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(ptr, MethodBindings.setSearchBarEnabledPtr, NIL)
+  }
+
+  public final fun isSearchBarEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isSearchBarEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setSearchBarMinItemCount(count: Int): Unit {
+    TransferContext.writeArguments(LONG to count.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.setSearchBarMinItemCountPtr, NIL)
+  }
+
+  public final fun getSearchBarMinItemCount(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getSearchBarMinItemCountPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  public final fun setSearchBarFuzzySearchEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(ptr, MethodBindings.setSearchBarFuzzySearchEnabledPtr, NIL)
+  }
+
+  public final fun isSearchBarFuzzySearchEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isSearchBarFuzzySearchEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setSearchBarFuzzySearchMaxMisses(maxMisses: Int): Unit {
+    TransferContext.writeArguments(LONG to maxMisses.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.setSearchBarFuzzySearchMaxMissesPtr, NIL)
+  }
+
+  public final fun getSearchBarFuzzySearchMaxMisses(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getSearchBarFuzzySearchMaxMissesPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
   public final fun setShrinkHeight(shrink: Boolean): Unit {
     TransferContext.writeArguments(BOOL to shrink)
     TransferContext.callMethod(ptr, MethodBindings.setShrinkHeightPtr, NIL)
@@ -1387,6 +1498,10 @@ public open class PopupMenu : Popup() {
         MethodStringName2<PopupMenu, Unit, Int, Boolean>("set_item_shortcut_disabled")
 
     @JvmField
+    public val setItemIndexName: MethodStringName2<PopupMenu, Unit, Int, Int> =
+        MethodStringName2<PopupMenu, Unit, Int, Int>("set_item_index")
+
+    @JvmField
     public val toggleItemCheckedName: MethodStringName1<PopupMenu, Unit, Int> =
         MethodStringName1<PopupMenu, Unit, Int>("toggle_item_checked")
 
@@ -1576,6 +1691,38 @@ public open class PopupMenu : Popup() {
         MethodStringName0<PopupMenu, NativeMenu.SystemMenus>("get_system_menu")
 
     @JvmField
+    public val setSearchBarEnabledName: MethodStringName1<PopupMenu, Unit, Boolean> =
+        MethodStringName1<PopupMenu, Unit, Boolean>("set_search_bar_enabled")
+
+    @JvmField
+    public val isSearchBarEnabledName: MethodStringName0<PopupMenu, Boolean> =
+        MethodStringName0<PopupMenu, Boolean>("is_search_bar_enabled")
+
+    @JvmField
+    public val setSearchBarMinItemCountName: MethodStringName1<PopupMenu, Unit, Int> =
+        MethodStringName1<PopupMenu, Unit, Int>("set_search_bar_min_item_count")
+
+    @JvmField
+    public val getSearchBarMinItemCountName: MethodStringName0<PopupMenu, Int> =
+        MethodStringName0<PopupMenu, Int>("get_search_bar_min_item_count")
+
+    @JvmField
+    public val setSearchBarFuzzySearchEnabledName: MethodStringName1<PopupMenu, Unit, Boolean> =
+        MethodStringName1<PopupMenu, Unit, Boolean>("set_search_bar_fuzzy_search_enabled")
+
+    @JvmField
+    public val isSearchBarFuzzySearchEnabledName: MethodStringName0<PopupMenu, Boolean> =
+        MethodStringName0<PopupMenu, Boolean>("is_search_bar_fuzzy_search_enabled")
+
+    @JvmField
+    public val setSearchBarFuzzySearchMaxMissesName: MethodStringName1<PopupMenu, Unit, Int> =
+        MethodStringName1<PopupMenu, Unit, Int>("set_search_bar_fuzzy_search_max_misses")
+
+    @JvmField
+    public val getSearchBarFuzzySearchMaxMissesName: MethodStringName0<PopupMenu, Int> =
+        MethodStringName0<PopupMenu, Int>("get_search_bar_fuzzy_search_max_misses")
+
+    @JvmField
     public val setShrinkHeightName: MethodStringName1<PopupMenu, Unit, Boolean> =
         MethodStringName1<PopupMenu, Unit, Boolean>("set_shrink_height")
 
@@ -1719,6 +1866,9 @@ public open class PopupMenu : Popup() {
     internal val setItemShortcutDisabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PopupMenu", "set_item_shortcut_disabled", 300928843)
 
+    internal val setItemIndexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PopupMenu", "set_item_index", 3937882851)
+
     internal val toggleItemCheckedPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PopupMenu", "toggle_item_checked", 1286410249)
 
@@ -1858,6 +2008,30 @@ public open class PopupMenu : Popup() {
 
     internal val getSystemMenuPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PopupMenu", "get_system_menu", 1222557358)
+
+    internal val setSearchBarEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PopupMenu", "set_search_bar_enabled", 2586408642)
+
+    internal val isSearchBarEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PopupMenu", "is_search_bar_enabled", 36873697)
+
+    internal val setSearchBarMinItemCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PopupMenu", "set_search_bar_min_item_count", 1286410249)
+
+    internal val getSearchBarMinItemCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PopupMenu", "get_search_bar_min_item_count", 3905245786)
+
+    internal val setSearchBarFuzzySearchEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PopupMenu", "set_search_bar_fuzzy_search_enabled", 2586408642)
+
+    internal val isSearchBarFuzzySearchEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PopupMenu", "is_search_bar_fuzzy_search_enabled", 36873697)
+
+    internal val setSearchBarFuzzySearchMaxMissesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PopupMenu", "set_search_bar_fuzzy_search_max_misses", 1286410249)
+
+    internal val getSearchBarFuzzySearchMaxMissesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PopupMenu", "get_search_bar_fuzzy_search_max_misses", 3905245786)
 
     internal val setShrinkHeightPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PopupMenu", "set_shrink_height", 2586408642)

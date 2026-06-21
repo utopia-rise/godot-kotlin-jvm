@@ -54,7 +54,7 @@ public open class InputEventJoypadMotion : InputEvent() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(309, scriptPtr)
+    createNativeObject(315, scriptPtr)
   }
 
   public final fun setAxis(axis: JoyAxis): Unit {

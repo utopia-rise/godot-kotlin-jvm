@@ -12,13 +12,15 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Cuts frequencies higher than the [AudioEffectFilter.cutoffHz] and allows lower frequencies to
- * pass.
+ * A "low-pass" filter attenuates frequencies higher than [AudioEffectFilter.cutoffHz] and allows
+ * lower frequencies to pass unchanged.
+ *
+ * This filter can be used to muffle sounds.
  */
 @GodotBaseType
 public open class AudioEffectLowPassFilter : AudioEffectFilter() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(65, scriptPtr)
+    createNativeObject(67, scriptPtr)
   }
 
   public companion object

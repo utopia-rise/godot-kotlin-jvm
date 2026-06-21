@@ -17,6 +17,7 @@ import godot.core.MethodStringName1
 import godot.core.MethodStringName4
 import godot.core.MethodStringName6
 import godot.core.NodePath
+import godot.core.Signal
 import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.VariantCaster.ANY
@@ -27,6 +28,7 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
+import godot.core.VariantParser.SIGNAL
 import godot.core.asCachedNodePath
 import kotlin.Any
 import kotlin.Boolean
@@ -59,7 +61,7 @@ import kotlin.jvm.JvmStatic
  * created manually (i.e. by using `Tween.new()`) are invalid and can't be used for tweening values.
  *
  * A tween animation is created by adding [Tweener]s to the [Tween] object, using [tweenProperty],
- * [tweenInterval], [tweenCallback] or [tweenMethod]:
+ * [tweenInterval], [tweenCallback], [tweenMethod], [tweenSubtween], or [tweenAwait]:
  *
  * ```gdscript
  * //gdscript
@@ -204,7 +206,7 @@ public open class Tween : RefCounted() {
   public val finished: Signal0 by Signal0
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(761, scriptPtr)
+    createNativeObject(775, scriptPtr)
   }
 
   /**
@@ -452,6 +454,53 @@ public open class Tween : RefCounted() {
   }
 
   /**
+   * Creates and appends an [AwaitTweener]. This method can be used to await a signal to be emitted
+   * and create asynchronous animations or cutscenes.
+   *
+   * The animation will not progress to the next step until the awaited signal is emitted or the
+   * connection becomes invalid (e.g. as a result of freeing the target object). If you know that the
+   * emission may not happen, use [AwaitTweener.setTimeout].
+   *
+   * **Note:** The awaited signal should be emitted during the step when [AwaitTweener] is active.
+   *
+   * **Example:** An object launches itself and explodes upon collision or after 4 seconds.
+   *
+   * ```
+   * var tween = create_tween()
+   * tween.tween_callback(launch)
+   * tween.tween_await(collided).set_timeout(4.0)
+   * tween.tween_callback(explode)
+   * ```
+   *
+   * **Example:** A character walks to a specific point, says some lines and walks back when the
+   * player closes the message box.
+   *
+   * ```
+   * var tween = create_tween()
+   * tween.tween_callback(walk_to.bind(600.0))
+   * tween.tween_await(destination_reached)
+   * tween.tween_callback(say_dialogue.bind("Good day, sir!"))
+   * tween.tween_await(dialogue_closed)
+   * tween.tween_callback(walk_to.bind(0.0))
+   * ```
+   *
+   * **Note:** If you are awaiting a signal from a callback called in the same [Tween], make sure
+   * the signal is emitted *after* the await starts. If it can't be reasonably guaranteed, you can
+   * await and emit in the same step:
+   *
+   * ```
+   * var tween = create_tween()
+   * tween.tween_await(signal)
+   * tween.parallel().tween_callback(method_that_emits_signal)
+   * ```
+   */
+  public final fun tweenAwait(signal: Signal): AwaitTweener {
+    TransferContext.writeArguments(SIGNAL to signal)
+    TransferContext.callMethod(ptr, MethodBindings.tweenAwaitPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT) as AwaitTweener)
+  }
+
+  /**
    * Processes the [Tween] by the given [delta] value, in seconds. This is mostly useful for manual
    * control when the [Tween] is paused. It can also be used to end the [Tween] animation immediately,
    * by setting [delta] longer than the whole duration of the [Tween] animation.
@@ -536,6 +585,17 @@ public open class Tween : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTotalElapsedTimePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
+  }
+
+  /**
+   * Returns `true` if any [Tweener] has been added to the [Tween] and the [Tween] is valid. Useful
+   * when tweeners are added dynamically and the tween can end up empty. Killing an empty tween before
+   * it starts will prevent errors.
+   */
+  public final fun hasTweeners(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.hasTweenersPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -694,11 +754,20 @@ public open class Tween : RefCounted() {
    *
    * Before this method is called, the default ease type is [EASE_IN_OUT].
    *
-   * ```
+   * ```gdscript
+   * //gdscript
    * var tween = create_tween()
    * tween.tween_property(self, "position", Vector2(300, 0), 0.5) # Uses EASE_IN_OUT.
    * tween.set_ease(Tween.EASE_IN)
    * tween.tween_property(self, "rotation_degrees", 45.0, 0.5) # Uses EASE_IN.
+   * ```
+   *
+   * ```csharp
+   * //csharp
+   * Tween tween = CreateTween();
+   * tween.TweenProperty(this, "position", new Vector2(300, 0), 0.5); // Uses EaseType.InOut.
+   * tween.SetEase(Tween.EaseType.In);
+   * tween.TweenProperty(this, "rotation_degrees", 45.0, 0.5); // Uses EaseType.In.
    * ```
    */
   public final fun setEase(ease: EaseType): Tween {
@@ -965,6 +1034,10 @@ public open class Tween : RefCounted() {
         MethodStringName1<Tween, SubtweenTweener, Tween>("tween_subtween")
 
     @JvmField
+    public val tweenAwaitName: MethodStringName1<Tween, AwaitTweener, Signal> =
+        MethodStringName1<Tween, AwaitTweener, Signal>("tween_await")
+
+    @JvmField
     public val customStepName: MethodStringName1<Tween, Boolean, Double> =
         MethodStringName1<Tween, Boolean, Double>("custom_step")
 
@@ -983,6 +1056,10 @@ public open class Tween : RefCounted() {
     @JvmField
     public val getTotalElapsedTimeName: MethodStringName0<Tween, Double> =
         MethodStringName0<Tween, Double>("get_total_elapsed_time")
+
+    @JvmField
+    public val hasTweenersName: MethodStringName0<Tween, Boolean> =
+        MethodStringName0<Tween, Boolean>("has_tweeners")
 
     @JvmField
     public val isRunningName: MethodStringName0<Tween, Boolean> =
@@ -1095,6 +1172,9 @@ public open class Tween : RefCounted() {
     internal val tweenSubtweenPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Tween", "tween_subtween", 1567358477)
 
+    internal val tweenAwaitPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Tween", "tween_await", 2242837462)
+
     internal val customStepPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Tween", "custom_step", 330693286)
 
@@ -1108,6 +1188,9 @@ public open class Tween : RefCounted() {
 
     internal val getTotalElapsedTimePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Tween", "get_total_elapsed_time", 1740695150)
+
+    internal val hasTweenersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Tween", "has_tweeners", 36873697)
 
     internal val isRunningPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Tween", "is_running", 2240911060)

@@ -16,17 +16,21 @@ import godot.core.GodotEnum
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.MethodStringName2
-import godot.core.MethodStringName3
 import godot.core.MethodStringName4
 import godot.core.Signal0
+import godot.core.StringName
 import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
+import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
+import godot.core.asCachedStringName
 import kotlin.Boolean
+import kotlin.Double
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -159,9 +163,8 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
     }
 
   /**
-   * If `false`, the blended animations' frame are stopped when the blend value is `0`.
-   *
-   * If `true`, forcing the blended animations to advance frame.
+   * If `true`, sync mode is enabled (equivalent to [SYNC_MODE_INDEPENDENT]). This property is kept
+   * for backward compatibility.
    */
   public final inline var sync: Boolean
     @JvmName("syncProperty")
@@ -171,8 +174,32 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       setUseSync(value)
     }
 
+  /**
+   * Controls how animations are synced when blended. See [SyncMode] for available options.
+   */
+  public final inline var syncMode: SyncMode
+    @JvmName("syncModeProperty")
+    get() = getSyncMode()
+    @JvmName("syncModeProperty")
+    set(`value`) {
+      setSyncMode(value)
+    }
+
+  /**
+   * The cycle length in seconds used by [SYNC_MODE_CYCLIC_CONSTANT]. All animations are time-scaled
+   * so they complete one full cycle in this duration. Must be greater than `0` for cyclic sync to take
+   * effect.
+   */
+  public final inline var cyclicLength: Double
+    @JvmName("cyclicLengthProperty")
+    get() = getCyclicLength()
+    @JvmName("cyclicLengthProperty")
+    set(`value`) {
+      setCyclicLength(value)
+    }
+
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(23, scriptPtr)
+    createNativeObject(24, scriptPtr)
   }
 
   /**
@@ -233,17 +260,21 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   }
 
   /**
-   * Adds a new point that represents a [node] at the position set by [pos]. You can insert it at a
-   * specific index using the [atIndex] argument. If you use the default value for [atIndex], the point
-   * is inserted at the end of the blend points array.
+   * Adds a new point with [name] that represents a [node] at the position set by [pos]. You can
+   * insert it at a specific index using the [atIndex] argument. If you use the default value for
+   * [atIndex], the point is inserted at the end of the blend points array.
+   *
+   * **Note:** If no name is provided, safe index is used as reference. In the future, empty names
+   * will be deprecated, so explicitly passing a name is recommended.
    */
   @JvmOverloads
   public final fun addBlendPoint(
     node: AnimationRootNode?,
     pos: Vector2,
     atIndex: Int = -1,
+    name: StringName = StringName(""),
   ): Unit {
-    TransferContext.writeArguments(OBJECT to node, VECTOR2 to pos, LONG to atIndex.toLong())
+    TransferContext.writeArguments(OBJECT to node, VECTOR2 to pos, LONG to atIndex.toLong(), STRING_NAME to name)
     TransferContext.callMethod(ptr, MethodBindings.addBlendPointPtr, NIL)
   }
 
@@ -282,6 +313,34 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   }
 
   /**
+   * Sets the name of the blend point at index [point]. If the name conflicts with an existing
+   * point, a unique name will be generated automatically.
+   */
+  public final fun setBlendPointName(point: Int, name: StringName): Unit {
+    TransferContext.writeArguments(LONG to point.toLong(), STRING_NAME to name)
+    TransferContext.callMethod(ptr, MethodBindings.setBlendPointNamePtr, NIL)
+  }
+
+  /**
+   * Returns the name of the blend point at index [point].
+   */
+  public final fun getBlendPointName(point: Int): StringName {
+    TransferContext.writeArguments(LONG to point.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.getBlendPointNamePtr, STRING_NAME)
+    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
+  }
+
+  /**
+   * Returns the index of the blend point with the given [name]. Returns `-1` if no blend point with
+   * that name is found.
+   */
+  public final fun findBlendPointByName(name: StringName): Int {
+    TransferContext.writeArguments(STRING_NAME to name)
+    TransferContext.callMethod(ptr, MethodBindings.findBlendPointByNamePtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  /**
    * Removes the point at index [point] from the blend space.
    */
   public final fun removeBlendPoint(point: Int): Unit {
@@ -296,6 +355,15 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBlendPointCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  /**
+   * Swaps the blend points at indices [fromIndex] and [toIndex], exchanging their positions and
+   * properties.
+   */
+  public final fun reorderBlendPoint(fromIndex: Int, toIndex: Int): Unit {
+    TransferContext.writeArguments(LONG to fromIndex.toLong(), LONG to toIndex.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.reorderBlendPointPtr, NIL)
   }
 
   /**
@@ -428,6 +496,58 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
+  public final fun setSyncMode(syncMode: SyncMode): Unit {
+    TransferContext.writeArguments(LONG to syncMode.value)
+    TransferContext.callMethod(ptr, MethodBindings.setSyncModePtr, NIL)
+  }
+
+  public final fun getSyncMode(): SyncMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getSyncModePtr, LONG)
+    return SyncMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setCyclicLength(length: Double): Unit {
+    TransferContext.writeArguments(DOUBLE to length)
+    TransferContext.callMethod(ptr, MethodBindings.setCyclicLengthPtr, NIL)
+  }
+
+  public final fun getCyclicLength(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getCyclicLengthPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
+  }
+
+  /**
+   * Adds a new point with [name] that represents a [node] at the position set by [pos]. You can
+   * insert it at a specific index using the [atIndex] argument. If you use the default value for
+   * [atIndex], the point is inserted at the end of the blend points array.
+   *
+   * **Note:** If no name is provided, safe index is used as reference. In the future, empty names
+   * will be deprecated, so explicitly passing a name is recommended.
+   */
+  @JvmOverloads
+  public final fun addBlendPoint(
+    node: AnimationRootNode?,
+    pos: Vector2,
+    atIndex: Int = -1,
+    name: String,
+  ) = addBlendPoint(node, pos, atIndex, name.asCachedStringName())
+
+  /**
+   * Sets the name of the blend point at index [point]. If the name conflicts with an existing
+   * point, a unique name will be generated automatically.
+   */
+  public final fun setBlendPointName(point: Int, name: String) =
+      setBlendPointName(point, name.asCachedStringName())
+
+  /**
+   * Returns the index of the blend point with the given [name]. Returns `-1` if no blend point with
+   * that name is found.
+   */
+  public final fun findBlendPointByName(name: String): Int =
+      findBlendPointByName(name.asCachedStringName())
+
   public enum class BlendMode(
     public override val `value`: Long,
   ) : GodotEnum {
@@ -452,11 +572,50 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
     }
   }
 
+  public enum class SyncMode(
+    public override val `value`: Long,
+  ) : GodotEnum {
+    /**
+     * Inactive animations are frozen and do not advance.
+     */
+    NONE(0),
+    /**
+     * Inactive animations advance with a weight of `0`. This is equivalent to the previous `sync =
+     * true` behavior.
+     */
+    INDEPENDENT(1),
+    /**
+     * All animations are time-scaled so they stay in sync, with the cycle length dynamically
+     * computed from active blend weights. This is self-normalizing: a solo animation plays at normal
+     * speed.
+     *
+     * **Note:** If you apply [AnimationNodeTimeSeek] to the result when handling animations of
+     * different lengths, synchronization will be broken. In such cases, it is recommended to use
+     * [AnimationNodeAnimation.useCustomTimeline] to align the animation lengths.
+     */
+    CYCLIC_MUTABLE(2),
+    /**
+     * All animations are time-scaled so they complete one cycle in [cyclicLength] seconds, keeping
+     * them in sync regardless of their individual lengths.
+     *
+     * **Note:** If you apply [AnimationNodeTimeSeek] to the result when handling animations of
+     * different lengths, synchronization will be broken. In such cases, it is recommended to use
+     * [AnimationNodeAnimation.useCustomTimeline] to align the animation lengths.
+     */
+    CYCLIC_CONSTANT(3),
+    ;
+
+    public companion object {
+      public fun from(`value`: Long): SyncMode = entries.single { it.`value` == `value` }
+    }
+  }
+
   public companion object {
     @JvmField
     public val addBlendPointName:
-        MethodStringName3<AnimationNodeBlendSpace2D, Unit, AnimationRootNode?, Vector2, Int> =
-        MethodStringName3<AnimationNodeBlendSpace2D, Unit, AnimationRootNode?, Vector2, Int>("add_blend_point")
+        MethodStringName4<AnimationNodeBlendSpace2D, Unit, AnimationRootNode?, Vector2, Int, StringName>
+        =
+        MethodStringName4<AnimationNodeBlendSpace2D, Unit, AnimationRootNode?, Vector2, Int, StringName>("add_blend_point")
 
     @JvmField
     public val setBlendPointPositionName:
@@ -478,12 +637,30 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
         MethodStringName1<AnimationNodeBlendSpace2D, AnimationRootNode?, Int>("get_blend_point_node")
 
     @JvmField
+    public val setBlendPointNameName:
+        MethodStringName2<AnimationNodeBlendSpace2D, Unit, Int, StringName> =
+        MethodStringName2<AnimationNodeBlendSpace2D, Unit, Int, StringName>("set_blend_point_name")
+
+    @JvmField
+    public val getBlendPointNameName: MethodStringName1<AnimationNodeBlendSpace2D, StringName, Int>
+        = MethodStringName1<AnimationNodeBlendSpace2D, StringName, Int>("get_blend_point_name")
+
+    @JvmField
+    public val findBlendPointByNameName:
+        MethodStringName1<AnimationNodeBlendSpace2D, Int, StringName> =
+        MethodStringName1<AnimationNodeBlendSpace2D, Int, StringName>("find_blend_point_by_name")
+
+    @JvmField
     public val removeBlendPointName: MethodStringName1<AnimationNodeBlendSpace2D, Unit, Int> =
         MethodStringName1<AnimationNodeBlendSpace2D, Unit, Int>("remove_blend_point")
 
     @JvmField
     public val getBlendPointCountName: MethodStringName0<AnimationNodeBlendSpace2D, Int> =
         MethodStringName0<AnimationNodeBlendSpace2D, Int>("get_blend_point_count")
+
+    @JvmField
+    public val reorderBlendPointName: MethodStringName2<AnimationNodeBlendSpace2D, Unit, Int, Int> =
+        MethodStringName2<AnimationNodeBlendSpace2D, Unit, Int, Int>("reorder_blend_point")
 
     @JvmField
     public val addTriangleName:
@@ -565,11 +742,27 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
     @JvmField
     public val isUsingSyncName: MethodStringName0<AnimationNodeBlendSpace2D, Boolean> =
         MethodStringName0<AnimationNodeBlendSpace2D, Boolean>("is_using_sync")
+
+    @JvmField
+    public val setSyncModeName: MethodStringName1<AnimationNodeBlendSpace2D, Unit, SyncMode> =
+        MethodStringName1<AnimationNodeBlendSpace2D, Unit, SyncMode>("set_sync_mode")
+
+    @JvmField
+    public val getSyncModeName: MethodStringName0<AnimationNodeBlendSpace2D, SyncMode> =
+        MethodStringName0<AnimationNodeBlendSpace2D, SyncMode>("get_sync_mode")
+
+    @JvmField
+    public val setCyclicLengthName: MethodStringName1<AnimationNodeBlendSpace2D, Unit, Double> =
+        MethodStringName1<AnimationNodeBlendSpace2D, Unit, Double>("set_cyclic_length")
+
+    @JvmField
+    public val getCyclicLengthName: MethodStringName0<AnimationNodeBlendSpace2D, Double> =
+        MethodStringName0<AnimationNodeBlendSpace2D, Double>("get_cyclic_length")
   }
 
   public object MethodBindings {
     internal val addBlendPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "add_blend_point", 402261981)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "add_blend_point", 768750458)
 
     internal val setBlendPointPositionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "set_blend_point_position", 163021252)
@@ -583,11 +776,23 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
     internal val getBlendPointNodePtr: VoidPtr =
         TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_blend_point_node", 665599029)
 
+    internal val setBlendPointNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "set_blend_point_name", 3780747571)
+
+    internal val getBlendPointNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_blend_point_name", 659327637)
+
+    internal val findBlendPointByNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "find_blend_point_by_name", 2458036349)
+
     internal val removeBlendPointPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "remove_blend_point", 1286410249)
 
     internal val getBlendPointCountPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_blend_point_count", 3905245786)
+
+    internal val reorderBlendPointPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "reorder_blend_point", 3937882851)
 
     internal val addTrianglePtr: VoidPtr =
         TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "add_triangle", 753017335)
@@ -648,5 +853,17 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
     internal val isUsingSyncPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "is_using_sync", 36873697)
+
+    internal val setSyncModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "set_sync_mode", 2615784488)
+
+    internal val getSyncModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_sync_mode", 242032665)
+
+    internal val setCyclicLengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "set_cyclic_length", 373806689)
+
+    internal val getCyclicLengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_cyclic_length", 1740695150)
   }
 }

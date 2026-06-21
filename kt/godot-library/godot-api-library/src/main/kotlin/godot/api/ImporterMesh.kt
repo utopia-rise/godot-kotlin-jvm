@@ -17,8 +17,10 @@ import godot.core.MethodStringName2
 import godot.core.MethodStringName3
 import godot.core.MethodStringName7
 import godot.core.PackedInt32Array
+import godot.core.Transform3D
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
+import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DICTIONARY
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -29,6 +31,7 @@ import godot.core.VariantParser.STRING
 import godot.core.VariantParser.VECTOR2I
 import godot.core.Vector2i
 import kotlin.Any
+import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
@@ -47,13 +50,13 @@ import kotlin.jvm.JvmStatic
  * because objects created in 3D editing software commonly contain multiple materials.
  *
  * Unlike its runtime counterpart, [ImporterMesh] contains mesh data before various import steps,
- * such as lod and shadow mesh generation, have taken place. Modify surface data by calling [clear],
+ * such as LOD and shadow mesh generation, have taken place. Modify surface data by calling [clear],
  * followed by [addSurface] for each surface.
  */
 @GodotBaseType
 public open class ImporterMesh : Resource() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(301, scriptPtr)
+    createNativeObject(307, scriptPtr)
   }
 
   /**
@@ -323,6 +326,12 @@ public open class ImporterMesh : Resource() {
 
   public companion object {
     @JvmField
+    public val mergeImporterMeshesName:
+        MethodStringName3<ImporterMesh, ImporterMesh?, VariantArray<ImporterMesh>, VariantArray<Transform3D>, Boolean>
+        =
+        MethodStringName3<ImporterMesh, ImporterMesh?, VariantArray<ImporterMesh>, VariantArray<Transform3D>, Boolean>("merge_importer_meshes")
+
+    @JvmField
     public val addBlendShapeName: MethodStringName1<ImporterMesh, Unit, String> =
         MethodStringName1<ImporterMesh, Unit, String>("add_blend_shape")
 
@@ -423,6 +432,34 @@ public open class ImporterMesh : Resource() {
         MethodStringName0<ImporterMesh, Vector2i>("get_lightmap_size_hint")
 
     /**
+     * Merges multiple [ImporterMesh]es into a single [ImporterMesh]. Each input mesh is transformed
+     * by the corresponding [Transform3D] in the [relativeTransforms] array, which must be the same
+     * size as [importerMeshes]. Negative scales are supported, and the winding order in the mesh data
+     * will be corrected to account for this.
+     *
+     * If [deduplicateSurfaces] is `true` and multiple meshes have surfaces with the same names and
+     * formats, the surfaces will be merged together when the meshes are merged, and will use the
+     * material from the first matching surface. This is useful for reducing the number of surfaces in
+     * the resulting mesh, and avoids duplicating materials. Surfaces with bone weights will never be
+     * deduplicated. If [deduplicateSurfaces] is `false`, the surfaces will always be kept separate,
+     * and will be given unique names.
+     *
+     * **Warning:** Blend shapes and LODs are not supported and will be discarded. Do not use this
+     * function to discard blend shapes and LODs, as support for these may be added in the future.
+     */
+    @JvmOverloads
+    @JvmStatic
+    public final fun mergeImporterMeshes(
+      importerMeshes: VariantArray<ImporterMesh>,
+      relativeTransforms: VariantArray<Transform3D>,
+      deduplicateSurfaces: Boolean = true,
+    ): ImporterMesh? {
+      TransferContext.writeArguments(ARRAY to importerMeshes, ARRAY to relativeTransforms, BOOL to deduplicateSurfaces)
+      TransferContext.callMethod(0, MethodBindings.mergeImporterMeshesPtr, OBJECT)
+      return (TransferContext.readReturnValue(OBJECT) as ImporterMesh?)
+    }
+
+    /**
      * Converts the given [Mesh] into an [ImporterMesh] by copying all its surfaces, blend shapes,
      * materials, and metadata into a new [ImporterMesh] object.
      */
@@ -435,6 +472,9 @@ public open class ImporterMesh : Resource() {
   }
 
   public object MethodBindings {
+    internal val mergeImporterMeshesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ImporterMesh", "merge_importer_meshes", 1030647649)
+
     internal val addBlendShapePtr: VoidPtr =
         TypeManager.getMethodBindPtr("ImporterMesh", "add_blend_shape", 83702148)
 

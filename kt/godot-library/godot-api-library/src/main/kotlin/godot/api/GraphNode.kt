@@ -116,7 +116,7 @@ public open class GraphNode : GraphElement() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(276, scriptPtr)
+    createNativeObject(282, scriptPtr)
   }
 
   public open fun _drawPort(

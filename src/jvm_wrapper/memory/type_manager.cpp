@@ -2,6 +2,9 @@
 
 #include "jvm_wrapper/bootstrap.h"
 
+#include <core/object/class_db.h>
+#include <core/object/method_bind.h>
+
 void TypeManager::clear() {
     engine_type_names.clear();
     java_engine_types_constructors.clear();

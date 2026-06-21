@@ -29,7 +29,7 @@ import kotlin.jvm.JvmField
 @GodotBaseType
 public open class WeakRef : RefCounted() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(903, scriptPtr)
+    createNativeObject(918, scriptPtr)
   }
 
   /**

@@ -36,7 +36,8 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmStatic
 
 /**
- * MP3 audio stream driver. See [data] if you want to load an MP3 file at run-time.
+ * MP3 audio stream driver. See [data] if you want to load an MP3 file at run-time. More info can be
+ * found in [ResourceImporterMP3].
  *
  * **Note:** This class can optionally support legacy MP1 and MP2 formats, provided that the engine
  * is compiled with the `minimp3_extra_formats=yes` SCons option. These extra formats are not enabled
@@ -89,6 +90,9 @@ public open class AudioStreamMP3 : AudioStream() {
       setData(value)
     }
 
+  /**
+   * The tempo of the audio track, measured in beats per minute.
+   */
   public final inline var bpm: Double
     @JvmName("bpmProperty")
     get() = getBpm()
@@ -97,6 +101,11 @@ public open class AudioStreamMP3 : AudioStream() {
       setBpm(value)
     }
 
+  /**
+   * The length of the audio track, in beats. The actual duration of the audio file might be longer
+   * than what is indicated by this property. It defines the end of the audio for looping,
+   * [AudioStreamPlaylist], and [AudioStreamInteractive].
+   */
   public final inline var beatCount: Int
     @JvmName("beatCountProperty")
     get() = getBeatCount()
@@ -105,6 +114,9 @@ public open class AudioStreamMP3 : AudioStream() {
       setBeatCount(value)
     }
 
+  /**
+   * The number of beats within a single bar in the audio track.
+   */
   public final inline var barBeats: Int
     @JvmName("barBeatsProperty")
     get() = getBarBeats()
@@ -114,7 +126,9 @@ public open class AudioStreamMP3 : AudioStream() {
     }
 
   /**
-   * If `true`, the stream will automatically loop when it reaches the end.
+   * If `true`, the stream will play again from the specified [loopOffset] once it reaches the end
+   * of the audio track, or once it reaches the end of the last beat according to the amount specified
+   * in [beatCount]. Useful for ambient sounds and background music.
    */
   public final inline var loop: Boolean
     @JvmName("loopProperty")
@@ -136,7 +150,7 @@ public open class AudioStreamMP3 : AudioStream() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(85, scriptPtr)
+    createNativeObject(87, scriptPtr)
   }
 
   /**

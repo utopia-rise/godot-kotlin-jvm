@@ -20,6 +20,7 @@ import godot.core.MethodStringName8
 import godot.core.MethodStringName9
 import godot.core.NodePath
 import godot.core.Signal0
+import godot.core.Signal1
 import godot.core.Signal2
 import godot.core.Signal3
 import godot.core.StringName
@@ -79,6 +80,12 @@ public open class AnimationNode : Resource() {
   public val treeChanged: Signal0 by Signal0
 
   /**
+   * Emitted by [AnimationNodeAnimation] when its [AnimationNodeAnimation.animation] resource is
+   * changed, or by [AnimationNodeBlendTree] when its connections change.
+   */
+  public val nodeUpdated: Signal1<Long> by Signal1
+
+  /**
    * Emitted by nodes that inherit from this class and that have an internal tree when one of their
    * animation node names changes. The animation nodes that emit this signal are
    * [AnimationNodeBlendSpace1D], [AnimationNodeBlendSpace2D], [AnimationNodeStateMachine], and
@@ -106,7 +113,7 @@ public open class AnimationNode : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(16, scriptPtr)
+    createNativeObject(17, scriptPtr)
   }
 
   /**

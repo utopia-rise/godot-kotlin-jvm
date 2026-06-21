@@ -59,7 +59,7 @@ public open class PacketPeer internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(494, scriptPtr)
+    createNativeObject(503, scriptPtr)
   }
 
   /**

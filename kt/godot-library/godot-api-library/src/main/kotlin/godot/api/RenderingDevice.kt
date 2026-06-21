@@ -28,6 +28,7 @@ import godot.core.MethodStringName7
 import godot.core.MethodStringName9
 import godot.core.PackedByteArray
 import godot.core.PackedColorArray
+import godot.core.PackedInt32Array
 import godot.core.PackedInt64Array
 import godot.core.RID
 import godot.core.Rect2
@@ -42,6 +43,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.PACKED_COLOR_ARRAY
+import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.VariantParser.PACKED_INT_64_ARRAY
 import godot.core.VariantParser.RECT2
 import godot.core.VariantParser.STRING
@@ -83,6 +85,33 @@ public infix fun Long.or(other: RenderingDevice.BufferCreationBits): Long = this
 public infix fun Long.xor(other: RenderingDevice.BufferCreationBits): Long = this.xor(other.flag)
 
 public infix fun Long.and(other: RenderingDevice.BufferCreationBits): Long = this.and(other.flag)
+
+public infix fun Long.or(other: RenderingDevice.AccelerationStructureFlagBits): Long =
+    this.or(other.flag)
+
+public infix fun Long.xor(other: RenderingDevice.AccelerationStructureFlagBits): Long =
+    this.xor(other.flag)
+
+public infix fun Long.and(other: RenderingDevice.AccelerationStructureFlagBits): Long =
+    this.and(other.flag)
+
+public infix fun Long.or(other: RenderingDevice.AccelerationStructureGeometryFlagBits): Long =
+    this.or(other.flag)
+
+public infix fun Long.xor(other: RenderingDevice.AccelerationStructureGeometryFlagBits): Long =
+    this.xor(other.flag)
+
+public infix fun Long.and(other: RenderingDevice.AccelerationStructureGeometryFlagBits): Long =
+    this.and(other.flag)
+
+public infix fun Long.or(other: RenderingDevice.AccelerationStructureInstanceFlagBits): Long =
+    this.or(other.flag)
+
+public infix fun Long.xor(other: RenderingDevice.AccelerationStructureInstanceFlagBits): Long =
+    this.xor(other.flag)
+
+public infix fun Long.and(other: RenderingDevice.AccelerationStructureInstanceFlagBits): Long =
+    this.and(other.flag)
 
 public infix fun Long.or(other: RenderingDevice.PipelineDynamicStateFlags): Long =
     this.or(other.flag)
@@ -128,7 +157,7 @@ public infix fun Long.and(other: RenderingDevice.DrawFlags): Long = this.and(oth
 @GodotBaseType
 public open class RenderingDevice internal constructor() : Object() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(606, scriptPtr)
+    createNativeObject(619, scriptPtr)
   }
 
   /**
@@ -350,10 +379,11 @@ public open class RenderingDevice internal constructor() : Object() {
 
   /**
    * Copies the [fromTexture] to [toTexture] with the specified [fromPos], [toPos] and [size]
-   * coordinates. The Z axis of the [fromPos], [toPos] and [size] must be `0` for 2-dimensional
-   * textures. Source and destination mipmaps/layers must also be specified, with these parameters
-   * being `0` for textures without mipmaps or single-layer textures. Returns [@GlobalScope.OK] if the
-   * texture copy was successful or [@GlobalScope.ERR_INVALID_PARAMETER] otherwise.
+   * coordinates. For 2-dimensional textures, [fromPos] and [toPos] must have a Z axis of `0`, and
+   * [size] must have a Z axis of `1`. Source and destination mipmaps/layers must also be specified,
+   * with these parameters being `0` for textures without mipmaps or single-layer textures. Returns
+   * [@GlobalScope.OK] if the texture copy was successful or [@GlobalScope.ERR_INVALID_PARAMETER]
+   * otherwise.
    *
    * **Note:** [fromTexture] texture can't be copied while a draw list that uses it as part of a
    * framebuffer is being created. Ensure the draw list is finalized (and that the color/depth texture
@@ -1069,6 +1099,192 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
+   * Creates a new raytracing pipeline. It can be accessed with the RID that is returned.
+   *
+   * Once finished with your RID, you will want to free the RID using the RenderingDevice's
+   * [freeRid] method.
+   *
+   * Each shader must provide the required stage. All stages must use compatible pipeline layouts.
+   * The pipeline selects the required stage from each shader.
+   *
+   * Input order defines stable indices used by the API:
+   *
+   * - [raygenShaders] is indexed in [raytracingListTraceRays].
+   *
+   * - [missShaders] is indexed in `traceRayEXT`.
+   *
+   * - [hitGroups] is indexed in [hitSbtRangeUpdate].
+   */
+  public final fun raytracingPipelineCreate(
+    raygenShaders: VariantArray<RDPipelineShader>,
+    missShaders: VariantArray<RDPipelineShader>,
+    hitGroups: VariantArray<RDHitGroup>,
+    maxTraceRecursionDepth: Long,
+  ): RID {
+    TransferContext.writeArguments(ARRAY to raygenShaders, ARRAY to missShaders, ARRAY to hitGroups, LONG to maxTraceRecursionDepth)
+    TransferContext.callMethod(ptr, MethodBindings.raytracingPipelineCreatePtr, _RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
+  }
+
+  /**
+   * Returns `true` if the raytracing pipeline specified by the [raytracingPipeline] RID is valid,
+   * `false` otherwise.
+   */
+  public final fun raytracingPipelineIsValid(raytracingPipeline: RID): Boolean {
+    TransferContext.writeArguments(_RID to raytracingPipeline)
+    TransferContext.callMethod(ptr, MethodBindings.raytracingPipelineIsValidPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Creates a new Bottom-Level Acceleration Structure (BLAS). It can be accessed with the RID that
+   * is returned.
+   *
+   * Once finished with your RID, you will want to free the RID using the RenderingDevice's
+   * [freeRid] method.
+   */
+  public final fun blasCreate(geometries: VariantArray<RDAccelerationStructureGeometry>,
+      flags: AccelerationStructureFlagBits): RID {
+    TransferContext.writeArguments(ARRAY to geometries, LONG to flags.flag)
+    TransferContext.callMethod(ptr, MethodBindings.blasCreatePtr, _RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
+  }
+
+  /**
+   * Creates a new Top-Level Acceleration Structure (TLAS). It can be accessed with the RID that is
+   * returned.
+   *
+   * Once finished with your RID, you will want to free the RID using the RenderingDevice's
+   * [freeRid] method.
+   */
+  public final fun tlasCreate(maxInstanceCount: Long, flags: AccelerationStructureFlagBits): RID {
+    TransferContext.writeArguments(LONG to maxInstanceCount, LONG to flags.flag)
+    TransferContext.callMethod(ptr, MethodBindings.tlasCreatePtr, _RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
+  }
+
+  /**
+   * Builds the [blas].
+   */
+  public final fun blasBuild(blas: RID): Error {
+    TransferContext.writeArguments(_RID to blas)
+    TransferContext.callMethod(ptr, MethodBindings.blasBuildPtr, LONG)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Builds the [tlas]. The contents of previous builds are discarded.
+   *
+   * Any BLAS provided through the [RDAccelerationStructureInstance.blas] member must already have
+   * been built using the [blasBuild] method.
+   *
+   * The number of instances can be equal to or smaller than the maximum instance count provided in
+   * the [tlasCreate] method.
+   *
+   * **Note:** Freeing or rebuilding any of the provided BLASes after this method invalidates the
+   * TLAS and requires it to be rebuilt.
+   */
+  public final fun tlasBuild(tlas: RID, instances: VariantArray<RDAccelerationStructureInstance>):
+      Error {
+    TransferContext.writeArguments(_RID to tlas, ARRAY to instances)
+    TransferContext.callMethod(ptr, MethodBindings.tlasBuildPtr, LONG)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Creates a new hit shader binding table (SBT). It can be accessed with the RID that is returned.
+   *
+   * Once finished with your RID, you will want to free the RID using the RenderingDevice's
+   * [freeRid] method.
+   *
+   * This will be freed automatically when the [raytracingPipeline] is freed.
+   *
+   * The hit SBT resizes itself as needed. [initialHitGroupCapacity] is used to allocate the initial
+   * backing memory.
+   */
+  public final fun hitSbtCreate(raytracingPipeline: RID, initialHitGroupCapacity: Long): RID {
+    TransferContext.writeArguments(_RID to raytracingPipeline, LONG to initialHitGroupCapacity)
+    TransferContext.callMethod(ptr, MethodBindings.hitSbtCreatePtr, _RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
+  }
+
+  /**
+   * Sets a new [raytracingPipeline] for [hitSbt].
+   *
+   * The new pipeline must be a superset of the previous one. Existing hit groups must keep the same
+   * order and new hit groups should be appended to the end. This preserves existing SBT entries.
+   *
+   * The previous pipeline must remain valid during the call.
+   */
+  public final fun hitSbtSetPipeline(hitSbt: RID, raytracingPipeline: RID): Error {
+    TransferContext.writeArguments(_RID to hitSbt, _RID to raytracingPipeline)
+    TransferContext.callMethod(ptr, MethodBindings.hitSbtSetPipelinePtr, LONG)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Allocates a contiguous range of SBT entries from [hitSbt].
+   *
+   * The returned value should be assigned to [RDAccelerationStructureInstance.hitSbtRange].
+   *
+   * During ray traversal, hit group index is computed as:
+   *
+   * 	(geometry index in [RDAccelerationStructureInstance.blas])
+   *
+   * 	× (SBT stride used in `traceRayEXT`)
+   *
+   * 	+ (SBT offset used in `traceRayEXT`)
+   *
+   * 	+ (range offset)
+   *
+   * [hitGroupCount] must be large enough to cover all SBT entries that may be indexed by this
+   * equation. This typically corresponds to:
+   *
+   * 	(geometry count in [RDAccelerationStructureInstance.blas])
+   *
+   * 	× (SBT stride used in `traceRayEXT`)
+   *
+   * The allocated range is uninitialized and must be filled using [hitSbtRangeUpdate].
+   */
+  public final fun hitSbtRangeAlloc(hitSbt: RID, hitGroupCount: Long): Long {
+    TransferContext.writeArguments(_RID to hitSbt, LONG to hitGroupCount)
+    TransferContext.callMethod(ptr, MethodBindings.hitSbtRangeAllocPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Frees a hit SBT range previously allocated with [hitSbtRangeAlloc].
+   *
+   * The range must not be in use by any acceleration structure after being freed.
+   */
+  public final fun hitSbtRangeFree(hitSbt: RID, range: Long): Error {
+    TransferContext.writeArguments(_RID to hitSbt, LONG to range)
+    TransferContext.callMethod(ptr, MethodBindings.hitSbtRangeFreePtr, LONG)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Updates the contents of a hit SBT range.
+   *
+   * [hitGroupIndices] specifies indices into the hit group array provided in
+   * [raytracingPipelineCreate].
+   *
+   * The [offset] parameter specifies where within the allocated range the writing begins. This
+   * allows partial updates of a range. However, the complete range must be fully initialized before it
+   * is used in a raytracing dispatch.
+   */
+  public final fun hitSbtRangeUpdate(
+    hitSbt: RID,
+    range: Long,
+    offset: Long,
+    hitGroupIndices: PackedInt32Array,
+  ): Error {
+    TransferContext.writeArguments(_RID to hitSbt, LONG to range, LONG to offset, PACKED_INT_32_ARRAY to hitGroupIndices)
+    TransferContext.callMethod(ptr, MethodBindings.hitSbtRangeUpdatePtr, LONG)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
    * Returns the window width matching the graphics API context for the given window ID (in pixels).
    * Despite the parameter being named [screen], this returns the *window* size. See also
    * [screenGetHeight].
@@ -1489,6 +1705,132 @@ public open class RenderingDevice internal constructor() : Object() {
   public final fun computeListEnd(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.computeListEndPtr, NIL)
+  }
+
+  /**
+   * Starts a list of raytracing commands. The returned value should be passed to other
+   * `raytracing_list_*` functions.
+   *
+   * Multiple raytracing lists cannot be created at the same time; you must finish the previous
+   * raytracing list first using [raytracingListEnd].
+   *
+   * A simple raytracing operation might look like this (code is not a complete example):
+   *
+   * ```gdscript
+   * //gdscript
+   * var rd = RenderingDevice.new()
+   * assert(rd.has_feature(RenderingDevice.SUPPORTS_RAYTRACING_PIPELINE))
+   *
+   * # Create a BLAS for a mesh.
+   * var geometry = RDAccelerationStructureGeometry.new()
+   * geometry.flags = RenderingDevice.ACCELERATION_STRUCTURE_GEOMETRY_OPAQUE_BIT
+   * geometry.vertex_buffer = vertex_buffer
+   * geometry.vertex_stride = 12
+   * geometry.vertex_format = RenderingDevice.DATA_FORMAT_R32G32B32_SFLOAT
+   * geometry.vertex_count = 3
+   * geometry.index_buffer = index_buffer
+   * geometry.index_count = 3
+   * geometries.push_back(geometry)
+   *
+   * blas = rd.blas_create([geometry], 0)
+   *
+   * # Create TLAS.
+   * tlas = rd.tlas_create(1, 0)
+   *
+   * # Build acceleration structures.
+   * rd.blas_build(blas)
+   *
+   * var instance = RDAccelerationStructureInstance.new()
+   * instance.blas = blas
+   *
+   * instance.hit_sbt_range = rd.hit_sbt_range_alloc(hit_sbt, 1)
+   * rd.hit_sbt_range_update(hit_sbt, instance.hit_sbt_range, 0, [0])
+   *
+   * rd.tlas_build(tlas, [instance])
+   *
+   * var raylist = rd.raytracing_list_begin()
+   *
+   * # Bind pipeline and uniforms.
+   * rd.raytracing_list_bind_raytracing_pipeline(raylist, raytracing_pipeline)
+   * rd.raytracing_list_bind_uniform_set(raylist, uniform_set, 0)
+   *
+   * # Trace rays.
+   * var width = get_viewport().size.x
+   * var height = get_viewport().size.y
+   * rd.raytracing_list_trace_rays(raylist, 0, hit_sbt, width, height, 1)
+   *
+   * rd.raytracing_list_end()
+   * ```
+   */
+  public final fun raytracingListBegin(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.raytracingListBeginPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Binds [raytracingPipeline] to the specified [raytracingList].
+   */
+  public final fun raytracingListBindRaytracingPipeline(raytracingList: Long,
+      raytracingPipeline: RID): Unit {
+    TransferContext.writeArguments(LONG to raytracingList, _RID to raytracingPipeline)
+    TransferContext.callMethod(ptr, MethodBindings.raytracingListBindRaytracingPipelinePtr, NIL)
+  }
+
+  /**
+   * Sets the push constant data to [buffer] for the specified [raytracingList]. The shader
+   * determines how this binary data is used. The buffer's size in bytes must also be specified in
+   * [sizeBytes] (this can be obtained by calling the [PackedByteArray.size] method on the passed
+   * [buffer]).
+   */
+  public final fun raytracingListSetPushConstant(
+    raytracingList: Long,
+    buffer: PackedByteArray,
+    sizeBytes: Long,
+  ): Unit {
+    TransferContext.writeArguments(LONG to raytracingList, PACKED_BYTE_ARRAY to buffer, LONG to sizeBytes)
+    TransferContext.callMethod(ptr, MethodBindings.raytracingListSetPushConstantPtr, NIL)
+  }
+
+  /**
+   * Binds the [uniformSet] to this [raytracingList].
+   */
+  public final fun raytracingListBindUniformSet(
+    raytracingList: Long,
+    uniformSet: RID,
+    setIndex: Long,
+  ): Unit {
+    TransferContext.writeArguments(LONG to raytracingList, _RID to uniformSet, LONG to setIndex)
+    TransferContext.callMethod(ptr, MethodBindings.raytracingListBindUniformSetPtr, NIL)
+  }
+
+  /**
+   * Initializes a raytracing dispatch for [raytracingList], launching [width] × [height] × [depth]
+   * rays.
+   *
+   * [raygenShaderIndex] selects the ray generation shader from the pipeline bound with
+   * [raytracingListBindRaytracingPipeline].
+   *
+   * [hitSbt] must use the same pipeline bound to [raytracingList].
+   */
+  public final fun raytracingListTraceRays(
+    raytracingList: Long,
+    raygenShaderIndex: Long,
+    hitSbt: RID,
+    width: Long,
+    height: Long,
+    depth: Long,
+  ): Unit {
+    TransferContext.writeArguments(LONG to raytracingList, LONG to raygenShaderIndex, _RID to hitSbt, LONG to width, LONG to height, LONG to depth)
+    TransferContext.callMethod(ptr, MethodBindings.raytracingListTraceRaysPtr, NIL)
+  }
+
+  /**
+   * Finishes a list of raytracing commands created with the `raytracing_*` methods.
+   */
+  public final fun raytracingListEnd(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.raytracingListEndPtr, NIL)
   }
 
   /**
@@ -3812,6 +4154,128 @@ public open class RenderingDevice internal constructor() : Object() {
        */
       @JvmField
       public val AS_STORAGE: BufferCreationBits = BufferCreationBits(2)
+
+      /**
+       * Allows usage of this buffer as input data for an acceleration structure build operation.
+       * You must first check that the GPU supports it:
+       *
+       * ```gdscript
+       * //gdscript
+       * rd = RenderingServer.get_rendering_device()
+       *
+       * if rd.has_feature(RenderingDevice.SUPPORTS_RAYTRACING_PIPELINE):
+       *     storage_buffer = rd.storage_buffer_create(bytes.size(), bytes,
+       * RenderingDevice.BUFFER_CREATION_ACCELERATION_STRUCTURE_BUILD_INPUT_READ_ONLY_BIT)
+       * ```
+       */
+      @JvmField
+      public val ACCELERATION_STRUCTURE_BUILD_INPUT_READ_ONLY: BufferCreationBits =
+          BufferCreationBits(8)
+    }
+  }
+
+  public class AccelerationStructureFlagBits(
+    flag: Long,
+  ) : BitFieldBase<AccelerationStructureFlagBits>(flag) {
+    protected override fun wrap(flag: Long): AccelerationStructureFlagBits =
+        AccelerationStructureFlagBits(flag)
+
+    public companion object {
+      /**
+       * Allows the acceleration structure to be updated after it has been built.
+       */
+      @JvmField
+      public val ALLOW_UPDATE: AccelerationStructureFlagBits = AccelerationStructureFlagBits(1)
+
+      /**
+       * Allows the acceleration structure to be compacted to reduce memory usage after it has been
+       * built.
+       */
+      @JvmField
+      public val ALLOW_COMPACTION: AccelerationStructureFlagBits = AccelerationStructureFlagBits(2)
+
+      /**
+       * Prioritizes ray traversal performance over build performance when building the acceleration
+       * structure.
+       */
+      @JvmField
+      public val PREFER_FAST_TRACE: AccelerationStructureFlagBits = AccelerationStructureFlagBits(4)
+
+      /**
+       * Prioritizes build performance over ray traversal performance when building the acceleration
+       * structure.
+       */
+      @JvmField
+      public val PREFER_FAST_BUILD: AccelerationStructureFlagBits = AccelerationStructureFlagBits(8)
+
+      /**
+       * Reduces the memory usage of the acceleration structure, potentially at the cost of reduced
+       * ray traversal performance.
+       */
+      @JvmField
+      public val LOW_MEMORY: AccelerationStructureFlagBits = AccelerationStructureFlagBits(16)
+    }
+  }
+
+  public class AccelerationStructureGeometryFlagBits(
+    flag: Long,
+  ) : BitFieldBase<AccelerationStructureGeometryFlagBits>(flag) {
+    protected override fun wrap(flag: Long): AccelerationStructureGeometryFlagBits =
+        AccelerationStructureGeometryFlagBits(flag)
+
+    public companion object {
+      /**
+       * An opaque geometry does not invoke the any hit shaders.
+       */
+      @JvmField
+      public val OPAQUE: AccelerationStructureGeometryFlagBits =
+          AccelerationStructureGeometryFlagBits(1)
+
+      /**
+       * This geometry only calls the any hit shader a single time for each primitive.
+       */
+      @JvmField
+      public val NO_DUPLICATE_ANY_HIT_INVOCATION: AccelerationStructureGeometryFlagBits =
+          AccelerationStructureGeometryFlagBits(2)
+    }
+  }
+
+  public class AccelerationStructureInstanceFlagBits(
+    flag: Long,
+  ) : BitFieldBase<AccelerationStructureInstanceFlagBits>(flag) {
+    protected override fun wrap(flag: Long): AccelerationStructureInstanceFlagBits =
+        AccelerationStructureInstanceFlagBits(flag)
+
+    public companion object {
+      /**
+       * Disables triangle face culling for this instance during ray traversal.
+       */
+      @JvmField
+      public val TRIANGLE_FACING_CULL_DISABLE: AccelerationStructureInstanceFlagBits =
+          AccelerationStructureInstanceFlagBits(1)
+
+      /**
+       * Flips the triangle facing direction for this instance during ray traversal.
+       */
+      @JvmField
+      public val TRIANGLE_FLIP_FACING: AccelerationStructureInstanceFlagBits =
+          AccelerationStructureInstanceFlagBits(2)
+
+      /**
+       * Forces all geometries in this instance to be treated as opaque, preventing any hit shaders
+       * from being invoked.
+       */
+      @JvmField
+      public val FORCE_OPAQUE: AccelerationStructureInstanceFlagBits =
+          AccelerationStructureInstanceFlagBits(4)
+
+      /**
+       * Forces all geometries in this instance to be treated as non-opaque, allowing any hit
+       * shaders to be invoked.
+       */
+      @JvmField
+      public val FORCE_NO_OPAQUE: AccelerationStructureInstanceFlagBits =
+          AccelerationStructureInstanceFlagBits(8)
     }
   }
 
@@ -3879,9 +4343,13 @@ public open class RenderingDevice internal constructor() : Object() {
      */
     STORAGE_BUFFER_DYNAMIC(11),
     /**
+     * Acceleration structure uniform.
+     */
+    ACCELERATION_STRUCTURE(12),
+    /**
      * Represents the size of the [UniformType] enum.
      */
-    MAX(12),
+    MAX(13),
     ;
 
     public companion object {
@@ -4442,9 +4910,33 @@ public open class RenderingDevice internal constructor() : Object() {
      */
     COMPUTE(4),
     /**
+     * Ray generation shader stage. This can be used to generate primary rays.
+     */
+    RAYGEN(5),
+    /**
+     * Any hit shader stage. Invoked when ray intersections are not opaque. This can be used to
+     * specify what happens when a ray hits any of the geometry in the scene.
+     */
+    ANY_HIT(6),
+    /**
+     * Closest hit shader stage. This can be used to specify what happens when a ray hits the
+     * closest geometry in the scene.
+     */
+    CLOSEST_HIT(7),
+    /**
+     * Miss shader stage. This can be used to specify what happens if a ray does not hit anything in
+     * the scene.
+     */
+    MISS(8),
+    /**
+     * Intersection shader stage. The intersection shader for triangles is built-in. This can be
+     * used to compute ray intersections with primitives that are not triangles.
+     */
+    INTERSECTION(9),
+    /**
      * Represents the size of the [ShaderStage] enum.
      */
-    MAX(5),
+    MAX(10),
     /**
      * Vertex shader stage bit (see also [SHADER_STAGE_VERTEX]).
      */
@@ -4465,6 +4957,26 @@ public open class RenderingDevice internal constructor() : Object() {
      * Compute shader stage bit (see also [SHADER_STAGE_COMPUTE]).
      */
     COMPUTE_BIT(16),
+    /**
+     * Ray generation shader stage bit (see also [SHADER_STAGE_RAYGEN]).
+     */
+    RAYGEN_BIT(32),
+    /**
+     * Any hit shader stage bit (see also [SHADER_STAGE_ANY_HIT]).
+     */
+    ANY_HIT_BIT(64),
+    /**
+     * Closest hit shader stage bit (see also [SHADER_STAGE_CLOSEST_HIT]).
+     */
+    CLOSEST_HIT_BIT(128),
+    /**
+     * Miss shader stage bit (see also [SHADER_STAGE_MISS]).
+     */
+    MISS_BIT(256),
+    /**
+     * Intersection shader stage bit (see also [SHADER_STAGE_INTERSECTION]).
+     */
+    INTERSECTION_BIT(512),
     ;
 
     public companion object {
@@ -4534,6 +5046,24 @@ public open class RenderingDevice internal constructor() : Object() {
      * Support for 32-bit image atomic operations.
      */
     SUPPORTS_IMAGE_ATOMIC_32_BIT(7),
+    /**
+     * Support for ray query extension.
+     *
+     * **Note:** This is currently only supported when using Vulkan. This is not supported on macOS
+     * and iOS (even on hardware supporting raytracing) due to MoltenVK limitations.
+     */
+    SUPPORTS_RAY_QUERY(11),
+    /**
+     * Support for raytracing pipeline extension.
+     *
+     * **Note:** This is currently only supported when using Vulkan. This is not supported on macOS
+     * and iOS (even on hardware supporting raytracing) due to MoltenVK limitations.
+     */
+    SUPPORTS_RAYTRACING_PIPELINE(12),
+    /**
+     * Support for high dynamic range (HDR) output.
+     */
+    SUPPORTS_HDR_OUTPUT(13),
     ;
 
     public companion object {
@@ -5247,6 +5777,58 @@ public open class RenderingDevice internal constructor() : Object() {
         MethodStringName1<RenderingDevice, Boolean, RID>("compute_pipeline_is_valid")
 
     @JvmField
+    public val raytracingPipelineCreateName:
+        MethodStringName4<RenderingDevice, RID, VariantArray<RDPipelineShader>, VariantArray<RDPipelineShader>, VariantArray<RDHitGroup>, Long>
+        =
+        MethodStringName4<RenderingDevice, RID, VariantArray<RDPipelineShader>, VariantArray<RDPipelineShader>, VariantArray<RDHitGroup>, Long>("raytracing_pipeline_create")
+
+    @JvmField
+    public val raytracingPipelineIsValidName: MethodStringName1<RenderingDevice, Boolean, RID> =
+        MethodStringName1<RenderingDevice, Boolean, RID>("raytracing_pipeline_is_valid")
+
+    @JvmField
+    public val blasCreateName:
+        MethodStringName2<RenderingDevice, RID, VariantArray<RDAccelerationStructureGeometry>, AccelerationStructureFlagBits>
+        =
+        MethodStringName2<RenderingDevice, RID, VariantArray<RDAccelerationStructureGeometry>, AccelerationStructureFlagBits>("blas_create")
+
+    @JvmField
+    public val tlasCreateName:
+        MethodStringName2<RenderingDevice, RID, Long, AccelerationStructureFlagBits> =
+        MethodStringName2<RenderingDevice, RID, Long, AccelerationStructureFlagBits>("tlas_create")
+
+    @JvmField
+    public val blasBuildName: MethodStringName1<RenderingDevice, Error, RID> =
+        MethodStringName1<RenderingDevice, Error, RID>("blas_build")
+
+    @JvmField
+    public val tlasBuildName:
+        MethodStringName2<RenderingDevice, Error, RID, VariantArray<RDAccelerationStructureInstance>>
+        =
+        MethodStringName2<RenderingDevice, Error, RID, VariantArray<RDAccelerationStructureInstance>>("tlas_build")
+
+    @JvmField
+    public val hitSbtCreateName: MethodStringName2<RenderingDevice, RID, RID, Long> =
+        MethodStringName2<RenderingDevice, RID, RID, Long>("hit_sbt_create")
+
+    @JvmField
+    public val hitSbtSetPipelineName: MethodStringName2<RenderingDevice, Error, RID, RID> =
+        MethodStringName2<RenderingDevice, Error, RID, RID>("hit_sbt_set_pipeline")
+
+    @JvmField
+    public val hitSbtRangeAllocName: MethodStringName2<RenderingDevice, Long, RID, Long> =
+        MethodStringName2<RenderingDevice, Long, RID, Long>("hit_sbt_range_alloc")
+
+    @JvmField
+    public val hitSbtRangeFreeName: MethodStringName2<RenderingDevice, Error, RID, Long> =
+        MethodStringName2<RenderingDevice, Error, RID, Long>("hit_sbt_range_free")
+
+    @JvmField
+    public val hitSbtRangeUpdateName:
+        MethodStringName4<RenderingDevice, Error, RID, Long, Long, PackedInt32Array> =
+        MethodStringName4<RenderingDevice, Error, RID, Long, Long, PackedInt32Array>("hit_sbt_range_update")
+
+    @JvmField
     public val screenGetWidthName: MethodStringName1<RenderingDevice, Int, Int> =
         MethodStringName1<RenderingDevice, Int, Int>("screen_get_width")
 
@@ -5371,6 +5953,34 @@ public open class RenderingDevice internal constructor() : Object() {
     @JvmField
     public val computeListEndName: MethodStringName0<RenderingDevice, Unit> =
         MethodStringName0<RenderingDevice, Unit>("compute_list_end")
+
+    @JvmField
+    public val raytracingListBeginName: MethodStringName0<RenderingDevice, Long> =
+        MethodStringName0<RenderingDevice, Long>("raytracing_list_begin")
+
+    @JvmField
+    public val raytracingListBindRaytracingPipelineName:
+        MethodStringName2<RenderingDevice, Unit, Long, RID> =
+        MethodStringName2<RenderingDevice, Unit, Long, RID>("raytracing_list_bind_raytracing_pipeline")
+
+    @JvmField
+    public val raytracingListSetPushConstantName:
+        MethodStringName3<RenderingDevice, Unit, Long, PackedByteArray, Long> =
+        MethodStringName3<RenderingDevice, Unit, Long, PackedByteArray, Long>("raytracing_list_set_push_constant")
+
+    @JvmField
+    public val raytracingListBindUniformSetName:
+        MethodStringName3<RenderingDevice, Unit, Long, RID, Long> =
+        MethodStringName3<RenderingDevice, Unit, Long, RID, Long>("raytracing_list_bind_uniform_set")
+
+    @JvmField
+    public val raytracingListTraceRaysName:
+        MethodStringName6<RenderingDevice, Unit, Long, Long, RID, Long, Long, Long> =
+        MethodStringName6<RenderingDevice, Unit, Long, Long, RID, Long, Long, Long>("raytracing_list_trace_rays")
+
+    @JvmField
+    public val raytracingListEndName: MethodStringName0<RenderingDevice, Unit> =
+        MethodStringName0<RenderingDevice, Unit>("raytracing_list_end")
 
     @JvmField
     public val freeRidName: MethodStringName1<RenderingDevice, Unit, RID> =
@@ -5691,6 +6301,39 @@ public open class RenderingDevice internal constructor() : Object() {
     internal val computePipelineIsValidPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingDevice", "compute_pipeline_is_valid", 3521089500)
 
+    internal val raytracingPipelineCreatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "raytracing_pipeline_create", 1489129684)
+
+    internal val raytracingPipelineIsValidPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "raytracing_pipeline_is_valid", 3521089500)
+
+    internal val blasCreatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "blas_create", 1010940044)
+
+    internal val tlasCreatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "tlas_create", 592780330)
+
+    internal val blasBuildPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "blas_build", 813180755)
+
+    internal val tlasBuildPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "tlas_build", 261981775)
+
+    internal val hitSbtCreatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "hit_sbt_create", 2233757277)
+
+    internal val hitSbtSetPipelinePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "hit_sbt_set_pipeline", 3181288260)
+
+    internal val hitSbtRangeAllocPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "hit_sbt_range_alloc", 2722015314)
+
+    internal val hitSbtRangeFreePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "hit_sbt_range_free", 3804025326)
+
+    internal val hitSbtRangeUpdatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "hit_sbt_range_update", 1332346675)
+
     internal val screenGetWidthPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingDevice", "screen_get_width", 1591665591)
 
@@ -5774,6 +6417,24 @@ public open class RenderingDevice internal constructor() : Object() {
 
     internal val computeListEndPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingDevice", "compute_list_end", 3218959716)
+
+    internal val raytracingListBeginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "raytracing_list_begin", 2455072627)
+
+    internal val raytracingListBindRaytracingPipelinePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "raytracing_list_bind_raytracing_pipeline", 4040184819)
+
+    internal val raytracingListSetPushConstantPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "raytracing_list_set_push_constant", 2772371345)
+
+    internal val raytracingListBindUniformSetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "raytracing_list_bind_uniform_set", 749655778)
+
+    internal val raytracingListTraceRaysPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "raytracing_list_trace_rays", 2559472681)
+
+    internal val raytracingListEndPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingDevice", "raytracing_list_end", 3218959716)
 
     internal val freeRidPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingDevice", "free_rid", 2722037293)

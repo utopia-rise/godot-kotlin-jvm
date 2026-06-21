@@ -174,7 +174,7 @@ public object Geometry2D : Object() {
       MethodStringName2<Geometry2D, VariantArray<Vector2i>, Vector2i, Vector2i>("bresenham_line")
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(7)
+    getSingleton(8)
   }
 
   /**
@@ -212,8 +212,9 @@ public object Geometry2D : Object() {
   }
 
   /**
-   * Checks if the two segments ([fromA], [toA]) and ([fromB], [toB]) intersect. If yes, return the
-   * point of intersection as [Vector2]. If no intersection takes place, returns `null`.
+   * Checks if two line segments intersect, with line `a` between [fromA] and [toA] and line `b`
+   * between [fromB] and [toB]. If the line segments intersect, the point of intersection is returned
+   * as a [Vector2]. If no intersection takes place, `null` is returned.
    */
   @JvmStatic
   public final fun segmentIntersectsSegment(
@@ -232,7 +233,8 @@ public object Geometry2D : Object() {
    * [dirB]). Returns a [Vector2], or `null` if the lines are parallel.
    *
    * `from` and `dir` are *not* endpoints of a line segment or ray but the slope (`dir`) and a known
-   * point (`from`) on that line.
+   * point (`from`) on that line. To get the intersection between two line segments, use
+   * [segmentIntersectsSegment].
    *
    * ```gdscript
    * //gdscript

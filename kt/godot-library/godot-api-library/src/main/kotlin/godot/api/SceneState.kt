@@ -48,7 +48,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class SceneState internal constructor() : RefCounted() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(625, scriptPtr)
+    createNativeObject(639, scriptPtr)
   }
 
   /**

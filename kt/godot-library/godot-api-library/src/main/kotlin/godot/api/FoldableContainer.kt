@@ -47,7 +47,7 @@ public open class FoldableContainer : Container() {
   public val foldingChanged: Signal1<Boolean> by Signal1
 
   /**
-   * If `true`, the container will becomes folded and will hide all its children.
+   * If `true`, the container will become folded and will hide all its children.
    */
   public final inline var folded: Boolean
     @JvmName("foldedProperty")
@@ -137,7 +137,7 @@ public open class FoldableContainer : Container() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(226, scriptPtr)
+    createNativeObject(231, scriptPtr)
   }
 
   /**

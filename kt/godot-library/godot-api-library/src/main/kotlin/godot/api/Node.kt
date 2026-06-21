@@ -649,7 +649,7 @@ public open class Node : Object() {
       arg8, arg9)
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(412, scriptPtr)
+    createNativeObject(421, scriptPtr)
   }
 
   /**
@@ -992,6 +992,11 @@ public open class Node : Object() {
    *
    * If [keepGlobalTransform] is `true`, the node's global transform will be preserved if supported.
    * [Node2D], [Node3D] and [Control] support this argument (but [Control] keeps only position).
+   *
+   * **Warning:** If [ProjectSettings.physics/common/physicsInterpolation] is enabled and
+   * reparenting causes a large change in global transform, the object may appear to move from its old
+   * position to its new one over the next physics tick. To avoid this, call
+   * [resetPhysicsInterpolation] after reparenting.
    */
   @JvmOverloads
   public final fun reparent(newParent: Node, keepGlobalTransform: Boolean = true): Unit {
@@ -1186,7 +1191,7 @@ public open class Node : Object() {
    * [String.match]. As such, it is case-sensitive, `"*"` matches zero or more characters, and `"?"`
    * matches any single character.
    *
-   * If [type] is not empty, only ancestors inheriting from [type] are included (see
+   * If [type] is not empty, only descendants inheriting from [type] are included (see
    * [Object.isClass]).
    *
    * If [recursive] is `false`, only this node's direct children are checked. Nodes are checked in
@@ -2821,22 +2826,22 @@ public open class Node : Object() {
      */
     INHERIT(0),
     /**
-     * Stops processing when [SceneTree.paused] is `true`. This is the inverse of
+     * Processes when [SceneTree.paused] is `false`. This is the inverse of
      * [PROCESS_MODE_WHEN_PAUSED], and the default for the root node.
      */
     PAUSABLE(1),
     /**
-     * Process **only** when [SceneTree.paused] is `true`. This is the inverse of
+     * Processes **only** when [SceneTree.paused] is `true`. This is the inverse of
      * [PROCESS_MODE_PAUSABLE].
      */
     WHEN_PAUSED(2),
     /**
-     * Always process. Keeps processing, ignoring [SceneTree.paused]. This is the inverse of
+     * Always processes. Keeps processing, ignoring [SceneTree.paused]. This is the inverse of
      * [PROCESS_MODE_DISABLED].
      */
     ALWAYS(3),
     /**
-     * Never process. Completely disables processing, ignoring [SceneTree.paused]. This is the
+     * Never processes. Completely disables processing, ignoring [SceneTree.paused]. This is the
      * inverse of [PROCESS_MODE_ALWAYS].
      */
     DISABLED(4),
@@ -3719,6 +3724,16 @@ public open class Node : Object() {
     public final const val NOTIFICATION_WM_POSITION_CHANGED: Long = 1012
 
     /**
+     * Notification received when the output max linear value returned by
+     * [Window.getOutputMaxLinearValue] has changed.
+     *
+     * This occurs when HDR output is enabled or disabled and when any HDR output luminance values
+     * of the window have changed, such as when the player adjusts their screen brightness setting or
+     * moves the window to a different screen.
+     */
+    public final const val NOTIFICATION_WM_OUTPUT_MAX_LINEAR_VALUE_CHANGED: Long = 1013
+
+    /**
      * Notification received from the OS when the application is exceeding its allocated memory.
      *
      * Implemented only on iOS.
@@ -3805,6 +3820,16 @@ public open class Node : Object() {
      * Notification received when the [TextServer] is changed.
      */
     public final const val NOTIFICATION_TEXT_SERVER_CHANGED: Long = 2018
+
+    /**
+     * Notification received when the application enters picture-in-picture mode.
+     */
+    public final const val NOTIFICATION_APPLICATION_PIP_MODE_ENTERED: Long = 2019
+
+    /**
+     * Notification received when the application exits picture-in-picture mode.
+     */
+    public final const val NOTIFICATION_APPLICATION_PIP_MODE_EXITED: Long = 2020
 
     /**
      * Notification received when an accessibility information update is required.

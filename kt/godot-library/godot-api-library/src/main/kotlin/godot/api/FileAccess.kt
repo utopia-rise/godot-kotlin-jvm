@@ -129,7 +129,7 @@ public open class FileAccess internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(221, scriptPtr)
+    createNativeObject(226, scriptPtr)
   }
 
   /**
@@ -198,7 +198,7 @@ public open class FileAccess internal constructor() : RefCounted() {
    * the value returned by [getPosition].
    *
    * **Note:** This is an offset, so you should use negative numbers otherwise the file cursor will
-   * be at the end of the file.
+   * move past the end of the file.
    */
   @JvmOverloads
   public final fun seekEnd(position: Long = 0): Unit {

@@ -33,11 +33,14 @@ import kotlin.jvm.JvmField
 /**
  * Base class of [SkeletonModifier3D] that modifies the bone set in [setApplyBone] based on the
  * transform of the bone retrieved by [getReferenceBone].
+ *
+ * **Note:** Most methods in this class take an `index` parameter. This parameter specifies which
+ * setting list entry to return if the IK has multiple entries (e.g. `settings/<index>/amount`).
  */
 @GodotBaseType
 public open class BoneConstraint3D : SkeletonModifier3D() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(109, scriptPtr)
+    createNativeObject(113, scriptPtr)
   }
 
   /**

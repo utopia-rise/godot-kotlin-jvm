@@ -33,7 +33,7 @@ import kotlin.jvm.JvmField
 public open class VisualShaderNodeGroupBase internal constructor() : VisualShaderNodeResizableBase()
     {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(820, scriptPtr)
+    createNativeObject(835, scriptPtr)
   }
 
   /**

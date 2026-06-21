@@ -21,7 +21,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class TextureCubemapRD : TextureLayeredRD() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(734, scriptPtr)
+    createNativeObject(748, scriptPtr)
   }
 
   public companion object

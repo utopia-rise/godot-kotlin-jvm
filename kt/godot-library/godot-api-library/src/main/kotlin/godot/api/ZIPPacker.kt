@@ -15,6 +15,7 @@ import godot.core.GodotEnum
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.MethodStringName2
+import godot.core.MethodStringName3
 import godot.core.PackedByteArray
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -63,7 +64,7 @@ public open class ZIPPacker : RefCounted() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(940, scriptPtr)
+    createNativeObject(955, scriptPtr)
   }
 
   /**
@@ -91,12 +92,35 @@ public open class ZIPPacker : RefCounted() {
   }
 
   /**
-   * Starts writing to a file within the archive. Only one file can be written at the same time.
+   * Adds directory to the archive. If [modifiedTime] is set to `0`, current system time is used.
+   *
+   * **Note:** Directories are automatically created when [startFile] is called, use this function
+   * before adding files to create directories with custom permissions and modification time.
+   */
+  @JvmOverloads
+  public final fun addDirectory(
+    path: String,
+    permissions: FileAccess.UnixPermissionFlags = FileAccess.UnixPermissionFlags(493),
+    modifiedTime: Long = 0,
+  ): Error {
+    TransferContext.writeArguments(STRING to path, LONG to permissions.flag, LONG to modifiedTime)
+    TransferContext.callMethod(ptr, MethodBindings.addDirectoryPtr, LONG)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Starts writing to a file within the archive. Only one file can be written at the same time. If
+   * [modifiedTime] is set to `0`, current system time is used.
    *
    * Must be called after [open].
    */
-  public final fun startFile(path: String): Error {
-    TransferContext.writeArguments(STRING to path)
+  @JvmOverloads
+  public final fun startFile(
+    path: String,
+    permissions: FileAccess.UnixPermissionFlags = FileAccess.UnixPermissionFlags(420),
+    modifiedTime: Long = 0,
+  ): Error {
+    TransferContext.writeArguments(STRING to path, LONG to permissions.flag, LONG to modifiedTime)
     TransferContext.callMethod(ptr, MethodBindings.startFilePtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -201,8 +225,14 @@ public open class ZIPPacker : RefCounted() {
         MethodStringName0<ZIPPacker, Int>("get_compression_level")
 
     @JvmField
-    public val startFileName: MethodStringName1<ZIPPacker, Error, String> =
-        MethodStringName1<ZIPPacker, Error, String>("start_file")
+    public val addDirectoryName:
+        MethodStringName3<ZIPPacker, Error, String, FileAccess.UnixPermissionFlags, Long> =
+        MethodStringName3<ZIPPacker, Error, String, FileAccess.UnixPermissionFlags, Long>("add_directory")
+
+    @JvmField
+    public val startFileName:
+        MethodStringName3<ZIPPacker, Error, String, FileAccess.UnixPermissionFlags, Long> =
+        MethodStringName3<ZIPPacker, Error, String, FileAccess.UnixPermissionFlags, Long>("start_file")
 
     @JvmField
     public val writeFileName: MethodStringName1<ZIPPacker, Error, PackedByteArray> =
@@ -226,8 +256,11 @@ public open class ZIPPacker : RefCounted() {
     internal val getCompressionLevelPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ZIPPacker", "get_compression_level", 3905245786)
 
+    internal val addDirectoryPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ZIPPacker", "add_directory", 934773537)
+
     internal val startFilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ZIPPacker", "start_file", 166001499)
+        TypeManager.getMethodBindPtr("ZIPPacker", "start_file", 4260848715)
 
     internal val writeFilePtr: VoidPtr =
         TypeManager.getMethodBindPtr("ZIPPacker", "write_file", 680677267)

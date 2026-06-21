@@ -24,7 +24,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class CCDIK3D : IterateIK3D() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(118, scriptPtr)
+    createNativeObject(122, scriptPtr)
   }
 
   public companion object

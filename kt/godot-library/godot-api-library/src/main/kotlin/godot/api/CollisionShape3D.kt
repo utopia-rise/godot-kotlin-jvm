@@ -94,7 +94,7 @@ public open class CollisionShape3D : Node3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(164, scriptPtr)
+    createNativeObject(168, scriptPtr)
   }
 
   /**

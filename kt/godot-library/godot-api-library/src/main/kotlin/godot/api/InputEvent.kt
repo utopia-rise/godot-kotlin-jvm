@@ -59,7 +59,7 @@ public open class InputEvent internal constructor() : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(304, scriptPtr)
+    createNativeObject(310, scriptPtr)
   }
 
   public final fun setDevice(device: Int): Unit {
@@ -372,6 +372,18 @@ public open class InputEvent internal constructor() : Resource() {
      * emulated touch input from physical touch input.
      */
     public final const val DEVICE_ID_EMULATION: Long = -1
+
+    /**
+     * Device ID used for input from a keyboard. This can be used to distinguish keyboard input
+     * events from joypad input events.
+     */
+    public final const val DEVICE_ID_KEYBOARD: Long = 16
+
+    /**
+     * Device ID used for input from a mouse. This can be used to distinguish mouse input events
+     * from joypad input events.
+     */
+    public final const val DEVICE_ID_MOUSE: Long = 32
   }
 
   public object MethodBindings {

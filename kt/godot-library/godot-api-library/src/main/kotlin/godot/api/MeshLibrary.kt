@@ -38,7 +38,7 @@ import kotlin.jvm.JvmField
 @GodotBaseType
 public open class MeshLibrary : Resource() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(371, scriptPtr)
+    createNativeObject(380, scriptPtr)
   }
 
   /**
@@ -251,6 +251,15 @@ public open class MeshLibrary : Resource() {
   }
 
   /**
+   * Returns the number of items present in the library.
+   */
+  public final fun getItemCount(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getItemCountPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  /**
    * Gets an unused ID for a new item.
    */
   public final fun getLastUnusedItemId(): Int {
@@ -356,6 +365,10 @@ public open class MeshLibrary : Resource() {
         MethodStringName0<MeshLibrary, PackedInt32Array>("get_item_list")
 
     @JvmField
+    public val getItemCountName: MethodStringName0<MeshLibrary, Int> =
+        MethodStringName0<MeshLibrary, Int>("get_item_count")
+
+    @JvmField
     public val getLastUnusedItemIdName: MethodStringName0<MeshLibrary, Int> =
         MethodStringName0<MeshLibrary, Int>("get_last_unused_item_id")
   }
@@ -429,6 +442,9 @@ public open class MeshLibrary : Resource() {
 
     internal val getItemListPtr: VoidPtr =
         TypeManager.getMethodBindPtr("MeshLibrary", "get_item_list", 1930428628)
+
+    internal val getItemCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MeshLibrary", "get_item_count", 3905245786)
 
     internal val getLastUnusedItemIdPtr: VoidPtr =
         TypeManager.getMethodBindPtr("MeshLibrary", "get_last_unused_item_id", 3905245786)

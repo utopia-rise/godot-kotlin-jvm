@@ -28,7 +28,7 @@ import kotlin.jvm.JvmField
 @GodotBaseType
 public open class SkeletonModification2DStackHolder : SkeletonModification2D() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(659, scriptPtr)
+    createNativeObject(673, scriptPtr)
   }
 
   /**

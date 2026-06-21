@@ -183,6 +183,12 @@ public object XRServer : Object() {
   public val trackerRemoved: Signal2<StringName, Long> by Signal2
 
   /**
+   * Emitted when the world origin transform changes.
+   */
+  @JvmStatic
+  public val worldOriginChanged: Signal0 by Signal0
+
+  /**
    * The scale of the game world compared to the real world. By default, most AR/VR platforms assume
    * that 1 game unit corresponds to 1 real world meter.
    */
@@ -247,7 +253,7 @@ public object XRServer : Object() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(37)
+    getSingleton(38)
   }
 
   /**

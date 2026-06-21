@@ -143,7 +143,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(656, scriptPtr)
+    createNativeObject(670, scriptPtr)
   }
 
   /**
@@ -276,6 +276,15 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCollisionMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  /**
+   * Resets the internal jiggle simulation state to the current bone positions, clearing velocity,
+   * acceleration, and accumulated forces.
+   */
+  public final fun reset(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.resetPtr, NIL)
   }
 
   /**
@@ -503,6 +512,10 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
         MethodStringName0<SkeletonModification2DJiggle, Int>("get_collision_mask")
 
     @JvmField
+    public val resetName: MethodStringName0<SkeletonModification2DJiggle, Unit> =
+        MethodStringName0<SkeletonModification2DJiggle, Unit>("reset")
+
+    @JvmField
     public val setJiggleJointBone2dNodeName:
         MethodStringName2<SkeletonModification2DJiggle, Unit, Int, NodePath> =
         MethodStringName2<SkeletonModification2DJiggle, Unit, Int, NodePath>("set_jiggle_joint_bone2d_node")
@@ -636,6 +649,9 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
 
     internal val getCollisionMaskPtr: VoidPtr =
         TypeManager.getMethodBindPtr("SkeletonModification2DJiggle", "get_collision_mask", 3905245786)
+
+    internal val resetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkeletonModification2DJiggle", "reset", 3218959716)
 
     internal val setJiggleJointBone2dNodePtr: VoidPtr =
         TypeManager.getMethodBindPtr("SkeletonModification2DJiggle", "set_jiggle_joint_bone2d_node", 2761262315)

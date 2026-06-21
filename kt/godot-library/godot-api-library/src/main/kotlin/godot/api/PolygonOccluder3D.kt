@@ -60,7 +60,7 @@ public open class PolygonOccluder3D : Occluder3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(555, scriptPtr)
+    createNativeObject(564, scriptPtr)
   }
 
   /**

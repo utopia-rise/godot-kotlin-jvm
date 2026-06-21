@@ -105,7 +105,7 @@ public open class StyleBoxLine : StyleBox() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(704, scriptPtr)
+    createNativeObject(718, scriptPtr)
   }
 
   /**

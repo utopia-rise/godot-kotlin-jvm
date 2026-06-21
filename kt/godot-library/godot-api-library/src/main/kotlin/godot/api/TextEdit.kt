@@ -387,9 +387,9 @@ public open class TextEdit : Control() {
     }
 
   /**
-   * If `true`, [TextEdit] will disable vertical scroll and fit minimum height to the number of
-   * visible lines. When both this property and [scrollFitContentWidth] are `true`, no scrollbars will
-   * be displayed.
+   * If `true`, [TextEdit] fits its minimum height to the number of visible lines instead of
+   * scrolling vertically. If a maximum height is set (for example via [Control.customMaximumSize]) and
+   * content exceeds it, a vertical scrollbar is shown.
    */
   public final inline var scrollFitContentHeight: Boolean
     @JvmName("scrollFitContentHeightProperty")
@@ -400,9 +400,9 @@ public open class TextEdit : Control() {
     }
 
   /**
-   * If `true`, [TextEdit] will disable horizontal scroll and fit minimum width to the widest line
-   * in the text. When both this property and [scrollFitContentHeight] are `true`, no scrollbars will
-   * be displayed.
+   * If `true`, [TextEdit] fits its minimum width to the widest line instead of scrolling
+   * horizontally. If a maximum width is set (for example via [Control.customMaximumSize]) and content
+   * exceeds it, a horizontal scrollbar is shown.
    */
   public final inline var scrollFitContentWidth: Boolean
     @JvmName("scrollFitContentWidthProperty")
@@ -674,7 +674,7 @@ public open class TextEdit : Control() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(716, scriptPtr)
+    createNativeObject(730, scriptPtr)
   }
 
   /**
@@ -1714,6 +1714,11 @@ public open class TextEdit : Control() {
    * the scrollable area. It will return `true` even if the caret is off-screen as long as it meets
    * [TextEdit]'s own conditions for being visible. This includes uses of [scrollFitContentWidth] and
    * [scrollFitContentHeight] that cause the [TextEdit] to expand beyond the viewport's bounds.
+   *
+   * **Note:** This method does *not* guarantee an accurate visibility check immediately after
+   * setting the caret position. The correct value may only be available in the next frame after the
+   * [TextEdit] has finished drawing. This also applies to any operation that causes the [TextEdit] to
+   * change in size.
    */
   @JvmOverloads
   public final fun isCaretVisible(caretIndex: Int = 0): Boolean {
@@ -2350,6 +2355,15 @@ public open class TextEdit : Control() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFirstVisibleLinePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  /**
+   * Returns `true` if the given line is within the scope of the scrollable area of the viewport.
+   */
+  public final fun isLineInViewport(line: Int): Boolean {
+    TransferContext.writeArguments(LONG to line.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.isLineInViewportPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -3977,6 +3991,10 @@ public open class TextEdit : Control() {
         MethodStringName0<TextEdit, Int>("get_first_visible_line")
 
     @JvmField
+    public val isLineInViewportName: MethodStringName1<TextEdit, Boolean, Int> =
+        MethodStringName1<TextEdit, Boolean, Int>("is_line_in_viewport")
+
+    @JvmField
     public val setLineAsCenterVisibleName: MethodStringName2<TextEdit, Unit, Int, Int> =
         MethodStringName2<TextEdit, Unit, Int, Int>("set_line_as_center_visible")
 
@@ -4776,6 +4794,9 @@ public open class TextEdit : Control() {
 
     internal val getFirstVisibleLinePtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextEdit", "get_first_visible_line", 3905245786)
+
+    internal val isLineInViewportPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextEdit", "is_line_in_viewport", 1116898809)
 
     internal val setLineAsCenterVisiblePtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextEdit", "set_line_as_center_visible", 2230941749)

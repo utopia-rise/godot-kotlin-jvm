@@ -56,7 +56,7 @@ public object Marshalls : Object() {
       MethodStringName1<Marshalls, String, String>("base64_to_utf8")
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(14)
+    getSingleton(15)
   }
 
   /**

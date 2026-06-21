@@ -20,14 +20,25 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmField
 
+/**
+ * Playback class used to mix an [AudioStream]'s audio samples to [AudioServer.getMixRate] using
+ * cubic interpolation.
+ */
 @GodotBaseType
 public abstract class AudioStreamPlaybackResampled : AudioStreamPlayback() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(93, scriptPtr)
+    createNativeObject(95, scriptPtr)
   }
 
+  /**
+   * Returns an [AudioStream]'s sample rate, in Hz. Used to perform resampling.
+   */
   public abstract fun _getStreamSamplingRate(): Float
 
+  /**
+   * Called when an [AudioStream] is played. Clears the cubic interpolation history and starts
+   * mixing by calling [_mixResampled].
+   */
   public final fun beginResample(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.beginResamplePtr, NIL)

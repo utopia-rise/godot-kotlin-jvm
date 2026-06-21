@@ -12,12 +12,14 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Reduces all frequencies above the [AudioEffectFilter.cutoffHz].
+ * A "high-shelf" filter controls the gain of all frequencies above [AudioEffectFilter.cutoffHz].
+ *
+ * This filter can be used to increase or decrease clarity of a sound.
  */
 @GodotBaseType
 public open class AudioEffectHighShelfFilter : AudioEffectFilter() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(62, scriptPtr)
+    createNativeObject(64, scriptPtr)
   }
 
   public companion object

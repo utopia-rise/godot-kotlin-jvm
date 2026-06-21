@@ -142,6 +142,11 @@ public open class Decal : VisualInstance3D() {
    * must also be set. To create an ORM-only decal, load an albedo texture into [textureAlbedo] and set
    * [albedoMix] to `0.0`. The albedo texture's alpha channel will be used to determine where the
    * underlying surface's ORM map should be overridden (and its intensity).
+   *
+   * **Note:** Due to technical limitations, modifying the underlying surface's roughness using
+   * [textureOrm] does *not* affect screen-space reflections ([Environment.ssrEnabled]), reflections
+   * from [VoxelGI], and reflections from SDFGI ([Environment.sdfgiEnabled]). Only reflections from
+   * [ReflectionProbe]s are affected.
    */
   public final inline var textureOrm: Texture2D?
     @JvmName("textureOrmProperty")
@@ -311,7 +316,7 @@ public open class Decal : VisualInstance3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(202, scriptPtr)
+    createNativeObject(206, scriptPtr)
   }
 
   /**

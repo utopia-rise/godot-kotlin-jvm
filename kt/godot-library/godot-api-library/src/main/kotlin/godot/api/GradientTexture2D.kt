@@ -152,7 +152,7 @@ public open class GradientTexture2D : Texture2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(272, scriptPtr)
+    createNativeObject(278, scriptPtr)
   }
 
   /**
@@ -298,6 +298,10 @@ public open class GradientTexture2D : Texture2D() {
      * The colors are linearly interpolated in a square pattern.
      */
     SQUARE(2),
+    /**
+     * The colors are linearly interpolated in a cone pattern.
+     */
+    CONIC(3),
     ;
 
     public companion object {

@@ -151,8 +151,9 @@ public open class InputEventMouseMotion : InputEventMouse() {
    * defined by the project's stretch mode settings. That means mouse sensitivity may appear different
    * depending on resolution.
    *
-   * **Note:** Use [screenRelative] for mouse aiming using the [Input.MOUSE_MODE_CAPTURED] mouse
-   * mode.
+   * **Note:** In [Input.MOUSE_MODE_CAPTURED] mode, [velocity] returns `(0, 0)` because the mouse
+   * cursor is hidden and locked. Use [screenRelative] for mouse aiming using the
+   * [Input.MOUSE_MODE_CAPTURED] mouse mode.
    *
    * **Warning:**
    * Be careful when trying to modify a local
@@ -174,8 +175,9 @@ public open class InputEventMouseMotion : InputEventMouse() {
    * The unscaled mouse velocity in pixels per second in screen coordinates. This velocity is *not*
    * scaled according to the content scale factor or calls to [InputEvent.xformedBy].
    *
-   * **Note:** Use [screenRelative] for mouse aiming using the [Input.MOUSE_MODE_CAPTURED] mouse
-   * mode.
+   * **Note:** In [Input.MOUSE_MODE_CAPTURED] mode, [screenVelocity] returns `(0, 0)` because the
+   * mouse cursor is hidden and locked. Use [screenRelative] for mouse aiming using the
+   * [Input.MOUSE_MODE_CAPTURED] mouse mode.
    *
    * **Warning:**
    * Be careful when trying to modify a local
@@ -194,7 +196,7 @@ public open class InputEventMouseMotion : InputEventMouse() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(315, scriptPtr)
+    createNativeObject(321, scriptPtr)
   }
 
   /**
@@ -291,8 +293,9 @@ public open class InputEventMouseMotion : InputEventMouse() {
    * defined by the project's stretch mode settings. That means mouse sensitivity may appear different
    * depending on resolution.
    *
-   * **Note:** Use [screenRelative] for mouse aiming using the [Input.MOUSE_MODE_CAPTURED] mouse
-   * mode.
+   * **Note:** In [Input.MOUSE_MODE_CAPTURED] mode, [velocity] returns `(0, 0)` because the mouse
+   * cursor is hidden and locked. Use [screenRelative] for mouse aiming using the
+   * [Input.MOUSE_MODE_CAPTURED] mouse mode.
    */
   @CoreTypeHelper
   public final fun velocityMutate(block: Vector2.() -> Unit): Vector2 = velocity.apply {
@@ -314,8 +317,9 @@ public open class InputEventMouseMotion : InputEventMouse() {
    * The unscaled mouse velocity in pixels per second in screen coordinates. This velocity is *not*
    * scaled according to the content scale factor or calls to [InputEvent.xformedBy].
    *
-   * **Note:** Use [screenRelative] for mouse aiming using the [Input.MOUSE_MODE_CAPTURED] mouse
-   * mode.
+   * **Note:** In [Input.MOUSE_MODE_CAPTURED] mode, [screenVelocity] returns `(0, 0)` because the
+   * mouse cursor is hidden and locked. Use [screenRelative] for mouse aiming using the
+   * [Input.MOUSE_MODE_CAPTURED] mouse mode.
    */
   @CoreTypeHelper
   public final fun screenVelocityMutate(block: Vector2.() -> Unit): Vector2 = screenVelocity.apply {

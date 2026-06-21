@@ -4,6 +4,7 @@
 #include "script/language/scala_script.h"
 
 #include <core/io/resource_loader.h>
+#include <core/object/class_db.h>
 
 constexpr const char* SCALA_TEMPLATE = PACKAGE_TEMPLATE
                                       "\n"
@@ -144,10 +145,6 @@ Vector<ScriptLanguage::ScriptTemplate> ScalaLanguage::get_built_in_templates(con
 
 bool ScalaLanguage::is_using_templates() {
     return true;
-}
-
-Script* ScalaLanguage::create_script() const {
-    return memnew(ScalaScript);
 }
 
 bool ScalaLanguage::supports_builtin_mode() const {

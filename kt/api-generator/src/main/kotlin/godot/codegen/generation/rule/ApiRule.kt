@@ -52,7 +52,7 @@ class UseConnectFlagRule : GodotApiRule<ApiTask>() {
         val flagArgumentIndex = connectMethod.arguments!!.indexOfFirst { it.name == "flags" }
         val flagArgument = connectMethod.arguments[flagArgumentIndex]
 
-        val newArgument = flagArgument.copy(type = "enum::Object.ConnectFlags", meta = null)
+        val newArgument = flagArgument.copy(type = "bitfield::Object.ConnectFlags", meta = null)
         val newMethod = connectMethod.copy(arguments = connectMethod.arguments.dropLast(1) + newArgument)
         val newMethodList = objectRawClass.methods.toMutableList()
         newMethodList[connectMethodIndex] = newMethod

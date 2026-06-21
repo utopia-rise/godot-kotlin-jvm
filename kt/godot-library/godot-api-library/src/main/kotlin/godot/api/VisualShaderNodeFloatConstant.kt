@@ -38,7 +38,7 @@ public open class VisualShaderNodeFloatConstant : VisualShaderNodeConstant() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(813, scriptPtr)
+    createNativeObject(828, scriptPtr)
   }
 
   public final fun setConstant(constant: Float): Unit {

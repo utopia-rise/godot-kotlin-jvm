@@ -14,10 +14,14 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * Playback component of [AudioStreamSynchronized]. Handles the playback of multiple [AudioStream]s
+ * in synchrony.
+ */
 @GodotBaseType
 public open class AudioStreamPlaybackSynchronized internal constructor() : AudioStreamPlayback() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(94, scriptPtr)
+    createNativeObject(96, scriptPtr)
   }
 
   /**

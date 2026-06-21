@@ -23,13 +23,13 @@ import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
- * An audio effect that can be used to adjust the intensity of stereo panning.
+ * Adjusts gain of the left and right channels, and makes mono sounds stereo through phase shifting.
  */
 @GodotBaseType
 public open class AudioEffectStereoEnhance : AudioEffect() {
   /**
-   * Amplifies the difference between stereo channels, increasing or decreasing existing panning. A
-   * value of 0.0 will downmix stereo to mono. Does not affect a mono signal.
+   * Gain of the side channels, if they exist. A value of 0 will downmix stereo to mono. Value can
+   * range from 0 to 4.
    */
   public final inline var panPullout: Float
     @JvmName("panPulloutProperty")
@@ -40,8 +40,8 @@ public open class AudioEffectStereoEnhance : AudioEffect() {
     }
 
   /**
-   * Widens sound stage through phase shifting in conjunction with [surround]. Just delays the right
-   * channel if [surround] is 0.
+   * Widens the stereo image through phase shifting in conjunction with [surround]. Just delays the
+   * right channel if [surround] is 0. Value is in milliseconds, and can range from 0 to 50.
    */
   public final inline var timePulloutMs: Float
     @JvmName("timePulloutMsProperty")
@@ -52,8 +52,8 @@ public open class AudioEffectStereoEnhance : AudioEffect() {
     }
 
   /**
-   * Widens sound stage through phase shifting in conjunction with [timePulloutMs]. Just pans sound
-   * to the left channel if [timePulloutMs] is 0.
+   * Widens the stereo image through phase shifting in conjunction with [timePulloutMs]. Just pans
+   * sound to the left channel if [timePulloutMs] is 0. Value can range from 0 to 1.
    */
   public final inline var surround: Float
     @JvmName("surroundProperty")
@@ -64,7 +64,7 @@ public open class AudioEffectStereoEnhance : AudioEffect() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(75, scriptPtr)
+    createNativeObject(77, scriptPtr)
   }
 
   public final fun setPanPullout(amount: Float): Unit {

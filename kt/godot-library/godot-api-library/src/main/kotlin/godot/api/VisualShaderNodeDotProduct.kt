@@ -17,7 +17,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeDotProduct : VisualShaderNode() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(810, scriptPtr)
+    createNativeObject(825, scriptPtr)
   }
 
   public companion object

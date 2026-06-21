@@ -11,18 +11,22 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.MethodStringName2
 import godot.core.PackedInt32Array
 import godot.core.Rect2
 import godot.core.Signal0
+import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.RECT2
+import kotlin.Boolean
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmField
+import kotlin.jvm.JvmName
 
 /**
  * Base class for all GUI containers. A [Container] automatically arranges its child controls in a
@@ -40,8 +44,21 @@ public open class Container : Control() {
    */
   public val sortChildren: Signal0 by Signal0
 
+  /**
+   * If `true`, this container is marked as a region for accessibility. Use
+   * [Control.accessibilityName] to give the region a descriptive name. Screen readers can navigate
+   * between regions using landmark navigation.
+   */
+  public final inline var accessibilityRegion: Boolean
+    @JvmName("accessibilityRegionProperty")
+    get() = isAccessibilityRegion()
+    @JvmName("accessibilityRegionProperty")
+    set(`value`) {
+      setAccessibilityRegion(value)
+    }
+
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(182, scriptPtr)
+    createNativeObject(186, scriptPtr)
   }
 
   /**
@@ -86,6 +103,17 @@ public open class Container : Control() {
     TransferContext.callMethod(ptr, MethodBindings.fitChildInRectPtr, NIL)
   }
 
+  public final fun setAccessibilityRegion(region: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to region)
+    TransferContext.callMethod(ptr, MethodBindings.setAccessibilityRegionPtr, NIL)
+  }
+
+  public final fun isAccessibilityRegion(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isAccessibilityRegionPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
   public companion object {
     @JvmField
     public val queueSortName: MethodStringName0<Container, Unit> =
@@ -94,6 +122,14 @@ public open class Container : Control() {
     @JvmField
     public val fitChildInRectName: MethodStringName2<Container, Unit, Control, Rect2> =
         MethodStringName2<Container, Unit, Control, Rect2>("fit_child_in_rect")
+
+    @JvmField
+    public val setAccessibilityRegionName: MethodStringName1<Container, Unit, Boolean> =
+        MethodStringName1<Container, Unit, Boolean>("set_accessibility_region")
+
+    @JvmField
+    public val isAccessibilityRegionName: MethodStringName0<Container, Boolean> =
+        MethodStringName0<Container, Boolean>("is_accessibility_region")
 
     /**
      * Notification just before children are going to be sorted, in case there's something to
@@ -113,5 +149,11 @@ public open class Container : Control() {
 
     internal val fitChildInRectPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Container", "fit_child_in_rect", 1993438598)
+
+    internal val setAccessibilityRegionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Container", "set_accessibility_region", 2586408642)
+
+    internal val isAccessibilityRegionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Container", "is_accessibility_region", 36873697)
   }
 }

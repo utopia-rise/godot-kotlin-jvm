@@ -39,7 +39,7 @@ public open class VisualShaderNodeParticleEmitter internal constructor() : Visua
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(839, scriptPtr)
+    createNativeObject(854, scriptPtr)
   }
 
   public final fun setMode2d(enabled: Boolean): Unit {

@@ -35,6 +35,7 @@ import godot.core.PackedVector2Array
 import godot.core.RID
 import godot.core.Rect2
 import godot.core.Rect2i
+import godot.core.Signal1
 import godot.core.Transform2D
 import godot.core.VariantArray
 import godot.core.VariantCallable
@@ -645,6 +646,10 @@ public object DisplayServer : Object() {
       MethodStringName2<DisplayServer, Boolean, WindowFlags, Int>("window_get_flag")
 
   @JvmField
+  public val windowSetIconName: MethodStringName2<DisplayServer, Unit, Image?, Int> =
+      MethodStringName2<DisplayServer, Unit, Image?, Int>("window_set_icon")
+
+  @JvmField
   public val windowSetWindowButtonsOffsetName: MethodStringName2<DisplayServer, Unit, Vector2i, Int>
       = MethodStringName2<DisplayServer, Unit, Vector2i, Int>("window_set_window_buttons_offset")
 
@@ -655,6 +660,15 @@ public object DisplayServer : Object() {
   @JvmField
   public val windowRequestAttentionName: MethodStringName1<DisplayServer, Unit, Int> =
       MethodStringName1<DisplayServer, Unit, Int>("window_request_attention")
+
+  @JvmField
+  public val windowSetTaskbarProgressValueName: MethodStringName2<DisplayServer, Unit, Float, Int> =
+      MethodStringName2<DisplayServer, Unit, Float, Int>("window_set_taskbar_progress_value")
+
+  @JvmField
+  public val windowSetTaskbarProgressStateName:
+      MethodStringName2<DisplayServer, Unit, ProgressState, Int> =
+      MethodStringName2<DisplayServer, Unit, ProgressState, Int>("window_set_taskbar_progress_state")
 
   @JvmField
   public val windowMoveToForegroundName: MethodStringName1<DisplayServer, Unit, Int> =
@@ -691,6 +705,52 @@ public object DisplayServer : Object() {
   @JvmField
   public val windowGetVsyncModeName: MethodStringName1<DisplayServer, VSyncMode, Int> =
       MethodStringName1<DisplayServer, VSyncMode, Int>("window_get_vsync_mode")
+
+  @JvmField
+  public val windowIsHdrOutputSupportedName: MethodStringName1<DisplayServer, Boolean, Int> =
+      MethodStringName1<DisplayServer, Boolean, Int>("window_is_hdr_output_supported")
+
+  @JvmField
+  public val windowRequestHdrOutputName: MethodStringName2<DisplayServer, Unit, Boolean, Int> =
+      MethodStringName2<DisplayServer, Unit, Boolean, Int>("window_request_hdr_output")
+
+  @JvmField
+  public val windowIsHdrOutputRequestedName: MethodStringName1<DisplayServer, Boolean, Int> =
+      MethodStringName1<DisplayServer, Boolean, Int>("window_is_hdr_output_requested")
+
+  @JvmField
+  public val windowIsHdrOutputEnabledName: MethodStringName1<DisplayServer, Boolean, Int> =
+      MethodStringName1<DisplayServer, Boolean, Int>("window_is_hdr_output_enabled")
+
+  @JvmField
+  public val windowSetHdrOutputReferenceLuminanceName:
+      MethodStringName2<DisplayServer, Unit, Float, Int> =
+      MethodStringName2<DisplayServer, Unit, Float, Int>("window_set_hdr_output_reference_luminance")
+
+  @JvmField
+  public val windowGetHdrOutputReferenceLuminanceName: MethodStringName1<DisplayServer, Float, Int>
+      = MethodStringName1<DisplayServer, Float, Int>("window_get_hdr_output_reference_luminance")
+
+  @JvmField
+  public val windowGetHdrOutputCurrentReferenceLuminanceName:
+      MethodStringName1<DisplayServer, Float, Int> =
+      MethodStringName1<DisplayServer, Float, Int>("window_get_hdr_output_current_reference_luminance")
+
+  @JvmField
+  public val windowSetHdrOutputMaxLuminanceName: MethodStringName2<DisplayServer, Unit, Float, Int>
+      = MethodStringName2<DisplayServer, Unit, Float, Int>("window_set_hdr_output_max_luminance")
+
+  @JvmField
+  public val windowGetHdrOutputMaxLuminanceName: MethodStringName1<DisplayServer, Float, Int> =
+      MethodStringName1<DisplayServer, Float, Int>("window_get_hdr_output_max_luminance")
+
+  @JvmField
+  public val windowGetHdrOutputCurrentMaxLuminanceName: MethodStringName1<DisplayServer, Float, Int>
+      = MethodStringName1<DisplayServer, Float, Int>("window_get_hdr_output_current_max_luminance")
+
+  @JvmField
+  public val windowGetOutputMaxLinearValueName: MethodStringName1<DisplayServer, Float, Int> =
+      MethodStringName1<DisplayServer, Float, Int>("window_get_output_max_linear_value")
 
   @JvmField
   public val windowIsMaximizeAllowedName: MethodStringName1<DisplayServer, Boolean, Int> =
@@ -1259,6 +1319,33 @@ public object DisplayServer : Object() {
   public val hasAdditionalOutputsName: MethodStringName0<DisplayServer, Boolean> =
       MethodStringName0<DisplayServer, Boolean>("has_additional_outputs")
 
+  @JvmField
+  public val isInPipModeName: MethodStringName1<DisplayServer, Boolean, Int> =
+      MethodStringName1<DisplayServer, Boolean, Int>("is_in_pip_mode")
+
+  @JvmField
+  public val pipModeEnterName: MethodStringName1<DisplayServer, Unit, Int> =
+      MethodStringName1<DisplayServer, Unit, Int>("pip_mode_enter")
+
+  @JvmField
+  public val pipModeSetAspectRatioName: MethodStringName3<DisplayServer, Unit, Int, Int, Int> =
+      MethodStringName3<DisplayServer, Unit, Int, Int, Int>("pip_mode_set_aspect_ratio")
+
+  @JvmField
+  public val pipModeSetAutoEnterOnBackgroundName:
+      MethodStringName2<DisplayServer, Unit, Boolean, Int> =
+      MethodStringName2<DisplayServer, Unit, Boolean, Int>("pip_mode_set_auto_enter_on_background")
+
+  /**
+   * Emitted when the device orientation changes. [orientation] is the new orientation.
+   *
+   * Returns `1` for portrait, `2` for landscape, and `0` if the orientation is undefined.
+   *
+   * **Note:** This method is implemented on Android and iOS.
+   */
+  @JvmStatic
+  public val orientationChanged: Signal1<Long> by Signal1
+
   /**
    * The ID that refers to a screen that does not exist. This is returned by some [DisplayServer]
    * methods if no screen matches the requested result.
@@ -1316,7 +1403,7 @@ public object DisplayServer : Object() {
   public final const val INVALID_INDICATOR_ID: Long = -1
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(3)
+    getSingleton(4)
   }
 
   /**
@@ -3600,6 +3687,19 @@ public object DisplayServer : Object() {
   }
 
   /**
+   * Sets the window icon (usually displayed in the top-left corner) for the window specified by
+   * [windowId].
+   *
+   * **Note:** This method is implemented on Linux and Windows.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun windowSetIcon(icon: Image?, windowId: Int = 0): Unit {
+    TransferContext.writeArguments(OBJECT to icon, LONG to windowId.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.windowSetIconPtr, NIL)
+  }
+
+  /**
    * When [WINDOW_FLAG_EXTEND_TO_TITLE] flag is set, set offset to the center of the first titlebar
    * button.
    *
@@ -3634,6 +3734,38 @@ public object DisplayServer : Object() {
   public final fun windowRequestAttention(windowId: Int = 0): Unit {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(ptr, MethodBindings.windowRequestAttentionPtr, NIL)
+  }
+
+  /**
+   * Creates a progress bar on the taskbar/dock icon of the window specified by [windowId] if it
+   * does not exist, sets the progress of the icon.
+   *
+   * [value] acts as a relative percentage value, ranges from `0.0` (lowest) to `1.0` (highest).
+   *
+   * **Note:** This method is implemented only on Windows and macOS.
+   *
+   * **Note:** On macOS, the progress bar is displayed only for the main window.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun windowSetTaskbarProgressValue(`value`: Float, windowId: Int = 0): Unit {
+    TransferContext.writeArguments(DOUBLE to value.toDouble(), LONG to windowId.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.windowSetTaskbarProgressValuePtr, NIL)
+  }
+
+  /**
+   * Sets the type and state of the progress bar on the taskbar/dock icon of the window specified by
+   * [windowId]. See [ProgressState] for possible values and how each mode behaves.
+   *
+   * **Note:** This method is implemented only on Windows and macOS.
+   *
+   * **Note:** On macOS, the progress bar is displayed only for the main window.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun windowSetTaskbarProgressState(state: ProgressState, windowId: Int = 0): Unit {
+    TransferContext.writeArguments(LONG to state.value, LONG to windowId.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.windowSetTaskbarProgressStatePtr, NIL)
   }
 
   /**
@@ -3750,6 +3882,178 @@ public object DisplayServer : Object() {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(ptr, MethodBindings.windowGetVsyncModePtr, LONG)
     return VSyncMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Returns `true` if the window specified by [windowId] supports HDR output. This depends on the
+   * platform, screen capabilities, system settings, and the screen the window is currently on.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun windowIsHdrOutputSupported(windowId: Int = 0): Boolean {
+    TransferContext.writeArguments(LONG to windowId.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.windowIsHdrOutputSupportedPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * If [enable] is `true`, HDR output is requested for the window specified by [windowId]. The
+   * window will automatically switch between HDR and SDR if it is moved between screens, screen
+   * capabilities change, or system settings are modified. This will internally force
+   * [Viewport.useHdr2d] to be enabled on the main [Viewport]. All other [SubViewport] of the [Window]
+   * must have their [Viewport.useHdr2d] property enabled to produce HDR output. Corresponds to
+   * [Window.hdrOutputRequested].
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun windowRequestHdrOutput(enable: Boolean, windowId: Int = 0): Unit {
+    TransferContext.writeArguments(BOOL to enable, LONG to windowId.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.windowRequestHdrOutputPtr, NIL)
+  }
+
+  /**
+   * Returns `true` if HDR output is requested for the window specified by [windowId]. Corresponds
+   * to [Window.hdrOutputRequested].
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun windowIsHdrOutputRequested(windowId: Int = 0): Boolean {
+    TransferContext.writeArguments(LONG to windowId.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.windowIsHdrOutputRequestedPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Returns `true` if HDR output is currently enabled for the window specified by [windowId]. The
+   * returned value may change dynamically based on system settings, screen capabilities, and which
+   * screen the window is currently on.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun windowIsHdrOutputEnabled(windowId: Int = 0): Boolean {
+    TransferContext.writeArguments(LONG to windowId.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.windowIsHdrOutputEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Sets the reference white luminance in nits (cd/m²) for HDR output by the window specified by
+   * [windowId]. If [referenceLuminance] is negative, the window automatically adjusts to the
+   * brightness set by the operating system. By default, this luminance is set to `-1.0` for every
+   * window. Typically this property should be left at this default value, but may optionally be
+   * exposed as an "HDR Brightness" in-game setting to allow the player to adjust the brightness of
+   * their game, independently of their device settings. See also
+   * [windowGetHdrOutputCurrentReferenceLuminance] and [windowGetHdrOutputReferenceLuminance].
+   *
+   * **Note:** This method is only implemented on Windows. Other platforms will always use the
+   * reference luminance that is reported by the operating system.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun windowSetHdrOutputReferenceLuminance(referenceLuminance: Float, windowId: Int =
+      0): Unit {
+    TransferContext.writeArguments(DOUBLE to referenceLuminance.toDouble(), LONG to windowId.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.windowSetHdrOutputReferenceLuminancePtr, NIL)
+  }
+
+  /**
+   * Returns the reference white luminance in nits (cd/m²) set for HDR output by the window
+   * specified by [windowId]. Negative values indicate that the value is being automatically adjusted
+   * to match the operating system brightness. See also [windowGetHdrOutputCurrentReferenceLuminance].
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun windowGetHdrOutputReferenceLuminance(windowId: Int = 0): Float {
+    TransferContext.writeArguments(LONG to windowId.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.windowGetHdrOutputReferenceLuminancePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  /**
+   * When [windowIsHdrOutputEnabled] returns `true`, this returns the current reference white
+   * luminance in nits (cd/m²) for HDR output by the window specified by [windowId]. If the reference
+   * luminance is being automatically adjusted to match the operating system brightness, this will
+   * return that value. Otherwise, it will return the value set by
+   * [windowSetHdrOutputReferenceLuminance]. This reference luminance value is used when calculating
+   * [windowGetOutputMaxLinearValue].
+   *
+   * **Note:** This reference white luminance may not match the physical behavior of the screen, but
+   * will always be proportionally correct relative to [windowGetHdrOutputCurrentMaxLuminance].
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun windowGetHdrOutputCurrentReferenceLuminance(windowId: Int = 0): Float {
+    TransferContext.writeArguments(LONG to windowId.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.windowGetHdrOutputCurrentReferenceLuminancePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  /**
+   * Sets the maximum luminance in nits (cd/m²) for HDR output by the window specified by
+   * [windowId]. If [maxLuminance] is negative, the window uses the screen's maximum luminance that is
+   * reported by the operating system. By default, this luminance is set to `-1.0` for every window.
+   * Typically this property should be left at this default value, but may optionally be exposed
+   * through in-game settings to allow the player to correct an inaccurate maximum luminance reported
+   * by the operating system. See also [windowGetHdrOutputCurrentMaxLuminance] and
+   * [windowGetHdrOutputMaxLuminance].
+   *
+   * **Note:** This method is only implemented on macOS and Windows. Other platforms will always use
+   * the screen's maximum luminance that is reported by the operating system.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun windowSetHdrOutputMaxLuminance(maxLuminance: Float, windowId: Int = 0): Unit {
+    TransferContext.writeArguments(DOUBLE to maxLuminance.toDouble(), LONG to windowId.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.windowSetHdrOutputMaxLuminancePtr, NIL)
+  }
+
+  /**
+   * Returns the maximum luminance in nits (cd/m²) set for HDR output by the window specified by
+   * [windowId]. Negative values indicate that the value is being automatically adjusted based on the
+   * screen's capabilities. See also [windowGetHdrOutputCurrentMaxLuminance].
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun windowGetHdrOutputMaxLuminance(windowId: Int = 0): Float {
+    TransferContext.writeArguments(LONG to windowId.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.windowGetHdrOutputMaxLuminancePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  /**
+   * When [windowIsHdrOutputEnabled] returns `true`, this returns the current maximum luminance in
+   * nits (cd/m²) for HDR output by the window specified by [windowId]. If the maximum luminance is
+   * being automatically adjusted based on the screen's capabilities, this method will return that
+   * value. Otherwise, it will return the value set by [windowSetHdrOutputMaxLuminance]. This maximum
+   * luminance value is used when calculating [windowGetOutputMaxLinearValue].
+   *
+   * **Note:** This maximum luminance may not match the physical behavior of the screen, but will
+   * always be proportionally correct relative to [windowGetHdrOutputCurrentReferenceLuminance].
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun windowGetHdrOutputCurrentMaxLuminance(windowId: Int = 0): Float {
+    TransferContext.writeArguments(LONG to windowId.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.windowGetHdrOutputCurrentMaxLuminancePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  /**
+   * Returns the maximum value for linear color components that can be displayed for the window
+   * specified by [windowId], regardless of SDR or HDR output. Returns `1.0` if HDR is not enabled or
+   * not supported. When HDR output is enabled, this is calculated based on
+   * [windowGetHdrOutputCurrentReferenceLuminance] and [windowGetHdrOutputCurrentMaxLuminance]. The
+   * [signal Window.output_max_linear_value_changed] signal will be emitted whenever this value
+   * changes. This value is used by tonemapping and other [Environment] effects to ensure that bright
+   * colors are presented in the range that can be displayed by this window. Corresponds to
+   * [Window.getOutputMaxLinearValue].
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun windowGetOutputMaxLinearValue(windowId: Int = 0): Float {
+    TransferContext.writeArguments(LONG to windowId.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.windowGetOutputMaxLinearValuePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -4084,8 +4388,8 @@ public object DisplayServer : Object() {
    * Sets element bounding box, relative to the node position.
    */
   @JvmStatic
-  public final fun accessibilityUpdateSetBounds(id: RID, pRect: Rect2): Unit {
-    TransferContext.writeArguments(_RID to id, RECT2 to pRect)
+  public final fun accessibilityUpdateSetBounds(id: RID, rect: Rect2): Unit {
+    TransferContext.writeArguments(_RID to id, RECT2 to rect)
     TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetBoundsPtr, NIL)
   }
 
@@ -5131,8 +5435,8 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets the window icon (usually displayed in the top-left corner) with an [Image]. To use icons
-   * in the operating system's native format, use [setNativeIcon] instead.
+   * Sets the application icon and icons of all windows with an [Image]. To use icons in the
+   * operating system's native format, use [setNativeIcon] instead.
    *
    * **Note:** Requires support for [FEATURE_ICON].
    */
@@ -5336,6 +5640,61 @@ public object DisplayServer : Object() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
+  /**
+   * Returns `true` if the application is in picture-in-picture mode.
+   *
+   * **Note:** This method is implemented on Android.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun isInPipMode(windowId: Int = 0): Boolean {
+    TransferContext.writeArguments(LONG to windowId.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.isInPipModePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Enters picture-in-picture mode.
+   *
+   * **Note:** This method is implemented on Android.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun pipModeEnter(windowId: Int = 0): Unit {
+    TransferContext.writeArguments(LONG to windowId.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.pipModeEnterPtr, NIL)
+  }
+
+  /**
+   * Specifies the aspect ratio for picture-in-picture mode.
+   *
+   * **Note:** This method is implemented on Android.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun pipModeSetAspectRatio(
+    numerator: Int,
+    denominator: Int,
+    windowId: Int = 0,
+  ): Unit {
+    TransferContext.writeArguments(LONG to numerator.toLong(), LONG to denominator.toLong(), LONG to windowId.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.pipModeSetAspectRatioPtr, NIL)
+  }
+
+  /**
+   * Specifies whether picture-in-picture mode should be entered automatically when the application
+   * goes in the background.
+   *
+   * **Note:** This method is implemented on Android.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun pipModeSetAutoEnterOnBackground(autoEnterOnBackground: Boolean, windowId: Int =
+      0): Unit {
+    TransferContext.writeArguments(BOOL to autoEnterOnBackground, LONG to windowId.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.pipModeSetAutoEnterOnBackgroundPtr, NIL)
+  }
+
   public enum class Feature(
     public override val `value`: Long,
   ) : GodotEnum {
@@ -5350,7 +5709,8 @@ public object DisplayServer : Object() {
      */
     SUBWINDOWS(1),
     /**
-     * Display server supports touchscreen input. **Windows, Linux (X11), Android, iOS, Web**
+     * Display server supports touchscreen input. **Windows, Linux (X11/Wayland), Android, iOS,
+     * Web**
      */
     TOUCHSCREEN(2),
     /**
@@ -5510,6 +5870,14 @@ public object DisplayServer : Object() {
      * (X11/Wayland), macOS, Windows**
      */
     ACCESSIBILITY_SCREEN_READER(34),
+    /**
+     * Display server supports HDR output. **Linux (Wayland), macOS, iOS, visionOS, Windows**
+     */
+    HDR_OUTPUT(35),
+    /**
+     * Display server supports putting the application in picture-in-picture mode. **Android**
+     */
+    PIP_MODE(36),
     ;
 
     public companion object {
@@ -5705,6 +6073,17 @@ public object DisplayServer : Object() {
      * Tooltip element.
      */
     ROLE_TOOLTIP(45),
+    /**
+     * Region/landmark element. Screen readers can navigate between regions using landmark
+     * navigation.
+     */
+    ROLE_REGION(46),
+    /**
+     * Unifor text run.
+     *
+     * Note: This role is used for internal text elements, and should not be assigned to nodes.
+     */
+    ROLE_TEXT_RUN(47),
     ;
 
     public companion object {
@@ -6310,22 +6689,67 @@ public object DisplayServer : Object() {
     }
   }
 
+  public enum class ProgressState(
+    public override val `value`: Long,
+  ) : GodotEnum {
+    /**
+     * Stops displaying progress and returns the button to its normal state.
+     */
+    NOPROGRESS(0),
+    /**
+     * The progress indicator shows an indeterminate progress.
+     *
+     * On Windows, the progress indicator does not grow in size, but cycles repeatedly along the
+     * length of the taskbar button by default.
+     */
+    INDETERMINATE(1),
+    /**
+     * The progress indicator shows progress normally.
+     */
+    NORMAL(2),
+    /**
+     * The progress indicator shows that an error has occurred.
+     *
+     * On Windows, the progress indicator turns red by default to show that an error has occurred in
+     * one of the windows that is broadcasting progress.
+     */
+    ERROR(3),
+    /**
+     * The progress indicator shows it was paused.
+     *
+     * On Windows, the progress indicator turns yellow by default to show that progress is currently
+     * stopped in one of the windows but can be resumed by the user.
+     */
+    PAUSED(4),
+    ;
+
+    public companion object {
+      public fun from(`value`: Long): ProgressState = entries.single { it.`value` == `value` }
+    }
+  }
+
   public enum class WindowFlags(
     public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The window can't be resized by dragging its resize grip. It's still possible to resize the
      * window using [windowSetSize]. This flag is ignored for full screen windows.
+     *
+     * **Note:** This flag is implemented on Linux (X11), macOS, and Windows.
      */
     RESIZE_DISABLED(0),
     /**
      * The window do not have native title bar and other decorations. This flag is ignored for
      * full-screen windows.
+     *
+     * **Note:** This flag is implemented on Linux (X11/Wayland), macOS, and Windows.
      */
     BORDERLESS(1),
     /**
      * The window is floating on top of all other windows. This flag is ignored for full-screen
      * windows.
+     *
+     * **Note:** This flag is implemented on Linux (X11), macOS, and Windows.
      */
     ALWAYS_ON_TOP(2),
     /**
@@ -6343,6 +6767,8 @@ public object DisplayServer : Object() {
     TRANSPARENT(3),
     /**
      * The window can't be focused. No-focus window will ignore all input, except mouse clicks.
+     *
+     * **Note:** This flag is implemented on Linux (X11), macOS, and Windows.
      */
     NO_FOCUS(4),
     /**
@@ -6350,6 +6776,8 @@ public object DisplayServer : Object() {
      * is visible. An active popup window will exclusively receive all input, without stealing focus
      * from its parent. Popup windows are automatically closed when uses click outside it, or when an
      * application is switched. Popup window must have transient parent set (see [windowSetTransient]).
+     *
+     * **Note:** This flag is implemented on Linux (X11/Wayland), macOS, and Windows.
      */
     POPUP(5),
     /**
@@ -6367,6 +6795,8 @@ public object DisplayServer : Object() {
     EXTEND_TO_TITLE(6),
     /**
      * All mouse events are passed to the underlying window of the same application.
+     *
+     * **Note:** This flag is implemented on Linux (X11), macOS, and Windows.
      */
     MOUSE_PASSTHROUGH(7),
     /**
@@ -6389,18 +6819,20 @@ public object DisplayServer : Object() {
     /**
      * Signals the window manager that this window is supposed to be an implementation-defined
      * "popup" (usually a floating, borderless, untileable and immovable child window).
+     *
+     * **Note:** This flag is implemented on Linux (Wayland).
      */
     POPUP_WM_HINT(10),
     /**
      * Window minimize button is disabled.
      *
-     * **Note:** This flag is implemented on macOS and Windows.
+     * **Note:** This flag is implemented on Linux (X11), macOS, and Windows.
      */
     MINIMIZE_DISABLED(11),
     /**
      * Window maximize button is disabled.
      *
-     * **Note:** This flag is implemented on macOS and Windows.
+     * **Note:** This flag is implemented on Linux (X11), macOS, and Windows.
      */
     MAXIMIZE_DISABLED(12),
     /**
@@ -6463,6 +6895,15 @@ public object DisplayServer : Object() {
      * **Note:** This flag is implemented only on Linux (Wayland).
      */
     FORCE_CLOSE(8),
+    /**
+     * Sent when the output max linear value returned by [Window.getOutputMaxLinearValue] has
+     * changed.
+     *
+     * This occurs when HDR output is enabled or disabled and when any HDR output luminance values
+     * of the window have changed, such as when the player adjusts their screen brightness setting or
+     * moves the window to a different screen.
+     */
+    OUTPUT_MAX_LINEAR_VALUE_CHANGED(9),
     ;
 
     public companion object {
@@ -6625,6 +7066,18 @@ public object DisplayServer : Object() {
      * - Linux (Wayland): `EGLConfig` for the window.
      */
     EGL_CONFIG(5),
+    /**
+     * The GLX `VisualID` for the window.
+     *
+     * **Note:** Only available on Linux when using X11.
+     */
+    GLX_VISUALID(6),
+    /**
+     * The `GLXFBConfig` for the window.
+     *
+     * **Note:** Only available on Linux when using X11.
+     */
+    GLX_FBCONFIG(7),
     ;
 
     public companion object {
@@ -7049,6 +7502,9 @@ public object DisplayServer : Object() {
     internal val windowGetFlagPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "window_get_flag", 802816991)
 
+    internal val windowSetIconPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "window_set_icon", 2457502155)
+
     internal val windowSetWindowButtonsOffsetPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "window_set_window_buttons_offset", 2019273902)
 
@@ -7057,6 +7513,12 @@ public object DisplayServer : Object() {
 
     internal val windowRequestAttentionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "window_request_attention", 1995695955)
+
+    internal val windowSetTaskbarProgressValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "window_set_taskbar_progress_value", 3506631519)
+
+    internal val windowSetTaskbarProgressStatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "window_set_taskbar_progress_state", 4119882768)
 
     internal val windowMoveToForegroundPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "window_move_to_foreground", 1995695955)
@@ -7084,6 +7546,39 @@ public object DisplayServer : Object() {
 
     internal val windowGetVsyncModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "window_get_vsync_mode", 578873795)
+
+    internal val windowIsHdrOutputSupportedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "window_is_hdr_output_supported", 1051549951)
+
+    internal val windowRequestHdrOutputPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "window_request_hdr_output", 1661950165)
+
+    internal val windowIsHdrOutputRequestedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "window_is_hdr_output_requested", 1051549951)
+
+    internal val windowIsHdrOutputEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "window_is_hdr_output_enabled", 1051549951)
+
+    internal val windowSetHdrOutputReferenceLuminancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "window_set_hdr_output_reference_luminance", 3506631519)
+
+    internal val windowGetHdrOutputReferenceLuminancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "window_get_hdr_output_reference_luminance", 218038398)
+
+    internal val windowGetHdrOutputCurrentReferenceLuminancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "window_get_hdr_output_current_reference_luminance", 218038398)
+
+    internal val windowSetHdrOutputMaxLuminancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "window_set_hdr_output_max_luminance", 3506631519)
+
+    internal val windowGetHdrOutputMaxLuminancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "window_get_hdr_output_max_luminance", 218038398)
+
+    internal val windowGetHdrOutputCurrentMaxLuminancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "window_get_hdr_output_current_max_luminance", 218038398)
+
+    internal val windowGetOutputMaxLinearValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "window_get_output_max_linear_value", 218038398)
 
     internal val windowIsMaximizeAllowedPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "window_is_maximize_allowed", 1051549951)
@@ -7465,5 +7960,17 @@ public object DisplayServer : Object() {
 
     internal val hasAdditionalOutputsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "has_additional_outputs", 36873697)
+
+    internal val isInPipModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "is_in_pip_mode", 1885608816)
+
+    internal val pipModeEnterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "pip_mode_enter", 1995695955)
+
+    internal val pipModeSetAspectRatioPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "pip_mode_set_aspect_ratio", 3471927553)
+
+    internal val pipModeSetAutoEnterOnBackgroundPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "pip_mode_set_auto_enter_on_background", 1661950165)
   }
 }

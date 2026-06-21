@@ -22,7 +22,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class FBXDocument : GLTFDocument() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(218, scriptPtr)
+    createNativeObject(223, scriptPtr)
   }
 
   public companion object

@@ -52,11 +52,11 @@ public open class RandomNumberGenerator : RefCounted() {
    * given similar seeds. Consider using a hash function to improve your seed quality if they're
    * sourced externally.
    *
-   * **Note:** Setting this property produces a side effect of changing the internal [state], so
-   * make sure to initialize the seed *before* modifying the [state]:
-   *
    * **Note:** The default value of this property is pseudo-random, and changes when calling
    * [randomize]. The `0` value documented here is a placeholder, and not the actual default seed.
+   *
+   * **Note:** Setting this property produces a side effect of changing the internal [state], so
+   * make sure to initialize the seed *before* modifying the [state]:
    *
    * ```
    * var rng = RandomNumberGenerator.new()
@@ -102,7 +102,7 @@ public open class RandomNumberGenerator : RefCounted() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(585, scriptPtr)
+    createNativeObject(598, scriptPtr)
   }
 
   public final fun setSeed(seed: Long): Unit {
@@ -180,8 +180,16 @@ public open class RandomNumberGenerator : RefCounted() {
   }
 
   /**
-   * Returns a random index with non-uniform weights. Prints an error and returns `-1` if the array
-   * is empty.
+   * Returns a random integer between `0` and the size of the array that is passed as a parameter.
+   * Each value in the array should be a floating-point number that represents the relative likelihood
+   * that it will be returned as an index. A higher value means the value is more likely to be returned
+   * as an index, while a value of `0` means it will never be returned as an index.
+   *
+   * For example, if [code skip-lint][0.5, 1, 1, 2][/code] is passed as a parameter, then the method
+   * is twice as likely to return `3` (the index of the value `2`) and twice as unlikely to return `0`
+   * (the index of the value `0.5`) compared to the indices `1` and `2`.
+   *
+   * Prints an error and returns `-1` if the array is empty.
    *
    * ```gdscript
    * //gdscript

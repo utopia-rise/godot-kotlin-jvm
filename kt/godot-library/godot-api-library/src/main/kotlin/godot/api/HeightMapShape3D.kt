@@ -113,7 +113,7 @@ public open class HeightMapShape3D : Shape3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(290, scriptPtr)
+    createNativeObject(296, scriptPtr)
   }
 
   /**

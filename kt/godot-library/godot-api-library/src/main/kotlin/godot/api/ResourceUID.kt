@@ -90,7 +90,7 @@ public object ResourceUID : Object() {
   public final const val INVALID_ID: Long = -1
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(31)
+    getSingleton(32)
   }
 
   /**

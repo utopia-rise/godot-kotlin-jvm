@@ -133,7 +133,7 @@ public open class TubeTrailMesh : PrimitiveMesh() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(760, scriptPtr)
+    createNativeObject(774, scriptPtr)
   }
 
   public final fun setRadius(radius: Float): Unit {

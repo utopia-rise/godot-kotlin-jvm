@@ -175,6 +175,18 @@ public object Input : Object() {
       MethodStringName1<Input, Float, Int>("get_joy_vibration_duration")
 
   @JvmField
+  public val getJoyVibrationRemainingDurationName: MethodStringName1<Input, Float, Int> =
+      MethodStringName1<Input, Float, Int>("get_joy_vibration_remaining_duration")
+
+  @JvmField
+  public val isJoyVibratingName: MethodStringName1<Input, Boolean, Int> =
+      MethodStringName1<Input, Boolean, Int>("is_joy_vibrating")
+
+  @JvmField
+  public val hasJoyVibrationName: MethodStringName1<Input, Boolean, Int> =
+      MethodStringName1<Input, Boolean, Int>("has_joy_vibration")
+
+  @JvmField
   public val startJoyVibrationName: MethodStringName4<Input, Unit, Int, Float, Float, Float> =
       MethodStringName4<Input, Unit, Int, Float, Float, Float>("start_joy_vibration")
 
@@ -185,6 +197,14 @@ public object Input : Object() {
   @JvmField
   public val vibrateHandheldName: MethodStringName2<Input, Unit, Int, Float> =
       MethodStringName2<Input, Unit, Int, Float>("vibrate_handheld")
+
+  @JvmField
+  public val setIgnoreJoypadOnUnfocusedApplicationName: MethodStringName1<Input, Unit, Boolean> =
+      MethodStringName1<Input, Unit, Boolean>("set_ignore_joypad_on_unfocused_application")
+
+  @JvmField
+  public val isIgnoringJoypadOnUnfocusedApplicationName: MethodStringName0<Input, Boolean> =
+      MethodStringName0<Input, Boolean>("is_ignoring_joypad_on_unfocused_application")
 
   @JvmField
   public val getGravityName: MethodStringName0<Input, Vector3> =
@@ -201,6 +221,64 @@ public object Input : Object() {
   @JvmField
   public val getGyroscopeName: MethodStringName0<Input, Vector3> =
       MethodStringName0<Input, Vector3>("get_gyroscope")
+
+  @JvmField
+  public val getJoyAccelerometerName: MethodStringName1<Input, Vector3, Int> =
+      MethodStringName1<Input, Vector3, Int>("get_joy_accelerometer")
+
+  @JvmField
+  public val getJoyGravityName: MethodStringName1<Input, Vector3, Int> =
+      MethodStringName1<Input, Vector3, Int>("get_joy_gravity")
+
+  @JvmField
+  public val getJoyGyroscopeName: MethodStringName1<Input, Vector3, Int> =
+      MethodStringName1<Input, Vector3, Int>("get_joy_gyroscope")
+
+  @JvmField
+  public val getJoyMotionSensorsRateName: MethodStringName1<Input, Float, Int> =
+      MethodStringName1<Input, Float, Int>("get_joy_motion_sensors_rate")
+
+  @JvmField
+  public val isJoyMotionSensorsEnabledName: MethodStringName1<Input, Boolean, Int> =
+      MethodStringName1<Input, Boolean, Int>("is_joy_motion_sensors_enabled")
+
+  @JvmField
+  public val setJoyMotionSensorsEnabledName: MethodStringName2<Input, Unit, Int, Boolean> =
+      MethodStringName2<Input, Unit, Int, Boolean>("set_joy_motion_sensors_enabled")
+
+  @JvmField
+  public val hasJoyMotionSensorsName: MethodStringName1<Input, Boolean, Int> =
+      MethodStringName1<Input, Boolean, Int>("has_joy_motion_sensors")
+
+  @JvmField
+  public val startJoyMotionSensorsCalibrationName: MethodStringName1<Input, Unit, Int> =
+      MethodStringName1<Input, Unit, Int>("start_joy_motion_sensors_calibration")
+
+  @JvmField
+  public val stopJoyMotionSensorsCalibrationName: MethodStringName1<Input, Unit, Int> =
+      MethodStringName1<Input, Unit, Int>("stop_joy_motion_sensors_calibration")
+
+  @JvmField
+  public val clearJoyMotionSensorsCalibrationName: MethodStringName1<Input, Unit, Int> =
+      MethodStringName1<Input, Unit, Int>("clear_joy_motion_sensors_calibration")
+
+  @JvmField
+  public val getJoyMotionSensorsCalibrationName:
+      MethodStringName1<Input, Dictionary<Any?, Any?>, Int> =
+      MethodStringName1<Input, Dictionary<Any?, Any?>, Int>("get_joy_motion_sensors_calibration")
+
+  @JvmField
+  public val setJoyMotionSensorsCalibrationName:
+      MethodStringName2<Input, Unit, Int, Dictionary<Any?, Any?>> =
+      MethodStringName2<Input, Unit, Int, Dictionary<Any?, Any?>>("set_joy_motion_sensors_calibration")
+
+  @JvmField
+  public val isJoyMotionSensorsCalibratedName: MethodStringName1<Input, Boolean, Int> =
+      MethodStringName1<Input, Boolean, Int>("is_joy_motion_sensors_calibrated")
+
+  @JvmField
+  public val isJoyMotionSensorsCalibratingName: MethodStringName1<Input, Boolean, Int> =
+      MethodStringName1<Input, Boolean, Int>("is_joy_motion_sensors_calibrating")
 
   @JvmField
   public val setGravityName: MethodStringName1<Input, Unit, Vector3> =
@@ -369,8 +447,21 @@ public object Input : Object() {
       setEmulateTouchFromMouse(value)
     }
 
+  /**
+   * If `true`, joypad input (including motion sensors) and LED light changes will be ignored and
+   * joypad vibration will be stopped when the application is not focused.
+   */
+  @JvmStatic
+  public final inline var ignoreJoypadOnUnfocusedApplication: Boolean
+    @JvmName("ignoreJoypadOnUnfocusedApplicationProperty")
+    get() = isIgnoringJoypadOnUnfocusedApplication()
+    @JvmName("ignoreJoypadOnUnfocusedApplicationProperty")
+    set(`value`) {
+      setIgnoreJoypadOnUnfocusedApplication(value)
+    }
+
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(10)
+    getSingleton(11)
   }
 
   /**
@@ -397,6 +488,29 @@ public object Input : Object() {
    * action's keys is pressed. See
    * [url=$DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events]Input examples[/url] in the
    * documentation for more information.
+   *
+   * **Note:** If you want to check if a key was just pressed by using its keycode, use Godot's
+   * input action system with [isActionJustPressed] or use the [Node.Input] method like this instead:
+   *
+   * ```gdscript
+   * //gdscript
+   * func _input(event):
+   * 	if event is InputEventKey and not event.is_echo() and event.is_pressed() and event.keycode ==
+   * KEY_SPACE:
+   * 		pass # Your code here.
+   * ```
+   *
+   * ```csharp
+   * //csharp
+   * public override void _Input(InputEvent @event)
+   * {
+   * 	if (@event is InputEventKey eventKey && !eventKey.IsEcho() && eventKey.Pressed &&
+   * eventKey.Keycode == Key.Space)
+   * 	{
+   * 		// Your code here.
+   * 	}
+   * }
+   * ```
    */
   @JvmStatic
   public final fun isKeyPressed(keycode: Key): Boolean {
@@ -418,6 +532,30 @@ public object Input : Object() {
    * the action's keys is pressed. See
    * [url=$DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events]Input examples[/url] in the
    * documentation for more information.
+   *
+   * **Note:** If you want to check if a key was just pressed by using its physical keycode, use
+   * Godot's input action system with [isActionJustPressed] or use the [Node.Input] method like this
+   * instead:
+   *
+   * ```gdscript
+   * //gdscript
+   * func _input(event):
+   * 	if event is InputEventKey and not event.is_echo() and event.is_pressed() and
+   * event.physical_keycode == KEY_SPACE:
+   * 		pass # Your code here.
+   * ```
+   *
+   * ```csharp
+   * //csharp
+   * public override void _Input(InputEvent @event)
+   * {
+   * 	if (@event is InputEventKey eventKey && !eventKey.IsEcho() && eventKey.Pressed &&
+   * eventKey.PhysicalKeycode == Key.Space)
+   * 	{
+   * 		// Your code here.
+   * 	}
+   * }
+   * ```
    */
   @JvmStatic
   public final fun isPhysicalKeyPressed(keycode: Key): Boolean {
@@ -429,6 +567,29 @@ public object Input : Object() {
   /**
    * Returns `true` if you are pressing the key with the [keycode] printed on it. You can pass a
    * [Key] constant or any Unicode character code.
+   *
+   * **Note:** If you want to check if a key was just pressed by using its label, use Godot's input
+   * action system with [isActionJustPressed] or use the [Node.Input] method like this instead:
+   *
+   * ```gdscript
+   * //gdscript
+   * func _input(event):
+   * 	if event is InputEventKey and not event.is_echo() and event.is_pressed() and event.key_label
+   * == KEY_SPACE:
+   * 		pass # Your code here.
+   * ```
+   *
+   * ```csharp
+   * //csharp
+   * public override void _Input(InputEvent @event)
+   * {
+   * 	if (@event is InputEventKey eventKey && !eventKey.IsEcho() && eventKey.Pressed &&
+   * eventKey.KeyLabel == Key.Space)
+   * 	{
+   * 		// Your code here.
+   * 	}
+   * }
+   * ```
    */
   @JvmStatic
   public final fun isKeyLabelPressed(keycode: Key): Boolean {
@@ -439,6 +600,29 @@ public object Input : Object() {
 
   /**
    * Returns `true` if you are pressing the mouse button specified with [MouseButton].
+   *
+   * **Note:** If you want to check if a mouse button was just pressed, use Godot's input action
+   * system with [isActionJustPressed] or use the [Node.Input] method like this instead:
+   *
+   * ```gdscript
+   * //gdscript
+   * func _input(event):
+   * 	if event is InputEventMouseButton and event.is_pressed() and event.button_index ==
+   * MOUSE_BUTTON_LEFT:
+   * 		pass # Your code here.
+   * ```
+   *
+   * ```csharp
+   * //csharp
+   * public override void _Input(InputEvent @event)
+   * {
+   * 	if (@event is InputEventMouseButton eventMouseButton && eventMouseButton.Pressed &&
+   * eventMouseButton.ButtonIndex == MouseButton.Left)
+   * 	{
+   * 		// Your code here.
+   * 	}
+   * }
+   * ```
    */
   @JvmStatic
   public final fun isMouseButtonPressed(button: MouseButton): Boolean {
@@ -449,6 +633,29 @@ public object Input : Object() {
 
   /**
    * Returns `true` if you are pressing the joypad button at index [button].
+   *
+   * **Note:** If you want to check if a joypad button was just pressed, use Godot's input action
+   * system with [isActionJustPressed] or use the [Node.Input] method like this instead:
+   *
+   * ```gdscript
+   * //gdscript
+   * func _input(event):
+   * 	if event is InputEventJoypadButton and event.is_pressed() and event.button_index ==
+   * JOY_BUTTON_A:
+   * 		pass # Your code here.
+   * ```
+   *
+   * ```csharp
+   * //csharp
+   * public override void _Input(InputEvent @event)
+   * {
+   * 	if (@event is InputEventJoypadButton eventButton && eventButton.Pressed &&
+   * eventButton.ButtonIndex == JoyButton.A)
+   * 	{
+   * 		// Your code here.
+   * 	}
+   * }
+   * ```
    */
   @JvmStatic
   public final fun isJoyButtonPressed(device: Int, button: JoyButton): Boolean {
@@ -730,7 +937,7 @@ public object Input : Object() {
    * Returns a dictionary with extra platform-specific information about the device, e.g. the raw
    * gamepad name from the OS or the Steam Input index.
    *
-   * On Windows, Linux, and macOS, the dictionary contains the following fields:
+   * On Windows, Linux, macOS, and iOS, the dictionary contains the following fields:
    *
    * `raw_name`: The name of the controller as it came from the OS, before getting renamed by the
    * controller database.
@@ -739,15 +946,18 @@ public object Input : Object() {
    *
    * `product_id`: The USB product ID of the device.
    *
-   * `steam_input_index`: The Steam Input gamepad index, if the device is not a Steam Input device
-   * this key won't be present.
+   * `serial_number`: The serial number of the device. This key won't be present if the serial
+   * number is unavailable.
    *
-   * On Windows, the dictionary can have an additional field:
+   * The dictionary can also include the following fields under selected platforms:
    *
-   * `xinput_index`: The index of the controller in the XInput system. This key won't be present for
-   * devices not handled by XInput.
+   * `steam_input_index`: The Steam Input gamepad index (Windows, Linux, and macOS only). If the
+   * device is not a Steam Input device this key won't be present.
    *
-   * **Note:** The returned dictionary is always empty on Android, iOS, visionOS, and Web.
+   * `xinput_index`: The index of the controller in the XInput system (Windows only). This key won't
+   * be present for devices not handled by XInput.
+   *
+   * **Note:** The returned dictionary is always empty on Android and Web.
    */
   @JvmStatic
   public final fun getJoyInfo(device: Int): Dictionary<Any?, Any?> {
@@ -774,6 +984,10 @@ public object Input : Object() {
 
   /**
    * Returns an [Array] containing the device IDs of all currently connected joypads.
+   *
+   * **Note:** The order of connected joypads can not be guaranteed to be the same after a project
+   * and/or the editor is restarted, because Godot doesn't save the order of joypad connections.
+   * Joypads are registered in the order they are discovered by Godot.
    */
   @JvmStatic
   public final fun getConnectedJoypads(): VariantArray<Long> {
@@ -785,6 +999,12 @@ public object Input : Object() {
   /**
    * Returns the strength of the joypad vibration: x is the strength of the weak motor, and y is the
    * strength of the strong motor.
+   *
+   * **Note:** This method returns the same values that were passed to [startJoyVibration], and
+   * these values do **not** change when the joypad's vibration runs out, they only get reset after a
+   * call to [stopJoyVibration].
+   *
+   * If you want to check if a joypad is still vibrating, use [isJoyVibrating] instead.
    */
   @JvmStatic
   public final fun getJoyVibrationStrength(device: Int): Vector2 {
@@ -795,6 +1015,12 @@ public object Input : Object() {
 
   /**
    * Returns the duration of the current vibration effect in seconds.
+   *
+   * **Note:** This method returns the same value that was passed to [startJoyVibration], and this
+   * value does **not** change when the joypad's vibration runs out, it only gets reset after a call to
+   * [stopJoyVibration].
+   *
+   * If you want to check if a joypad is still vibrating, use [isJoyVibrating] instead.
    */
   @JvmStatic
   public final fun getJoyVibrationDuration(device: Int): Float {
@@ -804,16 +1030,61 @@ public object Input : Object() {
   }
 
   /**
-   * Starts to vibrate the joypad. Joypads usually come with two rumble motors, a strong and a weak
-   * one. [weakMagnitude] is the strength of the weak motor (between 0 and 1) and [strongMagnitude] is
-   * the strength of the strong motor (between 0 and 1). [duration] is the duration of the effect in
-   * seconds (a duration of 0 will try to play the vibration indefinitely). The vibration can be
-   * stopped early by calling [stopJoyVibration].
+   * Returns the remaining duration of the current vibration effect in seconds.
+   */
+  @JvmStatic
+  public final fun getJoyVibrationRemainingDuration(device: Int): Float {
+    TransferContext.writeArguments(LONG to device.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.getJoyVibrationRemainingDurationPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  /**
+   * Returns `true` if the joypad is still vibrating after a call to [startJoyVibration].
    *
-   * **Note:** Not every hardware is compatible with long effect durations; it is recommended to
-   * restart an effect if it has to be played for more than a few seconds.
+   * Unlike [getJoyVibrationStrength] and [getJoyVibrationDuration], this method returns `false`
+   * after the joypad's vibration runs out.
+   */
+  @JvmStatic
+  public final fun isJoyVibrating(device: Int): Boolean {
+    TransferContext.writeArguments(LONG to device.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.isJoyVibratingPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Returns `true` if the joypad supports vibration. See also [startJoyVibration].
    *
-   * **Note:** For macOS, vibration is only supported in macOS 11 and later.
+   * **Note:** For macOS, vibration is only supported in macOS 11 and later. When connected via USB,
+   * vibration is only supported for major brand controllers (except Xbox One and Xbox Series X/S
+   * controllers) due to macOS limitations.
+   */
+  @JvmStatic
+  public final fun hasJoyVibration(device: Int): Boolean {
+    TransferContext.writeArguments(LONG to device.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.hasJoyVibrationPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Starts to vibrate the joypad. See also [hasJoyVibration] and [isJoyVibrating].
+   *
+   * Joypads usually come with two rumble motors, a strong and a weak one.
+   *
+   * [weakMagnitude] is the strength of the weak motor (between `0.0` and `1.0`).
+   *
+   * [strongMagnitude] is the strength of the strong motor (between `0.0` and `1.0`).
+   *
+   * [duration] is the duration of the effect in seconds (a duration of `0.0` will try to play the
+   * vibration as long as possible, which is about 65 seconds).
+   *
+   * The vibration can be stopped early by calling [stopJoyVibration].
+   *
+   * See also [getJoyVibrationStrength] and [getJoyVibrationDuration].
+   *
+   * **Note:** For macOS, vibration is only supported in macOS 11 and later. When connected via USB,
+   * vibration is only supported for major brand controllers (except Xbox One and Xbox Series X/S
+   * controllers) due to macOS limitations.
    */
   @JvmOverloads
   @JvmStatic
@@ -854,12 +1125,28 @@ public object Input : Object() {
    *
    * **Note:** Some web browsers such as Safari and Firefox for Android do not support
    * [vibrateHandheld].
+   *
+   * **Note:** Device settings such as vibration on/off, "do not disturb" mode or specific haptic
+   * feedback on/off may prevent [vibrateHandheld] effects.
    */
   @JvmOverloads
   @JvmStatic
   public final fun vibrateHandheld(durationMs: Int = 500, amplitude: Float = -1.0f): Unit {
     TransferContext.writeArguments(LONG to durationMs.toLong(), DOUBLE to amplitude.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.vibrateHandheldPtr, NIL)
+  }
+
+  @JvmStatic
+  public final fun setIgnoreJoypadOnUnfocusedApplication(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(ptr, MethodBindings.setIgnoreJoypadOnUnfocusedApplicationPtr, NIL)
+  }
+
+  @JvmStatic
+  public final fun isIgnoringJoypadOnUnfocusedApplication(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isIgnoringJoypadOnUnfocusedApplicationPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -933,6 +1220,365 @@ public object Input : Object() {
   }
 
   /**
+   * Returns the acceleration, including the force of gravity, in m/s² of the joypad's accelerometer
+   * sensor, if the joypad has one and it's currently enabled. Otherwise, the method returns
+   * [Vector3.ZERO]. See also [getJoyGravity] and [setJoyMotionSensorsEnabled].
+   *
+   * For a joypad held in front of you, the returned axes are defined as follows:
+   *
+   * +X ... -X: left ... right;
+   *
+   * +Y ... -Y: bottom ... top;
+   *
+   * +Z ... -Z: farther ... closer.
+   *
+   * The gravity part value is measured as a vector with length of `9.8` away from the center of the
+   * Earth, which is a negative Y value.
+   *
+   * **Note:** This feature is only supported on Windows, Linux, and macOS. On iOS, joypad
+   * accelerometer sensor reading is not supported due to OS limitations.
+   */
+  @JvmStatic
+  public final fun getJoyAccelerometer(device: Int): Vector3 {
+    TransferContext.writeArguments(LONG to device.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.getJoyAccelerometerPtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+  }
+
+  /**
+   * Returns the gravity in m/s² of the joypad's accelerometer sensor, if the joypad has one and
+   * it's currently enabled. Otherwise, the method returns [Vector3.ZERO]. See also
+   * [getJoyAccelerometer] and [setJoyMotionSensorsEnabled].
+   *
+   * For a joypad held in front of you, the returned axes are defined as follows:
+   *
+   * +X ... -X: left ... right;
+   *
+   * +Y ... -Y: bottom ... top;
+   *
+   * +Z ... -Z: farther ... closer.
+   *
+   * The gravity part value is measured as a vector with length of `9.8` away from the center of the
+   * Earth, which is a negative Y value.
+   *
+   * **Note:** This feature is only supported on Windows, Linux, and macOS. On iOS, joypad
+   * accelerometer sensor reading is not supported due to OS limitations.
+   */
+  @JvmStatic
+  public final fun getJoyGravity(device: Int): Vector3 {
+    TransferContext.writeArguments(LONG to device.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.getJoyGravityPtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+  }
+
+  /**
+   * Returns the rotation rate in rad/s around a joypad's X, Y, and Z axes of the gyroscope sensor,
+   * if the joypad has one and it's currently enabled. Otherwise, the method returns [Vector3.ZERO].
+   * See also [setJoyMotionSensorsEnabled].
+   *
+   * The rotation is positive in the counter-clockwise direction.
+   *
+   * For a joypad held in front of you, the returned axes are defined as follows:
+   *
+   * X: Angular speed around the X axis (pitch);
+   *
+   * Y: Angular speed around the Y axis (yaw);
+   *
+   * Z: Angular speed around the Z axis (roll).
+   *
+   * See [startJoyMotionSensorsCalibration] for an example on how to use joypad gyroscope and
+   * gyroscope calibration in your games.
+   *
+   * **Note:** This feature is only supported on Windows, Linux, macOS, and iOS.
+   */
+  @JvmStatic
+  public final fun getJoyGyroscope(device: Int): Vector3 {
+    TransferContext.writeArguments(LONG to device.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.getJoyGyroscopePtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+  }
+
+  /**
+   * Returns the joypad's motion sensor rate in Hz, if the joypad has motion sensors and they're
+   * currently enabled. See also [setJoyMotionSensorsEnabled].
+   *
+   * **Note:** This feature is only supported on Windows, Linux, macOS, and iOS.
+   */
+  @JvmStatic
+  public final fun getJoyMotionSensorsRate(device: Int): Float {
+    TransferContext.writeArguments(LONG to device.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.getJoyMotionSensorsRatePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  /**
+   * Returns `true` if the requested joypad has motion sensors (accelerometer and gyroscope) and
+   * they are currently enabled. See also [setJoyMotionSensorsEnabled] and [hasJoyMotionSensors].
+   *
+   * See [startJoyMotionSensorsCalibration] for an example on how to use joypad motion sensors and
+   * calibration in your games.
+   *
+   * **Note:** This feature is only supported on Windows, Linux, macOS, and iOS.
+   */
+  @JvmStatic
+  public final fun isJoyMotionSensorsEnabled(device: Int): Boolean {
+    TransferContext.writeArguments(LONG to device.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.isJoyMotionSensorsEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Enables or disables the motion sensors (accelerometer and gyroscope), if available, on the
+   * specified joypad.
+   *
+   * See [startJoyMotionSensorsCalibration] for an example on how to use joypad motion sensors and
+   * calibration in your games.
+   *
+   * It's recommended to disable the motion sensors when they're no longer being used, because
+   * otherwise it might drain the controller battery faster.
+   *
+   * **Note:** This feature is only supported on Windows, Linux, macOS, and iOS.
+   */
+  @JvmStatic
+  public final fun setJoyMotionSensorsEnabled(device: Int, enable: Boolean): Unit {
+    TransferContext.writeArguments(LONG to device.toLong(), BOOL to enable)
+    TransferContext.callMethod(ptr, MethodBindings.setJoyMotionSensorsEnabledPtr, NIL)
+  }
+
+  /**
+   * Returns `true` if the joypad has motion sensors (accelerometer and gyroscope).
+   *
+   * **Note:** On iOS, joypad accelerometer sensor reading is not supported due to OS limitations.
+   *
+   * **Note:** This feature is only supported on Windows, Linux, macOS, and iOS.
+   */
+  @JvmStatic
+  public final fun hasJoyMotionSensors(device: Int): Boolean {
+    TransferContext.writeArguments(LONG to device.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.hasJoyMotionSensorsPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Starts the process of calibrating the specified joypad's gyroscope, if it has one.
+   *
+   * Once a joypad's gyroscope has been calibrated correctly (e.g. laying still on a table without
+   * being rotated), [getJoyGyroscope] will return values close or equal to [Vector3.ZERO] when the
+   * joypad is not being rotated.
+   *
+   * Here's an example of how to use joypad gyroscope and gyroscope calibration in your games:
+   *
+   * ```gdscript
+   * //gdscript
+   * const GYRO_SENSITIVITY = 10.0
+   *
+   * func _ready():
+   * 	# In this example we only use the first connected joypad (id 0).
+   * 	if 0 not in Input.get_connected_joypads():
+   * 		return
+   *
+   * 	if not Input.has_joy_motion_sensors(0):
+   * 		return
+   *
+   * 	# We must enable the motion sensors before using them.
+   * 	Input.set_joy_motion_sensors_enabled(0, true)
+   *
+   * 	# (Tell the users here that they need to put their joypads on a flat surface and wait for
+   * confirmation.)
+   *
+   * 	# Start the calibration process.
+   * 	calibrate_motion()
+   *
+   * func _process(delta):
+   * 	# Only move the object if the joypad motion sensors are calibrated.
+   * 	if Input.is_joy_motion_sensors_calibrated(0):
+   * 		move_object(delta)
+   *
+   * func calibrate_motion():
+   * 	Input.start_joy_motion_sensors_calibration(0)
+   *
+   * 	# Wait for some time.
+   * 	await get_tree().create_timer(1.0).timeout
+   *
+   * 	Input.stop_joy_motion_sensors_calibration(0)
+   * 	# The joypad is now calibrated.
+   *
+   * func move_object(delta):
+   * 	var node: Node3D = ... # Put your node here.
+   *
+   * 	var gyro := Input.get_joy_gyroscope(0)
+   * 	node.rotation.x -= -gyro.y * GYRO_SENSITIVITY * delta # Use rotation around the Y axis (yaw)
+   * here.
+   * 	node.rotation.y += -gyro.x * GYRO_SENSITIVITY * delta # Use rotation around the X axis (pitch)
+   * here.
+   * ```
+   *
+   * ```csharp
+   * //csharp
+   * private const float GyroSensitivity = 10.0;
+   *
+   * public override void _Ready()
+   * {
+   * 	// In this example we only use the first connected joypad (id 0).
+   * 	if (!Input.GetConnectedJoypads().Contains(0))
+   * 	{
+   * 		return;
+   * 	}
+   *
+   * 	if (!Input.HasJoyMotionSensors(0))
+   * 	{
+   * 		return;
+   * 	}
+   *
+   * 	// We must enable the accelerometer and the gyroscope before using them.
+   * 	Input.SetJoyMotionSensorsEnabled(0, true);
+   *
+   * 	// (Tell the users here that they need to put their joypads on a flat surface and wait for
+   * confirmation.)
+   *
+   * 	// Start the calibration process.
+   * 	CalibrateMotion();
+   * }
+   *
+   * public override void _Process(double delta)
+   * {
+   * 	// Only move the object if the joypad motion sensors are calibrated.
+   * 	if (Input.IsJoyMotionSensorsCalibrated(0))
+   * 	{
+   * 		MoveObject(delta);
+   * 	}
+   * }
+   *
+   * private async Task CalibrateMotion()
+   * {
+   * 	Input.StartJoyMotionSensorsCalibration(0);
+   *
+   * 	// Wait for some time.
+   * 	await ToSignal(GetTree().CreateTimer(1.0), SceneTreeTimer.SignalName.Timeout);
+   *
+   * 	Input.StopJoyMotionSensorsCalibration(0);
+   * 	// The joypad is now calibrated.
+   * }
+   *
+   * private void MoveObject(double delta)
+   * {
+   * 	Node3D node = ... ; // Put your object here.
+   * 	Vector3 gyro = Input.GetJoyGyroscope(0);
+   * 	Vector3 rotation = node.Rotation;
+   * 	rotation.X -= -gyro.Y * GyroSensitivity * (float)delta; // Use rotation around the Y axis
+   * (yaw) here.
+   * 	rotation.Y += -gyro.X * GyroSensitivity * (float)delta; // Use rotation around the X axis
+   * (pitch) here.
+   * 	node.Rotation = rotation;
+   * }
+   * ```
+   *
+   * **Note:** Accelerometer sensor doesn't usually require calibration.
+   *
+   * **Note:** This feature is only supported on Windows, Linux, macOS, and iOS.
+   */
+  @JvmStatic
+  public final fun startJoyMotionSensorsCalibration(device: Int): Unit {
+    TransferContext.writeArguments(LONG to device.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.startJoyMotionSensorsCalibrationPtr, NIL)
+  }
+
+  /**
+   * Stops the calibration process of the specified joypad's motion sensors.
+   *
+   * See [startJoyMotionSensorsCalibration] for an example on how to use joypad motion sensors and
+   * calibration in your games.
+   *
+   * **Note:** This feature is only supported on Windows, Linux, macOS, and iOS.
+   */
+  @JvmStatic
+  public final fun stopJoyMotionSensorsCalibration(device: Int): Unit {
+    TransferContext.writeArguments(LONG to device.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.stopJoyMotionSensorsCalibrationPtr, NIL)
+  }
+
+  /**
+   * Clears the calibration information for the specified joypad's motion sensors, if it has any and
+   * if they were calibrated.
+   *
+   * See [startJoyMotionSensorsCalibration] for an example on how to use joypad motion sensors and
+   * calibration in your games.
+   *
+   * **Note:** This feature is only supported on Windows, Linux, macOS, and iOS.
+   */
+  @JvmStatic
+  public final fun clearJoyMotionSensorsCalibration(device: Int): Unit {
+    TransferContext.writeArguments(LONG to device.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.clearJoyMotionSensorsCalibrationPtr, NIL)
+  }
+
+  /**
+   * Returns the calibration information about the specified joypad's motion sensors in the form of
+   * a [Dictionary], if it has any and if they have been calibrated, otherwise returns an empty
+   * [Dictionary].
+   *
+   * The dictionary contains the following fields:
+   *
+   * `gyroscope_offset`: average offset in gyroscope values from [Vector2.ZERO] in rad/s.
+   *
+   * See [startJoyMotionSensorsCalibration] for an example on how to use joypad motion sensors and
+   * calibration in your games.
+   *
+   * **Note:** This feature is only supported on Windows, Linux, macOS, and iOS.
+   */
+  @JvmStatic
+  public final fun getJoyMotionSensorsCalibration(device: Int): Dictionary<Any?, Any?> {
+    TransferContext.writeArguments(LONG to device.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.getJoyMotionSensorsCalibrationPtr, DICTIONARY)
+    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
+  }
+
+  /**
+   * Sets the specified joypad's calibration information. See also [getJoyMotionSensorsCalibration].
+   *
+   * See [startJoyMotionSensorsCalibration] for an example on how to use joypad motion sensors and
+   * calibration in your games.
+   *
+   * **Note:** This feature is only supported on Windows, Linux, macOS, and iOS.
+   */
+  @JvmStatic
+  public final fun setJoyMotionSensorsCalibration(device: Int,
+      calibrationInfo: Dictionary<Any?, Any?>): Unit {
+    TransferContext.writeArguments(LONG to device.toLong(), DICTIONARY to calibrationInfo)
+    TransferContext.callMethod(ptr, MethodBindings.setJoyMotionSensorsCalibrationPtr, NIL)
+  }
+
+  /**
+   * Returns `true` if the joypad's motion sensors have been calibrated.
+   *
+   * See [startJoyMotionSensorsCalibration] for an example on how to use joypad motion sensors and
+   * calibration in your games.
+   *
+   * **Note:** This feature is only supported on Windows, Linux, macOS, and iOS.
+   */
+  @JvmStatic
+  public final fun isJoyMotionSensorsCalibrated(device: Int): Boolean {
+    TransferContext.writeArguments(LONG to device.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.isJoyMotionSensorsCalibratedPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Returns `true` if the joypad's motion sensors are currently being calibrated.
+   *
+   * See [startJoyMotionSensorsCalibration] for an example on how to use joypad motion sensors and
+   * calibration in your games.
+   *
+   * **Note:** This feature is only supported on Windows, Linux, macOS, and iOS.
+   */
+  @JvmStatic
+  public final fun isJoyMotionSensorsCalibrating(device: Int): Boolean {
+    TransferContext.writeArguments(LONG to device.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.isJoyMotionSensorsCalibratingPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
    * Sets the gravity value of the accelerometer sensor. Can be used for debugging on devices
    * without a hardware sensor, for example in an editor on a PC.
    *
@@ -990,7 +1636,7 @@ public object Input : Object() {
    * **Note:** There is no way to get the color of the light from a joypad. If you need to know the
    * assigned color, store it separately.
    *
-   * **Note:** This feature is only supported on Windows, Linux, and macOS.
+   * **Note:** This feature is only supported on Windows, Linux, macOS, and iOS.
    */
   @JvmStatic
   public final fun setJoyLight(device: Int, color: Color): Unit {
@@ -1002,7 +1648,7 @@ public object Input : Object() {
    * Returns `true` if the joypad has an LED light that can change colors and/or brightness. See
    * also [setJoyLight].
    *
-   * **Note:** This feature is only supported on Windows, Linux, and macOS.
+   * **Note:** This feature is only supported on Windows, Linux, macOS, and iOS.
    */
   @JvmStatic
   public final fun hasJoyLight(device: Int): Boolean {
@@ -1640,6 +2286,15 @@ public object Input : Object() {
     internal val getJoyVibrationDurationPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Input", "get_joy_vibration_duration", 4025615559)
 
+    internal val getJoyVibrationRemainingDurationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "get_joy_vibration_remaining_duration", 4025615559)
+
+    internal val isJoyVibratingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "is_joy_vibrating", 3067735520)
+
+    internal val hasJoyVibrationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "has_joy_vibration", 1116898809)
+
     internal val startJoyVibrationPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Input", "start_joy_vibration", 2576575033)
 
@@ -1648,6 +2303,12 @@ public object Input : Object() {
 
     internal val vibrateHandheldPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Input", "vibrate_handheld", 544894297)
+
+    internal val setIgnoreJoypadOnUnfocusedApplicationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "set_ignore_joypad_on_unfocused_application", 2586408642)
+
+    internal val isIgnoringJoypadOnUnfocusedApplicationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "is_ignoring_joypad_on_unfocused_application", 36873697)
 
     internal val getGravityPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Input", "get_gravity", 3360562783)
@@ -1660,6 +2321,48 @@ public object Input : Object() {
 
     internal val getGyroscopePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Input", "get_gyroscope", 3360562783)
+
+    internal val getJoyAccelerometerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "get_joy_accelerometer", 711720468)
+
+    internal val getJoyGravityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "get_joy_gravity", 711720468)
+
+    internal val getJoyGyroscopePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "get_joy_gyroscope", 711720468)
+
+    internal val getJoyMotionSensorsRatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "get_joy_motion_sensors_rate", 2339986948)
+
+    internal val isJoyMotionSensorsEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "is_joy_motion_sensors_enabled", 1116898809)
+
+    internal val setJoyMotionSensorsEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "set_joy_motion_sensors_enabled", 300928843)
+
+    internal val hasJoyMotionSensorsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "has_joy_motion_sensors", 1116898809)
+
+    internal val startJoyMotionSensorsCalibrationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "start_joy_motion_sensors_calibration", 1286410249)
+
+    internal val stopJoyMotionSensorsCalibrationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "stop_joy_motion_sensors_calibration", 1286410249)
+
+    internal val clearJoyMotionSensorsCalibrationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "clear_joy_motion_sensors_calibration", 1286410249)
+
+    internal val getJoyMotionSensorsCalibrationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "get_joy_motion_sensors_calibration", 3485342025)
+
+    internal val setJoyMotionSensorsCalibrationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "set_joy_motion_sensors_calibration", 64545446)
+
+    internal val isJoyMotionSensorsCalibratedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "is_joy_motion_sensors_calibrated", 1116898809)
+
+    internal val isJoyMotionSensorsCalibratingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "is_joy_motion_sensors_calibrating", 1116898809)
 
     internal val setGravityPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Input", "set_gravity", 3460891852)

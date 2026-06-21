@@ -281,6 +281,10 @@ public open class Environment : Resource() {
    *
    * **Note:** [tonemapWhite] must be set to `2.0` or lower on the Mobile renderer to produce bright
    * images.
+   *
+   * **Note:** [tonemapWhite] is ignored when using [TONE_MAPPER_LINEAR] and will be dynamically
+   * adjusted at runtime to never be less than the parent window's [Window.getOutputMaxLinearValue]
+   * when using [TONE_MAPPER_REINHARDT] with [Viewport.useHdr2d].
    */
   public final inline var tonemapWhite: Float
     @JvmName("tonemapWhiteProperty")
@@ -298,7 +302,10 @@ public open class Environment : Resource() {
    * effective with the [TONE_MAPPER_AGX] tonemapper. See also [tonemapExposure].
    *
    * **Note:** When using the Mobile renderer with [Viewport.useHdr2d] disabled, [tonemapAgxWhite]
-   * is ignored and a white value of `2.0` will always be used instead.
+   * is ignored and a white value of `2.0` will always be used instead. Otherwise, [tonemapAgxWhite]
+   * will be dynamically adjusted at runtime by multiplying it by the parent window's
+   * [Window.getOutputMaxLinearValue] when using [Viewport.useHdr2d] to ensure good behavior with both
+   * SDR and HDR output.
    */
   public final inline var tonemapAgxWhite: Float
     @JvmName("tonemapAgxWhiteProperty")
@@ -1392,6 +1399,9 @@ public open class Environment : Resource() {
    * The [Texture2D] or [Texture3D] lookup table (LUT) to use for the built-in post-process color
    * grading. Can use a [GradientTexture1D] for a 1-dimensional LUT, or a [Texture3D] for a more
    * complex LUT. Effective only if [adjustmentEnabled] is `true`.
+   *
+   * **Note:** Color correction does not currently support HDR output due to only supporting values
+   * in the SDR (0.0 to 1.0) range.
    */
   public final inline var adjustmentColorCorrection: Texture?
     @JvmName("adjustmentColorCorrectionProperty")
@@ -1402,7 +1412,7 @@ public open class Environment : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(214, scriptPtr)
+    createNativeObject(219, scriptPtr)
   }
 
   /**
@@ -2681,6 +2691,9 @@ public open class Environment : Resource() {
     /**
      * Uses a film-like tonemapping curve to prevent clipping of bright values and provide better
      * contrast than [TONE_MAPPER_REINHARDT]. Slightly slower than [TONE_MAPPER_REINHARDT].
+     *
+     * **Note:** This tonemapper does not support HDR output because it produces output in the SDR
+     * range. It is recommended to use a different tonemapper when rendering to an HDR screen.
      */
     FILMIC(2),
     /**
@@ -2688,6 +2701,9 @@ public open class Environment : Resource() {
      * realistic appearance. Slightly slower than [TONE_MAPPER_FILMIC].
      *
      * **Note:** This tonemapping operator is called "ACES Fitted" in Godot 3.x.
+     *
+     * **Note:** This tonemapper does not support HDR output because it produces output in the SDR
+     * range. It is recommended to use a different tonemapper when rendering to an HDR screen.
      */
     ACES(3),
     /**
@@ -2715,8 +2731,8 @@ public open class Environment : Resource() {
      * value; dark values will be highly influenced by glow and bright values will not be influenced by
      * glow. This approach avoids bright values becoming overly bright from the glow effect.
      * [tonemapWhite] is used to determine the maximum scene value where the glow should have no
-     * influence. When [tonemapMode] is set to [TONE_MAPPER_LINEAR], a value of `1.0` will be used as
-     * the maximum scene value.
+     * influence. When [tonemapMode] is set to [TONE_MAPPER_LINEAR] and [Viewport.useHdr2d] is `true`,
+     * the parent window's [Window.getOutputMaxLinearValue] will be used as the maximum scene value.
      */
     SCREEN(1),
     /**
@@ -2725,6 +2741,9 @@ public open class Environment : Resource() {
      * will be highly influenced by glow. This approach avoids bright values becoming overly bright
      * from the glow effect. The glow will have the largest influence on image values of `0.25` and
      * will have no influence when applied to image values greater than `1.0`.
+     *
+     * **Note:** This blend mode does not support HDR output because expects a maximum output value
+     * of `1.0`. It is recommended to use a different blend mode when rendering to an HDR screen.
      */
     SOFTLIGHT(2),
     /**

@@ -16,6 +16,7 @@ import godot.core.Color
 import godot.core.GodotEnum
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.MethodStringName5
 import godot.core.NodePath
 import godot.core.Rect2
@@ -440,7 +441,7 @@ public open class GPUParticles2D : Node2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(254, scriptPtr)
+    createNativeObject(259, scriptPtr)
   }
 
   /**
@@ -549,11 +550,15 @@ public open class GPUParticles2D : Node2D() {
   /**
    * Requests the particles to process for extra process time during a single frame.
    *
-   * Useful for particle playback, if used in combination with [useFixedSeed] or by calling
-   * [restart] with parameter `keep_seed` set to `true`.
+   * [processTime] defines the time that the particles will process while emitting is on.
+   * [processTimeResidual] defines the time that particles will process with emitting turned off for
+   * the simulation. When combined with [speedScale] set to `0.0`, this is useful to be able to seek a
+   * particle system timeline.
    */
-  public final fun requestParticlesProcess(processTime: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to processTime.toDouble())
+  @JvmOverloads
+  public final fun requestParticlesProcess(processTime: Float, processTimeResidual: Float = 0.0f):
+      Unit {
+    TransferContext.writeArguments(DOUBLE to processTime.toDouble(), DOUBLE to processTimeResidual.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.requestParticlesProcessPtr, NIL)
   }
 
@@ -942,8 +947,8 @@ public open class GPUParticles2D : Node2D() {
         MethodStringName1<GPUParticles2D, Unit, Float>("set_interp_to_end")
 
     @JvmField
-    public val requestParticlesProcessName: MethodStringName1<GPUParticles2D, Unit, Float> =
-        MethodStringName1<GPUParticles2D, Unit, Float>("request_particles_process")
+    public val requestParticlesProcessName: MethodStringName2<GPUParticles2D, Unit, Float, Float> =
+        MethodStringName2<GPUParticles2D, Unit, Float, Float>("request_particles_process")
 
     @JvmField
     public val isEmittingName: MethodStringName0<GPUParticles2D, Boolean> =
@@ -1157,7 +1162,7 @@ public open class GPUParticles2D : Node2D() {
         TypeManager.getMethodBindPtr("GPUParticles2D", "set_interp_to_end", 373806689)
 
     internal val requestParticlesProcessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles2D", "request_particles_process", 373806689)
+        TypeManager.getMethodBindPtr("GPUParticles2D", "request_particles_process", 2019720106)
 
     internal val isEmittingPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GPUParticles2D", "is_emitting", 36873697)

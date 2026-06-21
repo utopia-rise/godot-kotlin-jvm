@@ -10,9 +10,14 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.Callable
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.PackedStringArray
+import godot.core.VariantParser.CALLABLE
 import godot.core.VariantParser.OBJECT
+import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
 import kotlin.String
 import kotlin.Suppress
@@ -50,8 +55,18 @@ public object JavaClassWrapper : Object() {
   public val getExceptionName: MethodStringName0<JavaClassWrapper, JavaObject?> =
       MethodStringName0<JavaClassWrapper, JavaObject?>("get_exception")
 
+  @JvmField
+  public val createSamCallbackName:
+      MethodStringName2<JavaClassWrapper, JavaObject?, String, Callable> =
+      MethodStringName2<JavaClassWrapper, JavaObject?, String, Callable>("create_sam_callback")
+
+  @JvmField
+  public val createProxyName:
+      MethodStringName2<JavaClassWrapper, JavaObject?, Object?, PackedStringArray> =
+      MethodStringName2<JavaClassWrapper, JavaObject?, Object?, PackedStringArray>("create_proxy")
+
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(12)
+    getSingleton(13)
   }
 
   /**
@@ -93,11 +108,73 @@ public object JavaClassWrapper : Object() {
     return (TransferContext.readReturnValue(OBJECT) as JavaObject?)
   }
 
+  /**
+   * Creates a [JavaObject] implementing the Java Single Abstract Method (SAM) interface using the
+   * Godot [Callable] as the implementation.
+   *
+   * The [samInterface] **must be** a Java SAM interface, meaning it must only have a single
+   * abstract method to implement.
+   *
+   * The [callable] must be able to handle the same parameter types as the SAM interface method, and
+   * must provide the same return type. The [callable] will be invoked as a callback, passing the
+   * arguments from the Java SAM interface method.
+   *
+   * ```
+   * var cb = func (content: String) -> void:
+   * 	print(content)
+   * var callback = JavaClassWrapper.create_sam_callback("android.util.Printer", cb)
+   * callback.println("Hello Godot World!")
+   * ```
+   *
+   * **Note:** This method only works on Android. On every other platform, this method will always
+   * return `null`.
+   */
+  @JvmStatic
+  public final fun createSamCallback(samInterface: String, callable: Callable): JavaObject? {
+    TransferContext.writeArguments(STRING to samInterface, CALLABLE to callable)
+    TransferContext.callMethod(ptr, MethodBindings.createSamCallbackPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT) as JavaObject?)
+  }
+
+  /**
+   * Creates a [JavaObject] implementing the given Java interfaces using the given [Object] as the
+   * implementation.
+   *
+   * The [object] must contain methods signatures matching the methods signatures from the passed
+   * Java [interfaces]. Invoking methods from the Java [interfaces] will route to the matching [object]
+   * method.
+   *
+   * ```
+   * class PrintProxy:
+   * 	func println(content: String) -> void:
+   * 		print(content)
+   *
+   * var print_proxy = PrintProxy.new()
+   * var printer_object = JavaClassWrapper.create_proxy(print_proxy, ["android.util.Printer"])
+   * printer_object.println("Hello Godot World!")
+   * ```
+   *
+   * **Note:** This method only works on Android. On every other platform, this method will always
+   * return `null`.
+   */
+  @JvmStatic
+  public final fun createProxy(`object`: Object?, interfaces: PackedStringArray): JavaObject? {
+    TransferContext.writeArguments(OBJECT to `object`, PACKED_STRING_ARRAY to interfaces)
+    TransferContext.callMethod(ptr, MethodBindings.createProxyPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT) as JavaObject?)
+  }
+
   public object MethodBindings {
     internal val wrapPtr: VoidPtr =
         TypeManager.getMethodBindPtr("JavaClassWrapper", "wrap", 1124367868)
 
     internal val getExceptionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("JavaClassWrapper", "get_exception", 3277089691)
+
+    internal val createSamCallbackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("JavaClassWrapper", "create_sam_callback", 2479014754)
+
+    internal val createProxyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("JavaClassWrapper", "create_proxy", 2694931752)
   }
 }

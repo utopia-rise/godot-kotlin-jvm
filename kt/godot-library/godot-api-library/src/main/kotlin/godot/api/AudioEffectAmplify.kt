@@ -28,8 +28,8 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class AudioEffectAmplify : AudioEffect() {
   /**
-   * Amount of amplification in decibels. Positive values make the sound louder, negative values
-   * make it quieter. Value can range from -80 to 24.
+   * Amount of amplification in dB. Positive values make the sound louder, negative values make it
+   * quieter. Value can range from -80 to 24.
    */
   public final inline var volumeDb: Float
     @JvmName("volumeDbProperty")
@@ -55,7 +55,7 @@ public open class AudioEffectAmplify : AudioEffect() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(47, scriptPtr)
+    createNativeObject(49, scriptPtr)
   }
 
   public final fun setVolumeDb(volume: Float): Unit {

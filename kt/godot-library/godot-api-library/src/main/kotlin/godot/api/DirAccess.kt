@@ -135,7 +135,7 @@ public open class DirAccess internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(203, scriptPtr)
+    createNativeObject(207, scriptPtr)
   }
 
   /**
@@ -532,6 +532,10 @@ public open class DirAccess internal constructor() : RefCounted() {
         MethodStringName1<DirAccess, String, Int>("get_drive_name")
 
     @JvmField
+    public val getDriveLabelName: MethodStringName1<DirAccess, String, Int> =
+        MethodStringName1<DirAccess, String, Int>("get_drive_label")
+
+    @JvmField
     public val getCurrentDriveName: MethodStringName0<DirAccess, Int> =
         MethodStringName0<DirAccess, Int>("get_current_drive")
 
@@ -749,13 +753,24 @@ public open class DirAccess internal constructor() : RefCounted() {
      *
      * On Android (API level 30+), returns the path to the mounted volume as an argument.
      *
-     * On other platforms, or if the requested drive does not exist, the method returns an empty
-     * String.
+     * On other platforms, or if the requested drive does not exist, returns an empty String.
      */
     @JvmStatic
     public final fun getDriveName(idx: Int): String {
       TransferContext.writeArguments(LONG to idx.toLong())
       TransferContext.callMethod(0, MethodBindings.getDriveNamePtr, STRING)
+      return (TransferContext.readReturnValue(STRING) as String)
+    }
+
+    /**
+     * On Windows, returns the label of the drive (partition) passed as an argument.
+     *
+     * On other platforms, or if the requested drive does not exist, returns an empty String.
+     */
+    @JvmStatic
+    public final fun getDriveLabel(idx: Int): String {
+      TransferContext.writeArguments(LONG to idx.toLong())
+      TransferContext.callMethod(0, MethodBindings.getDriveLabelPtr, STRING)
       return (TransferContext.readReturnValue(STRING) as String)
     }
 
@@ -867,6 +882,9 @@ public open class DirAccess internal constructor() : RefCounted() {
 
     internal val getDriveNamePtr: VoidPtr =
         TypeManager.getMethodBindPtr("DirAccess", "get_drive_name", 990163283)
+
+    internal val getDriveLabelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DirAccess", "get_drive_label", 990163283)
 
     internal val getCurrentDrivePtr: VoidPtr =
         TypeManager.getMethodBindPtr("DirAccess", "get_current_drive", 2455072627)

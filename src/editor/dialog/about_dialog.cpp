@@ -6,6 +6,8 @@
 #include "editor/godot_kotlin_jvm_editor.h"
 #include "editor/strings.h"
 
+#include <core/object/callable_mp.h>
+#include <core/os/os.h>
 #include <editor/editor_interface.h>
 #include <editor/settings/editor_settings.h>
 #include <editor/themes/editor_scale.h>

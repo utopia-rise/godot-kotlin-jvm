@@ -34,7 +34,7 @@ import kotlin.jvm.JvmField
 @GodotBaseType
 public open class Texture2DArray : ImageTextureLayered() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(727, scriptPtr)
+    createNativeObject(741, scriptPtr)
   }
 
   /**

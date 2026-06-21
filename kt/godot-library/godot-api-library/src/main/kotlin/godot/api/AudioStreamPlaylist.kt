@@ -29,6 +29,10 @@ import kotlin.Unit
 import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
+/**
+ * An audio stream that can play back sub-streams in sequence. Streams can be added to the Playlist
+ * with [setListStream], and shuffled with [shuffle].
+ */
 @GodotBaseType
 public open class AudioStreamPlaylist : AudioStream() {
   /**
@@ -590,7 +594,7 @@ public open class AudioStreamPlaylist : AudioStream() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(98, scriptPtr)
+    createNativeObject(100, scriptPtr)
   }
 
   public final fun setStreamCount(streamCount: Int): Unit {

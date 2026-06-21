@@ -61,7 +61,7 @@ public open class OpenXRSpatialEntityExtension : OpenXRExtensionWrapper() {
   public val spatialDiscoveryRecommended: Signal1<RID> by Signal1
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(481, scriptPtr)
+    createNativeObject(490, scriptPtr)
   }
 
   /**
@@ -135,6 +135,22 @@ public open class OpenXRSpatialEntityExtension : OpenXRExtensionWrapper() {
     TransferContext.writeArguments(_RID to spatialContext)
     TransferContext.callMethod(ptr, MethodBindings.getSpatialContextHandlePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Convenience method when the caller only has an [Array] of [OpenXRSpatialComponentData] and
+   * needs to discover spatial entities.
+   */
+  @JvmOverloads
+  public final fun discoverSpatialEntitiesWithComponentData(
+    spatialContext: RID,
+    componentData: VariantArray<OpenXRSpatialComponentData>,
+    next: OpenXRStructureBase? = null,
+    userCallback: Callable = VariantCallable(),
+  ): OpenXRFutureResult? {
+    TransferContext.writeArguments(_RID to spatialContext, ARRAY to componentData, OBJECT to next, CALLABLE to userCallback)
+    TransferContext.callMethod(ptr, MethodBindings.discoverSpatialEntitiesWithComponentDataPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT) as OpenXRFutureResult?)
   }
 
   /**
@@ -490,6 +506,12 @@ public open class OpenXRSpatialEntityExtension : OpenXRExtensionWrapper() {
         MethodStringName1<OpenXRSpatialEntityExtension, Long, RID>("get_spatial_context_handle")
 
     @JvmField
+    public val discoverSpatialEntitiesWithComponentDataName:
+        MethodStringName4<OpenXRSpatialEntityExtension, OpenXRFutureResult?, RID, VariantArray<OpenXRSpatialComponentData>, OpenXRStructureBase?, Callable>
+        =
+        MethodStringName4<OpenXRSpatialEntityExtension, OpenXRFutureResult?, RID, VariantArray<OpenXRSpatialComponentData>, OpenXRStructureBase?, Callable>("discover_spatial_entities_with_component_data")
+
+    @JvmField
     public val discoverSpatialEntitiesName:
         MethodStringName4<OpenXRSpatialEntityExtension, OpenXRFutureResult?, RID, PackedInt64Array, OpenXRStructureBase?, Callable>
         =
@@ -601,6 +623,9 @@ public open class OpenXRSpatialEntityExtension : OpenXRExtensionWrapper() {
 
     internal val getSpatialContextHandlePtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRSpatialEntityExtension", "get_spatial_context_handle", 2198884583)
+
+    internal val discoverSpatialEntitiesWithComponentDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRSpatialEntityExtension", "discover_spatial_entities_with_component_data", 1830928590)
 
     internal val discoverSpatialEntitiesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRSpatialEntityExtension", "discover_spatial_entities", 2252833536)

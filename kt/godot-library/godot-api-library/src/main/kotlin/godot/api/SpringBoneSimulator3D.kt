@@ -61,6 +61,10 @@ import kotlin.jvm.JvmName
  *
  * **Warning:** A scaled [SpringBoneSimulator3D] will likely not behave as expected. Make sure that
  * the parent [Skeleton3D] and its bones are not scaled.
+ *
+ * **Note:** Most methods in this class take an `index` parameter. This parameter specifies which
+ * setting list entry to return if the IK has multiple entries (e.g.
+ * `settings/<index>/root_bone_name`).
  */
 @GodotBaseType
 public open class SpringBoneSimulator3D : SkeletonModifier3D() {
@@ -113,7 +117,7 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(684, scriptPtr)
+    createNativeObject(698, scriptPtr)
   }
 
   /**
@@ -367,8 +371,10 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * Sets the rotation axis of the bone chain. If set to a specific axis, it acts like a hinge
    * joint. The value is cached in each joint setting in the joint list.
    *
-   * The axes are based on the [Skeleton3D.getBoneRest]'s space, if [axis] is
+   * The axes are based on the reference pose's space, if [axis] is
    * [SkeletonModifier3D.ROTATION_AXIS_CUSTOM], you can specify any axis.
+   *
+   * In here, the reference pose is the bone pose immediately before the simulation.
    *
    * **Note:** The rotation axis vector and the forward vector shouldn't be colinear to avoid
    * unintended rotation since [SpringBoneSimulator3D] does not factor in twisting forces.
@@ -629,8 +635,10 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * Sets the rotation axis at [joint] in the bone chain's joint list when [isConfigIndividual] is
    * `true`.
    *
-   * The axes are based on the [Skeleton3D.getBoneRest]'s space, if [axis] is
+   * The axes are based on the reference pose's space, if [axis] is
    * [SkeletonModifier3D.ROTATION_AXIS_CUSTOM], you can specify any axis.
+   *
+   * In here, the reference pose is the bone pose immediately before the simulation.
    *
    * **Note:** The rotation axis and the forward vector shouldn't be colinear to avoid unintended
    * rotation since [SpringBoneSimulator3D] does not factor in twisting forces.

@@ -42,7 +42,7 @@ public object NavigationServer2DManager : Object() {
       MethodStringName2<NavigationServer2DManager, Unit, String, Int>("set_default_server")
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(18)
+    getSingleton(19)
   }
 
   /**

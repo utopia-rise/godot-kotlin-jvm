@@ -81,7 +81,7 @@ public open class VisibleOnScreenNotifier2D : Node2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(786, scriptPtr)
+    createNativeObject(801, scriptPtr)
   }
 
   /**

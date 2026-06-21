@@ -162,7 +162,7 @@ public open class CompositorEffect : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(170, scriptPtr)
+    createNativeObject(174, scriptPtr)
   }
 
   /**

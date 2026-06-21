@@ -12,12 +12,15 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Reduces all frequencies below the [AudioEffectFilter.cutoffHz].
+ * A "low-shelf" filter controls the gain of all frequencies below [AudioEffectFilter.cutoffHz].
+ *
+ * This filter can be used to adjust the "strength" of a sound, by increasing or decreasing its
+ * low-end.
  */
 @GodotBaseType
 public open class AudioEffectLowShelfFilter : AudioEffectFilter() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(66, scriptPtr)
+    createNativeObject(68, scriptPtr)
   }
 
   public companion object

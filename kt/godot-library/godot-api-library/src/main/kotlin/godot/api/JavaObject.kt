@@ -34,7 +34,7 @@ import kotlin.jvm.JvmField
 @GodotBaseType
 public open class JavaObject : RefCounted() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(332, scriptPtr)
+    createNativeObject(338, scriptPtr)
   }
 
   /**

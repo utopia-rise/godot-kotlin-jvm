@@ -38,8 +38,10 @@ import kotlin.jvm.JvmStatic
 /**
  * The AudioStreamOggVorbis class is a specialized [AudioStream] for handling Ogg Vorbis file
  * formats. It offers functionality for loading and playing back Ogg Vorbis files, as well as managing
- * looping and other playback properties. This class is part of the audio stream system, which also
- * supports WAV files through the [AudioStreamWAV] class.
+ * looping and other playback properties. More info can be found in [ResourceImporterOggVorbis].
+ *
+ * This class is part of the audio stream system, which also supports WAV files through the
+ * [AudioStreamWAV] class, and MP3 files through the [AudioStreamMP3] class.
  */
 @GodotBaseType
 public open class AudioStreamOggVorbis : AudioStream() {
@@ -54,6 +56,9 @@ public open class AudioStreamOggVorbis : AudioStream() {
       setPacketSequence(value)
     }
 
+  /**
+   * The tempo of the audio track, measured in beats per minute.
+   */
   public final inline var bpm: Double
     @JvmName("bpmProperty")
     get() = getBpm()
@@ -62,6 +67,11 @@ public open class AudioStreamOggVorbis : AudioStream() {
       setBpm(value)
     }
 
+  /**
+   * The length of the audio track, in beats. The actual duration of the audio file might be longer
+   * than what is indicated by this property. It defines the end of the audio for looping,
+   * [AudioStreamPlaylist], and [AudioStreamInteractive].
+   */
   public final inline var beatCount: Int
     @JvmName("beatCountProperty")
     get() = getBeatCount()
@@ -70,6 +80,9 @@ public open class AudioStreamOggVorbis : AudioStream() {
       setBeatCount(value)
     }
 
+  /**
+   * The number of beats within a single bar in the audio track.
+   */
   public final inline var barBeats: Int
     @JvmName("barBeatsProperty")
     get() = getBarBeats()
@@ -96,8 +109,9 @@ public open class AudioStreamOggVorbis : AudioStream() {
     }
 
   /**
-   * If `true`, the audio will play again from the specified [loopOffset] once it is done playing.
-   * Useful for ambient sounds and background music.
+   * If `true`, the stream will play again from the specified [loopOffset] once it reaches the end
+   * of the audio track, or once it reaches the end of the last beat according to the amount specified
+   * in [beatCount]. Useful for ambient sounds and background music.
    */
   public final inline var loop: Boolean
     @JvmName("loopProperty")
@@ -119,7 +133,7 @@ public open class AudioStreamOggVorbis : AudioStream() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(87, scriptPtr)
+    createNativeObject(89, scriptPtr)
   }
 
   public final fun setPacketSequence(packetSequence: OggPacketSequence?): Unit {

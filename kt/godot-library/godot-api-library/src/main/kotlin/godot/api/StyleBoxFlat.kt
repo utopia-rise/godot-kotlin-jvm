@@ -403,7 +403,7 @@ public open class StyleBoxFlat : StyleBox() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(703, scriptPtr)
+    createNativeObject(717, scriptPtr)
   }
 
   /**

@@ -23,13 +23,25 @@ public class KeyModifierMask(
 
   public companion object {
     /**
-     * Key Code mask.
+     * Bit mask with all bits enabled except for modifier keys. Apply it to remove modifiers.
+     *
+     * ```
+     * var keycode = KEY_A | KEY_MASK_SHIFT
+     * keycode = keycode & KEY_CODE_MASK
+     * print(keycode) # KEY_A
+     * ```
      */
     @JvmField
     public val CODE: KeyModifierMask = KeyModifierMask(8388607)
 
     /**
-     * Modifier key mask.
+     * Bit mask with all modifier bits enabled. Apply it to isolate modifiers.
+     *
+     * ```
+     * var keycode = KEY_A | KEY_MASK_SHIFT
+     * keycode = keycode & KEY_MODIFIER_MASK
+     * print(keycode) # KEY_MASK_SHIFT
+     * ```
      */
     @JvmField
     public val KEY_MODIFIER_MASK: KeyModifierMask = KeyModifierMask(2130706432)

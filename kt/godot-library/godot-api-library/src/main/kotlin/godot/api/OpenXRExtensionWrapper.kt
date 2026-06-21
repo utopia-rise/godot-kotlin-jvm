@@ -57,7 +57,7 @@ import kotlin.jvm.JvmField
 @GodotBaseType
 public open class OpenXRExtensionWrapper : Object() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(442, scriptPtr)
+    createNativeObject(451, scriptPtr)
   }
 
   /**
@@ -154,7 +154,8 @@ public open class OpenXRExtensionWrapper : Object() {
    * system. The controller data is used to setup action maps for users who may have access to the
    * relevant hardware.
    */
-  public open fun _onRegisterMetadata(): Unit {
+  public open
+      fun _onRegisterMetadata(interactionProfileMetadata: OpenXRInteractionProfileMetadata?): Unit {
     throw NotImplementedError("OpenXRExtensionWrapper::_onRegisterMetadata is not implemented.")
   }
 

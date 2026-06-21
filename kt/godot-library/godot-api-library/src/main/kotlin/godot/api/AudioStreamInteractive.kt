@@ -73,7 +73,7 @@ public open class AudioStreamInteractive : AudioStream() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(84, scriptPtr)
+    createNativeObject(86, scriptPtr)
   }
 
   public final fun setClipCount(clipCount: Int): Unit {
@@ -346,6 +346,11 @@ public open class AudioStreamInteractive : AudioStream() {
      * Transition to the start of the destination clip.
      */
     START(1),
+    /**
+     * Transition to the last played position in the destination clip, if there was a previous
+     * transition from that clip. Otherwise, plays from the start of the destination clip.
+     */
+    PREVIOUS_POSITION(2),
     ;
 
     public companion object {

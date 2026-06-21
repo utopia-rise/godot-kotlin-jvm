@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.Error
 import godot.core.GodotEnum
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
@@ -118,9 +119,9 @@ public open class Resource : RefCounted() {
     }
 
   /**
-   * A unique identifier relative to the this resource's scene. If left empty, the ID is
-   * automatically generated when this resource is saved inside a [PackedScene]. If the resource is not
-   * inside a scene, this property is empty by default.
+   * A unique identifier relative to this resource's scene. If left empty, the ID is automatically
+   * generated when this resource is saved inside a [PackedScene]. If the resource is not inside a
+   * scene, this property is empty by default.
    *
    * **Note:** When the [PackedScene] is saved, if multiple resources in the same scene use the same
    * ID, only the earliest resource in the scene hierarchy keeps the original ID. The other resources
@@ -140,7 +141,7 @@ public open class Resource : RefCounted() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(608, scriptPtr)
+    createNativeObject(621, scriptPtr)
   }
 
   /**
@@ -393,6 +394,15 @@ public open class Resource : RefCounted() {
     return (TransferContext.readReturnValue(OBJECT) as Resource?)
   }
 
+  /**
+   * Copies the data from [resource] into this resource. Both resources must share the same class.
+   */
+  public final fun copyFromResource(resource: Resource?): Error {
+    TransferContext.writeArguments(OBJECT to resource)
+    TransferContext.callMethod(ptr, MethodBindings.copyFromResourcePtr, LONG)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
   public enum class DeepDuplicateMode(
     public override val `value`: Long,
   ) : GodotEnum {
@@ -502,6 +512,10 @@ public open class Resource : RefCounted() {
     public val duplicateDeepName: MethodStringName1<Resource, Resource?, DeepDuplicateMode> =
         MethodStringName1<Resource, Resource?, DeepDuplicateMode>("duplicate_deep")
 
+    @JvmField
+    public val copyFromResourceName: MethodStringName1<Resource, Error, Resource?> =
+        MethodStringName1<Resource, Error, Resource?>("copy_from_resource")
+
     /**
      * Generates a unique identifier for a resource to be contained inside a [PackedScene], based on
      * the current date, time, and a random value. The returned string is only composed of letters (`a`
@@ -578,5 +592,8 @@ public open class Resource : RefCounted() {
 
     internal val duplicateDeepPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Resource", "duplicate_deep", 905779109)
+
+    internal val copyFromResourcePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Resource", "copy_from_resource", 3338311164)
   }
 }

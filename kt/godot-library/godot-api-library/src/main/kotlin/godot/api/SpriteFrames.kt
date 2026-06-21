@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.MethodStringName2
@@ -42,7 +43,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class SpriteFrames : Resource() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(688, scriptPtr)
+    createNativeObject(702, scriptPtr)
   }
 
   /**
@@ -115,8 +116,9 @@ public open class SpriteFrames : Resource() {
   }
 
   /**
-   * If [loop] is `true`, the [anim] animation will loop when it reaches the end, or the start if it
-   * is played in reverse.
+   * If [loop] is `false` equivalent to `set_animation_loop_mode(LOOP_NONE)`.
+   *
+   * If [loop] is `true` equivalent to `set_animation_loop_mode(LOOP_LINEAR)`.
    */
   public final fun setAnimationLoop(anim: StringName, loop: Boolean): Unit {
     TransferContext.writeArguments(STRING_NAME to anim, BOOL to loop)
@@ -124,13 +126,29 @@ public open class SpriteFrames : Resource() {
   }
 
   /**
-   * Returns `true` if the given animation is configured to loop when it finishes playing.
-   * Otherwise, returns `false`.
+   * Returns `true` if `get_animation_loop_mode(anim) == LOOP_LINEAR`. Otherwise, returns `false`.
    */
   public final fun getAnimationLoop(anim: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to anim)
     TransferContext.callMethod(ptr, MethodBindings.getAnimationLoopPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Sets the [loopMode] for the [anim] animation.
+   */
+  public final fun setAnimationLoopMode(anim: StringName, loopMode: LoopMode): Unit {
+    TransferContext.writeArguments(STRING_NAME to anim, LONG to loopMode.value)
+    TransferContext.callMethod(ptr, MethodBindings.setAnimationLoopModePtr, NIL)
+  }
+
+  /**
+   * Returns the loop mode for the [anim] animation.
+   */
+  public final fun getAnimationLoopMode(anim: StringName): LoopMode {
+    TransferContext.writeArguments(STRING_NAME to anim)
+    TransferContext.callMethod(ptr, MethodBindings.getAnimationLoopModePtr, LONG)
+    return LoopMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -266,18 +284,30 @@ public open class SpriteFrames : Resource() {
       getAnimationSpeed(anim.asCachedStringName())
 
   /**
-   * If [loop] is `true`, the [anim] animation will loop when it reaches the end, or the start if it
-   * is played in reverse.
+   * If [loop] is `false` equivalent to `set_animation_loop_mode(LOOP_NONE)`.
+   *
+   * If [loop] is `true` equivalent to `set_animation_loop_mode(LOOP_LINEAR)`.
    */
   public final fun setAnimationLoop(anim: String, loop: Boolean) =
       setAnimationLoop(anim.asCachedStringName(), loop)
 
   /**
-   * Returns `true` if the given animation is configured to loop when it finishes playing.
-   * Otherwise, returns `false`.
+   * Returns `true` if `get_animation_loop_mode(anim) == LOOP_LINEAR`. Otherwise, returns `false`.
    */
   public final fun getAnimationLoop(anim: String): Boolean =
       getAnimationLoop(anim.asCachedStringName())
+
+  /**
+   * Sets the [loopMode] for the [anim] animation.
+   */
+  public final fun setAnimationLoopMode(anim: String, loopMode: LoopMode) =
+      setAnimationLoopMode(anim.asCachedStringName(), loopMode)
+
+  /**
+   * Returns the loop mode for the [anim] animation.
+   */
+  public final fun getAnimationLoopMode(anim: String): LoopMode =
+      getAnimationLoopMode(anim.asCachedStringName())
 
   /**
    * Adds a frame to the [anim] animation. If [atPosition] is `-1`, the frame will be added to the
@@ -341,6 +371,35 @@ public open class SpriteFrames : Resource() {
    */
   public final fun clear(anim: String) = clear(anim.asCachedStringName())
 
+  public enum class LoopMode(
+    public override val `value`: Long,
+  ) : GodotEnum {
+    /**
+     * The animation plays once and stops when it reaches the end, or the start if played in
+     * reverse.
+     */
+    NONE(0),
+    /**
+     * The animation restarts from the beginning when it reaches the end, or from the end if played
+     * in reverse, repeating continuously.
+     */
+    LINEAR(1),
+    /**
+     * The animation alternates direction each time it reaches the end or start, playing forward and
+     * then in reverse repeatedly.
+     *
+     * **Note:** Both [AnimatedSprite2D] and [AnimatedSprite3D] play the first/last frame for its
+     * duration only once at each end of the animation loop (instead of twice, once per
+     * forward/backward animation direction).
+     */
+    PINGPONG(2),
+    ;
+
+    public companion object {
+      public fun from(`value`: Long): LoopMode = entries.single { it.`value` == `value` }
+    }
+  }
+
   public companion object {
     @JvmField
     public val addAnimationName: MethodStringName1<SpriteFrames, Unit, StringName> =
@@ -381,6 +440,14 @@ public open class SpriteFrames : Resource() {
     @JvmField
     public val getAnimationLoopName: MethodStringName1<SpriteFrames, Boolean, StringName> =
         MethodStringName1<SpriteFrames, Boolean, StringName>("get_animation_loop")
+
+    @JvmField
+    public val setAnimationLoopModeName: MethodStringName2<SpriteFrames, Unit, StringName, LoopMode>
+        = MethodStringName2<SpriteFrames, Unit, StringName, LoopMode>("set_animation_loop_mode")
+
+    @JvmField
+    public val getAnimationLoopModeName: MethodStringName1<SpriteFrames, LoopMode, StringName> =
+        MethodStringName1<SpriteFrames, LoopMode, StringName>("get_animation_loop_mode")
 
     @JvmField
     public val addFrameName:
@@ -447,6 +514,12 @@ public open class SpriteFrames : Resource() {
 
     internal val getAnimationLoopPtr: VoidPtr =
         TypeManager.getMethodBindPtr("SpriteFrames", "get_animation_loop", 2619796661)
+
+    internal val setAnimationLoopModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpriteFrames", "set_animation_loop_mode", 918068248)
+
+    internal val getAnimationLoopModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpriteFrames", "get_animation_loop_mode", 3606360228)
 
     internal val addFramePtr: VoidPtr =
         TypeManager.getMethodBindPtr("SpriteFrames", "add_frame", 1351332740)

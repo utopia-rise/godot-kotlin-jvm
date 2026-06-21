@@ -275,7 +275,7 @@ public open class Camera3D : Node3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(132, scriptPtr)
+    createNativeObject(136, scriptPtr)
   }
 
   /**
@@ -408,8 +408,9 @@ public open class Camera3D : Node3D() {
 
   /**
    * Sets the camera projection to frustum mode (see [PROJECTION_FRUSTUM]), by specifying a [size],
-   * an [offset], and the [zNear] and [zFar] clip planes in world space units. See also
-   * [frustumOffset].
+   * an [offset], and the [zNear] and [zFar] clip planes in world space units. The [size] parameter
+   * represents the size of the near plane, either its width or height depending on the value of
+   * [keepAspect]. See also [frustumOffset].
    */
   public final fun setFrustum(
     size: Float,

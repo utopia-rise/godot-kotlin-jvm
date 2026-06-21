@@ -897,7 +897,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(119, scriptPtr)
+    createNativeObject(123, scriptPtr)
   }
 
   /**
@@ -1118,11 +1118,15 @@ public open class CPUParticles2D : Node2D() {
   /**
    * Requests the particles to process for extra process time during a single frame.
    *
-   * Useful for particle playback, if used in combination with [useFixedSeed] or by calling
-   * [restart] with parameter `keep_seed` set to `true`.
+   * [processTime] defines the time that the particles will process while emitting is on.
+   * [processTimeResidual] defines the time that particles will process with emitting turned off for
+   * the simulation. When combined with [speedScale] set to `0.0`, this is useful to be able to seek a
+   * particle system timeline.
    */
-  public final fun requestParticlesProcess(processTime: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to processTime.toDouble())
+  @JvmOverloads
+  public final fun requestParticlesProcess(processTime: Float, processTimeResidual: Float = 0.0f):
+      Unit {
+    TransferContext.writeArguments(DOUBLE to processTime.toDouble(), DOUBLE to processTimeResidual.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.requestParticlesProcessPtr, NIL)
   }
 
@@ -1727,8 +1731,8 @@ public open class CPUParticles2D : Node2D() {
         MethodStringName1<CPUParticles2D, Unit, Double>("set_speed_scale")
 
     @JvmField
-    public val requestParticlesProcessName: MethodStringName1<CPUParticles2D, Unit, Float> =
-        MethodStringName1<CPUParticles2D, Unit, Float>("request_particles_process")
+    public val requestParticlesProcessName: MethodStringName2<CPUParticles2D, Unit, Float, Float> =
+        MethodStringName2<CPUParticles2D, Unit, Float, Float>("request_particles_process")
 
     @JvmField
     public val isEmittingName: MethodStringName0<CPUParticles2D, Boolean> =
@@ -2025,7 +2029,7 @@ public open class CPUParticles2D : Node2D() {
         TypeManager.getMethodBindPtr("CPUParticles2D", "set_speed_scale", 373806689)
 
     internal val requestParticlesProcessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "request_particles_process", 373806689)
+        TypeManager.getMethodBindPtr("CPUParticles2D", "request_particles_process", 66938510)
 
     internal val isEmittingPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CPUParticles2D", "is_emitting", 36873697)

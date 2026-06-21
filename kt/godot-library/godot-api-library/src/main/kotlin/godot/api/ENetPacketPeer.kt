@@ -45,7 +45,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class ENetPacketPeer internal constructor() : PacketPeer() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(209, scriptPtr)
+    createNativeObject(214, scriptPtr)
   }
 
   /**

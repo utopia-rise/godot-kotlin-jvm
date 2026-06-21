@@ -166,7 +166,7 @@ public open class Range : Control() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(586, scriptPtr)
+    createNativeObject(599, scriptPtr)
   }
 
   /**

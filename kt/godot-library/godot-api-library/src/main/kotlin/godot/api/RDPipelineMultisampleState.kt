@@ -113,7 +113,7 @@ public open class RDPipelineMultisampleState : RefCounted() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(574, scriptPtr)
+    createNativeObject(586, scriptPtr)
   }
 
   public final fun setSampleCount(pMember: RenderingDevice.TextureSamples): Unit {

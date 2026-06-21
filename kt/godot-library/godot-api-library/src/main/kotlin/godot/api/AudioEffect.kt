@@ -19,13 +19,13 @@ import kotlin.Unit
  * [AudioServer.getBusEffect].
  *
  * When applied on a bus, an audio effect creates a corresponding [AudioEffectInstance]. The
- * instance is directly responsible for manipulating the sound, based on the original audio effect's
+ * instance is directly responsible for manipulating sound, based on the original audio effect's
  * properties.
  */
 @GodotBaseType
 public abstract class AudioEffect : Resource() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(46, scriptPtr)
+    createNativeObject(48, scriptPtr)
   }
 
   /**

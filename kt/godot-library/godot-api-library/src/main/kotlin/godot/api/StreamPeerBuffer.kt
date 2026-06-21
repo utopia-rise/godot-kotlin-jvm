@@ -58,7 +58,7 @@ public open class StreamPeerBuffer : StreamPeer() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(694, scriptPtr)
+    createNativeObject(708, scriptPtr)
   }
 
   /**

@@ -164,7 +164,7 @@ public open class UndoRedo : Object() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(768, scriptPtr)
+    createNativeObject(782, scriptPtr)
   }
 
   /**
@@ -397,7 +397,7 @@ public open class UndoRedo : Object() {
   }
 
   /**
-   * Redo the last action.
+   * Redo the last action. Returns `false` if there was no action to redo.
    */
   public final fun redo(): Boolean {
     TransferContext.writeArguments()
@@ -406,7 +406,7 @@ public open class UndoRedo : Object() {
   }
 
   /**
-   * Undo the last action.
+   * Undo the last action. Returns `false` if there was no action to undo.
    */
   public final fun undo(): Boolean {
     TransferContext.writeArguments()

@@ -67,6 +67,9 @@ public open class Joint3D internal constructor() : Node3D() {
   /**
    * The priority used to define which solver is executed first for multiple joints. The lower the
    * value, the higher the priority.
+   *
+   * **Note:** Only supported when using GodotPhysics3D. This property is ignored when using Jolt
+   * Physics.
    */
   public final inline var solverPriority: Int
     @JvmName("solverPriorityProperty")
@@ -88,7 +91,7 @@ public open class Joint3D internal constructor() : Node3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(336, scriptPtr)
+    createNativeObject(343, scriptPtr)
   }
 
   public final fun setNodeA(node: NodePath): Unit {

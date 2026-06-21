@@ -134,7 +134,7 @@ public open class TileSet : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(746, scriptPtr)
+    createNativeObject(760, scriptPtr)
   }
 
   /**
@@ -568,6 +568,14 @@ public open class TileSet : Resource() {
   }
 
   /**
+   * Clears all terrain properties for the given terrain set.
+   */
+  public final fun clearTerrains(terrainSet: Int): Unit {
+    TransferContext.writeArguments(LONG to terrainSet.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.clearTerrainsPtr, NIL)
+  }
+
+  /**
    * Sets a terrain's name.
    */
   public final fun setTerrainName(
@@ -831,12 +839,12 @@ public open class TileSet : Resource() {
    * Proxied tiles can be automatically replaced in TileMapLayer nodes using the editor.
    */
   public final fun setCoordsLevelTileProxy(
-    pSourceFrom: Int,
+    sourceFrom: Int,
     coordsFrom: Vector2i,
     sourceTo: Int,
     coordsTo: Vector2i,
   ): Unit {
-    TransferContext.writeArguments(LONG to pSourceFrom.toLong(), VECTOR2I to coordsFrom, LONG to sourceTo.toLong(), VECTOR2I to coordsTo)
+    TransferContext.writeArguments(LONG to sourceFrom.toLong(), VECTOR2I to coordsFrom, LONG to sourceTo.toLong(), VECTOR2I to coordsTo)
     TransferContext.callMethod(ptr, MethodBindings.setCoordsLevelTileProxyPtr, NIL)
   }
 
@@ -1380,6 +1388,10 @@ public open class TileSet : Resource() {
         MethodStringName2<TileSet, Unit, Int, Int>("remove_terrain")
 
     @JvmField
+    public val clearTerrainsName: MethodStringName1<TileSet, Unit, Int> =
+        MethodStringName1<TileSet, Unit, Int>("clear_terrains")
+
+    @JvmField
     public val setTerrainNameName: MethodStringName3<TileSet, Unit, Int, Int, String> =
         MethodStringName3<TileSet, Unit, Int, Int, String>("set_terrain_name")
 
@@ -1694,6 +1706,9 @@ public open class TileSet : Resource() {
 
     internal val removeTerrainPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TileSet", "remove_terrain", 3937882851)
+
+    internal val clearTerrainsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileSet", "clear_terrains", 1286410249)
 
     internal val setTerrainNamePtr: VoidPtr =
         TypeManager.getMethodBindPtr("TileSet", "set_terrain_name", 2285447957)

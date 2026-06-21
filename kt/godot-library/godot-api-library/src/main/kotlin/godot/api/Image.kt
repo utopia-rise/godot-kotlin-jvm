@@ -64,7 +64,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public open class Image : Resource() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(294, scriptPtr)
+    createNativeObject(300, scriptPtr)
   }
 
   /**
@@ -174,6 +174,10 @@ public open class Image : Resource() {
   /**
    * Resizes the image to the given [width] and [height]. New pixels are calculated using the
    * [interpolation] mode defined via [Interpolation] constants.
+   *
+   * **Note:** If the image's format is [FORMAT_RGBA4444], [FORMAT_RGB565], or [FORMAT_RGBE9995], it
+   * will be temporarily converted to either [FORMAT_RGBA8] or [FORMAT_RGBAH]. This can affect the
+   * quality of the resized image.
    */
   @JvmOverloads
   public final fun resize(
@@ -337,24 +341,47 @@ public open class Image : Resource() {
 
   /**
    * Saves the image as an EXR file to [path]. If [grayscale] is `true` and the image has only one
-   * channel, it will be saved explicitly as monochrome rather than one red channel. This function will
-   * return [ERR_UNAVAILABLE] if Godot was compiled without the TinyEXR module.
+   * channel, it will be saved explicitly as monochrome rather than one red channel. Set [colorImage]
+   * to `true` when saving a color image, such as a screenshot. Negative values will be included when
+   * [colorImage] is `false`, which may be useful for saving raw floating point data such as a lightmap
+   * that includes negative light information. Color component values in the resulting EXR file will
+   * not exceed [maxLinearValue] if [maxLinearValue] is not negative. This function will return
+   * [ERR_UNAVAILABLE] if Godot was compiled without the TinyEXR module.
+   *
+   * When saving screenshots of a project that uses HDR output, use [Window.getOutputMaxLinearValue]
+   * for [maxLinearValue].
    */
   @JvmOverloads
-  public final fun saveExr(path: String, grayscale: Boolean = false): Error {
-    TransferContext.writeArguments(STRING to path, BOOL to grayscale)
+  public final fun saveExr(
+    path: String,
+    grayscale: Boolean = false,
+    colorImage: Boolean = false,
+    maxLinearValue: Float = -1.0f,
+  ): Error {
+    TransferContext.writeArguments(STRING to path, BOOL to grayscale, BOOL to colorImage, DOUBLE to maxLinearValue.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.saveExrPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
    * Saves the image as an EXR file to a byte array. If [grayscale] is `true` and the image has only
-   * one channel, it will be saved explicitly as monochrome rather than one red channel. This function
-   * will return an empty byte array if Godot was compiled without the TinyEXR module.
+   * one channel, it will be saved explicitly as monochrome rather than one red channel. Set
+   * [colorImage] to `true` when saving a color image, such as a screenshot. Negative values will be
+   * included when [colorImage] is `false`, which may be useful for saving raw floating point data such
+   * as a lightmap that includes negative light information. Color component values in the resulting
+   * EXR file will not exceed [maxLinearValue] if [maxLinearValue] is not negative. This function will
+   * return an empty byte array if Godot was compiled without the TinyEXR module.
+   *
+   * When saving screenshots of a project that uses HDR output, use [Window.getOutputMaxLinearValue]
+   * for [maxLinearValue].
    */
   @JvmOverloads
-  public final fun saveExrToBuffer(grayscale: Boolean = false): PackedByteArray {
-    TransferContext.writeArguments(BOOL to grayscale)
+  public final fun saveExrToBuffer(
+    grayscale: Boolean = false,
+    colorImage: Boolean = false,
+    maxLinearValue: Float = -1.0f,
+  ): PackedByteArray {
+    TransferContext.writeArguments(BOOL to grayscale, BOOL to colorImage, DOUBLE to maxLinearValue.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.saveExrToBufferPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
@@ -1601,12 +1628,13 @@ public open class Image : Resource() {
         MethodStringName1<Image, PackedByteArray, Float>("save_jpg_to_buffer")
 
     @JvmField
-    public val saveExrName: MethodStringName2<Image, Error, String, Boolean> =
-        MethodStringName2<Image, Error, String, Boolean>("save_exr")
+    public val saveExrName: MethodStringName4<Image, Error, String, Boolean, Boolean, Float> =
+        MethodStringName4<Image, Error, String, Boolean, Boolean, Float>("save_exr")
 
     @JvmField
-    public val saveExrToBufferName: MethodStringName1<Image, PackedByteArray, Boolean> =
-        MethodStringName1<Image, PackedByteArray, Boolean>("save_exr_to_buffer")
+    public val saveExrToBufferName:
+        MethodStringName3<Image, PackedByteArray, Boolean, Boolean, Float> =
+        MethodStringName3<Image, PackedByteArray, Boolean, Boolean, Float>("save_exr_to_buffer")
 
     @JvmField
     public val saveDdsName: MethodStringName1<Image, Error, String> =
@@ -1936,10 +1964,10 @@ public open class Image : Resource() {
     internal val saveJpgToBufferPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Image", "save_jpg_to_buffer", 592235273)
 
-    internal val saveExrPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "save_exr", 3108122999)
+    internal val saveExrPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "save_exr", 2018602448)
 
     internal val saveExrToBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "save_exr_to_buffer", 3178917920)
+        TypeManager.getMethodBindPtr("Image", "save_exr_to_buffer", 1477518536)
 
     internal val saveDdsPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "save_dds", 2113323047)
 

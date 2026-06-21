@@ -184,7 +184,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(517, scriptPtr)
+    createNativeObject(526, scriptPtr)
   }
 
   /**
@@ -301,8 +301,9 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   }
 
   /**
-   * Returns the body's velocity at the given relative position, including both translation and
-   * rotation.
+   * Returns the body's velocity at the given relative position.
+   *
+   * [localPosition] is the offset from the body origin in global coordinates.
    */
   public final fun getVelocityAtLocalPosition(localPosition: Vector2): Vector2 {
     TransferContext.writeArguments(VECTOR2 to localPosition)

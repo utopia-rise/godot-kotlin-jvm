@@ -38,7 +38,7 @@ import kotlin.jvm.JvmField
 @GodotBaseType
 public open class ResourcePreloader : Node() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(613, scriptPtr)
+    createNativeObject(626, scriptPtr)
   }
 
   /**

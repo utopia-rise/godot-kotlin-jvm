@@ -7,6 +7,7 @@
 #include "language/gdj_language.h"
 #include "script/jvm_script_manager.h"
 #include <core/config/project_settings.h>
+#include <core/object/class_db.h>
 #include <scene/main/node.h>
 #include <core/io/resource_loader.h>
 
@@ -105,10 +106,6 @@ ScriptInstance* JvmScript::_instance_create(Object* p_this) {
 #endif
 
     return memnew(JvmInstance(env, p_this, wrapped, this));
-}
-
-bool JvmScript::instance_has(const Object* p_this) const {
-    return false;
 }
 
 bool JvmScript::has_source_code() const {

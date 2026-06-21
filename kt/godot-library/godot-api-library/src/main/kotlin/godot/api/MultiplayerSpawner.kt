@@ -98,7 +98,7 @@ public open class MultiplayerSpawner : Node() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(386, scriptPtr)
+    createNativeObject(395, scriptPtr)
   }
 
   /**

@@ -103,6 +103,10 @@ public open class Label : Control() {
    * If set to something other than [TextServer.AUTOWRAP_OFF], the text gets wrapped inside the
    * node's bounding rectangle. If you resize the node, it will change its height automatically to show
    * all the text.
+   *
+   * **Note:** Labels with autowrapping enabled must have a custom maximum width configured to work
+   * correctly, either through the Label's own [Control.customMaximumSize] or as a result of a
+   * propagated maximum size from a parent Control with [Control.propagateMaximumSize] enabled.
    */
   public final inline var autowrapMode: TextServer.AutowrapMode
     @JvmName("autowrapModeProperty")
@@ -324,7 +328,7 @@ public open class Label : Control() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(341, scriptPtr)
+    createNativeObject(350, scriptPtr)
   }
 
   /**

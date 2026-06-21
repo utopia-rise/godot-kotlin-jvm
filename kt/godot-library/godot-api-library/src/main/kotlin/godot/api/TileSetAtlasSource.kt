@@ -147,7 +147,7 @@ public open class TileSetAtlasSource : TileSetSource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(747, scriptPtr)
+    createNativeObject(761, scriptPtr)
   }
 
   /**

@@ -121,7 +121,7 @@ public open class Curve : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(192, scriptPtr)
+    createNativeObject(196, scriptPtr)
   }
 
   public final fun getPointCount(): Int {
@@ -187,7 +187,7 @@ public open class Curve : Resource() {
   }
 
   /**
-   * Sets the offset from `0.5`.
+   * Assigns the horizontal position [offset] to the point at [index].
    */
   public final fun setPointOffset(index: Int, offset: Float): Int {
     TransferContext.writeArguments(LONG to index.toLong(), DOUBLE to offset.toDouble())

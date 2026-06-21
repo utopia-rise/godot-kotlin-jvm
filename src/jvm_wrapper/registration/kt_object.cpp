@@ -6,6 +6,8 @@
 #include "jvm_wrapper/memory/transfer_context.h"
 #include "script//jvm_instance.h"
 
+#include <core/object/class_db.h>
+
 KtObject::KtObject(jni::Env& p_env, jni::JObject p_wrapped, bool p_is_ref) : JvmInstanceWrapper(p_env, p_wrapped), is_ref(p_is_ref) {}
 
 void KtObject::script_instance_removed(jni::Env& p_env, uint32_t constructor_index) {

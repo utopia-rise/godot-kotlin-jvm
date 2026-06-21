@@ -75,7 +75,7 @@ import kotlin.jvm.JvmField
 @GodotBaseType
 public open class XMLParser : RefCounted() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(920, scriptPtr)
+    createNativeObject(935, scriptPtr)
   }
 
   /**

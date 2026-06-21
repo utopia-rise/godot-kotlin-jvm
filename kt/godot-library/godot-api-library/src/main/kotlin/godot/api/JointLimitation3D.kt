@@ -17,7 +17,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class JointLimitation3D : Resource() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(337, scriptPtr)
+    createNativeObject(344, scriptPtr)
   }
 
   public companion object

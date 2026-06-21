@@ -40,7 +40,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class StreamPeerGZIP : StreamPeer() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(696, scriptPtr)
+    createNativeObject(710, scriptPtr)
   }
 
   /**
