@@ -62,6 +62,61 @@ tasks {
         else -> throw IllegalStateException("Unsupported OS for exporting")
     }
 
+    fun resolveBundledBinaries(): List<File> =
+        listOf(
+            projectDir.resolve("../../../../bin"),
+            projectDir.resolve("bin"),
+            rootProject.layout.projectDirectory.asFile.resolve("bin"),
+        )
+            .flatMap { directory -> (directory.listFiles() ?: emptyArray()).toList() }
+
+    fun findWindowsBundledBinary(target: String, consoleWrapper: Boolean): File? {
+        val expectedPrefix = "godot.windows.template_${target}.x86_64.jvm."
+
+        return resolveBundledBinaries().firstOrNull { file ->
+            file.name.startsWith(expectedPrefix) && when {
+                consoleWrapper -> file.name.endsWith(".console.exe")
+                else -> file.name.endsWith(".exe") && !file.name.endsWith(".console.exe")
+            }
+        }
+    }
+
+    fun ensureWindowsExportTemplate(target: String, consoleWrapper: Boolean = false) {
+        if (!HostManager.hostIsMingw) {
+            return
+        }
+
+        val destinationName = buildString {
+            append("godot.windows.template_${target}.x86_64")
+            if (consoleWrapper) {
+                append(".console")
+            }
+            append(".exe")
+        }
+        val destination = projectDir.resolve(destinationName)
+        if (destination.exists()) {
+            return
+        }
+
+        val source = findWindowsBundledBinary(target, consoleWrapper) ?: throw IllegalStateException(
+            "Could not find Windows ${target} export ${if (consoleWrapper) "console wrapper" else "template"} in the local bin directories."
+        )
+
+        source.copyTo(destination, overwrite = true)
+    }
+
+    val prepareHostExportTemplates = register("prepareHostExportTemplates") {
+        group = "verification"
+        description = "Ensures export presets can find the host export templates in a project-local path."
+
+        doLast {
+            ensureWindowsExportTemplate("debug")
+            ensureWindowsExportTemplate("release")
+            ensureWindowsExportTemplate("debug", consoleWrapper = true)
+            ensureWindowsExportTemplate("release", consoleWrapper = true)
+        }
+    }
+
     val importResources = register<Exec>("importResources") {
         group = "verification"
         description = "Imports the Godot project after rebuilding JVM registrations."
@@ -91,11 +146,12 @@ tasks {
     val exportDebug by registering(Exec::class) {
         group = "verification"
         description = "Exports the tests for the current host OS in debug mode"
-        dependsOn(importResources)
+        dependsOn(importResources, prepareHostExportTemplates)
 
         environment("JAVA_HOME", System.getProperty("java.home"))
         workingDir = projectDir
 
+        projectDir.resolve("export").deleteRecursively()
         projectDir.resolve("export").mkdirs()
 
         commandLine(
@@ -108,11 +164,12 @@ tasks {
     val exportRelease by registering(Exec::class) {
         group = "verification"
         description = "Exports the tests for the current host OS in release mode"
-        dependsOn(importResources)
+        dependsOn(importResources, prepareHostExportTemplates)
 
         environment("JAVA_HOME", System.getProperty("java.home"))
         workingDir = projectDir
 
+        projectDir.resolve("export").deleteRecursively()
         projectDir.resolve("export").mkdirs()
 
         commandLine(
@@ -138,31 +195,43 @@ tasks {
     }
     register<Exec>("runExportedGDTests") {
         group = "verification"
-        description = "Exports the project and runs GDUnit tests from the exported package."
+        description = "Runs GDUnit tests from the exported package."
 
-        dependsOn(exportDebug)
-
-        val executable = projectDir
-            .resolve("export")
+        val hasExistingExport = projectDir.resolve("export")
             .listFiles()
-            ?.also {
-                println("Test executables: [${it.joinToString()}]")
-                it.forEach { file -> file.setExecutable(true) }
-            }
-            ?.firstOrNull { file ->
-                listOf("exe", "x86_64", "app")
-                    .any { executableExtensions -> file.name.contains(executableExtensions) }
-            }
-            ?.let { executable ->
-                if (executable.name.contains("app")) {
-                    executable.resolve("Contents/MacOS").listFiles()?.firstOrNull()
-                } else {
-                    executable
-                }
-            }
-            ?.absolutePath
+            ?.any { exportedFile ->
+                exportedFile.name.endsWith(".exe") ||
+                    exportedFile.name.endsWith(".app") ||
+                    exportedFile.name.contains("x86_64")
+            } == true
+        if (!hasExistingExport) {
+            dependsOn(exportDebug)
+        }
 
         setupTestExecution {
+            val executable = projectDir
+                .resolve("export")
+                .listFiles()
+                ?.also {
+                    println("Test executables: [${it.joinToString()}]")
+                    it.forEach { file -> file.setExecutable(true) }
+                }
+                ?.let { exportedFiles ->
+                    when {
+                        HostManager.hostIsMingw -> exportedFiles.firstOrNull { it.name.endsWith(".console.exe") }
+                        HostManager.hostIsMac -> exportedFiles.firstOrNull { it.name.endsWith(".app") }
+                        else -> exportedFiles.firstOrNull { it.name.contains("x86_64") }
+                    } ?: exportedFiles.firstOrNull { it.name.endsWith(".exe") }
+                }
+                ?.let { exportedExecutable ->
+                    if (exportedExecutable.name.endsWith(".app")) {
+                        exportedExecutable.resolve("Contents/MacOS").listFiles()?.firstOrNull()
+                    } else {
+                        exportedExecutable
+                    }
+                }
+                ?.absolutePath
+
             TestExecutionCommand(
                 executable = executable ?: "no_test_executable_found",
                 useProjectPathOverride = false,
