@@ -247,6 +247,11 @@ data class TestExecutionCommand(
     val reportDirectory: String,
 )
 
+fun shouldUseHeadlessTestExecution(): Boolean =
+    HostManager.hostIsLinux &&
+        System.getenv("DISPLAY").isNullOrBlank() &&
+        System.getenv("WAYLAND_DISPLAY").isNullOrBlank()
+
 fun Exec.setupTestExecution(commandProvider: () -> TestExecutionCommand) {
     this.isIgnoreExitValue = false
 
@@ -266,6 +271,13 @@ fun Exec.setupTestExecution(commandProvider: () -> TestExecutionCommand) {
             "test",
             "-c",
         )
+        val runtimeArgs = buildList {
+            if (shouldUseHeadlessTestExecution()) {
+                add("--headless")
+            }
+            addAll(projectPathArgs)
+            addAll(gdUnitArgs)
+        }
 
         if (HostManager.hostIsMingw) {
             this@setupTestExecution.commandLine(
@@ -274,11 +286,11 @@ fun Exec.setupTestExecution(commandProvider: () -> TestExecutionCommand) {
                 buildString {
                     append(windowsQuote(command.executable))
                     append(' ')
-                    append((projectPathArgs + gdUnitArgs).joinToString(" ", transform = ::windowsQuote))
+                    append(runtimeArgs.joinToString(" ", transform = ::windowsQuote))
                 },
             )
         } else {
-            this@setupTestExecution.commandLine(command.executable, *(projectPathArgs + gdUnitArgs).toTypedArray())
+            this@setupTestExecution.commandLine(command.executable, *runtimeArgs.toTypedArray())
         }
     }
 }
