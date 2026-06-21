@@ -4,9 +4,6 @@ on:
     inputs:
       godot-version:
         type: string
-      build-test-templates:
-        type: boolean
-        default: true
 
 env:
   SCONS_CACHE_MSVC_CONFIG: true
@@ -30,12 +27,6 @@ jobs:
             {"name":"Build release template","cache-name":"export_template_release_windows_x86_64","target":"template_release","should-clean":true,"scons-flags":""},
             {"name":"Build debug template","cache-name":"export_template_debug_windows_x86_64","target":"template_debug","should-clean":false,"scons-flags":""}
           ]}'
-          if [ "${{ inputs.build-test-templates }}" == "true" ]; then
-            MATRIX=$(echo "$MATRIX" | jq -c '.include += [
-              {"name":"Build release template (test)","cache-name":"export_template_test_release_windows_x86_64","target":"template_release","should-clean":true,"scons-flags":"disable_path_overrides=no"},
-              {"name":"Build debug template (test)","cache-name":"export_template_test_debug_windows_x86_64","target":"template_debug","should-clean":false,"scons-flags":"disable_path_overrides=no"}
-            ]')
-          fi
           echo "matrix=$(echo $MATRIX | jq -c '.')" >> $GITHUB_OUTPUT
 
   build-windows:
