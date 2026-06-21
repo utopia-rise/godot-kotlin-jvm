@@ -1,8 +1,8 @@
 // THIS FILE IS GENERATED! DO NOT EDIT OR DELETE IT. EDIT OR DELETE THE ASSOCIATED SOURCE CODE FILE INSTEAD
 // Note: You can however freely move this file inside your godot project if you want. Keep in mind however, that if you rename the originating source code file, this file will be deleted and regenerated as a new file instead of being updated! Other modifications to the source file however, will result in this file being updated.
 
-registeredName = EnumRegistration
-fqName = godot.tests.registration.EnumRegistration
+registeredName = LifecycleTest
+fqName = godot.tests.runtime.LifecycleTest
 baseType = Node
 supertypes = [
     
@@ -11,20 +11,15 @@ signals = [
     
 ]
 properties = [
-    enum_value,
-    godot_error_enum_value,
-    godot_enum_value,
-    enum_history,
-    bit_flag_value
+    tracked_node,
+    replacement_was_writable
 ]
 notifications = [
     
 ]
 functions = [
-    provide_enum_value,
-    provide_godot_error_enum_value,
-    provide_godot_enum_value,
-    store_enum_by_ordinal,
-    append_enum_to_history,
-    invalid_enum_ordinal_handled
+    capture_node,
+    is_tracked_node_valid,
+    replace_tracked_node,
+    mark_tracked_node
 ]

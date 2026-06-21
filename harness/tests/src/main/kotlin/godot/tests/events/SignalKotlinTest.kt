@@ -17,6 +17,7 @@ import godot.core.signal1
 import godot.core.signal2
 import godot.extension.connectLambda
 import godot.extension.connectMethod
+import godot.extension.SignalConnector
 import godot.tests.registration.OtherScript
 
 @Script
@@ -48,6 +49,22 @@ class SignalKotlinTest : Node() {
 
     @Visible
     var selfConnectedSignalTriggered = false
+
+    @Visible
+    var reconnectSignalDeliveries = 0
+
+    @Visible
+    var reconnectPayloadValue = ""
+
+    @Visible
+    var reconnectPayloadNodeName = ""
+
+    @Visible
+    var secondaryReconnectTriggered = false
+
+    private var reconnectSelfConnector: SignalConnector? = null
+
+    private var reconnectSecondaryConnector: SignalConnector? = null
 
     @Register
     override fun _ready() {
@@ -118,6 +135,48 @@ class SignalKotlinTest : Node() {
     @Register
     fun emitSelfConnectedSignal() {
         selfConnectedSignal.emit()
+    }
+
+    @Emit("maybeText", "node")
+    val reconnectSignal by signal2<String?, Node>()
+
+    @Register
+    fun resetReconnectState() {
+        reconnectSignalDeliveries = 0
+        reconnectPayloadValue = ""
+        reconnectPayloadNodeName = ""
+        secondaryReconnectTriggered = false
+    }
+
+    @Register
+    fun connectReconnectSignal() {
+        reconnectSelfConnector = reconnectSignal.connectMethod(this, SignalKotlinTest::onReconnectSignal)
+        reconnectSecondaryConnector = reconnectSignal.connectMethod(this, SignalKotlinTest::onSecondaryReconnectSignal)
+    }
+
+    @Register
+    fun disconnectReconnectSignal() {
+        reconnectSelfConnector?.disconnect()
+        reconnectSecondaryConnector?.disconnect()
+        reconnectSelfConnector = null
+        reconnectSecondaryConnector = null
+    }
+
+    @Register
+    fun emitReconnectSignal(maybeText: String?) {
+        reconnectSignal.emit(maybeText, this)
+    }
+
+    @Register
+    fun onReconnectSignal(maybeText: String?, node: Node) {
+        reconnectSignalDeliveries += 1
+        reconnectPayloadValue = maybeText ?: "<null>"
+        reconnectPayloadNodeName = node.name.toString()
+    }
+
+    @Register
+    fun onSecondaryReconnectSignal(_maybeText: String?, _node: Node) {
+        secondaryReconnectTriggered = true
     }
 }
 

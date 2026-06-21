@@ -155,3 +155,32 @@ func test_packed_vector3_array_round_trip() -> void:
 
 func test_packed_color_array_round_trip() -> void:
     _assert_core_round_trip("read_packed_color_array", "echo_packed_color_array", PackedColorArray([Color(0.1, 0.2, 0.3, 0.4), Color(0.5, 0.6, 0.7, 0.8)]))
+
+
+func test_nested_variant_array_round_trip() -> void:
+    var instance := CoreTest.new()
+    var expected := [[1, 2, 3], "tail", null]
+
+    assert_that(instance.read_nested_variant_array()).override_failure_message("Nested VariantArray values should survive Kotlin -> GDScript transport").is_equal(expected)
+    assert_that(instance.echo_nested_variant_array(expected)).override_failure_message("Nested VariantArray values should survive GDScript -> Kotlin -> GDScript transport").is_equal(expected)
+
+    var mutated := instance.append_to_variant_array([1, "two", null])
+    assert_that(mutated).override_failure_message("VariantArray mutations performed on the Kotlin side should be observable back in GDScript").is_equal([1, "two", null, "from-kotlin"])
+    instance.free()
+
+
+func test_mixed_dictionary_round_trip() -> void:
+    var instance := CoreTest.new()
+    var expected := {
+        "text": "alpha",
+        "count": 2,
+        "path": NodePath("Root/Branch:leaf"),
+        "nullable": null,
+    }
+
+    assert_that(instance.read_mixed_dictionary()).override_failure_message("Mixed dictionaries should survive Kotlin -> GDScript transport").is_equal(expected)
+    assert_that(instance.echo_mixed_dictionary(expected)).override_failure_message("Mixed dictionaries should survive GDScript -> Kotlin -> GDScript transport").is_equal(expected)
+
+    var mutated := instance.write_dictionary_flag({"origin": "gdscript"})
+    assert_that(mutated["from_kotlin"]).override_failure_message("Dictionary mutations performed on the Kotlin side should be observable back in GDScript").is_equal(true)
+    instance.free()

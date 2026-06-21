@@ -130,6 +130,17 @@ func test_packed_vector3_array_conversion() -> void:
     script.free()
 
 
+func test_packed_vector3_array_variant_conversion() -> void:
+    var script := PackedArrayTest.new()
+    var packed := script.convert_vector3_variant_array()
+
+    assert_that(packed.size()).override_failure_message("PackedVector3Array created from a VariantArray should preserve its element count").is_equal(2)
+    assert_that(packed[0]).override_failure_message("First PackedVector3Array value created from a VariantArray should be preserved").is_equal(Vector3(0.0, 1.0, 2.0))
+    assert_that(packed[1]).override_failure_message("Second PackedVector3Array value created from a VariantArray should be preserved").is_equal(Vector3(3.0, 4.0, 5.0))
+
+    script.free()
+
+
 func test_packed_vector4_array_conversion() -> void:
     var script := PackedArrayTest.new()
     var packed := script.convert_vector4_array()
@@ -144,5 +155,16 @@ func test_packed_vector4_array_conversion() -> void:
     for index in range(expected.size()):
         assert_that(packed[index]).override_failure_message("PackedVector4Array value should match the original Kotlin collection").is_equal(expected[index])
         assert_that(script.get_vector4_array_value(packed, index)).override_failure_message("Reading the PackedVector4Array back on the JVM side should preserve the value").is_equal(expected[index])
+
+    script.free()
+
+
+func test_large_packed_string_array_conversion() -> void:
+    var script := PackedArrayTest.new()
+    var packed := script.convert_large_string_array()
+
+    assert_that(packed.size()).override_failure_message("Large PackedStringArray payloads should preserve their element count").is_equal(4)
+    assert_that(packed[0]).override_failure_message("Large PackedStringArray payloads should preserve the first string").is_equal("This is the first long packed string payload")
+    assert_that(packed[3]).override_failure_message("Large PackedStringArray payloads should preserve the last string").is_equal("This is the fourth long packed string payload")
 
     script.free()

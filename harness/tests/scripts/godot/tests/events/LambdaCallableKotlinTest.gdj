@@ -19,7 +19,10 @@ properties = [
     kt_callable,
     kt_callable_string,
     callable_no_param_triggered,
-    callable_with_param_triggered
+    callable_with_param_triggered,
+    deferred_stored_callable_triggered,
+    deferred_stored_callable_payload,
+    callable_still_works_after_tree_exit
 ]
 notifications = [
     
@@ -33,5 +36,7 @@ functions = [
     call_callable_no_param_deferred,
     mark_callable_with_param_triggered,
     call_callable_with_param,
-    call_callable_with_param_deferred
+    call_callable_with_param_deferred,
+    queue_stored_callable_deferred,
+    verify_callable_after_tree_exit
 ]

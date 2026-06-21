@@ -31,8 +31,11 @@ properties = [
     placeholder_text_value,
     enum_value,
     vector2,
+    vector2i,
     rect2,
+    rect2i,
     vector3,
+    vector3i,
     transform2_d,
     vector4,
     vector4i,
@@ -41,6 +44,7 @@ properties = [
     aabb,
     basis_value,
     transform3_d,
+    projection_value,
     color,
     color_no_alpha,
     string_name,
@@ -61,6 +65,7 @@ properties = [
     packed_string_array,
     packed_vector2_array,
     packed_vector3_array,
+    packed_vector4_array,
     packed_color_array
 ]
 notifications = [

@@ -28,6 +28,7 @@ func test_coroutine_await():
     test_script.signal_with_many_parameters.emit(6, 0.1, Vector2(0,0), "test")
     await get_tree().create_timer(1).timeout
     assert_that(test_script.step).override_failure_message("Property should be 6 after coroutine ran.").is_equal(6)
+    assert_that(test_script.many_parameter_payload_summary).override_failure_message("Coroutine signal awaits should preserve the full payload order across the bridge.").is_equal("6|0.1|0.0,0.0|test")
 
     test_script.start_coroutine_undispatched()
     assert_that(test_script.step).override_failure_message("Property should be immediately 7 when coroutine is undispatched.").is_equal(7)

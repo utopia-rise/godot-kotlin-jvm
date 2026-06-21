@@ -2,7 +2,7 @@ package godot.tests.registration
 
 import godot.annotation.{ColorNoAlpha, Dir, DoubleRange, EnumTypeHint, ExpEasing, Export, File, FloatRange, IntFlag, IntRange, LongRange, MultilineText, PlaceHolderText, Script, Visible}
 import godot.api.{Button, NavigationMesh, Node}
-import godot.core.{AABB, Basis, Color, Dictionary, NodePath, PackedByteArray, PackedColorArray, PackedFloat32Array, PackedFloat64Array, PackedInt32Array, PackedInt64Array, PackedStringArray, PackedVector2Array, PackedVector3Array, Plane, Quaternion, RID, Rect2, StringName, Transform2D, Transform3D, VariantArray, Vector2, Vector3, Vector4, Vector4i}
+import godot.core.{AABB, Basis, Color, Dictionary, NodePath, PackedByteArray, PackedColorArray, PackedFloat32Array, PackedFloat64Array, PackedInt32Array, PackedInt64Array, PackedStringArray, PackedVector2Array, PackedVector3Array, PackedVector4Array, Plane, Projection, Quaternion, RID, Rect2, Rect2i, StringName, Transform2D, Transform3D, VariantArray, Vector2, Vector2i, Vector3, Vector3i, Vector4, Vector4i}
 
 @Script
 class ScalaExport extends Node {
@@ -98,28 +98,25 @@ class ScalaExport extends Node {
   @Visible
   var vector2: Vector2 = new Vector2(1, 2)
 
-  // Not supported yet by this harness' entry generation for exported integer core variants.
-  // @Export
-  // @Visible
-  // var vector2i: Vector2i = new Vector2i(1, 2)
+  @Export
+  @Visible
+  var vector2i: Vector2i = new Vector2i(1, 2)
 
   @Export
   @Visible
   var rect2: Rect2 = new Rect2(1.0, 2.0, 3.0, 4.0)
 
-  // Not supported yet by this harness' entry generation for exported integer core variants.
-  // @Export
-  // @Visible
-  // var rect2i: Rect2i = new Rect2i(1, 2, 3, 4)
+  @Export
+  @Visible
+  var rect2i: Rect2i = new Rect2i(1, 2, 3, 4)
 
   @Export
   @Visible
   var vector3: Vector3 = new Vector3(1, 2, 3)
 
-  // Not supported yet by this harness' entry generation for exported integer core variants.
-  // @Export
-  // @Visible
-  // var vector3i: Vector3i = new Vector3i(1, 2, 3)
+  @Export
+  @Visible
+  var vector3i: Vector3i = new Vector3i(1, 2, 3)
 
   @Export
   @Visible
@@ -158,7 +155,9 @@ class ScalaExport extends Node {
     new Vector3(9, 10, 11)
   )
 
-  // Projection is intentionally omitted for now: this harness' entry generation rejects it as an exported property.
+  @Export
+  @Visible
+  var projectionValue: Projection = new Projection()
 
   @Export
   @Visible
@@ -241,7 +240,9 @@ class ScalaExport extends Node {
   @Visible
   var packedVector3Array: PackedVector3Array = new PackedVector3Array()
 
-  // PackedVector4Array is intentionally omitted for now: this harness' entry generation rejects it as an exported property.
+  @Export
+  @Visible
+  var packedVector4Array: PackedVector4Array = new PackedVector4Array()
 
   @Export
   @Visible

@@ -11,11 +11,12 @@ signals = [
     
 ]
 properties = [
-    
+    tracked_node
 ]
 notifications = [
     
 ]
 functions = [
-    
+    capture_node,
+    is_tracked_node_valid
 ]

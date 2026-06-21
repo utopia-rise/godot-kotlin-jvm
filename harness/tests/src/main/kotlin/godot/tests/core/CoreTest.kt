@@ -25,6 +25,8 @@ import godot.core.Rect2i
 import godot.core.StringName
 import godot.core.Transform2D
 import godot.core.Transform3D
+import godot.core.Dictionary
+import godot.core.VariantArray
 import godot.core.Vector2
 import godot.core.Vector2i
 import godot.core.Vector3
@@ -69,6 +71,17 @@ class CoreTest : Node() {
     private val packedVector2ArrayValue = PackedVector2Array(listOf(Vector2(1, 2), Vector2(3, 4)))
     private val packedVector3ArrayValue = PackedVector3Array(listOf(Vector3(1, 2, 3), Vector3(4, 5, 6)))
     private val packedColorArrayValue = PackedColorArray(listOf(Color(0.1, 0.2, 0.3, 0.4), Color(0.5, 0.6, 0.7, 0.8)))
+    private val nestedVariantArrayValue = variantArrayOf<Any?>(
+        variantArrayOf(1, 2, 3),
+        "tail",
+        null,
+    )
+    private val mixedDictionaryValue = Dictionary<String, Any?>().apply {
+        this["text"] = "alpha"
+        this["count"] = 2
+        this["path"] = NodePath("Root/Branch:leaf")
+        this["nullable"] = null
+    }
 
     @Register
     fun readVector2() = vector2Value
@@ -252,5 +265,29 @@ class CoreTest : Node() {
 
     @Register
     fun echoPackedColorArray(value: PackedColorArray) = value
+
+    @Register
+    fun readNestedVariantArray() = nestedVariantArrayValue
+
+    @Register
+    fun echoNestedVariantArray(value: VariantArray<Any?>) = value
+
+    @Register
+    fun appendToVariantArray(value: VariantArray<Any?>): VariantArray<Any?> {
+        value.append("from-kotlin")
+        return value
+    }
+
+    @Register
+    fun readMixedDictionary() = mixedDictionaryValue
+
+    @Register
+    fun echoMixedDictionary(value: Dictionary<String, Any?>) = value
+
+    @Register
+    fun writeDictionaryFlag(value: Dictionary<String, Any?>): Dictionary<String, Any?> {
+        value["from_kotlin"] = true
+        return value
+    }
 }
 

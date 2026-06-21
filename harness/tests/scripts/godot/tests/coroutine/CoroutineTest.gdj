@@ -17,7 +17,8 @@ signals = [
 properties = [
     step,
     was_child_cancelled,
-    was_parent_cancelled
+    was_parent_cancelled,
+    many_parameter_payload_summary
 ]
 notifications = [
     

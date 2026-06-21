@@ -3,6 +3,7 @@ extends GdUnitTestSuite
 func test_kotlin_signals() -> void:
     var script := SignalKotlinTest.new()
     get_tree().root.add_child(script)
+    script.name = "SignalKotlinRoot"
 
     assert_bool(script.other_script.hook_no_param_called).override_failure_message("Kotlin no-param signals should call OtherScript.hookNoParam").is_true()
     assert_bool(script.other_script.hook_one_param_called).override_failure_message("Kotlin one-param signals should call OtherScript.hookOneParam").is_true()
@@ -32,6 +33,28 @@ func test_kotlin_signals() -> void:
     script.emit_self_connected_signal()
     await get_tree().create_timer(1).timeout
     assert_bool(script.self_connected_signal_triggered).is_true()
+
+    script.reset_reconnect_state()
+    script.connect_reconnect_signal()
+    script.emit_reconnect_signal("")
+    await get_tree().create_timer(1).timeout
+    assert_that(script.reconnect_signal_deliveries).override_failure_message("Reconnect signal should be delivered once while connected").is_equal(1)
+    assert_that(script.reconnect_payload_value).override_failure_message("Reconnect signal should preserve the payload value across the bridge").is_equal("")
+    assert_that(script.reconnect_payload_node_name).override_failure_message("Reconnect signal should forward the correct sender instance").is_equal("SignalKotlinRoot")
+    assert_bool(script.secondary_reconnect_triggered).override_failure_message("Secondary receiver should be triggered while the reconnect signal is connected").is_true()
+
+    script.disconnect_reconnect_signal()
+    script.secondary_reconnect_triggered = false
+    script.emit_reconnect_signal("after-disconnect")
+    await get_tree().create_timer(1).timeout
+    assert_that(script.reconnect_signal_deliveries).override_failure_message("Reconnect signal should stop delivering after disconnect").is_equal(1)
+    assert_bool(script.secondary_reconnect_triggered).override_failure_message("Secondary receiver should stop receiving after disconnect").is_false()
+
+    script.connect_reconnect_signal()
+    script.emit_reconnect_signal("after-reconnect")
+    await get_tree().create_timer(1).timeout
+    assert_that(script.reconnect_signal_deliveries).override_failure_message("Reconnect signal should resume after reconnect").is_equal(2)
+    assert_that(script.reconnect_payload_value).override_failure_message("Reconnect signal should update the latest payload after reconnect").is_equal("after-reconnect")
 
     get_tree().root.remove_child(script)
     script.other_script.free()

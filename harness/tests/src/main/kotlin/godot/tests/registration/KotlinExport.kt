@@ -32,16 +32,21 @@ import godot.core.PackedInt64Array
 import godot.core.PackedStringArray
 import godot.core.PackedVector2Array
 import godot.core.PackedVector3Array
+import godot.core.PackedVector4Array
 import godot.core.Plane
+import godot.core.Projection
 import godot.core.Quaternion
 import godot.core.RID
 import godot.core.Rect2
+import godot.core.Rect2i
 import godot.core.StringName
 import godot.core.Transform2D
 import godot.core.Transform3D
 import godot.core.VariantArray
 import godot.core.Vector2
+import godot.core.Vector2i
 import godot.core.Vector3
+import godot.core.Vector3i
 import godot.core.Vector4
 import godot.core.Vector4i
 import godot.core.variantArrayOf
@@ -147,28 +152,25 @@ class KotlinExport : Node() {
     @Visible
     var vector2 = Vector2(1, 2)
 
-    // Not supported yet by this harness' entry generation for exported integer core variants.
-    // @Export
-    // @Visible
-    // var vector2i = Vector2i(1, 2)
+    @Export
+    @Visible
+    var vector2i = Vector2i(1, 2)
 
     @Export
     @Visible
     var rect2 = Rect2(1.0, 2.0, 3.0, 4.0)
 
-    // Not supported yet by this harness' entry generation for exported integer core variants.
-    // @Export
-    // @Visible
-    // var rect2i = Rect2i(1, 2, 3, 4)
+    @Export
+    @Visible
+    var rect2i = Rect2i(1, 2, 3, 4)
 
     @Export
     @Visible
     var vector3 = Vector3(1, 2, 3)
 
-    // Not supported yet by this harness' entry generation for exported integer core variants.
-    // @Export
-    // @Visible
-    // var vector3i = Vector3i(1, 2, 3)
+    @Export
+    @Visible
+    var vector3i = Vector3i(1, 2, 3)
 
     @Export
     @Visible
@@ -203,7 +205,9 @@ class KotlinExport : Node() {
     var transform3D =
         Transform3D(Vector3(0, 1, 2), Vector3(3, 4, 5), Vector3(6, 7, 8), Vector3(9, 10, 11))
 
-    // Projection is intentionally omitted for now: this harness' entry generation rejects it as an exported property.
+    @Export
+    @Visible
+    var projectionValue = Projection()
 
     @Export
     @Visible
@@ -294,7 +298,9 @@ class KotlinExport : Node() {
     @Visible
     var packedVector3Array = PackedVector3Array()
 
-    // PackedVector4Array is intentionally omitted for now: this harness' entry generation rejects it as an exported property.
+    @Export
+    @Visible
+    var packedVector4Array = PackedVector4Array()
 
     @Export
     @Visible

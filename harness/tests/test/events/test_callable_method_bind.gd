@@ -23,6 +23,8 @@ func _exercise_bind_suite(script: Object, expected_sets: Array, label: String) -
 func test_kotlin_callable_method_bind() -> void:
     var script := CallableMethodBindKotlinTest.new()
     _exercise_bind_suite(script, [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]], "Kotlin")
+    script.invoke_direct_call_by_snake_case()
+    assert_that(script.direct_call_result).override_failure_message("Kotlin call() should resolve snake_case method names").is_equal("snake_case")
     script.free()
 
 

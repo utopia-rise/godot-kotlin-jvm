@@ -7,6 +7,7 @@ import godot.annotation.Visible
 import godot.api.Node
 import godot.api.Tween
 import godot.core.Error
+import godot.core.variantArrayOf
 
 enum class RegistrationEnum {
     ENUM_1,
@@ -30,6 +31,12 @@ class EnumRegistration: Node() {
     @Visible
     var godotEnumValue = Tween.EaseType.IN_OUT
 
+    @Visible
+    var enumHistory = variantArrayOf(RegistrationEnum.ENUM_1.ordinal, RegistrationEnum.ENUM_2.ordinal)
+
+    @Visible
+    var bitFlagValue = 0b011
+
     @Register
     fun provideEnumValue() = enumValue
 
@@ -38,5 +45,20 @@ class EnumRegistration: Node() {
 
     @Register
     fun provideGodotEnumValue() = godotEnumValue
+
+    @Register
+    fun storeEnumByOrdinal(ordinal: Int) {
+        enumValue = RegistrationEnum.entries.first { it.ordinal == ordinal }
+    }
+
+    @Register
+    fun appendEnumToHistory(ordinal: Int) {
+        enumHistory.append(RegistrationEnum.entries.first { it.ordinal == ordinal }.ordinal)
+    }
+
+    @Register
+    fun invalidEnumOrdinalHandled(ordinal: Int): Boolean {
+        return RegistrationEnum.entries.none { it.ordinal == ordinal }
+    }
 }
 

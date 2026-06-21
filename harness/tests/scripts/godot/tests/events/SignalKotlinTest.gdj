@@ -15,11 +15,16 @@ signals = [
     no_param_signal_field,
     one_param_signal_field,
     two_param_signal_field,
-    signal_with_multiple_targets
+    signal_with_multiple_targets,
+    reconnect_signal
 ]
 properties = [
     other_script,
     self_connected_signal_triggered,
+    reconnect_signal_deliveries,
+    reconnect_payload_value,
+    reconnect_payload_node_name,
+    secondary_reconnect_triggered,
     array
 ]
 notifications = [
@@ -30,5 +35,11 @@ functions = [
     target_function_one,
     target_function_two,
     on_self_connected_signal,
-    emit_self_connected_signal
+    emit_self_connected_signal,
+    reset_reconnect_state,
+    connect_reconnect_signal,
+    disconnect_reconnect_signal,
+    emit_reconnect_signal,
+    on_reconnect_signal,
+    on_secondary_reconnect_signal
 ]

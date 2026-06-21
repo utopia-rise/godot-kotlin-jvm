@@ -6,6 +6,7 @@ import godot.annotation.Register
 import godot.annotation.Visible
 import godot.annotation.Emit
 import godot.core.Signal3
+import godot.core.Callable1
 import godot.core.asCallable
 import godot.core.lambdaCallable0
 import godot.core.lambdaCallable1
@@ -45,6 +46,17 @@ class LambdaCallableKotlinTest : Node() {
 
     @Visible
     var callableWithParamTriggered = false
+
+    @Visible
+    var deferredStoredCallableTriggered = false
+
+    @Visible
+    var deferredStoredCallablePayload = ""
+
+    @Visible
+    var callableStillWorksAfterTreeExit = false
+
+    private var storedDeferredCallable: Callable1<Unit, String>? = null
 
     @Register
     override fun _ready() {
@@ -97,6 +109,25 @@ class LambdaCallableKotlinTest : Node() {
     @Register
     fun callCallableWithParamDeferred() {
         lambdaCallable1(this::markCallableWithParamTriggered).callDeferred(true)
+    }
+
+    @Register
+    fun queueStoredCallableDeferred(payload: String) {
+        deferredStoredCallableTriggered = false
+        deferredStoredCallablePayload = ""
+        storedDeferredCallable = { value: String ->
+            deferredStoredCallableTriggered = true
+            deferredStoredCallablePayload = value
+        }.asCallable()
+        storedDeferredCallable?.callDeferred(payload)
+    }
+
+    @Register
+    fun verifyCallableAfterTreeExit() {
+        callableStillWorksAfterTreeExit = false
+        lambdaCallable0 {
+            callableStillWorksAfterTreeExit = true
+        }.call()
     }
 }
 

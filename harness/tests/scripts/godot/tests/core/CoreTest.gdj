@@ -76,5 +76,11 @@ functions = [
     read_packed_vector3_array,
     echo_packed_vector3_array,
     read_packed_color_array,
-    echo_packed_color_array
+    echo_packed_color_array,
+    read_nested_variant_array,
+    echo_nested_variant_array,
+    append_to_variant_array,
+    read_mixed_dictionary,
+    echo_mixed_dictionary,
+    write_dictionary_flag
 ]

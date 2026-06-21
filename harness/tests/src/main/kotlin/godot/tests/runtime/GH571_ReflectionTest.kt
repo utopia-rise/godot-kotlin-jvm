@@ -30,6 +30,13 @@ class GH571_ReflectionTest: Node() {
 
         return testClass.data
     }
+
+    @Register
+    fun readEmbeddedResource(): String {
+        val resource = javaClass.classLoader.getResource("godot/tests/runtime/export_dependency_resource.txt")
+            ?: return "missing-resource"
+        return resource.readText().trim()
+    }
 }
 
 

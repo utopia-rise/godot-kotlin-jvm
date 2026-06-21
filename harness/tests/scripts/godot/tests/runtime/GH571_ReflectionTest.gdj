@@ -17,5 +17,6 @@ notifications = [
     
 ]
 functions = [
-    deserialize_json
+    deserialize_json,
+    read_embedded_resource
 ]

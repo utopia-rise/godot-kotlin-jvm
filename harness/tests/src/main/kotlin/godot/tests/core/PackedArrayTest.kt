@@ -13,6 +13,7 @@ import godot.core.PackedInt64Array
 import godot.core.PackedVector2Array
 import godot.core.PackedVector3Array
 import godot.core.PackedVector4Array
+import godot.core.PackedStringArray
 import godot.core.Vector2
 import godot.core.Vector3
 import godot.core.Vector4
@@ -84,9 +85,25 @@ class PackedArrayTest : Node() {
     }
 
     @Register
+    fun convertVector3VariantArray(): PackedVector3Array {
+        return PackedVector3Array(variantArrayOf(Vector3(0.0, 1.0, 2.0), Vector3(3.0, 4.0, 5.0)))
+    }
+
+    @Register
     fun convertVector4Array(): PackedVector4Array {
         val arr = arrayOf(Vector4(0.0, 1.0, 2.0, 3.0), Vector4(4.0, 5.0, 6.0, 7.0), Vector4(8.0, 9.0, 10.0, 11.0), Vector4(1024.0, 2048.0, 4096.0, 8092.0))
         return arr.toPackedVector4Array();
+    }
+
+    @Register
+    fun convertLargeStringArray(): PackedStringArray {
+        val arr = listOf(
+            "This is the first long packed string payload",
+            "This is the second long packed string payload",
+            "This is the third long packed string payload",
+            "This is the fourth long packed string payload",
+        )
+        return PackedStringArray(variantArrayOf(*arr.toTypedArray()))
     }
 
     @Register

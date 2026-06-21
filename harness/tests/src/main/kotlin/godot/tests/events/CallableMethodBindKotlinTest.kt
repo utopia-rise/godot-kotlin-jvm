@@ -10,6 +10,7 @@ import godot.core.Callable2
 import godot.core.Callable3
 import godot.core.VariantArray
 import godot.core.methodCallable3
+import godot.core.StringName
 import godot.core.variantArrayOf
 import godot.global.GD
 
@@ -17,6 +18,9 @@ import godot.global.GD
 class CallableMethodBindKotlinTest : Node() {
     @Visible
     var methodBinds: VariantArray<Int> = variantArrayOf(-1, -1, -1)
+
+    @Visible
+    var directCallResult = ""
 
     @Register
     fun callWithMethodWithAllBinds() {
@@ -48,6 +52,16 @@ class CallableMethodBindKotlinTest : Node() {
     fun readySignalMethodBindTest(a: Int, b: Int, c: Int) {
         GD.print("Called with args: $a, $b, $c")
         methodBinds = variantArrayOf(a, b, c)
+    }
+
+    @Register
+    fun recordDirectCall(label: String) {
+        directCallResult = label
+    }
+
+    @Register
+    fun invokeDirectCallBySnakeCase() {
+        call(StringName("record_direct_call"), "snake_case")
     }
 }
 

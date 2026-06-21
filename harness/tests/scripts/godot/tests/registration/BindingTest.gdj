@@ -11,11 +11,20 @@ signals = [
     
 ]
 properties = [
-    
+    setter_calls,
+    getter_calls,
+    validated_name_backing,
+    is_enabled,
+    typed_int_array,
+    nullable_variant_array,
+    mixed_dictionary
 ]
 notifications = [
     
 ]
 functions = [
-    get_class_name
+    get_class_name,
+    sum_typed_int_array,
+    read_nullable_array_entry,
+    write_mixed_dictionary_entry
 ]

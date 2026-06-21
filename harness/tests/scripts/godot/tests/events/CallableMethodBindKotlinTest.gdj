@@ -11,7 +11,8 @@ signals = [
     
 ]
 properties = [
-    method_binds
+    method_binds,
+    direct_call_result
 ]
 notifications = [
     
@@ -21,5 +22,7 @@ functions = [
     call_with_method_with_two_binds,
     call_with_method_with_one_bind,
     call_with_method_with_no_bind,
-    ready_signal_method_bind_test
+    ready_signal_method_bind_test,
+    record_direct_call,
+    invoke_direct_call_by_snake_case
 ]
