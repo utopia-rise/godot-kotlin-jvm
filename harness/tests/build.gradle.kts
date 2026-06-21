@@ -270,6 +270,7 @@ fun Exec.setupTestExecution(commandProvider: () -> TestExecutionCommand) {
             "-a",
             "test",
             "-c",
+            "--ignoreHeadlessMode",
         )
         val runtimeArgs = buildList {
             if (shouldUseHeadlessTestExecution()) {
