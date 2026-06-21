@@ -16,10 +16,10 @@ properties = [
     notification_triggered
 ]
 notifications = [
-    
+    on_notification:0
 ]
 functions = [
     greeting,
     _enter_tree,
-    _notification
+    on_notification
 ]

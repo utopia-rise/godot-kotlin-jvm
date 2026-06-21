@@ -1,30 +1,30 @@
 package godot.tests.syntax
 
-import godot.annotation.{Export, RegisterClass, RegisterFunction, RegisterProperty}
+import godot.annotation.{Export, Notification, Script, Register, Visible}
 import godot.api.Node
-import godot.core.GodotNotification
 
-@RegisterClass
+@Script
 class ScalaTestClass extends Node {
   @Export
-  @RegisterProperty
+  @Visible
   var exportedInt: Int = 1
 
-  @RegisterProperty
+  @Visible
   var enteredTree: Boolean = false
 
-  @RegisterProperty
+  @Visible
   var notificationTriggered: Boolean = false
 
-  @RegisterFunction
+  @Register
   def greeting: String = "Hello from scala"
 
-  @RegisterFunction
+  @Register
   override def _enterTree(): Unit = {
     enteredTree = true
   }
 
-  @RegisterFunction
-  override def _notification(): GodotNotification =
-    godotNotification((myself: ScalaTestClass, notification: Int) => myself.notificationTriggered = true)
+  @Notification(0)
+  def onNotification(): Unit =
+    notificationTriggered = true
 }
+

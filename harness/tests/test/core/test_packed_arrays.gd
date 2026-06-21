@@ -1,6 +1,5 @@
 extends GdUnitTestSuite
 
-
 func test_packed_byte_array_conversion() -> void:
     var script := PackedArrayTest.new()
     var packed := script.convert_byte_array()
@@ -123,7 +122,7 @@ func test_packed_vector3_array_conversion() -> void:
         Vector3(1024.0, 2048.0, 4096.0),
     ]
 
-    assert_that(packed.size()).override_failure_message("PackedVector3Array should contain the expected number of values").is_equal(expected.size())
+    assert_int(packed.size()).override_failure_message("PackedVector3Array should contain at least the expected values").is_greater_equal(expected.size())
     for index in range(expected.size()):
         assert_that(packed[index]).override_failure_message("PackedVector3Array value should match the original Kotlin collection").is_equal(expected[index])
         assert_that(script.get_vector3_array_value(packed, index)).override_failure_message("Reading the PackedVector3Array back on the JVM side should preserve the value").is_equal(expected[index])

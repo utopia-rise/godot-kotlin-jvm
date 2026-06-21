@@ -5,17 +5,16 @@ registeredName = CallableMethodBindScalaTest
 fqName = godot.tests.events.CallableMethodBindScalaTest
 baseType = Node
 supertypes = [
-    godot.api.Node,
-    godot.api.Object,
-    godot.core.KtObject,
-    godot.common.interop.NativeWrapper,
-    godot.common.interop.NativePointer
+    
 ]
 signals = [
     
 ]
 properties = [
     method_binds
+]
+notifications = [
+    
 ]
 functions = [
     call_with_method_with_all_binds,

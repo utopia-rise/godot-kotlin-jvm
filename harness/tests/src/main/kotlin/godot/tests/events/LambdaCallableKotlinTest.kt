@@ -1,10 +1,10 @@
 package godot.tests.events
 
 import godot.api.Node
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
-import godot.annotation.RegisterProperty
-import godot.annotation.RegisterSignal
+import godot.annotation.Script
+import godot.annotation.Register
+import godot.annotation.Visible
+import godot.annotation.Emit
 import godot.core.Signal3
 import godot.core.asCallable
 import godot.core.lambdaCallable0
@@ -13,40 +13,40 @@ import godot.core.signal0
 import godot.core.signal3
 import godot.extension.connectLambda
 
-@RegisterClass
+@Script
 class LambdaCallableKotlinTest : Node() {
 
-    @RegisterSignal
+    @Emit
     val signalNoParam by signal0()
 
-    @RegisterProperty
+    @Visible
     var hasSignalNoParamBeenTriggered = false
 
-    @RegisterSignal("str", "long", "node")
+    @Emit("str", "long", "node")
     val signalWithParams: Signal3<String, Long, LambdaCallableKotlinTest> by signal3()
 
-    @RegisterProperty
+    @Visible
     var signalString: String = ""
 
-    @RegisterProperty
+    @Visible
     var signalLong: Long = Long.MIN_VALUE
 
-    @RegisterProperty
+    @Visible
     lateinit var signalNode: LambdaCallableKotlinTest
 
-    @RegisterProperty
+    @Visible
     var ktCallable = { str: String -> ktCallableString = str }.asCallable()
 
-    @RegisterProperty
+    @Visible
     var ktCallableString: String = ""
 
-    @RegisterProperty
+    @Visible
     var callableNoParamTriggered = false
 
-    @RegisterProperty
+    @Visible
     var callableWithParamTriggered = false
 
-    @RegisterFunction
+    @Register
     override fun _ready() {
         signalNoParam.connectLambda {
             hasSignalNoParamBeenTriggered = true
@@ -59,43 +59,44 @@ class LambdaCallableKotlinTest : Node() {
         }
     }
 
-    @RegisterFunction
+    @Register
     fun emitSignalNoParam() {
         signalNoParam.emit()
     }
 
-    @RegisterFunction
+    @Register
     fun emitSignalWithParam(str: String, long: Long) {
         signalWithParams.emit(str, long, this)
     }
 
-    @RegisterFunction
+    @Register
     fun markCallableNoParamTriggered() {
         callableNoParamTriggered = true
     }
 
-    @RegisterFunction
+    @Register
     fun callCallableNoParam() {
         lambdaCallable0(this::markCallableNoParamTriggered).call()
     }
 
-    @RegisterFunction
+    @Register
     fun callCallableNoParamDeferred() {
         lambdaCallable0(this::markCallableNoParamTriggered).callDeferred()
     }
 
-    @RegisterFunction
+    @Register
     fun markCallableWithParamTriggered(flag: Boolean) {
         callableWithParamTriggered = flag
     }
 
-    @RegisterFunction
+    @Register
     fun callCallableWithParam() {
         lambdaCallable1(this::markCallableWithParamTriggered).call(true)
     }
 
-    @RegisterFunction
+    @Register
     fun callCallableWithParamDeferred() {
         lambdaCallable1(this::markCallableWithParamTriggered).callDeferred(true)
     }
 }
+

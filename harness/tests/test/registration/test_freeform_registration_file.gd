@@ -1,6 +1,5 @@
 extends GdUnitTestSuite
 
-
 func test_array_any_not_null_append():
     var freeform_script = FreeformRegistrationFileTestClass.new()
     

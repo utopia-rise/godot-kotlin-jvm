@@ -2,41 +2,37 @@ package godot.tests.syntax;
 
 import godot.api.Node;
 import godot.annotation.Export;
-import godot.annotation.RegisterClass;
-import godot.annotation.RegisterFunction;
-import godot.annotation.RegisterProperty;
-import godot.core.GodotNotification;
-import org.jetbrains.annotations.NotNull;
+import godot.annotation.Notification;
+import godot.annotation.Script;
+import godot.annotation.Register;
+import godot.annotation.Visible;
 
-@RegisterClass
+@Script
 public class JavaTestClass extends Node {
     @Export
-    @RegisterProperty
+    @Visible
     public int exportedInt = 1;
 
-    @RegisterProperty
+    @Visible
     public boolean enteredTree = false;
 
-    @RegisterProperty
+    @Visible
     public boolean notificationTriggered = false;
 
-    @RegisterFunction
+    @Register
     public String greeting() {
         return "Hello from java";
     }
 
-    @RegisterFunction
+    @Register
     @Override
     public void _enterTree() {
         enteredTree = true;
     }
 
-    @RegisterFunction
-    @NotNull
-    @Override
-    public GodotNotification _notification() {
-        return godotNotification(
-            (JavaTestClass myself, int notification) -> myself.notificationTriggered = true
-        );
+    @Notification(0)
+    public void onNotification() {
+        notificationTriggered = true;
     }
 }
+

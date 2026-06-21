@@ -1,7 +1,6 @@
 extends GdUnitTestSuite
 
-
-func _assert_bind_variants(script: Object, expected: Array[int], label: String) -> void:
+func _assert_bind_variants(script: Object, expected: Array, label: String) -> void:
     assert_that(script.method_binds[0]).override_failure_message("%s first bind mismatch" % label).is_equal(expected[0])
     assert_that(script.method_binds[1]).override_failure_message("%s second bind mismatch" % label).is_equal(expected[1])
     assert_that(script.method_binds[2]).override_failure_message("%s third bind mismatch" % label).is_equal(expected[2])

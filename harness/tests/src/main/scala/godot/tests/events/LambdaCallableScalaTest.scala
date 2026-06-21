@@ -1,53 +1,54 @@
 package godot.tests.events
 
-import godot.annotation.{RegisterClass, RegisterFunction, RegisterProperty}
+import godot.annotation.{Script, Register, Visible}
 import godot.api.Node
 import godot.core.{Callable, LambdaCallable0, LambdaCallable1}
 
-@RegisterClass
+@Script
 class LambdaCallableScalaTest extends Node {
-  @RegisterProperty
+  @Visible
   var callableNoParamTriggered: Boolean = false
 
-  @RegisterProperty
+  @Visible
   var callableWithParamTriggered: Boolean = false
 
-  @RegisterProperty
+  @Visible
   var callableString: String = ""
 
-  @RegisterProperty
+  @Visible
   var callableProperty: Callable = LambdaCallable1.create(
     classOf[String],
     (value: String) => callableString = value
   )
 
-  @RegisterFunction
+  @Register
   def markCallableNoParamTriggered(): Unit = {
     callableNoParamTriggered = true
   }
 
-  @RegisterFunction
+  @Register
   def callCallableNoParam(): Unit = {
     LambdaCallable0.create(() => markCallableNoParamTriggered()).call()
   }
 
-  @RegisterFunction
+  @Register
   def callCallableNoParamDeferred(): Unit = {
     LambdaCallable0.create(() => markCallableNoParamTriggered()).callDeferred()
   }
 
-  @RegisterFunction
+  @Register
   def markCallableWithParamTriggered(flag: Boolean): Unit = {
     callableWithParamTriggered = flag
   }
 
-  @RegisterFunction
+  @Register
   def callCallableWithParam(): Unit = {
     LambdaCallable1.create(classOf[Boolean], (flag: Boolean) => markCallableWithParamTriggered(flag)).call(true)
   }
 
-  @RegisterFunction
+  @Register
   def callCallableWithParamDeferred(): Unit = {
     LambdaCallable1.create(classOf[Boolean], (flag: Boolean) => markCallableWithParamTriggered(flag)).callDeferred(true)
   }
 }
+

@@ -35,7 +35,13 @@ func _init(writer: GdUnitMessageWriter, detailed := false) -> void:
 
 func init_colors() -> void:
 	if Engine.is_editor_hint():
-		var settings := EditorInterface.get_editor_settings()
+		# Avoid a hard EditorInterface reference so this script still compiles in exported runs.
+		var editor_interface: Object = Engine.get_singleton("EditorInterface")
+		if editor_interface == null:
+			return
+		var settings: Object = editor_interface.call("get_editor_settings")
+		if settings == null:
+			return
 		_text_color = settings.get_setting("text_editor/theme/highlighting/text_color")
 		_function_color = settings.get_setting("text_editor/theme/highlighting/function_color")
 		_engine_type_color = settings.get_setting("text_editor/theme/highlighting/engine_type_color")

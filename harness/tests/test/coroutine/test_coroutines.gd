@@ -1,6 +1,5 @@
 extends GdUnitTestSuite
 
-
 func test_coroutine_await():
     var test_script: Object = CoroutineTest.new()
 

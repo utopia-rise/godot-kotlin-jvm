@@ -1,6 +1,5 @@
 extends GdUnitTestSuite
 
-
 func test_object_instance():
 	var obj: ObjectInstance = ObjectInstance.new()
 	assert_that(obj.get_class()).override_failure_message("Class name should be Object").is_equal("Object")

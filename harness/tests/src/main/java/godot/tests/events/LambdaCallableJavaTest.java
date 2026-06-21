@@ -1,54 +1,55 @@
 package godot.tests.events;
 
-import godot.annotation.RegisterClass;
-import godot.annotation.RegisterFunction;
-import godot.annotation.RegisterProperty;
+import godot.annotation.Script;
+import godot.annotation.Register;
+import godot.annotation.Visible;
 import godot.api.Node;
 import godot.core.Callable;
 import godot.core.LambdaCallable0;
 import godot.core.LambdaCallable1;
 
-@RegisterClass
+@Script
 public class LambdaCallableJavaTest extends Node {
-    @RegisterProperty
+    @Visible
     public boolean callableNoParamTriggered = false;
 
-    @RegisterProperty
+    @Visible
     public boolean callableWithParamTriggered = false;
 
-    @RegisterProperty
+    @Visible
     public String callableString = "";
 
-    @RegisterProperty
+    @Visible
     public Callable callableProperty = LambdaCallable1.create(String.class, value -> callableString = value);
 
-    @RegisterFunction
+    @Register
     public void markCallableNoParamTriggered() {
         callableNoParamTriggered = true;
     }
 
-    @RegisterFunction
+    @Register
     public void callCallableNoParam() {
         LambdaCallable0.create(this::markCallableNoParamTriggered).call();
     }
 
-    @RegisterFunction
+    @Register
     public void callCallableNoParamDeferred() {
         LambdaCallable0.create(this::markCallableNoParamTriggered).callDeferred();
     }
 
-    @RegisterFunction
+    @Register
     public void markCallableWithParamTriggered(Boolean flag) {
         callableWithParamTriggered = flag;
     }
 
-    @RegisterFunction
+    @Register
     public void callCallableWithParam() {
         LambdaCallable1.create(Boolean.class, this::markCallableWithParamTriggered).call(true);
     }
 
-    @RegisterFunction
+    @Register
     public void callCallableWithParamDeferred() {
         LambdaCallable1.create(Boolean.class, this::markCallableWithParamTriggered).callDeferred(true);
     }
 }
+

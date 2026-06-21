@@ -3,7 +3,7 @@ extends GdUnitTestSuite
 
 func test_nullables_are_correctly_set_from_function_lika_a_ready_call():
     var node3d = Node3D.new()
-    var rpc_tests_script = load("res://scripts/godot/tests/registration/RpcTests.gdj").new()
+    var rpc_tests_script = load("res://scripts/godot/tests/registration/RPCTests.gdj").new()
     node3d.add_child(rpc_tests_script)
     get_tree().root.add_child(node3d)
     var network_peer = ENetMultiplayerPeer.new()

@@ -8,7 +8,6 @@ supertypes = [
     
 ]
 signals = [
-    inferred_no_param_signal_delegate,
     no_param_signal_delegate,
     self_connected_signal,
     one_param_signal_delegate,

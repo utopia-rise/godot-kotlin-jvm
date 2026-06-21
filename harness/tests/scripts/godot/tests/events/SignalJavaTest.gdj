@@ -5,11 +5,7 @@ registeredName = SignalJavaTest
 fqName = godot.tests.events.SignalJavaTest
 baseType = Node
 supertypes = [
-    godot.api.Node,
-    godot.api.Object,
-    godot.core.KtObject,
-    godot.common.interop.NativeWrapper,
-    godot.common.interop.NativePointer
+    
 ]
 signals = [
     ready_signal,
@@ -20,6 +16,9 @@ properties = [
     lambda_signal_triggered,
     payload_string,
     payload_int
+]
+notifications = [
+    
 ]
 functions = [
     _ready,

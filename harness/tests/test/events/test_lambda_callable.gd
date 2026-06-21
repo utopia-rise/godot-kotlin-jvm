@@ -1,6 +1,5 @@
 extends GdUnitTestSuite
 
-
 func test_kotlin_lambda_callable() -> void:
     var script := LambdaCallableKotlinTest.new()
     get_tree().root.add_child(script)

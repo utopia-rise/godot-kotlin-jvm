@@ -1,9 +1,9 @@
 package godot.tests.events;
 
-import godot.annotation.RegisterClass;
-import godot.annotation.RegisterFunction;
-import godot.annotation.RegisterProperty;
-import godot.annotation.RegisterSignal;
+import godot.annotation.Script;
+import godot.annotation.Register;
+import godot.annotation.Visible;
+import godot.annotation.Emit;
 import godot.api.Node;
 import godot.core.MethodCallable1;
 import godot.core.MethodCallable2;
@@ -12,51 +12,52 @@ import godot.core.MethodStringName2;
 import godot.core.Signal1;
 import godot.core.Signal2;
 
-@RegisterClass
+@Script
 public class SignalJavaTest extends Node {
-    @RegisterSignal
+    @Emit
     public final Signal1<Boolean> readySignal = Signal1.create(this, "readySignal");
 
-    @RegisterSignal
+    @Emit
     public final Signal2<String, Integer> payloadSignal = Signal2.create(this, "payloadSignal");
 
-    @RegisterProperty
+    @Visible
     public boolean methodSignalTriggered = false;
 
-    @RegisterProperty
+    @Visible
     public boolean lambdaSignalTriggered = false;
 
-    @RegisterProperty
+    @Visible
     public String payloadString = "";
 
-    @RegisterProperty
+    @Visible
     public int payloadInt = Integer.MIN_VALUE;
 
-    @RegisterFunction
+    @Register
     @Override
     public void _ready() {
         readySignal.connect(MethodCallable1.create(
             this,
-            new MethodStringName1<SignalJavaTest, Void, Boolean>("onReadySignal")
+            new MethodStringName1<SignalJavaTest, Void, Boolean>("on_ready_signal")
         ));
         payloadSignal.connect(MethodCallable2.create(
             this,
-            new MethodStringName2<SignalJavaTest, Void, String, Integer>("onPayloadSignal")
+            new MethodStringName2<SignalJavaTest, Void, String, Integer>("on_payload_signal")
         ));
 
         readySignal.emit(true);
         payloadSignal.emit("java-events", 17);
     }
 
-    @RegisterFunction
+    @Register
     public void onReadySignal(Boolean value) {
         methodSignalTriggered = value;
     }
 
-    @RegisterFunction
+    @Register
     public void onPayloadSignal(String text, Integer value) {
         lambdaSignalTriggered = true;
         payloadString = text;
         payloadInt = value;
     }
 }
+

@@ -1,53 +1,54 @@
 package godot.tests.events
 
-import godot.annotation.{RegisterClass, RegisterFunction, RegisterProperty, RegisterSignal}
+import godot.annotation.{Script, Register, Visible, Emit}
 import godot.api.Node
 import godot.core.{MethodCallable1, MethodCallable2, MethodStringName1, MethodStringName2, Signal1, Signal2}
 
-@RegisterClass
+@Script
 class SignalScalaTest extends Node {
-  @RegisterSignal
+  @Emit
   val readySignal: Signal1[Boolean] = Signal1.create(this, "readySignal")
 
-  @RegisterSignal
+  @Emit
   val payloadSignal: Signal2[String, Integer] = Signal2.create(this, "payloadSignal")
 
-  @RegisterProperty
+  @Visible
   var methodSignalTriggered: Boolean = false
 
-  @RegisterProperty
+  @Visible
   var lambdaSignalTriggered: Boolean = false
 
-  @RegisterProperty
+  @Visible
   var payloadString: String = ""
 
-  @RegisterProperty
+  @Visible
   var payloadInt: Int = Int.MinValue
 
-  @RegisterFunction
+  @Register
   override def _ready(): Unit = {
     readySignal.connect(MethodCallable1.create(
       this,
-      new MethodStringName1[SignalScalaTest, Void, Boolean]("onReadySignal")
+      new MethodStringName1[SignalScalaTest, Void, Boolean]("on_ready_signal")
     ))
     payloadSignal.connect(MethodCallable2.create(
       this,
-      new MethodStringName2[SignalScalaTest, Void, String, Integer]("onPayloadSignal")
+      new MethodStringName2[SignalScalaTest, Void, String, Integer]("on_payload_signal")
     ))
 
     readySignal.emit(true)
     payloadSignal.emit("scala-events", 23)
   }
 
-  @RegisterFunction
+  @Register
   def onReadySignal(value: Boolean): Unit = {
     methodSignalTriggered = value
   }
 
-  @RegisterFunction
+  @Register
   def onPayloadSignal(text: String, value: Integer): Unit = {
     lambdaSignalTriggered = true
     payloadString = text
     payloadInt = value
   }
 }
+

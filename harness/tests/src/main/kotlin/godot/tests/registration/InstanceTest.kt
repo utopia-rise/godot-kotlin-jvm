@@ -1,15 +1,16 @@
 package godot.tests.registration
 
-import godot.annotation.RegisterClass
+import godot.annotation.Script
 import godot.api.Node
 import godot.api.Object
 import godot.api.RefCounted
 
-@RegisterClass
+@Script
 class ObjectInstance : Object()
 
-@RegisterClass
+@Script
 class RefCountedInstance : RefCounted()
 
-@RegisterClass
+@Script
 class NodeInstance : Node()
+

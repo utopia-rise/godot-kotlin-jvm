@@ -5,17 +5,15 @@ registeredName = InterfaceChild
 fqName = godot.tests.registration.InterfaceChild
 baseType = Node
 supertypes = [
-    godot.api.Node,
-    godot.api.Object,
-    godot.core.KtObject,
-    godot.tests.registration.TestInterface,
-    godot.common.interop.NativeWrapper,
-    godot.common.interop.NativePointer
+    
 ]
 signals = [
     
 ]
 properties = [
+    
+]
+notifications = [
     
 ]
 functions = [

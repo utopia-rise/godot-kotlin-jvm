@@ -10,8 +10,8 @@ import godot.annotation.IntRange;
 import godot.annotation.LongRange;
 import godot.annotation.MultilineText;
 import godot.annotation.PlaceHolderText;
-import godot.annotation.RegisterClass;
-import godot.annotation.RegisterProperty;
+import godot.annotation.Script;
+import godot.annotation.Visible;
 import godot.annotation.ColorNoAlpha;
 import godot.annotation.Dir;
 import godot.annotation.DoubleRange;
@@ -45,7 +45,7 @@ import godot.core.Vector3;
 import godot.core.Vector4;
 import godot.core.Vector4i;
 
-@RegisterClass
+@Script
 public class JavaExport extends Node {
     public enum JavaExportEnum {
         JAVA_EXPORT_ENUM_1,
@@ -53,89 +53,89 @@ public class JavaExport extends Node {
     }
 
     @Export
-    @RegisterProperty
+    @Visible
     public Button button;
 
     @Export
-    @RegisterProperty
+    @Visible
     public boolean booleanValue = true;
 
     @Export
-    @RegisterProperty
+    @Visible
     public byte byteValue = 1;
 
     @Export
-    @RegisterProperty
+    @Visible
     public int intValue = 1;
 
     @Export
-    @RegisterProperty
+    @Visible
     @IntRange(min = 1, max = 10)
     public int intRangeValue = 3;
 
     @Export
-    @RegisterProperty
+    @Visible
     @IntFlag(names = {"Player", "Enemy", "Npc"})
     public int intFlagValue = 0b011;
 
     @Export
-    @RegisterProperty
+    @Visible
     public long longValue = 1L;
 
     @Export
-    @RegisterProperty
+    @Visible
     @LongRange(min = 10L, max = 100L)
     public long longRangeValue = 42L;
 
     @Export
-    @RegisterProperty
+    @Visible
     public float floatValue = 1f;
 
     @Export
-    @RegisterProperty
+    @Visible
     @FloatRange(min = 0.5f, max = 5.5f, step = 0.5f)
     public float floatRangeValue = 2.5f;
 
     @Export
-    @RegisterProperty
+    @Visible
     @ExpEasing
     public float easingValue = 0.35f;
 
     @Export
-    @RegisterProperty
+    @Visible
     public double doubleValue = 1.0;
 
     @Export
-    @RegisterProperty
+    @Visible
     @DoubleRange(min = 1.25, max = 9.75, step = 0.25)
     public double doubleRangeValue = 4.75;
 
     @Export
-    @RegisterProperty
+    @Visible
     public String stringValue = "java-export";
 
     @Export
-    @RegisterProperty
+    @Visible
     @File(extensions = {"gd", "gdj"})
     public String filePathValue = "res://test/core/test_core.gd";
 
     @Export
-    @RegisterProperty
+    @Visible
     @Dir
     public String directoryPathValue = "res://test/core";
 
     @Export
-    @RegisterProperty
+    @Visible
     @MultilineText
     public String multilineTextValue = "Java export line 1\nJava export line 2";
 
     @Export
-    @RegisterProperty
+    @Visible
     @PlaceHolderText
     public String placeholderTextValue = "placeholder";
 
     @Export
-    @RegisterProperty
+    @Visible
     @EnumTypeHint
     public JavaExportEnum enumValue = JavaExportEnum.JAVA_EXPORT_ENUM_1;
 
@@ -143,62 +143,62 @@ public class JavaExport extends Node {
     // and this branch is staying on the build-stable path until that export shape is covered.
 
     @Export
-    @RegisterProperty
+    @Visible
     public Vector2 vector2 = new Vector2(1, 2);
 
     // Not supported yet by this harness' entry generation for exported integer core variants.
     // @Export
-    // @RegisterProperty
+    // @Visible
     // public Vector2i vector2i = new Vector2i(1, 2);
 
     @Export
-    @RegisterProperty
+    @Visible
     public Rect2 rect2 = new Rect2(1.0, 2.0, 3.0, 4.0);
 
     // Not supported yet by this harness' entry generation for exported integer core variants.
     // @Export
-    // @RegisterProperty
+    // @Visible
     // public Rect2i rect2i = new Rect2i(1, 2, 3, 4);
 
     @Export
-    @RegisterProperty
+    @Visible
     public Vector3 vector3 = new Vector3(1, 2, 3);
 
     // Not supported yet by this harness' entry generation for exported integer core variants.
     // @Export
-    // @RegisterProperty
+    // @Visible
     // public Vector3i vector3i = new Vector3i(1, 2, 3);
 
     @Export
-    @RegisterProperty
+    @Visible
     public Transform2D transform2D = new Transform2D(0, 1, 2, 3, 4, 5);
 
     @Export
-    @RegisterProperty
+    @Visible
     public Vector4 vector4 = new Vector4(1, 2, 3, 4);
 
     @Export
-    @RegisterProperty
+    @Visible
     public Vector4i vector4i = new Vector4i(1, 2, 3, 4);
 
     @Export
-    @RegisterProperty
+    @Visible
     public Plane plane = new Plane(1, 2, 3, 4);
 
     @Export
-    @RegisterProperty
+    @Visible
     public Quaternion quaternionValue = new Quaternion(1, 2, 3, 4);
 
     @Export
-    @RegisterProperty
+    @Visible
     public AABB aabb = new AABB(new Vector3(1, 1, 1), new Vector3(2, 2, 2));
 
     @Export
-    @RegisterProperty
+    @Visible
     public Basis basisValue = new Basis(new Vector3(0, 1, 2), new Vector3(3, 4, 5), new Vector3(6, 7, 8));
 
     @Export
-    @RegisterProperty
+    @Visible
     public Transform3D transform3D = new Transform3D(
         new Vector3(0, 1, 2),
         new Vector3(3, 4, 5),
@@ -209,90 +209,90 @@ public class JavaExport extends Node {
     // Projection is intentionally omitted for now: this harness' entry generation rejects it as an exported property.
 
     @Export
-    @RegisterProperty
+    @Visible
     public Color color = new Color(0.1, 0.2, 0.3, 0.4);
 
     @Export
-    @RegisterProperty
+    @Visible
     @ColorNoAlpha
     public Color colorNoAlpha = new Color(0.6, 0.4, 0.2, 1.0);
 
     @Export
-    @RegisterProperty
+    @Visible
     public StringName stringName = new StringName("java_export");
 
     @Export
-    @RegisterProperty
+    @Visible
     public NodePath nodePath = new NodePath("Button");
 
     @Export
-    @RegisterProperty
+    @Visible
     public RID rid = new RID();
 
     @Export
-    @RegisterProperty
+    @Visible
     public NavigationMesh resourceTest = new NavigationMesh();
 
     @Export
-    @RegisterProperty
+    @Visible
     public int jvmId = 0;
 
     @Export
-    @RegisterProperty
+    @Visible
     public VariantArray<Integer> intArray = new VariantArray<>(Integer.class);
 
     @Export
-    @RegisterProperty
+    @Visible
     public VariantArray<String> stringArray = new VariantArray<>(String.class);
 
     @Export
-    @RegisterProperty
+    @Visible
     public VariantArray<NavigationMesh> navMeshes = new VariantArray<>(NavigationMesh.class);
 
     @Export
-    @RegisterProperty
+    @Visible
     public Dictionary<String, Integer> stringToIntDictionary = new Dictionary<>(String.class, Integer.class);
 
     @Export
-    @RegisterProperty
+    @Visible
     public Dictionary<String, NavigationMesh> navMeshesDictionary = new Dictionary<>(String.class, NavigationMesh.class);
 
     @Export
-    @RegisterProperty
+    @Visible
     public PackedByteArray packedByteArray = new PackedByteArray();
 
     @Export
-    @RegisterProperty
+    @Visible
     public PackedInt32Array packedInt32Array = new PackedInt32Array();
 
     @Export
-    @RegisterProperty
+    @Visible
     public PackedInt64Array packedInt64Array = new PackedInt64Array();
 
     @Export
-    @RegisterProperty
+    @Visible
     public PackedFloat32Array packedFloat32Array = new PackedFloat32Array();
 
     @Export
-    @RegisterProperty
+    @Visible
     public PackedFloat64Array packedFloat64Array = new PackedFloat64Array();
 
     @Export
-    @RegisterProperty
+    @Visible
     public PackedStringArray packedStringArray = new PackedStringArray();
 
     @Export
-    @RegisterProperty
+    @Visible
     public PackedVector2Array packedVector2Array = new PackedVector2Array();
 
     @Export
-    @RegisterProperty
+    @Visible
     public PackedVector3Array packedVector3Array = new PackedVector3Array();
 
     // PackedVector4Array is intentionally omitted for now: this harness' entry generation rejects it as an exported property.
 
     @Export
-    @RegisterProperty
+    @Visible
     public PackedColorArray packedColorArray = new PackedColorArray();
 
     public JavaExport() {
@@ -311,3 +311,4 @@ public class JavaExport extends Node {
         navMeshesDictionary.set("AwesomeNavmesh", new NavigationMesh());
     }
 }
+

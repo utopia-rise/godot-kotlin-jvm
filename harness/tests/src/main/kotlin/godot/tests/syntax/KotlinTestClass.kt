@@ -1,33 +1,35 @@
 package godot.tests.syntax
 
 import godot.annotation.Export
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
-import godot.annotation.RegisterProperty
+import godot.annotation.Notification
+import godot.annotation.Script
+import godot.annotation.Register
+import godot.annotation.Visible
 import godot.api.Node
 
-@RegisterClass
+@Script
 class KotlinTestClass : Node() {
     @Export
-    @RegisterProperty
+    @Visible
     var exportedInt = 1
 
-    @RegisterProperty
+    @Visible
     var enteredTree = false
 
-    @RegisterProperty
+    @Visible
     var notificationTriggered = false
 
-    @RegisterFunction
+    @Register
     fun greeting() = "Hello from kotlin"
 
-    @RegisterFunction
+    @Register
     override fun _enterTree() {
         enteredTree = true
     }
 
-    @RegisterFunction
-    override fun _notification() = godotNotification { _ ->
+    @Notification(0)
+    fun onNotification() {
         notificationTriggered = true
     }
 }
+

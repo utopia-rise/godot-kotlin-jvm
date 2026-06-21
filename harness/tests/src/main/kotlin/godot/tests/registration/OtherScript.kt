@@ -1,44 +1,44 @@
 package godot.tests.registration
 
 import godot.api.Node
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
-import godot.annotation.RegisterProperty
+import godot.annotation.Script
+import godot.annotation.Register
+import godot.annotation.Visible
 
-@RegisterClass
+@Script
 class OtherScript : Node() {
-    @RegisterProperty
+    @Visible
     var hookNoParamCalled = false
 
-    @RegisterProperty
+    @Visible
     var hookOneParamCalled = false
 
-    @RegisterProperty
+    @Visible
     var hookOneParamValue = false
 
-    @RegisterProperty
+    @Visible
     var hookTwoParamCalled = false
 
-    @RegisterProperty
+    @Visible
     var hookTwoParamValue = ""
 
-    @RegisterProperty
+    @Visible
     lateinit var hookTwoParamNode: Node
 
-    @RegisterFunction
+    @Register
     fun hookNoParam() {
         hookNoParamCalled = true
         println("Hook was called with no param.")
     }
 
-    @RegisterFunction
+    @Register
     fun hookOneParam(b: Boolean) {
         hookOneParamCalled = true
         hookOneParamValue = b
         println("Hook was called with parameter: $b")
     }
 
-    @RegisterFunction
+    @Register
     fun hookTwoParam(str: String, inv: Node) {
         hookTwoParamCalled = true
         hookTwoParamValue = str
@@ -46,3 +46,4 @@ class OtherScript : Node() {
         println("Hook was called with parameters: $str, $inv")
     }
 }
+

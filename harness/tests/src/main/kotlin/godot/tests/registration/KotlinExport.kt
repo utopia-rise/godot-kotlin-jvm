@@ -10,8 +10,8 @@ import godot.annotation.IntRange
 import godot.annotation.LongRange
 import godot.annotation.MultilineText
 import godot.annotation.PlaceHolderText
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterProperty
+import godot.annotation.Script
+import godot.annotation.Visible
 import godot.annotation.ColorNoAlpha
 import godot.annotation.Dir
 import godot.annotation.DoubleRange
@@ -46,7 +46,7 @@ import godot.core.Vector4
 import godot.core.Vector4i
 import godot.core.variantArrayOf
 
-@RegisterClass
+@Script
 class KotlinExport : Node() {
     enum class KotlinExportEnum {
         ENUM_1,
@@ -54,89 +54,89 @@ class KotlinExport : Node() {
     }
 
     @Export
-    @RegisterProperty
+    @Visible
     lateinit var button: Button
 
     @Export
-    @RegisterProperty
+    @Visible
     var booleanValue = true
 
     @Export
-    @RegisterProperty
+    @Visible
     var byteValue: Byte = 1
 
     @Export
-    @RegisterProperty
+    @Visible
     var intValue = 1
 
     @Export
-    @RegisterProperty
+    @Visible
     @IntRange(1, 10)
     var intRangeValue = 3
 
     @Export
-    @RegisterProperty
+    @Visible
     @IntFlag("Player", "Enemy", "Npc")
     var intFlagValue = 0b011
 
     @Export
-    @RegisterProperty
+    @Visible
     var longValue = 1L
 
     @Export
-    @RegisterProperty
+    @Visible
     @LongRange(10L, 100L)
     var longRangeValue = 42L
 
     @Export
-    @RegisterProperty
+    @Visible
     var floatValue = 1f
 
     @Export
-    @RegisterProperty
+    @Visible
     @FloatRange(0.5f, 5.5f, 0.5f)
     var floatRangeValue = 2.5f
 
     @Export
-    @RegisterProperty
+    @Visible
     @ExpEasing
     var easingValue = 0.35f
 
     @Export
-    @RegisterProperty
+    @Visible
     var doubleValue = 1.0
 
     @Export
-    @RegisterProperty
+    @Visible
     @DoubleRange(1.25, 9.75, 0.25)
     var doubleRangeValue = 4.75
 
     @Export
-    @RegisterProperty
+    @Visible
     var stringValue = "kotlin-export"
 
     @Export
-    @RegisterProperty
+    @Visible
     @File("gd", "gdj")
     var filePathValue = "res://test/core/test_core.gd"
 
     @Export
-    @RegisterProperty
+    @Visible
     @Dir
     var directoryPathValue = "res://test/core"
 
     @Export
-    @RegisterProperty
+    @Visible
     @MultilineText
     var multilineTextValue = "Kotlin export line 1\nKotlin export line 2"
 
     @Export
-    @RegisterProperty
+    @Visible
     @PlaceHolderText
     var placeholderTextValue = "placeholder"
 
     @Export
-    @RegisterProperty
+    @Visible
     @EnumTypeHint
     var enumValue = KotlinExportEnum.ENUM_1
 
@@ -144,160 +144,160 @@ class KotlinExport : Node() {
     // and this branch is staying on the build-stable path until that export shape is covered.
 
     @Export
-    @RegisterProperty
+    @Visible
     var vector2 = Vector2(1, 2)
 
     // Not supported yet by this harness' entry generation for exported integer core variants.
     // @Export
-    // @RegisterProperty
+    // @Visible
     // var vector2i = Vector2i(1, 2)
 
     @Export
-    @RegisterProperty
+    @Visible
     var rect2 = Rect2(1.0, 2.0, 3.0, 4.0)
 
     // Not supported yet by this harness' entry generation for exported integer core variants.
     // @Export
-    // @RegisterProperty
+    // @Visible
     // var rect2i = Rect2i(1, 2, 3, 4)
 
     @Export
-    @RegisterProperty
+    @Visible
     var vector3 = Vector3(1, 2, 3)
 
     // Not supported yet by this harness' entry generation for exported integer core variants.
     // @Export
-    // @RegisterProperty
+    // @Visible
     // var vector3i = Vector3i(1, 2, 3)
 
     @Export
-    @RegisterProperty
+    @Visible
     var transform2D = Transform2D(0, 1, 2, 3, 4, 5)
 
     @Export
-    @RegisterProperty
+    @Visible
     var vector4 = Vector4(1, 2, 3, 4)
 
     @Export
-    @RegisterProperty
+    @Visible
     var vector4i = Vector4i(1, 2, 3, 4)
 
     @Export
-    @RegisterProperty
+    @Visible
     var plane = Plane(1, 2, 3, 4)
 
     @Export
-    @RegisterProperty
+    @Visible
     var quaternionValue = Quaternion(1, 2, 3, 4)
 
     @Export
-    @RegisterProperty
+    @Visible
     var aabb = AABB(Vector3(1, 1, 1), Vector3(2, 2, 2))
 
     @Export
-    @RegisterProperty
+    @Visible
     var basisValue = Basis(Vector3(0, 1, 2), Vector3(3, 4, 5), Vector3(6, 7, 8))
 
     @Export
-    @RegisterProperty
+    @Visible
     var transform3D =
         Transform3D(Vector3(0, 1, 2), Vector3(3, 4, 5), Vector3(6, 7, 8), Vector3(9, 10, 11))
 
     // Projection is intentionally omitted for now: this harness' entry generation rejects it as an exported property.
 
     @Export
-    @RegisterProperty
+    @Visible
     var color = Color(0.1, 0.2, 0.3, 0.4)
 
     @Export
-    @RegisterProperty
+    @Visible
     @ColorNoAlpha
     var colorNoAlpha = Color(0.6, 0.4, 0.2, 1.0)
 
     @Export
-    @RegisterProperty
+    @Visible
     var stringName = StringName("kotlin_export")
 
     @Export
-    @RegisterProperty
+    @Visible
     var nodePath = NodePath("CanvasLayer/Button")
 
     @Export
-    @RegisterProperty
+    @Visible
     var rid = RID()
 
     @Export
-    @RegisterProperty
+    @Visible
     var resourceTest = NavigationMesh()
 
     @Export
-    @RegisterProperty
+    @Visible
     var jvmId = 0
 
     @Export
-    @RegisterProperty
+    @Visible
     var intArray: VariantArray<Int> = variantArrayOf(1, 2, 3)
 
     @Export
-    @RegisterProperty
+    @Visible
     var stringArray: VariantArray<String> = variantArrayOf("one", "two")
 
     @Export
-    @RegisterProperty
+    @Visible
     var navMeshes = variantArrayOf(NavigationMesh())
 
     @Export
-    @RegisterProperty
+    @Visible
     var nullableArray = variantArrayOf<Any?>(NavigationMesh(), null)
 
     @Export
-    @RegisterProperty
+    @Visible
     var stringToIntDictionary: Dictionary<String, Int> = Dictionary()
 
     @Export
-    @RegisterProperty
+    @Visible
     var navMeshesDictionary: Dictionary<String, NavigationMesh> = Dictionary()
 
     @Export
-    @RegisterProperty
+    @Visible
     var nullableDictionary: Dictionary<String, Any?> = Dictionary()
 
     @Export
-    @RegisterProperty
+    @Visible
     var packedByteArray = PackedByteArray()
 
     @Export
-    @RegisterProperty
+    @Visible
     var packedInt32Array = PackedInt32Array()
 
     @Export
-    @RegisterProperty
+    @Visible
     var packedInt64Array = PackedInt64Array()
 
     @Export
-    @RegisterProperty
+    @Visible
     var packedFloat32Array = PackedFloat32Array()
 
     @Export
-    @RegisterProperty
+    @Visible
     var packedFloat64Array = PackedFloat64Array()
 
     @Export
-    @RegisterProperty
+    @Visible
     var packedStringArray = PackedStringArray()
 
     @Export
-    @RegisterProperty
+    @Visible
     var packedVector2Array = PackedVector2Array()
 
     @Export
-    @RegisterProperty
+    @Visible
     var packedVector3Array = PackedVector3Array()
 
     // PackedVector4Array is intentionally omitted for now: this harness' entry generation rejects it as an exported property.
 
     @Export
-    @RegisterProperty
+    @Visible
     var packedColorArray = PackedColorArray()
 
     init {
@@ -310,3 +310,4 @@ class KotlinExport : Node() {
         nullableDictionary["null"] = null
     }
 }
+

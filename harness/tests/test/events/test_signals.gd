@@ -1,6 +1,5 @@
 extends GdUnitTestSuite
 
-
 func test_kotlin_signals() -> void:
     var script := SignalKotlinTest.new()
     get_tree().root.add_child(script)
@@ -35,6 +34,7 @@ func test_kotlin_signals() -> void:
     assert_bool(script.self_connected_signal_triggered).is_true()
 
     get_tree().root.remove_child(script)
+    script.other_script.free()
     script.free()
 
 

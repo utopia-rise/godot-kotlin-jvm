@@ -4,3 +4,4 @@ package godot.tests
 enum ScalaEnum extends java.lang.Enum[ScalaEnum] {
   case SCALA_ENUM_1, SCALA_ENUM_2
 }
+

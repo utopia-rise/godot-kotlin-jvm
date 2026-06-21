@@ -1,7 +1,7 @@
 package godot.tests.core
 
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
+import godot.annotation.Script
+import godot.annotation.Register
 import godot.api.Node
 import godot.core.AABB
 import godot.core.Basis
@@ -33,7 +33,7 @@ import godot.core.Vector4
 import godot.core.Vector4i
 import godot.core.variantArrayOf
 
-@RegisterClass
+@Script
 class CoreTest : Node() {
     private val shortStringValue = "short core string"
     private val longStringValue =
@@ -70,186 +70,187 @@ class CoreTest : Node() {
     private val packedVector3ArrayValue = PackedVector3Array(listOf(Vector3(1, 2, 3), Vector3(4, 5, 6)))
     private val packedColorArrayValue = PackedColorArray(listOf(Color(0.1, 0.2, 0.3, 0.4), Color(0.5, 0.6, 0.7, 0.8)))
 
-    @RegisterFunction
+    @Register
     fun readVector2() = vector2Value
 
-    @RegisterFunction
+    @Register
     fun echoVector2(value: Vector2) = value
 
-    @RegisterFunction
+    @Register
     fun readShortString() = shortStringValue
 
-    @RegisterFunction
+    @Register
     fun echoShortString(value: String) = value
 
-    @RegisterFunction
+    @Register
     fun readLongString() = longStringValue
 
-    @RegisterFunction
+    @Register
     fun echoLongString(value: String) = value
 
-    @RegisterFunction
+    @Register
     fun readVector2i() = vector2iValue
 
-    @RegisterFunction
+    @Register
     fun echoVector2i(value: Vector2i) = value
 
-    @RegisterFunction
+    @Register
     fun readRect2() = rect2Value
 
-    @RegisterFunction
+    @Register
     fun echoRect2(value: Rect2) = value
 
-    @RegisterFunction
+    @Register
     fun readRect2i() = rect2iValue
 
-    @RegisterFunction
+    @Register
     fun echoRect2i(value: Rect2i) = value
 
-    @RegisterFunction
+    @Register
     fun readVector3() = vector3Value
 
-    @RegisterFunction
+    @Register
     fun echoVector3(value: Vector3) = value
 
-    @RegisterFunction
+    @Register
     fun readVector3i() = vector3iValue
 
-    @RegisterFunction
+    @Register
     fun echoVector3i(value: Vector3i) = value
 
-    @RegisterFunction
+    @Register
     fun readTransform2D() = transform2DValue
 
-    @RegisterFunction
+    @Register
     fun echoTransform2D(value: Transform2D) = value
 
-    @RegisterFunction
+    @Register
     fun readVector4() = vector4Value
 
-    @RegisterFunction
+    @Register
     fun echoVector4(value: Vector4) = value
 
-    @RegisterFunction
+    @Register
     fun readVector4i() = vector4iValue
 
-    @RegisterFunction
+    @Register
     fun echoVector4i(value: Vector4i) = value
 
-    @RegisterFunction
+    @Register
     fun readPlane() = planeValue
 
-    @RegisterFunction
+    @Register
     fun echoPlane(value: Plane) = value
 
-    @RegisterFunction
+    @Register
     fun readQuaternion() = quaternionValue
 
-    @RegisterFunction
+    @Register
     fun echoQuaternion(value: Quaternion) = value
 
-    @RegisterFunction
+    @Register
     fun readAabb() = aabbValue
 
-    @RegisterFunction
+    @Register
     fun echoAabb(value: AABB) = value
 
-    @RegisterFunction
+    @Register
     fun readBasis() = basisValue
 
-    @RegisterFunction
+    @Register
     fun echoBasis(value: Basis) = value
 
-    @RegisterFunction
+    @Register
     fun readTransform3D() = transform3DValue
 
-    @RegisterFunction
+    @Register
     fun echoTransform3D(value: Transform3D) = value
 
-    @RegisterFunction
+    @Register
     fun readProjection() = projectionValue
 
-    @RegisterFunction
+    @Register
     fun echoProjection(value: Projection) = value
 
-    @RegisterFunction
+    @Register
     fun readColor() = colorValue
 
-    @RegisterFunction
+    @Register
     fun echoColor(value: Color) = value
 
-    @RegisterFunction
+    @Register
     fun readStringName() = stringNameValue
 
-    @RegisterFunction
+    @Register
     fun echoStringName(value: StringName) = value
 
-    @RegisterFunction
+    @Register
     fun readNodePath() = nodePathValue
 
-    @RegisterFunction
+    @Register
     fun echoNodePath(value: NodePath) = value
 
-    @RegisterFunction
+    @Register
     fun readRid() = ridValue
 
-    @RegisterFunction
+    @Register
     fun echoRid(value: RID) = value
 
-    @RegisterFunction
+    @Register
     fun readPackedByteArray() = packedByteArrayValue
 
-    @RegisterFunction
+    @Register
     fun echoPackedByteArray(value: PackedByteArray) = value
 
-    @RegisterFunction
+    @Register
     fun readPackedInt32Array() = packedInt32ArrayValue
 
-    @RegisterFunction
+    @Register
     fun echoPackedInt32Array(value: PackedInt32Array) = value
 
-    @RegisterFunction
+    @Register
     fun readPackedInt64Array() = packedInt64ArrayValue
 
-    @RegisterFunction
+    @Register
     fun echoPackedInt64Array(value: PackedInt64Array) = value
 
-    @RegisterFunction
+    @Register
     fun readPackedFloat32Array() = packedFloat32ArrayValue
 
-    @RegisterFunction
+    @Register
     fun echoPackedFloat32Array(value: PackedFloat32Array) = value
 
-    @RegisterFunction
+    @Register
     fun readPackedFloat64Array() = packedFloat64ArrayValue
 
-    @RegisterFunction
+    @Register
     fun echoPackedFloat64Array(value: PackedFloat64Array) = value
 
-    @RegisterFunction
+    @Register
     fun readPackedStringArray() = packedStringArrayValue
 
-    @RegisterFunction
+    @Register
     fun echoPackedStringArray(value: PackedStringArray) = value
 
-    @RegisterFunction
+    @Register
     fun readPackedVector2Array() = packedVector2ArrayValue
 
-    @RegisterFunction
+    @Register
     fun echoPackedVector2Array(value: PackedVector2Array) = value
 
-    @RegisterFunction
+    @Register
     fun readPackedVector3Array() = packedVector3ArrayValue
 
-    @RegisterFunction
+    @Register
     fun echoPackedVector3Array(value: PackedVector3Array) = value
 
     // PackedVector4Array is not covered yet here because this harness currently rejects it elsewhere and
     // I want this suite to stay build-stable until we confirm round-trip support separately.
 
-    @RegisterFunction
+    @Register
     fun readPackedColorArray() = packedColorArrayValue
 
-    @RegisterFunction
+    @Register
     fun echoPackedColorArray(value: PackedColorArray) = value
 }
+

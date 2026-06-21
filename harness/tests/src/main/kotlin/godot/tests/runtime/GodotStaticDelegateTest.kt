@@ -1,18 +1,19 @@
 package godot.tests.runtime
 
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterProperty
+import godot.annotation.Script
+import godot.annotation.Visible
 import godot.api.Node
 import godot.api.PackedScene
 import godot.api.ResourceLoader
 import godot.extension.api.asStatic
 
-@RegisterClass
+@Script
 class GodotStaticDelegateTest : Node() {
 
-    @RegisterProperty
+    @Visible
     var loadedScene: PackedScene? = ResourceLoader.load("res://Spatial.tscn") as PackedScene?
 
-    @RegisterProperty
+    @Visible
     var staticNode: Node = Node().asStatic()
 }
+

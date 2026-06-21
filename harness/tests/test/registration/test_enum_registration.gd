@@ -1,6 +1,5 @@
 extends GdUnitTestSuite
 
-
 func test_custom_enum_property():
 	var script := EnumRegistration.new()
 	assert_that(script.enum_value).override_failure_message("Should return enum with ordinal 1").is_equal(1)

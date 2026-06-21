@@ -1,10 +1,10 @@
 package godot.tests.events
 
 import godot.api.Node
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
-import godot.annotation.RegisterProperty
-import godot.annotation.RegisterSignal
+import godot.annotation.Script
+import godot.annotation.Register
+import godot.annotation.Visible
+import godot.annotation.Emit
 import godot.annotation.Rpc
 import godot.core.Signal0
 import godot.core.Signal1
@@ -19,37 +19,37 @@ import godot.extension.connectLambda
 import godot.extension.connectMethod
 import godot.tests.registration.OtherScript
 
-@RegisterClass
+@Script
 class SignalKotlinTest : Node() {
-    @RegisterSignal
+    @Emit
     val noParamSignalDelegate by signal0()
 
-    @RegisterSignal
+    @Emit
     val selfConnectedSignal by signal0()
 
-    @RegisterSignal("refresh")
+    @Emit("refresh")
     val oneParamSignalDelegate by signal1<Boolean>()
 
-    @RegisterSignal("str", "inv")
+    @Emit("str", "inv")
     val twoParamSignalDelegate by signal2<String, SignalKotlinTest>()
 
 
-    @RegisterSignal()
+    @Emit()
     val noParamSignalField = Signal0("noParamSignalField")
 
-    @RegisterSignal("refresh")
+    @Emit("refresh")
     val oneParamSignalField = Signal1<Boolean>("oneParamSignalField")
 
-    @RegisterSignal("str", "inv")
+    @Emit("str", "inv")
     val twoParamSignalField = Signal2<String, SignalKotlinTest>("twoParamSignalField")
 
-    @RegisterProperty
+    @Visible
     var otherScript = OtherScript()
 
-    @RegisterProperty
+    @Visible
     var selfConnectedSignalTriggered = false
 
-    @RegisterFunction
+    @Register
     override fun _ready() {
 
         noParamSignalDelegate.connectMethod(otherScript, OtherScript::hookNoParam)
@@ -86,14 +86,14 @@ class SignalKotlinTest : Node() {
     }
 
 
-    @RegisterSignal("vector2")
+    @Emit("vector2")
     val signalWithMultipleTargets by signal1<Vector2>()
 
     //To store values emitted by signals
-    @RegisterProperty
+    @Visible
     var array: VariantArray<Vector2> = VariantArray()
 
-    @RegisterFunction
+    @Register
     fun targetFunctionOne(vector2: Vector2) {
         array.append(vector2)
         //call GodotAPI to insert different parameters in the stack.
@@ -104,19 +104,20 @@ class SignalKotlinTest : Node() {
     }
 
 
-    @RegisterFunction
+    @Register
     fun targetFunctionTwo(vector2: Vector2) {
         array.append(vector2)
     }
 
     @Rpc
-    @RegisterFunction
+    @Register
     fun onSelfConnectedSignal() {
         selfConnectedSignalTriggered = true
     }
 
-    @RegisterFunction
+    @Register
     fun emitSelfConnectedSignal() {
         selfConnectedSignal.emit()
     }
 }
+

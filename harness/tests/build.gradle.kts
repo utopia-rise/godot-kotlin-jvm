@@ -1,5 +1,5 @@
-import godot.entrygenerator.settings.RegistrationFileLayoutMode
 import godot.gradle.GodotLanguage
+import godot.registrar.generator.settings.RegistrationFileLayoutMode
 import org.jetbrains.kotlin.konan.target.HostManager
 
 plugins {
@@ -55,8 +55,17 @@ kotlin.sourceSets.main {
 
 
 tasks {
+    fun currentExportTarget(): String = when {
+        HostManager.hostIsLinux -> "tests_linux"
+        HostManager.hostIsMac -> "tests_macos"
+        HostManager.hostIsMingw -> "tests_windows"
+        else -> throw IllegalStateException("Unsupported OS for exporting")
+    }
+
     val importResources = register<Exec>("importResources") {
         group = "verification"
+        description = "Imports the Godot project after rebuilding JVM registrations."
+        dependsOn(build)
 
         isIgnoreExitValue = true
 
@@ -80,18 +89,12 @@ tasks {
         }
     }
     val exportDebug by registering(Exec::class) {
+        group = "verification"
         description = "Exports the tests for the current host OS in debug mode"
-        dependsOn(importResources, build)
+        dependsOn(importResources)
 
         environment("JAVA_HOME", System.getProperty("java.home"))
         workingDir = projectDir
-
-        val target = when {
-            HostManager.hostIsLinux -> "tests_linux"
-            HostManager.hostIsMac -> "tests_macos"
-            HostManager.hostIsMingw -> "tests_windows"
-            else -> throw IllegalStateException("Unsupported OS for exporting")
-        }
 
         projectDir.resolve("export").mkdirs()
 
@@ -99,22 +102,16 @@ tasks {
             provideEditorExecutable().absolutePath,
             "--headless",
             "--export-debug",
-            target,
+            currentExportTarget(),
         )
     }
     val exportRelease by registering(Exec::class) {
+        group = "verification"
         description = "Exports the tests for the current host OS in release mode"
-        dependsOn(importResources, build)
+        dependsOn(importResources)
 
         environment("JAVA_HOME", System.getProperty("java.home"))
         workingDir = projectDir
-
-        val target = when {
-            HostManager.hostIsLinux -> "tests_linux"
-            HostManager.hostIsMac -> "tests_macos"
-            HostManager.hostIsMingw -> "tests_windows"
-            else -> throw IllegalStateException("Unsupported OS for exporting")
-        }
 
         projectDir.resolve("export").mkdirs()
 
@@ -122,11 +119,12 @@ tasks {
             provideEditorExecutable().absolutePath,
             "--headless",
             "--export-release",
-            target,
+            currentExportTarget(),
         )
     }
     register<Exec>("runGDTests") {
         group = "verification"
+        description = "Runs GDUnit tests from the source Godot project."
 
         dependsOn(importResources)
 
@@ -140,6 +138,9 @@ tasks {
     }
     register<Exec>("runExportedGDTests") {
         group = "verification"
+        description = "Exports the project and runs GDUnit tests from the exported package."
+
+        dependsOn(exportDebug)
 
         val executable = projectDir
             .resolve("export")
@@ -189,9 +190,6 @@ fun Exec.setupTestExecution(commandProvider: () -> TestExecutionCommand) {
         }
         val gdUnitArgs = listOf(
             "-s",
-            "-d",
-            "--remote-debug",
-            "tcp://127.0.0.1:0",
             "res://addons/gdUnit4/bin/GdUnitCmdTool.gd",
             "-rd",
             command.reportDirectory,

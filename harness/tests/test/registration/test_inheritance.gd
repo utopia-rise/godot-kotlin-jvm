@@ -1,6 +1,5 @@
 extends GdUnitTestSuite
 
-
 func test_call_parent_closed_method_from_child() -> void:
     var child_script = ClassInheritanceChild.new()
     child_script.closed_function()

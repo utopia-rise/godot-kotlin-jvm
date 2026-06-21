@@ -17,3 +17,4 @@ public enum JavaGodotEnum implements GodotEnum {
         return value;
     }
 }
+
