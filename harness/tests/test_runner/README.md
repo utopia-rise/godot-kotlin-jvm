@@ -23,8 +23,11 @@ runner that extends the (now editor-decoupled) `GdUnitTestSessionRunner`:
 So `ExportTestRunner.gd` extends `GdUnitTestSessionRunner` and uses only the
 export-safe discovery + execution core (`GdUnitTestSuiteScanner`,
 `GdUnitTestDiscoverer`, `GdUnitTestSuiteExecutor`). `ExportTestMain.gd` is the
-`SceneTree` entry point that instantiates it, mirroring how `GdUnitCmdTool.gd`
-bootstraps its runner.
+`SceneTree` entry point that instantiates it.
+
+The harness project is configured to use `ExportTestMain` as its
+`application/run/main_loop_type`, so exported test binaries boot directly into
+the custom runner without relying on a `-s ...` command-line override.
 
 ## Required export setting (do not remove)
 
@@ -45,11 +48,9 @@ exported build still needs the gdUnit runtime to execute the tests.
 
 ## How it is run
 
-The exported executable is launched headless with this script as the main loop:
-
-```
-<exported-binary> --headless -s res://test_runner/ExportTestMain.gd
-```
+The exported executable is launched normally. On Linux CI we add `--headless`
+when no display server is available, but we no longer override the main loop
+from the command line because the export already boots into `ExportTestMain`.
 
 Exit code: `0` = all tests passed, `100` = failures/errors (see
 `GdUnitTestSessionRunner` return codes).

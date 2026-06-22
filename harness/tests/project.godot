@@ -12,6 +12,7 @@ config_version=5
 
 config/name="Godot Kotlin Tests"
 run/main_scene="uid://cnqp52df0ln8e"
+run/main_loop_type="ExportTestMain"
 config/features=PackedStringArray("4.6")
 config/icon="res://icon.png"
 

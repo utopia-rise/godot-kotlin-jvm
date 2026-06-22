@@ -52,59 +52,121 @@ kotlin.sourceSets.main {
     kotlin.srcDirs("otherSourceDir")
 }
 
+fun bundledBinDirectories(): List<File> = listOf(
+    projectDir.resolve("../../../../bin"),
+    projectDir.resolve("bin"),
+    rootProject.layout.projectDirectory.asFile.resolve("bin"),
+)
 
+fun resolveBundledBinaries(): List<File> =
+    bundledBinDirectories().flatMap { directory -> (directory.listFiles() ?: emptyArray()).toList() }
+
+fun provideEditorExecutable(): File =
+    resolveBundledBinaries()
+        .also { println("[${it.joinToString()}]") }
+        .firstOrNull { it.name.startsWith("godot.") && it.name.contains("editor") && !it.name.contains("console") }
+        .also { println("Godot executable selected: $it") }
+        ?: error("Could not find editor executable")
+
+fun currentExportTarget(): String = when {
+    HostManager.hostIsLinux -> "tests_linux"
+    HostManager.hostIsMac -> "tests_macos"
+    HostManager.hostIsMingw -> "tests_windows"
+    else -> throw IllegalStateException("Unsupported OS for exporting")
+}
+
+fun File.ensureEmptyDirectory() {
+    deleteRecursively()
+    mkdirs()
+}
+
+fun findWindowsBundledBinary(target: String, consoleWrapper: Boolean): File? {
+    val expectedPrefix = "godot.windows.template_${target}.x86_64.jvm."
+
+    return resolveBundledBinaries().firstOrNull { file ->
+        file.name.startsWith(expectedPrefix) && when {
+            consoleWrapper -> file.name.endsWith(".console.exe")
+            else -> file.name.endsWith(".exe") && !file.name.endsWith(".console.exe")
+        }
+    }
+}
+
+fun ensureWindowsExportTemplate(target: String, consoleWrapper: Boolean = false) {
+    if (!HostManager.hostIsMingw) {
+        return
+    }
+
+    val destinationName = buildString {
+        append("godot.windows.template_${target}.x86_64")
+        if (consoleWrapper) {
+            append(".console")
+        }
+        append(".exe")
+    }
+    val destination = projectDir.resolve(destinationName)
+    if (destination.exists()) {
+        return
+    }
+
+    // Each CI export job only provides the template for the target it builds
+    // (debug for "dev tests", release for "release tests"). If the other target's
+    // template isn't present, skip it instead of failing the whole prepare step -
+    // the export only uses the template matching its target.
+    val source = findWindowsBundledBinary(target, consoleWrapper)
+    if (source == null) {
+        logger.lifecycle(
+            "Skipping Windows ${target} export ${if (consoleWrapper) "console wrapper" else "template"}: " +
+                "not present in the local bin directories.",
+        )
+        return
+    }
+
+    source.copyTo(destination, overwrite = true)
+}
+
+fun findExportedExecutable(): File? {
+    val exportedFiles = projectDir.resolve("export").listFiles()?.toList().orEmpty()
+    println("Test executables: [${exportedFiles.joinToString()}]")
+    exportedFiles.forEach { it.setExecutable(true) }
+
+    val exportedExecutable = when {
+        HostManager.hostIsMingw -> exportedFiles.firstOrNull { it.name.endsWith(".console.exe") }
+        HostManager.hostIsMac -> exportedFiles.firstOrNull { it.name.endsWith(".app") }
+        else -> exportedFiles.firstOrNull { it.name.contains("x86_64") }
+    } ?: exportedFiles.firstOrNull { it.name.endsWith(".exe") }
+
+    return if (exportedExecutable?.name?.endsWith(".app") == true) {
+        exportedExecutable.resolve("Contents/MacOS").listFiles()?.firstOrNull()
+    } else {
+        exportedExecutable
+    }
+}
+
+fun requireExportedExecutable(): File =
+    findExportedExecutable()
+        ?: error("No exported test executable found in ${projectDir.resolve("export")}. Run exportDebug or exportRelease first.")
+
+fun registerExportTask(name: String, exportFlag: String, description: String) = tasks.register<Exec>(name) {
+    group = "verification"
+    this.description = description
+    dependsOn("importResources", "prepareHostExportTemplates")
+
+    environment("JAVA_HOME", System.getProperty("java.home"))
+    workingDir = projectDir
+
+    doFirst {
+        projectDir.resolve("export").ensureEmptyDirectory()
+    }
+
+    commandLine(
+        provideEditorExecutable().absolutePath,
+        "--headless",
+        exportFlag,
+        currentExportTarget(),
+    )
+}
 
 tasks {
-    fun currentExportTarget(): String = when {
-        HostManager.hostIsLinux -> "tests_linux"
-        HostManager.hostIsMac -> "tests_macos"
-        HostManager.hostIsMingw -> "tests_windows"
-        else -> throw IllegalStateException("Unsupported OS for exporting")
-    }
-
-    fun resolveBundledBinaries(): List<File> =
-        listOf(
-            projectDir.resolve("../../../../bin"),
-            projectDir.resolve("bin"),
-            rootProject.layout.projectDirectory.asFile.resolve("bin"),
-        )
-            .flatMap { directory -> (directory.listFiles() ?: emptyArray()).toList() }
-
-    fun findWindowsBundledBinary(target: String, consoleWrapper: Boolean): File? {
-        val expectedPrefix = "godot.windows.template_${target}.x86_64.jvm."
-
-        return resolveBundledBinaries().firstOrNull { file ->
-            file.name.startsWith(expectedPrefix) && when {
-                consoleWrapper -> file.name.endsWith(".console.exe")
-                else -> file.name.endsWith(".exe") && !file.name.endsWith(".console.exe")
-            }
-        }
-    }
-
-    fun ensureWindowsExportTemplate(target: String, consoleWrapper: Boolean = false) {
-        if (!HostManager.hostIsMingw) {
-            return
-        }
-
-        val destinationName = buildString {
-            append("godot.windows.template_${target}.x86_64")
-            if (consoleWrapper) {
-                append(".console")
-            }
-            append(".exe")
-        }
-        val destination = projectDir.resolve(destinationName)
-        if (destination.exists()) {
-            return
-        }
-
-        val source = findWindowsBundledBinary(target, consoleWrapper) ?: throw IllegalStateException(
-            "Could not find Windows ${target} export ${if (consoleWrapper) "console wrapper" else "template"} in the local bin directories."
-        )
-
-        source.copyTo(destination, overwrite = true)
-    }
-
     val prepareHostExportTemplates = register("prepareHostExportTemplates") {
         group = "verification"
         description = "Ensures export presets can find the host export templates in a project-local path."
@@ -143,42 +205,9 @@ tasks {
             )
         }
     }
-    val exportDebug by registering(Exec::class) {
-        group = "verification"
-        description = "Exports the tests for the current host OS in debug mode"
-        dependsOn(importResources, prepareHostExportTemplates)
+    val exportDebug = registerExportTask("exportDebug", "--export-debug", "Exports the tests for the current host OS in debug mode")
+    val exportRelease = registerExportTask("exportRelease", "--export-release", "Exports the tests for the current host OS in release mode")
 
-        environment("JAVA_HOME", System.getProperty("java.home"))
-        workingDir = projectDir
-
-        projectDir.resolve("export").deleteRecursively()
-        projectDir.resolve("export").mkdirs()
-
-        commandLine(
-            provideEditorExecutable().absolutePath,
-            "--headless",
-            "--export-debug",
-            currentExportTarget(),
-        )
-    }
-    val exportRelease by registering(Exec::class) {
-        group = "verification"
-        description = "Exports the tests for the current host OS in release mode"
-        dependsOn(importResources, prepareHostExportTemplates)
-
-        environment("JAVA_HOME", System.getProperty("java.home"))
-        workingDir = projectDir
-
-        projectDir.resolve("export").deleteRecursively()
-        projectDir.resolve("export").mkdirs()
-
-        commandLine(
-            provideEditorExecutable().absolutePath,
-            "--headless",
-            "--export-release",
-            currentExportTarget(),
-        )
-    }
     register<Exec>("runGDTests") {
         group = "verification"
         description = "Runs GDUnit tests from the source Godot project."
@@ -193,8 +222,6 @@ tasks {
                 scriptArgs = listOf(
                     "-s",
                     "res://addons/gdUnit4/bin/GdUnitCmdTool.gd",
-                    "-rd",
-                    "//reports",
                     "-a",
                     "test",
                     "-c",
@@ -207,47 +234,11 @@ tasks {
         group = "verification"
         description = "Runs GDUnit tests from the exported package."
 
-        val hasExistingExport = projectDir.resolve("export")
-            .listFiles()
-            ?.any { exportedFile ->
-                exportedFile.name.endsWith(".exe") ||
-                    exportedFile.name.endsWith(".app") ||
-                    exportedFile.name.contains("x86_64")
-            } == true
-        if (!hasExistingExport) {
-            dependsOn(exportDebug)
-        }
-
         setupTestExecution {
-            val executable = projectDir
-                .resolve("export")
-                .listFiles()
-                ?.also {
-                    println("Test executables: [${it.joinToString()}]")
-                    it.forEach { file -> file.setExecutable(true) }
-                }
-                ?.let { exportedFiles ->
-                    when {
-                        HostManager.hostIsMingw -> exportedFiles.firstOrNull { it.name.endsWith(".console.exe") }
-                        HostManager.hostIsMac -> exportedFiles.firstOrNull { it.name.endsWith(".app") }
-                        else -> exportedFiles.firstOrNull { it.name.contains("x86_64") }
-                    } ?: exportedFiles.firstOrNull { it.name.endsWith(".exe") }
-                }
-                ?.let { exportedExecutable ->
-                    if (exportedExecutable.name.endsWith(".app")) {
-                        exportedExecutable.resolve("Contents/MacOS").listFiles()?.firstOrNull()
-                    } else {
-                        exportedExecutable
-                    }
-                }
-                ?.absolutePath
-
             TestExecutionCommand(
-                executable = executable ?: "no_test_executable_found",
+                executable = requireExportedExecutable().absolutePath,
                 useProjectPathOverride = false,
-                // Exported builds cannot use GdUnitCmdTool (it pulls in editor-only code).
-                // Use our minimal runner instead. See test_runner/README.md.
-                scriptArgs = listOf("-s", "res://test_runner/ExportTestMain.gd"),
+                scriptArgs = emptyList(),
             )
         }
     }
@@ -292,6 +283,13 @@ fun Exec.setupTestExecution(commandProvider: () -> TestExecutionCommand) {
                     append(runtimeArgs.joinToString(" ", transform = ::windowsQuote))
                 },
             )
+        } else if (HostManager.hostIsLinux) {
+            // Force line-buffered stdout/stderr so CI shows progress in real time.
+            // Godot block-buffers when piped, so on a timeout-kill the buffered tail
+            // (where an exported run actually stalls) is otherwise lost.
+            this@setupTestExecution.commandLine(
+                "stdbuf", "-oL", "-eL", command.executable, *runtimeArgs.toTypedArray(),
+            )
         } else {
             this@setupTestExecution.commandLine(command.executable, *runtimeArgs.toTypedArray())
         }
@@ -304,17 +302,3 @@ fun windowsQuote(argument: String): String {
     }
     return "\"$argument\""
 }
-
-fun provideEditorExecutable(): File = (
-        listOf(
-            projectDir.resolve("../../../../bin"),
-            projectDir.resolve("bin"),
-            rootProject.layout.projectDirectory.asFile.resolve("bin"),
-        )
-            .flatMap { (it.listFiles() ?: arrayOf()).toList() }
-            .also {
-                println("[${it.joinToString()}]")
-            }
-            .firstOrNull { it.name.startsWith("godot.") && it.name.contains("editor") && !it.name.contains("console") }
-            .also{ println("Godot executable selected: $it")}
-            ?: throw Exception("Could not find editor executable"))

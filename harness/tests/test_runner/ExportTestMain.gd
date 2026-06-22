@@ -1,5 +1,6 @@
 #!/usr/bin/env -S godot -s
 extends SceneTree
+class_name ExportTestMain
 ## Entry point for running GdUnit tests from an EXPORTED build.
 ##
 ## Invoked headless on the exported executable, e.g.:

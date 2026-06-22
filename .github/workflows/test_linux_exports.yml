@@ -89,13 +89,3 @@ jobs:
           cd harness/tests/
           ./gradlew runExportedGDTests
         timeout-minutes: 30
-
-      - name: Upload GDUnit reports
-        if: ${{ always() }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: gdunit_reports_linux_exports_${{ matrix.target }}
-          path: |
-            harness/tests/export/reports
-            harness/tests/export/**/*.app/**/reports
-          if-no-files-found: ignore
