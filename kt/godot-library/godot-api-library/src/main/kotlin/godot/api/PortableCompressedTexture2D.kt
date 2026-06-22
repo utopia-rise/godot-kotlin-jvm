@@ -195,7 +195,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
   }
 
   public enum class CompressionMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     LOSSLESS(0),
     LOSSY(1),
@@ -205,11 +205,6 @@ public open class PortableCompressedTexture2D : Texture2D() {
     BPTC(5),
     ASTC(6),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): CompressionMode = entries.single { it.`value` == `value` }

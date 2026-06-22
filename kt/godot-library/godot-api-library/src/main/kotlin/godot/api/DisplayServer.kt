@@ -5337,7 +5337,7 @@ public object DisplayServer : Object() {
   }
 
   public enum class Feature(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Display server supports global menu. This allows the application to display its menu items in
@@ -5512,18 +5512,13 @@ public object DisplayServer : Object() {
     ACCESSIBILITY_SCREEN_READER(34),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): Feature = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class AccessibilityRole(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Unknown or custom role.
@@ -5712,18 +5707,13 @@ public object DisplayServer : Object() {
     ROLE_TOOLTIP(45),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): AccessibilityRole = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class AccessibilityPopupType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Popup menu.
@@ -5743,11 +5733,6 @@ public object DisplayServer : Object() {
     POPUP_DIALOG(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): AccessibilityPopupType =
           entries.single { it.`value` == `value` }
@@ -5755,7 +5740,7 @@ public object DisplayServer : Object() {
   }
 
   public enum class AccessibilityFlags(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Element is hidden for accessibility tools.
@@ -5800,18 +5785,13 @@ public object DisplayServer : Object() {
     FLAG_CLIPS_CHILDREN(9),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): AccessibilityFlags = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class AccessibilityAction(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Single click action, callback argument is not set.
@@ -5917,18 +5897,13 @@ public object DisplayServer : Object() {
     ACTION_CUSTOM(22),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): AccessibilityAction = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class AccessibilityLiveMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Indicates that updates to the live region should not be presented.
@@ -5946,11 +5921,6 @@ public object DisplayServer : Object() {
     LIVE_ASSERTIVE(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): AccessibilityLiveMode =
           entries.single { it.`value` == `value` }
@@ -5958,7 +5928,7 @@ public object DisplayServer : Object() {
   }
 
   public enum class AccessibilityScrollUnit(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The amount by which to scroll. A single item of a list, line of text.
@@ -5970,11 +5940,6 @@ public object DisplayServer : Object() {
     SCROLL_UNIT_PAGE(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): AccessibilityScrollUnit =
           entries.single { it.`value` == `value` }
@@ -5982,7 +5947,7 @@ public object DisplayServer : Object() {
   }
 
   public enum class AccessibilityScrollHint(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * A preferred position for the node scrolled into view. Top-left edge of the scroll container.
@@ -6011,11 +5976,6 @@ public object DisplayServer : Object() {
     SCROLL_HINT_RIGHT_EDGE(5),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): AccessibilityScrollHint =
           entries.single { it.`value` == `value` }
@@ -6023,7 +5983,7 @@ public object DisplayServer : Object() {
   }
 
   public enum class MouseMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Makes the mouse cursor visible if it is hidden.
@@ -6055,18 +6015,13 @@ public object DisplayServer : Object() {
     MAX(5),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): MouseMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ScreenOrientation(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Default landscape orientation.
@@ -6098,18 +6053,13 @@ public object DisplayServer : Object() {
     SENSOR(6),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ScreenOrientation = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class VirtualKeyboardType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Default text virtual keyboard.
@@ -6149,18 +6099,13 @@ public object DisplayServer : Object() {
     KEYBOARD_TYPE_URL(7),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): VirtualKeyboardType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CursorShape(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Arrow cursor shape. This is the default when not pointing anything that overrides the mouse
@@ -6259,18 +6204,13 @@ public object DisplayServer : Object() {
     MAX(17),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): CursorShape = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class FileDialogMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The native file dialog allows selecting one, and only one file.
@@ -6295,18 +6235,13 @@ public object DisplayServer : Object() {
     SAVE_FILE(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): FileDialogMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class WindowMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Windowed mode, i.e. [Window] doesn't occupy the whole screen (unless set to the size of the
@@ -6370,18 +6305,13 @@ public object DisplayServer : Object() {
     EXCLUSIVE_FULLSCREEN(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): WindowMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class WindowFlags(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The window can't be resized by dragging its resize grip. It's still possible to resize the
@@ -6479,18 +6409,13 @@ public object DisplayServer : Object() {
     MAX(13),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): WindowFlags = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class WindowEvent(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Sent when the mouse pointer enters the window.
@@ -6540,18 +6465,13 @@ public object DisplayServer : Object() {
     FORCE_CLOSE(8),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): WindowEvent = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class WindowResizeEdge(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Top-left edge of a window.
@@ -6591,18 +6511,13 @@ public object DisplayServer : Object() {
     EDGE_MAX(8),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): WindowResizeEdge = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class VSyncMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * No vertical synchronization, which means the engine will display frames as fast as possible
@@ -6635,18 +6550,13 @@ public object DisplayServer : Object() {
     VSYNC_MAILBOX(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): VSyncMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class HandleType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Display handle:
@@ -6717,18 +6627,13 @@ public object DisplayServer : Object() {
     EGL_CONFIG(5),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): HandleType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class TTSUtteranceEvent(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Utterance has begun to be spoken.
@@ -6747,11 +6652,6 @@ public object DisplayServer : Object() {
      */
     BOUNDARY(3),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): TTSUtteranceEvent = entries.single { it.`value` == `value` }

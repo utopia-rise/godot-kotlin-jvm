@@ -2,6 +2,8 @@ package godot.intellij.plugin.project
 
 import godot.common.util.NaturalT
 import godot.common.util.RealT
+import godot.core.BitField
+import godot.core.BitFieldBase
 import godot.core.CoreType
 import godot.tools.common.constants.isCollectionsType
 import org.jetbrains.kotlin.analysis.api.KaSession
@@ -49,10 +51,23 @@ private fun KaType.isSupportedJvmType(session: KaSession): Boolean {
         isPrimitive
             || isStringType
             || isEnum()
+            || isClassType(BitField::class.classId)
             || symbol?.classId?.asFqNameString()?.let(::isCollectionsType) == true
             || isArrayOrPrimitiveArray
             || isCharType
             || allSupertypes.any { superType -> superType.isSupportedJvmType(session) }
+    }
+}
+
+fun KtDeclaration.isBitField(): Boolean {
+    return withType { declarationType -> declarationType.isBitField(this) }
+}
+
+private fun KaType.isBitField(session: KaSession): Boolean {
+    return with(session) {
+        isClassType(BitField::class.classId)
+            || isClassType(BitFieldBase::class.classId)
+            || allSupertypes.any { superType -> superType.isBitField(session) }
     }
 }
 

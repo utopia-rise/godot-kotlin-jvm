@@ -1,77 +1,79 @@
 package godot.tests
 
 import godot.api.Node
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
-import godot.annotation.RegisterProperty
-import godot.annotation.RegisterSignal
+import godot.annotation.Script
+import godot.annotation.Register
+import godot.annotation.Visible
+import godot.annotation.Emit
 import godot.annotation.Rpc
 import godot.core.lambdaCallable0
 import godot.core.lambdaCallable1
 import godot.core.signal0
 import godot.extension.connectMethod
 
-@RegisterClass
+@Script
 class FuncRefTest : Node() {
 
-    @RegisterSignal
+    @Emit
     val test by signal0()
 
-    @RegisterProperty
+    @Visible
     var blubb: Boolean = false
 
-    @RegisterProperty
+    @Visible
     var callFlag = false
 
-    @RegisterProperty
+    @Visible
     var callWithParamFlag = false
 
-    @RegisterProperty
+    @Visible
     var signalCallFlag = false
 
-    @RegisterFunction
+    @Register
     override fun _ready() {
         test.connectMethod(this, FuncRefTest::testSignalCallback)
     }
 
     @Rpc
-    @RegisterFunction
+    @Register
     fun testSignalCallback() {
         signalCallFlag = true
     }
 
-    @RegisterFunction
+    @Register
     fun testSignalCall() {
         test.emit()
     }
 
-    @RegisterFunction
+    @Register
     fun withoutParamCallback() {
         callFlag = true
     }
 
-    @RegisterFunction
+    @Register
     fun testCallWithoutParam() {
         lambdaCallable0(this::withoutParamCallback).call()
     }
 
-    @RegisterFunction
+    @Register
     fun testCallDeferredWithoutParam() {
         lambdaCallable0(this::withoutParamCallback).callDeferred()
     }
 
-    @RegisterFunction
+    @Register
     fun withParamCallback(flag: Boolean) {
         callWithParamFlag = flag
     }
 
-    @RegisterFunction
+    @Register
     fun testCallWithParam() {
         lambdaCallable1(this::withParamCallback).call(true)
     }
 
-    @RegisterFunction
+    @Register
     fun testCallDeferredWithParam() {
         lambdaCallable1(this::withParamCallback).callDeferred(true)
     }
 }
+
+

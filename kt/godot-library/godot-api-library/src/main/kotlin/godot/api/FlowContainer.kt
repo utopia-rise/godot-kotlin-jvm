@@ -142,7 +142,7 @@ public open class FlowContainer : Container() {
   }
 
   public enum class AlignmentMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The child controls will be arranged at the beginning of the container, i.e. top if
@@ -160,18 +160,13 @@ public open class FlowContainer : Container() {
     END(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): AlignmentMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class LastWrapAlignmentMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The last partially filled row or column will wrap aligned to the previous row or column in
@@ -194,11 +189,6 @@ public open class FlowContainer : Container() {
      */
     END(3),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): LastWrapAlignmentMode =

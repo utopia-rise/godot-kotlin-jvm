@@ -956,7 +956,7 @@ public object AudioServer : Object() {
       setBusSend(busIdx, send.asCachedStringName())
 
   public enum class SpeakerMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Two or fewer speakers were detected.
@@ -976,18 +976,13 @@ public object AudioServer : Object() {
     SURROUND_71(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): SpeakerMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class PlaybackType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The playback will be considered of the type declared at
@@ -1012,11 +1007,6 @@ public object AudioServer : Object() {
      */
     MAX(3),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): PlaybackType = entries.single { it.`value` == `value` }

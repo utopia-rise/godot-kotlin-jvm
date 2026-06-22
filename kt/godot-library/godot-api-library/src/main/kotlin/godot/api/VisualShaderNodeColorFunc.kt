@@ -53,7 +53,7 @@ public open class VisualShaderNodeColorFunc : VisualShaderNode() {
   }
 
   public enum class Function(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Converts the color to grayscale using the following formula:
@@ -127,11 +127,6 @@ public open class VisualShaderNodeColorFunc : VisualShaderNode() {
      */
     MAX(6),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): Function = entries.single { it.`value` == `value` }

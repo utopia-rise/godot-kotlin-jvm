@@ -3,12 +3,12 @@ package godot.tests.reflection
 import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import godot.api.Node
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
+import godot.annotation.Script
+import godot.annotation.Register
 
 
 @Suppress("ClassName")
-@RegisterClass
+@Script
 class GH571_ReflectionTest: Node() {
 
     private val testJsonString = """
@@ -23,7 +23,7 @@ class GH571_ReflectionTest: Node() {
         val data: String,
     )
 
-    @RegisterFunction
+    @Register
     fun deserializeJson(): String {
         val mapper = jacksonObjectMapper()
         val testClass = mapper.readValue(testJsonString, object : TypeReference<TestClass>() {})
@@ -31,3 +31,5 @@ class GH571_ReflectionTest: Node() {
         return testClass.data
     }
 }
+
+

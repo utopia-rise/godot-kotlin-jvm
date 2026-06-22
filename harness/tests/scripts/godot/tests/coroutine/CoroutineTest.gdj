@@ -5,10 +5,7 @@ registeredName = CoroutineTest
 fqName = godot.tests.coroutine.CoroutineTest
 baseType = Object
 supertypes = [
-    godot.api.Object,
-    godot.core.KtObject,
-    godot.common.interop.NativeWrapper,
-    godot.common.interop.NativePointer
+    
 ]
 signals = [
     signal_without_parameter,
@@ -21,6 +18,9 @@ properties = [
     step,
     was_child_cancelled,
     was_parent_cancelled
+]
+notifications = [
+    
 ]
 functions = [
     start_coroutine_without_parameter,

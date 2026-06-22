@@ -309,7 +309,7 @@ public open class NavigationPathQueryResult3D : RefCounted() {
   }
 
   public enum class PathSegmentType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * This segment of the path goes through a region.
@@ -320,11 +320,6 @@ public open class NavigationPathQueryResult3D : RefCounted() {
      */
     LINK(1),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): PathSegmentType = entries.single { it.`value` == `value` }

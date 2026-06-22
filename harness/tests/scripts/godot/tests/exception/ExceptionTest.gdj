@@ -5,16 +5,15 @@ registeredName = ExceptionTest
 fqName = godot.tests.exception.ExceptionTest
 baseType = Node
 supertypes = [
-    godot.api.Node,
-    godot.api.Object,
-    godot.core.KtObject,
-    godot.common.interop.NativeWrapper,
-    godot.common.interop.NativePointer
+    
 ]
 signals = [
     
 ]
 properties = [
+    
+]
+notifications = [
     
 ]
 functions = [

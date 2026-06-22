@@ -1,0 +1,11 @@
+package godot.registration.model.checks
+
+import godot.registration.model.logging.Logger
+import godot.registration.model.types.ScriptClass
+
+abstract class BaseCheck(
+    protected val logger: Logger,
+    protected val registeredClasses: List<ScriptClass>
+) {
+    abstract fun execute(): Boolean
+}

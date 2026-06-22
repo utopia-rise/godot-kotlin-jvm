@@ -547,7 +547,7 @@ public open class FastNoiseLite : Noise() {
   }
 
   public enum class NoiseType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * A lattice of points are assigned random values then interpolated based on neighboring values.
@@ -583,18 +583,13 @@ public open class FastNoiseLite : Noise() {
     TYPE_SIMPLEX_SMOOTH(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): NoiseType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class FractalType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * No fractal noise.
@@ -614,18 +609,13 @@ public open class FastNoiseLite : Noise() {
     PING_PONG(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): FractalType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CellularDistanceFunction(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Euclidean distance to the nearest point.
@@ -645,11 +635,6 @@ public open class FastNoiseLite : Noise() {
     DISTANCE_HYBRID(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): CellularDistanceFunction =
           entries.single { it.`value` == `value` }
@@ -657,7 +642,7 @@ public open class FastNoiseLite : Noise() {
   }
 
   public enum class CellularReturnType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The cellular distance function will return the same value for all points within a cell.
@@ -692,18 +677,13 @@ public open class FastNoiseLite : Noise() {
     RETURN_DISTANCE2_DIV(6),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): CellularReturnType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class DomainWarpType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The domain is warped using the simplex noise algorithm.
@@ -720,18 +700,13 @@ public open class FastNoiseLite : Noise() {
     BASIC_GRID(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): DomainWarpType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class DomainWarpFractalType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * No fractal noise for warping the space.
@@ -747,11 +722,6 @@ public open class FastNoiseLite : Noise() {
      */
     INDEPENDENT(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): DomainWarpFractalType =

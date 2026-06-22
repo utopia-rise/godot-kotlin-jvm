@@ -164,7 +164,7 @@ public open class OpenXRAction : Resource() {
   }
 
   public enum class ActionType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * This action provides a boolean value.
@@ -181,11 +181,6 @@ public open class OpenXRAction : Resource() {
     OPENXR_ACTION_VECTOR2(2),
     OPENXR_ACTION_POSE(3),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): ActionType = entries.single { it.`value` == `value` }

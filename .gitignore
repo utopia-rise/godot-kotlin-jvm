@@ -10,3 +10,5 @@ __pycache__
 libprotobuf/
 
 **/*.DS_Store
+
+/.claude/

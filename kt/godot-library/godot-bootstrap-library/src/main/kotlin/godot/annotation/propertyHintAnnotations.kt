@@ -1,9 +1,7 @@
 package godot.annotation
 
-import godot.registration.Range
-
 /*
-All type checks will happen at the entry-generator at the moment.
+All type checks will happen at the registrar generator at the moment.
 We should move that to the idea plugin at some point in time to provide IDE help and not just compilation errors.
 
 The following annotations are implemented based on https://github.com/godotengine/godot/blob/3.2/core/object.h
@@ -12,8 +10,9 @@ The following annotations are implemented based on https://github.com/godotengin
 /**
  * Can only be used on Int properties!
  */
-@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
+@Target(AnnotationTarget.FIELD, AnnotationTarget.ANNOTATION_CLASS)
 @Retention(AnnotationRetention.RUNTIME)
+@Export
 annotation class IntRange(
     val min: Int,
     val max: Int,
@@ -29,8 +28,9 @@ annotation class IntRange(
 /**
  * Can only be used on Long properties!
  */
-@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
+@Target(AnnotationTarget.FIELD, AnnotationTarget.ANNOTATION_CLASS)
 @Retention(AnnotationRetention.RUNTIME)
+@Export
 annotation class LongRange(
     val min: Long,
     val max: Long,
@@ -46,8 +46,9 @@ annotation class LongRange(
 /**
  * Can only be used on Float properties!
  */
-@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
+@Target(AnnotationTarget.FIELD, AnnotationTarget.ANNOTATION_CLASS)
 @Retention(AnnotationRetention.RUNTIME)
+@Export
 annotation class FloatRange(
     val min: Float,
     val max: Float,
@@ -63,8 +64,9 @@ annotation class FloatRange(
 /**
  * Can only be used on Double properties!
  */
-@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
+@Target(AnnotationTarget.FIELD, AnnotationTarget.ANNOTATION_CLASS)
 @Retention(AnnotationRetention.RUNTIME)
+@Export
 annotation class DoubleRange(
     val min: Double,
     val max: Double,
@@ -80,15 +82,17 @@ annotation class DoubleRange(
 /**
  * Can only be used on Enum properties!
  */
-@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
+@Target(AnnotationTarget.FIELD, AnnotationTarget.ANNOTATION_CLASS)
 @Retention(AnnotationRetention.RUNTIME)
+@Export
 annotation class EnumTypeHint
 
 /**
  * Can only be used on Float and Double properties!
  */
-@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
+@Target(AnnotationTarget.FIELD, AnnotationTarget.ANNOTATION_CLASS)
 @Retention(AnnotationRetention.RUNTIME)
+@Export
 annotation class ExpEasing(val attenuation: Boolean = false, val isPositiveOnly: Boolean = true)
 
 /**
@@ -99,23 +103,13 @@ annotation class ExpEasing(val attenuation: Boolean = false, val isPositiveOnly:
 //annotation class Lenght(val lenght: Int = -1)
 
 /**
- * Flag Property hint supporting enums
- *
- * Can only be used on Set<Enum> or MutableSet<Enum> properties!
- *
- * **Note:** The used enum can not have more than 32 Entries!
- */
-@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
-@Retention(AnnotationRetention.RUNTIME)
-annotation class EnumFlag
-
-/**
  * Flag Property hint supporting Int's
  *
  * Can only be used on Int properties!
  */
-@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
+@Target(AnnotationTarget.FIELD, AnnotationTarget.ANNOTATION_CLASS)
 @Retention(AnnotationRetention.RUNTIME)
+@Export
 annotation class IntFlag(vararg val names: String)
 
 /**
@@ -149,36 +143,41 @@ annotation class IntFlag(vararg val names: String)
 /**
  * Can only be used on String properties!
  */
-@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
+@Target(AnnotationTarget.FIELD, AnnotationTarget.ANNOTATION_CLASS)
 @Retention(AnnotationRetention.RUNTIME)
+@Export
 annotation class File(vararg val extensions: String = [], val global: Boolean = false)
 
 /**
  * Can only be used on String properties!
  */
-@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
+@Target(AnnotationTarget.FIELD, AnnotationTarget.ANNOTATION_CLASS)
 @Retention(AnnotationRetention.RUNTIME)
+@Export
 annotation class Dir(val global: Boolean = false)
 
 /**
  * Can only be used on String properties!
  */
-@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
+@Target(AnnotationTarget.FIELD, AnnotationTarget.ANNOTATION_CLASS)
 @Retention(AnnotationRetention.RUNTIME)
+@Export
 annotation class MultilineText
 
 /**
  * Can only be used on String properties!
  */
-@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
+@Target(AnnotationTarget.FIELD, AnnotationTarget.ANNOTATION_CLASS)
 @Retention(AnnotationRetention.RUNTIME)
+@Export
 annotation class PlaceHolderText
 
 /**
  * Can only be used on Color properties!
  */
-@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
+@Target(AnnotationTarget.FIELD, AnnotationTarget.ANNOTATION_CLASS)
 @Retention(AnnotationRetention.RUNTIME)
+@Export
 annotation class ColorNoAlpha
 
 /**
@@ -303,3 +302,4 @@ annotation class ColorNoAlpha
 //@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
 //@Retention(AnnotationRetention.RUNTIME)
 //annotation class Max
+

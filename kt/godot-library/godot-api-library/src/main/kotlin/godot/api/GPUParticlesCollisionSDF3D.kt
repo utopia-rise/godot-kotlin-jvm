@@ -230,7 +230,7 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
   }
 
   public enum class Resolution(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Bake a 16×16×16 signed distance field. This is the fastest option, but also the least
@@ -263,11 +263,6 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
      */
     MAX(6),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): Resolution = entries.single { it.`value` == `value` }

@@ -286,7 +286,7 @@ public open class XRPose : RefCounted() {
   public final fun setName(name: String) = setName(name.asCachedStringName())
 
   public enum class TrackingConfidence(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * No tracking information is available for this pose.
@@ -302,11 +302,6 @@ public open class XRPose : RefCounted() {
      */
     XR_HIGH(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): TrackingConfidence = entries.single { it.`value` == `value` }

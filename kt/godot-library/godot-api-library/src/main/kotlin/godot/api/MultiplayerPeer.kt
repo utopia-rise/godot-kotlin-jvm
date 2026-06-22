@@ -239,7 +239,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   }
 
   public enum class ConnectionStatus(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The MultiplayerPeer is disconnected.
@@ -255,18 +255,13 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
     CONNECTED(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ConnectionStatus = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class TransferMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Packets are not acknowledged, no resend attempts are made for lost packets. Packets may
@@ -290,11 +285,6 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
      */
     RELIABLE(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): TransferMode = entries.single { it.`value` == `value` }

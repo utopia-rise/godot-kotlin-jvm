@@ -54,7 +54,7 @@ public open class VisualShaderNodeParticleAccelerator : VisualShaderNode() {
   }
 
   public enum class Mode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The particles will be accelerated based on their velocity.
@@ -74,11 +74,6 @@ public open class VisualShaderNodeParticleAccelerator : VisualShaderNode() {
      */
     MAX(3),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): Mode = entries.single { it.`value` == `value` }

@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.BitFieldBase
 import godot.core.GodotEnum
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
@@ -25,7 +26,6 @@ import godot.core.Vector3
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -181,7 +181,7 @@ public open class XRHandTracker : XRPositionalTracker() {
   }
 
   public enum class HandTrackingSource(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The source of hand tracking data is unknown.
@@ -208,18 +208,13 @@ public open class XRHandTracker : XRPositionalTracker() {
     MAX(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): HandTrackingSource = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class HandJoint(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Palm joint.
@@ -331,44 +326,15 @@ public open class XRHandTracker : XRPositionalTracker() {
     MAX(26),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): HandJoint = entries.single { it.`value` == `value` }
     }
   }
 
   public class HandJointFlags(
-    public val flag: Long,
-  ) {
-    public infix fun or(other: HandJointFlags): HandJointFlags = HandJointFlags(flag.or(other.flag))
-
-    public infix fun or(other: Long): HandJointFlags = HandJointFlags(flag.or(other))
-
-    public infix fun xor(other: HandJointFlags): HandJointFlags =
-        HandJointFlags(flag.xor(other.flag))
-
-    public infix fun xor(other: Long): HandJointFlags = HandJointFlags(flag.xor(other))
-
-    public infix fun and(other: HandJointFlags): HandJointFlags =
-        HandJointFlags(flag.and(other.flag))
-
-    public infix fun and(other: Long): HandJointFlags = HandJointFlags(flag.and(other))
-
-    public fun unaryPlus(): HandJointFlags = HandJointFlags(flag.unaryPlus())
-
-    public fun unaryMinus(): HandJointFlags = HandJointFlags(flag.unaryMinus())
-
-    public fun inv(): HandJointFlags = HandJointFlags(flag.inv())
-
-    public infix fun shl(bits: Int): HandJointFlags = HandJointFlags(flag shl bits)
-
-    public infix fun shr(bits: Int): HandJointFlags = HandJointFlags(flag shr bits)
-
-    public infix fun ushr(bits: Int): HandJointFlags = HandJointFlags(flag ushr bits)
+    flag: Long,
+  ) : BitFieldBase<HandJointFlags>(flag) {
+    protected override fun wrap(flag: Long): HandJointFlags = HandJointFlags(flag)
 
     public companion object {
       /**

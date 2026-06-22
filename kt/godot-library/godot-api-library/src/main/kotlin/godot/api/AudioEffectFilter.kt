@@ -131,7 +131,7 @@ public open class AudioEffectFilter : AudioEffect() {
   }
 
   public enum class FilterDB(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Cutting off at 6dB per octave.
@@ -150,11 +150,6 @@ public open class AudioEffectFilter : AudioEffect() {
      */
     FILTER_24DB(3),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): FilterDB = entries.single { it.`value` == `value` }

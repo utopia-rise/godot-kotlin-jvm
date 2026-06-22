@@ -239,7 +239,7 @@ public open class SceneReplicationConfig : Resource() {
       propertySetWatch(path.asCachedNodePath(), enabled)
 
   public enum class ReplicationMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Do not keep the given property synchronized.
@@ -256,11 +256,6 @@ public open class SceneReplicationConfig : Resource() {
      */
     ON_CHANGE(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): ReplicationMode = entries.single { it.`value` == `value` }

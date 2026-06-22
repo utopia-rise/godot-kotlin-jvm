@@ -2,8 +2,8 @@ package godot.intellij.plugin.analysis.jvm
 
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiMethod
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
+import godot.annotation.Script
+import godot.annotation.Register
 import godot.common.constants.Constraints
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.analysis.GodotProblem
@@ -13,9 +13,9 @@ object RegisterMethodAnalyzer {
     fun analyze(method: PsiMethod): List<GodotProblem> {
         return buildList {
             if (
-                method.containingClass?.getAnnotation(RegisterClass::class.qualifiedName!!) != null &&
+                method.containingClass?.getAnnotation(Script::class.qualifiedName!!) != null &&
                 lifecycleFunctions.any { it == method.name } &&
-                method.getAnnotation(RegisterFunction::class.qualifiedName!!) == null
+                method.getAnnotation(Register::class.qualifiedName!!) == null
             ) {
                 add(
                     GodotProblem(
@@ -25,7 +25,7 @@ object RegisterMethodAnalyzer {
                 )
             }
 
-            if (method.getAnnotation(RegisterFunction::class.qualifiedName!!) != null) {
+            if (method.getAnnotation(Register::class.qualifiedName!!) != null) {
                 addAll(GenericRegistrationAnalyzer.analyze(method))
                 if (method.parameterList.parametersCount > Constraints.MAX_FUNCTION_ARG_COUNT) {
                     add(
@@ -50,3 +50,5 @@ object RegisterMethodAnalyzer {
             ?: throw IllegalStateException("Expected at least one anchor candidate")
     }
 }
+
+

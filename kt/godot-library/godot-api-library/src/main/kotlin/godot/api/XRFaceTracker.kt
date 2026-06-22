@@ -133,7 +133,7 @@ public open class XRFaceTracker : XRTracker() {
   }
 
   public enum class BlendShapeEntry(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Right eye looks outwards.
@@ -712,11 +712,6 @@ public open class XRFaceTracker : XRTracker() {
      */
     FT_MAX(143),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): BlendShapeEntry = entries.single { it.`value` == `value` }

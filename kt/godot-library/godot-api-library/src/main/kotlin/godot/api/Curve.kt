@@ -373,7 +373,7 @@ public open class Curve : Resource() {
   }
 
   public enum class TangentMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The tangent on this side of the point is user-defined.
@@ -389,11 +389,6 @@ public open class Curve : Resource() {
      */
     COUNT(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): TangentMode = entries.single { it.`value` == `value` }

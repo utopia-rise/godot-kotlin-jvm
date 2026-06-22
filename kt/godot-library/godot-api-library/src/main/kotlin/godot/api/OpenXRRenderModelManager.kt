@@ -97,7 +97,7 @@ public open class OpenXRRenderModelManager : Node3D() {
   }
 
   public enum class RenderModelTracker(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * All active render models are shown regardless of what tracker they relate to.
@@ -116,11 +116,6 @@ public open class OpenXRRenderModelManager : Node3D() {
      */
     RIGHT_HAND(3),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): RenderModelTracker = entries.single { it.`value` == `value` }

@@ -385,7 +385,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
       removeTransition(from.asCachedStringName(), to.asCachedStringName())
 
   public enum class StateMachineType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Seeking to the beginning is treated as playing from the start state. Transition to the end
@@ -405,11 +405,6 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
      */
     GROUPED(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): StateMachineType = entries.single { it.`value` == `value` }

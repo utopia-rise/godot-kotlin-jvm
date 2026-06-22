@@ -216,7 +216,7 @@ public object IP : Object() {
   }
 
   public enum class ResolverStatus(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * DNS hostname resolver status: No status.
@@ -236,18 +236,13 @@ public object IP : Object() {
     ERROR(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ResolverStatus = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Type(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Address type: None.
@@ -266,11 +261,6 @@ public object IP : Object() {
      */
     ANY(3),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): Type = entries.single { it.`value` == `value` }

@@ -131,11 +131,11 @@ Rule logic lives under:
 Important files:
 
 - [GodotProblem.kt](src/main/kotlin/godot/intellij/plugin/analysis/GodotProblem.kt)
-- [analysis/jvm/RegisterClassAnalyzer.kt](src/main/kotlin/godot/intellij/plugin/analysis/jvm/RegisterClassAnalyzer.kt)
+- [analysis/jvm/GodotScriptAnalyzer.kt](src/main/kotlin/godot/intellij/plugin/analysis/jvm/GodotScriptAnalyzer.kt)
 - [analysis/jvm/RegisterMethodAnalyzer.kt](src/main/kotlin/godot/intellij/plugin/analysis/jvm/RegisterMethodAnalyzer.kt)
-- [analysis/kotlin/RegisterPropertyAnalyzer.kt](src/main/kotlin/godot/intellij/plugin/analysis/kotlin/RegisterPropertyAnalyzer.kt)
-- [analysis/kotlin/RegisterFunctionAnalyzer.kt](src/main/kotlin/godot/intellij/plugin/analysis/kotlin/RegisterFunctionAnalyzer.kt)
-- [analysis/kotlin/RegisterSignalAnalyzer.kt](src/main/kotlin/godot/intellij/plugin/analysis/kotlin/RegisterSignalAnalyzer.kt)
+- [analysis/kotlin/VisibleAnalyzer.kt](src/main/kotlin/godot/intellij/plugin/analysis/kotlin/VisibleAnalyzer.kt)
+- [analysis/kotlin/RegisterAnalyzer.kt](src/main/kotlin/godot/intellij/plugin/analysis/kotlin/RegisterAnalyzer.kt)
+- [analysis/kotlin/EmitAnalyzer.kt](src/main/kotlin/godot/intellij/plugin/analysis/kotlin/EmitAnalyzer.kt)
 - [analysis/kotlin/RpcAnnotationAnalyzer.kt](src/main/kotlin/godot/intellij/plugin/analysis/kotlin/RpcAnnotationAnalyzer.kt)
 - [analysis/kotlin/CoreTypeCopyModificationAnalyzer.kt](src/main/kotlin/godot/intellij/plugin/analysis/kotlin/CoreTypeCopyModificationAnalyzer.kt)
 
@@ -186,8 +186,8 @@ Best reading order:
 
 Good first pairs:
 
-- [inspection/JvmInspection.kt](src/main/kotlin/godot/intellij/plugin/inspection/JvmInspection.kt) + [analysis/jvm/RegisterClassAnalyzer.kt](src/main/kotlin/godot/intellij/plugin/analysis/jvm/RegisterClassAnalyzer.kt)
-- [inspection/KotlinInspection.kt](src/main/kotlin/godot/intellij/plugin/inspection/KotlinInspection.kt) + [analysis/kotlin/RegisterPropertyAnalyzer.kt](src/main/kotlin/godot/intellij/plugin/analysis/kotlin/RegisterPropertyAnalyzer.kt)
+- [inspection/JvmInspection.kt](src/main/kotlin/godot/intellij/plugin/inspection/JvmInspection.kt) + [analysis/jvm/GodotScriptAnalyzer.kt](src/main/kotlin/godot/intellij/plugin/analysis/jvm/GodotScriptAnalyzer.kt)
+- [inspection/KotlinInspection.kt](src/main/kotlin/godot/intellij/plugin/inspection/KotlinInspection.kt) + [analysis/kotlin/VisibleAnalyzer.kt](src/main/kotlin/godot/intellij/plugin/analysis/kotlin/VisibleAnalyzer.kt)
 
 ## How To Add A New Check
 
@@ -245,8 +245,8 @@ There are no meaningful checked-in tests yet, so manual testing matters.
 
 Good smoke checks:
 
-- `@RegisterProperty` on a `val`
-- `@Export` without `@RegisterProperty`
+- `@Visible` on a `val`
+- `@Export` without `@Visible`
 - duplicate registered class names
 - invalid RPC channel setup
 - callable reference to an unregistered function
@@ -267,3 +267,4 @@ Keep these constraints in mind:
 - favor maintainability over feature sprawl
 
 If a change starts adding hidden state, duplicate sources of truth, or a new Gradle/IDE bridge, it is probably the wrong direction.
+

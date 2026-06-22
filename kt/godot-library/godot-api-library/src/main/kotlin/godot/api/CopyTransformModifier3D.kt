@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.BitFieldBase
 import godot.core.MethodStringName1
 import godot.core.MethodStringName2
 import godot.core.VariantParser.BOOL
@@ -349,31 +350,9 @@ public open class CopyTransformModifier3D : BoneConstraint3D() {
   }
 
   public class TransformFlag(
-    public val flag: Long,
-  ) {
-    public infix fun or(other: TransformFlag): TransformFlag = TransformFlag(flag.or(other.flag))
-
-    public infix fun or(other: Long): TransformFlag = TransformFlag(flag.or(other))
-
-    public infix fun xor(other: TransformFlag): TransformFlag = TransformFlag(flag.xor(other.flag))
-
-    public infix fun xor(other: Long): TransformFlag = TransformFlag(flag.xor(other))
-
-    public infix fun and(other: TransformFlag): TransformFlag = TransformFlag(flag.and(other.flag))
-
-    public infix fun and(other: Long): TransformFlag = TransformFlag(flag.and(other))
-
-    public fun unaryPlus(): TransformFlag = TransformFlag(flag.unaryPlus())
-
-    public fun unaryMinus(): TransformFlag = TransformFlag(flag.unaryMinus())
-
-    public fun inv(): TransformFlag = TransformFlag(flag.inv())
-
-    public infix fun shl(bits: Int): TransformFlag = TransformFlag(flag shl bits)
-
-    public infix fun shr(bits: Int): TransformFlag = TransformFlag(flag shr bits)
-
-    public infix fun ushr(bits: Int): TransformFlag = TransformFlag(flag ushr bits)
+    flag: Long,
+  ) : BitFieldBase<TransformFlag>(flag) {
+    protected override fun wrap(flag: Long): TransformFlag = TransformFlag(flag)
 
     public companion object {
       /**
@@ -403,31 +382,9 @@ public open class CopyTransformModifier3D : BoneConstraint3D() {
   }
 
   public class AxisFlag(
-    public val flag: Long,
-  ) {
-    public infix fun or(other: AxisFlag): AxisFlag = AxisFlag(flag.or(other.flag))
-
-    public infix fun or(other: Long): AxisFlag = AxisFlag(flag.or(other))
-
-    public infix fun xor(other: AxisFlag): AxisFlag = AxisFlag(flag.xor(other.flag))
-
-    public infix fun xor(other: Long): AxisFlag = AxisFlag(flag.xor(other))
-
-    public infix fun and(other: AxisFlag): AxisFlag = AxisFlag(flag.and(other.flag))
-
-    public infix fun and(other: Long): AxisFlag = AxisFlag(flag.and(other))
-
-    public fun unaryPlus(): AxisFlag = AxisFlag(flag.unaryPlus())
-
-    public fun unaryMinus(): AxisFlag = AxisFlag(flag.unaryMinus())
-
-    public fun inv(): AxisFlag = AxisFlag(flag.inv())
-
-    public infix fun shl(bits: Int): AxisFlag = AxisFlag(flag shl bits)
-
-    public infix fun shr(bits: Int): AxisFlag = AxisFlag(flag shr bits)
-
-    public infix fun ushr(bits: Int): AxisFlag = AxisFlag(flag ushr bits)
+    flag: Long,
+  ) : BitFieldBase<AxisFlag>(flag) {
+    protected override fun wrap(flag: Long): AxisFlag = AxisFlag(flag)
 
     public companion object {
       /**

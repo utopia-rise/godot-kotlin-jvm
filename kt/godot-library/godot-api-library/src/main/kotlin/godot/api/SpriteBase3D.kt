@@ -571,7 +571,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   }
 
   public enum class DrawFlags(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * If set, the texture's transparency and the opacity are used to make those parts of the sprite
@@ -602,18 +602,13 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
     FLAG_MAX(5),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): DrawFlags = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class AlphaCutMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * This mode performs standard alpha blending. It can display translucent areas, but
@@ -640,11 +635,6 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
      */
     HASH(3),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): AlphaCutMode = entries.single { it.`value` == `value` }

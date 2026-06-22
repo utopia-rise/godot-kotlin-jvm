@@ -71,7 +71,7 @@ public open class HingeJoint3D : Joint3D() {
   }
 
   public enum class Param(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The speed with which the two bodies get pulled together when they move in different
@@ -109,18 +109,13 @@ public open class HingeJoint3D : Joint3D() {
     MAX(8),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): Param = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Flag(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * If `true`, the hinges maximum and minimum rotation, defined by [angularLimit/lower] and
@@ -136,11 +131,6 @@ public open class HingeJoint3D : Joint3D() {
      */
     MAX(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): Flag = entries.single { it.`value` == `value` }

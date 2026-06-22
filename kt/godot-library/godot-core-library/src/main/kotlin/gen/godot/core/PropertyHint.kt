@@ -10,7 +10,7 @@ import kotlin.Long
 import kotlin.Suppress
 
 public enum class PropertyHint(
-  `value`: Long,
+  public override val `value`: Long,
 ) : GodotEnum {
   /**
    * The property has no hint for the editor.
@@ -373,11 +373,6 @@ public enum class PropertyHint(
    */
   MAX(45),
   ;
-
-  public override val `value`: Long
-  init {
-    this.`value` = `value`
-  }
 
   public companion object {
     public fun from(`value`: Long): PropertyHint = entries.single { it.`value` == `value` }

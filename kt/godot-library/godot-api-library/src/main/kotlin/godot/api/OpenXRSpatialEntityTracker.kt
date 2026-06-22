@@ -81,7 +81,7 @@ public open class OpenXRSpatialEntityTracker : XRPositionalTracker() {
   }
 
   public enum class EntityTrackingState(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * This anchor has stopped tracking.
@@ -96,11 +96,6 @@ public open class OpenXRSpatialEntityTracker : XRPositionalTracker() {
      */
     TRACKING(3),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): EntityTrackingState = entries.single { it.`value` == `value` }

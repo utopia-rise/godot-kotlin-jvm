@@ -511,7 +511,7 @@ public open class WebSocketPeer : PacketPeer() {
   }
 
   public enum class WriteMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Specifies that WebSockets messages should be transferred as text payload (only valid UTF-8 is
@@ -525,18 +525,13 @@ public open class WebSocketPeer : PacketPeer() {
     BINARY(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): WriteMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class State(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Socket has been created. The connection is not yet open.
@@ -556,11 +551,6 @@ public open class WebSocketPeer : PacketPeer() {
      */
     CLOSED(3),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): State = entries.single { it.`value` == `value` }

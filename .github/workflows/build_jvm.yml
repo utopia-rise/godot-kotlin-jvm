@@ -49,17 +49,11 @@ jobs:
           name: jvm_api-generator
           path: kt/api-generator/build/libs/api-generator.jar
 
-      - name: Upload entry-generator artifact
+      - name: Upload godot-registration artifact
         uses: actions/upload-artifact@v4
         with:
-          name: jvm_entry-generator
-          path: kt/entry-generation/godot-entry-generator/build/libs/godot-entry-generator-*.jar
-
-      - name: Upload class-graph-symbol-processor artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: jvm_class-graph-symbol-processor
-          path: kt/entry-generation/godot-class-graph-symbol-processor/build/libs/godot-class-graph-symbol-processor-*.jar
+          name: jvm_godot-registration
+          path: kt/godot-registration/build/libs/godot-registration-*.jar
 
       - name: Upload gradle-plugin artifact
         uses: actions/upload-artifact@v4

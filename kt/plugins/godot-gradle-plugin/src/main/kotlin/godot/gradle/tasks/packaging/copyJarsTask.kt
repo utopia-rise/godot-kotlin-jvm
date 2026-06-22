@@ -1,6 +1,6 @@
 package godot.gradle.tasks
 
-import godot.gradle.tasks.entry_generation.requireConfiguredGodotProjectDirectory
+import godot.gradle.tasks.registrar_generation.requireConfiguredGodotProjectDirectory
 import godot.tools.common.constants.Paths
 import org.gradle.api.Project
 import org.gradle.api.Task

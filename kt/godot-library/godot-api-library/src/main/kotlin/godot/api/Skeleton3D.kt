@@ -707,7 +707,7 @@ public open class Skeleton3D : Node3D() {
   ) = setBoneMeta(boneIdx, key.asCachedStringName(), value)
 
   public enum class ModifierCallbackModeProcess(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Set a flag to process modification during physics frames (see
@@ -724,11 +724,6 @@ public open class Skeleton3D : Node3D() {
      */
     MANUAL(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): ModifierCallbackModeProcess =

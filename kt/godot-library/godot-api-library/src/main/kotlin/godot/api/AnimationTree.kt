@@ -136,17 +136,12 @@ public open class AnimationTree : AnimationMixer() {
   public final fun setAnimationPlayer(path: String) = setAnimationPlayer(path.asCachedNodePath())
 
   public enum class AnimationProcessCallback(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     PHYSICS(0),
     IDLE(1),
     MANUAL(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): AnimationProcessCallback =

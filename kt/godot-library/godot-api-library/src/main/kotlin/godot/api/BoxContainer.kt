@@ -92,7 +92,7 @@ public open class BoxContainer : Container() {
   }
 
   public enum class AlignmentMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The child controls will be arranged at the beginning of the container, i.e. top if
@@ -109,11 +109,6 @@ public open class BoxContainer : Container() {
      */
     END(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): AlignmentMode = entries.single { it.`value` == `value` }

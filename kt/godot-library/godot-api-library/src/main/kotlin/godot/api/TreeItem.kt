@@ -1279,7 +1279,7 @@ public open class TreeItem internal constructor() : Object() {
       callRecursive(method.asCachedStringName(), *args)
 
   public enum class TreeCellMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Cell shows a string label, optionally with an icon. When editable, the text can be edited
@@ -1315,11 +1315,6 @@ public open class TreeItem internal constructor() : Object() {
      */
     CELL_MODE_CUSTOM(4),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): TreeCellMode = entries.single { it.`value` == `value` }

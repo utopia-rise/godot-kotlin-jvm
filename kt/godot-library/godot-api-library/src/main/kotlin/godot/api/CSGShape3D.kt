@@ -326,7 +326,7 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
   }
 
   public enum class Operation(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Geometry of both primitives is merged, intersecting geometry is removed.
@@ -341,11 +341,6 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
      */
     SUBTRACTION(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): Operation = entries.single { it.`value` == `value` }

@@ -158,7 +158,7 @@ public open class AESContext : RefCounted() {
   }
 
   public enum class Mode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * AES electronic codebook encryption mode.
@@ -181,11 +181,6 @@ public open class AESContext : RefCounted() {
      */
     MAX(4),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): Mode = entries.single { it.`value` == `value` }

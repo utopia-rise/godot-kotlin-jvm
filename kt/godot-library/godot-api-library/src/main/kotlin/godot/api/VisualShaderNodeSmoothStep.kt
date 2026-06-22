@@ -56,7 +56,7 @@ public open class VisualShaderNodeSmoothStep : VisualShaderNode() {
   }
 
   public enum class OpType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * A floating-point scalar type.
@@ -91,11 +91,6 @@ public open class VisualShaderNodeSmoothStep : VisualShaderNode() {
      */
     MAX(7),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): OpType = entries.single { it.`value` == `value` }

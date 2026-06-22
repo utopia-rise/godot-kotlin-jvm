@@ -5,11 +5,7 @@ registeredName = BaseReflectionTest
 fqName = godot.tests.reflection.BaseReflectionTest
 baseType = Node
 supertypes = [
-    godot.api.Node,
-    godot.api.Object,
-    godot.core.KtObject,
-    godot.common.interop.NativeWrapper,
-    godot.common.interop.NativePointer
+    
 ]
 signals = [
     
@@ -17,6 +13,9 @@ signals = [
 properties = [
     
 ]
+notifications = [
+    
+]
 functions = [
-    has_register_class_annotation
+    has_godot_script_annotation
 ]

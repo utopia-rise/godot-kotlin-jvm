@@ -220,7 +220,7 @@ public open class VoxelGI : VisualInstance3D() {
   }
 
   public enum class Subdiv(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Use 64 subdivisions. This is the lowest quality setting, but the fastest. Use it if you can,
@@ -245,11 +245,6 @@ public open class VoxelGI : VisualInstance3D() {
      */
     MAX(4),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): Subdiv = entries.single { it.`value` == `value` }

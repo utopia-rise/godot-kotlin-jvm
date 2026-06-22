@@ -222,7 +222,7 @@ public open class SubViewport : Viewport() {
   }
 
   public enum class ClearMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Always clear the render target before drawing.
@@ -238,18 +238,13 @@ public open class SubViewport : Viewport() {
     ONCE(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ClearMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class UpdateMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Do not update the render target.
@@ -272,11 +267,6 @@ public open class SubViewport : Viewport() {
      */
     ALWAYS(4),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): UpdateMode = entries.single { it.`value` == `value` }

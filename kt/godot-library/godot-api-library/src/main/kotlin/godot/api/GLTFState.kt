@@ -1036,7 +1036,7 @@ public open class GLTFState : Resource() {
       setAdditionalData(extensionName.asCachedStringName(), additionalData)
 
   public enum class HandleBinaryImageMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * When importing a glTF file with embedded binary images, discards all images and uses
@@ -1071,11 +1071,6 @@ public open class GLTFState : Resource() {
      */
     EMBED_AS_UNCOMPRESSED(3),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): HandleBinaryImageMode =

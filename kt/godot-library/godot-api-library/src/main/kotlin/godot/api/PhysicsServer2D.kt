@@ -2064,7 +2064,7 @@ public object PhysicsServer2D : Object() {
   }
 
   public enum class SpaceParameter(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Constant to set/get the maximum distance a pair of bodies has to move before their collision
@@ -2125,18 +2125,13 @@ public object PhysicsServer2D : Object() {
     SOLVER_ITERATIONS(8),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): SpaceParameter = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ShapeType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * This is the constant for creating world boundary shapes. A world boundary shape is an
@@ -2187,18 +2182,13 @@ public object PhysicsServer2D : Object() {
     CUSTOM(8),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ShapeType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class AreaParameter(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Constant to set/get gravity override mode in an area. See [AreaSpaceOverrideMode] for
@@ -2260,18 +2250,13 @@ public object PhysicsServer2D : Object() {
     PRIORITY(9),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): AreaParameter = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class AreaSpaceOverrideMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * This area does not affect gravity/damp. These are generally areas that exist only to detect
@@ -2300,11 +2285,6 @@ public object PhysicsServer2D : Object() {
     REPLACE_COMBINE(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): AreaSpaceOverrideMode =
           entries.single { it.`value` == `value` }
@@ -2312,7 +2292,7 @@ public object PhysicsServer2D : Object() {
   }
 
   public enum class BodyMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Constant for static bodies. In this mode, a body can be only moved by user code and doesn't
@@ -2336,18 +2316,13 @@ public object PhysicsServer2D : Object() {
     RIGID_LINEAR(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): BodyMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class BodyParameter(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Constant to set/get a body's bounce factor. The default value of this parameter is `0.0`.
@@ -2413,18 +2388,13 @@ public object PhysicsServer2D : Object() {
     MAX(10),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): BodyParameter = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class BodyDampMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The body's damping value is added to any value set in areas or the default value.
@@ -2436,18 +2406,13 @@ public object PhysicsServer2D : Object() {
     REPLACE(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): BodyDampMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class BodyState(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Constant to set/get the current transform matrix of the body.
@@ -2471,18 +2436,13 @@ public object PhysicsServer2D : Object() {
     CAN_SLEEP(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): BodyState = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class JointType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Constant to create pin joints.
@@ -2502,18 +2462,13 @@ public object PhysicsServer2D : Object() {
     MAX(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): JointType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class JointParam(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Constant to set/get how fast the joint pulls the bodies back to satisfy the joint constraint.
@@ -2539,18 +2494,13 @@ public object PhysicsServer2D : Object() {
     MAX_FORCE(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): JointParam = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class PinJointParam(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Constant to set/get a how much the bond of the pin joint can flex. The default value of this
@@ -2571,18 +2521,13 @@ public object PhysicsServer2D : Object() {
     MOTOR_TARGET_VELOCITY(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): PinJointParam = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class PinJointFlag(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * If `true`, the pin has a maximum and a minimum rotation.
@@ -2594,18 +2539,13 @@ public object PhysicsServer2D : Object() {
     MOTOR_ENABLED(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): PinJointFlag = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class DampedSpringParam(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Sets the resting length of the spring joint. The joint will always try to go to back this
@@ -2626,18 +2566,13 @@ public object PhysicsServer2D : Object() {
     DAMPING(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): DampedSpringParam = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CCDMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Disables continuous collision detection. This is the fastest way to detect body collisions,
@@ -2656,18 +2591,13 @@ public object PhysicsServer2D : Object() {
     CAST_SHAPE(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): CCDMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class AreaBodyStatus(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The value of the first parameter and area callback function receives, when an object enters
@@ -2681,18 +2611,13 @@ public object PhysicsServer2D : Object() {
     REMOVED(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): AreaBodyStatus = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ProcessInfo(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Constant to get the number of objects that are not sleeping.
@@ -2707,11 +2632,6 @@ public object PhysicsServer2D : Object() {
      */
     INFO_ISLAND_COUNT(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): ProcessInfo = entries.single { it.`value` == `value` }

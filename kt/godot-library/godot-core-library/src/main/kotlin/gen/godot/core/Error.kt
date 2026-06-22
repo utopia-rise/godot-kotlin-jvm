@@ -10,7 +10,7 @@ import kotlin.Long
 import kotlin.Suppress
 
 public enum class Error(
-  `value`: Long,
+  public override val `value`: Long,
 ) : GodotEnum {
   /**
    * Methods that return [Error] return [OK] when no error occurred.
@@ -228,11 +228,6 @@ public enum class Error(
    */
   PRINTER_ON_FIRE(48),
   ;
-
-  public override val `value`: Long
-  init {
-    this.`value` = `value`
-  }
 
   public companion object {
     public fun from(`value`: Long): Error = entries.single { it.`value` == `value` }

@@ -2572,7 +2572,7 @@ public open class Environment : Resource() {
   }
 
   public enum class BGMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Clears the background using the clear color defined in
@@ -2608,18 +2608,13 @@ public open class Environment : Resource() {
     MAX(6),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): BGMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class AmbientSource(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Gather ambient light from whichever source is specified as the background.
@@ -2640,18 +2635,13 @@ public open class Environment : Resource() {
     SKY(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): AmbientSource = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ReflectionSource(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Use the background for reflections.
@@ -2667,18 +2657,13 @@ public open class Environment : Resource() {
     SKY(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ReflectionSource = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ToneMapper(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Does not modify color data, resulting in a linear tonemapping curve which unnaturally clips
@@ -2713,18 +2698,13 @@ public open class Environment : Resource() {
     AGX(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ToneMapper = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class GlowBlendMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Adds the glow effect to the scene.
@@ -2760,18 +2740,13 @@ public open class Environment : Resource() {
     MIX(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): GlowBlendMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class FogMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Use a physically-based fog model defined primarily by fog density.
@@ -2784,18 +2759,13 @@ public open class Environment : Resource() {
     DEPTH(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): FogMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class SDFGIYScale(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Use 50&#37; scale for SDFGI on the Y (vertical) axis. SDFGI cells will be twice as short as
@@ -2816,11 +2786,6 @@ public open class Environment : Resource() {
      */
     Y_SCALE_100_PERCENT(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): SDFGIYScale = entries.single { it.`value` == `value` }

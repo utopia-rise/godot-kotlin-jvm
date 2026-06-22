@@ -831,7 +831,7 @@ public open class Camera2D : Node2D() {
   }
 
   public enum class AnchorMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The camera's position is fixed so that the top-left corner is always at the origin.
@@ -843,18 +843,13 @@ public open class Camera2D : Node2D() {
     DRAG_CENTER(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): AnchorMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Camera2DProcessCallback(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The camera updates during physics frames (see [Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]).
@@ -865,11 +860,6 @@ public open class Camera2D : Node2D() {
      */
     IDLE(1),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): Camera2DProcessCallback =

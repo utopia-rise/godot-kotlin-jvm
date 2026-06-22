@@ -524,7 +524,7 @@ public open class ReflectionProbe : VisualInstance3D() {
   }
 
   public enum class UpdateMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Update the probe once on the next frame (recommended for most objects). The corresponding
@@ -544,18 +544,13 @@ public open class ReflectionProbe : VisualInstance3D() {
     ALWAYS(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): UpdateMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class AmbientMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Do not apply any ambient lighting inside the [ReflectionProbe]'s box defined by its [size].
@@ -572,11 +567,6 @@ public open class ReflectionProbe : VisualInstance3D() {
      */
     COLOR(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): AmbientMode = entries.single { it.`value` == `value` }

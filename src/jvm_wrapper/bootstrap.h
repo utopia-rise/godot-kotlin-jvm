@@ -19,7 +19,7 @@ JVM_INSTANCE_WRAPPER(Bootstrap, "godot.runtime.Bootstrap") {
         INIT_JNI_METHOD(INIT_NATIVE_IMAGE, "initNativeImage", "()V")
         INIT_JNI_METHOD(GET_VERSION, "getVersion", "()Ljava/lang/String;")
         INIT_JNI_METHOD(FINISH, "finish", "()V")
-        INIT_NATIVE_METHOD("loadClasses", "([Lgodot/core/KtClass;)V", Bootstrap::load_classes)
+        INIT_NATIVE_METHOD("loadClasses", "([Lgodot/registration/KtClass;)V", Bootstrap::load_classes)
         INIT_NATIVE_METHOD("registerManagedEngineTypes", "([Ljava/lang/String;[Ljava/lang/String;)V", Bootstrap::register_engine_type)
     )
     // clang-format on

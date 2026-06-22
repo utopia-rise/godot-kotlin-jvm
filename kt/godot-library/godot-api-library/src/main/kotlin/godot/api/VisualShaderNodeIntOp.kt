@@ -53,7 +53,7 @@ public open class VisualShaderNodeIntOp : VisualShaderNode() {
   }
 
   public enum class Operator(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Sums two numbers using `a + b`.
@@ -113,11 +113,6 @@ public open class VisualShaderNodeIntOp : VisualShaderNode() {
      */
     ENUM_SIZE(12),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): Operator = entries.single { it.`value` == `value` }

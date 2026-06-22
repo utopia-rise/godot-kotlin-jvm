@@ -278,7 +278,7 @@ public open class CameraFeed : RefCounted() {
   }
 
   public enum class FeedDataType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * No image set for the feed.
@@ -302,18 +302,13 @@ public open class CameraFeed : RefCounted() {
     EXTERNAL(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): FeedDataType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class FeedPosition(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Unspecified position.
@@ -328,11 +323,6 @@ public open class CameraFeed : RefCounted() {
      */
     BACK(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): FeedPosition = entries.single { it.`value` == `value` }

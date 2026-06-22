@@ -20,7 +20,7 @@ public open class ScriptLanguage internal constructor() : Object() {
   }
 
   public enum class ScriptNameCasing(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     AUTO(0),
     PASCAL_CASE(1),
@@ -28,11 +28,6 @@ public open class ScriptLanguage internal constructor() : Object() {
     KEBAB_CASE(3),
     CAMEL_CASE(4),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): ScriptNameCasing = entries.single { it.`value` == `value` }

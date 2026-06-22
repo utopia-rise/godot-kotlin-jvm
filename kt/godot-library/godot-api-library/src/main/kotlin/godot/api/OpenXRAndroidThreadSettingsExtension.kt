@@ -50,7 +50,7 @@ public open class OpenXRAndroidThreadSettingsExtension : OpenXRExtensionWrapper(
   }
 
   public enum class ThreadType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Hints to the XR runtime that the thread is doing time critical CPU tasks.
@@ -69,11 +69,6 @@ public open class OpenXRAndroidThreadSettingsExtension : OpenXRExtensionWrapper(
      */
     RENDERER_WORKER(3),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): ThreadType = entries.single { it.`value` == `value` }

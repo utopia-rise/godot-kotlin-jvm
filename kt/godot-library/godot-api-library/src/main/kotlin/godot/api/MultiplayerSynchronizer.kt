@@ -267,7 +267,7 @@ public open class MultiplayerSynchronizer : Node() {
   public final fun setRootPath(path: String) = setRootPath(path.asCachedNodePath())
 
   public enum class VisibilityUpdateMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Visibility filters are updated during process frames (see
@@ -285,11 +285,6 @@ public open class MultiplayerSynchronizer : Node() {
      */
     PROCESS_NONE(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): VisibilityUpdateMode =

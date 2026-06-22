@@ -98,7 +98,7 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
   }
 
   public enum class ComparisonType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * A floating-point scalar.
@@ -138,18 +138,13 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
     CTYPE_MAX(8),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ComparisonType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Function(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Comparison for equality (`a == b`).
@@ -185,18 +180,13 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
     MAX(6),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): Function = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Condition(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The result will be `true` if all components in the vector satisfy the comparison condition.
@@ -211,11 +201,6 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
      */
     MAX(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): Condition = entries.single { it.`value` == `value` }

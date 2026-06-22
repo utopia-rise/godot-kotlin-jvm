@@ -433,7 +433,7 @@ public open class UndoRedo : Object() {
   ) = addUndoProperty(`object`, property.asCachedStringName(), value)
 
   public enum class MergeMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Makes "do"/"undo" operations stay in separate actions.
@@ -450,11 +450,6 @@ public open class UndoRedo : Object() {
      */
     ALL(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): MergeMode = entries.single { it.`value` == `value` }

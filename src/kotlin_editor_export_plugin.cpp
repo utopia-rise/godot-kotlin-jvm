@@ -215,7 +215,7 @@ void KotlinEditorExportPlugin::_export_file(const String& p_path, const String& 
         }
 
         String exported_content;
-        StringName fq_name = parse_source_script_info(source_code);
+        StringName fq_name = parse_source_script_info(source_code, p_path);
         if (!fq_name.is_empty()) { exported_content = String(fq_name); }
 
         add_file(p_path, exported_content.to_utf8_buffer(), true);

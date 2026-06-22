@@ -230,7 +230,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
   }
 
   public enum class Resolution(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Generate a 256×256 heightmap. Intended for small-scale scenes, or larger scenes with no
@@ -264,18 +264,13 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
     MAX(6),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): Resolution = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class UpdateMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Only update the heightmap when the [GPUParticlesCollisionHeightField3D] node is moved, or
@@ -291,11 +286,6 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
      */
     ALWAYS(1),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): UpdateMode = entries.single { it.`value` == `value` }

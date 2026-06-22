@@ -544,7 +544,7 @@ public open class TextureProgressBar : Range() {
   }
 
   public enum class FillMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The [textureProgress] fills from left to right.
@@ -589,11 +589,6 @@ public open class TextureProgressBar : Range() {
      */
     CLOCKWISE_AND_COUNTER_CLOCKWISE(8),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): FillMode = entries.single { it.`value` == `value` }

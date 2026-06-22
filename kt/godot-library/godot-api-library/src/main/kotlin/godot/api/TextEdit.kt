@@ -2950,7 +2950,7 @@ public open class TextEdit : Control() {
   }
 
   public enum class MenuItems(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Cuts (copies and clears) the selected text.
@@ -3082,18 +3082,13 @@ public open class TextEdit : Control() {
     MAX(31),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): MenuItems = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class EditAction(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * No current action.
@@ -3113,18 +3108,13 @@ public open class TextEdit : Control() {
     ACTION_DELETE(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): EditAction = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class SearchFlags(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Match case when searching.
@@ -3140,18 +3130,13 @@ public open class TextEdit : Control() {
     BACKWARDS(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): SearchFlags = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CaretType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Vertical line caret.
@@ -3163,18 +3148,13 @@ public open class TextEdit : Control() {
     BLOCK(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): CaretType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class SelectionMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Not selecting.
@@ -3198,18 +3178,13 @@ public open class TextEdit : Control() {
     LINE(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): SelectionMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class LineWrappingMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Line wrapping is disabled.
@@ -3221,18 +3196,13 @@ public open class TextEdit : Control() {
     BOUNDARY(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): LineWrappingMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class GutterType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * When a gutter is set to string using [setGutterType], it is used to contain text set via the
@@ -3250,11 +3220,6 @@ public open class TextEdit : Control() {
      */
     CUSTOM(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): GutterType = entries.single { it.`value` == `value` }

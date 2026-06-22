@@ -9,101 +9,113 @@ import godot.core.*;
 import kotlin.Unit;
 import org.jetbrains.annotations.NotNull;
 
-@RegisterClass
+@Script
 public class JavaTestClass extends Node {
-    @RegisterSignal
+    @Emit
     public Signal0 testSignal = Signal0.create(this, "testSignal");
 
-    @RegisterSignal(parameters = {"param1"})
+    @Emit(parameters = {"param1"})
     public Signal1<String> testSignal1 = Signal1.create(this, "testSignal1");
 
-    @RegisterSignal
+    @Emit
     public Signal0 lambdaSignalNoParam = Signal0.create(this, "lambdaSignalNoParam");
 
-    @RegisterSignal(parameters = {"str", "long", "node"})
+    @Emit(parameters = {"str", "long", "node"})
     public Signal3<String, Long, Node> lambdaSignalWithParams = Signal3.create(this, "lambdaSignalWithParams");
 
     // The following should NOT work as we cannot extract parameter names. The compiler checks should catch that and throw a build error
-    //@RegisterSignal
+    //@Emit
     //public Signal testSignal3 = new Signal2<>(this, "name");
 
     @Export
-    @RegisterProperty
+    @Visible
     @EnumTypeHint
     public JavaEnum javaEnum = JavaEnum.JAVA_ENUM_1;
 
     @Export
-    @RegisterProperty
+    @Visible
+    public BitField<JavaEnum> javaFlag = BitField.of(JavaEnum.JAVA_ENUM_1, JavaEnum.JAVA_ENUM_2);
+
+    @Export
+    @Visible
+    public java.util.List<JavaEnum> javaEnumList = new java.util.ArrayList<>(java.util.List.of(JavaEnum.JAVA_ENUM_1));
+
+    @Export
+    @Visible
+    public BitField<JavaGodotEnum> javaGodotFlag = BitField.of(JavaGodotEnum.A, JavaGodotEnum.B);
+
+    @Export
+    @Visible
     public int exportedInt = 1;
 
     @Export
-    @RegisterProperty
+    @Visible
     public long exportedLong = 1L;
 
     @Export
-    @RegisterProperty
+    @Visible
     public float exportedFloat = 1f;
 
     @Export
-    @RegisterProperty
+    @Visible
     public double exportedDouble = 1.0;
 
     @Export
-    @RegisterProperty
+    @Visible
     public boolean exportedBoolean = true;
 
     @Export
-    @RegisterProperty
+    @Visible
     public String exportedString = "blubb";
 
     @Export
-    @RegisterProperty
+    @Visible
     public byte exportedByte = 1;
 
     @Export
-    @RegisterProperty
+    @Visible
     public Button exportedButton;
 
-    @RegisterFunction
+    @Register
     public String greeting() {
         return "Hello from java";
     }
 
-    @RegisterProperty
+    @Visible
     public boolean signalEmitted = false;
 
-    @RegisterProperty
+    @Visible
     public boolean hasSignalNoParamBeenTriggered = false;
 
-    @RegisterProperty
+    @Visible
     public String signalString = "";
 
-    @RegisterProperty
+    @Visible
     public long signalLong = Long.MIN_VALUE;
 
-    @RegisterProperty
+    @Visible
     public Node signalNode;
 
-    @RegisterProperty
+    @Visible
     public Callable javaCallable = LambdaCallable1.create(
             String.class,
             str -> javaCallableString = str
     );
 
-    @RegisterProperty
+    @Visible
     public String javaCallableString = "";
 
-    @RegisterProperty
+    @Visible
     public VariantArray<Integer> variantArray = new VariantArray<>(Integer.class);
 
-    @RegisterProperty
+    @Visible
     public Dictionary<Float, String> dictionary = new Dictionary<>(Float.class, String.class);
 
-    @RegisterProperty
+    @Visible
     public boolean notificationTriggered = false;
     
 
-    @RegisterFunction
+    @Register
     @Override
     public void _ready() {
         // Check if Singletons have the correct syntax, without Single.INSTANCE
@@ -133,7 +145,7 @@ public class JavaTestClass extends Node {
         );
     }
 
-    @RegisterFunction
+    @Register
     public void connectAndTriggerSignal() {
         Callable1<Void, String> callable = LambdaCallable1.create(
                 String.class,
@@ -143,27 +155,25 @@ public class JavaTestClass extends Node {
         testSignal1.emit("test");
     }
 
-    @RegisterFunction
-    @NotNull
-    @Override
-    public GodotNotification _notification() {
-        return godotNotification(
-                (JavaTestClass myself, int notification) -> myself.notificationTriggered = true
-        );
+    @Notification(0)
+    public void _notification() {
+        notificationTriggered = true;
     }
 
-    @RegisterFunction
+    @Register
     public void signalCallback() {
         signalEmitted = true;
     }
 
-    @RegisterFunction
+    @Register
     public void emitLambdaSignalNoParam() {
         lambdaSignalNoParam.emit();
     }
 
-    @RegisterFunction
+    @Register
     public void emitLambdaSignalWithParam(String str, long longValue, Node node) {
         lambdaSignalWithParams.emit(str, longValue, node);
     }
 }
+
+

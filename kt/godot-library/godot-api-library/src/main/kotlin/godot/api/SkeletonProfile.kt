@@ -401,7 +401,7 @@ public open class SkeletonProfile : Resource() {
       setGroup(boneIdx, group.asCachedStringName())
 
   public enum class TailDirection(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Direction to the average coordinates of bone children.
@@ -416,11 +416,6 @@ public open class SkeletonProfile : Resource() {
      */
     END(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): TailDirection = entries.single { it.`value` == `value` }

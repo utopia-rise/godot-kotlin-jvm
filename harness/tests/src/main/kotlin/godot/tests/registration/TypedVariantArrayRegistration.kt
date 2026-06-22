@@ -4,23 +4,25 @@ import godot.api.Button
 import godot.api.Node
 import godot.api.Texture
 import godot.annotation.Export
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterProperty
+import godot.annotation.Script
+import godot.annotation.Visible
 import godot.core.VariantArray
 import godot.core.variantArrayOf
 
-@RegisterClass
+@Script
 class TypedVariantArrayRegistration: Node() {
 
     @Export
-    @RegisterProperty
+    @Visible
     var intVariantArray: VariantArray<Int> = variantArrayOf()
 
     @Export
-    @RegisterProperty
+    @Visible
     var buttonVariantArray: VariantArray<Button> = variantArrayOf()
 
     @Export
-    @RegisterProperty
+    @Visible
     var textureVariantArray: VariantArray<Texture> = variantArrayOf()
 }
+
+

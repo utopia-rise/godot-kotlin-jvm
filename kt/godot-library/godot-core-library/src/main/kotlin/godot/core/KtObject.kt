@@ -10,12 +10,6 @@ import godot.internal.memory.TransferContext
 import godot.internal.reflection.TypeManager
 import kotlin.contracts.ExperimentalContracts
 
-class GodotNotification(val block: NotificationFunction<out KtObject>)
-
-fun interface NotificationFunction<T : KtObject> {
-    fun invoke(obj: T, notification: Int)
-}
-
 @OptIn(ExperimentalContracts::class)
 @Suppress("LeakingThis", "FunctionName")
 abstract class KtObject : NativeWrapper {
@@ -67,17 +61,6 @@ abstract class KtObject : NativeWrapper {
     open fun _toString(): String = throw NotImplementedError("_toString is not implemented for Object")
     open fun _validateProperty(): Boolean = throw NotImplementedError("_validateProperty is not implemented for Object")
 
-
-    open fun _notification(): GodotNotification = GodotNotification { _, _ -> }
-
-    @JvmName("kotlinNotification")
-    protected inline fun <T : KtObject> T.godotNotification(crossinline block: T.(Int) -> Unit): GodotNotification {
-        return GodotNotification(NotificationFunction<T> { obj, notification -> obj.block(notification) })
-    }
-
-    @JvmName("godotNotification")
-    protected fun <T : KtObject> godotNotification(block: NotificationFunction<T>) = GodotNotification(block)
-
     fun free() = freeObject(ptr)
 
     /**
@@ -99,16 +82,16 @@ abstract class KtObject : NativeWrapper {
     protected external fun getSingleton(classIndex: Int)
     private external fun freeObject(rawPtr: VoidPtr)
 
-    internal companion object {
+    companion object {
         private val initConfig = ThreadLocal.withInitial { InitConfiguration() }
-        private inline fun <T> withConfig(ptr: VoidPtr, id: ObjectID, block: () -> T) = initConfig.get().let {
+        private fun <T> withConfig(ptr: VoidPtr, id: ObjectID, block: () -> T) = initConfig.get().let {
             it.ptr = ptr
             it.objectID = id
             block()
         }
 
         /** When using this constructor, the newly created instances doesn't register itself to the MemoryManager, the caller must do it.*/
-        inline fun <T : NativeWrapper> createScriptInstance(rawPtr: VoidPtr, id: ObjectID, constructor: () -> T) = withConfig(rawPtr, id) {
+        fun <T : NativeWrapper> createScriptInstance(rawPtr: VoidPtr, id: ObjectID, constructor: () -> T) = withConfig(rawPtr, id) {
             val obj = constructor()
             MemoryManager.registerExistingNativeObject(obj)
             obj

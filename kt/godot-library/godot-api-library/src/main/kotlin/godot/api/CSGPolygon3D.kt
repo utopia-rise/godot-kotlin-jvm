@@ -500,7 +500,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
   public final fun setPathNode(path: String) = setPathNode(path.asCachedNodePath())
 
   public enum class Mode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The [polygon] shape is extruded along the negative Z axis.
@@ -516,18 +516,13 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     PATH(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): Mode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class PathRotation(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The [polygon] shape is not rotated.
@@ -547,18 +542,13 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     PATH_FOLLOW(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): PathRotation = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class PathIntervalType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * When [mode] is set to [MODE_PATH], [pathInterval] will determine the distance, in meters,
@@ -570,11 +560,6 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
      */
     SUBDIVIDE(1),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): PathIntervalType = entries.single { it.`value` == `value` }

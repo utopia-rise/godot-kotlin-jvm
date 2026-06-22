@@ -49,7 +49,7 @@ public open class ResourceImporter internal constructor() : RefCounted() {
   }
 
   public enum class ImportOrder(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The default import order.
@@ -62,11 +62,6 @@ public open class ResourceImporter internal constructor() : RefCounted() {
      */
     SCENE(100),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): ImportOrder = entries.single { it.`value` == `value` }

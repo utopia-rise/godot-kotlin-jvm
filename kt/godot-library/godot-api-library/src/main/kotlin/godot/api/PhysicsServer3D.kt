@@ -2831,7 +2831,7 @@ public object PhysicsServer3D : Object() {
   }
 
   public enum class JointType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The [Joint3D] is a [PinJoint3D].
@@ -2859,18 +2859,13 @@ public object PhysicsServer3D : Object() {
     MAX(5),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): JointType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class PinJointParam(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The strength with which the pinned objects try to stay in positional relation to each other.
@@ -2891,18 +2886,13 @@ public object PhysicsServer3D : Object() {
     IMPULSE_CLAMP(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): PinJointParam = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class HingeJointParam(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The speed with which the two bodies get pulled together when they move in different
@@ -2936,18 +2926,13 @@ public object PhysicsServer3D : Object() {
     MOTOR_MAX_IMPULSE(7),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): HingeJointParam = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class HingeJointFlag(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * If `true`, the Hinge has a maximum and a minimum rotation.
@@ -2959,18 +2944,13 @@ public object PhysicsServer3D : Object() {
     ENABLE_MOTOR(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): HingeJointFlag = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class SliderJointParam(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The maximum difference between the pivot points on their X axis before damping happens.
@@ -3069,18 +3049,13 @@ public object PhysicsServer3D : Object() {
     MAX(22),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): SliderJointParam = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ConeTwistJointParam(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Swing is rotation from side to side, around the axis perpendicular to the twist axis.
@@ -3115,18 +3090,13 @@ public object PhysicsServer3D : Object() {
     RELAXATION(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ConeTwistJointParam = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class G6DOFJointAxisParam(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The minimum difference between the pivot points' axes.
@@ -3207,18 +3177,13 @@ public object PhysicsServer3D : Object() {
     MAX(22),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): G6DOFJointAxisParam = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class G6DOFJointAxisFlag(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * If set, linear motion is possible within the given limits.
@@ -3244,18 +3209,13 @@ public object PhysicsServer3D : Object() {
     FLAG_MAX(6),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): G6DOFJointAxisFlag = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ShapeType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Constant for creating a world boundary shape (used by the [WorldBoundaryShape3D] resource).
@@ -3306,18 +3266,13 @@ public object PhysicsServer3D : Object() {
     CUSTOM(10),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ShapeType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class AreaParameter(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Constant to set/get gravity override mode in an area. See [AreaSpaceOverrideMode] for
@@ -3392,18 +3347,13 @@ public object PhysicsServer3D : Object() {
     WIND_ATTENUATION_FACTOR(13),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): AreaParameter = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class AreaSpaceOverrideMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * This area does not affect gravity/damp. These are generally areas that exist only to detect
@@ -3432,11 +3382,6 @@ public object PhysicsServer3D : Object() {
     REPLACE_COMBINE(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): AreaSpaceOverrideMode =
           entries.single { it.`value` == `value` }
@@ -3444,7 +3389,7 @@ public object PhysicsServer3D : Object() {
   }
 
   public enum class BodyMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Constant for static bodies. In this mode, a body can be only moved by user code and doesn't
@@ -3468,18 +3413,13 @@ public object PhysicsServer3D : Object() {
     RIGID_LINEAR(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): BodyMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class BodyParameter(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Constant to set/get a body's bounce factor.
@@ -3527,18 +3467,13 @@ public object PhysicsServer3D : Object() {
     MAX(10),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): BodyParameter = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class BodyDampMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The body's damping value is added to any value set in areas or the default value.
@@ -3550,18 +3485,13 @@ public object PhysicsServer3D : Object() {
     REPLACE(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): BodyDampMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class BodyState(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Constant to set/get the current transform matrix of the body.
@@ -3585,18 +3515,13 @@ public object PhysicsServer3D : Object() {
     CAN_SLEEP(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): BodyState = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class AreaBodyStatus(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The value of the first parameter and area callback function receives, when an object enters
@@ -3610,18 +3535,13 @@ public object PhysicsServer3D : Object() {
     REMOVED(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): AreaBodyStatus = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ProcessInfo(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Constant to get the number of objects that are not sleeping.
@@ -3637,18 +3557,13 @@ public object PhysicsServer3D : Object() {
     INFO_ISLAND_COUNT(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ProcessInfo = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class SpaceParameter(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Constant to set/get the maximum distance a pair of bodies has to move before their collision
@@ -3694,18 +3609,13 @@ public object PhysicsServer3D : Object() {
     SOLVER_ITERATIONS(7),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): SpaceParameter = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class BodyAxis(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     LINEAR_X(1),
     LINEAR_Y(2),
@@ -3714,11 +3624,6 @@ public object PhysicsServer3D : Object() {
     ANGULAR_Y(16),
     ANGULAR_Z(32),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): BodyAxis = entries.single { it.`value` == `value` }

@@ -260,7 +260,7 @@ public open class WebRTCPeerConnection : RefCounted() {
   }
 
   public enum class ConnectionState(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The connection is new, data channels and an offer can be created in this state.
@@ -288,18 +288,13 @@ public open class WebRTCPeerConnection : RefCounted() {
     STATE_CLOSED(5),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ConnectionState = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class GatheringState(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The peer connection was just created and hasn't done any networking yet.
@@ -317,18 +312,13 @@ public open class WebRTCPeerConnection : RefCounted() {
     COMPLETE(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): GatheringState = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class SignalingState(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * There is no ongoing exchange of offer and answer underway. This may mean that the
@@ -363,11 +353,6 @@ public open class WebRTCPeerConnection : RefCounted() {
      */
     CLOSED(5),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): SignalingState = entries.single { it.`value` == `value` }

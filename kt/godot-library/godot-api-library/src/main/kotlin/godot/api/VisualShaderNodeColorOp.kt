@@ -53,7 +53,7 @@ public open class VisualShaderNodeColorOp : VisualShaderNode() {
   }
 
   public enum class Operator(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Produce a screen effect with the following formula:
@@ -156,11 +156,6 @@ public open class VisualShaderNodeColorOp : VisualShaderNode() {
      */
     MAX(9),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): Operator = entries.single { it.`value` == `value` }

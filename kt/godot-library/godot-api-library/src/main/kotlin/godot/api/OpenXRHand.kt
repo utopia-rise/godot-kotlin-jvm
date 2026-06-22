@@ -161,7 +161,7 @@ public open class OpenXRHand : Node3D() {
       setHandSkeleton(handSkeleton.asCachedNodePath())
 
   public enum class Hands(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Tracking the player's left hand.
@@ -177,18 +177,13 @@ public open class OpenXRHand : Node3D() {
     MAX(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): Hands = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class MotionRange(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * When player grips, hand skeleton will form a full fist.
@@ -204,18 +199,13 @@ public open class OpenXRHand : Node3D() {
     MAX(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): MotionRange = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class SkeletonRig(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * An OpenXR compliant skeleton.
@@ -231,18 +221,13 @@ public open class OpenXRHand : Node3D() {
     MAX(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): SkeletonRig = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class BoneUpdate(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The skeletons bones are fully updated (both position and rotation) to match the tracked
@@ -258,11 +243,6 @@ public open class OpenXRHand : Node3D() {
      */
     MAX(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): BoneUpdate = entries.single { it.`value` == `value` }

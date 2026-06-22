@@ -1679,7 +1679,7 @@ public open class CanvasItem internal constructor() : Node() {
       getInstanceShaderParameter(name.asCachedStringName())
 
   public enum class TextureFilter(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The [CanvasItem] will inherit the filter from its parent.
@@ -1749,18 +1749,13 @@ public open class CanvasItem internal constructor() : Node() {
     MAX(7),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): TextureFilter = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class TextureRepeat(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The [CanvasItem] will inherit the filter from its parent.
@@ -1787,18 +1782,13 @@ public open class CanvasItem internal constructor() : Node() {
     MAX(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): TextureRepeat = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ClipChildrenMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Children are drawn over this node and are not clipped.
@@ -1821,11 +1811,6 @@ public open class CanvasItem internal constructor() : Node() {
      */
     MAX(3),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): ClipChildrenMode = entries.single { it.`value` == `value` }

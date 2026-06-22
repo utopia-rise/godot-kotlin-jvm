@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.BitFieldBase
 import godot.core.Callable
 import godot.core.Color
 import godot.core.GodotEnum
@@ -3152,7 +3153,7 @@ public open class Control : CanvasItem() {
       setFocusPrevious(previous.asCachedNodePath())
 
   public enum class FocusMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The node cannot grab focus. Use with [focusMode].
@@ -3173,18 +3174,13 @@ public open class Control : CanvasItem() {
     ACCESSIBILITY(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): FocusMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class FocusBehaviorRecursive(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Inherits the [focusBehaviorRecursive] from the parent control. If there is no parent control,
@@ -3203,11 +3199,6 @@ public open class Control : CanvasItem() {
     ENABLED(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): FocusBehaviorRecursive =
           entries.single { it.`value` == `value` }
@@ -3215,7 +3206,7 @@ public open class Control : CanvasItem() {
   }
 
   public enum class MouseBehaviorRecursive(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Inherits the [mouseBehaviorRecursive] from the parent control. If there is no parent control,
@@ -3235,11 +3226,6 @@ public open class Control : CanvasItem() {
     ENABLED(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): MouseBehaviorRecursive =
           entries.single { it.`value` == `value` }
@@ -3247,7 +3233,7 @@ public open class Control : CanvasItem() {
   }
 
   public enum class CursorShape(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Show the system's arrow mouse cursor when the user hovers the node. Use with
@@ -3337,18 +3323,13 @@ public open class Control : CanvasItem() {
     HELP(16),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): CursorShape = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class LayoutPreset(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Snap all 4 anchors to the top-left of the parent control's bounds. Use with
@@ -3436,18 +3417,13 @@ public open class Control : CanvasItem() {
     PRESET_FULL_RECT(15),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): LayoutPreset = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class LayoutPresetMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The control will be resized to its minimum size.
@@ -3467,42 +3443,15 @@ public open class Control : CanvasItem() {
     PRESET_MODE_KEEP_SIZE(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): LayoutPresetMode = entries.single { it.`value` == `value` }
     }
   }
 
   public class SizeFlags(
-    public val flag: Long,
-  ) {
-    public infix fun or(other: SizeFlags): SizeFlags = SizeFlags(flag.or(other.flag))
-
-    public infix fun or(other: Long): SizeFlags = SizeFlags(flag.or(other))
-
-    public infix fun xor(other: SizeFlags): SizeFlags = SizeFlags(flag.xor(other.flag))
-
-    public infix fun xor(other: Long): SizeFlags = SizeFlags(flag.xor(other))
-
-    public infix fun and(other: SizeFlags): SizeFlags = SizeFlags(flag.and(other.flag))
-
-    public infix fun and(other: Long): SizeFlags = SizeFlags(flag.and(other))
-
-    public fun unaryPlus(): SizeFlags = SizeFlags(flag.unaryPlus())
-
-    public fun unaryMinus(): SizeFlags = SizeFlags(flag.unaryMinus())
-
-    public fun inv(): SizeFlags = SizeFlags(flag.inv())
-
-    public infix fun shl(bits: Int): SizeFlags = SizeFlags(flag shl bits)
-
-    public infix fun shr(bits: Int): SizeFlags = SizeFlags(flag shr bits)
-
-    public infix fun ushr(bits: Int): SizeFlags = SizeFlags(flag ushr bits)
+    flag: Long,
+  ) : BitFieldBase<SizeFlags>(flag) {
+    protected override fun wrap(flag: Long): SizeFlags = SizeFlags(flag)
 
     public companion object {
       /**
@@ -3558,7 +3507,7 @@ public open class Control : CanvasItem() {
   }
 
   public enum class MouseFilter(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The control will receive mouse movement input events and mouse button input events if clicked
@@ -3594,18 +3543,13 @@ public open class Control : CanvasItem() {
     IGNORE(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): MouseFilter = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class GrowDirection(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The control will grow to the left or top to make up if its minimum size is changed to be
@@ -3624,18 +3568,13 @@ public open class Control : CanvasItem() {
     BOTH(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): GrowDirection = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Anchor(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Snaps one of the 4 anchor's sides to the origin of the node's `Rect`, in the top left. Use it
@@ -3651,18 +3590,13 @@ public open class Control : CanvasItem() {
     END(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): Anchor = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class LayoutDirection(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Automatic layout direction, determined from the parent control layout direction.
@@ -3704,18 +3638,13 @@ public open class Control : CanvasItem() {
     LOCALE(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): LayoutDirection = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class TextDirection(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Text writing direction is the same as layout direction.
@@ -3734,11 +3663,6 @@ public open class Control : CanvasItem() {
      */
     RTL(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): TextDirection = entries.single { it.`value` == `value` }

@@ -71,7 +71,7 @@ public open class OpenXRSpatialCapabilityConfigurationAprilTag :
   }
 
   public enum class AprilTagDict(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * 4 by 4 bits, minimum Hamming distance between any two codes = 5, 30 codes.
@@ -90,11 +90,6 @@ public open class OpenXRSpatialCapabilityConfigurationAprilTag :
      */
     APRIL_TAG_DICT_36H11(4),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): AprilTagDict = entries.single { it.`value` == `value` }

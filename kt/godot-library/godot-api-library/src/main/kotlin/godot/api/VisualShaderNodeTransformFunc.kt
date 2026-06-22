@@ -53,7 +53,7 @@ public open class VisualShaderNodeTransformFunc : VisualShaderNode() {
   }
 
   public enum class Function(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Perform the inverse operation on the [Transform3D] matrix.
@@ -68,11 +68,6 @@ public open class VisualShaderNodeTransformFunc : VisualShaderNode() {
      */
     MAX(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): Function = entries.single { it.`value` == `value` }

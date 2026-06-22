@@ -133,7 +133,7 @@ public open class ZIPPacker : RefCounted() {
   }
 
   public enum class ZipAppend(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Create a new zip archive at the given path.
@@ -149,18 +149,13 @@ public open class ZIPPacker : RefCounted() {
     APPEND_ADDINZIP(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ZipAppend = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CompressionLevel(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Start a file with the default Deflate compression level (`6`). This is a good compromise
@@ -186,11 +181,6 @@ public open class ZIPPacker : RefCounted() {
      */
     BEST(9),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): CompressionLevel = entries.single { it.`value` == `value` }

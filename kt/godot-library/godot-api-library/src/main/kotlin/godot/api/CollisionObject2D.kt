@@ -491,7 +491,7 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   }
 
   public enum class DisableMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * When [Node.processMode] is set to [Node.PROCESS_MODE_DISABLED], remove from the physics
@@ -514,11 +514,6 @@ public open class CollisionObject2D internal constructor() : Node2D() {
      */
     KEEP_ACTIVE(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): DisableMode = entries.single { it.`value` == `value` }

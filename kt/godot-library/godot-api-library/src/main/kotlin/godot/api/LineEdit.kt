@@ -1288,7 +1288,7 @@ public open class LineEdit : Control() {
   }
 
   public enum class MenuItems(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Cuts (copies and clears) the selected text.
@@ -1423,18 +1423,13 @@ public open class LineEdit : Control() {
     MAX(31),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): MenuItems = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class VirtualKeyboardType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Default text virtual keyboard.
@@ -1474,18 +1469,13 @@ public open class LineEdit : Control() {
     KEYBOARD_TYPE_URL(7),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): VirtualKeyboardType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ExpandMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Use the original size for the right icon.
@@ -1500,11 +1490,6 @@ public open class LineEdit : Control() {
      */
     FIT_TO_LINE_EDIT(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): ExpandMode = entries.single { it.`value` == `value` }

@@ -53,7 +53,7 @@ public open class VisualShaderNodeVectorFunc : VisualShaderNodeVectorBase() {
   }
 
   public enum class Function(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Normalizes the vector so that it has a length of `1` but points in the same direction.
@@ -194,11 +194,6 @@ public open class VisualShaderNodeVectorFunc : VisualShaderNodeVectorBase() {
      */
     MAX(33),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): Function = entries.single { it.`value` == `value` }

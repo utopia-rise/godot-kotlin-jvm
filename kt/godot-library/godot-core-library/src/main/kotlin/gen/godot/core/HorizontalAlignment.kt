@@ -10,7 +10,7 @@ import kotlin.Long
 import kotlin.Suppress
 
 public enum class HorizontalAlignment(
-  `value`: Long,
+  public override val `value`: Long,
 ) : GodotEnum {
   /**
    * Horizontal left alignment, usually for text-derived classes.
@@ -29,11 +29,6 @@ public enum class HorizontalAlignment(
    */
   FILL(3),
   ;
-
-  public override val `value`: Long
-  init {
-    this.`value` = `value`
-  }
 
   public companion object {
     public fun from(`value`: Long): HorizontalAlignment = entries.single { it.`value` == `value` }

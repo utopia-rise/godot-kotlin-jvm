@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.BitFieldBase
 import godot.core.Color
 import godot.core.Dictionary
 import godot.core.GodotEnum
@@ -1875,7 +1876,7 @@ public open class RichTextLabel : Control() {
   }
 
   public enum class ListType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Each list item has a number marker.
@@ -1895,18 +1896,13 @@ public open class RichTextLabel : Control() {
     DOTS(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ListType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class MenuItems(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Copies the selected text.
@@ -1922,18 +1918,13 @@ public open class RichTextLabel : Control() {
     MAX(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): MenuItems = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class MetaUnderline(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Meta tag does not display an underline, even if [metaUnderlined] is `true`.
@@ -1950,45 +1941,15 @@ public open class RichTextLabel : Control() {
     ON_HOVER(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): MetaUnderline = entries.single { it.`value` == `value` }
     }
   }
 
   public class ImageUpdateMask(
-    public val flag: Long,
-  ) {
-    public infix fun or(other: ImageUpdateMask): ImageUpdateMask =
-        ImageUpdateMask(flag.or(other.flag))
-
-    public infix fun or(other: Long): ImageUpdateMask = ImageUpdateMask(flag.or(other))
-
-    public infix fun xor(other: ImageUpdateMask): ImageUpdateMask =
-        ImageUpdateMask(flag.xor(other.flag))
-
-    public infix fun xor(other: Long): ImageUpdateMask = ImageUpdateMask(flag.xor(other))
-
-    public infix fun and(other: ImageUpdateMask): ImageUpdateMask =
-        ImageUpdateMask(flag.and(other.flag))
-
-    public infix fun and(other: Long): ImageUpdateMask = ImageUpdateMask(flag.and(other))
-
-    public fun unaryPlus(): ImageUpdateMask = ImageUpdateMask(flag.unaryPlus())
-
-    public fun unaryMinus(): ImageUpdateMask = ImageUpdateMask(flag.unaryMinus())
-
-    public fun inv(): ImageUpdateMask = ImageUpdateMask(flag.inv())
-
-    public infix fun shl(bits: Int): ImageUpdateMask = ImageUpdateMask(flag shl bits)
-
-    public infix fun shr(bits: Int): ImageUpdateMask = ImageUpdateMask(flag shr bits)
-
-    public infix fun ushr(bits: Int): ImageUpdateMask = ImageUpdateMask(flag ushr bits)
+    flag: Long,
+  ) : BitFieldBase<ImageUpdateMask>(flag) {
+    protected override fun wrap(flag: Long): ImageUpdateMask = ImageUpdateMask(flag)
 
     public companion object {
       /**

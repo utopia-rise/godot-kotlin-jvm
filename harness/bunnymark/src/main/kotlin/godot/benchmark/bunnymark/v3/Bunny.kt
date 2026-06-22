@@ -2,11 +2,11 @@ package godot.benchmark.bunnymark.v3
 
 import godot.RandomNumberGenerator
 import godot.Sprite2D
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
+import godot.annotation.Script
+import godot.annotation.Register
 import godot.core.Vector2
 
-@RegisterClass
+@Script
 class Bunny : Sprite2D() {
 
 	var speed = Vector2()
@@ -15,12 +15,12 @@ class Bunny : Sprite2D() {
 	private lateinit var screenSize: Vector2
 	private val randomNumberGenerator = RandomNumberGenerator()
 
-    @RegisterFunction
+    @Register
     override fun _ready() {
         randomNumberGenerator.randomize()
     }
 
-	@RegisterFunction
+	@Register
 	override fun _process(delta: Double) {
 		screenSize = getViewportRect().size
 		val pos = position
@@ -59,3 +59,5 @@ class Bunny : Sprite2D() {
 		speed = sp
 	}
 }
+
+

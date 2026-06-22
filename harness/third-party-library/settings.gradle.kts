@@ -16,8 +16,7 @@ includeBuild("../../kt") {
         substitute(module("com.utopia-rise:godot-extension-library-release")).using(project(":godot-extension-library"))
         substitute(module("com.utopia-rise:godot-coroutine-library-debug")).using(project(":godot-coroutine-library"))
         substitute(module("com.utopia-rise:godot-coroutine-library-release")).using(project(":godot-coroutine-library"))
-        substitute(module("com.utopia-rise:godot-class-graph-symbol-processor")).using(project(":godot-class-graph-symbol-processor"))
-        substitute(module("com.utopia-rise:godot-entry-generator")).using(project(":godot-entry-generator"))
+        substitute(module("com.utopia-rise:godot-registration")).using(project(":godot-registration"))
     }
 }
 

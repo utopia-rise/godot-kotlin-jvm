@@ -668,7 +668,7 @@ public open class LightmapGI : VisualInstance3D() {
   }
 
   public enum class BakeQuality(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Low bake quality (fastest bake times). The quality of this preset can be adjusted by changing
@@ -696,18 +696,13 @@ public open class LightmapGI : VisualInstance3D() {
     ULTRA(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): BakeQuality = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class GenerateProbes(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Don't generate lightmap probes for lighting dynamic objects.
@@ -731,18 +726,13 @@ public open class LightmapGI : VisualInstance3D() {
     SUBDIV_32(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): GenerateProbes = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class BakeError(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Lightmap baking was successful.
@@ -801,18 +791,13 @@ public open class LightmapGI : VisualInstance3D() {
     ATLAS_TOO_SMALL(11),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): BakeError = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class EnvironmentMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Ignore environment lighting when baking lightmaps.
@@ -836,11 +821,6 @@ public open class LightmapGI : VisualInstance3D() {
      */
     CUSTOM_COLOR(3),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): EnvironmentMode = entries.single { it.`value` == `value` }

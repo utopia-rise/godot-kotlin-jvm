@@ -817,7 +817,7 @@ public open class Tween : RefCounted() {
   ): PropertyTweener = tweenProperty(`object`, property.asCachedNodePath(), finalVal, duration)
 
   public enum class TweenProcessMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The [Tween] updates after each physics frame (see [Node.PhysicsProcess]).
@@ -829,18 +829,13 @@ public open class Tween : RefCounted() {
     IDLE(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): TweenProcessMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class TweenPauseMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * If the [Tween] has a bound node, it will process when that node can process (see
@@ -857,18 +852,13 @@ public open class Tween : RefCounted() {
     PROCESS(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): TweenPauseMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class TransitionType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The animation is interpolated linearly.
@@ -920,18 +910,13 @@ public open class Tween : RefCounted() {
     SPRING(11),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): TransitionType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class EaseType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The interpolation starts slowly and speeds up towards the end.
@@ -950,11 +935,6 @@ public open class Tween : RefCounted() {
      */
     OUT_IN(3),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): EaseType = entries.single { it.`value` == `value` }

@@ -351,7 +351,7 @@ public object Performance : Object() {
   public final fun getCustomMonitor(id: String): Any? = getCustomMonitor(id.asCachedStringName())
 
   public enum class Monitor(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The number of frames rendered in the last second. This metric is only updated once per
@@ -631,18 +631,13 @@ public object Performance : Object() {
     MAX(59),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): Monitor = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class MonitorType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Monitor output is formatted as an integer value.
@@ -664,11 +659,6 @@ public object Performance : Object() {
      */
     PERCENTAGE(3),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): MonitorType = entries.single { it.`value` == `value` }

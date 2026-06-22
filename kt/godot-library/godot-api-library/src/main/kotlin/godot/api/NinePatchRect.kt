@@ -260,7 +260,7 @@ public open class NinePatchRect : Control() {
   }
 
   public enum class AxisStretchMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Stretches the center texture across the NinePatchRect. This may cause the texture to be
@@ -280,11 +280,6 @@ public open class NinePatchRect : Control() {
      */
     TILE_FIT(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): AxisStretchMode = entries.single { it.`value` == `value` }

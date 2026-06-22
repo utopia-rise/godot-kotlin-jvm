@@ -5,11 +5,7 @@ registeredName = LambdaCallableTest
 fqName = godot.tests.LambdaCallableTest
 baseType = Node
 supertypes = [
-    godot.api.Node,
-    godot.api.Object,
-    godot.core.KtObject,
-    godot.common.interop.NativeWrapper,
-    godot.common.interop.NativePointer
+    
 ]
 signals = [
     signal_no_param,
@@ -22,6 +18,9 @@ properties = [
     signal_node,
     kt_callable,
     kt_callable_string
+]
+notifications = [
+    
 ]
 functions = [
     _ready,

@@ -5,12 +5,7 @@ registeredName = Invocation
 fqName = godot.tests.Invocation
 baseType = Node3D
 supertypes = [
-    godot.api.Node3D,
-    godot.api.Node,
-    godot.api.Object,
-    godot.core.KtObject,
-    godot.common.interop.NativeWrapper,
-    godot.common.interop.NativePointer
+    
 ]
 signals = [
     
@@ -38,6 +33,7 @@ properties = [
     nullable_array,
     any_to_any_dictionary,
     nav_meshes_dictionary,
+    nested_dictionary,
     nullable_dictionary,
     color,
     rid,
@@ -71,6 +67,9 @@ properties = [
     ascii_string,
     utf8_string
 ]
+notifications = [
+    
+]
 functions = [
     int_value,
     long_value,
@@ -82,6 +81,7 @@ functions = [
     init_nullables,
     _enter_tree,
     _ready,
+    _on_destroy,
     get_rid_id,
     get_nav_mesh_rid,
     append_to_any_dict,

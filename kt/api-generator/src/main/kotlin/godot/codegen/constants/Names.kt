@@ -13,6 +13,7 @@ import godot.tools.common.constants.godotCoroutinePackage
 import godot.tools.common.constants.godotExtensionPackage
 import godot.tools.common.constants.godotInteropPackage
 import godot.tools.common.constants.godotMemoryPackage
+import godot.tools.common.constants.godotRegistrationPackage
 import godot.tools.common.constants.godotReflectionPackage
 import godot.tools.common.constants.kotlinCollectionsPackage
 import godot.tools.common.constants.kotlinCoroutinePackage
@@ -103,9 +104,10 @@ object Core {
     val lambdaCallable = ClassName(godotCorePackage, "LambdaCallable")
     val lambdaContainer = ClassName(godotCorePackage, "LambdaContainer")
     val godotEnum = ClassName(godotCorePackage, "GodotEnum")
+    val bitFieldBase = ClassName(godotCorePackage, "BitFieldBase")
     val error = ClassName(godotCorePackage, "Error")
     val variantType = ClassName(godotCorePackage, "VariantType")
-    val ktRpcConfig = ClassName(godotCorePackage, "KtRpcConfig")
+    val ktRpcConfig = ClassName(godotRegistrationPackage, "KtRpcConfig")
     val signalConnector = ClassName(godotExtensionPackage, "SignalConnector")
 
     fun callable(argCount: Int) = ClassName(godotCorePackage, "Callable$argCount")

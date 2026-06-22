@@ -1,15 +1,16 @@
 package GROUP_ID
 
 import godot.api.Node3D
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
+import godot.annotation.GodotScript
+import godot.annotation.Register
 import godot.global.GD
 
-@RegisterClass
+@GodotScript
 class SimpleKotlin: Node3D() {
 
-    @RegisterFunction
+    @Register
     override fun _ready() {
         GD.print("Hello world!")
     }
 }
+

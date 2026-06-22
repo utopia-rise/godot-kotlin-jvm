@@ -6,7 +6,6 @@
 
 package godot.core
 
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.jvm.JvmField
@@ -18,34 +17,9 @@ public infix fun Long.xor(other: MouseButtonMask): Long = this.xor(other.flag)
 public infix fun Long.and(other: MouseButtonMask): Long = this.and(other.flag)
 
 public class MouseButtonMask(
-  public val flag: Long,
-) {
-  public infix fun or(other: MouseButtonMask): MouseButtonMask =
-      MouseButtonMask(flag.or(other.flag))
-
-  public infix fun or(other: Long): MouseButtonMask = MouseButtonMask(flag.or(other))
-
-  public infix fun xor(other: MouseButtonMask): MouseButtonMask =
-      MouseButtonMask(flag.xor(other.flag))
-
-  public infix fun xor(other: Long): MouseButtonMask = MouseButtonMask(flag.xor(other))
-
-  public infix fun and(other: MouseButtonMask): MouseButtonMask =
-      MouseButtonMask(flag.and(other.flag))
-
-  public infix fun and(other: Long): MouseButtonMask = MouseButtonMask(flag.and(other))
-
-  public fun unaryPlus(): MouseButtonMask = MouseButtonMask(flag.unaryPlus())
-
-  public fun unaryMinus(): MouseButtonMask = MouseButtonMask(flag.unaryMinus())
-
-  public fun inv(): MouseButtonMask = MouseButtonMask(flag.inv())
-
-  public infix fun shl(bits: Int): MouseButtonMask = MouseButtonMask(flag shl bits)
-
-  public infix fun shr(bits: Int): MouseButtonMask = MouseButtonMask(flag shr bits)
-
-  public infix fun ushr(bits: Int): MouseButtonMask = MouseButtonMask(flag ushr bits)
+  flag: Long,
+) : BitFieldBase<MouseButtonMask>(flag) {
+  protected override fun wrap(flag: Long): MouseButtonMask = MouseButtonMask(flag)
 
   public companion object {
     /**

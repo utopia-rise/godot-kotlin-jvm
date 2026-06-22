@@ -5,12 +5,7 @@ registeredName = ClassInheritanceChild
 fqName = godot.tests.inheritance.ClassInheritanceChild
 baseType = Node
 supertypes = [
-    godot.tests.inheritance.ClassInheritanceParent,
-    godot.api.Node,
-    godot.api.Object,
-    godot.core.KtObject,
-    godot.common.interop.NativeWrapper,
-    godot.common.interop.NativePointer
+    ClassInheritanceParent
 ]
 signals = [
     test_overridden,
@@ -18,14 +13,19 @@ signals = [
 ]
 properties = [
     child_open_function_has_been_called,
-    open_var,
     closed_function_has_been_called,
     parent_open_function_has_been_called,
     closed_var,
+    open_var,
     notification_call_bit_flag
+]
+notifications = [
+    on_child_notification:0,
+    on_parent_notification:0
 ]
 functions = [
     open_function,
-    _notification,
-    closed_function
+    on_child_notification,
+    closed_function,
+    on_parent_notification
 ]

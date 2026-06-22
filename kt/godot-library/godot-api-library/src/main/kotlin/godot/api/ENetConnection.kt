@@ -296,7 +296,7 @@ public open class ENetConnection : RefCounted() {
   }
 
   public enum class CompressionMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * No compression. This uses the most bandwidth, but has the upside of requiring the fewest CPU
@@ -327,18 +327,13 @@ public open class ENetConnection : RefCounted() {
     ZSTD(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): CompressionMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class EventType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * An error occurred during [service]. You will likely need to [destroy] the host and recreate
@@ -370,18 +365,13 @@ public open class ENetConnection : RefCounted() {
     RECEIVE(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): EventType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class HostStatistic(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Total data sent.
@@ -400,11 +390,6 @@ public open class ENetConnection : RefCounted() {
      */
     TOTAL_RECEIVED_PACKETS(3),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): HostStatistic = entries.single { it.`value` == `value` }

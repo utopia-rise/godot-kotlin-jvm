@@ -1893,7 +1893,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public enum class PositionalShadowAtlasQuadrantSubdiv(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * This quadrant will not be used.
@@ -1933,11 +1933,6 @@ public open class Viewport internal constructor() : Node() {
     SHADOW_ATLAS_QUADRANT_SUBDIV_MAX(7),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): PositionalShadowAtlasQuadrantSubdiv =
           entries.single { it.`value` == `value` }
@@ -1945,7 +1940,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public enum class Scaling3DMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Use bilinear scaling for the viewport's 3D buffer. The amount of scaling can be set using
@@ -2010,18 +2005,13 @@ public open class Viewport internal constructor() : Node() {
     SCALING_3D_MODE_MAX(5),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): Scaling3DMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class MSAA(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Multisample antialiasing mode disabled. This is the default value, and is also the fastest
@@ -2050,18 +2040,13 @@ public open class Viewport internal constructor() : Node() {
     MAX(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): MSAA = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class AnisotropicFiltering(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Anisotropic filtering is disabled.
@@ -2089,11 +2074,6 @@ public open class Viewport internal constructor() : Node() {
     ANISOTROPY_MAX(5),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): AnisotropicFiltering =
           entries.single { it.`value` == `value` }
@@ -2101,7 +2081,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public enum class ScreenSpaceAA(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Do not perform any antialiasing in the full screen post-process.
@@ -2124,18 +2104,13 @@ public open class Viewport internal constructor() : Node() {
     MAX(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ScreenSpaceAA = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class RenderInfo(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Amount of objects in frame.
@@ -2155,18 +2130,13 @@ public open class Viewport internal constructor() : Node() {
     MAX(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): RenderInfo = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class RenderInfoType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Visible render pass (excluding shadows).
@@ -2187,18 +2157,13 @@ public open class Viewport internal constructor() : Node() {
     MAX(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): RenderInfoType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class DebugDraw(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Objects are displayed normally.
@@ -2390,18 +2355,13 @@ public open class Viewport internal constructor() : Node() {
     INTERNAL_BUFFER(26),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): DebugDraw = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class DefaultCanvasItemTextureFilter(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The texture filter reads from the nearest pixel only. This makes the texture look pixelated
@@ -2441,11 +2401,6 @@ public open class Viewport internal constructor() : Node() {
     MAX(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): DefaultCanvasItemTextureFilter =
           entries.single { it.`value` == `value` }
@@ -2453,7 +2408,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public enum class DefaultCanvasItemTextureRepeat(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Disables textures repeating. Instead, when reading UVs outside the 0-1 range, the value will
@@ -2477,11 +2432,6 @@ public open class Viewport internal constructor() : Node() {
     MAX(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): DefaultCanvasItemTextureRepeat =
           entries.single { it.`value` == `value` }
@@ -2489,7 +2439,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public enum class SDFOversize(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The signed distance field only covers the viewport's own rectangle.
@@ -2516,18 +2466,13 @@ public open class Viewport internal constructor() : Node() {
     MAX(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): SDFOversize = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class SDFScale(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The signed distance field is rendered at full resolution.
@@ -2547,18 +2492,13 @@ public open class Viewport internal constructor() : Node() {
     MAX(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): SDFScale = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class VRSMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Variable Rate Shading is disabled.
@@ -2579,18 +2519,13 @@ public open class Viewport internal constructor() : Node() {
     MAX(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): VRSMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class VRSUpdateMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The input texture for variable rate shading will not be processed.
@@ -2609,11 +2544,6 @@ public open class Viewport internal constructor() : Node() {
      */
     MAX(3),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): VRSUpdateMode = entries.single { it.`value` == `value` }

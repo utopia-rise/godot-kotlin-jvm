@@ -87,7 +87,7 @@ godot --jvm-debug-port=5005
 # Then attach a remote debugger in IntelliJ IDEA to localhost:5005
 ```
 
-Debugging the entry generator (KSP/annotation processing):
+Debugging the registrar generator (bytecode processing):
 ```bash
 cd kt/
 ./gradlew kspKotlin -Dkotlin.daemon.jvm.options="-Xdebug,-Xrunjdwp:transport=dt_socket\,address=8765\,server=y\,suspend=y"
@@ -114,19 +114,21 @@ cd kt/
 - **`godot-library/godot-api-library/`** — Auto-generated Godot API bindings. **Never edit manually.** Regenerate with `kt/api-generator` after `api.json` changes.
 - **`godot-library/godot-core-library/`** — Core types, signal infrastructure, base classes for user code.
 - **`godot-library/godot-bootstrap-library/`** — JVM bootstrapper; initializes and hot-reloads user classes in the editor.
-- **`entry-generation/godot-class-graph-symbol-processor/`** — Bytecode processor using ClassGraph (replaced KSP/Mpapt; language-agnostic, supports Kotlin/Java/Scala equally). Analyzes compiled bytecode to extract class metadata.
-- **`entry-generation/godot-entry-generator/`** — Consumes metadata from the symbol processor; generates registration glue code.
+- **`godot-registration/`** — Umbrella module (the directory is itself the Gradle module, like `godot-library`); shadow-merges the three sub-modules below into the single publishable `godot-registration` fat jar consumed by the gradle plugin and as a standalone tool.
+- **`godot-registration/godot-class-graph-symbol-processor/`** — Front-end: bytecode processor using ClassGraph (replaced KSP/Mpapt; language-agnostic, supports Kotlin/Java/Scala equally). Reads compiled bytecode and produces model instances. No validation.
+- **`godot-registration/godot-registration-model/`** — The validated IR shared between processor and generator. Owns the registration model and its sanity checks; an instance existing means it is valid.
+- **`godot-registration/godot-registrar-generator/`** — Back-end: consumes models from the processor and generates registration glue code. No validation.
 - **`api-generator/`** — Reads Godot's `api.json`, generates all Kotlin bindings in `godot-api-library/`. Run in CI when Godot API changes.
-- **`plugins/godot-gradle-plugin/`** — Applied to all user Godot-Kotlin projects; orchestrates compile → symbol processing → entry generation → JAR packaging.
+- **`plugins/godot-gradle-plugin/`** — Applied to all user Godot-Kotlin projects; orchestrates compile → symbol processing → registrar generation → JAR packaging.
 - **`plugins/godot-intellij-plugin/`** — IntelliJ IDEA integration (code insight, run configs, templates).
 - **`common/`**, **`tools-common/`** — Shared utilities across subprojects.
 
 ### Data Flow (User Code → Runtime)
 
 ```
-User writes @RegisterClass Kotlin code
+User writes @GodotScript Kotlin code
   → Kotlin compiler + ClassGraph bytecode processor
-  → entry-generator produces registration glue
+  → registrar-generator produces registration glue
   → godot-gradle-plugin packages godot-bootstrap.jar + main.jar
   → JvmResourceFormatLoader loads JARs in editor
   → C++ jvm_manager starts embedded JVM
@@ -187,9 +189,10 @@ Workflows in `.github/workflows/`. The canonical Godot version and JDK version (
 - Contribution setup: `docs/src/doc/contribution/setup.md`
 - Guidelines: `docs/src/doc/contribution/guidelines.md`
 - Memory management deep dive: `docs/src/doc/contribution/knowledge-base/memory-management.md`
-- Entry generation: `docs/src/doc/contribution/knowledge-base/entry-generation.md`
+- Registrar generation: `docs/src/doc/contribution/knowledge-base/registrar-generation.md`
 - JNI shared buffer: `docs/src/doc/contribution/knowledge-base/shared-buffer.md`
 - Testing branch changes: `docs/src/doc/contribution/test-change-from-branch.md`
 - Building with C# (Mono): `docs/src/doc/contribution/build-with-csharp-support.md`
 
 Serve docs locally: `cd docs/ && ./run.sh`
+

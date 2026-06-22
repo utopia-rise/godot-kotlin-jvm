@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.BitFieldBase
 import godot.core.GodotEnum
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
@@ -466,7 +467,7 @@ public open class OpenXRInterface : XRInterface() {
   }
 
   public enum class SessionState(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The state of the session is unknown, we haven't tried setting up OpenXR yet.
@@ -521,18 +522,13 @@ public open class OpenXRInterface : XRInterface() {
     EXITING(8),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): SessionState = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Hand(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Left hand.
@@ -548,18 +544,13 @@ public open class OpenXRInterface : XRInterface() {
     MAX(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): Hand = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class HandMotionRange(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Full hand range, if user closes their hands, we make a full fist.
@@ -576,18 +567,13 @@ public open class OpenXRInterface : XRInterface() {
     MAX(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): HandMotionRange = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class HandTrackedSource(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The source of hand tracking data is unknown (the extension is likely unsupported).
@@ -609,18 +595,13 @@ public open class OpenXRInterface : XRInterface() {
     MAX(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): HandTrackedSource = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class HandJoints(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Palm joint.
@@ -732,18 +713,13 @@ public open class OpenXRInterface : XRInterface() {
     MAX(26),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): HandJoints = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class PerfSettingsLevel(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The application has entered a non-XR section (head-locked / static screen), during which
@@ -767,18 +743,13 @@ public open class OpenXRInterface : XRInterface() {
     BOOST(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): PerfSettingsLevel = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class PerfSettingsSubDomain(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The compositing performance within the runtime has reached a new level.
@@ -794,11 +765,6 @@ public open class OpenXRInterface : XRInterface() {
     THERMAL(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): PerfSettingsSubDomain =
           entries.single { it.`value` == `value` }
@@ -806,7 +772,7 @@ public open class OpenXRInterface : XRInterface() {
   }
 
   public enum class PerfSettingsNotificationLevel(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The sub-domain has reached a level where no further actions other than currently applied are
@@ -825,11 +791,6 @@ public open class OpenXRInterface : XRInterface() {
     IMPAIRED(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): PerfSettingsNotificationLevel =
           entries.single { it.`value` == `value` }
@@ -837,33 +798,9 @@ public open class OpenXRInterface : XRInterface() {
   }
 
   public class HandJointFlags(
-    public val flag: Long,
-  ) {
-    public infix fun or(other: HandJointFlags): HandJointFlags = HandJointFlags(flag.or(other.flag))
-
-    public infix fun or(other: Long): HandJointFlags = HandJointFlags(flag.or(other))
-
-    public infix fun xor(other: HandJointFlags): HandJointFlags =
-        HandJointFlags(flag.xor(other.flag))
-
-    public infix fun xor(other: Long): HandJointFlags = HandJointFlags(flag.xor(other))
-
-    public infix fun and(other: HandJointFlags): HandJointFlags =
-        HandJointFlags(flag.and(other.flag))
-
-    public infix fun and(other: Long): HandJointFlags = HandJointFlags(flag.and(other))
-
-    public fun unaryPlus(): HandJointFlags = HandJointFlags(flag.unaryPlus())
-
-    public fun unaryMinus(): HandJointFlags = HandJointFlags(flag.unaryMinus())
-
-    public fun inv(): HandJointFlags = HandJointFlags(flag.inv())
-
-    public infix fun shl(bits: Int): HandJointFlags = HandJointFlags(flag shl bits)
-
-    public infix fun shr(bits: Int): HandJointFlags = HandJointFlags(flag shr bits)
-
-    public infix fun ushr(bits: Int): HandJointFlags = HandJointFlags(flag ushr bits)
+    flag: Long,
+  ) : BitFieldBase<HandJointFlags>(flag) {
+    protected override fun wrap(flag: Long): HandJointFlags = HandJointFlags(flag)
 
     public companion object {
       /**

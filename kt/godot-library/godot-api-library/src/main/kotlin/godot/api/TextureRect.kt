@@ -146,7 +146,7 @@ public open class TextureRect : Control() {
   }
 
   public enum class ExpandMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The minimum size will be equal to texture size, i.e. [TextureRect] can't be smaller than the
@@ -178,18 +178,13 @@ public open class TextureRect : Control() {
     FIT_HEIGHT_PROPORTIONAL(5),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ExpandMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class StretchMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Scale to fit the node's bounding rectangle.
@@ -223,11 +218,6 @@ public open class TextureRect : Control() {
      */
     KEEP_ASPECT_COVERED(6),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): StretchMode = entries.single { it.`value` == `value` }

@@ -2448,7 +2448,7 @@ public object NavigationServer3D : Object() {
   }
 
   public enum class ProcessInfo(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Constant to get the number of active navigation maps.
@@ -2494,11 +2494,6 @@ public object NavigationServer3D : Object() {
      */
     INFO_OBSTACLE_COUNT(9),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): ProcessInfo = entries.single { it.`value` == `value` }

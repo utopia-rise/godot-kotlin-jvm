@@ -746,7 +746,7 @@ public open class FileDialog : ConfirmationDialog() {
   }
 
   public enum class FileMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The dialog allows selecting one, and only one file.
@@ -770,18 +770,13 @@ public open class FileDialog : ConfirmationDialog() {
     SAVE_FILE(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): FileMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Access(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The dialog only allows accessing files under the [Resource] path (`res://`).
@@ -797,18 +792,13 @@ public open class FileDialog : ConfirmationDialog() {
     FILESYSTEM(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): Access = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class DisplayMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The dialog displays files as a grid of thumbnails. Use [theme_item thumbnail_size] to adjust
@@ -821,18 +811,13 @@ public open class FileDialog : ConfirmationDialog() {
     LIST(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): DisplayMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Customization(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Toggles visibility of the favorite button, and the favorite list on the left side of the
@@ -893,11 +878,6 @@ public open class FileDialog : ConfirmationDialog() {
      */
     DELETE(8),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): Customization = entries.single { it.`value` == `value` }

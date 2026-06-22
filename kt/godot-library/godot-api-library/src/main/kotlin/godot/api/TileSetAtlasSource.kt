@@ -601,7 +601,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   }
 
   public enum class TileAnimationMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Tile animations start at same time, looking identical.
@@ -616,11 +616,6 @@ public open class TileSetAtlasSource : TileSetSource() {
      */
     MAX(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): TileAnimationMode = entries.single { it.`value` == `value` }

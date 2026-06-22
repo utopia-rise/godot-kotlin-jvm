@@ -252,7 +252,7 @@ public open class CompositorEffect : Resource() {
   }
 
   public enum class EffectCallbackType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The callback is called before our opaque rendering pass, but after depth prepass (if
@@ -283,11 +283,6 @@ public open class CompositorEffect : Resource() {
      */
     MAX(5),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): EffectCallbackType = entries.single { it.`value` == `value` }

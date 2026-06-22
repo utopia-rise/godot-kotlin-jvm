@@ -7,13 +7,13 @@ Create `src/main/kotlin/com/yourcompany/game/Player.kt` with:
 package com.yourcompany.game
 
 import godot.Node
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
+import godot.annotation.Script
+import godot.annotation.Register
 import godot.global.GD
 
-@RegisterClass
+@Script
 class Player : Node() {
-    @RegisterFunction
+    @Register
     override fun _ready() {
         GD.print("Hello from Kotlin")
     }
@@ -28,14 +28,14 @@ Create `src/main/java/com/yourcompany/game/Player.java` with:
 ```java
 package com.yourcompany.game;
 
-import godot.annotation.RegisterClass;
-import godot.annotation.RegisterFunction;
+import godot.annotation.Script;
+import godot.annotation.Register;
 import godot.api.Node;
 import godot.global.GD;
 
-@RegisterClass
+@Script
 public class Player extends Node {
-    @RegisterFunction
+    @Register
     @Override
     public void _ready() {
         GD.print("Hello from Java");
@@ -51,13 +51,13 @@ Create `src/main/scala/com/yourcompany/game/Player.scala` with:
 ```scala
 package com.yourcompany.game
 
-import godot.annotation.{RegisterClass, RegisterFunction}
+import godot.annotation.{Script, Register}
 import godot.api.Node
 import godot.global.GD
 
-@RegisterClass
+@Script
 class Player extends Node {
-  @RegisterFunction
+  @Register
   override def _ready(): Unit = {
     GD.print("Hello from Scala")
   }
@@ -68,8 +68,8 @@ class Player extends Node {
 
 This small example already shows the main building blocks:
 
-- `@RegisterClass` makes the class visible to Godot.
-- `@RegisterFunction` exposes `_ready()` to Godot.
+- `@Script` makes the class visible to Godot.
+- `@Register` exposes `_ready()` to Godot.
 - `GD.print(...)` writes to the Godot output.
 
 The [signals and callables](../user-guide/signals_and_callables.md) guide is a good next step once you have this basic class working.
@@ -129,3 +129,5 @@ src/
 ```
 
 ///
+
+

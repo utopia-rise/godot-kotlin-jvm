@@ -150,7 +150,7 @@ public open class SkeletonModifier3D : Node3D() {
   }
 
   public enum class BoneAxis(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Enumerated value for the +X axis.
@@ -178,18 +178,13 @@ public open class SkeletonModifier3D : Node3D() {
     MINUS_Z(5),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): BoneAxis = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class BoneDirection(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Enumerated value for the +X axis.
@@ -221,18 +216,13 @@ public open class SkeletonModifier3D : Node3D() {
     FROM_PARENT(6),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): BoneDirection = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class SecondaryDirection(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Enumerated value for the case when the axis is undefined.
@@ -268,18 +258,13 @@ public open class SkeletonModifier3D : Node3D() {
     CUSTOM(7),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): SecondaryDirection = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class RotationAxis(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Enumerated value for the rotation of the X axis.
@@ -302,11 +287,6 @@ public open class SkeletonModifier3D : Node3D() {
      */
     CUSTOM(4),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): RotationAxis = entries.single { it.`value` == `value` }

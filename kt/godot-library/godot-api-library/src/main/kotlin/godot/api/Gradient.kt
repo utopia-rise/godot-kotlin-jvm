@@ -279,7 +279,7 @@ public open class Gradient : Resource() {
   }
 
   public enum class InterpolationMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Linear interpolation.
@@ -296,18 +296,13 @@ public open class Gradient : Resource() {
     GRADIENT_INTERPOLATE_CUBIC(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): InterpolationMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ColorSpace(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * sRGB color space.
@@ -323,11 +318,6 @@ public open class Gradient : Resource() {
      */
     GRADIENT_OKLAB(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): ColorSpace = entries.single { it.`value` == `value` }

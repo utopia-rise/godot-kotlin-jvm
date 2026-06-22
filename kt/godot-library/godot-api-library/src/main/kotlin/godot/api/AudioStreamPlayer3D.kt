@@ -640,7 +640,7 @@ public open class AudioStreamPlayer3D : Node3D() {
   public final fun setBus(bus: String) = setBus(bus.asCachedStringName())
 
   public enum class AttenuationModel(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Attenuation of loudness according to linear distance.
@@ -662,18 +662,13 @@ public open class AudioStreamPlayer3D : Node3D() {
     DISABLED(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): AttenuationModel = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class DopplerTracking(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Disables doppler tracking.
@@ -689,11 +684,6 @@ public open class AudioStreamPlayer3D : Node3D() {
      */
     PHYSICS_STEP(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): DopplerTracking = entries.single { it.`value` == `value` }

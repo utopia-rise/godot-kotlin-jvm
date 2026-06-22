@@ -71,7 +71,7 @@ public open class OpenXRSpatialCapabilityConfigurationAruco :
   }
 
   public enum class ArucoDict(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * 4 by 4 pixel Aruco marker dictionary with 50 IDs.
@@ -138,11 +138,6 @@ public open class OpenXRSpatialCapabilityConfigurationAruco :
      */
     ARUCO_DICT_7X7_1000(16),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): ArucoDict = entries.single { it.`value` == `value` }

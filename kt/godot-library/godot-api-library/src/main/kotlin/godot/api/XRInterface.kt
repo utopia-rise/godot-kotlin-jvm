@@ -452,7 +452,7 @@ public open class XRInterface internal constructor() : RefCounted() {
       triggerHapticPulse(actionName, trackerName.asCachedStringName(), frequency, amplitude, durationSec, delaySec)
 
   public enum class Capabilities(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * No XR capabilities.
@@ -487,18 +487,13 @@ public open class XRInterface internal constructor() : RefCounted() {
     XR_EXTERNAL(32),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): Capabilities = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class TrackingStatus(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Tracking is behaving as expected.
@@ -524,18 +519,13 @@ public open class XRInterface internal constructor() : RefCounted() {
     XR_NOT_TRACKING(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): TrackingStatus = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class PlayAreaMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Play area mode not set or not available.
@@ -566,18 +556,13 @@ public open class XRInterface internal constructor() : RefCounted() {
     XR_PLAY_AREA_CUSTOM(2147483647),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): PlayAreaMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class EnvironmentBlendMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Opaque blend mode. This is typically used for VR devices.
@@ -596,11 +581,6 @@ public open class XRInterface internal constructor() : RefCounted() {
     XR_ENV_BLEND_MODE_ALPHA_BLEND(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): EnvironmentBlendMode =
           entries.single { it.`value` == `value` }
@@ -608,7 +588,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   }
 
   public enum class VRSTextureFormat(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The texture format is the same as returned by [XRVRS.makeVrsTexture].
@@ -625,11 +605,6 @@ public open class XRInterface internal constructor() : RefCounted() {
      */
     XR_FRAGMENT_DENSITY_MAP(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): VRSTextureFormat = entries.single { it.`value` == `value` }

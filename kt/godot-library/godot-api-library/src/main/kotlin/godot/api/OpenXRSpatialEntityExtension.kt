@@ -351,7 +351,7 @@ public open class OpenXRSpatialEntityExtension : OpenXRExtensionWrapper() {
   }
 
   public enum class Capability(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Plane tracking capability.
@@ -379,18 +379,13 @@ public open class OpenXRSpatialEntityExtension : OpenXRExtensionWrapper() {
     ANCHOR(1000762000),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): Capability = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ComponentType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Component that provides the 2D bounds for a spatial entity. The corresponding list structure
@@ -457,11 +452,6 @@ public open class OpenXRSpatialEntityExtension : OpenXRExtensionWrapper() {
      */
     PERSISTENCE(1000763000),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): ComponentType = entries.single { it.`value` == `value` }

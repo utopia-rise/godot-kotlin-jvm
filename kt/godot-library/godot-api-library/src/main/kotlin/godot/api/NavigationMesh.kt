@@ -822,7 +822,7 @@ public open class NavigationMesh : Resource() {
   public final fun setSourceGroupName(mask: String) = setSourceGroupName(mask.asCachedStringName())
 
   public enum class SamplePartitionType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Watershed partitioning. Generally the best choice if you precompute the navigation mesh, use
@@ -844,18 +844,13 @@ public open class NavigationMesh : Resource() {
     MAX(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): SamplePartitionType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ParsedGeometryType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Parses mesh instances as geometry. This includes [MeshInstance3D], [CSGShape3D], and
@@ -877,18 +872,13 @@ public open class NavigationMesh : Resource() {
     MAX(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ParsedGeometryType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class SourceGeometryMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Scans the child nodes of the root node recursively for geometry.
@@ -908,11 +898,6 @@ public open class NavigationMesh : Resource() {
      */
     MAX(3),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): SourceGeometryMode = entries.single { it.`value` == `value` }

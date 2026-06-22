@@ -324,7 +324,7 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
   }
 
   public enum class Mode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Constant for voxel-based approximate convex decomposition.
@@ -335,11 +335,6 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
      */
     CONVEX_DECOMPOSITION_TETRAHEDRON(1),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): Mode = entries.single { it.`value` == `value` }

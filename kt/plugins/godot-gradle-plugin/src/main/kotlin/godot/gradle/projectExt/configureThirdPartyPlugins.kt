@@ -8,7 +8,7 @@ import org.gradle.plugins.ide.idea.IdeaPlugin
 import org.gradle.plugins.ide.idea.model.IdeaModel
 
 fun Project.configureThirdPartyPlugins() {
-    // Apply IDEA integration so generated entry sources are visible to the IDE during sync.
+    // Apply IDEA integration so generated registrar sources are visible to the IDE during sync.
     pluginManager.apply(IdeaPlugin::class.java)
     pluginManager.apply(ShadowPlugin::class.java)
 
@@ -23,9 +23,9 @@ fun Project.configureThirdPartyPlugins() {
         }
 
         extensions.configure(IdeaModel::class.java) { ideaModel ->
-            val generatedEntrySourcesDir = layout.buildDirectory.asFile.get().resolve("generated/entry-generation/main/kotlin/")
-            ideaModel.module.generatedSourceDirs.add(generatedEntrySourcesDir)
-            ideaModel.module.excludeDirs.add(generatedEntrySourcesDir)
+            val generatedRegistrarSourcesDir = layout.buildDirectory.asFile.get().resolve("generated/registrar-generation/main/kotlin/")
+            ideaModel.module.generatedSourceDirs.add(generatedRegistrarSourcesDir)
+            ideaModel.module.excludeDirs.add(generatedRegistrarSourcesDir)
         }
     }
 }

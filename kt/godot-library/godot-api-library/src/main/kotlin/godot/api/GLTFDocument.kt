@@ -309,7 +309,7 @@ public open class GLTFDocument : Resource() {
   }
 
   public enum class RootNodeMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Treat the Godot scene's root node as the root node of the glTF file, and mark it as the
@@ -332,18 +332,13 @@ public open class GLTFDocument : Resource() {
     MULTI_ROOT(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): RootNodeMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class VisibilityMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * If the scene contains any non-visible nodes, include them, mark them as non-visible with
@@ -364,11 +359,6 @@ public open class GLTFDocument : Resource() {
      */
     EXCLUDE(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): VisibilityMode = entries.single { it.`value` == `value` }

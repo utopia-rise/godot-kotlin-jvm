@@ -249,7 +249,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   }
 
   public enum class BlendMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The interpolation between animations is linear.
@@ -266,11 +266,6 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
      */
     DISCRETE_CARRY(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): BlendMode = entries.single { it.`value` == `value` }

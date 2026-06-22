@@ -601,7 +601,7 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
   }
 
   public enum class Filter(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Perform nearest-neighbor filtering when sampling the texture.
@@ -617,18 +617,13 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
     CUBIC(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): Filter = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class MipmapMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Disable mipmapping.
@@ -646,18 +641,13 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
     LINEAR(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): MipmapMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Wrap(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Clamp the texture to its specified border color.
@@ -683,18 +673,13 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
     MIRROR_CLAMP_TO_EDGE(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): Wrap = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Swizzle(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Maps a color channel to the value of the red channel.
@@ -721,11 +706,6 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
      */
     ONE(5),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): Swizzle = entries.single { it.`value` == `value` }

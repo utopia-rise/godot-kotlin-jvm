@@ -5,13 +5,14 @@
 
 KtClass::KtClass(jni::Env& p_env, jni::JObject p_wrapped) :
   JvmInstanceWrapper(p_env, p_wrapped),
-  kt_constructor {nullptr},
-  _has_notification() {
-    LOCAL_FRAME(4);
+  is_abstract {false},
+  kt_constructor {nullptr} {
+    LOCAL_FRAME(5);
     registered_class_name = get_registered_name(p_env);
     fqdn = get_fqdn(p_env);
     base_godot_class = get_base_godot_class(p_env);
-    _has_notification = get_has_notification(p_env);
+    is_abstract = wrapped.call_boolean_method(p_env, IS_ABSTRACT);
+    fetch_handled_notifications(p_env);
 }
 
 KtClass::~KtClass() {
@@ -66,18 +67,30 @@ StringName KtClass::get_base_godot_class(jni::Env& env) {
     return {env.from_jstring(jni::JString((jstring) ret.obj))};
 }
 
-bool KtClass::get_has_notification(jni::Env& env) {
-    return static_cast<bool>(wrapped.call_boolean_method(env, GET_HAS_NOTIFICATION));
+void KtClass::fetch_handled_notifications(jni::Env& env) {
+    jni::JIntArray notifications {wrapped.call_object_method(env, GET_HANDLED_NOTIFICATIONS)};
+    int notification_count = notifications.length(env);
+    Vector<jint> notification_values;
+    notification_values.resize(notification_count);
+    notifications.get_array_elements(env, notification_values.ptrw(), notification_count);
+
+    for (int i = 0; i < notification_count; i++) {
+        handled_notifications.insert(notification_values[i]);
+    }
+
+    notifications.delete_local_ref(env);
+}
+
+bool KtClass::can_instantiate() const {
+    return !is_abstract && kt_constructor != nullptr;
 }
 
 void KtClass::fetch_registered_supertypes(jni::Env& env) {
-    jni::JObjectArray classesArray {wrapped.call_object_method(env, GET_REGISTERED_SUPERTYPES)};
-    for (int i = 0; i < classesArray.length(env); i++) {
-        StringName parent_name = StringName(env.from_jstring(jni::JString(classesArray.get(env, i))));
-        registered_supertypes.append(parent_name);
-        JVM_DEV_VERBOSE("%s user type is parent of %s.", parent_name, registered_class_name);
+    jni::JObjectArray classes_array {wrapped.call_object_method(env, GET_REGISTERED_SUPERTYPES)};
+    for (int i = 0; i < classes_array.length(env); i++) {
+        registered_supertypes.append(StringName(env.from_jstring(jni::JString(classes_array.get(env, i)))));
     }
-    classesArray.delete_local_ref(env);
+    classes_array.delete_local_ref(env);
 }
 
 void KtClass::fetch_methods(jni::Env& env) {
@@ -142,7 +155,7 @@ const Dictionary KtClass::get_rpc_config() {
 }
 
 void KtClass::do_notification(jni::Env& env, KtObject* p_instance, int p_notification, bool p_reversed) {
-    if (!_has_notification) { return; }
+    if (!handled_notifications.has(p_notification)) { return; }
 
     Variant notification = p_notification;
     Variant reversed = p_reversed;

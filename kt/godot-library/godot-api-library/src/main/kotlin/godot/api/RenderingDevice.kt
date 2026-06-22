@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.BitFieldBase
 import godot.core.Callable
 import godot.core.Color
 import godot.core.Error
@@ -1946,7 +1947,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   public enum class DeviceType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Rendering device type does not match any of the other enum values or is unknown.
@@ -1983,18 +1984,13 @@ public open class RenderingDevice internal constructor() : Object() {
     MAX(5),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): DeviceType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class DriverResource(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Specific device object based on a physical device (`rid` parameter is ignored).
@@ -2101,18 +2097,13 @@ public open class RenderingDevice internal constructor() : Object() {
     VULKAN_RENDER_PIPELINE(12),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): DriverResource = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class DataFormat(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * 4-bit-per-channel red/green channel data format, packed into 8 bits. Values are in the `[0.0,
@@ -3349,42 +3340,15 @@ public open class RenderingDevice internal constructor() : Object() {
     MAX(232),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): DataFormat = entries.single { it.`value` == `value` }
     }
   }
 
   public class BarrierMask(
-    public val flag: Long,
-  ) {
-    public infix fun or(other: BarrierMask): BarrierMask = BarrierMask(flag.or(other.flag))
-
-    public infix fun or(other: Long): BarrierMask = BarrierMask(flag.or(other))
-
-    public infix fun xor(other: BarrierMask): BarrierMask = BarrierMask(flag.xor(other.flag))
-
-    public infix fun xor(other: Long): BarrierMask = BarrierMask(flag.xor(other))
-
-    public infix fun and(other: BarrierMask): BarrierMask = BarrierMask(flag.and(other.flag))
-
-    public infix fun and(other: Long): BarrierMask = BarrierMask(flag.and(other))
-
-    public fun unaryPlus(): BarrierMask = BarrierMask(flag.unaryPlus())
-
-    public fun unaryMinus(): BarrierMask = BarrierMask(flag.unaryMinus())
-
-    public fun inv(): BarrierMask = BarrierMask(flag.inv())
-
-    public infix fun shl(bits: Int): BarrierMask = BarrierMask(flag shl bits)
-
-    public infix fun shr(bits: Int): BarrierMask = BarrierMask(flag shr bits)
-
-    public infix fun ushr(bits: Int): BarrierMask = BarrierMask(flag ushr bits)
+    flag: Long,
+  ) : BitFieldBase<BarrierMask>(flag) {
+    protected override fun wrap(flag: Long): BarrierMask = BarrierMask(flag)
 
     public companion object {
       /**
@@ -3433,7 +3397,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   public enum class TextureType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * 1-dimensional texture.
@@ -3469,18 +3433,13 @@ public open class RenderingDevice internal constructor() : Object() {
     MAX(7),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): TextureType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class TextureSamples(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Perform 1 texture sample (this is the fastest but lowest-quality for antialiasing).
@@ -3517,45 +3476,15 @@ public open class RenderingDevice internal constructor() : Object() {
     MAX(7),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): TextureSamples = entries.single { it.`value` == `value` }
     }
   }
 
   public class TextureUsageBits(
-    public val flag: Long,
-  ) {
-    public infix fun or(other: TextureUsageBits): TextureUsageBits =
-        TextureUsageBits(flag.or(other.flag))
-
-    public infix fun or(other: Long): TextureUsageBits = TextureUsageBits(flag.or(other))
-
-    public infix fun xor(other: TextureUsageBits): TextureUsageBits =
-        TextureUsageBits(flag.xor(other.flag))
-
-    public infix fun xor(other: Long): TextureUsageBits = TextureUsageBits(flag.xor(other))
-
-    public infix fun and(other: TextureUsageBits): TextureUsageBits =
-        TextureUsageBits(flag.and(other.flag))
-
-    public infix fun and(other: Long): TextureUsageBits = TextureUsageBits(flag.and(other))
-
-    public fun unaryPlus(): TextureUsageBits = TextureUsageBits(flag.unaryPlus())
-
-    public fun unaryMinus(): TextureUsageBits = TextureUsageBits(flag.unaryMinus())
-
-    public fun inv(): TextureUsageBits = TextureUsageBits(flag.inv())
-
-    public infix fun shl(bits: Int): TextureUsageBits = TextureUsageBits(flag shl bits)
-
-    public infix fun shr(bits: Int): TextureUsageBits = TextureUsageBits(flag shr bits)
-
-    public infix fun ushr(bits: Int): TextureUsageBits = TextureUsageBits(flag ushr bits)
+    flag: Long,
+  ) : BitFieldBase<TextureUsageBits>(flag) {
+    protected override fun wrap(flag: Long): TextureUsageBits = TextureUsageBits(flag)
 
     public companion object {
       /**
@@ -3634,7 +3563,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   public enum class TextureSwizzle(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Return the sampled value as-is.
@@ -3670,18 +3599,13 @@ public open class RenderingDevice internal constructor() : Object() {
     MAX(7),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): TextureSwizzle = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class TextureSliceType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * 2-dimensional texture slice.
@@ -3697,18 +3621,13 @@ public open class RenderingDevice internal constructor() : Object() {
     TEXTURE_SLICE_3D(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): TextureSliceType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class SamplerFilter(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Nearest-neighbor sampler filtering. Sampling at higher resolutions than the source will
@@ -3722,18 +3641,13 @@ public open class RenderingDevice internal constructor() : Object() {
     LINEAR(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): SamplerFilter = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class SamplerRepeatMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Sample with repeating enabled.
@@ -3767,18 +3681,13 @@ public open class RenderingDevice internal constructor() : Object() {
     MAX(5),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): SamplerRepeatMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class SamplerBorderColor(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Return a floating-point transparent black color when sampling outside the `[0.0, 1.0]` range.
@@ -3816,18 +3725,13 @@ public open class RenderingDevice internal constructor() : Object() {
     MAX(6),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): SamplerBorderColor = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class VertexFrequency(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Vertex attribute addressing is a function of the vertex. This is used to specify the rate at
@@ -3841,18 +3745,13 @@ public open class RenderingDevice internal constructor() : Object() {
     INSTANCE(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): VertexFrequency = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class IndexBufferFormat(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Index buffer in 16-bit unsigned integer format. This limits the maximum index that can be
@@ -3866,45 +3765,15 @@ public open class RenderingDevice internal constructor() : Object() {
     UINT32(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): IndexBufferFormat = entries.single { it.`value` == `value` }
     }
   }
 
   public class StorageBufferUsage(
-    public val flag: Long,
-  ) {
-    public infix fun or(other: StorageBufferUsage): StorageBufferUsage =
-        StorageBufferUsage(flag.or(other.flag))
-
-    public infix fun or(other: Long): StorageBufferUsage = StorageBufferUsage(flag.or(other))
-
-    public infix fun xor(other: StorageBufferUsage): StorageBufferUsage =
-        StorageBufferUsage(flag.xor(other.flag))
-
-    public infix fun xor(other: Long): StorageBufferUsage = StorageBufferUsage(flag.xor(other))
-
-    public infix fun and(other: StorageBufferUsage): StorageBufferUsage =
-        StorageBufferUsage(flag.and(other.flag))
-
-    public infix fun and(other: Long): StorageBufferUsage = StorageBufferUsage(flag.and(other))
-
-    public fun unaryPlus(): StorageBufferUsage = StorageBufferUsage(flag.unaryPlus())
-
-    public fun unaryMinus(): StorageBufferUsage = StorageBufferUsage(flag.unaryMinus())
-
-    public fun inv(): StorageBufferUsage = StorageBufferUsage(flag.inv())
-
-    public infix fun shl(bits: Int): StorageBufferUsage = StorageBufferUsage(flag shl bits)
-
-    public infix fun shr(bits: Int): StorageBufferUsage = StorageBufferUsage(flag shr bits)
-
-    public infix fun ushr(bits: Int): StorageBufferUsage = StorageBufferUsage(flag ushr bits)
+    flag: Long,
+  ) : BitFieldBase<StorageBufferUsage>(flag) {
+    protected override fun wrap(flag: Long): StorageBufferUsage = StorageBufferUsage(flag)
 
     public companion object {
       @JvmField
@@ -3913,34 +3782,9 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   public class BufferCreationBits(
-    public val flag: Long,
-  ) {
-    public infix fun or(other: BufferCreationBits): BufferCreationBits =
-        BufferCreationBits(flag.or(other.flag))
-
-    public infix fun or(other: Long): BufferCreationBits = BufferCreationBits(flag.or(other))
-
-    public infix fun xor(other: BufferCreationBits): BufferCreationBits =
-        BufferCreationBits(flag.xor(other.flag))
-
-    public infix fun xor(other: Long): BufferCreationBits = BufferCreationBits(flag.xor(other))
-
-    public infix fun and(other: BufferCreationBits): BufferCreationBits =
-        BufferCreationBits(flag.and(other.flag))
-
-    public infix fun and(other: Long): BufferCreationBits = BufferCreationBits(flag.and(other))
-
-    public fun unaryPlus(): BufferCreationBits = BufferCreationBits(flag.unaryPlus())
-
-    public fun unaryMinus(): BufferCreationBits = BufferCreationBits(flag.unaryMinus())
-
-    public fun inv(): BufferCreationBits = BufferCreationBits(flag.inv())
-
-    public infix fun shl(bits: Int): BufferCreationBits = BufferCreationBits(flag shl bits)
-
-    public infix fun shr(bits: Int): BufferCreationBits = BufferCreationBits(flag shr bits)
-
-    public infix fun ushr(bits: Int): BufferCreationBits = BufferCreationBits(flag ushr bits)
+    flag: Long,
+  ) : BitFieldBase<BufferCreationBits>(flag) {
+    protected override fun wrap(flag: Long): BufferCreationBits = BufferCreationBits(flag)
 
     public companion object {
       /**
@@ -3972,7 +3816,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   public enum class UniformType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Sampler uniform.
@@ -4040,18 +3884,13 @@ public open class RenderingDevice internal constructor() : Object() {
     MAX(12),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): UniformType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class RenderPrimitive(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Point rendering primitive (with constant size, regardless of distance from camera).
@@ -4120,18 +3959,13 @@ public open class RenderingDevice internal constructor() : Object() {
     MAX(11),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): RenderPrimitive = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class PolygonCullMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Do not use polygon front face or backface culling.
@@ -4147,18 +3981,13 @@ public open class RenderingDevice internal constructor() : Object() {
     BACK(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): PolygonCullMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class PolygonFrontFace(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Clockwise winding order to determine which face of a polygon is its front face.
@@ -4170,18 +3999,13 @@ public open class RenderingDevice internal constructor() : Object() {
     COUNTER_CLOCKWISE(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): PolygonFrontFace = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class StencilOperation(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Keep the current stencil value.
@@ -4225,18 +4049,13 @@ public open class RenderingDevice internal constructor() : Object() {
     MAX(8),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): StencilOperation = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CompareOperator(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * "Never" comparison (opposite of [COMPARE_OP_ALWAYS]).
@@ -4276,18 +4095,13 @@ public open class RenderingDevice internal constructor() : Object() {
     MAX(8),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): CompareOperator = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class LogicOperation(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Clear logic operation (result is always `0`). See also [LOGIC_OP_SET].
@@ -4363,18 +4177,13 @@ public open class RenderingDevice internal constructor() : Object() {
     MAX(16),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): LogicOperation = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class BlendFactor(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Constant `0.0` blend factor.
@@ -4467,18 +4276,13 @@ public open class RenderingDevice internal constructor() : Object() {
     MAX(19),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): BlendFactor = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class BlendOperation(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Additive blending operation (`source + destination`).
@@ -4506,52 +4310,16 @@ public open class RenderingDevice internal constructor() : Object() {
     MAX(5),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): BlendOperation = entries.single { it.`value` == `value` }
     }
   }
 
   public class PipelineDynamicStateFlags(
-    public val flag: Long,
-  ) {
-    public infix fun or(other: PipelineDynamicStateFlags): PipelineDynamicStateFlags =
-        PipelineDynamicStateFlags(flag.or(other.flag))
-
-    public infix fun or(other: Long): PipelineDynamicStateFlags =
-        PipelineDynamicStateFlags(flag.or(other))
-
-    public infix fun xor(other: PipelineDynamicStateFlags): PipelineDynamicStateFlags =
-        PipelineDynamicStateFlags(flag.xor(other.flag))
-
-    public infix fun xor(other: Long): PipelineDynamicStateFlags =
-        PipelineDynamicStateFlags(flag.xor(other))
-
-    public infix fun and(other: PipelineDynamicStateFlags): PipelineDynamicStateFlags =
-        PipelineDynamicStateFlags(flag.and(other.flag))
-
-    public infix fun and(other: Long): PipelineDynamicStateFlags =
-        PipelineDynamicStateFlags(flag.and(other))
-
-    public fun unaryPlus(): PipelineDynamicStateFlags = PipelineDynamicStateFlags(flag.unaryPlus())
-
-    public fun unaryMinus(): PipelineDynamicStateFlags =
-        PipelineDynamicStateFlags(flag.unaryMinus())
-
-    public fun inv(): PipelineDynamicStateFlags = PipelineDynamicStateFlags(flag.inv())
-
-    public infix fun shl(bits: Int): PipelineDynamicStateFlags =
-        PipelineDynamicStateFlags(flag shl bits)
-
-    public infix fun shr(bits: Int): PipelineDynamicStateFlags =
-        PipelineDynamicStateFlags(flag shr bits)
-
-    public infix fun ushr(bits: Int): PipelineDynamicStateFlags =
-        PipelineDynamicStateFlags(flag ushr bits)
+    flag: Long,
+  ) : BitFieldBase<PipelineDynamicStateFlags>(flag) {
+    protected override fun wrap(flag: Long): PipelineDynamicStateFlags =
+        PipelineDynamicStateFlags(flag)
 
     public companion object {
       /**
@@ -4589,7 +4357,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   public enum class InitialAction(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Load the previous contents of the framebuffer.
@@ -4615,18 +4383,13 @@ public open class RenderingDevice internal constructor() : Object() {
     CONTINUE(0),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): InitialAction = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class FinalAction(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Store the result of the draw list in the framebuffer. This is generally what you want to do.
@@ -4645,18 +4408,13 @@ public open class RenderingDevice internal constructor() : Object() {
     CONTINUE(0),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): FinalAction = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ShaderStage(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Vertex shader stage. This can be used to manipulate vertices from a shader (but not create
@@ -4709,18 +4467,13 @@ public open class RenderingDevice internal constructor() : Object() {
     COMPUTE_BIT(16),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ShaderStage = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ShaderLanguage(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Khronos' GLSL shading language (used natively by OpenGL and Vulkan). This is the language
@@ -4734,18 +4487,13 @@ public open class RenderingDevice internal constructor() : Object() {
     HLSL(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ShaderLanguage = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class PipelineSpecializationConstantType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Boolean specialization constant.
@@ -4761,11 +4509,6 @@ public open class RenderingDevice internal constructor() : Object() {
     FLOAT(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): PipelineSpecializationConstantType =
           entries.single { it.`value` == `value` }
@@ -4773,7 +4516,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   public enum class Features(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Support for MetalFX spatial upscaling.
@@ -4793,18 +4536,13 @@ public open class RenderingDevice internal constructor() : Object() {
     SUPPORTS_IMAGE_ATOMIC_32_BIT(7),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): Features = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Limit(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Maximum number of uniform sets that can be bound at a given time.
@@ -4976,18 +4714,13 @@ public open class RenderingDevice internal constructor() : Object() {
     METALFX_TEMPORAL_SCALER_MAX_SCALE(47),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): Limit = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class MemoryType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Memory taken by textures.
@@ -5004,18 +4737,13 @@ public open class RenderingDevice internal constructor() : Object() {
     TOTAL(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): MemoryType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class BreadcrumbMarker(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * No breadcrumb marker will be added.
@@ -5083,42 +4811,15 @@ public open class RenderingDevice internal constructor() : Object() {
     DEBUG_PASS(786432),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): BreadcrumbMarker = entries.single { it.`value` == `value` }
     }
   }
 
   public class DrawFlags(
-    public val flag: Long,
-  ) {
-    public infix fun or(other: DrawFlags): DrawFlags = DrawFlags(flag.or(other.flag))
-
-    public infix fun or(other: Long): DrawFlags = DrawFlags(flag.or(other))
-
-    public infix fun xor(other: DrawFlags): DrawFlags = DrawFlags(flag.xor(other.flag))
-
-    public infix fun xor(other: Long): DrawFlags = DrawFlags(flag.xor(other))
-
-    public infix fun and(other: DrawFlags): DrawFlags = DrawFlags(flag.and(other.flag))
-
-    public infix fun and(other: Long): DrawFlags = DrawFlags(flag.and(other))
-
-    public fun unaryPlus(): DrawFlags = DrawFlags(flag.unaryPlus())
-
-    public fun unaryMinus(): DrawFlags = DrawFlags(flag.unaryMinus())
-
-    public fun inv(): DrawFlags = DrawFlags(flag.inv())
-
-    public infix fun shl(bits: Int): DrawFlags = DrawFlags(flag shl bits)
-
-    public infix fun shr(bits: Int): DrawFlags = DrawFlags(flag shr bits)
-
-    public infix fun ushr(bits: Int): DrawFlags = DrawFlags(flag ushr bits)
+    flag: Long,
+  ) : BitFieldBase<DrawFlags>(flag) {
+    protected override fun wrap(flag: Long): DrawFlags = DrawFlags(flag)
 
     public companion object {
       /**

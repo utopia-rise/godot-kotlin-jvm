@@ -1,17 +1,19 @@
 package godot.tests.library
 
 import godot.annotation.Export
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
-import godot.annotation.RegisterProperty
+import godot.annotation.Script
+import godot.annotation.Register
+import godot.annotation.Visible
 import godot.api.Node
 
-@RegisterClass
+@Script
 class Simple: Node() {
 
     @Export
-    @RegisterProperty
+    @Visible
     var testProperty = "Hello from third-party-library!"
-    @RegisterFunction
+    @Register
     fun provideGreeting(): String = testProperty
 }
+
+

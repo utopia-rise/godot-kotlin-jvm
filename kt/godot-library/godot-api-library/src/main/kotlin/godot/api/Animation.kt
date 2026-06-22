@@ -1115,7 +1115,7 @@ public open class Animation : Resource() {
       setMarkerColor(name.asCachedStringName(), color)
 
   public enum class TrackType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Value tracks set values in node properties, but only those which can be interpolated. For 3D
@@ -1159,18 +1159,13 @@ public open class Animation : Resource() {
     TYPE_ANIMATION(8),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): TrackType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class InterpolationType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * No interpolation (nearest value).
@@ -1200,18 +1195,13 @@ public open class Animation : Resource() {
     CUBIC_ANGLE(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): InterpolationType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class UpdateMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Update between keyframes and hold the value.
@@ -1229,18 +1219,13 @@ public open class Animation : Resource() {
     CAPTURE(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): UpdateMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class LoopMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * At both ends of the animation, the animation will stop playing.
@@ -1257,18 +1242,13 @@ public open class Animation : Resource() {
     PINGPONG(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): LoopMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class LoopedFlag(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * This flag indicates that the animation proceeds without any looping.
@@ -1286,18 +1266,13 @@ public open class Animation : Resource() {
     START(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): LoopedFlag = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class FindMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Finds the nearest time key.
@@ -1312,11 +1287,6 @@ public open class Animation : Resource() {
      */
     EXACT(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): FindMode = entries.single { it.`value` == `value` }

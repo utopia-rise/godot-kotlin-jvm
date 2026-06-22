@@ -1004,7 +1004,7 @@ public open class TileSet : Resource() {
   }
 
   public enum class TileShape(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Rectangular tile shape.
@@ -1027,18 +1027,13 @@ public open class TileSet : Resource() {
     HEXAGON(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): TileShape = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class TileLayout(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Tile coordinates layout where both axis stay consistent with their respective local
@@ -1071,18 +1066,13 @@ public open class TileSet : Resource() {
     DIAMOND_DOWN(5),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): TileLayout = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class TileOffsetAxis(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Horizontal half-offset.
@@ -1094,18 +1084,13 @@ public open class TileSet : Resource() {
     VERTICAL(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): TileOffsetAxis = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CellNeighbor(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Neighbor on the right side.
@@ -1173,18 +1158,13 @@ public open class TileSet : Resource() {
     TOP_RIGHT_CORNER(15),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): CellNeighbor = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class TerrainMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Requires both corners and side to match with neighboring tiles' terrains.
@@ -1199,11 +1179,6 @@ public open class TileSet : Resource() {
      */
     MATCH_SIDES(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): TerrainMode = entries.single { it.`value` == `value` }

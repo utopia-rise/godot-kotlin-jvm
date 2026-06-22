@@ -2085,7 +2085,7 @@ public object OS : Object() {
   }
 
   public enum class RenderingDriver(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The Vulkan rendering driver. It requires Vulkan 1.0 support and automatically uses features
@@ -2107,18 +2107,13 @@ public object OS : Object() {
     METAL(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): RenderingDriver = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class SystemDir(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Refers to the Desktop directory path.
@@ -2154,18 +2149,13 @@ public object OS : Object() {
     RINGTONES(7),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): SystemDir = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class StdHandleType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Standard I/O device is invalid. No data can be received from or sent to these standard I/O
@@ -2193,11 +2183,6 @@ public object OS : Object() {
      */
     UNKNOWN(4),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): StdHandleType = entries.single { it.`value` == `value` }

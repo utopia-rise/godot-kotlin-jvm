@@ -237,7 +237,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
   public final fun setAnimation(name: String) = setAnimation(name.asCachedStringName())
 
   public enum class PlayMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Plays animation in forward direction.
@@ -248,11 +248,6 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
      */
     BACKWARD(1),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): PlayMode = entries.single { it.`value` == `value` }

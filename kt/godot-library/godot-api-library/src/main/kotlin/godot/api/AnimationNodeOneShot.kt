@@ -324,7 +324,7 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
   }
 
   public enum class OneShotRequest(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The default state of the request. Nothing is done.
@@ -344,18 +344,13 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
     FADE_OUT(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): OneShotRequest = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class MixMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Blends two animations. See also [AnimationNodeBlend2].
@@ -366,11 +361,6 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
      */
     ADD(1),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): MixMode = entries.single { it.`value` == `value` }

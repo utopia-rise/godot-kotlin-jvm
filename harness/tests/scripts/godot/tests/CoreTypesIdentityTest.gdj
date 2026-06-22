@@ -5,11 +5,7 @@ registeredName = CoreTypesIdentityTest
 fqName = godot.tests.CoreTypesIdentityTest
 baseType = Node
 supertypes = [
-    godot.api.Node,
-    godot.api.Object,
-    godot.core.KtObject,
-    godot.common.interop.NativeWrapper,
-    godot.common.interop.NativePointer
+    
 ]
 signals = [
     
@@ -25,6 +21,9 @@ properties = [
     transform2_d,
     vector2,
     vector3
+]
+notifications = [
+    
 ]
 functions = [
     aabb,

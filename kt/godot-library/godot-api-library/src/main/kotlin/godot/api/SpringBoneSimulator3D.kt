@@ -989,7 +989,7 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
   ) = setCollisionPath(index, collision, nodePath.asCachedNodePath())
 
   public enum class CenterFrom(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The world origin is defined as center.
@@ -1009,11 +1009,6 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
      */
     BONE(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): CenterFrom = entries.single { it.`value` == `value` }

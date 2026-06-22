@@ -953,7 +953,7 @@ public open class Tree : Control() {
   }
 
   public enum class SelectMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Allows selection of a single cell at a time. From the perspective of items, only a single
@@ -982,18 +982,13 @@ public open class Tree : Control() {
     MULTI(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): SelectMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class DropModeFlags(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Disables all drop sections, but still allows to detect the "on item" drop section by
@@ -1019,18 +1014,13 @@ public open class Tree : Control() {
     INBETWEEN(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): DropModeFlags = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ScrollHintMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Scroll hints will never be shown.
@@ -1049,11 +1039,6 @@ public open class Tree : Control() {
      */
     BOTTOM(3),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): ScrollHintMode = entries.single { it.`value` == `value` }

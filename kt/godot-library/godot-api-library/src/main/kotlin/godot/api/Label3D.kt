@@ -872,7 +872,7 @@ public open class Label3D : GeometryInstance3D() {
   }
 
   public enum class DrawFlags(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * If set, lights in the environment affect the label.
@@ -898,18 +898,13 @@ public open class Label3D : GeometryInstance3D() {
     FLAG_MAX(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): DrawFlags = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class AlphaCutMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * This mode performs standard alpha blending. It can display translucent areas, but
@@ -946,11 +941,6 @@ public open class Label3D : GeometryInstance3D() {
      */
     HASH(3),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): AlphaCutMode = entries.single { it.`value` == `value` }

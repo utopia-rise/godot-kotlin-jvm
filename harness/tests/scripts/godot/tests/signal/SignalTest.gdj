@@ -5,13 +5,10 @@ registeredName = SignalTest
 fqName = godot.tests.signal.SignalTest
 baseType = Node
 supertypes = [
-    godot.api.Node,
-    godot.api.Object,
-    godot.core.KtObject,
-    godot.common.interop.NativeWrapper,
-    godot.common.interop.NativePointer
+    
 ]
 signals = [
+    inferred_no_param_signal_delegate,
     no_param_signal_delegate,
     one_param_signal_delegate,
     two_param_signal_delegate,
@@ -23,6 +20,9 @@ signals = [
 properties = [
     other_script,
     array
+]
+notifications = [
+    
 ]
 functions = [
     _ready,

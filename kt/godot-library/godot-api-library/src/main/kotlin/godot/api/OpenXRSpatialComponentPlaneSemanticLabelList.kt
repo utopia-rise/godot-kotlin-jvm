@@ -38,7 +38,7 @@ public open class OpenXRSpatialComponentPlaneSemanticLabelList : OpenXRSpatialCo
   }
 
   public enum class PlaneSemanticLabel(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Uncategorized plane.
@@ -61,11 +61,6 @@ public open class OpenXRSpatialComponentPlaneSemanticLabelList : OpenXRSpatialCo
      */
     TABLE(5),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): PlaneSemanticLabel = entries.single { it.`value` == `value` }

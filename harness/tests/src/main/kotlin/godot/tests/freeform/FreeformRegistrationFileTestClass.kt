@@ -1,11 +1,13 @@
 package godot.tests.freeform
 
 import godot.api.Node
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
+import godot.annotation.Script
+import godot.annotation.Register
 
-@RegisterClass
+@Script
 class FreeformRegistrationFileTestClass: Node() {
-    @RegisterFunction
+    @Register
     fun greeting(): String = "Hello from class with freely moved registration file"
 }
+
+

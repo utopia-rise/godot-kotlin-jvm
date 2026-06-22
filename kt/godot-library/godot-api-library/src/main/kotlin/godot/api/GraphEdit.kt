@@ -1376,7 +1376,7 @@ public open class GraphEdit : Control() {
       getAttachedNodesOfFrame(frame.asCachedStringName())
 
   public enum class PanningScheme(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * [kbd]Mouse Wheel[/kbd] will zoom, [kbd]Ctrl + Mouse Wheel[/kbd] will move the view.
@@ -1388,18 +1388,13 @@ public open class GraphEdit : Control() {
     SCROLL_PANS(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): PanningScheme = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class GridPattern(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Draw the grid using solid lines.
@@ -1410,11 +1405,6 @@ public open class GraphEdit : Control() {
      */
     DOTS(1),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): GridPattern = entries.single { it.`value` == `value` }

@@ -255,7 +255,7 @@ public open class LinkButton : BaseButton() {
   }
 
   public enum class UnderlineMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The LinkButton will always show an underline at the bottom of its text.
@@ -271,11 +271,6 @@ public open class LinkButton : BaseButton() {
      */
     NEVER(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): UnderlineMode = entries.single { it.`value` == `value` }

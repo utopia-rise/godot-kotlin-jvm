@@ -1008,7 +1008,7 @@ public open class ItemList : Control() {
   }
 
   public enum class IconMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Icon is drawn above the text.
@@ -1020,18 +1020,13 @@ public open class ItemList : Control() {
     LEFT(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): IconMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class SelectMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Only allow selecting a single item.
@@ -1047,18 +1042,13 @@ public open class ItemList : Control() {
     TOGGLE(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): SelectMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ScrollHintMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Scroll hints will never be shown.
@@ -1077,11 +1067,6 @@ public open class ItemList : Control() {
      */
     BOTTOM(3),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): ScrollHintMode = entries.single { it.`value` == `value` }

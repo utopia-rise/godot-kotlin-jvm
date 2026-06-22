@@ -154,7 +154,7 @@ public open class JSONRPC : Object() {
   }
 
   public enum class ErrorCode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The request could not be parsed as it was not valid by JSON standard ([JSON.parse] failed).
@@ -178,11 +178,6 @@ public open class JSONRPC : Object() {
      */
     INTERNAL_ERROR(-32603),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): ErrorCode = entries.single { it.`value` == `value` }

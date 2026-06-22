@@ -200,7 +200,7 @@ public open class CanvasItemMaterial : Material() {
   }
 
   public enum class BlendMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Mix blending mode. Colors are assumed to be independent of the alpha (opacity) value.
@@ -224,18 +224,13 @@ public open class CanvasItemMaterial : Material() {
     PREMULT_ALPHA(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): BlendMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class LightMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Render the material using both light and non-light sensitive material properties.
@@ -250,11 +245,6 @@ public open class CanvasItemMaterial : Material() {
      */
     LIGHT_ONLY(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): LightMode = entries.single { it.`value` == `value` }

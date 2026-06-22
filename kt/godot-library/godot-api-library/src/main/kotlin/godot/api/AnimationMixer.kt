@@ -828,7 +828,7 @@ public open class AnimationMixer internal constructor() : Node() {
   ) = capture(name.asCachedStringName(), duration, transType, easeType)
 
   public enum class AnimationCallbackModeProcess(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Process animation during physics frames (see [Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]).
@@ -845,11 +845,6 @@ public open class AnimationMixer internal constructor() : Node() {
     MANUAL(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): AnimationCallbackModeProcess =
           entries.single { it.`value` == `value` }
@@ -857,7 +852,7 @@ public open class AnimationMixer internal constructor() : Node() {
   }
 
   public enum class AnimationCallbackModeMethod(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Batch method calls during the animation process, then do the calls after events are
@@ -871,11 +866,6 @@ public open class AnimationMixer internal constructor() : Node() {
     IMMEDIATE(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): AnimationCallbackModeMethod =
           entries.single { it.`value` == `value` }
@@ -883,7 +873,7 @@ public open class AnimationMixer internal constructor() : Node() {
   }
 
   public enum class AnimationCallbackModeDiscrete(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * An [Animation.UPDATE_DISCRETE] track value takes precedence when blending
@@ -936,11 +926,6 @@ public open class AnimationMixer internal constructor() : Node() {
      */
     FORCE_CONTINUOUS(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): AnimationCallbackModeDiscrete =

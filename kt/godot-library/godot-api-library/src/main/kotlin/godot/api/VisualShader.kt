@@ -338,7 +338,7 @@ public open class VisualShader : Shader() {
   ) = replaceNode(type, id, newClass.asCachedStringName())
 
   public enum class Type(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * A vertex shader, operating on vertices.
@@ -386,18 +386,13 @@ public open class VisualShader : Shader() {
     MAX(10),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): Type = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class VaryingMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Varying is passed from `Vertex` function to `Fragment` and `Light` functions.
@@ -413,18 +408,13 @@ public open class VisualShader : Shader() {
     MAX(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): VaryingMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class VaryingType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Varying is of type [float].
@@ -463,11 +453,6 @@ public open class VisualShader : Shader() {
      */
     MAX(8),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): VaryingType = entries.single { it.`value` == `value` }

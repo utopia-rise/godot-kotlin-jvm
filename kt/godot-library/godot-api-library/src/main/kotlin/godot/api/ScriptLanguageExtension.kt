@@ -203,7 +203,7 @@ public abstract class ScriptLanguageExtension : ScriptLanguage() {
   public abstract fun _getGlobalClassName(path: String): Dictionary<Any?, Any?>
 
   public enum class LookupResultType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     SCRIPT_LOCATION(0),
     CLASS(1),
@@ -219,18 +219,13 @@ public abstract class ScriptLanguageExtension : ScriptLanguage() {
     MAX(11),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): LookupResultType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CodeCompletionLocation(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The option is local to the location of the code completion query - e.g. a local variable.
@@ -257,11 +252,6 @@ public abstract class ScriptLanguageExtension : ScriptLanguage() {
     LOCATION_OTHER(1024),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): CodeCompletionLocation =
           entries.single { it.`value` == `value` }
@@ -269,7 +259,7 @@ public abstract class ScriptLanguageExtension : ScriptLanguage() {
   }
 
   public enum class CodeCompletionKind(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     CLASS(0),
     FUNCTION(1),
@@ -283,11 +273,6 @@ public abstract class ScriptLanguageExtension : ScriptLanguage() {
     PLAIN_TEXT(9),
     MAX(10),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): CodeCompletionKind = entries.single { it.`value` == `value` }

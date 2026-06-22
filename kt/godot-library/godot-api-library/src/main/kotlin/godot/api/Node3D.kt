@@ -1342,7 +1342,7 @@ public open class Node3D : Node() {
   public final fun setVisibilityParent(path: String) = setVisibilityParent(path.asCachedNodePath())
 
   public enum class RotationEditMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The rotation is edited using a [Vector3] in
@@ -1359,11 +1359,6 @@ public open class Node3D : Node() {
      */
     BASIS(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): RotationEditMode = entries.single { it.`value` == `value` }

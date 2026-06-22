@@ -164,7 +164,7 @@ public abstract class ResourceFormatLoader : RefCounted() {
   ): Any?
 
   public enum class CacheMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Neither the main resource (the one requested to be loaded) nor any of its subresources are
@@ -197,11 +197,6 @@ public abstract class ResourceFormatLoader : RefCounted() {
      */
     REPLACE_DEEP(4),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): CacheMode = entries.single { it.`value` == `value` }

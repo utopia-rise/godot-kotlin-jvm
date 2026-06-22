@@ -10,7 +10,7 @@ import kotlin.Long
 import kotlin.Suppress
 
 public enum class Orientation(
-  `value`: Long,
+  public override val `value`: Long,
 ) : GodotEnum {
   /**
    * General vertical alignment, usually used for [Separator], [ScrollBar], [Slider], etc.
@@ -21,11 +21,6 @@ public enum class Orientation(
    */
   HORIZONTAL(0),
   ;
-
-  public override val `value`: Long
-  init {
-    this.`value` = `value`
-  }
 
   public companion object {
     public fun from(`value`: Long): Orientation = entries.single { it.`value` == `value` }

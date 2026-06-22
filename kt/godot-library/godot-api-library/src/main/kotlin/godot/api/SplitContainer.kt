@@ -450,7 +450,7 @@ public open class SplitContainer : Container() {
   }
 
   public enum class DraggerVisibility(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The split dragger icon is always visible when [theme_item autohide] is `false`, otherwise
@@ -473,11 +473,6 @@ public open class SplitContainer : Container() {
      */
     HIDDEN_COLLAPSED(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): DraggerVisibility = entries.single { it.`value` == `value` }

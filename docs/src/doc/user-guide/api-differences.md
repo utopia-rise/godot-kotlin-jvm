@@ -271,41 +271,56 @@ You can find them all [in this folder](https://github.com/utopia-rise/godot-kotl
 
 ## Notifications
 
-You can implement [_notification](https://docs.godotengine.org/en/stable/classes/class_object.html#class-object-private-method-notification)
-and have class hierarchy notification call without using `super` call, as in GDScript and C++. However, the syntax is a bit different:
+Register notification handlers with `@Notification`.
+
+Unlike GDScript and C++, you do not override
+[_notification](https://docs.godotengine.org/en/stable/classes/class_object.html#class-object-private-method-notification)
+directly. Instead, each handled notification is a regular zero-argument method annotated with the notification
+number it handles.
+
+If several methods in the class hierarchy handle the same notification, they are all called. Normal notification
+delivery follows Godot's inheritance order, from parent to child. Reversed notification delivery calls them from
+child to parent.
 
 /// tab | Kotlin
 ```kotlin
-@RegisterFunction
-override fun _notification() = godotNotification {
-  // ...
+import godot.annotation.Notification
+import godot.api.Node
+
+@Notification(Node.NOTIFICATION_READY.toInt())
+fun onReadyNotification() {
+    // ...
 }
 ```
 ///
 
 /// tab | Java
 ```java
-@RegisterFunction
-@Override
-public GodotNotification _notification() {
-    return godotNotification((self, notification) -> {
-        // ...
-    });
+import godot.annotation.Notification;
+import godot.api.Node;
+
+@Notification((int) Node.NOTIFICATION_READY)
+public void onReadyNotification() {
+    // ...
 }
 ```
 ///
 
 /// tab | Scala
 ```scala
-@RegisterFunction
-override def _notification(): GodotNotification = {
-  godotNotification((self, notification) => {
+import godot.annotation.Notification
+import godot.api.Node
+
+@Notification(Node.NOTIFICATION_READY.toInt)
+def onReadyNotification(): Unit = {
     // ...
-  })
 }
 ```
 ///
-Currently this feature except abstract classes.  
+
+Notification handlers are not registered as callable Godot methods. In explicit and inferred registration modes,
+`@Notification` is enough to select the method. In automatic mode, a method only becomes a notification handler when
+the annotation is present.
 
 ## StringName and NodePath
 
@@ -385,3 +400,4 @@ GD.print("Hello There!")
 ///
 
 Kotlin's print functions, on the other hand, will only print to CLI! They won't print to Godot editor's output panel.
+

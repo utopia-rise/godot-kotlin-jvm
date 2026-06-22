@@ -89,7 +89,7 @@ public open class XRHandModifier3D : SkeletonModifier3D() {
       setHandTracker(trackerName.asCachedStringName())
 
   public enum class BoneUpdate(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The skeleton's bones are fully updated (both position and rotation) to match the tracked
@@ -106,11 +106,6 @@ public open class XRHandModifier3D : SkeletonModifier3D() {
      */
     MAX(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): BoneUpdate = entries.single { it.`value` == `value` }

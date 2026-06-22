@@ -116,7 +116,7 @@ public open class HashingContext : RefCounted() {
   }
 
   public enum class HashType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Hashing algorithm: MD5.
@@ -131,11 +131,6 @@ public open class HashingContext : RefCounted() {
      */
     SHA256(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): HashType = entries.single { it.`value` == `value` }

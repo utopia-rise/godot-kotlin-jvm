@@ -1,10 +1,10 @@
 package godot.tests.signal
 
 import godot.api.Node
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
-import godot.annotation.RegisterProperty
-import godot.annotation.RegisterSignal
+import godot.annotation.Script
+import godot.annotation.Register
+import godot.annotation.Visible
+import godot.annotation.Emit
 import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.Signal2
@@ -18,31 +18,32 @@ import godot.extension.connectLambda
 import godot.extension.connectMethod
 import godot.tests.subpackage.OtherScript
 
-@RegisterClass
+@Script
 class SignalTest : Node() {
-    @RegisterSignal
+    val inferredNoParamSignalDelegate by signal0()
+
+    @Emit
     val noParamSignalDelegate by signal0()
 
-    @RegisterSignal("refresh")
+    @Emit("refresh")
     val oneParamSignalDelegate by signal1<Boolean>()
 
-    @RegisterSignal("str", "inv")
+    @Emit("str", "inv")
     val twoParamSignalDelegate by signal2<String, SignalTest>()
 
 
-    @RegisterSignal()
+    @Emit()
     val noParamSignalField = Signal0("noParamSignalField")
 
-    @RegisterSignal("refresh")
+    @Emit("refresh")
     val oneParamSignalField = Signal1<Boolean>("oneParamSignalField")
 
-    @RegisterSignal("str", "inv")
+    @Emit("str", "inv")
     val twoParamSignalField = Signal2<String, SignalTest>("twoParamSignalField")
 
-    @RegisterProperty
+    @Visible
     var otherScript = OtherScript()
 
-    @RegisterFunction
     override fun _ready() {
 
         noParamSignalDelegate.connectMethod(otherScript, OtherScript::hookNoParam)
@@ -77,14 +78,14 @@ class SignalTest : Node() {
     }
 
 
-    @RegisterSignal("vector2")
+    @Emit("vector2")
     val signalWithMultipleTargets by signal1<Vector2>()
 
     //To store values emitted by signals
-    @RegisterProperty
+    @Visible
     var array: VariantArray<Vector2> = VariantArray()
 
-    @RegisterFunction
+    @Register
     fun targetFunctionOne(vector2: Vector2) {
         array.append(vector2)
         //call GodotAPI to insert different parameters in the stack.
@@ -96,9 +97,11 @@ class SignalTest : Node() {
     }
 
 
-    @RegisterFunction
+    @Register
     fun targetFunctionTwo(vector2: Vector2) {
         array.append(vector2)
     }
 }
+
+
 

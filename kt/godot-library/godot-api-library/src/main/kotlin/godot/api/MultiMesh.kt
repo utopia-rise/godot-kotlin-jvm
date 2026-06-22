@@ -484,7 +484,7 @@ public open class MultiMesh : Resource() {
   }
 
   public enum class TransformFormat(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Use this when using 2D transforms.
@@ -496,18 +496,13 @@ public open class MultiMesh : Resource() {
     TRANSFORM_3D(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): TransformFormat = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class PhysicsInterpolationQuality(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Always interpolate using Basis lerping, which can produce warping artifacts in some
@@ -520,11 +515,6 @@ public open class MultiMesh : Resource() {
      */
     INTERP_QUALITY_HIGH(1),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): PhysicsInterpolationQuality =

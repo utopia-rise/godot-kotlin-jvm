@@ -9,8 +9,9 @@ package godot.annotation
  * @param transferMode see: [TransferMode]. Defaults to [TransferMode.RELIABLE]
  * @param transferChannel Should only be used in conjunction with [TransferMode.UNRELIABLE_ORDERED]! Will be ignored otherwise. Defaults to `0`
  */
-@Target(AnnotationTarget.FUNCTION)
+@Target(AnnotationTarget.FUNCTION, AnnotationTarget.ANNOTATION_CLASS)
 @Retention(AnnotationRetention.RUNTIME)
+@Register
 annotation class Rpc(
     val rpcMode: RpcMode = RpcMode.AUTHORITY,
     val sync: Sync = Sync.NO_SYNC,

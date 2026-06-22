@@ -176,7 +176,7 @@ public open class OpenXRSpatialAnchorCapability : OpenXRExtensionWrapper() {
   }
 
   public enum class PersistenceScope(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Provides the application with read-only access (i.e. application cannot modify this scope) to
@@ -191,11 +191,6 @@ public open class OpenXRSpatialAnchorCapability : OpenXRExtensionWrapper() {
      */
     LOCAL_ANCHORS(1000781000),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): PersistenceScope = entries.single { it.`value` == `value` }

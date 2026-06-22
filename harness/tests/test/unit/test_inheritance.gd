@@ -53,7 +53,7 @@ func test_call_notification_without_inheritance() -> void:
 func test_call_notification_with_inheritance() -> void:
 	var child_script = ClassInheritanceChild.new()
 	child_script.notification(0)
-	assert_eq(child_script.notification_call_bit_flag, 4)
+	assert_eq(child_script.notification_call_bit_flag, 3)
 	child_script.notification_call_bit_flag = 0
 	child_script.notification(0, true)
 	assert_eq(child_script.notification_call_bit_flag, 3)

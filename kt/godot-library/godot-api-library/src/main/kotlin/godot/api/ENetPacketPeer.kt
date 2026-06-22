@@ -240,7 +240,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
   }
 
   public enum class PeerState(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The peer is disconnected.
@@ -286,18 +286,13 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
     STATE_ZOMBIE(9),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): PeerState = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class PeerStatistic(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Mean packet loss of reliable packets as a ratio with respect to the [PACKET_LOSS_SCALE].
@@ -364,11 +359,6 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
      */
     PACKET_THROTTLE_INTERVAL(13),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): PeerStatistic = entries.single { it.`value` == `value` }

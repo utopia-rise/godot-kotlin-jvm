@@ -161,7 +161,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
   }
 
   public enum class PortType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Floating-point scalar. Translated to [code skip-lint]float[/code] type in shader code.
@@ -208,11 +208,6 @@ public open class VisualShaderNode internal constructor() : Resource() {
      */
     MAX(9),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): PortType = entries.single { it.`value` == `value` }

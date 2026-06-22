@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.BitFieldBase
 import godot.core.Error
 import godot.core.GodotEnum
 import godot.core.MethodStringName0
@@ -2812,7 +2813,7 @@ public open class Node : Object() {
       setThreadSafe(property.asCachedStringName(), value)
 
   public enum class ProcessMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Inherits [processMode] from the node's parent. This is the default for any newly created
@@ -2841,18 +2842,13 @@ public open class Node : Object() {
     DISABLED(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ProcessMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ProcessThreadGroup(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Process this node based on the thread group mode of the first parent (or grandparent) node
@@ -2871,47 +2867,15 @@ public open class Node : Object() {
     SUB_THREAD(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ProcessThreadGroup = entries.single { it.`value` == `value` }
     }
   }
 
   public class ProcessThreadMessages(
-    public val flag: Long,
-  ) {
-    public infix fun or(other: ProcessThreadMessages): ProcessThreadMessages =
-        ProcessThreadMessages(flag.or(other.flag))
-
-    public infix fun or(other: Long): ProcessThreadMessages = ProcessThreadMessages(flag.or(other))
-
-    public infix fun xor(other: ProcessThreadMessages): ProcessThreadMessages =
-        ProcessThreadMessages(flag.xor(other.flag))
-
-    public infix fun xor(other: Long): ProcessThreadMessages =
-        ProcessThreadMessages(flag.xor(other))
-
-    public infix fun and(other: ProcessThreadMessages): ProcessThreadMessages =
-        ProcessThreadMessages(flag.and(other.flag))
-
-    public infix fun and(other: Long): ProcessThreadMessages =
-        ProcessThreadMessages(flag.and(other))
-
-    public fun unaryPlus(): ProcessThreadMessages = ProcessThreadMessages(flag.unaryPlus())
-
-    public fun unaryMinus(): ProcessThreadMessages = ProcessThreadMessages(flag.unaryMinus())
-
-    public fun inv(): ProcessThreadMessages = ProcessThreadMessages(flag.inv())
-
-    public infix fun shl(bits: Int): ProcessThreadMessages = ProcessThreadMessages(flag shl bits)
-
-    public infix fun shr(bits: Int): ProcessThreadMessages = ProcessThreadMessages(flag shr bits)
-
-    public infix fun ushr(bits: Int): ProcessThreadMessages = ProcessThreadMessages(flag ushr bits)
+    flag: Long,
+  ) : BitFieldBase<ProcessThreadMessages>(flag) {
+    protected override fun wrap(flag: Long): ProcessThreadMessages = ProcessThreadMessages(flag)
 
     public companion object {
       /**
@@ -2938,7 +2902,7 @@ public open class Node : Object() {
   }
 
   public enum class PhysicsInterpolationMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Inherits [physicsInterpolationMode] from the node's parent. This is the default for any newly
@@ -2957,11 +2921,6 @@ public open class Node : Object() {
     OFF(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): PhysicsInterpolationMode =
           entries.single { it.`value` == `value` }
@@ -2969,7 +2928,7 @@ public open class Node : Object() {
   }
 
   public enum class DuplicateFlags(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Duplicate the node's signal connections that are connected with the [Object.CONNECT_PERSIST]
@@ -3006,18 +2965,13 @@ public open class Node : Object() {
     DEFAULT(15),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): DuplicateFlags = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class InternalMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The node will not be internal.
@@ -3034,18 +2988,13 @@ public open class Node : Object() {
     BACK(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): InternalMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class AutoTranslateMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Inherits [autoTranslateMode] from the node's parent. This is the default for any newly
@@ -3065,11 +3014,6 @@ public open class Node : Object() {
      */
     DISABLED(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): AutoTranslateMode = entries.single { it.`value` == `value` }

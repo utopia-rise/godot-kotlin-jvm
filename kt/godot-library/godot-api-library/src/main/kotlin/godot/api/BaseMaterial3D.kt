@@ -2926,7 +2926,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public enum class TextureParam(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Texture specifying per-pixel color.
@@ -3010,18 +3010,13 @@ public open class BaseMaterial3D internal constructor() : Material() {
     MAX(19),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): TextureParam = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class TextureFilter(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The texture filter reads from the nearest pixel only. This makes the texture look pixelated
@@ -3073,18 +3068,13 @@ public open class BaseMaterial3D internal constructor() : Material() {
     MAX(6),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): TextureFilter = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class DetailUV(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Use `UV` with the detail texture.
@@ -3096,18 +3086,13 @@ public open class BaseMaterial3D internal constructor() : Material() {
     DETAIL_UV_2(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): DetailUV = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Transparency(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The material will not use transparency. This is the fastest to render.
@@ -3142,18 +3127,13 @@ public open class BaseMaterial3D internal constructor() : Material() {
     MAX(5),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): Transparency = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ShadingMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The object will not receive shadows. This is the fastest to render, but it disables all
@@ -3175,18 +3155,13 @@ public open class BaseMaterial3D internal constructor() : Material() {
     MAX(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ShadingMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Feature(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Constant for setting [emissionEnabled].
@@ -3246,18 +3221,13 @@ public open class BaseMaterial3D internal constructor() : Material() {
     MAX(13),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): Feature = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class BlendMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Default blend mode. The color of the object is blended over the background based on the
@@ -3286,18 +3256,13 @@ public open class BaseMaterial3D internal constructor() : Material() {
     PREMULT_ALPHA(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): BlendMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class AlphaAntiAliasing(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Disables Alpha AntiAliasing for the material.
@@ -3315,18 +3280,13 @@ public open class BaseMaterial3D internal constructor() : Material() {
     ANTIALIASING_ALPHA_TO_COVERAGE_AND_TO_ONE(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): AlphaAntiAliasing = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class DepthDrawMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Default depth draw mode. Depth is drawn only for opaque objects during the opaque prepass (if
@@ -3348,18 +3308,13 @@ public open class BaseMaterial3D internal constructor() : Material() {
     DISABLED(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): DepthDrawMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class DepthTest(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Depth test will discard the pixel if it is behind other pixels.
@@ -3372,18 +3327,13 @@ public open class BaseMaterial3D internal constructor() : Material() {
     INVERTED(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): DepthTest = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CullMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Default cull mode. The back of the object is culled when not visible. Back face triangles
@@ -3403,18 +3353,13 @@ public open class BaseMaterial3D internal constructor() : Material() {
     DISABLED(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): CullMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Flags(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Disables the depth test, so this object is drawn on top of all others drawn before it. This
@@ -3536,18 +3481,13 @@ public open class BaseMaterial3D internal constructor() : Material() {
     MAX(25),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): Flags = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class DiffuseMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Default diffuse scattering algorithm.
@@ -3567,18 +3507,13 @@ public open class BaseMaterial3D internal constructor() : Material() {
     TOON(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): DiffuseMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class SpecularMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Default specular blob.
@@ -3602,18 +3537,13 @@ public open class BaseMaterial3D internal constructor() : Material() {
     DISABLED(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): SpecularMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class BillboardMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Billboard mode is disabled.
@@ -3637,18 +3567,13 @@ public open class BaseMaterial3D internal constructor() : Material() {
     PARTICLES(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): BillboardMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class TextureChannel(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Used to read from the red channel of a texture.
@@ -3673,18 +3598,13 @@ public open class BaseMaterial3D internal constructor() : Material() {
     GRAYSCALE(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): TextureChannel = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class EmissionOperator(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Adds the emission color to the color from the emission texture.
@@ -3696,18 +3616,13 @@ public open class BaseMaterial3D internal constructor() : Material() {
     MULTIPLY(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): EmissionOperator = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class DistanceFadeMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Do not use distance fade.
@@ -3733,18 +3648,13 @@ public open class BaseMaterial3D internal constructor() : Material() {
     OBJECT_DITHER(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): DistanceFadeMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class StencilMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Disables stencil operations.
@@ -3774,18 +3684,13 @@ public open class BaseMaterial3D internal constructor() : Material() {
     CUSTOM(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): StencilMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class StencilFlags(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The material will only be rendered where it passes a stencil comparison with existing stencil
@@ -3804,18 +3709,13 @@ public open class BaseMaterial3D internal constructor() : Material() {
     WRITE_DEPTH_FAIL(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): StencilFlags = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class StencilCompare(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Always passes the stencil test.
@@ -3848,11 +3748,6 @@ public open class BaseMaterial3D internal constructor() : Material() {
      */
     GREATER_OR_EQUAL(6),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): StencilCompare = entries.single { it.`value` == `value` }

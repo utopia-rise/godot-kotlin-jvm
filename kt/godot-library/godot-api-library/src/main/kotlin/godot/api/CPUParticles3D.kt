@@ -1765,7 +1765,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   }
 
   public enum class DrawOrder(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Particles are drawn in the order emitted.
@@ -1782,18 +1782,13 @@ public open class CPUParticles3D : GeometryInstance3D() {
     VIEW_DEPTH(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): DrawOrder = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Parameter(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Use with [setParamMin], [setParamMax], and [setParamCurve] to set initial velocity
@@ -1856,18 +1851,13 @@ public open class CPUParticles3D : GeometryInstance3D() {
     MAX(12),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): Parameter = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ParticleFlags(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Use with [setParticleFlag] to set [particleFlagAlignY].
@@ -1887,18 +1877,13 @@ public open class CPUParticles3D : GeometryInstance3D() {
     MAX(3),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): ParticleFlags = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class EmissionShape(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * All particles will be emitted from a single point.
@@ -1936,11 +1921,6 @@ public open class CPUParticles3D : GeometryInstance3D() {
      */
     MAX(7),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): EmissionShape = entries.single { it.`value` == `value` }

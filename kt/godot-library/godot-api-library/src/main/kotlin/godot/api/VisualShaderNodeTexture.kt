@@ -99,7 +99,7 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
   }
 
   public enum class Source(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Use the texture given as an argument for this function.
@@ -142,18 +142,13 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
     MAX(8),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): Source = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class TextureType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * No hints are added to the uniform declaration.
@@ -174,11 +169,6 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
      */
     TYPE_MAX(3),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): TextureType = entries.single { it.`value` == `value` }

@@ -55,7 +55,7 @@ public open class VisualShaderNodeParticleEmit : VisualShaderNode() {
   }
 
   public enum class EmitFlags(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * If enabled, the particle starts with the position defined by this node.
@@ -78,11 +78,6 @@ public open class VisualShaderNodeParticleEmit : VisualShaderNode() {
      */
     CUSTOM(16),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): EmitFlags = entries.single { it.`value` == `value` }

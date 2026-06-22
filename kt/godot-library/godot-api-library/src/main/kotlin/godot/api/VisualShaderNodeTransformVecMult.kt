@@ -54,7 +54,7 @@ public open class VisualShaderNodeTransformVecMult : VisualShaderNode() {
   }
 
   public enum class Operator(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Multiplies transform `a` by the vector `b`.
@@ -79,11 +79,6 @@ public open class VisualShaderNodeTransformVecMult : VisualShaderNode() {
      */
     MAX(4),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): Operator = entries.single { it.`value` == `value` }

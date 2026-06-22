@@ -3,12 +3,12 @@ package godot.benchmark
 import godot.Node
 import godot.Object
 import godot.RefCounted
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
+import godot.annotation.Script
+import godot.annotation.Register
 import godot.core.RID
 import godot.core.VariantArray
 
-@RegisterClass
+@Script
 class Memory : Object() {
 
     private val objs = VariantArray<Node>()
@@ -33,7 +33,7 @@ class Memory : Object() {
         cores.clear()
     }
 
-    @RegisterFunction
+    @Register
     fun benchmarkAccessObj() {
         var obj: Node
         for (i in 0 until accessSize) {
@@ -41,7 +41,7 @@ class Memory : Object() {
         }
     }
 
-    @RegisterFunction
+    @Register
     fun benchmarkAccessRef() {
         var ref: RefCounted
         for (i in 0 until accessSize) {
@@ -49,7 +49,7 @@ class Memory : Object() {
         }
     }
 
-    @RegisterFunction
+    @Register
     fun benchmarkAccessCore() {
         var core: RID
         for (i in 0 until accessSize) {
@@ -57,7 +57,7 @@ class Memory : Object() {
         }
     }
 
-    @RegisterFunction
+    @Register
     fun benchmarkStressObject() {
         var obj: Node
         for (i in 0 until stressSize) {
@@ -66,7 +66,7 @@ class Memory : Object() {
         }
     }
 
-    @RegisterFunction
+    @Register
     fun benchmarkStressReference() {
         var ref: RefCounted
         for (i in 0 until stressSize) {
@@ -74,7 +74,7 @@ class Memory : Object() {
         }
     }
 
-    @RegisterFunction
+    @Register
     fun benchmarkStressCore() {
         var core: RID?
         for (i in 0 until stressSize) {
@@ -82,7 +82,7 @@ class Memory : Object() {
         }
     }
 
-    @RegisterFunction
+    @Register
     fun benchmarkStressZMix() {
         var core: RID?
         var obj: Node
@@ -95,3 +95,5 @@ class Memory : Object() {
         }
     }
 }
+
+

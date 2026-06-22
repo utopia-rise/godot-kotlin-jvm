@@ -102,7 +102,7 @@ public open class AudioListener3D : Node3D() {
   }
 
   public enum class DopplerTracking(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Disables [url=https://en.wikipedia.org/wiki/Doppler_effect]Doppler effect[/url] simulation
@@ -124,11 +124,6 @@ public open class AudioListener3D : Node3D() {
      */
     PHYSICS_STEP(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): DopplerTracking = entries.single { it.`value` == `value` }

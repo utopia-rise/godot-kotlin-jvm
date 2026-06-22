@@ -827,7 +827,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
       setOriginExternalNode(externalNode.asCachedNodePath())
 
   public enum class OriginFrom(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The bone rest position of the bone specified in [bone] is used as origin.
@@ -851,11 +851,6 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
      */
     EXTERNAL_NODE(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): OriginFrom = entries.single { it.`value` == `value` }

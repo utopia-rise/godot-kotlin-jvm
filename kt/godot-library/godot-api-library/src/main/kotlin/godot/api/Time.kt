@@ -449,7 +449,7 @@ public object Time : Object() {
   }
 
   public enum class Month(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The month of January, represented numerically as `01`.
@@ -501,18 +501,13 @@ public object Time : Object() {
     DECEMBER(12),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): Month = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Weekday(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The day of the week Sunday, represented numerically as `0`.
@@ -543,11 +538,6 @@ public object Time : Object() {
      */
     SATURDAY(6),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): Weekday = entries.single { it.`value` == `value` }

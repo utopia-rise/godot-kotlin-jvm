@@ -1,4 +1,4 @@
-import godot.entrygenerator.settings.RegistrationFileLayoutMode
+import godot.registrar.generator.settings.RegistrationFileLayoutMode
 
 plugins {
     id("com.utopia-rise.godot-kotlin-jvm")

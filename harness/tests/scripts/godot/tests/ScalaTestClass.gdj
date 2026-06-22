@@ -5,11 +5,7 @@ registeredName = ScalaTestClass
 fqName = godot.tests.ScalaTestClass
 baseType = Node
 supertypes = [
-    godot.api.Node,
-    godot.api.Object,
-    godot.core.KtObject,
-    godot.common.interop.NativeWrapper,
-    godot.common.interop.NativePointer
+    
 ]
 signals = [
     test_signal1,
@@ -25,6 +21,10 @@ properties = [
     exported_string,
     exported_byte,
     exported_button,
+    scala_enum,
+    scala_flag,
+    scala_enum_list,
+    scala_godot_flag,
     signal_emitted,
     has_signal_no_param_been_triggered,
     signal_string,
@@ -35,6 +35,9 @@ properties = [
     variant_array,
     dictionary,
     notification_triggered
+]
+notifications = [
+    _notification:0
 ]
 functions = [
     greeting,

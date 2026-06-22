@@ -78,13 +78,13 @@ Ref<Resource> JvmResourceFormatLoader::load(const String& p_path, const String& 
         jvm_script = JvmScriptManager::get_instance()->get_or_create_named_script<GdjScript>(p_path, &script_is_new);
         is_source = false;
     } else if (extension == GODOT_KOTLIN_SCRIPT_EXTENSION) {
-        jvm_script = JvmScriptManager::get_instance()->get_or_create_source_script<KotlinScript>(source_code, &script_is_new);
+        jvm_script = JvmScriptManager::get_instance()->get_or_create_source_script<KotlinScript>(source_code, p_path, &script_is_new);
         is_source = true;
     } else if (extension == GODOT_JAVA_SCRIPT_EXTENSION) {
-        jvm_script = JvmScriptManager::get_instance()->get_or_create_source_script<JavaScript>(source_code, &script_is_new);
+        jvm_script = JvmScriptManager::get_instance()->get_or_create_source_script<JavaScript>(source_code, p_path, &script_is_new);
         is_source = true;
     } else if (extension == GODOT_SCALA_SCRIPT_EXTENSION) {
-        jvm_script = JvmScriptManager::get_instance()->get_or_create_source_script<ScalaScript>(source_code, &script_is_new);
+        jvm_script = JvmScriptManager::get_instance()->get_or_create_source_script<ScalaScript>(source_code, p_path, &script_is_new);
         is_source = true;
     } else {
         if (r_error) { *r_error = Error::ERR_FILE_UNRECOGNIZED; }
@@ -126,7 +126,7 @@ ResourceUID::ID JvmResourceFormatLoader::get_resource_uid(const String& p_path) 
         parse_error = read_all_file_utf8(p_path, source_code);
         if (parse_error != OK) { return id; }
 
-        StringName fq_name = parse_source_script_info(source_code);
+        StringName fq_name = parse_source_script_info(source_code, p_path);
         if (fq_name.is_empty()) { return id; }
 
         String seed;

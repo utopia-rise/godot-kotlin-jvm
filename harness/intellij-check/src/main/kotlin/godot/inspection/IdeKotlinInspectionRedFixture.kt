@@ -3,7 +3,6 @@ package godot.inspection
 import godot.annotation.ColorNoAlpha
 import godot.annotation.Dir
 import godot.annotation.DoubleRange
-import godot.annotation.EnumFlag
 import godot.annotation.EnumTypeHint
 import godot.annotation.ExpEasing
 import godot.annotation.Export
@@ -14,15 +13,16 @@ import godot.annotation.IntRange
 import godot.annotation.LongRange
 import godot.annotation.MultilineText
 import godot.annotation.PlaceHolderText
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
-import godot.annotation.RegisterProperty
-import godot.annotation.RegisterSignal
+import godot.annotation.Script
+import godot.annotation.Register
+import godot.annotation.Visible
+import godot.annotation.Emit
 import godot.annotation.Rpc
 import godot.annotation.RpcMode
 import godot.annotation.Tool
 import godot.annotation.TransferMode
 import godot.api.Node
+import godot.core.BitField
 import godot.core.Signal0
 import godot.core.VariantArray
 import godot.core.Vector2
@@ -48,81 +48,81 @@ enum class LargeEnum {
 @Tool
 class NotRegisteredButToolFixture : Node()
 
-// Expected red on the class: it is not `@RegisterClass`, but it contains
+// Expected red on the class: it is not `@Script`, but it contains
 // registered properties, signals, and functions.
 class NotRegisteredButMembersFixture : Node() {
     // Expected red via the containing class: registered property inside a
     // non-registered class.
     @Export
-    @RegisterProperty
+    @Visible
     var propertyShouldStayRed = 1
 
     // Expected red via the containing class: registered signal inside a
     // non-registered class.
-    @RegisterSignal
+    @Emit
     val signalShouldStayRed by signal0()
 
     // Expected red via the containing class: registered function inside a
     // non-registered class.
-    @RegisterFunction
+    @Register
     fun functionShouldStayRed() = propertyShouldStayRed
 }
 
-// Expected red: `@RegisterClass` is present, but the class does not inherit a
+// Expected red: `@Script` is present, but the class does not inherit a
 // Godot object type.
-@RegisterClass
-class RegisterClassWithoutGodotBaseFixture
+@Script
+class GodotScriptWithoutGodotBaseFixture
 
 // Expected red: registered classes must expose exactly one parameterless
 // constructor, and this one only has a parameterized constructor.
-@RegisterClass
-class RegisterClassWithoutDefaultConstructorFixture(val number: Int) : Node()
+@Script
+class GodotScriptWithoutDefaultConstructorFixture(val number: Int) : Node()
 
 // Expected red on both duplicate declarations: they register the same custom
 // Godot class name.
-@RegisterClass(className = "DuplicateIdeRegistrationName")
+@Script(className = "DuplicateIdeRegistrationName")
 class DuplicateRegisteredNameFixtureOne : Node()
 
-@RegisterClass(className = "DuplicateIdeRegistrationName")
+@Script(className = "DuplicateIdeRegistrationName")
 class DuplicateRegisteredNameFixtureTwo : Node()
 
 // Expected red: generic classes cannot be registered.
-@RegisterClass
+@Script
 class GenericRegisteredClassFixture<T> : Node()
 
 // Method registration checks.
-@RegisterClass
-class NotificationFunctionWithoutRegisterFunctionFixture : Node() {
+@Script
+class NotificationFunctionWithoutRegisterFixture : Node() {
     // Expected red: notification callbacks like `_ready` must also carry
-    // `@RegisterFunction` inside a registered class.
+    // `@Register` inside a registered class.
     override fun _ready() {
     }
 }
 
-@RegisterClass
+@Script
 abstract class RegisteredAbstractBaseFixture : Node() {
-    @RegisterFunction
+    @Register
     abstract fun mustStayRegistered()
 }
 
-@RegisterClass
+@Script
 class OverriddenRegisteredFunctionMissingAnnotationFixture : RegisteredAbstractBaseFixture() {
     // Expected weak warning: this overrides an abstract registered function,
-    // but the override itself is missing `@RegisterFunction`.
+    // but the override itself is missing `@Register`.
     override fun mustStayRegistered() {
     }
 }
 
-@RegisterClass
-class RegisterFunctionProblemFixture : Node() {
+@Script
+class RegisterProblemFixture : Node() {
     // Expected red: generic functions cannot be registered.
-    @RegisterFunction
+    @Register
     fun <T> genericRegisteredFunction(value: T) {
     }
 
     // Expected red: registered functions may not exceed the max supported
     // parameter count.
-    @RegisterFunction
+    @Register
     fun tooManyParameters(
         p01: Int, p02: Int, p03: Int, p04: Int, p05: Int, p06: Int,
         p07: Int, p08: Int, p09: Int, p10: Int, p11: Int, p12: Int,
@@ -132,44 +132,39 @@ class RegisterFunctionProblemFixture : Node() {
 }
 
 // Property registration checks.
-@RegisterClass
-class RegisterPropertyProblemFixture : Node() {
+@Script
+class VisibleProblemFixture : Node() {
     // Expected red: registered properties must be mutable `var`, not `val`.
-    @RegisterProperty
+    @Visible
     val immutableRegisteredProperty = 1
 
     // Expected red: core types are not allowed as `lateinit` registered
     // properties.
-    @RegisterProperty
+    @Visible
     lateinit var lateinitCoreTypeProperty: Vector2
 
     // Expected red: core types are not allowed as nullable registered
     // properties.
-    @RegisterProperty
+    @Visible
     var nullableCoreTypeProperty: Vector2? = null
 
     // Expected red: this type is neither a supported JVM type nor a Godot/core
     // type, so it cannot be exported/registered.
-    @RegisterProperty
+    @Visible
     var unsupportedExportedType = UnsupportedExportedType()
-
-    // Expected red: Kotlin collections of enums need `@EnumFlag` to describe
-    // how they should be exported.
-    @RegisterProperty
-    var enumSetWithoutEnumFlag = setOf(SmallEnum.A)
 
     // Expected red: `VariantArray<Enum>` is explicitly rejected by the
     // inspection.
-    @RegisterProperty
+    @Visible
     var enumVariantArray = VariantArray<SmallEnum>()
 
-    // Expected red: `@Export` without `@RegisterProperty` is incomplete.
+    // Expected red: `@Export` without `@Visible` is incomplete.
     @Export
-    var exportWithoutRegisterProperty = 1
+    var exportWithoutVisible = 1
 }
 
 // Property hint checks.
-@RegisterClass
+@Script
 class PropertyHintProblemFixture : Node() {
     // Expected red: `@IntRange` only makes sense on `Int` properties.
     @IntRange(min = 0, max = 1)
@@ -196,28 +191,15 @@ class PropertyHintProblemFixture : Node() {
     @EnumTypeHint
     var enumTypeHintWrongType = 1
 
-    // Expected red: `@EnumFlag` only makes sense on `Set<Enum>` or
-    // `MutableSet<Enum>`.
-    @EnumFlag
-    var enumFlagWrongType = 1
-
-    // Expected red: enum flags are capped at 32 enum entries, and this enum is
-    // intentionally larger.
-    @Export
-    @RegisterProperty
-    @EnumFlag
-    var enumFlagTooManyEntries = setOf(
-        LargeEnum.E01, LargeEnum.E02, LargeEnum.E03, LargeEnum.E04, LargeEnum.E05, LargeEnum.E06,
-        LargeEnum.E07, LargeEnum.E08, LargeEnum.E09, LargeEnum.E10, LargeEnum.E11, LargeEnum.E12,
-        LargeEnum.E13, LargeEnum.E14, LargeEnum.E15, LargeEnum.E16, LargeEnum.E17, LargeEnum.E18,
-        LargeEnum.E19, LargeEnum.E20, LargeEnum.E21, LargeEnum.E22, LargeEnum.E23, LargeEnum.E24,
-        LargeEnum.E25, LargeEnum.E26, LargeEnum.E27, LargeEnum.E28, LargeEnum.E29, LargeEnum.E30,
-        LargeEnum.E31, LargeEnum.E32, LargeEnum.E33,
-    )
-
     // Expected red: `@IntFlag` only makes sense on `Int` properties.
     @IntFlag("a")
     var intFlagWrongType = ""
+
+    // Expected red: a bitfield is capped at 32 entries, and this enum is
+    // intentionally larger.
+    @Export
+    @Visible
+    var bitFlagTooManyEntries: BitField<LargeEnum> = BitField.of(LargeEnum.E01)
 
     // Expected red: `@File` only makes sense on `String` properties.
     @File
@@ -242,35 +224,35 @@ class PropertyHintProblemFixture : Node() {
 }
 
 // Signal registration checks.
-@RegisterClass
-class RegisterSignalProblemFixture : Node() {
+@Script
+class EmitProblemFixture : Node() {
     // Expected warning: registered signals should be immutable `val`.
-    @RegisterSignal
+    @Emit
     var mutableSignal = Signal0("mutableSignal")
 
     // Expected red: a registered signal must actually have signal type.
-    @RegisterSignal
+    @Emit
     val signalWrongType = 1
 }
 
 // RPC annotation checks.
-@RegisterClass
+@Script
 class RpcAnnotationProblemFixture : Node() {
     // Expected weak warning: non-zero transfer channels are ignored unless the
     // transfer mode is `UNRELIABLE_ORDERED`.
     @Rpc(transferMode = TransferMode.RELIABLE, transferChannel = 1)
-    @RegisterFunction
+    @Register
     fun rpcChannelIgnored() {
     }
 }
 
 // Callable-reference registration checks.
-@RegisterClass
+@Script
 class CallableReferenceProblemFixture : Node() {
-    @RegisterSignal
+    @Emit
     val localSignal by signal0()
 
-    @RegisterFunction
+    @Register
     override fun _ready() {
         // Expected red on the callable reference: connected signal targets must
         // be registered functions.
@@ -290,28 +272,30 @@ class CallableReferenceProblemFixture : Node() {
     }
 
     // Expected red when referenced from `connectMethod`: missing
-    // `@RegisterFunction`.
+    // `@Register`.
     fun signalTargetNotRegistered() {
     }
 
-    // Expected red when referenced from `call()`: missing `@RegisterFunction`.
+    // Expected red when referenced from `call()`: missing `@Register`.
     fun callTargetNotRegistered() {
     }
 
-    // Expected red when referenced from `rpc()`: missing `@RegisterFunction`.
+    // Expected red when referenced from `rpc()`: missing `@Register`.
     fun rpcTargetNotRegistered() {
     }
 
     // Expected red when referenced from `rpc()`: registered, but missing
     // `@Rpc`.
-    @RegisterFunction
+    @Register
     fun rpcTargetMissingRpc() {
     }
 
     // Expected red when referenced from `rpc()`: RPC-enabled, but explicitly
     // disabled for network access.
     @Rpc(rpcMode = RpcMode.DISABLED)
-    @RegisterFunction
+    @Register
     fun rpcTargetDisabled() {
     }
 }
+
+

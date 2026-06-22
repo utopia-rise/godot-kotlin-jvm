@@ -3,6 +3,7 @@
 
 #include "constraints.h"
 #include "core/object/ref_counted.h"
+#include "core/templates/hash_set.h"
 #include "jni/wrapper.h"
 #include "jvm_wrapper/jvm_instance_wrapper.h"
 #include "kt_constructor.h"
@@ -10,31 +11,33 @@
 #include "kt_object.h"
 #include "kt_signal_info.h"
 
-JVM_INSTANCE_WRAPPER(KtClass, "godot.core.KtClass") {
+JVM_INSTANCE_WRAPPER(KtClass, "godot.registration.KtClass") {
     JVM_CLASS(KtClass)
 
     // clang-format off
     JNI_OBJECT_METHOD(GET_REGISTERED_NAME)
     JNI_OBJECT_METHOD(GET_FQDN)
     JNI_OBJECT_METHOD(GET_REGISTERED_SUPERTYPES)
+    JNI_BOOLEAN_METHOD(IS_ABSTRACT)
     JNI_OBJECT_METHOD(GET_BASE_GODOT_CLASS)
     JNI_OBJECT_METHOD(GET_FUNCTIONS)
     JNI_OBJECT_METHOD(GET_PROPERTIES)
     JNI_OBJECT_METHOD(GET_SIGNAL_INFOS)
     JNI_OBJECT_METHOD(GET_CONSTRUCTOR)
-    JNI_BOOLEAN_METHOD(GET_HAS_NOTIFICATION)
+    JNI_OBJECT_METHOD(GET_HANDLED_NOTIFICATIONS)
     JNI_VOID_METHOD(DO_NOTIFICATION)
 
     INIT_JNI_BINDINGS(
         INIT_JNI_METHOD(GET_REGISTERED_NAME, "getRegisteredName", "()Ljava/lang/String;")
         INIT_JNI_METHOD(GET_FQDN, "getFqdn", "()Ljava/lang/String;")
         INIT_JNI_METHOD(GET_REGISTERED_SUPERTYPES, "getRegisteredSupertypes", "()[Ljava/lang/String;")
+        INIT_JNI_METHOD(IS_ABSTRACT, "isAbstract", "()Z")
         INIT_JNI_METHOD(GET_BASE_GODOT_CLASS, "getBaseGodotClass", "()Ljava/lang/String;")
-        INIT_JNI_METHOD(GET_FUNCTIONS, "getFunctions", "()[Lgodot/core/KtFunction;")
-        INIT_JNI_METHOD(GET_PROPERTIES, "getProperties", "()[Lgodot/core/KtProperty;")
-        INIT_JNI_METHOD(GET_SIGNAL_INFOS, "getSignalInfos", "()[Lgodot/core/KtSignalInfo;")
-        INIT_JNI_METHOD(GET_CONSTRUCTOR, "getConstructor", "()Lgodot/core/KtConstructor;")
-        INIT_JNI_METHOD(GET_HAS_NOTIFICATION, "getHasNotification", "()Z")
+        INIT_JNI_METHOD(GET_FUNCTIONS, "getFunctions", "()[Lgodot/registration/KtFunction;")
+        INIT_JNI_METHOD(GET_PROPERTIES, "getProperties", "()[Lgodot/registration/KtProperty;")
+        INIT_JNI_METHOD(GET_SIGNAL_INFOS, "getSignalInfos", "()[Lgodot/registration/KtSignalInfo;")
+        INIT_JNI_METHOD(GET_CONSTRUCTOR, "getConstructor", "()Lgodot/registration/KtConstructor;")
+        INIT_JNI_METHOD(GET_HANDLED_NOTIFICATIONS, "getHandledNotifications", "()[I")
         INIT_JNI_METHOD(DO_NOTIFICATION, "doNotification", "(Lgodot/core/KtObject;)V")
     )
 
@@ -45,12 +48,15 @@ public:
     StringName fqdn;
     Vector<StringName> registered_supertypes;
     StringName base_godot_class;
+    bool is_abstract;
 
     explicit KtClass(jni::Env& p_env, jni::JObject p_wrapped);
 
     ~KtClass();
 
     KtObject* create_instance(jni::Env& env, Object* p_owner);
+
+    bool can_instantiate() const;
 
     KtFunction* get_method(const StringName& methodName);
 
@@ -74,8 +80,8 @@ private:
     HashMap<StringName, KtFunction*> methods;
     HashMap<StringName, KtProperty*> properties;
     HashMap<StringName, KtSignalInfo*> signal_infos;
+    HashSet<int> handled_notifications;
     KtConstructor* kt_constructor;
-    bool _has_notification;
 
     String get_registered_name(jni::Env& env);
 
@@ -83,7 +89,7 @@ private:
 
     StringName get_base_godot_class(jni::Env& env);
 
-    bool get_has_notification(jni::Env& env);
+    void fetch_handled_notifications(jni::Env& env);
 
     void fetch_registered_supertypes(jni::Env& env);
 

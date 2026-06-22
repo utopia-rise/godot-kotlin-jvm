@@ -869,7 +869,7 @@ public open class TileMapLayer : Node2D() {
   }
 
   public enum class DebugVisibilityMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Hide the collisions or navigation debug shapes in the editor, and use the debug settings to
@@ -886,11 +886,6 @@ public open class TileMapLayer : Node2D() {
      */
     FORCE_SHOW(1),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): DebugVisibilityMode = entries.single { it.`value` == `value` }

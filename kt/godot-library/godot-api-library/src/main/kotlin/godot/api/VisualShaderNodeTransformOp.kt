@@ -53,7 +53,7 @@ public open class VisualShaderNodeTransformOp : VisualShaderNode() {
   }
 
   public enum class Operator(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Multiplies transform `a` by the transform `b`.
@@ -96,11 +96,6 @@ public open class VisualShaderNodeTransformOp : VisualShaderNode() {
      */
     MAX(9),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): Operator = entries.single { it.`value` == `value` }

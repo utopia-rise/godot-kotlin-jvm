@@ -1105,7 +1105,7 @@ public open class RigidBody3D : PhysicsBody3D() {
   }
 
   public enum class FreezeMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Static body freeze mode (default). The body is not affected by gravity and forces. It can be
@@ -1119,18 +1119,13 @@ public open class RigidBody3D : PhysicsBody3D() {
     KINEMATIC(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): FreezeMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CenterOfMassMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * In this mode, the body's center of mass is calculated automatically based on its shapes. This
@@ -1144,18 +1139,13 @@ public open class RigidBody3D : PhysicsBody3D() {
     CUSTOM(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): CenterOfMassMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class DampMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * In this mode, the body's damping value is added to any value set in areas or the default
@@ -1167,11 +1157,6 @@ public open class RigidBody3D : PhysicsBody3D() {
      */
     REPLACE(1),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): DampMode = entries.single { it.`value` == `value` }

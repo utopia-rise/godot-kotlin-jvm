@@ -633,7 +633,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   }
 
   public enum class DampMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * In this mode, the body's damping value is added to any value set in areas or the default
@@ -646,18 +646,13 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     REPLACE(1),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): DampMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class JointType(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * No joint is applied to the PhysicsBone3D.
@@ -684,11 +679,6 @@ public open class PhysicalBone3D : PhysicsBody3D() {
      */
     JOINT_TYPE_6DOF(5),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): JointType = entries.single { it.`value` == `value` }

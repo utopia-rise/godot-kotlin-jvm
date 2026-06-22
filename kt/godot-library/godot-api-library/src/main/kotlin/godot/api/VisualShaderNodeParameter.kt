@@ -103,7 +103,7 @@ public open class VisualShaderNodeParameter internal constructor() : VisualShade
   }
 
   public enum class Qualifier(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The parameter will be tied to the [ShaderMaterial] using this shader.
@@ -127,11 +127,6 @@ public open class VisualShaderNodeParameter internal constructor() : VisualShade
      */
     MAX(4),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): Qualifier = entries.single { it.`value` == `value` }

@@ -10,7 +10,7 @@ import kotlin.Long
 import kotlin.Suppress
 
 public enum class Corner(
-  `value`: Long,
+  public override val `value`: Long,
 ) : GodotEnum {
   /**
    * Top-left corner.
@@ -29,11 +29,6 @@ public enum class Corner(
    */
   BOTTOM_LEFT(3),
   ;
-
-  public override val `value`: Long
-  init {
-    this.`value` = `value`
-  }
 
   public companion object {
     public fun from(`value`: Long): Corner = entries.single { it.`value` == `value` }

@@ -10,7 +10,7 @@ import kotlin.Long
 import kotlin.Suppress
 
 public enum class JoyAxis(
-  `value`: Long,
+  public override val `value`: Long,
 ) : GodotEnum {
   /**
    * An invalid game controller axis.
@@ -50,11 +50,6 @@ public enum class JoyAxis(
    */
   MAX(10),
   ;
-
-  public override val `value`: Long
-  init {
-    this.`value` = `value`
-  }
 
   public companion object {
     public fun from(`value`: Long): JoyAxis = entries.single { it.`value` == `value` }

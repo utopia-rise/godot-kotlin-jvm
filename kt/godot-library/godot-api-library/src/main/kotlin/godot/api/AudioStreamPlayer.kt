@@ -383,7 +383,7 @@ public open class AudioStreamPlayer : Node() {
   public final fun setBus(bus: String) = setBus(bus.asCachedStringName())
 
   public enum class MixTarget(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The audio will be played only on the first channel. This is the default.
@@ -398,11 +398,6 @@ public open class AudioStreamPlayer : Node() {
      */
     CENTER(2),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): MixTarget = entries.single { it.`value` == `value` }

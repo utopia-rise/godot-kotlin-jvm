@@ -976,7 +976,7 @@ public open class Image : Resource() {
   }
 
   public enum class Format(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Texture format with a single 8-bit depth representing luminance.
@@ -1299,18 +1299,13 @@ public open class Image : Resource() {
     MAX(47),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): Format = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Interpolation(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Performs nearest-neighbor interpolation. If the image is resized, it will be pixelated.
@@ -1351,18 +1346,13 @@ public open class Image : Resource() {
     INTERPOLATE_LANCZOS(4),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): Interpolation = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class AlphaMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Image is fully opaque. It does not store alpha data.
@@ -1379,18 +1369,13 @@ public open class Image : Resource() {
     BLEND(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): AlphaMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CompressMode(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Use S3TC compression.
@@ -1418,18 +1403,13 @@ public open class Image : Resource() {
     MAX(5),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): CompressMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class UsedChannels(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * The image only uses one channel for luminance (grayscale).
@@ -1457,18 +1437,13 @@ public open class Image : Resource() {
     RGBA(5),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): UsedChannels = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CompressSource(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Source texture (before compression) is a regular texture. Default for all textures.
@@ -1485,18 +1460,13 @@ public open class Image : Resource() {
     NORMAL(2),
     ;
 
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
-
     public companion object {
       public fun from(`value`: Long): CompressSource = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ASTCFormat(
-    `value`: Long,
+    public override val `value`: Long,
   ) : GodotEnum {
     /**
      * Hint to indicate that the high quality 4×4 ASTC compression format should be used.
@@ -1507,11 +1477,6 @@ public open class Image : Resource() {
      */
     ASTC_FORMAT_8x8(1),
     ;
-
-    public override val `value`: Long
-    init {
-      this.`value` = `value`
-    }
 
     public companion object {
       public fun from(`value`: Long): ASTCFormat = entries.single { it.`value` == `value` }

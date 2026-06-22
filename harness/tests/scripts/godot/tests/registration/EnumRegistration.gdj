@@ -5,11 +5,7 @@ registeredName = EnumRegistration
 fqName = godot.tests.registration.EnumRegistration
 baseType = Node
 supertypes = [
-    godot.api.Node,
-    godot.api.Object,
-    godot.core.KtObject,
-    godot.common.interop.NativeWrapper,
-    godot.common.interop.NativePointer
+    
 ]
 signals = [
     
@@ -18,6 +14,9 @@ properties = [
     enum_value,
     godot_error_enum_value,
     godot_enum_value
+]
+notifications = [
+    
 ]
 functions = [
     provide_enum_value,

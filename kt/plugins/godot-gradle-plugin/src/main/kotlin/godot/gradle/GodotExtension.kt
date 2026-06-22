@@ -1,8 +1,9 @@
 package godot.gradle
 
-import godot.entrygenerator.settings.RegisteredNameMode
-import godot.entrygenerator.settings.RegistrationFileIndentation
-import godot.entrygenerator.settings.RegistrationFileLayoutMode
+import godot.annotation.processor.classgraph.AnnotationProcessingMode
+import godot.registrar.generator.RegisteredNameMode
+import godot.registrar.generator.RegistrationFileIndentation
+import godot.registrar.generator.RegistrationFileLayoutMode
 import godot.gradle.ext.environmentVariable
 import godot.gradle.ext.executableFileOrNull
 import godot.gradle.ext.existingDirectoryOrNull
@@ -20,8 +21,8 @@ open class GodotExtension(objects: ObjectFactory) {
     /**
      * Marks this Gradle project as a reusable Godot Kotlin/JVM library rather than a runnable Godot project.
      *
-     * When enabled, the plugin keeps the compile setup and library dependencies, but skips entry scanning,
-     * entry generation, `.gdj` generation/synchronization, and the runtime jar packaging/copy pipeline.
+     * When enabled, the plugin keeps the compile setup and library dependencies, but skips registrar scanning,
+     * registrar generation, `.gdj` generation/synchronization, and the runtime jar packaging/copy pipeline.
      *
      * Defaults to `false`.
      */
@@ -44,9 +45,9 @@ open class GodotExtension(objects: ObjectFactory) {
     val registrationFilesDirectory: DirectoryProperty = objects.directoryProperty()
 
     /**
-     * Disables `.gdj` registration file handling while keeping class scanning and entry generation enabled.
+     * Disables `.gdj` registration file handling while keeping class scanning and registrar generation enabled.
      *
-     * When enabled, the plugin still scans compiled user code and generates entry sources/resources,
+     * When enabled, the plugin still scans compiled user code and generates registrar sources/resources,
      * but it skips generated `.gdj` staging, skips scanning the Godot project for existing `.gdj` files,
      * and skips synchronizing `.gdj` files into the Godot project.
      *
@@ -78,7 +79,7 @@ open class GodotExtension(objects: ObjectFactory) {
     val registrationFilesIndentation: Property<RegistrationFileIndentation> = objects.property(RegistrationFileIndentation::class.java)
 
     /**
-     * Controls how Godot registration names are computed when `@RegisterClass` does not provide a custom name.
+     * Controls how Godot registration names are computed when `@Script` does not provide a custom name.
      *
      * - [RegisteredNameMode.SIMPLE_NAME]: use the Kotlin class name.
      * - [RegisteredNameMode.FQ_NAME]: use the fully qualified class name.
@@ -90,10 +91,32 @@ open class GodotExtension(objects: ObjectFactory) {
     val registrationNameMode: Property<RegisteredNameMode> = objects.property(RegisteredNameMode::class.java)
 
     /**
+     * Maximum number of changed logical classes for which registrar generation still uses the incremental path.
+     *
+     * When more than this many classes change between two successful builds, the plugin falls back to a full
+     * registrar generation run instead of paying the incremental prepass overhead.
+     *
+     * Defaults to `32`.
+     */
+    val registrarIncrementalFullBuildThreshold: Property<Int> = objects.property(Int::class.java)
+
+    /**
+     * Controls how registrar scanning reads annotations from compiled classes and members.
+     *
+     * - [AnnotationProcessingMode.Explicit]: use only directly declared annotations.
+     * - [AnnotationProcessingMode.Inferred]: use direct annotations plus meta-annotations recursively.
+     * - [AnnotationProcessingMode.Automatic]: register every compatible Godot class member automatically, while still
+     *   using annotations as optional metadata.
+     *
+     * Defaults to [AnnotationProcessingMode.Inferred].
+     */
+    val annotationProcessingMode: Property<AnnotationProcessingMode> = objects.property(AnnotationProcessingMode::class.java)
+
+    /**
      * JVM source languages enabled for the project's initial compilation pass.
      *
      * This controls which language-specific compile tasks and support dependencies are wired into the
-     * regular `classes` phase that feeds entry generation and packaging.
+     * regular `classes` phase that feeds registrar generation and packaging.
      *
      * Defaults to Kotlin, Java, and Scala.
      */
@@ -227,6 +250,8 @@ open class GodotExtension(objects: ObjectFactory) {
         registrationFilesLayoutMode.convention(RegistrationFileLayoutMode.FLAT)
         registrationFilesIndentation.convention(RegistrationFileIndentation.SPACE)
         registrationNameMode.convention(RegisteredNameMode.SIMPLE_NAME)
+        registrarIncrementalFullBuildThreshold.convention(32)
+        annotationProcessingMode.convention(AnnotationProcessingMode.Inferred)
         languages.convention(GodotLanguage.entries.toSet())
 
         if (d8Tool != null) {
@@ -254,3 +279,5 @@ open class GodotExtension(objects: ObjectFactory) {
         environmentVariable("VC_VARS_PATH")?.let(windowsDeveloperVcVarsPath::convention)
     }
 }
+
+
