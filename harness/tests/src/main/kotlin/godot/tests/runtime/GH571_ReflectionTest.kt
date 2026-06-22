@@ -1,0 +1,43 @@
+package godot.tests.runtime
+
+import com.fasterxml.jackson.core.type.TypeReference
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import godot.api.Node
+import godot.annotation.Script
+import godot.annotation.Register
+
+
+@Suppress("ClassName")
+@Script
+class GH571_ReflectionTest: Node() {
+
+    private val testJsonString = """
+        {
+            "id": 1,
+            "data": "data_deserialized_through_reflection"
+        }
+    """.trimIndent()
+
+    data class TestClass(
+        val id: Int,
+        val data: String,
+    )
+
+    @Register
+    fun deserializeJson(): String {
+        val mapper = jacksonObjectMapper()
+        val testClass = mapper.readValue(testJsonString, object : TypeReference<TestClass>() {})
+
+        return testClass.data
+    }
+
+    @Register
+    fun readEmbeddedResource(): String {
+        val resource = javaClass.classLoader.getResource("godot/tests/runtime/export_dependency_resource.txt")
+            ?: return "missing-resource"
+        return resource.readText().trim()
+    }
+}
+
+
+

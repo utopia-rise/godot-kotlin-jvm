@@ -4,9 +4,6 @@ on:
     inputs:
       godot-version:
         type: string
-      build-test-templates:
-        type: boolean
-        default: true
 
 concurrency:
   group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-linux_build
@@ -27,12 +24,6 @@ jobs:
             {"name":"Build release template x86_64","cache-name":"export_template_release_linux_x86_64","target":"template_release","scons-flags":""},
             {"name":"Build debug template x86_64","cache-name":"export_template_debug_linux_x86_64","target":"template_debug","scons-flags":""}
           ]}'
-          if [ "${{ inputs.build-test-templates }}" == "true" ]; then
-            MATRIX=$(echo "$MATRIX" | jq -c '.include += [
-              {"name":"Build release template x86_64 (test)","cache-name":"export_template_test_release_linux_x86_64","target":"template_release","scons-flags":"disable_path_overrides=no"},
-              {"name":"Build debug template x86_64 (test)","cache-name":"export_template_test_debug_linux_x86_64","target":"template_debug","scons-flags":"disable_path_overrides=no"}
-            ]')
-          fi
           echo "matrix=$(echo $MATRIX | jq -c '.')" >> $GITHUB_OUTPUT
 
   build-linux:

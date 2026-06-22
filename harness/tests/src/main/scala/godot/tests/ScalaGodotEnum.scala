@@ -8,3 +8,4 @@ enum ScalaGodotEnum(val v: Long) extends java.lang.Enum[ScalaGodotEnum], GodotEn
 
   override def getValue(): Long = v
 }
+

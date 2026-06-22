@@ -13,7 +13,9 @@ signals = [
 properties = [
     enum_value,
     godot_error_enum_value,
-    godot_enum_value
+    godot_enum_value,
+    enum_history,
+    bit_flag_value
 ]
 notifications = [
     
@@ -21,5 +23,8 @@ notifications = [
 functions = [
     provide_enum_value,
     provide_godot_error_enum_value,
-    provide_godot_enum_value
+    provide_godot_enum_value,
+    store_enum_by_ordinal,
+    append_enum_to_history,
+    invalid_enum_ordinal_handled
 ]

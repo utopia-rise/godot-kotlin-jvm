@@ -45,6 +45,9 @@ class CoroutineTest : Object() {
     @Visible
     var wasParentCancelled = true
 
+    @Visible
+    var manyParameterPayloadSummary = ""
+
     @Register
     fun startCoroutineWithoutParameter() = godotCoroutine {
         step = 1
@@ -61,7 +64,8 @@ class CoroutineTest : Object() {
     @Register
     fun startCoroutineWithManyParameters() = godotCoroutine {
         step = 5
-        val (int, _, _, _) = signalWithManyParameters.await()
+        val (int, floatValue, vector2Value, stringValue) = signalWithManyParameters.await()
+        manyParameterPayloadSummary = "$int|$floatValue|${vector2Value.x},${vector2Value.y}|$stringValue"
         step = int
     }
 
@@ -149,5 +153,6 @@ class CoroutineTest : Object() {
         wasParentCancelled = false
     }
 }
+
 
 

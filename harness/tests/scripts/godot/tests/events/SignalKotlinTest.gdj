@@ -1,0 +1,45 @@
+// THIS FILE IS GENERATED! DO NOT EDIT OR DELETE IT. EDIT OR DELETE THE ASSOCIATED SOURCE CODE FILE INSTEAD
+// Note: You can however freely move this file inside your godot project if you want. Keep in mind however, that if you rename the originating source code file, this file will be deleted and regenerated as a new file instead of being updated! Other modifications to the source file however, will result in this file being updated.
+
+registeredName = SignalKotlinTest
+fqName = godot.tests.events.SignalKotlinTest
+baseType = Node
+supertypes = [
+    
+]
+signals = [
+    no_param_signal_delegate,
+    self_connected_signal,
+    one_param_signal_delegate,
+    two_param_signal_delegate,
+    no_param_signal_field,
+    one_param_signal_field,
+    two_param_signal_field,
+    signal_with_multiple_targets,
+    reconnect_signal
+]
+properties = [
+    other_script,
+    self_connected_signal_triggered,
+    reconnect_signal_deliveries,
+    reconnect_payload_value,
+    reconnect_payload_node_name,
+    secondary_reconnect_triggered,
+    array
+]
+notifications = [
+    
+]
+functions = [
+    _ready,
+    target_function_one,
+    target_function_two,
+    on_self_connected_signal,
+    emit_self_connected_signal,
+    reset_reconnect_state,
+    connect_reconnect_signal,
+    disconnect_reconnect_signal,
+    emit_reconnect_signal,
+    on_reconnect_signal,
+    on_secondary_reconnect_signal
+]

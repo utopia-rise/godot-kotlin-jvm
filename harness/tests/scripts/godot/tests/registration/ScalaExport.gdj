@@ -1,0 +1,75 @@
+// THIS FILE IS GENERATED! DO NOT EDIT OR DELETE IT. EDIT OR DELETE THE ASSOCIATED SOURCE CODE FILE INSTEAD
+// Note: You can however freely move this file inside your godot project if you want. Keep in mind however, that if you rename the originating source code file, this file will be deleted and regenerated as a new file instead of being updated! Other modifications to the source file however, will result in this file being updated.
+
+registeredName = ScalaExport
+fqName = godot.tests.registration.ScalaExport
+baseType = Node
+supertypes = [
+    
+]
+signals = [
+    
+]
+properties = [
+    button,
+    boolean_value,
+    byte_value,
+    int_value,
+    int_range_value,
+    int_flag_value,
+    long_value,
+    long_range_value,
+    float_value,
+    float_range_value,
+    easing_value,
+    double_value,
+    double_range_value,
+    string_value,
+    file_path_value,
+    directory_path_value,
+    multiline_text_value,
+    placeholder_text_value,
+    vector2,
+    vector2i,
+    rect2,
+    rect2i,
+    vector3,
+    vector3i,
+    transform2_d,
+    vector4,
+    vector4i,
+    plane,
+    quaternion_value,
+    aabb,
+    basis_value,
+    transform3_d,
+    projection_value,
+    color,
+    color_no_alpha,
+    string_name,
+    node_path,
+    rid,
+    resource_test,
+    jvm_id,
+    int_array,
+    string_array,
+    nav_meshes,
+    string_to_int_dictionary,
+    nav_meshes_dictionary,
+    packed_byte_array,
+    packed_int32_array,
+    packed_int64_array,
+    packed_float32_array,
+    packed_float64_array,
+    packed_string_array,
+    packed_vector2_array,
+    packed_vector3_array,
+    packed_vector4_array,
+    packed_color_array
+]
+notifications = [
+    
+]
+functions = [
+    
+]

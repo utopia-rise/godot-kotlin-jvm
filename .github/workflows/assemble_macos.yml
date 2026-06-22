@@ -8,9 +8,6 @@ on:
         type: string
       build-version:
           type: string
-      build-test-templates:
-        type: boolean
-        default: true
 
 concurrency:
   group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-macos_assemble
@@ -187,85 +184,3 @@ jobs:
         with:
           name: export_template_all_macos
           path: export_template_all_macos.zip
-
-  create-macos-test-export-template-universal:
-    if: ${{ inputs.build-test-templates }}
-    runs-on: macos-latest
-    name: ${{ matrix.name }}
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - name: Create test export template universal binary release
-            target: release
-
-          - name: Create test export template universal binary debug
-            target: debug
-    steps:
-      - name: Clone Godot JVM module.
-        uses: actions/checkout@v4
-
-      - name: Download ${{ matrix.target }} x86_64 test export_template
-        uses: actions/download-artifact@v4
-        with:
-          name: export_template_test_${{ matrix.target }}_macos_x86_64
-          path: "./"
-
-      - name: Download ${{ matrix.target }} arm64 test export_template
-        uses: actions/download-artifact@v4
-        with:
-          name: export_template_test_${{ matrix.target }}_macos_arm64
-          path: "./"
-
-      - name: Create macos universal binary
-        uses: ./.github/actions/create-macos-universal-binary
-        with:
-          amd-64-binary: godot.macos.template_${{ matrix.target }}.x86_64.jvm.${{ inputs.build-version }}
-          arm-64-binary: godot.macos.template_${{ matrix.target }}.arm64.jvm.${{ inputs.build-version }}
-          universal-output-binary: godot.macos.template_${{ matrix.target }}.universal
-
-      - name: Upload ${{ matrix.target }} macos test universal artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: export_template_test_${{ matrix.target }}_macos_universal
-          path: godot.macos.template_${{ matrix.target }}.universal
-
-  create-macos-test-export-template-app:
-    if: ${{ inputs.build-test-templates }}
-    needs: [ create-macos-test-export-template-universal ]
-    runs-on: macos-latest
-    name: Create macos test export template app
-    steps:
-      - name: Clone Godot Engine
-        uses: actions/checkout@v4
-        with:
-          repository: godotengine/godot
-          ref: ${{ inputs.godot-version }}
-
-      - name: Download debug test export_template
-        uses: actions/download-artifact@v4
-        with:
-          name: export_template_test_debug_macos_universal
-          path: .
-
-      - name: Download release test export_template
-        uses: actions/download-artifact@v4
-        with:
-          name: export_template_test_release_macos_universal
-          path: .
-
-      - name: Create MacOs test template app
-        run: |
-          cp -r misc/dist/macos_template.app .
-          mkdir -p macos_template.app/Contents/MacOS
-          cp godot.macos.template_release.universal macos_template.app/Contents/MacOS/godot_macos_release.universal
-          cp godot.macos.template_debug.universal macos_template.app/Contents/MacOS/godot_macos_debug.universal
-          chmod +x macos_template.app/Contents/MacOS/godot_macos*
-          zip -q -9 -r export_template_test_all_macos.zip macos_template.app
-        shell: bash
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: export_template_test_all_macos
-          path: export_template_test_all_macos.zip

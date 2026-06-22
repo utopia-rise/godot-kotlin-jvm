@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://d34upfxn8p0sj"]
-
-[ext_resource type="Script" uid="uid://behpwt7pft2y" path="res://scripts/third-party-library/godot/tests/library/Simple.gdj" id="1_wfgfr"]
-
-[node name="LibraryTest" type="Node3D" unique_id=1723271217]
-script = ExtResource("1_wfgfr")

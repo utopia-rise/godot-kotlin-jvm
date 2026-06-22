@@ -1,0 +1,30 @@
+// THIS FILE IS GENERATED! DO NOT EDIT OR DELETE IT. EDIT OR DELETE THE ASSOCIATED SOURCE CODE FILE INSTEAD
+// Note: You can however freely move this file inside your godot project if you want. Keep in mind however, that if you rename the originating source code file, this file will be deleted and regenerated as a new file instead of being updated! Other modifications to the source file however, will result in this file being updated.
+
+registeredName = BindingTest
+fqName = godot.tests.registration.BindingTest
+baseType = Object
+supertypes = [
+    
+]
+signals = [
+    
+]
+properties = [
+    setter_calls,
+    getter_calls,
+    validated_name_backing,
+    is_enabled,
+    typed_int_array,
+    nullable_variant_array,
+    mixed_dictionary
+]
+notifications = [
+    
+]
+functions = [
+    get_class_name,
+    sum_typed_int_array,
+    read_nullable_array_entry,
+    write_mixed_dictionary_entry
+]

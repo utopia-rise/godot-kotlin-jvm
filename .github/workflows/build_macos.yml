@@ -4,9 +4,6 @@ on:
     inputs:
       godot-version:
         type: string
-      build-test-templates:
-        type: boolean
-        default: true
 
 concurrency:
   group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-macos_build
@@ -32,14 +29,6 @@ jobs:
             {"name":"Build release template arm64","cache-name":"export_template_release_macos_arm64","target":"template_release","scons-flags":"arch=arm64"},
             {"name":"Build debug template arm64","cache-name":"export_template_debug_macos_arm64","target":"template_debug","scons-flags":"arch=arm64"}
           ]}'
-          if [ "${{ inputs.build-test-templates }}" == "true" ]; then
-            MATRIX=$(echo "$MATRIX" | jq -c '.include += [
-              {"name":"Build release template x86_64 (test)","cache-name":"export_template_test_release_macos_x86_64","target":"template_release","scons-flags":"arch=x86_64 disable_path_overrides=no"},
-              {"name":"Build debug template x86_64 (test)","cache-name":"export_template_test_debug_macos_x86_64","target":"template_debug","scons-flags":"arch=x86_64 disable_path_overrides=no"},
-              {"name":"Build release template arm64 (test)","cache-name":"export_template_test_release_macos_arm64","target":"template_release","scons-flags":"arch=arm64 disable_path_overrides=no"},
-              {"name":"Build debug template arm64 (test)","cache-name":"export_template_test_debug_macos_arm64","target":"template_debug","scons-flags":"arch=arm64 disable_path_overrides=no"}
-            ]')
-          fi
           echo "matrix=$(echo $MATRIX | jq -c '.')" >> $GITHUB_OUTPUT
 
   build-macos:
