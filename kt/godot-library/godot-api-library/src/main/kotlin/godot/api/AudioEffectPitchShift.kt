@@ -27,15 +27,14 @@ import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
- * Allows modulation of pitch independently of tempo. All frequencies can be increased/decreased
- * with minimal effect on transients.
+ * Allows modulation of pitch without modifying speed. All frequencies can be raised or lowered with
+ * minimal effect on transients.
  */
 @GodotBaseType
 public open class AudioEffectPitchShift : AudioEffect() {
   /**
    * The pitch scale to use. `1.0` is the default pitch and plays sounds unaffected. [pitchScale]
-   * can range from `0.0` (infinitely low pitch, inaudible) to `16` (16 times higher than the initial
-   * pitch).
+   * can range from 0 (infinitely low pitch, inaudible) to 16 (16 times higher than the initial pitch).
    */
   public final inline var pitchScale: Float
     @JvmName("pitchScaleProperty")
@@ -60,8 +59,8 @@ public open class AudioEffectPitchShift : AudioEffect() {
   /**
    * The size of the [url=https://en.wikipedia.org/wiki/Fast_Fourier_transform]Fast Fourier
    * transform[/url] buffer. Higher values smooth out the effect over time, but have greater latency.
-   * The effects of this higher latency are especially noticeable on sounds that have sudden amplitude
-   * changes.
+   * The effects of this higher latency are especially noticeable on audio signals that have sudden
+   * amplitude changes.
    */
   public final inline var fftSize: FFTSize
     @JvmName("fftSizeProperty")
@@ -72,7 +71,7 @@ public open class AudioEffectPitchShift : AudioEffect() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(70, scriptPtr)
+    createNativeObject(72, scriptPtr)
   }
 
   public final fun setPitchScale(rate: Float): Unit {

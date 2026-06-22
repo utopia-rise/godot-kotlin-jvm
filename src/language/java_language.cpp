@@ -4,6 +4,7 @@
 #include "script/language/java_script.h"
 
 #include <core/io/resource_loader.h>
+#include <core/object/class_db.h>
 
 constexpr const char* JAVA_TEMPLATE = PACKAGE_TEMPLATE
   "\n"
@@ -157,10 +158,6 @@ Vector<ScriptLanguage::ScriptTemplate> JavaLanguage::get_built_in_templates(cons
 
 bool JavaLanguage::is_using_templates() {
     return true;
-}
-
-Script* JavaLanguage::create_script() const {
-    return memnew(JavaScript);
 }
 
 bool JavaLanguage::supports_builtin_mode() const {

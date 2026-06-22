@@ -73,7 +73,7 @@ public open class VisualShader : Shader() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(789, scriptPtr)
+    createNativeObject(804, scriptPtr)
   }
 
   /**
@@ -381,9 +381,13 @@ public open class VisualShader : Shader() {
      */
     FOG(9),
     /**
+     * A shader used to process blit calls to a DrawableTexture.
+     */
+    TEXTURE_BLIT(10),
+    /**
      * Represents the size of the [Type] enum.
      */
-    MAX(10),
+    MAX(11),
     ;
 
     public companion object {

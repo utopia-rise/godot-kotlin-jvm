@@ -4,6 +4,8 @@
 #include "script/language/gdj_script.h"
 
 #include <core/io/resource_loader.h>
+#include <core/object/callable_mp.h>
+#include <core/object/message_queue.h>
 
 #include "jvm_wrapper/memory/type_manager.h"
 
@@ -20,7 +22,7 @@ void JvmScriptManager::create_and_update_scripts(Vector<KtClass*>& classes) {
     last_reload = OS::get_singleton()->get_unix_time();
 
     // Clear all containers and keeping a cache for comparison.
-    HashMap<StringName, Ref<NamedScript>> named_script_cache = named_scripts_map;
+    HashMap<StringName, Ref<NamedScript>> named_script_cache(named_scripts_map);
     named_scripts_map.clear();
 
 #endif

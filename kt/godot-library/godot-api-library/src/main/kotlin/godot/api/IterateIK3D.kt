@@ -41,6 +41,9 @@ import kotlin.jvm.JvmName
  *
  * Each bone chain (setting) has one effector, which is processed in order of the setting list. You
  * can set some limitations for each joint.
+ *
+ * **Note:** All the methods in this class take an `index` parameter. This parameter specifies which
+ * setting list entry to return if the IK has multiple entries (e.g. `settings/<index>/target_node`).
  */
 @GodotBaseType
 public open class IterateIK3D internal constructor() : ChainIK3D() {
@@ -112,7 +115,7 @@ public open class IterateIK3D internal constructor() : ChainIK3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(325, scriptPtr)
+    createNativeObject(331, scriptPtr)
   }
 
   public final fun setMaxIterations(maxIterations: Int): Unit {
@@ -179,8 +182,10 @@ public open class IterateIK3D internal constructor() : ChainIK3D() {
   /**
    * Sets the rotation axis at [joint] in the bone chain's joint list.
    *
-   * The axes are based on the [Skeleton3D.getBoneRest]'s space, if [axis] is
+   * The axes are based on the reference pose's space, if [axis] is
    * [SkeletonModifier3D.ROTATION_AXIS_CUSTOM], you can specify any axis.
+   *
+   * In here, the reference pose is the bone pose immediately before processing IK.
    *
    * **Note:** The rotation axis and the forward vector shouldn't be colinear to avoid unintended
    * rotation since [ChainIK3D] does not factor in twisting forces.
@@ -312,8 +317,10 @@ public open class IterateIK3D internal constructor() : ChainIK3D() {
    * orthogonal.
    *
    * Also, if the length of [getJointLimitationRightAxisVector] is zero, the space is created by
-   * rotating the bone rest using the shortest arc that rotates the +Y axis of the bone rest to match
-   * the bone direction.
+   * rotating the reference pose using the shortest arc that rotates the +Y axis of the reference pose
+   * to match the bone direction.
+   *
+   * In here, the reference pose is the bone pose immediately before processing IK.
    */
   public final fun setJointLimitationRotationOffset(
     index: Int,
@@ -334,8 +341,10 @@ public open class IterateIK3D internal constructor() : ChainIK3D() {
    * orthogonal.
    *
    * Also, if the length of [getJointLimitationRightAxisVector] is zero, the space is created by
-   * rotating the bone rest using the shortest arc that rotates the +Y axis of the bone rest to match
-   * the bone direction.
+   * rotating the reference pose using the shortest arc that rotates the +Y axis of the reference pose
+   * to match the bone direction.
+   *
+   * In here, the reference pose is the bone pose immediately before processing IK.
    */
   public final fun getJointLimitationRotationOffset(index: Int, joint: Int): Quaternion {
     TransferContext.writeArguments(LONG to index.toLong(), LONG to joint.toLong())

@@ -30,7 +30,7 @@ import kotlin.jvm.JvmField
 @GodotBaseType
 public open class OpenXRInteractionProfileMetadata : Object() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(453, scriptPtr)
+    createNativeObject(462, scriptPtr)
   }
 
   /**

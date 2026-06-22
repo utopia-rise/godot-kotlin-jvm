@@ -20,6 +20,8 @@ import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
+import godot.core.VariantParser.VECTOR2
+import godot.core.Vector2
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -62,6 +64,9 @@ public open class CollisionShape2D : Node2D() {
    *
    * **Note:** This property has no effect if this [CollisionShape2D] is a child of an [Area2D]
    * node.
+   *
+   * **Note:** The one way collision direction can be configured by setting
+   * [oneWayCollisionDirection].
    */
   public final inline var oneWayCollision: Boolean
     @JvmName("oneWayCollisionProperty")
@@ -81,6 +86,25 @@ public open class CollisionShape2D : Node2D() {
     @JvmName("oneWayCollisionMarginProperty")
     set(`value`) {
       setOneWayCollisionMargin(value)
+    }
+
+  /**
+   * The direction used for one-way collision.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
+  @CoreTypeLocalCopy
+  public final inline var oneWayCollisionDirection: Vector2
+    @JvmName("oneWayCollisionDirectionProperty")
+    get() = getOneWayCollisionDirection()
+    @JvmName("oneWayCollisionDirectionProperty")
+    set(`value`) {
+      setOneWayCollisionDirection(value)
     }
 
   /**
@@ -108,7 +132,28 @@ public open class CollisionShape2D : Node2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(163, scriptPtr)
+    createNativeObject(167, scriptPtr)
+  }
+
+  /**
+   * This is a helper function for [oneWayCollisionDirection] to make dealing with local copies
+   * easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = collisionshape2d.oneWayCollisionDirection
+   * //Your changes
+   * collisionshape2d.oneWayCollisionDirection = myCoreType
+   * ``````
+   *
+   * The direction used for one-way collision.
+   */
+  @CoreTypeHelper
+  public final fun oneWayCollisionDirectionMutate(block: Vector2.() -> Unit): Vector2 =
+      oneWayCollisionDirection.apply {
+     block(this)
+     oneWayCollisionDirection = this
   }
 
   /**
@@ -179,6 +224,17 @@ public open class CollisionShape2D : Node2D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
+  public final fun setOneWayCollisionDirection(direction: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to direction)
+    TransferContext.callMethod(ptr, MethodBindings.setOneWayCollisionDirectionPtr, NIL)
+  }
+
+  public final fun getOneWayCollisionDirection(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getOneWayCollisionDirectionPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+  }
+
   public final fun setDebugColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setDebugColorPtr, NIL)
@@ -224,6 +280,14 @@ public open class CollisionShape2D : Node2D() {
         MethodStringName0<CollisionShape2D, Float>("get_one_way_collision_margin")
 
     @JvmField
+    public val setOneWayCollisionDirectionName: MethodStringName1<CollisionShape2D, Unit, Vector2> =
+        MethodStringName1<CollisionShape2D, Unit, Vector2>("set_one_way_collision_direction")
+
+    @JvmField
+    public val getOneWayCollisionDirectionName: MethodStringName0<CollisionShape2D, Vector2> =
+        MethodStringName0<CollisionShape2D, Vector2>("get_one_way_collision_direction")
+
+    @JvmField
     public val setDebugColorName: MethodStringName1<CollisionShape2D, Unit, Color> =
         MethodStringName1<CollisionShape2D, Unit, Color>("set_debug_color")
 
@@ -256,6 +320,12 @@ public open class CollisionShape2D : Node2D() {
 
     internal val getOneWayCollisionMarginPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CollisionShape2D", "get_one_way_collision_margin", 1740695150)
+
+    internal val setOneWayCollisionDirectionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CollisionShape2D", "set_one_way_collision_direction", 743155724)
+
+    internal val getOneWayCollisionDirectionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CollisionShape2D", "get_one_way_collision_direction", 3341600327)
 
     internal val setDebugColorPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CollisionShape2D", "set_debug_color", 2920490490)

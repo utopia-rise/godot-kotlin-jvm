@@ -26,7 +26,7 @@ import kotlin.jvm.JvmField
 public open class OpenXRSpatialCapabilityConfigurationMicroQrCode :
     OpenXRSpatialCapabilityConfigurationBaseHeader() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(465, scriptPtr)
+    createNativeObject(474, scriptPtr)
   }
 
   /**

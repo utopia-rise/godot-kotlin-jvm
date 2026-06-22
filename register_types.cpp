@@ -23,6 +23,8 @@
 #include "script/language/scala_script.h"
 #include "language/scala_language.h"
 
+#include <core/object/class_db.h>
+
 Ref<JvmResourceFormatLoader> resource_format_loader;
 Ref<JvmResourceFormatSaver> resource_format_saver;
 Ref<JavaArchiveFormatLoader> java_archive_format_loader;

@@ -56,8 +56,7 @@ public open class OptionButton : Button() {
 
   /**
    * Emitted when the user navigates to an item using the [ProjectSettings.input/uiUp] or
-   * [ProjectSettings.input/uiDown] input actions. The index of the item selected is passed as
-   * argument.
+   * [ProjectSettings.input/uiDown] input actions. The index of the item focused is passed as argument.
    */
   public val itemFocused: Signal1<Long> by Signal1
 
@@ -95,6 +94,59 @@ public open class OptionButton : Button() {
     }
 
   /**
+   * If `true`, shows a search bar at the top of the [PopupMenu] for filtering items. See
+   * [searchBarMinItemCount] for dynamically controlling its visibility based on the number of items.
+   */
+  public final inline var searchBarEnabled: Boolean
+    @JvmName("searchBarEnabledProperty")
+    get() = isSearchBarEnabled()
+    @JvmName("searchBarEnabledProperty")
+    set(`value`) {
+      setSearchBarEnabled(value)
+    }
+
+  /**
+   * Sets the minimum number of items required for the [PopupMenu] search bar to be visible.
+   * [searchBarEnabled] must be `true` for this to have any effect.
+   */
+  public final inline var searchBarMinItemCount: Int
+    @JvmName("searchBarMinItemCountProperty")
+    get() = getSearchBarMinItemCount()
+    @JvmName("searchBarMinItemCountProperty")
+    set(`value`) {
+      setSearchBarMinItemCount(value)
+    }
+
+  /**
+   * If `true`, enables fuzzy searching in the [PopupMenu] search bar. This allows the search
+   * results to include items that almost match the search query, as well items that match the
+   * individual characters of the search query, but not in sequence.
+   *
+   * Use [searchBarFuzzySearchMaxMisses] to set the maximum number of mismatches allowed in the
+   * search results.
+   */
+  public final inline var searchBarFuzzySearchEnabled: Boolean
+    @JvmName("searchBarFuzzySearchEnabledProperty")
+    get() = isSearchBarFuzzySearchEnabled()
+    @JvmName("searchBarFuzzySearchEnabledProperty")
+    set(`value`) {
+      setSearchBarFuzzySearchEnabled(value)
+    }
+
+  /**
+   * Sets the maximum number of mismatches allowed in each search result when fuzzy searching is
+   * enabled for the [PopupMenu] search bar. Any item with more mismatches will be hidden from the
+   * search results.
+   */
+  public final inline var searchBarFuzzySearchMaxMisses: Int
+    @JvmName("searchBarFuzzySearchMaxMissesProperty")
+    get() = getSearchBarFuzzySearchMaxMisses()
+    @JvmName("searchBarFuzzySearchMaxMissesProperty")
+    set(`value`) {
+      setSearchBarFuzzySearchMaxMisses(value)
+    }
+
+  /**
    * The number of items to select from.
    */
   public final inline var itemCount: Int
@@ -106,7 +158,7 @@ public open class OptionButton : Button() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(489, scriptPtr)
+    createNativeObject(498, scriptPtr)
   }
 
   /**
@@ -200,6 +252,44 @@ public open class OptionButton : Button() {
     TransferContext.callMethod(ptr, MethodBindings.setItemAutoTranslateModePtr, NIL)
   }
 
+  public final fun setSearchBarEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(ptr, MethodBindings.setSearchBarEnabledPtr, NIL)
+  }
+
+  public final fun setSearchBarMinItemCount(count: Int): Unit {
+    TransferContext.writeArguments(LONG to count.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.setSearchBarMinItemCountPtr, NIL)
+  }
+
+  public final fun getSearchBarMinItemCount(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getSearchBarMinItemCountPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  public final fun setSearchBarFuzzySearchEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(ptr, MethodBindings.setSearchBarFuzzySearchEnabledPtr, NIL)
+  }
+
+  public final fun isSearchBarFuzzySearchEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isSearchBarFuzzySearchEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setSearchBarFuzzySearchMaxMisses(maxMisses: Int): Unit {
+    TransferContext.writeArguments(LONG to maxMisses.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.setSearchBarFuzzySearchMaxMissesPtr, NIL)
+  }
+
+  public final fun getSearchBarFuzzySearchMaxMisses(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getSearchBarFuzzySearchMaxMissesPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
   /**
    * Returns the text of the item at index [idx].
    */
@@ -279,6 +369,12 @@ public open class OptionButton : Button() {
   public final fun isItemSeparator(idx: Int): Boolean {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(ptr, MethodBindings.isItemSeparatorPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun isSearchBarEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isSearchBarEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -468,6 +564,34 @@ public open class OptionButton : Button() {
         MethodStringName2<OptionButton, Unit, Int, Node.AutoTranslateMode>("set_item_auto_translate_mode")
 
     @JvmField
+    public val setSearchBarEnabledName: MethodStringName1<OptionButton, Unit, Boolean> =
+        MethodStringName1<OptionButton, Unit, Boolean>("set_search_bar_enabled")
+
+    @JvmField
+    public val setSearchBarMinItemCountName: MethodStringName1<OptionButton, Unit, Int> =
+        MethodStringName1<OptionButton, Unit, Int>("set_search_bar_min_item_count")
+
+    @JvmField
+    public val getSearchBarMinItemCountName: MethodStringName0<OptionButton, Int> =
+        MethodStringName0<OptionButton, Int>("get_search_bar_min_item_count")
+
+    @JvmField
+    public val setSearchBarFuzzySearchEnabledName: MethodStringName1<OptionButton, Unit, Boolean> =
+        MethodStringName1<OptionButton, Unit, Boolean>("set_search_bar_fuzzy_search_enabled")
+
+    @JvmField
+    public val isSearchBarFuzzySearchEnabledName: MethodStringName0<OptionButton, Boolean> =
+        MethodStringName0<OptionButton, Boolean>("is_search_bar_fuzzy_search_enabled")
+
+    @JvmField
+    public val setSearchBarFuzzySearchMaxMissesName: MethodStringName1<OptionButton, Unit, Int> =
+        MethodStringName1<OptionButton, Unit, Int>("set_search_bar_fuzzy_search_max_misses")
+
+    @JvmField
+    public val getSearchBarFuzzySearchMaxMissesName: MethodStringName0<OptionButton, Int> =
+        MethodStringName0<OptionButton, Int>("get_search_bar_fuzzy_search_max_misses")
+
+    @JvmField
     public val getItemTextName: MethodStringName1<OptionButton, String, Int> =
         MethodStringName1<OptionButton, String, Int>("get_item_text")
 
@@ -503,6 +627,10 @@ public open class OptionButton : Button() {
     @JvmField
     public val isItemSeparatorName: MethodStringName1<OptionButton, Boolean, Int> =
         MethodStringName1<OptionButton, Boolean, Int>("is_item_separator")
+
+    @JvmField
+    public val isSearchBarEnabledName: MethodStringName0<OptionButton, Boolean> =
+        MethodStringName0<OptionButton, Boolean>("is_search_bar_enabled")
 
     @JvmField
     public val addSeparatorName: MethodStringName1<OptionButton, Unit, String> =
@@ -605,6 +733,27 @@ public open class OptionButton : Button() {
     internal val setItemAutoTranslateModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("OptionButton", "set_item_auto_translate_mode", 287402019)
 
+    internal val setSearchBarEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OptionButton", "set_search_bar_enabled", 2586408642)
+
+    internal val setSearchBarMinItemCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OptionButton", "set_search_bar_min_item_count", 1286410249)
+
+    internal val getSearchBarMinItemCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OptionButton", "get_search_bar_min_item_count", 3905245786)
+
+    internal val setSearchBarFuzzySearchEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OptionButton", "set_search_bar_fuzzy_search_enabled", 2586408642)
+
+    internal val isSearchBarFuzzySearchEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OptionButton", "is_search_bar_fuzzy_search_enabled", 36873697)
+
+    internal val setSearchBarFuzzySearchMaxMissesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OptionButton", "set_search_bar_fuzzy_search_max_misses", 1286410249)
+
+    internal val getSearchBarFuzzySearchMaxMissesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OptionButton", "get_search_bar_fuzzy_search_max_misses", 3905245786)
+
     internal val getItemTextPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OptionButton", "get_item_text", 844755477)
 
@@ -631,6 +780,9 @@ public open class OptionButton : Button() {
 
     internal val isItemSeparatorPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OptionButton", "is_item_separator", 1116898809)
+
+    internal val isSearchBarEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OptionButton", "is_search_bar_enabled", 36873697)
 
     internal val addSeparatorPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OptionButton", "add_separator", 3005725572)

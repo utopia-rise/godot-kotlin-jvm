@@ -10,15 +10,12 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
-import godot.core.MethodStringName0
 import godot.core.MethodStringName1
-import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR2I
 import godot.core.Vector2i
 import kotlin.Int
-import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
@@ -73,16 +70,7 @@ public open class ImageTexture : Texture2D() {
     get() = getImage()
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(297, scriptPtr)
-  }
-
-  /**
-   * Returns the format of the texture.
-   */
-  public final fun getFormat(): Image.Format {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFormatPtr, LONG)
-    return Image.Format.from(TransferContext.readReturnValue(LONG) as Long)
+    createNativeObject(303, scriptPtr)
   }
 
   /**
@@ -140,10 +128,6 @@ public open class ImageTexture : Texture2D() {
         MethodStringName1<ImageTexture, ImageTexture?, Image?>("create_from_image")
 
     @JvmField
-    public val getFormatName: MethodStringName0<ImageTexture, Image.Format> =
-        MethodStringName0<ImageTexture, Image.Format>("get_format")
-
-    @JvmField
     public val setImageName: MethodStringName1<ImageTexture, Unit, Image?> =
         MethodStringName1<ImageTexture, Unit, Image?>("set_image")
 
@@ -170,9 +154,6 @@ public open class ImageTexture : Texture2D() {
   public object MethodBindings {
     internal val createFromImagePtr: VoidPtr =
         TypeManager.getMethodBindPtr("ImageTexture", "create_from_image", 2775144163)
-
-    internal val getFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImageTexture", "get_format", 3847873762)
 
     internal val setImagePtr: VoidPtr =
         TypeManager.getMethodBindPtr("ImageTexture", "set_image", 532598488)

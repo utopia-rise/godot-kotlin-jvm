@@ -87,7 +87,7 @@ public open class TextureRect : Control() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(738, scriptPtr)
+    createNativeObject(752, scriptPtr)
   }
 
   public final fun setTexture(texture: Texture2D?): Unit {
@@ -192,6 +192,9 @@ public open class TextureRect : Control() {
     SCALE(0),
     /**
      * Tile inside the node's bounding rectangle.
+     *
+     * **Note:** [STRETCH_TILE] mode is not supported for [texture] set to an [AtlasTexture] with
+     * non-zero [AtlasTexture.margin].
      */
     TILE(1),
     /**

@@ -139,8 +139,7 @@ public open class TabContainer : Container() {
     }
 
   /**
-   * If `true`, all tabs are drawn in front of the panel. If `false`, inactive tabs are drawn behind
-   * the panel.
+   * This doesn't do anything.
    */
   public final inline var allTabsInFront: Boolean
     @JvmName("allTabsInFrontProperty")
@@ -225,7 +224,7 @@ public open class TabContainer : Container() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(715, scriptPtr)
+    createNativeObject(729, scriptPtr)
   }
 
   /**

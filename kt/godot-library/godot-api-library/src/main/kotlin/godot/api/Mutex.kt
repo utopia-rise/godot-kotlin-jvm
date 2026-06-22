@@ -38,7 +38,7 @@ import kotlin.jvm.JvmField
 @GodotBaseType
 public open class Mutex : RefCounted() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(388, scriptPtr)
+    createNativeObject(397, scriptPtr)
   }
 
   /**

@@ -192,7 +192,7 @@ public open class RayCast3D : Node3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(588, scriptPtr)
+    createNativeObject(601, scriptPtr)
   }
 
   /**

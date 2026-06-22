@@ -321,8 +321,8 @@ public object PhysicsServer2D : Object() {
 
   @JvmField
   public val bodySetShapeAsOneWayCollisionName:
-      MethodStringName4<PhysicsServer2D, Unit, RID, Int, Boolean, Float> =
-      MethodStringName4<PhysicsServer2D, Unit, RID, Int, Boolean, Float>("body_set_shape_as_one_way_collision")
+      MethodStringName5<PhysicsServer2D, Unit, RID, Int, Boolean, Float, Vector2> =
+      MethodStringName5<PhysicsServer2D, Unit, RID, Int, Boolean, Float, Vector2>("body_set_shape_as_one_way_collision")
 
   @JvmField
   public val bodyAttachObjectInstanceIdName: MethodStringName2<PhysicsServer2D, Unit, RID, Long> =
@@ -580,7 +580,7 @@ public object PhysicsServer2D : Object() {
       MethodStringName1<PhysicsServer2D, Int, ProcessInfo>("get_process_info")
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(23)
+    getSingleton(24)
   }
 
   /**
@@ -1310,18 +1310,21 @@ public object PhysicsServer2D : Object() {
 
   /**
    * Sets the one-way collision properties of the body's shape with the given index. If [enable] is
-   * `true`, the one-way collision direction given by the shape's local upward axis
-   * `body_get_shape_transform(body, shape_idx).y` will be used to ignore collisions with the shape in
-   * the opposite direction, and to ensure depenetration of kinematic bodies happens in this direction.
+   * `true`, the one-way collision direction given by [direction] in the shape's local space (that is
+   * `body_get_shape_transform(body, shape_idx).basis_xform(direction).normalized()` in the body's
+   * local space) will be used to ignore collisions with the shape in the opposite direction, and to
+   * ensure depenetration of kinematic bodies happens in this direction.
    */
+  @JvmOverloads
   @JvmStatic
   public final fun bodySetShapeAsOneWayCollision(
     body: RID,
     shapeIdx: Int,
     enable: Boolean,
     margin: Float,
+    direction: Vector2 = Vector2(0, 1),
   ): Unit {
-    TransferContext.writeArguments(_RID to body, LONG to shapeIdx.toLong(), BOOL to enable, DOUBLE to margin.toDouble())
+    TransferContext.writeArguments(_RID to body, LONG to shapeIdx.toLong(), BOOL to enable, DOUBLE to margin.toDouble(), VECTOR2 to direction)
     TransferContext.callMethod(ptr, MethodBindings.bodySetShapeAsOneWayCollisionPtr, NIL)
   }
 
@@ -2814,7 +2817,7 @@ public object PhysicsServer2D : Object() {
         TypeManager.getMethodBindPtr("PhysicsServer2D", "body_set_shape_disabled", 2658558584)
 
     internal val bodySetShapeAsOneWayCollisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer2D", "body_set_shape_as_one_way_collision", 2556489974)
+        TypeManager.getMethodBindPtr("PhysicsServer2D", "body_set_shape_as_one_way_collision", 2389283141)
 
     internal val bodyAttachObjectInstanceIdPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PhysicsServer2D", "body_attach_object_instance_id", 3411492887)

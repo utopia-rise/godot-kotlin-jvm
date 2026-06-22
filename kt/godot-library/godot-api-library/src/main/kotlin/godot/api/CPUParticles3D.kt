@@ -1019,7 +1019,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(120, scriptPtr)
+    createNativeObject(124, scriptPtr)
   }
 
   /**
@@ -1427,11 +1427,15 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Requests the particles to process for extra process time during a single frame.
    *
-   * Useful for particle playback, if used in combination with [useFixedSeed] or by calling
-   * [restart] with parameter `keep_seed` set to `true`.
+   * [processTime] defines the time that the particles will process while emitting is on.
+   * [processTimeResidual] defines the time that particles will process with emitting turned off for
+   * the simulation. When combined with [speedScale] set to `0.0`, this is useful to be able to seek a
+   * particle system timeline.
    */
-  public final fun requestParticlesProcess(processTime: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to processTime.toDouble())
+  @JvmOverloads
+  public final fun requestParticlesProcess(processTime: Float, processTimeResidual: Float = 0.0f):
+      Unit {
+    TransferContext.writeArguments(DOUBLE to processTime.toDouble(), DOUBLE to processTimeResidual.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.requestParticlesProcessPtr, NIL)
   }
 
@@ -2069,8 +2073,8 @@ public open class CPUParticles3D : GeometryInstance3D() {
         MethodStringName1<CPUParticles3D, Unit, Boolean>("restart")
 
     @JvmField
-    public val requestParticlesProcessName: MethodStringName1<CPUParticles3D, Unit, Float> =
-        MethodStringName1<CPUParticles3D, Unit, Float>("request_particles_process")
+    public val requestParticlesProcessName: MethodStringName2<CPUParticles3D, Unit, Float, Float> =
+        MethodStringName2<CPUParticles3D, Unit, Float, Float>("request_particles_process")
 
     @JvmField
     public val captureAabbName: MethodStringName0<CPUParticles3D, AABB> =
@@ -2396,7 +2400,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
         TypeManager.getMethodBindPtr("CPUParticles3D", "restart", 107499316)
 
     internal val requestParticlesProcessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "request_particles_process", 373806689)
+        TypeManager.getMethodBindPtr("CPUParticles3D", "request_particles_process", 66938510)
 
     internal val captureAabbPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CPUParticles3D", "capture_aabb", 1068685055)

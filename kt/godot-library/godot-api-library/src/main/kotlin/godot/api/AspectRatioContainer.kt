@@ -77,7 +77,7 @@ public open class AspectRatioContainer : Container() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(43, scriptPtr)
+    createNativeObject(45, scriptPtr)
   }
 
   public final fun setRatio(ratio: Float): Unit {

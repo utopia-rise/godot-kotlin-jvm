@@ -14,9 +14,11 @@ import godot.core.GodotEnum
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.RID
+import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
+import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser._RID
 import kotlin.Long
 import kotlin.Suppress
@@ -30,6 +32,11 @@ import kotlin.jvm.JvmName
  */
 @GodotBaseType
 public open class OpenXRSpatialEntityTracker : XRPositionalTracker() {
+  /**
+   * Emitted when the next-chain changes, from either [addNext] or [removeNext].
+   */
+  public val nextChanged: Signal0 by Signal0
+
   public val spatialTrackingStateChanged: Signal1<Long> by Signal1
 
   /**
@@ -55,7 +62,24 @@ public open class OpenXRSpatialEntityTracker : XRPositionalTracker() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(482, scriptPtr)
+    createNativeObject(491, scriptPtr)
+  }
+
+  /**
+   * Sets the spatial context used to create this tracker.
+   */
+  public final fun setSpatialContext(spatialContext: RID): Unit {
+    TransferContext.writeArguments(_RID to spatialContext)
+    TransferContext.callMethod(ptr, MethodBindings.setSpatialContextPtr, NIL)
+  }
+
+  /**
+   * Gets the spatial context used to create this [OpenXRSpatialEntityTracker].
+   */
+  public final fun getSpatialContext(): RID {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getSpatialContextPtr, _RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun setEntity(entity: RID): Unit {
@@ -78,6 +102,36 @@ public open class OpenXRSpatialEntityTracker : XRPositionalTracker() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSpatialTrackingStatePtr, LONG)
     return EntityTrackingState.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Gets the head [OpenXRStructureBase] in the next-chain.
+   *
+   * See also [addNext] and [removeNext].
+   */
+  public final fun getNext(): OpenXRStructureBase? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getNextPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT) as OpenXRStructureBase?)
+  }
+
+  /**
+   * Adds a new [OpenXRStructureBase] to the next-chain.
+   *
+   * [getNext] will return this [next] until either [addNext] is called again or it's removed in
+   * [removeNext].
+   */
+  public final fun addNext(next: OpenXRStructureBase?): Unit {
+    TransferContext.writeArguments(OBJECT to next)
+    TransferContext.callMethod(ptr, MethodBindings.addNextPtr, NIL)
+  }
+
+  /**
+   * Removes a [next] object previously added in [addNext] from the next-chain.
+   */
+  public final fun removeNext(next: OpenXRStructureBase?): Unit {
+    TransferContext.writeArguments(OBJECT to next)
+    TransferContext.callMethod(ptr, MethodBindings.removeNextPtr, NIL)
   }
 
   public enum class EntityTrackingState(
@@ -104,6 +158,14 @@ public open class OpenXRSpatialEntityTracker : XRPositionalTracker() {
 
   public companion object {
     @JvmField
+    public val setSpatialContextName: MethodStringName1<OpenXRSpatialEntityTracker, Unit, RID> =
+        MethodStringName1<OpenXRSpatialEntityTracker, Unit, RID>("set_spatial_context")
+
+    @JvmField
+    public val getSpatialContextName: MethodStringName0<OpenXRSpatialEntityTracker, RID> =
+        MethodStringName0<OpenXRSpatialEntityTracker, RID>("get_spatial_context")
+
+    @JvmField
     public val setEntityName: MethodStringName1<OpenXRSpatialEntityTracker, Unit, RID> =
         MethodStringName1<OpenXRSpatialEntityTracker, Unit, RID>("set_entity")
 
@@ -120,9 +182,29 @@ public open class OpenXRSpatialEntityTracker : XRPositionalTracker() {
     public val getSpatialTrackingStateName:
         MethodStringName0<OpenXRSpatialEntityTracker, EntityTrackingState> =
         MethodStringName0<OpenXRSpatialEntityTracker, EntityTrackingState>("get_spatial_tracking_state")
+
+    @JvmField
+    public val getNextName: MethodStringName0<OpenXRSpatialEntityTracker, OpenXRStructureBase?> =
+        MethodStringName0<OpenXRSpatialEntityTracker, OpenXRStructureBase?>("get_next")
+
+    @JvmField
+    public val addNextName:
+        MethodStringName1<OpenXRSpatialEntityTracker, Unit, OpenXRStructureBase?> =
+        MethodStringName1<OpenXRSpatialEntityTracker, Unit, OpenXRStructureBase?>("add_next")
+
+    @JvmField
+    public val removeNextName:
+        MethodStringName1<OpenXRSpatialEntityTracker, Unit, OpenXRStructureBase?> =
+        MethodStringName1<OpenXRSpatialEntityTracker, Unit, OpenXRStructureBase?>("remove_next")
   }
 
   public object MethodBindings {
+    internal val setSpatialContextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRSpatialEntityTracker", "set_spatial_context", 2722037293)
+
+    internal val getSpatialContextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRSpatialEntityTracker", "get_spatial_context", 2944877500)
+
     internal val setEntityPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRSpatialEntityTracker", "set_entity", 2722037293)
 
@@ -134,5 +216,14 @@ public open class OpenXRSpatialEntityTracker : XRPositionalTracker() {
 
     internal val getSpatialTrackingStatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRSpatialEntityTracker", "get_spatial_tracking_state", 3351876560)
+
+    internal val getNextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRSpatialEntityTracker", "get_next", 2798796760)
+
+    internal val addNextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRSpatialEntityTracker", "add_next", 334698771)
+
+    internal val removeNextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRSpatialEntityTracker", "remove_next", 334698771)
   }
 }

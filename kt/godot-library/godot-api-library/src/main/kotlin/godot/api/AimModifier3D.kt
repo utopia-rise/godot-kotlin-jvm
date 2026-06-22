@@ -45,7 +45,7 @@ public open class AimModifier3D : BoneConstraint3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(7, scriptPtr)
+    createNativeObject(8, scriptPtr)
   }
 
   /**

@@ -42,7 +42,7 @@ public open class CircleShape2D : Shape2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(155, scriptPtr)
+    createNativeObject(159, scriptPtr)
   }
 
   public final fun setRadius(radius: Float): Unit {

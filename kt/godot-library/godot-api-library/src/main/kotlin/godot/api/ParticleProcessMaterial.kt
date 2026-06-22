@@ -116,6 +116,20 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
+   * If `true`, particles will inherit the scale of the emitter.
+   *
+   * **Note:** This has no effect when [GPUParticles3D.localCoords] is `true`, since particles in
+   * local space are already affected by the emitter's scale.
+   */
+  public final inline var particleFlagInheritEmitterScale: Boolean
+    @JvmName("particleFlagInheritEmitterScaleProperty")
+    get() = getParticleFlag(ParticleProcessMaterial.ParticleFlags.INHERIT_EMITTER_SCALE)
+    @JvmName("particleFlagInheritEmitterScaleProperty")
+    set(`value`) {
+      setParticleFlag(ParticleProcessMaterial.ParticleFlags.INHERIT_EMITTER_SCALE, value)
+    }
+
+  /**
    * The offset for the [emissionShape], in local space.
    *
    * **Warning:**
@@ -375,6 +389,55 @@ public open class ParticleProcessMaterial : Material() {
     @JvmName("angleCurveProperty")
     set(`value`) {
       setParamTexture(ParticleProcessMaterial.Parameter.ANGLE, value)
+    }
+
+  /**
+   * Enable the usage of [rotation3dMin] and [rotation3dMax].
+   */
+  public final inline var useRotation3d: Boolean
+    @JvmName("useRotation3dProperty")
+    get() = isUsingRotation3d()
+    @JvmName("useRotation3dProperty")
+    set(`value`) {
+      setUseRotation3d(value)
+    }
+
+  /**
+   * The minimum 3D orientation, in degrees. Works only in 3D and if [useRotation3d] is enabled.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
+  @CoreTypeLocalCopy
+  public final inline var rotation3dMin: Vector3
+    @JvmName("rotation3dMinProperty")
+    get() = getRotation3dMin()
+    @JvmName("rotation3dMinProperty")
+    set(`value`) {
+      setRotation3dMin(value)
+    }
+
+  /**
+   * The maximum 3D orientation, in degrees. Works only in 3D and if [useRotation3d] is enabled.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
+  @CoreTypeLocalCopy
+  public final inline var rotation3dMax: Vector3
+    @JvmName("rotation3dMaxProperty")
+    get() = getRotation3dMax()
+    @JvmName("rotation3dMaxProperty")
+    set(`value`) {
+      setRotation3dMax(value)
     }
 
   /**
@@ -750,6 +813,68 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
+   * Enable 3D rotation velocity.
+   */
+  public final inline var useRotationVelocity3d: Boolean
+    @JvmName("useRotationVelocity3dProperty")
+    get() = isUsingRotationVelocity3d()
+    @JvmName("useRotationVelocity3dProperty")
+    set(`value`) {
+      setUsingRotationVelocity3d(value)
+    }
+
+  /**
+   * Minimum 3D rotation velocity on the particle's local axis. Enable [useRotationVelocity3d] to
+   * use this.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
+  @CoreTypeLocalCopy
+  public final inline var rotationVelocity3dMin: Vector3
+    @JvmName("rotationVelocity3dMinProperty")
+    get() = getRotationVelocity3dMin()
+    @JvmName("rotationVelocity3dMinProperty")
+    set(`value`) {
+      setRotationVelocity3dMin(value)
+    }
+
+  /**
+   * Maximum 3D rotation velocity on the particle's local axis. Enable [useRotationVelocity3d] to
+   * use this.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
+  @CoreTypeLocalCopy
+  public final inline var rotationVelocity3dMax: Vector3
+    @JvmName("rotationVelocity3dMaxProperty")
+    get() = getRotationVelocity3dMax()
+    @JvmName("rotationVelocity3dMaxProperty")
+    set(`value`) {
+      setRotationVelocity3dMax(value)
+    }
+
+  /**
+   * Rotation velocity curve over lifetime, per-axis. Enable [useRotationVelocity3d] to use this.
+   */
+  public final inline var rotationVelocity3dCurve: Texture2D?
+    @JvmName("rotationVelocity3dCurveProperty")
+    get() = getRotationVelocity3dCurve()
+    @JvmName("rotationVelocity3dCurveProperty")
+    set(`value`) {
+      setRotationVelocity3dCurve(value)
+    }
+
+  /**
    * Gravity applied to every particle.
    *
    * **Warning:**
@@ -989,6 +1114,59 @@ public open class ParticleProcessMaterial : Material() {
     @JvmName("attractorInteractionEnabledProperty")
     set(`value`) {
       setAttractorInteractionEnabled(value)
+    }
+
+  /**
+   * Enable the usage of [scale3dMin] and [scale3dMax].
+   */
+  public final inline var useScale3d: Boolean
+    @JvmName("useScale3dProperty")
+    get() = isUsingScale3d()
+    @JvmName("useScale3dProperty")
+    set(`value`) {
+      setUseScale3d(value)
+    }
+
+  /**
+   * The minimum value of the random scale vector for each particle.
+   *
+   * Works only if [useScale3d] is enabled.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
+  @CoreTypeLocalCopy
+  public final inline var scale3dMin: Vector3
+    @JvmName("scale3dMinProperty")
+    get() = getScale3dMin()
+    @JvmName("scale3dMinProperty")
+    set(`value`) {
+      setScale3dMin(value)
+    }
+
+  /**
+   * The maximum value of the random scale vector for each particle.
+   *
+   * Works only if [useScale3d] is enabled.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
+  @CoreTypeLocalCopy
+  public final inline var scale3dMax: Vector3
+    @JvmName("scale3dMaxProperty")
+    get() = getScale3dMax()
+    @JvmName("scale3dMaxProperty")
+    set(`value`) {
+      setScale3dMax(value)
     }
 
   /**
@@ -1688,7 +1866,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(505, scriptPtr)
+    createNativeObject(514, scriptPtr)
   }
 
   /**
@@ -1789,6 +1967,44 @@ public open class ParticleProcessMaterial : Material() {
   public final fun angleMutate(block: Vector2.() -> Unit): Vector2 = angle.apply {
      block(this)
      angle = this
+  }
+
+  /**
+   * This is a helper function for [rotation3dMin] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = particleprocessmaterial.rotation3dMin
+   * //Your changes
+   * particleprocessmaterial.rotation3dMin = myCoreType
+   * ``````
+   *
+   * The minimum 3D orientation, in degrees. Works only in 3D and if [useRotation3d] is enabled.
+   */
+  @CoreTypeHelper
+  public final fun rotation3dMinMutate(block: Vector3.() -> Unit): Vector3 = rotation3dMin.apply {
+     block(this)
+     rotation3dMin = this
+  }
+
+  /**
+   * This is a helper function for [rotation3dMax] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = particleprocessmaterial.rotation3dMax
+   * //Your changes
+   * particleprocessmaterial.rotation3dMax = myCoreType
+   * ``````
+   *
+   * The maximum 3D orientation, in degrees. Works only in 3D and if [useRotation3d] is enabled.
+   */
+  @CoreTypeHelper
+  public final fun rotation3dMaxMutate(block: Vector3.() -> Unit): Vector3 = rotation3dMax.apply {
+     block(this)
+     rotation3dMax = this
   }
 
   /**
@@ -1918,6 +2134,48 @@ public open class ParticleProcessMaterial : Material() {
   }
 
   /**
+   * This is a helper function for [rotationVelocity3dMin] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = particleprocessmaterial.rotationVelocity3dMin
+   * //Your changes
+   * particleprocessmaterial.rotationVelocity3dMin = myCoreType
+   * ``````
+   *
+   * Minimum 3D rotation velocity on the particle's local axis. Enable [useRotationVelocity3d] to
+   * use this.
+   */
+  @CoreTypeHelper
+  public final fun rotationVelocity3dMinMutate(block: Vector3.() -> Unit): Vector3 =
+      rotationVelocity3dMin.apply {
+     block(this)
+     rotationVelocity3dMin = this
+  }
+
+  /**
+   * This is a helper function for [rotationVelocity3dMax] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = particleprocessmaterial.rotationVelocity3dMax
+   * //Your changes
+   * particleprocessmaterial.rotationVelocity3dMax = myCoreType
+   * ``````
+   *
+   * Maximum 3D rotation velocity on the particle's local axis. Enable [useRotationVelocity3d] to
+   * use this.
+   */
+  @CoreTypeHelper
+  public final fun rotationVelocity3dMaxMutate(block: Vector3.() -> Unit): Vector3 =
+      rotationVelocity3dMax.apply {
+     block(this)
+     rotationVelocity3dMax = this
+  }
+
+  /**
    * This is a helper function for [gravity] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
@@ -2003,6 +2261,48 @@ public open class ParticleProcessMaterial : Material() {
   public final fun dampingMutate(block: Vector2.() -> Unit): Vector2 = damping.apply {
      block(this)
      damping = this
+  }
+
+  /**
+   * This is a helper function for [scale3dMin] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = particleprocessmaterial.scale3dMin
+   * //Your changes
+   * particleprocessmaterial.scale3dMin = myCoreType
+   * ``````
+   *
+   * The minimum value of the random scale vector for each particle.
+   *
+   * Works only if [useScale3d] is enabled.
+   */
+  @CoreTypeHelper
+  public final fun scale3dMinMutate(block: Vector3.() -> Unit): Vector3 = scale3dMin.apply {
+     block(this)
+     scale3dMin = this
+  }
+
+  /**
+   * This is a helper function for [scale3dMax] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = particleprocessmaterial.scale3dMax
+   * //Your changes
+   * particleprocessmaterial.scale3dMax = myCoreType
+   * ``````
+   *
+   * The maximum value of the random scale vector for each particle.
+   *
+   * Works only if [useScale3d] is enabled.
+   */
+  @CoreTypeHelper
+  public final fun scale3dMaxMutate(block: Vector3.() -> Unit): Vector3 = scale3dMax.apply {
+     block(this)
+     scale3dMax = this
   }
 
   /**
@@ -2303,6 +2603,72 @@ public open class ParticleProcessMaterial : Material() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR) as Color)
+  }
+
+  public final fun setUseScale3d(usingScale3d: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to usingScale3d)
+    TransferContext.callMethod(ptr, MethodBindings.setUseScale3dPtr, NIL)
+  }
+
+  public final fun isUsingScale3d(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isUsingScale3dPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setScale3dMin(scale3dMin: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to scale3dMin)
+    TransferContext.callMethod(ptr, MethodBindings.setScale3dMinPtr, NIL)
+  }
+
+  public final fun getScale3dMin(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getScale3dMinPtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+  }
+
+  public final fun setScale3dMax(scale3dMax: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to scale3dMax)
+    TransferContext.callMethod(ptr, MethodBindings.setScale3dMaxPtr, NIL)
+  }
+
+  public final fun getScale3dMax(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getScale3dMaxPtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+  }
+
+  public final fun setUseRotation3d(usingRotation3d: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to usingRotation3d)
+    TransferContext.callMethod(ptr, MethodBindings.setUseRotation3dPtr, NIL)
+  }
+
+  public final fun isUsingRotation3d(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isUsingRotation3dPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setRotation3dMin(rotation3dMin: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to rotation3dMin)
+    TransferContext.callMethod(ptr, MethodBindings.setRotation3dMinPtr, NIL)
+  }
+
+  public final fun getRotation3dMin(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getRotation3dMinPtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+  }
+
+  public final fun setRotation3dMax(rotation3dMax: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to rotation3dMax)
+    TransferContext.callMethod(ptr, MethodBindings.setRotation3dMaxPtr, NIL)
+  }
+
+  public final fun getRotation3dMax(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getRotation3dMaxPtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setColorRamp(ramp: Texture2D?): Unit {
@@ -2740,6 +3106,50 @@ public open class ParticleProcessMaterial : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
+  public final fun setUsingRotationVelocity3d(useRotationVelocity3d: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to useRotationVelocity3d)
+    TransferContext.callMethod(ptr, MethodBindings.setUsingRotationVelocity3dPtr, NIL)
+  }
+
+  public final fun isUsingRotationVelocity3d(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isUsingRotationVelocity3dPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setRotationVelocity3dMax(rotationVelocity3dMax: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to rotationVelocity3dMax)
+    TransferContext.callMethod(ptr, MethodBindings.setRotationVelocity3dMaxPtr, NIL)
+  }
+
+  public final fun getRotationVelocity3dMax(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getRotationVelocity3dMaxPtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+  }
+
+  public final fun setRotationVelocity3dMin(rotationVelocity3dMin: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to rotationVelocity3dMin)
+    TransferContext.callMethod(ptr, MethodBindings.setRotationVelocity3dMinPtr, NIL)
+  }
+
+  public final fun getRotationVelocity3dMin(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getRotationVelocity3dMinPtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+  }
+
+  public final fun setRotationVelocity3dCurve(rotationVelocity3dCurve: Texture2D?): Unit {
+    TransferContext.writeArguments(OBJECT to rotationVelocity3dCurve)
+    TransferContext.callMethod(ptr, MethodBindings.setRotationVelocity3dCurvePtr, NIL)
+  }
+
+  public final fun getRotationVelocity3dCurve(): Texture2D? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getRotationVelocity3dCurvePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
+  }
+
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
@@ -2869,10 +3279,11 @@ public open class ParticleProcessMaterial : Material() {
      */
     DISABLE_Z(2),
     DAMPING_AS_FRICTION(3),
+    INHERIT_EMITTER_SCALE(4),
     /**
      * Represents the size of the [ParticleFlags] enum.
      */
-    MAX(4),
+    MAX(5),
     ;
 
     public companion object {
@@ -2928,10 +3339,25 @@ public open class ParticleProcessMaterial : Material() {
   public enum class SubEmitterMode(
     public override val `value`: Long,
   ) : GodotEnum {
+    /**
+     * The subemitter is disabled.
+     */
     DISABLED(0),
+    /**
+     * The submitter is emitted on the constant interval defined by [subEmitterFrequency].
+     */
     CONSTANT(1),
+    /**
+     * The subemitter is emitted at the end of the particle's lifetime.
+     */
     AT_END(2),
+    /**
+     * The subemitter is emitted when the particle collides.
+     */
     AT_COLLISION(3),
+    /**
+     * The subemitter is emitted when the particle spawns.
+     */
     AT_START(4),
     /**
      * Represents the size of the [SubEmitterMode] enum.
@@ -3046,6 +3472,54 @@ public open class ParticleProcessMaterial : Material() {
     @JvmField
     public val getColorName: MethodStringName0<ParticleProcessMaterial, Color> =
         MethodStringName0<ParticleProcessMaterial, Color>("get_color")
+
+    @JvmField
+    public val setUseScale3dName: MethodStringName1<ParticleProcessMaterial, Unit, Boolean> =
+        MethodStringName1<ParticleProcessMaterial, Unit, Boolean>("set_use_scale_3d")
+
+    @JvmField
+    public val isUsingScale3dName: MethodStringName0<ParticleProcessMaterial, Boolean> =
+        MethodStringName0<ParticleProcessMaterial, Boolean>("is_using_scale_3d")
+
+    @JvmField
+    public val setScale3dMinName: MethodStringName1<ParticleProcessMaterial, Unit, Vector3> =
+        MethodStringName1<ParticleProcessMaterial, Unit, Vector3>("set_scale_3d_min")
+
+    @JvmField
+    public val getScale3dMinName: MethodStringName0<ParticleProcessMaterial, Vector3> =
+        MethodStringName0<ParticleProcessMaterial, Vector3>("get_scale_3d_min")
+
+    @JvmField
+    public val setScale3dMaxName: MethodStringName1<ParticleProcessMaterial, Unit, Vector3> =
+        MethodStringName1<ParticleProcessMaterial, Unit, Vector3>("set_scale_3d_max")
+
+    @JvmField
+    public val getScale3dMaxName: MethodStringName0<ParticleProcessMaterial, Vector3> =
+        MethodStringName0<ParticleProcessMaterial, Vector3>("get_scale_3d_max")
+
+    @JvmField
+    public val setUseRotation3dName: MethodStringName1<ParticleProcessMaterial, Unit, Boolean> =
+        MethodStringName1<ParticleProcessMaterial, Unit, Boolean>("set_use_rotation_3d")
+
+    @JvmField
+    public val isUsingRotation3dName: MethodStringName0<ParticleProcessMaterial, Boolean> =
+        MethodStringName0<ParticleProcessMaterial, Boolean>("is_using_rotation_3d")
+
+    @JvmField
+    public val setRotation3dMinName: MethodStringName1<ParticleProcessMaterial, Unit, Vector3> =
+        MethodStringName1<ParticleProcessMaterial, Unit, Vector3>("set_rotation_3d_min")
+
+    @JvmField
+    public val getRotation3dMinName: MethodStringName0<ParticleProcessMaterial, Vector3> =
+        MethodStringName0<ParticleProcessMaterial, Vector3>("get_rotation_3d_min")
+
+    @JvmField
+    public val setRotation3dMaxName: MethodStringName1<ParticleProcessMaterial, Unit, Vector3> =
+        MethodStringName1<ParticleProcessMaterial, Unit, Vector3>("set_rotation_3d_max")
+
+    @JvmField
+    public val getRotation3dMaxName: MethodStringName0<ParticleProcessMaterial, Vector3> =
+        MethodStringName0<ParticleProcessMaterial, Vector3>("get_rotation_3d_max")
 
     @JvmField
     public val setColorRampName: MethodStringName1<ParticleProcessMaterial, Unit, Texture2D?> =
@@ -3373,6 +3847,43 @@ public open class ParticleProcessMaterial : Material() {
     @JvmField
     public val getCollisionBounceName: MethodStringName0<ParticleProcessMaterial, Float> =
         MethodStringName0<ParticleProcessMaterial, Float>("get_collision_bounce")
+
+    @JvmField
+    public val setUsingRotationVelocity3dName:
+        MethodStringName1<ParticleProcessMaterial, Unit, Boolean> =
+        MethodStringName1<ParticleProcessMaterial, Unit, Boolean>("set_using_rotation_velocity_3d")
+
+    @JvmField
+    public val isUsingRotationVelocity3dName: MethodStringName0<ParticleProcessMaterial, Boolean> =
+        MethodStringName0<ParticleProcessMaterial, Boolean>("is_using_rotation_velocity_3d")
+
+    @JvmField
+    public val setRotationVelocity3dMaxName:
+        MethodStringName1<ParticleProcessMaterial, Unit, Vector3> =
+        MethodStringName1<ParticleProcessMaterial, Unit, Vector3>("set_rotation_velocity_3d_max")
+
+    @JvmField
+    public val getRotationVelocity3dMaxName: MethodStringName0<ParticleProcessMaterial, Vector3> =
+        MethodStringName0<ParticleProcessMaterial, Vector3>("get_rotation_velocity_3d_max")
+
+    @JvmField
+    public val setRotationVelocity3dMinName:
+        MethodStringName1<ParticleProcessMaterial, Unit, Vector3> =
+        MethodStringName1<ParticleProcessMaterial, Unit, Vector3>("set_rotation_velocity_3d_min")
+
+    @JvmField
+    public val getRotationVelocity3dMinName: MethodStringName0<ParticleProcessMaterial, Vector3> =
+        MethodStringName0<ParticleProcessMaterial, Vector3>("get_rotation_velocity_3d_min")
+
+    @JvmField
+    public val setRotationVelocity3dCurveName:
+        MethodStringName1<ParticleProcessMaterial, Unit, Texture2D?> =
+        MethodStringName1<ParticleProcessMaterial, Unit, Texture2D?>("set_rotation_velocity_3d_curve")
+
+    @JvmField
+    public val getRotationVelocity3dCurveName:
+        MethodStringName0<ParticleProcessMaterial, Texture2D?> =
+        MethodStringName0<ParticleProcessMaterial, Texture2D?>("get_rotation_velocity_3d_curve")
   }
 
   public object MethodBindings {
@@ -3429,6 +3940,42 @@ public open class ParticleProcessMaterial : Material() {
 
     internal val getColorPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_color", 3444240500)
+
+    internal val setUseScale3dPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_use_scale_3d", 2586408642)
+
+    internal val isUsingScale3dPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "is_using_scale_3d", 36873697)
+
+    internal val setScale3dMinPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_scale_3d_min", 3460891852)
+
+    internal val getScale3dMinPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_scale_3d_min", 3360562783)
+
+    internal val setScale3dMaxPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_scale_3d_max", 3460891852)
+
+    internal val getScale3dMaxPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_scale_3d_max", 3360562783)
+
+    internal val setUseRotation3dPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_use_rotation_3d", 2586408642)
+
+    internal val isUsingRotation3dPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "is_using_rotation_3d", 36873697)
+
+    internal val setRotation3dMinPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_rotation_3d_min", 3460891852)
+
+    internal val getRotation3dMinPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_rotation_3d_min", 3360562783)
+
+    internal val setRotation3dMaxPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_rotation_3d_max", 3460891852)
+
+    internal val getRotation3dMaxPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_rotation_3d_max", 3360562783)
 
     internal val setColorRampPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_color_ramp", 4051416890)
@@ -3663,5 +4210,29 @@ public open class ParticleProcessMaterial : Material() {
 
     internal val getCollisionBouncePtr: VoidPtr =
         TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_collision_bounce", 1740695150)
+
+    internal val setUsingRotationVelocity3dPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_using_rotation_velocity_3d", 2586408642)
+
+    internal val isUsingRotationVelocity3dPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "is_using_rotation_velocity_3d", 36873697)
+
+    internal val setRotationVelocity3dMaxPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_rotation_velocity_3d_max", 3460891852)
+
+    internal val getRotationVelocity3dMaxPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_rotation_velocity_3d_max", 3360562783)
+
+    internal val setRotationVelocity3dMinPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_rotation_velocity_3d_min", 3460891852)
+
+    internal val getRotationVelocity3dMinPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_rotation_velocity_3d_min", 3360562783)
+
+    internal val setRotationVelocity3dCurvePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_rotation_velocity_3d_curve", 4051416890)
+
+    internal val getRotationVelocity3dCurvePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_rotation_velocity_3d_curve", 3635182373)
   }
 }

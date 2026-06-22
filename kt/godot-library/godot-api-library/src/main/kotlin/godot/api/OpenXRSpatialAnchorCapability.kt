@@ -16,9 +16,13 @@ import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.MethodStringName2
 import godot.core.MethodStringName3
+import godot.core.MethodStringName4
+import godot.core.MethodStringName5
 import godot.core.RID
 import godot.core.Transform3D
+import godot.core.VariantArray
 import godot.core.VariantCallable
+import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.CALLABLE
 import godot.core.VariantParser.LONG
@@ -39,7 +43,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class OpenXRSpatialAnchorCapability : OpenXRExtensionWrapper() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(460, scriptPtr)
+    createNativeObject(469, scriptPtr)
   }
 
   /**
@@ -71,6 +75,19 @@ public open class OpenXRSpatialAnchorCapability : OpenXRExtensionWrapper() {
     TransferContext.writeArguments(LONG to scope.value)
     TransferContext.callMethod(ptr, MethodBindings.isPersistenceScopeSupportedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Calls [createPersistenceContext] with a configuration that likely works with the XR runtime.
+   *
+   * [userCallback] is called when the context is created.
+   */
+  @JvmOverloads
+  public final fun createDefaultPersistenceContext(userCallback: Callable = VariantCallable()):
+      OpenXRFutureResult? {
+    TransferContext.writeArguments(CALLABLE to userCallback)
+    TransferContext.callMethod(ptr, MethodBindings.createDefaultPersistenceContextPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT) as OpenXRFutureResult?)
   }
 
   /**
@@ -114,11 +131,16 @@ public open class OpenXRSpatialAnchorCapability : OpenXRExtensionWrapper() {
    * default will be used, this requires
    * [ProjectSettings.xr/openxr/extensions/spatialEntity/enableBuiltinAnchorDetection] to be set. The
    * returned tracker will track the location in case our reference space changes.
+   *
+   * [next] must be a valid next object for the `XrSpatialAnchorCreateInfoEXT` chain.
    */
   @JvmOverloads
-  public final fun createNewAnchor(transform: Transform3D, spatialContext: RID = RID()):
-      OpenXRAnchorTracker? {
-    TransferContext.writeArguments(TRANSFORM3D to transform, _RID to spatialContext)
+  public final fun createNewAnchor(
+    transform: Transform3D,
+    spatialContext: RID = RID(),
+    next: OpenXRStructureBase? = null,
+  ): OpenXRAnchorTracker? {
+    TransferContext.writeArguments(TRANSFORM3D to transform, _RID to spatialContext, OBJECT to next)
     TransferContext.callMethod(ptr, MethodBindings.createNewAnchorPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as OpenXRAnchorTracker?)
   }
@@ -175,6 +197,65 @@ public open class OpenXRSpatialAnchorCapability : OpenXRExtensionWrapper() {
     return (TransferContext.readReturnValue(OBJECT) as OpenXRFutureResult?)
   }
 
+  /**
+   * Calls [OpenXRSpatialEntityExtension.discoverSpatialEntities] and
+   * [OpenXRSpatialEntityExtension.querySnapshot] with the anchor entities associated with
+   * [spatialContext].
+   *
+   * [componentData] are the [OpenXRSpatialComponentData]s to discover for this anchor capability.
+   *
+   * If [nextSnapshotCreate] is non-null, then pass this to the `next` parameter in
+   * [OpenXRSpatialEntityExtension.discoverSpatialEntities].
+   *
+   * If [nextSnapshotQuery] is non-null, then pass this to the `next` parameter in
+   * [OpenXRSpatialEntityExtension.querySnapshot].
+   *
+   * [userCallback], when non-null, is called with two parameters usually twice. The first parameter
+   * is the [RID] of the discovery snapshot and the second parameter is a boolean where `false`
+   * indicates the discovery snapshot is about to be processed, and `true` indicates the discovery
+   * snapshot has been processed and [componentData] has valid data. The second call is skipped if an
+   * error was encountered.
+   *
+   * The returned [OpenXRFutureResult] is identical to the return from
+   * [OpenXRSpatialEntityExtension.discoverSpatialEntities].
+   */
+  @JvmOverloads
+  public final fun startEntityDiscovery(
+    spatialContext: RID,
+    componentData: VariantArray<OpenXRSpatialComponentData>,
+    nextSnapshotCreate: OpenXRStructureBase? = null,
+    nextSnapshotQuery: OpenXRStructureBase? = null,
+    userCallback: Callable = VariantCallable(),
+  ): OpenXRFutureResult? {
+    TransferContext.writeArguments(_RID to spatialContext, ARRAY to componentData, OBJECT to nextSnapshotCreate, OBJECT to nextSnapshotQuery, CALLABLE to userCallback)
+    TransferContext.callMethod(ptr, MethodBindings.startEntityDiscoveryPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT) as OpenXRFutureResult?)
+  }
+
+  /**
+   * Calls [OpenXRSpatialEntityExtension.updateSpatialEntities] and
+   * [OpenXRSpatialEntityExtension.querySnapshot] with the anchor entities associated with
+   * [spatialContext].
+   *
+   * [componentData] are the [OpenXRSpatialComponentData]s to update for this anchor capability.
+   *
+   * If [nextSnapshotCreate] is non-null, then pass this to the `next` parameter in
+   * [OpenXRSpatialEntityExtension.updateSpatialEntities].
+   *
+   * If [nextSnapshotQuery] is non-null, then pass this to the `next` parameter in
+   * [OpenXRSpatialEntityExtension.querySnapshot].
+   */
+  @JvmOverloads
+  public final fun doEntityUpdate(
+    spatialContext: RID,
+    componentData: VariantArray<OpenXRSpatialComponentData>,
+    nextSnapshotCreate: OpenXRStructureBase? = null,
+    nextSnapshotQuery: OpenXRStructureBase? = null,
+  ): Unit {
+    TransferContext.writeArguments(_RID to spatialContext, ARRAY to componentData, OBJECT to nextSnapshotCreate, OBJECT to nextSnapshotQuery)
+    TransferContext.callMethod(ptr, MethodBindings.doEntityUpdatePtr, NIL)
+  }
+
   public enum class PersistenceScope(
     public override val `value`: Long,
   ) : GodotEnum {
@@ -214,6 +295,11 @@ public open class OpenXRSpatialAnchorCapability : OpenXRExtensionWrapper() {
         MethodStringName1<OpenXRSpatialAnchorCapability, Boolean, PersistenceScope>("is_persistence_scope_supported")
 
     @JvmField
+    public val createDefaultPersistenceContextName:
+        MethodStringName1<OpenXRSpatialAnchorCapability, OpenXRFutureResult?, Callable> =
+        MethodStringName1<OpenXRSpatialAnchorCapability, OpenXRFutureResult?, Callable>("create_default_persistence_context")
+
+    @JvmField
     public val createPersistenceContextName:
         MethodStringName2<OpenXRSpatialAnchorCapability, OpenXRFutureResult?, PersistenceScope, Callable>
         =
@@ -231,8 +317,9 @@ public open class OpenXRSpatialAnchorCapability : OpenXRExtensionWrapper() {
 
     @JvmField
     public val createNewAnchorName:
-        MethodStringName2<OpenXRSpatialAnchorCapability, OpenXRAnchorTracker?, Transform3D, RID> =
-        MethodStringName2<OpenXRSpatialAnchorCapability, OpenXRAnchorTracker?, Transform3D, RID>("create_new_anchor")
+        MethodStringName3<OpenXRSpatialAnchorCapability, OpenXRAnchorTracker?, Transform3D, RID, OpenXRStructureBase?>
+        =
+        MethodStringName3<OpenXRSpatialAnchorCapability, OpenXRAnchorTracker?, Transform3D, RID, OpenXRStructureBase?>("create_new_anchor")
 
     @JvmField
     public val removeAnchorName:
@@ -250,6 +337,18 @@ public open class OpenXRSpatialAnchorCapability : OpenXRExtensionWrapper() {
         MethodStringName3<OpenXRSpatialAnchorCapability, OpenXRFutureResult?, OpenXRAnchorTracker?, RID, Callable>
         =
         MethodStringName3<OpenXRSpatialAnchorCapability, OpenXRFutureResult?, OpenXRAnchorTracker?, RID, Callable>("unpersist_anchor")
+
+    @JvmField
+    public val startEntityDiscoveryName:
+        MethodStringName5<OpenXRSpatialAnchorCapability, OpenXRFutureResult?, RID, VariantArray<OpenXRSpatialComponentData>, OpenXRStructureBase?, OpenXRStructureBase?, Callable>
+        =
+        MethodStringName5<OpenXRSpatialAnchorCapability, OpenXRFutureResult?, RID, VariantArray<OpenXRSpatialComponentData>, OpenXRStructureBase?, OpenXRStructureBase?, Callable>("start_entity_discovery")
+
+    @JvmField
+    public val doEntityUpdateName:
+        MethodStringName4<OpenXRSpatialAnchorCapability, Unit, RID, VariantArray<OpenXRSpatialComponentData>, OpenXRStructureBase?, OpenXRStructureBase?>
+        =
+        MethodStringName4<OpenXRSpatialAnchorCapability, Unit, RID, VariantArray<OpenXRSpatialComponentData>, OpenXRStructureBase?, OpenXRStructureBase?>("do_entity_update")
   }
 
   public object MethodBindings {
@@ -262,6 +361,9 @@ public open class OpenXRSpatialAnchorCapability : OpenXRExtensionWrapper() {
     internal val isPersistenceScopeSupportedPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRSpatialAnchorCapability", "is_persistence_scope_supported", 3651771626)
 
+    internal val createDefaultPersistenceContextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRSpatialAnchorCapability", "create_default_persistence_context", 1401033661)
+
     internal val createPersistenceContextPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRSpatialAnchorCapability", "create_persistence_context", 856276630)
 
@@ -272,7 +374,7 @@ public open class OpenXRSpatialAnchorCapability : OpenXRExtensionWrapper() {
         TypeManager.getMethodBindPtr("OpenXRSpatialAnchorCapability", "free_persistence_context", 2722037293)
 
     internal val createNewAnchorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRSpatialAnchorCapability", "create_new_anchor", 607100373)
+        TypeManager.getMethodBindPtr("OpenXRSpatialAnchorCapability", "create_new_anchor", 4088043487)
 
     internal val removeAnchorPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRSpatialAnchorCapability", "remove_anchor", 3579451518)
@@ -282,5 +384,11 @@ public open class OpenXRSpatialAnchorCapability : OpenXRExtensionWrapper() {
 
     internal val unpersistAnchorPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRSpatialAnchorCapability", "unpersist_anchor", 4244202513)
+
+    internal val startEntityDiscoveryPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRSpatialAnchorCapability", "start_entity_discovery", 3452714169)
+
+    internal val doEntityUpdatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRSpatialAnchorCapability", "do_entity_update", 3138044275)
   }
 }

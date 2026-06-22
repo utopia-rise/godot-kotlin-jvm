@@ -43,7 +43,7 @@ public open class VisualShaderNodeExpression : VisualShaderNodeGroupBase() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(811, scriptPtr)
+    createNativeObject(826, scriptPtr)
   }
 
   public final fun setExpression(expression: String): Unit {

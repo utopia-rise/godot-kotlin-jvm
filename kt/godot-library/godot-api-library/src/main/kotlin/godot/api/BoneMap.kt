@@ -58,7 +58,7 @@ public open class BoneMap : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(110, scriptPtr)
+    createNativeObject(114, scriptPtr)
   }
 
   public final fun getProfile(): SkeletonProfile? {

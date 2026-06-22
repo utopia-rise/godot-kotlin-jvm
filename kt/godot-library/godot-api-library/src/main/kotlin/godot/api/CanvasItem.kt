@@ -224,6 +224,17 @@ public open class CanvasItem internal constructor() : Node() {
     }
 
   /**
+   * If enabled, oversampling for this [CanvasItem] is automatically adjusted with scale.
+   */
+  public final inline var oversamplingWithScale: OversamplingWithScale
+    @JvmName("oversamplingWithScaleProperty")
+    get() = getOversamplingWithScale()
+    @JvmName("oversamplingWithScaleProperty")
+    set(`value`) {
+      setOversamplingWithScale(value)
+    }
+
+  /**
    * The rendering layers in which this [CanvasItem] responds to [Light2D] nodes.
    */
   public final inline var lightMask: Int
@@ -356,7 +367,7 @@ public open class CanvasItem internal constructor() : Node() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(140, scriptPtr)
+    createNativeObject(144, scriptPtr)
   }
 
   /**
@@ -1657,6 +1668,17 @@ public open class CanvasItem internal constructor() : Node() {
     return ClipChildrenMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
+  public final fun setOversamplingWithScale(enabled: OversamplingWithScale): Unit {
+    TransferContext.writeArguments(LONG to enabled.value)
+    TransferContext.callMethod(ptr, MethodBindings.setOversamplingWithScalePtr, NIL)
+  }
+
+  public final fun getOversamplingWithScale(): OversamplingWithScale {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getOversamplingWithScalePtr, LONG)
+    return OversamplingWithScale.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
   /**
    * Set the value of a shader uniform for this instance only
    * ([url=$DOCS_URL/tutorials/shaders/shader_reference/shading_language.html#per-instance-uniforms]per-instance
@@ -1758,7 +1780,7 @@ public open class CanvasItem internal constructor() : Node() {
     public override val `value`: Long,
   ) : GodotEnum {
     /**
-     * The [CanvasItem] will inherit the filter from its parent.
+     * The [CanvasItem] will inherit the repeat mode from its parent.
      */
     PARENT_NODE(0),
     /**
@@ -1814,6 +1836,34 @@ public open class CanvasItem internal constructor() : Node() {
 
     public companion object {
       public fun from(`value`: Long): ClipChildrenMode = entries.single { it.`value` == `value` }
+    }
+  }
+
+  public enum class OversamplingWithScale(
+    public override val `value`: Long,
+  ) : GodotEnum {
+    /**
+     * The [CanvasItem] will inherit the oversampling mode from its parent.
+     */
+    PARENT_NODE(0),
+    /**
+     * The oversampling is not affected by [CanvasItem] scale, and is equal to the [Viewport]
+     * oversampling.
+     */
+    DISABLED(1),
+    /**
+     * The oversampling is a product of [CanvasItem] scale and [Viewport] oversampling.
+     */
+    ENABLED(2),
+    /**
+     * Represents the size of the [OversamplingWithScale] enum.
+     */
+    MAX(3),
+    ;
+
+    public companion object {
+      public fun from(`value`: Long): OversamplingWithScale =
+          entries.single { it.`value` == `value` }
     }
   }
 
@@ -2219,6 +2269,15 @@ public open class CanvasItem internal constructor() : Node() {
     public val getClipChildrenModeName: MethodStringName0<CanvasItem, ClipChildrenMode> =
         MethodStringName0<CanvasItem, ClipChildrenMode>("get_clip_children_mode")
 
+    @JvmField
+    public val setOversamplingWithScaleName:
+        MethodStringName1<CanvasItem, Unit, OversamplingWithScale> =
+        MethodStringName1<CanvasItem, Unit, OversamplingWithScale>("set_oversampling_with_scale")
+
+    @JvmField
+    public val getOversamplingWithScaleName: MethodStringName0<CanvasItem, OversamplingWithScale> =
+        MethodStringName0<CanvasItem, OversamplingWithScale>("get_oversampling_with_scale")
+
     /**
      * Notification received when this node's global transform changes, if
      * [isTransformNotificationEnabled] is `true`. See also [setNotifyTransform] and [getTransform].
@@ -2541,5 +2600,11 @@ public open class CanvasItem internal constructor() : Node() {
 
     internal val getClipChildrenModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("CanvasItem", "get_clip_children_mode", 3581808349)
+
+    internal val setOversamplingWithScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasItem", "set_oversampling_with_scale", 872218804)
+
+    internal val getOversamplingWithScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasItem", "get_oversampling_with_scale", 2026097197)
   }
 }

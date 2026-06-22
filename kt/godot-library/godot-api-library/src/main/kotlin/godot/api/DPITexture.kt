@@ -15,6 +15,7 @@ import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.MethodStringName4
 import godot.core.RID
+import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DICTIONARY
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
@@ -24,6 +25,7 @@ import godot.core.VariantParser.VECTOR2I
 import godot.core.VariantParser._RID
 import godot.core.Vector2i
 import kotlin.Any
+import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
@@ -44,6 +46,40 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public open class DPITexture : Texture2D() {
+  /**
+   * If `true`, puts pixels of the same surrounding color in transition from transparent to opaque
+   * areas. For textures displayed with bilinear filtering, this helps to reduce the outline effect
+   * when exporting images from an image editor.
+   */
+  public final inline var fixAlphaBorder: Boolean
+    @JvmName("fixAlphaBorderProperty")
+    get() = getFixAlphaBorder()
+    @JvmName("fixAlphaBorderProperty")
+    set(`value`) {
+      setFixAlphaBorder(value)
+    }
+
+  /**
+   * An alternative to fixing darkened borders with [fixAlphaBorder] is to use premultiplied alpha.
+   * By enabling this option, the texture will be converted to this format. A premultiplied alpha
+   * texture requires specific materials to be displayed correctly:
+   *
+   * - In 2D, a [CanvasItemMaterial] will need to be created and configured to use the
+   * [CanvasItemMaterial.BLEND_MODE_PREMULT_ALPHA] blend mode on [CanvasItem]s that use this texture.
+   * In custom `canvas_item` shaders, `render_mode blend_premul_alpha;` should be used.
+   *
+   * - In 3D, a [BaseMaterial3D] will need to be created and configured to use the
+   * [BaseMaterial3D.BLEND_MODE_PREMULT_ALPHA] blend mode on materials that use this texture. In custom
+   * `spatial` shaders, `render_mode blend_premul_alpha;` should be used.
+   */
+  public final inline var premultAlpha: Boolean
+    @JvmName("premultAlphaProperty")
+    get() = getPremultAlpha()
+    @JvmName("premultAlphaProperty")
+    set(`value`) {
+      setPremultAlpha(value)
+    }
+
   /**
    * Texture scale. `1.0` is the original SVG size. Higher values result in a larger image.
    */
@@ -78,7 +114,7 @@ public open class DPITexture : Texture2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(199, scriptPtr)
+    createNativeObject(203, scriptPtr)
   }
 
   /**
@@ -96,6 +132,28 @@ public open class DPITexture : Texture2D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSourcePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
+  }
+
+  public final fun setFixAlphaBorder(fixAlphaBorder: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to fixAlphaBorder)
+    TransferContext.callMethod(ptr, MethodBindings.setFixAlphaBorderPtr, NIL)
+  }
+
+  public final fun getFixAlphaBorder(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getFixAlphaBorderPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setPremultAlpha(premultAlpha: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to premultAlpha)
+    TransferContext.callMethod(ptr, MethodBindings.setPremultAlphaPtr, NIL)
+  }
+
+  public final fun getPremultAlpha(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getPremultAlphaPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setBaseScale(baseScale: Float): Unit {
@@ -178,6 +236,22 @@ public open class DPITexture : Texture2D() {
         MethodStringName0<DPITexture, String>("get_source")
 
     @JvmField
+    public val setFixAlphaBorderName: MethodStringName1<DPITexture, Unit, Boolean> =
+        MethodStringName1<DPITexture, Unit, Boolean>("set_fix_alpha_border")
+
+    @JvmField
+    public val getFixAlphaBorderName: MethodStringName0<DPITexture, Boolean> =
+        MethodStringName0<DPITexture, Boolean>("get_fix_alpha_border")
+
+    @JvmField
+    public val setPremultAlphaName: MethodStringName1<DPITexture, Unit, Boolean> =
+        MethodStringName1<DPITexture, Unit, Boolean>("set_premult_alpha")
+
+    @JvmField
+    public val getPremultAlphaName: MethodStringName0<DPITexture, Boolean> =
+        MethodStringName0<DPITexture, Boolean>("get_premult_alpha")
+
+    @JvmField
     public val setBaseScaleName: MethodStringName1<DPITexture, Unit, Float> =
         MethodStringName1<DPITexture, Unit, Float>("set_base_scale")
 
@@ -236,6 +310,18 @@ public open class DPITexture : Texture2D() {
 
     internal val getSourcePtr: VoidPtr =
         TypeManager.getMethodBindPtr("DPITexture", "get_source", 201670096)
+
+    internal val setFixAlphaBorderPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DPITexture", "set_fix_alpha_border", 2586408642)
+
+    internal val getFixAlphaBorderPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DPITexture", "get_fix_alpha_border", 36873697)
+
+    internal val setPremultAlphaPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DPITexture", "set_premult_alpha", 2586408642)
+
+    internal val getPremultAlphaPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DPITexture", "get_premult_alpha", 36873697)
 
     internal val setBaseScalePtr: VoidPtr =
         TypeManager.getMethodBindPtr("DPITexture", "set_base_scale", 373806689)

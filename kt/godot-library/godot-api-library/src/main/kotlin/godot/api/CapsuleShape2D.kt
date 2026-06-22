@@ -74,7 +74,7 @@ public open class CapsuleShape2D : Shape2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(146, scriptPtr)
+    createNativeObject(150, scriptPtr)
   }
 
   public final fun setRadius(radius: Float): Unit {

@@ -44,7 +44,7 @@ public open class GridContainer : Container() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(277, scriptPtr)
+    createNativeObject(283, scriptPtr)
   }
 
   public final fun setColumns(columns: Int): Unit {

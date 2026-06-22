@@ -42,7 +42,7 @@ public open class SphereShape3D : Shape3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(674, scriptPtr)
+    createNativeObject(688, scriptPtr)
   }
 
   public final fun setRadius(radius: Float): Unit {

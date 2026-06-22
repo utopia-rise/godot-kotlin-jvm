@@ -28,7 +28,7 @@ public infix fun Long.and(other: ImageFormatLoader.LoaderFlags): Long = this.and
 @GodotBaseType
 public open class ImageFormatLoader internal constructor() : RefCounted() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(295, scriptPtr)
+    createNativeObject(301, scriptPtr)
   }
 
   public class LoaderFlags(
@@ -37,12 +37,22 @@ public open class ImageFormatLoader internal constructor() : RefCounted() {
     protected override fun wrap(flag: Long): LoaderFlags = LoaderFlags(flag)
 
     public companion object {
+      /**
+       * Default loading behavior. No processing is applied to the image.
+       */
       @JvmField
       public val FLAG_NONE: LoaderFlags = LoaderFlags(0)
 
+      /**
+       * If set, the image is converted from sRGB to linear encoding.
+       */
       @JvmField
       public val FLAG_FORCE_LINEAR: LoaderFlags = LoaderFlags(1)
 
+      /**
+       * If set, a predefined color map is applied to the image. Used when
+       * [ResourceImporterTexture.editor/convertColorsWithEditorTheme] is `true`.
+       */
       @JvmField
       public val FLAG_CONVERT_COLORS: LoaderFlags = LoaderFlags(2)
     }

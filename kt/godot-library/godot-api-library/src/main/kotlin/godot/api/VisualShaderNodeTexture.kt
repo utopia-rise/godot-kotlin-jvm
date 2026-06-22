@@ -62,7 +62,7 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(860, scriptPtr)
+    createNativeObject(875, scriptPtr)
   }
 
   public final fun setSource(`value`: Source): Unit {

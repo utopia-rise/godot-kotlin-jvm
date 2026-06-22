@@ -30,7 +30,7 @@ import kotlin.jvm.JvmField
 @GodotBaseType
 public abstract class PhysicsDirectSpaceState2DExtension : PhysicsDirectSpaceState2D() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(522, scriptPtr)
+    createNativeObject(531, scriptPtr)
   }
 
   public final fun isBodyExcludedFromQuery(body: RID): Boolean {

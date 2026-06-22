@@ -23,7 +23,7 @@ import kotlin.Unit
 @GodotBaseType
 public abstract class ScriptExtension : Script() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(630, scriptPtr)
+    createNativeObject(644, scriptPtr)
   }
 
   public abstract fun _editorCanReloadFromFile(): Boolean
@@ -37,8 +37,6 @@ public abstract class ScriptExtension : Script() {
   public abstract fun _inheritsScript(script: Script?): Boolean
 
   public abstract fun _getInstanceBaseType(): StringName
-
-  public abstract fun _instanceHas(`object`: Object?): Boolean
 
   public abstract fun _hasSourceCode(): Boolean
 
@@ -110,6 +108,10 @@ public abstract class ScriptExtension : Script() {
 
   public abstract fun _getRpcConfig(): Any?
 
+  public open fun _instanceHas(`object`: Object?): Boolean {
+    throw NotImplementedError("ScriptExtension::_instanceHas is not implemented.")
+  }
+
   public companion object
 
   public object MethodBindings
@@ -138,10 +140,6 @@ internal class ScriptExtensionDummy : ScriptExtension() {
 
   public override fun _getInstanceBaseType(): StringName {
     throw NotImplementedError("ScriptExtension::_getInstanceBaseType is only implemented by non-JVM code.")
-  }
-
-  public override fun _instanceHas(`object`: Object?): Boolean {
-    throw NotImplementedError("ScriptExtension::_instanceHas is only implemented by non-JVM code.")
   }
 
   public override fun _hasSourceCode(): Boolean {

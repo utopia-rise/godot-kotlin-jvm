@@ -21,7 +21,6 @@ public:
     bool handles_global_class_type(const String& p_type) const override;
     String get_global_class_name(const String& p_path, String* r_base_type, String* r_icon_path, bool *r_is_abstract = nullptr, bool *r_is_tool = nullptr) const override;
     bool supports_builtin_mode() const override;
-    Script* create_script() const override;
 
     Vector<String> get_reserved_words() const override;
     bool is_control_flow_keyword(const String& p_keyword) const override;

@@ -43,6 +43,10 @@ import kotlin.jvm.JvmName
  *
  * **Note:** If an extracted twist is greater than 180 degrees, flipping occurs. This is similar to
  * [ConvertTransformModifier3D].
+ *
+ * **Note:** Most methods in this class take an `index` parameter. This parameter specifies which
+ * setting list entry to return if the IK has multiple entries (e.g.
+ * `settings/<index>/root_bone_name`).
  */
 @GodotBaseType
 public open class BoneTwistDisperser3D : SkeletonModifier3D() {
@@ -71,7 +75,7 @@ public open class BoneTwistDisperser3D : SkeletonModifier3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(111, scriptPtr)
+    createNativeObject(115, scriptPtr)
   }
 
   public final fun setSettingCount(count: Int): Unit {

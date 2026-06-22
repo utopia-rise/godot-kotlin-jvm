@@ -43,7 +43,7 @@ import kotlin.jvm.JvmField
 @GodotBaseType
 public open class TileSetSource internal constructor() : Resource() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(749, scriptPtr)
+    createNativeObject(763, scriptPtr)
   }
 
   /**

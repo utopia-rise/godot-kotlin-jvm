@@ -99,7 +99,7 @@ public open class Animation : Resource() {
    * **Note:** Length is not delimited by the last key, as this one may be before or after the end
    * to ensure correct interpolation and looping.
    */
-  public final inline var length: Float
+  public final inline var length: Double
     @JvmName("lengthProperty")
     get() = getLength()
     @JvmName("lengthProperty")
@@ -140,7 +140,7 @@ public open class Animation : Resource() {
     get() = isCaptureIncluded()
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(13, scriptPtr)
+    createNativeObject(14, scriptPtr)
   }
 
   /**
@@ -957,15 +957,15 @@ public open class Animation : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.setMarkerColorPtr, NIL)
   }
 
-  public final fun setLength(timeSec: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to timeSec.toDouble())
+  public final fun setLength(timeSec: Double): Unit {
+    TransferContext.writeArguments(DOUBLE to timeSec)
     TransferContext.callMethod(ptr, MethodBindings.setLengthPtr, NIL)
   }
 
-  public final fun getLength(): Float {
+  public final fun getLength(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setLoopMode(loopMode: LoopMode): Unit {
@@ -1604,12 +1604,12 @@ public open class Animation : Resource() {
         MethodStringName2<Animation, Unit, StringName, Color>("set_marker_color")
 
     @JvmField
-    public val setLengthName: MethodStringName1<Animation, Unit, Float> =
-        MethodStringName1<Animation, Unit, Float>("set_length")
+    public val setLengthName: MethodStringName1<Animation, Unit, Double> =
+        MethodStringName1<Animation, Unit, Double>("set_length")
 
     @JvmField
-    public val getLengthName: MethodStringName0<Animation, Float> =
-        MethodStringName0<Animation, Float>("get_length")
+    public val getLengthName: MethodStringName0<Animation, Double> =
+        MethodStringName0<Animation, Double>("get_length")
 
     @JvmField
     public val setLoopModeName: MethodStringName1<Animation, Unit, LoopMode> =

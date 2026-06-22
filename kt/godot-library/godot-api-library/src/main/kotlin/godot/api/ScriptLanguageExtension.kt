@@ -26,7 +26,7 @@ import kotlin.Unit
 @GodotBaseType
 public abstract class ScriptLanguageExtension : ScriptLanguage() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(632, scriptPtr)
+    createNativeObject(646, scriptPtr)
   }
 
   public abstract fun _getName(): String
@@ -73,7 +73,9 @@ public abstract class ScriptLanguageExtension : ScriptLanguage() {
 
   public abstract fun _validatePath(path: String): String
 
-  public abstract fun _createScript(): Object?
+  public open fun _createScript(): Object? {
+    throw NotImplementedError("ScriptLanguageExtension::_createScript is not implemented.")
+  }
 
   public open fun _hasNamedClasses(): Boolean {
     throw NotImplementedError("ScriptLanguageExtension::_hasNamedClasses is not implemented.")
@@ -178,8 +180,16 @@ public abstract class ScriptLanguageExtension : ScriptLanguage() {
 
   public abstract fun _reloadAllScripts(): Unit
 
+  /**
+   * Reloads all [scripts] from disk and the specifics of how that happens is
+   * [ScriptLanguageExtension] specific.
+   */
   public abstract fun _reloadScripts(scripts: VariantArray<Any?>, softReload: Boolean): Unit
 
+  /**
+   * Reloads the given [script] from disk and the specifics of how that happens is
+   * [ScriptLanguageExtension] specific.
+   */
   public abstract fun _reloadToolScript(script: Script?, softReload: Boolean): Unit
 
   public abstract fun _getRecognizedExtensions(): PackedStringArray
@@ -271,7 +281,8 @@ public abstract class ScriptLanguageExtension : ScriptLanguage() {
     NODE_PATH(7),
     FILE_PATH(8),
     PLAIN_TEXT(9),
-    MAX(10),
+    KEYWORD(10),
+    MAX(11),
     ;
 
     public companion object {
@@ -351,10 +362,6 @@ internal class ScriptLanguageExtensionDummy : ScriptLanguageExtension() {
 
   public override fun _validatePath(path: String): String {
     throw NotImplementedError("ScriptLanguageExtension::_validatePath is only implemented by non-JVM code.")
-  }
-
-  public override fun _createScript(): Object? {
-    throw NotImplementedError("ScriptLanguageExtension::_createScript is only implemented by non-JVM code.")
   }
 
   public override fun _supportsBuiltinMode(): Boolean {

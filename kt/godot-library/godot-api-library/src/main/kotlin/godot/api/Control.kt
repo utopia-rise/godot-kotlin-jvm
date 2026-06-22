@@ -165,6 +165,11 @@ public open class Control : CanvasItem() {
   public val sizeFlagsChanged: Signal0 by Signal0
 
   /**
+   * Emitted when the node's maximum size changes.
+   */
+  public val maximumSizeChanged: Signal0 by Signal0
+
+  /**
    * Emitted when the node's minimum size changes.
    */
   public val minimumSizeChanged: Signal0 by Signal0
@@ -175,24 +180,15 @@ public open class Control : CanvasItem() {
   public val themeChanged: Signal0 by Signal0
 
   /**
-   * Enables whether rendering of [CanvasItem] based children should be clipped to this control's
-   * rectangle. If `true`, parts of a child which would be visibly outside of this control's rectangle
-   * will not be rendered and won't receive input.
-   */
-  public final inline var clipContents: Boolean
-    @JvmName("clipContentsProperty")
-    get() = isClippingContents()
-    @JvmName("clipContentsProperty")
-    set(`value`) {
-      setClipContents(value)
-    }
-
-  /**
    * The minimum size of the node's bounding rectangle. If you set it to a value greater than `(0,
    * 0)`, the node's bounding rectangle will always have at least this size. Note that [Control] nodes
    * have their internal minimum size returned by [getMinimumSize]. It depends on the control's
    * contents, like text, textures, or style boxes. The actual minimum size is the maximum value of
    * this property and the internal minimum size (see [getCombinedMinimumSize]).
+   *
+   * **Note:** [customMaximumSize] has priority over this property. For example, if you set
+   * [customMinimumSize] to `(200, 200)` and [customMaximumSize] to `(100, 100)`, the resulting size
+   * will be `(100, 100)`.
    *
    * **Warning:**
    * Be careful when trying to modify a local
@@ -211,15 +207,63 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * Controls layout direction and text writing direction. Right-to-left layouts are necessary for
-   * certain languages (e.g. Arabic and Hebrew). See also [isLayoutRtl].
+   * The maximum size of this Control's bounding rectangle. If set to a value greater than or equal
+   * to `(0, 0)`, the node's bounding rectangle will never exceed this size. A value below `(0, 0)`
+   * means there is no maximum size.
+   *
+   * **Note:** The final effective maximum size may be subject to parent Container sizing and
+   * propagated maximum sizes. See also: [getCombinedMaximumSize].
+   *
+   * **Note:** Not all [Control] subtypes handle a custom maximum size gracefully, which may lead to
+   * unexpected behavior if the control's contents exceed this size.
+   *
+   * **Note:** This value has priority over [customMinimumSize]. For example, if you set
+   * [customMaximumSize] to `(100, 100)` and [customMinimumSize] to `(200, 200)`, the resulting size
+   * will be `(100, 100)`.
+   *
+   * **Note:** It is recommended to use [getBoundMinimumSize] instead of [getCombinedMinimumSize]
+   * when using this property, as the former respects maximum size limits when calculating the minimum
+   * size, while the latter does not.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
    */
-  public final inline var layoutDirection: LayoutDirection
-    @JvmName("layoutDirectionProperty")
-    get() = getLayoutDirection()
-    @JvmName("layoutDirectionProperty")
+  @CoreTypeLocalCopy
+  public final inline var customMaximumSize: Vector2
+    @JvmName("customMaximumSizeProperty")
+    get() = getCustomMaximumSize()
+    @JvmName("customMaximumSizeProperty")
     set(`value`) {
-      setLayoutDirection(value)
+      setCustomMaximumSize(value)
+    }
+
+  /**
+   * If `true`, this Control's children will use the value returned by [getCombinedMaximumSize] in
+   * their own size calculations.
+   */
+  public final inline var propagateMaximumSize: Boolean
+    @JvmName("propagateMaximumSizeProperty")
+    get() = isPropagatingMaximumSize()
+    @JvmName("propagateMaximumSizeProperty")
+    set(`value`) {
+      setPropagateMaximumSize(value)
+    }
+
+  /**
+   * Enables whether rendering of [CanvasItem] based children should be clipped to this control's
+   * rectangle. If `true`, parts of a child which would be visibly outside of this control's rectangle
+   * will not be rendered and won't receive input.
+   */
+  public final inline var clipContents: Boolean
+    @JvmName("clipContentsProperty")
+    get() = isClippingContents()
+    @JvmName("clipContentsProperty")
+    set(`value`) {
+      setClipContents(value)
     }
 
   /**
@@ -516,6 +560,168 @@ public open class Control : CanvasItem() {
     }
 
   /**
+   * If `true`, applies all offset transform properties. Otherwise, no offset transform is applied
+   * and the properties have no effect.
+   */
+  public final inline var offsetTransformEnabled: Boolean
+    @JvmName("offsetTransformEnabledProperty")
+    get() = isOffsetTransformEnabled()
+    @JvmName("offsetTransformEnabledProperty")
+    set(`value`) {
+      setOffsetTransformEnabled(value)
+    }
+
+  /**
+   * Position offset in absolute units. The final offset is the combined value of this property and
+   * [offsetTransformPositionRatio].
+   *
+   * Has no effect unless [offsetTransformEnabled] is `true`.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
+  @CoreTypeLocalCopy
+  public final inline var offsetTransformPosition: Vector2
+    @JvmName("offsetTransformPositionProperty")
+    get() = getOffsetTransformPosition()
+    @JvmName("offsetTransformPositionProperty")
+    set(`value`) {
+      setOffsetTransformPosition(value)
+    }
+
+  /**
+   * Same as [offsetTransformPosition] but expressed in units relative to the [Control] [size] where
+   * `Vector2(0, 0)` is the top-left corner of this control, and `Vector2(1, 1)` is its bottom-right
+   * corner.
+   *
+   * The final offset is the combined value of this property and [offsetTransformPosition].
+   *
+   * Has no effect unless [offsetTransformEnabled] is `true`.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
+  @CoreTypeLocalCopy
+  public final inline var offsetTransformPositionRatio: Vector2
+    @JvmName("offsetTransformPositionRatioProperty")
+    get() = getOffsetTransformPositionRatio()
+    @JvmName("offsetTransformPositionRatioProperty")
+    set(`value`) {
+      setOffsetTransformPositionRatio(value)
+    }
+
+  /**
+   * Scale offset. The scale pivot is defined by [offsetTransformPivot] and
+   * [offsetTransformPivotRatio].
+   *
+   * Has no effect unless [offsetTransformEnabled] is `true`.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
+  @CoreTypeLocalCopy
+  public final inline var offsetTransformScale: Vector2
+    @JvmName("offsetTransformScaleProperty")
+    get() = getOffsetTransformScale()
+    @JvmName("offsetTransformScaleProperty")
+    set(`value`) {
+      setOffsetTransformScale(value)
+    }
+
+  /**
+   * Rotation offset. The rotation pivot is defined by [offsetTransformPivot] and
+   * [offsetTransformPivotRatio].
+   *
+   * Has no effect unless [offsetTransformEnabled] is `true`.
+   */
+  public final inline var offsetTransformRotation: Float
+    @JvmName("offsetTransformRotationProperty")
+    get() = getOffsetTransformRotation()
+    @JvmName("offsetTransformRotationProperty")
+    set(`value`) {
+      setOffsetTransformRotation(value)
+    }
+
+  /**
+   * Pivot used by [offsetTransformRotation] and [offsetTransformScale] in absolute units.
+   *
+   * The final pivot position is the combined value of this property and
+   * [offsetTransformPivotRatio].
+   *
+   * Has no effect unless [offsetTransformEnabled] is `true`.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
+  @CoreTypeLocalCopy
+  public final inline var offsetTransformPivot: Vector2
+    @JvmName("offsetTransformPivotProperty")
+    get() = getOffsetTransformPivot()
+    @JvmName("offsetTransformPivotProperty")
+    set(`value`) {
+      setOffsetTransformPivot(value)
+    }
+
+  /**
+   * Same as [offsetTransformPivot] but expressed in units relative to the [Control] [size] where
+   * `Vector2(0, 0)` is the top-left corner of this control, and `Vector2(1, 1)` is its bottom-right
+   * corner.
+   *
+   * The final pivot position is the combined value of this property and [offsetTransformPivot].
+   *
+   * Has no effect unless [offsetTransformEnabled] is `true`.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
+  @CoreTypeLocalCopy
+  public final inline var offsetTransformPivotRatio: Vector2
+    @JvmName("offsetTransformPivotRatioProperty")
+    get() = getOffsetTransformPivotRatio()
+    @JvmName("offsetTransformPivotRatioProperty")
+    set(`value`) {
+      setOffsetTransformPivotRatio(value)
+    }
+
+  /**
+   * If `true`, the offset transforms is only applied visually and does not affect input. In other
+   * words, this Control will still receive input events at its original location before the offset
+   * transform is applied.
+   *
+   * If `false`, the entire transform of this Control is affected and input events will register
+   * where the Control is visually.
+   *
+   * Has no effect unless [offsetTransformEnabled] is `true`.
+   */
+  public final inline var offsetTransformVisualOnly: Boolean
+    @JvmName("offsetTransformVisualOnlyProperty")
+    get() = isOffsetTransformVisualOnly()
+    @JvmName("offsetTransformVisualOnlyProperty")
+    set(`value`) {
+      setOffsetTransformVisualOnly(value)
+    }
+
+  /**
    * If `true`, automatically converts code line numbers, list indices, [SpinBox] and [ProgressBar]
    * values from the Western Arabic (0..9) to the numeral systems used in current locale.
    *
@@ -528,6 +734,30 @@ public open class Control : CanvasItem() {
     @JvmName("localizeNumeralSystemProperty")
     set(`value`) {
       setLocalizeNumeralSystem(value)
+    }
+
+  /**
+   * Controls layout direction and text writing direction. Right-to-left layouts are necessary for
+   * certain languages (e.g. Arabic and Hebrew). See also [isLayoutRtl].
+   */
+  public final inline var layoutDirection: LayoutDirection
+    @JvmName("layoutDirectionProperty")
+    get() = getLayoutDirection()
+    @JvmName("layoutDirectionProperty")
+    set(`value`) {
+      setLayoutDirection(value)
+    }
+
+  /**
+   * The translation context used when translating this control's displayed text, if it has any.
+   * Also used when generating translation templates.
+   */
+  public final inline var translationContext: StringName
+    @JvmName("translationContextProperty")
+    get() = getTranslationContext()
+    @JvmName("translationContextProperty")
+    set(`value`) {
+      setTranslationContext(value)
     }
 
   /**
@@ -815,7 +1045,7 @@ public open class Control : CanvasItem() {
    * The mode with which a live region updates. A live region is a [Node] that is updated as a
    * result of an external event when the user's focus may be elsewhere.
    */
-  public final inline var accessibilityLive: DisplayServer.AccessibilityLiveMode
+  public final inline var accessibilityLive: AccessibilityServer.AccessibilityLiveMode
     @JvmName("accessibilityLiveProperty")
     get() = getAccessibilityLive()
     @JvmName("accessibilityLiveProperty")
@@ -908,7 +1138,7 @@ public open class Control : CanvasItem() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(183, scriptPtr)
+    createNativeObject(187, scriptPtr)
   }
 
   /**
@@ -927,12 +1157,52 @@ public open class Control : CanvasItem() {
    * have their internal minimum size returned by [getMinimumSize]. It depends on the control's
    * contents, like text, textures, or style boxes. The actual minimum size is the maximum value of
    * this property and the internal minimum size (see [getCombinedMinimumSize]).
+   *
+   * **Note:** [customMaximumSize] has priority over this property. For example, if you set
+   * [customMinimumSize] to `(200, 200)` and [customMaximumSize] to `(100, 100)`, the resulting size
+   * will be `(100, 100)`.
    */
   @CoreTypeHelper
   public final fun customMinimumSizeMutate(block: Vector2.() -> Unit): Vector2 =
       customMinimumSize.apply {
      block(this)
      customMinimumSize = this
+  }
+
+  /**
+   * This is a helper function for [customMaximumSize] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = control.customMaximumSize
+   * //Your changes
+   * control.customMaximumSize = myCoreType
+   * ``````
+   *
+   * The maximum size of this Control's bounding rectangle. If set to a value greater than or equal
+   * to `(0, 0)`, the node's bounding rectangle will never exceed this size. A value below `(0, 0)`
+   * means there is no maximum size.
+   *
+   * **Note:** The final effective maximum size may be subject to parent Container sizing and
+   * propagated maximum sizes. See also: [getCombinedMaximumSize].
+   *
+   * **Note:** Not all [Control] subtypes handle a custom maximum size gracefully, which may lead to
+   * unexpected behavior if the control's contents exceed this size.
+   *
+   * **Note:** This value has priority over [customMinimumSize]. For example, if you set
+   * [customMaximumSize] to `(100, 100)` and [customMinimumSize] to `(200, 200)`, the resulting size
+   * will be `(100, 100)`.
+   *
+   * **Note:** It is recommended to use [getBoundMinimumSize] instead of [getCombinedMinimumSize]
+   * when using this property, as the former respects maximum size limits when calculating the minimum
+   * size, while the latter does not.
+   */
+  @CoreTypeHelper
+  public final fun customMaximumSizeMutate(block: Vector2.() -> Unit): Vector2 =
+      customMaximumSize.apply {
+     block(this)
+     customMaximumSize = this
   }
 
   /**
@@ -1019,10 +1289,136 @@ public open class Control : CanvasItem() {
   }
 
   /**
+   * This is a helper function for [offsetTransformPosition] to make dealing with local copies
+   * easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = control.offsetTransformPosition
+   * //Your changes
+   * control.offsetTransformPosition = myCoreType
+   * ``````
+   *
+   * Position offset in absolute units. The final offset is the combined value of this property and
+   * [offsetTransformPositionRatio].
+   *
+   * Has no effect unless [offsetTransformEnabled] is `true`.
+   */
+  @CoreTypeHelper
+  public final fun offsetTransformPositionMutate(block: Vector2.() -> Unit): Vector2 =
+      offsetTransformPosition.apply {
+     block(this)
+     offsetTransformPosition = this
+  }
+
+  /**
+   * This is a helper function for [offsetTransformPositionRatio] to make dealing with local copies
+   * easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = control.offsetTransformPositionRatio
+   * //Your changes
+   * control.offsetTransformPositionRatio = myCoreType
+   * ``````
+   *
+   * Same as [offsetTransformPosition] but expressed in units relative to the [Control] [size] where
+   * `Vector2(0, 0)` is the top-left corner of this control, and `Vector2(1, 1)` is its bottom-right
+   * corner.
+   *
+   * The final offset is the combined value of this property and [offsetTransformPosition].
+   *
+   * Has no effect unless [offsetTransformEnabled] is `true`.
+   */
+  @CoreTypeHelper
+  public final fun offsetTransformPositionRatioMutate(block: Vector2.() -> Unit): Vector2 =
+      offsetTransformPositionRatio.apply {
+     block(this)
+     offsetTransformPositionRatio = this
+  }
+
+  /**
+   * This is a helper function for [offsetTransformScale] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = control.offsetTransformScale
+   * //Your changes
+   * control.offsetTransformScale = myCoreType
+   * ``````
+   *
+   * Scale offset. The scale pivot is defined by [offsetTransformPivot] and
+   * [offsetTransformPivotRatio].
+   *
+   * Has no effect unless [offsetTransformEnabled] is `true`.
+   */
+  @CoreTypeHelper
+  public final fun offsetTransformScaleMutate(block: Vector2.() -> Unit): Vector2 =
+      offsetTransformScale.apply {
+     block(this)
+     offsetTransformScale = this
+  }
+
+  /**
+   * This is a helper function for [offsetTransformPivot] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = control.offsetTransformPivot
+   * //Your changes
+   * control.offsetTransformPivot = myCoreType
+   * ``````
+   *
+   * Pivot used by [offsetTransformRotation] and [offsetTransformScale] in absolute units.
+   *
+   * The final pivot position is the combined value of this property and
+   * [offsetTransformPivotRatio].
+   *
+   * Has no effect unless [offsetTransformEnabled] is `true`.
+   */
+  @CoreTypeHelper
+  public final fun offsetTransformPivotMutate(block: Vector2.() -> Unit): Vector2 =
+      offsetTransformPivot.apply {
+     block(this)
+     offsetTransformPivot = this
+  }
+
+  /**
+   * This is a helper function for [offsetTransformPivotRatio] to make dealing with local copies
+   * easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = control.offsetTransformPivotRatio
+   * //Your changes
+   * control.offsetTransformPivotRatio = myCoreType
+   * ``````
+   *
+   * Same as [offsetTransformPivot] but expressed in units relative to the [Control] [size] where
+   * `Vector2(0, 0)` is the top-left corner of this control, and `Vector2(1, 1)` is its bottom-right
+   * corner.
+   *
+   * The final pivot position is the combined value of this property and [offsetTransformPivot].
+   *
+   * Has no effect unless [offsetTransformEnabled] is `true`.
+   */
+  @CoreTypeHelper
+  public final fun offsetTransformPivotRatioMutate(block: Vector2.() -> Unit): Vector2 =
+      offsetTransformPivotRatio.apply {
+     block(this)
+     offsetTransformPivotRatio = this
+  }
+
+  /**
    * Virtual method to be implemented by the user. Returns whether the given [point] is inside this
    * control.
    *
-   * If not overridden, default behavior is checking if the point is within control's Rect.
+   * If not overridden, default behavior is checking if the point is within the control's Rect.
    *
    * **Note:** If you want to check if a point is inside the control, you can use
    * `Rect2(Vector2.ZERO, size).has_point(point)`.
@@ -1044,6 +1440,24 @@ public open class Control : CanvasItem() {
   }
 
   /**
+   * Virtual method to be implemented by the user. Returns the maximum size for this control.
+   * Alternative to [customMaximumSize] for controlling maximum size via code. The actual maximum size
+   * will be the max value of these two (in each axis separately).
+   *
+   * If not overridden, defaults to [Vector2.ZERO].
+   *
+   * **Note:** This method will not be called when the script is attached to a [Control] node that
+   * already overrides its maximum size (e.g. [ScrollContainer]).
+   *
+   * **Note:** It is recommended to use [getBoundMinimumSize] instead of [getCombinedMinimumSize]
+   * when implementing this method, as the former respects maximum size limits when calculating the
+   * minimum size, while the latter does not.
+   */
+  public open fun _getMaximumSize(): Vector2 {
+    throw NotImplementedError("Control::_getMaximumSize is not implemented.")
+  }
+
+  /**
    * Virtual method to be implemented by the user. Returns the minimum size for this control.
    * Alternative to [customMinimumSize] for controlling minimum size via code. The actual minimum size
    * will be the max value of these two (in each axis separately).
@@ -1060,7 +1474,7 @@ public open class Control : CanvasItem() {
 
   /**
    * Virtual method to be implemented by the user. Returns the tooltip text for the position
-   * [atPosition] in control's local coordinates, which will typically appear when the cursor is
+   * [atPosition] in the control's local coordinates, which will typically appear when the cursor is
    * resting over this control. See [getTooltip].
    *
    * **Note:** If this method returns an empty [String] and [_makeCustomTooltip] is not overridden,
@@ -1068,6 +1482,14 @@ public open class Control : CanvasItem() {
    */
   public open fun _getTooltip(atPosition: Vector2): String {
     throw NotImplementedError("Control::_getTooltip is not implemented.")
+  }
+
+  /**
+   * Return the auto-translation mode at the given [atPosition]. If not implemented, the
+   * [tooltipAutoTranslateMode] property will be used instead.
+   */
+  public open fun _getTooltipAutoTranslateModeAt(atPosition: Vector2): Node.AutoTranslateMode {
+    throw NotImplementedError("Control::_getTooltipAutoTranslateModeAt is not implemented.")
   }
 
   /**
@@ -1247,6 +1669,17 @@ public open class Control : CanvasItem() {
   }
 
   /**
+   * Virtual method to be implemented by the user. Returns the cursor shape for the position
+   * [atPosition] in the control's local coordinates, which will typically be used while hovering over
+   * this control. See [getCursorShape].
+   *
+   * If not overridden, defaults to [mouseDefaultCursorShape].
+   */
+  public open fun _getCursorShape(atPosition: Vector2): Int {
+    throw NotImplementedError("Control::_getCursorShape is not implemented.")
+  }
+
+  /**
    * Return the description of the keyboard shortcuts and other contextual help for this control.
    */
   public open fun _accessibilityGetContextualInfo(): String {
@@ -1321,6 +1754,26 @@ public open class Control : CanvasItem() {
   }
 
   /**
+   * Returns the maximum size for this control. See [customMaximumSize].
+   */
+  public final fun getMaximumSize(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getMaximumSizePtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+  }
+
+  /**
+   * Returns the combined maximum size from [customMaximumSize] and [getMaximumSize], as well as the
+   * [customMaximumSize] of this node's parent if it is a Control node with [propagateMaximumSize] set
+   * to `true`.
+   */
+  public final fun getCombinedMaximumSize(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getCombinedMaximumSizePtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+  }
+
+  /**
    * Returns the minimum size for this control. See [customMinimumSize].
    */
   public final fun getMinimumSize(): Vector2 {
@@ -1330,11 +1783,37 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns combined minimum size from [customMinimumSize] and [getMinimumSize].
+   * Returns the combined minimum size from [customMinimumSize] and [getMinimumSize].
    */
   public final fun getCombinedMinimumSize(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCombinedMinimumSizePtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+  }
+
+  public final fun setPropagateMaximumSize(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(ptr, MethodBindings.setPropagateMaximumSizePtr, NIL)
+  }
+
+  public final fun isPropagatingMaximumSize(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isPropagatingMaximumSizePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Returns the bound value of [getCombinedMinimumSize] by [getCombinedMaximumSize].
+   *
+   * This value is the true minimum size of the container, as the maximum size has priority over the
+   * minimum size.
+   *
+   * For example, if the combined minimum size is (100, 100) and the combined maximum size is (50,
+   * 150), the bound minimum size will be (50, 100).
+   */
+  public final fun getBoundMinimumSize(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getBoundMinimumSizePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
@@ -1496,6 +1975,11 @@ public open class Control : CanvasItem() {
     TransferContext.callMethod(ptr, MethodBindings.resetSizePtr, NIL)
   }
 
+  public final fun setCustomMaximumSize(size: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to size)
+    TransferContext.callMethod(ptr, MethodBindings.setCustomMaximumSizePtr, NIL)
+  }
+
   public final fun setCustomMinimumSize(size: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to size)
     TransferContext.callMethod(ptr, MethodBindings.setCustomMinimumSizePtr, NIL)
@@ -1604,6 +2088,12 @@ public open class Control : CanvasItem() {
   public final fun getCombinedPivotOffset(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCombinedPivotOffsetPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+  }
+
+  public final fun getCustomMaximumSize(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getCustomMaximumSizePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
@@ -1737,7 +2227,7 @@ public open class Control : CanvasItem() {
    *
    * If [hideFocus] is `true`, the control will not visually show its focused state. Has no effect
    * for [LineEdit] and [TextEdit] when [ProjectSettings.gui/common/showFocusStateOnPointerEvent] is
-   * set to `Control Supports Keyboard Input`, or for any control when it is set to `Always`.
+   * set to `Text Input Controls`, or for any control when it is set to `Always`.
    *
    * **Note:** Using this method together with [Callable.callDeferred] makes it more reliable,
    * especially when called inside [Node.Ready].
@@ -1817,6 +2307,94 @@ public open class Control : CanvasItem() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVSizeFlagsPtr, LONG)
     return SizeFlags(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setOffsetTransformEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(ptr, MethodBindings.setOffsetTransformEnabledPtr, NIL)
+  }
+
+  public final fun isOffsetTransformEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isOffsetTransformEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setOffsetTransformPosition(offset: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to offset)
+    TransferContext.callMethod(ptr, MethodBindings.setOffsetTransformPositionPtr, NIL)
+  }
+
+  public final fun getOffsetTransformPosition(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getOffsetTransformPositionPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+  }
+
+  public final fun setOffsetTransformPositionRatio(offset: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to offset)
+    TransferContext.callMethod(ptr, MethodBindings.setOffsetTransformPositionRatioPtr, NIL)
+  }
+
+  public final fun getOffsetTransformPositionRatio(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getOffsetTransformPositionRatioPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+  }
+
+  public final fun setOffsetTransformScale(scale: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to scale)
+    TransferContext.callMethod(ptr, MethodBindings.setOffsetTransformScalePtr, NIL)
+  }
+
+  public final fun getOffsetTransformScale(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getOffsetTransformScalePtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+  }
+
+  public final fun setOffsetTransformRotation(rotation: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to rotation.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.setOffsetTransformRotationPtr, NIL)
+  }
+
+  public final fun getOffsetTransformRotation(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getOffsetTransformRotationPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  public final fun setOffsetTransformPivot(pivot: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to pivot)
+    TransferContext.callMethod(ptr, MethodBindings.setOffsetTransformPivotPtr, NIL)
+  }
+
+  public final fun getOffsetTransformPivot(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getOffsetTransformPivotPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+  }
+
+  public final fun setOffsetTransformPivotRatio(pivot: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to pivot)
+    TransferContext.callMethod(ptr, MethodBindings.setOffsetTransformPivotRatioPtr, NIL)
+  }
+
+  public final fun getOffsetTransformPivotRatio(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getOffsetTransformPivotRatioPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+  }
+
+  public final fun setOffsetTransformVisualOnly(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(ptr, MethodBindings.setOffsetTransformVisualOnlyPtr, NIL)
+  }
+
+  public final fun isOffsetTransformVisualOnly(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isOffsetTransformVisualOnlyPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setTheme(theme: Theme?): Unit {
@@ -2376,11 +2954,11 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns the tooltip text for the position [atPosition] in control's local coordinates, which
-   * will typically appear when the cursor is resting over this control. By default, it returns
+   * Returns the tooltip text for the position [atPosition] in the control's local coordinates,
+   * which will typically appear when the cursor is resting over this control. By default, it returns
    * [tooltipText].
    *
-   * This method can be overridden to customize its behavior. See [_getTooltip].
+   * You can override [_getTooltip] to implement custom behavior for this method.
    *
    * **Note:** If this method returns an empty [String] and [_makeCustomTooltip] is not overridden,
    * no tooltip is displayed.
@@ -2390,6 +2968,17 @@ public open class Control : CanvasItem() {
     TransferContext.writeArguments(VECTOR2 to atPosition)
     TransferContext.callMethod(ptr, MethodBindings.getTooltipPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
+  }
+
+  public final fun setTranslationContext(context: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to context)
+    TransferContext.callMethod(ptr, MethodBindings.setTranslationContextPtr, NIL)
+  }
+
+  public final fun getTranslationContext(): StringName {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getTranslationContextPtr, STRING_NAME)
+    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
   public final fun setDefaultCursorShape(shape: CursorShape): Unit {
@@ -2404,13 +2993,15 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns the mouse cursor shape for this control when hovered over [position] in local
+   * Returns the mouse cursor shape for this control when hovered over [atPosition] in local
    * coordinates. For most controls, this is the same as [mouseDefaultCursorShape], but some built-in
    * controls implement more complex logic.
+   *
+   * You can override [_getCursorShape] to implement custom behavior for this method.
    */
   @JvmOverloads
-  public final fun getCursorShape(position: Vector2 = Vector2(0, 0)): CursorShape {
-    TransferContext.writeArguments(VECTOR2 to position)
+  public final fun getCursorShape(atPosition: Vector2 = Vector2(0, 0)): CursorShape {
+    TransferContext.writeArguments(VECTOR2 to atPosition)
     TransferContext.callMethod(ptr, MethodBindings.getCursorShapePtr, LONG)
     return CursorShape.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -2510,15 +3101,15 @@ public open class Control : CanvasItem() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setAccessibilityLive(mode: DisplayServer.AccessibilityLiveMode): Unit {
+  public final fun setAccessibilityLive(mode: AccessibilityServer.AccessibilityLiveMode): Unit {
     TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setAccessibilityLivePtr, NIL)
   }
 
-  public final fun getAccessibilityLive(): DisplayServer.AccessibilityLiveMode {
+  public final fun getAccessibilityLive(): AccessibilityServer.AccessibilityLiveMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAccessibilityLivePtr, LONG)
-    return DisplayServer.AccessibilityLiveMode.from(TransferContext.readReturnValue(LONG) as Long)
+    return AccessibilityServer.AccessibilityLiveMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setAccessibilityControlsNodes(nodePath: VariantArray<NodePath>): Unit {
@@ -2741,9 +3332,22 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Invalidates the size cache in this node and in parent nodes up to top level. Intended to be
-   * used with [getMinimumSize] when the return value is changed. Setting [customMinimumSize] directly
-   * calls this method automatically.
+   * Invalidates the maximum size cache in this node and in parent nodes up to top level. Intended
+   * to be used with [getMaximumSize] when the return value is changed. Setting [customMaximumSize]
+   * directly calls this method automatically.
+   *
+   * **Note:** Calling this method also calls [updateMinimumSize] since the combined minimum size
+   * may be affected by the maximum size change.
+   */
+  public final fun updateMaximumSize(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.updateMaximumSizePtr, NIL)
+  }
+
+  /**
+   * Invalidates the minimum size cache in this node and in parent nodes up to top level. Intended
+   * to be used with [getMinimumSize] when the return value is changed. Setting [customMinimumSize]
+   * directly calls this method automatically.
    */
   public final fun updateMinimumSize(): Unit {
     TransferContext.writeArguments()
@@ -3138,6 +3742,9 @@ public open class Control : CanvasItem() {
    */
   public final fun hasThemeConstant(name: String, themeType: String): Boolean =
       hasThemeConstant(name.asCachedStringName(), themeType.asCachedStringName())
+
+  public final fun setTranslationContext(context: String) =
+      setTranslationContext(context.asCachedStringName())
 
   /**
    * Sets the focus neighbor for the specified [Side] to the [Control] at [neighbor] node path. A
@@ -3675,12 +4282,32 @@ public open class Control : CanvasItem() {
         MethodStringName0<Control, Unit>("accept_event")
 
     @JvmField
+    public val getMaximumSizeName: MethodStringName0<Control, Vector2> =
+        MethodStringName0<Control, Vector2>("get_maximum_size")
+
+    @JvmField
+    public val getCombinedMaximumSizeName: MethodStringName0<Control, Vector2> =
+        MethodStringName0<Control, Vector2>("get_combined_maximum_size")
+
+    @JvmField
     public val getMinimumSizeName: MethodStringName0<Control, Vector2> =
         MethodStringName0<Control, Vector2>("get_minimum_size")
 
     @JvmField
     public val getCombinedMinimumSizeName: MethodStringName0<Control, Vector2> =
         MethodStringName0<Control, Vector2>("get_combined_minimum_size")
+
+    @JvmField
+    public val setPropagateMaximumSizeName: MethodStringName1<Control, Unit, Boolean> =
+        MethodStringName1<Control, Unit, Boolean>("set_propagate_maximum_size")
+
+    @JvmField
+    public val isPropagatingMaximumSizeName: MethodStringName0<Control, Boolean> =
+        MethodStringName0<Control, Boolean>("is_propagating_maximum_size")
+
+    @JvmField
+    public val getBoundMinimumSizeName: MethodStringName0<Control, Vector2> =
+        MethodStringName0<Control, Vector2>("get_bound_minimum_size")
 
     @JvmField
     public val setAnchorsPresetName: MethodStringName2<Control, Unit, LayoutPreset, Boolean> =
@@ -3735,6 +4362,10 @@ public open class Control : CanvasItem() {
     @JvmField
     public val resetSizeName: MethodStringName0<Control, Unit> =
         MethodStringName0<Control, Unit>("reset_size")
+
+    @JvmField
+    public val setCustomMaximumSizeName: MethodStringName1<Control, Unit, Vector2> =
+        MethodStringName1<Control, Unit, Vector2>("set_custom_maximum_size")
 
     @JvmField
     public val setCustomMinimumSizeName: MethodStringName1<Control, Unit, Vector2> =
@@ -3803,6 +4434,10 @@ public open class Control : CanvasItem() {
     @JvmField
     public val getCombinedPivotOffsetName: MethodStringName0<Control, Vector2> =
         MethodStringName0<Control, Vector2>("get_combined_pivot_offset")
+
+    @JvmField
+    public val getCustomMaximumSizeName: MethodStringName0<Control, Vector2> =
+        MethodStringName0<Control, Vector2>("get_custom_maximum_size")
 
     @JvmField
     public val getCustomMinimumSizeName: MethodStringName0<Control, Vector2> =
@@ -3896,6 +4531,70 @@ public open class Control : CanvasItem() {
     @JvmField
     public val getVSizeFlagsName: MethodStringName0<Control, SizeFlags> =
         MethodStringName0<Control, SizeFlags>("get_v_size_flags")
+
+    @JvmField
+    public val setOffsetTransformEnabledName: MethodStringName1<Control, Unit, Boolean> =
+        MethodStringName1<Control, Unit, Boolean>("set_offset_transform_enabled")
+
+    @JvmField
+    public val isOffsetTransformEnabledName: MethodStringName0<Control, Boolean> =
+        MethodStringName0<Control, Boolean>("is_offset_transform_enabled")
+
+    @JvmField
+    public val setOffsetTransformPositionName: MethodStringName1<Control, Unit, Vector2> =
+        MethodStringName1<Control, Unit, Vector2>("set_offset_transform_position")
+
+    @JvmField
+    public val getOffsetTransformPositionName: MethodStringName0<Control, Vector2> =
+        MethodStringName0<Control, Vector2>("get_offset_transform_position")
+
+    @JvmField
+    public val setOffsetTransformPositionRatioName: MethodStringName1<Control, Unit, Vector2> =
+        MethodStringName1<Control, Unit, Vector2>("set_offset_transform_position_ratio")
+
+    @JvmField
+    public val getOffsetTransformPositionRatioName: MethodStringName0<Control, Vector2> =
+        MethodStringName0<Control, Vector2>("get_offset_transform_position_ratio")
+
+    @JvmField
+    public val setOffsetTransformScaleName: MethodStringName1<Control, Unit, Vector2> =
+        MethodStringName1<Control, Unit, Vector2>("set_offset_transform_scale")
+
+    @JvmField
+    public val getOffsetTransformScaleName: MethodStringName0<Control, Vector2> =
+        MethodStringName0<Control, Vector2>("get_offset_transform_scale")
+
+    @JvmField
+    public val setOffsetTransformRotationName: MethodStringName1<Control, Unit, Float> =
+        MethodStringName1<Control, Unit, Float>("set_offset_transform_rotation")
+
+    @JvmField
+    public val getOffsetTransformRotationName: MethodStringName0<Control, Float> =
+        MethodStringName0<Control, Float>("get_offset_transform_rotation")
+
+    @JvmField
+    public val setOffsetTransformPivotName: MethodStringName1<Control, Unit, Vector2> =
+        MethodStringName1<Control, Unit, Vector2>("set_offset_transform_pivot")
+
+    @JvmField
+    public val getOffsetTransformPivotName: MethodStringName0<Control, Vector2> =
+        MethodStringName0<Control, Vector2>("get_offset_transform_pivot")
+
+    @JvmField
+    public val setOffsetTransformPivotRatioName: MethodStringName1<Control, Unit, Vector2> =
+        MethodStringName1<Control, Unit, Vector2>("set_offset_transform_pivot_ratio")
+
+    @JvmField
+    public val getOffsetTransformPivotRatioName: MethodStringName0<Control, Vector2> =
+        MethodStringName0<Control, Vector2>("get_offset_transform_pivot_ratio")
+
+    @JvmField
+    public val setOffsetTransformVisualOnlyName: MethodStringName1<Control, Unit, Boolean> =
+        MethodStringName1<Control, Unit, Boolean>("set_offset_transform_visual_only")
+
+    @JvmField
+    public val isOffsetTransformVisualOnlyName: MethodStringName0<Control, Boolean> =
+        MethodStringName0<Control, Boolean>("is_offset_transform_visual_only")
 
     @JvmField
     public val setThemeName: MethodStringName1<Control, Unit, Theme?> =
@@ -4095,6 +4794,14 @@ public open class Control : CanvasItem() {
         MethodStringName1<Control, String, Vector2>("get_tooltip")
 
     @JvmField
+    public val setTranslationContextName: MethodStringName1<Control, Unit, StringName> =
+        MethodStringName1<Control, Unit, StringName>("set_translation_context")
+
+    @JvmField
+    public val getTranslationContextName: MethodStringName0<Control, StringName> =
+        MethodStringName0<Control, StringName>("get_translation_context")
+
+    @JvmField
     public val setDefaultCursorShapeName: MethodStringName1<Control, Unit, CursorShape> =
         MethodStringName1<Control, Unit, CursorShape>("set_default_cursor_shape")
 
@@ -4160,13 +4867,13 @@ public open class Control : CanvasItem() {
 
     @JvmField
     public val setAccessibilityLiveName:
-        MethodStringName1<Control, Unit, DisplayServer.AccessibilityLiveMode> =
-        MethodStringName1<Control, Unit, DisplayServer.AccessibilityLiveMode>("set_accessibility_live")
+        MethodStringName1<Control, Unit, AccessibilityServer.AccessibilityLiveMode> =
+        MethodStringName1<Control, Unit, AccessibilityServer.AccessibilityLiveMode>("set_accessibility_live")
 
     @JvmField
     public val getAccessibilityLiveName:
-        MethodStringName0<Control, DisplayServer.AccessibilityLiveMode> =
-        MethodStringName0<Control, DisplayServer.AccessibilityLiveMode>("get_accessibility_live")
+        MethodStringName0<Control, AccessibilityServer.AccessibilityLiveMode> =
+        MethodStringName0<Control, AccessibilityServer.AccessibilityLiveMode>("get_accessibility_live")
 
     @JvmField
     public val setAccessibilityControlsNodesName:
@@ -4270,6 +4977,10 @@ public open class Control : CanvasItem() {
     @JvmField
     public val getShortcutContextName: MethodStringName0<Control, Node?> =
         MethodStringName0<Control, Node?>("get_shortcut_context")
+
+    @JvmField
+    public val updateMaximumSizeName: MethodStringName0<Control, Unit> =
+        MethodStringName0<Control, Unit>("update_maximum_size")
 
     @JvmField
     public val updateMinimumSizeName: MethodStringName0<Control, Unit> =
@@ -4428,11 +5139,26 @@ public open class Control : CanvasItem() {
     internal val acceptEventPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Control", "accept_event", 3218959716)
 
+    internal val getMaximumSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "get_maximum_size", 3341600327)
+
+    internal val getCombinedMaximumSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "get_combined_maximum_size", 3341600327)
+
     internal val getMinimumSizePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Control", "get_minimum_size", 3341600327)
 
     internal val getCombinedMinimumSizePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Control", "get_combined_minimum_size", 3341600327)
+
+    internal val setPropagateMaximumSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "set_propagate_maximum_size", 2586408642)
+
+    internal val isPropagatingMaximumSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "is_propagating_maximum_size", 2240911060)
+
+    internal val getBoundMinimumSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "get_bound_minimum_size", 3341600327)
 
     internal val setAnchorsPresetPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Control", "set_anchors_preset", 509135270)
@@ -4471,6 +5197,9 @@ public open class Control : CanvasItem() {
 
     internal val resetSizePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Control", "reset_size", 3218959716)
+
+    internal val setCustomMaximumSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "set_custom_maximum_size", 743155724)
 
     internal val setCustomMinimumSizePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Control", "set_custom_minimum_size", 743155724)
@@ -4521,6 +5250,9 @@ public open class Control : CanvasItem() {
 
     internal val getCombinedPivotOffsetPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Control", "get_combined_pivot_offset", 3341600327)
+
+    internal val getCustomMaximumSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "get_custom_maximum_size", 3341600327)
 
     internal val getCustomMinimumSizePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Control", "get_custom_minimum_size", 3341600327)
@@ -4590,6 +5322,54 @@ public open class Control : CanvasItem() {
 
     internal val getVSizeFlagsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Control", "get_v_size_flags", 3781367401)
+
+    internal val setOffsetTransformEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "set_offset_transform_enabled", 2586408642)
+
+    internal val isOffsetTransformEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "is_offset_transform_enabled", 36873697)
+
+    internal val setOffsetTransformPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "set_offset_transform_position", 743155724)
+
+    internal val getOffsetTransformPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "get_offset_transform_position", 3341600327)
+
+    internal val setOffsetTransformPositionRatioPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "set_offset_transform_position_ratio", 743155724)
+
+    internal val getOffsetTransformPositionRatioPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "get_offset_transform_position_ratio", 3341600327)
+
+    internal val setOffsetTransformScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "set_offset_transform_scale", 743155724)
+
+    internal val getOffsetTransformScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "get_offset_transform_scale", 3341600327)
+
+    internal val setOffsetTransformRotationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "set_offset_transform_rotation", 373806689)
+
+    internal val getOffsetTransformRotationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "get_offset_transform_rotation", 1740695150)
+
+    internal val setOffsetTransformPivotPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "set_offset_transform_pivot", 743155724)
+
+    internal val getOffsetTransformPivotPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "get_offset_transform_pivot", 3341600327)
+
+    internal val setOffsetTransformPivotRatioPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "set_offset_transform_pivot_ratio", 743155724)
+
+    internal val getOffsetTransformPivotRatioPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "get_offset_transform_pivot_ratio", 3341600327)
+
+    internal val setOffsetTransformVisualOnlyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "set_offset_transform_visual_only", 2586408642)
+
+    internal val isOffsetTransformVisualOnlyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "is_offset_transform_visual_only", 36873697)
 
     internal val setThemePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Control", "set_theme", 2326690814)
@@ -4738,6 +5518,12 @@ public open class Control : CanvasItem() {
     internal val getTooltipPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Control", "get_tooltip", 2895288280)
 
+    internal val setTranslationContextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "set_translation_context", 3304788590)
+
+    internal val getTranslationContextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "get_translation_context", 2002593661)
+
     internal val setDefaultCursorShapePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Control", "set_default_cursor_shape", 217062046)
 
@@ -4787,10 +5573,10 @@ public open class Control : CanvasItem() {
         TypeManager.getMethodBindPtr("Control", "get_accessibility_description", 201670096)
 
     internal val setAccessibilityLivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "set_accessibility_live", 1720261470)
+        TypeManager.getMethodBindPtr("Control", "set_accessibility_live", 353443434)
 
     internal val getAccessibilityLivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "get_accessibility_live", 3311037003)
+        TypeManager.getMethodBindPtr("Control", "get_accessibility_live", 2858591811)
 
     internal val setAccessibilityControlsNodesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Control", "set_accessibility_controls_nodes", 381264803)
@@ -4863,6 +5649,9 @@ public open class Control : CanvasItem() {
 
     internal val getShortcutContextPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Control", "get_shortcut_context", 3160264692)
+
+    internal val updateMaximumSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "update_maximum_size", 3218959716)
 
     internal val updateMinimumSizePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Control", "update_minimum_size", 3218959716)

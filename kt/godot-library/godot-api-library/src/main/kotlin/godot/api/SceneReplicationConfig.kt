@@ -34,7 +34,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class SceneReplicationConfig : Resource() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(624, scriptPtr)
+    createNativeObject(638, scriptPtr)
   }
 
   /**

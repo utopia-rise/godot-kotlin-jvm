@@ -78,7 +78,7 @@ public open class SkeletonModificationStack2D : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(661, scriptPtr)
+    createNativeObject(675, scriptPtr)
   }
 
   /**

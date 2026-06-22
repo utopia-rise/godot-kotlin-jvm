@@ -318,6 +318,12 @@ public open class Viewport internal constructor() : Node() {
    * To control this property on the root viewport, set the
    * [ProjectSettings.rendering/meshLod/lodChange/thresholdPixels] project setting.
    *
+   * **Note:** Depending on the mesh's attributes (vertex colors, blend shapes, ...), a mesh may
+   * have fewer levels of LOD generated to avoid visible distortion of the mesh once it is affected by
+   * vertex colors or blend shapes. Meshes with a very low vertex count will also not have any LODs
+   * generated, which means this setting will not affect them at all. In general, this setting makes
+   * the largest impact on static meshes with a high vertex count.
+   *
    * **Note:** [meshLodThreshold] does not affect [GeometryInstance3D] visibility ranges (also known
    * as "manual" LOD or hierarchical LOD).
    */
@@ -411,12 +417,15 @@ public open class Viewport internal constructor() : Node() {
    * value. If both TAA and FXAA are enabled at the same time, an offset of `-0.75` is applied to this
    * value.
    *
+   * To control this property on the root viewport, set the
+   * [ProjectSettings.rendering/textures/defaultFilters/textureMipmapBias] project setting.
+   *
    * **Note:** If [scaling3dScale] is lower than `1.0` (exclusive), [textureMipmapBias] is used to
    * adjust the automatic mipmap bias which is calculated internally based on the scale factor. The
    * formula for this is `log2(scaling_3d_scale) + mipmap_bias`.
    *
-   * To control this property on the root viewport, set the
-   * [ProjectSettings.rendering/textures/defaultFilters/textureMipmapBias] project setting.
+   * **Note:** This property is only supported in the Forward+ and Mobile renderers, not
+   * Compatibility. In Compatibility, this property is always treated as if it was set to `0.0`.
    */
   public final inline var textureMipmapBias: Float
     @JvmName("textureMipmapBiasProperty")
@@ -858,7 +867,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(782, scriptPtr)
+    createNativeObject(796, scriptPtr)
   }
 
   /**
@@ -2000,9 +2009,20 @@ public open class Viewport internal constructor() : Node() {
      */
     SCALING_3D_MODE_METALFX_TEMPORAL(4),
     /**
+     * Use nearest-neighbor filtering for the viewport's 3D buffer. This looks crisper than
+     * [SCALING_3D_MODE_BILINEAR] and has no additional rendering cost. The amount of scaling can be
+     * set using [scaling3dScale]. Values greater than `1.0` are not supported and bilinear
+     * downsampling will be used instead. A value of `1.0` disables scaling.
+     *
+     * **Note:** When using the **Nearest** scaling mode, to avoid uneven pixel scaling, it's highly
+     * recommended to use a value equal to an integer divisor with a dividend of `1`. For example, it's
+     * best to use a scale of `0.5` (1/2), `0.3333` (1/3), `0.25` (1/4), `0.2` (1/5), and so on.
+     */
+    SCALING_3D_MODE_NEAREST(5),
+    /**
      * Represents the size of the [Scaling3DMode] enum.
      */
-    SCALING_3D_MODE_MAX(5),
+    SCALING_3D_MODE_MAX(6),
     ;
 
     public companion object {
@@ -2196,6 +2216,10 @@ public open class Viewport internal constructor() : Node() {
      *
      * **Note:** [RenderingServer.setDebugGenerateWireframes] must be called before loading any
      * meshes for wireframes to be visible when using the Compatibility renderer.
+     *
+     * **Note:** In the Compatibility renderer, backfaces are always visible when using wireframe
+     * rendering. In the Forward+ and Mobile renderers, wireframes follow the material's backface
+     * culling properties instead.
      */
     WIREFRAME(4),
     /**
@@ -2353,6 +2377,18 @@ public open class Viewport internal constructor() : Node() {
      * **Note:** Only supported when using the Forward+ or Mobile rendering methods.
      */
     INTERNAL_BUFFER(26),
+    /**
+     * Draws the cluster used by [AreaLight3D] nodes to optimize light rendering.
+     *
+     * **Note:** Only supported when using the Forward+ rendering method.
+     */
+    CLUSTER_AREA_LIGHTS(27),
+    /**
+     * Draws the atlas used by [AreaLight3D] nodes in the upper left quadrant of the [Viewport].
+     *
+     * **Note:** Only supported when using the Forward+ or Mobile rendering method.
+     */
+    AREA_LIGHT_ATLAS(28),
     ;
 
     public companion object {
@@ -2396,9 +2432,13 @@ public open class Viewport internal constructor() : Node() {
      */
     NEAREST_WITH_MIPMAPS(3),
     /**
+     * The [Viewport] will inherit the filter from its parent [CanvasItem] or [Viewport].
+     */
+    PARENT_NODE(4),
+    /**
      * Represents the size of the [DefaultCanvasItemTextureFilter] enum.
      */
-    MAX(4),
+    MAX(5),
     ;
 
     public companion object {
@@ -2427,9 +2467,13 @@ public open class Viewport internal constructor() : Node() {
      */
     MIRROR(2),
     /**
+     * The [Viewport] will inherit the repeat mode from its parent [CanvasItem] or [Viewport].
+     */
+    PARENT_NODE(3),
+    /**
      * Represents the size of the [DefaultCanvasItemTextureRepeat] enum.
      */
-    MAX(3),
+    MAX(4),
     ;
 
     public companion object {
@@ -3420,7 +3464,7 @@ public open class Viewport internal constructor() : Node() {
         TypeManager.getMethodBindPtr("Viewport", "set_use_xr", 2586408642)
 
     internal val isUsingXrPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_using_xr", 2240911060)
+        TypeManager.getMethodBindPtr("Viewport", "is_using_xr", 36873697)
 
     internal val setScaling3dModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Viewport", "set_scaling_3d_mode", 1531597597)

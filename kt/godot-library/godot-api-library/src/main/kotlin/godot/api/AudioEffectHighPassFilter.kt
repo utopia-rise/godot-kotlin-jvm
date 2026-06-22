@@ -12,13 +12,16 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Cuts frequencies lower than the [AudioEffectFilter.cutoffHz] and allows higher frequencies to
- * pass.
+ * A "high-pass" filter attenuates frequencies lower than [AudioEffectFilter.cutoffHz] and allows
+ * higher frequencies to pass unchanged.
+ *
+ * This filter can be used to remove "strength" from a sound, and give low-end space for basses and
+ * impact sounds.
  */
 @GodotBaseType
 public open class AudioEffectHighPassFilter : AudioEffectFilter() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(61, scriptPtr)
+    createNativeObject(63, scriptPtr)
   }
 
   public companion object

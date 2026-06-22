@@ -49,7 +49,28 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public abstract class Texture2D : Texture() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(726, scriptPtr)
+    createNativeObject(740, scriptPtr)
+  }
+
+  /**
+   * Called when [getImage] is called.
+   */
+  public open fun _getImage(): Image? {
+    throw NotImplementedError("Texture2D::_getImage is not implemented.")
+  }
+
+  /**
+   * Called when [getFormat] is called.
+   */
+  public open fun _getFormat(): Image.Format {
+    throw NotImplementedError("Texture2D::_getFormat is not implemented.")
+  }
+
+  /**
+   * Called when [getMipmapCount] is called.
+   */
+  public open fun _getMipmapCount(): Int {
+    throw NotImplementedError("Texture2D::_getMipmapCount is not implemented.")
   }
 
   /**
@@ -75,6 +96,13 @@ public abstract class Texture2D : Texture() {
    */
   public open fun _hasAlpha(): Boolean {
     throw NotImplementedError("Texture2D::_hasAlpha is not implemented.")
+  }
+
+  /**
+   * Called when [hasMipmaps] is called.
+   */
+  public open fun _hasMipmaps(): Boolean {
+    throw NotImplementedError("Texture2D::_hasMipmaps is not implemented.")
   }
 
   /**
@@ -132,6 +160,24 @@ public abstract class Texture2D : Texture() {
   }
 
   /**
+   * Returns the image format of the texture.
+   */
+  public final fun getFormat(): Image.Format {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getFormatPtr, LONG)
+    return Image.Format.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Returns the number of mipmaps of the texture.
+   */
+  public final fun getMipmapCount(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getMipmapCountPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  /**
    * Returns the texture width in pixels.
    */
   public final fun getWidth(): Int {
@@ -164,6 +210,15 @@ public abstract class Texture2D : Texture() {
   public final fun hasAlpha(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.hasAlphaPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Returns `true` if the texture has mipmaps.
+   */
+  public final fun hasMipmaps(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.hasMipmapsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -239,6 +294,14 @@ public abstract class Texture2D : Texture() {
 
   public companion object {
     @JvmField
+    public val getFormatName: MethodStringName0<Texture2D, Image.Format> =
+        MethodStringName0<Texture2D, Image.Format>("get_format")
+
+    @JvmField
+    public val getMipmapCountName: MethodStringName0<Texture2D, Int> =
+        MethodStringName0<Texture2D, Int>("get_mipmap_count")
+
+    @JvmField
     public val getWidthName: MethodStringName0<Texture2D, Int> =
         MethodStringName0<Texture2D, Int>("get_width")
 
@@ -253,6 +316,10 @@ public abstract class Texture2D : Texture() {
     @JvmField
     public val hasAlphaName: MethodStringName0<Texture2D, Boolean> =
         MethodStringName0<Texture2D, Boolean>("has_alpha")
+
+    @JvmField
+    public val hasMipmapsName: MethodStringName0<Texture2D, Boolean> =
+        MethodStringName0<Texture2D, Boolean>("has_mipmaps")
 
     @JvmField
     public val drawName: MethodStringName4<Texture2D, Unit, RID, Vector2, Color, Boolean> =
@@ -277,6 +344,12 @@ public abstract class Texture2D : Texture() {
   }
 
   public object MethodBindings {
+    internal val getFormatPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Texture2D", "get_format", 3847873762)
+
+    internal val getMipmapCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Texture2D", "get_mipmap_count", 3905245786)
+
     internal val getWidthPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Texture2D", "get_width", 3905245786)
 
@@ -288,6 +361,9 @@ public abstract class Texture2D : Texture() {
 
     internal val hasAlphaPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Texture2D", "has_alpha", 36873697)
+
+    internal val hasMipmapsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Texture2D", "has_mipmaps", 36873697)
 
     internal val drawPtr: VoidPtr = TypeManager.getMethodBindPtr("Texture2D", "draw", 2729649137)
 

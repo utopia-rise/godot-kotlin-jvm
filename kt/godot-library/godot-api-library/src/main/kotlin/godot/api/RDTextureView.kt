@@ -83,7 +83,7 @@ public open class RDTextureView : RefCounted() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(582, scriptPtr)
+    createNativeObject(595, scriptPtr)
   }
 
   public final fun setFormatOverride(pMember: RenderingDevice.DataFormat): Unit {

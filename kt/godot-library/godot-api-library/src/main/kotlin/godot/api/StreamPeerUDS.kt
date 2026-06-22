@@ -32,7 +32,7 @@ import kotlin.jvm.JvmField
 @GodotBaseType
 public open class StreamPeerUDS : StreamPeerSocket() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(700, scriptPtr)
+    createNativeObject(714, scriptPtr)
   }
 
   /**

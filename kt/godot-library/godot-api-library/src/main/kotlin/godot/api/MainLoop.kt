@@ -88,7 +88,7 @@ public open class MainLoop : Object() {
   public val onRequestPermissionsResult: Signal2<String, Boolean> by Signal2
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(358, scriptPtr)
+    createNativeObject(367, scriptPtr)
   }
 
   /**
@@ -218,6 +218,16 @@ public open class MainLoop : Object() {
      * Notification received when text server is changed.
      */
     public final const val NOTIFICATION_TEXT_SERVER_CHANGED: Long = 2018
+
+    /**
+     * Notification received when the application enters picture-in-picture mode.
+     */
+    public final const val NOTIFICATION_APPLICATION_PIP_MODE_ENTERED: Long = 2019
+
+    /**
+     * Notification received when the application exits picture-in-picture mode.
+     */
+    public final const val NOTIFICATION_APPLICATION_PIP_MODE_EXITED: Long = 2020
   }
 
   public object MethodBindings

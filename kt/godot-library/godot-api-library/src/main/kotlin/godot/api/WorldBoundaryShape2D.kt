@@ -70,7 +70,7 @@ public open class WorldBoundaryShape2D : Shape2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(916, scriptPtr)
+    createNativeObject(931, scriptPtr)
   }
 
   /**

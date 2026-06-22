@@ -13,33 +13,39 @@ public enum class EulerOrder(
   public override val `value`: Long,
 ) : GodotEnum {
   /**
-   * Specifies that Euler angles should be in XYZ order. When composing, the order is X, Y, Z. When
-   * decomposing, the order is reversed, first Z, then Y, and X last.
+   * Specifies that Euler angles should be in intrinsic XYZ order. When composing, the rotations
+   * happen around the local X, Y, and Z axes, in that order. When decomposing, the order is reversed,
+   * first Z, then Y, and X last.
    */
   XYZ(0),
   /**
-   * Specifies that Euler angles should be in XZY order. When composing, the order is X, Z, Y. When
-   * decomposing, the order is reversed, first Y, then Z, and X last.
+   * Specifies that Euler angles should be in intrinsic XZY order. When composing, the rotations
+   * happen around the local X, Z, and Y axes, in that order. When decomposing, the order is reversed,
+   * first Y, then Z, and X last.
    */
   XZY(1),
   /**
-   * Specifies that Euler angles should be in YXZ order. When composing, the order is Y, X, Z. When
-   * decomposing, the order is reversed, first Z, then X, and Y last.
+   * Specifies that Euler angles should be in intrinsic YXZ order. When composing, the rotations
+   * happen around the local Y, X, and Z axes, in that order. When decomposing, the order is reversed,
+   * first Z, then X, and Y last.
    */
   YXZ(2),
   /**
-   * Specifies that Euler angles should be in YZX order. When composing, the order is Y, Z, X. When
-   * decomposing, the order is reversed, first X, then Z, and Y last.
+   * Specifies that Euler angles should be in intrinsic YZX order. When composing, the rotations
+   * happen around the local Y, Z, and X axes, in that order. When decomposing, the order is reversed,
+   * first X, then Z, and Y last.
    */
   YZX(3),
   /**
-   * Specifies that Euler angles should be in ZXY order. When composing, the order is Z, X, Y. When
-   * decomposing, the order is reversed, first Y, then X, and Z last.
+   * Specifies that Euler angles should be in intrinsic ZXY order. When composing, the rotations
+   * happen around the local Z, X, and Y axes, in that order. When decomposing, the order is reversed,
+   * first Y, then X, and Z last.
    */
   ZXY(4),
   /**
-   * Specifies that Euler angles should be in ZYX order. When composing, the order is Z, Y, X. When
-   * decomposing, the order is reversed, first X, then Y, and Z last.
+   * Specifies that Euler angles should be in intrinsic ZYX order. When composing, the rotations
+   * happen around the local Z, Y, and X axes, in that order. When decomposing, the order is reversed,
+   * first X, then Y, and Z last.
    */
   ZYX(5),
   ;

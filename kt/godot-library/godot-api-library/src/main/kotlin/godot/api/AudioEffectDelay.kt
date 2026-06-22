@@ -25,15 +25,17 @@ import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
- * Plays input signal back after a period of time. The delayed signal may be played back multiple
- * times to create the sound of a repeating, decaying echo. Delay effects range from a subtle echo
- * effect to a pronounced blending of previous sounds with new sounds.
+ * A "delay" effect plays the input audio signal back after a period of time. Each repetition is
+ * called a "delay tap" or simply "tap". Delay taps may be played back multiple times to create the
+ * sound of a repeating, decaying echo. Delay effects range from a subtle echo to a pronounced blending
+ * of previous sounds with new sounds.
+ *
+ * See also [AudioEffectReverb] for a blurry, continuous echo.
  */
 @GodotBaseType
 public open class AudioEffectDelay : AudioEffect() {
   /**
-   * Output percent of original sound. At 0, only delayed sounds are output. Value can range from 0
-   * to 1.
+   * The volume ratio of the original audio. Value can range from 0 to 1.
    */
   public final inline var dry: Float
     @JvmName("dryProperty")
@@ -55,7 +57,8 @@ public open class AudioEffectDelay : AudioEffect() {
     }
 
   /**
-   * First tap delay time in milliseconds.
+   * First tap delay time in milliseconds, compared to the original audio. Value can range from 0 to
+   * 1500.
    */
   public final inline var tap1DelayMs: Float
     @JvmName("tap1DelayMsProperty")
@@ -66,7 +69,7 @@ public open class AudioEffectDelay : AudioEffect() {
     }
 
   /**
-   * Sound level for the first tap.
+   * Gain for the first tap, in dB. Value can range from -60 to 0.
    */
   public final inline var tap1LevelDb: Float
     @JvmName("tap1LevelDbProperty")
@@ -77,7 +80,8 @@ public open class AudioEffectDelay : AudioEffect() {
     }
 
   /**
-   * Pan position for the first tap. Value can range from -1 (fully left) to 1 (fully right).
+   * Pan position for the first tap. Negative values pan the sound to the left, positive pan to the
+   * right. Value can range from -1 to 1.
    */
   public final inline var tap1Pan: Float
     @JvmName("tap1PanProperty")
@@ -99,7 +103,8 @@ public open class AudioEffectDelay : AudioEffect() {
     }
 
   /**
-   * Second tap delay time in milliseconds.
+   * Second tap delay time in milliseconds, compared to the original audio. Value can range from 0
+   * to 1500.
    */
   public final inline var tap2DelayMs: Float
     @JvmName("tap2DelayMsProperty")
@@ -110,7 +115,7 @@ public open class AudioEffectDelay : AudioEffect() {
     }
 
   /**
-   * Sound level for the second tap.
+   * Gain for the second tap, in dB. Value can range from -60 to 0.
    */
   public final inline var tap2LevelDb: Float
     @JvmName("tap2LevelDbProperty")
@@ -121,7 +126,8 @@ public open class AudioEffectDelay : AudioEffect() {
     }
 
   /**
-   * Pan position for the second tap. Value can range from -1 (fully left) to 1 (fully right).
+   * Pan position for the second tap. Negative values pan the sound to the left, positive pan to the
+   * right. Value can range from -1 to 1.
    */
   public final inline var tap2Pan: Float
     @JvmName("tap2PanProperty")
@@ -132,7 +138,7 @@ public open class AudioEffectDelay : AudioEffect() {
     }
 
   /**
-   * If `true`, feedback is enabled.
+   * If `true`, feedback is enabled, repeating taps after they are played.
    */
   public final inline var feedbackActive: Boolean
     @JvmName("feedbackActiveProperty")
@@ -143,7 +149,7 @@ public open class AudioEffectDelay : AudioEffect() {
     }
 
   /**
-   * Feedback delay time in milliseconds.
+   * Feedback delay time in milliseconds. Value can range from 0 to 1500.
    */
   public final inline var feedbackDelayMs: Float
     @JvmName("feedbackDelayMsProperty")
@@ -154,7 +160,7 @@ public open class AudioEffectDelay : AudioEffect() {
     }
 
   /**
-   * Sound level for feedback.
+   * Gain for feedback, in dB. Value can range from -60 to 0.
    */
   public final inline var feedbackLevelDb: Float
     @JvmName("feedbackLevelDbProperty")
@@ -165,8 +171,8 @@ public open class AudioEffectDelay : AudioEffect() {
     }
 
   /**
-   * Low-pass filter for feedback, in Hz. Frequencies below this value are filtered out of the
-   * source signal.
+   * Low-pass filter for feedback, in Hz. Frequencies above this value are filtered out. Value can
+   * range from 1 to 16000.
    */
   public final inline var feedbackLowpass: Float
     @JvmName("feedbackLowpassProperty")
@@ -177,7 +183,7 @@ public open class AudioEffectDelay : AudioEffect() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(53, scriptPtr)
+    createNativeObject(55, scriptPtr)
   }
 
   public final fun setDry(amount: Float): Unit {

@@ -143,7 +143,7 @@ public object Time : Object() {
       MethodStringName0<Time, Long>("get_ticks_usec")
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(34)
+    getSingleton(35)
   }
 
   /**

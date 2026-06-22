@@ -5,6 +5,8 @@
 #include "script/jvm_script_manager.h"
 
 #include <core/io/file_access.h>
+#include <core/object/callable_mp.h>
+#include <core/object/message_queue.h>
 
 void JvmResourceFormatSaver::get_recognized_extensions(const Ref<Resource>& p_resource, List<String>* p_extensions) const {
     if (recognize(p_resource)) {

@@ -23,6 +23,7 @@ import godot.core.MethodStringName2
 import godot.core.MethodStringName6
 import godot.core.MethodStringName7
 import godot.core.MethodStringName9
+import godot.core.PackedColorArray
 import godot.core.RID
 import godot.core.Transform2D
 import godot.core.VariantArray
@@ -33,6 +34,7 @@ import godot.core.VariantParser.DICTIONARY
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
+import godot.core.VariantParser.PACKED_COLOR_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.TRANSFORM2D
 import godot.core.VariantParser.VECTOR2
@@ -73,7 +75,7 @@ public open class Font internal constructor() : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(228, scriptPtr)
+    createNativeObject(233, scriptPtr)
   }
 
   public final fun setFallbacks(fallbacks: VariantArray<Font>): Unit {
@@ -101,8 +103,10 @@ public open class Font internal constructor() : Resource() {
     spacingSpace: Int = 0,
     spacingGlyph: Int = 0,
     baselineOffset: Float = 0.0f,
+    paletteIndex: Long = 0,
+    customColors: PackedColorArray = PackedColorArray(),
   ): RID {
-    TransferContext.writeArguments(DICTIONARY to variationCoordinates, LONG to faceIndex.toLong(), DOUBLE to strength.toDouble(), TRANSFORM2D to transform, LONG to spacingTop.toLong(), LONG to spacingBottom.toLong(), LONG to spacingSpace.toLong(), LONG to spacingGlyph.toLong(), DOUBLE to baselineOffset.toDouble())
+    TransferContext.writeArguments(DICTIONARY to variationCoordinates, LONG to faceIndex.toLong(), DOUBLE to strength.toDouble(), TRANSFORM2D to transform, LONG to spacingTop.toLong(), LONG to spacingBottom.toLong(), LONG to spacingSpace.toLong(), LONG to spacingGlyph.toLong(), DOUBLE to baselineOffset.toDouble(), LONG to paletteIndex, PACKED_COLOR_ARRAY to customColors)
     TransferContext.callMethod(ptr, MethodBindings.findVariationPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -131,7 +135,8 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
-   * Returns the average font ascent (number of pixels above the baseline).
+   * Returns the maximum font ascent (number of pixels above the baseline) of this font and all
+   * fallback fonts.
    *
    * **Note:** Real ascent of the string is context-dependent and can be significantly different
    * from the value returned by this function. Use it only as rough estimate (e.g. as the ascent of
@@ -145,7 +150,8 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
-   * Returns the average font descent (number of pixels below the baseline).
+   * Returns the maximum font descent (number of pixels below the baseline) of this font and all
+   * fallback fonts.
    *
    * **Note:** Real descent of the string is context-dependent and can be significantly different
    * from the value returned by this function. Use it only as rough estimate (e.g. as the descent of
@@ -239,6 +245,37 @@ public open class Font internal constructor() : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getFontStretchPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  /**
+   * Returns the number of predefined color palettes. Palette contains all colors used to render
+   * font glyphs. Each palette has the same number of colors.
+   */
+  public final fun getPaletteCount(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getPaletteCountPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Returns the name of the predefined color palette at [index]. Palette contains all colors used
+   * to render font glyphs. Each palette has the same number of colors.
+   */
+  public final fun getPaletteName(index: Long): String {
+    TransferContext.writeArguments(LONG to index)
+    TransferContext.callMethod(ptr, MethodBindings.getPaletteNamePtr, STRING)
+    return (TransferContext.readReturnValue(STRING) as String)
+  }
+
+  /**
+   * Returns the array in the predefined color palette at [index]. Palette contains all colors used
+   * to render font glyphs. Each palette has the same number of colors. Colors can be overridden using
+   * [FontVariation].
+   */
+  public final fun getPaletteColors(index: Long): PackedColorArray {
+    TransferContext.writeArguments(LONG to index)
+    TransferContext.callMethod(ptr, MethodBindings.getPaletteColorsPtr, PACKED_COLOR_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_COLOR_ARRAY) as PackedColorArray)
   }
 
   /**
@@ -609,9 +646,9 @@ public open class Font internal constructor() : Resource() {
 
     @JvmField
     public val findVariationName:
-        MethodStringName9<Font, RID, Dictionary<Any?, Any?>, Int, Float, Transform2D, Int, Int, Int, Int, Float>
+        MethodStringName11<Font, RID, Dictionary<Any?, Any?>, Int, Float, Transform2D, Int, Int, Int, Int, Float, Long, PackedColorArray>
         =
-        MethodStringName9<Font, RID, Dictionary<Any?, Any?>, Int, Float, Transform2D, Int, Int, Int, Int, Float>("find_variation")
+        MethodStringName11<Font, RID, Dictionary<Any?, Any?>, Int, Float, Transform2D, Int, Int, Int, Int, Float, Long, PackedColorArray>("find_variation")
 
     @JvmField
     public val getRidsName: MethodStringName0<Font, VariantArray<RID>> =
@@ -660,6 +697,18 @@ public open class Font internal constructor() : Resource() {
     @JvmField
     public val getFontStretchName: MethodStringName0<Font, Int> =
         MethodStringName0<Font, Int>("get_font_stretch")
+
+    @JvmField
+    public val getPaletteCountName: MethodStringName0<Font, Long> =
+        MethodStringName0<Font, Long>("get_palette_count")
+
+    @JvmField
+    public val getPaletteNameName: MethodStringName1<Font, String, Long> =
+        MethodStringName1<Font, String, Long>("get_palette_name")
+
+    @JvmField
+    public val getPaletteColorsName: MethodStringName1<Font, PackedColorArray, Long> =
+        MethodStringName1<Font, PackedColorArray, Long>("get_palette_colors")
 
     @JvmField
     public val getSpacingName: MethodStringName1<Font, Int, TextServer.SpacingType> =
@@ -759,7 +808,7 @@ public open class Font internal constructor() : Resource() {
         TypeManager.getMethodBindPtr("Font", "get_fallbacks", 3995934104)
 
     internal val findVariationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "find_variation", 2553855095)
+        TypeManager.getMethodBindPtr("Font", "find_variation", 3275867622)
 
     internal val getRidsPtr: VoidPtr = TypeManager.getMethodBindPtr("Font", "get_rids", 3995934104)
 
@@ -795,6 +844,15 @@ public open class Font internal constructor() : Resource() {
 
     internal val getFontStretchPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Font", "get_font_stretch", 3905245786)
+
+    internal val getPaletteCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Font", "get_palette_count", 3905245786)
+
+    internal val getPaletteNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Font", "get_palette_name", 844755477)
+
+    internal val getPaletteColorsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Font", "get_palette_colors", 2552048864)
 
     internal val getSpacingPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Font", "get_spacing", 1310880908)

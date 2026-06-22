@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Godot-JVM** is a Godot engine module that enables Kotlin (and Java/Scala) as scripting languages. It is a hybrid C++/JVM project: the C++ side integrates with Godot's module system, and the Kotlin/Gradle side provides the runtime libraries and tooling for user projects.
 
-Current binding version: `0.16.2` targeting Godot `4.6.3`.
+Current binding version: `0.17.0` targeting Godot `4.7`.
 
 ## Prerequisites
 

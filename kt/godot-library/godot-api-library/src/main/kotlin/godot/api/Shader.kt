@@ -59,7 +59,7 @@ public open class Shader : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(640, scriptPtr)
+    createNativeObject(654, scriptPtr)
   }
 
   /**
@@ -188,6 +188,10 @@ public open class Shader : Resource() {
      * Mode used for setting the color and density of volumetric fog effect.
      */
     FOG(4),
+    /**
+     * Mode used for drawing to DrawableTexture resources via blit calls.
+     */
+    TEXTURE_BLIT(5),
     ;
 
     public companion object {

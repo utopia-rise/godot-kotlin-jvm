@@ -24,7 +24,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class AudioStreamMicrophone : AudioStream() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(86, scriptPtr)
+    createNativeObject(88, scriptPtr)
   }
 
   /**

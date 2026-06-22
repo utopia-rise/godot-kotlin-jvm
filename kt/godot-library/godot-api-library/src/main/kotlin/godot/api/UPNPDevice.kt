@@ -104,7 +104,7 @@ public open class UPNPDevice : RefCounted() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(767, scriptPtr)
+    createNativeObject(781, scriptPtr)
   }
 
   /**

@@ -16,6 +16,7 @@ import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.MethodStringName2
 import godot.core.MethodStringName3
+import godot.core.RID
 import godot.core.Rect2
 import godot.core.Signal0
 import godot.core.Signal1
@@ -29,6 +30,7 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.RECT2
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.VECTOR2
+import godot.core.VariantParser._RID
 import godot.core.Vector2
 import kotlin.Boolean
 import kotlin.Int
@@ -175,6 +177,8 @@ public open class Tree : Control() {
 
   /**
    * The number of columns.
+   *
+   * Prints an error and does not allow setting the columns during mouse selection.
    */
   public final inline var columns: Int
     @JvmName("columnsProperty")
@@ -359,11 +363,13 @@ public open class Tree : Control() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(757, scriptPtr)
+    createNativeObject(771, scriptPtr)
   }
 
   /**
    * Clears the tree. This removes all items.
+   *
+   * Prints an error and does not allow clearing the tree if called during mouse selection.
    */
   public final fun clear(): Unit {
     TransferContext.writeArguments()
@@ -379,6 +385,9 @@ public open class Tree : Control() {
    *
    * The new item will be the [index]-th child of parent, or it will be the last child if there are
    * not enough siblings.
+   *
+   * Prints an error and returns `null` if called during mouse selection, or if the [parent] does
+   * not belong to this tree.
    */
   @JvmOverloads
   public final fun createItem(parent: TreeItem? = null, index: Int = -1): TreeItem? {
@@ -466,6 +475,18 @@ public open class Tree : Control() {
     TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getColumnWidthPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  /**
+   * Returns the internal canvas item designated for custom drawing. See
+   * [TreeItem.setCustomDrawCallback].
+   *
+   * **Note:** This canvas item clears automatically on each Tree draw call.
+   */
+  public final fun getCustomDrawingCanvasItem(): RID {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getCustomDrawingCanvasItemPtr, _RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun setHideRoot(enable: Boolean): Unit {
@@ -668,12 +689,24 @@ public open class Tree : Control() {
   }
 
   /**
-   * Returns the drop section at [position], or -100 if no item is there.
+   * Returns the drop section at [position], as permitted by enabled [DropModeFlags].
    *
-   * Values -1, 0, or 1 will be returned for the "above item", "on item", and "below item" drop
-   * sections, respectively. See [DropModeFlags] for a description of each drop section.
+   * - `-1` if the position is **above** the item. Typically used to insert as the item's previous
+   * sibling.
    *
-   * To get the item which the returned drop section is relative to, use [getItemAtPosition].
+   * - `0` if the position is **on** the item. Typically used to insert as the item's last child.
+   *
+   * - `1` if the position is **below** the item, when the item has no children. Typically used to
+   * insert as the item's next sibling. If the item *does* have children, this section is still
+   * reachable by hovering to the left of the item's collapse arrow, and below.
+   *
+   * - `2` if the position is **below** the item, when the item has children. Typically used to
+   * insert as the item's first child.
+   *
+   * - `-100` if the position is not over any item, or no [DropModeFlags] are set.
+   *
+   * See [DropModeFlags] for a description of each drop region. To get the item which the returned
+   * drop section refers to, use [getItemAtPosition].
    */
   public final fun getDropSectionAtPosition(position: Vector2): Int {
     TransferContext.writeArguments(VECTOR2 to position)
@@ -991,8 +1024,7 @@ public open class Tree : Control() {
     public override val `value`: Long,
   ) : GodotEnum {
     /**
-     * Disables all drop sections, but still allows to detect the "on item" drop section by
-     * [getDropSectionAtPosition].
+     * Disables all drop sections.
      *
      * **Note:** This is the default flag, it has no effect when combined with other flags.
      */
@@ -1000,16 +1032,17 @@ public open class Tree : Control() {
     /**
      * Enables the "on item" drop section. This drop section covers the entire item.
      *
-     * When combined with [DROP_MODE_INBETWEEN], this drop section halves the height and stays
+     * When combined with [DROP_MODE_INBETWEEN], this drop section halves in height and stays
      * centered vertically.
      */
     ON_ITEM(1),
     /**
      * Enables "above item" and "below item" drop sections. The "above item" drop section covers the
-     * top half of the item, and the "below item" drop section covers the bottom half.
+     * top half of the item, while the "below item" drop section covers the bottom half, and extends
+     * downward to the left of any children.
      *
-     * When combined with [DROP_MODE_ON_ITEM], these drop sections halves the height and stays on
-     * top / bottom accordingly.
+     * When combined with [DROP_MODE_ON_ITEM], these drop sections halve in height and stay at the
+     * top and bottom respectively.
      */
     INBETWEEN(2),
     ;
@@ -1088,6 +1121,10 @@ public open class Tree : Control() {
     @JvmField
     public val getColumnWidthName: MethodStringName1<Tree, Int, Int> =
         MethodStringName1<Tree, Int, Int>("get_column_width")
+
+    @JvmField
+    public val getCustomDrawingCanvasItemName: MethodStringName0<Tree, RID> =
+        MethodStringName0<Tree, RID>("get_custom_drawing_canvas_item")
 
     @JvmField
     public val setHideRootName: MethodStringName1<Tree, Unit, Boolean> =
@@ -1362,6 +1399,9 @@ public open class Tree : Control() {
 
     internal val getColumnWidthPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Tree", "get_column_width", 923996154)
+
+    internal val getCustomDrawingCanvasItemPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Tree", "get_custom_drawing_canvas_item", 2944877500)
 
     internal val setHideRootPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Tree", "set_hide_root", 2586408642)

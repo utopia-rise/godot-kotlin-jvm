@@ -39,7 +39,7 @@ public open class VisualShaderNodeParticleAccelerator : VisualShaderNode() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(835, scriptPtr)
+    createNativeObject(850, scriptPtr)
   }
 
   public final fun setMode(mode: Mode): Unit {

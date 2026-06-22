@@ -38,7 +38,7 @@ public open class VisualShaderNodeUIntOp : VisualShaderNode() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(879, scriptPtr)
+    createNativeObject(894, scriptPtr)
   }
 
   public final fun setOperator(op: Operator): Unit {

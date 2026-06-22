@@ -32,7 +32,7 @@ import kotlin.jvm.JvmField
 @GodotBaseType
 public open class X509Certificate : Resource() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(919, scriptPtr)
+    createNativeObject(934, scriptPtr)
   }
 
   /**

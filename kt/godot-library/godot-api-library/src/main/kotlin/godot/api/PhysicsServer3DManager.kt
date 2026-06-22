@@ -41,7 +41,7 @@ public object PhysicsServer3DManager : Object() {
       MethodStringName2<PhysicsServer3DManager, Unit, String, Int>("set_default_server")
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(26)
+    getSingleton(27)
   }
 
   /**

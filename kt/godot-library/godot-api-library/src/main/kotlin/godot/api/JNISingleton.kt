@@ -31,7 +31,7 @@ import kotlin.jvm.JvmField
 @GodotBaseType
 public open class JNISingleton : Object() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(326, scriptPtr)
+    createNativeObject(332, scriptPtr)
   }
 
   /**

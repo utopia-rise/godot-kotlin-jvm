@@ -6,6 +6,7 @@ import godot.api.AStar2D
 import godot.api.AStar3D
 import godot.api.AStarGrid2D
 import godot.api.AcceptDialog
+import godot.api.AccessibilityServer
 import godot.api.AimModifier3D
 import godot.api.AnimatableBody2D
 import godot.api.AnimatableBody3D
@@ -41,6 +42,7 @@ import godot.api.AnimationRootNode
 import godot.api.AnimationTree
 import godot.api.Area2D
 import godot.api.Area3D
+import godot.api.AreaLight3D
 import godot.api.ArrayMesh
 import godot.api.ArrayOccluder3D
 import godot.api.AspectRatioContainer
@@ -108,10 +110,12 @@ import godot.api.AudioStreamPolyphonic
 import godot.api.AudioStreamRandomizer
 import godot.api.AudioStreamSynchronized
 import godot.api.AudioStreamWAV
+import godot.api.AwaitTweener
 import godot.api.BackBufferCopy
 import godot.api.BaseButton
 import godot.api.BaseMaterial3D
 import godot.api.BitMap
+import godot.api.BlitMaterial
 import godot.api.Bone2D
 import godot.api.BoneAttachment3D
 import godot.api.BoneConstraint3D
@@ -212,6 +216,7 @@ import godot.api.DirAccess
 import godot.api.DirectionalLight2D
 import godot.api.DirectionalLight3D
 import godot.api.DisplayServer
+import godot.api.DrawableTexture2D
 import godot.api.ENetConnection
 import godot.api.ENetMultiplayerPeer
 import godot.api.ENetPacketPeer
@@ -270,6 +275,7 @@ import godot.api.GPUParticlesCollisionBox3D
 import godot.api.GPUParticlesCollisionHeightField3D
 import godot.api.GPUParticlesCollisionSDF3D
 import godot.api.GPUParticlesCollisionSphere3D
+import godot.api.GdjScript
 import godot.api.Generic6DOFJoint3D
 import godot.api.Geometry2D
 import godot.api.Geometry3D
@@ -338,14 +344,17 @@ import godot.api.JacobianIK3D
 import godot.api.JavaClass
 import godot.api.JavaClassWrapper
 import godot.api.JavaObject
+import godot.api.JavaScript
 import godot.api.JavaScriptBridge
 import godot.api.JavaScriptObject
 import godot.api.Joint2D
 import godot.api.Joint3D
 import godot.api.JointLimitation3D
 import godot.api.JointLimitationCone3D
+import godot.api.JvmScript
 import godot.api.KinematicCollision2D
 import godot.api.KinematicCollision3D
+import godot.api.KotlinScript
 import godot.api.Label
 import godot.api.Label3D
 import godot.api.LabelSettings
@@ -586,13 +595,17 @@ import godot.api.ProjectSettings
 import godot.api.PropertyTweener
 import godot.api.QuadMesh
 import godot.api.QuadOccluder3D
+import godot.api.RDAccelerationStructureGeometry
+import godot.api.RDAccelerationStructureInstance
 import godot.api.RDAttachmentFormat
 import godot.api.RDFramebufferPass
+import godot.api.RDHitGroup
 import godot.api.RDPipelineColorBlendState
 import godot.api.RDPipelineColorBlendStateAttachment
 import godot.api.RDPipelineDepthStencilState
 import godot.api.RDPipelineMultisampleState
 import godot.api.RDPipelineRasterizationState
+import godot.api.RDPipelineShader
 import godot.api.RDPipelineSpecializationConstant
 import godot.api.RDSamplerState
 import godot.api.RDShaderFile
@@ -642,6 +655,7 @@ import godot.api.RichTextLabel
 import godot.api.RigidBody2D
 import godot.api.RigidBody3D
 import godot.api.RootMotionView
+import godot.api.ScalaScript
 import godot.api.SceneMultiplayer
 import godot.api.SceneReplicationConfig
 import godot.api.SceneState
@@ -813,6 +827,7 @@ import godot.api.VideoStreamPlayer
 import godot.api.VideoStreamTheora
 import godot.api.Viewport
 import godot.api.ViewportTexture
+import godot.api.VirtualJoystick
 import godot.api.VisibleOnScreenEnabler2D
 import godot.api.VisibleOnScreenEnabler3D
 import godot.api.VisibleOnScreenNotifier2D
@@ -986,6 +1001,7 @@ public fun registerVariantMapping(): Unit {
   addVariantMapping(AStar3D::class, OBJECT)
   addVariantMapping(AStarGrid2D::class, OBJECT)
   addVariantMapping(AcceptDialog::class, OBJECT)
+  addVariantMapping(AccessibilityServer::class, OBJECT)
   addVariantMapping(AimModifier3D::class, OBJECT)
   addVariantMapping(AnimatableBody2D::class, OBJECT)
   addVariantMapping(AnimatableBody3D::class, OBJECT)
@@ -1020,6 +1036,7 @@ public fun registerVariantMapping(): Unit {
   addVariantMapping(AnimationTree::class, OBJECT)
   addVariantMapping(Area2D::class, OBJECT)
   addVariantMapping(Area3D::class, OBJECT)
+  addVariantMapping(AreaLight3D::class, OBJECT)
   addVariantMapping(ArrayMesh::class, OBJECT)
   addVariantMapping(ArrayOccluder3D::class, OBJECT)
   addVariantMapping(AspectRatioContainer::class, OBJECT)
@@ -1082,10 +1099,12 @@ public fun registerVariantMapping(): Unit {
   addVariantMapping(AudioStreamRandomizer::class, OBJECT)
   addVariantMapping(AudioStreamSynchronized::class, OBJECT)
   addVariantMapping(AudioStreamWAV::class, OBJECT)
+  addVariantMapping(AwaitTweener::class, OBJECT)
   addVariantMapping(BackBufferCopy::class, OBJECT)
   addVariantMapping(BaseButton::class, OBJECT)
   addVariantMapping(BaseMaterial3D::class, OBJECT)
   addVariantMapping(BitMap::class, OBJECT)
+  addVariantMapping(BlitMaterial::class, OBJECT)
   addVariantMapping(Bone2D::class, OBJECT)
   addVariantMapping(BoneAttachment3D::class, OBJECT)
   addVariantMapping(BoneConstraint3D::class, OBJECT)
@@ -1186,6 +1205,7 @@ public fun registerVariantMapping(): Unit {
   addVariantMapping(DirectionalLight2D::class, OBJECT)
   addVariantMapping(DirectionalLight3D::class, OBJECT)
   addVariantMapping(DisplayServer::class, OBJECT)
+  addVariantMapping(DrawableTexture2D::class, OBJECT)
   addVariantMapping(ENetConnection::class, OBJECT)
   addVariantMapping(ENetMultiplayerPeer::class, OBJECT)
   addVariantMapping(ENetPacketPeer::class, OBJECT)
@@ -1244,6 +1264,7 @@ public fun registerVariantMapping(): Unit {
   addVariantMapping(GPUParticlesCollisionHeightField3D::class, OBJECT)
   addVariantMapping(GPUParticlesCollisionSDF3D::class, OBJECT)
   addVariantMapping(GPUParticlesCollisionSphere3D::class, OBJECT)
+  addVariantMapping(GdjScript::class, OBJECT)
   addVariantMapping(Generic6DOFJoint3D::class, OBJECT)
   addVariantMapping(Geometry2D::class, OBJECT)
   addVariantMapping(Geometry3D::class, OBJECT)
@@ -1312,14 +1333,17 @@ public fun registerVariantMapping(): Unit {
   addVariantMapping(JavaClass::class, OBJECT)
   addVariantMapping(JavaClassWrapper::class, OBJECT)
   addVariantMapping(JavaObject::class, OBJECT)
+  addVariantMapping(JavaScript::class, OBJECT)
   addVariantMapping(JavaScriptBridge::class, OBJECT)
   addVariantMapping(JavaScriptObject::class, OBJECT)
   addVariantMapping(Joint2D::class, OBJECT)
   addVariantMapping(Joint3D::class, OBJECT)
   addVariantMapping(JointLimitation3D::class, OBJECT)
   addVariantMapping(JointLimitationCone3D::class, OBJECT)
+  addVariantMapping(JvmScript::class, OBJECT)
   addVariantMapping(KinematicCollision2D::class, OBJECT)
   addVariantMapping(KinematicCollision3D::class, OBJECT)
+  addVariantMapping(KotlinScript::class, OBJECT)
   addVariantMapping(Label::class, OBJECT)
   addVariantMapping(Label3D::class, OBJECT)
   addVariantMapping(LabelSettings::class, OBJECT)
@@ -1548,13 +1572,17 @@ public fun registerVariantMapping(): Unit {
   addVariantMapping(PropertyTweener::class, OBJECT)
   addVariantMapping(QuadMesh::class, OBJECT)
   addVariantMapping(QuadOccluder3D::class, OBJECT)
+  addVariantMapping(RDAccelerationStructureGeometry::class, OBJECT)
+  addVariantMapping(RDAccelerationStructureInstance::class, OBJECT)
   addVariantMapping(RDAttachmentFormat::class, OBJECT)
   addVariantMapping(RDFramebufferPass::class, OBJECT)
+  addVariantMapping(RDHitGroup::class, OBJECT)
   addVariantMapping(RDPipelineColorBlendState::class, OBJECT)
   addVariantMapping(RDPipelineColorBlendStateAttachment::class, OBJECT)
   addVariantMapping(RDPipelineDepthStencilState::class, OBJECT)
   addVariantMapping(RDPipelineMultisampleState::class, OBJECT)
   addVariantMapping(RDPipelineRasterizationState::class, OBJECT)
+  addVariantMapping(RDPipelineShader::class, OBJECT)
   addVariantMapping(RDPipelineSpecializationConstant::class, OBJECT)
   addVariantMapping(RDSamplerState::class, OBJECT)
   addVariantMapping(RDShaderFile::class, OBJECT)
@@ -1602,6 +1630,7 @@ public fun registerVariantMapping(): Unit {
   addVariantMapping(RigidBody2D::class, OBJECT)
   addVariantMapping(RigidBody3D::class, OBJECT)
   addVariantMapping(RootMotionView::class, OBJECT)
+  addVariantMapping(ScalaScript::class, OBJECT)
   addVariantMapping(SceneMultiplayer::class, OBJECT)
   addVariantMapping(SceneReplicationConfig::class, OBJECT)
   addVariantMapping(SceneState::class, OBJECT)
@@ -1763,6 +1792,7 @@ public fun registerVariantMapping(): Unit {
   addVariantMapping(VideoStreamTheora::class, OBJECT)
   addVariantMapping(Viewport::class, OBJECT)
   addVariantMapping(ViewportTexture::class, OBJECT)
+  addVariantMapping(VirtualJoystick::class, OBJECT)
   addVariantMapping(VisibleOnScreenEnabler2D::class, OBJECT)
   addVariantMapping(VisibleOnScreenEnabler3D::class, OBJECT)
   addVariantMapping(VisibleOnScreenNotifier2D::class, OBJECT)
@@ -1938,6 +1968,8 @@ public fun warmEngineTypes(): Unit {
   AStarGrid2D.MethodBindings
   Class.forName(AcceptDialog::class.java.name, true, AcceptDialog::class.java.classLoader)
   AcceptDialog.MethodBindings
+  Class.forName(AccessibilityServer::class.java.name, true, AccessibilityServer::class.java.classLoader)
+  AccessibilityServer.MethodBindings
   Class.forName(AimModifier3D::class.java.name, true, AimModifier3D::class.java.classLoader)
   AimModifier3D.MethodBindings
   Class.forName(AnimatableBody2D::class.java.name, true, AnimatableBody2D::class.java.classLoader)
@@ -2006,6 +2038,8 @@ public fun warmEngineTypes(): Unit {
   Area2D.MethodBindings
   Class.forName(Area3D::class.java.name, true, Area3D::class.java.classLoader)
   Area3D.MethodBindings
+  Class.forName(AreaLight3D::class.java.name, true, AreaLight3D::class.java.classLoader)
+  AreaLight3D.MethodBindings
   Class.forName(ArrayMesh::class.java.name, true, ArrayMesh::class.java.classLoader)
   ArrayMesh.MethodBindings
   Class.forName(ArrayOccluder3D::class.java.name, true, ArrayOccluder3D::class.java.classLoader)
@@ -2130,6 +2164,8 @@ public fun warmEngineTypes(): Unit {
   AudioStreamSynchronized.MethodBindings
   Class.forName(AudioStreamWAV::class.java.name, true, AudioStreamWAV::class.java.classLoader)
   AudioStreamWAV.MethodBindings
+  Class.forName(AwaitTweener::class.java.name, true, AwaitTweener::class.java.classLoader)
+  AwaitTweener.MethodBindings
   Class.forName(BackBufferCopy::class.java.name, true, BackBufferCopy::class.java.classLoader)
   BackBufferCopy.MethodBindings
   Class.forName(BaseButton::class.java.name, true, BaseButton::class.java.classLoader)
@@ -2138,6 +2174,8 @@ public fun warmEngineTypes(): Unit {
   BaseMaterial3D.MethodBindings
   Class.forName(BitMap::class.java.name, true, BitMap::class.java.classLoader)
   BitMap.MethodBindings
+  Class.forName(BlitMaterial::class.java.name, true, BlitMaterial::class.java.classLoader)
+  BlitMaterial.MethodBindings
   Class.forName(Bone2D::class.java.name, true, Bone2D::class.java.classLoader)
   Bone2D.MethodBindings
   Class.forName(BoneAttachment3D::class.java.name, true, BoneAttachment3D::class.java.classLoader)
@@ -2338,6 +2376,8 @@ public fun warmEngineTypes(): Unit {
   DirectionalLight3D.MethodBindings
   Class.forName(DisplayServer::class.java.name, true, DisplayServer::class.java.classLoader)
   DisplayServer.MethodBindings
+  Class.forName(DrawableTexture2D::class.java.name, true, DrawableTexture2D::class.java.classLoader)
+  DrawableTexture2D.MethodBindings
   Class.forName(ENetConnection::class.java.name, true, ENetConnection::class.java.classLoader)
   ENetConnection.MethodBindings
   Class.forName(ENetMultiplayerPeer::class.java.name, true, ENetMultiplayerPeer::class.java.classLoader)
@@ -2454,6 +2494,8 @@ public fun warmEngineTypes(): Unit {
   GPUParticlesCollisionSDF3D.MethodBindings
   Class.forName(GPUParticlesCollisionSphere3D::class.java.name, true, GPUParticlesCollisionSphere3D::class.java.classLoader)
   GPUParticlesCollisionSphere3D.MethodBindings
+  Class.forName(GdjScript::class.java.name, true, GdjScript::class.java.classLoader)
+  GdjScript.MethodBindings
   Class.forName(Generic6DOFJoint3D::class.java.name, true, Generic6DOFJoint3D::class.java.classLoader)
   Generic6DOFJoint3D.MethodBindings
   Class.forName(Geometry2D::class.java.name, true, Geometry2D::class.java.classLoader)
@@ -2590,6 +2632,8 @@ public fun warmEngineTypes(): Unit {
   JavaClassWrapper.MethodBindings
   Class.forName(JavaObject::class.java.name, true, JavaObject::class.java.classLoader)
   JavaObject.MethodBindings
+  Class.forName(JavaScript::class.java.name, true, JavaScript::class.java.classLoader)
+  JavaScript.MethodBindings
   Class.forName(JavaScriptBridge::class.java.name, true, JavaScriptBridge::class.java.classLoader)
   JavaScriptBridge.MethodBindings
   Class.forName(JavaScriptObject::class.java.name, true, JavaScriptObject::class.java.classLoader)
@@ -2602,10 +2646,14 @@ public fun warmEngineTypes(): Unit {
   JointLimitation3D.MethodBindings
   Class.forName(JointLimitationCone3D::class.java.name, true, JointLimitationCone3D::class.java.classLoader)
   JointLimitationCone3D.MethodBindings
+  Class.forName(JvmScript::class.java.name, true, JvmScript::class.java.classLoader)
+  JvmScript.MethodBindings
   Class.forName(KinematicCollision2D::class.java.name, true, KinematicCollision2D::class.java.classLoader)
   KinematicCollision2D.MethodBindings
   Class.forName(KinematicCollision3D::class.java.name, true, KinematicCollision3D::class.java.classLoader)
   KinematicCollision3D.MethodBindings
+  Class.forName(KotlinScript::class.java.name, true, KotlinScript::class.java.classLoader)
+  KotlinScript.MethodBindings
   Class.forName(Label::class.java.name, true, Label::class.java.classLoader)
   Label.MethodBindings
   Class.forName(Label3D::class.java.name, true, Label3D::class.java.classLoader)
@@ -3062,10 +3110,16 @@ public fun warmEngineTypes(): Unit {
   QuadMesh.MethodBindings
   Class.forName(QuadOccluder3D::class.java.name, true, QuadOccluder3D::class.java.classLoader)
   QuadOccluder3D.MethodBindings
+  Class.forName(RDAccelerationStructureGeometry::class.java.name, true, RDAccelerationStructureGeometry::class.java.classLoader)
+  RDAccelerationStructureGeometry.MethodBindings
+  Class.forName(RDAccelerationStructureInstance::class.java.name, true, RDAccelerationStructureInstance::class.java.classLoader)
+  RDAccelerationStructureInstance.MethodBindings
   Class.forName(RDAttachmentFormat::class.java.name, true, RDAttachmentFormat::class.java.classLoader)
   RDAttachmentFormat.MethodBindings
   Class.forName(RDFramebufferPass::class.java.name, true, RDFramebufferPass::class.java.classLoader)
   RDFramebufferPass.MethodBindings
+  Class.forName(RDHitGroup::class.java.name, true, RDHitGroup::class.java.classLoader)
+  RDHitGroup.MethodBindings
   Class.forName(RDPipelineColorBlendState::class.java.name, true, RDPipelineColorBlendState::class.java.classLoader)
   RDPipelineColorBlendState.MethodBindings
   Class.forName(RDPipelineColorBlendStateAttachment::class.java.name, true, RDPipelineColorBlendStateAttachment::class.java.classLoader)
@@ -3076,6 +3130,8 @@ public fun warmEngineTypes(): Unit {
   RDPipelineMultisampleState.MethodBindings
   Class.forName(RDPipelineRasterizationState::class.java.name, true, RDPipelineRasterizationState::class.java.classLoader)
   RDPipelineRasterizationState.MethodBindings
+  Class.forName(RDPipelineShader::class.java.name, true, RDPipelineShader::class.java.classLoader)
+  RDPipelineShader.MethodBindings
   Class.forName(RDPipelineSpecializationConstant::class.java.name, true, RDPipelineSpecializationConstant::class.java.classLoader)
   RDPipelineSpecializationConstant.MethodBindings
   Class.forName(RDSamplerState::class.java.name, true, RDSamplerState::class.java.classLoader)
@@ -3170,6 +3226,8 @@ public fun warmEngineTypes(): Unit {
   RigidBody3D.MethodBindings
   Class.forName(RootMotionView::class.java.name, true, RootMotionView::class.java.classLoader)
   RootMotionView.MethodBindings
+  Class.forName(ScalaScript::class.java.name, true, ScalaScript::class.java.classLoader)
+  ScalaScript.MethodBindings
   Class.forName(SceneMultiplayer::class.java.name, true, SceneMultiplayer::class.java.classLoader)
   SceneMultiplayer.MethodBindings
   Class.forName(SceneReplicationConfig::class.java.name, true, SceneReplicationConfig::class.java.classLoader)
@@ -3492,6 +3550,8 @@ public fun warmEngineTypes(): Unit {
   Viewport.MethodBindings
   Class.forName(ViewportTexture::class.java.name, true, ViewportTexture::class.java.classLoader)
   ViewportTexture.MethodBindings
+  Class.forName(VirtualJoystick::class.java.name, true, VirtualJoystick::class.java.classLoader)
+  VirtualJoystick.MethodBindings
   Class.forName(VisibleOnScreenEnabler2D::class.java.name, true, VisibleOnScreenEnabler2D::class.java.classLoader)
   VisibleOnScreenEnabler2D.MethodBindings
   Class.forName(VisibleOnScreenEnabler3D::class.java.name, true, VisibleOnScreenEnabler3D::class.java.classLoader)
@@ -3818,6 +3878,8 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("AStar3D", AStar3D::class, ::AStar3D)
   TypeManager.registerEngineType("AStarGrid2D", AStarGrid2D::class, ::AStarGrid2D)
   TypeManager.registerEngineType("AcceptDialog", AcceptDialog::class, ::AcceptDialog)
+  TypeManager.registerSingleton("AccessibilityServer") { AccessibilityServer }
+  TypeManager.registerEngineType("AccessibilityServer", AccessibilityServer::class) { AccessibilityServer }
   TypeManager.registerEngineType("AimModifier3D", AimModifier3D::class, ::AimModifier3D)
   TypeManager.registerEngineType("AnimatableBody2D", AnimatableBody2D::class, ::AnimatableBody2D)
   TypeManager.registerEngineType("AnimatableBody3D", AnimatableBody3D::class, ::AnimatableBody3D)
@@ -3852,6 +3914,7 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("AnimationTree", AnimationTree::class, ::AnimationTree)
   TypeManager.registerEngineType("Area2D", Area2D::class, ::Area2D)
   TypeManager.registerEngineType("Area3D", Area3D::class, ::Area3D)
+  TypeManager.registerEngineType("AreaLight3D", AreaLight3D::class, ::AreaLight3D)
   TypeManager.registerEngineType("ArrayMesh", ArrayMesh::class, ::ArrayMesh)
   TypeManager.registerEngineType("ArrayOccluder3D", ArrayOccluder3D::class, ::ArrayOccluder3D)
   TypeManager.registerEngineType("AspectRatioContainer", AspectRatioContainer::class, ::AspectRatioContainer)
@@ -3915,10 +3978,12 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("AudioStreamRandomizer", AudioStreamRandomizer::class, ::AudioStreamRandomizer)
   TypeManager.registerEngineType("AudioStreamSynchronized", AudioStreamSynchronized::class, ::AudioStreamSynchronized)
   TypeManager.registerEngineType("AudioStreamWAV", AudioStreamWAV::class, ::AudioStreamWAV)
+  TypeManager.registerEngineType("AwaitTweener", AwaitTweener::class, ::AwaitTweener)
   TypeManager.registerEngineType("BackBufferCopy", BackBufferCopy::class, ::BackBufferCopy)
   TypeManager.registerEngineType("BaseButton", BaseButton::class, ::BaseButton)
   TypeManager.registerEngineType("BaseMaterial3D", BaseMaterial3D::class, ::BaseMaterial3D)
   TypeManager.registerEngineType("BitMap", BitMap::class, ::BitMap)
+  TypeManager.registerEngineType("BlitMaterial", BlitMaterial::class, ::BlitMaterial)
   TypeManager.registerEngineType("Bone2D", Bone2D::class, ::Bone2D)
   TypeManager.registerEngineType("BoneAttachment3D", BoneAttachment3D::class, ::BoneAttachment3D)
   TypeManager.registerEngineType("BoneConstraint3D", BoneConstraint3D::class, ::BoneConstraint3D)
@@ -4022,6 +4087,7 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("DirectionalLight3D", DirectionalLight3D::class, ::DirectionalLight3D)
   TypeManager.registerSingleton("DisplayServer") { DisplayServer }
   TypeManager.registerEngineType("DisplayServer", DisplayServer::class) { DisplayServer }
+  TypeManager.registerEngineType("DrawableTexture2D", DrawableTexture2D::class, ::DrawableTexture2D)
   TypeManager.registerEngineType("ENetConnection", ENetConnection::class, ::ENetConnection)
   TypeManager.registerEngineType("ENetMultiplayerPeer", ENetMultiplayerPeer::class, ::ENetMultiplayerPeer)
   TypeManager.registerEngineType("ENetPacketPeer", ENetPacketPeer::class, ::ENetPacketPeer)
@@ -4083,6 +4149,7 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("GPUParticlesCollisionHeightField3D", GPUParticlesCollisionHeightField3D::class, ::GPUParticlesCollisionHeightField3D)
   TypeManager.registerEngineType("GPUParticlesCollisionSDF3D", GPUParticlesCollisionSDF3D::class, ::GPUParticlesCollisionSDF3D)
   TypeManager.registerEngineType("GPUParticlesCollisionSphere3D", GPUParticlesCollisionSphere3D::class, ::GPUParticlesCollisionSphere3D)
+  TypeManager.registerEngineType("GdjScript", GdjScript::class, ::GdjScript)
   TypeManager.registerEngineType("Generic6DOFJoint3D", Generic6DOFJoint3D::class, ::Generic6DOFJoint3D)
   TypeManager.registerSingleton("Geometry2D") { Geometry2D }
   TypeManager.registerEngineType("Geometry2D", Geometry2D::class) { Geometry2D }
@@ -4157,6 +4224,7 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerSingleton("JavaClassWrapper") { JavaClassWrapper }
   TypeManager.registerEngineType("JavaClassWrapper", JavaClassWrapper::class) { JavaClassWrapper }
   TypeManager.registerEngineType("JavaObject", JavaObject::class, ::JavaObject)
+  TypeManager.registerEngineType("JavaScript", JavaScript::class, ::JavaScript)
   TypeManager.registerSingleton("JavaScriptBridge") { JavaScriptBridge }
   TypeManager.registerEngineType("JavaScriptBridge", JavaScriptBridge::class) { JavaScriptBridge }
   TypeManager.registerEngineType("JavaScriptObject", JavaScriptObject::class, ::JavaScriptObject)
@@ -4164,8 +4232,10 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("Joint3D", Joint3D::class, ::Joint3D)
   TypeManager.registerEngineType("JointLimitation3D", JointLimitation3D::class, ::JointLimitation3D)
   TypeManager.registerEngineType("JointLimitationCone3D", JointLimitationCone3D::class, ::JointLimitationCone3D)
+  TypeManager.registerEngineType("JvmScript", JvmScript::class, ::JvmScript)
   TypeManager.registerEngineType("KinematicCollision2D", KinematicCollision2D::class, ::KinematicCollision2D)
   TypeManager.registerEngineType("KinematicCollision3D", KinematicCollision3D::class, ::KinematicCollision3D)
+  TypeManager.registerEngineType("KotlinScript", KotlinScript::class, ::KotlinScript)
   TypeManager.registerEngineType("Label", Label::class, ::Label)
   TypeManager.registerEngineType("Label3D", Label3D::class, ::Label3D)
   TypeManager.registerEngineType("LabelSettings", LabelSettings::class, ::LabelSettings)
@@ -4408,13 +4478,17 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("PropertyTweener", PropertyTweener::class, ::PropertyTweener)
   TypeManager.registerEngineType("QuadMesh", QuadMesh::class, ::QuadMesh)
   TypeManager.registerEngineType("QuadOccluder3D", QuadOccluder3D::class, ::QuadOccluder3D)
+  TypeManager.registerEngineType("RDAccelerationStructureGeometry", RDAccelerationStructureGeometry::class, ::RDAccelerationStructureGeometry)
+  TypeManager.registerEngineType("RDAccelerationStructureInstance", RDAccelerationStructureInstance::class, ::RDAccelerationStructureInstance)
   TypeManager.registerEngineType("RDAttachmentFormat", RDAttachmentFormat::class, ::RDAttachmentFormat)
   TypeManager.registerEngineType("RDFramebufferPass", RDFramebufferPass::class, ::RDFramebufferPass)
+  TypeManager.registerEngineType("RDHitGroup", RDHitGroup::class, ::RDHitGroup)
   TypeManager.registerEngineType("RDPipelineColorBlendState", RDPipelineColorBlendState::class, ::RDPipelineColorBlendState)
   TypeManager.registerEngineType("RDPipelineColorBlendStateAttachment", RDPipelineColorBlendStateAttachment::class, ::RDPipelineColorBlendStateAttachment)
   TypeManager.registerEngineType("RDPipelineDepthStencilState", RDPipelineDepthStencilState::class, ::RDPipelineDepthStencilState)
   TypeManager.registerEngineType("RDPipelineMultisampleState", RDPipelineMultisampleState::class, ::RDPipelineMultisampleState)
   TypeManager.registerEngineType("RDPipelineRasterizationState", RDPipelineRasterizationState::class, ::RDPipelineRasterizationState)
+  TypeManager.registerEngineType("RDPipelineShader", RDPipelineShader::class, ::RDPipelineShader)
   TypeManager.registerEngineType("RDPipelineSpecializationConstant", RDPipelineSpecializationConstant::class, ::RDPipelineSpecializationConstant)
   TypeManager.registerEngineType("RDSamplerState", RDSamplerState::class, ::RDSamplerState)
   TypeManager.registerEngineType("RDShaderFile", RDShaderFile::class, ::RDShaderFile)
@@ -4466,6 +4540,7 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("RigidBody2D", RigidBody2D::class, ::RigidBody2D)
   TypeManager.registerEngineType("RigidBody3D", RigidBody3D::class, ::RigidBody3D)
   TypeManager.registerEngineType("RootMotionView", RootMotionView::class, ::RootMotionView)
+  TypeManager.registerEngineType("ScalaScript", ScalaScript::class, ::ScalaScript)
   TypeManager.registerEngineType("SceneMultiplayer", SceneMultiplayer::class, ::SceneMultiplayer)
   TypeManager.registerEngineType("SceneReplicationConfig", SceneReplicationConfig::class, ::SceneReplicationConfig)
   TypeManager.registerEngineType("SceneState", SceneState::class, ::SceneState)
@@ -4631,6 +4706,7 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("VideoStreamTheora", VideoStreamTheora::class, ::VideoStreamTheora)
   TypeManager.registerEngineType("Viewport", Viewport::class, ::Viewport)
   TypeManager.registerEngineType("ViewportTexture", ViewportTexture::class, ::ViewportTexture)
+  TypeManager.registerEngineType("VirtualJoystick", VirtualJoystick::class, ::VirtualJoystick)
   TypeManager.registerEngineType("VisibleOnScreenEnabler2D", VisibleOnScreenEnabler2D::class, ::VisibleOnScreenEnabler2D)
   TypeManager.registerEngineType("VisibleOnScreenEnabler3D", VisibleOnScreenEnabler3D::class, ::VisibleOnScreenEnabler3D)
   TypeManager.registerEngineType("VisibleOnScreenNotifier2D", VisibleOnScreenNotifier2D::class, ::VisibleOnScreenNotifier2D)

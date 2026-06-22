@@ -10,6 +10,7 @@
 #include "script/source_script_parser.h"
 
 #include <core/config/project_settings.h>
+#include <core/io/file_access.h>
 
 static constexpr const char* graal_feature {"export-graal-native-image"};
 static constexpr const char* all_jvm_feature {"export-all-jvm"};

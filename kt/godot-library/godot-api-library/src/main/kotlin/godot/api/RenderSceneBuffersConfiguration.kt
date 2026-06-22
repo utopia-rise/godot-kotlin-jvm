@@ -142,6 +142,9 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
 
   /**
    * Bias applied to mipmaps.
+   *
+   * **Note:** This property is only supported in the Forward+ and Mobile renderers, not
+   * Compatibility. In Compatibility, this property is always treated as if it was set to `0.0`.
    */
   public final inline var textureMipmapBias: Float
     @JvmName("textureMipmapBiasProperty")
@@ -163,7 +166,7 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(600, scriptPtr)
+    createNativeObject(613, scriptPtr)
   }
 
   /**

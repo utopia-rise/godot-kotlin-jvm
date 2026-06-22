@@ -52,7 +52,7 @@ public open class InputEventPanGesture : InputEventGesture() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(316, scriptPtr)
+    createNativeObject(322, scriptPtr)
   }
 
   /**

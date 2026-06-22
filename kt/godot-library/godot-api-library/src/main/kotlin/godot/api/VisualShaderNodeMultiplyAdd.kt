@@ -38,7 +38,7 @@ public open class VisualShaderNodeMultiplyAdd : VisualShaderNode() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(830, scriptPtr)
+    createNativeObject(845, scriptPtr)
   }
 
   public final fun setOpType(type: OpType): Unit {

@@ -68,7 +68,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(790, scriptPtr)
+    createNativeObject(805, scriptPtr)
   }
 
   /**

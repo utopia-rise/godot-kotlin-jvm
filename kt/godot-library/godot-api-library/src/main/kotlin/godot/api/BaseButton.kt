@@ -175,7 +175,9 @@ public open class BaseButton : Control() {
     }
 
   /**
-   * If `true`, the button will add information about its shortcut in the tooltip.
+   * If `true`, the button will add information about its shortcut in the tooltip. This includes the
+   * shortcut's events and its [Resource.resourceName]. If both events and name are empty, the shortcut
+   * will not be included.
    *
    * **Note:** This property does nothing when the tooltip control is customized using
    * [Control.MakeCustomTooltip].
@@ -189,7 +191,7 @@ public open class BaseButton : Control() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(104, scriptPtr)
+    createNativeObject(107, scriptPtr)
   }
 
   /**

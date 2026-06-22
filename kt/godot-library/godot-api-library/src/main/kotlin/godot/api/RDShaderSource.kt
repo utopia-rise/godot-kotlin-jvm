@@ -88,6 +88,61 @@ public open class RDShaderSource : RefCounted() {
     }
 
   /**
+   * Source code for the shader's ray generation stage.
+   */
+  public final inline var sourceRaygen: String
+    @JvmName("sourceRaygenProperty")
+    get() = getStageSource(RenderingDevice.ShaderStage.RAYGEN)
+    @JvmName("sourceRaygenProperty")
+    set(`value`) {
+      setStageSource(RenderingDevice.ShaderStage.RAYGEN, value)
+    }
+
+  /**
+   * Source code for the shader's any hit stage.
+   */
+  public final inline var sourceAnyHit: String
+    @JvmName("sourceAnyHitProperty")
+    get() = getStageSource(RenderingDevice.ShaderStage.ANY_HIT)
+    @JvmName("sourceAnyHitProperty")
+    set(`value`) {
+      setStageSource(RenderingDevice.ShaderStage.ANY_HIT, value)
+    }
+
+  /**
+   * Source code for the shader's closest hit stage.
+   */
+  public final inline var sourceClosestHit: String
+    @JvmName("sourceClosestHitProperty")
+    get() = getStageSource(RenderingDevice.ShaderStage.CLOSEST_HIT)
+    @JvmName("sourceClosestHitProperty")
+    set(`value`) {
+      setStageSource(RenderingDevice.ShaderStage.CLOSEST_HIT, value)
+    }
+
+  /**
+   * Source code for the shader's miss stage.
+   */
+  public final inline var sourceMiss: String
+    @JvmName("sourceMissProperty")
+    get() = getStageSource(RenderingDevice.ShaderStage.MISS)
+    @JvmName("sourceMissProperty")
+    set(`value`) {
+      setStageSource(RenderingDevice.ShaderStage.MISS, value)
+    }
+
+  /**
+   * Source code for the shader's intersection stage.
+   */
+  public final inline var sourceIntersection: String
+    @JvmName("sourceIntersectionProperty")
+    get() = getStageSource(RenderingDevice.ShaderStage.INTERSECTION)
+    @JvmName("sourceIntersectionProperty")
+    set(`value`) {
+      setStageSource(RenderingDevice.ShaderStage.INTERSECTION, value)
+    }
+
+  /**
    * The language the shader is written in.
    */
   public final inline var language: RenderingDevice.ShaderLanguage
@@ -99,7 +154,7 @@ public open class RDShaderSource : RefCounted() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(580, scriptPtr)
+    createNativeObject(593, scriptPtr)
   }
 
   /**

@@ -38,7 +38,7 @@ public open class InputEventFromWindow internal constructor() : InputEvent() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(306, scriptPtr)
+    createNativeObject(312, scriptPtr)
   }
 
   public final fun setWindowId(id: Long): Unit {

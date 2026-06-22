@@ -37,6 +37,9 @@ public open class Shape3D internal constructor() : Resource() {
    *
    * When set to `0`, the default value from [ProjectSettings.physics/3d/solver/defaultContactBias]
    * is used.
+   *
+   * **Note:** [customSolverBias] is only effective when using GodotPhysics3D. It has no effect when
+   * using Jolt Physics.
    */
   public final inline var customSolverBias: Float
     @JvmName("customSolverBiasProperty")
@@ -63,7 +66,7 @@ public open class Shape3D internal constructor() : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(646, scriptPtr)
+    createNativeObject(660, scriptPtr)
   }
 
   public final fun setCustomSolverBias(bias: Float): Unit {

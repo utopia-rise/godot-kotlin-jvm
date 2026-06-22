@@ -144,9 +144,14 @@ public open class VoxelGIData : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(902, scriptPtr)
+    createNativeObject(917, scriptPtr)
   }
 
+  /**
+   * Initializes this [VoxelGIData] with the specified data. [octreeCells] must be a multiple of 32.
+   * [octreeCells] must be double the size of [dataCells]. The allocated data can be retrieved later
+   * using the various getter methods.
+   */
   public final fun allocate(
     toCellXform: Transform3D,
     aabb: AABB,
@@ -173,30 +178,48 @@ public open class VoxelGIData : Resource() {
     return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 
+  /**
+   * Returns the baked octree size for this [VoxelGIData], which corresponds to the number of
+   * subdivisions per axis. This can be viewed in the editor by hovering the **Bake VoxelGI** button at
+   * the top of the 3D editor viewport when a [VoxelGI] node is selected and looking at the
+   * **Subdivisions** field in the tooltip.
+   */
   public final fun getOctreeSize(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOctreeSizePtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
+  /**
+   * Returns the baked cell transform for this [VoxelGIData].
+   */
   public final fun getToCellXform(): Transform3D {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getToCellXformPtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
+  /**
+   * Returns the baked octree cell data for this [VoxelGIData].
+   */
   public final fun getOctreeCells(): PackedByteArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getOctreeCellsPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
+  /**
+   * Returns the baked cell data for this [VoxelGIData].
+   */
   public final fun getDataCells(): PackedByteArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDataCellsPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
+  /**
+   * Returns the baked level counts for this [VoxelGIData].
+   */
   public final fun getLevelCounts(): PackedInt32Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getLevelCountsPtr, PACKED_INT_32_ARRAY)

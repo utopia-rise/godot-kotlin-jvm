@@ -26,7 +26,7 @@ import kotlin.jvm.JvmField
 @GodotBaseType
 public open class StreamPeerSocket internal constructor() : StreamPeer() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(697, scriptPtr)
+    createNativeObject(711, scriptPtr)
   }
 
   /**

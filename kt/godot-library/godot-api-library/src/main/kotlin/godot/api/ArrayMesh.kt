@@ -150,7 +150,7 @@ public open class ArrayMesh : Mesh() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(41, scriptPtr)
+    createNativeObject(43, scriptPtr)
   }
 
   /**
@@ -290,6 +290,18 @@ public open class ArrayMesh : Mesh() {
     TransferContext.callMethod(ptr, MethodBindings.surfaceRemovePtr, NIL)
   }
 
+  /**
+   * Updates the vertex buffer of this mesh's surface with the given [data]. The expected data per
+   * vertex is 12 or 8 bytes (4 bytes per float, 2 floats per [Vector2], and 3 floats per [Vector3])
+   * depending on if the mesh is using [Vector3] or [Vector2] vertices. This value can be determined
+   * with [RenderingServer.meshSurfaceGetFormatVertexStride].
+   *
+   * The starting point of the updates can be changed with [offset]. The value of [offset] should be
+   * a multiple of 12 bytes in most cases to align to each vertex.
+   *
+   * A [PackedVector3Array] of vertex locations can be converted into a [PackedByteArray] using
+   * [PackedVector3Array.toByteArray] for use in [data].
+   */
   public final fun surfaceUpdateVertexRegion(
     surfIdx: Int,
     offset: Int,
@@ -299,6 +311,18 @@ public open class ArrayMesh : Mesh() {
     TransferContext.callMethod(ptr, MethodBindings.surfaceUpdateVertexRegionPtr, NIL)
   }
 
+  /**
+   * Updates the attribute buffer of this mesh's surface with the given [data]. The expected data
+   * per attribute is 12 or 8 bytes (4 bytes per float, 2 floats per [Vector2], and 3 floats per
+   * [Vector3]) depending on if the mesh is using [Vector3] or [Vector2] vertices. This value can be
+   * determined with [RenderingServer.meshSurfaceGetFormatAttributeStride].
+   *
+   * The starting point of the updates can be changed with [offset]. The value of [offset] should be
+   * a multiple of 12 bytes in most cases to align to each attribute.
+   *
+   * A [PackedVector3Array] of attribute locations can be converted into a [PackedByteArray] using
+   * [PackedVector3Array.toByteArray] for use in [data].
+   */
   public final fun surfaceUpdateAttributeRegion(
     surfIdx: Int,
     offset: Int,
@@ -308,6 +332,18 @@ public open class ArrayMesh : Mesh() {
     TransferContext.callMethod(ptr, MethodBindings.surfaceUpdateAttributeRegionPtr, NIL)
   }
 
+  /**
+   * Updates the skin buffer of this mesh's surface with the given [data]. The expected data per
+   * skin is 12 or 8 bytes (4 bytes per float, 2 floats per [Vector2], and 3 floats per [Vector3])
+   * depending on if the mesh is using [Vector3] or [Vector2] vertices. This value can be determined
+   * with [RenderingServer.meshSurfaceGetFormatSkinStride].
+   *
+   * The starting point of the updates can be changed with [offset]. The value of [offset] should be
+   * a multiple of 12 bytes in most cases to align to each skin.
+   *
+   * A [PackedVector3Array] of skin locations can be converted into a [PackedByteArray] using
+   * [PackedVector3Array.toByteArray] for use in [data].
+   */
   public final fun surfaceUpdateSkinRegion(
     surfIdx: Int,
     offset: Int,

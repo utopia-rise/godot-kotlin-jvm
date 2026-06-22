@@ -239,7 +239,7 @@ public open class Node2D : CanvasItem() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(413, scriptPtr)
+    createNativeObject(422, scriptPtr)
   }
 
   /**
@@ -588,7 +588,7 @@ public open class Node2D : CanvasItem() {
   /**
    * Returns the [Transform2D] relative to this node's parent.
    */
-  public final fun getRelativeTransformToParent(parent: Node?): Transform2D {
+  public final fun getRelativeTransformToParent(parent: Node): Transform2D {
     TransferContext.writeArguments(OBJECT to parent)
     TransferContext.callMethod(ptr, MethodBindings.getRelativeTransformToParentPtr, TRANSFORM2D)
     return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
@@ -724,8 +724,8 @@ public open class Node2D : CanvasItem() {
         MethodStringName1<Node2D, Vector2, Vector2>("to_global")
 
     @JvmField
-    public val getRelativeTransformToParentName: MethodStringName1<Node2D, Transform2D, Node?> =
-        MethodStringName1<Node2D, Transform2D, Node?>("get_relative_transform_to_parent")
+    public val getRelativeTransformToParentName: MethodStringName1<Node2D, Transform2D, Node> =
+        MethodStringName1<Node2D, Transform2D, Node>("get_relative_transform_to_parent")
   }
 
   public object MethodBindings {

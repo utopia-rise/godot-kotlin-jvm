@@ -4,6 +4,7 @@
 #include "script/language/kotlin_script.h"
 
 #include <core/io/resource_loader.h>
+#include <core/object/class_db.h>
 
 constexpr const char* KOTLIN_TEMPLATE = PACKAGE_TEMPLATE
   "\n"
@@ -187,10 +188,6 @@ Vector<ScriptLanguage::ScriptTemplate> KotlinLanguage::get_built_in_templates(co
 
 bool KotlinLanguage::is_using_templates() {
     return true;
-}
-
-Script* KotlinLanguage::create_script() const {
-    return memnew(KotlinScript);
 }
 
 bool KotlinLanguage::supports_builtin_mode() const {

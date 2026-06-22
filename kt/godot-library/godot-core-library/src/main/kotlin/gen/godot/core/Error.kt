@@ -224,7 +224,7 @@ public enum class Error(
    */
   BUG(47),
   /**
-   * Printer on fire error (This is an easter egg, no built-in methods return this error code).
+   * Printer on fire error (this is an easter egg, no built-in methods return this error code).
    */
   PRINTER_ON_FIRE(48),
   ;

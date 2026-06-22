@@ -21,7 +21,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class Texture2DArrayRD : TextureLayeredRD() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(728, scriptPtr)
+    createNativeObject(742, scriptPtr)
   }
 
   public companion object

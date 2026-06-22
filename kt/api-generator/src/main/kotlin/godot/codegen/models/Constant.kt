@@ -8,5 +8,6 @@ data class Constant @JsonCreator constructor(
     @JsonProperty("type") val type: String?,
     @JsonProperty("value") val value: String,
     @JsonProperty("description") val description: String?,
-    @JsonProperty("brief_description") val briefDescription: String?
+    @JsonProperty("brief_description") val briefDescription: String?,
+    @JsonProperty("is_bitfield") val isBitfield: Boolean? = null
 )

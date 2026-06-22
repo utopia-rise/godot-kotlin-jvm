@@ -39,7 +39,7 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class ScrollContainer : Container() {
   /**
-   * Emitted when scrolling starts when dragging the scrollable area w*ith a touch event*. This
+   * Emitted when scrolling starts when dragging the scrollable area *with a touch event*. This
    * signal is *not* emitted when scrolling by dragging the scrollbar, scrolling with the mouse wheel
    * or scrolling with keyboard/gamepad events.
    *
@@ -166,6 +166,21 @@ public open class ScrollContainer : Container() {
     }
 
   /**
+   * If `true`, the mouse wheel scrolls the view horizontally, and holding [kbd]Shift[/kbd] scrolls
+   * vertically.
+   *
+   * If `false` (default), the mouse wheel scrolls the view vertically, and holding [kbd]Shift[/kbd]
+   * scrolls horizontally.
+   */
+  public final inline var scrollHorizontalByDefault: Boolean
+    @JvmName("scrollHorizontalByDefaultProperty")
+    get() = isScrollHorizontalByDefault()
+    @JvmName("scrollHorizontalByDefaultProperty")
+    set(`value`) {
+      setScrollHorizontalByDefault(value)
+    }
+
+  /**
    * Deadzone for touch scrolling. Lower deadzone makes the scrolling more sensitive.
    */
   public final inline var scrollDeadzone: Int
@@ -202,7 +217,7 @@ public open class ScrollContainer : Container() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(634, scriptPtr)
+    createNativeObject(648, scriptPtr)
   }
 
   public final fun setHScroll(`value`: Int): Unit {
@@ -269,6 +284,17 @@ public open class ScrollContainer : Container() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVerticalScrollModePtr, LONG)
     return ScrollMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setScrollHorizontalByDefault(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(ptr, MethodBindings.setScrollHorizontalByDefaultPtr, NIL)
+  }
+
+  public final fun isScrollHorizontalByDefault(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isScrollHorizontalByDefaultPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDeadzone(deadzone: Int): Unit {
@@ -395,6 +421,12 @@ public open class ScrollContainer : Container() {
      * ensuring that content size stays the same regardless if the scrollbar is visible.
      */
     RESERVE(4),
+    /**
+     * Behaves like [SCROLL_MODE_AUTO], but makes the [ScrollContainer] report a minimum size based
+     * on its content (limited by [Control.customMaximumSize] when set on the corresponding axis). This
+     * allows it to grow first and only start scrolling once constrained.
+     */
+    MAXIMIZE_FIRST(5),
     ;
 
     public companion object {
@@ -477,6 +509,14 @@ public open class ScrollContainer : Container() {
     @JvmField
     public val getVerticalScrollModeName: MethodStringName0<ScrollContainer, ScrollMode> =
         MethodStringName0<ScrollContainer, ScrollMode>("get_vertical_scroll_mode")
+
+    @JvmField
+    public val setScrollHorizontalByDefaultName: MethodStringName1<ScrollContainer, Unit, Boolean> =
+        MethodStringName1<ScrollContainer, Unit, Boolean>("set_scroll_horizontal_by_default")
+
+    @JvmField
+    public val isScrollHorizontalByDefaultName: MethodStringName0<ScrollContainer, Boolean> =
+        MethodStringName0<ScrollContainer, Boolean>("is_scroll_horizontal_by_default")
 
     @JvmField
     public val setDeadzoneName: MethodStringName1<ScrollContainer, Unit, Int> =
@@ -567,6 +607,12 @@ public open class ScrollContainer : Container() {
 
     internal val getVerticalScrollModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("ScrollContainer", "get_vertical_scroll_mode", 3987985145)
+
+    internal val setScrollHorizontalByDefaultPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScrollContainer", "set_scroll_horizontal_by_default", 2586408642)
+
+    internal val isScrollHorizontalByDefaultPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScrollContainer", "is_scroll_horizontal_by_default", 36873697)
 
     internal val setDeadzonePtr: VoidPtr =
         TypeManager.getMethodBindPtr("ScrollContainer", "set_deadzone", 1286410249)

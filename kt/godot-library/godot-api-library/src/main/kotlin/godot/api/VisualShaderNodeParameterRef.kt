@@ -38,7 +38,7 @@ public open class VisualShaderNodeParameterRef : VisualShaderNode() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(834, scriptPtr)
+    createNativeObject(849, scriptPtr)
   }
 
   public final fun setParameterName(name: String): Unit {

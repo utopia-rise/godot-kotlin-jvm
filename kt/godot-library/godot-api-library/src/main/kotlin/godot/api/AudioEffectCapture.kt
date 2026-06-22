@@ -30,8 +30,10 @@ import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
- * AudioEffectCapture is an AudioEffect which copies all audio frames from the attached audio effect
- * bus into its internal ring buffer.
+ * Copies all audio frames, also known as "samples" or "audio samples", from the attached audio bus
+ * into its internal ring buffer. This effect does not alter the audio. Can be used for storing
+ * real-time audio data for playback, and for creating real-time audio visualizations, like an
+ * oscilloscope.
  *
  * Application code should consume these audio frames from this ring buffer using [getBuffer] and
  * process it as needed, for example to capture data from an [AudioStreamMicrophone], implement
@@ -44,8 +46,10 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class AudioEffectCapture : AudioEffect() {
   /**
-   * Length of the internal ring buffer, in seconds. Setting the buffer length will have no effect
-   * if already initialized.
+   * Length of the internal ring buffer, in seconds. Higher values keep data around for longer, but
+   * require more memory. Value can range from 0.01 to 10.
+   *
+   * **Note:** Setting the buffer length will have no effect if already initialized.
    */
   public final inline var bufferLength: Float
     @JvmName("bufferLengthProperty")
@@ -56,12 +60,11 @@ public open class AudioEffectCapture : AudioEffect() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(50, scriptPtr)
+    createNativeObject(52, scriptPtr)
   }
 
   /**
-   * Returns `true` if at least [frames] audio frames are available to read in the internal ring
-   * buffer.
+   * Returns `true` if at least [frames] samples are available to read in the internal ring buffer.
    */
   public final fun canGetBuffer(frames: Int): Boolean {
     TransferContext.writeArguments(LONG to frames.toLong())
@@ -70,10 +73,10 @@ public open class AudioEffectCapture : AudioEffect() {
   }
 
   /**
-   * Gets the next [frames] audio samples from the internal ring buffer.
+   * Gets the next [frames] samples from the internal ring buffer.
    *
-   * Returns a [PackedVector2Array] containing exactly [frames] audio samples if available, or an
-   * empty [PackedVector2Array] if insufficient data was available.
+   * Returns a [PackedVector2Array] containing exactly [frames] samples if available, or an empty
+   * [PackedVector2Array] if insufficient data was available.
    *
    * The samples are signed floating-point PCM between `-1` and `1`. You will have to scale them if
    * you want to use them as 8 or 16-bit integer samples. (`v = 0x7fff * samples[0].x`)
@@ -107,7 +110,7 @@ public open class AudioEffectCapture : AudioEffect() {
   }
 
   /**
-   * Returns the number of frames available to read using [getBuffer].
+   * Returns the number of samples available to read using [getBuffer].
    */
   public final fun getFramesAvailable(): Int {
     TransferContext.writeArguments()
@@ -116,7 +119,7 @@ public open class AudioEffectCapture : AudioEffect() {
   }
 
   /**
-   * Returns the number of audio frames discarded from the audio bus due to full buffer.
+   * Returns the number of samples discarded from the audio bus due to full buffer.
    */
   public final fun getDiscardedFrames(): Long {
     TransferContext.writeArguments()
@@ -125,7 +128,7 @@ public open class AudioEffectCapture : AudioEffect() {
   }
 
   /**
-   * Returns the total size of the internal ring buffer in frames.
+   * Returns the total size of the internal ring buffer in number of samples.
    */
   public final fun getBufferLengthFrames(): Int {
     TransferContext.writeArguments()
@@ -134,7 +137,7 @@ public open class AudioEffectCapture : AudioEffect() {
   }
 
   /**
-   * Returns the number of audio frames inserted from the audio bus.
+   * Returns the number of samples inserted from the audio bus.
    */
   public final fun getPushedFrames(): Long {
     TransferContext.writeArguments()

@@ -111,12 +111,12 @@ public object ClassDB : Object() {
       MethodStringName2<ClassDB, StringName, StringName, StringName>("class_get_property_setter")
 
   @JvmField
-  public val classGetPropertyName: MethodStringName2<ClassDB, Any?, Object?, StringName> =
-      MethodStringName2<ClassDB, Any?, Object?, StringName>("class_get_property")
+  public val classGetPropertyName: MethodStringName2<ClassDB, Any?, Object, StringName> =
+      MethodStringName2<ClassDB, Any?, Object, StringName>("class_get_property")
 
   @JvmField
-  public val classSetPropertyName: MethodStringName3<ClassDB, Error, Object?, StringName, Any?> =
-      MethodStringName3<ClassDB, Error, Object?, StringName, Any?>("class_set_property")
+  public val classSetPropertyName: MethodStringName3<ClassDB, Error, Object, StringName, Any?> =
+      MethodStringName3<ClassDB, Error, Object, StringName, Any?>("class_set_property")
 
   @JvmField
   public val classGetPropertyDefaultValueName:
@@ -181,7 +181,7 @@ public object ClassDB : Object() {
       MethodStringName1<ClassDB, Boolean, StringName>("is_class_enabled")
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(2)
+    getSingleton(3)
   }
 
   /**
@@ -340,7 +340,7 @@ public object ClassDB : Object() {
    * Returns the value of [property] of [object] or its ancestry.
    */
   @JvmStatic
-  public final fun classGetProperty(`object`: Object?, `property`: StringName): Any? {
+  public final fun classGetProperty(`object`: Object, `property`: StringName): Any? {
     TransferContext.writeArguments(OBJECT to `object`, STRING_NAME to property)
     TransferContext.callMethod(ptr, MethodBindings.classGetPropertyPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
@@ -351,7 +351,7 @@ public object ClassDB : Object() {
    */
   @JvmStatic
   public final fun classSetProperty(
-    `object`: Object?,
+    `object`: Object,
     `property`: StringName,
     `value`: Any?,
   ): Error {
@@ -651,7 +651,7 @@ public object ClassDB : Object() {
    * Returns the value of [property] of [object] or its ancestry.
    */
   @JvmStatic
-  public final fun classGetProperty(`object`: Object?, `property`: String): Any? =
+  public final fun classGetProperty(`object`: Object, `property`: String): Any? =
       classGetProperty(`object`, property.asCachedStringName())
 
   /**
@@ -659,7 +659,7 @@ public object ClassDB : Object() {
    */
   @JvmStatic
   public final fun classSetProperty(
-    `object`: Object?,
+    `object`: Object,
     `property`: String,
     `value`: Any?,
   ): Error = classSetProperty(`object`, property.asCachedStringName(), value)

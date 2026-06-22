@@ -4,6 +4,8 @@
 #include "env.h"
 #include "jni.h"
 
+#include <core/variant/type_info.h>
+
 namespace jni {
     typedef jint(JNICALL* CreateJavaVM)(JavaVM**, void**, void*);
 

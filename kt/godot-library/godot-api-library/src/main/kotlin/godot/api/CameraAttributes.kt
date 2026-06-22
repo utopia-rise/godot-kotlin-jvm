@@ -71,6 +71,9 @@ public open class CameraAttributes : Resource() {
    * If `true`, enables the tonemapping auto exposure mode of the scene renderer. If `true`, the
    * renderer will automatically determine the exposure setting to adapt to the scene's illumination
    * and the observed light.
+   *
+   * **Note:** Auto-exposure is only supported in the Forward+ rendering method, not Mobile or
+   * Compatibility.
    */
   public final inline var autoExposureEnabled: Boolean
     @JvmName("autoExposureEnabledProperty")
@@ -104,7 +107,7 @@ public open class CameraAttributes : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(133, scriptPtr)
+    createNativeObject(137, scriptPtr)
   }
 
   public final fun setExposureMultiplier(multiplier: Float): Unit {

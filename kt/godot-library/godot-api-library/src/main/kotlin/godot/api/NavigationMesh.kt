@@ -390,7 +390,7 @@ public open class NavigationMesh : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(394, scriptPtr)
+    createNativeObject(403, scriptPtr)
   }
 
   /**

@@ -57,7 +57,7 @@ public open class World2D : Resource() {
     get() = getDirectSpaceState()
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(914, scriptPtr)
+    createNativeObject(929, scriptPtr)
   }
 
   public final fun getCanvas(): RID {

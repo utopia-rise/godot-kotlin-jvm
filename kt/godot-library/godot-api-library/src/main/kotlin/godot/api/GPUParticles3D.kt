@@ -360,12 +360,40 @@ public open class GPUParticles3D : GeometryInstance3D() {
       setDrawOrder(value)
     }
 
+  /**
+   * The alignment of particles. Use this for billboarding and aligning to velocity.
+   */
   public final inline var transformAlign: TransformAlign
     @JvmName("transformAlignProperty")
     get() = getTransformAlign()
     @JvmName("transformAlignProperty")
     set(`value`) {
       setTransformAlign(value)
+    }
+
+  /**
+   * When using transform align local billboard, which axis to use for the billboarding. Supports
+   * only X or Y.
+   */
+  public final inline var transformAlignAxis: RenderingServer.ParticlesTransformAlignAxis
+    @JvmName("transformAlignAxisProperty")
+    get() = getTransformAlignAxis()
+    @JvmName("transformAlignAxisProperty")
+    set(`value`) {
+      setTransformAlignAxis(value)
+    }
+
+  /**
+   * In the case of billboarded particles, which custom channel to read from to calculate their
+   * angle.
+   */
+  public final inline var transformAlignChannelFilter:
+      RenderingServer.ParticlesTransformAlignCustomSrc
+    @JvmName("transformAlignChannelFilterProperty")
+    get() = getTransformAlignChannelFilter()
+    @JvmName("transformAlignChannelFilterProperty")
+    set(`value`) {
+      setTransformAlignChannelFilter(value)
     }
 
   /**
@@ -473,7 +501,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(255, scriptPtr)
+    createNativeObject(260, scriptPtr)
   }
 
   /**
@@ -841,6 +869,31 @@ public open class GPUParticles3D : GeometryInstance3D() {
     return TransformAlign.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
+  public final
+      fun setTransformAlignChannelFilter(channelFilter: RenderingServer.ParticlesTransformAlignCustomSrc):
+      Unit {
+    TransferContext.writeArguments(LONG to channelFilter.value)
+    TransferContext.callMethod(ptr, MethodBindings.setTransformAlignChannelFilterPtr, NIL)
+  }
+
+  public final fun getTransformAlignChannelFilter():
+      RenderingServer.ParticlesTransformAlignCustomSrc {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getTransformAlignChannelFilterPtr, LONG)
+    return RenderingServer.ParticlesTransformAlignCustomSrc.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setTransformAlignAxis(align: RenderingServer.ParticlesTransformAlignAxis): Unit {
+    TransferContext.writeArguments(LONG to align.value)
+    TransferContext.callMethod(ptr, MethodBindings.setTransformAlignAxisPtr, NIL)
+  }
+
+  public final fun getTransformAlignAxis(): RenderingServer.ParticlesTransformAlignAxis {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getTransformAlignAxisPtr, LONG)
+    return RenderingServer.ParticlesTransformAlignAxis.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
   /**
    * Sets this node's properties to match a given [CPUParticles3D] node.
    */
@@ -863,11 +916,15 @@ public open class GPUParticles3D : GeometryInstance3D() {
   /**
    * Requests the particles to process for extra process time during a single frame.
    *
-   * Useful for particle playback, if used in combination with [useFixedSeed] or by calling
-   * [restart] with parameter `keep_seed` set to `true`.
+   * [processTime] defines the time that the particles will process while emitting is on.
+   * [processTimeResidual] defines the time that particles will process with emitting turned off for
+   * the simulation. When combined with [speedScale] set to `0.0`, this is useful to be able to seek a
+   * particle system timeline.
    */
-  public final fun requestParticlesProcess(processTime: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to processTime.toDouble())
+  @JvmOverloads
+  public final fun requestParticlesProcess(processTime: Float, processTimeResidual: Float = 0.0f):
+      Unit {
+    TransferContext.writeArguments(DOUBLE to processTime.toDouble(), DOUBLE to processTimeResidual.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.requestParticlesProcessPtr, NIL)
   }
 
@@ -935,10 +992,26 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public enum class TransformAlign(
     public override val `value`: Long,
   ) : GodotEnum {
+    /**
+     * Do not align particle transforms relative to the camera or velocity.
+     */
     DISABLED(0),
+    /**
+     * Align each particle's Z axis to face the camera.
+     */
     Z_BILLBOARD(1),
+    /**
+     * Align each particle's Y axis to the velocity vector.
+     */
     Y_TO_VELOCITY(2),
+    /**
+     * Align each particle's Z axis to face the camera and Y axis to the velocity vector.
+     */
     Z_BILLBOARD_Y_TO_VELOCITY(3),
+    /**
+     * Align each particle's Z axis to face the camera, while preserving a given axis (X or Y).
+     */
+    LOCAL_BILLBOARD(4),
     ;
 
     public companion object {
@@ -1169,6 +1242,26 @@ public open class GPUParticles3D : GeometryInstance3D() {
         MethodStringName0<GPUParticles3D, TransformAlign>("get_transform_align")
 
     @JvmField
+    public val setTransformAlignChannelFilterName:
+        MethodStringName1<GPUParticles3D, Unit, RenderingServer.ParticlesTransformAlignCustomSrc> =
+        MethodStringName1<GPUParticles3D, Unit, RenderingServer.ParticlesTransformAlignCustomSrc>("set_transform_align_channel_filter")
+
+    @JvmField
+    public val getTransformAlignChannelFilterName:
+        MethodStringName0<GPUParticles3D, RenderingServer.ParticlesTransformAlignCustomSrc> =
+        MethodStringName0<GPUParticles3D, RenderingServer.ParticlesTransformAlignCustomSrc>("get_transform_align_channel_filter")
+
+    @JvmField
+    public val setTransformAlignAxisName:
+        MethodStringName1<GPUParticles3D, Unit, RenderingServer.ParticlesTransformAlignAxis> =
+        MethodStringName1<GPUParticles3D, Unit, RenderingServer.ParticlesTransformAlignAxis>("set_transform_align_axis")
+
+    @JvmField
+    public val getTransformAlignAxisName:
+        MethodStringName0<GPUParticles3D, RenderingServer.ParticlesTransformAlignAxis> =
+        MethodStringName0<GPUParticles3D, RenderingServer.ParticlesTransformAlignAxis>("get_transform_align_axis")
+
+    @JvmField
     public val convertFromParticlesName: MethodStringName1<GPUParticles3D, Unit, Node?> =
         MethodStringName1<GPUParticles3D, Unit, Node?>("convert_from_particles")
 
@@ -1181,8 +1274,8 @@ public open class GPUParticles3D : GeometryInstance3D() {
         MethodStringName0<GPUParticles3D, Float>("get_amount_ratio")
 
     @JvmField
-    public val requestParticlesProcessName: MethodStringName1<GPUParticles3D, Unit, Float> =
-        MethodStringName1<GPUParticles3D, Unit, Float>("request_particles_process")
+    public val requestParticlesProcessName: MethodStringName2<GPUParticles3D, Unit, Float, Float> =
+        MethodStringName2<GPUParticles3D, Unit, Float, Float>("request_particles_process")
 
     /**
      * Maximum number of draw passes supported.
@@ -1356,6 +1449,18 @@ public open class GPUParticles3D : GeometryInstance3D() {
     internal val getTransformAlignPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GPUParticles3D", "get_transform_align", 2100992166)
 
+    internal val setTransformAlignChannelFilterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "set_transform_align_channel_filter", 540833286)
+
+    internal val getTransformAlignChannelFilterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "get_transform_align_channel_filter", 1664431231)
+
+    internal val setTransformAlignAxisPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "set_transform_align_axis", 3781785913)
+
+    internal val getTransformAlignAxisPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GPUParticles3D", "get_transform_align_axis", 2427180841)
+
     internal val convertFromParticlesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GPUParticles3D", "convert_from_particles", 1078189570)
 
@@ -1366,6 +1471,6 @@ public open class GPUParticles3D : GeometryInstance3D() {
         TypeManager.getMethodBindPtr("GPUParticles3D", "get_amount_ratio", 1740695150)
 
     internal val requestParticlesProcessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "request_particles_process", 373806689)
+        TypeManager.getMethodBindPtr("GPUParticles3D", "request_particles_process", 66938510)
   }
 }

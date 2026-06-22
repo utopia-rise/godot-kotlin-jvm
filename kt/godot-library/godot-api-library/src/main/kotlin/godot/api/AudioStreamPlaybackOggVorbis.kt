@@ -13,10 +13,13 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * Playback component of [AudioStreamOggVorbis]. Uses [OggPacketSequencePlayback] for playback data.
+ */
 @GodotBaseType
 public open class AudioStreamPlaybackOggVorbis : AudioStreamPlaybackResampled() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(90, scriptPtr)
+    createNativeObject(92, scriptPtr)
   }
 
   /**

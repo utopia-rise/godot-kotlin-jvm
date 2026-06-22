@@ -33,7 +33,7 @@ import kotlin.jvm.JvmField
 @GodotBaseType
 public open class UDSServer : SocketServer() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(765, scriptPtr)
+    createNativeObject(779, scriptPtr)
   }
 
   /**

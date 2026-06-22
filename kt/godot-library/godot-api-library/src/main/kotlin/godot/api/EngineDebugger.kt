@@ -141,7 +141,7 @@ public object EngineDebugger : Object() {
       MethodStringName0<EngineDebugger, Unit>("clear_breakpoints")
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(5)
+    getSingleton(6)
   }
 
   /**

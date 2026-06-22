@@ -47,7 +47,7 @@ public open class GPUParticlesCollisionSphere3D : GPUParticlesCollision3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(264, scriptPtr)
+    createNativeObject(269, scriptPtr)
   }
 
   public final fun setRadius(radius: Float): Unit {

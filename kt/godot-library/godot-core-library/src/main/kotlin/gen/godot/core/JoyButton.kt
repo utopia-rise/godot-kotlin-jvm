@@ -107,9 +107,30 @@ public enum class JoyButton(
    */
   TOUCHPAD(20),
   /**
+   * Game controller SDL miscellaneous button. Used by Nintendo Switch 2 Pro Controller and Horipad
+   * Steam controllers.
+   */
+  MISC2(21),
+  /**
+   * Game controller SDL miscellaneous button.
+   */
+  MISC3(22),
+  /**
+   * Game controller SDL miscellaneous button.
+   */
+  MISC4(23),
+  /**
+   * Game controller SDL miscellaneous button.
+   */
+  MISC5(24),
+  /**
+   * Game controller SDL miscellaneous button.
+   */
+  MISC6(25),
+  /**
    * The number of SDL game controller buttons.
    */
-  SDL_MAX(21),
+  SDL_MAX(26),
   /**
    * The maximum number of game controller buttons supported by the engine. The actual limit may be
    * lower on specific platforms:

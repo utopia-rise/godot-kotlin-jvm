@@ -16,12 +16,14 @@ import godot.core.Dictionary
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.MethodStringName2
+import godot.core.PackedColorArray
 import godot.core.Transform2D
 import godot.core.VariantParser.DICTIONARY
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
+import godot.core.VariantParser.PACKED_COLOR_ARRAY
 import godot.core.VariantParser.TRANSFORM2D
 import kotlin.Any
 import kotlin.Double
@@ -217,8 +219,31 @@ public open class FontVariation : Font() {
       setBaselineOffset(value)
     }
 
+  /**
+   * A palette index.
+   */
+  public final inline var paletteIndex: Long
+    @JvmName("paletteIndexProperty")
+    get() = getPaletteIndex()
+    @JvmName("paletteIndexProperty")
+    set(`value`) {
+      setPaletteIndex(value)
+    }
+
+  /**
+   * An array of colors to override predefined palette. Use `Color(0, 0, 0, 0)`, to keep predefined
+   * palette color at specific position.
+   */
+  public final inline var paletteCustomColors: PackedColorArray
+    @JvmName("paletteCustomColorsProperty")
+    get() = getPaletteCustomColors()
+    @JvmName("paletteCustomColorsProperty")
+    set(`value`) {
+      setPaletteCustomColors(value)
+    }
+
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(230, scriptPtr)
+    createNativeObject(235, scriptPtr)
   }
 
   /**
@@ -324,6 +349,28 @@ public open class FontVariation : Font() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
+  public final fun getPaletteIndex(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getPaletteIndexPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setPaletteIndex(paletteIndex: Long): Unit {
+    TransferContext.writeArguments(LONG to paletteIndex)
+    TransferContext.callMethod(ptr, MethodBindings.setPaletteIndexPtr, NIL)
+  }
+
+  public final fun getPaletteCustomColors(): PackedColorArray {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getPaletteCustomColorsPtr, PACKED_COLOR_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_COLOR_ARRAY) as PackedColorArray)
+  }
+
+  public final fun setPaletteCustomColors(colors: PackedColorArray): Unit {
+    TransferContext.writeArguments(PACKED_COLOR_ARRAY to colors)
+    TransferContext.callMethod(ptr, MethodBindings.setPaletteCustomColorsPtr, NIL)
+  }
+
   public companion object {
     @JvmField
     public val setBaseFontName: MethodStringName1<FontVariation, Unit, Font?> =
@@ -382,6 +429,22 @@ public open class FontVariation : Font() {
     @JvmField
     public val getBaselineOffsetName: MethodStringName0<FontVariation, Float> =
         MethodStringName0<FontVariation, Float>("get_baseline_offset")
+
+    @JvmField
+    public val getPaletteIndexName: MethodStringName0<FontVariation, Long> =
+        MethodStringName0<FontVariation, Long>("get_palette_index")
+
+    @JvmField
+    public val setPaletteIndexName: MethodStringName1<FontVariation, Unit, Long> =
+        MethodStringName1<FontVariation, Unit, Long>("set_palette_index")
+
+    @JvmField
+    public val getPaletteCustomColorsName: MethodStringName0<FontVariation, PackedColorArray> =
+        MethodStringName0<FontVariation, PackedColorArray>("get_palette_custom_colors")
+
+    @JvmField
+    public val setPaletteCustomColorsName: MethodStringName1<FontVariation, Unit, PackedColorArray>
+        = MethodStringName1<FontVariation, Unit, PackedColorArray>("set_palette_custom_colors")
   }
 
   public object MethodBindings {
@@ -426,5 +489,17 @@ public open class FontVariation : Font() {
 
     internal val getBaselineOffsetPtr: VoidPtr =
         TypeManager.getMethodBindPtr("FontVariation", "get_baseline_offset", 1740695150)
+
+    internal val getPaletteIndexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontVariation", "get_palette_index", 3905245786)
+
+    internal val setPaletteIndexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontVariation", "set_palette_index", 1286410249)
+
+    internal val getPaletteCustomColorsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontVariation", "get_palette_custom_colors", 1392750486)
+
+    internal val setPaletteCustomColorsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontVariation", "set_palette_custom_colors", 3546319833)
   }
 }

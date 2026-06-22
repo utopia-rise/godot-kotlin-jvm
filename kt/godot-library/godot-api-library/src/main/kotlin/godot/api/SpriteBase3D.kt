@@ -315,7 +315,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(687, scriptPtr)
+    createNativeObject(701, scriptPtr)
   }
 
   /**

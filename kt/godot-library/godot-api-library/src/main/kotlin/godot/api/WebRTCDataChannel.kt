@@ -41,7 +41,7 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(904, scriptPtr)
+    createNativeObject(919, scriptPtr)
   }
 
   /**

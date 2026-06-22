@@ -26,15 +26,20 @@ import kotlin.Unit
 import kotlin.jvm.JvmField
 
 /**
- * AudioEffectEQ gives you control over frequencies. Use it to compensate for existing deficiencies
- * in audio. AudioEffectEQs are useful on the Master bus to completely master a mix and give it more
- * character. They are also useful when a game is run on a mobile device, to adjust the mix to that
- * kind of speakers (it can be added but disabled when headphones are plugged).
+ * An "equalizer" gives you control over the gain of frequencies in the entire spectrum, by allowing
+ * their adjustment through bands. A band is a point in the frequency spectrum, and each band means a
+ * division of the spectrum that can be adjusted.
+ *
+ * Use equalizers to compensate for existing deficiencies in the audio, make room for other
+ * elements, or remove undesirable frequencies. AudioEffectEQs are useful on the Master bus to balance
+ * the entire mix or give it more character. They are also useful when a game is run on a mobile
+ * device, to adjust the mix to that kind of speakers (it can be disabled when headphones are plugged
+ * in).
  */
 @GodotBaseType
 public open class AudioEffectEQ : AudioEffect() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(55, scriptPtr)
+    createNativeObject(57, scriptPtr)
   }
 
   /**

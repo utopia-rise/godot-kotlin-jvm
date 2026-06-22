@@ -25,6 +25,7 @@ import godot.core.MethodStringName6
 import godot.core.MethodStringName7
 import godot.core.MethodStringName8
 import godot.core.PackedByteArray
+import godot.core.PackedColorArray
 import godot.core.PackedFloat32Array
 import godot.core.PackedInt32Array
 import godot.core.PackedStringArray
@@ -43,6 +44,7 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
+import godot.core.VariantParser.PACKED_COLOR_ARRAY
 import godot.core.VariantParser.PACKED_FLOAT_32_ARRAY
 import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.VariantParser.PACKED_STRING_ARRAY
@@ -120,7 +122,7 @@ public infix fun Long.and(other: TextServer.FontStyle): Long = this.and(other.fl
 @GodotBaseType
 public open class TextServer internal constructor() : RefCounted() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(720, scriptPtr)
+    createNativeObject(734, scriptPtr)
   }
 
   /**
@@ -619,8 +621,8 @@ public open class TextServer internal constructor() : RefCounted() {
    * If set to `true`, color modulation is applied when drawing colored glyphs, otherwise it's
    * applied to the monochrome glyphs only.
    */
-  public final fun fontSetModulateColorGlyphs(fontRid: RID, forceAutohinter: Boolean): Unit {
-    TransferContext.writeArguments(_RID to fontRid, BOOL to forceAutohinter)
+  public final fun fontSetModulateColorGlyphs(fontRid: RID, modulate: Boolean): Unit {
+    TransferContext.writeArguments(_RID to fontRid, BOOL to modulate)
     TransferContext.callMethod(ptr, MethodBindings.fontSetModulateColorGlyphsPtr, NIL)
   }
 
@@ -631,6 +633,72 @@ public open class TextServer internal constructor() : RefCounted() {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(ptr, MethodBindings.fontIsModulateColorGlyphsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Returns the number of predefined color palettes. Palette contains all colors used to render
+   * font glyphs. Each palette has the same number of colors.
+   */
+  public final fun fontGetPaletteCount(fontRid: RID): Long {
+    TransferContext.writeArguments(_RID to fontRid)
+    TransferContext.callMethod(ptr, MethodBindings.fontGetPaletteCountPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Returns the name of the predefined color palette at [index]. Palette contains all colors used
+   * to render font glyphs. Each palette has the same number of colors.
+   */
+  public final fun fontGetPaletteName(fontRid: RID, index: Long): String {
+    TransferContext.writeArguments(_RID to fontRid, LONG to index)
+    TransferContext.callMethod(ptr, MethodBindings.fontGetPaletteNamePtr, STRING)
+    return (TransferContext.readReturnValue(STRING) as String)
+  }
+
+  /**
+   * Returns the array in the predefined color palette at [index]. Palette contains all colors used
+   * to render font glyphs. Each palette has the same number of colors. Colors can be overridden using
+   * [fontSetPaletteCustomColors].
+   */
+  public final fun fontGetPaletteColors(fontRid: RID, index: Long): PackedColorArray {
+    TransferContext.writeArguments(_RID to fontRid, LONG to index)
+    TransferContext.callMethod(ptr, MethodBindings.fontGetPaletteColorsPtr, PACKED_COLOR_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_COLOR_ARRAY) as PackedColorArray)
+  }
+
+  /**
+   * Sets array of custom colors to override predefined palette. Set to empty array to reset
+   * overrides. Use `Color(0, 0, 0, 0)`, to keep predefined palette color at specific position.
+   */
+  public final fun fontSetPaletteCustomColors(fontRid: RID, colors: PackedColorArray): Unit {
+    TransferContext.writeArguments(_RID to fontRid, PACKED_COLOR_ARRAY to colors)
+    TransferContext.callMethod(ptr, MethodBindings.fontSetPaletteCustomColorsPtr, NIL)
+  }
+
+  /**
+   * Returns array of custom colors to override predefined palette.
+   */
+  public final fun fontGetPaletteCustomColors(fontRid: RID): PackedColorArray {
+    TransferContext.writeArguments(_RID to fontRid)
+    TransferContext.callMethod(ptr, MethodBindings.fontGetPaletteCustomColorsPtr, PACKED_COLOR_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_COLOR_ARRAY) as PackedColorArray)
+  }
+
+  /**
+   * Returns used palette index.
+   */
+  public final fun fontGetUsedPalette(fontRid: RID): Long {
+    TransferContext.writeArguments(_RID to fontRid)
+    TransferContext.callMethod(ptr, MethodBindings.fontGetUsedPalettePtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Sets used palette index.
+   */
+  public final fun fontSetUsedPalette(fontRid: RID, index: Long): Unit {
+    TransferContext.writeArguments(_RID to fontRid, LONG to index)
+    TransferContext.callMethod(ptr, MethodBindings.fontSetUsedPalettePtr, NIL)
   }
 
   /**
@@ -3731,6 +3799,35 @@ public open class TextServer internal constructor() : RefCounted() {
         MethodStringName1<TextServer, Boolean, RID>("font_is_modulate_color_glyphs")
 
     @JvmField
+    public val fontGetPaletteCountName: MethodStringName1<TextServer, Long, RID> =
+        MethodStringName1<TextServer, Long, RID>("font_get_palette_count")
+
+    @JvmField
+    public val fontGetPaletteNameName: MethodStringName2<TextServer, String, RID, Long> =
+        MethodStringName2<TextServer, String, RID, Long>("font_get_palette_name")
+
+    @JvmField
+    public val fontGetPaletteColorsName: MethodStringName2<TextServer, PackedColorArray, RID, Long>
+        = MethodStringName2<TextServer, PackedColorArray, RID, Long>("font_get_palette_colors")
+
+    @JvmField
+    public val fontSetPaletteCustomColorsName:
+        MethodStringName2<TextServer, Unit, RID, PackedColorArray> =
+        MethodStringName2<TextServer, Unit, RID, PackedColorArray>("font_set_palette_custom_colors")
+
+    @JvmField
+    public val fontGetPaletteCustomColorsName: MethodStringName1<TextServer, PackedColorArray, RID>
+        = MethodStringName1<TextServer, PackedColorArray, RID>("font_get_palette_custom_colors")
+
+    @JvmField
+    public val fontGetUsedPaletteName: MethodStringName1<TextServer, Long, RID> =
+        MethodStringName1<TextServer, Long, RID>("font_get_used_palette")
+
+    @JvmField
+    public val fontSetUsedPaletteName: MethodStringName2<TextServer, Unit, RID, Long> =
+        MethodStringName2<TextServer, Unit, RID, Long>("font_set_used_palette")
+
+    @JvmField
     public val fontSetHintingName: MethodStringName2<TextServer, Unit, RID, Hinting> =
         MethodStringName2<TextServer, Unit, RID, Hinting>("font_set_hinting")
 
@@ -4680,6 +4777,27 @@ public open class TextServer internal constructor() : RefCounted() {
 
     internal val fontIsModulateColorGlyphsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "font_is_modulate_color_glyphs", 4155700596)
+
+    internal val fontGetPaletteCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "font_get_palette_count", 2198884583)
+
+    internal val fontGetPaletteNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "font_get_palette_name", 1464764419)
+
+    internal val fontGetPaletteColorsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "font_get_palette_colors", 1595517857)
+
+    internal val fontSetPaletteCustomColorsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "font_set_palette_custom_colors", 4037098590)
+
+    internal val fontGetPaletteCustomColorsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "font_get_palette_custom_colors", 1569415609)
+
+    internal val fontGetUsedPalettePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "font_get_used_palette", 2198884583)
+
+    internal val fontSetUsedPalettePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "font_set_used_palette", 3411492887)
 
     internal val fontSetHintingPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "font_set_hinting", 1520010864)

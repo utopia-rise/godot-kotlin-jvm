@@ -258,7 +258,7 @@ public open class SystemFont : Font() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(711, scriptPtr)
+    createNativeObject(725, scriptPtr)
   }
 
   /**

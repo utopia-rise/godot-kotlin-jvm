@@ -357,7 +357,7 @@ public open class CodeEdit : TextEdit() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(157, scriptPtr)
+    createNativeObject(161, scriptPtr)
   }
 
   /**
@@ -1285,6 +1285,17 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
+   * Joins all selected lines or lines containing a caret with their next line. Whitespace in
+   * between will be removed. If the next line has content, the [lineEnding] will be inserted in
+   * between.
+   */
+  @JvmOverloads
+  public final fun joinLines(lineEnding: String = " "): Unit {
+    TransferContext.writeArguments(STRING to lineEnding)
+    TransferContext.callMethod(ptr, MethodBindings.joinLinesPtr, NIL)
+  }
+
+  /**
    * Duplicates all selected text and duplicates all lines with a caret on them.
    */
   public final fun duplicateSelection(): Unit {
@@ -1344,6 +1355,10 @@ public open class CodeEdit : TextEdit() {
      * Marks the option as unclassified or plain text.
      */
     KIND_PLAIN_TEXT(9),
+    /**
+     * Marks the option as a keyword.
+     */
+    KIND_KEYWORD(10),
     ;
 
     public companion object {
@@ -1836,6 +1851,10 @@ public open class CodeEdit : TextEdit() {
         MethodStringName0<CodeEdit, Unit>("delete_lines")
 
     @JvmField
+    public val joinLinesName: MethodStringName1<CodeEdit, Unit, String> =
+        MethodStringName1<CodeEdit, Unit, String>("join_lines")
+
+    @JvmField
     public val duplicateSelectionName: MethodStringName0<CodeEdit, Unit> =
         MethodStringName0<CodeEdit, Unit>("duplicate_selection")
 
@@ -2177,6 +2196,9 @@ public open class CodeEdit : TextEdit() {
 
     internal val deleteLinesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CodeEdit", "delete_lines", 3218959716)
+
+    internal val joinLinesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CodeEdit", "join_lines", 4063782979)
 
     internal val duplicateSelectionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CodeEdit", "duplicate_selection", 3218959716)

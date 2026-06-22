@@ -32,7 +32,7 @@ import kotlin.jvm.JvmField
 @GodotBaseType
 public open class GDExtension : Resource() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(232, scriptPtr)
+    createNativeObject(237, scriptPtr)
   }
 
   /**

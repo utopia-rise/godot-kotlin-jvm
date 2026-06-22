@@ -39,7 +39,7 @@ public open class VisualShaderNodeComment : VisualShaderNodeFrame() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(799, scriptPtr)
+    createNativeObject(814, scriptPtr)
   }
 
   public final fun setDescription(description: String): Unit {

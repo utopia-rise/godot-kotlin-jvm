@@ -29,14 +29,15 @@ import kotlin.Unit
  * To use, make a new class extending GLTFDocumentExtension, override any methods you need, make an
  * instance of your class, and register it using [GLTFDocument.registerGltfDocumentExtension].
  *
- * **Note:** Like GLTFDocument itself, all GLTFDocumentExtension classes must be stateless in order
- * to function properly. If you need to store data, use the `set_additional_data` and
- * `get_additional_data` methods in [GLTFState] or [GLTFNode].
+ * **Note:** All GLTFDocumentExtension classes are duplicated when beginning the import or export
+ * process. Except for configuration values, these classes must be stateless in order to function
+ * properly. If you need to store data, use the `set_additional_data` and `get_additional_data` methods
+ * in [GLTFState] or [GLTFNode].
  */
 @GodotBaseType
 public open class GLTFDocumentExtension : Resource() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(240, scriptPtr)
+    createNativeObject(245, scriptPtr)
   }
 
   /**
@@ -210,6 +211,21 @@ public open class GLTFDocumentExtension : Resource() {
    */
   public open fun _importPost(state: GLTFState?, root: Node?): Error {
     throw NotImplementedError("GLTFDocumentExtension::_importPost is not implemented.")
+  }
+
+  /**
+   * Runs prior to the export process. This method is run before [_exportPreflight] when exporting a
+   * scene from the editor, or it may not be run at all in other situations.
+   *
+   * Unlike the rest of the export methods, this does not run when calling a [GLTFDocument]'s export
+   * methods in sequence with everything else, but rather runs before that entire process occurs,
+   * allowing configuration to occur beforehand, potentially minutes or hours in advance of
+   * [_exportPreflight]. This allows extensions to decide which properties to show in the editor export
+   * settings dialog based on the contents of the scene, hiding any settings that are not relevant for
+   * that scene. The [rootNode] parameter may be `null`, in which case all properties should be shown.
+   */
+  public open fun _exportGetPropertyList(rootNode: Node?): VariantArray<Dictionary<Any?, Any?>> {
+    throw NotImplementedError("GLTFDocumentExtension::_exportGetPropertyList is not implemented.")
   }
 
   /**

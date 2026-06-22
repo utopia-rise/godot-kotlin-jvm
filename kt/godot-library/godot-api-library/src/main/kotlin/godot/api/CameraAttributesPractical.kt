@@ -30,6 +30,12 @@ import kotlin.jvm.JvmName
  * depth of field that will be used by all cameras without their own [CameraAttributes], including the
  * editor camera. When used in a [Camera3D] it will override any [CameraAttributes] set in the
  * [WorldEnvironment]. When used in [VoxelGI] or [LightmapGI], only the exposure settings will be used.
+ *
+ * **Note:** Depth of field blur is only supported in the Forward+ and Mobile rendering methods, not
+ * Compatibility.
+ *
+ * **Note:** Auto-exposure is only supported in the Forward+ rendering method, not Mobile or
+ * Compatibility.
  */
 @GodotBaseType
 public open class CameraAttributesPractical : CameraAttributes() {
@@ -163,7 +169,7 @@ public open class CameraAttributesPractical : CameraAttributes() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(135, scriptPtr)
+    createNativeObject(139, scriptPtr)
   }
 
   public final fun setDofBlurFarEnabled(enabled: Boolean): Unit {

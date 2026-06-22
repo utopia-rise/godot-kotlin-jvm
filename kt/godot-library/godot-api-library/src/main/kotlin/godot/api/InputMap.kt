@@ -106,7 +106,7 @@ public object InputMap : Object() {
   public val projectSettingsLoaded: Signal0 by Signal0
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(11)
+    getSingleton(12)
   }
 
   /**

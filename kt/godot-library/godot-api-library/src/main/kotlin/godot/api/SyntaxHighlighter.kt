@@ -33,7 +33,7 @@ import kotlin.jvm.JvmField
 @GodotBaseType
 public open class SyntaxHighlighter : Resource() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(710, scriptPtr)
+    createNativeObject(724, scriptPtr)
   }
 
   /**

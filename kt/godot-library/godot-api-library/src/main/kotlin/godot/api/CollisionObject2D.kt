@@ -27,7 +27,9 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.VariantParser.TRANSFORM2D
+import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser._RID
+import godot.core.Vector2
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -166,7 +168,7 @@ public open class CollisionObject2D internal constructor() : Node2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(159, scriptPtr)
+    createNativeObject(163, scriptPtr)
   }
 
   /**
@@ -431,6 +433,24 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   }
 
   /**
+   * Returns the `one_way_collision_direction` of the shape owner identified by the given [ownerId].
+   */
+  public final fun getShapeOwnerOneWayCollisionDirection(ownerId: Long): Vector2 {
+    TransferContext.writeArguments(LONG to ownerId)
+    TransferContext.callMethod(ptr, MethodBindings.getShapeOwnerOneWayCollisionDirectionPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+  }
+
+  /**
+   * Sets the `one_way_collision_direction` of the shape owner identified by the given [ownerId] to
+   * [direction].
+   */
+  public final fun shapeOwnerSetOneWayCollisionDirection(ownerId: Long, direction: Vector2): Unit {
+    TransferContext.writeArguments(LONG to ownerId, VECTOR2 to direction)
+    TransferContext.callMethod(ptr, MethodBindings.shapeOwnerSetOneWayCollisionDirectionPtr, NIL)
+  }
+
+  /**
    * Adds a [Shape2D] to the shape owner.
    */
   public final fun shapeOwnerAddShape(ownerId: Long, shape: Shape2D): Unit {
@@ -635,6 +655,16 @@ public open class CollisionObject2D internal constructor() : Node2D() {
         MethodStringName1<CollisionObject2D, Float, Long>("get_shape_owner_one_way_collision_margin")
 
     @JvmField
+    public val getShapeOwnerOneWayCollisionDirectionName:
+        MethodStringName1<CollisionObject2D, Vector2, Long> =
+        MethodStringName1<CollisionObject2D, Vector2, Long>("get_shape_owner_one_way_collision_direction")
+
+    @JvmField
+    public val shapeOwnerSetOneWayCollisionDirectionName:
+        MethodStringName2<CollisionObject2D, Unit, Long, Vector2> =
+        MethodStringName2<CollisionObject2D, Unit, Long, Vector2>("shape_owner_set_one_way_collision_direction")
+
+    @JvmField
     public val shapeOwnerAddShapeName: MethodStringName2<CollisionObject2D, Unit, Long, Shape2D> =
         MethodStringName2<CollisionObject2D, Unit, Long, Shape2D>("shape_owner_add_shape")
 
@@ -744,6 +774,12 @@ public open class CollisionObject2D internal constructor() : Node2D() {
 
     internal val getShapeOwnerOneWayCollisionMarginPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CollisionObject2D", "get_shape_owner_one_way_collision_margin", 2339986948)
+
+    internal val getShapeOwnerOneWayCollisionDirectionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CollisionObject2D", "get_shape_owner_one_way_collision_direction", 2299179447)
+
+    internal val shapeOwnerSetOneWayCollisionDirectionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CollisionObject2D", "shape_owner_set_one_way_collision_direction", 163021252)
 
     internal val shapeOwnerAddShapePtr: VoidPtr =
         TypeManager.getMethodBindPtr("CollisionObject2D", "shape_owner_add_shape", 2077425081)

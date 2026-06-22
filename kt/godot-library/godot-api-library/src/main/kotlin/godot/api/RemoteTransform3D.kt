@@ -89,7 +89,7 @@ public open class RemoteTransform3D : Node3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(595, scriptPtr)
+    createNativeObject(608, scriptPtr)
   }
 
   public final fun setRemoteNode(path: NodePath): Unit {

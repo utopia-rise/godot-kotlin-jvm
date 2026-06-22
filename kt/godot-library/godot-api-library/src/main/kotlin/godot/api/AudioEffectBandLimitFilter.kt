@@ -12,13 +12,16 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Limits the frequencies in a range around the [AudioEffectFilter.cutoffHz] and allows frequencies
- * outside of this range to pass.
+ * A "band-limit" filter attenuates the frequencies at [AudioEffectFilter.cutoffHz], and allows
+ * frequencies outside the frequency threshold to pass unchanged. It is a wider and weaker version of
+ * [AudioEffectNotchFilter], and is the opposite of [AudioEffectBandPassFilter].
+ *
+ * This filter can be used to give more room for other sounds to play at that frequency.
  */
 @GodotBaseType
 public open class AudioEffectBandLimitFilter : AudioEffectFilter() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(48, scriptPtr)
+    createNativeObject(50, scriptPtr)
   }
 
   public companion object

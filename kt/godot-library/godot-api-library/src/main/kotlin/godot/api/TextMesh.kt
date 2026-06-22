@@ -287,7 +287,7 @@ public open class TextMesh : PrimitiveMesh() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(718, scriptPtr)
+    createNativeObject(732, scriptPtr)
   }
 
   /**

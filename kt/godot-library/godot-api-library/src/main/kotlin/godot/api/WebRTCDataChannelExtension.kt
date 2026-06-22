@@ -19,7 +19,7 @@ import kotlin.Unit
 @GodotBaseType
 public abstract class WebRTCDataChannelExtension : WebRTCDataChannel() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(905, scriptPtr)
+    createNativeObject(920, scriptPtr)
   }
 
   public abstract fun _getAvailablePacketCount(): Int
@@ -30,7 +30,7 @@ public abstract class WebRTCDataChannelExtension : WebRTCDataChannel() {
 
   public abstract fun _close(): Unit
 
-  public abstract fun _setWriteMode(pWriteMode: WebRTCDataChannel.WriteMode): Unit
+  public abstract fun _setWriteMode(writeMode: WebRTCDataChannel.WriteMode): Unit
 
   public abstract fun _getWriteMode(): WebRTCDataChannel.WriteMode
 
@@ -76,7 +76,7 @@ internal class WebRTCDataChannelExtensionDummy : WebRTCDataChannelExtension() {
     throw NotImplementedError("WebRTCDataChannelExtension::_close is only implemented by non-JVM code.")
   }
 
-  public override fun _setWriteMode(pWriteMode: WebRTCDataChannel.WriteMode): Unit {
+  public override fun _setWriteMode(writeMode: WebRTCDataChannel.WriteMode): Unit {
     throw NotImplementedError("WebRTCDataChannelExtension::_setWriteMode is only implemented by non-JVM code.")
   }
 

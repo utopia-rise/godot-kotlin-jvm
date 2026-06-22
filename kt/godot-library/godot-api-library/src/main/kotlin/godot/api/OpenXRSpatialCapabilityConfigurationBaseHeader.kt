@@ -12,6 +12,7 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.MethodStringName0
 import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.LONG
 import kotlin.Boolean
 import kotlin.Long
 import kotlin.NotImplementedError
@@ -27,7 +28,7 @@ import kotlin.jvm.JvmField
 @GodotBaseType
 public open class OpenXRSpatialCapabilityConfigurationBaseHeader : RefCounted() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(464, scriptPtr)
+    createNativeObject(473, scriptPtr)
   }
 
   /**
@@ -57,15 +58,34 @@ public open class OpenXRSpatialCapabilityConfigurationBaseHeader : RefCounted() 
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
+  /**
+   * Gets a pointer to the `XrSpatialCapabilityConfigurationBaseHeaderEXT` struct.
+   *
+   * **Note:** This method is intended to be used from GDExtensions.
+   */
+  public final fun getConfiguration(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getConfigurationPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long)
+  }
+
   public companion object {
     @JvmField
     public val hasValidConfigurationName:
         MethodStringName0<OpenXRSpatialCapabilityConfigurationBaseHeader, Boolean> =
         MethodStringName0<OpenXRSpatialCapabilityConfigurationBaseHeader, Boolean>("has_valid_configuration")
+
+    @JvmField
+    public val getConfigurationName:
+        MethodStringName0<OpenXRSpatialCapabilityConfigurationBaseHeader, Long> =
+        MethodStringName0<OpenXRSpatialCapabilityConfigurationBaseHeader, Long>("get_configuration")
   }
 
   public object MethodBindings {
     internal val hasValidConfigurationPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRSpatialCapabilityConfigurationBaseHeader", "has_valid_configuration", 36873697)
+
+    internal val getConfigurationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRSpatialCapabilityConfigurationBaseHeader", "get_configuration", 2455072627)
   }
 }

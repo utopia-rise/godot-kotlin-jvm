@@ -63,9 +63,8 @@ import kotlin.jvm.JvmName
  *
  * See also [BaseButton] which contains common properties and methods associated with this node.
  *
- * **Note:** Buttons do not detect touch input and therefore don't support multitouch, since mouse
- * emulation can only press one button at a given time. Use [TouchScreenButton] for buttons that
- * trigger gameplay movement or actions.
+ * **Note:** Buttons support multitouch via touch input, allowing multiple buttons to be pressed at
+ * the same time. Otherwise, mouse input is used, limiting interaction to one button press at a time.
  */
 @GodotBaseType
 public open class Button : BaseButton() {
@@ -226,7 +225,7 @@ public open class Button : BaseButton() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(116, scriptPtr)
+    createNativeObject(120, scriptPtr)
   }
 
   public final fun setText(text: String): Unit {

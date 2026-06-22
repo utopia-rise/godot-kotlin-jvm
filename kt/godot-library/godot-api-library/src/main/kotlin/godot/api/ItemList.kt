@@ -337,7 +337,7 @@ public open class ItemList : Control() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(324, scriptPtr)
+    createNativeObject(330, scriptPtr)
   }
 
   /**
@@ -666,7 +666,7 @@ public open class ItemList : Control() {
   }
 
   /**
-   * Select the item at the specified index.
+   * Selects the item at the specified index.
    *
    * **Note:** This method does not trigger the item selection signal.
    */
@@ -922,11 +922,26 @@ public open class ItemList : Control() {
   }
 
   /**
-   * Ensure current selection is visible, adjusting the scroll position as necessary.
+   * Ensures the currently selected item (the first selected item if multiple selection is enabled)
+   * is visible, adjusting the scroll position as necessary. See also [centerOnCurrent].
    */
   public final fun ensureCurrentIsVisible(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.ensureCurrentIsVisiblePtr, NIL)
+  }
+
+  /**
+   * Ensures the currently selected item (the first selected item if multiple selection is enabled)
+   * is visible, adjusting the scroll position as necessary to place the item at the center of the list
+   * if possible. See also [ensureCurrentIsVisible].
+   *
+   * Fails and prints an error if both arguments are `false`.
+   */
+  @JvmOverloads
+  public final fun centerOnCurrent(centerVerically: Boolean = true, centerHorizontally: Boolean =
+      true): Unit {
+    TransferContext.writeArguments(BOOL to centerVerically, BOOL to centerHorizontally)
+    TransferContext.callMethod(ptr, MethodBindings.centerOnCurrentPtr, NIL)
   }
 
   /**
@@ -1370,6 +1385,10 @@ public open class ItemList : Control() {
         MethodStringName0<ItemList, Unit>("ensure_current_is_visible")
 
     @JvmField
+    public val centerOnCurrentName: MethodStringName2<ItemList, Unit, Boolean, Boolean> =
+        MethodStringName2<ItemList, Unit, Boolean, Boolean>("center_on_current")
+
+    @JvmField
     public val getVScrollBarName: MethodStringName0<ItemList, VScrollBar?> =
         MethodStringName0<ItemList, VScrollBar?>("get_v_scroll_bar")
 
@@ -1632,6 +1651,9 @@ public open class ItemList : Control() {
 
     internal val ensureCurrentIsVisiblePtr: VoidPtr =
         TypeManager.getMethodBindPtr("ItemList", "ensure_current_is_visible", 3218959716)
+
+    internal val centerOnCurrentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "center_on_current", 3058350285)
 
     internal val getVScrollBarPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ItemList", "get_v_scroll_bar", 2630340773)

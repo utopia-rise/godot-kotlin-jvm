@@ -107,7 +107,7 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(617, scriptPtr)
+    createNativeObject(630, scriptPtr)
   }
 
   public final fun setSize(size: Float): Unit {

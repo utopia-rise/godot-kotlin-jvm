@@ -31,7 +31,7 @@ import kotlin.jvm.JvmField
 @GodotBaseType
 public open class SliderJoint3D : Joint3D() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(669, scriptPtr)
+    createNativeObject(683, scriptPtr)
   }
 
   /**

@@ -8,6 +8,7 @@
 #include "strings.h"
 
 #include <core/config/project_settings.h>
+#include <core/object/callable_mp.h>
 #include <editor/settings/editor_settings.h>
 #include <editor/editor_interface.h>
 #include <editor/file_system/editor_file_system.h>

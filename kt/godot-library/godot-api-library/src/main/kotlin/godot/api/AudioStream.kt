@@ -29,7 +29,8 @@ import kotlin.jvm.JvmField
 
 /**
  * Base class for audio streams. Audio streams are used for sound effects and music playback, and
- * support WAV (via [AudioStreamWAV]) and Ogg (via [AudioStreamOggVorbis]) file formats.
+ * support WAV (via [AudioStreamWAV]), Ogg (via [AudioStreamOggVorbis]), and MP3 (via [AudioStreamMP3])
+ * file formats.
  */
 @GodotBaseType
 public abstract class AudioStream : Resource() {
@@ -39,7 +40,7 @@ public abstract class AudioStream : Resource() {
   public val parameterListChanged: Signal0 by Signal0
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(81, scriptPtr)
+    createNativeObject(83, scriptPtr)
   }
 
   /**

@@ -69,7 +69,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class TileSetScenesCollectionSource : TileSetSource() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(748, scriptPtr)
+    createNativeObject(762, scriptPtr)
   }
 
   /**

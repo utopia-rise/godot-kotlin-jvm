@@ -74,6 +74,7 @@ interface TypeGenerationTrait {
 
 fun ClassName.Companion.from(type: TypeGenerationTrait) = when {
     type.isVoid() -> UNIT
+    type.identifier == TypeIdentifier.SIGNAL.name -> Core.signal
     type.identifier.startsWith(TypeIdentifier.SIGNAL.name) -> Core.signal(type.identifier.removePrefix("Signal").toInt())
     type.isEnum() || type.isBitField() -> {
         val containerAndEnum = type.identifier.split('.')
@@ -101,7 +102,7 @@ fun TypeName.Companion.from(type: TypeGenerationTrait, genericParameters: List<T
     val className = type.className
 
     return when {
-        type.identifier.startsWith("Signal") && !type.identifier.endsWith("0") -> {
+        type.identifier != TypeIdentifier.SIGNAL.name && type.identifier.startsWith("Signal") && !type.identifier.endsWith("0") -> {
             val nonNullableGenericParameters = genericParameters.map { it.copy(nullable = false) }
             className.parameterizedBy(nonNullableGenericParameters)
         }

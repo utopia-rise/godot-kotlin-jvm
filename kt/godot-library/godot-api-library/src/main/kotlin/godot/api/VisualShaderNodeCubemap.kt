@@ -62,7 +62,7 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(802, scriptPtr)
+    createNativeObject(817, scriptPtr)
   }
 
   public final fun setSource(`value`: Source): Unit {

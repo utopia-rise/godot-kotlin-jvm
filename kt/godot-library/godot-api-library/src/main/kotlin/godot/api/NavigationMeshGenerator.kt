@@ -83,7 +83,7 @@ public object NavigationMeshGenerator : Object() {
       MethodStringName3<NavigationMeshGenerator, Unit, NavigationMesh?, NavigationMeshSourceGeometryData3D?, Callable>("bake_from_source_geometry_data")
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(16)
+    getSingleton(17)
   }
 
   /**

@@ -116,7 +116,7 @@ public open class CanvasItemMaterial : Material() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(141, scriptPtr)
+    createNativeObject(145, scriptPtr)
   }
 
   public final fun setBlendMode(blendMode: BlendMode): Unit {

@@ -43,7 +43,7 @@ public open class EncodedObjectAsID : RefCounted() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(210, scriptPtr)
+    createNativeObject(215, scriptPtr)
   }
 
   public final fun setObjectId(id: Long): Unit {

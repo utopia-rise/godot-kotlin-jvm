@@ -235,7 +235,7 @@ public open class GLTFAccessor : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(235, scriptPtr)
+    createNativeObject(240, scriptPtr)
   }
 
   /**

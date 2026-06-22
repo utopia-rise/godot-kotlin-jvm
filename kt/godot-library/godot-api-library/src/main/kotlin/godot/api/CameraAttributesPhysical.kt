@@ -37,6 +37,9 @@ import kotlin.jvm.JvmName
  *
  * **Note:** Depth of field blur is only supported in the Forward+ and Mobile rendering methods, not
  * Compatibility.
+ *
+ * **Note:** Auto-exposure is only supported in the Forward+ rendering method, not Mobile or
+ * Compatibility.
  */
 @GodotBaseType
 public open class CameraAttributesPhysical : CameraAttributes() {
@@ -158,7 +161,7 @@ public open class CameraAttributesPhysical : CameraAttributes() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(134, scriptPtr)
+    createNativeObject(138, scriptPtr)
   }
 
   public final fun setAperture(aperture: Float): Unit {

@@ -148,7 +148,8 @@ public open class Node3D : Node() {
    * - The [Vector3.z] is the angle around the local Z axis (roll).
    *
    * The order of each consecutive rotation can be changed with [rotationOrder] (see [EulerOrder]
-   * constants). By default, the YXZ convention is used ([EULER_ORDER_YXZ]).
+   * constants). In Godot, Euler angles always use intrinsic order. By default, the intrinsic YXZ
+   * convention is used ([EULER_ORDER_YXZ]).
    *
    * **Note:** This property is edited in degrees in the inspector. If you want to use degrees in a
    * script, use [rotationDegrees].
@@ -273,8 +274,9 @@ public open class Node3D : Node() {
     }
 
   /**
-   * The axis rotation order of the [rotation] property. The final orientation is calculated by
-   * rotating around the local X, Y, and Z axis in this order.
+   * The axis rotation order of the [rotation] property. In Godot, Euler angles always use intrinsic
+   * order, meaning that the final orientation is calculated by rotating around the local axes in this
+   * order.
    */
   public final inline var rotationOrder: EulerOrder
     @JvmName("rotationOrderProperty")
@@ -429,7 +431,7 @@ public open class Node3D : Node() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(414, scriptPtr)
+    createNativeObject(423, scriptPtr)
   }
 
   /**
@@ -518,7 +520,8 @@ public open class Node3D : Node() {
    * - The [Vector3.z] is the angle around the local Z axis (roll).
    *
    * The order of each consecutive rotation can be changed with [rotationOrder] (see [EulerOrder]
-   * constants). By default, the YXZ convention is used ([EULER_ORDER_YXZ]).
+   * constants). In Godot, Euler angles always use intrinsic order. By default, the intrinsic YXZ
+   * convention is used ([EULER_ORDER_YXZ]).
    *
    * **Note:** This property is edited in degrees in the inspector. If you want to use degrees in a
    * script, use [rotationDegrees].
@@ -1346,11 +1349,15 @@ public open class Node3D : Node() {
   ) : GodotEnum {
     /**
      * The rotation is edited using a [Vector3] in
-     * [url=https://en.wikipedia.org/wiki/Euler_angles]Euler angles[/url].
+     * [url=https://en.wikipedia.org/wiki/Euler_angles]Euler angles[/url]. In Godot, Euler angles
+     * always use intrinsic order, meaning that rotation happens around the local axes of the object.
      */
     EULER(0),
     /**
-     * The rotation is edited using a [Quaternion].
+     * The rotation is edited using a [Quaternion]. Quaternions avoid
+     * [url=$DOCS_URL/tutorials/3d/using_transforms.html]gimbal lock[/url] and having to choose an
+     * order of rotation, but are less intuitive. Quaternion rotation is mostly the same as rotors in
+     * 3D geometric algebra, except that the numbers are labeled differently.
      */
     QUATERNION(1),
     /**

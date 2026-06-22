@@ -40,7 +40,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class Semaphore : RefCounted() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(636, scriptPtr)
+    createNativeObject(650, scriptPtr)
   }
 
   /**

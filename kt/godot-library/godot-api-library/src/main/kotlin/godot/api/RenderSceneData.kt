@@ -36,7 +36,7 @@ import kotlin.jvm.JvmField
 @GodotBaseType
 public open class RenderSceneData internal constructor() : Object() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(603, scriptPtr)
+    createNativeObject(616, scriptPtr)
   }
 
   /**

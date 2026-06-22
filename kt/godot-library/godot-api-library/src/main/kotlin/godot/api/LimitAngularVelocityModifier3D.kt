@@ -35,6 +35,10 @@ import kotlin.jvm.JvmName
  * You can add bone chains by specifying their root and end bones, then add the bones between them
  * to a list. Modifier processes either that list or the bones excluding those in the list depending on
  * the option [exclude].
+ *
+ * **Note:** Most methods in this class take an `index` parameter. This parameter specifies which
+ * setting list entry to return if the IK has multiple entries (e.g.
+ * `settings/<index>/root_bone_name`).
  */
 @GodotBaseType
 public open class LimitAngularVelocityModifier3D : SkeletonModifier3D() {
@@ -74,7 +78,7 @@ public open class LimitAngularVelocityModifier3D : SkeletonModifier3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(352, scriptPtr)
+    createNativeObject(361, scriptPtr)
   }
 
   /**

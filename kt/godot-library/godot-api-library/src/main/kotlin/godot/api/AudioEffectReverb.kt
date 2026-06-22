@@ -23,14 +23,16 @@ import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
- * Simulates the sound of acoustic environments such as rooms, concert halls, caverns, or an open
- * spaces.
+ * A "reverb" effect plays the input audio back continuously, decaying over a period of time. It
+ * simulates sounds in different kinds of spaces, ranging from small rooms, to big caverns.
+ *
+ * See also [AudioEffectDelay] for a non-blurry type of echo.
  */
 @GodotBaseType
 public open class AudioEffectReverb : AudioEffect() {
   /**
-   * Time between the original signal and the early reflections of the reverb signal, in
-   * milliseconds.
+   * Time between the original audio and the early reflections of the reverb signal, in
+   * milliseconds. Value can range from 20 to 500.
    */
   public final inline var predelayMsec: Float
     @JvmName("predelayMsecProperty")
@@ -41,7 +43,8 @@ public open class AudioEffectReverb : AudioEffect() {
     }
 
   /**
-   * Output percent of predelay. Value can range from 0 to 1.
+   * Gain of early reflection copies. At higher values, early reflection copies are louder and ring
+   * out for longer. Value can range from 0 to 1.
    */
   public final inline var predelayFeedback: Float
     @JvmName("predelayFeedbackProperty")
@@ -63,7 +66,8 @@ public open class AudioEffectReverb : AudioEffect() {
     }
 
   /**
-   * Defines how reflective the imaginary room's walls are. Value can range from 0 to 1.
+   * Defines how reflective the imaginary room's walls are. The more reflective, the more high
+   * frequency content the reverb has. Value can range from 0 to 1.
    */
   public final inline var damping: Float
     @JvmName("dampingProperty")
@@ -74,7 +78,7 @@ public open class AudioEffectReverb : AudioEffect() {
     }
 
   /**
-   * Widens or narrows the stereo image of the reverb tail. 1 means fully widens. Value can range
+   * Widens or narrows the stereo image of the reverb tail. At 1, it fully widens. Value can range
    * from 0 to 1.
    */
   public final inline var spread: Float
@@ -86,8 +90,8 @@ public open class AudioEffectReverb : AudioEffect() {
     }
 
   /**
-   * High-pass filter passes signals with a frequency higher than a certain cutoff frequency and
-   * attenuates signals with frequencies lower than the cutoff frequency. Value can range from 0 to 1.
+   * High-pass filter allows frequencies higher than a certain cutoff threshold and attenuates
+   * frequencies lower than the cutoff threshold. Value can range from 0 to 1.
    */
   public final inline var hipass: Float
     @JvmName("hipassProperty")
@@ -98,8 +102,8 @@ public open class AudioEffectReverb : AudioEffect() {
     }
 
   /**
-   * Output percent of original sound. At 0, only modified sound is outputted. Value can range from
-   * 0 to 1.
+   * The volume ratio of the original audio. At 0, only the modified audio is outputted. Value can
+   * range from 0 to 1.
    */
   public final inline var dry: Float
     @JvmName("dryProperty")
@@ -110,8 +114,8 @@ public open class AudioEffectReverb : AudioEffect() {
     }
 
   /**
-   * Output percent of modified sound. At 0, only original sound is outputted. Value can range from
-   * 0 to 1.
+   * The volume ratio of the modified audio. At 0, only the original audio is outputted. Value can
+   * range from 0 to 1.
    */
   public final inline var wet: Float
     @JvmName("wetProperty")
@@ -122,7 +126,7 @@ public open class AudioEffectReverb : AudioEffect() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(72, scriptPtr)
+    createNativeObject(74, scriptPtr)
   }
 
   public final fun setPredelayMsec(msec: Float): Unit {

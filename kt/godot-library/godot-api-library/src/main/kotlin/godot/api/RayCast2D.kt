@@ -140,7 +140,7 @@ public open class RayCast2D : Node2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(587, scriptPtr)
+    createNativeObject(600, scriptPtr)
   }
 
   /**

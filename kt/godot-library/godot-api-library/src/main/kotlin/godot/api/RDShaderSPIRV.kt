@@ -134,6 +134,101 @@ public open class RDShaderSPIRV : Resource() {
     }
 
   /**
+   * The SPIR-V bytecode for the ray generation shader stage.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
+  @CoreTypeLocalCopy
+  public final inline var bytecodeRaygen: PackedByteArray
+    @JvmName("bytecodeRaygenProperty")
+    get() = getStageBytecode(RenderingDevice.ShaderStage.RAYGEN)
+    @JvmName("bytecodeRaygenProperty")
+    set(`value`) {
+      setStageBytecode(RenderingDevice.ShaderStage.RAYGEN, value)
+    }
+
+  /**
+   * The SPIR-V bytecode for the any hit shader stage.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
+  @CoreTypeLocalCopy
+  public final inline var bytecodeAnyHit: PackedByteArray
+    @JvmName("bytecodeAnyHitProperty")
+    get() = getStageBytecode(RenderingDevice.ShaderStage.ANY_HIT)
+    @JvmName("bytecodeAnyHitProperty")
+    set(`value`) {
+      setStageBytecode(RenderingDevice.ShaderStage.ANY_HIT, value)
+    }
+
+  /**
+   * The SPIR-V bytecode for the closest hit shader stage.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
+  @CoreTypeLocalCopy
+  public final inline var bytecodeClosestHit: PackedByteArray
+    @JvmName("bytecodeClosestHitProperty")
+    get() = getStageBytecode(RenderingDevice.ShaderStage.CLOSEST_HIT)
+    @JvmName("bytecodeClosestHitProperty")
+    set(`value`) {
+      setStageBytecode(RenderingDevice.ShaderStage.CLOSEST_HIT, value)
+    }
+
+  /**
+   * The SPIR-V bytecode for the miss shader stage.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
+  @CoreTypeLocalCopy
+  public final inline var bytecodeMiss: PackedByteArray
+    @JvmName("bytecodeMissProperty")
+    get() = getStageBytecode(RenderingDevice.ShaderStage.MISS)
+    @JvmName("bytecodeMissProperty")
+    set(`value`) {
+      setStageBytecode(RenderingDevice.ShaderStage.MISS, value)
+    }
+
+  /**
+   * The SPIR-V bytecode for the intersection shader stage.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
+  @CoreTypeLocalCopy
+  public final inline var bytecodeIntersection: PackedByteArray
+    @JvmName("bytecodeIntersectionProperty")
+    get() = getStageBytecode(RenderingDevice.ShaderStage.INTERSECTION)
+    @JvmName("bytecodeIntersectionProperty")
+    set(`value`) {
+      setStageBytecode(RenderingDevice.ShaderStage.INTERSECTION, value)
+    }
+
+  /**
    * The compilation error message for the vertex shader stage (set by the SPIR-V compiler and
    * Godot). If empty, shader compilation was successful.
    */
@@ -193,8 +288,68 @@ public open class RDShaderSPIRV : Resource() {
       setStageCompileError(RenderingDevice.ShaderStage.COMPUTE, value)
     }
 
+  /**
+   * The compilation error message for the ray generation shader stage (set by the SPIR-V compiler
+   * and Godot). If empty, shader compilation was successful.
+   */
+  public final inline var compileErrorRaygen: String
+    @JvmName("compileErrorRaygenProperty")
+    get() = getStageCompileError(RenderingDevice.ShaderStage.RAYGEN)
+    @JvmName("compileErrorRaygenProperty")
+    set(`value`) {
+      setStageCompileError(RenderingDevice.ShaderStage.RAYGEN, value)
+    }
+
+  /**
+   * The compilation error message for the any hit shader stage (set by the SPIR-V compiler and
+   * Godot). If empty, shader compilation was successful.
+   */
+  public final inline var compileErrorAnyHit: String
+    @JvmName("compileErrorAnyHitProperty")
+    get() = getStageCompileError(RenderingDevice.ShaderStage.ANY_HIT)
+    @JvmName("compileErrorAnyHitProperty")
+    set(`value`) {
+      setStageCompileError(RenderingDevice.ShaderStage.ANY_HIT, value)
+    }
+
+  /**
+   * The compilation error message for the closest hit shader stage (set by the SPIR-V compiler and
+   * Godot). If empty, shader compilation was successful.
+   */
+  public final inline var compileErrorClosestHit: String
+    @JvmName("compileErrorClosestHitProperty")
+    get() = getStageCompileError(RenderingDevice.ShaderStage.CLOSEST_HIT)
+    @JvmName("compileErrorClosestHitProperty")
+    set(`value`) {
+      setStageCompileError(RenderingDevice.ShaderStage.CLOSEST_HIT, value)
+    }
+
+  /**
+   * The compilation error message for the miss shader stage (set by the SPIR-V compiler and Godot).
+   * If empty, shader compilation was successful.
+   */
+  public final inline var compileErrorMiss: String
+    @JvmName("compileErrorMissProperty")
+    get() = getStageCompileError(RenderingDevice.ShaderStage.MISS)
+    @JvmName("compileErrorMissProperty")
+    set(`value`) {
+      setStageCompileError(RenderingDevice.ShaderStage.MISS, value)
+    }
+
+  /**
+   * The compilation error message for the intersection shader stage (set by the SPIR-V compiler and
+   * Godot). If empty, shader compilation was successful.
+   */
+  public final inline var compileErrorIntersection: String
+    @JvmName("compileErrorIntersectionProperty")
+    get() = getStageCompileError(RenderingDevice.ShaderStage.INTERSECTION)
+    @JvmName("compileErrorIntersectionProperty")
+    set(`value`) {
+      setStageCompileError(RenderingDevice.ShaderStage.INTERSECTION, value)
+    }
+
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(579, scriptPtr)
+    createNativeObject(592, scriptPtr)
   }
 
   /**
@@ -384,6 +539,191 @@ public open class RDShaderSPIRV : Resource() {
          this[index] = value
      }
      bytecodeCompute = this
+  }
+
+  /**
+   * This is a helper function for [bytecodeRaygen] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = rdshaderspirv.bytecodeRaygen
+   * //Your changes
+   * rdshaderspirv.bytecodeRaygen = myCoreType
+   * ``````
+   *
+   * The SPIR-V bytecode for the ray generation shader stage.
+   */
+  @CoreTypeHelper
+  public final fun bytecodeRaygenMutate(block: PackedByteArray.() -> Unit): PackedByteArray =
+      bytecodeRaygen.apply {
+     block(this)
+     bytecodeRaygen = this
+  }
+
+  /**
+   * This is a helper function for [bytecodeRaygen] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * The SPIR-V bytecode for the ray generation shader stage.
+   */
+  @CoreTypeHelper
+  public final fun bytecodeRaygenMutateEach(block: (index: Int, `value`: Byte) -> Unit):
+      PackedByteArray = bytecodeRaygen.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     bytecodeRaygen = this
+  }
+
+  /**
+   * This is a helper function for [bytecodeAnyHit] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = rdshaderspirv.bytecodeAnyHit
+   * //Your changes
+   * rdshaderspirv.bytecodeAnyHit = myCoreType
+   * ``````
+   *
+   * The SPIR-V bytecode for the any hit shader stage.
+   */
+  @CoreTypeHelper
+  public final fun bytecodeAnyHitMutate(block: PackedByteArray.() -> Unit): PackedByteArray =
+      bytecodeAnyHit.apply {
+     block(this)
+     bytecodeAnyHit = this
+  }
+
+  /**
+   * This is a helper function for [bytecodeAnyHit] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * The SPIR-V bytecode for the any hit shader stage.
+   */
+  @CoreTypeHelper
+  public final fun bytecodeAnyHitMutateEach(block: (index: Int, `value`: Byte) -> Unit):
+      PackedByteArray = bytecodeAnyHit.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     bytecodeAnyHit = this
+  }
+
+  /**
+   * This is a helper function for [bytecodeClosestHit] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = rdshaderspirv.bytecodeClosestHit
+   * //Your changes
+   * rdshaderspirv.bytecodeClosestHit = myCoreType
+   * ``````
+   *
+   * The SPIR-V bytecode for the closest hit shader stage.
+   */
+  @CoreTypeHelper
+  public final fun bytecodeClosestHitMutate(block: PackedByteArray.() -> Unit): PackedByteArray =
+      bytecodeClosestHit.apply {
+     block(this)
+     bytecodeClosestHit = this
+  }
+
+  /**
+   * This is a helper function for [bytecodeClosestHit] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * The SPIR-V bytecode for the closest hit shader stage.
+   */
+  @CoreTypeHelper
+  public final fun bytecodeClosestHitMutateEach(block: (index: Int, `value`: Byte) -> Unit):
+      PackedByteArray = bytecodeClosestHit.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     bytecodeClosestHit = this
+  }
+
+  /**
+   * This is a helper function for [bytecodeMiss] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = rdshaderspirv.bytecodeMiss
+   * //Your changes
+   * rdshaderspirv.bytecodeMiss = myCoreType
+   * ``````
+   *
+   * The SPIR-V bytecode for the miss shader stage.
+   */
+  @CoreTypeHelper
+  public final fun bytecodeMissMutate(block: PackedByteArray.() -> Unit): PackedByteArray =
+      bytecodeMiss.apply {
+     block(this)
+     bytecodeMiss = this
+  }
+
+  /**
+   * This is a helper function for [bytecodeMiss] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * The SPIR-V bytecode for the miss shader stage.
+   */
+  @CoreTypeHelper
+  public final fun bytecodeMissMutateEach(block: (index: Int, `value`: Byte) -> Unit):
+      PackedByteArray = bytecodeMiss.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     bytecodeMiss = this
+  }
+
+  /**
+   * This is a helper function for [bytecodeIntersection] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = rdshaderspirv.bytecodeIntersection
+   * //Your changes
+   * rdshaderspirv.bytecodeIntersection = myCoreType
+   * ``````
+   *
+   * The SPIR-V bytecode for the intersection shader stage.
+   */
+  @CoreTypeHelper
+  public final fun bytecodeIntersectionMutate(block: PackedByteArray.() -> Unit): PackedByteArray =
+      bytecodeIntersection.apply {
+     block(this)
+     bytecodeIntersection = this
+  }
+
+  /**
+   * This is a helper function for [bytecodeIntersection] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to
+   * the Object.
+   *
+   * The SPIR-V bytecode for the intersection shader stage.
+   */
+  @CoreTypeHelper
+  public final fun bytecodeIntersectionMutateEach(block: (index: Int, `value`: Byte) -> Unit):
+      PackedByteArray = bytecodeIntersection.apply {
+     this.forEachIndexed { index, value ->
+         block(index, value)
+         this[index] = value
+     }
+     bytecodeIntersection = this
   }
 
   /**

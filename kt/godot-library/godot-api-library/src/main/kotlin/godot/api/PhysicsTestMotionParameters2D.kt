@@ -144,7 +144,7 @@ public open class PhysicsTestMotionParameters2D : RefCounted() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(537, scriptPtr)
+    createNativeObject(546, scriptPtr)
   }
 
   /**

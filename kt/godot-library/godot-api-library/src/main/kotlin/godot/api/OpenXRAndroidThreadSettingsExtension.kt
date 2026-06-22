@@ -30,7 +30,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class OpenXRAndroidThreadSettingsExtension : OpenXRExtensionWrapper() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(435, scriptPtr)
+    createNativeObject(444, scriptPtr)
   }
 
   /**

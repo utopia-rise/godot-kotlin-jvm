@@ -92,7 +92,7 @@ public open class OpenXRPlaneTracker : OpenXRSpatialEntityTracker() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(456, scriptPtr)
+    createNativeObject(465, scriptPtr)
   }
 
   /**

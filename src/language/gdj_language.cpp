@@ -79,10 +79,6 @@ bool GdjLanguage::supports_builtin_mode() const {
     return false;
 }
 
-Script* GdjLanguage::create_script() const {
-    return memnew(GdjScript);
-}
-
 String GdjLanguage::get_global_class_name(const String& p_path, String* r_base_type, String* r_icon_path, bool *r_is_abstract, bool *r_is_tool) const {
     if (!p_path.ends_with(GODOT_JVM_REGISTRATION_FILE_EXTENSION)) { return {}; }
 

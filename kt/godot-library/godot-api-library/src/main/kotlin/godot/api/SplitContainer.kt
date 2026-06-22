@@ -149,6 +149,21 @@ public open class SplitContainer : Container() {
     }
 
   /**
+   * Adds extra draggers at the intersection of the draggers of two SplitContainers to allow
+   * dragging both at once. This must be set to `true` for both SplitContainers, and one needs to be a
+   * descendant of the other. They also must be orthogonal (their [vertical] are different) and the
+   * descendant must be next to at least one of the ancestor's draggers (within [theme_item
+   * minimum_grab_thickness]).
+   */
+  public final inline var dragNestedIntersections: Boolean
+    @JvmName("dragNestedIntersectionsProperty")
+    get() = isDraggingNestedIntersections()
+    @JvmName("dragNestedIntersectionsProperty")
+    set(`value`) {
+      setDragNestedIntersections(value)
+    }
+
+  /**
    * Reduces the size of the drag area and split bar [theme_item split_bar_background] at the
    * beginning of the container.
    */
@@ -208,7 +223,7 @@ public open class SplitContainer : Container() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(677, scriptPtr)
+    createNativeObject(691, scriptPtr)
   }
 
   /**
@@ -416,6 +431,17 @@ public open class SplitContainer : Container() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
+  public final fun setDragNestedIntersections(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(ptr, MethodBindings.setDragNestedIntersectionsPtr, NIL)
+  }
+
+  public final fun isDraggingNestedIntersections(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isDraggingNestedIntersectionsPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
   /**
    * Returns the drag area [Control]. For example, you can move a pre-configured button into the
    * drag area [Control] so that it rides along with the split bar. Try setting the [Button] anchors to
@@ -569,6 +595,14 @@ public open class SplitContainer : Container() {
         MethodStringName0<SplitContainer, Boolean>("is_touch_dragger_enabled")
 
     @JvmField
+    public val setDragNestedIntersectionsName: MethodStringName1<SplitContainer, Unit, Boolean> =
+        MethodStringName1<SplitContainer, Unit, Boolean>("set_drag_nested_intersections")
+
+    @JvmField
+    public val isDraggingNestedIntersectionsName: MethodStringName0<SplitContainer, Boolean> =
+        MethodStringName0<SplitContainer, Boolean>("is_dragging_nested_intersections")
+
+    @JvmField
     public val getDragAreaControlName: MethodStringName0<SplitContainer, Control?> =
         MethodStringName0<SplitContainer, Control?>("get_drag_area_control")
 
@@ -647,6 +681,12 @@ public open class SplitContainer : Container() {
 
     internal val isTouchDraggerEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("SplitContainer", "is_touch_dragger_enabled", 36873697)
+
+    internal val setDragNestedIntersectionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SplitContainer", "set_drag_nested_intersections", 2586408642)
+
+    internal val isDraggingNestedIntersectionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SplitContainer", "is_dragging_nested_intersections", 36873697)
 
     internal val getDragAreaControlPtr: VoidPtr =
         TypeManager.getMethodBindPtr("SplitContainer", "get_drag_area_control", 829782337)

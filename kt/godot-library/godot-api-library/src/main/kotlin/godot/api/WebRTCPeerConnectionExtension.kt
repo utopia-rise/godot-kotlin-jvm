@@ -20,7 +20,7 @@ import kotlin.Unit
 @GodotBaseType
 public abstract class WebRTCPeerConnectionExtension : WebRTCPeerConnection() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(908, scriptPtr)
+    createNativeObject(923, scriptPtr)
   }
 
   public abstract fun _getConnectionState(): WebRTCPeerConnection.ConnectionState
@@ -29,21 +29,21 @@ public abstract class WebRTCPeerConnectionExtension : WebRTCPeerConnection() {
 
   public abstract fun _getSignalingState(): WebRTCPeerConnection.SignalingState
 
-  public abstract fun _initialize(pConfig: Dictionary<Any?, Any?>): Error
+  public abstract fun _initialize(config: Dictionary<Any?, Any?>): Error
 
-  public abstract fun _createDataChannel(pLabel: String, pConfig: Dictionary<Any?, Any?>):
+  public abstract fun _createDataChannel(label: String, config: Dictionary<Any?, Any?>):
       WebRTCDataChannel?
 
   public abstract fun _createOffer(): Error
 
-  public abstract fun _setRemoteDescription(pType: String, pSdp: String): Error
+  public abstract fun _setRemoteDescription(type: String, sdp: String): Error
 
-  public abstract fun _setLocalDescription(pType: String, pSdp: String): Error
+  public abstract fun _setLocalDescription(type: String, sdp: String): Error
 
   public abstract fun _addIceCandidate(
-    pSdpMidName: String,
-    pSdpMlineIndex: Int,
-    pSdpName: String,
+    sdpMidName: String,
+    sdpMlineIndex: Int,
+    sdpName: String,
   ): Error
 
   public abstract fun _poll(): Error
@@ -68,11 +68,11 @@ internal class WebRTCPeerConnectionExtensionDummy : WebRTCPeerConnectionExtensio
     throw NotImplementedError("WebRTCPeerConnectionExtension::_getSignalingState is only implemented by non-JVM code.")
   }
 
-  public override fun _initialize(pConfig: Dictionary<Any?, Any?>): Error {
+  public override fun _initialize(config: Dictionary<Any?, Any?>): Error {
     throw NotImplementedError("WebRTCPeerConnectionExtension::_initialize is only implemented by non-JVM code.")
   }
 
-  public override fun _createDataChannel(pLabel: String, pConfig: Dictionary<Any?, Any?>):
+  public override fun _createDataChannel(label: String, config: Dictionary<Any?, Any?>):
       WebRTCDataChannel? {
     throw NotImplementedError("WebRTCPeerConnectionExtension::_createDataChannel is only implemented by non-JVM code.")
   }
@@ -81,18 +81,18 @@ internal class WebRTCPeerConnectionExtensionDummy : WebRTCPeerConnectionExtensio
     throw NotImplementedError("WebRTCPeerConnectionExtension::_createOffer is only implemented by non-JVM code.")
   }
 
-  public override fun _setRemoteDescription(pType: String, pSdp: String): Error {
+  public override fun _setRemoteDescription(type: String, sdp: String): Error {
     throw NotImplementedError("WebRTCPeerConnectionExtension::_setRemoteDescription is only implemented by non-JVM code.")
   }
 
-  public override fun _setLocalDescription(pType: String, pSdp: String): Error {
+  public override fun _setLocalDescription(type: String, sdp: String): Error {
     throw NotImplementedError("WebRTCPeerConnectionExtension::_setLocalDescription is only implemented by non-JVM code.")
   }
 
   public override fun _addIceCandidate(
-    pSdpMidName: String,
-    pSdpMlineIndex: Int,
-    pSdpName: String,
+    sdpMidName: String,
+    sdpMlineIndex: Int,
+    sdpName: String,
   ): Error {
     throw NotImplementedError("WebRTCPeerConnectionExtension::_addIceCandidate is only implemented by non-JVM code.")
   }

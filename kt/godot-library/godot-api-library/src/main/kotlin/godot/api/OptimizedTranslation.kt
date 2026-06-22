@@ -11,8 +11,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.MethodStringName1
-import godot.core.VariantParser.NIL
+import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.OBJECT
+import kotlin.Boolean
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmField
@@ -28,30 +29,32 @@ import kotlin.jvm.JvmField
 @GodotBaseType
 public open class OptimizedTranslation : Translation() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(488, scriptPtr)
+    createNativeObject(497, scriptPtr)
   }
 
   /**
-   * Generates and sets an optimized translation from the given [Translation] resource.
+   * Generates and sets an optimized translation from the given [Translation] resource. Returns
+   * `true` if successful.
    *
    * **Note:** Messages in [from] should not use context or plural forms.
    *
    * **Note:** This method is intended to be used in the editor. It does nothing when called from an
    * exported project.
    */
-  public final fun generate(from: Translation?): Unit {
+  public final fun generate(from: Translation?): Boolean {
     TransferContext.writeArguments(OBJECT to from)
-    TransferContext.callMethod(ptr, MethodBindings.generatePtr, NIL)
+    TransferContext.callMethod(ptr, MethodBindings.generatePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object {
     @JvmField
-    public val generateName: MethodStringName1<OptimizedTranslation, Unit, Translation?> =
-        MethodStringName1<OptimizedTranslation, Unit, Translation?>("generate")
+    public val generateName: MethodStringName1<OptimizedTranslation, Boolean, Translation?> =
+        MethodStringName1<OptimizedTranslation, Boolean, Translation?>("generate")
   }
 
   public object MethodBindings {
     internal val generatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptimizedTranslation", "generate", 1466479800)
+        TypeManager.getMethodBindPtr("OptimizedTranslation", "generate", 2141509306)
   }
 }

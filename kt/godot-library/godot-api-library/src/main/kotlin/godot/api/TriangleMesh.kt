@@ -41,7 +41,7 @@ import kotlin.jvm.JvmField
 @GodotBaseType
 public open class TriangleMesh : RefCounted() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(759, scriptPtr)
+    createNativeObject(773, scriptPtr)
   }
 
   /**

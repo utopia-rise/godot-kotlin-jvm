@@ -30,7 +30,7 @@ import kotlin.jvm.JvmName
 
 /**
  * [SpinBox] is a numerical input text field. It allows entering integers and floating-point
- * numbers. The [SpinBox] also has up and down buttons that can be clicked increase or decrease the
+ * numbers. The [SpinBox] also has up and down buttons that can be clicked to increase or decrease the
  * value. The value can also be changed by dragging the mouse up or down over the [SpinBox]'s arrows.
  *
  * Additionally, mathematical expressions can be entered. These are evaluated when the user presses
@@ -173,7 +173,7 @@ public open class SpinBox : Range() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(675, scriptPtr)
+    createNativeObject(689, scriptPtr)
   }
 
   public final fun setHorizontalAlignment(alignment: HorizontalAlignment): Unit {

@@ -23,16 +23,19 @@ import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
- * A limiter is an effect designed to disallow sound from going over a given dB threshold. Hard
+ * A "limiter" disallows audio signals from exceeding a given volume threshold level in dB. Hard
  * limiters predict volume peaks, and will smoothly apply gain reduction when a peak crosses the
- * ceiling threshold to prevent clipping and distortion. It preserves the waveform and prevents it from
- * crossing the ceiling threshold. Adding one in the Master bus is recommended as a safety measure to
- * prevent sudden volume peaks from occurring, and to prevent distortion caused by clipping.
+ * ceiling threshold level to prevent clipping. It preserves the waveform and prevents it from crossing
+ * the ceiling threshold level. Adding one in the Master bus is recommended as a safety measure to
+ * prevent sudden volume peaks from occurring, and to prevent distortion caused by clipping, when the
+ * volume exceeds 0 dB.
+ *
+ * If clipping is desired, consider [AudioEffectDistortion.MODE_CLIP].
  */
 @GodotBaseType
 public open class AudioEffectHardLimiter : AudioEffect() {
   /**
-   * Gain to apply before limiting, in decibels.
+   * Gain before limiting, in dB. Value can range from -24 to 24.
    */
   public final inline var preGainDb: Float
     @JvmName("preGainDbProperty")
@@ -43,10 +46,10 @@ public open class AudioEffectHardLimiter : AudioEffect() {
     }
 
   /**
-   * The waveform's maximum allowed value, in decibels. This value can range from `-24.0` to `0.0`.
+   * The waveform's maximum allowed value, in dB. This value can range from -24 to 0.
    *
-   * The default value of `-0.3` prevents potential inter-sample peaks (ISP) from crossing over 0
-   * dB, which can cause slight distortion on some older hardware.
+   * The default value of -0.3 prevents potential inter-sample peaks (ISP) from crossing over 0 dB,
+   * which can cause slight distortion on some older hardware.
    */
   public final inline var ceilingDb: Float
     @JvmName("ceilingDbProperty")
@@ -57,7 +60,8 @@ public open class AudioEffectHardLimiter : AudioEffect() {
     }
 
   /**
-   * Time it takes in seconds for the gain reduction to fully release.
+   * Time it takes in seconds for the gain reduction to fully release. Value can range from 0.01 to
+   * 3.
    */
   public final inline var release: Float
     @JvmName("releaseProperty")
@@ -68,7 +72,7 @@ public open class AudioEffectHardLimiter : AudioEffect() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(60, scriptPtr)
+    createNativeObject(62, scriptPtr)
   }
 
   public final fun setCeilingDb(ceiling: Float): Unit {
@@ -82,8 +86,8 @@ public open class AudioEffectHardLimiter : AudioEffect() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setPreGainDb(pPreGain: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to pPreGain.toDouble())
+  public final fun setPreGainDb(preGain: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to preGain.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setPreGainDbPtr, NIL)
   }
 
@@ -93,8 +97,8 @@ public open class AudioEffectHardLimiter : AudioEffect() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setRelease(pRelease: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to pRelease.toDouble())
+  public final fun setRelease(release: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to release.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setReleasePtr, NIL)
   }
 

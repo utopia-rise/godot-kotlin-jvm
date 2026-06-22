@@ -21,7 +21,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class Lightmapper internal constructor() : RefCounted() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(350, scriptPtr)
+    createNativeObject(359, scriptPtr)
   }
 
   public companion object

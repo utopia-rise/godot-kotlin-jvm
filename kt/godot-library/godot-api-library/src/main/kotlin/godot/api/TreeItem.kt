@@ -111,7 +111,7 @@ public open class TreeItem internal constructor() : Object() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(758, scriptPtr)
+    createNativeObject(772, scriptPtr)
   }
 
   /**
@@ -290,6 +290,25 @@ public open class TreeItem internal constructor() : Object() {
     TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getAutowrapModePtr, LONG)
     return TextServer.AutowrapMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Sets the autowrap trim flags for the given [column]. These flags control whether leading and
+   * trailing spaces are trimmed on wrapped lines. Set to `0` to disable all trimming.
+   */
+  public final fun setAutowrapTrimFlags(column: Int, flags: TextServer.LineBreakFlag): Unit {
+    TransferContext.writeArguments(LONG to column.toLong(), LONG to flags.flag)
+    TransferContext.callMethod(ptr, MethodBindings.setAutowrapTrimFlagsPtr, NIL)
+  }
+
+  /**
+   * Returns the autowrap trim flags for the given [column]. By default, both
+   * [TextServer.BREAK_TRIM_START_EDGE_SPACES] and [TextServer.BREAK_TRIM_END_EDGE_SPACES] are enabled.
+   */
+  public final fun getAutowrapTrimFlags(column: Int): TextServer.LineBreakFlag {
+    TransferContext.writeArguments(LONG to column.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.getAutowrapTrimFlagsPtr, LONG)
+    return TextServer.LineBreakFlag(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -559,6 +578,8 @@ public open class TreeItem internal constructor() : Object() {
    *
    * The [callback] should accept two arguments: the [TreeItem] that is drawn and its position and
    * size as a [Rect2].
+   *
+   * To draw custom content over the native style, please use [Tree.getCustomDrawingCanvasItem].
    */
   public final fun setCustomDrawCallback(column: Int, callback: Callable): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), CALLABLE to callback)
@@ -690,10 +711,12 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Selects the given [column].
+   * Selects the given [column]. If [setAsCursor] is `true`, the [Tree]'s cursor will be moved to
+   * this item (only matters if [Tree.selectMode] is set to [Tree.SELECT_MULTI]).
    */
-  public final fun select(column: Int): Unit {
-    TransferContext.writeArguments(LONG to column.toLong())
+  @JvmOverloads
+  public final fun select(column: Int, setAsCursor: Boolean = true): Unit {
+    TransferContext.writeArguments(LONG to column.toLong(), BOOL to setAsCursor)
     TransferContext.callMethod(ptr, MethodBindings.selectPtr, NIL)
   }
 
@@ -1055,6 +1078,23 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
+   * Sets [TreeItem]'s ability to accept children.
+   */
+  public final fun setAcceptChildren(allowed: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to allowed)
+    TransferContext.callMethod(ptr, MethodBindings.setAcceptChildrenPtr, NIL)
+  }
+
+  /**
+   * Returns `true` if this [TreeItem] is allowed to accept children.
+   */
+  public final fun isAcceptingChildren(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isAcceptingChildrenPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
    * Creates an item and adds it as a child.
    *
    * The new item will be inserted as position [index] (the default value `-1` means the last
@@ -1400,6 +1440,15 @@ public open class TreeItem internal constructor() : Object() {
         MethodStringName1<TreeItem, TextServer.AutowrapMode, Int>("get_autowrap_mode")
 
     @JvmField
+    public val setAutowrapTrimFlagsName:
+        MethodStringName2<TreeItem, Unit, Int, TextServer.LineBreakFlag> =
+        MethodStringName2<TreeItem, Unit, Int, TextServer.LineBreakFlag>("set_autowrap_trim_flags")
+
+    @JvmField
+    public val getAutowrapTrimFlagsName: MethodStringName1<TreeItem, TextServer.LineBreakFlag, Int>
+        = MethodStringName1<TreeItem, TextServer.LineBreakFlag, Int>("get_autowrap_trim_flags")
+
+    @JvmField
     public val setTextOverrunBehaviorName:
         MethodStringName2<TreeItem, Unit, Int, TextServer.OverrunBehavior> =
         MethodStringName2<TreeItem, Unit, Int, TextServer.OverrunBehavior>("set_text_overrun_behavior")
@@ -1583,8 +1632,8 @@ public open class TreeItem internal constructor() : Object() {
         MethodStringName1<TreeItem, Boolean, Int>("is_selected")
 
     @JvmField
-    public val selectName: MethodStringName1<TreeItem, Unit, Int> =
-        MethodStringName1<TreeItem, Unit, Int>("select")
+    public val selectName: MethodStringName2<TreeItem, Unit, Int, Boolean> =
+        MethodStringName2<TreeItem, Unit, Int, Boolean>("select")
 
     @JvmField
     public val deselectName: MethodStringName1<TreeItem, Unit, Int> =
@@ -1740,6 +1789,14 @@ public open class TreeItem internal constructor() : Object() {
         MethodStringName0<TreeItem, Boolean>("is_folding_disabled")
 
     @JvmField
+    public val setAcceptChildrenName: MethodStringName1<TreeItem, Unit, Boolean> =
+        MethodStringName1<TreeItem, Unit, Boolean>("set_accept_children")
+
+    @JvmField
+    public val isAcceptingChildrenName: MethodStringName0<TreeItem, Boolean> =
+        MethodStringName0<TreeItem, Boolean>("is_accepting_children")
+
+    @JvmField
     public val createChildName: MethodStringName1<TreeItem, TreeItem?, Int> =
         MethodStringName1<TreeItem, TreeItem?, Int>("create_child")
 
@@ -1869,6 +1926,12 @@ public open class TreeItem internal constructor() : Object() {
 
     internal val getAutowrapModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("TreeItem", "get_autowrap_mode", 2902757236)
+
+    internal val setAutowrapTrimFlagsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "set_autowrap_trim_flags", 2186029660)
+
+    internal val getAutowrapTrimFlagsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "get_autowrap_trim_flags", 3513056523)
 
     internal val setTextOverrunBehaviorPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TreeItem", "set_text_overrun_behavior", 1940772195)
@@ -2002,7 +2065,7 @@ public open class TreeItem internal constructor() : Object() {
     internal val isSelectedPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TreeItem", "is_selected", 3067735520)
 
-    internal val selectPtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "select", 1286410249)
+    internal val selectPtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "select", 972357352)
 
     internal val deselectPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TreeItem", "deselect", 1286410249)
@@ -2117,6 +2180,12 @@ public open class TreeItem internal constructor() : Object() {
 
     internal val isFoldingDisabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TreeItem", "is_folding_disabled", 36873697)
+
+    internal val setAcceptChildrenPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "set_accept_children", 2586408642)
+
+    internal val isAcceptingChildrenPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "is_accepting_children", 36873697)
 
     internal val createChildPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TreeItem", "create_child", 954243986)

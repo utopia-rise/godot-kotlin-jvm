@@ -64,7 +64,7 @@ public open class OpenXRActionMap : Resource() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(431, scriptPtr)
+    createNativeObject(440, scriptPtr)
   }
 
   public final fun setActionSets(actionSets: VariantArray<Any?>): Unit {

@@ -166,6 +166,14 @@ public open class Window : Viewport() {
   public val titleChanged: Signal0 by Signal0
 
   /**
+   * Emitted when the output max linear value returned by [Window.getOutputMaxLinearValue] has
+   * changed. This occurs when HDR output is enabled or disabled and when any HDR output luminance
+   * values of the window have changed, such as when the player adjusts their screen brightness setting
+   * or moves the window to a different screen. [outputMaxLinearValue] is the new value.
+   */
+  public val outputMaxLinearValueChanged: Signal1<Double> by Signal1
+
+  /**
    * Set's the window's current mode.
    *
    * **Note:** Fullscreen mode is not exclusive full screen on Windows and Linux.
@@ -738,6 +746,21 @@ public open class Window : Viewport() {
     }
 
   /**
+   * If `true`, requests HDR output for the [Window], falling back to SDR if not supported, and
+   * automatically switching between HDR and SDR as the window moves between screens, screen
+   * capabilities change, or system settings are modified. This will internally force
+   * [Viewport.useHdr2d] to be enabled on the main [Viewport]. All other [SubViewport] of this [Window]
+   * must have their [Viewport.useHdr2d] property enabled to produce HDR output.
+   */
+  public final inline var hdrOutputRequested: Boolean
+    @JvmName("hdrOutputRequestedProperty")
+    get() = isHdrOutputRequested()
+    @JvmName("hdrOutputRequestedProperty")
+    set(`value`) {
+      setHdrOutputRequested(value)
+    }
+
+  /**
    * Toggles if any text should automatically change to its translated version depending on the
    * current locale.
    */
@@ -799,7 +822,7 @@ public open class Window : Viewport() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(912, scriptPtr)
+    createNativeObject(927, scriptPtr)
   }
 
   /**
@@ -1211,6 +1234,62 @@ public open class Window : Viewport() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
+  public final fun setHdrOutputRequested(requested: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to requested)
+    TransferContext.callMethod(ptr, MethodBindings.setHdrOutputRequestedPtr, NIL)
+  }
+
+  public final fun isHdrOutputRequested(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isHdrOutputRequestedPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Returns the maximum value for linear color components that can be displayed in this window,
+   * regardless of SDR or HDR output. Returns `1.0` if HDR is not enabled or not supported. The [signal
+   * output_max_linear_value_changed] signal will be emitted whenever this value changes.
+   *
+   * This value is used by tonemapping and other [Environment] effects to ensure that bright colors
+   * are presented in the range that can be displayed by this window. When using this maximum linear
+   * value in your project, it should only be used to present colors directly to the screen without
+   * tonemapping and without influencing lighting, post-processing effects, or surrounding color. The
+   * following is an example that produces the brightest purple color that the screen can produce:
+   *
+   * ```gdscript
+   * //gdscript
+   * func _process(_delta):
+   * 	# output_max_linear_value may change often, so do this every frame.
+   * 	var max_linear_value = get_window().get_output_max_linear_value()
+   * 	# Replace this with your color:
+   * 	var original_color = Color.PURPLE
+   * 	# Normalize to max_linear_value to produce the brightest color possible,
+   * 	# regardless of SDR or HDR output:
+   * 	var bright_color = normalize_color(original_color, max_linear_value)
+   *
+   *
+   * func normalize_color(srgb_color, max_linear_value = 1.0):
+   * 	# Color must be linear-encoded to use math operations.
+   * 	var linear_color = srgb_color.srgb_to_linear()
+   * 	var max_rgb_value = maxf(linear_color.r, maxf(linear_color.g, linear_color.b))
+   * 	var brightness_scale = max_linear_value / max_rgb_value
+   * 	linear_color *= brightness_scale
+   * 	# Undo changes to the alpha channel, which should not be modified.
+   * 	linear_color.a = srgb_color.a
+   * 	# Convert back to nonlinear sRGB encoding, which is required for Color in
+   * 	# Godot unless stated otherwise.
+   * 	return linear_color.linear_to_srgb()
+   * ```
+   *
+   * **Note:** You will need to convert sRGB colors to linear before multiplying by this value to
+   * get correct results.
+   */
+  public final fun getOutputMaxLinearValue(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getOutputMaxLinearValuePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
   /**
    * Returns `true` if the window can be maximized (the maximize button is enabled).
    */
@@ -1227,6 +1306,30 @@ public open class Window : Viewport() {
   public final fun requestAttention(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.requestAttentionPtr, NIL)
+  }
+
+  /**
+   * Creates a progress bar on the taskbar/dock icon of the [Window] if it does not exist, sets the
+   * progress of the icon.
+   *
+   * [value] acts as a relative percentage value, ranges from `0.0` (lowest) to `1.0` (highest).
+   *
+   * **Note:** This method is implemented only on Windows and macOS.
+   */
+  public final fun setTaskbarProgressValue(`value`: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to value.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.setTaskbarProgressValuePtr, NIL)
+  }
+
+  /**
+   * Sets the type and state of the progress bar on the taskbar/dock icon of the [Window]. See
+   * [DisplayServer.ProgressState] for possible values and how each mode behaves.
+   *
+   * **Note:** This method is implemented only on Windows and macOS.
+   */
+  public final fun setTaskbarProgressState(state: DisplayServer.ProgressState): Unit {
+    TransferContext.writeArguments(LONG to state.value)
+    TransferContext.callMethod(ptr, MethodBindings.setTaskbarProgressStatePtr, NIL)
   }
 
   /**
@@ -2503,16 +2606,23 @@ public open class Window : Viewport() {
     /**
      * The window can't be resized by dragging its resize grip. It's still possible to resize the
      * window using [size]. This flag is ignored for full screen windows. Set with [unresizable].
+     *
+     * **Note:** This flag is implemented on Linux (X11), macOS, Windows, and embedded windows.
      */
     RESIZE_DISABLED(0),
     /**
      * The window do not have native title bar and other decorations. This flag is ignored for
      * full-screen windows. Set with [borderless].
+     *
+     * **Note:** This flag is implemented on Linux (X11/Wayland), macOS, Windows, and embedded
+     * windows.
      */
     BORDERLESS(1),
     /**
      * The window is floating on top of all other windows. This flag is ignored for full-screen
      * windows. Set with [alwaysOnTop].
+     *
+     * **Note:** This flag is implemented on Linux (X11), macOS, Windows, and embedded windows.
      */
     ALWAYS_ON_TOP(2),
     /**
@@ -2521,11 +2631,16 @@ public open class Window : Viewport() {
      * **Note:** This flag has no effect if either
      * [ProjectSettings.display/window/perPixelTransparency/allowed], or the window's
      * [Viewport.transparentBg] is set to `false`.
+     *
+     * **Note:** Transparency support is implemented on Linux (X11/Wayland), macOS, Windows, and
+     * embedded windows.
      */
     TRANSPARENT(3),
     /**
      * The window can't be focused. No-focus window will ignore all input, except mouse clicks. Set
      * with [unfocusable].
+     *
+     * **Note:** This flag is implemented on Linux (X11), macOS, Windows, and embedded windows.
      */
     NO_FOCUS(4),
     /**
@@ -2534,7 +2649,8 @@ public open class Window : Viewport() {
      * from its parent. Popup windows are automatically closed when uses click outside it, or when an
      * application is switched. Popup window must have transient parent set (see [transient]).
      *
-     * **Note:** This flag has no effect in embedded windows (unless said window is a [Popup]).
+     * **Note:** This flag is implemented on Linux (X11/Wayland), macOS, Windows, and embedded
+     * [Popup] windows.
      */
     POPUP(5),
     /**
@@ -2542,15 +2658,17 @@ public open class Window : Viewport() {
      * frame is left intact and can be used to resize the window, title bar is transparent, but have
      * minimize/maximize/close buttons. Set with [extendToTitle].
      *
-     * **Note:** This flag is implemented only on macOS.
-     *
      * **Note:** This flag has no effect in embedded windows.
+     *
+     * **Note:** This flag is implemented only on macOS.
      */
     EXTEND_TO_TITLE(6),
     /**
      * All mouse events are passed to the underlying window of the same application.
      *
      * **Note:** This flag has no effect in embedded windows.
+     *
+     * **Note:** This flag is implemented on Linux (X11), macOS, Windows.
      */
     MOUSE_PASSTHROUGH(7),
     /**
@@ -2577,18 +2695,26 @@ public open class Window : Viewport() {
     /**
      * Signals the window manager that this window is supposed to be an implementation-defined
      * "popup" (usually a floating, borderless, untileable and immovable child window).
+     *
+     * **Note:** This flag has no effect in embedded windows.
+     *
+     * **Note:** This flag is implemented on Linux (Wayland).
      */
     POPUP_WM_HINT(10),
     /**
      * Window minimize button is disabled.
      *
-     * **Note:** This flag is implemented on macOS and Windows.
+     * **Note:** This flag has no effect in embedded windows.
+     *
+     * **Note:** This flag is implemented on Linux (X11), macOS, and Windows.
      */
     MINIMIZE_DISABLED(11),
     /**
      * Window maximize button is disabled.
      *
-     * **Note:** This flag is implemented on macOS and Windows.
+     * **Note:** This flag has no effect in embedded windows.
+     *
+     * **Note:** This flag is implemented on Linux (X11), macOS, and Windows.
      */
     MAXIMIZE_DISABLED(12),
     /**
@@ -2842,12 +2968,33 @@ public open class Window : Viewport() {
         MethodStringName1<Window, Boolean, Flags>("get_flag")
 
     @JvmField
+    public val setHdrOutputRequestedName: MethodStringName1<Window, Unit, Boolean> =
+        MethodStringName1<Window, Unit, Boolean>("set_hdr_output_requested")
+
+    @JvmField
+    public val isHdrOutputRequestedName: MethodStringName0<Window, Boolean> =
+        MethodStringName0<Window, Boolean>("is_hdr_output_requested")
+
+    @JvmField
+    public val getOutputMaxLinearValueName: MethodStringName0<Window, Float> =
+        MethodStringName0<Window, Float>("get_output_max_linear_value")
+
+    @JvmField
     public val isMaximizeAllowedName: MethodStringName0<Window, Boolean> =
         MethodStringName0<Window, Boolean>("is_maximize_allowed")
 
     @JvmField
     public val requestAttentionName: MethodStringName0<Window, Unit> =
         MethodStringName0<Window, Unit>("request_attention")
+
+    @JvmField
+    public val setTaskbarProgressValueName: MethodStringName1<Window, Unit, Float> =
+        MethodStringName1<Window, Unit, Float>("set_taskbar_progress_value")
+
+    @JvmField
+    public val setTaskbarProgressStateName:
+        MethodStringName1<Window, Unit, DisplayServer.ProgressState> =
+        MethodStringName1<Window, Unit, DisplayServer.ProgressState>("set_taskbar_progress_state")
 
     @JvmField
     public val moveToForegroundName: MethodStringName0<Window, Unit> =
@@ -3363,11 +3510,26 @@ public open class Window : Viewport() {
     internal val getFlagPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Window", "get_flag", 3062752289)
 
+    internal val setHdrOutputRequestedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "set_hdr_output_requested", 2586408642)
+
+    internal val isHdrOutputRequestedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "is_hdr_output_requested", 36873697)
+
+    internal val getOutputMaxLinearValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "get_output_max_linear_value", 1740695150)
+
     internal val isMaximizeAllowedPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Window", "is_maximize_allowed", 36873697)
 
     internal val requestAttentionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Window", "request_attention", 3218959716)
+
+    internal val setTaskbarProgressValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "set_taskbar_progress_value", 373806689)
+
+    internal val setTaskbarProgressStatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "set_taskbar_progress_state", 824071031)
 
     internal val moveToForegroundPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Window", "move_to_foreground", 3218959716)

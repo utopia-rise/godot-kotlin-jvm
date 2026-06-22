@@ -26,7 +26,7 @@ import kotlin.jvm.JvmName
 
 /**
  * Allows the user to record the sound from an audio bus into an [AudioStreamWAV]. When used on the
- * "Master" audio bus, this includes all audio output by Godot.
+ * Master audio bus, this includes all audio output by Godot.
  *
  * Unlike [AudioEffectCapture], this effect encodes the recording with the given format (8-bit,
  * 16-bit, or compressed) instead of giving access to the raw audio samples.
@@ -51,7 +51,7 @@ public open class AudioEffectRecord : AudioEffect() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(71, scriptPtr)
+    createNativeObject(73, scriptPtr)
   }
 
   /**

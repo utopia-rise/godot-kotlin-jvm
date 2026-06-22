@@ -120,7 +120,7 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(35, scriptPtr)
+    createNativeObject(36, scriptPtr)
   }
 
   public final fun setInputCount(inputCount: Int): Unit {

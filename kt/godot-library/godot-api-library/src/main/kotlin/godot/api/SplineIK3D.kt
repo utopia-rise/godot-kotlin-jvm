@@ -43,6 +43,10 @@ import kotlin.jvm.JvmName
  *
  * If the end bone joint exceeds the path length, it is bent as close as possible to the end point
  * of the [Curve3D].
+ *
+ * **Note:** All the methods in this class take an `index` parameter. This parameter specifies which
+ * setting list entry to return if the IK has multiple entries (e.g.
+ * `settings/<index>/root_bone_name`).
  */
 @GodotBaseType
 public open class SplineIK3D : ChainIK3D() {
@@ -58,7 +62,7 @@ public open class SplineIK3D : ChainIK3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(676, scriptPtr)
+    createNativeObject(690, scriptPtr)
   }
 
   /**

@@ -150,7 +150,7 @@ public open class NavigationLink3D : Node3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(393, scriptPtr)
+    createNativeObject(402, scriptPtr)
   }
 
   /**

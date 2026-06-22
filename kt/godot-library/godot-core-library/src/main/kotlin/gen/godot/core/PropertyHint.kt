@@ -13,13 +13,16 @@ public enum class PropertyHint(
   public override val `value`: Long,
 ) : GodotEnum {
   /**
-   * The property has no hint for the editor.
+   * The property has no hint for the editor. However, the hint string is still read, which can be
+   * used to specify a suffix for a property that has no range limit (see [PROPERTY_HINT_RANGE]'s
+   * description).
    */
   NONE(0),
   /**
-   * Hints that an [int] or [float] property should be within a range specified via the hint string
-   * `"min,max"` or `"min,max,step"`. The hint string can optionally include `"or_greater"` and/or
-   * `"or_less"` to allow manual input going respectively above the max or below the min values.
+   * Hints that an [int], [float], or packed/typed [Array] property containing [int] or [float]
+   * types should be within a range specified via the hint string `"min,max"` or `"min,max,step"`. The
+   * hint string can optionally include `"or_greater"` and/or `"or_less"` to allow manual input going
+   * respectively above the max or below the min values.
    *
    * **Example:** `"-360,360,1,or_greater,or_less"`.
    *
@@ -50,14 +53,18 @@ public enum class PropertyHint(
    */
   ENUM_SUGGESTION(3),
   /**
-   * Hints that a [float] property should be edited via an exponential easing function. The hint
-   * string can include `"attenuation"` to flip the curve horizontally and/or `"positive_only"` to
-   * exclude in/out easing and limit values to be greater than or equal to zero.
+   * Hints that a [float] property should be edited using a curve editor showing an exponential
+   * easing function. The hint string can include `"attenuation"` to flip the curve horizontally and/or
+   * `"positive_only"` to exclude in/out easing and limit values to be greater than or equal to zero.
+   * This displays differently to a property that uses [PROPERTY_HINT_RANGE] with the `"exp"` keyword,
+   * as it's edited with a slider instead of a curve editor.
    */
   EXP_EASING(4),
   /**
    * Hints that a vector property should allow its components to be linked. For example, this allows
-   * [Vector2.x] and [Vector2.y] to be edited together.
+   * [Vector2.x] and [Vector2.y] to be edited together. This hint is supported on [Vector2],
+   * [Vector2i], [Vector3], [Vector3i], [Vector4], and [Vector4i]. The hint string can be used to
+   * specify a suffix indicating each value's unit with the `"suffix:px/s"` syntax.
    */
   LINK(5),
   /**
@@ -190,7 +197,7 @@ public enum class PropertyHint(
    * //csharp
    * // Array of elemType.
    * hintString = $"{elemType:D}:";
-   * hintString = $"{elemType:}/{elemHint:D}:{elemHintString}";
+   * hintString = $"{elemType:D}/{elemHint:D}:{elemHintString}";
    * // Two-dimensional array of elemType (array of arrays of elemType).
    * hintString = $"{Variant.Type.Array:D}:{elemType:D}:";
    * hintString = $"{Variant.Type.Array:D}:{elemType:D}/{elemHint:D}:{elemHintString}";

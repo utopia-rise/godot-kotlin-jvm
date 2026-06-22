@@ -18,7 +18,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class PanelContainer : Container() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(500, scriptPtr)
+    createNativeObject(509, scriptPtr)
   }
 
   public companion object

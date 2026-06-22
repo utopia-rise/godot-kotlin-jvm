@@ -56,25 +56,25 @@ public object ResourceSaver : Object() {
 
   @JvmField
   public val getRecognizedExtensionsName:
-      MethodStringName1<ResourceSaver, PackedStringArray, Resource?> =
-      MethodStringName1<ResourceSaver, PackedStringArray, Resource?>("get_recognized_extensions")
+      MethodStringName1<ResourceSaver, PackedStringArray, Resource> =
+      MethodStringName1<ResourceSaver, PackedStringArray, Resource>("get_recognized_extensions")
 
   @JvmField
   public val addResourceFormatSaverName:
-      MethodStringName2<ResourceSaver, Unit, ResourceFormatSaver?, Boolean> =
-      MethodStringName2<ResourceSaver, Unit, ResourceFormatSaver?, Boolean>("add_resource_format_saver")
+      MethodStringName2<ResourceSaver, Unit, ResourceFormatSaver, Boolean> =
+      MethodStringName2<ResourceSaver, Unit, ResourceFormatSaver, Boolean>("add_resource_format_saver")
 
   @JvmField
   public val removeResourceFormatSaverName:
-      MethodStringName1<ResourceSaver, Unit, ResourceFormatSaver?> =
-      MethodStringName1<ResourceSaver, Unit, ResourceFormatSaver?>("remove_resource_format_saver")
+      MethodStringName1<ResourceSaver, Unit, ResourceFormatSaver> =
+      MethodStringName1<ResourceSaver, Unit, ResourceFormatSaver>("remove_resource_format_saver")
 
   @JvmField
   public val getResourceIdForPathName: MethodStringName2<ResourceSaver, Long, String, Boolean> =
       MethodStringName2<ResourceSaver, Long, String, Boolean>("get_resource_id_for_path")
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(30)
+    getSingleton(31)
   }
 
   /**
@@ -118,7 +118,7 @@ public object ResourceSaver : Object() {
    * Returns the list of extensions available for saving a resource of a given type.
    */
   @JvmStatic
-  public final fun getRecognizedExtensions(type: Resource?): PackedStringArray {
+  public final fun getRecognizedExtensions(type: Resource): PackedStringArray {
     TransferContext.writeArguments(OBJECT to type)
     TransferContext.callMethod(ptr, MethodBindings.getRecognizedExtensionsPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
@@ -133,7 +133,7 @@ public object ResourceSaver : Object() {
    */
   @JvmOverloads
   @JvmStatic
-  public final fun addResourceFormatSaver(formatSaver: ResourceFormatSaver?, atFront: Boolean =
+  public final fun addResourceFormatSaver(formatSaver: ResourceFormatSaver, atFront: Boolean =
       false): Unit {
     TransferContext.writeArguments(OBJECT to formatSaver, BOOL to atFront)
     TransferContext.callMethod(ptr, MethodBindings.addResourceFormatSaverPtr, NIL)
@@ -143,7 +143,7 @@ public object ResourceSaver : Object() {
    * Unregisters the given [ResourceFormatSaver].
    */
   @JvmStatic
-  public final fun removeResourceFormatSaver(formatSaver: ResourceFormatSaver?): Unit {
+  public final fun removeResourceFormatSaver(formatSaver: ResourceFormatSaver): Unit {
     TransferContext.writeArguments(OBJECT to formatSaver)
     TransferContext.callMethod(ptr, MethodBindings.removeResourceFormatSaverPtr, NIL)
   }

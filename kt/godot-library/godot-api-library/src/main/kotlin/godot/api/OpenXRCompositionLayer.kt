@@ -156,6 +156,20 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
     }
 
   /**
+   * The eye(s) the composition layer is visible to.
+   *
+   * **Note:** Not all composition layer types or runtimes support restricting visibility to a
+   * single eye.
+   */
+  public final inline var eyeVisibility: EyeVisibility
+    @JvmName("eyeVisibilityProperty")
+    get() = getEyeVisibility()
+    @JvmName("eyeVisibilityProperty")
+    set(`value`) {
+      setEyeVisibility(value)
+    }
+
+  /**
    * The minification filter of the swapchain state.
    *
    * **Note:** This property only has an effect on devices that support the OpenXR
@@ -318,7 +332,7 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(437, scriptPtr)
+    createNativeObject(446, scriptPtr)
   }
 
   /**
@@ -588,6 +602,17 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
+  public final fun setEyeVisibility(eyeVisibility: EyeVisibility): Unit {
+    TransferContext.writeArguments(LONG to eyeVisibility.value)
+    TransferContext.callMethod(ptr, MethodBindings.setEyeVisibilityPtr, NIL)
+  }
+
+  public final fun getEyeVisibility(): EyeVisibility {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getEyeVisibilityPtr, LONG)
+    return EyeVisibility.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
   /**
    * Returns UV coordinates where the given ray intersects with the composition layer. [origin] and
    * [direction] must be in global space.
@@ -709,6 +734,28 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
 
     public companion object {
       public fun from(`value`: Long): Swizzle = entries.single { it.`value` == `value` }
+    }
+  }
+
+  public enum class EyeVisibility(
+    public override val `value`: Long,
+  ) : GodotEnum {
+    /**
+     * The layer is visible to both the left and right eyes.
+     */
+    BOTH(0),
+    /**
+     * The layer is visible only to the left eye.
+     */
+    LEFT(1),
+    /**
+     * The layer is visible only to the right eye.
+     */
+    RIGHT(2),
+    ;
+
+    public companion object {
+      public fun from(`value`: Long): EyeVisibility = entries.single { it.`value` == `value` }
     }
   }
 
@@ -866,6 +913,14 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
         MethodStringName0<OpenXRCompositionLayer, Color>("get_border_color")
 
     @JvmField
+    public val setEyeVisibilityName: MethodStringName1<OpenXRCompositionLayer, Unit, EyeVisibility>
+        = MethodStringName1<OpenXRCompositionLayer, Unit, EyeVisibility>("set_eye_visibility")
+
+    @JvmField
+    public val getEyeVisibilityName: MethodStringName0<OpenXRCompositionLayer, EyeVisibility> =
+        MethodStringName0<OpenXRCompositionLayer, EyeVisibility>("get_eye_visibility")
+
+    @JvmField
     public val intersectsRayName:
         MethodStringName2<OpenXRCompositionLayer, Vector2, Vector3, Vector3> =
         MethodStringName2<OpenXRCompositionLayer, Vector2, Vector3, Vector3>("intersects_ray")
@@ -985,6 +1040,12 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
 
     internal val getBorderColorPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "get_border_color", 3444240500)
+
+    internal val setEyeVisibilityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "set_eye_visibility", 156391336)
+
+    internal val getEyeVisibilityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "get_eye_visibility", 467669000)
 
     internal val intersectsRayPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "intersects_ray", 1091262597)

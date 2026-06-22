@@ -170,6 +170,11 @@ public open class RichTextLabel : Control() {
   /**
    * If `true`, the label's minimum size will be automatically updated to fit its content, matching
    * the behavior of [Label].
+   *
+   * **Note:** RichTextLabels with autowrapping and [fitContent] enabled must have a custom maximum
+   * width configured to work correctly, either through the RichTextLabel's own
+   * [Control.customMaximumSize] or as a result of a propagated maximum size from a parent Control with
+   * [Control.propagateMaximumSize] enabled.
    */
   public final inline var fitContent: Boolean
     @JvmName("fitContentProperty")
@@ -217,6 +222,11 @@ public open class RichTextLabel : Control() {
   /**
    * If set to something other than [TextServer.AUTOWRAP_OFF], the text gets wrapped inside the
    * node's bounding rectangle.
+   *
+   * **Note:** RichTextLabels with autowrapping and [fitContent] enabled must have a custom maximum
+   * width configured to work correctly, either through the RichTextLabel's own
+   * [Control.customMaximumSize] or as a result of a propagated maximum size from a parent Control with
+   * [Control.propagateMaximumSize] enabled.
    */
   public final inline var autowrapMode: TextServer.AutowrapMode
     @JvmName("autowrapModeProperty")
@@ -512,7 +522,7 @@ public open class RichTextLabel : Control() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(619, scriptPtr)
+    createNativeObject(632, scriptPtr)
   }
 
   /**
@@ -611,30 +621,27 @@ public open class RichTextLabel : Control() {
    * If [pad] is set, and the image is smaller than the size specified by [width] and [height], the
    * image padding is added to match the size instead of upscaling.
    *
-   * If [widthInPercent] is set, [width] values are percentages of the control width instead of
-   * pixels.
-   *
-   * If [heightInPercent] is set, [height] values are percentages of the control width instead of
-   * pixels.
+   * Parameters [widthUnit] and [heightUnit] determine the units used to calculate the image width
+   * and height, respectively.
    *
    * [altText] is used as the image description for assistive apps.
    */
   @JvmOverloads
   public final fun addImage(
     image: Texture2D?,
-    width: Int = 0,
-    height: Int = 0,
+    width: Float = 0.0f,
+    height: Float = 0.0f,
     color: Color = Color(Color(1, 1, 1, 1)),
     inlineAlign: InlineAlignment = InlineAlignment.CENTER,
     region: Rect2 = Rect2(0.0, 0.0, 0.0, 0.0),
     key: Any? = null,
     pad: Boolean = false,
     tooltip: String = "",
-    widthInPercent: Boolean = false,
-    heightInPercent: Boolean = false,
+    widthUnit: ImageUnit = RichTextLabel.ImageUnit.PIXEL,
+    heightUnit: ImageUnit = RichTextLabel.ImageUnit.PIXEL,
     altText: String = "",
   ): Unit {
-    TransferContext.writeArguments(OBJECT to image, LONG to width.toLong(), LONG to height.toLong(), COLOR to color, LONG to inlineAlign.value, RECT2 to region, ANY to key, BOOL to pad, STRING to tooltip, BOOL to widthInPercent, BOOL to heightInPercent, STRING to altText)
+    TransferContext.writeArguments(OBJECT to image, DOUBLE to width.toDouble(), DOUBLE to height.toDouble(), COLOR to color, LONG to inlineAlign.value, RECT2 to region, ANY to key, BOOL to pad, STRING to tooltip, LONG to widthUnit.value, LONG to heightUnit.value, STRING to altText)
     TransferContext.callMethod(ptr, MethodBindings.addImagePtr, NIL)
   }
 
@@ -647,17 +654,17 @@ public open class RichTextLabel : Control() {
     key: Any?,
     mask: ImageUpdateMask,
     image: Texture2D?,
-    width: Int = 0,
-    height: Int = 0,
+    width: Float = 0.0f,
+    height: Float = 0.0f,
     color: Color = Color(Color(1, 1, 1, 1)),
     inlineAlign: InlineAlignment = InlineAlignment.CENTER,
     region: Rect2 = Rect2(0.0, 0.0, 0.0, 0.0),
     pad: Boolean = false,
     tooltip: String = "",
-    widthInPercent: Boolean = false,
-    heightInPercent: Boolean = false,
+    widthUnit: ImageUnit = RichTextLabel.ImageUnit.PIXEL,
+    heightUnit: ImageUnit = RichTextLabel.ImageUnit.PIXEL,
   ): Unit {
-    TransferContext.writeArguments(ANY to key, LONG to mask.flag, OBJECT to image, LONG to width.toLong(), LONG to height.toLong(), COLOR to color, LONG to inlineAlign.value, RECT2 to region, BOOL to pad, STRING to tooltip, BOOL to widthInPercent, BOOL to heightInPercent)
+    TransferContext.writeArguments(ANY to key, LONG to mask.flag, OBJECT to image, DOUBLE to width.toDouble(), DOUBLE to height.toDouble(), COLOR to color, LONG to inlineAlign.value, RECT2 to region, BOOL to pad, STRING to tooltip, LONG to widthUnit.value, LONG to heightUnit.value)
     TransferContext.callMethod(ptr, MethodBindings.updateImagePtr, NIL)
   }
 
@@ -1995,10 +2002,32 @@ public open class RichTextLabel : Control() {
       public val UPDATE_TOOLTIP: ImageUpdateMask = ImageUpdateMask(64)
 
       /**
-       * If this bit is set, [updateImage] changes image width from/to percents.
+       * If this bit is set, [updateImage] changes the units used to calculate image size.
        */
       @JvmField
-      public val UPDATE_WIDTH_IN_PERCENT: ImageUpdateMask = ImageUpdateMask(128)
+      public val UPDATE_WIDTH_UNIT: ImageUpdateMask = ImageUpdateMask(128)
+    }
+  }
+
+  public enum class ImageUnit(
+    public override val `value`: Long,
+  ) : GodotEnum {
+    /**
+     * Images drawn with this unit will be in pixels.
+     */
+    PIXEL(0),
+    /**
+     * Images drawn with this unit will be in percentages of the control width.
+     */
+    PERCENT(1),
+    /**
+     * Images drawn with this unit will be in percentages of the surrounding font size.
+     */
+    EM(2),
+    ;
+
+    public companion object {
+      public fun from(`value`: Long): ImageUnit = entries.single { it.`value` == `value` }
     }
   }
 
@@ -2023,15 +2052,15 @@ public open class RichTextLabel : Control() {
 
     @JvmField
     public val addImageName:
-        MethodStringName12<RichTextLabel, Unit, Texture2D?, Int, Int, Color, InlineAlignment, Rect2, Any?, Boolean, String, Boolean, Boolean, String>
+        MethodStringName12<RichTextLabel, Unit, Texture2D?, Float, Float, Color, InlineAlignment, Rect2, Any?, Boolean, String, ImageUnit, ImageUnit, String>
         =
-        MethodStringName12<RichTextLabel, Unit, Texture2D?, Int, Int, Color, InlineAlignment, Rect2, Any?, Boolean, String, Boolean, Boolean, String>("add_image")
+        MethodStringName12<RichTextLabel, Unit, Texture2D?, Float, Float, Color, InlineAlignment, Rect2, Any?, Boolean, String, ImageUnit, ImageUnit, String>("add_image")
 
     @JvmField
     public val updateImageName:
-        MethodStringName12<RichTextLabel, Unit, Any?, ImageUpdateMask, Texture2D?, Int, Int, Color, InlineAlignment, Rect2, Boolean, String, Boolean, Boolean>
+        MethodStringName12<RichTextLabel, Unit, Any?, ImageUpdateMask, Texture2D?, Float, Float, Color, InlineAlignment, Rect2, Boolean, String, ImageUnit, ImageUnit>
         =
-        MethodStringName12<RichTextLabel, Unit, Any?, ImageUpdateMask, Texture2D?, Int, Int, Color, InlineAlignment, Rect2, Boolean, String, Boolean, Boolean>("update_image")
+        MethodStringName12<RichTextLabel, Unit, Any?, ImageUpdateMask, Texture2D?, Float, Float, Color, InlineAlignment, Rect2, Boolean, String, ImageUnit, ImageUnit>("update_image")
 
     @JvmField
     public val newlineName: MethodStringName0<RichTextLabel, Unit> =
@@ -2593,10 +2622,10 @@ public open class RichTextLabel : Control() {
         TypeManager.getMethodBindPtr("RichTextLabel", "add_hr", 16816895)
 
     internal val addImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "add_image", 1390915033)
+        TypeManager.getMethodBindPtr("RichTextLabel", "add_image", 1980227702)
 
     internal val updateImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "update_image", 6389170)
+        TypeManager.getMethodBindPtr("RichTextLabel", "update_image", 202998225)
 
     internal val newlinePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RichTextLabel", "newline", 3218959716)

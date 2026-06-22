@@ -382,12 +382,12 @@ public object OS : Object() {
       MethodStringName0<OS, Unit>("revoke_granted_permissions")
 
   @JvmField
-  public val addLoggerName: MethodStringName1<OS, Unit, Logger?> =
-      MethodStringName1<OS, Unit, Logger?>("add_logger")
+  public val addLoggerName: MethodStringName1<OS, Unit, Logger> =
+      MethodStringName1<OS, Unit, Logger>("add_logger")
 
   @JvmField
-  public val removeLoggerName: MethodStringName1<OS, Unit, Logger?> =
-      MethodStringName1<OS, Unit, Logger?>("remove_logger")
+  public val removeLoggerName: MethodStringName1<OS, Unit, Logger> =
+      MethodStringName1<OS, Unit, Logger>("remove_logger")
 
   /**
    * If `true`, the engine optimizes for low processor usage by only refreshing the screen if
@@ -436,7 +436,7 @@ public object OS : Object() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    getSingleton(21)
+    getSingleton(22)
   }
 
   /**
@@ -1023,7 +1023,7 @@ public object OS : Object() {
    *
    * - `OS.shell_open("mailto:example@example.com")` opens the default email client with the "To"
    * field set to `example@example.com`. See [url=https://datatracker.ietf.org/doc/html/rfc2368]RFC
-   * 2368 - The `mailto` URL scheme[/url] for a list of fields that can be added.
+   * 2368 - The mailto URL scheme[/url] for a list of fields that can be added.
    *
    * Use [ProjectSettings.globalizePath] to convert a `res://` or `user://` project path into a
    * system path for use with this method.
@@ -2070,7 +2070,7 @@ public object OS : Object() {
    * Add a custom logger to intercept the internal message stream.
    */
   @JvmStatic
-  public final fun addLogger(logger: Logger?): Unit {
+  public final fun addLogger(logger: Logger): Unit {
     TransferContext.writeArguments(OBJECT to logger)
     TransferContext.callMethod(ptr, MethodBindings.addLoggerPtr, NIL)
   }
@@ -2079,7 +2079,7 @@ public object OS : Object() {
    * Remove a custom logger added by [addLogger].
    */
   @JvmStatic
-  public final fun removeLogger(logger: Logger?): Unit {
+  public final fun removeLogger(logger: Logger): Unit {
     TransferContext.writeArguments(OBJECT to logger)
     TransferContext.callMethod(ptr, MethodBindings.removeLoggerPtr, NIL)
   }
@@ -2089,7 +2089,7 @@ public object OS : Object() {
   ) : GodotEnum {
     /**
      * The Vulkan rendering driver. It requires Vulkan 1.0 support and automatically uses features
-     * from Vulkan 1.1 and 1.2 if available.
+     * from Vulkan 1.1, 1.2, and 1.3 if available.
      */
     VULKAN(0),
     /**
@@ -2098,7 +2098,8 @@ public object OS : Object() {
      */
     OPENGL3(1),
     /**
-     * The Direct3D 12 rendering driver.
+     * The Direct3D 12 rendering driver. It requires the 12_0 feature level and Shader Model 6.0
+     * support.
      */
     D3D12(2),
     /**

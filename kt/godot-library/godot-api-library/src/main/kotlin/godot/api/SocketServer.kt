@@ -25,7 +25,7 @@ import kotlin.jvm.JvmField
 @GodotBaseType
 public open class SocketServer internal constructor() : RefCounted() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(670, scriptPtr)
+    createNativeObject(684, scriptPtr)
   }
 
   /**

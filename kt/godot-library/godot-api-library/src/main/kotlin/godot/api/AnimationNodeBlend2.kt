@@ -21,7 +21,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class AnimationNodeBlend2 : AnimationNodeSync() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(20, scriptPtr)
+    createNativeObject(21, scriptPtr)
   }
 
   public companion object

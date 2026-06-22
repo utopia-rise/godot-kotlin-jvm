@@ -61,7 +61,7 @@ import kotlin.jvm.JvmField
 @GodotBaseType
 public open class CubemapArray : ImageTextureLayered() {
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(191, scriptPtr)
+    createNativeObject(195, scriptPtr)
   }
 
   /**

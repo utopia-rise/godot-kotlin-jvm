@@ -87,7 +87,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
     }
 
   public override fun new(scriptPtr: VoidPtr): Unit {
-    createNativeObject(560, scriptPtr)
+    createNativeObject(569, scriptPtr)
   }
 
   /**
@@ -127,15 +127,6 @@ public open class PortableCompressedTexture2D : Texture2D() {
   ): Unit {
     TransferContext.writeArguments(OBJECT to image, LONG to compressionMode.value, BOOL to normalMap, DOUBLE to lossyQuality.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.createFromImagePtr, NIL)
-  }
-
-  /**
-   * Return the image format used (valid after initialized).
-   */
-  public final fun getFormat(): Image.Format {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFormatPtr, LONG)
-    return Image.Format.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -219,10 +210,6 @@ public open class PortableCompressedTexture2D : Texture2D() {
         MethodStringName4<PortableCompressedTexture2D, Unit, Image?, CompressionMode, Boolean, Float>("create_from_image")
 
     @JvmField
-    public val getFormatName: MethodStringName0<PortableCompressedTexture2D, Image.Format> =
-        MethodStringName0<PortableCompressedTexture2D, Image.Format>("get_format")
-
-    @JvmField
     public val getCompressionModeName:
         MethodStringName0<PortableCompressedTexture2D, CompressionMode> =
         MethodStringName0<PortableCompressedTexture2D, CompressionMode>("get_compression_mode")
@@ -284,9 +271,6 @@ public open class PortableCompressedTexture2D : Texture2D() {
   public object MethodBindings {
     internal val createFromImagePtr: VoidPtr =
         TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "create_from_image", 3679243433)
-
-    internal val getFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "get_format", 3847873762)
 
     internal val getCompressionModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "get_compression_mode", 3265612739)
