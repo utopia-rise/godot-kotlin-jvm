@@ -80,14 +80,6 @@ annotation class DoubleRange(
 )
 
 /**
- * Can only be used on Enum properties!
- */
-@Target(AnnotationTarget.FIELD, AnnotationTarget.ANNOTATION_CLASS)
-@Retention(AnnotationRetention.RUNTIME)
-@Export
-annotation class EnumTypeHint
-
-/**
  * Can only be used on Float and Double properties!
  */
 @Target(AnnotationTarget.FIELD, AnnotationTarget.ANNOTATION_CLASS)

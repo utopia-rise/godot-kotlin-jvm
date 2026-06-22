@@ -58,7 +58,8 @@ The task can be configured like so:
 ```kotlin
 tasks.withType<GenerateEmbeddedJreTask> {
     // the values in this example are the default values of the task
-    this.javaHome = System.getProperty("java.home") // path to your java home dir
+    // defaults to JAVA_HOME, falling back to the JVM running Gradle. Must point to a JDK (jlink is required).
+    this.javaHome = System.getenv("JAVA_HOME")
     this.arguments = arrayOf(
         "--strip-debug",
         "--no-header-files",

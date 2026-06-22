@@ -130,7 +130,6 @@ open class Type(
         val realType = knownType(RealT::class.qualifiedName!!, TypeKind.PRIMITIVE)
         val doubleType = knownType(TYPE_DOUBLE, TypeKind.PRIMITIVE)
         val stringType = knownType(TYPE_KOTLIN_STRING, TypeKind.PRIMITIVE)
-        val anyType = knownType(TYPE_KOTLIN_ANY, TypeKind.OTHER)
 
         val vector2Type = knownType(Vector2::class.qualifiedName!!, TypeKind.CORE_TYPE)
         val vector2iType = knownType(Vector2i::class.qualifiedName!!, TypeKind.CORE_TYPE)
@@ -165,6 +164,7 @@ open class Type(
         val packedVector3ArrayType = knownType(PackedVector3Array::class.qualifiedName!!, TypeKind.CORE_TYPE)
         val packedColorArrayType = knownType(PackedColorArray::class.qualifiedName!!, TypeKind.CORE_TYPE)
         val packedVector4ArrayType = knownType(PackedVector4Array::class.qualifiedName!!, TypeKind.CORE_TYPE)
+        val anyType = knownType(TYPE_KOTLIN_ANY, TypeKind.CORE_TYPE)
 
         private val primitiveTypesByFqName = buildMap {
             put(TYPE_VOID, nilType)

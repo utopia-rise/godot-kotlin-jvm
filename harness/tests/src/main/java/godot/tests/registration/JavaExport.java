@@ -1,6 +1,5 @@
 package godot.tests.registration;
 
-import godot.annotation.EnumTypeHint;
 import godot.annotation.ExpEasing;
 import godot.annotation.Export;
 import godot.annotation.File;
@@ -20,6 +19,7 @@ import godot.api.NavigationMesh;
 import godot.api.Node;
 import godot.core.AABB;
 import godot.core.Basis;
+import godot.core.BitField;
 import godot.core.Color;
 import godot.core.Dictionary;
 import godot.core.NodePath;
@@ -141,11 +141,16 @@ public class JavaExport extends Node {
 
     @Export
     @Visible
-    @EnumTypeHint
     public JavaExportEnum enumValue = JavaExportEnum.JAVA_EXPORT_ENUM_1;
 
-    // EnumFlag is intentionally left out for now: it requires exported enum set support,
-    // and this branch is staying on the build-stable path until that export shape is covered.
+    @Export
+    @Visible
+    public BitField<JavaExportEnum> enumFlagValue =
+        BitField.of(JavaExportEnum.JAVA_EXPORT_ENUM_1, JavaExportEnum.JAVA_EXPORT_ENUM_2);
+
+    @Export
+    @Visible
+    public Object anyValue = "java-any";
 
     @Export
     @Visible

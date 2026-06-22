@@ -3,7 +3,6 @@ package godot.intellij.plugin.analysis.kotlin
 import godot.annotation.ColorNoAlpha
 import godot.annotation.Dir
 import godot.annotation.DoubleRange
-import godot.annotation.EnumTypeHint
 import godot.annotation.ExpEasing
 import godot.annotation.Export
 import godot.annotation.File
@@ -19,7 +18,6 @@ import godot.intellij.plugin.analysis.GodotProblem
 import godot.intellij.plugin.project.fqName
 import godot.intellij.plugin.project.withType
 import godot.intellij.plugin.quickfix.PropertyNotExportedQuickFix
-import org.jetbrains.kotlin.idea.codeinsight.utils.isEnum
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.psi.KtProperty
 import org.jetbrains.kotlin.scripting.resolve.classId
@@ -48,10 +46,6 @@ object PropertyHintAnalyzer {
 
             property.findAnnotation(ExpEasing::class.classId) != null -> {
                 checkForRegistrationAnnotations(property) + checkExpEasing(property)
-            }
-
-            property.findAnnotation(EnumTypeHint::class.classId) != null -> {
-                checkForRegistrationAnnotations(property) + checkEnumTypeHint(property)
             }
 
             property.findAnnotation(IntFlag::class.classId) != null -> {
@@ -129,19 +123,6 @@ object PropertyHintAnalyzer {
             GodotProblem(
                 GodotPluginBundle.message("problem.property.hint.wrongType", Int::class.qualifiedName!!),
                 property.findAnnotation(IntFlag::class.classId)?.psiOrParent
-                    ?: property.nameIdentifier
-                    ?: property.navigationElement
-            )
-        )
-    }
-
-    private fun checkEnumTypeHint(property: KtProperty): List<GodotProblem> {
-        val isEnum = property.withType { propertyType -> propertyType.isEnum() }
-        if (isEnum) return emptyList()
-        return listOf(
-            GodotProblem(
-                GodotPluginBundle.message("problem.property.hint.wrongType", Enum::class.qualifiedName!!),
-                property.findAnnotation(EnumTypeHint::class.classId)?.psiOrParent
                     ?: property.nameIdentifier
                     ?: property.navigationElement
             )

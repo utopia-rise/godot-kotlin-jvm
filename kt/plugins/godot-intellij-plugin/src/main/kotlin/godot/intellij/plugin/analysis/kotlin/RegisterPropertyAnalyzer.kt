@@ -3,7 +3,6 @@ package godot.intellij.plugin.analysis.kotlin
 import godot.annotation.ColorNoAlpha
 import godot.annotation.Dir
 import godot.annotation.DoubleRange
-import godot.annotation.EnumTypeHint
 import godot.annotation.ExpEasing
 import godot.annotation.Export
 import godot.annotation.File
@@ -76,7 +75,6 @@ object VisibleAnalyzer {
             findAnnotation(LongRange::class.classId) != null ||
             findAnnotation(FloatRange::class.classId) != null ||
             findAnnotation(DoubleRange::class.classId) != null ||
-            findAnnotation(EnumTypeHint::class.classId) != null ||
             findAnnotation(ExpEasing::class.classId) != null ||
             findAnnotation(IntFlag::class.classId) != null ||
             findAnnotation(File::class.classId) != null ||

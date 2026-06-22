@@ -85,7 +85,7 @@ class KtClassBuilder<T : KtObject>(
                 className,
                 hint,
                 hintString,
-                propertyUsage(usage, setter != null)
+                propertyUsage(usage, setter != null, variantType)
             ),
             getter,
             setter,
@@ -111,7 +111,7 @@ class KtClassBuilder<T : KtObject>(
                 "Int",
                 PropertyHint.ENUM,
                 hintString,
-                propertyUsage(usage, setter != null),
+                propertyUsage(usage, setter != null, VariantParser.ARRAY),
             ),
             getter,
             setter,
@@ -160,7 +160,7 @@ class KtClassBuilder<T : KtObject>(
                 "Int",
                 PropertyHint.FLAGS,
                 hintString,
-                propertyUsage(usage, setter != null),
+                propertyUsage(usage, setter != null, VariantCaster.INT),
             ),
             getter,
             setter,
@@ -184,8 +184,14 @@ class KtClassBuilder<T : KtObject>(
     )
 
     @PublishedApi
-    internal fun propertyUsage(usage: PropertyUsageFlags, isMutable: Boolean): Long =
-        if (isMutable) usage.flag else usage.flag or PropertyUsageFlags.READ_ONLY
+    internal fun propertyUsage(usage: PropertyUsageFlags, isMutable: Boolean, variantType: VariantConverter): Long {
+        // Site-specific usage stays as provided; we only OR in flags inferred from the variant type.
+        var flags = if (isMutable) usage.flag else usage.flag or PropertyUsageFlags.READ_ONLY
+        if (variantType === VariantCaster.ANY) {
+            flags = flags or PropertyUsageFlags.NIL_IS_VARIANT
+        }
+        return flags
+    }
 
     fun notification(
         notification: Int,

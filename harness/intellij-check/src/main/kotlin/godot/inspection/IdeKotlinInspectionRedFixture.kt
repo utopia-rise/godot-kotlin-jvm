@@ -3,7 +3,6 @@ package godot.inspection
 import godot.annotation.ColorNoAlpha
 import godot.annotation.Dir
 import godot.annotation.DoubleRange
-import godot.annotation.EnumTypeHint
 import godot.annotation.ExpEasing
 import godot.annotation.Export
 import godot.annotation.File
@@ -186,10 +185,6 @@ class PropertyHintProblemFixture : Node() {
     // properties.
     @ExpEasing
     var expEasingWrongType = 1
-
-    // Expected red: `@EnumTypeHint` only makes sense on enum properties.
-    @EnumTypeHint
-    var enumTypeHintWrongType = 1
 
     // Expected red: `@IntFlag` only makes sense on `Int` properties.
     @IntFlag("a")

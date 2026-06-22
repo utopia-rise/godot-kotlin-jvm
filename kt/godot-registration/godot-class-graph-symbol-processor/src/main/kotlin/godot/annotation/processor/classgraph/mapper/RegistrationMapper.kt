@@ -41,7 +41,6 @@ import godot.registration.model.RegisteredSignal
 import godot.registration.model.RpcConfig
 import godot.registration.model.ValueParameter
 import godot.registration.model.hint.property.EnumFlagHintStringHint
-import godot.registration.model.hint.property.EnumHint
 import godot.registration.model.hint.property.EnumHintStringHint
 import godot.registration.model.hint.property.EnumListHintStringHint
 import godot.registration.model.hint.property.PropertyHint
@@ -432,52 +431,44 @@ class RegistrationMapper(
                 typeArguments: List<TypeArgument>,
                 annotations: Collection<AnnotationInfo>,
             ): List<PropertyHint> {
-                val hints = annotations
-                    .mapNotNull(AnnotationMapper::toPropertyHint)
-                    .toMutableList()
+                val annotationHints = annotations.mapNotNull(AnnotationMapper::toPropertyHint)
+                val typeHint = inferEnumHintFromType(rawDescriptor, typeArguments)
+                return annotationHints + listOfNotNull(typeHint)
+            }
 
-                val isPrimitive = Type.findPrimitiveType(rawDescriptor) != null
+            private fun inferEnumHintFromType(
+                rawDescriptor: String,
+                typeArguments: List<TypeArgument>,
+            ): PropertyHint? {
+                val typeClassInfo = context.getClassInfoOrNull(rawDescriptor) ?: return null
 
-                if (!isPrimitive && hints.none { hint -> hint is EnumHint }) {
-                    val typeClassInfo = requireNotNull(context.getClassInfoOrNull(rawDescriptor)) {
-                        "Could not resolve class info for descriptor: $rawDescriptor"
-                    }
-                    val containedEnum = {
-                        typeArguments.firstOrNull()
-                            ?.let { typeArgument -> context.getClassInfoOrNull(typeArgument.typeSignature.toString()) }
-                            ?.takeIf { contained -> contained.isEnum }
-                    }
+                fun containedEnum(): ClassInfo? = typeArguments.firstOrNull()
+                    ?.let { typeArgument -> context.getClassInfoOrNull(typeArgument.typeSignature.toString()) }
+                    ?.takeIf { contained -> contained.isEnum }
 
-                    when {
-                        typeClassInfo.isEnum -> hints.add(
-                            EnumHintStringHint(
-                                enumType = typeMapper.mapRaw(rawDescriptor, emptyList()),
-                                entryCount = typeClassInfo.enumEntryCount,
-                            )
+                return when {
+                    typeClassInfo.isEnum -> EnumHintStringHint(
+                        enumType = typeMapper.mapRaw(rawDescriptor, emptyList()),
+                        entryCount = typeClassInfo.enumEntryCount,
+                    )
+
+                    typeClassInfo.isProcessorBitField -> containedEnum()?.let { enum ->
+                        EnumFlagHintStringHint(
+                            enumType = typeMapper.mapRaw(enum.name, emptyList()),
+                            entryCount = enum.enumEntryCount,
                         )
+                    }
 
-                        typeClassInfo.isProcessorBitField -> containedEnum()?.let { enum ->
-                            hints.add(
-                                EnumFlagHintStringHint(
-                                    enumType = typeMapper.mapRaw(enum.name, emptyList()),
-                                    entryCount = enum.enumEntryCount,
-                                )
+                    rawDescriptor.startsWith("kotlin.collections") || rawDescriptor.startsWith("java.util.") ->
+                        containedEnum()?.let { enum ->
+                            EnumListHintStringHint(
+                                enumType = typeMapper.mapRaw(enum.name, emptyList()),
+                                entryCount = enum.enumEntryCount,
                             )
                         }
 
-                        rawDescriptor.startsWith("kotlin.collections") || rawDescriptor.startsWith("java.util.") ->
-                            containedEnum()?.let { enum ->
-                                hints.add(
-                                    EnumListHintStringHint(
-                                        enumType = typeMapper.mapRaw(enum.name, emptyList()),
-                                        entryCount = enum.enumEntryCount,
-                                    )
-                                )
-                            }
-                    }
+                    else -> null
                 }
-
-                return hints.toList()
             }
 
             private fun LogicalProperty.rawDescriptor(): String =

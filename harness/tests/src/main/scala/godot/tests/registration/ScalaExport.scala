@@ -1,8 +1,9 @@
 package godot.tests.registration
 
-import godot.annotation.{ColorNoAlpha, Dir, DoubleRange, EnumTypeHint, ExpEasing, Export, File, FloatRange, IntFlag, IntRange, LongRange, MultilineText, PlaceHolderText, Script, Visible}
+import godot.annotation.{ColorNoAlpha, Dir, DoubleRange, ExpEasing, Export, File, FloatRange, IntFlag, IntRange, LongRange, MultilineText, PlaceHolderText, Script, Visible}
 import godot.api.{Button, NavigationMesh, Node}
-import godot.core.{AABB, Basis, Color, Dictionary, NodePath, PackedByteArray, PackedColorArray, PackedFloat32Array, PackedFloat64Array, PackedInt32Array, PackedInt64Array, PackedStringArray, PackedVector2Array, PackedVector3Array, PackedVector4Array, Plane, Projection, Quaternion, RID, Rect2, Rect2i, StringName, Transform2D, Transform3D, VariantArray, Vector2, Vector2i, Vector3, Vector3i, Vector4, Vector4i}
+import godot.tests.ScalaEnum
+import godot.core.{AABB, Basis, BitField, Color, Dictionary, NodePath, PackedByteArray, PackedColorArray, PackedFloat32Array, PackedFloat64Array, PackedInt32Array, PackedInt64Array, PackedStringArray, PackedVector2Array, PackedVector3Array, PackedVector4Array, Plane, Projection, Quaternion, RID, Rect2, Rect2i, StringName, Transform2D, Transform3D, VariantArray, Vector2, Vector2i, Vector3, Vector3i, Vector4, Vector4i}
 
 @Script
 class ScalaExport extends Node {
@@ -88,11 +89,17 @@ class ScalaExport extends Node {
   @PlaceHolderText()
   var placeholderTextValue: String = "placeholder"
 
-  // Scala enum export is intentionally omitted for now: the current entry generation
-  // path produces invalid Kotlin for nested Scala enums when generating enum casters.
+  @Export
+  @Visible
+  var enumValue: ScalaEnum = ScalaEnum.SCALA_ENUM_1
 
-  // EnumFlag is intentionally left out for now: it requires exported enum set support,
-  // and this branch is staying on the build-stable path until that export shape is covered.
+  @Export
+  @Visible
+  var enumFlagValue: BitField[ScalaEnum] = BitField.of(ScalaEnum.SCALA_ENUM_1, ScalaEnum.SCALA_ENUM_2)
+
+  @Export
+  @Visible
+  var anyValue: Any = "scala-any"
 
   @Export
   @Visible
