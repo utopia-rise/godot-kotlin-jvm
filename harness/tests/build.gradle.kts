@@ -189,7 +189,17 @@ tasks {
             TestExecutionCommand(
                 executable = provideEditorExecutable().absolutePath,
                 useProjectPathOverride = true,
-                reportDirectory = "//reports",
+                // Source tests run via the editor, where GdUnitCmdTool works fine.
+                scriptArgs = listOf(
+                    "-s",
+                    "res://addons/gdUnit4/bin/GdUnitCmdTool.gd",
+                    "-rd",
+                    "//reports",
+                    "-a",
+                    "test",
+                    "-c",
+                    "--ignoreHeadlessMode",
+                ),
             )
         }
     }
@@ -235,7 +245,9 @@ tasks {
             TestExecutionCommand(
                 executable = executable ?: "no_test_executable_found",
                 useProjectPathOverride = false,
-                reportDirectory = "//reports",
+                // Exported builds cannot use GdUnitCmdTool (it pulls in editor-only code).
+                // Use our minimal runner instead. See test_runner/README.md.
+                scriptArgs = listOf("-s", "res://test_runner/ExportTestMain.gd"),
             )
         }
     }
@@ -244,7 +256,7 @@ tasks {
 data class TestExecutionCommand(
     val executable: String,
     val useProjectPathOverride: Boolean,
-    val reportDirectory: String,
+    val scriptArgs: List<String>,
 )
 
 fun shouldUseHeadlessTestExecution(): Boolean =
@@ -262,22 +274,12 @@ fun Exec.setupTestExecution(commandProvider: () -> TestExecutionCommand) {
         } else {
             emptyList()
         }
-        val gdUnitArgs = listOf(
-            "-s",
-            "res://addons/gdUnit4/bin/GdUnitCmdTool.gd",
-            "-rd",
-            command.reportDirectory,
-            "-a",
-            "test",
-            "-c",
-            "--ignoreHeadlessMode",
-        )
         val runtimeArgs = buildList {
             if (shouldUseHeadlessTestExecution()) {
                 add("--headless")
             }
             addAll(projectPathArgs)
-            addAll(gdUnitArgs)
+            addAll(command.scriptArgs)
         }
 
         if (HostManager.hostIsMingw) {
