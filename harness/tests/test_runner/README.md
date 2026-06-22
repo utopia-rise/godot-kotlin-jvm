@@ -53,3 +53,11 @@ The exported executable is launched headless with this script as the main loop:
 
 Exit code: `0` = all tests passed, `100` = failures/errors (see
 `GdUnitTestSessionRunner` return codes).
+
+## Output
+
+- **Console**: per-test PASS/FAIL output via `GdUnitConsoleTestReporter`.
+- **Reports**: the default session hooks write a JUnit XML report (`results.xml`)
+  and an HTML report into `<exported-executable-dir>/reports/report_<n>/`
+  (i.e. `harness/tests/export/reports/...`). This is the directory the CI
+  workflow uploads as the `gdunit_reports_*` artifact.

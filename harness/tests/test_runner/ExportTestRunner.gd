@@ -14,8 +14,21 @@ const GdUnitTools := preload("res://addons/gdUnit4/src/core/GdUnitTools.gd")
 ## Directory (res://) that holds the GdUnit test suites to execute.
 const TEST_DIRECTORY := "res://test"
 
-var _total_failures := 0
-var _total_errors := 0
+## Console writer + reporter for per-test PASS/FAIL output (same as the CLI runner).
+var _console := GdUnitCSIMessageWriter.new()
+var _console_reporter: GdUnitConsoleTestReporter
+
+
+func _ready() -> void:
+	super()
+	_console_reporter = GdUnitConsoleTestReporter.new(_console, true)
+	# Write JUnit XML + HTML reports (produced by the default session hooks) next
+	# to the exported executable. CI uploads this directory:
+	#   harness/tests/export/reports  (and *.app/**/reports on macOS).
+	report_base_path = OS.get_executable_path().get_base_dir().path_join("reports")
+	# Surface gdUnit messages (e.g. the "Open ... Report at: ..." line) on the console.
+	GdUnitSignals.instance().gdunit_message.connect(func(message: String) -> void:
+		_console.color(Color.CORNFLOWER_BLUE).println_message(message))
 
 
 ## Discover the test suites and start the run. Called by the base runner state machine.
@@ -49,17 +62,21 @@ func quit(code: int) -> void:
 	await super(code)
 
 
-## Tally failures/errors as each test case finishes, to derive the process exit code.
+## Drive the console reporter from the test session so per-test results are printed.
 func _on_gdunit_event(event: GdUnitEvent) -> void:
-	if event.type() == GdUnitEvent.TESTCASE_AFTER:
-		_total_failures += event.failed_count()
-		_total_errors += event.error_count()
+	match event.type():
+		GdUnitEvent.SESSION_START:
+			_console_reporter.test_session = _test_session
+		GdUnitEvent.SESSION_CLOSE:
+			_console_reporter.test_session = null
 
 
 ## Map the aggregated result to a process exit code consumed by CI / Gradle.
 func get_exit_code() -> int:
-	if _total_failures + _total_errors > 0:
-		prints("GdUnit export run finished with %d failure(s) and %d error(s)." % [_total_failures, _total_errors])
+	var failures := _console_reporter.total_failure_count()
+	var errors := _console_reporter.total_error_count()
+	if failures + errors > 0:
+		prints("GdUnit export run finished with %d failure(s) and %d error(s)." % [failures, errors])
 		return RETURN_ERROR
 	prints("GdUnit export run finished: all tests passed.")
 	return RETURN_SUCCESS
