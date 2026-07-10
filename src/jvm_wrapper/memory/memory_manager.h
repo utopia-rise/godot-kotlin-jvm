@@ -39,7 +39,7 @@ JVM_SINGLETON_WRAPPER(MemoryManager, "godot.internal.memory.MemoryManager") {
 
 public:
     void direct_object_deletion(jni::Env& p_env, Object* obj);
-    void queue_dead_object(Object* obj);
+    void queue_dead_object(ObjectID object_id);
     void queue_demotion(JvmInstance* script_instance);
     void cancel_demotion(JvmInstance* script_instance);
     void try_promotion(JvmInstance* script_instance);
