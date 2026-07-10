@@ -33,7 +33,7 @@ jobs:
 
   build-macos:
     needs: setup-matrix
-    runs-on: macos-latest
+    runs-on: macos-15
     name: ${{ matrix.name }}
     strategy:
       fail-fast: false

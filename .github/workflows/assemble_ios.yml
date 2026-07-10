@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   create-ios-export-template-universal:
-    runs-on: macos-latest
+    runs-on: macos-15
     name: Assemble iOS export template
     steps:
       - name: Clone Godot Engine
