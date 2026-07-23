@@ -149,7 +149,7 @@ Rules:
 
 ## Godot project layout and registration output
 
-These settings control where the plugin looks for the Godot project and where it writes `.gdj` registration files.
+These settings control where the plugin looks for the Godot project and where it writes `.gdj` registration files for external dependencies.
 
 ### `godotProjectDirectory`
 
@@ -169,7 +169,7 @@ godot {
 
 ### `registrationFilesDirectory`
 
-Base directory where newly created `.gdj` registration files are written.
+Base directory where newly created external-dependency `.gdj` registration files are written. Classes from the current Godot project use their source files directly.
 
 Default:
 
@@ -185,7 +185,7 @@ godot {
 
 ### `disableGdj`
 
-Disables `.gdj` registration file handling while keeping class scanning and registrar generation enabled.
+Disables external-dependency `.gdj` registration file handling while keeping class scanning and registrar generation enabled.
 
 Default:
 

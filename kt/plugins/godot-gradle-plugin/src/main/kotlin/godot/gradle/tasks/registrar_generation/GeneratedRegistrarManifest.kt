@@ -76,7 +76,7 @@ internal fun ScriptClass.toGeneratedRegistrarManifestEntry(
             append(registeredName)
             append("Registrar.kt")
         },
-        registrationFileRelativePath = takeIf { includeRegistrationFile && shouldGenerateGdjFile }
+        registrationFileRelativePath = takeIf { includeRegistrationFile && shouldGenerateGdjFile(settings) }
             ?.provideRegistrationFileRelativePath(settings),
     )
 }

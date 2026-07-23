@@ -5,6 +5,10 @@
 #include "jvm_instance.h"
 #include "jvm_placeholder_instance.h"
 #include "language/gdj_language.h"
+#include "language/java_language.h"
+#include "language/kotlin_language.h"
+#include "language/names.h"
+#include "language/scala_language.h"
 #include "script/jvm_script_manager.h"
 #include <core/config/project_settings.h>
 #include <core/object/class_db.h>
@@ -72,7 +76,7 @@ bool JvmScript::inherits_script(const Ref<Script>& p_script) const {
 
 Ref<Script> JvmScript::get_base_script() const {
     if (!is_valid() || kotlin_class->registered_supertypes.is_empty()) { return {}; }
-    return JvmScriptManager::get_instance()->get_script_from_name(kotlin_class->registered_supertypes[0]);
+    return JvmScriptManager::get_instance()->get_script_from_registered_name(kotlin_class->registered_supertypes[0]);
 }
 
 StringName JvmScript::get_instance_base_type() const {
@@ -119,6 +123,18 @@ String JvmScript::get_source_code() const {
 void JvmScript::set_source_code(const String& p_code) {
     source = p_code;
     // TODO : deal with tool mode
+}
+
+void JvmScript::set_path(const String& p_path, bool p_take_over) {
+    const String old_path = get_path();
+    Resource::set_path(p_path, p_take_over);
+    JvmScriptManager::get_instance()->script_path_changed(this, old_path, get_path());
+}
+
+void JvmScript::set_path_cache(const String& p_path) {
+    const String old_path = get_path();
+    Resource::set_path_cache(p_path);
+    JvmScriptManager::get_instance()->script_path_changed(this, old_path, get_path());
 }
 
 Error JvmScript::reload(bool p_keep_state) {
@@ -232,7 +248,7 @@ StringName JvmScript::get_doc_class_name() const {
 }
 
 PlaceHolderScriptInstance* JvmScript::placeholder_instance_create(Object* p_this) {
-    PlaceHolderScriptInstance* placeholder {memnew(JvmPlaceHolderInstance(GdjLanguage::get_instance(), Ref<Script>(this), p_this))};
+    PlaceHolderScriptInstance* placeholder {memnew(JvmPlaceHolderInstance(get_language(), Ref<Script>(this), p_this))};
 
     update_script_exports();// Update in case this method is called between the (re)loading and the delayed update_script_exports().
 
@@ -253,6 +269,10 @@ void JvmScript::set_last_time_source_modified(uint64_t p_time) {
     for (PlaceHolderScriptInstance* placeholder : placeholders) {
         if (Node* node = cast_to<Node>(placeholder->get_owner())) { node->update_configuration_warnings(); }
     }
+}
+
+void JvmScript::invalidate_source() {
+    set_last_time_source_modified(get_last_modified_time());
 }
 
 void JvmScript::update_script_exports() {
@@ -308,31 +328,94 @@ JvmScript::~JvmScript() {
 #ifdef TOOLS_ENABLED
     exported_members_default_value_cache.clear();
 #endif
+    if (kotlin_class) {
+        delete kotlin_class;
+    }
     kotlin_class = nullptr;
 }
 
-StringName SourceScript::get_functional_name() const {
-    return _functional_name;
-}
-
-
-StringName SourceScript::get_global_name() const {
-    return {};
-}
-
-NamedScript::~NamedScript() {
-    // The named script is the one that should delete the KtClass as its existence is guaranteed unlike its path based twin.
-    delete kotlin_class;
-}
-
-StringName NamedScript::get_global_name() const {
+StringName JvmScript::get_global_name() const {
     if (is_valid()) { return kotlin_class->registered_class_name; }
-    // Scripts are either (valid and loaded from .jar) or (placeholders and loaded from path scripts)
-    // Even in the case of an invalid file, we can then use its path to find the right name.
-    String path = get_path();
-    return get_script_file_name(path);
+    return {};
 }
 
 void JvmScript::_bind_methods() {
     ClassDB::bind_method(D_METHOD("new"), &JvmScript::_new);
 }
+
+ScriptLanguage* GdjScript::get_language() const {
+    return GdjLanguage::get_instance();
+}
+
+StringName GdjScript::get_global_name() const {
+    if (is_valid()) { return JvmScript::get_global_name(); }
+    return get_script_file_name(get_path());
+}
+
+void GdjScript::_bind_methods() {}
+
+ScriptLanguage* KotlinScript::get_language() const {
+    return KotlinLanguage::get_instance();
+}
+
+void KotlinScript::set_path(const String& p_path, bool p_take_over) {
+    if (source.contains(PACKAGE_TEMPLATE)) {
+        String package = p_path.replace("src/main/kotlin/", "")
+                           .trim_prefix("res://")
+                           .trim_suffix(get_name() + "." + GODOT_KOTLIN_SCRIPT_EXTENSION)
+                           .trim_suffix("/")
+                           .replace("/", ".");
+        if (!package.is_empty()) {
+            package = "package " + package;
+        }
+        source = source.replace(PACKAGE_TEMPLATE, package).strip_edges(true, false);
+    }
+
+    JvmScript::set_path(p_path, p_take_over);
+}
+
+void KotlinScript::_bind_methods() {}
+
+ScriptLanguage* JavaScript::get_language() const {
+    return JavaLanguage::get_instance();
+}
+
+void JavaScript::set_path(const String& p_path, bool p_take_over) {
+    if (source.contains(PACKAGE_TEMPLATE)) {
+        String package = p_path.replace("src/main/java/", "")
+                           .trim_prefix("res://")
+                           .trim_suffix(get_name() + "." + GODOT_JAVA_SCRIPT_EXTENSION)
+                           .trim_suffix("/")
+                           .replace("/", ".");
+        if (!package.is_empty()) {
+            package = "package " + package + ";";
+        }
+        source = source.replace(PACKAGE_TEMPLATE, package).strip_edges(true, false);
+    }
+
+    JvmScript::set_path(p_path, p_take_over);
+}
+
+void JavaScript::_bind_methods() {}
+
+ScriptLanguage* ScalaScript::get_language() const {
+    return ScalaLanguage::get_instance();
+}
+
+void ScalaScript::set_path(const String& p_path, bool p_take_over) {
+    if (source.contains(PACKAGE_TEMPLATE)) {
+        String package = p_path.replace("src/main/scala/", "")
+                           .trim_prefix("res://")
+                           .trim_suffix(get_name() + "." + GODOT_SCALA_SCRIPT_EXTENSION)
+                           .trim_suffix("/")
+                           .replace("/", ".");
+        if (!package.is_empty()) {
+            package = "package " + package + ";";
+        }
+        source = source.replace(PACKAGE_TEMPLATE, package).strip_edges(true, false);
+    }
+
+    JvmScript::set_path(p_path, p_take_over);
+}
+
+void ScalaScript::_bind_methods() {}

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cnqp52df0ln8e"]
 
-[ext_resource type="Script" uid="uid://c8hudoddexy5h" path="res://scripts/godot/tests/registration/KotlinExport.gdj" id="1"]
+[ext_resource type="Script" uid="uid://b86lrs08nhjos" path="res://src/main/kotlin/godot/tests/registration/KotlinExport.kt" id="1"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_1ex3u"]
 

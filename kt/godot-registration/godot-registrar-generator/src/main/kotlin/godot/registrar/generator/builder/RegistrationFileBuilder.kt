@@ -22,7 +22,7 @@ class RegistrationFileBuilder(
 ) {
     fun generate(registeredClasses: List<ScriptClass>) {
         registeredClasses
-            .filter { it.shouldGenerateGdjFile }
+            .filter { it.shouldGenerateGdjFile(settings) }
             .forEach { registeredClass ->
                 val outputFile = outputDir.resolve(registeredClass.provideRegistrationFileRelativePath(settings))
                 build(registeredClass, outputFile)

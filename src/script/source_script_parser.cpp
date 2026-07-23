@@ -259,11 +259,11 @@ StringName parse_source_script_info(const String& p_source_code, const String& p
         }
     }
 
-    // In auto mode, scan class declarations for one matching the source file name.
+    // In auto mode, use the source file name as the class name.
     if (class_name.is_empty()) {
         const String file_class_name = p_source_path.get_file().get_basename();
         if (!file_class_name.is_empty()) {
-            class_name = find_class_name(p_source_code, class_search_start, file_class_name);
+            class_name = file_class_name;
         }
     }
 

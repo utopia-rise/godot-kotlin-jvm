@@ -46,7 +46,7 @@ Error JvmResourceFormatSaver::save(const Ref<Resource>& p_resource, const String
 #ifdef TOOLS_ENABLED
     if (extension == GODOT_KOTLIN_SCRIPT_EXTENSION || extension == GODOT_JAVA_SCRIPT_EXTENSION || extension == GODOT_SCALA_SCRIPT_EXTENSION) {
         MessageQueue::get_singleton()->push_callable(
-          callable_mp(JvmScriptManager::get_instance(), &JvmScriptManager::invalidate_source).bind(Ref<SourceScript>(jvm_script))
+          callable_mp(jvm_script.ptr(), &JvmScript::invalidate_source)
         );
     }
 #endif

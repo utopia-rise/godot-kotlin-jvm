@@ -15,6 +15,7 @@ data class KtNotification<T : KtObject>(
 data class KtClass<T : KtObject>(
     val registeredName: String,
     val fqdn: String,
+    val sourceFilePath: String,
     val kClass: KClass<out KtObject>,
     private val _registeredSupertypes: List<String>,
     val constructor: KtConstructor<T>?,

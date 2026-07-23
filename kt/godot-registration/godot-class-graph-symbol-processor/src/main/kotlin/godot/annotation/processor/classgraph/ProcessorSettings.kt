@@ -11,6 +11,8 @@ enum class AnnotationProcessingMode {
 
 data class ProcessorSettings(
     val projectName: String,
+    val godotProjectDirectory: File,
+    val userSourceRoots: Set<File>,
     val userCodeClassPathRoots: Set<File>,
     val annotationProcessingMode: AnnotationProcessingMode,
 )

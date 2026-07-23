@@ -28,7 +28,7 @@ public:
     void register_engine_types(jni::Env& p_env, jni::JObjectArray & p_engine_types);
     void register_engine_singletons(jni::Env& p_env, jni::JObjectArray & p_singletons);
 
-    void assign_script_to_class(jni::Env& p_env, int p_index, const Ref<NamedScript>& p_script) const;
+    void assign_script_to_class(jni::Env& p_env, int p_index, const Ref<JvmScript>& p_script) const;
 
     static uintptr_t get_method_bind_ptr(JNIEnv * p_raw_env, jobject j_instance, jstring p_class_name, jstring p_method_name, jlong hash);
 

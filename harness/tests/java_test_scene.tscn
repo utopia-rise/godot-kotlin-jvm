@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c3xd5i600pyse"]
 
-[ext_resource type="Script" uid="uid://btj4182fd3qi7" path="res://scripts/godot/tests/syntax/JavaTestClass.gdj" id="1_miwg5"]
+[ext_resource type="Script" uid="uid://bamnx85iyym0m" path="res://src/main/java/godot/tests/syntax/JavaTestClass.java" id="1_miwg5"]
 
 [node name="JavaTestScene" type="Node3D" unique_id=1318998076]
 script = ExtResource("1_miwg5")

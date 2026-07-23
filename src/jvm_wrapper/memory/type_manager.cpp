@@ -49,7 +49,7 @@ void TypeManager::register_engine_singletons(jni::Env& p_env, jni::JObjectArray&
     }
 }
 
-void TypeManager::assign_script_to_class(jni::Env& p_env, int p_index, const Ref<NamedScript>& p_script) const {
+void TypeManager::assign_script_to_class(jni::Env& p_env, int p_index, const Ref<JvmScript>& p_script) const {
     jvalue args[2] = {
         jni::to_jni_arg(p_index),
         jni::to_jni_arg(p_script.ptr())

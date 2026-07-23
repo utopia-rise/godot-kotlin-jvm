@@ -1,3 +1,5 @@
+package registration
+
 import godot.api.Node
 import godot.annotation.Script
 import godot.annotation.Register

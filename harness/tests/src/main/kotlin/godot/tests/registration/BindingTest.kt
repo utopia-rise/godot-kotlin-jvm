@@ -1,7 +1,6 @@
 package godot.tests.registration
 
 import godot.api.Object
-import godot.api.Node
 import godot.annotation.Script
 import godot.annotation.Register
 import godot.annotation.Visible
@@ -62,10 +61,4 @@ class BindingTest : Object() {
         mixedDictionary[key] = value
     }
 }
-
-@Script
-class BindingA : Node()
-
-@Script
-class BindingB : Node()
 

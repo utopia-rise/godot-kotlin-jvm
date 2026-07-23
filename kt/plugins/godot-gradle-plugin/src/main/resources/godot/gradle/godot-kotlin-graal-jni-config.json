@@ -723,6 +723,7 @@
     "methods":[
       {"name":"getBaseGodotClass","parameterTypes":[] },
       {"name":"getFqdn","parameterTypes":[] },
+      {"name":"getSourceFilePath","parameterTypes":[] },
       {"name":"getConstructor","parameterTypes":[] },
       {"name":"getFunctions","parameterTypes":[] },
       {"name":"getProperties","parameterTypes":[] },

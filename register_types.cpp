@@ -16,11 +16,6 @@
 #include "resource_format/jvm_resource_format_saver.h"
 #include "resource_format/java_archive_resource_format_loader.h"
 #include "script/jvm_script.h"
-#include "script/language/gdj_script.h"
-#include "script/language/java_script.h"
-#include "script/language/kotlin_script.h"
-#include "script/jvm_script_manager.h"
-#include "script/language/scala_script.h"
 #include "language/scala_language.h"
 
 #include <core/object/class_db.h>

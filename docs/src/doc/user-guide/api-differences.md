@@ -1,41 +1,32 @@
 # Registration files and attaching scripts
 
-Godot Kotlin/JVM offers two different ways to attach scripts: 
+Godot Kotlin/JVM uses source files for classes declared in the current Godot project and registration files for classes contributed by external dependencies.
 
-- Source files
-- Registration files.
+- Project classes are attached through their `.kt`, `.java`, or `.scala` source file.
+- Dependency classes have no source file inside the Godot project. The Gradle plugin generates a `.gdj` registration file for each usable registered dependency class so it can be attached in the editor.
 
 ## Source files .kt, .java and .scala
 
-Just like you would do with GDScript, you can directly attach your Kotlin/Java/Scala files to Nodes as scripts.
-This is the most straightforward method to use Kotlin scripts but not the most flexible.
+Just like GDScript, you can directly attach Kotlin, Java, and Scala files from the current Godot project to Nodes as scripts. This is the default representation for project classes.
 
 The limitations are the following:
 
-- Your files must be located inside a valid source set defined in your gradle configuration file.
-- Scripts written in a location outside the Godot project can't be used as the engine won't be able to find them. This applies to modules and libraries.
-- If several script classes are defined inside a single file, only one of them will be usable.
-- The script is nameless. You won't be able to write code in GDScript like:
-    ```gdscript
-    var test_script: MyScript = load("res://pathToScript/MyScript.gdj").new() # Wrong for direct source files
-    var test_script: Node = load("res://pathToScript/MyScript.kt").new() # Correct
-    ```
-    The same applies if you use a Godot object with a `.kt`/`.java`/`.scala` file attached to it.
+- The source file must be inside both the Godot project and a configured Gradle source set.
+- Only the first registered class in a source file is usable as that file's script resource.
+- The registered class information is available after a successful build. Before then, Godot keeps a best-effort source placeholder.
 
-If those limitations don't apply to you, feel free to use Kotlin source files directly.
+Use the source file directly for project classes.
 
 ## Registration files .gdj
 
-For each class you register to Godot, a corresponding registration file is generated (a `gdj` file) during compilation. Like the source files, you can attach them to Nodes.
-They have several benefits over source files:
+For each non-abstract registered class discovered in an external dependency, the build generates a corresponding `.gdj` registration file. Like source files, these files can be attached to Nodes.
+They make dependency classes available when their source files are not part of the Godot project:
 
-- .gdj can be placed wherever you want in your Godot project, you are not limited to the source set.
-- Each script get its own .gdj. This includes scripts in different modules and libraries.
-- If a source file contains several scripts. A different .gdj will be generated for each.
-- Registration files are language agnostic, they are generated for Kotlin, Java and Scala files with no difference.
-- When creating a script from code using its registered name. The module is going to use the registration file as the script. Therefore, registration files are treated as the default way to use scripts inside the module.
+- Each dependency class gets its own `.gdj`, including classes from different modules and libraries.
+- A dependency source file can contribute a separate `.gdj` for each registered class it contains.
+- Registration files are language agnostic: Kotlin, Java, and Scala dependencies use the same format.
 
-By default, these files are generated into a folder called `gdj` in the root of your Godot project.
+By default, dependency registration files are generated into a folder called `gdj` in the root of your Godot project.
 
 You can however configure the Godot root and the base directory used for newly created registration files inside your `build.gradle.kts`:
 
@@ -53,7 +44,7 @@ godot {
 }
 ```
 
-During the sync step, the Gradle plugin scans the whole configured Godot project for existing `.gdj` files. Matching files are updated in place, obsolete ones are deleted, and only newly discovered registrations are copied into `registrationFilesDirectory`.
+During the sync step, the Gradle plugin scans the configured Godot project for existing dependency `.gdj` files. Matching files are updated in place, obsolete ones are deleted, and only newly discovered dependency registrations are copied into `registrationFilesDirectory`.
 
 !!! Reason
     Contrary to GDScript, Kotlin is a compiled language. Hence, if you use a library which defines scripts you can not attach those to nodes anymore as the source files don't exist. You only have a jar of the library. While in GDScript you still have the sources when using an addon. With our registration files our compiler plugin is able to extract those from the libraries you use and provide them to you, so you can also attach scripts from libraries you use.

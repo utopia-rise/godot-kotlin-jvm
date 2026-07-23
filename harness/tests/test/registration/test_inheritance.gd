@@ -63,7 +63,7 @@ func test_script_is_child_of() -> void:
     var child_script: Script = child.get_script()
     var parent = ClassInheritanceParent.new()
     var parent_script: Script = parent.get_script()
-    assert_that(child_script.get_base_script()).is_equal(parent_script)
+    assert_that(child_script.get_base_script().get_global_name()).is_equal(parent_script.get_global_name())
     child.free()
     parent.free()
 

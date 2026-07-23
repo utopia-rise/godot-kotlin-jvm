@@ -1,10 +1,34 @@
 #include "jvm_language.h"
 
+#include "language/names.h"
+#include "script/jvm_script.h"
+
+#include <core/io/resource_loader.h>
+
 void JvmLanguage::init() {}
 
 void JvmLanguage::frame() {}
 
 void JvmLanguage::finish() {}
+
+String JvmLanguage::get_global_class_name(const String& p_path, String* r_base_type, String* r_icon_path, bool* r_is_abstract, bool* r_is_tool) const {
+    Error err = OK;
+    Ref<Resource> resource = ResourceLoader::load(p_path, "Script", ResourceLoader::CACHE_MODE_REUSE, &err);
+    if (err != OK || resource.is_null()) { return {}; }
+
+    Ref<JvmScript> script = resource;
+    if (script.is_null() || !script->is_valid()) { return {}; }
+
+    if (r_base_type) {
+        Ref<Script> base_script = script->get_base_script();
+        *r_base_type = base_script.is_null()
+            ? script->get_instance_base_type()
+            : base_script->get_global_name();
+    }
+    if (r_is_abstract) { *r_is_abstract = script->is_abstract(); }
+    if (r_is_tool) { *r_is_tool = script->is_tool(); }
+    return script->get_global_name();
+}
 
 bool JvmLanguage::validate(
   const String& p_script,

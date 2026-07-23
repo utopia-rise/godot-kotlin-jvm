@@ -13,8 +13,8 @@ import godot.registration.model.types.ScriptClass
 import godot.registration.model.types.ScriptFamily
 import godot.tools.common.constants.FileExtensions
 
-val ScriptClass.shouldGenerateGdjFile: Boolean
-    get() = !isAbstract
+fun ScriptClass.shouldGenerateGdjFile(settings: Settings): Boolean =
+    !isAbstract && sourceProjectName != settings.projectName
 
 fun ScriptClass.getRegisteredName(settings: Settings): String {
     val baseRegisteredName = customName

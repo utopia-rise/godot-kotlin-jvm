@@ -18,7 +18,7 @@ uintptr_t VariantArrayBridge::engine_call_constructor_typed(JNIEnv* p_raw_env, j
     auto ret {VariantAllocator::alloc(Array())};
 
     auto engineTypeIndex = args[1].operator int64_t();
-    auto userTypeScript = Ref(bridges::from_uint_to_ptr<NamedScript>(args[2].operator int64_t()));
+    auto userTypeScript = Ref(bridges::from_uint_to_ptr<JvmScript>(args[2].operator int64_t()));
 
     StringName base_class_name;
     Variant script;

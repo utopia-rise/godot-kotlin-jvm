@@ -1,7 +1,7 @@
 #include "scala_language.h"
 
 #include "names.h"
-#include "script/language/scala_script.h"
+#include "script/jvm_script.h"
 
 #include <core/io/resource_loader.h>
 #include <core/object/class_db.h>
@@ -51,6 +51,10 @@ String ScalaLanguage::get_extension() const {
 
 void ScalaLanguage::get_recognized_extensions(List<String>* p_extensions) const {
     p_extensions->push_back(GODOT_SCALA_SCRIPT_EXTENSION);
+}
+
+bool ScalaLanguage::handles_global_class_type(const String& p_type) const {
+    return p_type == GODOT_SCALA_SCRIPT_NAME;
 }
 
 Vector<String>  ScalaLanguage::get_reserved_words() const {
@@ -148,14 +152,6 @@ bool ScalaLanguage::is_using_templates() {
 }
 
 bool ScalaLanguage::supports_builtin_mode() const {
-    return false;
-}
-
-String ScalaLanguage::get_global_class_name(const String& p_path, String* r_base_type, String* r_icon_path, bool *r_is_abstract, bool *r_is_too) const {
-    return {};
-}
-
-bool ScalaLanguage::handles_global_class_type(const String& p_type) const {
     return false;
 }
 

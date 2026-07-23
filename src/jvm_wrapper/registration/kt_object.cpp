@@ -28,7 +28,7 @@ void KtObject::create_native_object(JNIEnv* p_raw_env, jobject p_instance, jint 
     jni::Env env {p_raw_env};
 
     KotlinBindingManager::set_instance_binding(ptr);
-    if (NamedScript* kotlin_script = bridges::from_uint_to_ptr<NamedScript>(p_script_ptr)) {
+    if (JvmScript* kotlin_script = bridges::from_uint_to_ptr<JvmScript>(p_script_ptr)) {
         KtObject* kt_object = memnew(KtObject(env, jni::JObject(p_instance), ptr->is_ref_counted()));
         JvmInstance* script = memnew(JvmInstance(env, ptr, kt_object, kotlin_script));
         ptr->set_script_instance(script);

@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://1xe8v5ivwoug"]
 
-[ext_resource type="Script" uid="uid://c8hudoddexy5h" path="res://scripts/godot/tests/registration/KotlinExport.gdj" id="1_kotlin"]
-[ext_resource type="Script" uid="uid://blfun64xxccgy" path="res://scripts/godot/tests/registration/JavaExport.gdj" id="2_java"]
-[ext_resource type="Script" uid="uid://b4p57w0ip7vms" path="res://scripts/godot/tests/registration/ScalaExport.gdj" id="3_scala"]
+[ext_resource type="Script" uid="uid://b86lrs08nhjos" path="res://src/main/kotlin/godot/tests/registration/KotlinExport.kt" id="1_kotlin"]
+[ext_resource type="Script" uid="uid://t16ycse3igvm" path="res://src/main/java/godot/tests/registration/JavaExport.java" id="2_java"]
+[ext_resource type="Script" uid="uid://d3gdsgfv4slmo" path="res://src/main/scala/godot/tests/registration/ScalaExport.scala" id="3_scala"]
 
 [node name="ExportInspectorScene" type="Node" unique_id=358405828]
 
