@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   test-macos:
-    runs-on: macos-latest
+    runs-on: macos-15
     name: ${{ matrix.name }}
     strategy:
       matrix:

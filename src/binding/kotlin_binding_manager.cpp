@@ -21,10 +21,10 @@ void KotlinBindingManager::_instance_binding_free_callback(void* p_token, void* 
     //  It's the very last action done in the destructor so assume variables local to the Object have been cleaned (including script and extension).
     // There are 2 cases, either an Object has been freed, and we have to release its reference OR it's a RefCounted and the JVM instance is already dead.
 
-    memdelete(reinterpret_cast<KotlinBinding*>(p_binding));
-
+    KotlinBinding* binding = reinterpret_cast<KotlinBinding*>(p_binding);
     Object* object = reinterpret_cast<Object*>(p_instance);
-    if (!object->is_ref_counted()) { MemoryManager::get_instance().queue_dead_object(object); }
+    if (!object->is_ref_counted()) { MemoryManager::get_instance().queue_dead_object(binding->get_object_id()); }
+    memdelete(binding);
 }
 
 KotlinBinding* KotlinBindingManager::set_instance_binding(Object* p_object) {
