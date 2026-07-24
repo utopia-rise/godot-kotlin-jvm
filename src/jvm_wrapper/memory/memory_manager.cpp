@@ -146,9 +146,9 @@ void MemoryManager::clean_up(jni::Env& p_env) {
     JVM_LOG_VERBOSE("JVM Memory cleaned!");
 }
 
-void MemoryManager::queue_dead_object(Object* obj) {
+void MemoryManager::queue_dead_object(ObjectID object_id) {
     dead_objects_mutex.lock();
-    dead_objects.push_back(obj->get_instance_id());
+    dead_objects.push_back(object_id);
     dead_objects_mutex.unlock();
 }
 

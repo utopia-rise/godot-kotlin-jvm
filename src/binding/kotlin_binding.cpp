@@ -4,6 +4,7 @@
 
 
 void KotlinBinding::init(Object* p_object) {
+    object_id = p_object->get_instance_id();
     StringName class_name {p_object->get_class_name()};
     do {
         if (!TypeManager::get_instance().java_engine_type_constructor_for_type_exists(class_name)) {
@@ -17,6 +18,10 @@ void KotlinBinding::init(Object* p_object) {
 
 int KotlinBinding::get_constructor_id() const{
     return constructor_id;
+}
+
+ObjectID KotlinBinding::get_object_id() const {
+    return object_id;
 }
 
 bool KotlinBinding::test_and_set_incremented() {
