@@ -22,11 +22,11 @@ uintptr_t DictionaryBridge::engine_call_constructor_typed(JNIEnv* p_raw_env, job
 
     auto key_variant_type = args[0].operator uint32_t();
     auto key_engine_type_index = args[1].operator int64_t();
-    auto key_user_type_script = Ref(bridges::from_uint_to_ptr<NamedScript>(args[2].operator int64_t()));
+    auto key_user_type_script = Ref(bridges::from_uint_to_ptr<JvmScript>(args[2].operator int64_t()));
 
     auto value_variant_type = args[3].operator uint32_t();
     auto value_engine_type_index = args[4].operator int64_t();
-    auto value_user_type_script = Ref(bridges::from_uint_to_ptr<NamedScript>(args[5].operator int64_t()));
+    auto value_user_type_script = Ref(bridges::from_uint_to_ptr<JvmScript>(args[5].operator int64_t()));
 
     StringName key_base_class_name;
     Variant key_script;

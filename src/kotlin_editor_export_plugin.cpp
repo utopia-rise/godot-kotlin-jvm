@@ -6,6 +6,7 @@
 #include "language/names.h"
 #include "lifecycle/jvm_user_configuration.h"
 #include "lifecycle/paths.h"
+#include "resource_format/jvm_resource_format_loader.h"
 #include "script/jvm_script_manager.h"
 #include "script/source_script_parser.h"
 

@@ -25,7 +25,12 @@ public:
     JvmScript();
     ~JvmScript() override;
 
+    _FORCE_INLINE_ static String get_script_file_name(const String& path) {
+        return path.get_file().trim_suffix(path.get_extension()).trim_suffix(".");
+    }
+
     Variant _new();
+    ScriptLanguage* get_language() const override = 0;
     bool can_instantiate() const override;
     bool inherits_script(const Ref<Script>& p_script) const override;
     Ref<Script> get_base_script() const override;
@@ -34,6 +39,8 @@ public:
     bool has_source_code() const override;
     String get_source_code() const override;
     void set_source_code(const String& p_code) override;
+    void set_path(const String& p_path, bool p_take_over) override;
+    void set_path_cache(const String& p_path) override;
     Error reload(bool p_keep_state) override;
     bool has_method(const StringName& p_method) const override;
     MethodInfo get_method_info(const StringName& p_method) const override;
@@ -49,10 +56,7 @@ public:
     void get_constants(HashMap<StringName, Variant> *p_constants) override;
     void get_members(HashSet<StringName> *p_members) override;
     const Variant get_rpc_config() const override;
-
-    _FORCE_INLINE_ static String get_script_file_name(const String& path) {
-        return path.get_file().trim_suffix(path.get_extension()).trim_suffix(".");
-    }
+    StringName get_global_name() const override;
 
 #ifdef TOOLS_ENABLED
     // This concerns placeholders script instances only
@@ -69,6 +73,7 @@ public:
     PlaceHolderScriptInstance* placeholder_instance_create(Object* p_this) override;
     uint64_t get_last_time_source_modified();
     void set_last_time_source_modified(uint64_t p_time);
+    void invalidate_source();
     void get_script_exported_property_list(List<PropertyInfo>* p_list) const;
 
     Vector<DocData::ClassDoc> get_documentation() const override;
@@ -82,26 +87,48 @@ protected:
     static void _bind_methods();
 };
 
-class SourceScript : public JvmScript {
-    GDSOFTCLASS(SourceScript, JvmScript);
-    friend class JvmScriptManager;
+class GdjScript : public JvmScript {
+    GDCLASS(GdjScript, JvmScript);
 
 public:
-    SourceScript() = default;
-    ~SourceScript() override = default;
-    StringName get_functional_name() const;
+    ScriptLanguage* get_language() const override;
     StringName get_global_name() const override;
 
-private:
-    StringName _functional_name;
+protected:
+    static void _bind_methods();
 };
 
-class NamedScript : public JvmScript {
-    GDSOFTCLASS(NamedScript, JvmScript);
+class KotlinScript : public JvmScript {
+    GDCLASS(KotlinScript, JvmScript);
+
 public:
-    NamedScript() = default;
-    ~NamedScript() override;
-    StringName get_global_name() const override;
+    ScriptLanguage* get_language() const override;
+    void set_path(const String& p_path, bool p_take_over) override;
+
+protected:
+    static void _bind_methods();
+};
+
+class JavaScript : public JvmScript {
+    GDCLASS(JavaScript, JvmScript);
+
+public:
+    ScriptLanguage* get_language() const override;
+    void set_path(const String& p_path, bool p_take_over) override;
+
+protected:
+    static void _bind_methods();
+};
+
+class ScalaScript : public JvmScript {
+    GDCLASS(ScalaScript, JvmScript);
+
+public:
+    ScriptLanguage* get_language() const override;
+    void set_path(const String& p_path, bool p_take_over) override;
+
+protected:
+    static void _bind_methods();
 };
 
 #endif// GODOT_JVM_JVM_SCRIPT_H

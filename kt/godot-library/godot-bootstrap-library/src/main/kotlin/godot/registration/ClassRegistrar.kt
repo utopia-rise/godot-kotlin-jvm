@@ -8,6 +8,7 @@ interface ClassRegistrar {
 
     fun <T : KtObject> register(
         registeredName: String,
+        sourceFilePath: String = "",
         registeredSupertypes: List<String>,
         baseGodotClass: String,
         isAbstract: Boolean,
@@ -16,6 +17,7 @@ interface ClassRegistrar {
     ): KtClass<T> {
         val builder = KtClassBuilder(
             registeredName = registeredName,
+            sourceFilePath = sourceFilePath,
             registeredSupertypes = registeredSupertypes,
             baseGodotClass = baseGodotClass,
             isAbstract = isAbstract,

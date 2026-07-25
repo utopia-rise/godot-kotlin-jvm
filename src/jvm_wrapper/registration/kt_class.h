@@ -17,6 +17,7 @@ JVM_INSTANCE_WRAPPER(KtClass, "godot.registration.KtClass") {
     // clang-format off
     JNI_OBJECT_METHOD(GET_REGISTERED_NAME)
     JNI_OBJECT_METHOD(GET_FQDN)
+    JNI_OBJECT_METHOD(GET_SOURCE_FILE_PATH)
     JNI_OBJECT_METHOD(GET_REGISTERED_SUPERTYPES)
     JNI_BOOLEAN_METHOD(IS_ABSTRACT)
     JNI_OBJECT_METHOD(GET_BASE_GODOT_CLASS)
@@ -30,6 +31,7 @@ JVM_INSTANCE_WRAPPER(KtClass, "godot.registration.KtClass") {
     INIT_JNI_BINDINGS(
         INIT_JNI_METHOD(GET_REGISTERED_NAME, "getRegisteredName", "()Ljava/lang/String;")
         INIT_JNI_METHOD(GET_FQDN, "getFqdn", "()Ljava/lang/String;")
+        INIT_JNI_METHOD(GET_SOURCE_FILE_PATH, "getSourceFilePath", "()Ljava/lang/String;")
         INIT_JNI_METHOD(GET_REGISTERED_SUPERTYPES, "getRegisteredSupertypes", "()[Ljava/lang/String;")
         INIT_JNI_METHOD(IS_ABSTRACT, "isAbstract", "()Z")
         INIT_JNI_METHOD(GET_BASE_GODOT_CLASS, "getBaseGodotClass", "()Ljava/lang/String;")
@@ -46,6 +48,7 @@ JVM_INSTANCE_WRAPPER(KtClass, "godot.registration.KtClass") {
 public:
     StringName registered_class_name;
     StringName fqdn;
+    String source_file_path;
     Vector<StringName> registered_supertypes;
     StringName base_godot_class;
     bool is_abstract;
@@ -86,6 +89,8 @@ private:
     String get_registered_name(jni::Env& env);
 
     String get_fqdn(jni::Env& env);
+
+    String get_source_file_path(jni::Env& env);
 
     StringName get_base_godot_class(jni::Env& env);
 

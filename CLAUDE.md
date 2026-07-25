@@ -8,6 +8,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Current binding version: `0.17.0` targeting Godot `4.7`.
 
+## Engineering Principles
+
+- **Avoid needless helpers** — Keep trivial single-use code inline. Extract a helper only when it has multiple call sites or its body is substantial enough to make the caller clearer.
+- **KISS** — Prefer the simplest design that clearly solves the current problem.
+- **YAGNI** — Do not add behavior or abstractions for requirements that do not exist yet.
+- **DRY** — Keep each piece of knowledge and behavior in one authoritative place.
+
 ## Prerequisites
 
 - **JDK 17+** required for building IDE/Gradle plugins (JDK 11+ for runtime-only builds)

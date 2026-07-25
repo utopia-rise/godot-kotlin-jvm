@@ -8,6 +8,7 @@ public:
     void init() override;
     void frame() override;
     void finish() override;
+    String get_global_class_name(const String& p_path, String* r_base_type, String* r_icon_path, bool *r_is_abstract = nullptr, bool *r_is_tool = nullptr) const override;
 
     bool validate(
       const String& p_script,

@@ -47,7 +47,6 @@ class LanguageNotIdentified(classInfo: ClassInfo) : IllegalStateException(
 )
 
 abstract class JvmLanguage {
-
     fun shapeOf(classInfo: ClassInfo): LogicalClassShape {
         val candidateFields = filterFields(classInfo.declaredFieldInfo.orEmpty(), classInfo).toMutableSet()
         val candidateMethods = filterMethods(classInfo.declaredMethodInfo.orEmpty(), classInfo).toMutableSet()

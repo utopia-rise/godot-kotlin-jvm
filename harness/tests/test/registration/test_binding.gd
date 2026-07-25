@@ -98,7 +98,7 @@ func test_path_script():
 func test_path_script_and_named_script_equality():
     var path_script: Script = load("res://src/main/kotlin/godot/tests/registration/BindingTest.kt")
     var named_script: Script = BindingTest
-    assert_object(named_script).override_failure_message("Path and Named version of script shouldn't be equal").is_not_same(path_script)
+    assert_object(named_script).override_failure_message("Path and named versions of a project script should be the same").is_same(path_script)
 
 
 func test_registered_property_getter_setter_behavior():

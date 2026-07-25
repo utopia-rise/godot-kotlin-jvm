@@ -1,7 +1,7 @@
 #include "java_language.h"
 
 #include "names.h"
-#include "script/language/java_script.h"
+#include "script/jvm_script.h"
 
 #include <core/io/resource_loader.h>
 #include <core/object/class_db.h>
@@ -54,6 +54,10 @@ String JavaLanguage::get_extension() const {
 
 void JavaLanguage::get_recognized_extensions(List<String>* p_extensions) const {
     p_extensions->push_back(GODOT_JAVA_SCRIPT_EXTENSION);
+}
+
+bool JavaLanguage::handles_global_class_type(const String& p_type) const {
+    return p_type == GODOT_JAVA_SCRIPT_NAME;
 }
 
 Vector<String> JavaLanguage::get_reserved_words() const {
@@ -161,13 +165,5 @@ bool JavaLanguage::is_using_templates() {
 }
 
 bool JavaLanguage::supports_builtin_mode() const {
-    return false;
-}
-
-String JavaLanguage::get_global_class_name(const String& p_path, String* r_base_type, String* r_icon_path, bool *r_is_abstract, bool *r_is_too) const {
-    return {};
-}
-
-bool JavaLanguage::handles_global_class_type(const String& p_type) const {
     return false;
 }

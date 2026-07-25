@@ -19,7 +19,8 @@ fun Project.optimizeLanguageCompilationTasks() {
 
     tasks.withType(KotlinCompile::class.java).configureEach { kotlinCompile ->
         kotlinCompile.onlyIf("Skip Kotlin compilation when the language is disabled or the source tree is empty") {
-            kotlinEnabled.get() && !kotlinCompile.sources.isEmpty
+            kotlinCompile.name == "compileRegistrarGenerationKotlin" ||
+                (kotlinEnabled.get() && !kotlinCompile.sources.isEmpty)
         }
     }
 

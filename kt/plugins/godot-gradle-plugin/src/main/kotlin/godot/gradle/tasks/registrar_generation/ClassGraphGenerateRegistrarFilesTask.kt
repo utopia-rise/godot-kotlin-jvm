@@ -22,6 +22,7 @@ import org.gradle.api.file.ConfigurableFileCollection
 import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.file.FileType
 import org.gradle.api.file.RegularFileProperty
+import org.gradle.api.provider.ListProperty
 import org.gradle.api.provider.Property
 import org.gradle.api.tasks.CacheableTask
 import org.gradle.api.tasks.Classpath
@@ -58,6 +59,12 @@ abstract class ClassGraphGenerateRegistrarFilesTask : DefaultTask() {
 
     @get:Input
     abstract val projectName: Property<String>
+
+    @get:Input
+    abstract val godotProjectDirectoryPath: Property<String>
+
+    @get:Input
+    abstract val userSourceRoots: ListProperty<String>
 
     @get:Input
     abstract val registrationFileLayoutMode: Property<RegistrationFileLayoutMode>
@@ -255,6 +262,8 @@ abstract class ClassGraphGenerateRegistrarFilesTask : DefaultTask() {
 
     private fun buildProcessorSettings() = ProcessorSettings(
         projectName = projectName.get(),
+        godotProjectDirectory = File(godotProjectDirectoryPath.get()).canonicalFile,
+        userSourceRoots = userSourceRoots.get().map { File(it).canonicalFile }.toSet(),
         userCodeClassPathRoots = userCodeClassPathRoots.files.map { it.canonicalFile }.toSet(),
         annotationProcessingMode = annotationProcessingMode.get(),
     )
@@ -501,6 +510,12 @@ fun Project.registrarGenerationGenerateFilesTask(
         task.registeredNameMode.convention(godotJvmExtension.registrationNameMode)
         task.projectName.convention(
             providers.provider { project.name.replace(" ", "_") }
+        )
+        task.godotProjectDirectoryPath.convention(
+            godotJvmExtension.godotProjectDirectory.map { it.asFile.absolutePath }
+        )
+        task.userSourceRoots.convention(
+            providers.provider { mainSourceSet.allSource.srcDirs.map { it.absolutePath }.sorted() }
         )
         task.registrationFileLayoutMode.convention(godotJvmExtension.registrationFilesLayoutMode)
         task.registrationFileIndentation.convention(godotJvmExtension.registrationFilesIndentation)

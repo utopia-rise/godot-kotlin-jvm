@@ -1,29 +1,59 @@
 #include "jvm_script_manager.h"
 
+#include "jvm_wrapper/memory/type_manager.h"
 #include "language/names.h"
-#include "script/language/gdj_script.h"
 
-#include <core/io/resource_loader.h>
 #include <core/object/callable_mp.h>
 #include <core/object/message_queue.h>
 
-#include "jvm_wrapper/memory/type_manager.h"
+static Ref<JvmScript> _create_script_for_path(const String& p_path) {
+    const String extension = p_path.get_extension().to_lower();
 
-static String _get_virtual_gdj_path(const StringName &p_registered_name) {
-    return String(GODOT_JVM_VIRTUAL_PATH_PREFIX) + String(p_registered_name) + "." + GODOT_JVM_REGISTRATION_FILE_EXTENSION;
+    if (extension == GODOT_KOTLIN_SCRIPT_EXTENSION) {
+        Ref<KotlinScript> script;
+        script.instantiate();
+        return script;
+    }
+    if (extension == GODOT_JAVA_SCRIPT_EXTENSION) {
+        Ref<JavaScript> script;
+        script.instantiate();
+        return script;
+    }
+    if (extension == GODOT_SCALA_SCRIPT_EXTENSION) {
+        Ref<ScalaScript> script;
+        script.instantiate();
+        return script;
+    }
+
+    if (p_path.is_empty() || extension == GODOT_JVM_REGISTRATION_FILE_EXTENSION) {
+        Ref<GdjScript> script;
+        script.instantiate();
+        return script;
+    }
+
+    JVM_ERR_FAIL_V_MSG({}, "Unsupported JVM script extension: %s", extension);
 }
 
-void JvmScriptManager::create_and_update_scripts(Vector<KtClass*>& classes) {
+static bool _is_source_path(const String& p_path) {
+    const String extension = p_path.get_extension().to_lower();
+    return extension == GODOT_KOTLIN_SCRIPT_EXTENSION || extension == GODOT_JAVA_SCRIPT_EXTENSION
+        || extension == GODOT_SCALA_SCRIPT_EXTENSION;
+}
+
+void JvmScriptManager::create_and_update_scripts(const Vector<KtClass*>& classes) {
 #if defined(DEBUG_ENABLED) && !defined(TOOLS_ENABLED)
-    JVM_ERR_FAIL_COND_MSG(named_scripts_map.size() != 0, "JVM scripts are being initialized more than once.");
+    JVM_ERR_FAIL_COND_MSG(registered_name_to_script.size() != 0, "JVM scripts are being initialized more than once.");
 #endif
 
 #ifdef TOOLS_ENABLED
     last_reload = OS::get_singleton()->get_unix_time();
 
-    // Clear all containers and keeping a cache for comparison.
-    HashMap<StringName, Ref<NamedScript>> named_script_cache(named_scripts_map);
-    named_scripts_map.clear();
+    // Rebuild the maps from this reload's KtClasses. The old entries are retained
+    // temporarily so their Script instances can be reused or invalidated below.
+    HashMap<StringName, Ref<JvmScript>> script_cache(registered_name_to_script);
+    HashMap<String, Ref<JvmScript>> source_cache(source_path_to_script);
+    registered_name_to_script.clear();
+    source_path_to_script.clear();
 
 #endif
 
@@ -31,106 +61,96 @@ void JvmScriptManager::create_and_update_scripts(Vector<KtClass*>& classes) {
 
     jni::Env env {jni::Jvm::current_env()};
 
-    // ####NAMED SCRIPT#######
+    // ####JVM SCRIPT#######
     for (int i = 0; i < classes.size(); i++) {
         KtClass* kotlin_class = classes[i];
-        String script_name = kotlin_class->registered_class_name;
+        const StringName script_name = kotlin_class->registered_class_name;
+        Ref<JvmScript> jvm_script;
 
 #ifdef TOOLS_ENABLED
+        if (const HashMap<StringName, Ref<JvmScript>>::ConstIterator script = script_cache.find(script_name)) {
+            // Registered name is the identity of an already resolved script.
+            jvm_script = script->value;
+            script_cache.erase(script_name);
+        } else if (!kotlin_class->source_file_path.is_empty()) {
+            const HashMap<String, Ref<JvmScript>>::ConstIterator source_script = source_cache.find(kotlin_class->source_file_path);
+            if (source_script) {
+                // A source file loaded before its first successful build has no
+                // registered name yet. Promote that unresolved source script by path.
+                if (!source_script->value->is_valid()) { jvm_script = source_script->value; }
+            }
+        }
 
-        // First check if the scripts already exist
-        if (named_script_cache.has(script_name)) {
-            const Ref<NamedScript> named_script = named_script_cache[script_name];
+        if (jvm_script.is_valid()) {
+            delete jvm_script->kotlin_class;
+            jvm_script->kotlin_class = kotlin_class;
 
-            delete named_script->kotlin_class;
-            named_script->kotlin_class = kotlin_class;
-
-            named_script_cache.erase(script_name);
-            named_scripts_map[script_name] = named_script;
-
-            named_script->export_dirty_flag = true;
+            jvm_script->export_dirty_flag = true;
             // Do not overwrite the existing path on reload — preserve whatever path
             // (res:// or jvm://) the script was previously loaded with.
-            TypeManager::get_instance().assign_script_to_class(env, i, named_script);
             JVM_DEV_VERBOSE("JVM Script updated: %s", script_name);
         } else {
 #endif
-            Ref<GdjScript> gdj_script;
-            gdj_script.instantiate();
-            gdj_script->set_path(_get_virtual_gdj_path(kotlin_class->registered_class_name), true);
-            gdj_script->kotlin_class = kotlin_class;
-            named_scripts_map[script_name] = gdj_script;
-            TypeManager::get_instance().assign_script_to_class(env, i, gdj_script);
-
+            jvm_script = _create_script_for_path(kotlin_class->source_file_path);
+            const String path = kotlin_class->source_file_path.is_empty()
+                                ? String(GODOT_JVM_VIRTUAL_PATH_PREFIX) + String(script_name) + "." + GODOT_JVM_REGISTRATION_FILE_EXTENSION
+                                : kotlin_class->source_file_path;
+            jvm_script->set_path(path, true);
+            jvm_script->kotlin_class = kotlin_class;
             JVM_DEV_VERBOSE("JVM Script created: %s", script_name);
 #ifdef TOOLS_ENABLED
         }
 #endif
+
+        registered_name_to_script[script_name] = jvm_script;
+        if (!kotlin_class->source_file_path.is_empty()) {
+            // The source path promotes a pre-build source script and later follows
+            // editor moves through JvmScript's path setters.
+            source_path_to_script[kotlin_class->source_file_path] = jvm_script;
+        }
+        TypeManager::get_instance().assign_script_to_class(env, i, jvm_script);
     }
 
 #ifdef TOOLS_ENABLED
-    // Only scripts left in the cache are the ones that have been removed or placeholders without associated KtClass
-    // We simply remove their kotlin_class if they got one.
-    for (const KeyValue<StringName, Ref<NamedScript>>& keyValue : named_script_cache) {
-        Ref<NamedScript> named_script {keyValue.value};
-        StringName name {keyValue.key};
-        if (named_script->kotlin_class) {
-            JVM_DEV_VERBOSE("JVM Script deleted: %s", named_script->kotlin_class->registered_class_name);
-            delete named_script->kotlin_class;
-            named_script->kotlin_class = nullptr;
+    // Entries left in the registered-name cache were absent from the new jar.
+    // Keep only scripts that still back editor placeholders; their KtClass is
+    // removed so they remain a best-effort invalid script until a later build.
+    HashSet<JvmScript*> processed_scripts;
+    for (const KeyValue<StringName, Ref<JvmScript>>& keyValue : script_cache) {
+        Ref<JvmScript> jvm_script {keyValue.value};
+        JvmScript* ptr = jvm_script.ptr();
+        if (!ptr || processed_scripts.has(ptr)) { continue; }
+        processed_scripts.insert(ptr);
+
+        const StringName script_name {keyValue.key};
+        const String source_path {jvm_script->kotlin_class ? jvm_script->kotlin_class->source_file_path : String()};
+        if (jvm_script->kotlin_class) {
+            JVM_DEV_VERBOSE("JVM Script deleted: %s", jvm_script->kotlin_class->registered_class_name);
+            delete jvm_script->kotlin_class;
+            jvm_script->kotlin_class = nullptr;
         }
 
         // We only add them back if placeholders are in use in the editor. That way they can be updated if back in the next reload.
         // Without that a separate Script instance would be created and nodes not updated.
-        // Otherwise, we let the named_script die.
-        if (!named_script->placeholders.is_empty()) {
-            named_scripts_map[name] = named_script;
-            named_script->export_dirty_flag = true;
+        // Otherwise, we let the jvm_script die.
+        if (!jvm_script->placeholders.is_empty()) {
+            registered_name_to_script[script_name] = jvm_script;
+            if (!source_path.is_empty()) { source_path_to_script[source_path] = jvm_script; }
+            jvm_script->export_dirty_flag = true;
+        }
+    }
+
+    for (const KeyValue<String, Ref<JvmScript>>& key_value : source_cache) {
+        Ref<JvmScript> script = key_value.value;
+        // Preserve unresolved source scripts that are attached to editor
+        // placeholders, even though they never had a registered name to cache.
+        if (!script->is_valid() && !script->placeholders.is_empty() && !source_path_to_script.has(key_value.key)) {
+            source_path_to_script[key_value.key] = script;
         }
     }
 #endif
 
-
-
-    // ####SOURCE SCRIPT#######
 #ifdef TOOLS_ENABLED
-    HashMap<StringName, KtClass*> new_fqdn_to_kt_class;
-#endif
-    HashMap<StringName, KtClass*>& fqdn_to_kt_class_ref =
-#ifdef TOOLS_ENABLED
-            new_fqdn_to_kt_class
-#else
-            fqdn_to_kt_class
-#endif
-    ;
-
-#ifdef TOOLS_ENABLED
-    for (const KeyValue<StringName, Ref<WeakRef>>& key_value: source_scripts_map) {
-        Ref<WeakRef> weak_ref = key_value.value;
-        if (auto* source_script {Object::cast_to<SourceScript>(weak_ref->get_ref()) }) {
-            source_script->kotlin_class = nullptr;
-        }
-    }
-#endif
-
-    for (KtClass* kotlin_class : classes) {
-        fqdn_to_kt_class_ref[kotlin_class->fqdn] = kotlin_class;
-        fqdn_to_name_map[kotlin_class->fqdn] = kotlin_class->registered_class_name;
-
-#ifdef TOOLS_ENABLED
-
-        if (Ref<WeakRef>* weak_ref {source_scripts_map.getptr(kotlin_class->fqdn)}) {
-            if (auto* source_script {Object::cast_to<SourceScript>(weak_ref->ptr()->get_ref())}) {
-                source_script->kotlin_class = kotlin_class;
-            }
-        }
-
-#endif
-    }
-
-#ifdef TOOLS_ENABLED
-    fqdn_to_kt_class = new_fqdn_to_kt_class;
-
     // We have to delay the call to update_script_exports. The engine is not fully initialized and scripts can cause undefined behaviors.
     MessageQueue::get_singleton()->push_callable(callable_mp(this, &JvmScriptManager::update_all_scripts).bind(last_reload));
 #endif
@@ -138,63 +158,69 @@ void JvmScriptManager::create_and_update_scripts(Vector<KtClass*>& classes) {
     JVM_DEV_LOG("JVM scripts are now loaded.");
 }
 
-Ref<NamedScript> JvmScriptManager::get_named_script_from_source_script(Ref<SourceScript> p_source_script) const {
-    String path = p_source_script->get_functional_name();
+Ref<JvmScript> JvmScriptManager::get_or_create_script_from_path(const String& p_path, bool* created) {
+    *created = false;
 
-    if (fqdn_to_name_map.has(path)) {
-        StringName name = fqdn_to_name_map[path];
-        return named_scripts_map[name];
+    if (const HashMap<String, Ref<JvmScript>>::ConstIterator script = source_path_to_script.find(p_path)) {
+        return script->value;
     }
+
+#ifdef TOOLS_ENABLED
+    Ref<JvmScript> jvm_script = _create_script_for_path(p_path);
+    *created = true;
+    return jvm_script;
+#else
     return {};
+#endif
 }
 
-Ref<NamedScript> JvmScriptManager::get_script_from_name(const StringName& name) const {
-    if (HashMap<StringName, Ref<NamedScript>>::ConstIterator element = named_scripts_map.find(name)) {
-        return element->value;
+void JvmScriptManager::script_path_changed(JvmScript* p_script, const String& p_old_path, const String& p_new_path) {
+    if (_is_source_path(p_old_path)) {
+        const HashMap<String, Ref<JvmScript>>::Iterator old_script = source_path_to_script.find(p_old_path);
+        if (old_script && old_script->value.ptr() == p_script) { source_path_to_script.erase(p_old_path); }
     }
-    return {};
+
+    if (_is_source_path(p_new_path)) { source_path_to_script[p_new_path] = Ref<JvmScript>(p_script); }
 }
 
-Ref<SourceScript> JvmScriptManager::get_script_from_fqdn(const StringName& p_fqdn) const {
-    if (HashMap<StringName, Ref<WeakRef>>::ConstIterator element = source_scripts_map.find(p_fqdn)) {
-        return Ref<SourceScript>(element->value->get_ref());
+Ref<JvmScript> JvmScriptManager::get_or_create_script_from_name(const String& p_path, bool* created) {
+    *created = false;
+
+    const StringName script_name = JvmScript::get_script_file_name(p_path);
+    if (const HashMap<StringName, Ref<JvmScript>>::ConstIterator script = registered_name_to_script.find(script_name)) {
+        return script->value;
     }
+
+#ifdef TOOLS_ENABLED
+    Ref<GdjScript> script;
+    script.instantiate();
+    *created = true;
+    registered_name_to_script[script_name] = script;
+    return script;
+#else
     return {};
+#endif
 }
 
+Ref<JvmScript> JvmScriptManager::get_script_from_registered_name(const StringName& p_name) const {
+    const HashMap<StringName, Ref<JvmScript>>::ConstIterator script = registered_name_to_script.find(p_name);
+    return script ? script->value : Ref<JvmScript>();
+}
 
 #ifdef TOOLS_ENABLED
 void JvmScriptManager::update_all_scripts(uint64_t update_time) {
-    for (const KeyValue<StringName, Ref<NamedScript>>& key_value : named_scripts_map) {
-        Ref<NamedScript> named_script = key_value.value;
-        JvmScript* ptr = named_script.ptr();
+    HashSet<JvmScript*> processed_scripts;
+    for (const KeyValue<StringName, Ref<JvmScript>>& key_value : registered_name_to_script) {
+        Ref<JvmScript> script = key_value.value;
+        JvmScript* ptr = script.ptr();
+        if (!ptr || processed_scripts.has(ptr)) { continue; }
+        processed_scripts.insert(ptr);
         ptr->update_script_exports();
         ptr->set_last_time_source_modified(update_time);
     }
-
-    for (const KeyValue<StringName, Ref<WeakRef>>& key_value: source_scripts_map) {
-        Ref<WeakRef> weak_ref = key_value.value;
-        if (auto* source_script {Object::cast_to<SourceScript>(weak_ref->get_ref()) }) {
-            source_script->update_script_exports();
-            source_script->set_last_time_source_modified(update_time);
-        }
-    }
 }
 
-void JvmScriptManager::invalidate_source(const Ref<SourceScript>& source_script) {
-    if (source_script.is_null()) { return; }
-
-    uint64_t last_modified = source_script->get_last_modified_time();
-
-    // If the jvm_script is already in cache, it means the Godot editor has reloaded it because the sources have changed.
-    source_script->set_last_time_source_modified(last_modified);
-
-    // Update the .gdj if it exists.
-    Ref<NamedScript> named_script = JvmScriptManager::get_instance()->get_named_script_from_source_script(source_script);
-    if (named_script.is_valid()) { named_script->set_last_time_source_modified(last_modified); }
-}
-
-int64_t JvmScriptManager::get_last_reload() {
+int64_t JvmScriptManager::get_last_reload() const {
     return last_reload;
 }
 #endif
@@ -202,12 +228,8 @@ int64_t JvmScriptManager::get_last_reload() {
 void JvmScriptManager::finalize() {
     JvmScriptManager* singleton = get_instance();
 
-    singleton->named_scripts_map.clear();
-    singleton->name_to_fqdn_map.clear();
-    singleton->fqdn_to_name_map.clear();
-    singleton->source_scripts_map.clear();
-
-    singleton->fqdn_to_kt_class.clear();
+    singleton->registered_name_to_script.clear();
+    singleton->source_path_to_script.clear();
     memdelete(singleton);
 }
 

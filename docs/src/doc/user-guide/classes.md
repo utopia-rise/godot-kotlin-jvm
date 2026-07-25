@@ -27,8 +27,6 @@ class RotatingCube extends Node3D {
 ```
 ///
 
-Each registered class generates its own `.gdj` file. For more information, read [registration files](../user-guide/api-differences.md#registration-files-gdj).
-
 ### Naming
 
 Classes need to be registered with a unique name as Godot does not support namespaces (or packages in this case) for script classes.
@@ -68,9 +66,9 @@ The available modes are:
 
 As mentioned beforehand, Godot does not have the concept of namespaces. So all classes are registered at top level.
 It does not matter where in the folder hierarchy a script resides in, it still is accessed the same way.
-Hence, it does not matter if the registration files are all in one directory, or scattered across multiple directories.
+Hence, it does not matter if dependency registration files are all in one directory, or scattered across multiple directories.
 
-By default, new registration files are generated flat inside the configured base directory:
+By default, new dependency registration files are generated flat inside the configured base directory:
 
 - `com.mygame.packageA.ClassA`
 - `com.mygame.packageB.ClassB`

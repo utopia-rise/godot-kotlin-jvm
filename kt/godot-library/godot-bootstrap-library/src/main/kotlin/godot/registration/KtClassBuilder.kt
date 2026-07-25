@@ -8,6 +8,7 @@ import kotlin.reflect.*
 class KtClassBuilder<T : KtObject>(
     @PublishedApi
     internal val registeredName: String,
+    private val sourceFilePath: String,
     private val registeredSupertypes: List<String>,
     private val baseGodotClass: String,
     private val isAbstract: Boolean,
@@ -291,6 +292,7 @@ class KtClassBuilder<T : KtObject>(
         return KtClass(
             registeredName = registeredName,
             fqdn = fqdn,
+            sourceFilePath = sourceFilePath,
             kClass = kClassField,
             _registeredSupertypes = registeredSupertypes,
             constructor = constructorField,

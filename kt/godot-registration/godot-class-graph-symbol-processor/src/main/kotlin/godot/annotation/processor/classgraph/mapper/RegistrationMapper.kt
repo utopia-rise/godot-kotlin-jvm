@@ -15,6 +15,7 @@ import godot.annotation.processor.classgraph.ProcessorContext
 import godot.annotation.processor.classgraph.ProcessorSettings
 import godot.annotation.processor.classgraph.extensions.directSuperInterfaces
 import godot.annotation.processor.classgraph.extensions.enumEntryCount
+import godot.annotation.processor.classgraph.extensions.godotProjectRelativeSourcePath
 import godot.annotation.processor.classgraph.extensions.isGodotCompatibleClass
 import godot.annotation.processor.classgraph.extensions.isProcessorBitField
 import godot.annotation.processor.classgraph.extensions.isProcessorCoreType
@@ -134,6 +135,7 @@ class RegistrationMapper(
                             ?.firstOrNull()
                             ?.value as? String,
                         sourceProjectName = classInfo.sourceProjectName(context.settings),
+                        sourceFilePath = classInfo.godotProjectRelativeSourcePath(context.settings),
                         configuration = ScriptClassConfiguration(
                             isTool = policy.hasAnnotation(shape, Tool::class),
                         ),
