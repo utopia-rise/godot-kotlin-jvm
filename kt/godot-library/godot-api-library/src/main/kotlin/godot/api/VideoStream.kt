@@ -12,7 +12,6 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import kotlin.NotImplementedError
 import kotlin.String
@@ -52,13 +51,13 @@ public abstract class VideoStream : Resource() {
   public abstract fun _instantiatePlayback(): VideoStreamPlayback?
 
   public final fun setFile(`file`: String): Unit {
-    TransferContext.writeArguments(STRING to file)
-    TransferContext.callMethod(ptr, MethodBindings.setFilePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to file)
+    TransferContext.callMethod(MethodBindings.setFilePtr)
   }
 
   public final fun getFile(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFilePtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getFilePtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 

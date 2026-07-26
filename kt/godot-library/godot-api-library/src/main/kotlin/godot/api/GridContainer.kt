@@ -13,7 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -48,13 +47,13 @@ public open class GridContainer : Container() {
   }
 
   public final fun setColumns(columns: Int): Unit {
-    TransferContext.writeArguments(LONG to columns.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setColumnsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to columns.toLong())
+    TransferContext.callMethod(MethodBindings.setColumnsPtr)
   }
 
   public final fun getColumns(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getColumnsPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getColumnsPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 

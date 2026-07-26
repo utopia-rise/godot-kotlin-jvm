@@ -15,7 +15,6 @@ import godot.core.GodotEnum
 import godot.core.MethodStringName0
 import godot.core.MethodStringName3
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import kotlin.Long
@@ -48,8 +47,8 @@ public open class PacketPeerDTLS : PacketPeer() {
    * and keep the connection working.
    */
   public final fun poll(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.pollPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.pollPtr)
   }
 
   /**
@@ -64,8 +63,8 @@ public open class PacketPeerDTLS : PacketPeer() {
     hostname: String,
     clientOptions: TLSOptions? = null,
   ): Error {
-    TransferContext.writeArguments(OBJECT to packetPeer, STRING to hostname, OBJECT to clientOptions)
-    TransferContext.callMethod(ptr, MethodBindings.connectToPeerPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to packetPeer, STRING to hostname, OBJECT to clientOptions)
+    TransferContext.callMethod(MethodBindings.connectToPeerPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -73,8 +72,8 @@ public open class PacketPeerDTLS : PacketPeer() {
    * Returns the status of the connection.
    */
   public final fun getStatus(): Status {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getStatusPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getStatusPtr)
     return Status.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -82,8 +81,8 @@ public open class PacketPeerDTLS : PacketPeer() {
    * Disconnects this peer, terminating the DTLS session.
    */
   public final fun disconnectFromPeer(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.disconnectFromPeerPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.disconnectFromPeerPtr)
   }
 
   public enum class Status(

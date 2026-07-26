@@ -35,8 +35,8 @@ public open class RenderData internal constructor() : Object() {
    * Returns the [RenderSceneBuffers] object managing the scene buffers for rendering this viewport.
    */
   public final fun getRenderSceneBuffers(): RenderSceneBuffers? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getRenderSceneBuffersPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getRenderSceneBuffersPtr)
     return (TransferContext.readReturnValue(OBJECT) as RenderSceneBuffers?)
   }
 
@@ -44,8 +44,8 @@ public open class RenderData internal constructor() : Object() {
    * Returns the [RenderSceneData] object managing this frames scene data.
    */
   public final fun getRenderSceneData(): RenderSceneData? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getRenderSceneDataPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getRenderSceneDataPtr)
     return (TransferContext.readReturnValue(OBJECT) as RenderSceneData?)
   }
 
@@ -54,8 +54,8 @@ public open class RenderData internal constructor() : Object() {
    * viewport.
    */
   public final fun getEnvironment(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getEnvironmentPtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getEnvironmentPtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -64,8 +64,8 @@ public open class RenderData internal constructor() : Object() {
    * this viewport.
    */
   public final fun getCameraAttributes(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCameraAttributesPtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCameraAttributesPtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 

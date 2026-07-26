@@ -13,7 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
-import godot.core.VariantParser.NIL
 import kotlin.Double
 import kotlin.Float
 import kotlin.Suppress
@@ -45,13 +44,13 @@ public open class JointLimitationCone3D : JointLimitation3D() {
   }
 
   public final fun setAngle(angle: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to angle.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setAnglePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to angle.toDouble())
+    TransferContext.callMethod(MethodBindings.setAnglePtr)
   }
 
   public final fun getAngle(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getAnglePtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getAnglePtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 

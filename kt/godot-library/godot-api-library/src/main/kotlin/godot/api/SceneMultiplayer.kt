@@ -25,7 +25,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.CALLABLE
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.PACKED_INT_32_ARRAY
@@ -199,13 +198,13 @@ public open class SceneMultiplayer : MultiplayerAPI() {
   }
 
   public final fun setRootPath(path: NodePath): Unit {
-    TransferContext.writeArguments(NODE_PATH to path)
-    TransferContext.callMethod(ptr, MethodBindings.setRootPathPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, NODE_PATH to path)
+    TransferContext.callMethod(MethodBindings.setRootPathPtr)
   }
 
   public final fun getRootPath(): NodePath {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getRootPathPtr, NODE_PATH)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getRootPathPtr)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
@@ -214,8 +213,8 @@ public open class SceneMultiplayer : MultiplayerAPI() {
    * you are doing).
    */
   public final fun clear(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.clearPtr)
   }
 
   /**
@@ -223,16 +222,16 @@ public open class SceneMultiplayer : MultiplayerAPI() {
    * closing the underlying connection with it.
    */
   public final fun disconnectPeer(id: Int): Unit {
-    TransferContext.writeArguments(LONG to id.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.disconnectPeerPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to id.toLong())
+    TransferContext.callMethod(MethodBindings.disconnectPeerPtr)
   }
 
   /**
    * Returns the IDs of the peers currently trying to authenticate with this [MultiplayerAPI].
    */
   public final fun getAuthenticatingPeers(): PackedInt32Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getAuthenticatingPeersPtr, PACKED_INT_32_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getAuthenticatingPeersPtr)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
@@ -243,8 +242,8 @@ public open class SceneMultiplayer : MultiplayerAPI() {
    * peers).
    */
   public final fun sendAuth(id: Int, `data`: PackedByteArray): Error {
-    TransferContext.writeArguments(LONG to id.toLong(), PACKED_BYTE_ARRAY to data)
-    TransferContext.callMethod(ptr, MethodBindings.sendAuthPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to id.toLong(), PACKED_BYTE_ARRAY to data)
+    TransferContext.callMethod(MethodBindings.sendAuthPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -260,63 +259,63 @@ public open class SceneMultiplayer : MultiplayerAPI() {
    * MultiplayerAPI.peer_disconnected].
    */
   public final fun completeAuth(id: Int): Error {
-    TransferContext.writeArguments(LONG to id.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.completeAuthPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to id.toLong())
+    TransferContext.callMethod(MethodBindings.completeAuthPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setAuthCallback(callback: Callable): Unit {
-    TransferContext.writeArguments(CALLABLE to callback)
-    TransferContext.callMethod(ptr, MethodBindings.setAuthCallbackPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, CALLABLE to callback)
+    TransferContext.callMethod(MethodBindings.setAuthCallbackPtr)
   }
 
   public final fun getAuthCallback(): Callable {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getAuthCallbackPtr, CALLABLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getAuthCallbackPtr)
     return (TransferContext.readReturnValue(CALLABLE) as Callable)
   }
 
   public final fun setAuthTimeout(timeout: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to timeout)
-    TransferContext.callMethod(ptr, MethodBindings.setAuthTimeoutPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to timeout)
+    TransferContext.callMethod(MethodBindings.setAuthTimeoutPtr)
   }
 
   public final fun getAuthTimeout(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getAuthTimeoutPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getAuthTimeoutPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setRefuseNewConnections(refuse: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to refuse)
-    TransferContext.callMethod(ptr, MethodBindings.setRefuseNewConnectionsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to refuse)
+    TransferContext.callMethod(MethodBindings.setRefuseNewConnectionsPtr)
   }
 
   public final fun isRefusingNewConnections(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isRefusingNewConnectionsPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isRefusingNewConnectionsPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAllowObjectDecoding(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(ptr, MethodBindings.setAllowObjectDecodingPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enable)
+    TransferContext.callMethod(MethodBindings.setAllowObjectDecodingPtr)
   }
 
   public final fun isObjectDecodingAllowed(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isObjectDecodingAllowedPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isObjectDecodingAllowedPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setServerRelayEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.setServerRelayEnabledPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enabled)
+    TransferContext.callMethod(MethodBindings.setServerRelayEnabledPtr)
   }
 
   public final fun isServerRelayEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isServerRelayEnabledPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isServerRelayEnabledPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -331,31 +330,31 @@ public open class SceneMultiplayer : MultiplayerAPI() {
     mode: MultiplayerPeer.TransferMode = MultiplayerPeer.TransferMode.RELIABLE,
     channel: Int = 0,
   ): Error {
-    TransferContext.writeArguments(PACKED_BYTE_ARRAY to bytes, LONG to id.toLong(), LONG to mode.value, LONG to channel.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.sendBytesPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_BYTE_ARRAY to bytes, LONG to id.toLong(), LONG to mode.value, LONG to channel.toLong())
+    TransferContext.callMethod(MethodBindings.sendBytesPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun getMaxSyncPacketSize(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMaxSyncPacketSizePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMaxSyncPacketSizePtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setMaxSyncPacketSize(size: Int): Unit {
-    TransferContext.writeArguments(LONG to size.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setMaxSyncPacketSizePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to size.toLong())
+    TransferContext.callMethod(MethodBindings.setMaxSyncPacketSizePtr)
   }
 
   public final fun getMaxDeltaPacketSize(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMaxDeltaPacketSizePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMaxDeltaPacketSizePtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setMaxDeltaPacketSize(size: Int): Unit {
-    TransferContext.writeArguments(LONG to size.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setMaxDeltaPacketSizePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to size.toLong())
+    TransferContext.callMethod(MethodBindings.setMaxDeltaPacketSizePtr)
   }
 
   public final fun setRootPath(path: String) = setRootPath(path.asCachedNodePath())

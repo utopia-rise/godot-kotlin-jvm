@@ -15,7 +15,6 @@ import godot.core.MethodStringName1
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import kotlin.Any
@@ -77,24 +76,24 @@ public open class OpenXRActionSet : Resource() {
   }
 
   public final fun setLocalizedName(localizedName: String): Unit {
-    TransferContext.writeArguments(STRING to localizedName)
-    TransferContext.callMethod(ptr, MethodBindings.setLocalizedNamePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to localizedName)
+    TransferContext.callMethod(MethodBindings.setLocalizedNamePtr)
   }
 
   public final fun getLocalizedName(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getLocalizedNamePtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getLocalizedNamePtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setPriority(priority: Int): Unit {
-    TransferContext.writeArguments(LONG to priority.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setPriorityPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to priority.toLong())
+    TransferContext.callMethod(MethodBindings.setPriorityPtr)
   }
 
   public final fun getPriority(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPriorityPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPriorityPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -102,19 +101,19 @@ public open class OpenXRActionSet : Resource() {
    * Retrieve the number of actions in our action set.
    */
   public final fun getActionCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getActionCountPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getActionCountPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setActions(actions: VariantArray<Any?>): Unit {
-    TransferContext.writeArguments(ARRAY to actions)
-    TransferContext.callMethod(ptr, MethodBindings.setActionsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, ARRAY to actions)
+    TransferContext.callMethod(MethodBindings.setActionsPtr)
   }
 
   public final fun getActions(): VariantArray<Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getActionsPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getActionsPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
@@ -122,16 +121,16 @@ public open class OpenXRActionSet : Resource() {
    * Add an action to this action set.
    */
   public final fun addAction(action: OpenXRAction?): Unit {
-    TransferContext.writeArguments(OBJECT to action)
-    TransferContext.callMethod(ptr, MethodBindings.addActionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to action)
+    TransferContext.callMethod(MethodBindings.addActionPtr)
   }
 
   /**
    * Remove an action from this action set.
    */
   public final fun removeAction(action: OpenXRAction?): Unit {
-    TransferContext.writeArguments(OBJECT to action)
-    TransferContext.callMethod(ptr, MethodBindings.removeActionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to action)
+    TransferContext.callMethod(MethodBindings.removeActionPtr)
   }
 
   public companion object {

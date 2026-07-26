@@ -14,7 +14,6 @@ import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
-import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -55,24 +54,24 @@ public open class SpringBoneCollisionSphere3D : SpringBoneCollision3D() {
   }
 
   public final fun setRadius(radius: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to radius.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setRadiusPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to radius.toDouble())
+    TransferContext.callMethod(MethodBindings.setRadiusPtr)
   }
 
   public final fun getRadius(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getRadiusPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getRadiusPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setInside(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.setInsidePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enabled)
+    TransferContext.callMethod(MethodBindings.setInsidePtr)
   }
 
   public final fun isInside(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isInsidePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isInsidePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

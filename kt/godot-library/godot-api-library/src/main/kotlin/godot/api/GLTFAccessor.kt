@@ -20,7 +20,6 @@ import godot.core.PackedFloat64Array
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DICTIONARY
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_FLOAT_64_ARRAY
 import kotlin.Any
@@ -314,175 +313,175 @@ public open class GLTFAccessor : Resource() {
    * Serializes this GLTFAccessor instance into a [Dictionary].
    */
   public final fun toDictionary(): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.toDictionaryPtr, DICTIONARY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.toDictionaryPtr)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   public final fun getBufferView(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getBufferViewPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getBufferViewPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setBufferView(bufferView: Int): Unit {
-    TransferContext.writeArguments(LONG to bufferView.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setBufferViewPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to bufferView.toLong())
+    TransferContext.callMethod(MethodBindings.setBufferViewPtr)
   }
 
   public final fun getByteOffset(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getByteOffsetPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getByteOffsetPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setByteOffset(byteOffset: Long): Unit {
-    TransferContext.writeArguments(LONG to byteOffset)
-    TransferContext.callMethod(ptr, MethodBindings.setByteOffsetPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to byteOffset)
+    TransferContext.callMethod(MethodBindings.setByteOffsetPtr)
   }
 
   public final fun getComponentType(): GLTFComponentType {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getComponentTypePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getComponentTypePtr)
     return GLTFComponentType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setComponentType(componentType: GLTFComponentType): Unit {
-    TransferContext.writeArguments(LONG to componentType.value)
-    TransferContext.callMethod(ptr, MethodBindings.setComponentTypePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to componentType.value)
+    TransferContext.callMethod(MethodBindings.setComponentTypePtr)
   }
 
   public final fun getNormalized(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getNormalizedPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getNormalizedPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setNormalized(normalized: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to normalized)
-    TransferContext.callMethod(ptr, MethodBindings.setNormalizedPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to normalized)
+    TransferContext.callMethod(MethodBindings.setNormalizedPtr)
   }
 
   public final fun getCount(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCountPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCountPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setCount(count: Long): Unit {
-    TransferContext.writeArguments(LONG to count)
-    TransferContext.callMethod(ptr, MethodBindings.setCountPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to count)
+    TransferContext.callMethod(MethodBindings.setCountPtr)
   }
 
   public final fun getAccessorType(): GLTFAccessorType {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getAccessorTypePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getAccessorTypePtr)
     return GLTFAccessorType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setAccessorType(accessorType: GLTFAccessorType): Unit {
-    TransferContext.writeArguments(LONG to accessorType.value)
-    TransferContext.callMethod(ptr, MethodBindings.setAccessorTypePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to accessorType.value)
+    TransferContext.callMethod(MethodBindings.setAccessorTypePtr)
   }
 
   public final fun getType(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getTypePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getTypePtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setType(type: Int): Unit {
-    TransferContext.writeArguments(LONG to type.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setTypePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to type.toLong())
+    TransferContext.callMethod(MethodBindings.setTypePtr)
   }
 
   public final fun getMin(): PackedFloat64Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMinPtr, PACKED_FLOAT_64_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMinPtr)
     return (TransferContext.readReturnValue(PACKED_FLOAT_64_ARRAY) as PackedFloat64Array)
   }
 
   public final fun setMin(min: PackedFloat64Array): Unit {
-    TransferContext.writeArguments(PACKED_FLOAT_64_ARRAY to min)
-    TransferContext.callMethod(ptr, MethodBindings.setMinPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_FLOAT_64_ARRAY to min)
+    TransferContext.callMethod(MethodBindings.setMinPtr)
   }
 
   public final fun getMax(): PackedFloat64Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMaxPtr, PACKED_FLOAT_64_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMaxPtr)
     return (TransferContext.readReturnValue(PACKED_FLOAT_64_ARRAY) as PackedFloat64Array)
   }
 
   public final fun setMax(max: PackedFloat64Array): Unit {
-    TransferContext.writeArguments(PACKED_FLOAT_64_ARRAY to max)
-    TransferContext.callMethod(ptr, MethodBindings.setMaxPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_FLOAT_64_ARRAY to max)
+    TransferContext.callMethod(MethodBindings.setMaxPtr)
   }
 
   public final fun getSparseCount(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSparseCountPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSparseCountPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setSparseCount(sparseCount: Long): Unit {
-    TransferContext.writeArguments(LONG to sparseCount)
-    TransferContext.callMethod(ptr, MethodBindings.setSparseCountPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to sparseCount)
+    TransferContext.callMethod(MethodBindings.setSparseCountPtr)
   }
 
   public final fun getSparseIndicesBufferView(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSparseIndicesBufferViewPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSparseIndicesBufferViewPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setSparseIndicesBufferView(sparseIndicesBufferView: Int): Unit {
-    TransferContext.writeArguments(LONG to sparseIndicesBufferView.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setSparseIndicesBufferViewPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to sparseIndicesBufferView.toLong())
+    TransferContext.callMethod(MethodBindings.setSparseIndicesBufferViewPtr)
   }
 
   public final fun getSparseIndicesByteOffset(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSparseIndicesByteOffsetPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSparseIndicesByteOffsetPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setSparseIndicesByteOffset(sparseIndicesByteOffset: Long): Unit {
-    TransferContext.writeArguments(LONG to sparseIndicesByteOffset)
-    TransferContext.callMethod(ptr, MethodBindings.setSparseIndicesByteOffsetPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to sparseIndicesByteOffset)
+    TransferContext.callMethod(MethodBindings.setSparseIndicesByteOffsetPtr)
   }
 
   public final fun getSparseIndicesComponentType(): GLTFComponentType {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSparseIndicesComponentTypePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSparseIndicesComponentTypePtr)
     return GLTFComponentType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setSparseIndicesComponentType(sparseIndicesComponentType: GLTFComponentType):
       Unit {
-    TransferContext.writeArguments(LONG to sparseIndicesComponentType.value)
-    TransferContext.callMethod(ptr, MethodBindings.setSparseIndicesComponentTypePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to sparseIndicesComponentType.value)
+    TransferContext.callMethod(MethodBindings.setSparseIndicesComponentTypePtr)
   }
 
   public final fun getSparseValuesBufferView(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSparseValuesBufferViewPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSparseValuesBufferViewPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setSparseValuesBufferView(sparseValuesBufferView: Int): Unit {
-    TransferContext.writeArguments(LONG to sparseValuesBufferView.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setSparseValuesBufferViewPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to sparseValuesBufferView.toLong())
+    TransferContext.callMethod(MethodBindings.setSparseValuesBufferViewPtr)
   }
 
   public final fun getSparseValuesByteOffset(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSparseValuesByteOffsetPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSparseValuesByteOffsetPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setSparseValuesByteOffset(sparseValuesByteOffset: Long): Unit {
-    TransferContext.writeArguments(LONG to sparseValuesByteOffset)
-    TransferContext.callMethod(ptr, MethodBindings.setSparseValuesByteOffsetPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to sparseValuesByteOffset)
+    TransferContext.callMethod(MethodBindings.setSparseValuesByteOffsetPtr)
   }
 
   public enum class GLTFAccessorType(
@@ -750,8 +749,8 @@ public open class GLTFAccessor : Resource() {
      */
     @JvmStatic
     public final fun fromDictionary(dictionary: Dictionary<Any?, Any?>): GLTFAccessor? {
-      TransferContext.writeArguments(DICTIONARY to dictionary)
-      TransferContext.callMethod(0, MethodBindings.fromDictionaryPtr, OBJECT)
+      TransferContext.writeMethodArguments(0L, 0L, DICTIONARY to dictionary)
+      TransferContext.callMethod(MethodBindings.fromDictionaryPtr)
       return (TransferContext.readReturnValue(OBJECT) as GLTFAccessor?)
     }
   }

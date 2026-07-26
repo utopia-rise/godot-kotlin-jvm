@@ -14,7 +14,6 @@ import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
 import kotlin.Int
@@ -73,29 +72,29 @@ public open class GradientTexture1D : Texture2D() {
   }
 
   public final fun setGradient(gradient: Gradient?): Unit {
-    TransferContext.writeArguments(OBJECT to gradient)
-    TransferContext.callMethod(ptr, MethodBindings.setGradientPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to gradient)
+    TransferContext.callMethod(MethodBindings.setGradientPtr)
   }
 
   public final fun getGradient(): Gradient? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getGradientPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getGradientPtr)
     return (TransferContext.readReturnValue(OBJECT) as Gradient?)
   }
 
   public final fun setWidth(width: Int): Unit {
-    TransferContext.writeArguments(LONG to width.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setWidthPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to width.toLong())
+    TransferContext.callMethod(MethodBindings.setWidthPtr)
   }
 
   public final fun setUseHdr(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.setUseHdrPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enabled)
+    TransferContext.callMethod(MethodBindings.setUseHdrPtr)
   }
 
   public final fun isUsingHdr(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isUsingHdrPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isUsingHdrPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

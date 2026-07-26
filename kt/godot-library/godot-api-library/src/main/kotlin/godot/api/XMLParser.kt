@@ -17,7 +17,6 @@ import godot.core.MethodStringName1
 import godot.core.PackedByteArray
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.STRING
 import kotlin.Boolean
@@ -82,8 +81,8 @@ public open class XMLParser : RefCounted() {
    * Parses the next node in the file. This method returns an error code.
    */
   public final fun read(): Error {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.readPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.readPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -91,8 +90,8 @@ public open class XMLParser : RefCounted() {
    * Returns the type of the current node. Compare with [NodeType] constants.
    */
   public final fun getNodeType(): NodeType {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getNodeTypePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getNodeTypePtr)
     return NodeType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -104,8 +103,8 @@ public open class XMLParser : RefCounted() {
    * are also considered names.
    */
   public final fun getNodeName(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getNodeNamePtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getNodeNamePtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -114,8 +113,8 @@ public open class XMLParser : RefCounted() {
    * is of any other type.
    */
   public final fun getNodeData(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getNodeDataPtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getNodeDataPtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -124,8 +123,8 @@ public open class XMLParser : RefCounted() {
    * This is usually equivalent to the number of characters before the read position.
    */
   public final fun getNodeOffset(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getNodeOffsetPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getNodeOffsetPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -136,8 +135,8 @@ public open class XMLParser : RefCounted() {
    * [NODE_ELEMENT_END], this count will not be updated and will still reflect the last element.
    */
   public final fun getAttributeCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getAttributeCountPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getAttributeCountPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -145,8 +144,8 @@ public open class XMLParser : RefCounted() {
    * Returns the name of an attribute of the currently parsed element, specified by the [idx] index.
    */
   public final fun getAttributeName(idx: Int): String {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getAttributeNamePtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong())
+    TransferContext.callMethod(MethodBindings.getAttributeNamePtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -155,8 +154,8 @@ public open class XMLParser : RefCounted() {
    * index.
    */
   public final fun getAttributeValue(idx: Int): String {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getAttributeValuePtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong())
+    TransferContext.callMethod(MethodBindings.getAttributeValuePtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -164,8 +163,8 @@ public open class XMLParser : RefCounted() {
    * Returns `true` if the currently parsed element has an attribute with the [name].
    */
   public final fun hasAttribute(name: String): Boolean {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(ptr, MethodBindings.hasAttributePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to name)
+    TransferContext.callMethod(MethodBindings.hasAttributePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -174,8 +173,8 @@ public open class XMLParser : RefCounted() {
    * This method will raise an error if the element has no such attribute.
    */
   public final fun getNamedAttributeValue(name: String): String {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(ptr, MethodBindings.getNamedAttributeValuePtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to name)
+    TransferContext.callMethod(MethodBindings.getNamedAttributeValuePtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -184,8 +183,8 @@ public open class XMLParser : RefCounted() {
    * This method will return an empty string if the element has no such attribute.
    */
   public final fun getNamedAttributeValueSafe(name: String): String {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(ptr, MethodBindings.getNamedAttributeValueSafePtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to name)
+    TransferContext.callMethod(MethodBindings.getNamedAttributeValueSafePtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -193,8 +192,8 @@ public open class XMLParser : RefCounted() {
    * Returns `true` if the currently parsed element is empty, e.g. `<element />`.
    */
   public final fun isEmpty(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isEmptyPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isEmptyPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -202,8 +201,8 @@ public open class XMLParser : RefCounted() {
    * Returns the current line in the parsed file, counting from 0.
    */
   public final fun getCurrentLine(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCurrentLinePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCurrentLinePtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -212,8 +211,8 @@ public open class XMLParser : RefCounted() {
    * ignored and the cursor will go to the closing of the current element.
    */
   public final fun skipSection(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.skipSectionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.skipSectionPtr)
   }
 
   /**
@@ -221,8 +220,8 @@ public open class XMLParser : RefCounted() {
    * there. This method returns an error code.
    */
   public final fun seek(position: Long): Error {
-    TransferContext.writeArguments(LONG to position)
-    TransferContext.callMethod(ptr, MethodBindings.seekPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to position)
+    TransferContext.callMethod(MethodBindings.seekPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -230,8 +229,8 @@ public open class XMLParser : RefCounted() {
    * Opens an XML [file] for parsing. This method returns an error code.
    */
   public final fun `open`(`file`: String): Error {
-    TransferContext.writeArguments(STRING to file)
-    TransferContext.callMethod(ptr, MethodBindings.openPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to file)
+    TransferContext.callMethod(MethodBindings.openPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -239,8 +238,8 @@ public open class XMLParser : RefCounted() {
    * Opens an XML raw [buffer] for parsing. This method returns an error code.
    */
   public final fun openBuffer(buffer: PackedByteArray): Error {
-    TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
-    TransferContext.callMethod(ptr, MethodBindings.openBufferPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_BYTE_ARRAY to buffer)
+    TransferContext.callMethod(MethodBindings.openBufferPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

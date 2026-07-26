@@ -38,8 +38,8 @@ public open class JNISingleton : Object() {
    * Returns `true` if the given [method] name exists in the JNISingleton's Java methods.
    */
   public final fun hasJavaMethod(method: StringName): Boolean {
-    TransferContext.writeArguments(STRING_NAME to method)
-    TransferContext.callMethod(ptr, MethodBindings.hasJavaMethodPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to method)
+    TransferContext.callMethod(MethodBindings.hasJavaMethodPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

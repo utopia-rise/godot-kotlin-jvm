@@ -19,7 +19,6 @@ import godot.core.RID
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
 import kotlin.Double
@@ -353,156 +352,156 @@ public open class ProceduralSkyMaterial : Material() {
   }
 
   public final fun setSkyTopColor(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(ptr, MethodBindings.setSkyTopColorPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, COLOR to color)
+    TransferContext.callMethod(MethodBindings.setSkyTopColorPtr)
   }
 
   public final fun getSkyTopColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSkyTopColorPtr, COLOR)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSkyTopColorPtr)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   public final fun setSkyHorizonColor(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(ptr, MethodBindings.setSkyHorizonColorPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, COLOR to color)
+    TransferContext.callMethod(MethodBindings.setSkyHorizonColorPtr)
   }
 
   public final fun getSkyHorizonColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSkyHorizonColorPtr, COLOR)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSkyHorizonColorPtr)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   public final fun setSkyCurve(curve: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to curve.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setSkyCurvePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to curve.toDouble())
+    TransferContext.callMethod(MethodBindings.setSkyCurvePtr)
   }
 
   public final fun getSkyCurve(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSkyCurvePtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSkyCurvePtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSkyEnergyMultiplier(multiplier: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to multiplier.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setSkyEnergyMultiplierPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to multiplier.toDouble())
+    TransferContext.callMethod(MethodBindings.setSkyEnergyMultiplierPtr)
   }
 
   public final fun getSkyEnergyMultiplier(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSkyEnergyMultiplierPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSkyEnergyMultiplierPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSkyCover(skyCover: Texture2D?): Unit {
-    TransferContext.writeArguments(OBJECT to skyCover)
-    TransferContext.callMethod(ptr, MethodBindings.setSkyCoverPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to skyCover)
+    TransferContext.callMethod(MethodBindings.setSkyCoverPtr)
   }
 
   public final fun getSkyCover(): Texture2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSkyCoverPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSkyCoverPtr)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setSkyCoverModulate(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(ptr, MethodBindings.setSkyCoverModulatePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, COLOR to color)
+    TransferContext.callMethod(MethodBindings.setSkyCoverModulatePtr)
   }
 
   public final fun getSkyCoverModulate(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSkyCoverModulatePtr, COLOR)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSkyCoverModulatePtr)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   public final fun setGroundBottomColor(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(ptr, MethodBindings.setGroundBottomColorPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, COLOR to color)
+    TransferContext.callMethod(MethodBindings.setGroundBottomColorPtr)
   }
 
   public final fun getGroundBottomColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getGroundBottomColorPtr, COLOR)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getGroundBottomColorPtr)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   public final fun setGroundHorizonColor(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(ptr, MethodBindings.setGroundHorizonColorPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, COLOR to color)
+    TransferContext.callMethod(MethodBindings.setGroundHorizonColorPtr)
   }
 
   public final fun getGroundHorizonColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getGroundHorizonColorPtr, COLOR)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getGroundHorizonColorPtr)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   public final fun setGroundCurve(curve: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to curve.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setGroundCurvePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to curve.toDouble())
+    TransferContext.callMethod(MethodBindings.setGroundCurvePtr)
   }
 
   public final fun getGroundCurve(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getGroundCurvePtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getGroundCurvePtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setGroundEnergyMultiplier(energy: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to energy.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setGroundEnergyMultiplierPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to energy.toDouble())
+    TransferContext.callMethod(MethodBindings.setGroundEnergyMultiplierPtr)
   }
 
   public final fun getGroundEnergyMultiplier(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getGroundEnergyMultiplierPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getGroundEnergyMultiplierPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSunAngleMax(degrees: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to degrees.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setSunAngleMaxPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to degrees.toDouble())
+    TransferContext.callMethod(MethodBindings.setSunAngleMaxPtr)
   }
 
   public final fun getSunAngleMax(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSunAngleMaxPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSunAngleMaxPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSunCurve(curve: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to curve.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setSunCurvePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to curve.toDouble())
+    TransferContext.callMethod(MethodBindings.setSunCurvePtr)
   }
 
   public final fun getSunCurve(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSunCurvePtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSunCurvePtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setUseDebanding(useDebanding: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to useDebanding)
-    TransferContext.callMethod(ptr, MethodBindings.setUseDebandingPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to useDebanding)
+    TransferContext.callMethod(MethodBindings.setUseDebandingPtr)
   }
 
   public final fun getUseDebanding(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getUseDebandingPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getUseDebandingPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setEnergyMultiplier(multiplier: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to multiplier.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setEnergyMultiplierPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to multiplier.toDouble())
+    TransferContext.callMethod(MethodBindings.setEnergyMultiplierPtr)
   }
 
   public final fun getEnergyMultiplier(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getEnergyMultiplierPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getEnergyMultiplierPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 

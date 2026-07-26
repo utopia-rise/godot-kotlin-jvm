@@ -25,7 +25,6 @@ import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
 import godot.core.VariantParser.RECT2I
 import godot.core.VariantParser.VECTOR2
@@ -328,57 +327,57 @@ public open class AStarGrid2D : RefCounted() {
   }
 
   public final fun setRegion(region: Rect2i): Unit {
-    TransferContext.writeArguments(RECT2I to region)
-    TransferContext.callMethod(ptr, MethodBindings.setRegionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, RECT2I to region)
+    TransferContext.callMethod(MethodBindings.setRegionPtr)
   }
 
   public final fun getRegion(): Rect2i {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getRegionPtr, RECT2I)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getRegionPtr)
     return (TransferContext.readReturnValue(RECT2I) as Rect2i)
   }
 
   public final fun setSize(size: Vector2i): Unit {
-    TransferContext.writeArguments(VECTOR2I to size)
-    TransferContext.callMethod(ptr, MethodBindings.setSizePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2I to size)
+    TransferContext.callMethod(MethodBindings.setSizePtr)
   }
 
   public final fun getSize(): Vector2i {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSizePtr, VECTOR2I)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSizePtr)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   public final fun setOffset(offset: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to offset)
-    TransferContext.callMethod(ptr, MethodBindings.setOffsetPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to offset)
+    TransferContext.callMethod(MethodBindings.setOffsetPtr)
   }
 
   public final fun getOffset(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getOffsetPtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getOffsetPtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setCellSize(cellSize: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to cellSize)
-    TransferContext.callMethod(ptr, MethodBindings.setCellSizePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to cellSize)
+    TransferContext.callMethod(MethodBindings.setCellSizePtr)
   }
 
   public final fun getCellSize(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCellSizePtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCellSizePtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setCellShape(cellShape: CellShape): Unit {
-    TransferContext.writeArguments(LONG to cellShape.value)
-    TransferContext.callMethod(ptr, MethodBindings.setCellShapePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to cellShape.value)
+    TransferContext.callMethod(MethodBindings.setCellShapePtr)
   }
 
   public final fun getCellShape(): CellShape {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCellShapePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCellShapePtr)
     return CellShape.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -387,8 +386,8 @@ public open class AStarGrid2D : RefCounted() {
    * [region]. Equivalent to `region.has_point(Vector2i(x, y))`.
    */
   public final fun isInBounds(x: Int, y: Int): Boolean {
-    TransferContext.writeArguments(LONG to x.toLong(), LONG to y.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.isInBoundsPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to x.toLong(), LONG to y.toLong())
+    TransferContext.callMethod(MethodBindings.isInBoundsPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -397,8 +396,8 @@ public open class AStarGrid2D : RefCounted() {
    * Equivalent to `region.has_point(id)`.
    */
   public final fun isInBoundsv(id: Vector2i): Boolean {
-    TransferContext.writeArguments(VECTOR2I to id)
-    TransferContext.callMethod(ptr, MethodBindings.isInBoundsvPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2I to id)
+    TransferContext.callMethod(MethodBindings.isInBoundsvPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -406,8 +405,8 @@ public open class AStarGrid2D : RefCounted() {
    * Indicates that the grid parameters were changed and [update] needs to be called.
    */
   public final fun isDirty(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isDirtyPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isDirtyPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -419,51 +418,51 @@ public open class AStarGrid2D : RefCounted() {
    * **Note:** All point data (solidity and weight scale) will be cleared.
    */
   public final fun update(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.updatePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.updatePtr)
   }
 
   public final fun setJumpingEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.setJumpingEnabledPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enabled)
+    TransferContext.callMethod(MethodBindings.setJumpingEnabledPtr)
   }
 
   public final fun isJumpingEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isJumpingEnabledPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isJumpingEnabledPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDiagonalMode(mode: DiagonalMode): Unit {
-    TransferContext.writeArguments(LONG to mode.value)
-    TransferContext.callMethod(ptr, MethodBindings.setDiagonalModePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to mode.value)
+    TransferContext.callMethod(MethodBindings.setDiagonalModePtr)
   }
 
   public final fun getDiagonalMode(): DiagonalMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getDiagonalModePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getDiagonalModePtr)
     return DiagonalMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setDefaultComputeHeuristic(heuristic: Heuristic): Unit {
-    TransferContext.writeArguments(LONG to heuristic.value)
-    TransferContext.callMethod(ptr, MethodBindings.setDefaultComputeHeuristicPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to heuristic.value)
+    TransferContext.callMethod(MethodBindings.setDefaultComputeHeuristicPtr)
   }
 
   public final fun getDefaultComputeHeuristic(): Heuristic {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getDefaultComputeHeuristicPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getDefaultComputeHeuristicPtr)
     return Heuristic.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setDefaultEstimateHeuristic(heuristic: Heuristic): Unit {
-    TransferContext.writeArguments(LONG to heuristic.value)
-    TransferContext.callMethod(ptr, MethodBindings.setDefaultEstimateHeuristicPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to heuristic.value)
+    TransferContext.callMethod(MethodBindings.setDefaultEstimateHeuristicPtr)
   }
 
   public final fun getDefaultEstimateHeuristic(): Heuristic {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getDefaultEstimateHeuristicPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getDefaultEstimateHeuristicPtr)
     return Heuristic.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -475,16 +474,16 @@ public open class AStarGrid2D : RefCounted() {
    */
   @JvmOverloads
   public final fun setPointSolid(id: Vector2i, solid: Boolean = true): Unit {
-    TransferContext.writeArguments(VECTOR2I to id, BOOL to solid)
-    TransferContext.callMethod(ptr, MethodBindings.setPointSolidPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2I to id, BOOL to solid)
+    TransferContext.callMethod(MethodBindings.setPointSolidPtr)
   }
 
   /**
    * Returns `true` if a point is disabled for pathfinding. By default, all points are enabled.
    */
   public final fun isPointSolid(id: Vector2i): Boolean {
-    TransferContext.writeArguments(VECTOR2I to id)
-    TransferContext.callMethod(ptr, MethodBindings.isPointSolidPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2I to id)
+    TransferContext.callMethod(MethodBindings.isPointSolidPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -496,16 +495,16 @@ public open class AStarGrid2D : RefCounted() {
    * **Note:** Calling [update] is not needed after the call of this function.
    */
   public final fun setPointWeightScale(id: Vector2i, weightScale: Float): Unit {
-    TransferContext.writeArguments(VECTOR2I to id, DOUBLE to weightScale.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setPointWeightScalePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2I to id, DOUBLE to weightScale.toDouble())
+    TransferContext.callMethod(MethodBindings.setPointWeightScalePtr)
   }
 
   /**
    * Returns the weight scale of the point associated with the given [id].
    */
   public final fun getPointWeightScale(id: Vector2i): Float {
-    TransferContext.writeArguments(VECTOR2I to id)
-    TransferContext.callMethod(ptr, MethodBindings.getPointWeightScalePtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2I to id)
+    TransferContext.callMethod(MethodBindings.getPointWeightScalePtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -516,8 +515,8 @@ public open class AStarGrid2D : RefCounted() {
    */
   @JvmOverloads
   public final fun fillSolidRegion(region: Rect2i, solid: Boolean = true): Unit {
-    TransferContext.writeArguments(RECT2I to region, BOOL to solid)
-    TransferContext.callMethod(ptr, MethodBindings.fillSolidRegionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, RECT2I to region, BOOL to solid)
+    TransferContext.callMethod(MethodBindings.fillSolidRegionPtr)
   }
 
   /**
@@ -526,24 +525,24 @@ public open class AStarGrid2D : RefCounted() {
    * **Note:** Calling [update] is not needed after the call of this function.
    */
   public final fun fillWeightScaleRegion(region: Rect2i, weightScale: Float): Unit {
-    TransferContext.writeArguments(RECT2I to region, DOUBLE to weightScale.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.fillWeightScaleRegionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, RECT2I to region, DOUBLE to weightScale.toDouble())
+    TransferContext.callMethod(MethodBindings.fillWeightScaleRegionPtr)
   }
 
   /**
    * Clears the grid and sets the [region] to `Rect2i(0, 0, 0, 0)`.
    */
   public final fun clear(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.clearPtr)
   }
 
   /**
    * Returns the position of the point associated with the given [id].
    */
   public final fun getPointPosition(id: Vector2i): Vector2 {
-    TransferContext.writeArguments(VECTOR2I to id)
-    TransferContext.callMethod(ptr, MethodBindings.getPointPositionPtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2I to id)
+    TransferContext.callMethod(MethodBindings.getPointPositionPtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
@@ -552,8 +551,8 @@ public open class AStarGrid2D : RefCounted() {
    * `solid`: [bool], `weight_scale`: [float]) within a [region].
    */
   public final fun getPointDataInRegion(region: Rect2i): VariantArray<Dictionary<Any?, Any?>> {
-    TransferContext.writeArguments(RECT2I to region)
-    TransferContext.callMethod(ptr, MethodBindings.getPointDataInRegionPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, RECT2I to region)
+    TransferContext.callMethod(MethodBindings.getPointDataInRegionPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
@@ -578,8 +577,8 @@ public open class AStarGrid2D : RefCounted() {
     toId: Vector2i,
     allowPartialPath: Boolean = false,
   ): PackedVector2Array {
-    TransferContext.writeArguments(VECTOR2I to fromId, VECTOR2I to toId, BOOL to allowPartialPath)
-    TransferContext.callMethod(ptr, MethodBindings.getPointPathPtr, PACKED_VECTOR2_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2I to fromId, VECTOR2I to toId, BOOL to allowPartialPath)
+    TransferContext.callMethod(MethodBindings.getPointPathPtr)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
@@ -601,8 +600,8 @@ public open class AStarGrid2D : RefCounted() {
     toId: Vector2i,
     allowPartialPath: Boolean = false,
   ): VariantArray<Vector2i> {
-    TransferContext.writeArguments(VECTOR2I to fromId, VECTOR2I to toId, BOOL to allowPartialPath)
-    TransferContext.callMethod(ptr, MethodBindings.getIdPathPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2I to fromId, VECTOR2I to toId, BOOL to allowPartialPath)
+    TransferContext.callMethod(MethodBindings.getIdPathPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Vector2i>)
   }
 

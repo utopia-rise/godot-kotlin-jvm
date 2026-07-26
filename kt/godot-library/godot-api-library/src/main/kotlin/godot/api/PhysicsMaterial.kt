@@ -14,7 +14,6 @@ import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
-import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -87,46 +86,46 @@ public open class PhysicsMaterial : Resource() {
   }
 
   public final fun setFriction(friction: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to friction.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setFrictionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to friction.toDouble())
+    TransferContext.callMethod(MethodBindings.setFrictionPtr)
   }
 
   public final fun getFriction(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFrictionPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getFrictionPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRough(rough: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to rough)
-    TransferContext.callMethod(ptr, MethodBindings.setRoughPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to rough)
+    TransferContext.callMethod(MethodBindings.setRoughPtr)
   }
 
   public final fun isRough(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isRoughPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isRoughPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setBounce(bounce: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to bounce.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setBouncePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to bounce.toDouble())
+    TransferContext.callMethod(MethodBindings.setBouncePtr)
   }
 
   public final fun getBounce(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getBouncePtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getBouncePtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAbsorbent(absorbent: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to absorbent)
-    TransferContext.callMethod(ptr, MethodBindings.setAbsorbentPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to absorbent)
+    TransferContext.callMethod(MethodBindings.setAbsorbentPtr)
   }
 
   public final fun isAbsorbent(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isAbsorbentPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isAbsorbentPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

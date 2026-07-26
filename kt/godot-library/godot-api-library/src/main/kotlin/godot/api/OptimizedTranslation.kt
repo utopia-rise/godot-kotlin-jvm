@@ -42,8 +42,8 @@ public open class OptimizedTranslation : Translation() {
    * exported project.
    */
   public final fun generate(from: Translation?): Boolean {
-    TransferContext.writeArguments(OBJECT to from)
-    TransferContext.callMethod(ptr, MethodBindings.generatePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to from)
+    TransferContext.callMethod(MethodBindings.generatePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

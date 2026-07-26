@@ -24,8 +24,8 @@ public open class JvmScript internal constructor() : Script() {
   }
 
   public final fun new(): Any? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.newPtr, ANY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.newPtr)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 

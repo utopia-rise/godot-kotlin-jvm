@@ -15,7 +15,6 @@ import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import kotlin.Double
 import kotlin.Float
 import kotlin.Long
@@ -81,46 +80,46 @@ public open class AspectRatioContainer : Container() {
   }
 
   public final fun setRatio(ratio: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to ratio.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setRatioPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to ratio.toDouble())
+    TransferContext.callMethod(MethodBindings.setRatioPtr)
   }
 
   public final fun getRatio(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getRatioPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getRatioPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setStretchMode(stretchMode: StretchMode): Unit {
-    TransferContext.writeArguments(LONG to stretchMode.value)
-    TransferContext.callMethod(ptr, MethodBindings.setStretchModePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to stretchMode.value)
+    TransferContext.callMethod(MethodBindings.setStretchModePtr)
   }
 
   public final fun getStretchMode(): StretchMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getStretchModePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getStretchModePtr)
     return StretchMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setAlignmentHorizontal(alignmentHorizontal: AlignmentMode): Unit {
-    TransferContext.writeArguments(LONG to alignmentHorizontal.value)
-    TransferContext.callMethod(ptr, MethodBindings.setAlignmentHorizontalPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to alignmentHorizontal.value)
+    TransferContext.callMethod(MethodBindings.setAlignmentHorizontalPtr)
   }
 
   public final fun getAlignmentHorizontal(): AlignmentMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getAlignmentHorizontalPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getAlignmentHorizontalPtr)
     return AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setAlignmentVertical(alignmentVertical: AlignmentMode): Unit {
-    TransferContext.writeArguments(LONG to alignmentVertical.value)
-    TransferContext.callMethod(ptr, MethodBindings.setAlignmentVerticalPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to alignmentVertical.value)
+    TransferContext.callMethod(MethodBindings.setAlignmentVerticalPtr)
   }
 
   public final fun getAlignmentVertical(): AlignmentMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getAlignmentVerticalPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getAlignmentVerticalPtr)
     return AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

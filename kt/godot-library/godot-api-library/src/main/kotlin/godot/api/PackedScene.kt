@@ -117,8 +117,8 @@ public open class PackedScene : Resource() {
    * be cleared. See [Node.owner].
    */
   public final fun pack(path: Node?): Error {
-    TransferContext.writeArguments(OBJECT to path)
-    TransferContext.callMethod(ptr, MethodBindings.packPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to path)
+    TransferContext.callMethod(MethodBindings.packPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -128,8 +128,8 @@ public open class PackedScene : Resource() {
    */
   @JvmOverloads
   public final fun instantiate(editState: GenEditState = PackedScene.GenEditState.DISABLED): Node? {
-    TransferContext.writeArguments(LONG to editState.value)
-    TransferContext.callMethod(ptr, MethodBindings.instantiatePtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to editState.value)
+    TransferContext.callMethod(MethodBindings.instantiatePtr)
     return (TransferContext.readReturnValue(OBJECT) as Node?)
   }
 
@@ -137,8 +137,8 @@ public open class PackedScene : Resource() {
    * Returns `true` if the scene file has nodes.
    */
   public final fun canInstantiate(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.canInstantiatePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.canInstantiatePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -146,8 +146,8 @@ public open class PackedScene : Resource() {
    * Returns the [SceneState] representing the scene file contents.
    */
   public final fun getState(): SceneState? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getStatePtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getStatePtr)
     return (TransferContext.readReturnValue(OBJECT) as SceneState?)
   }
 

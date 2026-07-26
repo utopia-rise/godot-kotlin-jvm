@@ -33,8 +33,8 @@ public open class OpenXRSpatialComponentPersistenceList : OpenXRSpatialComponent
    * Returns the persistent uuid for the entity at this [index].
    */
   public final fun getPersistentUuid(index: Long): String {
-    TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(ptr, MethodBindings.getPersistentUuidPtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index)
+    TransferContext.callMethod(MethodBindings.getPersistentUuidPtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -42,8 +42,8 @@ public open class OpenXRSpatialComponentPersistenceList : OpenXRSpatialComponent
    * Returns the persistent state (`XrSpatialPersistenceStateEXT`) for the entity at this [index].
    */
   public final fun getPersistentState(index: Long): Long {
-    TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(ptr, MethodBindings.getPersistentStatePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index)
+    TransferContext.callMethod(MethodBindings.getPersistentStatePtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 

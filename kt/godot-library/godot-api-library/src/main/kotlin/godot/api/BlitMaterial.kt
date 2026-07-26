@@ -15,7 +15,6 @@ import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.RID
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
@@ -44,13 +43,13 @@ public open class BlitMaterial : Material() {
   }
 
   public final fun setBlendMode(blendMode: BlendMode): Unit {
-    TransferContext.writeArguments(LONG to blendMode.value)
-    TransferContext.callMethod(ptr, MethodBindings.setBlendModePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to blendMode.value)
+    TransferContext.callMethod(MethodBindings.setBlendModePtr)
   }
 
   public final fun getBlendMode(): BlendMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getBlendModePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getBlendModePtr)
     return BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

@@ -13,7 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
@@ -50,13 +49,13 @@ public open class AudioStreamPolyphonic : AudioStream() {
   }
 
   public final fun setPolyphony(voices: Int): Unit {
-    TransferContext.writeArguments(LONG to voices.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setPolyphonyPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to voices.toLong())
+    TransferContext.callMethod(MethodBindings.setPolyphonyPtr)
   }
 
   public final fun getPolyphony(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPolyphonyPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPolyphonyPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 

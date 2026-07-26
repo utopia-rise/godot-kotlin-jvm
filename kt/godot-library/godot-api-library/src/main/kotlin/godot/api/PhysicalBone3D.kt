@@ -20,7 +20,6 @@ import godot.core.Transform3D
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
@@ -410,8 +409,8 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    * This is equivalent to using [applyImpulse] at the body's center of mass.
    */
   public final fun applyCentralImpulse(impulse: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to impulse)
-    TransferContext.callMethod(ptr, MethodBindings.applyCentralImpulsePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR3 to impulse)
+    TransferContext.callMethod(MethodBindings.applyCentralImpulsePtr)
   }
 
   /**
@@ -425,51 +424,51 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    */
   @JvmOverloads
   public final fun applyImpulse(impulse: Vector3, position: Vector3 = Vector3(0, 0, 0)): Unit {
-    TransferContext.writeArguments(VECTOR3 to impulse, VECTOR3 to position)
-    TransferContext.callMethod(ptr, MethodBindings.applyImpulsePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR3 to impulse, VECTOR3 to position)
+    TransferContext.callMethod(MethodBindings.applyImpulsePtr)
   }
 
   public final fun setJointType(jointType: JointType): Unit {
-    TransferContext.writeArguments(LONG to jointType.value)
-    TransferContext.callMethod(ptr, MethodBindings.setJointTypePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to jointType.value)
+    TransferContext.callMethod(MethodBindings.setJointTypePtr)
   }
 
   public final fun getJointType(): JointType {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getJointTypePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getJointTypePtr)
     return JointType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setJointOffset(offset: Transform3D): Unit {
-    TransferContext.writeArguments(TRANSFORM3D to offset)
-    TransferContext.callMethod(ptr, MethodBindings.setJointOffsetPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, TRANSFORM3D to offset)
+    TransferContext.callMethod(MethodBindings.setJointOffsetPtr)
   }
 
   public final fun getJointOffset(): Transform3D {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getJointOffsetPtr, TRANSFORM3D)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getJointOffsetPtr)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   public final fun setJointRotation(euler: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to euler)
-    TransferContext.callMethod(ptr, MethodBindings.setJointRotationPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR3 to euler)
+    TransferContext.callMethod(MethodBindings.setJointRotationPtr)
   }
 
   public final fun getJointRotation(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getJointRotationPtr, VECTOR3)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getJointRotationPtr)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setBodyOffset(offset: Transform3D): Unit {
-    TransferContext.writeArguments(TRANSFORM3D to offset)
-    TransferContext.callMethod(ptr, MethodBindings.setBodyOffsetPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, TRANSFORM3D to offset)
+    TransferContext.callMethod(MethodBindings.setBodyOffsetPtr)
   }
 
   public final fun getBodyOffset(): Transform3D {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getBodyOffsetPtr, TRANSFORM3D)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getBodyOffsetPtr)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
@@ -477,8 +476,8 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    * Returns `true` if the PhysicsBone3D is allowed to simulate physics.
    */
   public final fun getSimulatePhysics(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSimulatePhysicsPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSimulatePhysicsPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -486,8 +485,8 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    * Returns `true` if the PhysicsBone3D is currently simulating physics.
    */
   public final fun isSimulatingPhysics(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isSimulatingPhysicsPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isSimulatingPhysicsPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -495,140 +494,140 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    * Returns the unique identifier of the PhysicsBone3D.
    */
   public final fun getBoneId(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getBoneIdPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getBoneIdPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setMass(mass: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to mass.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setMassPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to mass.toDouble())
+    TransferContext.callMethod(MethodBindings.setMassPtr)
   }
 
   public final fun getMass(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMassPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMassPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFriction(friction: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to friction.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setFrictionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to friction.toDouble())
+    TransferContext.callMethod(MethodBindings.setFrictionPtr)
   }
 
   public final fun getFriction(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFrictionPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getFrictionPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setBounce(bounce: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to bounce.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setBouncePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to bounce.toDouble())
+    TransferContext.callMethod(MethodBindings.setBouncePtr)
   }
 
   public final fun getBounce(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getBouncePtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getBouncePtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setGravityScale(gravityScale: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to gravityScale.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setGravityScalePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to gravityScale.toDouble())
+    TransferContext.callMethod(MethodBindings.setGravityScalePtr)
   }
 
   public final fun getGravityScale(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getGravityScalePtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getGravityScalePtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setLinearDampMode(linearDampMode: DampMode): Unit {
-    TransferContext.writeArguments(LONG to linearDampMode.value)
-    TransferContext.callMethod(ptr, MethodBindings.setLinearDampModePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to linearDampMode.value)
+    TransferContext.callMethod(MethodBindings.setLinearDampModePtr)
   }
 
   public final fun getLinearDampMode(): DampMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getLinearDampModePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getLinearDampModePtr)
     return DampMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setAngularDampMode(angularDampMode: DampMode): Unit {
-    TransferContext.writeArguments(LONG to angularDampMode.value)
-    TransferContext.callMethod(ptr, MethodBindings.setAngularDampModePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to angularDampMode.value)
+    TransferContext.callMethod(MethodBindings.setAngularDampModePtr)
   }
 
   public final fun getAngularDampMode(): DampMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getAngularDampModePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getAngularDampModePtr)
     return DampMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setLinearDamp(linearDamp: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to linearDamp.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setLinearDampPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to linearDamp.toDouble())
+    TransferContext.callMethod(MethodBindings.setLinearDampPtr)
   }
 
   public final fun getLinearDamp(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getLinearDampPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getLinearDampPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAngularDamp(angularDamp: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to angularDamp.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setAngularDampPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to angularDamp.toDouble())
+    TransferContext.callMethod(MethodBindings.setAngularDampPtr)
   }
 
   public final fun getAngularDamp(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getAngularDampPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getAngularDampPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setLinearVelocity(linearVelocity: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to linearVelocity)
-    TransferContext.callMethod(ptr, MethodBindings.setLinearVelocityPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR3 to linearVelocity)
+    TransferContext.callMethod(MethodBindings.setLinearVelocityPtr)
   }
 
   public final fun getLinearVelocity(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getLinearVelocityPtr, VECTOR3)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getLinearVelocityPtr)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setAngularVelocity(angularVelocity: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to angularVelocity)
-    TransferContext.callMethod(ptr, MethodBindings.setAngularVelocityPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR3 to angularVelocity)
+    TransferContext.callMethod(MethodBindings.setAngularVelocityPtr)
   }
 
   public final fun getAngularVelocity(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getAngularVelocityPtr, VECTOR3)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getAngularVelocityPtr)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setUseCustomIntegrator(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(ptr, MethodBindings.setUseCustomIntegratorPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enable)
+    TransferContext.callMethod(MethodBindings.setUseCustomIntegratorPtr)
   }
 
   public final fun isUsingCustomIntegrator(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isUsingCustomIntegratorPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isUsingCustomIntegratorPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCanSleep(ableToSleep: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to ableToSleep)
-    TransferContext.callMethod(ptr, MethodBindings.setCanSleepPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to ableToSleep)
+    TransferContext.callMethod(MethodBindings.setCanSleepPtr)
   }
 
   public final fun isAbleToSleep(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isAbleToSleepPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isAbleToSleepPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

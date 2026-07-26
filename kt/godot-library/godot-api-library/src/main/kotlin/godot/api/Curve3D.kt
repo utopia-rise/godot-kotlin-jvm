@@ -21,7 +21,6 @@ import godot.core.Transform3D
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_FLOAT_32_ARRAY
 import godot.core.VariantParser.PACKED_VECTOR3_ARRAY
 import godot.core.VariantParser.TRANSFORM3D
@@ -100,14 +99,14 @@ public open class Curve3D : Resource() {
   }
 
   public final fun getPointCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPointCountPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPointCountPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setPointCount(count: Int): Unit {
-    TransferContext.writeArguments(LONG to count.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setPointCountPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to count.toLong())
+    TransferContext.callMethod(MethodBindings.setPointCountPtr)
   }
 
   /**
@@ -126,8 +125,8 @@ public open class Curve3D : Resource() {
     `out`: Vector3 = Vector3(0, 0, 0),
     index: Int = -1,
   ): Unit {
-    TransferContext.writeArguments(VECTOR3 to position, VECTOR3 to `in`, VECTOR3 to out, LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.addPointPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR3 to position, VECTOR3 to `in`, VECTOR3 to out, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.addPointPtr)
   }
 
   /**
@@ -135,8 +134,8 @@ public open class Curve3D : Resource() {
    * error to the console.
    */
   public final fun setPointPosition(idx: Int, position: Vector3): Unit {
-    TransferContext.writeArguments(LONG to idx.toLong(), VECTOR3 to position)
-    TransferContext.callMethod(ptr, MethodBindings.setPointPositionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong(), VECTOR3 to position)
+    TransferContext.callMethod(MethodBindings.setPointPositionPtr)
   }
 
   /**
@@ -144,8 +143,8 @@ public open class Curve3D : Resource() {
    * error to the console, and returns `(0, 0, 0)`.
    */
   public final fun getPointPosition(idx: Int): Vector3 {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getPointPositionPtr, VECTOR3)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong())
+    TransferContext.callMethod(MethodBindings.getPointPositionPtr)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
@@ -158,8 +157,8 @@ public open class Curve3D : Resource() {
    * the [PathFollow3D] calculates.
    */
   public final fun setPointTilt(idx: Int, tilt: Float): Unit {
-    TransferContext.writeArguments(LONG to idx.toLong(), DOUBLE to tilt.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setPointTiltPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong(), DOUBLE to tilt.toDouble())
+    TransferContext.callMethod(MethodBindings.setPointTiltPtr)
   }
 
   /**
@@ -167,8 +166,8 @@ public open class Curve3D : Resource() {
    * function sends an error to the console, and returns `0`.
    */
   public final fun getPointTilt(idx: Int): Float {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getPointTiltPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong())
+    TransferContext.callMethod(MethodBindings.getPointTiltPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -177,8 +176,8 @@ public open class Curve3D : Resource() {
    * bounds, the function sends an error to the console. The position is relative to the vertex.
    */
   public final fun setPointIn(idx: Int, position: Vector3): Unit {
-    TransferContext.writeArguments(LONG to idx.toLong(), VECTOR3 to position)
-    TransferContext.callMethod(ptr, MethodBindings.setPointInPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong(), VECTOR3 to position)
+    TransferContext.callMethod(MethodBindings.setPointInPtr)
   }
 
   /**
@@ -187,8 +186,8 @@ public open class Curve3D : Resource() {
    * console, and returns `(0, 0, 0)`.
    */
   public final fun getPointIn(idx: Int): Vector3 {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getPointInPtr, VECTOR3)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong())
+    TransferContext.callMethod(MethodBindings.getPointInPtr)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
@@ -197,8 +196,8 @@ public open class Curve3D : Resource() {
    * bounds, the function sends an error to the console. The position is relative to the vertex.
    */
   public final fun setPointOut(idx: Int, position: Vector3): Unit {
-    TransferContext.writeArguments(LONG to idx.toLong(), VECTOR3 to position)
-    TransferContext.callMethod(ptr, MethodBindings.setPointOutPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong(), VECTOR3 to position)
+    TransferContext.callMethod(MethodBindings.setPointOutPtr)
   }
 
   /**
@@ -207,8 +206,8 @@ public open class Curve3D : Resource() {
    * error to the console, and returns `(0, 0, 0)`.
    */
   public final fun getPointOut(idx: Int): Vector3 {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getPointOutPtr, VECTOR3)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong())
+    TransferContext.callMethod(MethodBindings.getPointOutPtr)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
@@ -217,16 +216,16 @@ public open class Curve3D : Resource() {
    * bounds.
    */
   public final fun removePoint(idx: Int): Unit {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.removePointPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong())
+    TransferContext.callMethod(MethodBindings.removePointPtr)
   }
 
   /**
    * Removes all points from the curve.
    */
   public final fun clearPoints(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.clearPointsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.clearPointsPtr)
   }
 
   /**
@@ -238,8 +237,8 @@ public open class Curve3D : Resource() {
    * the curve has no points, the function sends an error to the console, and returns `(0, 0, 0)`.
    */
   public final fun sample(idx: Int, t: Float): Vector3 {
-    TransferContext.writeArguments(LONG to idx.toLong(), DOUBLE to t.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.samplePtr, VECTOR3)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong(), DOUBLE to t.toDouble())
+    TransferContext.callMethod(MethodBindings.samplePtr)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
@@ -248,41 +247,41 @@ public open class Curve3D : Resource() {
    * as `idx`, and its fractional part as `t`.
    */
   public final fun samplef(fofs: Float): Vector3 {
-    TransferContext.writeArguments(DOUBLE to fofs.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.samplefPtr, VECTOR3)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to fofs.toDouble())
+    TransferContext.callMethod(MethodBindings.samplefPtr)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setClosed(closed: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to closed)
-    TransferContext.callMethod(ptr, MethodBindings.setClosedPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to closed)
+    TransferContext.callMethod(MethodBindings.setClosedPtr)
   }
 
   public final fun isClosed(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isClosedPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isClosedPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setBakeInterval(distance: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to distance.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setBakeIntervalPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to distance.toDouble())
+    TransferContext.callMethod(MethodBindings.setBakeIntervalPtr)
   }
 
   public final fun getBakeInterval(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getBakeIntervalPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getBakeIntervalPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setUpVectorEnabled(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(ptr, MethodBindings.setUpVectorEnabledPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enable)
+    TransferContext.callMethod(MethodBindings.setUpVectorEnabledPtr)
   }
 
   public final fun isUpVectorEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isUpVectorEnabledPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isUpVectorEnabledPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -291,8 +290,8 @@ public open class Curve3D : Resource() {
    * [bakeInterval]), it should be approximate enough.
    */
   public final fun getBakedLength(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getBakedLengthPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getBakedLengthPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -307,8 +306,8 @@ public open class Curve3D : Resource() {
    */
   @JvmOverloads
   public final fun sampleBaked(offset: Float = 0.0f, cubic: Boolean = false): Vector3 {
-    TransferContext.writeArguments(DOUBLE to offset.toDouble(), BOOL to cubic)
-    TransferContext.callMethod(ptr, MethodBindings.sampleBakedPtr, VECTOR3)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to offset.toDouble(), BOOL to cubic)
+    TransferContext.callMethod(MethodBindings.sampleBakedPtr)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
@@ -323,8 +322,8 @@ public open class Curve3D : Resource() {
     cubic: Boolean = false,
     applyTilt: Boolean = false,
   ): Transform3D {
-    TransferContext.writeArguments(DOUBLE to offset.toDouble(), BOOL to cubic, BOOL to applyTilt)
-    TransferContext.callMethod(ptr, MethodBindings.sampleBakedWithRotationPtr, TRANSFORM3D)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to offset.toDouble(), BOOL to cubic, BOOL to applyTilt)
+    TransferContext.callMethod(MethodBindings.sampleBakedWithRotationPtr)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
@@ -339,8 +338,8 @@ public open class Curve3D : Resource() {
    */
   @JvmOverloads
   public final fun sampleBakedUpVector(offset: Float, applyTilt: Boolean = false): Vector3 {
-    TransferContext.writeArguments(DOUBLE to offset.toDouble(), BOOL to applyTilt)
-    TransferContext.callMethod(ptr, MethodBindings.sampleBakedUpVectorPtr, VECTOR3)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to offset.toDouble(), BOOL to applyTilt)
+    TransferContext.callMethod(MethodBindings.sampleBakedUpVectorPtr)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
@@ -348,8 +347,8 @@ public open class Curve3D : Resource() {
    * Returns the cache of points as a [PackedVector3Array].
    */
   public final fun getBakedPoints(): PackedVector3Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getBakedPointsPtr, PACKED_VECTOR3_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getBakedPointsPtr)
     return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
 
@@ -357,8 +356,8 @@ public open class Curve3D : Resource() {
    * Returns the cache of tilts as a [PackedFloat32Array].
    */
   public final fun getBakedTilts(): PackedFloat32Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getBakedTiltsPtr, PACKED_FLOAT_32_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getBakedTiltsPtr)
     return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY) as PackedFloat32Array)
   }
 
@@ -368,8 +367,8 @@ public open class Curve3D : Resource() {
    * If [upVectorEnabled] is `false`, the cache will be empty.
    */
   public final fun getBakedUpVectors(): PackedVector3Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getBakedUpVectorsPtr, PACKED_VECTOR3_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getBakedUpVectorsPtr)
     return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
 
@@ -379,8 +378,8 @@ public open class Curve3D : Resource() {
    * [toPoint] must be in this curve's local space.
    */
   public final fun getClosestPoint(toPoint: Vector3): Vector3 {
-    TransferContext.writeArguments(VECTOR3 to toPoint)
-    TransferContext.callMethod(ptr, MethodBindings.getClosestPointPtr, VECTOR3)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR3 to toPoint)
+    TransferContext.callMethod(MethodBindings.getClosestPointPtr)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
@@ -391,8 +390,8 @@ public open class Curve3D : Resource() {
    * [toPoint] must be in this curve's local space.
    */
   public final fun getClosestOffset(toPoint: Vector3): Float {
-    TransferContext.writeArguments(VECTOR3 to toPoint)
-    TransferContext.callMethod(ptr, MethodBindings.getClosestOffsetPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR3 to toPoint)
+    TransferContext.callMethod(MethodBindings.getClosestOffsetPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -413,8 +412,8 @@ public open class Curve3D : Resource() {
   @JvmOverloads
   public final fun tessellate(maxStages: Int = 5, toleranceDegrees: Float = 4.0f):
       PackedVector3Array {
-    TransferContext.writeArguments(LONG to maxStages.toLong(), DOUBLE to toleranceDegrees.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.tessellatePtr, PACKED_VECTOR3_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to maxStages.toLong(), DOUBLE to toleranceDegrees.toDouble())
+    TransferContext.callMethod(MethodBindings.tessellatePtr)
     return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
 
@@ -430,8 +429,8 @@ public open class Curve3D : Resource() {
   @JvmOverloads
   public final fun tessellateEvenLength(maxStages: Int = 5, toleranceLength: Float = 0.2f):
       PackedVector3Array {
-    TransferContext.writeArguments(LONG to maxStages.toLong(), DOUBLE to toleranceLength.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.tessellateEvenLengthPtr, PACKED_VECTOR3_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to maxStages.toLong(), DOUBLE to toleranceLength.toDouble())
+    TransferContext.callMethod(MethodBindings.tessellateEvenLengthPtr)
     return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
 

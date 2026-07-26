@@ -16,7 +16,6 @@ import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.Transform3D
 import godot.core.VariantParser.BOOL
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.TRANSFORM3D
 import kotlin.Boolean
 import kotlin.Suppress
@@ -84,24 +83,24 @@ public open class VisualShaderNodeTransformParameter : VisualShaderNodeParameter
   }
 
   public final fun setDefaultValueEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.setDefaultValueEnabledPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enabled)
+    TransferContext.callMethod(MethodBindings.setDefaultValueEnabledPtr)
   }
 
   public final fun isDefaultValueEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isDefaultValueEnabledPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isDefaultValueEnabledPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDefaultValue(`value`: Transform3D): Unit {
-    TransferContext.writeArguments(TRANSFORM3D to value)
-    TransferContext.callMethod(ptr, MethodBindings.setDefaultValuePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, TRANSFORM3D to value)
+    TransferContext.callMethod(MethodBindings.setDefaultValuePtr)
   }
 
   public final fun getDefaultValue(): Transform3D {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getDefaultValuePtr, TRANSFORM3D)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getDefaultValuePtr)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 

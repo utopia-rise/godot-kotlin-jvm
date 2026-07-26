@@ -18,7 +18,6 @@ import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.Signal2
 import godot.core.VariantParser.BOOL
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import kotlin.Boolean
@@ -178,68 +177,68 @@ public open class GraphElement : Container() {
   }
 
   public final fun setResizable(resizable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to resizable)
-    TransferContext.callMethod(ptr, MethodBindings.setResizablePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to resizable)
+    TransferContext.callMethod(MethodBindings.setResizablePtr)
   }
 
   public final fun isResizable(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isResizablePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isResizablePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDraggable(draggable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to draggable)
-    TransferContext.callMethod(ptr, MethodBindings.setDraggablePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to draggable)
+    TransferContext.callMethod(MethodBindings.setDraggablePtr)
   }
 
   public final fun isDraggable(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isDraggablePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isDraggablePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSelectable(selectable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to selectable)
-    TransferContext.callMethod(ptr, MethodBindings.setSelectablePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to selectable)
+    TransferContext.callMethod(MethodBindings.setSelectablePtr)
   }
 
   public final fun isSelectable(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isSelectablePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isSelectablePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSelected(selected: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to selected)
-    TransferContext.callMethod(ptr, MethodBindings.setSelectedPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to selected)
+    TransferContext.callMethod(MethodBindings.setSelectedPtr)
   }
 
   public final fun isSelected(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isSelectedPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isSelectedPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setScalingMenus(scalingMenus: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to scalingMenus)
-    TransferContext.callMethod(ptr, MethodBindings.setScalingMenusPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to scalingMenus)
+    TransferContext.callMethod(MethodBindings.setScalingMenusPtr)
   }
 
   public final fun isScalingMenus(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isScalingMenusPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isScalingMenusPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setPositionOffset(offset: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to offset)
-    TransferContext.callMethod(ptr, MethodBindings.setPositionOffsetPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to offset)
+    TransferContext.callMethod(MethodBindings.setPositionOffsetPtr)
   }
 
   public final fun getPositionOffset(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPositionOffsetPtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPositionOffsetPtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 

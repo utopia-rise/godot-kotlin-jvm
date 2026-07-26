@@ -15,7 +15,6 @@ import godot.common.interop.VoidPtr
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.PackedVector2Array
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
 import godot.core.Vector2
 import kotlin.Int
@@ -117,13 +116,13 @@ public open class ConcavePolygonShape2D : Shape2D() {
   }
 
   public final fun setSegments(segments: PackedVector2Array): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to segments)
-    TransferContext.callMethod(ptr, MethodBindings.setSegmentsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_VECTOR2_ARRAY to segments)
+    TransferContext.callMethod(MethodBindings.setSegmentsPtr)
   }
 
   public final fun getSegments(): PackedVector2Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSegmentsPtr, PACKED_VECTOR2_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSegmentsPtr)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 

@@ -17,7 +17,6 @@ import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.PackedStringArray
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
 import kotlin.Int
@@ -131,35 +130,35 @@ public open class OpenXRAction : Resource() {
   }
 
   public final fun setLocalizedName(localizedName: String): Unit {
-    TransferContext.writeArguments(STRING to localizedName)
-    TransferContext.callMethod(ptr, MethodBindings.setLocalizedNamePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to localizedName)
+    TransferContext.callMethod(MethodBindings.setLocalizedNamePtr)
   }
 
   public final fun getLocalizedName(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getLocalizedNamePtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getLocalizedNamePtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setActionType(actionType: ActionType): Unit {
-    TransferContext.writeArguments(LONG to actionType.value)
-    TransferContext.callMethod(ptr, MethodBindings.setActionTypePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to actionType.value)
+    TransferContext.callMethod(MethodBindings.setActionTypePtr)
   }
 
   public final fun getActionType(): ActionType {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getActionTypePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getActionTypePtr)
     return ActionType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setToplevelPaths(toplevelPaths: PackedStringArray): Unit {
-    TransferContext.writeArguments(PACKED_STRING_ARRAY to toplevelPaths)
-    TransferContext.callMethod(ptr, MethodBindings.setToplevelPathsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_STRING_ARRAY to toplevelPaths)
+    TransferContext.callMethod(MethodBindings.setToplevelPathsPtr)
   }
 
   public final fun getToplevelPaths(): PackedStringArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getToplevelPathsPtr, PACKED_STRING_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getToplevelPathsPtr)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 

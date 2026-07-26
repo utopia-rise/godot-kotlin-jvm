@@ -49,8 +49,8 @@ public open class AudioEffectSpectrumAnalyzerInstance internal constructor() : A
     toHz: Float,
     mode: MagnitudeMode = AudioEffectSpectrumAnalyzerInstance.MagnitudeMode.MAX,
   ): Vector2 {
-    TransferContext.writeArguments(DOUBLE to fromHz.toDouble(), DOUBLE to toHz.toDouble(), LONG to mode.value)
-    TransferContext.callMethod(ptr, MethodBindings.getMagnitudeForFrequencyRangePtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to fromHz.toDouble(), DOUBLE to toHz.toDouble(), LONG to mode.value)
+    TransferContext.callMethod(MethodBindings.getMagnitudeForFrequencyRangePtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 

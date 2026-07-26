@@ -13,7 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
-import godot.core.VariantParser.NIL
 import kotlin.Double
 import kotlin.Float
 import kotlin.Suppress
@@ -48,13 +47,13 @@ public open class InputEventMagnifyGesture : InputEventGesture() {
   }
 
   public final fun setFactor(factor: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to factor.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setFactorPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to factor.toDouble())
+    TransferContext.callMethod(MethodBindings.setFactorPtr)
   }
 
   public final fun getFactor(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFactorPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getFactorPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 

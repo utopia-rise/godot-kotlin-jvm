@@ -17,7 +17,6 @@ import godot.core.StringName
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser._RID
 import kotlin.Boolean
 import kotlin.Suppress
@@ -40,8 +39,8 @@ public open class PhysicalBoneSimulator3D : SkeletonModifier3D() {
    * simulating.
    */
   public final fun isSimulatingPhysics(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isSimulatingPhysicsPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isSimulatingPhysicsPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -49,8 +48,8 @@ public open class PhysicalBoneSimulator3D : SkeletonModifier3D() {
    * Tells the [PhysicalBone3D] nodes in the Skeleton to stop simulating.
    */
   public final fun physicalBonesStopSimulation(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.physicalBonesStopSimulationPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.physicalBonesStopSimulationPtr)
   }
 
   /**
@@ -63,8 +62,8 @@ public open class PhysicalBoneSimulator3D : SkeletonModifier3D() {
   @JvmOverloads
   public final fun physicalBonesStartSimulation(bones: VariantArray<StringName> =
       godot.core.variantArrayOf()): Unit {
-    TransferContext.writeArguments(ARRAY to bones)
-    TransferContext.callMethod(ptr, MethodBindings.physicalBonesStartSimulationPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, ARRAY to bones)
+    TransferContext.callMethod(MethodBindings.physicalBonesStartSimulationPtr)
   }
 
   /**
@@ -73,8 +72,8 @@ public open class PhysicalBoneSimulator3D : SkeletonModifier3D() {
    * Works just like the [RigidBody3D] node.
    */
   public final fun physicalBonesAddCollisionException(exception: RID): Unit {
-    TransferContext.writeArguments(_RID to exception)
-    TransferContext.callMethod(ptr, MethodBindings.physicalBonesAddCollisionExceptionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to exception)
+    TransferContext.callMethod(MethodBindings.physicalBonesAddCollisionExceptionPtr)
   }
 
   /**
@@ -83,8 +82,8 @@ public open class PhysicalBoneSimulator3D : SkeletonModifier3D() {
    * Works just like the [RigidBody3D] node.
    */
   public final fun physicalBonesRemoveCollisionException(exception: RID): Unit {
-    TransferContext.writeArguments(_RID to exception)
-    TransferContext.callMethod(ptr, MethodBindings.physicalBonesRemoveCollisionExceptionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to exception)
+    TransferContext.callMethod(MethodBindings.physicalBonesRemoveCollisionExceptionPtr)
   }
 
   public companion object {

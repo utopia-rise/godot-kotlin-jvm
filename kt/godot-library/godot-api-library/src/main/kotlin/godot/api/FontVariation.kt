@@ -21,7 +21,6 @@ import godot.core.Transform2D
 import godot.core.VariantParser.DICTIONARY
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_COLOR_ARRAY
 import godot.core.VariantParser.TRANSFORM2D
@@ -271,104 +270,104 @@ public open class FontVariation : Font() {
   }
 
   public final fun setBaseFont(font: Font?): Unit {
-    TransferContext.writeArguments(OBJECT to font)
-    TransferContext.callMethod(ptr, MethodBindings.setBaseFontPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to font)
+    TransferContext.callMethod(MethodBindings.setBaseFontPtr)
   }
 
   public final fun getBaseFont(): Font? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getBaseFontPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getBaseFontPtr)
     return (TransferContext.readReturnValue(OBJECT) as Font?)
   }
 
   public final fun setVariationOpentype(coords: Dictionary<Any?, Any?>): Unit {
-    TransferContext.writeArguments(DICTIONARY to coords)
-    TransferContext.callMethod(ptr, MethodBindings.setVariationOpentypePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DICTIONARY to coords)
+    TransferContext.callMethod(MethodBindings.setVariationOpentypePtr)
   }
 
   public final fun getVariationOpentype(): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getVariationOpentypePtr, DICTIONARY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getVariationOpentypePtr)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   public final fun setVariationEmbolden(strength: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to strength.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setVariationEmboldenPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to strength.toDouble())
+    TransferContext.callMethod(MethodBindings.setVariationEmboldenPtr)
   }
 
   public final fun getVariationEmbolden(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getVariationEmboldenPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getVariationEmboldenPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVariationFaceIndex(faceIndex: Int): Unit {
-    TransferContext.writeArguments(LONG to faceIndex.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setVariationFaceIndexPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to faceIndex.toLong())
+    TransferContext.callMethod(MethodBindings.setVariationFaceIndexPtr)
   }
 
   public final fun getVariationFaceIndex(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getVariationFaceIndexPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getVariationFaceIndexPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setVariationTransform(transform: Transform2D): Unit {
-    TransferContext.writeArguments(TRANSFORM2D to transform)
-    TransferContext.callMethod(ptr, MethodBindings.setVariationTransformPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, TRANSFORM2D to transform)
+    TransferContext.callMethod(MethodBindings.setVariationTransformPtr)
   }
 
   public final fun getVariationTransform(): Transform2D {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getVariationTransformPtr, TRANSFORM2D)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getVariationTransformPtr)
     return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
   }
 
   public final fun setOpentypeFeatures(features: Dictionary<Any?, Any?>): Unit {
-    TransferContext.writeArguments(DICTIONARY to features)
-    TransferContext.callMethod(ptr, MethodBindings.setOpentypeFeaturesPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DICTIONARY to features)
+    TransferContext.callMethod(MethodBindings.setOpentypeFeaturesPtr)
   }
 
   /**
    * Sets the spacing for [spacing] to [value] in pixels (not relative to the font size).
    */
   public final fun setSpacing(spacing: TextServer.SpacingType, `value`: Int): Unit {
-    TransferContext.writeArguments(LONG to spacing.value, LONG to value.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setSpacingPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to spacing.value, LONG to value.toLong())
+    TransferContext.callMethod(MethodBindings.setSpacingPtr)
   }
 
   public final fun setBaselineOffset(baselineOffset: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to baselineOffset.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setBaselineOffsetPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to baselineOffset.toDouble())
+    TransferContext.callMethod(MethodBindings.setBaselineOffsetPtr)
   }
 
   public final fun getBaselineOffset(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getBaselineOffsetPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getBaselineOffsetPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getPaletteIndex(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPaletteIndexPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPaletteIndexPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setPaletteIndex(paletteIndex: Long): Unit {
-    TransferContext.writeArguments(LONG to paletteIndex)
-    TransferContext.callMethod(ptr, MethodBindings.setPaletteIndexPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to paletteIndex)
+    TransferContext.callMethod(MethodBindings.setPaletteIndexPtr)
   }
 
   public final fun getPaletteCustomColors(): PackedColorArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPaletteCustomColorsPtr, PACKED_COLOR_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPaletteCustomColorsPtr)
     return (TransferContext.readReturnValue(PACKED_COLOR_ARRAY) as PackedColorArray)
   }
 
   public final fun setPaletteCustomColors(colors: PackedColorArray): Unit {
-    TransferContext.writeArguments(PACKED_COLOR_ARRAY to colors)
-    TransferContext.callMethod(ptr, MethodBindings.setPaletteCustomColorsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_COLOR_ARRAY to colors)
+    TransferContext.callMethod(MethodBindings.setPaletteCustomColorsPtr)
   }
 
   public companion object {

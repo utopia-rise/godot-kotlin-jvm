@@ -13,7 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
-import godot.core.VariantParser.NIL
 import kotlin.Double
 import kotlin.Float
 import kotlin.Suppress
@@ -67,13 +66,13 @@ public open class DirectionalLight2D : Light2D() {
   }
 
   public final fun setMaxDistance(pixels: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to pixels.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setMaxDistancePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to pixels.toDouble())
+    TransferContext.callMethod(MethodBindings.setMaxDistancePtr)
   }
 
   public final fun getMaxDistance(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMaxDistancePtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMaxDistancePtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 

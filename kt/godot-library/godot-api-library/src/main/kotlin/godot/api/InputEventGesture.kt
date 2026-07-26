@@ -14,7 +14,6 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import kotlin.Suppress
@@ -73,13 +72,13 @@ public open class InputEventGesture internal constructor() : InputEventWithModif
   }
 
   public final fun setPosition(position: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to position)
-    TransferContext.callMethod(ptr, MethodBindings.setPositionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to position)
+    TransferContext.callMethod(MethodBindings.setPositionPtr)
   }
 
   public final fun getPosition(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPositionPtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPositionPtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 

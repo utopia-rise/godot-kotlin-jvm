@@ -19,7 +19,6 @@ import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
 import kotlin.Int
@@ -136,14 +135,14 @@ public object CameraServer : Object() {
 
   @JvmStatic
   public final fun setMonitoringFeeds(isMonitoringFeeds: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to isMonitoringFeeds)
-    TransferContext.callMethod(ptr, MethodBindings.setMonitoringFeedsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to isMonitoringFeeds)
+    TransferContext.callMethod(MethodBindings.setMonitoringFeedsPtr)
   }
 
   @JvmStatic
   public final fun isMonitoringFeeds(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isMonitoringFeedsPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isMonitoringFeedsPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -152,8 +151,8 @@ public object CameraServer : Object() {
    */
   @JvmStatic
   public final fun getFeed(index: Int): CameraFeed? {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getFeedPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getFeedPtr)
     return (TransferContext.readReturnValue(OBJECT) as CameraFeed?)
   }
 
@@ -162,8 +161,8 @@ public object CameraServer : Object() {
    */
   @JvmStatic
   public final fun getFeedCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFeedCountPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getFeedCountPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -172,8 +171,8 @@ public object CameraServer : Object() {
    */
   @JvmStatic
   public final fun feeds(): VariantArray<CameraFeed> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.feedsPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.feedsPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<CameraFeed>)
   }
 
@@ -182,8 +181,8 @@ public object CameraServer : Object() {
    */
   @JvmStatic
   public final fun addFeed(feed: CameraFeed?): Unit {
-    TransferContext.writeArguments(OBJECT to feed)
-    TransferContext.callMethod(ptr, MethodBindings.addFeedPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to feed)
+    TransferContext.callMethod(MethodBindings.addFeedPtr)
   }
 
   /**
@@ -191,8 +190,8 @@ public object CameraServer : Object() {
    */
   @JvmStatic
   public final fun removeFeed(feed: CameraFeed?): Unit {
-    TransferContext.writeArguments(OBJECT to feed)
-    TransferContext.callMethod(ptr, MethodBindings.removeFeedPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to feed)
+    TransferContext.callMethod(MethodBindings.removeFeedPtr)
   }
 
   public enum class FeedImage(

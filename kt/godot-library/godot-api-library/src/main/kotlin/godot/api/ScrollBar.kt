@@ -14,7 +14,6 @@ import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.Signal0
 import godot.core.VariantParser.DOUBLE
-import godot.core.VariantParser.NIL
 import kotlin.Double
 import kotlin.Float
 import kotlin.Suppress
@@ -50,13 +49,13 @@ public open class ScrollBar internal constructor() : Range() {
   }
 
   public final fun setCustomStep(step: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to step.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setCustomStepPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to step.toDouble())
+    TransferContext.callMethod(MethodBindings.setCustomStepPtr)
   }
 
   public final fun getCustomStep(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCustomStepPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCustomStepPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 

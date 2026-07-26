@@ -19,7 +19,6 @@ import godot.core.MethodStringName2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
@@ -156,57 +155,57 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
   }
 
   public final fun setSize(size: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to size)
-    TransferContext.callMethod(ptr, MethodBindings.setSizePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR3 to size)
+    TransferContext.callMethod(MethodBindings.setSizePtr)
   }
 
   public final fun getSize(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSizePtr, VECTOR3)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSizePtr)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setResolution(resolution: Resolution): Unit {
-    TransferContext.writeArguments(LONG to resolution.value)
-    TransferContext.callMethod(ptr, MethodBindings.setResolutionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to resolution.value)
+    TransferContext.callMethod(MethodBindings.setResolutionPtr)
   }
 
   public final fun getResolution(): Resolution {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getResolutionPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getResolutionPtr)
     return Resolution.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setTexture(texture: Texture3D?): Unit {
-    TransferContext.writeArguments(OBJECT to texture)
-    TransferContext.callMethod(ptr, MethodBindings.setTexturePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to texture)
+    TransferContext.callMethod(MethodBindings.setTexturePtr)
   }
 
   public final fun getTexture(): Texture3D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getTexturePtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getTexturePtr)
     return (TransferContext.readReturnValue(OBJECT) as Texture3D?)
   }
 
   public final fun setThickness(thickness: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to thickness.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setThicknessPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to thickness.toDouble())
+    TransferContext.callMethod(MethodBindings.setThicknessPtr)
   }
 
   public final fun getThickness(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getThicknessPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getThicknessPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setBakeMask(mask: Long): Unit {
-    TransferContext.writeArguments(LONG to mask)
-    TransferContext.callMethod(ptr, MethodBindings.setBakeMaskPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to mask)
+    TransferContext.callMethod(MethodBindings.setBakeMaskPtr)
   }
 
   public final fun getBakeMask(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getBakeMaskPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getBakeMaskPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -215,8 +214,8 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
    * [layerNumber] between 1 and 32.
    */
   public final fun setBakeMaskValue(layerNumber: Int, `value`: Boolean): Unit {
-    TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
-    TransferContext.callMethod(ptr, MethodBindings.setBakeMaskValuePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to layerNumber.toLong(), BOOL to value)
+    TransferContext.callMethod(MethodBindings.setBakeMaskValuePtr)
   }
 
   /**
@@ -224,8 +223,8 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
    * between 1 and 32.
    */
   public final fun getBakeMaskValue(layerNumber: Int): Boolean {
-    TransferContext.writeArguments(LONG to layerNumber.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getBakeMaskValuePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to layerNumber.toLong())
+    TransferContext.callMethod(MethodBindings.getBakeMaskValuePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

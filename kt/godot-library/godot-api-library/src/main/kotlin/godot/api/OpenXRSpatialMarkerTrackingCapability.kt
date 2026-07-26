@@ -20,7 +20,6 @@ import godot.core.VariantCallable
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.CALLABLE
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser._RID
 import kotlin.Boolean
@@ -42,8 +41,8 @@ public open class OpenXRSpatialMarkerTrackingCapability : OpenXRExtensionWrapper
    * Returns `true` if QR code marker tracking is supported by the current device.
    */
   public final fun isQrcodeSupported(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isQrcodeSupportedPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isQrcodeSupportedPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -51,8 +50,8 @@ public open class OpenXRSpatialMarkerTrackingCapability : OpenXRExtensionWrapper
    * Returns `true` if micro QR code marker tracking is supported by the current device.
    */
   public final fun isMicroQrcodeSupported(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isMicroQrcodeSupportedPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isMicroQrcodeSupportedPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -60,8 +59,8 @@ public open class OpenXRSpatialMarkerTrackingCapability : OpenXRExtensionWrapper
    * Returns `true` if Aruco marker tracking is supported by the current device.
    */
   public final fun isArucoSupported(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isArucoSupportedPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isArucoSupportedPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -69,8 +68,8 @@ public open class OpenXRSpatialMarkerTrackingCapability : OpenXRExtensionWrapper
    * Returns `true` if April tag marker tracking is supported by the current device.
    */
   public final fun isAprilTagSupported(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isAprilTagSupportedPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isAprilTagSupportedPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -104,8 +103,8 @@ public open class OpenXRSpatialMarkerTrackingCapability : OpenXRExtensionWrapper
     nextSnapshotQuery: OpenXRStructureBase? = null,
     userCallback: Callable = VariantCallable(),
   ): OpenXRFutureResult? {
-    TransferContext.writeArguments(_RID to spatialContext, ARRAY to componentData, OBJECT to nextSnapshotCreate, OBJECT to nextSnapshotQuery, CALLABLE to userCallback)
-    TransferContext.callMethod(ptr, MethodBindings.startEntityDiscoveryPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to spatialContext, ARRAY to componentData, OBJECT to nextSnapshotCreate, OBJECT to nextSnapshotQuery, CALLABLE to userCallback)
+    TransferContext.callMethod(MethodBindings.startEntityDiscoveryPtr)
     return (TransferContext.readReturnValue(OBJECT) as OpenXRFutureResult?)
   }
 
@@ -129,8 +128,8 @@ public open class OpenXRSpatialMarkerTrackingCapability : OpenXRExtensionWrapper
     nextSnapshotCreate: OpenXRStructureBase? = null,
     nextSnapshotQuery: OpenXRStructureBase? = null,
   ): Unit {
-    TransferContext.writeArguments(_RID to spatialContext, ARRAY to componentData, OBJECT to nextSnapshotCreate, OBJECT to nextSnapshotQuery)
-    TransferContext.callMethod(ptr, MethodBindings.doEntityUpdatePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to spatialContext, ARRAY to componentData, OBJECT to nextSnapshotCreate, OBJECT to nextSnapshotQuery)
+    TransferContext.callMethod(MethodBindings.doEntityUpdatePtr)
   }
 
   public companion object {

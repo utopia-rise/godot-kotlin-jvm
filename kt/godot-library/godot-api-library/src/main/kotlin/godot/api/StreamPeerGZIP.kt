@@ -15,7 +15,6 @@ import godot.core.MethodStringName0
 import godot.core.MethodStringName2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -49,8 +48,8 @@ public open class StreamPeerGZIP : StreamPeer() {
    */
   @JvmOverloads
   public final fun startCompression(useDeflate: Boolean = false, bufferSize: Int = 65535): Error {
-    TransferContext.writeArguments(BOOL to useDeflate, LONG to bufferSize.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.startCompressionPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to useDeflate, LONG to bufferSize.toLong())
+    TransferContext.callMethod(MethodBindings.startCompressionPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -60,8 +59,8 @@ public open class StreamPeerGZIP : StreamPeer() {
    */
   @JvmOverloads
   public final fun startDecompression(useDeflate: Boolean = false, bufferSize: Int = 65535): Error {
-    TransferContext.writeArguments(BOOL to useDeflate, LONG to bufferSize.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.startDecompressionPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to useDeflate, LONG to bufferSize.toLong())
+    TransferContext.callMethod(MethodBindings.startDecompressionPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -71,8 +70,8 @@ public open class StreamPeerGZIP : StreamPeer() {
    * You must call it only when you are compressing.
    */
   public final fun finish(): Error {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.finishPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.finishPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -80,8 +79,8 @@ public open class StreamPeerGZIP : StreamPeer() {
    * Clears this stream, resetting the internal state.
    */
   public final fun clear(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.clearPtr)
   }
 
   public companion object {

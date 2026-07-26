@@ -19,7 +19,6 @@ import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
@@ -139,24 +138,24 @@ public open class OpenXRIPBinding : Resource() {
   }
 
   public final fun setAction(action: OpenXRAction?): Unit {
-    TransferContext.writeArguments(OBJECT to action)
-    TransferContext.callMethod(ptr, MethodBindings.setActionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to action)
+    TransferContext.callMethod(MethodBindings.setActionPtr)
   }
 
   public final fun getAction(): OpenXRAction? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getActionPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getActionPtr)
     return (TransferContext.readReturnValue(OBJECT) as OpenXRAction?)
   }
 
   public final fun setBindingPath(bindingPath: String): Unit {
-    TransferContext.writeArguments(STRING to bindingPath)
-    TransferContext.callMethod(ptr, MethodBindings.setBindingPathPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to bindingPath)
+    TransferContext.callMethod(MethodBindings.setBindingPathPtr)
   }
 
   public final fun getBindingPath(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getBindingPathPtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getBindingPathPtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -164,8 +163,8 @@ public open class OpenXRIPBinding : Resource() {
    * Get the number of binding modifiers for this binding.
    */
   public final fun getBindingModifierCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getBindingModifierCountPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getBindingModifierCountPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -173,30 +172,30 @@ public open class OpenXRIPBinding : Resource() {
    * Get the [OpenXRBindingModifier] at this index.
    */
   public final fun getBindingModifier(index: Int): OpenXRActionBindingModifier? {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getBindingModifierPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getBindingModifierPtr)
     return (TransferContext.readReturnValue(OBJECT) as OpenXRActionBindingModifier?)
   }
 
   public final fun setBindingModifiers(bindingModifiers: VariantArray<Any?>): Unit {
-    TransferContext.writeArguments(ARRAY to bindingModifiers)
-    TransferContext.callMethod(ptr, MethodBindings.setBindingModifiersPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, ARRAY to bindingModifiers)
+    TransferContext.callMethod(MethodBindings.setBindingModifiersPtr)
   }
 
   public final fun getBindingModifiers(): VariantArray<Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getBindingModifiersPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getBindingModifiersPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   public final fun setPaths(paths: PackedStringArray): Unit {
-    TransferContext.writeArguments(PACKED_STRING_ARRAY to paths)
-    TransferContext.callMethod(ptr, MethodBindings.setPathsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_STRING_ARRAY to paths)
+    TransferContext.callMethod(MethodBindings.setPathsPtr)
   }
 
   public final fun getPaths(): PackedStringArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPathsPtr, PACKED_STRING_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPathsPtr)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
@@ -204,8 +203,8 @@ public open class OpenXRIPBinding : Resource() {
    * Get the number of input/output paths in this binding.
    */
   public final fun getPathCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPathCountPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPathCountPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -213,8 +212,8 @@ public open class OpenXRIPBinding : Resource() {
    * Returns `true` if this input/output path is part of this binding.
    */
   public final fun hasPath(path: String): Boolean {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(ptr, MethodBindings.hasPathPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to path)
+    TransferContext.callMethod(MethodBindings.hasPathPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -222,16 +221,16 @@ public open class OpenXRIPBinding : Resource() {
    * Add an input/output path to this binding.
    */
   public final fun addPath(path: String): Unit {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(ptr, MethodBindings.addPathPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to path)
+    TransferContext.callMethod(MethodBindings.addPathPtr)
   }
 
   /**
    * Removes this input/output path from this binding.
    */
   public final fun removePath(path: String): Unit {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(ptr, MethodBindings.removePathPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to path)
+    TransferContext.callMethod(MethodBindings.removePathPtr)
   }
 
   public companion object {

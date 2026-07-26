@@ -14,7 +14,6 @@ import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
-import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -111,57 +110,57 @@ public open class CameraAttributes : Resource() {
   }
 
   public final fun setExposureMultiplier(multiplier: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to multiplier.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setExposureMultiplierPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to multiplier.toDouble())
+    TransferContext.callMethod(MethodBindings.setExposureMultiplierPtr)
   }
 
   public final fun getExposureMultiplier(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getExposureMultiplierPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getExposureMultiplierPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setExposureSensitivity(sensitivity: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to sensitivity.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setExposureSensitivityPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to sensitivity.toDouble())
+    TransferContext.callMethod(MethodBindings.setExposureSensitivityPtr)
   }
 
   public final fun getExposureSensitivity(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getExposureSensitivityPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getExposureSensitivityPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAutoExposureEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.setAutoExposureEnabledPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enabled)
+    TransferContext.callMethod(MethodBindings.setAutoExposureEnabledPtr)
   }
 
   public final fun isAutoExposureEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isAutoExposureEnabledPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isAutoExposureEnabledPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAutoExposureSpeed(exposureSpeed: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to exposureSpeed.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setAutoExposureSpeedPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to exposureSpeed.toDouble())
+    TransferContext.callMethod(MethodBindings.setAutoExposureSpeedPtr)
   }
 
   public final fun getAutoExposureSpeed(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getAutoExposureSpeedPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getAutoExposureSpeedPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAutoExposureScale(exposureGrey: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to exposureGrey.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setAutoExposureScalePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to exposureGrey.toDouble())
+    TransferContext.callMethod(MethodBindings.setAutoExposureScalePtr)
   }
 
   public final fun getAutoExposureScale(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getAutoExposureScalePtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getAutoExposureScalePtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 

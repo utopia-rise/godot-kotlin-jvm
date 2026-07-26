@@ -24,7 +24,6 @@ import godot.core.PackedStringArray
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
@@ -176,79 +175,79 @@ public open class GLTFDocument : Resource() {
   }
 
   public final fun setImageFormat(imageFormat: String): Unit {
-    TransferContext.writeArguments(STRING to imageFormat)
-    TransferContext.callMethod(ptr, MethodBindings.setImageFormatPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to imageFormat)
+    TransferContext.callMethod(MethodBindings.setImageFormatPtr)
   }
 
   public final fun getImageFormat(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getImageFormatPtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getImageFormatPtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setLossyQuality(lossyQuality: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to lossyQuality.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setLossyQualityPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to lossyQuality.toDouble())
+    TransferContext.callMethod(MethodBindings.setLossyQualityPtr)
   }
 
   public final fun getLossyQuality(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getLossyQualityPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getLossyQualityPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFallbackImageFormat(fallbackImageFormat: String): Unit {
-    TransferContext.writeArguments(STRING to fallbackImageFormat)
-    TransferContext.callMethod(ptr, MethodBindings.setFallbackImageFormatPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to fallbackImageFormat)
+    TransferContext.callMethod(MethodBindings.setFallbackImageFormatPtr)
   }
 
   public final fun getFallbackImageFormat(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFallbackImageFormatPtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getFallbackImageFormatPtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setFallbackImageQuality(fallbackImageQuality: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to fallbackImageQuality.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setFallbackImageQualityPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to fallbackImageQuality.toDouble())
+    TransferContext.callMethod(MethodBindings.setFallbackImageQualityPtr)
   }
 
   public final fun getFallbackImageQuality(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFallbackImageQualityPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getFallbackImageQualityPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRootNodeMode(rootNodeMode: RootNodeMode): Unit {
-    TransferContext.writeArguments(LONG to rootNodeMode.value)
-    TransferContext.callMethod(ptr, MethodBindings.setRootNodeModePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to rootNodeMode.value)
+    TransferContext.callMethod(MethodBindings.setRootNodeModePtr)
   }
 
   public final fun getRootNodeMode(): RootNodeMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getRootNodeModePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getRootNodeModePtr)
     return RootNodeMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setTextureMapMode(textureMapMode: TextureMapMode): Unit {
-    TransferContext.writeArguments(LONG to textureMapMode.value)
-    TransferContext.callMethod(ptr, MethodBindings.setTextureMapModePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to textureMapMode.value)
+    TransferContext.callMethod(MethodBindings.setTextureMapModePtr)
   }
 
   public final fun getTextureMapMode(): TextureMapMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getTextureMapModePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getTextureMapModePtr)
     return TextureMapMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setVisibilityMode(visibilityMode: VisibilityMode): Unit {
-    TransferContext.writeArguments(LONG to visibilityMode.value)
-    TransferContext.callMethod(ptr, MethodBindings.setVisibilityModePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to visibilityMode.value)
+    TransferContext.callMethod(MethodBindings.setVisibilityModePtr)
   }
 
   public final fun getVisibilityMode(): VisibilityMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getVisibilityModePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getVisibilityModePtr)
     return VisibilityMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -265,8 +264,8 @@ public open class GLTFDocument : Resource() {
     flags: Long = 0,
     basePath: String = "",
   ): Error {
-    TransferContext.writeArguments(STRING to path, OBJECT to state, LONG to flags, STRING to basePath)
-    TransferContext.callMethod(ptr, MethodBindings.appendFromFilePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to path, OBJECT to state, LONG to flags, STRING to basePath)
+    TransferContext.callMethod(MethodBindings.appendFromFilePtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -283,8 +282,8 @@ public open class GLTFDocument : Resource() {
     state: GLTFState?,
     flags: Long = 0,
   ): Error {
-    TransferContext.writeArguments(PACKED_BYTE_ARRAY to bytes, STRING to basePath, OBJECT to state, LONG to flags)
-    TransferContext.callMethod(ptr, MethodBindings.appendFromBufferPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_BYTE_ARRAY to bytes, STRING to basePath, OBJECT to state, LONG to flags)
+    TransferContext.callMethod(MethodBindings.appendFromBufferPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -298,8 +297,8 @@ public open class GLTFDocument : Resource() {
     state: GLTFState?,
     flags: Long = 0,
   ): Error {
-    TransferContext.writeArguments(OBJECT to node, OBJECT to state, LONG to flags)
-    TransferContext.callMethod(ptr, MethodBindings.appendFromScenePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to node, OBJECT to state, LONG to flags)
+    TransferContext.callMethod(MethodBindings.appendFromScenePtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -315,8 +314,8 @@ public open class GLTFDocument : Resource() {
     trimming: Boolean = false,
     removeImmutableTracks: Boolean = true,
   ): Node? {
-    TransferContext.writeArguments(OBJECT to state, DOUBLE to bakeFps.toDouble(), BOOL to trimming, BOOL to removeImmutableTracks)
-    TransferContext.callMethod(ptr, MethodBindings.generateScenePtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to state, DOUBLE to bakeFps.toDouble(), BOOL to trimming, BOOL to removeImmutableTracks)
+    TransferContext.callMethod(MethodBindings.generateScenePtr)
     return (TransferContext.readReturnValue(OBJECT) as Node?)
   }
 
@@ -324,8 +323,8 @@ public open class GLTFDocument : Resource() {
    * Takes a [GLTFState] object through the [state] parameter and returns a glTF [PackedByteArray].
    */
   public final fun generateBuffer(state: GLTFState?): PackedByteArray {
-    TransferContext.writeArguments(OBJECT to state)
-    TransferContext.callMethod(ptr, MethodBindings.generateBufferPtr, PACKED_BYTE_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to state)
+    TransferContext.callMethod(MethodBindings.generateBufferPtr)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
@@ -337,8 +336,8 @@ public open class GLTFDocument : Resource() {
    * file.
    */
   public final fun writeToFilesystem(state: GLTFState?, path: String): Error {
-    TransferContext.writeArguments(OBJECT to state, STRING to path)
-    TransferContext.callMethod(ptr, MethodBindings.writeToFilesystemPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to state, STRING to path)
+    TransferContext.callMethod(MethodBindings.writeToFilesystemPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -602,8 +601,8 @@ public open class GLTFDocument : Resource() {
     @JvmStatic
     public final fun importObjectModelProperty(state: GLTFState?, jsonPointer: String):
         GLTFObjectModelProperty? {
-      TransferContext.writeArguments(OBJECT to state, STRING to jsonPointer)
-      TransferContext.callMethod(0, MethodBindings.importObjectModelPropertyPtr, OBJECT)
+      TransferContext.writeMethodArguments(0L, 0L, OBJECT to state, STRING to jsonPointer)
+      TransferContext.callMethod(MethodBindings.importObjectModelPropertyPtr)
       return (TransferContext.readReturnValue(OBJECT) as GLTFObjectModelProperty?)
     }
 
@@ -620,8 +619,8 @@ public open class GLTFDocument : Resource() {
       godotNode: Node?,
       gltfNodeIndex: Int,
     ): GLTFObjectModelProperty? {
-      TransferContext.writeArguments(OBJECT to state, NODE_PATH to nodePath, OBJECT to godotNode, LONG to gltfNodeIndex.toLong())
-      TransferContext.callMethod(0, MethodBindings.exportObjectModelPropertyPtr, OBJECT)
+      TransferContext.writeMethodArguments(0L, 0L, OBJECT to state, NODE_PATH to nodePath, OBJECT to godotNode, LONG to gltfNodeIndex.toLong())
+      TransferContext.callMethod(MethodBindings.exportObjectModelPropertyPtr)
       return (TransferContext.readReturnValue(OBJECT) as GLTFObjectModelProperty?)
     }
 
@@ -637,8 +636,8 @@ public open class GLTFDocument : Resource() {
     @JvmStatic
     public final fun registerGltfDocumentExtension(extension: GLTFDocumentExtension?,
         firstPriority: Boolean = false): Unit {
-      TransferContext.writeArguments(OBJECT to extension, BOOL to firstPriority)
-      TransferContext.callMethod(0, MethodBindings.registerGltfDocumentExtensionPtr, NIL)
+      TransferContext.writeMethodArguments(0L, 0L, OBJECT to extension, BOOL to firstPriority)
+      TransferContext.callMethod(MethodBindings.registerGltfDocumentExtensionPtr)
     }
 
     /**
@@ -646,8 +645,8 @@ public open class GLTFDocument : Resource() {
      */
     @JvmStatic
     public final fun unregisterGltfDocumentExtension(extension: GLTFDocumentExtension?): Unit {
-      TransferContext.writeArguments(OBJECT to extension)
-      TransferContext.callMethod(0, MethodBindings.unregisterGltfDocumentExtensionPtr, NIL)
+      TransferContext.writeMethodArguments(0L, 0L, OBJECT to extension)
+      TransferContext.callMethod(MethodBindings.unregisterGltfDocumentExtensionPtr)
     }
 
     /**
@@ -661,8 +660,8 @@ public open class GLTFDocument : Resource() {
      */
     @JvmStatic
     public final fun getSupportedGltfExtensions(): PackedStringArray {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(0, MethodBindings.getSupportedGltfExtensionsPtr, PACKED_STRING_ARRAY)
+      TransferContext.writeMethodArguments(0L, 0L)
+      TransferContext.callMethod(MethodBindings.getSupportedGltfExtensionsPtr)
       return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
     }
 

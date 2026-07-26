@@ -47,14 +47,14 @@ public open class CompressedTextureLayered internal constructor() : TextureLayer
    * Loads the texture at [path].
    */
   public final fun load(path: String): Error {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(ptr, MethodBindings.loadPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to path)
+    TransferContext.callMethod(MethodBindings.loadPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun getLoadPath(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getLoadPathPtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getLoadPathPtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 

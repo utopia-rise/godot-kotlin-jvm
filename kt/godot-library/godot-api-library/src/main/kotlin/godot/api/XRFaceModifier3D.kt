@@ -14,7 +14,6 @@ import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.NodePath
 import godot.core.StringName
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.STRING_NAME
 import godot.core.asCachedNodePath
@@ -66,24 +65,24 @@ public open class XRFaceModifier3D : Node3D() {
   }
 
   public final fun setFaceTracker(trackerName: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to trackerName)
-    TransferContext.callMethod(ptr, MethodBindings.setFaceTrackerPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to trackerName)
+    TransferContext.callMethod(MethodBindings.setFaceTrackerPtr)
   }
 
   public final fun getFaceTracker(): StringName {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFaceTrackerPtr, STRING_NAME)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getFaceTrackerPtr)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
   public final fun setTarget(target: NodePath): Unit {
-    TransferContext.writeArguments(NODE_PATH to target)
-    TransferContext.callMethod(ptr, MethodBindings.setTargetPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, NODE_PATH to target)
+    TransferContext.callMethod(MethodBindings.setTargetPtr)
   }
 
   public final fun getTarget(): NodePath {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getTargetPtr, NODE_PATH)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getTargetPtr)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 

@@ -16,7 +16,6 @@ import godot.core.MethodStringName2
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
 import kotlin.Int
@@ -78,8 +77,8 @@ public open class ImageTextureLayered internal constructor() : TextureLayered() 
    * ```
    */
   public final fun createFromImages(images: VariantArray<Image>): Error {
-    TransferContext.writeArguments(ARRAY to images)
-    TransferContext.callMethod(ptr, MethodBindings.createFromImagesPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, ARRAY to images)
+    TransferContext.callMethod(MethodBindings.createFromImagesPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -95,8 +94,8 @@ public open class ImageTextureLayered internal constructor() : TextureLayered() 
    * The update is immediate: it's synchronized with drawing.
    */
   public final fun updateLayer(image: Image?, layer: Int): Unit {
-    TransferContext.writeArguments(OBJECT to image, LONG to layer.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.updateLayerPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to image, LONG to layer.toLong())
+    TransferContext.callMethod(MethodBindings.updateLayerPtr)
   }
 
   /**

@@ -18,7 +18,6 @@ import godot.core.MethodStringName1
 import godot.core.PackedVector2Array
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
 import godot.core.Vector2
 import kotlin.Boolean
@@ -118,35 +117,35 @@ public open class OccluderPolygon2D : Resource() {
   }
 
   public final fun setClosed(closed: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to closed)
-    TransferContext.callMethod(ptr, MethodBindings.setClosedPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to closed)
+    TransferContext.callMethod(MethodBindings.setClosedPtr)
   }
 
   public final fun isClosed(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isClosedPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isClosedPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCullMode(cullMode: CullMode): Unit {
-    TransferContext.writeArguments(LONG to cullMode.value)
-    TransferContext.callMethod(ptr, MethodBindings.setCullModePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to cullMode.value)
+    TransferContext.callMethod(MethodBindings.setCullModePtr)
   }
 
   public final fun getCullMode(): CullMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCullModePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCullModePtr)
     return CullMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setPolygon(polygon: PackedVector2Array): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygon)
-    TransferContext.callMethod(ptr, MethodBindings.setPolygonPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_VECTOR2_ARRAY to polygon)
+    TransferContext.callMethod(MethodBindings.setPolygonPtr)
   }
 
   public final fun getPolygon(): PackedVector2Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPolygonPtr, PACKED_VECTOR2_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPolygonPtr)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 

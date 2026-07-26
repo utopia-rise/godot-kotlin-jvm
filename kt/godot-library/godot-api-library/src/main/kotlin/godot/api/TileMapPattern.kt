@@ -18,7 +18,6 @@ import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2I
 import godot.core.Vector2i
 import kotlin.Boolean
@@ -51,16 +50,16 @@ public open class TileMapPattern : Resource() {
     atlasCoords: Vector2i = Vector2i(-1, -1),
     alternativeTile: Int = -1,
   ): Unit {
-    TransferContext.writeArguments(VECTOR2I to coords, LONG to sourceId.toLong(), VECTOR2I to atlasCoords, LONG to alternativeTile.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setCellPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2I to coords, LONG to sourceId.toLong(), VECTOR2I to atlasCoords, LONG to alternativeTile.toLong())
+    TransferContext.callMethod(MethodBindings.setCellPtr)
   }
 
   /**
    * Returns whether the pattern has a tile at the given coordinates.
    */
   public final fun hasCell(coords: Vector2i): Boolean {
-    TransferContext.writeArguments(VECTOR2I to coords)
-    TransferContext.callMethod(ptr, MethodBindings.hasCellPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2I to coords)
+    TransferContext.callMethod(MethodBindings.hasCellPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -68,16 +67,16 @@ public open class TileMapPattern : Resource() {
    * Remove the cell at the given coordinates.
    */
   public final fun removeCell(coords: Vector2i, updateSize: Boolean): Unit {
-    TransferContext.writeArguments(VECTOR2I to coords, BOOL to updateSize)
-    TransferContext.callMethod(ptr, MethodBindings.removeCellPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2I to coords, BOOL to updateSize)
+    TransferContext.callMethod(MethodBindings.removeCellPtr)
   }
 
   /**
    * Returns the tile source ID of the cell at [coords].
    */
   public final fun getCellSourceId(coords: Vector2i): Int {
-    TransferContext.writeArguments(VECTOR2I to coords)
-    TransferContext.callMethod(ptr, MethodBindings.getCellSourceIdPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2I to coords)
+    TransferContext.callMethod(MethodBindings.getCellSourceIdPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -85,8 +84,8 @@ public open class TileMapPattern : Resource() {
    * Returns the tile atlas coordinates ID of the cell at [coords].
    */
   public final fun getCellAtlasCoords(coords: Vector2i): Vector2i {
-    TransferContext.writeArguments(VECTOR2I to coords)
-    TransferContext.callMethod(ptr, MethodBindings.getCellAtlasCoordsPtr, VECTOR2I)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2I to coords)
+    TransferContext.callMethod(MethodBindings.getCellAtlasCoordsPtr)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
@@ -94,8 +93,8 @@ public open class TileMapPattern : Resource() {
    * Returns the tile alternative ID of the cell at [coords].
    */
   public final fun getCellAlternativeTile(coords: Vector2i): Int {
-    TransferContext.writeArguments(VECTOR2I to coords)
-    TransferContext.callMethod(ptr, MethodBindings.getCellAlternativeTilePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2I to coords)
+    TransferContext.callMethod(MethodBindings.getCellAlternativeTilePtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -103,8 +102,8 @@ public open class TileMapPattern : Resource() {
    * Returns the list of used cell coordinates in the pattern.
    */
   public final fun getUsedCells(): VariantArray<Vector2i> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getUsedCellsPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getUsedCellsPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Vector2i>)
   }
 
@@ -112,8 +111,8 @@ public open class TileMapPattern : Resource() {
    * Returns the size, in cells, of the pattern.
    */
   public final fun getSize(): Vector2i {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSizePtr, VECTOR2I)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSizePtr)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
@@ -121,16 +120,16 @@ public open class TileMapPattern : Resource() {
    * Sets the size of the pattern.
    */
   public final fun setSize(size: Vector2i): Unit {
-    TransferContext.writeArguments(VECTOR2I to size)
-    TransferContext.callMethod(ptr, MethodBindings.setSizePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2I to size)
+    TransferContext.callMethod(MethodBindings.setSizePtr)
   }
 
   /**
    * Returns whether the pattern is empty or not.
    */
   public final fun isEmpty(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isEmptyPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isEmptyPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

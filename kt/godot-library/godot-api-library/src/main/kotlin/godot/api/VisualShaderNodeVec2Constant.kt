@@ -14,7 +14,6 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import kotlin.Suppress
@@ -70,13 +69,13 @@ public open class VisualShaderNodeVec2Constant : VisualShaderNodeConstant() {
   }
 
   public final fun setConstant(constant: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to constant)
-    TransferContext.callMethod(ptr, MethodBindings.setConstantPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to constant)
+    TransferContext.callMethod(MethodBindings.setConstantPtr)
   }
 
   public final fun getConstant(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getConstantPtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getConstantPtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 

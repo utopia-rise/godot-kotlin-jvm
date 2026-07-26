@@ -16,7 +16,6 @@ import godot.core.NodePath
 import godot.core.RID
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser._RID
 import godot.core.asCachedNodePath
@@ -89,46 +88,46 @@ public open class Joint2D internal constructor() : Node2D() {
   }
 
   public final fun setNodeA(node: NodePath): Unit {
-    TransferContext.writeArguments(NODE_PATH to node)
-    TransferContext.callMethod(ptr, MethodBindings.setNodeAPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, NODE_PATH to node)
+    TransferContext.callMethod(MethodBindings.setNodeAPtr)
   }
 
   public final fun getNodeA(): NodePath {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getNodeAPtr, NODE_PATH)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getNodeAPtr)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
   public final fun setNodeB(node: NodePath): Unit {
-    TransferContext.writeArguments(NODE_PATH to node)
-    TransferContext.callMethod(ptr, MethodBindings.setNodeBPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, NODE_PATH to node)
+    TransferContext.callMethod(MethodBindings.setNodeBPtr)
   }
 
   public final fun getNodeB(): NodePath {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getNodeBPtr, NODE_PATH)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getNodeBPtr)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
   public final fun setBias(bias: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to bias.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setBiasPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to bias.toDouble())
+    TransferContext.callMethod(MethodBindings.setBiasPtr)
   }
 
   public final fun getBias(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getBiasPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getBiasPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setExcludeNodesFromCollision(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(ptr, MethodBindings.setExcludeNodesFromCollisionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enable)
+    TransferContext.callMethod(MethodBindings.setExcludeNodesFromCollisionPtr)
   }
 
   public final fun getExcludeNodesFromCollision(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getExcludeNodesFromCollisionPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getExcludeNodesFromCollisionPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -136,8 +135,8 @@ public open class Joint2D internal constructor() : Node2D() {
    * Returns the joint's internal [RID] from the [PhysicsServer2D].
    */
   public final fun getRid(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getRidPtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getRidPtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 

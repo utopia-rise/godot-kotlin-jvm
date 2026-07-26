@@ -16,7 +16,6 @@ import godot.core.MethodStringName2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
 import kotlin.Double
@@ -598,13 +597,13 @@ public open class AudioStreamPlaylist : AudioStream() {
   }
 
   public final fun setStreamCount(streamCount: Int): Unit {
-    TransferContext.writeArguments(LONG to streamCount.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setStreamCountPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to streamCount.toLong())
+    TransferContext.callMethod(MethodBindings.setStreamCountPtr)
   }
 
   public final fun getStreamCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getStreamCountPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getStreamCountPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -612,8 +611,8 @@ public open class AudioStreamPlaylist : AudioStream() {
    * Returns the BPM of the playlist, which can vary depending on the clip being played.
    */
   public final fun getBpm(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getBpmPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getBpmPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
@@ -621,49 +620,49 @@ public open class AudioStreamPlaylist : AudioStream() {
    * Sets the stream at playback position index.
    */
   public final fun setListStream(streamIndex: Int, audioStream: AudioStream?): Unit {
-    TransferContext.writeArguments(LONG to streamIndex.toLong(), OBJECT to audioStream)
-    TransferContext.callMethod(ptr, MethodBindings.setListStreamPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to streamIndex.toLong(), OBJECT to audioStream)
+    TransferContext.callMethod(MethodBindings.setListStreamPtr)
   }
 
   /**
    * Returns the stream at playback position index.
    */
   public final fun getListStream(streamIndex: Int): AudioStream? {
-    TransferContext.writeArguments(LONG to streamIndex.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getListStreamPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to streamIndex.toLong())
+    TransferContext.callMethod(MethodBindings.getListStreamPtr)
     return (TransferContext.readReturnValue(OBJECT) as AudioStream?)
   }
 
   public final fun setShuffle(shuffle: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to shuffle)
-    TransferContext.callMethod(ptr, MethodBindings.setShufflePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to shuffle)
+    TransferContext.callMethod(MethodBindings.setShufflePtr)
   }
 
   public final fun getShuffle(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getShufflePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getShufflePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFadeTime(dec: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to dec.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setFadeTimePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to dec.toDouble())
+    TransferContext.callMethod(MethodBindings.setFadeTimePtr)
   }
 
   public final fun getFadeTime(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFadeTimePtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getFadeTimePtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setLoop(loop: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to loop)
-    TransferContext.callMethod(ptr, MethodBindings.setLoopPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to loop)
+    TransferContext.callMethod(MethodBindings.setLoopPtr)
   }
 
   public final fun hasLoop(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.hasLoopPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.hasLoopPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

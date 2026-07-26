@@ -15,7 +15,6 @@ import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
 import kotlin.Double
@@ -109,68 +108,68 @@ public open class CSGTorus3D : CSGPrimitive3D() {
   }
 
   public final fun setInnerRadius(radius: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to radius.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setInnerRadiusPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to radius.toDouble())
+    TransferContext.callMethod(MethodBindings.setInnerRadiusPtr)
   }
 
   public final fun getInnerRadius(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getInnerRadiusPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getInnerRadiusPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setOuterRadius(radius: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to radius.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setOuterRadiusPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to radius.toDouble())
+    TransferContext.callMethod(MethodBindings.setOuterRadiusPtr)
   }
 
   public final fun getOuterRadius(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getOuterRadiusPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getOuterRadiusPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSides(sides: Int): Unit {
-    TransferContext.writeArguments(LONG to sides.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setSidesPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to sides.toLong())
+    TransferContext.callMethod(MethodBindings.setSidesPtr)
   }
 
   public final fun getSides(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSidesPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSidesPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setRingSides(sides: Int): Unit {
-    TransferContext.writeArguments(LONG to sides.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setRingSidesPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to sides.toLong())
+    TransferContext.callMethod(MethodBindings.setRingSidesPtr)
   }
 
   public final fun getRingSides(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getRingSidesPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getRingSidesPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setMaterial(material: Material?): Unit {
-    TransferContext.writeArguments(OBJECT to material)
-    TransferContext.callMethod(ptr, MethodBindings.setMaterialPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to material)
+    TransferContext.callMethod(MethodBindings.setMaterialPtr)
   }
 
   public final fun getMaterial(): Material? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMaterialPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMaterialPtr)
     return (TransferContext.readReturnValue(OBJECT) as Material?)
   }
 
   public final fun setSmoothFaces(smoothFaces: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to smoothFaces)
-    TransferContext.callMethod(ptr, MethodBindings.setSmoothFacesPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to smoothFaces)
+    TransferContext.callMethod(MethodBindings.setSmoothFacesPtr)
   }
 
   public final fun getSmoothFaces(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSmoothFacesPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSmoothFacesPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

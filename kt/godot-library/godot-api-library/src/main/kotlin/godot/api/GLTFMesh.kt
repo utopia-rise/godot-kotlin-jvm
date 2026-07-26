@@ -20,7 +20,6 @@ import godot.core.StringName
 import godot.core.VariantArray
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.ARRAY
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_FLOAT_32_ARRAY
 import godot.core.VariantParser.STRING
@@ -135,47 +134,47 @@ public open class GLTFMesh : Resource() {
   }
 
   public final fun getOriginalName(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getOriginalNamePtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getOriginalNamePtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setOriginalName(originalName: String): Unit {
-    TransferContext.writeArguments(STRING to originalName)
-    TransferContext.callMethod(ptr, MethodBindings.setOriginalNamePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to originalName)
+    TransferContext.callMethod(MethodBindings.setOriginalNamePtr)
   }
 
   public final fun getMesh(): ImporterMesh? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMeshPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMeshPtr)
     return (TransferContext.readReturnValue(OBJECT) as ImporterMesh?)
   }
 
   public final fun setMesh(mesh: ImporterMesh?): Unit {
-    TransferContext.writeArguments(OBJECT to mesh)
-    TransferContext.callMethod(ptr, MethodBindings.setMeshPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to mesh)
+    TransferContext.callMethod(MethodBindings.setMeshPtr)
   }
 
   public final fun getBlendWeights(): PackedFloat32Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getBlendWeightsPtr, PACKED_FLOAT_32_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getBlendWeightsPtr)
     return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY) as PackedFloat32Array)
   }
 
   public final fun setBlendWeights(blendWeights: PackedFloat32Array): Unit {
-    TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to blendWeights)
-    TransferContext.callMethod(ptr, MethodBindings.setBlendWeightsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_FLOAT_32_ARRAY to blendWeights)
+    TransferContext.callMethod(MethodBindings.setBlendWeightsPtr)
   }
 
   public final fun getInstanceMaterials(): VariantArray<Material> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getInstanceMaterialsPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getInstanceMaterialsPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Material>)
   }
 
   public final fun setInstanceMaterials(instanceMaterials: VariantArray<Material>): Unit {
-    TransferContext.writeArguments(ARRAY to instanceMaterials)
-    TransferContext.callMethod(ptr, MethodBindings.setInstanceMaterialsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, ARRAY to instanceMaterials)
+    TransferContext.callMethod(MethodBindings.setInstanceMaterialsPtr)
   }
 
   /**
@@ -187,8 +186,8 @@ public open class GLTFMesh : Resource() {
    * return value is `null`.
    */
   public final fun getAdditionalData(extensionName: StringName): Any? {
-    TransferContext.writeArguments(STRING_NAME to extensionName)
-    TransferContext.callMethod(ptr, MethodBindings.getAdditionalDataPtr, ANY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to extensionName)
+    TransferContext.callMethod(MethodBindings.getAdditionalDataPtr)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
@@ -200,8 +199,8 @@ public open class GLTFMesh : Resource() {
    * extension name in the glTF file), and the second argument can be anything you want.
    */
   public final fun setAdditionalData(extensionName: StringName, additionalData: Any?): Unit {
-    TransferContext.writeArguments(STRING_NAME to extensionName, ANY to additionalData)
-    TransferContext.callMethod(ptr, MethodBindings.setAdditionalDataPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to extensionName, ANY to additionalData)
+    TransferContext.callMethod(MethodBindings.setAdditionalDataPtr)
   }
 
   /**

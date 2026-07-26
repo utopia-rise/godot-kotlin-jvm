@@ -18,7 +18,6 @@ import godot.core.MethodStringName3
 import godot.core.PackedStringArray
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
@@ -150,8 +149,8 @@ public open class DirAccess internal constructor() : RefCounted() {
    * alphabetically, use [getFiles] or [getDirectories].
    */
   public final fun listDirBegin(): Error {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.listDirBeginPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.listDirBeginPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -163,8 +162,8 @@ public open class DirAccess internal constructor() : RefCounted() {
    * [listDirEnd] would not be mandatory in such a case).
    */
   public final fun getNext(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getNextPtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getNextPtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -173,8 +172,8 @@ public open class DirAccess internal constructor() : RefCounted() {
    * `..` are considered directories).
    */
   public final fun currentIsDir(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.currentIsDirPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.currentIsDirPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -183,8 +182,8 @@ public open class DirAccess internal constructor() : RefCounted() {
    * [getNext] does not matter).
    */
   public final fun listDirEnd(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.listDirEndPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.listDirEndPtr)
   }
 
   /**
@@ -201,8 +200,8 @@ public open class DirAccess internal constructor() : RefCounted() {
    * [ProjectSettings.editor/export/convertTextResourcesToBinary] is `true`.
    */
   public final fun getFiles(): PackedStringArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFilesPtr, PACKED_STRING_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getFilesPtr)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
@@ -216,8 +215,8 @@ public open class DirAccess internal constructor() : RefCounted() {
    * may differ as some files are converted to engine-specific formats when exported.
    */
   public final fun getDirectories(): PackedStringArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getDirectoriesPtr, PACKED_STRING_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getDirectoriesPtr)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
@@ -226,8 +225,8 @@ public open class DirAccess internal constructor() : RefCounted() {
    * index to the name of the drive.
    */
   public final fun getCurrentDrive(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCurrentDrivePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCurrentDrivePtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -243,8 +242,8 @@ public open class DirAccess internal constructor() : RefCounted() {
    * another access scope, use [open] to create a new instance instead.
    */
   public final fun changeDir(toDir: String): Error {
-    TransferContext.writeArguments(STRING to toDir)
-    TransferContext.callMethod(ptr, MethodBindings.changeDirPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to toDir)
+    TransferContext.callMethod(MethodBindings.changeDirPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -254,8 +253,8 @@ public open class DirAccess internal constructor() : RefCounted() {
    */
   @JvmOverloads
   public final fun getCurrentDir(includeDrive: Boolean = true): String {
-    TransferContext.writeArguments(BOOL to includeDrive)
-    TransferContext.callMethod(ptr, MethodBindings.getCurrentDirPtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to includeDrive)
+    TransferContext.callMethod(MethodBindings.getCurrentDirPtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -267,8 +266,8 @@ public open class DirAccess internal constructor() : RefCounted() {
    * Returns one of the [Error] code constants ([OK] on success).
    */
   public final fun makeDir(path: String): Error {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(ptr, MethodBindings.makeDirPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to path)
+    TransferContext.callMethod(MethodBindings.makeDirPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -279,8 +278,8 @@ public open class DirAccess internal constructor() : RefCounted() {
    * Returns one of the [Error] code constants ([OK] on success).
    */
   public final fun makeDirRecursive(path: String): Error {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(ptr, MethodBindings.makeDirRecursivePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to path)
+    TransferContext.callMethod(MethodBindings.makeDirRecursivePtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -295,8 +294,8 @@ public open class DirAccess internal constructor() : RefCounted() {
    * [ResourceLoader.exists] for an alternative approach that takes resource remapping into account.
    */
   public final fun fileExists(path: String): Boolean {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(ptr, MethodBindings.fileExistsPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to path)
+    TransferContext.callMethod(MethodBindings.fileExistsPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -309,8 +308,8 @@ public open class DirAccess internal constructor() : RefCounted() {
    * exported, potentially changing the directory structure.
    */
   public final fun dirExists(path: String): Boolean {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(ptr, MethodBindings.dirExistsPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to path)
+    TransferContext.callMethod(MethodBindings.dirExistsPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -319,8 +318,8 @@ public open class DirAccess internal constructor() : RefCounted() {
    * platform-specific method to query the available space fails.
    */
   public final fun getSpaceLeft(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSpaceLeftPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSpaceLeftPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -340,8 +339,8 @@ public open class DirAccess internal constructor() : RefCounted() {
     to: String,
     chmodFlags: Int = -1,
   ): Error {
-    TransferContext.writeArguments(STRING to from, STRING to to, LONG to chmodFlags.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.copyPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to from, STRING to to, LONG to chmodFlags.toLong())
+    TransferContext.callMethod(MethodBindings.copyPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -353,8 +352,8 @@ public open class DirAccess internal constructor() : RefCounted() {
    * Returns one of the [Error] code constants ([OK] on success).
    */
   public final fun rename(from: String, to: String): Error {
-    TransferContext.writeArguments(STRING to from, STRING to to)
-    TransferContext.callMethod(ptr, MethodBindings.renamePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to from, STRING to to)
+    TransferContext.callMethod(MethodBindings.renamePtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -368,8 +367,8 @@ public open class DirAccess internal constructor() : RefCounted() {
    * Returns one of the [Error] code constants ([OK] on success).
    */
   public final fun remove(path: String): Error {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(ptr, MethodBindings.removePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to path)
+    TransferContext.callMethod(MethodBindings.removePtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -380,8 +379,8 @@ public open class DirAccess internal constructor() : RefCounted() {
    * **Note:** This method is implemented on macOS, Linux, and Windows.
    */
   public final fun isLink(path: String): Boolean {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(ptr, MethodBindings.isLinkPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to path)
+    TransferContext.callMethod(MethodBindings.isLinkPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -391,8 +390,8 @@ public open class DirAccess internal constructor() : RefCounted() {
    * **Note:** This method is implemented on macOS, Linux, and Windows.
    */
   public final fun readLink(path: String): String {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(ptr, MethodBindings.readLinkPtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to path)
+    TransferContext.callMethod(MethodBindings.readLinkPtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -405,8 +404,8 @@ public open class DirAccess internal constructor() : RefCounted() {
    * **Note:** This method is implemented on macOS, Linux, and Windows.
    */
   public final fun createLink(source: String, target: String): Error {
-    TransferContext.writeArguments(STRING to source, STRING to target)
-    TransferContext.callMethod(ptr, MethodBindings.createLinkPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to source, STRING to target)
+    TransferContext.callMethod(MethodBindings.createLinkPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -416,30 +415,30 @@ public open class DirAccess internal constructor() : RefCounted() {
    * **Note:** This method is implemented on macOS.
    */
   public final fun isBundle(path: String): Boolean {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(ptr, MethodBindings.isBundlePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to path)
+    TransferContext.callMethod(MethodBindings.isBundlePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setIncludeNavigational(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(ptr, MethodBindings.setIncludeNavigationalPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enable)
+    TransferContext.callMethod(MethodBindings.setIncludeNavigationalPtr)
   }
 
   public final fun getIncludeNavigational(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getIncludeNavigationalPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getIncludeNavigationalPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setIncludeHidden(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(ptr, MethodBindings.setIncludeHiddenPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enable)
+    TransferContext.callMethod(MethodBindings.setIncludeHiddenPtr)
   }
 
   public final fun getIncludeHidden(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getIncludeHiddenPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getIncludeHiddenPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -450,8 +449,8 @@ public open class DirAccess internal constructor() : RefCounted() {
    * **Note:** This method is implemented on macOS, Linux, Windows and for PCK virtual file system.
    */
   public final fun getFilesystemType(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFilesystemTypePtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getFilesystemTypePtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -462,8 +461,8 @@ public open class DirAccess internal constructor() : RefCounted() {
    * Windows. On other platforms, it always returns `true`.
    */
   public final fun isCaseSensitive(path: String): Boolean {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(ptr, MethodBindings.isCaseSensitivePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to path)
+    TransferContext.callMethod(MethodBindings.isCaseSensitivePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -473,8 +472,8 @@ public open class DirAccess internal constructor() : RefCounted() {
    * that are not symbolic links).
    */
   public final fun isEquivalent(pathA: String, pathB: String): Boolean {
-    TransferContext.writeArguments(STRING to pathA, STRING to pathB)
-    TransferContext.callMethod(ptr, MethodBindings.isEquivalentPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to pathA, STRING to pathB)
+    TransferContext.callMethod(MethodBindings.isEquivalentPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -658,8 +657,8 @@ public open class DirAccess internal constructor() : RefCounted() {
      */
     @JvmStatic
     public final fun `open`(path: String): DirAccess? {
-      TransferContext.writeArguments(STRING to path)
-      TransferContext.callMethod(0, MethodBindings.openPtr, OBJECT)
+      TransferContext.writeMethodArguments(0L, 0L, STRING to path)
+      TransferContext.callMethod(MethodBindings.openPtr)
       return (TransferContext.readReturnValue(OBJECT) as DirAccess?)
     }
 
@@ -668,8 +667,8 @@ public open class DirAccess internal constructor() : RefCounted() {
      */
     @JvmStatic
     public final fun getOpenError(): Error {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(0, MethodBindings.getOpenErrorPtr, LONG)
+      TransferContext.writeMethodArguments(0L, 0L)
+      TransferContext.callMethod(MethodBindings.getOpenErrorPtr)
       return Error.from(TransferContext.readReturnValue(LONG) as Long)
     }
 
@@ -687,8 +686,8 @@ public open class DirAccess internal constructor() : RefCounted() {
     @JvmOverloads
     @JvmStatic
     public final fun createTemp(prefix: String = "", keep: Boolean = false): DirAccess? {
-      TransferContext.writeArguments(STRING to prefix, BOOL to keep)
-      TransferContext.callMethod(0, MethodBindings.createTempPtr, OBJECT)
+      TransferContext.writeMethodArguments(0L, 0L, STRING to prefix, BOOL to keep)
+      TransferContext.callMethod(MethodBindings.createTempPtr)
       return (TransferContext.readReturnValue(OBJECT) as DirAccess?)
     }
 
@@ -707,8 +706,8 @@ public open class DirAccess internal constructor() : RefCounted() {
      */
     @JvmStatic
     public final fun getFilesAt(path: String): PackedStringArray {
-      TransferContext.writeArguments(STRING to path)
-      TransferContext.callMethod(0, MethodBindings.getFilesAtPtr, PACKED_STRING_ARRAY)
+      TransferContext.writeMethodArguments(0L, 0L, STRING to path)
+      TransferContext.callMethod(MethodBindings.getFilesAtPtr)
       return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
     }
 
@@ -723,8 +722,8 @@ public open class DirAccess internal constructor() : RefCounted() {
      */
     @JvmStatic
     public final fun getDirectoriesAt(path: String): PackedStringArray {
-      TransferContext.writeArguments(STRING to path)
-      TransferContext.callMethod(0, MethodBindings.getDirectoriesAtPtr, PACKED_STRING_ARRAY)
+      TransferContext.writeMethodArguments(0L, 0L, STRING to path)
+      TransferContext.callMethod(MethodBindings.getDirectoriesAtPtr)
       return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
     }
 
@@ -739,8 +738,8 @@ public open class DirAccess internal constructor() : RefCounted() {
      */
     @JvmStatic
     public final fun getDriveCount(): Int {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(0, MethodBindings.getDriveCountPtr, LONG)
+      TransferContext.writeMethodArguments(0L, 0L)
+      TransferContext.callMethod(MethodBindings.getDriveCountPtr)
       return (TransferContext.readReturnValue(LONG) as Long).toInt()
     }
 
@@ -757,8 +756,8 @@ public open class DirAccess internal constructor() : RefCounted() {
      */
     @JvmStatic
     public final fun getDriveName(idx: Int): String {
-      TransferContext.writeArguments(LONG to idx.toLong())
-      TransferContext.callMethod(0, MethodBindings.getDriveNamePtr, STRING)
+      TransferContext.writeMethodArguments(0L, 0L, LONG to idx.toLong())
+      TransferContext.callMethod(MethodBindings.getDriveNamePtr)
       return (TransferContext.readReturnValue(STRING) as String)
     }
 
@@ -769,8 +768,8 @@ public open class DirAccess internal constructor() : RefCounted() {
      */
     @JvmStatic
     public final fun getDriveLabel(idx: Int): String {
-      TransferContext.writeArguments(LONG to idx.toLong())
-      TransferContext.callMethod(0, MethodBindings.getDriveLabelPtr, STRING)
+      TransferContext.writeMethodArguments(0L, 0L, LONG to idx.toLong())
+      TransferContext.callMethod(MethodBindings.getDriveLabelPtr)
       return (TransferContext.readReturnValue(STRING) as String)
     }
 
@@ -779,8 +778,8 @@ public open class DirAccess internal constructor() : RefCounted() {
      */
     @JvmStatic
     public final fun makeDirAbsolute(path: String): Error {
-      TransferContext.writeArguments(STRING to path)
-      TransferContext.callMethod(0, MethodBindings.makeDirAbsolutePtr, LONG)
+      TransferContext.writeMethodArguments(0L, 0L, STRING to path)
+      TransferContext.callMethod(MethodBindings.makeDirAbsolutePtr)
       return Error.from(TransferContext.readReturnValue(LONG) as Long)
     }
 
@@ -789,8 +788,8 @@ public open class DirAccess internal constructor() : RefCounted() {
      */
     @JvmStatic
     public final fun makeDirRecursiveAbsolute(path: String): Error {
-      TransferContext.writeArguments(STRING to path)
-      TransferContext.callMethod(0, MethodBindings.makeDirRecursiveAbsolutePtr, LONG)
+      TransferContext.writeMethodArguments(0L, 0L, STRING to path)
+      TransferContext.callMethod(MethodBindings.makeDirRecursiveAbsolutePtr)
       return Error.from(TransferContext.readReturnValue(LONG) as Long)
     }
 
@@ -803,8 +802,8 @@ public open class DirAccess internal constructor() : RefCounted() {
      */
     @JvmStatic
     public final fun dirExistsAbsolute(path: String): Boolean {
-      TransferContext.writeArguments(STRING to path)
-      TransferContext.callMethod(0, MethodBindings.dirExistsAbsolutePtr, BOOL)
+      TransferContext.writeMethodArguments(0L, 0L, STRING to path)
+      TransferContext.callMethod(MethodBindings.dirExistsAbsolutePtr)
       return (TransferContext.readReturnValue(BOOL) as Boolean)
     }
 
@@ -818,8 +817,8 @@ public open class DirAccess internal constructor() : RefCounted() {
       to: String,
       chmodFlags: Int = -1,
     ): Error {
-      TransferContext.writeArguments(STRING to from, STRING to to, LONG to chmodFlags.toLong())
-      TransferContext.callMethod(0, MethodBindings.copyAbsolutePtr, LONG)
+      TransferContext.writeMethodArguments(0L, 0L, STRING to from, STRING to to, LONG to chmodFlags.toLong())
+      TransferContext.callMethod(MethodBindings.copyAbsolutePtr)
       return Error.from(TransferContext.readReturnValue(LONG) as Long)
     }
 
@@ -828,8 +827,8 @@ public open class DirAccess internal constructor() : RefCounted() {
      */
     @JvmStatic
     public final fun renameAbsolute(from: String, to: String): Error {
-      TransferContext.writeArguments(STRING to from, STRING to to)
-      TransferContext.callMethod(0, MethodBindings.renameAbsolutePtr, LONG)
+      TransferContext.writeMethodArguments(0L, 0L, STRING to from, STRING to to)
+      TransferContext.callMethod(MethodBindings.renameAbsolutePtr)
       return Error.from(TransferContext.readReturnValue(LONG) as Long)
     }
 
@@ -838,8 +837,8 @@ public open class DirAccess internal constructor() : RefCounted() {
      */
     @JvmStatic
     public final fun removeAbsolute(path: String): Error {
-      TransferContext.writeArguments(STRING to path)
-      TransferContext.callMethod(0, MethodBindings.removeAbsolutePtr, LONG)
+      TransferContext.writeMethodArguments(0L, 0L, STRING to path)
+      TransferContext.callMethod(MethodBindings.removeAbsolutePtr)
       return Error.from(TransferContext.readReturnValue(LONG) as Long)
     }
   }

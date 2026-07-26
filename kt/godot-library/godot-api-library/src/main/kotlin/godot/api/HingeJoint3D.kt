@@ -16,7 +16,6 @@ import godot.core.MethodStringName2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -40,16 +39,16 @@ public open class HingeJoint3D : Joint3D() {
    * Sets the value of the specified parameter.
    */
   public final fun setParam(`param`: Param, `value`: Float): Unit {
-    TransferContext.writeArguments(LONG to param.value, DOUBLE to value.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setParamPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to param.value, DOUBLE to value.toDouble())
+    TransferContext.callMethod(MethodBindings.setParamPtr)
   }
 
   /**
    * Returns the value of the specified parameter.
    */
   public final fun getParam(`param`: Param): Float {
-    TransferContext.writeArguments(LONG to param.value)
-    TransferContext.callMethod(ptr, MethodBindings.getParamPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to param.value)
+    TransferContext.callMethod(MethodBindings.getParamPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -57,16 +56,16 @@ public open class HingeJoint3D : Joint3D() {
    * If `true`, enables the specified flag.
    */
   public final fun setFlag(flag: Flag, enabled: Boolean): Unit {
-    TransferContext.writeArguments(LONG to flag.value, BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.setFlagPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to flag.value, BOOL to enabled)
+    TransferContext.callMethod(MethodBindings.setFlagPtr)
   }
 
   /**
    * Returns the value of the specified flag.
    */
   public final fun getFlag(flag: Flag): Boolean {
-    TransferContext.writeArguments(LONG to flag.value)
-    TransferContext.callMethod(ptr, MethodBindings.getFlagPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to flag.value)
+    TransferContext.callMethod(MethodBindings.getFlagPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

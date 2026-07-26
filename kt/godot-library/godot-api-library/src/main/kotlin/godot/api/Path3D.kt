@@ -17,7 +17,6 @@ import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.Signal0
 import godot.core.VariantParser.COLOR
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Suppress
 import kotlin.Unit
@@ -99,24 +98,24 @@ public open class Path3D : Node3D() {
   }
 
   public final fun setCurve(curve: Curve3D?): Unit {
-    TransferContext.writeArguments(OBJECT to curve)
-    TransferContext.callMethod(ptr, MethodBindings.setCurvePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to curve)
+    TransferContext.callMethod(MethodBindings.setCurvePtr)
   }
 
   public final fun getCurve(): Curve3D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCurvePtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCurvePtr)
     return (TransferContext.readReturnValue(OBJECT) as Curve3D?)
   }
 
   public final fun setDebugCustomColor(debugCustomColor: Color): Unit {
-    TransferContext.writeArguments(COLOR to debugCustomColor)
-    TransferContext.callMethod(ptr, MethodBindings.setDebugCustomColorPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, COLOR to debugCustomColor)
+    TransferContext.callMethod(MethodBindings.setDebugCustomColorPtr)
   }
 
   public final fun getDebugCustomColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getDebugCustomColorPtr, COLOR)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getDebugCustomColorPtr)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 

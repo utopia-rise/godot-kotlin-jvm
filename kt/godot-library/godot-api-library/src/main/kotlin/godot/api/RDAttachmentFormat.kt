@@ -13,7 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -63,35 +62,35 @@ public open class RDAttachmentFormat : RefCounted() {
   }
 
   public final fun setFormat(pMember: RenderingDevice.DataFormat): Unit {
-    TransferContext.writeArguments(LONG to pMember.value)
-    TransferContext.callMethod(ptr, MethodBindings.setFormatPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to pMember.value)
+    TransferContext.callMethod(MethodBindings.setFormatPtr)
   }
 
   public final fun getFormat(): RenderingDevice.DataFormat {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFormatPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getFormatPtr)
     return RenderingDevice.DataFormat.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setSamples(pMember: RenderingDevice.TextureSamples): Unit {
-    TransferContext.writeArguments(LONG to pMember.value)
-    TransferContext.callMethod(ptr, MethodBindings.setSamplesPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to pMember.value)
+    TransferContext.callMethod(MethodBindings.setSamplesPtr)
   }
 
   public final fun getSamples(): RenderingDevice.TextureSamples {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSamplesPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSamplesPtr)
     return RenderingDevice.TextureSamples.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setUsageFlags(pMember: Long): Unit {
-    TransferContext.writeArguments(LONG to pMember)
-    TransferContext.callMethod(ptr, MethodBindings.setUsageFlagsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to pMember)
+    TransferContext.callMethod(MethodBindings.setUsageFlagsPtr)
   }
 
   public final fun getUsageFlags(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getUsageFlagsPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getUsageFlagsPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 

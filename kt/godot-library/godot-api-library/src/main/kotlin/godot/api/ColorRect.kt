@@ -16,7 +16,6 @@ import godot.core.Color
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.COLOR
-import godot.core.VariantParser.NIL
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmField
@@ -71,13 +70,13 @@ public open class ColorRect : Control() {
   }
 
   public final fun setColor(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(ptr, MethodBindings.setColorPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, COLOR to color)
+    TransferContext.callMethod(MethodBindings.setColorPtr)
   }
 
   public final fun getColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getColorPtr, COLOR)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getColorPtr)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 

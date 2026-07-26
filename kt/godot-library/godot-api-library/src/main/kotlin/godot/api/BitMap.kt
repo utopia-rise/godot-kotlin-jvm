@@ -21,7 +21,6 @@ import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.RECT2I
 import godot.core.VariantParser.VECTOR2I
@@ -49,8 +48,8 @@ public open class BitMap : Resource() {
    * Creates a bitmap with the specified size, filled with `false`.
    */
   public final fun create(size: Vector2i): Unit {
-    TransferContext.writeArguments(VECTOR2I to size)
-    TransferContext.callMethod(ptr, MethodBindings.createPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2I to size)
+    TransferContext.callMethod(MethodBindings.createPtr)
   }
 
   /**
@@ -60,16 +59,16 @@ public open class BitMap : Resource() {
    */
   @JvmOverloads
   public final fun createFromImageAlpha(image: Image?, threshold: Float = 0.1f): Unit {
-    TransferContext.writeArguments(OBJECT to image, DOUBLE to threshold.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.createFromImageAlphaPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to image, DOUBLE to threshold.toDouble())
+    TransferContext.callMethod(MethodBindings.createFromImageAlphaPtr)
   }
 
   /**
    * Sets the bitmap's element at the specified position, to the specified value.
    */
   public final fun setBitv(position: Vector2i, bit: Boolean): Unit {
-    TransferContext.writeArguments(VECTOR2I to position, BOOL to bit)
-    TransferContext.callMethod(ptr, MethodBindings.setBitvPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2I to position, BOOL to bit)
+    TransferContext.callMethod(MethodBindings.setBitvPtr)
   }
 
   /**
@@ -80,16 +79,16 @@ public open class BitMap : Resource() {
     y: Int,
     bit: Boolean,
   ): Unit {
-    TransferContext.writeArguments(LONG to x.toLong(), LONG to y.toLong(), BOOL to bit)
-    TransferContext.callMethod(ptr, MethodBindings.setBitPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to x.toLong(), LONG to y.toLong(), BOOL to bit)
+    TransferContext.callMethod(MethodBindings.setBitPtr)
   }
 
   /**
    * Returns bitmap's value at the specified position.
    */
   public final fun getBitv(position: Vector2i): Boolean {
-    TransferContext.writeArguments(VECTOR2I to position)
-    TransferContext.callMethod(ptr, MethodBindings.getBitvPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2I to position)
+    TransferContext.callMethod(MethodBindings.getBitvPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -97,8 +96,8 @@ public open class BitMap : Resource() {
    * Returns bitmap's value at the specified position.
    */
   public final fun getBit(x: Int, y: Int): Boolean {
-    TransferContext.writeArguments(LONG to x.toLong(), LONG to y.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getBitPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to x.toLong(), LONG to y.toLong())
+    TransferContext.callMethod(MethodBindings.getBitPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -106,16 +105,16 @@ public open class BitMap : Resource() {
    * Sets a rectangular portion of the bitmap to the specified value.
    */
   public final fun setBitRect(rect: Rect2i, bit: Boolean): Unit {
-    TransferContext.writeArguments(RECT2I to rect, BOOL to bit)
-    TransferContext.callMethod(ptr, MethodBindings.setBitRectPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, RECT2I to rect, BOOL to bit)
+    TransferContext.callMethod(MethodBindings.setBitRectPtr)
   }
 
   /**
    * Returns the number of bitmap elements that are set to `true`.
    */
   public final fun getTrueBitCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getTrueBitCountPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getTrueBitCountPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -123,8 +122,8 @@ public open class BitMap : Resource() {
    * Returns bitmap's dimensions.
    */
   public final fun getSize(): Vector2i {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSizePtr, VECTOR2I)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSizePtr)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
@@ -132,8 +131,8 @@ public open class BitMap : Resource() {
    * Resizes the image to [newSize].
    */
   public final fun resize(newSize: Vector2i): Unit {
-    TransferContext.writeArguments(VECTOR2I to newSize)
-    TransferContext.callMethod(ptr, MethodBindings.resizePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2I to newSize)
+    TransferContext.callMethod(MethodBindings.resizePtr)
   }
 
   /**
@@ -143,8 +142,8 @@ public open class BitMap : Resource() {
    * unaffected by [growMask].
    */
   public final fun growMask(pixels: Int, rect: Rect2i): Unit {
-    TransferContext.writeArguments(LONG to pixels.toLong(), RECT2I to rect)
-    TransferContext.callMethod(ptr, MethodBindings.growMaskPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to pixels.toLong(), RECT2I to rect)
+    TransferContext.callMethod(MethodBindings.growMaskPtr)
   }
 
   /**
@@ -153,8 +152,8 @@ public open class BitMap : Resource() {
    * bits into black.
    */
   public final fun convertToImage(): Image? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.convertToImagePtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.convertToImagePtr)
     return (TransferContext.readReturnValue(OBJECT) as Image?)
   }
 
@@ -175,8 +174,8 @@ public open class BitMap : Resource() {
   @JvmOverloads
   public final fun opaqueToPolygons(rect: Rect2i, epsilon: Float = 2.0f):
       VariantArray<PackedVector2Array> {
-    TransferContext.writeArguments(RECT2I to rect, DOUBLE to epsilon.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.opaqueToPolygonsPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, RECT2I to rect, DOUBLE to epsilon.toDouble())
+    TransferContext.callMethod(MethodBindings.opaqueToPolygonsPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<PackedVector2Array>)
   }
 

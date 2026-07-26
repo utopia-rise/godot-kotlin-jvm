@@ -14,7 +14,6 @@ import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
-import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -134,79 +133,79 @@ public open class PathFollow2D : Node2D() {
   }
 
   public final fun setProgress(progress: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to progress.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setProgressPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to progress.toDouble())
+    TransferContext.callMethod(MethodBindings.setProgressPtr)
   }
 
   public final fun getProgress(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getProgressPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getProgressPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setHOffset(hOffset: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to hOffset.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setHOffsetPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to hOffset.toDouble())
+    TransferContext.callMethod(MethodBindings.setHOffsetPtr)
   }
 
   public final fun getHOffset(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getHOffsetPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getHOffsetPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVOffset(vOffset: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to vOffset.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setVOffsetPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to vOffset.toDouble())
+    TransferContext.callMethod(MethodBindings.setVOffsetPtr)
   }
 
   public final fun getVOffset(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getVOffsetPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getVOffsetPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setProgressRatio(ratio: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to ratio.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setProgressRatioPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to ratio.toDouble())
+    TransferContext.callMethod(MethodBindings.setProgressRatioPtr)
   }
 
   public final fun getProgressRatio(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getProgressRatioPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getProgressRatioPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRotates(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.setRotatesPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enabled)
+    TransferContext.callMethod(MethodBindings.setRotatesPtr)
   }
 
   public final fun isRotating(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isRotatingPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isRotatingPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCubicInterpolation(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.setCubicInterpolationPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enabled)
+    TransferContext.callMethod(MethodBindings.setCubicInterpolationPtr)
   }
 
   public final fun getCubicInterpolation(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCubicInterpolationPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCubicInterpolationPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setLoop(loop: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to loop)
-    TransferContext.callMethod(ptr, MethodBindings.setLoopPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to loop)
+    TransferContext.callMethod(MethodBindings.setLoopPtr)
   }
 
   public final fun hasLoop(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.hasLoopPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.hasLoopPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

@@ -15,7 +15,6 @@ import godot.core.MethodStringName1
 import godot.core.MethodStringName2
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import kotlin.Double
 import kotlin.Float
 import kotlin.Long
@@ -106,16 +105,16 @@ public open class ConeTwistJoint3D : Joint3D() {
    * Sets the value of the specified parameter.
    */
   public final fun setParam(`param`: Param, `value`: Float): Unit {
-    TransferContext.writeArguments(LONG to param.value, DOUBLE to value.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setParamPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to param.value, DOUBLE to value.toDouble())
+    TransferContext.callMethod(MethodBindings.setParamPtr)
   }
 
   /**
    * Returns the value of the specified parameter.
    */
   public final fun getParam(`param`: Param): Float {
-    TransferContext.writeArguments(LONG to param.value)
-    TransferContext.callMethod(ptr, MethodBindings.getParamPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to param.value)
+    TransferContext.callMethod(MethodBindings.getParamPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 

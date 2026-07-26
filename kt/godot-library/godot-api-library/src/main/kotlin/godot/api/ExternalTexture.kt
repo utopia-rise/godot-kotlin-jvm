@@ -15,7 +15,6 @@ import godot.common.interop.VoidPtr
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import kotlin.Int
@@ -82,8 +81,8 @@ public open class ExternalTexture : Texture2D() {
   }
 
   public final fun setSize(size: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to size)
-    TransferContext.callMethod(ptr, MethodBindings.setSizePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to size)
+    TransferContext.callMethod(MethodBindings.setSizePtr)
   }
 
   /**
@@ -93,8 +92,8 @@ public open class ExternalTexture : Texture2D() {
    * creating an `android.graphics.SurfaceTexture` on Android.
    */
   public final fun getExternalTextureId(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getExternalTextureIdPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getExternalTextureIdPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -105,8 +104,8 @@ public open class ExternalTexture : Texture2D() {
    * for example, `SurfaceTexture.getHardwareBuffer()` on Android.
    */
   public final fun setExternalBufferId(externalBufferId: Long): Unit {
-    TransferContext.writeArguments(LONG to externalBufferId)
-    TransferContext.callMethod(ptr, MethodBindings.setExternalBufferIdPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to externalBufferId)
+    TransferContext.callMethod(MethodBindings.setExternalBufferIdPtr)
   }
 
   /**

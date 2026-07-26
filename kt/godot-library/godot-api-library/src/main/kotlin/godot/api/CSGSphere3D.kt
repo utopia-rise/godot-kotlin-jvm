@@ -15,7 +15,6 @@ import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
 import kotlin.Double
@@ -98,57 +97,57 @@ public open class CSGSphere3D : CSGPrimitive3D() {
   }
 
   public final fun setRadius(radius: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to radius.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setRadiusPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to radius.toDouble())
+    TransferContext.callMethod(MethodBindings.setRadiusPtr)
   }
 
   public final fun getRadius(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getRadiusPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getRadiusPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRadialSegments(radialSegments: Int): Unit {
-    TransferContext.writeArguments(LONG to radialSegments.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setRadialSegmentsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to radialSegments.toLong())
+    TransferContext.callMethod(MethodBindings.setRadialSegmentsPtr)
   }
 
   public final fun getRadialSegments(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getRadialSegmentsPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getRadialSegmentsPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setRings(rings: Int): Unit {
-    TransferContext.writeArguments(LONG to rings.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setRingsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to rings.toLong())
+    TransferContext.callMethod(MethodBindings.setRingsPtr)
   }
 
   public final fun getRings(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getRingsPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getRingsPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setSmoothFaces(smoothFaces: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to smoothFaces)
-    TransferContext.callMethod(ptr, MethodBindings.setSmoothFacesPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to smoothFaces)
+    TransferContext.callMethod(MethodBindings.setSmoothFacesPtr)
   }
 
   public final fun getSmoothFaces(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSmoothFacesPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSmoothFacesPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setMaterial(material: Material?): Unit {
-    TransferContext.writeArguments(OBJECT to material)
-    TransferContext.callMethod(ptr, MethodBindings.setMaterialPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to material)
+    TransferContext.callMethod(MethodBindings.setMaterialPtr)
   }
 
   public final fun getMaterial(): Material? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMaterialPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMaterialPtr)
     return (TransferContext.readReturnValue(OBJECT) as Material?)
   }
 

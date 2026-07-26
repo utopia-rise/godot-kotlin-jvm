@@ -15,7 +15,6 @@ import godot.core.MethodStringName1
 import godot.core.PackedVector2Array
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
@@ -45,8 +44,8 @@ public open class AudioStreamGeneratorPlayback internal constructor() :
    * in GDScript.
    */
   public final fun pushFrame(frame: Vector2): Boolean {
-    TransferContext.writeArguments(VECTOR2 to frame)
-    TransferContext.callMethod(ptr, MethodBindings.pushFramePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to frame)
+    TransferContext.callMethod(MethodBindings.pushFramePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -55,8 +54,8 @@ public open class AudioStreamGeneratorPlayback internal constructor() :
    * without overflowing it, `false` otherwise.
    */
   public final fun canPushBuffer(amount: Int): Boolean {
-    TransferContext.writeArguments(LONG to amount.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.canPushBufferPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to amount.toLong())
+    TransferContext.callMethod(MethodBindings.canPushBufferPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -66,8 +65,8 @@ public open class AudioStreamGeneratorPlayback internal constructor() :
    * GDScript.
    */
   public final fun pushBuffer(frames: PackedVector2Array): Boolean {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to frames)
-    TransferContext.callMethod(ptr, MethodBindings.pushBufferPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_VECTOR2_ARRAY to frames)
+    TransferContext.callMethod(MethodBindings.pushBufferPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -76,8 +75,8 @@ public open class AudioStreamGeneratorPlayback internal constructor() :
    * overflowing it. If the result is `0`, the buffer is full.
    */
   public final fun getFramesAvailable(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFramesAvailablePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getFramesAvailablePtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -86,8 +85,8 @@ public open class AudioStreamGeneratorPlayback internal constructor() :
    * data. This value is reset at the start of the playback.
    */
   public final fun getSkips(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSkipsPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSkipsPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -95,8 +94,8 @@ public open class AudioStreamGeneratorPlayback internal constructor() :
    * Clears the audio sample data buffer.
    */
   public final fun clearBuffer(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.clearBufferPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.clearBufferPtr)
   }
 
   /**

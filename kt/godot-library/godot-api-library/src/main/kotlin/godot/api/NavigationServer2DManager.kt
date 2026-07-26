@@ -14,7 +14,6 @@ import godot.core.Callable
 import godot.core.MethodStringName2
 import godot.core.VariantParser.CALLABLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import kotlin.Int
 import kotlin.String
@@ -51,8 +50,8 @@ public object NavigationServer2DManager : Object() {
    */
   @JvmStatic
   public final fun registerServer(name: String, createCallback: Callable): Unit {
-    TransferContext.writeArguments(STRING to name, CALLABLE to createCallback)
-    TransferContext.callMethod(ptr, MethodBindings.registerServerPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to name, CALLABLE to createCallback)
+    TransferContext.callMethod(MethodBindings.registerServerPtr)
   }
 
   /**
@@ -61,8 +60,8 @@ public object NavigationServer2DManager : Object() {
    */
   @JvmStatic
   public final fun setDefaultServer(name: String, priority: Int): Unit {
-    TransferContext.writeArguments(STRING to name, LONG to priority.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setDefaultServerPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to name, LONG to priority.toLong())
+    TransferContext.callMethod(MethodBindings.setDefaultServerPtr)
   }
 
   public object MethodBindings {

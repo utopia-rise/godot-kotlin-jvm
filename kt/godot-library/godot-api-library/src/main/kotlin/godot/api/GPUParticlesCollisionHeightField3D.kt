@@ -18,7 +18,6 @@ import godot.core.MethodStringName1
 import godot.core.MethodStringName2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
 import kotlin.Boolean
@@ -156,46 +155,46 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
   }
 
   public final fun setSize(size: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to size)
-    TransferContext.callMethod(ptr, MethodBindings.setSizePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR3 to size)
+    TransferContext.callMethod(MethodBindings.setSizePtr)
   }
 
   public final fun getSize(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSizePtr, VECTOR3)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSizePtr)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setResolution(resolution: Resolution): Unit {
-    TransferContext.writeArguments(LONG to resolution.value)
-    TransferContext.callMethod(ptr, MethodBindings.setResolutionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to resolution.value)
+    TransferContext.callMethod(MethodBindings.setResolutionPtr)
   }
 
   public final fun getResolution(): Resolution {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getResolutionPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getResolutionPtr)
     return Resolution.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setUpdateMode(updateMode: UpdateMode): Unit {
-    TransferContext.writeArguments(LONG to updateMode.value)
-    TransferContext.callMethod(ptr, MethodBindings.setUpdateModePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to updateMode.value)
+    TransferContext.callMethod(MethodBindings.setUpdateModePtr)
   }
 
   public final fun getUpdateMode(): UpdateMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getUpdateModePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getUpdateModePtr)
     return UpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setHeightfieldMask(heightfieldMask: Long): Unit {
-    TransferContext.writeArguments(LONG to heightfieldMask)
-    TransferContext.callMethod(ptr, MethodBindings.setHeightfieldMaskPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to heightfieldMask)
+    TransferContext.callMethod(MethodBindings.setHeightfieldMaskPtr)
   }
 
   public final fun getHeightfieldMask(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getHeightfieldMaskPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getHeightfieldMaskPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -204,8 +203,8 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
    * [layerNumber] between `1` and `20`, inclusive.
    */
   public final fun setHeightfieldMaskValue(layerNumber: Int, `value`: Boolean): Unit {
-    TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
-    TransferContext.callMethod(ptr, MethodBindings.setHeightfieldMaskValuePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to layerNumber.toLong(), BOOL to value)
+    TransferContext.callMethod(MethodBindings.setHeightfieldMaskValuePtr)
   }
 
   /**
@@ -213,19 +212,19 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
    * [layerNumber] between `1` and `20`, inclusive.
    */
   public final fun getHeightfieldMaskValue(layerNumber: Int): Boolean {
-    TransferContext.writeArguments(LONG to layerNumber.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getHeightfieldMaskValuePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to layerNumber.toLong())
+    TransferContext.callMethod(MethodBindings.getHeightfieldMaskValuePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFollowCameraEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.setFollowCameraEnabledPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enabled)
+    TransferContext.callMethod(MethodBindings.setFollowCameraEnabledPtr)
   }
 
   public final fun isFollowCameraEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isFollowCameraEnabledPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isFollowCameraEnabledPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

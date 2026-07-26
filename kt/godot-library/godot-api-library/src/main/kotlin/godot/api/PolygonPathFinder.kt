@@ -19,7 +19,6 @@ import godot.core.Rect2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
 import godot.core.VariantParser.RECT2
@@ -67,25 +66,25 @@ public open class PolygonPathFinder : Resource() {
    * ```
    */
   public final fun setup(points: PackedVector2Array, connections: PackedInt32Array): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points, PACKED_INT_32_ARRAY to connections)
-    TransferContext.callMethod(ptr, MethodBindings.setupPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_VECTOR2_ARRAY to points, PACKED_INT_32_ARRAY to connections)
+    TransferContext.callMethod(MethodBindings.setupPtr)
   }
 
   public final fun findPath(from: Vector2, to: Vector2): PackedVector2Array {
-    TransferContext.writeArguments(VECTOR2 to from, VECTOR2 to to)
-    TransferContext.callMethod(ptr, MethodBindings.findPathPtr, PACKED_VECTOR2_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to from, VECTOR2 to to)
+    TransferContext.callMethod(MethodBindings.findPathPtr)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
   public final fun getIntersections(from: Vector2, to: Vector2): PackedVector2Array {
-    TransferContext.writeArguments(VECTOR2 to from, VECTOR2 to to)
-    TransferContext.callMethod(ptr, MethodBindings.getIntersectionsPtr, PACKED_VECTOR2_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to from, VECTOR2 to to)
+    TransferContext.callMethod(MethodBindings.getIntersectionsPtr)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
   public final fun getClosestPoint(point: Vector2): Vector2 {
-    TransferContext.writeArguments(VECTOR2 to point)
-    TransferContext.callMethod(ptr, MethodBindings.getClosestPointPtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to point)
+    TransferContext.callMethod(MethodBindings.getClosestPointPtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
@@ -118,25 +117,25 @@ public open class PolygonPathFinder : Resource() {
    * ```
    */
   public final fun isPointInside(point: Vector2): Boolean {
-    TransferContext.writeArguments(VECTOR2 to point)
-    TransferContext.callMethod(ptr, MethodBindings.isPointInsidePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to point)
+    TransferContext.callMethod(MethodBindings.isPointInsidePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setPointPenalty(idx: Int, penalty: Float): Unit {
-    TransferContext.writeArguments(LONG to idx.toLong(), DOUBLE to penalty.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setPointPenaltyPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong(), DOUBLE to penalty.toDouble())
+    TransferContext.callMethod(MethodBindings.setPointPenaltyPtr)
   }
 
   public final fun getPointPenalty(idx: Int): Float {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getPointPenaltyPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong())
+    TransferContext.callMethod(MethodBindings.getPointPenaltyPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getBounds(): Rect2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getBoundsPtr, RECT2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getBoundsPtr)
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 

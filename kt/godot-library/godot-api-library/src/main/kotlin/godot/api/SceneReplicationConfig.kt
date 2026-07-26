@@ -19,7 +19,6 @@ import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.asCachedNodePath
 import kotlin.Boolean
@@ -41,8 +40,8 @@ public open class SceneReplicationConfig : Resource() {
    * Returns a list of synchronized property [NodePath]s.
    */
   public final fun getProperties(): VariantArray<NodePath> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPropertiesPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPropertiesPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<NodePath>)
   }
 
@@ -55,16 +54,16 @@ public open class SceneReplicationConfig : Resource() {
    */
   @JvmOverloads
   public final fun addProperty(path: NodePath, index: Int = -1): Unit {
-    TransferContext.writeArguments(NODE_PATH to path, LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.addPropertyPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, NODE_PATH to path, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.addPropertyPtr)
   }
 
   /**
    * Returns `true` if the given [path] is configured for synchronization.
    */
   public final fun hasProperty(path: NodePath): Boolean {
-    TransferContext.writeArguments(NODE_PATH to path)
-    TransferContext.callMethod(ptr, MethodBindings.hasPropertyPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, NODE_PATH to path)
+    TransferContext.callMethod(MethodBindings.hasPropertyPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -72,16 +71,16 @@ public open class SceneReplicationConfig : Resource() {
    * Removes the property identified by the given [path] from the configuration.
    */
   public final fun removeProperty(path: NodePath): Unit {
-    TransferContext.writeArguments(NODE_PATH to path)
-    TransferContext.callMethod(ptr, MethodBindings.removePropertyPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, NODE_PATH to path)
+    TransferContext.callMethod(MethodBindings.removePropertyPtr)
   }
 
   /**
    * Finds the index of the given [path].
    */
   public final fun propertyGetIndex(path: NodePath): Int {
-    TransferContext.writeArguments(NODE_PATH to path)
-    TransferContext.callMethod(ptr, MethodBindings.propertyGetIndexPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, NODE_PATH to path)
+    TransferContext.callMethod(MethodBindings.propertyGetIndexPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -90,8 +89,8 @@ public open class SceneReplicationConfig : Resource() {
    * on spawn.
    */
   public final fun propertyGetSpawn(path: NodePath): Boolean {
-    TransferContext.writeArguments(NODE_PATH to path)
-    TransferContext.callMethod(ptr, MethodBindings.propertyGetSpawnPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, NODE_PATH to path)
+    TransferContext.callMethod(MethodBindings.propertyGetSpawnPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -100,16 +99,16 @@ public open class SceneReplicationConfig : Resource() {
    * spawn.
    */
   public final fun propertySetSpawn(path: NodePath, enabled: Boolean): Unit {
-    TransferContext.writeArguments(NODE_PATH to path, BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.propertySetSpawnPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, NODE_PATH to path, BOOL to enabled)
+    TransferContext.callMethod(MethodBindings.propertySetSpawnPtr)
   }
 
   /**
    * Returns the replication mode for the property identified by the given [path].
    */
   public final fun propertyGetReplicationMode(path: NodePath): ReplicationMode {
-    TransferContext.writeArguments(NODE_PATH to path)
-    TransferContext.callMethod(ptr, MethodBindings.propertyGetReplicationModePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, NODE_PATH to path)
+    TransferContext.callMethod(MethodBindings.propertyGetReplicationModePtr)
     return ReplicationMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -117,8 +116,8 @@ public open class SceneReplicationConfig : Resource() {
    * Sets the synchronization mode for the property identified by the given [path].
    */
   public final fun propertySetReplicationMode(path: NodePath, mode: ReplicationMode): Unit {
-    TransferContext.writeArguments(NODE_PATH to path, LONG to mode.value)
-    TransferContext.callMethod(ptr, MethodBindings.propertySetReplicationModePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, NODE_PATH to path, LONG to mode.value)
+    TransferContext.callMethod(MethodBindings.propertySetReplicationModePtr)
   }
 
   /**
@@ -126,8 +125,8 @@ public open class SceneReplicationConfig : Resource() {
    * on process.
    */
   public final fun propertyGetSync(path: NodePath): Boolean {
-    TransferContext.writeArguments(NODE_PATH to path)
-    TransferContext.callMethod(ptr, MethodBindings.propertyGetSyncPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, NODE_PATH to path)
+    TransferContext.callMethod(MethodBindings.propertyGetSyncPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -136,8 +135,8 @@ public open class SceneReplicationConfig : Resource() {
    * process.
    */
   public final fun propertySetSync(path: NodePath, enabled: Boolean): Unit {
-    TransferContext.writeArguments(NODE_PATH to path, BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.propertySetSyncPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, NODE_PATH to path, BOOL to enabled)
+    TransferContext.callMethod(MethodBindings.propertySetSyncPtr)
   }
 
   /**
@@ -145,8 +144,8 @@ public open class SceneReplicationConfig : Resource() {
    * synchronized when changes are detected on process.
    */
   public final fun propertyGetWatch(path: NodePath): Boolean {
-    TransferContext.writeArguments(NODE_PATH to path)
-    TransferContext.callMethod(ptr, MethodBindings.propertyGetWatchPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, NODE_PATH to path)
+    TransferContext.callMethod(MethodBindings.propertyGetWatchPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -155,8 +154,8 @@ public open class SceneReplicationConfig : Resource() {
    * synchronized when changes are detected on process.
    */
   public final fun propertySetWatch(path: NodePath, enabled: Boolean): Unit {
-    TransferContext.writeArguments(NODE_PATH to path, BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.propertySetWatchPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, NODE_PATH to path, BOOL to enabled)
+    TransferContext.callMethod(MethodBindings.propertySetWatchPtr)
   }
 
   /**

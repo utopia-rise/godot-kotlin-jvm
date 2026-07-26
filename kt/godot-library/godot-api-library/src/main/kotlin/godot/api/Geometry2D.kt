@@ -187,8 +187,8 @@ public object Geometry2D : Object() {
     circlePosition: Vector2,
     circleRadius: Float,
   ): Boolean {
-    TransferContext.writeArguments(VECTOR2 to point, VECTOR2 to circlePosition, DOUBLE to circleRadius.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.isPointInCirclePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to point, VECTOR2 to circlePosition, DOUBLE to circleRadius.toDouble())
+    TransferContext.callMethod(MethodBindings.isPointInCirclePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -206,8 +206,8 @@ public object Geometry2D : Object() {
     circlePosition: Vector2,
     circleRadius: Float,
   ): Float {
-    TransferContext.writeArguments(VECTOR2 to segmentFrom, VECTOR2 to segmentTo, VECTOR2 to circlePosition, DOUBLE to circleRadius.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.segmentIntersectsCirclePtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to segmentFrom, VECTOR2 to segmentTo, VECTOR2 to circlePosition, DOUBLE to circleRadius.toDouble())
+    TransferContext.callMethod(MethodBindings.segmentIntersectsCirclePtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -223,8 +223,8 @@ public object Geometry2D : Object() {
     fromB: Vector2,
     toB: Vector2,
   ): Any? {
-    TransferContext.writeArguments(VECTOR2 to fromA, VECTOR2 to toA, VECTOR2 to fromB, VECTOR2 to toB)
-    TransferContext.callMethod(ptr, MethodBindings.segmentIntersectsSegmentPtr, ANY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to fromA, VECTOR2 to toA, VECTOR2 to fromB, VECTOR2 to toB)
+    TransferContext.callMethod(MethodBindings.segmentIntersectsSegmentPtr)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
@@ -271,8 +271,8 @@ public object Geometry2D : Object() {
     fromB: Vector2,
     dirB: Vector2,
   ): Any? {
-    TransferContext.writeArguments(VECTOR2 to fromA, VECTOR2 to dirA, VECTOR2 to fromB, VECTOR2 to dirB)
-    TransferContext.callMethod(ptr, MethodBindings.lineIntersectsLinePtr, ANY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to fromA, VECTOR2 to dirA, VECTOR2 to fromB, VECTOR2 to dirB)
+    TransferContext.callMethod(MethodBindings.lineIntersectsLinePtr)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
@@ -288,8 +288,8 @@ public object Geometry2D : Object() {
     p2: Vector2,
     q2: Vector2,
   ): PackedVector2Array {
-    TransferContext.writeArguments(VECTOR2 to p1, VECTOR2 to q1, VECTOR2 to p2, VECTOR2 to q2)
-    TransferContext.callMethod(ptr, MethodBindings.getClosestPointsBetweenSegmentsPtr, PACKED_VECTOR2_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to p1, VECTOR2 to q1, VECTOR2 to p2, VECTOR2 to q2)
+    TransferContext.callMethod(MethodBindings.getClosestPointsBetweenSegmentsPtr)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
@@ -303,8 +303,8 @@ public object Geometry2D : Object() {
     s1: Vector2,
     s2: Vector2,
   ): Vector2 {
-    TransferContext.writeArguments(VECTOR2 to point, VECTOR2 to s1, VECTOR2 to s2)
-    TransferContext.callMethod(ptr, MethodBindings.getClosestPointToSegmentPtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to point, VECTOR2 to s1, VECTOR2 to s2)
+    TransferContext.callMethod(MethodBindings.getClosestPointToSegmentPtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
@@ -319,8 +319,8 @@ public object Geometry2D : Object() {
     s1: Vector2,
     s2: Vector2,
   ): Vector2 {
-    TransferContext.writeArguments(VECTOR2 to point, VECTOR2 to s1, VECTOR2 to s2)
-    TransferContext.callMethod(ptr, MethodBindings.getClosestPointToSegmentUncappedPtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to point, VECTOR2 to s1, VECTOR2 to s2)
+    TransferContext.callMethod(MethodBindings.getClosestPointToSegmentUncappedPtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
@@ -334,8 +334,8 @@ public object Geometry2D : Object() {
     b: Vector2,
     c: Vector2,
   ): Boolean {
-    TransferContext.writeArguments(VECTOR2 to point, VECTOR2 to a, VECTOR2 to b, VECTOR2 to c)
-    TransferContext.callMethod(ptr, MethodBindings.pointIsInsideTrianglePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to point, VECTOR2 to a, VECTOR2 to b, VECTOR2 to c)
+    TransferContext.callMethod(MethodBindings.pointIsInsideTrianglePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -349,8 +349,8 @@ public object Geometry2D : Object() {
    */
   @JvmStatic
   public final fun isPolygonClockwise(polygon: PackedVector2Array): Boolean {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygon)
-    TransferContext.callMethod(ptr, MethodBindings.isPolygonClockwisePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_VECTOR2_ARRAY to polygon)
+    TransferContext.callMethod(MethodBindings.isPolygonClockwisePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -360,8 +360,8 @@ public object Geometry2D : Object() {
    */
   @JvmStatic
   public final fun isPointInPolygon(point: Vector2, polygon: PackedVector2Array): Boolean {
-    TransferContext.writeArguments(VECTOR2 to point, PACKED_VECTOR2_ARRAY to polygon)
-    TransferContext.callMethod(ptr, MethodBindings.isPointInPolygonPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to point, PACKED_VECTOR2_ARRAY to polygon)
+    TransferContext.callMethod(MethodBindings.isPointInPolygonPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -374,8 +374,8 @@ public object Geometry2D : Object() {
    */
   @JvmStatic
   public final fun triangulatePolygon(polygon: PackedVector2Array): PackedInt32Array {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygon)
-    TransferContext.callMethod(ptr, MethodBindings.triangulatePolygonPtr, PACKED_INT_32_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_VECTOR2_ARRAY to polygon)
+    TransferContext.callMethod(MethodBindings.triangulatePolygonPtr)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
@@ -388,8 +388,8 @@ public object Geometry2D : Object() {
    */
   @JvmStatic
   public final fun triangulateDelaunay(points: PackedVector2Array): PackedInt32Array {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points)
-    TransferContext.callMethod(ptr, MethodBindings.triangulateDelaunayPtr, PACKED_INT_32_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_VECTOR2_ARRAY to points)
+    TransferContext.callMethod(MethodBindings.triangulateDelaunayPtr)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
@@ -399,8 +399,8 @@ public object Geometry2D : Object() {
    */
   @JvmStatic
   public final fun convexHull(points: PackedVector2Array): PackedVector2Array {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points)
-    TransferContext.callMethod(ptr, MethodBindings.convexHullPtr, PACKED_VECTOR2_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_VECTOR2_ARRAY to points)
+    TransferContext.callMethod(MethodBindings.convexHullPtr)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
@@ -411,8 +411,8 @@ public object Geometry2D : Object() {
   @JvmStatic
   public final fun decomposePolygonInConvex(polygon: PackedVector2Array):
       VariantArray<PackedVector2Array> {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygon)
-    TransferContext.callMethod(ptr, MethodBindings.decomposePolygonInConvexPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_VECTOR2_ARRAY to polygon)
+    TransferContext.callMethod(MethodBindings.decomposePolygonInConvexPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<PackedVector2Array>)
   }
 
@@ -426,8 +426,8 @@ public object Geometry2D : Object() {
   @JvmStatic
   public final fun mergePolygons(polygonA: PackedVector2Array, polygonB: PackedVector2Array):
       VariantArray<PackedVector2Array> {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygonA, PACKED_VECTOR2_ARRAY to polygonB)
-    TransferContext.callMethod(ptr, MethodBindings.mergePolygonsPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_VECTOR2_ARRAY to polygonA, PACKED_VECTOR2_ARRAY to polygonB)
+    TransferContext.callMethod(MethodBindings.mergePolygonsPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<PackedVector2Array>)
   }
 
@@ -442,8 +442,8 @@ public object Geometry2D : Object() {
   @JvmStatic
   public final fun clipPolygons(polygonA: PackedVector2Array, polygonB: PackedVector2Array):
       VariantArray<PackedVector2Array> {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygonA, PACKED_VECTOR2_ARRAY to polygonB)
-    TransferContext.callMethod(ptr, MethodBindings.clipPolygonsPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_VECTOR2_ARRAY to polygonA, PACKED_VECTOR2_ARRAY to polygonB)
+    TransferContext.callMethod(MethodBindings.clipPolygonsPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<PackedVector2Array>)
   }
 
@@ -458,8 +458,8 @@ public object Geometry2D : Object() {
   @JvmStatic
   public final fun intersectPolygons(polygonA: PackedVector2Array, polygonB: PackedVector2Array):
       VariantArray<PackedVector2Array> {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygonA, PACKED_VECTOR2_ARRAY to polygonB)
-    TransferContext.callMethod(ptr, MethodBindings.intersectPolygonsPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_VECTOR2_ARRAY to polygonA, PACKED_VECTOR2_ARRAY to polygonB)
+    TransferContext.callMethod(MethodBindings.intersectPolygonsPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<PackedVector2Array>)
   }
 
@@ -474,8 +474,8 @@ public object Geometry2D : Object() {
   @JvmStatic
   public final fun excludePolygons(polygonA: PackedVector2Array, polygonB: PackedVector2Array):
       VariantArray<PackedVector2Array> {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygonA, PACKED_VECTOR2_ARRAY to polygonB)
-    TransferContext.callMethod(ptr, MethodBindings.excludePolygonsPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_VECTOR2_ARRAY to polygonA, PACKED_VECTOR2_ARRAY to polygonB)
+    TransferContext.callMethod(MethodBindings.excludePolygonsPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<PackedVector2Array>)
   }
 
@@ -487,8 +487,8 @@ public object Geometry2D : Object() {
   @JvmStatic
   public final fun clipPolylineWithPolygon(polyline: PackedVector2Array,
       polygon: PackedVector2Array): VariantArray<PackedVector2Array> {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polyline, PACKED_VECTOR2_ARRAY to polygon)
-    TransferContext.callMethod(ptr, MethodBindings.clipPolylineWithPolygonPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_VECTOR2_ARRAY to polyline, PACKED_VECTOR2_ARRAY to polygon)
+    TransferContext.callMethod(MethodBindings.clipPolylineWithPolygonPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<PackedVector2Array>)
   }
 
@@ -500,8 +500,8 @@ public object Geometry2D : Object() {
   @JvmStatic
   public final fun intersectPolylineWithPolygon(polyline: PackedVector2Array,
       polygon: PackedVector2Array): VariantArray<PackedVector2Array> {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polyline, PACKED_VECTOR2_ARRAY to polygon)
-    TransferContext.callMethod(ptr, MethodBindings.intersectPolylineWithPolygonPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_VECTOR2_ARRAY to polyline, PACKED_VECTOR2_ARRAY to polygon)
+    TransferContext.callMethod(MethodBindings.intersectPolylineWithPolygonPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<PackedVector2Array>)
   }
 
@@ -544,8 +544,8 @@ public object Geometry2D : Object() {
     delta: Float,
     joinType: PolyJoinType = Geometry2D.PolyJoinType.JOIN_SQUARE,
   ): VariantArray<PackedVector2Array> {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygon, DOUBLE to delta.toDouble(), LONG to joinType.value)
-    TransferContext.callMethod(ptr, MethodBindings.offsetPolygonPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_VECTOR2_ARRAY to polygon, DOUBLE to delta.toDouble(), LONG to joinType.value)
+    TransferContext.callMethod(MethodBindings.offsetPolygonPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<PackedVector2Array>)
   }
 
@@ -570,8 +570,8 @@ public object Geometry2D : Object() {
     joinType: PolyJoinType = Geometry2D.PolyJoinType.JOIN_SQUARE,
     endType: PolyEndType = Geometry2D.PolyEndType.END_SQUARE,
   ): VariantArray<PackedVector2Array> {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polyline, DOUBLE to delta.toDouble(), LONG to joinType.value, LONG to endType.value)
-    TransferContext.callMethod(ptr, MethodBindings.offsetPolylinePtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_VECTOR2_ARRAY to polyline, DOUBLE to delta.toDouble(), LONG to joinType.value, LONG to endType.value)
+    TransferContext.callMethod(MethodBindings.offsetPolylinePtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<PackedVector2Array>)
   }
 
@@ -582,8 +582,8 @@ public object Geometry2D : Object() {
    */
   @JvmStatic
   public final fun makeAtlas(sizes: PackedVector2Array): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to sizes)
-    TransferContext.callMethod(ptr, MethodBindings.makeAtlasPtr, DICTIONARY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_VECTOR2_ARRAY to sizes)
+    TransferContext.callMethod(MethodBindings.makeAtlasPtr)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
@@ -603,8 +603,8 @@ public object Geometry2D : Object() {
    */
   @JvmStatic
   public final fun bresenhamLine(from: Vector2i, to: Vector2i): VariantArray<Vector2i> {
-    TransferContext.writeArguments(VECTOR2I to from, VECTOR2I to to)
-    TransferContext.callMethod(ptr, MethodBindings.bresenhamLinePtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2I to from, VECTOR2I to to)
+    TransferContext.callMethod(MethodBindings.bresenhamLinePtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Vector2i>)
   }
 

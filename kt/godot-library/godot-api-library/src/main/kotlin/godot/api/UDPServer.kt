@@ -16,7 +16,6 @@ import godot.core.MethodStringName1
 import godot.core.MethodStringName2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import kotlin.Boolean
@@ -184,8 +183,8 @@ public open class UDPServer : RefCounted() {
    */
   @JvmOverloads
   public final fun listen(port: Int, bindAddress: String = "*"): Error {
-    TransferContext.writeArguments(LONG to port.toLong(), STRING to bindAddress)
-    TransferContext.callMethod(ptr, MethodBindings.listenPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to port.toLong(), STRING to bindAddress)
+    TransferContext.callMethod(MethodBindings.listenPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -197,8 +196,8 @@ public open class UDPServer : RefCounted() {
    * defined via [maxPendingConnections].
    */
   public final fun poll(): Error {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.pollPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.pollPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -206,8 +205,8 @@ public open class UDPServer : RefCounted() {
    * Returns `true` if a packet with a new address/port combination was received on the socket.
    */
   public final fun isConnectionAvailable(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isConnectionAvailablePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isConnectionAvailablePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -215,8 +214,8 @@ public open class UDPServer : RefCounted() {
    * Returns the local port this server is listening to.
    */
   public final fun getLocalPort(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getLocalPortPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getLocalPortPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -224,8 +223,8 @@ public open class UDPServer : RefCounted() {
    * Returns `true` if the socket is open and listening on a port.
    */
   public final fun isListening(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isListeningPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isListeningPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -235,8 +234,8 @@ public open class UDPServer : RefCounted() {
    * [PacketPeerUDP.connectToHost].
    */
   public final fun takeConnection(): PacketPeerUDP? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.takeConnectionPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.takeConnectionPtr)
     return (TransferContext.readReturnValue(OBJECT) as PacketPeerUDP?)
   }
 
@@ -245,18 +244,18 @@ public open class UDPServer : RefCounted() {
    * accepted via [takeConnection] (remote peers will not be notified).
    */
   public final fun stop(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.stopPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.stopPtr)
   }
 
   public final fun setMaxPendingConnections(maxPendingConnections: Int): Unit {
-    TransferContext.writeArguments(LONG to maxPendingConnections.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setMaxPendingConnectionsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to maxPendingConnections.toLong())
+    TransferContext.callMethod(MethodBindings.setMaxPendingConnectionsPtr)
   }
 
   public final fun getMaxPendingConnections(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMaxPendingConnectionsPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMaxPendingConnectionsPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 

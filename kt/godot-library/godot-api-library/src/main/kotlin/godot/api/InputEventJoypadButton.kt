@@ -16,7 +16,6 @@ import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -67,30 +66,30 @@ public open class InputEventJoypadButton : InputEvent() {
   }
 
   public final fun setButtonIndex(buttonIndex: JoyButton): Unit {
-    TransferContext.writeArguments(LONG to buttonIndex.value)
-    TransferContext.callMethod(ptr, MethodBindings.setButtonIndexPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to buttonIndex.value)
+    TransferContext.callMethod(MethodBindings.setButtonIndexPtr)
   }
 
   public final fun getButtonIndex(): JoyButton {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getButtonIndexPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getButtonIndexPtr)
     return JoyButton.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setPressure(pressure: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to pressure.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setPressurePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to pressure.toDouble())
+    TransferContext.callMethod(MethodBindings.setPressurePtr)
   }
 
   public final fun getPressure(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPressurePtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPressurePtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setPressed(pressed: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to pressed)
-    TransferContext.callMethod(ptr, MethodBindings.setPressedPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to pressed)
+    TransferContext.callMethod(MethodBindings.setPressedPtr)
   }
 
   public companion object {

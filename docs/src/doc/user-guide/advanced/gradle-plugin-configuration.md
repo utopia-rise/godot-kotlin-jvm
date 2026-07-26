@@ -346,8 +346,6 @@ Rules:
 
 - requires a previous successful full build so the generated registrar jar already exists
 - still recompiles the project and rebuilds `main.jar`
-- still rebuilds and copies `godot-bootstrap.jar`
-- keeps the registration-related tasks in the Gradle task graph, but skips executing them via `onlyIf`
 - should not be used after adding, removing, renaming, or structurally changing registered classes, functions, properties, or signals
 
 ### `isGodotCoroutinesEnabled`

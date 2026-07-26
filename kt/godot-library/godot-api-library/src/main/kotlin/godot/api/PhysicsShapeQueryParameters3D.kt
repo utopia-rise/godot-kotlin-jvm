@@ -21,7 +21,6 @@ import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser.VECTOR3
@@ -241,101 +240,101 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
   }
 
   public final fun setShape(shape: Resource?): Unit {
-    TransferContext.writeArguments(OBJECT to shape)
-    TransferContext.callMethod(ptr, MethodBindings.setShapePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to shape)
+    TransferContext.callMethod(MethodBindings.setShapePtr)
   }
 
   public final fun getShape(): Resource? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getShapePtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getShapePtr)
     return (TransferContext.readReturnValue(OBJECT) as Resource?)
   }
 
   public final fun setShapeRid(shape: RID): Unit {
-    TransferContext.writeArguments(_RID to shape)
-    TransferContext.callMethod(ptr, MethodBindings.setShapeRidPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to shape)
+    TransferContext.callMethod(MethodBindings.setShapeRidPtr)
   }
 
   public final fun getShapeRid(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getShapeRidPtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getShapeRidPtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun setTransform(transform: Transform3D): Unit {
-    TransferContext.writeArguments(TRANSFORM3D to transform)
-    TransferContext.callMethod(ptr, MethodBindings.setTransformPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, TRANSFORM3D to transform)
+    TransferContext.callMethod(MethodBindings.setTransformPtr)
   }
 
   public final fun getTransform(): Transform3D {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getTransformPtr, TRANSFORM3D)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getTransformPtr)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   public final fun setMotion(motion: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to motion)
-    TransferContext.callMethod(ptr, MethodBindings.setMotionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR3 to motion)
+    TransferContext.callMethod(MethodBindings.setMotionPtr)
   }
 
   public final fun getMotion(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMotionPtr, VECTOR3)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMotionPtr)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setMargin(margin: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to margin.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setMarginPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to margin.toDouble())
+    TransferContext.callMethod(MethodBindings.setMarginPtr)
   }
 
   public final fun getMargin(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMarginPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMarginPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setCollisionMask(collisionMask: Long): Unit {
-    TransferContext.writeArguments(LONG to collisionMask)
-    TransferContext.callMethod(ptr, MethodBindings.setCollisionMaskPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to collisionMask)
+    TransferContext.callMethod(MethodBindings.setCollisionMaskPtr)
   }
 
   public final fun getCollisionMask(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCollisionMaskPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCollisionMaskPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setExclude(exclude: VariantArray<RID>): Unit {
-    TransferContext.writeArguments(ARRAY to exclude)
-    TransferContext.callMethod(ptr, MethodBindings.setExcludePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, ARRAY to exclude)
+    TransferContext.callMethod(MethodBindings.setExcludePtr)
   }
 
   public final fun getExclude(): VariantArray<RID> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getExcludePtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getExcludePtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<RID>)
   }
 
   public final fun setCollideWithBodies(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(ptr, MethodBindings.setCollideWithBodiesPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enable)
+    TransferContext.callMethod(MethodBindings.setCollideWithBodiesPtr)
   }
 
   public final fun isCollideWithBodiesEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isCollideWithBodiesEnabledPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isCollideWithBodiesEnabledPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCollideWithAreas(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(ptr, MethodBindings.setCollideWithAreasPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enable)
+    TransferContext.callMethod(MethodBindings.setCollideWithAreasPtr)
   }
 
   public final fun isCollideWithAreasEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isCollideWithAreasEnabledPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isCollideWithAreasEnabledPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

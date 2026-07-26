@@ -15,7 +15,6 @@ import godot.core.MethodStringName2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import kotlin.Boolean
 import kotlin.Double
@@ -45,16 +44,16 @@ public open class ChainIK3D internal constructor() : IKModifier3D() {
    * Sets the root bone name of the bone chain.
    */
   public final fun setRootBoneName(index: Int, boneName: String): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), STRING to boneName)
-    TransferContext.callMethod(ptr, MethodBindings.setRootBoneNamePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), STRING to boneName)
+    TransferContext.callMethod(MethodBindings.setRootBoneNamePtr)
   }
 
   /**
    * Returns the root bone name of the bone chain.
    */
   public final fun getRootBoneName(index: Int): String {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getRootBoneNamePtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getRootBoneNamePtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -62,16 +61,16 @@ public open class ChainIK3D internal constructor() : IKModifier3D() {
    * Sets the root bone index of the bone chain.
    */
   public final fun setRootBone(index: Int, bone: Int): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to bone.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setRootBonePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), LONG to bone.toLong())
+    TransferContext.callMethod(MethodBindings.setRootBonePtr)
   }
 
   /**
    * Returns the root bone index of the bone chain.
    */
   public final fun getRootBone(index: Int): Int {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getRootBonePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getRootBonePtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -82,16 +81,16 @@ public open class ChainIK3D internal constructor() : IKModifier3D() {
    * the tail must be extended by [setExtendEndBone] to modify the bone.
    */
   public final fun setEndBoneName(index: Int, boneName: String): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), STRING to boneName)
-    TransferContext.callMethod(ptr, MethodBindings.setEndBoneNamePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), STRING to boneName)
+    TransferContext.callMethod(MethodBindings.setEndBoneNamePtr)
   }
 
   /**
    * Returns the end bone name of the bone chain.
    */
   public final fun getEndBoneName(index: Int): String {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getEndBoneNamePtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getEndBoneNamePtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -99,16 +98,16 @@ public open class ChainIK3D internal constructor() : IKModifier3D() {
    * Sets the end bone index of the bone chain.
    */
   public final fun setEndBone(index: Int, bone: Int): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to bone.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setEndBonePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), LONG to bone.toLong())
+    TransferContext.callMethod(MethodBindings.setEndBonePtr)
   }
 
   /**
    * Returns the end bone index of the bone chain.
    */
   public final fun getEndBone(index: Int): Int {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getEndBonePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getEndBonePtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -120,16 +119,16 @@ public open class ChainIK3D internal constructor() : IKModifier3D() {
    * the simulated result.
    */
   public final fun setExtendEndBone(index: Int, enabled: Boolean): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.setExtendEndBonePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), BOOL to enabled)
+    TransferContext.callMethod(MethodBindings.setExtendEndBonePtr)
   }
 
   /**
    * Returns `true` if the end bone is extended to have a tail.
    */
   public final fun isEndBoneExtended(index: Int): Boolean {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.isEndBoneExtendedPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.isEndBoneExtendedPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -138,8 +137,8 @@ public open class ChainIK3D internal constructor() : IKModifier3D() {
    */
   public final fun setEndBoneDirection(index: Int, boneDirection: SkeletonModifier3D.BoneDirection):
       Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to boneDirection.value)
-    TransferContext.callMethod(ptr, MethodBindings.setEndBoneDirectionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), LONG to boneDirection.value)
+    TransferContext.callMethod(MethodBindings.setEndBoneDirectionPtr)
   }
 
   /**
@@ -147,8 +146,8 @@ public open class ChainIK3D internal constructor() : IKModifier3D() {
    * `true`.
    */
   public final fun getEndBoneDirection(index: Int): SkeletonModifier3D.BoneDirection {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getEndBoneDirectionPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getEndBoneDirectionPtr)
     return SkeletonModifier3D.BoneDirection.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -156,16 +155,16 @@ public open class ChainIK3D internal constructor() : IKModifier3D() {
    * Sets the end bone tail length of the bone chain when [isEndBoneExtended] is `true`.
    */
   public final fun setEndBoneLength(index: Int, length: Float): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), DOUBLE to length.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setEndBoneLengthPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), DOUBLE to length.toDouble())
+    TransferContext.callMethod(MethodBindings.setEndBoneLengthPtr)
   }
 
   /**
    * Returns the end bone tail length of the bone chain when [isEndBoneExtended] is `true`.
    */
   public final fun getEndBoneLength(index: Int): Float {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getEndBoneLengthPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getEndBoneLengthPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -173,8 +172,8 @@ public open class ChainIK3D internal constructor() : IKModifier3D() {
    * Returns the bone name at [joint] in the bone chain's joint list.
    */
   public final fun getJointBoneName(index: Int, joint: Int): String {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to joint.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getJointBoneNamePtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), LONG to joint.toLong())
+    TransferContext.callMethod(MethodBindings.getJointBoneNamePtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -182,8 +181,8 @@ public open class ChainIK3D internal constructor() : IKModifier3D() {
    * Returns the bone index at [joint] in the bone chain's joint list.
    */
   public final fun getJointBone(index: Int, joint: Int): Int {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to joint.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getJointBonePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), LONG to joint.toLong())
+    TransferContext.callMethod(MethodBindings.getJointBonePtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -191,8 +190,8 @@ public open class ChainIK3D internal constructor() : IKModifier3D() {
    * Returns the joint count of the bone chain's joint list.
    */
   public final fun getJointCount(index: Int): Int {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getJointCountPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getJointCountPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 

@@ -54,8 +54,8 @@ public open class InstancePlaceholder internal constructor() : Node() {
    */
   @JvmOverloads
   public final fun getStoredValues(withOrder: Boolean = false): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments(BOOL to withOrder)
-    TransferContext.callMethod(ptr, MethodBindings.getStoredValuesPtr, DICTIONARY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to withOrder)
+    TransferContext.callMethod(MethodBindings.getStoredValuesPtr)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
@@ -70,8 +70,8 @@ public open class InstancePlaceholder internal constructor() : Node() {
   @JvmOverloads
   public final fun createInstance(replace: Boolean = false, customScene: PackedScene? = null):
       Node? {
-    TransferContext.writeArguments(BOOL to replace, OBJECT to customScene)
-    TransferContext.callMethod(ptr, MethodBindings.createInstancePtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to replace, OBJECT to customScene)
+    TransferContext.callMethod(MethodBindings.createInstancePtr)
     return (TransferContext.readReturnValue(OBJECT) as Node?)
   }
 
@@ -80,8 +80,8 @@ public open class InstancePlaceholder internal constructor() : Node() {
    * [createInstance]. Not thread-safe. Use [Object.callDeferred] if calling from a thread.
    */
   public final fun getInstancePath(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getInstancePathPtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getInstancePathPtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 

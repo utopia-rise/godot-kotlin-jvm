@@ -89,8 +89,8 @@ public object JavaClassWrapper : Object() {
    */
   @JvmStatic
   public final fun wrap(name: String): JavaClass? {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(ptr, MethodBindings.wrapPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to name)
+    TransferContext.callMethod(MethodBindings.wrapPtr)
     return (TransferContext.readReturnValue(OBJECT) as JavaClass?)
   }
 
@@ -103,8 +103,8 @@ public object JavaClassWrapper : Object() {
    */
   @JvmStatic
   public final fun getException(): JavaObject? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getExceptionPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getExceptionPtr)
     return (TransferContext.readReturnValue(OBJECT) as JavaObject?)
   }
 
@@ -131,8 +131,8 @@ public object JavaClassWrapper : Object() {
    */
   @JvmStatic
   public final fun createSamCallback(samInterface: String, callable: Callable): JavaObject? {
-    TransferContext.writeArguments(STRING to samInterface, CALLABLE to callable)
-    TransferContext.callMethod(ptr, MethodBindings.createSamCallbackPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to samInterface, CALLABLE to callable)
+    TransferContext.callMethod(MethodBindings.createSamCallbackPtr)
     return (TransferContext.readReturnValue(OBJECT) as JavaObject?)
   }
 
@@ -159,8 +159,8 @@ public object JavaClassWrapper : Object() {
    */
   @JvmStatic
   public final fun createProxy(`object`: Object?, interfaces: PackedStringArray): JavaObject? {
-    TransferContext.writeArguments(OBJECT to `object`, PACKED_STRING_ARRAY to interfaces)
-    TransferContext.callMethod(ptr, MethodBindings.createProxyPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to `object`, PACKED_STRING_ARRAY to interfaces)
+    TransferContext.callMethod(MethodBindings.createProxyPtr)
     return (TransferContext.readReturnValue(OBJECT) as JavaObject?)
   }
 

@@ -12,7 +12,6 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Suppress
 import kotlin.Unit
@@ -41,13 +40,13 @@ public open class VisualShaderNodeTexture2DArray : VisualShaderNodeSample3D() {
   }
 
   public final fun setTextureArray(`value`: TextureLayered?): Unit {
-    TransferContext.writeArguments(OBJECT to value)
-    TransferContext.callMethod(ptr, MethodBindings.setTextureArrayPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to value)
+    TransferContext.callMethod(MethodBindings.setTextureArrayPtr)
   }
 
   public final fun getTextureArray(): TextureLayered? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getTextureArrayPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getTextureArrayPtr)
     return (TransferContext.readReturnValue(OBJECT) as TextureLayered?)
   }
 

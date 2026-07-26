@@ -53,8 +53,8 @@ public open class TCPServer : SocketServer() {
    */
   @JvmOverloads
   public final fun listen(port: Int, bindAddress: String = "*"): Error {
-    TransferContext.writeArguments(LONG to port.toLong(), STRING to bindAddress)
-    TransferContext.callMethod(ptr, MethodBindings.listenPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to port.toLong(), STRING to bindAddress)
+    TransferContext.callMethod(MethodBindings.listenPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -62,8 +62,8 @@ public open class TCPServer : SocketServer() {
    * Returns the local port this server is listening to.
    */
   public final fun getLocalPort(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getLocalPortPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getLocalPortPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -71,8 +71,8 @@ public open class TCPServer : SocketServer() {
    * If a connection is available, returns a StreamPeerTCP with the connection.
    */
   public final fun takeConnection(): StreamPeerTCP? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.takeConnectionPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.takeConnectionPtr)
     return (TransferContext.readReturnValue(OBJECT) as StreamPeerTCP?)
   }
 

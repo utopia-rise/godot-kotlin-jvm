@@ -15,7 +15,6 @@ import godot.core.MethodStringName1
 import godot.core.MethodStringName2
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
@@ -46,16 +45,16 @@ public open class AudioEffectEQ : AudioEffect() {
    * Sets band's gain at the specified index, in dB.
    */
   public final fun setBandGainDb(bandIdx: Int, volumeDb: Float): Unit {
-    TransferContext.writeArguments(LONG to bandIdx.toLong(), DOUBLE to volumeDb.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setBandGainDbPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to bandIdx.toLong(), DOUBLE to volumeDb.toDouble())
+    TransferContext.callMethod(MethodBindings.setBandGainDbPtr)
   }
 
   /**
    * Returns the band's gain at the specified index, in dB.
    */
   public final fun getBandGainDb(bandIdx: Int): Float {
-    TransferContext.writeArguments(LONG to bandIdx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getBandGainDbPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to bandIdx.toLong())
+    TransferContext.callMethod(MethodBindings.getBandGainDbPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -63,8 +62,8 @@ public open class AudioEffectEQ : AudioEffect() {
    * Returns the number of bands of the equalizer.
    */
   public final fun getBandCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getBandCountPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getBandCountPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 

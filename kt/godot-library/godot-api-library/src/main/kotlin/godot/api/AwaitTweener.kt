@@ -36,8 +36,8 @@ public open class AwaitTweener : Tweener() {
    * signals that may never be emitted. If not specified, the tweener will wait indefinitely.
    */
   public final fun setTimeout(timeout: Double): AwaitTweener? {
-    TransferContext.writeArguments(DOUBLE to timeout)
-    TransferContext.callMethod(ptr, MethodBindings.setTimeoutPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to timeout)
+    TransferContext.callMethod(MethodBindings.setTimeoutPtr)
     return (TransferContext.readReturnValue(OBJECT) as AwaitTweener?)
   }
 

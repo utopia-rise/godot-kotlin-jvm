@@ -12,7 +12,6 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import kotlin.String
 import kotlin.Suppress
@@ -43,13 +42,13 @@ public open class VisualShaderNodeComment : VisualShaderNodeFrame() {
   }
 
   public final fun setDescription(description: String): Unit {
-    TransferContext.writeArguments(STRING to description)
-    TransferContext.callMethod(ptr, MethodBindings.setDescriptionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to description)
+    TransferContext.callMethod(MethodBindings.setDescriptionPtr)
   }
 
   public final fun getDescription(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getDescriptionPtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getDescriptionPtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 

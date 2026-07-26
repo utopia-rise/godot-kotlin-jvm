@@ -12,7 +12,6 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.MethodStringName0
 import godot.core.VariantParser.BOOL
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
 import kotlin.Suppress
@@ -32,8 +31,8 @@ public open class SocketServer internal constructor() : RefCounted() {
    * Returns `true` if a connection is available for taking.
    */
   public final fun isConnectionAvailable(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isConnectionAvailablePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isConnectionAvailablePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -41,8 +40,8 @@ public open class SocketServer internal constructor() : RefCounted() {
    * Returns `true` if the server is currently listening for connections.
    */
   public final fun isListening(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isListeningPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isListeningPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -50,16 +49,16 @@ public open class SocketServer internal constructor() : RefCounted() {
    * Stops listening.
    */
   public final fun stop(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.stopPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.stopPtr)
   }
 
   /**
    * If a connection is available, returns a StreamPeerSocket with the connection.
    */
   public final fun takeSocketConnection(): StreamPeerSocket? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.takeSocketConnectionPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.takeSocketConnectionPtr)
     return (TransferContext.readReturnValue(OBJECT) as StreamPeerSocket?)
   }
 

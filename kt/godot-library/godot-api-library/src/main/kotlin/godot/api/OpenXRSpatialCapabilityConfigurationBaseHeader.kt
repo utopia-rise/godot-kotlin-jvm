@@ -53,8 +53,8 @@ public open class OpenXRSpatialCapabilityConfigurationBaseHeader : RefCounted() 
    * [OpenXRSpatialEntityExtension.createSpatialContext].
    */
   public final fun hasValidConfiguration(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.hasValidConfigurationPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.hasValidConfigurationPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -64,8 +64,8 @@ public open class OpenXRSpatialCapabilityConfigurationBaseHeader : RefCounted() 
    * **Note:** This method is intended to be used from GDExtensions.
    */
   public final fun getConfiguration(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getConfigurationPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getConfigurationPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 

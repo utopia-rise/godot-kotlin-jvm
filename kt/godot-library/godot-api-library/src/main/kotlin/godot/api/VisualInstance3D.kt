@@ -18,7 +18,6 @@ import godot.core.RID
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser._RID
 import kotlin.Boolean
 import kotlin.Double
@@ -111,8 +110,8 @@ public open class VisualInstance3D : Node3D() {
    * handles the [VisualInstance3D] under the hood. Equivalent to [RenderingServer.instanceSetBase].
    */
   public final fun setBase(base: RID): Unit {
-    TransferContext.writeArguments(_RID to base)
-    TransferContext.callMethod(ptr, MethodBindings.setBasePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to base)
+    TransferContext.callMethod(MethodBindings.setBasePtr)
   }
 
   /**
@@ -120,8 +119,8 @@ public open class VisualInstance3D : Node3D() {
    * Node is a [MeshInstance3D], this will return the RID of the associated [Mesh].
    */
   public final fun getBase(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getBasePtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getBasePtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -131,19 +130,19 @@ public open class VisualInstance3D : Node3D() {
    * functions directly on this [VisualInstance3D].
    */
   public final fun getInstance(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getInstancePtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getInstancePtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun setLayerMask(mask: Long): Unit {
-    TransferContext.writeArguments(LONG to mask)
-    TransferContext.callMethod(ptr, MethodBindings.setLayerMaskPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to mask)
+    TransferContext.callMethod(MethodBindings.setLayerMaskPtr)
   }
 
   public final fun getLayerMask(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getLayerMaskPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getLayerMaskPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -152,8 +151,8 @@ public open class VisualInstance3D : Node3D() {
    * [layerNumber] between 1 and 20.
    */
   public final fun setLayerMaskValue(layerNumber: Int, `value`: Boolean): Unit {
-    TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
-    TransferContext.callMethod(ptr, MethodBindings.setLayerMaskValuePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to layerNumber.toLong(), BOOL to value)
+    TransferContext.callMethod(MethodBindings.setLayerMaskValuePtr)
   }
 
   /**
@@ -161,30 +160,30 @@ public open class VisualInstance3D : Node3D() {
    * between 1 and 20.
    */
   public final fun getLayerMaskValue(layerNumber: Int): Boolean {
-    TransferContext.writeArguments(LONG to layerNumber.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getLayerMaskValuePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to layerNumber.toLong())
+    TransferContext.callMethod(MethodBindings.getLayerMaskValuePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSortingOffset(offset: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to offset.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setSortingOffsetPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to offset.toDouble())
+    TransferContext.callMethod(MethodBindings.setSortingOffsetPtr)
   }
 
   public final fun getSortingOffset(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSortingOffsetPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSortingOffsetPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSortingUseAabbCenter(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.setSortingUseAabbCenterPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enabled)
+    TransferContext.callMethod(MethodBindings.setSortingUseAabbCenterPtr)
   }
 
   public final fun isSortingUseAabbCenter(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isSortingUseAabbCenterPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isSortingUseAabbCenterPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -192,8 +191,8 @@ public open class VisualInstance3D : Node3D() {
    * Returns the [AABB] (also known as the bounding box) for this [VisualInstance3D].
    */
   public final fun getAabb(): AABB {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getAabbPtr, godot.core.VariantParser.AABB)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getAabbPtr)
     return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 

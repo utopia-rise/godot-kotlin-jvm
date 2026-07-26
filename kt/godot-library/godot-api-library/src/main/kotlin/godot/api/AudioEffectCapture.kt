@@ -16,7 +16,6 @@ import godot.core.PackedVector2Array
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
 import kotlin.Boolean
 import kotlin.Double
@@ -67,8 +66,8 @@ public open class AudioEffectCapture : AudioEffect() {
    * Returns `true` if at least [frames] samples are available to read in the internal ring buffer.
    */
   public final fun canGetBuffer(frames: Int): Boolean {
-    TransferContext.writeArguments(LONG to frames.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.canGetBufferPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to frames.toLong())
+    TransferContext.callMethod(MethodBindings.canGetBufferPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -82,8 +81,8 @@ public open class AudioEffectCapture : AudioEffect() {
    * you want to use them as 8 or 16-bit integer samples. (`v = 0x7fff * samples[0].x`)
    */
   public final fun getBuffer(frames: Int): PackedVector2Array {
-    TransferContext.writeArguments(LONG to frames.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getBufferPtr, PACKED_VECTOR2_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to frames.toLong())
+    TransferContext.callMethod(MethodBindings.getBufferPtr)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
@@ -94,18 +93,18 @@ public open class AudioEffectCapture : AudioEffect() {
    * the playback.
    */
   public final fun clearBuffer(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.clearBufferPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.clearBufferPtr)
   }
 
   public final fun setBufferLength(bufferLengthSeconds: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to bufferLengthSeconds.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setBufferLengthPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to bufferLengthSeconds.toDouble())
+    TransferContext.callMethod(MethodBindings.setBufferLengthPtr)
   }
 
   public final fun getBufferLength(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getBufferLengthPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getBufferLengthPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -113,8 +112,8 @@ public open class AudioEffectCapture : AudioEffect() {
    * Returns the number of samples available to read using [getBuffer].
    */
   public final fun getFramesAvailable(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFramesAvailablePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getFramesAvailablePtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -122,8 +121,8 @@ public open class AudioEffectCapture : AudioEffect() {
    * Returns the number of samples discarded from the audio bus due to full buffer.
    */
   public final fun getDiscardedFrames(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getDiscardedFramesPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getDiscardedFramesPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -131,8 +130,8 @@ public open class AudioEffectCapture : AudioEffect() {
    * Returns the total size of the internal ring buffer in number of samples.
    */
   public final fun getBufferLengthFrames(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getBufferLengthFramesPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getBufferLengthFramesPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -140,8 +139,8 @@ public open class AudioEffectCapture : AudioEffect() {
    * Returns the number of samples inserted from the audio bus.
    */
   public final fun getPushedFrames(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPushedFramesPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPushedFramesPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 

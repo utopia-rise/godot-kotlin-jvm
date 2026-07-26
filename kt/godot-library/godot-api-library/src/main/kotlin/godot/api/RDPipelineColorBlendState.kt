@@ -20,7 +20,6 @@ import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Long
 import kotlin.Suppress
@@ -109,47 +108,47 @@ public open class RDPipelineColorBlendState : RefCounted() {
   }
 
   public final fun setEnableLogicOp(pMember: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to pMember)
-    TransferContext.callMethod(ptr, MethodBindings.setEnableLogicOpPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to pMember)
+    TransferContext.callMethod(MethodBindings.setEnableLogicOpPtr)
   }
 
   public final fun getEnableLogicOp(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getEnableLogicOpPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getEnableLogicOpPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setLogicOp(pMember: RenderingDevice.LogicOperation): Unit {
-    TransferContext.writeArguments(LONG to pMember.value)
-    TransferContext.callMethod(ptr, MethodBindings.setLogicOpPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to pMember.value)
+    TransferContext.callMethod(MethodBindings.setLogicOpPtr)
   }
 
   public final fun getLogicOp(): RenderingDevice.LogicOperation {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getLogicOpPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getLogicOpPtr)
     return RenderingDevice.LogicOperation.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setBlendConstant(pMember: Color): Unit {
-    TransferContext.writeArguments(COLOR to pMember)
-    TransferContext.callMethod(ptr, MethodBindings.setBlendConstantPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, COLOR to pMember)
+    TransferContext.callMethod(MethodBindings.setBlendConstantPtr)
   }
 
   public final fun getBlendConstant(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getBlendConstantPtr, COLOR)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getBlendConstantPtr)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   public final fun setAttachments(attachments: VariantArray<RDPipelineColorBlendStateAttachment>):
       Unit {
-    TransferContext.writeArguments(ARRAY to attachments)
-    TransferContext.callMethod(ptr, MethodBindings.setAttachmentsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, ARRAY to attachments)
+    TransferContext.callMethod(MethodBindings.setAttachmentsPtr)
   }
 
   public final fun getAttachments(): VariantArray<RDPipelineColorBlendStateAttachment> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getAttachmentsPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getAttachmentsPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<RDPipelineColorBlendStateAttachment>)
   }
 

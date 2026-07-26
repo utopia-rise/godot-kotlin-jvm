@@ -38,8 +38,8 @@ public abstract class PhysicsDirectSpaceState3DExtension : PhysicsDirectSpaceSta
   public abstract fun _getClosestPointToObjectVolume(`object`: RID, point: Vector3): Vector3
 
   public final fun isBodyExcludedFromQuery(body: RID): Boolean {
-    TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(ptr, MethodBindings.isBodyExcludedFromQueryPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body)
+    TransferContext.callMethod(MethodBindings.isBodyExcludedFromQueryPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

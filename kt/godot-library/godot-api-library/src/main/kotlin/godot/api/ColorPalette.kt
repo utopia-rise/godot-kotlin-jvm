@@ -13,7 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.PackedColorArray
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_COLOR_ARRAY
 import kotlin.Suppress
 import kotlin.Unit
@@ -44,13 +43,13 @@ public open class ColorPalette : Resource() {
   }
 
   public final fun setColors(colors: PackedColorArray): Unit {
-    TransferContext.writeArguments(PACKED_COLOR_ARRAY to colors)
-    TransferContext.callMethod(ptr, MethodBindings.setColorsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_COLOR_ARRAY to colors)
+    TransferContext.callMethod(MethodBindings.setColorsPtr)
   }
 
   public final fun getColors(): PackedColorArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getColorsPtr, PACKED_COLOR_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getColorsPtr)
     return (TransferContext.readReturnValue(PACKED_COLOR_ARRAY) as PackedColorArray)
   }
 

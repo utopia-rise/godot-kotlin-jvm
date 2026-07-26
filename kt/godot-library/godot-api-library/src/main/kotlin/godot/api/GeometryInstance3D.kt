@@ -22,7 +22,6 @@ import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING_NAME
 import godot.core.asCachedStringName
@@ -320,112 +319,112 @@ public open class GeometryInstance3D : VisualInstance3D() {
   }
 
   public final fun setMaterialOverride(material: Material?): Unit {
-    TransferContext.writeArguments(OBJECT to material)
-    TransferContext.callMethod(ptr, MethodBindings.setMaterialOverridePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to material)
+    TransferContext.callMethod(MethodBindings.setMaterialOverridePtr)
   }
 
   public final fun getMaterialOverride(): Material? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMaterialOverridePtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMaterialOverridePtr)
     return (TransferContext.readReturnValue(OBJECT) as Material?)
   }
 
   public final fun setMaterialOverlay(material: Material?): Unit {
-    TransferContext.writeArguments(OBJECT to material)
-    TransferContext.callMethod(ptr, MethodBindings.setMaterialOverlayPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to material)
+    TransferContext.callMethod(MethodBindings.setMaterialOverlayPtr)
   }
 
   public final fun getMaterialOverlay(): Material? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMaterialOverlayPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMaterialOverlayPtr)
     return (TransferContext.readReturnValue(OBJECT) as Material?)
   }
 
   public final fun setCastShadowsSetting(shadowCastingSetting: ShadowCastingSetting): Unit {
-    TransferContext.writeArguments(LONG to shadowCastingSetting.value)
-    TransferContext.callMethod(ptr, MethodBindings.setCastShadowsSettingPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to shadowCastingSetting.value)
+    TransferContext.callMethod(MethodBindings.setCastShadowsSettingPtr)
   }
 
   public final fun getCastShadowsSetting(): ShadowCastingSetting {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCastShadowsSettingPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCastShadowsSettingPtr)
     return ShadowCastingSetting.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setLodBias(bias: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to bias.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setLodBiasPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to bias.toDouble())
+    TransferContext.callMethod(MethodBindings.setLodBiasPtr)
   }
 
   public final fun getLodBias(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getLodBiasPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getLodBiasPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTransparency(transparency: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to transparency.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setTransparencyPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to transparency.toDouble())
+    TransferContext.callMethod(MethodBindings.setTransparencyPtr)
   }
 
   public final fun getTransparency(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getTransparencyPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getTransparencyPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVisibilityRangeEndMargin(distance: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to distance.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setVisibilityRangeEndMarginPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to distance.toDouble())
+    TransferContext.callMethod(MethodBindings.setVisibilityRangeEndMarginPtr)
   }
 
   public final fun getVisibilityRangeEndMargin(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getVisibilityRangeEndMarginPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getVisibilityRangeEndMarginPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVisibilityRangeEnd(distance: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to distance.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setVisibilityRangeEndPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to distance.toDouble())
+    TransferContext.callMethod(MethodBindings.setVisibilityRangeEndPtr)
   }
 
   public final fun getVisibilityRangeEnd(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getVisibilityRangeEndPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getVisibilityRangeEndPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVisibilityRangeBeginMargin(distance: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to distance.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setVisibilityRangeBeginMarginPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to distance.toDouble())
+    TransferContext.callMethod(MethodBindings.setVisibilityRangeBeginMarginPtr)
   }
 
   public final fun getVisibilityRangeBeginMargin(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getVisibilityRangeBeginMarginPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getVisibilityRangeBeginMarginPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVisibilityRangeBegin(distance: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to distance.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setVisibilityRangeBeginPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to distance.toDouble())
+    TransferContext.callMethod(MethodBindings.setVisibilityRangeBeginPtr)
   }
 
   public final fun getVisibilityRangeBegin(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getVisibilityRangeBeginPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getVisibilityRangeBeginPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVisibilityRangeFadeMode(mode: VisibilityRangeFadeMode): Unit {
-    TransferContext.writeArguments(LONG to mode.value)
-    TransferContext.callMethod(ptr, MethodBindings.setVisibilityRangeFadeModePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to mode.value)
+    TransferContext.callMethod(MethodBindings.setVisibilityRangeFadeModePtr)
   }
 
   public final fun getVisibilityRangeFadeMode(): VisibilityRangeFadeMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getVisibilityRangeFadeModePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getVisibilityRangeFadeModePtr)
     return VisibilityRangeFadeMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -445,82 +444,82 @@ public open class GeometryInstance3D : VisualInstance3D() {
    * but not for Fog, Sky, or Particles shaders.
    */
   public final fun setInstanceShaderParameter(name: StringName, `value`: Any?): Unit {
-    TransferContext.writeArguments(STRING_NAME to name, ANY to value)
-    TransferContext.callMethod(ptr, MethodBindings.setInstanceShaderParameterPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to name, ANY to value)
+    TransferContext.callMethod(MethodBindings.setInstanceShaderParameterPtr)
   }
 
   /**
    * Get the value of a shader parameter as set on this instance.
    */
   public final fun getInstanceShaderParameter(name: StringName): Any? {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(ptr, MethodBindings.getInstanceShaderParameterPtr, ANY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to name)
+    TransferContext.callMethod(MethodBindings.getInstanceShaderParameterPtr)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
   public final fun setExtraCullMargin(margin: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to margin.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setExtraCullMarginPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to margin.toDouble())
+    TransferContext.callMethod(MethodBindings.setExtraCullMarginPtr)
   }
 
   public final fun getExtraCullMargin(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getExtraCullMarginPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getExtraCullMarginPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setLightmapTexelScale(scale: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to scale.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setLightmapTexelScalePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to scale.toDouble())
+    TransferContext.callMethod(MethodBindings.setLightmapTexelScalePtr)
   }
 
   public final fun getLightmapTexelScale(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getLightmapTexelScalePtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getLightmapTexelScalePtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setLightmapScale(scale: LightmapScale): Unit {
-    TransferContext.writeArguments(LONG to scale.value)
-    TransferContext.callMethod(ptr, MethodBindings.setLightmapScalePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to scale.value)
+    TransferContext.callMethod(MethodBindings.setLightmapScalePtr)
   }
 
   public final fun getLightmapScale(): LightmapScale {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getLightmapScalePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getLightmapScalePtr)
     return LightmapScale.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setGiMode(mode: GIMode): Unit {
-    TransferContext.writeArguments(LONG to mode.value)
-    TransferContext.callMethod(ptr, MethodBindings.setGiModePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to mode.value)
+    TransferContext.callMethod(MethodBindings.setGiModePtr)
   }
 
   public final fun getGiMode(): GIMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getGiModePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getGiModePtr)
     return GIMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setIgnoreOcclusionCulling(ignoreCulling: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to ignoreCulling)
-    TransferContext.callMethod(ptr, MethodBindings.setIgnoreOcclusionCullingPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to ignoreCulling)
+    TransferContext.callMethod(MethodBindings.setIgnoreOcclusionCullingPtr)
   }
 
   public final fun isIgnoringOcclusionCulling(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isIgnoringOcclusionCullingPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isIgnoringOcclusionCullingPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCustomAabb(aabb: AABB): Unit {
-    TransferContext.writeArguments(godot.core.VariantParser.AABB to aabb)
-    TransferContext.callMethod(ptr, MethodBindings.setCustomAabbPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, godot.core.VariantParser.AABB to aabb)
+    TransferContext.callMethod(MethodBindings.setCustomAabbPtr)
   }
 
   public final fun getCustomAabb(): AABB {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCustomAabbPtr, godot.core.VariantParser.AABB)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCustomAabbPtr)
     return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 

@@ -46,8 +46,8 @@ public open class CryptoKey : Resource() {
    */
   @JvmOverloads
   public final fun save(path: String, publicOnly: Boolean = false): Error {
-    TransferContext.writeArguments(STRING to path, BOOL to publicOnly)
-    TransferContext.callMethod(ptr, MethodBindings.savePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to path, BOOL to publicOnly)
+    TransferContext.callMethod(MethodBindings.savePtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -58,8 +58,8 @@ public open class CryptoKey : Resource() {
    */
   @JvmOverloads
   public final fun load(path: String, publicOnly: Boolean = false): Error {
-    TransferContext.writeArguments(STRING to path, BOOL to publicOnly)
-    TransferContext.callMethod(ptr, MethodBindings.loadPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to path, BOOL to publicOnly)
+    TransferContext.callMethod(MethodBindings.loadPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -67,8 +67,8 @@ public open class CryptoKey : Resource() {
    * Returns `true` if this CryptoKey only has the public part, and not the private one.
    */
   public final fun isPublicOnly(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isPublicOnlyPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isPublicOnlyPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -78,8 +78,8 @@ public open class CryptoKey : Resource() {
    */
   @JvmOverloads
   public final fun saveToString(publicOnly: Boolean = false): String {
-    TransferContext.writeArguments(BOOL to publicOnly)
-    TransferContext.callMethod(ptr, MethodBindings.saveToStringPtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to publicOnly)
+    TransferContext.callMethod(MethodBindings.saveToStringPtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -89,8 +89,8 @@ public open class CryptoKey : Resource() {
    */
   @JvmOverloads
   public final fun loadFromString(stringKey: String, publicOnly: Boolean = false): Error {
-    TransferContext.writeArguments(STRING to stringKey, BOOL to publicOnly)
-    TransferContext.callMethod(ptr, MethodBindings.loadFromStringPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to stringKey, BOOL to publicOnly)
+    TransferContext.callMethod(MethodBindings.loadFromStringPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

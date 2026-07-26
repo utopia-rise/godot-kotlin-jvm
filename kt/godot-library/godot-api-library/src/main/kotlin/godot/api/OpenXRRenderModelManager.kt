@@ -15,7 +15,6 @@ import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.Signal1
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import kotlin.Long
 import kotlin.String
@@ -75,25 +74,25 @@ public open class OpenXRRenderModelManager : Node3D() {
   }
 
   public final fun getTracker(): RenderModelTracker {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getTrackerPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getTrackerPtr)
     return RenderModelTracker.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setTracker(tracker: RenderModelTracker): Unit {
-    TransferContext.writeArguments(LONG to tracker.value)
-    TransferContext.callMethod(ptr, MethodBindings.setTrackerPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to tracker.value)
+    TransferContext.callMethod(MethodBindings.setTrackerPtr)
   }
 
   public final fun getMakeLocalToPose(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMakeLocalToPosePtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMakeLocalToPosePtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setMakeLocalToPose(makeLocalToPose: String): Unit {
-    TransferContext.writeArguments(STRING to makeLocalToPose)
-    TransferContext.callMethod(ptr, MethodBindings.setMakeLocalToPosePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to makeLocalToPose)
+    TransferContext.callMethod(MethodBindings.setMakeLocalToPosePtr)
   }
 
   public enum class RenderModelTracker(

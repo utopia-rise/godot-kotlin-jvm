@@ -17,7 +17,6 @@ import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.Rect2
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.RECT2
 import kotlin.Long
 import kotlin.Suppress
@@ -92,24 +91,24 @@ public open class BackBufferCopy : Node2D() {
   }
 
   public final fun setRect(rect: Rect2): Unit {
-    TransferContext.writeArguments(RECT2 to rect)
-    TransferContext.callMethod(ptr, MethodBindings.setRectPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, RECT2 to rect)
+    TransferContext.callMethod(MethodBindings.setRectPtr)
   }
 
   public final fun getRect(): Rect2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getRectPtr, RECT2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getRectPtr)
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 
   public final fun setCopyMode(copyMode: CopyMode): Unit {
-    TransferContext.writeArguments(LONG to copyMode.value)
-    TransferContext.callMethod(ptr, MethodBindings.setCopyModePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to copyMode.value)
+    TransferContext.callMethod(MethodBindings.setCopyModePtr)
   }
 
   public final fun getCopyMode(): CopyMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCopyModePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCopyModePtr)
     return CopyMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

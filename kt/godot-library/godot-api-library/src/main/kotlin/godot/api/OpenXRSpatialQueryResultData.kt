@@ -32,8 +32,8 @@ public open class OpenXRSpatialQueryResultData : OpenXRSpatialComponentData() {
    * Returns the number of entities that were retrieved.
    */
   public final fun getCapacity(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCapacityPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCapacityPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -41,8 +41,8 @@ public open class OpenXRSpatialQueryResultData : OpenXRSpatialComponentData() {
    * Returns the entity id (`XrSpatialEntityIdEXT`) for the entity at this [index].
    */
   public final fun getEntityId(index: Long): Long {
-    TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(ptr, MethodBindings.getEntityIdPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index)
+    TransferContext.callMethod(MethodBindings.getEntityIdPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -50,8 +50,8 @@ public open class OpenXRSpatialQueryResultData : OpenXRSpatialComponentData() {
    * Returns the entity state for the entity at this [index].
    */
   public final fun getEntityState(index: Long): OpenXRSpatialEntityTracker.EntityTrackingState {
-    TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(ptr, MethodBindings.getEntityStatePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index)
+    TransferContext.callMethod(MethodBindings.getEntityStatePtr)
     return OpenXRSpatialEntityTracker.EntityTrackingState.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

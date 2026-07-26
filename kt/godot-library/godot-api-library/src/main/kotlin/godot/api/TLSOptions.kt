@@ -53,8 +53,8 @@ public open class TLSOptions internal constructor() : RefCounted() {
    * Returns `true` if created with [TLSOptions.server], `false` otherwise.
    */
   public final fun isServer(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isServerPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isServerPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -62,8 +62,8 @@ public open class TLSOptions internal constructor() : RefCounted() {
    * Returns `true` if created with [TLSOptions.clientUnsafe], `false` otherwise.
    */
   public final fun isUnsafeClient(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isUnsafeClientPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isUnsafeClientPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -72,8 +72,8 @@ public open class TLSOptions internal constructor() : RefCounted() {
    * [TLSOptions.client].
    */
   public final fun getCommonNameOverride(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCommonNameOverridePtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCommonNameOverridePtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -82,8 +82,8 @@ public open class TLSOptions internal constructor() : RefCounted() {
    * [TLSOptions.clientUnsafe].
    */
   public final fun getTrustedCaChain(): X509Certificate? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getTrustedCaChainPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getTrustedCaChainPtr)
     return (TransferContext.readReturnValue(OBJECT) as X509Certificate?)
   }
 
@@ -91,8 +91,8 @@ public open class TLSOptions internal constructor() : RefCounted() {
    * Returns the [CryptoKey] specified when creating with [TLSOptions.server].
    */
   public final fun getPrivateKey(): CryptoKey? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPrivateKeyPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPrivateKeyPtr)
     return (TransferContext.readReturnValue(OBJECT) as CryptoKey?)
   }
 
@@ -100,8 +100,8 @@ public open class TLSOptions internal constructor() : RefCounted() {
    * Returns the [X509Certificate] specified when creating with [TLSOptions.server].
    */
   public final fun getOwnCertificate(): X509Certificate? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getOwnCertificatePtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getOwnCertificatePtr)
     return (TransferContext.readReturnValue(OBJECT) as X509Certificate?)
   }
 
@@ -157,8 +157,8 @@ public open class TLSOptions internal constructor() : RefCounted() {
     @JvmStatic
     public final fun client(trustedChain: X509Certificate? = null, commonNameOverride: String = ""):
         TLSOptions? {
-      TransferContext.writeArguments(OBJECT to trustedChain, STRING to commonNameOverride)
-      TransferContext.callMethod(0, MethodBindings.clientPtr, OBJECT)
+      TransferContext.writeMethodArguments(0L, 0L, OBJECT to trustedChain, STRING to commonNameOverride)
+      TransferContext.callMethod(MethodBindings.clientPtr)
       return (TransferContext.readReturnValue(OBJECT) as TLSOptions?)
     }
 
@@ -174,8 +174,8 @@ public open class TLSOptions internal constructor() : RefCounted() {
     @JvmOverloads
     @JvmStatic
     public final fun clientUnsafe(trustedChain: X509Certificate? = null): TLSOptions? {
-      TransferContext.writeArguments(OBJECT to trustedChain)
-      TransferContext.callMethod(0, MethodBindings.clientUnsafePtr, OBJECT)
+      TransferContext.writeMethodArguments(0L, 0L, OBJECT to trustedChain)
+      TransferContext.callMethod(MethodBindings.clientUnsafePtr)
       return (TransferContext.readReturnValue(OBJECT) as TLSOptions?)
     }
 
@@ -187,8 +187,8 @@ public open class TLSOptions internal constructor() : RefCounted() {
      */
     @JvmStatic
     public final fun server(key: CryptoKey?, certificate: X509Certificate?): TLSOptions? {
-      TransferContext.writeArguments(OBJECT to key, OBJECT to certificate)
-      TransferContext.callMethod(0, MethodBindings.serverPtr, OBJECT)
+      TransferContext.writeMethodArguments(0L, 0L, OBJECT to key, OBJECT to certificate)
+      TransferContext.callMethod(MethodBindings.serverPtr)
       return (TransferContext.readReturnValue(OBJECT) as TLSOptions?)
     }
   }

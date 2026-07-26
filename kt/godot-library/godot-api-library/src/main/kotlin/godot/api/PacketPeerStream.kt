@@ -13,7 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Int
 import kotlin.Long
@@ -65,35 +64,35 @@ public open class PacketPeerStream : PacketPeer() {
   }
 
   public final fun setStreamPeer(peer: StreamPeer?): Unit {
-    TransferContext.writeArguments(OBJECT to peer)
-    TransferContext.callMethod(ptr, MethodBindings.setStreamPeerPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to peer)
+    TransferContext.callMethod(MethodBindings.setStreamPeerPtr)
   }
 
   public final fun getStreamPeer(): StreamPeer? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getStreamPeerPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getStreamPeerPtr)
     return (TransferContext.readReturnValue(OBJECT) as StreamPeer?)
   }
 
   public final fun setInputBufferMaxSize(maxSizeBytes: Int): Unit {
-    TransferContext.writeArguments(LONG to maxSizeBytes.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setInputBufferMaxSizePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to maxSizeBytes.toLong())
+    TransferContext.callMethod(MethodBindings.setInputBufferMaxSizePtr)
   }
 
   public final fun setOutputBufferMaxSize(maxSizeBytes: Int): Unit {
-    TransferContext.writeArguments(LONG to maxSizeBytes.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setOutputBufferMaxSizePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to maxSizeBytes.toLong())
+    TransferContext.callMethod(MethodBindings.setOutputBufferMaxSizePtr)
   }
 
   public final fun getInputBufferMaxSize(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getInputBufferMaxSizePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getInputBufferMaxSizePtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun getOutputBufferMaxSize(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getOutputBufferMaxSizePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getOutputBufferMaxSizePtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 

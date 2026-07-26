@@ -14,7 +14,6 @@ import godot.core.GodotEnum
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import kotlin.Int
 import kotlin.Long
@@ -70,35 +69,35 @@ public open class VisualShaderNodeParameter internal constructor() : VisualShade
   }
 
   public final fun setParameterName(name: String): Unit {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(ptr, MethodBindings.setParameterNamePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to name)
+    TransferContext.callMethod(MethodBindings.setParameterNamePtr)
   }
 
   public final fun getParameterName(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getParameterNamePtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getParameterNamePtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setQualifier(qualifier: Qualifier): Unit {
-    TransferContext.writeArguments(LONG to qualifier.value)
-    TransferContext.callMethod(ptr, MethodBindings.setQualifierPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to qualifier.value)
+    TransferContext.callMethod(MethodBindings.setQualifierPtr)
   }
 
   public final fun getQualifier(): Qualifier {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getQualifierPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getQualifierPtr)
     return Qualifier.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setInstanceIndex(instanceIndex: Int): Unit {
-    TransferContext.writeArguments(LONG to instanceIndex.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setInstanceIndexPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to instanceIndex.toLong())
+    TransferContext.callMethod(MethodBindings.setInstanceIndexPtr)
   }
 
   public final fun getInstanceIndex(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getInstanceIndexPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getInstanceIndexPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 

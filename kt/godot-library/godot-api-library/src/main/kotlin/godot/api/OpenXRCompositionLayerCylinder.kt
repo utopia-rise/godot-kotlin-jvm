@@ -14,7 +14,6 @@ import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import kotlin.Double
 import kotlin.Float
 import kotlin.Long
@@ -78,46 +77,46 @@ public open class OpenXRCompositionLayerCylinder : OpenXRCompositionLayer() {
   }
 
   public final fun setRadius(radius: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to radius.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setRadiusPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to radius.toDouble())
+    TransferContext.callMethod(MethodBindings.setRadiusPtr)
   }
 
   public final fun getRadius(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getRadiusPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getRadiusPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAspectRatio(aspectRatio: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to aspectRatio.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setAspectRatioPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to aspectRatio.toDouble())
+    TransferContext.callMethod(MethodBindings.setAspectRatioPtr)
   }
 
   public final fun getAspectRatio(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getAspectRatioPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getAspectRatioPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setCentralAngle(angle: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to angle.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setCentralAnglePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to angle.toDouble())
+    TransferContext.callMethod(MethodBindings.setCentralAnglePtr)
   }
 
   public final fun getCentralAngle(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCentralAnglePtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCentralAnglePtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFallbackSegments(segments: Long): Unit {
-    TransferContext.writeArguments(LONG to segments)
-    TransferContext.callMethod(ptr, MethodBindings.setFallbackSegmentsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to segments)
+    TransferContext.callMethod(MethodBindings.setFallbackSegmentsPtr)
   }
 
   public final fun getFallbackSegments(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFallbackSegmentsPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getFallbackSegmentsPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 

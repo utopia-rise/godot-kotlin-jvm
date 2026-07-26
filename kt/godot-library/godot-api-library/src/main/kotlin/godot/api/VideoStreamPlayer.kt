@@ -17,7 +17,6 @@ import godot.core.StringName
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
@@ -189,13 +188,13 @@ public open class VideoStreamPlayer : Control() {
   }
 
   public final fun setStream(stream: VideoStream?): Unit {
-    TransferContext.writeArguments(OBJECT to stream)
-    TransferContext.callMethod(ptr, MethodBindings.setStreamPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to stream)
+    TransferContext.callMethod(MethodBindings.setStreamPtr)
   }
 
   public final fun getStream(): VideoStream? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getStreamPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getStreamPtr)
     return (TransferContext.readReturnValue(OBJECT) as VideoStream?)
   }
 
@@ -204,8 +203,8 @@ public open class VideoStreamPlayer : Control() {
    * video.
    */
   public final fun play(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.playPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.playPtr)
   }
 
   /**
@@ -215,8 +214,8 @@ public open class VideoStreamPlayer : Control() {
    * won't become the current frame.
    */
   public final fun stop(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.stopPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.stopPtr)
   }
 
   /**
@@ -225,74 +224,74 @@ public open class VideoStreamPlayer : Control() {
    * **Note:** The video is still considered playing if paused during playback.
    */
   public final fun isPlaying(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isPlayingPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isPlayingPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setPaused(paused: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to paused)
-    TransferContext.callMethod(ptr, MethodBindings.setPausedPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to paused)
+    TransferContext.callMethod(MethodBindings.setPausedPtr)
   }
 
   public final fun isPaused(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isPausedPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isPausedPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setLoop(loop: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to loop)
-    TransferContext.callMethod(ptr, MethodBindings.setLoopPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to loop)
+    TransferContext.callMethod(MethodBindings.setLoopPtr)
   }
 
   public final fun hasLoop(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.hasLoopPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.hasLoopPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setVolume(volume: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to volume.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setVolumePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to volume.toDouble())
+    TransferContext.callMethod(MethodBindings.setVolumePtr)
   }
 
   public final fun getVolume(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getVolumePtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getVolumePtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVolumeDb(db: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to db.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setVolumeDbPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to db.toDouble())
+    TransferContext.callMethod(MethodBindings.setVolumeDbPtr)
   }
 
   public final fun getVolumeDb(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getVolumeDbPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getVolumeDbPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSpeedScale(speedScale: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to speedScale.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setSpeedScalePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to speedScale.toDouble())
+    TransferContext.callMethod(MethodBindings.setSpeedScalePtr)
   }
 
   public final fun getSpeedScale(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSpeedScalePtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSpeedScalePtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAudioTrack(track: Int): Unit {
-    TransferContext.writeArguments(LONG to track.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setAudioTrackPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to track.toLong())
+    TransferContext.callMethod(MethodBindings.setAudioTrackPtr)
   }
 
   public final fun getAudioTrack(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getAudioTrackPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getAudioTrackPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -300,8 +299,8 @@ public open class VideoStreamPlayer : Control() {
    * Returns the video stream's name, or `"<No Stream>"` if no video stream is assigned.
    */
   public final fun getStreamName(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getStreamNamePtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getStreamNamePtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -309,63 +308,63 @@ public open class VideoStreamPlayer : Control() {
    * The length of the current stream, in seconds.
    */
   public final fun getStreamLength(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getStreamLengthPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getStreamLengthPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setStreamPosition(position: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to position)
-    TransferContext.callMethod(ptr, MethodBindings.setStreamPositionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to position)
+    TransferContext.callMethod(MethodBindings.setStreamPositionPtr)
   }
 
   public final fun getStreamPosition(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getStreamPositionPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getStreamPositionPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setAutoplay(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.setAutoplayPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enabled)
+    TransferContext.callMethod(MethodBindings.setAutoplayPtr)
   }
 
   public final fun hasAutoplay(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.hasAutoplayPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.hasAutoplayPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setExpand(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(ptr, MethodBindings.setExpandPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enable)
+    TransferContext.callMethod(MethodBindings.setExpandPtr)
   }
 
   public final fun hasExpand(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.hasExpandPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.hasExpandPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setBufferingMsec(msec: Int): Unit {
-    TransferContext.writeArguments(LONG to msec.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setBufferingMsecPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to msec.toLong())
+    TransferContext.callMethod(MethodBindings.setBufferingMsecPtr)
   }
 
   public final fun getBufferingMsec(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getBufferingMsecPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getBufferingMsecPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setBus(bus: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to bus)
-    TransferContext.callMethod(ptr, MethodBindings.setBusPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to bus)
+    TransferContext.callMethod(MethodBindings.setBusPtr)
   }
 
   public final fun getBus(): StringName {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getBusPtr, STRING_NAME)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getBusPtr)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
@@ -373,8 +372,8 @@ public open class VideoStreamPlayer : Control() {
    * Returns the current frame as a [Texture2D].
    */
   public final fun getVideoTexture(): Texture2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getVideoTexturePtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getVideoTexturePtr)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 

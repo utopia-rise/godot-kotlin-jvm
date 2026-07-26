@@ -14,7 +14,6 @@ import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -57,24 +56,24 @@ public open class VisualShaderNodeUIntParameter : VisualShaderNodeParameter() {
   }
 
   public final fun setDefaultValueEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.setDefaultValueEnabledPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enabled)
+    TransferContext.callMethod(MethodBindings.setDefaultValueEnabledPtr)
   }
 
   public final fun isDefaultValueEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isDefaultValueEnabledPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isDefaultValueEnabledPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDefaultValue(`value`: Int): Unit {
-    TransferContext.writeArguments(LONG to value.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setDefaultValuePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to value.toLong())
+    TransferContext.callMethod(MethodBindings.setDefaultValuePtr)
   }
 
   public final fun getDefaultValue(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getDefaultValuePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getDefaultValuePtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 

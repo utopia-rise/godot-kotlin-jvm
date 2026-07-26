@@ -182,8 +182,8 @@ public open class DTLSServer : RefCounted() {
    * Setup the DTLS server to use the given [serverOptions]. See [TLSOptions.server].
    */
   public final fun setup(serverOptions: TLSOptions?): Error {
-    TransferContext.writeArguments(OBJECT to serverOptions)
-    TransferContext.callMethod(ptr, MethodBindings.setupPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to serverOptions)
+    TransferContext.callMethod(MethodBindings.setupPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -196,8 +196,8 @@ public open class DTLSServer : RefCounted() {
    * invalid due to cookie exchange.
    */
   public final fun takeConnection(udpPeer: PacketPeerUDP?): PacketPeerDTLS? {
-    TransferContext.writeArguments(OBJECT to udpPeer)
-    TransferContext.callMethod(ptr, MethodBindings.takeConnectionPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to udpPeer)
+    TransferContext.callMethod(MethodBindings.takeConnectionPtr)
     return (TransferContext.readReturnValue(OBJECT) as PacketPeerDTLS?)
   }
 

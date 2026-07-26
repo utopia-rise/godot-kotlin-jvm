@@ -16,7 +16,6 @@ import godot.core.MethodStringName2
 import godot.core.StringName
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
@@ -58,16 +57,16 @@ public open class RDShaderFile : Resource() {
    */
   public final fun setBytecode(bytecode: RDShaderSPIRV?, version: StringName = StringName("")):
       Unit {
-    TransferContext.writeArguments(OBJECT to bytecode, STRING_NAME to version)
-    TransferContext.callMethod(ptr, MethodBindings.setBytecodePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to bytecode, STRING_NAME to version)
+    TransferContext.callMethod(MethodBindings.setBytecodePtr)
   }
 
   /**
    * Returns the SPIR-V intermediate representation for the specified shader [version].
    */
   public final fun getSpirv(version: StringName = StringName("")): RDShaderSPIRV? {
-    TransferContext.writeArguments(STRING_NAME to version)
-    TransferContext.callMethod(ptr, MethodBindings.getSpirvPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to version)
+    TransferContext.callMethod(MethodBindings.getSpirvPtr)
     return (TransferContext.readReturnValue(OBJECT) as RDShaderSPIRV?)
   }
 
@@ -75,19 +74,19 @@ public open class RDShaderFile : Resource() {
    * Returns the list of compiled versions for this shader.
    */
   public final fun getVersionList(): VariantArray<StringName> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getVersionListPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getVersionListPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<StringName>)
   }
 
   public final fun setBaseError(error: String): Unit {
-    TransferContext.writeArguments(STRING to error)
-    TransferContext.callMethod(ptr, MethodBindings.setBaseErrorPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to error)
+    TransferContext.callMethod(MethodBindings.setBaseErrorPtr)
   }
 
   public final fun getBaseError(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getBaseErrorPtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getBaseErrorPtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 

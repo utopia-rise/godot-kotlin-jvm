@@ -13,7 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.Signal0
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import kotlin.String
 import kotlin.Suppress
@@ -49,13 +48,13 @@ public open class VisualShaderNodeInput : VisualShaderNode() {
   }
 
   public final fun setInputName(name: String): Unit {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(ptr, MethodBindings.setInputNamePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to name)
+    TransferContext.callMethod(MethodBindings.setInputNamePtr)
   }
 
   public final fun getInputName(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getInputNamePtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getInputNamePtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -64,8 +63,8 @@ public open class VisualShaderNodeInput : VisualShaderNode() {
    * if the [inputName] equal to `"albedo"`.
    */
   public final fun getInputRealName(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getInputRealNamePtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getInputRealNamePtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 

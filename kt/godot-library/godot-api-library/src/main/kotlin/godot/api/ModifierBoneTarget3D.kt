@@ -13,7 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import kotlin.Int
 import kotlin.Long
@@ -59,24 +58,24 @@ public open class ModifierBoneTarget3D : SkeletonModifier3D() {
   }
 
   public final fun setBoneName(boneName: String): Unit {
-    TransferContext.writeArguments(STRING to boneName)
-    TransferContext.callMethod(ptr, MethodBindings.setBoneNamePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to boneName)
+    TransferContext.callMethod(MethodBindings.setBoneNamePtr)
   }
 
   public final fun getBoneName(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getBoneNamePtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getBoneNamePtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setBone(bone: Int): Unit {
-    TransferContext.writeArguments(LONG to bone.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setBonePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to bone.toLong())
+    TransferContext.callMethod(MethodBindings.setBonePtr)
   }
 
   public final fun getBone(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getBonePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getBonePtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 

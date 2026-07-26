@@ -17,7 +17,6 @@ import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -52,8 +51,8 @@ public open class ImageTexture3D : Texture3D() {
     useMipmaps: Boolean,
     `data`: VariantArray<Image>,
   ): Error {
-    TransferContext.writeArguments(LONG to format.value, LONG to width.toLong(), LONG to height.toLong(), LONG to depth.toLong(), BOOL to useMipmaps, ARRAY to data)
-    TransferContext.callMethod(ptr, MethodBindings.createPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to format.value, LONG to width.toLong(), LONG to height.toLong(), LONG to depth.toLong(), BOOL to useMipmaps, ARRAY to data)
+    TransferContext.callMethod(MethodBindings.createPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -63,8 +62,8 @@ public open class ImageTexture3D : Texture3D() {
    * resized or have its format changed by calling [update].
    */
   public final fun update(`data`: VariantArray<Image>): Unit {
-    TransferContext.writeArguments(ARRAY to data)
-    TransferContext.callMethod(ptr, MethodBindings.updatePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, ARRAY to data)
+    TransferContext.callMethod(MethodBindings.updatePtr)
   }
 
   /**

@@ -14,7 +14,6 @@ import godot.core.GodotEnum
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -65,35 +64,35 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
   }
 
   public final fun setOpType(type: OpType): Unit {
-    TransferContext.writeArguments(LONG to type.value)
-    TransferContext.callMethod(ptr, MethodBindings.setOpTypePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to type.value)
+    TransferContext.callMethod(MethodBindings.setOpTypePtr)
   }
 
   public final fun getOpType(): OpType {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getOpTypePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getOpTypePtr)
     return OpType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setFunction(func: Function): Unit {
-    TransferContext.writeArguments(LONG to func.value)
-    TransferContext.callMethod(ptr, MethodBindings.setFunctionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to func.value)
+    TransferContext.callMethod(MethodBindings.setFunctionPtr)
   }
 
   public final fun getFunction(): Function {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFunctionPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getFunctionPtr)
     return Function.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setPrecision(precision: Precision): Unit {
-    TransferContext.writeArguments(LONG to precision.value)
-    TransferContext.callMethod(ptr, MethodBindings.setPrecisionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to precision.value)
+    TransferContext.callMethod(MethodBindings.setPrecisionPtr)
   }
 
   public final fun getPrecision(): Precision {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPrecisionPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPrecisionPtr)
     return Precision.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

@@ -64,8 +64,8 @@ public open class RegExMatch : RefCounted() {
   }
 
   public final fun getSubject(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSubjectPtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSubjectPtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -73,20 +73,20 @@ public open class RegExMatch : RefCounted() {
    * Returns the number of capturing groups.
    */
   public final fun getGroupCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getGroupCountPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getGroupCountPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun getNames(): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getNamesPtr, DICTIONARY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getNamesPtr)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   public final fun getStrings(): PackedStringArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getStringsPtr, PACKED_STRING_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getStringsPtr)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
@@ -99,8 +99,8 @@ public open class RegExMatch : RefCounted() {
    */
   @JvmOverloads
   public final fun getString(name: Any? = 0): String {
-    TransferContext.writeArguments(ANY to name)
-    TransferContext.callMethod(ptr, MethodBindings.getStringPtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id, ANY to name)
+    TransferContext.callMethod(MethodBindings.getStringPtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -113,8 +113,8 @@ public open class RegExMatch : RefCounted() {
    */
   @JvmOverloads
   public final fun getStart(name: Any? = 0): Int {
-    TransferContext.writeArguments(ANY to name)
-    TransferContext.callMethod(ptr, MethodBindings.getStartPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, ANY to name)
+    TransferContext.callMethod(MethodBindings.getStartPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -127,8 +127,8 @@ public open class RegExMatch : RefCounted() {
    */
   @JvmOverloads
   public final fun getEnd(name: Any? = 0): Int {
-    TransferContext.writeArguments(ANY to name)
-    TransferContext.callMethod(ptr, MethodBindings.getEndPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, ANY to name)
+    TransferContext.callMethod(MethodBindings.getEndPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 

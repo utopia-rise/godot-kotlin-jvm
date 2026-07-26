@@ -98,8 +98,8 @@ public open class Expression : RefCounted() {
   @JvmOverloads
   public final fun parse(expression: String, inputNames: PackedStringArray = PackedStringArray()):
       Error {
-    TransferContext.writeArguments(STRING to expression, PACKED_STRING_ARRAY to inputNames)
-    TransferContext.callMethod(ptr, MethodBindings.parsePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to expression, PACKED_STRING_ARRAY to inputNames)
+    TransferContext.callMethod(MethodBindings.parsePtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -117,8 +117,8 @@ public open class Expression : RefCounted() {
     showError: Boolean = true,
     constCallsOnly: Boolean = false,
   ): Any? {
-    TransferContext.writeArguments(ARRAY to inputs, OBJECT to baseInstance, BOOL to showError, BOOL to constCallsOnly)
-    TransferContext.callMethod(ptr, MethodBindings.executePtr, ANY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, ARRAY to inputs, OBJECT to baseInstance, BOOL to showError, BOOL to constCallsOnly)
+    TransferContext.callMethod(MethodBindings.executePtr)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
@@ -126,8 +126,8 @@ public open class Expression : RefCounted() {
    * Returns `true` if [execute] has failed.
    */
   public final fun hasExecuteFailed(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.hasExecuteFailedPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.hasExecuteFailedPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -135,8 +135,8 @@ public open class Expression : RefCounted() {
    * Returns the error text if [parse] or [execute] has failed.
    */
   public final fun getErrorText(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getErrorTextPtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getErrorTextPtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 

@@ -13,7 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
-import godot.core.VariantParser.NIL
 import kotlin.Double
 import kotlin.Float
 import kotlin.Suppress
@@ -42,13 +41,13 @@ public open class VisualShaderNodeFloatConstant : VisualShaderNodeConstant() {
   }
 
   public final fun setConstant(constant: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to constant.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setConstantPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to constant.toDouble())
+    TransferContext.callMethod(MethodBindings.setConstantPtr)
   }
 
   public final fun getConstant(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getConstantPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getConstantPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 

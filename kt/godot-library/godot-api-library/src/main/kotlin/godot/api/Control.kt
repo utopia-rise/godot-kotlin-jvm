@@ -35,7 +35,6 @@ import godot.core.VariantParser.CALLABLE
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.RECT2
@@ -1749,16 +1748,16 @@ public open class Control : CanvasItem() {
    * **Note:** This does not affect the methods in [Input], only the way events are propagated.
    */
   public final fun acceptEvent(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.acceptEventPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.acceptEventPtr)
   }
 
   /**
    * Returns the maximum size for this control. See [customMaximumSize].
    */
   public final fun getMaximumSize(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMaximumSizePtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMaximumSizePtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
@@ -1768,8 +1767,8 @@ public open class Control : CanvasItem() {
    * to `true`.
    */
   public final fun getCombinedMaximumSize(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCombinedMaximumSizePtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCombinedMaximumSizePtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
@@ -1777,8 +1776,8 @@ public open class Control : CanvasItem() {
    * Returns the minimum size for this control. See [customMinimumSize].
    */
   public final fun getMinimumSize(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMinimumSizePtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMinimumSizePtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
@@ -1786,19 +1785,19 @@ public open class Control : CanvasItem() {
    * Returns the combined minimum size from [customMinimumSize] and [getMinimumSize].
    */
   public final fun getCombinedMinimumSize(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCombinedMinimumSizePtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCombinedMinimumSizePtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setPropagateMaximumSize(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(ptr, MethodBindings.setPropagateMaximumSizePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enable)
+    TransferContext.callMethod(MethodBindings.setPropagateMaximumSizePtr)
   }
 
   public final fun isPropagatingMaximumSize(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isPropagatingMaximumSizePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isPropagatingMaximumSizePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -1812,8 +1811,8 @@ public open class Control : CanvasItem() {
    * 150), the bound minimum size will be (50, 100).
    */
   public final fun getBoundMinimumSize(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getBoundMinimumSizePtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getBoundMinimumSizePtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
@@ -1825,8 +1824,8 @@ public open class Control : CanvasItem() {
    */
   @JvmOverloads
   public final fun setAnchorsPreset(preset: LayoutPreset, keepOffsets: Boolean = false): Unit {
-    TransferContext.writeArguments(LONG to preset.value, BOOL to keepOffsets)
-    TransferContext.callMethod(ptr, MethodBindings.setAnchorsPresetPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to preset.value, BOOL to keepOffsets)
+    TransferContext.callMethod(MethodBindings.setAnchorsPresetPtr)
   }
 
   /**
@@ -1845,8 +1844,8 @@ public open class Control : CanvasItem() {
     resizeMode: LayoutPresetMode = Control.LayoutPresetMode.PRESET_MODE_MINSIZE,
     margin: Int = 0,
   ): Unit {
-    TransferContext.writeArguments(LONG to preset.value, LONG to resizeMode.value, LONG to margin.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setOffsetsPresetPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to preset.value, LONG to resizeMode.value, LONG to margin.toLong())
+    TransferContext.callMethod(MethodBindings.setOffsetsPresetPtr)
   }
 
   /**
@@ -1858,8 +1857,8 @@ public open class Control : CanvasItem() {
     resizeMode: LayoutPresetMode = Control.LayoutPresetMode.PRESET_MODE_MINSIZE,
     margin: Int = 0,
   ): Unit {
-    TransferContext.writeArguments(LONG to preset.value, LONG to resizeMode.value, LONG to margin.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setAnchorsAndOffsetsPresetPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to preset.value, LONG to resizeMode.value, LONG to margin.toLong())
+    TransferContext.callMethod(MethodBindings.setAnchorsAndOffsetsPresetPtr)
   }
 
   /**
@@ -1880,8 +1879,8 @@ public open class Control : CanvasItem() {
     keepOffset: Boolean = false,
     pushOppositeAnchor: Boolean = true,
   ): Unit {
-    TransferContext.writeArguments(LONG to side.value, DOUBLE to anchor.toDouble(), BOOL to keepOffset, BOOL to pushOppositeAnchor)
-    TransferContext.callMethod(ptr, MethodBindings.setAnchorPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to side.value, DOUBLE to anchor.toDouble(), BOOL to keepOffset, BOOL to pushOppositeAnchor)
+    TransferContext.callMethod(MethodBindings.setAnchorPtr)
   }
 
   /**
@@ -1889,8 +1888,8 @@ public open class Control : CanvasItem() {
    * [anchorRight] and [anchorTop].
    */
   public final fun getAnchor(side: Side): Float {
-    TransferContext.writeArguments(LONG to side.value)
-    TransferContext.callMethod(ptr, MethodBindings.getAnchorPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to side.value)
+    TransferContext.callMethod(MethodBindings.getAnchorPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -1899,8 +1898,8 @@ public open class Control : CanvasItem() {
    * [offsetLeft], [offsetRight] and [offsetTop].
    */
   public final fun setOffset(side: Side, offset: Float): Unit {
-    TransferContext.writeArguments(LONG to side.value, DOUBLE to offset.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setOffsetPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to side.value, DOUBLE to offset.toDouble())
+    TransferContext.callMethod(MethodBindings.setOffsetPtr)
   }
 
   /**
@@ -1908,8 +1907,8 @@ public open class Control : CanvasItem() {
    * [offsetRight] and [offsetTop].
    */
   public final fun getOffset(offset: Side): Float {
-    TransferContext.writeArguments(LONG to offset.value)
-    TransferContext.callMethod(ptr, MethodBindings.getOffsetPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to offset.value)
+    TransferContext.callMethod(MethodBindings.getOffsetPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -1924,24 +1923,24 @@ public open class Control : CanvasItem() {
     offset: Float,
     pushOppositeAnchor: Boolean = false,
   ): Unit {
-    TransferContext.writeArguments(LONG to side.value, DOUBLE to anchor.toDouble(), DOUBLE to offset.toDouble(), BOOL to pushOppositeAnchor)
-    TransferContext.callMethod(ptr, MethodBindings.setAnchorAndOffsetPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to side.value, DOUBLE to anchor.toDouble(), DOUBLE to offset.toDouble(), BOOL to pushOppositeAnchor)
+    TransferContext.callMethod(MethodBindings.setAnchorAndOffsetPtr)
   }
 
   /**
    * Sets [offsetLeft] and [offsetTop] at the same time. Equivalent of changing [position].
    */
   public final fun setBegin(position: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to position)
-    TransferContext.callMethod(ptr, MethodBindings.setBeginPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to position)
+    TransferContext.callMethod(MethodBindings.setBeginPtr)
   }
 
   /**
    * Sets [offsetRight] and [offsetBottom] at the same time.
    */
   public final fun setEnd(position: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to position)
-    TransferContext.callMethod(ptr, MethodBindings.setEndPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to position)
+    TransferContext.callMethod(MethodBindings.setEndPtr)
   }
 
   /**
@@ -1951,8 +1950,8 @@ public open class Control : CanvasItem() {
    */
   @JvmOverloads
   public final fun setPosition(position: Vector2, keepOffsets: Boolean = false): Unit {
-    TransferContext.writeArguments(VECTOR2 to position, BOOL to keepOffsets)
-    TransferContext.callMethod(ptr, MethodBindings.setPositionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to position, BOOL to keepOffsets)
+    TransferContext.callMethod(MethodBindings.setPositionPtr)
   }
 
   /**
@@ -1962,8 +1961,8 @@ public open class Control : CanvasItem() {
    */
   @JvmOverloads
   public final fun setSize(size: Vector2, keepOffsets: Boolean = false): Unit {
-    TransferContext.writeArguments(VECTOR2 to size, BOOL to keepOffsets)
-    TransferContext.callMethod(ptr, MethodBindings.setSizePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to size, BOOL to keepOffsets)
+    TransferContext.callMethod(MethodBindings.setSizePtr)
   }
 
   /**
@@ -1971,18 +1970,18 @@ public open class Control : CanvasItem() {
    * `set_size(Vector2())` (or any size below the minimum).
    */
   public final fun resetSize(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.resetSizePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.resetSizePtr)
   }
 
   public final fun setCustomMaximumSize(size: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to size)
-    TransferContext.callMethod(ptr, MethodBindings.setCustomMaximumSizePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to size)
+    TransferContext.callMethod(MethodBindings.setCustomMaximumSizePtr)
   }
 
   public final fun setCustomMinimumSize(size: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to size)
-    TransferContext.callMethod(ptr, MethodBindings.setCustomMinimumSizePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to size)
+    TransferContext.callMethod(MethodBindings.setCustomMinimumSizePtr)
   }
 
   /**
@@ -1992,41 +1991,41 @@ public open class Control : CanvasItem() {
    */
   @JvmOverloads
   public final fun setGlobalPosition(position: Vector2, keepOffsets: Boolean = false): Unit {
-    TransferContext.writeArguments(VECTOR2 to position, BOOL to keepOffsets)
-    TransferContext.callMethod(ptr, MethodBindings.setGlobalPositionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to position, BOOL to keepOffsets)
+    TransferContext.callMethod(MethodBindings.setGlobalPositionPtr)
   }
 
   public final fun setRotation(radians: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to radians.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setRotationPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to radians.toDouble())
+    TransferContext.callMethod(MethodBindings.setRotationPtr)
   }
 
   public final fun setRotationDegrees(degrees: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to degrees.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setRotationDegreesPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to degrees.toDouble())
+    TransferContext.callMethod(MethodBindings.setRotationDegreesPtr)
   }
 
   public final fun setScale(scale: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to scale)
-    TransferContext.callMethod(ptr, MethodBindings.setScalePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to scale)
+    TransferContext.callMethod(MethodBindings.setScalePtr)
   }
 
   public final fun setPivotOffset(pivotOffset: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to pivotOffset)
-    TransferContext.callMethod(ptr, MethodBindings.setPivotOffsetPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to pivotOffset)
+    TransferContext.callMethod(MethodBindings.setPivotOffsetPtr)
   }
 
   public final fun setPivotOffsetRatio(ratio: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to ratio)
-    TransferContext.callMethod(ptr, MethodBindings.setPivotOffsetRatioPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to ratio)
+    TransferContext.callMethod(MethodBindings.setPivotOffsetRatioPtr)
   }
 
   /**
    * Returns [offsetLeft] and [offsetTop]. See also [position].
    */
   public final fun getBegin(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getBeginPtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getBeginPtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
@@ -2034,50 +2033,50 @@ public open class Control : CanvasItem() {
    * Returns [offsetRight] and [offsetBottom].
    */
   public final fun getEnd(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getEndPtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getEndPtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun getPosition(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPositionPtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPositionPtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun getSize(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSizePtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSizePtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun getRotation(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getRotationPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getRotationPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getRotationDegrees(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getRotationDegreesPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getRotationDegreesPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getScale(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getScalePtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getScalePtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun getPivotOffset(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPivotOffsetPtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPivotOffsetPtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun getPivotOffsetRatio(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPivotOffsetRatioPtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPivotOffsetRatioPtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
@@ -2086,20 +2085,20 @@ public open class Control : CanvasItem() {
    * multiplied by the control's size.
    */
   public final fun getCombinedPivotOffset(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCombinedPivotOffsetPtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCombinedPivotOffsetPtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun getCustomMaximumSize(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCustomMaximumSizePtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCustomMaximumSizePtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun getCustomMinimumSize(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCustomMinimumSizePtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCustomMinimumSizePtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
@@ -2107,14 +2106,14 @@ public open class Control : CanvasItem() {
    * Returns the width/height occupied in the parent control.
    */
   public final fun getParentAreaSize(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getParentAreaSizePtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getParentAreaSizePtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun getGlobalPosition(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getGlobalPositionPtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getGlobalPositionPtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
@@ -2138,8 +2137,8 @@ public open class Control : CanvasItem() {
    * ```
    */
   public final fun getScreenPosition(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getScreenPositionPtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getScreenPositionPtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
@@ -2153,8 +2152,8 @@ public open class Control : CanvasItem() {
    * inaccuracies between the displayed control and the returned [Rect2].
    */
   public final fun getRect(): Rect2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getRectPtr, RECT2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getRectPtr)
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 
@@ -2169,19 +2168,19 @@ public open class Control : CanvasItem() {
    * inaccuracies between the displayed control and the returned [Rect2].
    */
   public final fun getGlobalRect(): Rect2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getGlobalRectPtr, RECT2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getGlobalRectPtr)
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 
   public final fun setFocusMode(mode: FocusMode): Unit {
-    TransferContext.writeArguments(LONG to mode.value)
-    TransferContext.callMethod(ptr, MethodBindings.setFocusModePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to mode.value)
+    TransferContext.callMethod(MethodBindings.setFocusModePtr)
   }
 
   public final fun getFocusMode(): FocusMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFocusModePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getFocusModePtr)
     return FocusMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -2192,19 +2191,19 @@ public open class Control : CanvasItem() {
    * [FOCUS_NONE].
    */
   public final fun getFocusModeWithOverride(): FocusMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFocusModeWithOverridePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getFocusModeWithOverridePtr)
     return FocusMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setFocusBehaviorRecursive(focusBehaviorRecursive: FocusBehaviorRecursive): Unit {
-    TransferContext.writeArguments(LONG to focusBehaviorRecursive.value)
-    TransferContext.callMethod(ptr, MethodBindings.setFocusBehaviorRecursivePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to focusBehaviorRecursive.value)
+    TransferContext.callMethod(MethodBindings.setFocusBehaviorRecursivePtr)
   }
 
   public final fun getFocusBehaviorRecursive(): FocusBehaviorRecursive {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFocusBehaviorRecursivePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getFocusBehaviorRecursivePtr)
     return FocusBehaviorRecursive.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -2217,8 +2216,8 @@ public open class Control : CanvasItem() {
    */
   @JvmOverloads
   public final fun hasFocus(ignoreHiddenFocus: Boolean = false): Boolean {
-    TransferContext.writeArguments(BOOL to ignoreHiddenFocus)
-    TransferContext.callMethod(ptr, MethodBindings.hasFocusPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to ignoreHiddenFocus)
+    TransferContext.callMethod(MethodBindings.hasFocusPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -2234,24 +2233,24 @@ public open class Control : CanvasItem() {
    */
   @JvmOverloads
   public final fun grabFocus(hideFocus: Boolean = false): Unit {
-    TransferContext.writeArguments(BOOL to hideFocus)
-    TransferContext.callMethod(ptr, MethodBindings.grabFocusPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to hideFocus)
+    TransferContext.callMethod(MethodBindings.grabFocusPtr)
   }
 
   /**
    * Give up the focus. No other control will be able to receive input.
    */
   public final fun releaseFocus(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.releaseFocusPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.releaseFocusPtr)
   }
 
   /**
    * Finds the previous (above in the tree) [Control] that can receive the focus.
    */
   public final fun findPrevValidFocus(): Control? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.findPrevValidFocusPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.findPrevValidFocusPtr)
     return (TransferContext.readReturnValue(OBJECT) as Control?)
   }
 
@@ -2259,8 +2258,8 @@ public open class Control : CanvasItem() {
    * Finds the next (below in the tree) [Control] that can receive the focus.
    */
   public final fun findNextValidFocus(): Control? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.findNextValidFocusPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.findNextValidFocusPtr)
     return (TransferContext.readReturnValue(OBJECT) as Control?)
   }
 
@@ -2271,151 +2270,151 @@ public open class Control : CanvasItem() {
    * focus neighbor.
    */
   public final fun findValidFocusNeighbor(side: Side): Control? {
-    TransferContext.writeArguments(LONG to side.value)
-    TransferContext.callMethod(ptr, MethodBindings.findValidFocusNeighborPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to side.value)
+    TransferContext.callMethod(MethodBindings.findValidFocusNeighborPtr)
     return (TransferContext.readReturnValue(OBJECT) as Control?)
   }
 
   public final fun setHSizeFlags(flags: SizeFlags): Unit {
-    TransferContext.writeArguments(LONG to flags.flag)
-    TransferContext.callMethod(ptr, MethodBindings.setHSizeFlagsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to flags.flag)
+    TransferContext.callMethod(MethodBindings.setHSizeFlagsPtr)
   }
 
   public final fun getHSizeFlags(): SizeFlags {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getHSizeFlagsPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getHSizeFlagsPtr)
     return SizeFlags(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setStretchRatio(ratio: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to ratio.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setStretchRatioPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to ratio.toDouble())
+    TransferContext.callMethod(MethodBindings.setStretchRatioPtr)
   }
 
   public final fun getStretchRatio(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getStretchRatioPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getStretchRatioPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVSizeFlags(flags: SizeFlags): Unit {
-    TransferContext.writeArguments(LONG to flags.flag)
-    TransferContext.callMethod(ptr, MethodBindings.setVSizeFlagsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to flags.flag)
+    TransferContext.callMethod(MethodBindings.setVSizeFlagsPtr)
   }
 
   public final fun getVSizeFlags(): SizeFlags {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getVSizeFlagsPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getVSizeFlagsPtr)
     return SizeFlags(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setOffsetTransformEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.setOffsetTransformEnabledPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enabled)
+    TransferContext.callMethod(MethodBindings.setOffsetTransformEnabledPtr)
   }
 
   public final fun isOffsetTransformEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isOffsetTransformEnabledPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isOffsetTransformEnabledPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setOffsetTransformPosition(offset: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to offset)
-    TransferContext.callMethod(ptr, MethodBindings.setOffsetTransformPositionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to offset)
+    TransferContext.callMethod(MethodBindings.setOffsetTransformPositionPtr)
   }
 
   public final fun getOffsetTransformPosition(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getOffsetTransformPositionPtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getOffsetTransformPositionPtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setOffsetTransformPositionRatio(offset: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to offset)
-    TransferContext.callMethod(ptr, MethodBindings.setOffsetTransformPositionRatioPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to offset)
+    TransferContext.callMethod(MethodBindings.setOffsetTransformPositionRatioPtr)
   }
 
   public final fun getOffsetTransformPositionRatio(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getOffsetTransformPositionRatioPtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getOffsetTransformPositionRatioPtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setOffsetTransformScale(scale: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to scale)
-    TransferContext.callMethod(ptr, MethodBindings.setOffsetTransformScalePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to scale)
+    TransferContext.callMethod(MethodBindings.setOffsetTransformScalePtr)
   }
 
   public final fun getOffsetTransformScale(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getOffsetTransformScalePtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getOffsetTransformScalePtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setOffsetTransformRotation(rotation: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to rotation.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setOffsetTransformRotationPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to rotation.toDouble())
+    TransferContext.callMethod(MethodBindings.setOffsetTransformRotationPtr)
   }
 
   public final fun getOffsetTransformRotation(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getOffsetTransformRotationPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getOffsetTransformRotationPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setOffsetTransformPivot(pivot: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to pivot)
-    TransferContext.callMethod(ptr, MethodBindings.setOffsetTransformPivotPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to pivot)
+    TransferContext.callMethod(MethodBindings.setOffsetTransformPivotPtr)
   }
 
   public final fun getOffsetTransformPivot(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getOffsetTransformPivotPtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getOffsetTransformPivotPtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setOffsetTransformPivotRatio(pivot: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to pivot)
-    TransferContext.callMethod(ptr, MethodBindings.setOffsetTransformPivotRatioPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to pivot)
+    TransferContext.callMethod(MethodBindings.setOffsetTransformPivotRatioPtr)
   }
 
   public final fun getOffsetTransformPivotRatio(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getOffsetTransformPivotRatioPtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getOffsetTransformPivotRatioPtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setOffsetTransformVisualOnly(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.setOffsetTransformVisualOnlyPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enabled)
+    TransferContext.callMethod(MethodBindings.setOffsetTransformVisualOnlyPtr)
   }
 
   public final fun isOffsetTransformVisualOnly(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isOffsetTransformVisualOnlyPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isOffsetTransformVisualOnlyPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setTheme(theme: Theme?): Unit {
-    TransferContext.writeArguments(OBJECT to theme)
-    TransferContext.callMethod(ptr, MethodBindings.setThemePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to theme)
+    TransferContext.callMethod(MethodBindings.setThemePtr)
   }
 
   public final fun getTheme(): Theme? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getThemePtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getThemePtr)
     return (TransferContext.readReturnValue(OBJECT) as Theme?)
   }
 
   public final fun setThemeTypeVariation(themeType: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to themeType)
-    TransferContext.callMethod(ptr, MethodBindings.setThemeTypeVariationPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to themeType)
+    TransferContext.callMethod(MethodBindings.setThemeTypeVariationPtr)
   }
 
   public final fun getThemeTypeVariation(): StringName {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getThemeTypeVariationPtr, STRING_NAME)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getThemeTypeVariationPtr)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
@@ -2424,16 +2423,16 @@ public open class Control : CanvasItem() {
    * [endBulkThemeOverride] is called.
    */
   public final fun beginBulkThemeOverride(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.beginBulkThemeOverridePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.beginBulkThemeOverridePtr)
   }
 
   /**
    * Ends a bulk theme override update. See [beginBulkThemeOverride].
    */
   public final fun endBulkThemeOverride(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.endBulkThemeOverridePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.endBulkThemeOverridePtr)
   }
 
   /**
@@ -2444,8 +2443,8 @@ public open class Control : CanvasItem() {
    * See also [getThemeIcon].
    */
   public final fun addThemeIconOverride(name: StringName, texture: Texture2D): Unit {
-    TransferContext.writeArguments(STRING_NAME to name, OBJECT to texture)
-    TransferContext.callMethod(ptr, MethodBindings.addThemeIconOverridePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to name, OBJECT to texture)
+    TransferContext.callMethod(MethodBindings.addThemeIconOverridePtr)
   }
 
   /**
@@ -2485,8 +2484,8 @@ public open class Control : CanvasItem() {
    * ```
    */
   public final fun addThemeStyleboxOverride(name: StringName, stylebox: StyleBox): Unit {
-    TransferContext.writeArguments(STRING_NAME to name, OBJECT to stylebox)
-    TransferContext.callMethod(ptr, MethodBindings.addThemeStyleboxOverridePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to name, OBJECT to stylebox)
+    TransferContext.callMethod(MethodBindings.addThemeStyleboxOverridePtr)
   }
 
   /**
@@ -2497,8 +2496,8 @@ public open class Control : CanvasItem() {
    * See also [getThemeFont].
    */
   public final fun addThemeFontOverride(name: StringName, font: Font): Unit {
-    TransferContext.writeArguments(STRING_NAME to name, OBJECT to font)
-    TransferContext.callMethod(ptr, MethodBindings.addThemeFontOverridePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to name, OBJECT to font)
+    TransferContext.callMethod(MethodBindings.addThemeFontOverridePtr)
   }
 
   /**
@@ -2509,8 +2508,8 @@ public open class Control : CanvasItem() {
    * See also [getThemeFontSize].
    */
   public final fun addThemeFontSizeOverride(name: StringName, fontSize: Int): Unit {
-    TransferContext.writeArguments(STRING_NAME to name, LONG to fontSize.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.addThemeFontSizeOverridePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to name, LONG to fontSize.toLong())
+    TransferContext.callMethod(MethodBindings.addThemeFontSizeOverridePtr)
   }
 
   /**
@@ -2544,8 +2543,8 @@ public open class Control : CanvasItem() {
    * ```
    */
   public final fun addThemeColorOverride(name: StringName, color: Color): Unit {
-    TransferContext.writeArguments(STRING_NAME to name, COLOR to color)
-    TransferContext.callMethod(ptr, MethodBindings.addThemeColorOverridePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to name, COLOR to color)
+    TransferContext.callMethod(MethodBindings.addThemeColorOverridePtr)
   }
 
   /**
@@ -2556,8 +2555,8 @@ public open class Control : CanvasItem() {
    * See also [getThemeConstant].
    */
   public final fun addThemeConstantOverride(name: StringName, constant: Int): Unit {
-    TransferContext.writeArguments(STRING_NAME to name, LONG to constant.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.addThemeConstantOverridePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to name, LONG to constant.toLong())
+    TransferContext.callMethod(MethodBindings.addThemeConstantOverridePtr)
   }
 
   /**
@@ -2565,8 +2564,8 @@ public open class Control : CanvasItem() {
    * [addThemeIconOverride] or via the Inspector dock.
    */
   public final fun removeThemeIconOverride(name: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(ptr, MethodBindings.removeThemeIconOverridePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to name)
+    TransferContext.callMethod(MethodBindings.removeThemeIconOverridePtr)
   }
 
   /**
@@ -2574,8 +2573,8 @@ public open class Control : CanvasItem() {
    * [addThemeStyleboxOverride] or via the Inspector dock.
    */
   public final fun removeThemeStyleboxOverride(name: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(ptr, MethodBindings.removeThemeStyleboxOverridePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to name)
+    TransferContext.callMethod(MethodBindings.removeThemeStyleboxOverridePtr)
   }
 
   /**
@@ -2583,8 +2582,8 @@ public open class Control : CanvasItem() {
    * [addThemeFontOverride] or via the Inspector dock.
    */
   public final fun removeThemeFontOverride(name: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(ptr, MethodBindings.removeThemeFontOverridePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to name)
+    TransferContext.callMethod(MethodBindings.removeThemeFontOverridePtr)
   }
 
   /**
@@ -2592,8 +2591,8 @@ public open class Control : CanvasItem() {
    * [addThemeFontSizeOverride] or via the Inspector dock.
    */
   public final fun removeThemeFontSizeOverride(name: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(ptr, MethodBindings.removeThemeFontSizeOverridePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to name)
+    TransferContext.callMethod(MethodBindings.removeThemeFontSizeOverridePtr)
   }
 
   /**
@@ -2601,8 +2600,8 @@ public open class Control : CanvasItem() {
    * [addThemeColorOverride] or via the Inspector dock.
    */
   public final fun removeThemeColorOverride(name: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(ptr, MethodBindings.removeThemeColorOverridePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to name)
+    TransferContext.callMethod(MethodBindings.removeThemeColorOverridePtr)
   }
 
   /**
@@ -2610,8 +2609,8 @@ public open class Control : CanvasItem() {
    * [addThemeConstantOverride] or via the Inspector dock.
    */
   public final fun removeThemeConstantOverride(name: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(ptr, MethodBindings.removeThemeConstantOverridePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to name)
+    TransferContext.callMethod(MethodBindings.removeThemeConstantOverridePtr)
   }
 
   /**
@@ -2622,8 +2621,8 @@ public open class Control : CanvasItem() {
    */
   public final fun getThemeIcon(name: StringName, themeType: StringName = StringName("")):
       Texture2D? {
-    TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
-    TransferContext.callMethod(ptr, MethodBindings.getThemeIconPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to name, STRING_NAME to themeType)
+    TransferContext.callMethod(MethodBindings.getThemeIconPtr)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
@@ -2635,8 +2634,8 @@ public open class Control : CanvasItem() {
    */
   public final fun getThemeStylebox(name: StringName, themeType: StringName = StringName("")):
       StyleBox? {
-    TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
-    TransferContext.callMethod(ptr, MethodBindings.getThemeStyleboxPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to name, STRING_NAME to themeType)
+    TransferContext.callMethod(MethodBindings.getThemeStyleboxPtr)
     return (TransferContext.readReturnValue(OBJECT) as StyleBox?)
   }
 
@@ -2647,8 +2646,8 @@ public open class Control : CanvasItem() {
    * See [getThemeColor] for details.
    */
   public final fun getThemeFont(name: StringName, themeType: StringName = StringName("")): Font? {
-    TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
-    TransferContext.callMethod(ptr, MethodBindings.getThemeFontPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to name, STRING_NAME to themeType)
+    TransferContext.callMethod(MethodBindings.getThemeFontPtr)
     return (TransferContext.readReturnValue(OBJECT) as Font?)
   }
 
@@ -2659,8 +2658,8 @@ public open class Control : CanvasItem() {
    * See [getThemeColor] for details.
    */
   public final fun getThemeFontSize(name: StringName, themeType: StringName = StringName("")): Int {
-    TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
-    TransferContext.callMethod(ptr, MethodBindings.getThemeFontSizePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to name, STRING_NAME to themeType)
+    TransferContext.callMethod(MethodBindings.getThemeFontSizePtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -2699,8 +2698,8 @@ public open class Control : CanvasItem() {
    * ```
    */
   public final fun getThemeColor(name: StringName, themeType: StringName = StringName("")): Color {
-    TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
-    TransferContext.callMethod(ptr, MethodBindings.getThemeColorPtr, COLOR)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to name, STRING_NAME to themeType)
+    TransferContext.callMethod(MethodBindings.getThemeColorPtr)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
@@ -2711,8 +2710,8 @@ public open class Control : CanvasItem() {
    * See [getThemeColor] for details.
    */
   public final fun getThemeConstant(name: StringName, themeType: StringName = StringName("")): Int {
-    TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
-    TransferContext.callMethod(ptr, MethodBindings.getThemeConstantPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to name, STRING_NAME to themeType)
+    TransferContext.callMethod(MethodBindings.getThemeConstantPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -2723,8 +2722,8 @@ public open class Control : CanvasItem() {
    * See [addThemeIconOverride].
    */
   public final fun hasThemeIconOverride(name: StringName): Boolean {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(ptr, MethodBindings.hasThemeIconOverridePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to name)
+    TransferContext.callMethod(MethodBindings.hasThemeIconOverridePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -2735,8 +2734,8 @@ public open class Control : CanvasItem() {
    * See [addThemeStyleboxOverride].
    */
   public final fun hasThemeStyleboxOverride(name: StringName): Boolean {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(ptr, MethodBindings.hasThemeStyleboxOverridePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to name)
+    TransferContext.callMethod(MethodBindings.hasThemeStyleboxOverridePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -2747,8 +2746,8 @@ public open class Control : CanvasItem() {
    * See [addThemeFontOverride].
    */
   public final fun hasThemeFontOverride(name: StringName): Boolean {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(ptr, MethodBindings.hasThemeFontOverridePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to name)
+    TransferContext.callMethod(MethodBindings.hasThemeFontOverridePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -2759,8 +2758,8 @@ public open class Control : CanvasItem() {
    * See [addThemeFontSizeOverride].
    */
   public final fun hasThemeFontSizeOverride(name: StringName): Boolean {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(ptr, MethodBindings.hasThemeFontSizeOverridePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to name)
+    TransferContext.callMethod(MethodBindings.hasThemeFontSizeOverridePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -2771,8 +2770,8 @@ public open class Control : CanvasItem() {
    * See [addThemeColorOverride].
    */
   public final fun hasThemeColorOverride(name: StringName): Boolean {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(ptr, MethodBindings.hasThemeColorOverridePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to name)
+    TransferContext.callMethod(MethodBindings.hasThemeColorOverridePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -2783,8 +2782,8 @@ public open class Control : CanvasItem() {
    * See [addThemeConstantOverride].
    */
   public final fun hasThemeConstantOverride(name: StringName): Boolean {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(ptr, MethodBindings.hasThemeConstantOverridePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to name)
+    TransferContext.callMethod(MethodBindings.hasThemeConstantOverridePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -2795,8 +2794,8 @@ public open class Control : CanvasItem() {
    * See [getThemeColor] for details.
    */
   public final fun hasThemeIcon(name: StringName, themeType: StringName = StringName("")): Boolean {
-    TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
-    TransferContext.callMethod(ptr, MethodBindings.hasThemeIconPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to name, STRING_NAME to themeType)
+    TransferContext.callMethod(MethodBindings.hasThemeIconPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -2808,8 +2807,8 @@ public open class Control : CanvasItem() {
    */
   public final fun hasThemeStylebox(name: StringName, themeType: StringName = StringName("")):
       Boolean {
-    TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
-    TransferContext.callMethod(ptr, MethodBindings.hasThemeStyleboxPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to name, STRING_NAME to themeType)
+    TransferContext.callMethod(MethodBindings.hasThemeStyleboxPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -2820,8 +2819,8 @@ public open class Control : CanvasItem() {
    * See [getThemeColor] for details.
    */
   public final fun hasThemeFont(name: StringName, themeType: StringName = StringName("")): Boolean {
-    TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
-    TransferContext.callMethod(ptr, MethodBindings.hasThemeFontPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to name, STRING_NAME to themeType)
+    TransferContext.callMethod(MethodBindings.hasThemeFontPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -2833,8 +2832,8 @@ public open class Control : CanvasItem() {
    */
   public final fun hasThemeFontSize(name: StringName, themeType: StringName = StringName("")):
       Boolean {
-    TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
-    TransferContext.callMethod(ptr, MethodBindings.hasThemeFontSizePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to name, STRING_NAME to themeType)
+    TransferContext.callMethod(MethodBindings.hasThemeFontSizePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -2846,8 +2845,8 @@ public open class Control : CanvasItem() {
    */
   public final fun hasThemeColor(name: StringName, themeType: StringName = StringName("")):
       Boolean {
-    TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
-    TransferContext.callMethod(ptr, MethodBindings.hasThemeColorPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to name, STRING_NAME to themeType)
+    TransferContext.callMethod(MethodBindings.hasThemeColorPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -2859,8 +2858,8 @@ public open class Control : CanvasItem() {
    */
   public final fun hasThemeConstant(name: StringName, themeType: StringName = StringName("")):
       Boolean {
-    TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
-    TransferContext.callMethod(ptr, MethodBindings.hasThemeConstantPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to name, STRING_NAME to themeType)
+    TransferContext.callMethod(MethodBindings.hasThemeConstantPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -2871,8 +2870,8 @@ public open class Control : CanvasItem() {
    * See [getThemeColor] for details.
    */
   public final fun getThemeDefaultBaseScale(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getThemeDefaultBaseScalePtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getThemeDefaultBaseScalePtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -2883,8 +2882,8 @@ public open class Control : CanvasItem() {
    * See [getThemeColor] for details.
    */
   public final fun getThemeDefaultFont(): Font? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getThemeDefaultFontPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getThemeDefaultFontPtr)
     return (TransferContext.readReturnValue(OBJECT) as Font?)
   }
 
@@ -2895,8 +2894,8 @@ public open class Control : CanvasItem() {
    * See [getThemeColor] for details.
    */
   public final fun getThemeDefaultFontSize(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getThemeDefaultFontSizePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getThemeDefaultFontSizePtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -2904,52 +2903,52 @@ public open class Control : CanvasItem() {
    * Returns the parent control node.
    */
   public final fun getParentControl(): Control? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getParentControlPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getParentControlPtr)
     return (TransferContext.readReturnValue(OBJECT) as Control?)
   }
 
   public final fun setHGrowDirection(direction: GrowDirection): Unit {
-    TransferContext.writeArguments(LONG to direction.value)
-    TransferContext.callMethod(ptr, MethodBindings.setHGrowDirectionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to direction.value)
+    TransferContext.callMethod(MethodBindings.setHGrowDirectionPtr)
   }
 
   public final fun getHGrowDirection(): GrowDirection {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getHGrowDirectionPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getHGrowDirectionPtr)
     return GrowDirection.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setVGrowDirection(direction: GrowDirection): Unit {
-    TransferContext.writeArguments(LONG to direction.value)
-    TransferContext.callMethod(ptr, MethodBindings.setVGrowDirectionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to direction.value)
+    TransferContext.callMethod(MethodBindings.setVGrowDirectionPtr)
   }
 
   public final fun getVGrowDirection(): GrowDirection {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getVGrowDirectionPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getVGrowDirectionPtr)
     return GrowDirection.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setTooltipAutoTranslateMode(mode: Node.AutoTranslateMode): Unit {
-    TransferContext.writeArguments(LONG to mode.value)
-    TransferContext.callMethod(ptr, MethodBindings.setTooltipAutoTranslateModePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to mode.value)
+    TransferContext.callMethod(MethodBindings.setTooltipAutoTranslateModePtr)
   }
 
   public final fun getTooltipAutoTranslateMode(): Node.AutoTranslateMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getTooltipAutoTranslateModePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getTooltipAutoTranslateModePtr)
     return Node.AutoTranslateMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setTooltipText(hint: String): Unit {
-    TransferContext.writeArguments(STRING to hint)
-    TransferContext.callMethod(ptr, MethodBindings.setTooltipTextPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to hint)
+    TransferContext.callMethod(MethodBindings.setTooltipTextPtr)
   }
 
   public final fun getTooltipText(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getTooltipTextPtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getTooltipTextPtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -2965,30 +2964,30 @@ public open class Control : CanvasItem() {
    */
   @JvmOverloads
   public final fun getTooltip(atPosition: Vector2 = Vector2(0, 0)): String {
-    TransferContext.writeArguments(VECTOR2 to atPosition)
-    TransferContext.callMethod(ptr, MethodBindings.getTooltipPtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to atPosition)
+    TransferContext.callMethod(MethodBindings.getTooltipPtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setTranslationContext(context: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to context)
-    TransferContext.callMethod(ptr, MethodBindings.setTranslationContextPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to context)
+    TransferContext.callMethod(MethodBindings.setTranslationContextPtr)
   }
 
   public final fun getTranslationContext(): StringName {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getTranslationContextPtr, STRING_NAME)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getTranslationContextPtr)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
   public final fun setDefaultCursorShape(shape: CursorShape): Unit {
-    TransferContext.writeArguments(LONG to shape.value)
-    TransferContext.callMethod(ptr, MethodBindings.setDefaultCursorShapePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to shape.value)
+    TransferContext.callMethod(MethodBindings.setDefaultCursorShapePtr)
   }
 
   public final fun getDefaultCursorShape(): CursorShape {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getDefaultCursorShapePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getDefaultCursorShapePtr)
     return CursorShape.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -3001,8 +3000,8 @@ public open class Control : CanvasItem() {
    */
   @JvmOverloads
   public final fun getCursorShape(atPosition: Vector2 = Vector2(0, 0)): CursorShape {
-    TransferContext.writeArguments(VECTOR2 to atPosition)
-    TransferContext.callMethod(ptr, MethodBindings.getCursorShapePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to atPosition)
+    TransferContext.callMethod(MethodBindings.getCursorShapePtr)
     return CursorShape.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -3012,8 +3011,8 @@ public open class Control : CanvasItem() {
    * [focusNeighborTop].
    */
   public final fun setFocusNeighbor(side: Side, neighbor: NodePath): Unit {
-    TransferContext.writeArguments(LONG to side.value, NODE_PATH to neighbor)
-    TransferContext.callMethod(ptr, MethodBindings.setFocusNeighborPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to side.value, NODE_PATH to neighbor)
+    TransferContext.callMethod(MethodBindings.setFocusNeighborPtr)
   }
 
   /**
@@ -3024,30 +3023,30 @@ public open class Control : CanvasItem() {
    * assigned, use [findValidFocusNeighbor].
    */
   public final fun getFocusNeighbor(side: Side): NodePath {
-    TransferContext.writeArguments(LONG to side.value)
-    TransferContext.callMethod(ptr, MethodBindings.getFocusNeighborPtr, NODE_PATH)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to side.value)
+    TransferContext.callMethod(MethodBindings.getFocusNeighborPtr)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
   public final fun setFocusNext(next: NodePath): Unit {
-    TransferContext.writeArguments(NODE_PATH to next)
-    TransferContext.callMethod(ptr, MethodBindings.setFocusNextPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, NODE_PATH to next)
+    TransferContext.callMethod(MethodBindings.setFocusNextPtr)
   }
 
   public final fun getFocusNext(): NodePath {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFocusNextPtr, NODE_PATH)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getFocusNextPtr)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
   public final fun setFocusPrevious(previous: NodePath): Unit {
-    TransferContext.writeArguments(NODE_PATH to previous)
-    TransferContext.callMethod(ptr, MethodBindings.setFocusPreviousPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, NODE_PATH to previous)
+    TransferContext.callMethod(MethodBindings.setFocusPreviousPtr)
   }
 
   public final fun getFocusPrevious(): NodePath {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFocusPreviousPtr, NODE_PATH)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getFocusPreviousPtr)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
@@ -3059,111 +3058,111 @@ public open class Control : CanvasItem() {
    * drop data.
    */
   public final fun forceDrag(`data`: Any?, preview: Control?): Unit {
-    TransferContext.writeArguments(ANY to data, OBJECT to preview)
-    TransferContext.callMethod(ptr, MethodBindings.forceDragPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, ANY to data, OBJECT to preview)
+    TransferContext.callMethod(MethodBindings.forceDragPtr)
   }
 
   /**
    * Starts drag-and-drop operation without using a mouse.
    */
   public final fun accessibilityDrag(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.accessibilityDragPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.accessibilityDragPtr)
   }
 
   /**
    * Ends drag-and-drop operation without using a mouse.
    */
   public final fun accessibilityDrop(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.accessibilityDropPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.accessibilityDropPtr)
   }
 
   public final fun setAccessibilityName(name: String): Unit {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(ptr, MethodBindings.setAccessibilityNamePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to name)
+    TransferContext.callMethod(MethodBindings.setAccessibilityNamePtr)
   }
 
   public final fun getAccessibilityName(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getAccessibilityNamePtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getAccessibilityNamePtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setAccessibilityDescription(description: String): Unit {
-    TransferContext.writeArguments(STRING to description)
-    TransferContext.callMethod(ptr, MethodBindings.setAccessibilityDescriptionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to description)
+    TransferContext.callMethod(MethodBindings.setAccessibilityDescriptionPtr)
   }
 
   public final fun getAccessibilityDescription(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getAccessibilityDescriptionPtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getAccessibilityDescriptionPtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setAccessibilityLive(mode: AccessibilityServer.AccessibilityLiveMode): Unit {
-    TransferContext.writeArguments(LONG to mode.value)
-    TransferContext.callMethod(ptr, MethodBindings.setAccessibilityLivePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to mode.value)
+    TransferContext.callMethod(MethodBindings.setAccessibilityLivePtr)
   }
 
   public final fun getAccessibilityLive(): AccessibilityServer.AccessibilityLiveMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getAccessibilityLivePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getAccessibilityLivePtr)
     return AccessibilityServer.AccessibilityLiveMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setAccessibilityControlsNodes(nodePath: VariantArray<NodePath>): Unit {
-    TransferContext.writeArguments(ARRAY to nodePath)
-    TransferContext.callMethod(ptr, MethodBindings.setAccessibilityControlsNodesPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, ARRAY to nodePath)
+    TransferContext.callMethod(MethodBindings.setAccessibilityControlsNodesPtr)
   }
 
   public final fun getAccessibilityControlsNodes(): VariantArray<NodePath> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getAccessibilityControlsNodesPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getAccessibilityControlsNodesPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<NodePath>)
   }
 
   public final fun setAccessibilityDescribedByNodes(nodePath: VariantArray<NodePath>): Unit {
-    TransferContext.writeArguments(ARRAY to nodePath)
-    TransferContext.callMethod(ptr, MethodBindings.setAccessibilityDescribedByNodesPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, ARRAY to nodePath)
+    TransferContext.callMethod(MethodBindings.setAccessibilityDescribedByNodesPtr)
   }
 
   public final fun getAccessibilityDescribedByNodes(): VariantArray<NodePath> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getAccessibilityDescribedByNodesPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getAccessibilityDescribedByNodesPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<NodePath>)
   }
 
   public final fun setAccessibilityLabeledByNodes(nodePath: VariantArray<NodePath>): Unit {
-    TransferContext.writeArguments(ARRAY to nodePath)
-    TransferContext.callMethod(ptr, MethodBindings.setAccessibilityLabeledByNodesPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, ARRAY to nodePath)
+    TransferContext.callMethod(MethodBindings.setAccessibilityLabeledByNodesPtr)
   }
 
   public final fun getAccessibilityLabeledByNodes(): VariantArray<NodePath> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getAccessibilityLabeledByNodesPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getAccessibilityLabeledByNodesPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<NodePath>)
   }
 
   public final fun setAccessibilityFlowToNodes(nodePath: VariantArray<NodePath>): Unit {
-    TransferContext.writeArguments(ARRAY to nodePath)
-    TransferContext.callMethod(ptr, MethodBindings.setAccessibilityFlowToNodesPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, ARRAY to nodePath)
+    TransferContext.callMethod(MethodBindings.setAccessibilityFlowToNodesPtr)
   }
 
   public final fun getAccessibilityFlowToNodes(): VariantArray<NodePath> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getAccessibilityFlowToNodesPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getAccessibilityFlowToNodesPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<NodePath>)
   }
 
   public final fun setMouseFilter(filter: MouseFilter): Unit {
-    TransferContext.writeArguments(LONG to filter.value)
-    TransferContext.callMethod(ptr, MethodBindings.setMouseFilterPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to filter.value)
+    TransferContext.callMethod(MethodBindings.setMouseFilterPtr)
   }
 
   public final fun getMouseFilter(): MouseFilter {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMouseFilterPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMouseFilterPtr)
     return MouseFilter.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -3174,41 +3173,41 @@ public open class Control : CanvasItem() {
    * [MOUSE_FILTER_IGNORE].
    */
   public final fun getMouseFilterWithOverride(): MouseFilter {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMouseFilterWithOverridePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMouseFilterWithOverridePtr)
     return MouseFilter.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setMouseBehaviorRecursive(mouseBehaviorRecursive: MouseBehaviorRecursive): Unit {
-    TransferContext.writeArguments(LONG to mouseBehaviorRecursive.value)
-    TransferContext.callMethod(ptr, MethodBindings.setMouseBehaviorRecursivePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to mouseBehaviorRecursive.value)
+    TransferContext.callMethod(MethodBindings.setMouseBehaviorRecursivePtr)
   }
 
   public final fun getMouseBehaviorRecursive(): MouseBehaviorRecursive {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMouseBehaviorRecursivePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMouseBehaviorRecursivePtr)
     return MouseBehaviorRecursive.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setForcePassScrollEvents(forcePassScrollEvents: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to forcePassScrollEvents)
-    TransferContext.callMethod(ptr, MethodBindings.setForcePassScrollEventsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to forcePassScrollEvents)
+    TransferContext.callMethod(MethodBindings.setForcePassScrollEventsPtr)
   }
 
   public final fun isForcePassScrollEvents(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isForcePassScrollEventsPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isForcePassScrollEventsPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setClipContents(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(ptr, MethodBindings.setClipContentsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enable)
+    TransferContext.callMethod(MethodBindings.setClipContentsPtr)
   }
 
   public final fun isClippingContents(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isClippingContentsPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isClippingContentsPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -3231,8 +3230,8 @@ public open class Control : CanvasItem() {
    * ```
    */
   public final fun grabClickFocus(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.grabClickFocusPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.grabClickFocusPtr)
   }
 
   /**
@@ -3253,8 +3252,8 @@ public open class Control : CanvasItem() {
     canDropFunc: Callable,
     dropFunc: Callable,
   ): Unit {
-    TransferContext.writeArguments(CALLABLE to dragFunc, CALLABLE to canDropFunc, CALLABLE to dropFunc)
-    TransferContext.callMethod(ptr, MethodBindings.setDragForwardingPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, CALLABLE to dragFunc, CALLABLE to canDropFunc, CALLABLE to dropFunc)
+    TransferContext.callMethod(MethodBindings.setDragForwardingPtr)
   }
 
   /**
@@ -3293,8 +3292,8 @@ public open class Control : CanvasItem() {
    * ```
    */
   public final fun setDragPreview(control: Control?): Unit {
-    TransferContext.writeArguments(OBJECT to control)
-    TransferContext.callMethod(ptr, MethodBindings.setDragPreviewPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to control)
+    TransferContext.callMethod(MethodBindings.setDragPreviewPtr)
   }
 
   /**
@@ -3304,8 +3303,8 @@ public open class Control : CanvasItem() {
    * Best used with [Node.NOTIFICATION_DRAG_END].
    */
   public final fun isDragSuccessful(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isDragSuccessfulPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isDragSuccessfulPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -3316,18 +3315,18 @@ public open class Control : CanvasItem() {
    * Android, iOS and Web.
    */
   public final fun warpMouse(position: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to position)
-    TransferContext.callMethod(ptr, MethodBindings.warpMousePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to position)
+    TransferContext.callMethod(MethodBindings.warpMousePtr)
   }
 
   public final fun setShortcutContext(node: Node?): Unit {
-    TransferContext.writeArguments(OBJECT to node)
-    TransferContext.callMethod(ptr, MethodBindings.setShortcutContextPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to node)
+    TransferContext.callMethod(MethodBindings.setShortcutContextPtr)
   }
 
   public final fun getShortcutContext(): Node? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getShortcutContextPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getShortcutContextPtr)
     return (TransferContext.readReturnValue(OBJECT) as Node?)
   }
 
@@ -3340,8 +3339,8 @@ public open class Control : CanvasItem() {
    * may be affected by the maximum size change.
    */
   public final fun updateMaximumSize(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.updateMaximumSizePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.updateMaximumSizePtr)
   }
 
   /**
@@ -3350,18 +3349,18 @@ public open class Control : CanvasItem() {
    * directly calls this method automatically.
    */
   public final fun updateMinimumSize(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.updateMinimumSizePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.updateMinimumSizePtr)
   }
 
   public final fun setLayoutDirection(direction: LayoutDirection): Unit {
-    TransferContext.writeArguments(LONG to direction.value)
-    TransferContext.callMethod(ptr, MethodBindings.setLayoutDirectionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to direction.value)
+    TransferContext.callMethod(MethodBindings.setLayoutDirectionPtr)
   }
 
   public final fun getLayoutDirection(): LayoutDirection {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getLayoutDirectionPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getLayoutDirectionPtr)
     return LayoutDirection.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -3369,30 +3368,30 @@ public open class Control : CanvasItem() {
    * Returns `true` if the layout is right-to-left. See also [layoutDirection].
    */
   public final fun isLayoutRtl(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isLayoutRtlPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isLayoutRtlPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAutoTranslate(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(ptr, MethodBindings.setAutoTranslatePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enable)
+    TransferContext.callMethod(MethodBindings.setAutoTranslatePtr)
   }
 
   public final fun isAutoTranslating(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isAutoTranslatingPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isAutoTranslatingPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setLocalizeNumeralSystem(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(ptr, MethodBindings.setLocalizeNumeralSystemPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enable)
+    TransferContext.callMethod(MethodBindings.setLocalizeNumeralSystemPtr)
   }
 
   public final fun isLocalizingNumeralSystem(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isLocalizingNumeralSystemPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isLocalizingNumeralSystemPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

@@ -16,7 +16,6 @@ import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.PackedByteArray
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import kotlin.Byte
@@ -102,16 +101,16 @@ public open class StreamPeerBuffer : StreamPeer() {
    * Moves the cursor to the specified position. [position] must be a valid index of [dataArray].
    */
   public final fun seek(position: Int): Unit {
-    TransferContext.writeArguments(LONG to position.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.seekPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to position.toLong())
+    TransferContext.callMethod(MethodBindings.seekPtr)
   }
 
   /**
    * Returns the size of [dataArray].
    */
   public final fun getSize(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSizePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSizePtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -119,8 +118,8 @@ public open class StreamPeerBuffer : StreamPeer() {
    * Returns the current cursor position.
    */
   public final fun getPosition(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPositionPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPositionPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -128,18 +127,18 @@ public open class StreamPeerBuffer : StreamPeer() {
    * Resizes the [dataArray]. This *doesn't* update the cursor.
    */
   public final fun resize(size: Int): Unit {
-    TransferContext.writeArguments(LONG to size.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.resizePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to size.toLong())
+    TransferContext.callMethod(MethodBindings.resizePtr)
   }
 
   public final fun setDataArray(`data`: PackedByteArray): Unit {
-    TransferContext.writeArguments(PACKED_BYTE_ARRAY to data)
-    TransferContext.callMethod(ptr, MethodBindings.setDataArrayPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_BYTE_ARRAY to data)
+    TransferContext.callMethod(MethodBindings.setDataArrayPtr)
   }
 
   public final fun getDataArray(): PackedByteArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getDataArrayPtr, PACKED_BYTE_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getDataArrayPtr)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
@@ -147,16 +146,16 @@ public open class StreamPeerBuffer : StreamPeer() {
    * Clears the [dataArray] and resets the cursor.
    */
   public final fun clear(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.clearPtr)
   }
 
   /**
    * Returns a new [StreamPeerBuffer] with the same [dataArray] content.
    */
   public final fun duplicate(): StreamPeerBuffer? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.duplicatePtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.duplicatePtr)
     return (TransferContext.readReturnValue(OBJECT) as StreamPeerBuffer?)
   }
 

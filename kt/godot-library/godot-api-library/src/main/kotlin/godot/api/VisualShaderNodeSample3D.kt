@@ -14,7 +14,6 @@ import godot.core.GodotEnum
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -42,13 +41,13 @@ public open class VisualShaderNodeSample3D internal constructor() : VisualShader
   }
 
   public final fun setSource(`value`: Source): Unit {
-    TransferContext.writeArguments(LONG to value.value)
-    TransferContext.callMethod(ptr, MethodBindings.setSourcePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to value.value)
+    TransferContext.callMethod(MethodBindings.setSourcePtr)
   }
 
   public final fun getSource(): Source {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSourcePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSourcePtr)
     return Source.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

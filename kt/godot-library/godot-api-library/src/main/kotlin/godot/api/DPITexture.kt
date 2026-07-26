@@ -18,7 +18,6 @@ import godot.core.RID
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DICTIONARY
 import godot.core.VariantParser.DOUBLE
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.VECTOR2I
@@ -121,71 +120,71 @@ public open class DPITexture : Texture2D() {
    * Sets this SVG texture's source code.
    */
   public final fun setSource(source: String): Unit {
-    TransferContext.writeArguments(STRING to source)
-    TransferContext.callMethod(ptr, MethodBindings.setSourcePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to source)
+    TransferContext.callMethod(MethodBindings.setSourcePtr)
   }
 
   /**
    * Returns this SVG texture's source code.
    */
   public final fun getSource(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSourcePtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSourcePtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setFixAlphaBorder(fixAlphaBorder: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to fixAlphaBorder)
-    TransferContext.callMethod(ptr, MethodBindings.setFixAlphaBorderPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to fixAlphaBorder)
+    TransferContext.callMethod(MethodBindings.setFixAlphaBorderPtr)
   }
 
   public final fun getFixAlphaBorder(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFixAlphaBorderPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getFixAlphaBorderPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setPremultAlpha(premultAlpha: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to premultAlpha)
-    TransferContext.callMethod(ptr, MethodBindings.setPremultAlphaPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to premultAlpha)
+    TransferContext.callMethod(MethodBindings.setPremultAlphaPtr)
   }
 
   public final fun getPremultAlpha(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPremultAlphaPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPremultAlphaPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setBaseScale(baseScale: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to baseScale.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setBaseScalePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to baseScale.toDouble())
+    TransferContext.callMethod(MethodBindings.setBaseScalePtr)
   }
 
   public final fun getBaseScale(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getBaseScalePtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getBaseScalePtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSaturation(saturation: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to saturation.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setSaturationPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to saturation.toDouble())
+    TransferContext.callMethod(MethodBindings.setSaturationPtr)
   }
 
   public final fun getSaturation(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSaturationPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSaturationPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setColorMap(colorMap: Dictionary<Any?, Any?>): Unit {
-    TransferContext.writeArguments(DICTIONARY to colorMap)
-    TransferContext.callMethod(ptr, MethodBindings.setColorMapPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DICTIONARY to colorMap)
+    TransferContext.callMethod(MethodBindings.setColorMapPtr)
   }
 
   public final fun getColorMap(): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getColorMapPtr, DICTIONARY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getColorMapPtr)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
@@ -193,8 +192,8 @@ public open class DPITexture : Texture2D() {
    * Resizes the texture to the specified dimensions.
    */
   public final fun setSizeOverride(size: Vector2i): Unit {
-    TransferContext.writeArguments(VECTOR2I to size)
-    TransferContext.callMethod(ptr, MethodBindings.setSizeOverridePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2I to size)
+    TransferContext.callMethod(MethodBindings.setSizeOverridePtr)
   }
 
   /**
@@ -202,8 +201,8 @@ public open class DPITexture : Texture2D() {
    * canvas item.
    */
   public final fun getScaledRid(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getScaledRidPtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getScaledRidPtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -295,8 +294,8 @@ public open class DPITexture : Texture2D() {
       saturation: Float = 1.0f,
       colorMap: Dictionary<Any?, Any?> = Dictionary(),
     ): DPITexture? {
-      TransferContext.writeArguments(STRING to source, DOUBLE to scale.toDouble(), DOUBLE to saturation.toDouble(), DICTIONARY to colorMap)
-      TransferContext.callMethod(0, MethodBindings.createFromStringPtr, OBJECT)
+      TransferContext.writeMethodArguments(0L, 0L, STRING to source, DOUBLE to scale.toDouble(), DOUBLE to saturation.toDouble(), DICTIONARY to colorMap)
+      TransferContext.callMethod(MethodBindings.createFromStringPtr)
       return (TransferContext.readReturnValue(OBJECT) as DPITexture?)
     }
   }

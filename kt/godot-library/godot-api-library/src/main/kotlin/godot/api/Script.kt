@@ -21,7 +21,6 @@ import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DICTIONARY
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
@@ -68,8 +67,8 @@ public open class Script internal constructor() : Resource() {
    * Returns `true` if the script can be instantiated.
    */
   public final fun canInstantiate(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.canInstantiatePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.canInstantiatePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -82,20 +81,20 @@ public open class Script internal constructor() : Resource() {
    * [canInstantiate].
    */
   public final fun hasSourceCode(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.hasSourceCodePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.hasSourceCodePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getSourceCode(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSourceCodePtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSourceCodePtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setSourceCode(source: String): Unit {
-    TransferContext.writeArguments(STRING to source)
-    TransferContext.callMethod(ptr, MethodBindings.setSourceCodePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to source)
+    TransferContext.callMethod(MethodBindings.setSourceCodePtr)
   }
 
   /**
@@ -103,8 +102,8 @@ public open class Script internal constructor() : Resource() {
    */
   @JvmOverloads
   public final fun reload(keepState: Boolean = false): Error {
-    TransferContext.writeArguments(BOOL to keepState)
-    TransferContext.callMethod(ptr, MethodBindings.reloadPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to keepState)
+    TransferContext.callMethod(MethodBindings.reloadPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -112,8 +111,8 @@ public open class Script internal constructor() : Resource() {
    * Returns the script directly inherited by this script.
    */
   public final fun getBaseScript(): Script? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getBaseScriptPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getBaseScriptPtr)
     return (TransferContext.readReturnValue(OBJECT) as Script?)
   }
 
@@ -121,8 +120,8 @@ public open class Script internal constructor() : Resource() {
    * Returns the script's base type.
    */
   public final fun getInstanceBaseType(): StringName {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getInstanceBaseTypePtr, STRING_NAME)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getInstanceBaseTypePtr)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
@@ -150,8 +149,8 @@ public open class Script internal constructor() : Resource() {
    * ```
    */
   public final fun getGlobalName(): StringName {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getGlobalNamePtr, STRING_NAME)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getGlobalNamePtr)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
@@ -159,8 +158,8 @@ public open class Script internal constructor() : Resource() {
    * Returns `true` if the script, or a base class, defines a method with the given name.
    */
   public final fun hasScriptMethod(methodName: StringName): Boolean {
-    TransferContext.writeArguments(STRING_NAME to methodName)
-    TransferContext.callMethod(ptr, MethodBindings.hasScriptMethodPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to methodName)
+    TransferContext.callMethod(MethodBindings.hasScriptMethodPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -168,8 +167,8 @@ public open class Script internal constructor() : Resource() {
    * Returns `true` if the script, or a base class, defines a signal with the given name.
    */
   public final fun hasScriptSignal(signalName: StringName): Boolean {
-    TransferContext.writeArguments(STRING_NAME to signalName)
-    TransferContext.callMethod(ptr, MethodBindings.hasScriptSignalPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to signalName)
+    TransferContext.callMethod(MethodBindings.hasScriptSignalPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -180,8 +179,8 @@ public open class Script internal constructor() : Resource() {
    * by [Object.getPropertyList].
    */
   public final fun getScriptPropertyList(): VariantArray<Dictionary<Any?, Any?>> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getScriptPropertyListPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getScriptPropertyListPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
@@ -192,8 +191,8 @@ public open class Script internal constructor() : Resource() {
    * by [Object.getMethodList].
    */
   public final fun getScriptMethodList(): VariantArray<Dictionary<Any?, Any?>> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getScriptMethodListPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getScriptMethodListPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
@@ -204,8 +203,8 @@ public open class Script internal constructor() : Resource() {
    * by [Object.getSignalList].
    */
   public final fun getScriptSignalList(): VariantArray<Dictionary<Any?, Any?>> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getScriptSignalListPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getScriptSignalListPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
@@ -213,8 +212,8 @@ public open class Script internal constructor() : Resource() {
    * Returns a dictionary containing constant names and their values.
    */
   public final fun getScriptConstantMap(): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getScriptConstantMapPtr, DICTIONARY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getScriptConstantMapPtr)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
@@ -222,8 +221,8 @@ public open class Script internal constructor() : Resource() {
    * Returns the default value of the specified property.
    */
   public final fun getPropertyDefaultValue(`property`: StringName): Any? {
-    TransferContext.writeArguments(STRING_NAME to property)
-    TransferContext.callMethod(ptr, MethodBindings.getPropertyDefaultValuePtr, ANY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to property)
+    TransferContext.callMethod(MethodBindings.getPropertyDefaultValuePtr)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
@@ -231,8 +230,8 @@ public open class Script internal constructor() : Resource() {
    * Returns `true` if the script is a tool script. A tool script can run in the editor.
    */
   public final fun isTool(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isToolPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isToolPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -241,8 +240,8 @@ public open class Script internal constructor() : Resource() {
    * constructor and cannot be instantiated.
    */
   public final fun isAbstract(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isAbstractPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isAbstractPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -250,8 +249,8 @@ public open class Script internal constructor() : Resource() {
    * Returns a [Dictionary] mapping method names to their RPC configuration defined by this script.
    */
   public final fun getRpcConfig(): Any? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getRpcConfigPtr, ANY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getRpcConfigPtr)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
@@ -259,8 +258,8 @@ public open class Script internal constructor() : Resource() {
    * Returns `true` if [baseObject] is an instance of this script.
    */
   public final fun instanceHas(baseObject: Object?): Boolean {
-    TransferContext.writeArguments(OBJECT to baseObject)
-    TransferContext.callMethod(ptr, MethodBindings.instanceHasPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to baseObject)
+    TransferContext.callMethod(MethodBindings.instanceHasPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

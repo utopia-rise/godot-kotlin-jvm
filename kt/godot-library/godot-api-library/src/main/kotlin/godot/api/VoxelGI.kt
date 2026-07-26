@@ -18,7 +18,6 @@ import godot.core.MethodStringName1
 import godot.core.MethodStringName2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
@@ -147,46 +146,46 @@ public open class VoxelGI : VisualInstance3D() {
   }
 
   public final fun setProbeData(`data`: VoxelGIData?): Unit {
-    TransferContext.writeArguments(OBJECT to data)
-    TransferContext.callMethod(ptr, MethodBindings.setProbeDataPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to data)
+    TransferContext.callMethod(MethodBindings.setProbeDataPtr)
   }
 
   public final fun getProbeData(): VoxelGIData? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getProbeDataPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getProbeDataPtr)
     return (TransferContext.readReturnValue(OBJECT) as VoxelGIData?)
   }
 
   public final fun setSubdiv(subdiv: Subdiv): Unit {
-    TransferContext.writeArguments(LONG to subdiv.value)
-    TransferContext.callMethod(ptr, MethodBindings.setSubdivPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to subdiv.value)
+    TransferContext.callMethod(MethodBindings.setSubdivPtr)
   }
 
   public final fun getSubdiv(): Subdiv {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSubdivPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSubdivPtr)
     return Subdiv.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setSize(size: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to size)
-    TransferContext.callMethod(ptr, MethodBindings.setSizePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR3 to size)
+    TransferContext.callMethod(MethodBindings.setSizePtr)
   }
 
   public final fun getSize(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSizePtr, VECTOR3)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSizePtr)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setCameraAttributes(cameraAttributes: CameraAttributes?): Unit {
-    TransferContext.writeArguments(OBJECT to cameraAttributes)
-    TransferContext.callMethod(ptr, MethodBindings.setCameraAttributesPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to cameraAttributes)
+    TransferContext.callMethod(MethodBindings.setCameraAttributesPtr)
   }
 
   public final fun getCameraAttributes(): CameraAttributes? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCameraAttributesPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCameraAttributesPtr)
     return (TransferContext.readReturnValue(OBJECT) as CameraAttributes?)
   }
 
@@ -207,16 +206,16 @@ public open class VoxelGI : VisualInstance3D() {
    */
   @JvmOverloads
   public final fun bake(fromNode: Node? = null, createVisualDebug: Boolean = false): Unit {
-    TransferContext.writeArguments(OBJECT to fromNode, BOOL to createVisualDebug)
-    TransferContext.callMethod(ptr, MethodBindings.bakePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to fromNode, BOOL to createVisualDebug)
+    TransferContext.callMethod(MethodBindings.bakePtr)
   }
 
   /**
    * Calls [bake] with `create_visual_debug` enabled.
    */
   public final fun debugBake(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.debugBakePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.debugBakePtr)
   }
 
   public enum class Subdiv(

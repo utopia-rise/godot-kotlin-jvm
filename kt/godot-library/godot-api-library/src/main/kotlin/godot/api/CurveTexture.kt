@@ -14,7 +14,6 @@ import godot.core.GodotEnum
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Int
 import kotlin.Long
@@ -74,29 +73,29 @@ public open class CurveTexture : Texture2D() {
   }
 
   public final fun setWidth(width: Int): Unit {
-    TransferContext.writeArguments(LONG to width.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setWidthPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to width.toLong())
+    TransferContext.callMethod(MethodBindings.setWidthPtr)
   }
 
   public final fun setCurve(curve: Curve?): Unit {
-    TransferContext.writeArguments(OBJECT to curve)
-    TransferContext.callMethod(ptr, MethodBindings.setCurvePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to curve)
+    TransferContext.callMethod(MethodBindings.setCurvePtr)
   }
 
   public final fun getCurve(): Curve? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCurvePtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCurvePtr)
     return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }
 
   public final fun setTextureMode(textureMode: TextureMode): Unit {
-    TransferContext.writeArguments(LONG to textureMode.value)
-    TransferContext.callMethod(ptr, MethodBindings.setTextureModePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to textureMode.value)
+    TransferContext.callMethod(MethodBindings.setTextureModePtr)
   }
 
   public final fun getTextureMode(): TextureMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getTextureModePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getTextureModePtr)
     return TextureMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

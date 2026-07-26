@@ -15,7 +15,6 @@ import godot.common.interop.VoidPtr
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import kotlin.Double
@@ -94,24 +93,24 @@ public open class WorldBoundaryShape2D : Shape2D() {
   }
 
   public final fun setNormal(normal: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to normal)
-    TransferContext.callMethod(ptr, MethodBindings.setNormalPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to normal)
+    TransferContext.callMethod(MethodBindings.setNormalPtr)
   }
 
   public final fun getNormal(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getNormalPtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getNormalPtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setDistance(distance: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to distance.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setDistancePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to distance.toDouble())
+    TransferContext.callMethod(MethodBindings.setDistancePtr)
   }
 
   public final fun getDistance(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getDistancePtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getDistancePtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 

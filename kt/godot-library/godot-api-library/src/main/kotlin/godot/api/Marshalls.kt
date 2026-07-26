@@ -68,8 +68,8 @@ public object Marshalls : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun variantToBase64(variant: Any?, fullObjects: Boolean = false): String {
-    TransferContext.writeArguments(ANY to variant, BOOL to fullObjects)
-    TransferContext.callMethod(ptr, MethodBindings.variantToBase64Ptr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id, ANY to variant, BOOL to fullObjects)
+    TransferContext.callMethod(MethodBindings.variantToBase64Ptr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -86,8 +86,8 @@ public object Marshalls : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun base64ToVariant(base64Str: String, allowObjects: Boolean = false): Any? {
-    TransferContext.writeArguments(STRING to base64Str, BOOL to allowObjects)
-    TransferContext.callMethod(ptr, MethodBindings.base64ToVariantPtr, ANY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to base64Str, BOOL to allowObjects)
+    TransferContext.callMethod(MethodBindings.base64ToVariantPtr)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
@@ -96,8 +96,8 @@ public object Marshalls : Object() {
    */
   @JvmStatic
   public final fun rawToBase64(array: PackedByteArray): String {
-    TransferContext.writeArguments(PACKED_BYTE_ARRAY to array)
-    TransferContext.callMethod(ptr, MethodBindings.rawToBase64Ptr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_BYTE_ARRAY to array)
+    TransferContext.callMethod(MethodBindings.rawToBase64Ptr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -106,8 +106,8 @@ public object Marshalls : Object() {
    */
   @JvmStatic
   public final fun base64ToRaw(base64Str: String): PackedByteArray {
-    TransferContext.writeArguments(STRING to base64Str)
-    TransferContext.callMethod(ptr, MethodBindings.base64ToRawPtr, PACKED_BYTE_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to base64Str)
+    TransferContext.callMethod(MethodBindings.base64ToRawPtr)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
@@ -116,8 +116,8 @@ public object Marshalls : Object() {
    */
   @JvmStatic
   public final fun utf8ToBase64(utf8Str: String): String {
-    TransferContext.writeArguments(STRING to utf8Str)
-    TransferContext.callMethod(ptr, MethodBindings.utf8ToBase64Ptr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to utf8Str)
+    TransferContext.callMethod(MethodBindings.utf8ToBase64Ptr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -126,8 +126,8 @@ public object Marshalls : Object() {
    */
   @JvmStatic
   public final fun base64ToUtf8(base64Str: String): String {
-    TransferContext.writeArguments(STRING to base64Str)
-    TransferContext.callMethod(ptr, MethodBindings.base64ToUtf8Ptr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to base64Str)
+    TransferContext.callMethod(MethodBindings.base64ToUtf8Ptr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 

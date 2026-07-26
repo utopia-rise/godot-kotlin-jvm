@@ -12,7 +12,6 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.MethodStringName0
 import godot.core.VariantParser.BOOL
-import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Suppress
 import kotlin.Unit
@@ -39,24 +38,24 @@ public open class AudioListener2D : Node2D() {
    * This method will have no effect if the [AudioListener2D] is not added to [SceneTree].
    */
   public final fun makeCurrent(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.makeCurrentPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.makeCurrentPtr)
   }
 
   /**
    * Disables the [AudioListener2D]. If it's not set as current, this method will have no effect.
    */
   public final fun clearCurrent(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.clearCurrentPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.clearCurrentPtr)
   }
 
   /**
    * Returns `true` if this [AudioListener2D] is currently active.
    */
   public final fun isCurrent(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isCurrentPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isCurrentPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

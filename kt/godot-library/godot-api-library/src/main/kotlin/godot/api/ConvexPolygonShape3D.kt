@@ -15,7 +15,6 @@ import godot.common.interop.VoidPtr
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.PackedVector3Array
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_VECTOR3_ARRAY
 import godot.core.Vector3
 import kotlin.Int
@@ -108,13 +107,13 @@ public open class ConvexPolygonShape3D : Shape3D() {
   }
 
   public final fun setPoints(points: PackedVector3Array): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to points)
-    TransferContext.callMethod(ptr, MethodBindings.setPointsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_VECTOR3_ARRAY to points)
+    TransferContext.callMethod(MethodBindings.setPointsPtr)
   }
 
   public final fun getPoints(): PackedVector3Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPointsPtr, PACKED_VECTOR3_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPointsPtr)
     return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
 

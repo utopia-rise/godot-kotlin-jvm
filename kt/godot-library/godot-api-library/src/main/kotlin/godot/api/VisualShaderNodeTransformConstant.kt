@@ -15,7 +15,6 @@ import godot.common.interop.VoidPtr
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.Transform3D
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.TRANSFORM3D
 import kotlin.Suppress
 import kotlin.Unit
@@ -70,13 +69,13 @@ public open class VisualShaderNodeTransformConstant : VisualShaderNodeConstant()
   }
 
   public final fun setConstant(constant: Transform3D): Unit {
-    TransferContext.writeArguments(TRANSFORM3D to constant)
-    TransferContext.callMethod(ptr, MethodBindings.setConstantPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, TRANSFORM3D to constant)
+    TransferContext.callMethod(MethodBindings.setConstantPtr)
   }
 
   public final fun getConstant(): Transform3D {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getConstantPtr, TRANSFORM3D)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getConstantPtr)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 

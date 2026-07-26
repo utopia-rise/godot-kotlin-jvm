@@ -92,8 +92,8 @@ public open class HashingContext : RefCounted() {
    * an SHA-256).
    */
   public final fun start(type: HashType): Error {
-    TransferContext.writeArguments(LONG to type.value)
-    TransferContext.callMethod(ptr, MethodBindings.startPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to type.value)
+    TransferContext.callMethod(MethodBindings.startPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -101,8 +101,8 @@ public open class HashingContext : RefCounted() {
    * Updates the computation with the given [chunk] of data.
    */
   public final fun update(chunk: PackedByteArray): Error {
-    TransferContext.writeArguments(PACKED_BYTE_ARRAY to chunk)
-    TransferContext.callMethod(ptr, MethodBindings.updatePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_BYTE_ARRAY to chunk)
+    TransferContext.callMethod(MethodBindings.updatePtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -110,8 +110,8 @@ public open class HashingContext : RefCounted() {
    * Closes the current context, and return the computed hash.
    */
   public final fun finish(): PackedByteArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.finishPtr, PACKED_BYTE_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.finishPtr)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 

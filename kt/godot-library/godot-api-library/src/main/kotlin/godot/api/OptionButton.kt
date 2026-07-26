@@ -18,7 +18,6 @@ import godot.core.Signal1
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import kotlin.Any
@@ -170,8 +169,8 @@ public open class OptionButton : Button() {
    */
   @JvmOverloads
   public final fun addItem(label: String, id: Int = -1): Unit {
-    TransferContext.writeArguments(STRING to label, LONG to id.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.addItemPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to label, LONG to id.toLong())
+    TransferContext.callMethod(MethodBindings.addItemPtr)
   }
 
   /**
@@ -186,24 +185,24 @@ public open class OptionButton : Button() {
     label: String,
     id: Int = -1,
   ): Unit {
-    TransferContext.writeArguments(OBJECT to texture, STRING to label, LONG to id.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.addIconItemPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to texture, STRING to label, LONG to id.toLong())
+    TransferContext.callMethod(MethodBindings.addIconItemPtr)
   }
 
   /**
    * Sets the text of the item at index [idx].
    */
   public final fun setItemText(idx: Int, text: String): Unit {
-    TransferContext.writeArguments(LONG to idx.toLong(), STRING to text)
-    TransferContext.callMethod(ptr, MethodBindings.setItemTextPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong(), STRING to text)
+    TransferContext.callMethod(MethodBindings.setItemTextPtr)
   }
 
   /**
    * Sets the icon of the item at index [idx].
    */
   public final fun setItemIcon(idx: Int, texture: Texture2D?): Unit {
-    TransferContext.writeArguments(LONG to idx.toLong(), OBJECT to texture)
-    TransferContext.callMethod(ptr, MethodBindings.setItemIconPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong(), OBJECT to texture)
+    TransferContext.callMethod(MethodBindings.setItemIconPtr)
   }
 
   /**
@@ -213,16 +212,16 @@ public open class OptionButton : Button() {
    * current selected item is set as disabled, it will remain selected.
    */
   public final fun setItemDisabled(idx: Int, disabled: Boolean): Unit {
-    TransferContext.writeArguments(LONG to idx.toLong(), BOOL to disabled)
-    TransferContext.callMethod(ptr, MethodBindings.setItemDisabledPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong(), BOOL to disabled)
+    TransferContext.callMethod(MethodBindings.setItemDisabledPtr)
   }
 
   /**
    * Sets the ID of the item at index [idx].
    */
   public final fun setItemId(idx: Int, id: Int): Unit {
-    TransferContext.writeArguments(LONG to idx.toLong(), LONG to id.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setItemIdPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong(), LONG to id.toLong())
+    TransferContext.callMethod(MethodBindings.setItemIdPtr)
   }
 
   /**
@@ -230,16 +229,16 @@ public open class OptionButton : Button() {
    * information about an item, such as an external string ID.
    */
   public final fun setItemMetadata(idx: Int, metadata: Any?): Unit {
-    TransferContext.writeArguments(LONG to idx.toLong(), ANY to metadata)
-    TransferContext.callMethod(ptr, MethodBindings.setItemMetadataPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong(), ANY to metadata)
+    TransferContext.callMethod(MethodBindings.setItemMetadataPtr)
   }
 
   /**
    * Sets the tooltip of the item at index [idx].
    */
   public final fun setItemTooltip(idx: Int, tooltip: String): Unit {
-    TransferContext.writeArguments(LONG to idx.toLong(), STRING to tooltip)
-    TransferContext.callMethod(ptr, MethodBindings.setItemTooltipPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong(), STRING to tooltip)
+    TransferContext.callMethod(MethodBindings.setItemTooltipPtr)
   }
 
   /**
@@ -249,45 +248,45 @@ public open class OptionButton : Button() {
    * mode as the [OptionButton] itself.
    */
   public final fun setItemAutoTranslateMode(idx: Int, mode: Node.AutoTranslateMode): Unit {
-    TransferContext.writeArguments(LONG to idx.toLong(), LONG to mode.value)
-    TransferContext.callMethod(ptr, MethodBindings.setItemAutoTranslateModePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong(), LONG to mode.value)
+    TransferContext.callMethod(MethodBindings.setItemAutoTranslateModePtr)
   }
 
   public final fun setSearchBarEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.setSearchBarEnabledPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enabled)
+    TransferContext.callMethod(MethodBindings.setSearchBarEnabledPtr)
   }
 
   public final fun setSearchBarMinItemCount(count: Int): Unit {
-    TransferContext.writeArguments(LONG to count.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setSearchBarMinItemCountPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to count.toLong())
+    TransferContext.callMethod(MethodBindings.setSearchBarMinItemCountPtr)
   }
 
   public final fun getSearchBarMinItemCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSearchBarMinItemCountPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSearchBarMinItemCountPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setSearchBarFuzzySearchEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.setSearchBarFuzzySearchEnabledPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enabled)
+    TransferContext.callMethod(MethodBindings.setSearchBarFuzzySearchEnabledPtr)
   }
 
   public final fun isSearchBarFuzzySearchEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isSearchBarFuzzySearchEnabledPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isSearchBarFuzzySearchEnabledPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSearchBarFuzzySearchMaxMisses(maxMisses: Int): Unit {
-    TransferContext.writeArguments(LONG to maxMisses.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setSearchBarFuzzySearchMaxMissesPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to maxMisses.toLong())
+    TransferContext.callMethod(MethodBindings.setSearchBarFuzzySearchMaxMissesPtr)
   }
 
   public final fun getSearchBarFuzzySearchMaxMisses(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSearchBarFuzzySearchMaxMissesPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSearchBarFuzzySearchMaxMissesPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -295,8 +294,8 @@ public open class OptionButton : Button() {
    * Returns the text of the item at index [idx].
    */
   public final fun getItemText(idx: Int): String {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getItemTextPtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong())
+    TransferContext.callMethod(MethodBindings.getItemTextPtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -304,8 +303,8 @@ public open class OptionButton : Button() {
    * Returns the icon of the item at index [idx].
    */
   public final fun getItemIcon(idx: Int): Texture2D? {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getItemIconPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong())
+    TransferContext.callMethod(MethodBindings.getItemIconPtr)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
@@ -313,8 +312,8 @@ public open class OptionButton : Button() {
    * Returns the ID of the item at index [idx].
    */
   public final fun getItemId(idx: Int): Int {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getItemIdPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong())
+    TransferContext.callMethod(MethodBindings.getItemIdPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -322,8 +321,8 @@ public open class OptionButton : Button() {
    * Returns the index of the item with the given [id].
    */
   public final fun getItemIndex(id: Int): Int {
-    TransferContext.writeArguments(LONG to id.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getItemIndexPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to id.toLong())
+    TransferContext.callMethod(MethodBindings.getItemIndexPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -332,8 +331,8 @@ public open class OptionButton : Button() {
    * information about an item, such as an external string ID.
    */
   public final fun getItemMetadata(idx: Int): Any? {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getItemMetadataPtr, ANY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong())
+    TransferContext.callMethod(MethodBindings.getItemMetadataPtr)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
@@ -341,8 +340,8 @@ public open class OptionButton : Button() {
    * Returns the tooltip of the item at index [idx].
    */
   public final fun getItemTooltip(idx: Int): String {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getItemTooltipPtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong())
+    TransferContext.callMethod(MethodBindings.getItemTooltipPtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -350,8 +349,8 @@ public open class OptionButton : Button() {
    * Returns the auto translate mode of the item at index [idx].
    */
   public final fun getItemAutoTranslateMode(idx: Int): Node.AutoTranslateMode {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getItemAutoTranslateModePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong())
+    TransferContext.callMethod(MethodBindings.getItemAutoTranslateModePtr)
     return Node.AutoTranslateMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -359,8 +358,8 @@ public open class OptionButton : Button() {
    * Returns `true` if the item at index [idx] is disabled.
    */
   public final fun isItemDisabled(idx: Int): Boolean {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.isItemDisabledPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong())
+    TransferContext.callMethod(MethodBindings.isItemDisabledPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -368,14 +367,14 @@ public open class OptionButton : Button() {
    * Returns `true` if the item at index [idx] is marked as a separator.
    */
   public final fun isItemSeparator(idx: Int): Boolean {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.isItemSeparatorPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong())
+    TransferContext.callMethod(MethodBindings.isItemSeparatorPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun isSearchBarEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isSearchBarEnabledPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isSearchBarEnabledPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -386,16 +385,16 @@ public open class OptionButton : Button() {
    */
   @JvmOverloads
   public final fun addSeparator(text: String = ""): Unit {
-    TransferContext.writeArguments(STRING to text)
-    TransferContext.callMethod(ptr, MethodBindings.addSeparatorPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to text)
+    TransferContext.callMethod(MethodBindings.addSeparatorPtr)
   }
 
   /**
    * Clears all the items in the [OptionButton].
    */
   public final fun clear(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.clearPtr)
   }
 
   /**
@@ -405,13 +404,13 @@ public open class OptionButton : Button() {
    * Passing `-1` as the index deselects any currently selected item.
    */
   public final fun select(idx: Int): Unit {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.selectPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong())
+    TransferContext.callMethod(MethodBindings.selectPtr)
   }
 
   public final fun getSelected(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSelectedPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSelectedPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -419,8 +418,8 @@ public open class OptionButton : Button() {
    * Returns the ID of the selected item, or `-1` if no item is selected.
    */
   public final fun getSelectedId(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSelectedIdPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSelectedIdPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -428,8 +427,8 @@ public open class OptionButton : Button() {
    * Gets the metadata of the selected item. Metadata for items can be set using [setItemMetadata].
    */
   public final fun getSelectedMetadata(): Any? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSelectedMetadataPtr, ANY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSelectedMetadataPtr)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
@@ -437,8 +436,8 @@ public open class OptionButton : Button() {
    * Removes the item at index [idx].
    */
   public final fun removeItem(idx: Int): Unit {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.removeItemPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong())
+    TransferContext.callMethod(MethodBindings.removeItemPtr)
   }
 
   /**
@@ -448,8 +447,8 @@ public open class OptionButton : Button() {
    * you wish to hide it or any of its children, use their [Window.visible] property.
    */
   public final fun getPopup(): PopupMenu? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPopupPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPopupPtr)
     return (TransferContext.readReturnValue(OBJECT) as PopupMenu?)
   }
 
@@ -458,18 +457,18 @@ public open class OptionButton : Button() {
    * this over using `get_popup().popup()`.
    */
   public final fun showPopup(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.showPopupPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.showPopupPtr)
   }
 
   public final fun setItemCount(count: Int): Unit {
-    TransferContext.writeArguments(LONG to count.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setItemCountPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to count.toLong())
+    TransferContext.callMethod(MethodBindings.setItemCountPtr)
   }
 
   public final fun getItemCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getItemCountPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getItemCountPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -478,8 +477,8 @@ public open class OptionButton : Button() {
    * separator.
    */
   public final fun hasSelectableItems(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.hasSelectableItemsPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.hasSelectableItemsPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -491,30 +490,30 @@ public open class OptionButton : Button() {
    */
   @JvmOverloads
   public final fun getSelectableItem(fromLast: Boolean = false): Int {
-    TransferContext.writeArguments(BOOL to fromLast)
-    TransferContext.callMethod(ptr, MethodBindings.getSelectableItemPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to fromLast)
+    TransferContext.callMethod(MethodBindings.getSelectableItemPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setFitToLongestItem(fit: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to fit)
-    TransferContext.callMethod(ptr, MethodBindings.setFitToLongestItemPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to fit)
+    TransferContext.callMethod(MethodBindings.setFitToLongestItemPtr)
   }
 
   public final fun isFitToLongestItem(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isFitToLongestItemPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isFitToLongestItemPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAllowReselect(allow: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to allow)
-    TransferContext.callMethod(ptr, MethodBindings.setAllowReselectPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to allow)
+    TransferContext.callMethod(MethodBindings.setAllowReselectPtr)
   }
 
   public final fun getAllowReselect(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getAllowReselectPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getAllowReselectPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -522,8 +521,8 @@ public open class OptionButton : Button() {
    * If `true`, shortcuts are disabled and cannot be used to trigger the button.
    */
   public final fun setDisableShortcuts(disabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to disabled)
-    TransferContext.callMethod(ptr, MethodBindings.setDisableShortcutsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to disabled)
+    TransferContext.callMethod(MethodBindings.setDisableShortcutsPtr)
   }
 
   public companion object {

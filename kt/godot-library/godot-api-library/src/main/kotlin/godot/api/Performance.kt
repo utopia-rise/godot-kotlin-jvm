@@ -24,7 +24,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.CALLABLE
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.VariantParser.STRING_NAME
 import godot.core.asCachedStringName
@@ -114,8 +113,8 @@ public object Performance : Object() {
    */
   @JvmStatic
   public final fun getMonitor(monitor: Monitor): Double {
-    TransferContext.writeArguments(LONG to monitor.value)
-    TransferContext.callMethod(ptr, MethodBindings.getMonitorPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to monitor.value)
+    TransferContext.callMethod(MethodBindings.getMonitorPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
@@ -191,8 +190,8 @@ public object Performance : Object() {
     arguments: VariantArray<Any?> = godot.core.variantArrayOf(),
     type: MonitorType = Performance.MonitorType.QUANTITY,
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to id, CALLABLE to callable, ARRAY to arguments, LONG to type.value)
-    TransferContext.callMethod(ptr, MethodBindings.addCustomMonitorPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to id, CALLABLE to callable, ARRAY to arguments, LONG to type.value)
+    TransferContext.callMethod(MethodBindings.addCustomMonitorPtr)
   }
 
   /**
@@ -201,8 +200,8 @@ public object Performance : Object() {
    */
   @JvmStatic
   public final fun removeCustomMonitor(id: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to id)
-    TransferContext.callMethod(ptr, MethodBindings.removeCustomMonitorPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to id)
+    TransferContext.callMethod(MethodBindings.removeCustomMonitorPtr)
   }
 
   /**
@@ -210,8 +209,8 @@ public object Performance : Object() {
    */
   @JvmStatic
   public final fun hasCustomMonitor(id: StringName): Boolean {
-    TransferContext.writeArguments(STRING_NAME to id)
-    TransferContext.callMethod(ptr, MethodBindings.hasCustomMonitorPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to id)
+    TransferContext.callMethod(MethodBindings.hasCustomMonitorPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -221,8 +220,8 @@ public object Performance : Object() {
    */
   @JvmStatic
   public final fun getCustomMonitor(id: StringName): Any? {
-    TransferContext.writeArguments(STRING_NAME to id)
-    TransferContext.callMethod(ptr, MethodBindings.getCustomMonitorPtr, ANY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to id)
+    TransferContext.callMethod(MethodBindings.getCustomMonitorPtr)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
@@ -232,8 +231,8 @@ public object Performance : Object() {
    */
   @JvmStatic
   public final fun getMonitorModificationTime(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMonitorModificationTimePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMonitorModificationTimePtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -242,8 +241,8 @@ public object Performance : Object() {
    */
   @JvmStatic
   public final fun getCustomMonitorNames(): VariantArray<StringName> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCustomMonitorNamesPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCustomMonitorNamesPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<StringName>)
   }
 
@@ -252,8 +251,8 @@ public object Performance : Object() {
    */
   @JvmStatic
   public final fun getCustomMonitorTypes(): PackedInt32Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCustomMonitorTypesPtr, PACKED_INT_32_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCustomMonitorTypesPtr)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 

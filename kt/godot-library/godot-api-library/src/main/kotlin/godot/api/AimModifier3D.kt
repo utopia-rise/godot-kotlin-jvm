@@ -14,7 +14,6 @@ import godot.core.MethodStringName1
 import godot.core.MethodStringName2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.Vector3
 import kotlin.Boolean
 import kotlin.Int
@@ -52,16 +51,16 @@ public open class AimModifier3D : BoneConstraint3D() {
    * Sets the forward axis of the bone.
    */
   public final fun setForwardAxis(index: Int, axis: SkeletonModifier3D.BoneAxis): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to axis.value)
-    TransferContext.callMethod(ptr, MethodBindings.setForwardAxisPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), LONG to axis.value)
+    TransferContext.callMethod(MethodBindings.setForwardAxisPtr)
   }
 
   /**
    * Returns the forward axis of the bone.
    */
   public final fun getForwardAxis(index: Int): SkeletonModifier3D.BoneAxis {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getForwardAxisPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getForwardAxisPtr)
     return SkeletonModifier3D.BoneAxis.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -72,16 +71,16 @@ public open class AimModifier3D : BoneConstraint3D() {
    * the forward axis vector and the vector toward the reference.
    */
   public final fun setUseEuler(index: Int, enabled: Boolean): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.setUseEulerPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), BOOL to enabled)
+    TransferContext.callMethod(MethodBindings.setUseEulerPtr)
   }
 
   /**
    * Returns `true` if it provides rotation with using euler.
    */
   public final fun isUsingEuler(index: Int): Boolean {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.isUsingEulerPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.isUsingEulerPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -89,16 +88,16 @@ public open class AimModifier3D : BoneConstraint3D() {
    * Sets the axis of the first rotation. It is enabled only if [isUsingEuler] is `true`.
    */
   public final fun setPrimaryRotationAxis(index: Int, axis: Vector3.Axis): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to axis.value)
-    TransferContext.callMethod(ptr, MethodBindings.setPrimaryRotationAxisPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), LONG to axis.value)
+    TransferContext.callMethod(MethodBindings.setPrimaryRotationAxisPtr)
   }
 
   /**
    * Returns the axis of the first rotation. It is enabled only if [isUsingEuler] is `true`.
    */
   public final fun getPrimaryRotationAxis(index: Int): Vector3.Axis {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getPrimaryRotationAxisPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getPrimaryRotationAxisPtr)
     return Vector3.Axis.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -107,8 +106,8 @@ public open class AimModifier3D : BoneConstraint3D() {
    * [isUsingEuler] is `true`.
    */
   public final fun setUseSecondaryRotation(index: Int, enabled: Boolean): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.setUseSecondaryRotationPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), BOOL to enabled)
+    TransferContext.callMethod(MethodBindings.setUseSecondaryRotationPtr)
   }
 
   /**
@@ -116,8 +115,8 @@ public open class AimModifier3D : BoneConstraint3D() {
    * `true`.
    */
   public final fun isUsingSecondaryRotation(index: Int): Boolean {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.isUsingSecondaryRotationPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.isUsingSecondaryRotationPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -130,16 +129,16 @@ public open class AimModifier3D : BoneConstraint3D() {
    * the current pose with the [AimModifier3D]'s result.
    */
   public final fun setRelative(index: Int, enabled: Boolean): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.setRelativePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), BOOL to enabled)
+    TransferContext.callMethod(MethodBindings.setRelativePtr)
   }
 
   /**
    * Returns `true` if the relative option is enabled in the setting at [index].
    */
   public final fun isRelative(index: Int): Boolean {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.isRelativePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.isRelativePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

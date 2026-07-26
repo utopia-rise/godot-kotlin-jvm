@@ -18,7 +18,6 @@ import godot.core.MethodStringName4
 import godot.core.PackedStringArray
 import godot.core.StringName
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
@@ -93,13 +92,13 @@ public open class Translation : Resource() {
   }
 
   public final fun setLocale(locale: String): Unit {
-    TransferContext.writeArguments(STRING to locale)
-    TransferContext.callMethod(ptr, MethodBindings.setLocalePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to locale)
+    TransferContext.callMethod(MethodBindings.setLocalePtr)
   }
 
   public final fun getLocale(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getLocalePtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getLocalePtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -114,8 +113,8 @@ public open class Translation : Resource() {
     xlatedMessage: StringName,
     context: StringName = StringName(""),
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to srcMessage, STRING_NAME to xlatedMessage, STRING_NAME to context)
-    TransferContext.callMethod(ptr, MethodBindings.addMessagePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to srcMessage, STRING_NAME to xlatedMessage, STRING_NAME to context)
+    TransferContext.callMethod(MethodBindings.addMessagePtr)
   }
 
   /**
@@ -129,8 +128,8 @@ public open class Translation : Resource() {
     xlatedMessages: PackedStringArray,
     context: StringName = StringName(""),
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to srcMessage, PACKED_STRING_ARRAY to xlatedMessages, STRING_NAME to context)
-    TransferContext.callMethod(ptr, MethodBindings.addPluralMessagePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to srcMessage, PACKED_STRING_ARRAY to xlatedMessages, STRING_NAME to context)
+    TransferContext.callMethod(MethodBindings.addPluralMessagePtr)
   }
 
   /**
@@ -138,8 +137,8 @@ public open class Translation : Resource() {
    */
   public final fun getMessage(srcMessage: StringName, context: StringName = StringName("")):
       StringName {
-    TransferContext.writeArguments(STRING_NAME to srcMessage, STRING_NAME to context)
-    TransferContext.callMethod(ptr, MethodBindings.getMessagePtr, STRING_NAME)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to srcMessage, STRING_NAME to context)
+    TransferContext.callMethod(MethodBindings.getMessagePtr)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
@@ -159,8 +158,8 @@ public open class Translation : Resource() {
     n: Int,
     context: StringName = StringName(""),
   ): StringName {
-    TransferContext.writeArguments(STRING_NAME to srcMessage, STRING_NAME to srcPluralMessage, LONG to n.toLong(), STRING_NAME to context)
-    TransferContext.callMethod(ptr, MethodBindings.getPluralMessagePtr, STRING_NAME)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to srcMessage, STRING_NAME to srcPluralMessage, LONG to n.toLong(), STRING_NAME to context)
+    TransferContext.callMethod(MethodBindings.getPluralMessagePtr)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
@@ -169,8 +168,8 @@ public open class Translation : Resource() {
    */
   public final fun eraseMessage(srcMessage: StringName, context: StringName = StringName("")):
       Unit {
-    TransferContext.writeArguments(STRING_NAME to srcMessage, STRING_NAME to context)
-    TransferContext.callMethod(ptr, MethodBindings.eraseMessagePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to srcMessage, STRING_NAME to context)
+    TransferContext.callMethod(MethodBindings.eraseMessagePtr)
   }
 
   /**
@@ -194,8 +193,8 @@ public open class Translation : Resource() {
    * ```
    */
   public final fun getMessageList(): PackedStringArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMessageListPtr, PACKED_STRING_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMessageListPtr)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
@@ -203,8 +202,8 @@ public open class Translation : Resource() {
    * Returns all the translated strings.
    */
   public final fun getTranslatedMessageList(): PackedStringArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getTranslatedMessageListPtr, PACKED_STRING_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getTranslatedMessageListPtr)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
@@ -212,19 +211,19 @@ public open class Translation : Resource() {
    * Returns the number of existing messages.
    */
   public final fun getMessageCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMessageCountPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMessageCountPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setPluralRulesOverride(rules: String): Unit {
-    TransferContext.writeArguments(STRING to rules)
-    TransferContext.callMethod(ptr, MethodBindings.setPluralRulesOverridePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to rules)
+    TransferContext.callMethod(MethodBindings.setPluralRulesOverridePtr)
   }
 
   public final fun getPluralRulesOverride(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPluralRulesOverridePtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPluralRulesOverridePtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 

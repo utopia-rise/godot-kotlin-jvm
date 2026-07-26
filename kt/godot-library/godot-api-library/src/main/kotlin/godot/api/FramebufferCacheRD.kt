@@ -52,8 +52,8 @@ public open class FramebufferCacheRD : Object() {
       passes: VariantArray<RDFramebufferPass>,
       views: Long,
     ): RID {
-      TransferContext.writeArguments(ARRAY to textures, ARRAY to passes, LONG to views)
-      TransferContext.callMethod(0, MethodBindings.getCacheMultipassPtr, _RID)
+      TransferContext.writeMethodArguments(0L, 0L, ARRAY to textures, ARRAY to passes, LONG to views)
+      TransferContext.callMethod(MethodBindings.getCacheMultipassPtr)
       return (TransferContext.readReturnValue(_RID) as RID)
     }
   }

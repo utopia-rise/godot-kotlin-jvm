@@ -14,7 +14,6 @@ import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
@@ -47,8 +46,8 @@ public open class Semaphore : RefCounted() {
    * Waits for the [Semaphore], if its value is zero, blocks until non-zero.
    */
   public final fun waitFor(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.waitPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.waitPtr)
   }
 
   /**
@@ -56,8 +55,8 @@ public open class Semaphore : RefCounted() {
    * If non-zero, it returns `true` to report success.
    */
   public final fun tryWait(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.tryWaitPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.tryWaitPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -66,8 +65,8 @@ public open class Semaphore : RefCounted() {
    */
   @JvmOverloads
   public final fun post(count: Int = 1): Unit {
-    TransferContext.writeArguments(LONG to count.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.postPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to count.toLong())
+    TransferContext.callMethod(MethodBindings.postPtr)
   }
 
   public companion object {

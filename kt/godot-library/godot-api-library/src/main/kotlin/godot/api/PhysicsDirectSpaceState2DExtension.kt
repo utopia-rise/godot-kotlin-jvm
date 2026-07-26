@@ -34,8 +34,8 @@ public abstract class PhysicsDirectSpaceState2DExtension : PhysicsDirectSpaceSta
   }
 
   public final fun isBodyExcludedFromQuery(body: RID): Boolean {
-    TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(ptr, MethodBindings.isBodyExcludedFromQueryPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body)
+    TransferContext.callMethod(MethodBindings.isBodyExcludedFromQueryPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

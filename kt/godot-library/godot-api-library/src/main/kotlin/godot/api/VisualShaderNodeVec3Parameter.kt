@@ -15,7 +15,6 @@ import godot.common.interop.VoidPtr
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
 import kotlin.Boolean
@@ -83,24 +82,24 @@ public open class VisualShaderNodeVec3Parameter : VisualShaderNodeParameter() {
   }
 
   public final fun setDefaultValueEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.setDefaultValueEnabledPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enabled)
+    TransferContext.callMethod(MethodBindings.setDefaultValueEnabledPtr)
   }
 
   public final fun isDefaultValueEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isDefaultValueEnabledPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isDefaultValueEnabledPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDefaultValue(`value`: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to value)
-    TransferContext.callMethod(ptr, MethodBindings.setDefaultValuePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR3 to value)
+    TransferContext.callMethod(MethodBindings.setDefaultValuePtr)
   }
 
   public final fun getDefaultValue(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getDefaultValuePtr, VECTOR3)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getDefaultValuePtr)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 

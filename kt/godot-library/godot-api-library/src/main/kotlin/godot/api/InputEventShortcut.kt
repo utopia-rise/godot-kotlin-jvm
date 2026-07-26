@@ -12,7 +12,6 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Suppress
 import kotlin.Unit
@@ -43,13 +42,13 @@ public open class InputEventShortcut : InputEvent() {
   }
 
   public final fun setShortcut(shortcut: Shortcut?): Unit {
-    TransferContext.writeArguments(OBJECT to shortcut)
-    TransferContext.callMethod(ptr, MethodBindings.setShortcutPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to shortcut)
+    TransferContext.callMethod(MethodBindings.setShortcutPtr)
   }
 
   public final fun getShortcut(): Shortcut? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getShortcutPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getShortcutPtr)
     return (TransferContext.readReturnValue(OBJECT) as Shortcut?)
   }
 

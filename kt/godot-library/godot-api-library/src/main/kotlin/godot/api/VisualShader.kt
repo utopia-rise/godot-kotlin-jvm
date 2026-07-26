@@ -27,7 +27,6 @@ import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.VariantParser.STRING
@@ -99,8 +98,8 @@ public open class VisualShader : Shader() {
    * Sets the mode of this shader.
    */
   public final fun setMode(mode: Shader.Mode): Unit {
-    TransferContext.writeArguments(LONG to mode.value)
-    TransferContext.callMethod(ptr, MethodBindings.setModePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to mode.value)
+    TransferContext.callMethod(MethodBindings.setModePtr)
   }
 
   /**
@@ -112,16 +111,16 @@ public open class VisualShader : Shader() {
     position: Vector2,
     id: Int,
   ): Unit {
-    TransferContext.writeArguments(LONG to type.value, OBJECT to node, VECTOR2 to position, LONG to id.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.addNodePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to type.value, OBJECT to node, VECTOR2 to position, LONG to id.toLong())
+    TransferContext.callMethod(MethodBindings.addNodePtr)
   }
 
   /**
    * Returns the shader node instance with specified [type] and [id].
    */
   public final fun getNode(type: Type, id: Int): VisualShaderNode? {
-    TransferContext.writeArguments(LONG to type.value, LONG to id.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getNodePtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to type.value, LONG to id.toLong())
+    TransferContext.callMethod(MethodBindings.getNodePtr)
     return (TransferContext.readReturnValue(OBJECT) as VisualShaderNode?)
   }
 
@@ -133,16 +132,16 @@ public open class VisualShader : Shader() {
     id: Int,
     position: Vector2,
   ): Unit {
-    TransferContext.writeArguments(LONG to type.value, LONG to id.toLong(), VECTOR2 to position)
-    TransferContext.callMethod(ptr, MethodBindings.setNodePositionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to type.value, LONG to id.toLong(), VECTOR2 to position)
+    TransferContext.callMethod(MethodBindings.setNodePositionPtr)
   }
 
   /**
    * Returns the position of the specified node within the shader graph.
    */
   public final fun getNodePosition(type: Type, id: Int): Vector2 {
-    TransferContext.writeArguments(LONG to type.value, LONG to id.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getNodePositionPtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to type.value, LONG to id.toLong())
+    TransferContext.callMethod(MethodBindings.getNodePositionPtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
@@ -150,8 +149,8 @@ public open class VisualShader : Shader() {
    * Returns the list of all nodes in the shader with the specified type.
    */
   public final fun getNodeList(type: Type): PackedInt32Array {
-    TransferContext.writeArguments(LONG to type.value)
-    TransferContext.callMethod(ptr, MethodBindings.getNodeListPtr, PACKED_INT_32_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to type.value)
+    TransferContext.callMethod(MethodBindings.getNodeListPtr)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
@@ -159,8 +158,8 @@ public open class VisualShader : Shader() {
    * Returns next valid node ID that can be added to the shader graph.
    */
   public final fun getValidNodeId(type: Type): Int {
-    TransferContext.writeArguments(LONG to type.value)
-    TransferContext.callMethod(ptr, MethodBindings.getValidNodeIdPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to type.value)
+    TransferContext.callMethod(MethodBindings.getValidNodeIdPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -168,8 +167,8 @@ public open class VisualShader : Shader() {
    * Removes the specified node from the shader.
    */
   public final fun removeNode(type: Type, id: Int): Unit {
-    TransferContext.writeArguments(LONG to type.value, LONG to id.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.removeNodePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to type.value, LONG to id.toLong())
+    TransferContext.callMethod(MethodBindings.removeNodePtr)
   }
 
   /**
@@ -180,8 +179,8 @@ public open class VisualShader : Shader() {
     id: Int,
     newClass: StringName,
   ): Unit {
-    TransferContext.writeArguments(LONG to type.value, LONG to id.toLong(), STRING_NAME to newClass)
-    TransferContext.callMethod(ptr, MethodBindings.replaceNodePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to type.value, LONG to id.toLong(), STRING_NAME to newClass)
+    TransferContext.callMethod(MethodBindings.replaceNodePtr)
   }
 
   /**
@@ -194,8 +193,8 @@ public open class VisualShader : Shader() {
     toNode: Int,
     toPort: Int,
   ): Boolean {
-    TransferContext.writeArguments(LONG to type.value, LONG to fromNode.toLong(), LONG to fromPort.toLong(), LONG to toNode.toLong(), LONG to toPort.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.isNodeConnectionPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to type.value, LONG to fromNode.toLong(), LONG to fromPort.toLong(), LONG to toNode.toLong(), LONG to toPort.toLong())
+    TransferContext.callMethod(MethodBindings.isNodeConnectionPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -209,8 +208,8 @@ public open class VisualShader : Shader() {
     toNode: Int,
     toPort: Int,
   ): Boolean {
-    TransferContext.writeArguments(LONG to type.value, LONG to fromNode.toLong(), LONG to fromPort.toLong(), LONG to toNode.toLong(), LONG to toPort.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.canConnectNodesPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to type.value, LONG to fromNode.toLong(), LONG to fromPort.toLong(), LONG to toNode.toLong(), LONG to toPort.toLong())
+    TransferContext.callMethod(MethodBindings.canConnectNodesPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -224,8 +223,8 @@ public open class VisualShader : Shader() {
     toNode: Int,
     toPort: Int,
   ): Error {
-    TransferContext.writeArguments(LONG to type.value, LONG to fromNode.toLong(), LONG to fromPort.toLong(), LONG to toNode.toLong(), LONG to toPort.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.connectNodesPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to type.value, LONG to fromNode.toLong(), LONG to fromPort.toLong(), LONG to toNode.toLong(), LONG to toPort.toLong())
+    TransferContext.callMethod(MethodBindings.connectNodesPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -239,8 +238,8 @@ public open class VisualShader : Shader() {
     toNode: Int,
     toPort: Int,
   ): Unit {
-    TransferContext.writeArguments(LONG to type.value, LONG to fromNode.toLong(), LONG to fromPort.toLong(), LONG to toNode.toLong(), LONG to toPort.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.disconnectNodesPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to type.value, LONG to fromNode.toLong(), LONG to fromPort.toLong(), LONG to toNode.toLong(), LONG to toPort.toLong())
+    TransferContext.callMethod(MethodBindings.disconnectNodesPtr)
   }
 
   /**
@@ -254,16 +253,16 @@ public open class VisualShader : Shader() {
     toNode: Int,
     toPort: Int,
   ): Unit {
-    TransferContext.writeArguments(LONG to type.value, LONG to fromNode.toLong(), LONG to fromPort.toLong(), LONG to toNode.toLong(), LONG to toPort.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.connectNodesForcedPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to type.value, LONG to fromNode.toLong(), LONG to fromPort.toLong(), LONG to toNode.toLong(), LONG to toPort.toLong())
+    TransferContext.callMethod(MethodBindings.connectNodesForcedPtr)
   }
 
   /**
    * Returns the list of connected nodes with the specified type.
    */
   public final fun getNodeConnections(type: Type): VariantArray<Dictionary<Any?, Any?>> {
-    TransferContext.writeArguments(LONG to type.value)
-    TransferContext.callMethod(ptr, MethodBindings.getNodeConnectionsPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to type.value)
+    TransferContext.callMethod(MethodBindings.getNodeConnectionsPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
@@ -275,16 +274,16 @@ public open class VisualShader : Shader() {
     id: Int,
     frame: Int,
   ): Unit {
-    TransferContext.writeArguments(LONG to type.value, LONG to id.toLong(), LONG to frame.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.attachNodeToFramePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to type.value, LONG to id.toLong(), LONG to frame.toLong())
+    TransferContext.callMethod(MethodBindings.attachNodeToFramePtr)
   }
 
   /**
    * Detaches the given node from the frame it is attached to.
    */
   public final fun detachNodeFromFrame(type: Type, id: Int): Unit {
-    TransferContext.writeArguments(LONG to type.value, LONG to id.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.detachNodeFromFramePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to type.value, LONG to id.toLong())
+    TransferContext.callMethod(MethodBindings.detachNodeFromFramePtr)
   }
 
   /**
@@ -295,8 +294,8 @@ public open class VisualShader : Shader() {
     mode: VaryingMode,
     type: VaryingType,
   ): Unit {
-    TransferContext.writeArguments(STRING to name, LONG to mode.value, LONG to type.value)
-    TransferContext.callMethod(ptr, MethodBindings.addVaryingPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to name, LONG to mode.value, LONG to type.value)
+    TransferContext.callMethod(MethodBindings.addVaryingPtr)
   }
 
   /**
@@ -304,27 +303,27 @@ public open class VisualShader : Shader() {
    * not found.
    */
   public final fun removeVarying(name: String): Unit {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(ptr, MethodBindings.removeVaryingPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to name)
+    TransferContext.callMethod(MethodBindings.removeVaryingPtr)
   }
 
   /**
    * Returns `true` if the shader has a varying with the given [name].
    */
   public final fun hasVarying(name: String): Boolean {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(ptr, MethodBindings.hasVaryingPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to name)
+    TransferContext.callMethod(MethodBindings.hasVaryingPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setGraphOffset(offset: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to offset)
-    TransferContext.callMethod(ptr, MethodBindings.setGraphOffsetPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to offset)
+    TransferContext.callMethod(MethodBindings.setGraphOffsetPtr)
   }
 
   public final fun getGraphOffset(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getGraphOffsetPtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getGraphOffsetPtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 

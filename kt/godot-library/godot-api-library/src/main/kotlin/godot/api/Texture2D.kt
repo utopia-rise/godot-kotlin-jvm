@@ -20,7 +20,6 @@ import godot.core.Rect2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.RECT2
 import godot.core.VariantParser.VECTOR2
@@ -163,8 +162,8 @@ public abstract class Texture2D : Texture() {
    * Returns the image format of the texture.
    */
   public final fun getFormat(): Image.Format {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFormatPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getFormatPtr)
     return Image.Format.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -172,8 +171,8 @@ public abstract class Texture2D : Texture() {
    * Returns the number of mipmaps of the texture.
    */
   public final fun getMipmapCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMipmapCountPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMipmapCountPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -181,8 +180,8 @@ public abstract class Texture2D : Texture() {
    * Returns the texture width in pixels.
    */
   public final fun getWidth(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getWidthPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getWidthPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -190,8 +189,8 @@ public abstract class Texture2D : Texture() {
    * Returns the texture height in pixels.
    */
   public final fun getHeight(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getHeightPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getHeightPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -199,8 +198,8 @@ public abstract class Texture2D : Texture() {
    * Returns the texture size in pixels.
    */
   public final fun getSize(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSizePtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSizePtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
@@ -208,8 +207,8 @@ public abstract class Texture2D : Texture() {
    * Returns `true` if this [Texture2D] has an alpha channel.
    */
   public final fun hasAlpha(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.hasAlphaPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.hasAlphaPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -217,8 +216,8 @@ public abstract class Texture2D : Texture() {
    * Returns `true` if the texture has mipmaps.
    */
   public final fun hasMipmaps(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.hasMipmapsPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.hasMipmapsPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -233,8 +232,8 @@ public abstract class Texture2D : Texture() {
     modulate: Color = Color(Color(1, 1, 1, 1)),
     transpose: Boolean = false,
   ): Unit {
-    TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to position, COLOR to modulate, BOOL to transpose)
-    TransferContext.callMethod(ptr, MethodBindings.drawPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to canvasItem, VECTOR2 to position, COLOR to modulate, BOOL to transpose)
+    TransferContext.callMethod(MethodBindings.drawPtr)
   }
 
   /**
@@ -248,8 +247,8 @@ public abstract class Texture2D : Texture() {
     modulate: Color = Color(Color(1, 1, 1, 1)),
     transpose: Boolean = false,
   ): Unit {
-    TransferContext.writeArguments(_RID to canvasItem, RECT2 to rect, BOOL to tile, COLOR to modulate, BOOL to transpose)
-    TransferContext.callMethod(ptr, MethodBindings.drawRectPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to canvasItem, RECT2 to rect, BOOL to tile, COLOR to modulate, BOOL to transpose)
+    TransferContext.callMethod(MethodBindings.drawRectPtr)
   }
 
   /**
@@ -264,8 +263,8 @@ public abstract class Texture2D : Texture() {
     transpose: Boolean = false,
     clipUv: Boolean = true,
   ): Unit {
-    TransferContext.writeArguments(_RID to canvasItem, RECT2 to rect, RECT2 to srcRect, COLOR to modulate, BOOL to transpose, BOOL to clipUv)
-    TransferContext.callMethod(ptr, MethodBindings.drawRectRegionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to canvasItem, RECT2 to rect, RECT2 to srcRect, COLOR to modulate, BOOL to transpose, BOOL to clipUv)
+    TransferContext.callMethod(MethodBindings.drawRectRegionPtr)
   }
 
   /**
@@ -278,8 +277,8 @@ public abstract class Texture2D : Texture() {
    * when overused. Avoid calling [getImage] every frame, especially on large textures.
    */
   public final fun getImage(): Image? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getImagePtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getImagePtr)
     return (TransferContext.readReturnValue(OBJECT) as Image?)
   }
 
@@ -287,8 +286,8 @@ public abstract class Texture2D : Texture() {
    * Creates a placeholder version of this resource ([PlaceholderTexture2D]).
    */
   public final fun createPlaceholder(): Resource? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.createPlaceholderPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.createPlaceholderPtr)
     return (TransferContext.readReturnValue(OBJECT) as Resource?)
   }
 

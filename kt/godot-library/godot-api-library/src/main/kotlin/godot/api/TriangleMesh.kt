@@ -51,8 +51,8 @@ public open class TriangleMesh : RefCounted() {
    * Returns `true` if the tree is successfully built, `false` otherwise.
    */
   public final fun createFromFaces(faces: PackedVector3Array): Boolean {
-    TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to faces)
-    TransferContext.callMethod(ptr, MethodBindings.createFromFacesPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_VECTOR3_ARRAY to faces)
+    TransferContext.callMethod(MethodBindings.createFromFacesPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -61,8 +61,8 @@ public open class TriangleMesh : RefCounted() {
    * (face).
    */
   public final fun getFaces(): PackedVector3Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFacesPtr, PACKED_VECTOR3_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getFacesPtr)
     return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
 
@@ -82,8 +82,8 @@ public open class TriangleMesh : RefCounted() {
    * See also [intersectRay], which is similar but uses an infinite-length ray.
    */
   public final fun intersectSegment(begin: Vector3, end: Vector3): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments(VECTOR3 to begin, VECTOR3 to end)
-    TransferContext.callMethod(ptr, MethodBindings.intersectSegmentPtr, DICTIONARY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR3 to begin, VECTOR3 to end)
+    TransferContext.callMethod(MethodBindings.intersectSegmentPtr)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
@@ -104,8 +104,8 @@ public open class TriangleMesh : RefCounted() {
    * See also [intersectSegment], which is similar but uses a finite-length segment.
    */
   public final fun intersectRay(begin: Vector3, dir: Vector3): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments(VECTOR3 to begin, VECTOR3 to dir)
-    TransferContext.callMethod(ptr, MethodBindings.intersectRayPtr, DICTIONARY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR3 to begin, VECTOR3 to dir)
+    TransferContext.callMethod(MethodBindings.intersectRayPtr)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 

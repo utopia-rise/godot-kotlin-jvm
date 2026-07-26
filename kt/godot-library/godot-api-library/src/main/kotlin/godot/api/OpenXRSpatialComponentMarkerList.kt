@@ -37,8 +37,8 @@ public open class OpenXRSpatialComponentMarkerList : OpenXRSpatialComponentData(
    * Returns the marker type for the marker at this [index].
    */
   public final fun getMarkerType(index: Long): MarkerType {
-    TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(ptr, MethodBindings.getMarkerTypePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index)
+    TransferContext.callMethod(MethodBindings.getMarkerTypePtr)
     return MarkerType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -47,8 +47,8 @@ public open class OpenXRSpatialComponentMarkerList : OpenXRSpatialComponentData(
    * markers.
    */
   public final fun getMarkerId(index: Long): Long {
-    TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(ptr, MethodBindings.getMarkerIdPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index)
+    TransferContext.callMethod(MethodBindings.getMarkerIdPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -57,8 +57,8 @@ public open class OpenXRSpatialComponentMarkerList : OpenXRSpatialComponentData(
    * [index]. Only applicable for QR code markers.
    */
   public final fun getMarkerData(snapshot: RID, index: Long): Any? {
-    TransferContext.writeArguments(_RID to snapshot, LONG to index)
-    TransferContext.callMethod(ptr, MethodBindings.getMarkerDataPtr, ANY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to snapshot, LONG to index)
+    TransferContext.callMethod(MethodBindings.getMarkerDataPtr)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 

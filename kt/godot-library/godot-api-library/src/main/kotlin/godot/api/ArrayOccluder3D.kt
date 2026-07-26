@@ -16,7 +16,6 @@ import godot.core.MethodStringName1
 import godot.core.MethodStringName2
 import godot.core.PackedInt32Array
 import godot.core.PackedVector3Array
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.VariantParser.PACKED_VECTOR3_ARRAY
 import godot.core.Vector3
@@ -182,18 +181,18 @@ public open class ArrayOccluder3D : Occluder3D() {
    * are set.
    */
   public final fun setArrays(vertices: PackedVector3Array, indices: PackedInt32Array): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to vertices, PACKED_INT_32_ARRAY to indices)
-    TransferContext.callMethod(ptr, MethodBindings.setArraysPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_VECTOR3_ARRAY to vertices, PACKED_INT_32_ARRAY to indices)
+    TransferContext.callMethod(MethodBindings.setArraysPtr)
   }
 
   public final fun setVertices(vertices: PackedVector3Array): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to vertices)
-    TransferContext.callMethod(ptr, MethodBindings.setVerticesPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_VECTOR3_ARRAY to vertices)
+    TransferContext.callMethod(MethodBindings.setVerticesPtr)
   }
 
   public final fun setIndices(indices: PackedInt32Array): Unit {
-    TransferContext.writeArguments(PACKED_INT_32_ARRAY to indices)
-    TransferContext.callMethod(ptr, MethodBindings.setIndicesPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_INT_32_ARRAY to indices)
+    TransferContext.callMethod(MethodBindings.setIndicesPtr)
   }
 
   public companion object {

@@ -18,7 +18,6 @@ import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
@@ -340,8 +339,8 @@ public open class CharacterBody2D : PhysicsBody2D() {
    * Returns `true` if the body collided, otherwise, returns `false`.
    */
   public final fun moveAndSlide(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.moveAndSlidePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.moveAndSlidePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -350,172 +349,172 @@ public open class CharacterBody2D : PhysicsBody2D() {
    * does nothing when [isOnFloor] returns `true`.
    */
   public final fun applyFloorSnap(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.applyFloorSnapPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.applyFloorSnapPtr)
   }
 
   public final fun setVelocity(velocity: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to velocity)
-    TransferContext.callMethod(ptr, MethodBindings.setVelocityPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to velocity)
+    TransferContext.callMethod(MethodBindings.setVelocityPtr)
   }
 
   public final fun getVelocity(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getVelocityPtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getVelocityPtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setSafeMargin(margin: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to margin.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setSafeMarginPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to margin.toDouble())
+    TransferContext.callMethod(MethodBindings.setSafeMarginPtr)
   }
 
   public final fun getSafeMargin(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSafeMarginPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSafeMarginPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun isFloorStopOnSlopeEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isFloorStopOnSlopeEnabledPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isFloorStopOnSlopeEnabledPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFloorStopOnSlopeEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.setFloorStopOnSlopeEnabledPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enabled)
+    TransferContext.callMethod(MethodBindings.setFloorStopOnSlopeEnabledPtr)
   }
 
   public final fun setFloorConstantSpeedEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.setFloorConstantSpeedEnabledPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enabled)
+    TransferContext.callMethod(MethodBindings.setFloorConstantSpeedEnabledPtr)
   }
 
   public final fun isFloorConstantSpeedEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isFloorConstantSpeedEnabledPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isFloorConstantSpeedEnabledPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFloorBlockOnWallEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.setFloorBlockOnWallEnabledPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enabled)
+    TransferContext.callMethod(MethodBindings.setFloorBlockOnWallEnabledPtr)
   }
 
   public final fun isFloorBlockOnWallEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isFloorBlockOnWallEnabledPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isFloorBlockOnWallEnabledPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSlideOnCeilingEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.setSlideOnCeilingEnabledPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enabled)
+    TransferContext.callMethod(MethodBindings.setSlideOnCeilingEnabledPtr)
   }
 
   public final fun isSlideOnCeilingEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isSlideOnCeilingEnabledPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isSlideOnCeilingEnabledPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setPlatformFloorLayers(excludeLayer: Long): Unit {
-    TransferContext.writeArguments(LONG to excludeLayer)
-    TransferContext.callMethod(ptr, MethodBindings.setPlatformFloorLayersPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to excludeLayer)
+    TransferContext.callMethod(MethodBindings.setPlatformFloorLayersPtr)
   }
 
   public final fun getPlatformFloorLayers(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPlatformFloorLayersPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPlatformFloorLayersPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setPlatformWallLayers(excludeLayer: Long): Unit {
-    TransferContext.writeArguments(LONG to excludeLayer)
-    TransferContext.callMethod(ptr, MethodBindings.setPlatformWallLayersPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to excludeLayer)
+    TransferContext.callMethod(MethodBindings.setPlatformWallLayersPtr)
   }
 
   public final fun getPlatformWallLayers(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPlatformWallLayersPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPlatformWallLayersPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun getMaxSlides(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMaxSlidesPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMaxSlidesPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setMaxSlides(maxSlides: Int): Unit {
-    TransferContext.writeArguments(LONG to maxSlides.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setMaxSlidesPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to maxSlides.toLong())
+    TransferContext.callMethod(MethodBindings.setMaxSlidesPtr)
   }
 
   public final fun getFloorMaxAngle(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFloorMaxAnglePtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getFloorMaxAnglePtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFloorMaxAngle(radians: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to radians.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setFloorMaxAnglePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to radians.toDouble())
+    TransferContext.callMethod(MethodBindings.setFloorMaxAnglePtr)
   }
 
   public final fun getFloorSnapLength(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFloorSnapLengthPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getFloorSnapLengthPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFloorSnapLength(floorSnapLength: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to floorSnapLength.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setFloorSnapLengthPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to floorSnapLength.toDouble())
+    TransferContext.callMethod(MethodBindings.setFloorSnapLengthPtr)
   }
 
   public final fun getWallMinSlideAngle(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getWallMinSlideAnglePtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getWallMinSlideAnglePtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setWallMinSlideAngle(radians: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to radians.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setWallMinSlideAnglePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to radians.toDouble())
+    TransferContext.callMethod(MethodBindings.setWallMinSlideAnglePtr)
   }
 
   public final fun getUpDirection(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getUpDirectionPtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getUpDirectionPtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setUpDirection(upDirection: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to upDirection)
-    TransferContext.callMethod(ptr, MethodBindings.setUpDirectionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to upDirection)
+    TransferContext.callMethod(MethodBindings.setUpDirectionPtr)
   }
 
   public final fun setMotionMode(mode: MotionMode): Unit {
-    TransferContext.writeArguments(LONG to mode.value)
-    TransferContext.callMethod(ptr, MethodBindings.setMotionModePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to mode.value)
+    TransferContext.callMethod(MethodBindings.setMotionModePtr)
   }
 
   public final fun getMotionMode(): MotionMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMotionModePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMotionModePtr)
     return MotionMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setPlatformOnLeave(onLeaveApplyVelocity: PlatformOnLeave): Unit {
-    TransferContext.writeArguments(LONG to onLeaveApplyVelocity.value)
-    TransferContext.callMethod(ptr, MethodBindings.setPlatformOnLeavePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to onLeaveApplyVelocity.value)
+    TransferContext.callMethod(MethodBindings.setPlatformOnLeavePtr)
   }
 
   public final fun getPlatformOnLeave(): PlatformOnLeave {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPlatformOnLeavePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPlatformOnLeavePtr)
     return PlatformOnLeave.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -525,8 +524,8 @@ public open class CharacterBody2D : PhysicsBody2D() {
    * surface is "floor" or not.
    */
   public final fun isOnFloor(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isOnFloorPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isOnFloorPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -536,8 +535,8 @@ public open class CharacterBody2D : PhysicsBody2D() {
    * surface is "floor" or not.
    */
   public final fun isOnFloorOnly(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isOnFloorOnlyPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isOnFloorOnlyPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -547,8 +546,8 @@ public open class CharacterBody2D : PhysicsBody2D() {
    * surface is "ceiling" or not.
    */
   public final fun isOnCeiling(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isOnCeilingPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isOnCeilingPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -558,8 +557,8 @@ public open class CharacterBody2D : PhysicsBody2D() {
    * surface is "ceiling" or not.
    */
   public final fun isOnCeilingOnly(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isOnCeilingOnlyPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isOnCeilingOnlyPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -569,8 +568,8 @@ public open class CharacterBody2D : PhysicsBody2D() {
    * "wall" or not.
    */
   public final fun isOnWall(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isOnWallPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isOnWallPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -580,8 +579,8 @@ public open class CharacterBody2D : PhysicsBody2D() {
    * surface is "wall" or not.
    */
   public final fun isOnWallOnly(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isOnWallOnlyPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isOnWallOnlyPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -592,8 +591,8 @@ public open class CharacterBody2D : PhysicsBody2D() {
    * **Warning:** The collision normal is not always the same as the surface normal.
    */
   public final fun getFloorNormal(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFloorNormalPtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getFloorNormalPtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
@@ -604,8 +603,8 @@ public open class CharacterBody2D : PhysicsBody2D() {
    * **Warning:** The collision normal is not always the same as the surface normal.
    */
   public final fun getWallNormal(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getWallNormalPtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getWallNormalPtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
@@ -615,8 +614,8 @@ public open class CharacterBody2D : PhysicsBody2D() {
    * method return the last one, which is useful to retrieve the current direction of the movement.
    */
   public final fun getLastMotion(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getLastMotionPtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getLastMotionPtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
@@ -624,8 +623,8 @@ public open class CharacterBody2D : PhysicsBody2D() {
    * Returns the travel (position delta) that occurred during the last call to [moveAndSlide].
    */
   public final fun getPositionDelta(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPositionDeltaPtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPositionDeltaPtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
@@ -635,8 +634,8 @@ public open class CharacterBody2D : PhysicsBody2D() {
    * returns the diagonal movement, as opposed to [velocity] which returns the requested velocity.
    */
   public final fun getRealVelocity(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getRealVelocityPtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getRealVelocityPtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
@@ -647,8 +646,8 @@ public open class CharacterBody2D : PhysicsBody2D() {
    */
   @JvmOverloads
   public final fun getFloorAngle(upDirection: Vector2 = Vector2(0, -1)): Float {
-    TransferContext.writeArguments(VECTOR2 to upDirection)
-    TransferContext.callMethod(ptr, MethodBindings.getFloorAnglePtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to upDirection)
+    TransferContext.callMethod(MethodBindings.getFloorAnglePtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -657,8 +656,8 @@ public open class CharacterBody2D : PhysicsBody2D() {
    * calling [moveAndSlide].
    */
   public final fun getPlatformVelocity(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPlatformVelocityPtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPlatformVelocityPtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
@@ -667,8 +666,8 @@ public open class CharacterBody2D : PhysicsBody2D() {
    * [moveAndSlide].
    */
   public final fun getSlideCollisionCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSlideCollisionCountPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSlideCollisionCountPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -697,8 +696,8 @@ public open class CharacterBody2D : PhysicsBody2D() {
    * ```
    */
   public final fun getSlideCollision(slideIdx: Int): KinematicCollision2D? {
-    TransferContext.writeArguments(LONG to slideIdx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getSlideCollisionPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to slideIdx.toLong())
+    TransferContext.callMethod(MethodBindings.getSlideCollisionPtr)
     return (TransferContext.readReturnValue(OBJECT) as KinematicCollision2D?)
   }
 
@@ -708,8 +707,8 @@ public open class CharacterBody2D : PhysicsBody2D() {
    * Returns `null` if no collision occurred. See also [getSlideCollision].
    */
   public final fun getLastSlideCollision(): KinematicCollision2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getLastSlideCollisionPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getLastSlideCollisionPtr)
     return (TransferContext.readReturnValue(OBJECT) as KinematicCollision2D?)
   }
 

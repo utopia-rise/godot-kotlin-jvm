@@ -14,7 +14,6 @@ import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.Signal0
 import godot.core.VariantParser.BOOL
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import kotlin.Boolean
 import kotlin.String
@@ -53,19 +52,19 @@ public open class OpenXRAnchorTracker : OpenXRSpatialEntityTracker() {
    * Returns `true` if a non-zero UUID is set.
    */
   public final fun hasUuid(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.hasUuidPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.hasUuidPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setUuid(uuid: String): Unit {
-    TransferContext.writeArguments(STRING to uuid)
-    TransferContext.callMethod(ptr, MethodBindings.setUuidPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to uuid)
+    TransferContext.callMethod(MethodBindings.setUuidPtr)
   }
 
   public final fun getUuid(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getUuidPtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getUuidPtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 

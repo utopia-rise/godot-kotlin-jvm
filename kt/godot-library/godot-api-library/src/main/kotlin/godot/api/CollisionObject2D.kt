@@ -23,7 +23,6 @@ import godot.core.Transform2D
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.VariantParser.TRANSFORM2D
@@ -226,30 +225,30 @@ public open class CollisionObject2D internal constructor() : Node2D() {
    * Returns the object's [RID].
    */
   public final fun getRid(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getRidPtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getRidPtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun setCollisionLayer(layer: Long): Unit {
-    TransferContext.writeArguments(LONG to layer)
-    TransferContext.callMethod(ptr, MethodBindings.setCollisionLayerPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to layer)
+    TransferContext.callMethod(MethodBindings.setCollisionLayerPtr)
   }
 
   public final fun getCollisionLayer(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCollisionLayerPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCollisionLayerPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setCollisionMask(mask: Long): Unit {
-    TransferContext.writeArguments(LONG to mask)
-    TransferContext.callMethod(ptr, MethodBindings.setCollisionMaskPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to mask)
+    TransferContext.callMethod(MethodBindings.setCollisionMaskPtr)
   }
 
   public final fun getCollisionMask(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCollisionMaskPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCollisionMaskPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -258,8 +257,8 @@ public open class CollisionObject2D internal constructor() : Node2D() {
    * [layerNumber] between 1 and 32.
    */
   public final fun setCollisionLayerValue(layerNumber: Int, `value`: Boolean): Unit {
-    TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
-    TransferContext.callMethod(ptr, MethodBindings.setCollisionLayerValuePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to layerNumber.toLong(), BOOL to value)
+    TransferContext.callMethod(MethodBindings.setCollisionLayerValuePtr)
   }
 
   /**
@@ -267,8 +266,8 @@ public open class CollisionObject2D internal constructor() : Node2D() {
    * [layerNumber] between 1 and 32.
    */
   public final fun getCollisionLayerValue(layerNumber: Int): Boolean {
-    TransferContext.writeArguments(LONG to layerNumber.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getCollisionLayerValuePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to layerNumber.toLong())
+    TransferContext.callMethod(MethodBindings.getCollisionLayerValuePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -277,8 +276,8 @@ public open class CollisionObject2D internal constructor() : Node2D() {
    * [layerNumber] between 1 and 32.
    */
   public final fun setCollisionMaskValue(layerNumber: Int, `value`: Boolean): Unit {
-    TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
-    TransferContext.callMethod(ptr, MethodBindings.setCollisionMaskValuePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to layerNumber.toLong(), BOOL to value)
+    TransferContext.callMethod(MethodBindings.setCollisionMaskValuePtr)
   }
 
   /**
@@ -286,41 +285,41 @@ public open class CollisionObject2D internal constructor() : Node2D() {
    * [layerNumber] between 1 and 32.
    */
   public final fun getCollisionMaskValue(layerNumber: Int): Boolean {
-    TransferContext.writeArguments(LONG to layerNumber.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getCollisionMaskValuePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to layerNumber.toLong())
+    TransferContext.callMethod(MethodBindings.getCollisionMaskValuePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCollisionPriority(priority: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to priority.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setCollisionPriorityPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to priority.toDouble())
+    TransferContext.callMethod(MethodBindings.setCollisionPriorityPtr)
   }
 
   public final fun getCollisionPriority(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCollisionPriorityPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCollisionPriorityPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDisableMode(mode: DisableMode): Unit {
-    TransferContext.writeArguments(LONG to mode.value)
-    TransferContext.callMethod(ptr, MethodBindings.setDisableModePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to mode.value)
+    TransferContext.callMethod(MethodBindings.setDisableModePtr)
   }
 
   public final fun getDisableMode(): DisableMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getDisableModePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getDisableModePtr)
     return DisableMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setPickable(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.setPickablePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enabled)
+    TransferContext.callMethod(MethodBindings.setPickablePtr)
   }
 
   public final fun isPickable(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isPickablePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isPickablePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -329,8 +328,8 @@ public open class CollisionObject2D internal constructor() : Node2D() {
    * reference.
    */
   public final fun createShapeOwner(owner: Object?): Long {
-    TransferContext.writeArguments(OBJECT to owner)
-    TransferContext.callMethod(ptr, MethodBindings.createShapeOwnerPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to owner)
+    TransferContext.callMethod(MethodBindings.createShapeOwnerPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -338,8 +337,8 @@ public open class CollisionObject2D internal constructor() : Node2D() {
    * Removes the given shape owner.
    */
   public final fun removeShapeOwner(ownerId: Long): Unit {
-    TransferContext.writeArguments(LONG to ownerId)
-    TransferContext.callMethod(ptr, MethodBindings.removeShapeOwnerPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to ownerId)
+    TransferContext.callMethod(MethodBindings.removeShapeOwnerPtr)
   }
 
   /**
@@ -347,8 +346,8 @@ public open class CollisionObject2D internal constructor() : Node2D() {
    * `owner_id` as an argument.
    */
   public final fun getShapeOwners(): PackedInt32Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getShapeOwnersPtr, PACKED_INT_32_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getShapeOwnersPtr)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
@@ -356,16 +355,16 @@ public open class CollisionObject2D internal constructor() : Node2D() {
    * Sets the [Transform2D] of the given shape owner.
    */
   public final fun shapeOwnerSetTransform(ownerId: Long, transform: Transform2D): Unit {
-    TransferContext.writeArguments(LONG to ownerId, TRANSFORM2D to transform)
-    TransferContext.callMethod(ptr, MethodBindings.shapeOwnerSetTransformPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to ownerId, TRANSFORM2D to transform)
+    TransferContext.callMethod(MethodBindings.shapeOwnerSetTransformPtr)
   }
 
   /**
    * Returns the shape owner's [Transform2D].
    */
   public final fun shapeOwnerGetTransform(ownerId: Long): Transform2D {
-    TransferContext.writeArguments(LONG to ownerId)
-    TransferContext.callMethod(ptr, MethodBindings.shapeOwnerGetTransformPtr, TRANSFORM2D)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to ownerId)
+    TransferContext.callMethod(MethodBindings.shapeOwnerGetTransformPtr)
     return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
   }
 
@@ -373,8 +372,8 @@ public open class CollisionObject2D internal constructor() : Node2D() {
    * Returns the parent object of the given shape owner.
    */
   public final fun shapeOwnerGetOwner(ownerId: Long): Object? {
-    TransferContext.writeArguments(LONG to ownerId)
-    TransferContext.callMethod(ptr, MethodBindings.shapeOwnerGetOwnerPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to ownerId)
+    TransferContext.callMethod(MethodBindings.shapeOwnerGetOwnerPtr)
     return (TransferContext.readReturnValue(OBJECT) as Object?)
   }
 
@@ -382,16 +381,16 @@ public open class CollisionObject2D internal constructor() : Node2D() {
    * If `true`, disables the given shape owner.
    */
   public final fun shapeOwnerSetDisabled(ownerId: Long, disabled: Boolean): Unit {
-    TransferContext.writeArguments(LONG to ownerId, BOOL to disabled)
-    TransferContext.callMethod(ptr, MethodBindings.shapeOwnerSetDisabledPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to ownerId, BOOL to disabled)
+    TransferContext.callMethod(MethodBindings.shapeOwnerSetDisabledPtr)
   }
 
   /**
    * If `true`, the shape owner and its shapes are disabled.
    */
   public final fun isShapeOwnerDisabled(ownerId: Long): Boolean {
-    TransferContext.writeArguments(LONG to ownerId)
-    TransferContext.callMethod(ptr, MethodBindings.isShapeOwnerDisabledPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to ownerId)
+    TransferContext.callMethod(MethodBindings.isShapeOwnerDisabledPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -400,8 +399,8 @@ public open class CollisionObject2D internal constructor() : Node2D() {
    * will not be reported to collided with [CollisionObject2D]s.
    */
   public final fun shapeOwnerSetOneWayCollision(ownerId: Long, enable: Boolean): Unit {
-    TransferContext.writeArguments(LONG to ownerId, BOOL to enable)
-    TransferContext.callMethod(ptr, MethodBindings.shapeOwnerSetOneWayCollisionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to ownerId, BOOL to enable)
+    TransferContext.callMethod(MethodBindings.shapeOwnerSetOneWayCollisionPtr)
   }
 
   /**
@@ -409,8 +408,8 @@ public open class CollisionObject2D internal constructor() : Node2D() {
    * not be reported to collided with [CollisionObject2D]s.
    */
   public final fun isShapeOwnerOneWayCollisionEnabled(ownerId: Long): Boolean {
-    TransferContext.writeArguments(LONG to ownerId)
-    TransferContext.callMethod(ptr, MethodBindings.isShapeOwnerOneWayCollisionEnabledPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to ownerId)
+    TransferContext.callMethod(MethodBindings.isShapeOwnerOneWayCollisionEnabledPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -419,16 +418,16 @@ public open class CollisionObject2D internal constructor() : Node2D() {
    * [margin] pixels.
    */
   public final fun shapeOwnerSetOneWayCollisionMargin(ownerId: Long, margin: Float): Unit {
-    TransferContext.writeArguments(LONG to ownerId, DOUBLE to margin.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.shapeOwnerSetOneWayCollisionMarginPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to ownerId, DOUBLE to margin.toDouble())
+    TransferContext.callMethod(MethodBindings.shapeOwnerSetOneWayCollisionMarginPtr)
   }
 
   /**
    * Returns the `one_way_collision_margin` of the shape owner identified by given [ownerId].
    */
   public final fun getShapeOwnerOneWayCollisionMargin(ownerId: Long): Float {
-    TransferContext.writeArguments(LONG to ownerId)
-    TransferContext.callMethod(ptr, MethodBindings.getShapeOwnerOneWayCollisionMarginPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to ownerId)
+    TransferContext.callMethod(MethodBindings.getShapeOwnerOneWayCollisionMarginPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -436,8 +435,8 @@ public open class CollisionObject2D internal constructor() : Node2D() {
    * Returns the `one_way_collision_direction` of the shape owner identified by the given [ownerId].
    */
   public final fun getShapeOwnerOneWayCollisionDirection(ownerId: Long): Vector2 {
-    TransferContext.writeArguments(LONG to ownerId)
-    TransferContext.callMethod(ptr, MethodBindings.getShapeOwnerOneWayCollisionDirectionPtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to ownerId)
+    TransferContext.callMethod(MethodBindings.getShapeOwnerOneWayCollisionDirectionPtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
@@ -446,24 +445,24 @@ public open class CollisionObject2D internal constructor() : Node2D() {
    * [direction].
    */
   public final fun shapeOwnerSetOneWayCollisionDirection(ownerId: Long, direction: Vector2): Unit {
-    TransferContext.writeArguments(LONG to ownerId, VECTOR2 to direction)
-    TransferContext.callMethod(ptr, MethodBindings.shapeOwnerSetOneWayCollisionDirectionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to ownerId, VECTOR2 to direction)
+    TransferContext.callMethod(MethodBindings.shapeOwnerSetOneWayCollisionDirectionPtr)
   }
 
   /**
    * Adds a [Shape2D] to the shape owner.
    */
   public final fun shapeOwnerAddShape(ownerId: Long, shape: Shape2D): Unit {
-    TransferContext.writeArguments(LONG to ownerId, OBJECT to shape)
-    TransferContext.callMethod(ptr, MethodBindings.shapeOwnerAddShapePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to ownerId, OBJECT to shape)
+    TransferContext.callMethod(MethodBindings.shapeOwnerAddShapePtr)
   }
 
   /**
    * Returns the number of shapes the given shape owner contains.
    */
   public final fun shapeOwnerGetShapeCount(ownerId: Long): Int {
-    TransferContext.writeArguments(LONG to ownerId)
-    TransferContext.callMethod(ptr, MethodBindings.shapeOwnerGetShapeCountPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to ownerId)
+    TransferContext.callMethod(MethodBindings.shapeOwnerGetShapeCountPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -471,8 +470,8 @@ public open class CollisionObject2D internal constructor() : Node2D() {
    * Returns the [Shape2D] with the given ID from the given shape owner.
    */
   public final fun shapeOwnerGetShape(ownerId: Long, shapeId: Int): Shape2D? {
-    TransferContext.writeArguments(LONG to ownerId, LONG to shapeId.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.shapeOwnerGetShapePtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to ownerId, LONG to shapeId.toLong())
+    TransferContext.callMethod(MethodBindings.shapeOwnerGetShapePtr)
     return (TransferContext.readReturnValue(OBJECT) as Shape2D?)
   }
 
@@ -480,8 +479,8 @@ public open class CollisionObject2D internal constructor() : Node2D() {
    * Returns the child index of the [Shape2D] with the given ID from the given shape owner.
    */
   public final fun shapeOwnerGetShapeIndex(ownerId: Long, shapeId: Int): Int {
-    TransferContext.writeArguments(LONG to ownerId, LONG to shapeId.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.shapeOwnerGetShapeIndexPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to ownerId, LONG to shapeId.toLong())
+    TransferContext.callMethod(MethodBindings.shapeOwnerGetShapeIndexPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -489,24 +488,24 @@ public open class CollisionObject2D internal constructor() : Node2D() {
    * Removes a shape from the given shape owner.
    */
   public final fun shapeOwnerRemoveShape(ownerId: Long, shapeId: Int): Unit {
-    TransferContext.writeArguments(LONG to ownerId, LONG to shapeId.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.shapeOwnerRemoveShapePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to ownerId, LONG to shapeId.toLong())
+    TransferContext.callMethod(MethodBindings.shapeOwnerRemoveShapePtr)
   }
 
   /**
    * Removes all shapes from the shape owner.
    */
   public final fun shapeOwnerClearShapes(ownerId: Long): Unit {
-    TransferContext.writeArguments(LONG to ownerId)
-    TransferContext.callMethod(ptr, MethodBindings.shapeOwnerClearShapesPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to ownerId)
+    TransferContext.callMethod(MethodBindings.shapeOwnerClearShapesPtr)
   }
 
   /**
    * Returns the `owner_id` of the given shape.
    */
   public final fun shapeFindOwner(shapeIndex: Int): Long {
-    TransferContext.writeArguments(LONG to shapeIndex.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.shapeFindOwnerPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to shapeIndex.toLong())
+    TransferContext.callMethod(MethodBindings.shapeFindOwnerPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 

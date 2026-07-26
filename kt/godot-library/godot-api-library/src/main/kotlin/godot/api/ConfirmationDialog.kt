@@ -12,7 +12,6 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import kotlin.String
@@ -65,19 +64,19 @@ public open class ConfirmationDialog : AcceptDialog() {
    * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
   public final fun getCancelButton(): Button? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCancelButtonPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCancelButtonPtr)
     return (TransferContext.readReturnValue(OBJECT) as Button?)
   }
 
   public final fun setCancelButtonText(text: String): Unit {
-    TransferContext.writeArguments(STRING to text)
-    TransferContext.callMethod(ptr, MethodBindings.setCancelButtonTextPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to text)
+    TransferContext.callMethod(MethodBindings.setCancelButtonTextPtr)
   }
 
   public final fun getCancelButtonText(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCancelButtonTextPtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCancelButtonTextPtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 

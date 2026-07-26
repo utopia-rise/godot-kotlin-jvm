@@ -16,7 +16,6 @@ import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.Rect2
 import godot.core.VariantParser.BOOL
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.RECT2
 import kotlin.Boolean
@@ -154,46 +153,46 @@ public open class AtlasTexture : Texture2D() {
   }
 
   public final fun setAtlas(atlas: Texture2D?): Unit {
-    TransferContext.writeArguments(OBJECT to atlas)
-    TransferContext.callMethod(ptr, MethodBindings.setAtlasPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to atlas)
+    TransferContext.callMethod(MethodBindings.setAtlasPtr)
   }
 
   public final fun getAtlas(): Texture2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getAtlasPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getAtlasPtr)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setRegion(region: Rect2): Unit {
-    TransferContext.writeArguments(RECT2 to region)
-    TransferContext.callMethod(ptr, MethodBindings.setRegionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, RECT2 to region)
+    TransferContext.callMethod(MethodBindings.setRegionPtr)
   }
 
   public final fun getRegion(): Rect2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getRegionPtr, RECT2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getRegionPtr)
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 
   public final fun setMargin(margin: Rect2): Unit {
-    TransferContext.writeArguments(RECT2 to margin)
-    TransferContext.callMethod(ptr, MethodBindings.setMarginPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, RECT2 to margin)
+    TransferContext.callMethod(MethodBindings.setMarginPtr)
   }
 
   public final fun getMargin(): Rect2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMarginPtr, RECT2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMarginPtr)
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 
   public final fun setFilterClip(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(ptr, MethodBindings.setFilterClipPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enable)
+    TransferContext.callMethod(MethodBindings.setFilterClipPtr)
   }
 
   public final fun hasFilterClip(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.hasFilterClipPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.hasFilterClipPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

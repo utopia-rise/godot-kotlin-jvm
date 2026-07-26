@@ -13,7 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.Signal0
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Suppress
 import kotlin.Unit
@@ -64,24 +63,24 @@ public open class MultiMeshInstance2D : Node2D() {
   }
 
   public final fun setMultimesh(multimesh: MultiMesh?): Unit {
-    TransferContext.writeArguments(OBJECT to multimesh)
-    TransferContext.callMethod(ptr, MethodBindings.setMultimeshPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to multimesh)
+    TransferContext.callMethod(MethodBindings.setMultimeshPtr)
   }
 
   public final fun getMultimesh(): MultiMesh? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMultimeshPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMultimeshPtr)
     return (TransferContext.readReturnValue(OBJECT) as MultiMesh?)
   }
 
   public final fun setTexture(texture: Texture2D?): Unit {
-    TransferContext.writeArguments(OBJECT to texture)
-    TransferContext.callMethod(ptr, MethodBindings.setTexturePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to texture)
+    TransferContext.callMethod(MethodBindings.setTexturePtr)
   }
 
   public final fun getTexture(): Texture2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getTexturePtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getTexturePtr)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 

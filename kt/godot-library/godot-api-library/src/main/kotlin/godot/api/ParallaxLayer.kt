@@ -14,7 +14,6 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import kotlin.Suppress
@@ -190,35 +189,35 @@ public open class ParallaxLayer : Node2D() {
   }
 
   public final fun setMotionScale(scale: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to scale)
-    TransferContext.callMethod(ptr, MethodBindings.setMotionScalePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to scale)
+    TransferContext.callMethod(MethodBindings.setMotionScalePtr)
   }
 
   public final fun getMotionScale(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMotionScalePtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMotionScalePtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setMotionOffset(offset: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to offset)
-    TransferContext.callMethod(ptr, MethodBindings.setMotionOffsetPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to offset)
+    TransferContext.callMethod(MethodBindings.setMotionOffsetPtr)
   }
 
   public final fun getMotionOffset(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMotionOffsetPtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMotionOffsetPtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setMirroring(mirror: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to mirror)
-    TransferContext.callMethod(ptr, MethodBindings.setMirroringPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to mirror)
+    TransferContext.callMethod(MethodBindings.setMirroringPtr)
   }
 
   public final fun getMirroring(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMirroringPtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMirroringPtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 

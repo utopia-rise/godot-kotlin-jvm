@@ -18,7 +18,6 @@ import godot.core.MethodStringName3
 import godot.core.PackedStringArray
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
@@ -95,8 +94,8 @@ public object ResourceSaver : Object() {
     path: String = "",
     flags: SaverFlags = ResourceSaver.SaverFlags.FLAG_NONE,
   ): Error {
-    TransferContext.writeArguments(OBJECT to resource, STRING to path, LONG to flags.flag)
-    TransferContext.callMethod(ptr, MethodBindings.savePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to resource, STRING to path, LONG to flags.flag)
+    TransferContext.callMethod(MethodBindings.savePtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -109,8 +108,8 @@ public object ResourceSaver : Object() {
    */
   @JvmStatic
   public final fun setUid(resource: String, uid: Long): Error {
-    TransferContext.writeArguments(STRING to resource, LONG to uid)
-    TransferContext.callMethod(ptr, MethodBindings.setUidPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to resource, LONG to uid)
+    TransferContext.callMethod(MethodBindings.setUidPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -119,8 +118,8 @@ public object ResourceSaver : Object() {
    */
   @JvmStatic
   public final fun getRecognizedExtensions(type: Resource): PackedStringArray {
-    TransferContext.writeArguments(OBJECT to type)
-    TransferContext.callMethod(ptr, MethodBindings.getRecognizedExtensionsPtr, PACKED_STRING_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to type)
+    TransferContext.callMethod(MethodBindings.getRecognizedExtensionsPtr)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
@@ -135,8 +134,8 @@ public object ResourceSaver : Object() {
   @JvmStatic
   public final fun addResourceFormatSaver(formatSaver: ResourceFormatSaver, atFront: Boolean =
       false): Unit {
-    TransferContext.writeArguments(OBJECT to formatSaver, BOOL to atFront)
-    TransferContext.callMethod(ptr, MethodBindings.addResourceFormatSaverPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to formatSaver, BOOL to atFront)
+    TransferContext.callMethod(MethodBindings.addResourceFormatSaverPtr)
   }
 
   /**
@@ -144,8 +143,8 @@ public object ResourceSaver : Object() {
    */
   @JvmStatic
   public final fun removeResourceFormatSaver(formatSaver: ResourceFormatSaver): Unit {
-    TransferContext.writeArguments(OBJECT to formatSaver)
-    TransferContext.callMethod(ptr, MethodBindings.removeResourceFormatSaverPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to formatSaver)
+    TransferContext.callMethod(MethodBindings.removeResourceFormatSaverPtr)
   }
 
   /**
@@ -156,8 +155,8 @@ public object ResourceSaver : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun getResourceIdForPath(path: String, generate: Boolean = false): Long {
-    TransferContext.writeArguments(STRING to path, BOOL to generate)
-    TransferContext.callMethod(ptr, MethodBindings.getResourceIdForPathPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to path, BOOL to generate)
+    TransferContext.callMethod(MethodBindings.getResourceIdForPathPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 

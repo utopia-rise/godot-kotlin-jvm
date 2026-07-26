@@ -12,7 +12,6 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.MethodStringName0
 import godot.core.VariantParser.BOOL
-import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Suppress
 import kotlin.Unit
@@ -33,8 +32,8 @@ public open class GodotInstance internal constructor() : Object() {
    * Finishes this instance's startup sequence. Returns `true` on success.
    */
   public final fun start(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.startPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.startPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -42,8 +41,8 @@ public open class GodotInstance internal constructor() : Object() {
    * Returns `true` if this instance has been fully started.
    */
   public final fun isStarted(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isStartedPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isStartedPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -51,8 +50,8 @@ public open class GodotInstance internal constructor() : Object() {
    * Runs a single iteration of the main loop. Returns `true` if the engine is attempting to quit.
    */
   public final fun iteration(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.iterationPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.iterationPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -60,32 +59,32 @@ public open class GodotInstance internal constructor() : Object() {
    * Notifies the instance that it is now in focus.
    */
   public final fun focusIn(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.focusInPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.focusInPtr)
   }
 
   /**
    * Notifies the instance that it is now not in focus.
    */
   public final fun focusOut(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.focusOutPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.focusOutPtr)
   }
 
   /**
    * Notifies the instance that it is going to be paused.
    */
   public final fun pause(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.pausePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.pausePtr)
   }
 
   /**
    * Notifies the instance that it is being resumed.
    */
   public final fun resume(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.resumePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.resumePtr)
   }
 
   public companion object {

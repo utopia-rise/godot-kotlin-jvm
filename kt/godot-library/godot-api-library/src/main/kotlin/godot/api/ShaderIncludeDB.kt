@@ -52,8 +52,8 @@ public open class ShaderIncludeDB : Object() {
      */
     @JvmStatic
     public final fun listBuiltInIncludeFiles(): PackedStringArray {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(0, MethodBindings.listBuiltInIncludeFilesPtr, PACKED_STRING_ARRAY)
+      TransferContext.writeMethodArguments(0L, 0L)
+      TransferContext.callMethod(MethodBindings.listBuiltInIncludeFilesPtr)
       return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
     }
 
@@ -62,8 +62,8 @@ public open class ShaderIncludeDB : Object() {
      */
     @JvmStatic
     public final fun hasBuiltInIncludeFile(filename: String): Boolean {
-      TransferContext.writeArguments(STRING to filename)
-      TransferContext.callMethod(0, MethodBindings.hasBuiltInIncludeFilePtr, BOOL)
+      TransferContext.writeMethodArguments(0L, 0L, STRING to filename)
+      TransferContext.callMethod(MethodBindings.hasBuiltInIncludeFilePtr)
       return (TransferContext.readReturnValue(BOOL) as Boolean)
     }
 
@@ -73,8 +73,8 @@ public open class ShaderIncludeDB : Object() {
      */
     @JvmStatic
     public final fun getBuiltInIncludeFile(filename: String): String {
-      TransferContext.writeArguments(STRING to filename)
-      TransferContext.callMethod(0, MethodBindings.getBuiltInIncludeFilePtr, STRING)
+      TransferContext.writeMethodArguments(0L, 0L, STRING to filename)
+      TransferContext.callMethod(MethodBindings.getBuiltInIncludeFilePtr)
       return (TransferContext.readReturnValue(STRING) as String)
     }
   }

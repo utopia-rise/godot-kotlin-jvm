@@ -20,7 +20,6 @@ import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
@@ -66,19 +65,19 @@ public open class Shader : Resource() {
    * Returns the shader mode for the shader.
    */
   public final fun getMode(): Mode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getModePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getModePtr)
     return Mode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setCode(code: String): Unit {
-    TransferContext.writeArguments(STRING to code)
-    TransferContext.callMethod(ptr, MethodBindings.setCodePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to code)
+    TransferContext.callMethod(MethodBindings.setCodePtr)
   }
 
   public final fun getCode(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCodePtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCodePtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -96,8 +95,8 @@ public open class Shader : Resource() {
     texture: Texture?,
     index: Int = 0,
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to name, OBJECT to texture, LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setDefaultTextureParameterPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to name, OBJECT to texture, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.setDefaultTextureParameterPtr)
   }
 
   /**
@@ -109,8 +108,8 @@ public open class Shader : Resource() {
    */
   @JvmOverloads
   public final fun getDefaultTextureParameter(name: StringName, index: Int = 0): Texture? {
-    TransferContext.writeArguments(STRING_NAME to name, LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getDefaultTextureParameterPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to name, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getDefaultTextureParameterPtr)
     return (TransferContext.readReturnValue(OBJECT) as Texture?)
   }
 
@@ -124,8 +123,8 @@ public open class Shader : Resource() {
    */
   @JvmOverloads
   public final fun getShaderUniformList(getGroups: Boolean = false): VariantArray<Any?> {
-    TransferContext.writeArguments(BOOL to getGroups)
-    TransferContext.callMethod(ptr, MethodBindings.getShaderUniformListPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to getGroups)
+    TransferContext.callMethod(MethodBindings.getShaderUniformListPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
@@ -135,8 +134,8 @@ public open class Shader : Resource() {
    * [Material.inspectNativeShaderCode].
    */
   public final fun inspectNativeShaderCode(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.inspectNativeShaderCodePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.inspectNativeShaderCodePtr)
   }
 
   /**

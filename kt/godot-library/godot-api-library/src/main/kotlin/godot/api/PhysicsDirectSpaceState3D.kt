@@ -60,8 +60,8 @@ public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
   @JvmOverloads
   public final fun intersectPoint(parameters: PhysicsPointQueryParameters3D, maxResults: Int = 32):
       VariantArray<Dictionary<Any?, Any?>> {
-    TransferContext.writeArguments(OBJECT to parameters, LONG to maxResults.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.intersectPointPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to parameters, LONG to maxResults.toLong())
+    TransferContext.callMethod(MethodBindings.intersectPointPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
@@ -90,8 +90,8 @@ public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
    * If the ray did not intersect anything, then an empty dictionary is returned instead.
    */
   public final fun intersectRay(parameters: PhysicsRayQueryParameters3D): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments(OBJECT to parameters)
-    TransferContext.callMethod(ptr, MethodBindings.intersectRayPtr, DICTIONARY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to parameters)
+    TransferContext.callMethod(MethodBindings.intersectRayPtr)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
@@ -116,8 +116,8 @@ public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
   @JvmOverloads
   public final fun intersectShape(parameters: PhysicsShapeQueryParameters3D, maxResults: Int = 32):
       VariantArray<Dictionary<Any?, Any?>> {
-    TransferContext.writeArguments(OBJECT to parameters, LONG to maxResults.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.intersectShapePtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to parameters, LONG to maxResults.toLong())
+    TransferContext.callMethod(MethodBindings.intersectShapePtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
@@ -134,8 +134,8 @@ public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
    * ignored. Use [collideShape] to determine the [Shape3D]s that the shape is already colliding with.
    */
   public final fun castMotion(parameters: PhysicsShapeQueryParameters3D): PackedFloat32Array {
-    TransferContext.writeArguments(OBJECT to parameters)
-    TransferContext.callMethod(ptr, MethodBindings.castMotionPtr, PACKED_FLOAT_32_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to parameters)
+    TransferContext.callMethod(MethodBindings.castMotionPtr)
     return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY) as PackedFloat32Array)
   }
 
@@ -154,8 +154,8 @@ public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
   @JvmOverloads
   public final fun collideShape(parameters: PhysicsShapeQueryParameters3D, maxResults: Int = 32):
       VariantArray<Vector3> {
-    TransferContext.writeArguments(OBJECT to parameters, LONG to maxResults.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.collideShapePtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to parameters, LONG to maxResults.toLong())
+    TransferContext.callMethod(MethodBindings.collideShapePtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Vector3>)
   }
 
@@ -183,8 +183,8 @@ public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
    * **Note:** This method does not take into account the `motion` property of the object.
    */
   public final fun getRestInfo(parameters: PhysicsShapeQueryParameters3D): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments(OBJECT to parameters)
-    TransferContext.callMethod(ptr, MethodBindings.getRestInfoPtr, DICTIONARY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to parameters)
+    TransferContext.callMethod(MethodBindings.getRestInfoPtr)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 

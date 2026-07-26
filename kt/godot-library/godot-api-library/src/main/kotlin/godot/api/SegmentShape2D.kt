@@ -14,7 +14,6 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import kotlin.Suppress
@@ -109,24 +108,24 @@ public open class SegmentShape2D : Shape2D() {
   }
 
   public final fun setA(a: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to a)
-    TransferContext.callMethod(ptr, MethodBindings.setAPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to a)
+    TransferContext.callMethod(MethodBindings.setAPtr)
   }
 
   public final fun getA(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getAPtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getAPtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setB(b: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to b)
-    TransferContext.callMethod(ptr, MethodBindings.setBPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to b)
+    TransferContext.callMethod(MethodBindings.setBPtr)
   }
 
   public final fun getB(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getBPtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getBPtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 

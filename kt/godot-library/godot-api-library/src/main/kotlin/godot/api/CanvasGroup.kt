@@ -14,7 +14,6 @@ import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
-import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
@@ -104,35 +103,35 @@ public open class CanvasGroup : Node2D() {
   }
 
   public final fun setFitMargin(fitMargin: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to fitMargin.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setFitMarginPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to fitMargin.toDouble())
+    TransferContext.callMethod(MethodBindings.setFitMarginPtr)
   }
 
   public final fun getFitMargin(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFitMarginPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getFitMarginPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setClearMargin(clearMargin: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to clearMargin.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setClearMarginPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to clearMargin.toDouble())
+    TransferContext.callMethod(MethodBindings.setClearMarginPtr)
   }
 
   public final fun getClearMargin(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getClearMarginPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getClearMarginPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setUseMipmaps(useMipmaps: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to useMipmaps)
-    TransferContext.callMethod(ptr, MethodBindings.setUseMipmapsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to useMipmaps)
+    TransferContext.callMethod(MethodBindings.setUseMipmapsPtr)
   }
 
   public final fun isUsingMipmaps(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isUsingMipmapsPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isUsingMipmapsPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
