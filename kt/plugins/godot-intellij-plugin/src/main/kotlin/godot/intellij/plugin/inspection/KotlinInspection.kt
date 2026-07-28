@@ -2,18 +2,18 @@ package godot.intellij.plugin.inspection
 
 import com.intellij.codeInspection.ProblemsHolder
 import com.intellij.psi.PsiElement
-import godot.intellij.plugin.analysis.GodotProblem
 import godot.intellij.plugin.analysis.jvm.GodotScriptAnalyzer
 import godot.intellij.plugin.analysis.jvm.RegisterMethodAnalyzer
+import godot.intellij.plugin.analysis.kotlin.EmitAnalyzer
 import godot.intellij.plugin.analysis.kotlin.PropertyHintAnalyzer
 import godot.intellij.plugin.analysis.kotlin.RegisterAnalyzer
-import godot.intellij.plugin.analysis.kotlin.VisibleAnalyzer
-import godot.intellij.plugin.analysis.kotlin.EmitAnalyzer
 import godot.intellij.plugin.analysis.kotlin.RpcAnnotationAnalyzer
+import godot.intellij.plugin.analysis.kotlin.VisibleAnalyzer
 import godot.intellij.plugin.analysis.kotlin.reference.CallFunctionReferenceAnalyzer
 import godot.intellij.plugin.analysis.kotlin.reference.RpcFunctionReferenceAnalyzer
 import godot.intellij.plugin.analysis.kotlin.reference.SignalFunctionReferenceAnalyzer
 import godot.intellij.plugin.analysis.registerProblems
+import godot.intellij.plugin.analysis.withPhysicalAnchor
 import org.jetbrains.kotlin.asJava.toLightMethods
 import org.jetbrains.kotlin.psi.KtAnnotated
 import org.jetbrains.kotlin.psi.KtCallableReferenceExpression
@@ -25,6 +25,10 @@ class KotlinInspection : GodotInspection() {
     override fun getDisplayName(): String = "Kotlin registration checks"
 
     override fun checkElement(element: PsiElement, holder: ProblemsHolder, isOnTheFly: Boolean) {
+        if (element is KtAnnotated) {
+            holder.registerProblems(RpcAnnotationAnalyzer.analyze(element))
+        }
+
         when (element) {
             is KtClass -> {
                 holder.registerProblems(GodotScriptAnalyzer.analyze(element).withPhysicalAnchor(element))
@@ -49,43 +53,7 @@ class KotlinInspection : GodotInspection() {
                 holder.registerProblems(CallFunctionReferenceAnalyzer.analyze(element))
             }
 
-            is KtAnnotated -> {
-                holder.registerProblems(RpcAnnotationAnalyzer.analyze(element))
-            }
         }
-    }
-
-    private fun List<GodotProblem>.withPhysicalAnchor(sourceElement: PsiElement): List<GodotProblem> {
-        return map { problem ->
-            if (problem.location.isPhysical) {
-                problem
-            } else {
-                GodotProblem(
-                    message = problem.message,
-                    location = physicalAnchor(sourceElement, problem.location),
-                    quickFixes = problem.quickFixes,
-                    highlightType = problem.highlightType
-                )
-            }
-        }
-    }
-
-    private fun physicalAnchor(sourceElement: PsiElement, fallback: PsiElement): PsiElement {
-        return listOf(
-            sourceElement.navigationElement,
-            sourceElement.firstChild,
-            sourceElement,
-            fallback.navigationElement,
-            fallback
-        ).firstOrNull { candidate -> candidate?.isPhysical == true }
-            ?: listOf(
-                sourceElement.navigationElement,
-                sourceElement.firstChild,
-                sourceElement,
-                fallback.navigationElement,
-                fallback
-            ).firstOrNull { candidate -> candidate?.isValid == true }
-            ?: sourceElement
     }
 }
 

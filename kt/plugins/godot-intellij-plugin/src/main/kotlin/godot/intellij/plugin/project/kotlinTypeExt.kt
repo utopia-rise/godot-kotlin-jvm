@@ -7,11 +7,13 @@ import godot.core.BitFieldBase
 import godot.core.CoreType
 import godot.tools.common.constants.isCollectionsType
 import org.jetbrains.kotlin.analysis.api.KaSession
+import org.jetbrains.kotlin.analysis.api.analyze
+import org.jetbrains.kotlin.analysis.api.symbols.KaClassSymbol
 import org.jetbrains.kotlin.analysis.api.types.KaType
-import org.jetbrains.kotlin.analysis.api.types.KaTypeNullability
 import org.jetbrains.kotlin.analysis.api.types.symbol
 import org.jetbrains.kotlin.idea.codeinsight.utils.isEnum
 import org.jetbrains.kotlin.name.ClassId
+import org.jetbrains.kotlin.psi.KtClass
 import org.jetbrains.kotlin.psi.KtDeclaration
 import org.jetbrains.kotlin.scripting.resolve.classId
 
@@ -22,6 +24,16 @@ fun KtDeclaration.isType(classId: ClassId): Boolean {
 
 fun KtDeclaration.isOrInheritsType(classId: ClassId): Boolean {
     return withType { declarationType -> declarationType.isOrInheritsType(classId, this) }
+}
+
+fun KtClass.isOrInheritsType(classId: ClassId): Boolean {
+    val declaration = this
+    return analyze(this) {
+        (declaration.symbol as? KaClassSymbol)
+            ?.defaultType
+            ?.isOrInheritsType(classId, this)
+            ?: false
+    }
 }
 
 
@@ -91,5 +103,5 @@ private fun KaType.isGodotPrimitive(session: KaSession): Boolean {
 }
 
 fun KtDeclaration.isNullable(): Boolean {
-    return withType { declarationType -> declarationType.nullability == KaTypeNullability.NULLABLE }
+    return withType { declarationType -> declarationType.isMarkedNullable }
 }

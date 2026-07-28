@@ -1,19 +1,21 @@
-Let's create a first class that prints a simple hello world message when the node enters the scene tree.
+# Your first class
+
+Let's create a class that prints a message when its node enters the scene
+tree.
 
 /// tab | Kotlin
-Create `src/main/kotlin/com/yourcompany/game/Player.kt` with:
+
+Create `src/main/kotlin/com/yourcompany/game/Player.kt`:
 
 ```kotlin
 package com.yourcompany.game
 
-import godot.Node
 import godot.annotation.Script
-import godot.annotation.Register
+import godot.api.Node
 import godot.global.GD
 
 @Script
 class Player : Node() {
-    @Register
     override fun _ready() {
         GD.print("Hello from Kotlin")
     }
@@ -23,19 +25,18 @@ class Player : Node() {
 ///
 
 /// tab | Java
-Create `src/main/java/com/yourcompany/game/Player.java` with:
+
+Create `src/main/java/com/yourcompany/game/Player.java`:
 
 ```java
 package com.yourcompany.game;
 
 import godot.annotation.Script;
-import godot.annotation.Register;
 import godot.api.Node;
 import godot.global.GD;
 
 @Script
 public class Player extends Node {
-    @Register
     @Override
     public void _ready() {
         GD.print("Hello from Java");
@@ -46,18 +47,18 @@ public class Player extends Node {
 ///
 
 /// tab | Scala
-Create `src/main/scala/com/yourcompany/game/Player.scala` with:
+
+Create `src/main/scala/com/yourcompany/game/Player.scala`:
 
 ```scala
 package com.yourcompany.game
 
-import godot.annotation.{Script, Register}
+import godot.annotation.Script
 import godot.api.Node
 import godot.global.GD
 
 @Script
 class Player extends Node {
-  @Register
   override def _ready(): Unit = {
     GD.print("Hello from Scala")
   }
@@ -68,11 +69,10 @@ class Player extends Node {
 
 This small example already shows the main building blocks:
 
-- `@Script` makes the class visible to Godot.
-- `@Register` exposes `_ready()` to Godot.
+- `@Script` makes the class available to Godot.
+- Inheriting `Node` makes it a Godot script class.
+- Overriding `_ready()` runs code when the node enters the scene tree.
 - `GD.print(...)` writes to the Godot output.
-
-The [signals and callables](../user-guide/signals_and_callables.md) guide is a good next step once you have this basic class working.
 
 Now trigger a build:
 
@@ -80,18 +80,32 @@ Now trigger a build:
 ./gradlew build
 ```
 
-Once the build completes, you will be able to use your class in Godot. Simply attach the generated `gdj` file (by default, generated in the `gdj/` directory at the root of the project; for more details, read the [user guide](../user-guide/api-differences.md#registration-files-gdj)) to a node like you would in GDScript. If you rebuild the project while the editor is open, your classes will be reloaded automatically in Godot and you can use them.
+After the build, attach the generated `.gdj` file to a node as you would
+attach a GDScript. By default, registration files are generated in the
+project's `gdj/` directory. See
+[registration files](../user-guide/api-differences.md#registration-files-gdj)
+for details.
+
+If you rebuild while the editor is open, your classes are reloaded
+automatically.
 
 ![Attach Node Script](../assets/img/attach.png)
 
 !!! info
-    As the JVM languages are compiled, you can only use newly created classes after you have built them. Otherwise, Godot will not be able to find them.
+    JVM languages are compiled. Godot cannot use a newly created or changed
+    class until its build succeeds.
+
+The [signals and callables](../user-guide/signals_and_callables.md) guide is
+a good next step once this class works. For complete control over which
+declarations Godot sees, read the
+[registration reference](../user-guide/advanced/registration-logic.md).
 
 ## Final project structure
 
-Depending on the language you picked, the final project should include one of these source roots:
+Depending on the language, the source file belongs in one of these roots:
 
 /// tab | Kotlin
+
 ```text
 src/
   main/
@@ -105,6 +119,7 @@ src/
 ///
 
 /// tab | Java
+
 ```text
 src/
   main/
@@ -118,6 +133,7 @@ src/
 ///
 
 /// tab | Scala
+
 ```text
 src/
   main/
@@ -129,5 +145,3 @@ src/
 ```
 
 ///
-
-

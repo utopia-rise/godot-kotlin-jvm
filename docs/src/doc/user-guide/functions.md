@@ -1,13 +1,19 @@
-Any Kotlin, Java, or Scala function can be registered as long as its parameters and return type can be converted to a `Variant`.
-To register a function annotate it with `@Register`.
+Any Kotlin, Java, or Scala function can be registered as long as its
+parameters and return type can be converted to a `Variant`. Annotate ordinary
+project functions with `@Register`. Compatible overrides of Godot functions
+are recognized from the base class.
 
 /// tab | Kotlin
 ```kotlin
 @Script
 class RotatingCube : Node3D() {
     @Register
-    override fun _ready() {
+    fun announceReady() {
         println("I am ready!")
+    }
+
+    override fun _ready() {
+        announceReady()
     }
 }
 ```
@@ -18,9 +24,13 @@ class RotatingCube : Node3D() {
 @Script
 public class RotatingCube extends Node3D {
     @Register
+    public void announceReady() {
+        System.out.println("I am ready!");
+    }
+
     @Override
     public void _ready() {
-        System.out.println("I am ready!");
+        announceReady();
     }
 }
 ```
@@ -31,8 +41,12 @@ public class RotatingCube extends Node3D {
 @Script
 class RotatingCube extends Node3D {
   @Register
-  override def _ready(): Unit = {
+  def announceReady(): Unit = {
     println("I am ready!")
+  }
+
+  override def _ready(): Unit = {
+    announceReady()
   }
 }
 ```
@@ -46,10 +60,10 @@ Therefore, a function called `doSomething()` is usable in GDScript as `do_someth
 
 ## Virtual functions
 
-Virtual functions (like `_ready`, `_process` and `_physics_process`) are declared as overridable functions.
-The default implementation throws a `NotImplementedException`, so you have to override it if you plan to expose
-a virtual function to Godot. Remember, just overriding is not enough to use that function - you have to explicitly
-register it as well with `@Register`.
+Virtual functions such as `_ready`, `_process`, and `_physics_process` are
+declared as overridable functions. Override one to provide its behavior.
+Because it is already a Godot function, the inherited declaration identifies
+it without an additional `@Register`.
 
 ## Arguments count
 
@@ -59,8 +73,12 @@ If you want to pass more than 16 parameters in a function, you need to wrap them
 
 ## Customization
 
-You can customize to some extent how your functions should be registered in Godot. The `@Register` annotation takes one argument:
+`@Register` only selects an ordinary function. Add a more specific annotation
+when the function has additional behavior. For example, `@Rpc` selects the
+function through its registration meta-annotation and configures its
+networking behavior at the same time.
 
-- **rpcMode**: Default: `RPCMode.DISABLED`
+See the [registration reference](advanced/registration-logic.md#functions-and-godot-overrides)
+for how function selection changes between modes.
 
 

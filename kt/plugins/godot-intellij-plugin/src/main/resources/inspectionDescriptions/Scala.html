@@ -1,0 +1,21 @@
+<html>
+<body>
+<p>Checks Scala declarations exposed through JVM PSI for Godot Kotlin/JVM registration.</p>
+
+<p>Current Scala checks include:</p>
+<ul>
+    <li>registered classes must inherit a Godot type and cannot be generic</li>
+    <li>concrete registered classes must expose a parameterless constructor</li>
+    <li>registered class names must be unique</li>
+    <li>classes containing registered fields, signals, or methods must themselves be registered</li>
+    <li>registered methods cannot be generic or exceed Godot's parameter limit</li>
+    <li>Godot lifecycle overrides require explicit registration in explicit mode</li>
+</ul>
+
+<p>
+    Class and method selection follows the configured explicit, inferred, or automatic annotation processing mode.
+    Checks requiring Kotlin PSI, such as Kotlin property hints, RPC arguments, and callable references, are not
+    applied to Scala.
+</p>
+</body>
+</html>

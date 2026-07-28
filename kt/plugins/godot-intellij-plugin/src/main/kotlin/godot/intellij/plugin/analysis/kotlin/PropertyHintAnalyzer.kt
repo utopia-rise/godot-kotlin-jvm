@@ -4,7 +4,6 @@ import godot.annotation.ColorNoAlpha
 import godot.annotation.Dir
 import godot.annotation.DoubleRange
 import godot.annotation.ExpEasing
-import godot.annotation.Export
 import godot.annotation.File
 import godot.annotation.FloatRange
 import godot.annotation.IntFlag
@@ -18,6 +17,8 @@ import godot.intellij.plugin.analysis.GodotProblem
 import godot.intellij.plugin.project.fqName
 import godot.intellij.plugin.project.withType
 import godot.intellij.plugin.quickfix.PropertyNotExportedQuickFix
+import godot.intellij.plugin.quickfix.PropertyNotRegisteredQuickFix
+import godot.intellij.plugin.registration.RegistrationPolicy
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.psi.KtProperty
 import org.jetbrains.kotlin.scripting.resolve.classId
@@ -25,6 +26,7 @@ import kotlin.reflect.KClass
 
 object PropertyHintAnalyzer {
     private val propertyNotExportedQuickFix by lazy { PropertyNotExportedQuickFix() }
+    private val propertyNotRegisteredQuickFix by lazy { PropertyNotRegisteredQuickFix() }
 
     fun analyze(property: KtProperty): List<GodotProblem> {
         return when {
@@ -45,7 +47,7 @@ object PropertyHintAnalyzer {
             }
 
             property.findAnnotation(ExpEasing::class.classId) != null -> {
-                checkForRegistrationAnnotations(property) + checkExpEasing(property)
+                checkForRegistrationAnnotations(property) + checkRealTypeProperty(property, ExpEasing::class)
             }
 
             property.findAnnotation(IntFlag::class.classId) != null -> {
@@ -53,19 +55,19 @@ object PropertyHintAnalyzer {
             }
 
             property.findAnnotation(File::class.classId) != null -> {
-                checkForRegistrationAnnotations(property) + checkFile(property)
+                checkForRegistrationAnnotations(property) + checkStringPropertyType(property, File::class)
             }
 
             property.findAnnotation(Dir::class.classId) != null -> {
-                checkForRegistrationAnnotations(property) + checkDir(property)
+                checkForRegistrationAnnotations(property) + checkStringPropertyType(property, Dir::class)
             }
 
             property.findAnnotation(MultilineText::class.classId) != null -> {
-                checkForRegistrationAnnotations(property) + checkMultilineText(property)
+                checkForRegistrationAnnotations(property) + checkStringPropertyType(property, MultilineText::class)
             }
 
             property.findAnnotation(PlaceHolderText::class.classId) != null -> {
-                checkForRegistrationAnnotations(property) + checkPlaceholderText(property)
+                checkForRegistrationAnnotations(property) + checkStringPropertyType(property, PlaceHolderText::class)
             }
 
             property.findAnnotation(ColorNoAlpha::class.classId) != null -> {
@@ -86,22 +88,6 @@ object PropertyHintAnalyzer {
                     ?: property.navigationElement
             )
         )
-    }
-
-    private fun checkPlaceholderText(property: KtProperty): List<GodotProblem> {
-        return checkStringPropertyType(property, PlaceHolderText::class)
-    }
-
-    private fun checkMultilineText(property: KtProperty): List<GodotProblem> {
-        return checkStringPropertyType(property, MultilineText::class)
-    }
-
-    private fun checkDir(property: KtProperty): List<GodotProblem> {
-        return checkStringPropertyType(property, Dir::class)
-    }
-
-    private fun checkFile(property: KtProperty): List<GodotProblem> {
-        return checkStringPropertyType(property, File::class)
     }
 
     private fun checkStringPropertyType(property: KtProperty, annotation: KClass<*>): List<GodotProblem> {
@@ -127,10 +113,6 @@ object PropertyHintAnalyzer {
                     ?: property.navigationElement
             )
         )
-    }
-
-    private fun checkExpEasing(property: KtProperty): List<GodotProblem> {
-        return checkRealTypeProperty(property, ExpEasing::class)
     }
 
     private fun checkRealTypeProperty(property: KtProperty, annotation: KClass<*>): List<GodotProblem> {
@@ -202,7 +184,15 @@ object PropertyHintAnalyzer {
 
     private fun checkForRegistrationAnnotations(property: KtProperty): List<GodotProblem> {
         return buildList {
-            if (property.findAnnotation(Export::class.classId) == null) {
+            if (!RegistrationPolicy.registersProperty(property)) {
+                add(
+                    GodotProblem(
+                        GodotPluginBundle.message("problem.property.hint.notRegistered"),
+                        property.nameIdentifier ?: property.navigationElement,
+                        arrayOf(propertyNotRegisteredQuickFix)
+                    )
+                )
+            } else if (!RegistrationPolicy.exportsProperty(property)) {
                 add(
                     GodotProblem(
                         GodotPluginBundle.message("problem.property.hint.notExported"),

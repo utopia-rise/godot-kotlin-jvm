@@ -1,5 +1,6 @@
 package godot.intellij.plugin
 
+import com.intellij.codeInsight.daemon.DaemonCodeAnalyzer
 import com.intellij.ide.highlighter.JavaFileType
 import com.intellij.lang.java.JavaLanguage
 import com.intellij.openapi.Disposable
@@ -23,9 +24,9 @@ import org.jetbrains.kotlin.idea.base.util.module
 import org.jetbrains.kotlin.psi.KtClass
 import org.jetbrains.kotlin.psi.KtFile
 
-class PsiTreeListener(
+class RegisteredClassIndex(
     private val registeredClassNameCacheProvider: (Module) -> RegisteredClassNameCache
-) : Indexer {
+) {
     private fun setupListener(parentDisposable: Disposable, project: Project) {
         PsiManager
             .getInstance(project)
@@ -76,9 +77,12 @@ class PsiTreeListener(
         registeredClassNameCacheProvider(module).psiFileChanged(psiFile)
     }
 
-    override fun initialIndex(parentDisposable: Disposable, project: Project) {
+    fun start(parentDisposable: Disposable, project: Project) {
         setupListener(parentDisposable, project)
+        refresh(project)
+    }
 
+    fun refresh(project: Project) {
         ReadAction
             .nonBlocking<List<com.intellij.openapi.vfs.VirtualFile>> {
                 val ktFiles = FileTypeIndex
@@ -98,7 +102,7 @@ class PsiTreeListener(
                 }
             }
             .inSmartMode(project)
-            .expireWith(parentDisposable)
+            .expireWith(project)
             .submit(AppExecutorUtil.getAppExecutorService())
             .onSuccess { files ->
                 files
@@ -114,6 +118,9 @@ class PsiTreeListener(
                             }
                         }
                     }
+                if (!project.isDisposed) {
+                    DaemonCodeAnalyzer.getInstance(project).settingsChanged()
+                }
             }
     }
 

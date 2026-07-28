@@ -1,7 +1,7 @@
-import godot.api.Node3D
 import godot.annotation.Export
 import godot.annotation.Script
 import godot.annotation.Visible
+import godot.api.Node3D
 import godot.core.Basis
 import godot.core.Transform3D
 import godot.core.Vector3

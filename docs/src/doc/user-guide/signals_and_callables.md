@@ -60,7 +60,6 @@ class Player : Node() {
     @Emit("current", "max")
     val healthChanged by signal2<Int, Int>()
 
-    @Register
     override fun _ready() {
         val onHealthChangedCallable = methodCallable2(this, Player::onHealthChanged)
         healthChanged.connect(onHealthChangedCallable)
@@ -80,10 +79,8 @@ class Player : Node() {
 ```java
 @Script
 public class Player extends Node {
-    @Emit
-    private final Signal0 finished = Signal0.create(this, "finished");
+    public final Signal0 finished = Signal0.create(this, "finished");
 
-    @Register
     @Override
     public void _ready() {
         AnimatedSprite2D sprite = new AnimatedSprite2D();
@@ -101,10 +98,8 @@ public class Player extends Node {
 ```scala
 @Script
 class Player extends Node {
-  @Emit
   val finished: Signal0 = Signal0.create(this, "finished")
 
-  @Register
   override def _ready(): Unit = {
     val sprite = new AnimatedSprite2D()
     val pauseCallable = MethodCallable0.create(sprite, AnimatedSprite2D.pauseName)

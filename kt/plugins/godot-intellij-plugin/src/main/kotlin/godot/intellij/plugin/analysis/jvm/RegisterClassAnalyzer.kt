@@ -1,25 +1,25 @@
 package godot.intellij.plugin.analysis.jvm
 
 import com.intellij.psi.PsiClass
-import godot.annotation.Script
-import godot.annotation.Register
-import godot.annotation.Visible
+import com.intellij.psi.PsiElement
+import com.intellij.psi.util.PsiTreeUtil
 import godot.annotation.Emit
+import godot.annotation.Script
 import godot.annotation.Tool
+import godot.annotation.Visible
 import godot.core.KtObject
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.analysis.GodotProblem
-import godot.intellij.plugin.project.anyFunctionHasAnnotation
-import godot.intellij.plugin.project.anyPropertyHasAnnotation
 import godot.intellij.plugin.project.getRegisteredClassName
 import godot.intellij.plugin.project.isAbstract
 import godot.intellij.plugin.project.isOrInheritsType
 import godot.intellij.plugin.project.registeredClassNameCache
 import godot.intellij.plugin.quickfix.ClassAlreadyRegisteredQuickFix
 import godot.intellij.plugin.quickfix.ClassNotRegisteredQuickFix
+import godot.intellij.plugin.registration.RegistrationPolicy
+import godot.intellij.plugin.registration.RegistrationPolicy.hasEffectiveAnnotation
 import org.jetbrains.kotlin.idea.base.util.module
 import org.jetbrains.kotlin.idea.util.findAnnotation
-import org.jetbrains.kotlin.name.ClassId
 import org.jetbrains.kotlin.psi.KtClass
 import org.jetbrains.kotlin.psi.KtNamedFunction
 import org.jetbrains.kotlin.psi.psiUtil.isAbstract
@@ -30,7 +30,8 @@ object GodotScriptAnalyzer {
 
     fun analyze(ktClass: KtClass): List<GodotProblem> {
         return buildList {
-            if (!ktClass.isRegistered()) {
+            val isRegistered = RegistrationPolicy.registersClass(ktClass)
+            if (!isRegistered && RegistrationPolicy.requiresClassAnnotation(ktClass)) {
                 val errorLocation = ktClass.nameIdentifier ?: ktClass.navigationElement
                 if (ktClass.findAnnotation(Tool::class.classId) != null) {
                     add(
@@ -41,7 +42,7 @@ object GodotScriptAnalyzer {
                         )
                     )
                 }
-                if (!ktClass.isAbstract() && ktClass.anyPropertyHasAnnotation(Visible::class.simpleName!!)) {
+                if (!ktClass.isAbstract() && ktClass.getProperties().any(RegistrationPolicy::registersProperty)) {
                     add(
                         GodotProblem(
                             GodotPluginBundle.message("problem.class.notRegistered.properties"),
@@ -50,7 +51,7 @@ object GodotScriptAnalyzer {
                         )
                     )
                 }
-                if (!ktClass.isAbstract() && ktClass.anyPropertyHasAnnotation(Emit::class.simpleName!!)) {
+                if (!ktClass.isAbstract() && ktClass.getProperties().any(RegistrationPolicy::registersSignal)) {
                     add(
                         GodotProblem(
                             GodotPluginBundle.message("problem.class.notRegistered.signals"),
@@ -59,7 +60,7 @@ object GodotScriptAnalyzer {
                         )
                     )
                 }
-                if (!ktClass.isAbstract() && ktClass.anyFunctionHasAnnotation(Register::class.simpleName!!)) {
+                if (!ktClass.isAbstract() && ktClass.declarations.filterIsInstance<KtNamedFunction>().any(RegistrationPolicy::registersFunction)) {
                     add(
                         GodotProblem(
                             GodotPluginBundle.message("problem.class.notRegistered.functions"),
@@ -70,9 +71,11 @@ object GodotScriptAnalyzer {
                 }
             }
 
-            buildRegisteredClassNameProblem(ktClass)?.let(::add)
+            if (isRegistered) {
+                buildRegisteredClassNameProblem(ktClass)?.let(::add)
+            }
 
-            if (ktClass.typeParameters.isNotEmpty()) {
+            if (isRegistered && ktClass.typeParameters.isNotEmpty()) {
                 add(
                     GodotProblem(
                         GodotPluginBundle.message("problem.general.cannotRegisterGenerics"),
@@ -81,7 +84,7 @@ object GodotScriptAnalyzer {
                 )
             }
 
-            if (ktClass.isRegistered() && !ktClass.isOrInheritsType(KtObject::class.classId)) {
+            if (isRegistered && !ktClass.isOrInheritsType(KtObject::class.classId)) {
                 add(
                     GodotProblem(
                         GodotPluginBundle.message("problem.class.inheritance.notInheritingGodotObject"),
@@ -90,12 +93,21 @@ object GodotScriptAnalyzer {
                 )
             }
 
+            if (isRegistered && !ktClass.isAbstract() && !ktClass.hasParameterlessConstructor()) {
+                add(
+                    GodotProblem(
+                        GodotPluginBundle.message("problem.class.constructor.parameterlessConstructorMissing"),
+                        ktClass.nameIdentifier ?: ktClass.navigationElement
+                    )
+                )
+            }
         }
     }
 
     fun analyze(psiClass: PsiClass): List<GodotProblem> {
         return buildList {
-            if (psiClass.getAnnotation(Script::class.qualifiedName!!) == null) {
+            val isRegistered = RegistrationPolicy.registersClass(psiClass)
+            if (!isRegistered && RegistrationPolicy.requiresClassAnnotation(psiClass)) {
                 val errorLocation = psiClass.nameIdentifier ?: psiClass.navigationElement
                 if (psiClass.getAnnotation(Tool::class.qualifiedName!!) != null) {
                     add(
@@ -106,7 +118,13 @@ object GodotScriptAnalyzer {
                         )
                     )
                 }
-                if (!psiClass.isAbstract && psiClass.anyPropertyHasAnnotation(Visible::class)) {
+                if (
+                    !psiClass.isAbstract &&
+                    (
+                        psiClass.fields.any(RegistrationPolicy::registersProperty) ||
+                            psiClass.methods.any { method -> method.hasEffectiveAnnotation(Visible::class) }
+                        )
+                ) {
                     add(
                         GodotProblem(
                             GodotPluginBundle.message("problem.class.notRegistered.properties"),
@@ -115,7 +133,13 @@ object GodotScriptAnalyzer {
                         )
                     )
                 }
-                if (!psiClass.isAbstract && psiClass.anyPropertyHasAnnotation(Emit::class)) {
+                if (
+                    !psiClass.isAbstract &&
+                    (
+                        psiClass.fields.any(RegistrationPolicy::registersSignal) ||
+                            psiClass.methods.any { method -> method.hasEffectiveAnnotation(Emit::class) }
+                        )
+                ) {
                     add(
                         GodotProblem(
                             GodotPluginBundle.message("problem.class.notRegistered.signals"),
@@ -124,7 +148,7 @@ object GodotScriptAnalyzer {
                         )
                     )
                 }
-                if (!psiClass.isAbstract && psiClass.anyFunctionHasAnnotation(Register::class)) {
+                if (!psiClass.isAbstract && psiClass.methods.any(RegistrationPolicy::registersFunction)) {
                     add(
                         GodotProblem(
                             GodotPluginBundle.message("problem.class.notRegistered.functions"),
@@ -133,12 +157,20 @@ object GodotScriptAnalyzer {
                         )
                     )
                 }
-            } else {
+            } else if (isRegistered) {
                 addAll(GenericRegistrationAnalyzer.analyze(psiClass))
                 if (!psiClass.isOrInheritsType(KtObject::class.classId)) {
                     add(
                         GodotProblem(
                             GodotPluginBundle.message("problem.class.inheritance.notInheritingGodotObject"),
+                            psiClass.nameIdentifier ?: psiClass.navigationElement
+                        )
+                    )
+                }
+                if (!psiClass.isAbstract && !psiClass.hasParameterlessConstructor()) {
+                    add(
+                        GodotProblem(
+                            GodotPluginBundle.message("problem.class.constructor.parameterlessConstructorMissing"),
                             psiClass.nameIdentifier ?: psiClass.navigationElement
                         )
                     )
@@ -155,7 +187,8 @@ object GodotScriptAnalyzer {
             ?.registeredClassNameCache
             ?.getContainersByName(registeredName)
             ?.map { container -> container.fqName }
-            ?: return null
+            .orEmpty()
+            .toSet() + ktClass.registeredFqNamesInContainingFile(registeredName)
 
         if (fqNames.size <= 1 && (fqNames.isEmpty() || fqNames.contains(fqName))) {
             return null
@@ -182,7 +215,8 @@ object GodotScriptAnalyzer {
             ?.registeredClassNameCache
             ?.getContainersByName(registeredName)
             ?.map { container -> container.fqName }
-            ?: return null
+            .orEmpty()
+            .toSet() + psiClass.registeredFqNamesInContainingFile(registeredName)
 
         if (fqNames.size <= 1 && (fqNames.isEmpty() || fqNames.contains(fqName))) {
             return null
@@ -192,16 +226,19 @@ object GodotScriptAnalyzer {
         val psiElement = if (registerClassAnnotation == null) {
             psiClass.nameIdentifier ?: psiClass.navigationElement
         } else {
-            val customClassName = registerClassAnnotation.findAttributeValue("className")
-            if (customClassName != null) {
-                registerClassAnnotation.parameterList.attributes.firstOrNull { it.name == "className" }
-                    ?: registerClassAnnotation.parameterList
-            } else {
-                registerClassAnnotation
+            val classNameAttribute = registerClassAnnotation.parameterList.attributes.firstOrNull { attribute ->
+                attribute.name == "className" || attribute.name == null
             }
+            listOfNotNull(
+                classNameAttribute?.value,
+                classNameAttribute,
+                registerClassAnnotation.nameReferenceElement,
+                psiClass.nameIdentifier,
+                psiClass.navigationElement
+            ).firstOrNull { element -> element.isValid && element.textLength > 0 } ?: psiClass
         }
 
-        return psiElement.takeIf { it.isValid }?.let {
+        return psiElement.takeIf { it.isValid && it.textLength > 0 }?.let {
             GodotProblem(
                 GodotPluginBundle.message("problem.class.nameAlreadyRegistered"),
                 it,
@@ -210,39 +247,38 @@ object GodotScriptAnalyzer {
         }
     }
 
-    private fun KtClass.isRegistered(): Boolean = findAnnotation(Script::class.classId) != null
-
-    private fun KtClass.anyFunctionHasAnnotation(annotation: String): Boolean {
-        return declarations
-            .filterIsInstance<KtNamedFunction>()
-            .any { declaration -> declaration.annotationEntries.any { it.shortName?.asString() == annotation } }
+    private fun KtClass.hasParameterlessConstructor(): Boolean {
+        val constructors = listOfNotNull(primaryConstructor) + secondaryConstructors
+        return constructors.isEmpty() || constructors.any { constructor -> constructor.valueParameters.isEmpty() }
     }
 
-    private fun KtClass.anyPropertyHasAnnotation(annotation: String): Boolean {
-        return getProperties()
-            .any { property -> property.annotationEntries.any { it.shortName?.asString() == annotation } }
+    private fun PsiClass.hasParameterlessConstructor(): Boolean {
+        return constructors.isEmpty() || constructors.any { constructor -> !constructor.hasParameters() }
     }
 
-    private fun KtClass.isOrInheritsType(classId: ClassId): Boolean {
-        if (fqName?.asString() == classId.asFqNameString()) {
-            return true
-        }
+    private fun PsiElement.registeredFqNamesInContainingFile(registeredName: String): Set<String> {
+        val file = containingFile ?: return emptySet()
+        val classes = PsiTreeUtil.findChildrenOfType(file, KtClass::class.java) +
+            PsiTreeUtil.findChildrenOfType(file, PsiClass::class.java)
 
-        return superTypeListEntries.any { superTypeEntry ->
-            val resolvedSuperType = superTypeEntry.typeReference
-                ?.typeElement
-                ?.firstChild
-                ?.references
-                ?.firstOrNull()
-                ?.resolve()
+        return classes
+            .mapNotNull { psiClass ->
+                when (psiClass) {
+                    is KtClass -> psiClass
+                        .takeIf(RegistrationPolicy::registersClass)
+                        ?.getRegisteredClassName()
 
-            when (resolvedSuperType) {
-                is KtClass -> resolvedSuperType.isOrInheritsType(classId)
-                is PsiClass -> resolvedSuperType.isOrInheritsType(classId)
-                else -> false
+                    is PsiClass -> psiClass
+                        .takeIf(RegistrationPolicy::registersClass)
+                        ?.getRegisteredClassName()
+
+                    else -> null
+                }
             }
-        }
+            .filter { (_, name) -> name == registeredName }
+            .mapTo(mutableSetOf()) { (fqName, _) -> fqName }
     }
+
 }
 
 

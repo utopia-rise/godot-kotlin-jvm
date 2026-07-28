@@ -1,32 +1,14 @@
-package godot.inspection
+package godot.inspection.inferred
 
-import godot.annotation.ColorNoAlpha
-import godot.annotation.Dir
-import godot.annotation.DoubleRange
-import godot.annotation.ExpEasing
-import godot.annotation.Export
-import godot.annotation.File
-import godot.annotation.FloatRange
-import godot.annotation.IntFlag
+// Manual review mode: Inferred.
+// This same source is exercised by the IntelliJ CodeInsight fixture test.
+// Inline expectation comments describe the original Explicit baseline; the test owns mode-specific expectations.
+
+import godot.annotation.*
 import godot.annotation.IntRange
 import godot.annotation.LongRange
-import godot.annotation.MultilineText
-import godot.annotation.PlaceHolderText
-import godot.annotation.Script
-import godot.annotation.Register
-import godot.annotation.Visible
-import godot.annotation.Emit
-import godot.annotation.Rpc
-import godot.annotation.RpcMode
-import godot.annotation.Tool
-import godot.annotation.TransferMode
 import godot.api.Node
-import godot.core.BitField
-import godot.core.Signal0
-import godot.core.VariantArray
-import godot.core.Vector2
-import godot.core.callable0
-import godot.core.signal0
+import godot.core.*
 import godot.extension.connectMethod
 
 class UnsupportedExportedType
@@ -45,11 +27,11 @@ enum class LargeEnum {
 // Class-level registration checks.
 // Expected red: `@Tool` requires the class itself to be registered.
 @Tool
-class NotRegisteredButToolFixture : Node()
+class NotRegisteredButToolFixtureInferred : Node()
 
 // Expected red on the class: it is not `@Script`, but it contains
 // registered properties, signals, and functions.
-class NotRegisteredButMembersFixture : Node() {
+class NotRegisteredButMembersFixtureInferred : Node() {
     // Expected red via the containing class: registered property inside a
     // non-registered class.
     @Export
@@ -70,28 +52,28 @@ class NotRegisteredButMembersFixture : Node() {
 // Expected red: `@Script` is present, but the class does not inherit a
 // Godot object type.
 @Script
-class GodotScriptWithoutGodotBaseFixture
+class GodotScriptWithoutGodotBaseFixtureInferred
 
 // Expected red: registered classes must expose exactly one parameterless
 // constructor, and this one only has a parameterized constructor.
 @Script
-class GodotScriptWithoutDefaultConstructorFixture(val number: Int) : Node()
+class GodotScriptWithoutDefaultConstructorFixtureInferred(val number: Int) : Node()
 
 // Expected red on both duplicate declarations: they register the same custom
 // Godot class name.
-@Script(className = "DuplicateIdeRegistrationName")
-class DuplicateRegisteredNameFixtureOne : Node()
+@Script(className = "DuplicateIdeRegistrationNameInferred")
+class DuplicateRegisteredNameFixtureOneInferred : Node()
 
-@Script(className = "DuplicateIdeRegistrationName")
-class DuplicateRegisteredNameFixtureTwo : Node()
+@Script(className = "DuplicateIdeRegistrationNameInferred")
+class DuplicateRegisteredNameFixtureTwoInferred : Node()
 
 // Expected red: generic classes cannot be registered.
 @Script
-class GenericRegisteredClassFixture<T> : Node()
+class GenericRegisteredClassFixtureInferred<T> : Node()
 
 // Method registration checks.
 @Script
-class NotificationFunctionWithoutRegisterFixture : Node() {
+class NotificationFunctionWithoutRegisterFixtureInferred : Node() {
     // Expected red: notification callbacks like `_ready` must also carry
     // `@Register` inside a registered class.
     override fun _ready() {
@@ -99,13 +81,13 @@ class NotificationFunctionWithoutRegisterFixture : Node() {
 }
 
 @Script
-abstract class RegisteredAbstractBaseFixture : Node() {
+abstract class RegisteredAbstractBaseFixtureInferred : Node() {
     @Register
     abstract fun mustStayRegistered()
 }
 
 @Script
-class OverriddenRegisteredFunctionMissingAnnotationFixture : RegisteredAbstractBaseFixture() {
+class OverriddenRegisteredFunctionMissingAnnotationFixtureInferred : RegisteredAbstractBaseFixtureInferred() {
     // Expected weak warning: this overrides an abstract registered function,
     // but the override itself is missing `@Register`.
     override fun mustStayRegistered() {
@@ -113,7 +95,7 @@ class OverriddenRegisteredFunctionMissingAnnotationFixture : RegisteredAbstractB
 }
 
 @Script
-class RegisterProblemFixture : Node() {
+class RegisterProblemFixtureInferred : Node() {
     // Expected red: generic functions cannot be registered.
     @Register
     fun <T> genericRegisteredFunction(value: T) {
@@ -132,8 +114,8 @@ class RegisterProblemFixture : Node() {
 
 // Property registration checks.
 @Script
-class VisibleProblemFixture : Node() {
-    // Expected red: registered properties must be mutable `var`, not `val`.
+class VisibleProblemFixtureInferred : Node() {
+    // Expected no issue: immutable registered properties are exposed as read-only.
     @Visible
     val immutableRegisteredProperty = 1
 
@@ -164,7 +146,7 @@ class VisibleProblemFixture : Node() {
 
 // Property hint checks.
 @Script
-class PropertyHintProblemFixture : Node() {
+class PropertyHintProblemFixtureInferred : Node() {
     // Expected red: `@IntRange` only makes sense on `Int` properties.
     @IntRange(min = 0, max = 1)
     var intRangeWrongType = ""
@@ -220,7 +202,7 @@ class PropertyHintProblemFixture : Node() {
 
 // Signal registration checks.
 @Script
-class EmitProblemFixture : Node() {
+class EmitProblemFixtureInferred : Node() {
     // Expected warning: registered signals should be immutable `val`.
     @Emit
     var mutableSignal = Signal0("mutableSignal")
@@ -232,7 +214,7 @@ class EmitProblemFixture : Node() {
 
 // RPC annotation checks.
 @Script
-class RpcAnnotationProblemFixture : Node() {
+class RpcAnnotationProblemFixtureInferred : Node() {
     // Expected weak warning: non-zero transfer channels are ignored unless the
     // transfer mode is `UNRELIABLE_ORDERED`.
     @Rpc(transferMode = TransferMode.RELIABLE, transferChannel = 1)
@@ -243,7 +225,7 @@ class RpcAnnotationProblemFixture : Node() {
 
 // Callable-reference registration checks.
 @Script
-class CallableReferenceProblemFixture : Node() {
+class CallableReferenceProblemFixtureInferred : Node() {
     @Emit
     val localSignal by signal0()
 
@@ -251,10 +233,10 @@ class CallableReferenceProblemFixture : Node() {
     override fun _ready() {
         // Expected red on the callable reference: connected signal targets must
         // be registered functions.
-        localSignal.connectMethod(this, CallableReferenceProblemFixture::signalTargetNotRegistered)
+        localSignal.connectMethod(this, CallableReferenceProblemFixtureInferred::signalTargetNotRegistered)
         // Expected red on the callable reference: Godot callable targets must
         // be registered functions.
-        callable0(this::callTargetNotRegistered).call()
+        lambdaCallable0(this::callTargetNotRegistered).call()
         // Expected red on the callable reference: RPC targets must be
         // registered functions.
         rpc(::rpcTargetNotRegistered)

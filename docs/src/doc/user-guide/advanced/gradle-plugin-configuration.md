@@ -13,13 +13,15 @@ The plugin also works well with Gradle performance features such as parallel exe
 ## Quick example
 
 ```kotlin
+import godot.annotation.processor.classgraph.AnnotationProcessingMode
+import godot.gradle.GodotLanguage
 import godot.registrar.generator.settings.RegisteredNameMode
 import godot.registrar.generator.settings.RegistrationFileLayoutMode
-import godot.gradle.GodotLanguage
 
 godot {
     languages.set(setOf(GodotLanguage.KOTLIN))
     javaVersion.set(17)
+    annotationProcessingMode.set(AnnotationProcessingMode.Inferred)
 
     godotProjectDirectory.set(file("."))
     disableGdj.set(false)
@@ -146,6 +148,36 @@ Rules:
 
 - only matters when `languages` contains `GodotLanguage.SCALA`
 - must be at least Scala `3.0.0`
+
+## Registration selection
+
+### `annotationProcessingMode`
+
+Controls how classes and members are selected for registration.
+
+Default: `AnnotationProcessingMode.Inferred`
+
+```kotlin
+import godot.annotation.processor.classgraph.AnnotationProcessingMode
+
+godot {
+    annotationProcessingMode.set(AnnotationProcessingMode.Inferred)
+}
+```
+
+The available modes are:
+
+- `Explicit`: only direct selection annotations count.
+- `Inferred`: direct annotations and recursively implied annotations count;
+  signals and compatible Godot overrides are also discovered.
+- `Automatic`: all compatible declarations in Godot classes are selected;
+  annotations remain useful as configuration.
+
+For the complete rules and examples in Kotlin, Java, and Scala, see the
+[registration reference](registration-logic.md). If you use the IntelliJ
+plugin, select the same mode under
+**Settings | Godot Kotlin/JVM | Annotation processing mode** so its
+inspections and highlighting match the Gradle build.
 
 ## Godot project layout and registration output
 

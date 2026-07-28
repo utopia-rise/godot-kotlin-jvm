@@ -1,270 +1,317 @@
-# CLAUDE.md
+# Godot IntelliJ Plugin Guide
 
-This file explains how to work on `kt/plugins/godot-intellij-plugin`.
+This file is the authoritative guide for working on
+`kt/plugins/godot-intellij-plugin`.
 
-## Purpose
+The plugin provides Godot JVM code insight for Kotlin, Java, and Scala. Keep
+the implementation small: inspections dispatch PSI elements, analyzers own
+the rules, and tests exercise the same source fixtures through IntelliJ's
+real highlighting pipeline.
 
-`godot-intellij-plugin` is the IntelliJ IDEA plugin for Godot Kotlin/JVM.
+## Inspection Architecture
 
-Its job is intentionally narrow:
+Inspection entry points live in:
 
-1. provide editor checks for Godot Kotlin/JVM code
-2. offer small quick fixes for common mistakes
-3. detect whether a file belongs to a Godot project
-4. create starter projects and modules from templates
+- `src/main/kotlin/godot/intellij/plugin/inspection/JavaInspection.kt`
+- `src/main/kotlin/godot/intellij/plugin/inspection/KotlinInspection.kt`
+- `src/main/kotlin/godot/intellij/plugin/inspection/ScalaInspection.kt`
+- `src/main/kotlin/godot/intellij/plugin/inspection/CoreTypeCopyModificationInspection.kt`
 
-Keep it Kotlin-first, K2-only, and simple.
+Shared JVM rules live under `analysis/jvm/`. Kotlin PSI and K2-specific rules
+live under `analysis/kotlin/`. Registration-mode decisions belong in
+`registration/RegistrationPolicy.kt`.
 
-Java and Scala support should only be kept where the same JVM-facing implementation stays clean.
+Keep inspection classes as dispatchers. Do not copy rule logic into the
+language entry points when a shared analyzer can express it cleanly.
 
-## Mental Model
+## Registration Highlighting
 
-Think of the plugin as six small layers:
+Registration highlighting is separate from inspections. It gives declaration
+lines a subtle background:
 
-1. plugin wiring
-2. startup and caches
-3. project scope helpers
-4. inspections
-5. analyzers
-6. quick fixes and wizard
+- orange: the declaration is not structurally registerable
+- blue: the declaration is a registration candidate
+- green: the current mode selects the declaration for registration
 
-### 1. Plugin wiring
+Only Godot script classes and their members are highlighted. Unrelated classes
+must remain untouched. The shared eligibility rules live under `highlighting/`;
+the Scala annotator only adapts Scala property PSI to those rules.
 
-The real entry point is:
+`RegistrationHighlightingTest` covers the same Kotlin/Java/Scala by
+Explicit/Inferred/Automatic 3x3 matrix as regular registration inspections.
 
-- [plugin.xml](src/main/resources/META-INF/plugin.xml)
+## Registration Modes
 
-This is where IntelliJ is told about:
+Every regular registration inspection must be tested in all three modes.
 
-- project services
-- startup activity
-- inspections
-- the new project wizard generator
-- resource bundle
+### Explicit
 
-If it is not registered there, IntelliJ will not load it.
+Only direct registration annotations count:
 
-### 2. Startup and caches
+- class: `@Script`
+- property: `@Visible`
+- signal: `@Emit`
+- function: `@Register` or `@Notification`
 
-These files live at the root package:
+Meta-annotations are not expanded. Godot lifecycle overrides such as
+`_ready` must be registered explicitly.
 
-- [GodotKotlinJvmProjectActivity.kt](src/main/kotlin/godot/intellij/plugin/GodotKotlinJvmProjectActivity.kt)
-- [GodotKotlinJvmProjectServiceImpl.kt](src/main/kotlin/godot/intellij/plugin/GodotKotlinJvmProjectServiceImpl.kt)
-- [PsiTreeListener.kt](src/main/kotlin/godot/intellij/plugin/PsiTreeListener.kt)
-- [Indexer.kt](src/main/kotlin/godot/intellij/plugin/Indexer.kt)
-- [RegisteredClassNameCache.kt](src/main/kotlin/godot/intellij/plugin/RegisteredClassNameCache.kt)
+### Inferred
 
-Flow:
+Registration meta-annotations are expanded. Examples:
 
-1. IntelliJ loads the plugin from `plugin.xml`
-2. after project startup, [GodotKotlinJvmProjectActivity.kt](src/main/kotlin/godot/intellij/plugin/GodotKotlinJvmProjectActivity.kt) calls `projectService.start()`
-3. the project service schedules initial indexing in smart mode
-4. the PSI listener keeps the registered-name cache updated
+- `@Tool` carries `@Script`
+- `@Export` and property hints carry property registration metadata
+- `@Rpc` carries function registration metadata
 
-This keeps heavy startup logic out of the service constructor.
+Godot lifecycle overrides are inferred. Logical signals in registered
+classes are inferred, while an effective `@Emit` still identifies a signal
+inside a class that is missing registration.
 
-### 3. Project scope helpers
+### Automatic
 
-Shared project detection and PSI helpers live under:
+Compatible declarations are selected without registration annotations:
 
-- [project/](src/main/kotlin/godot/intellij/plugin/project)
+- Godot subclasses are registered
+- compatible properties and methods are registered
+- logical signals are registered
+- properties are exported by default
 
-Most important files:
+Annotations can still configure behavior. For example, RPC configuration and
+property hints remain meaningful.
 
-- [GodotProjectScopeService.kt](src/main/kotlin/godot/intellij/plugin/GodotProjectScopeService.kt)
-- [godotRootExt.kt](src/main/kotlin/godot/intellij/plugin/project/godotRootExt.kt)
-- [moduleExt.kt](src/main/kotlin/godot/intellij/plugin/project/moduleExt.kt)
+## Required 3x3 Test Matrix
 
-This layer answers:
+The regular inspection suite is a 3x3 matrix:
 
-- is this file inside a Godot project?
-- what is the detected `project.godot` root?
-- what PSI helpers should inspections reuse?
+| Language | Explicit | Inferred | Automatic |
+|----------|---------:|---------:|----------:|
+| Kotlin   | required | required |  required |
+| Java     | required | required |  required |
+| Scala    | required | required |  required |
 
-Important detail:
+These are nine independent test methods backed by nine source files in the
+IDE-check harness. The three mode files for a language intentionally contain
+the same declaration cases, with mode-specific package, class, and registered
+names so the files do not interfere when opened together.
 
-- `godotRootExt.kt` caches the Godot-root lookup on each `VirtualFile`
-- both positive and negative lookups are cached
-- inspections should use this shared gate instead of discovering roots themselves
+Test classes:
 
-### 4. Inspections
+- `src/test/kotlin/godot/intellij/plugin/inspection/KotlinInspectionTest.kt`
+- `src/test/kotlin/godot/intellij/plugin/inspection/JavaInspectionTest.kt`
+- `src/test/kotlin/godot/intellij/plugin/inspection/ScalaInspectionTest.kt`
+
+Each class must contain:
+
+- `testExplicitFixture`
+- `testInferredFixture`
+- `testAutomaticFixture`
+
+## Harness Fixtures
+
+The source fixtures are part of the standalone IDE-check harness. Each
+language has `Explicit`, `Inferred`, and `Automatic` variants:
+
+- `../../../harness/intellij-check/src/main/kotlin/godot/inspection/IdeKotlinInspection<Mode>.kt`
+- `../../../harness/intellij-check/src/main/java/godot/inspection/IdeJavaInspection<Mode>.java`
+- `../../../harness/intellij-check/src/main/scala/godot/inspection/IdeScalaInspection<Mode>.scala`
+
+The fixtures serve two purposes:
+
+1. automated `CodeInsightTestFixture` highlighting tests
+2. readable examples that can be opened in the sandbox IDE
+
+Keep equivalent declaration cases aligned across the three files for a
+language. Inline comments describe the original Explicit baseline; the test
+method for each file is authoritative for its mode-specific diagnostics.
+
+### Checks shared by Kotlin, Java, and Scala
 
-Inspections live under:
+The regular fixtures cover:
 
-- [inspection/](src/main/kotlin/godot/intellij/plugin/inspection)
+- tool classes that are not explicitly registered
+- registered members inside an unregistered class
+    - properties
+    - signals
+    - functions
+- registered classes that do not inherit a Godot type
+- missing parameterless constructors on concrete registered classes
+- duplicate registered class names, reported on both declarations
+- generic registered classes
+- generic registered functions
+- Godot lifecycle overrides missing explicit registration
+- registered functions exceeding the 16-parameter limit
 
-There are three plugin entry-point inspections:
+### Additional Kotlin checks
 
-- [JvmInspection.kt](src/main/kotlin/godot/intellij/plugin/inspection/JvmInspection.kt)
-- [KotlinInspection.kt](src/main/kotlin/godot/intellij/plugin/inspection/KotlinInspection.kt)
-- [CoreTypeCopyModificationInspection.kt](src/main/kotlin/godot/intellij/plugin/inspection/CoreTypeCopyModificationInspection.kt)
+The Kotlin fixture also covers Kotlin-specific PSI and K2 rules:
 
-Use them like this:
+- overridden registered abstract functions
+- nullable registered primitive/core properties
+- `lateinit` Godot core properties
+- unsupported registered property types
+- `VariantArray<Enum>`
+- `@Export` without direct `@Visible` in Explicit mode
+- property hints without registration in Explicit mode
+- wrong property types for every supported hint family
+- bitfields with more than 32 enum entries
+- mutable signals
+- `@Emit` on a non-signal value
+- ignored RPC transfer channels
+- unregistered signal connection targets
+- unregistered callable targets
+- RPC targets that are unregistered
+- RPC targets without `@Rpc`
+- RPC targets using `RpcMode.DISABLED`
 
-- `JvmInspection`
-  - for checks that can work on JVM or Java-shaped PSI
-  - Kotlin code reaches it through light elements
-  - this is the best place for logic that may later also help Java or Scala
-  - currently owns class checks and the simple method checks that only need JVM PSI
+## Separate Core-Type Copy Suite
 
-- `KotlinInspection`
-  - for Kotlin PSI and K2-analysis-based checks
-  - use this for `KtProperty`, `KtNamedFunction`, callable references, and other Kotlin-native rules
-  - currently keeps property checks, callable-reference checks, RPC argument checks, and override logic that depends on K2 analysis
+Core-type copy mutation is not part of the 3x3 registration matrix. It is a
+separate Kotlin-only inspection with its existing fixture:
 
-- `CoreTypeCopyModificationInspection`
-  - dedicated Kotlin inspection for a very specific rule: do not assign through a nested member of a `@CoreTypeLocalCopy` getter result
-  - keep this conservative
-  - false negatives are acceptable here, false positives are not
-  - the current implementation only checks:
-    - ordinary dot-qualified assignment left-hand sides like `transform.basis.x.x = 1.0`
-    - ordinary dot-qualified helper-call chains like `transform.basis.x { y = 1.0 }`
+- fixture:
+  `../../../harness/intellij-check/src/main/kotlin/godot/inspection/CopyModificationCheckTestClass.kt`
+- test:
+  `KotlinInspectionTest.testCoreTypeCopyFixture`
 
-These classes are intentionally simple dispatchers. They check the PSI element type, then forward to the right analyzer.
+Do not mix these cases into the nine registration tests. This inspection
+checks mutation through copies returned by `@CoreTypeLocalCopy` getters and
+has different semantics from annotation registration.
 
-### 5. Analyzers
+The expected fixture currently reports ten errors.
 
-Rule logic lives under:
+## How the Test Fixture Works
 
-- [analysis/](src/main/kotlin/godot/intellij/plugin/analysis)
+`CodeInsightFixtureTestBase.kt` extends IntelliJ's `BasePlatformTestCase`,
+which provides `CodeInsightTestFixture`.
 
-Important files:
+For every test it:
 
-- [GodotProblem.kt](src/main/kotlin/godot/intellij/plugin/analysis/GodotProblem.kt)
-- [analysis/jvm/GodotScriptAnalyzer.kt](src/main/kotlin/godot/intellij/plugin/analysis/jvm/GodotScriptAnalyzer.kt)
-- [analysis/jvm/RegisterMethodAnalyzer.kt](src/main/kotlin/godot/intellij/plugin/analysis/jvm/RegisterMethodAnalyzer.kt)
-- [analysis/kotlin/VisibleAnalyzer.kt](src/main/kotlin/godot/intellij/plugin/analysis/kotlin/VisibleAnalyzer.kt)
-- [analysis/kotlin/RegisterAnalyzer.kt](src/main/kotlin/godot/intellij/plugin/analysis/kotlin/RegisterAnalyzer.kt)
-- [analysis/kotlin/EmitAnalyzer.kt](src/main/kotlin/godot/intellij/plugin/analysis/kotlin/EmitAnalyzer.kt)
-- [analysis/kotlin/RpcAnnotationAnalyzer.kt](src/main/kotlin/godot/intellij/plugin/analysis/kotlin/RpcAnnotationAnalyzer.kt)
-- [analysis/kotlin/CoreTypeCopyModificationAnalyzer.kt](src/main/kotlin/godot/intellij/plugin/analysis/kotlin/CoreTypeCopyModificationAnalyzer.kt)
+1. creates an in-memory `project.godot`, making the fixture a Godot project
+2. registers the running JDK as the test module SDK
+3. attaches Kotlin stdlib and the Godot annotation, common, core, API, and
+   extension jars
+4. copies a harness source file into the light test project
+5. writes the selected `RegistrationMode` to `RegistrationSettings`
+6. enables the requested inspection
+7. runs `myFixture.doHighlighting()`
+8. fails immediately if the fixture has compiler errors
+9. keeps only highlights produced by the inspection under test
+10. compares the exact severity, message, and occurrence count
 
-Mental rule:
+This is deliberately an integration-style inspection test. It validates PSI
+resolution, K2 analysis, Java/Scala light elements, inspection registration,
+and emitted highlighting without launching an IDE sandbox manually.
 
-- inspection = IntelliJ glue
-- analyzer = actual rule
+### Test dependencies
 
-That split keeps it easy later to:
+`build.gradle.kts` supplies:
 
-- add new checks
-- reuse the same logic from inspections
-- support another JVM language without rewriting rule code
+- IntelliJ Platform test framework
+- IntelliJ Java plugin test framework
+- bundled Kotlin plugin
+- Scala plugin
+- `godot-api-library`
+- `godot-extension-library`
+- JUnit 4
 
-### 6. Quick fixes and wizard
+The Gradle test task passes the harness root through
+`godot.intellij.fixture.root` and enables K2.
 
-Quick fixes:
+## Expected Result Conventions
 
-- [quickfix/](src/main/kotlin/godot/intellij/plugin/quickfix)
+Use `assertProblems` with:
 
-Wizard:
+- `error(message, count)`
+- `weakWarning(message, count)`
 
-- [wizard/GodotNewProjectWizard.kt](src/main/kotlin/godot/intellij/plugin/wizard/GodotNewProjectWizard.kt)
-- [wizard/GodotNewProjectWizardStep.kt](src/main/kotlin/godot/intellij/plugin/wizard/GodotNewProjectWizardStep.kt)
-- [template/](src/main/resources/template)
+Messages must come from `GodotPluginBundle`; do not repeat user-facing
+strings in tests.
 
-The wizard is intentionally basic. It now uses IntelliJ's current New Project Wizard API, and it should stay easy to understand and edit.
-It has:
+The assertion is intentionally order-independent, but it is strict about:
 
-- a built-in project name from IntelliJ
-- a default package field
-- a language selector
-- Gradle template generation that writes `godot.languages` for the selected starter language
-- top-level Android and iOS export toggles
-- a Graal Native Image section that unfolds only when enabled
-- iOS as a one-way dependency on Graal Native Image
+- inspection severity
+- full rendered message
+- number of occurrences
+- unexpected extra problems
+- missing expected problems
 
-## Where To Start Reading
+Do not weaken the assertion to make a failing inspection pass. First
+determine whether the fixture expectation, registration policy, or analyzer
+is wrong.
 
-Best reading order:
+## Updating or Adding an Inspection Check
 
-1. [plugin.xml](src/main/resources/META-INF/plugin.xml)
-2. [GodotKotlinJvmProjectActivity.kt](src/main/kotlin/godot/intellij/plugin/GodotKotlinJvmProjectActivity.kt)
-3. [GodotKotlinJvmProjectServiceImpl.kt](src/main/kotlin/godot/intellij/plugin/GodotKotlinJvmProjectServiceImpl.kt)
-4. [GodotProjectScopeService.kt](src/main/kotlin/godot/intellij/plugin/GodotProjectScopeService.kt)
-5. [godotRootExt.kt](src/main/kotlin/godot/intellij/plugin/project/godotRootExt.kt)
-6. one inspection + its analyzer pair
+When changing a regular registration check:
 
-Good first pairs:
+1. add or update the source case in every language the check supports
+2. update the Explicit, Inferred, and Automatic expectations for each
+   affected language
+3. keep unsupported language-specific checks out of the other fixtures
+4. run the complete plugin test task
+5. use the sandbox only for visual confirmation when necessary
 
-- [inspection/JvmInspection.kt](src/main/kotlin/godot/intellij/plugin/inspection/JvmInspection.kt) + [analysis/jvm/GodotScriptAnalyzer.kt](src/main/kotlin/godot/intellij/plugin/analysis/jvm/GodotScriptAnalyzer.kt)
-- [inspection/KotlinInspection.kt](src/main/kotlin/godot/intellij/plugin/inspection/KotlinInspection.kt) + [analysis/kotlin/VisibleAnalyzer.kt](src/main/kotlin/godot/intellij/plugin/analysis/kotlin/VisibleAnalyzer.kt)
+Before accepting a mode result, compare it with the registration processor
+under `kt/godot-registration/godot-class-graph-symbol-processor`. The IDE
+policy must describe what the actual registration pipeline will select.
 
-## How To Add A New Check
+If the test reveals different behavior for equivalent Java, Kotlin, and
+Scala declarations, investigate the PSI representation before adding a
+language-specific exception. Scala properties may appear through generated
+accessor methods; Kotlin declarations may resolve compiled annotations
+through constructors or light elements.
 
-Keep it small.
+## Commands
 
-### If it is Kotlin-specific
+Run commands from the `kt` directory.
 
-1. add or extend a rule in `analysis/kotlin/`
-2. route to it from [KotlinInspection.kt](src/main/kotlin/godot/intellij/plugin/inspection/KotlinInspection.kt)
-3. add a quick fix only if the fix is safe and obvious
-
-### If it may help Java or Scala later
-
-1. prefer `analysis/jvm/`
-2. route to it from [JvmInspection.kt](src/main/kotlin/godot/intellij/plugin/inspection/JvmInspection.kt)
-3. keep it based on JVM PSI, not Kotlin PSI
-
-### General rules
-
-- do not put rule logic directly in `plugin.xml`-registered classes if you can avoid it
-- do not duplicate Godot-root checks in every rule
-- keep inspections tiny
-- prefer one feature per file
-- do not reintroduce Gradle-model communication
-
-## Running The Plugin
-
-Run commands from:
-
-`kt/`
-
-### Run a sandbox IDE
+Complete plugin test suite:
 
 ```powershell
-.\gradlew.bat :godot-intellij-plugin:runIde
+.\gradlew.bat :godot-intellij-plugin:test
 ```
 
-This starts a fresh IntelliJ sandbox with the newly built plugin already installed.
+One language:
 
-### Compile the module
+```powershell
+.\gradlew.bat :godot-intellij-plugin:test --tests "*KotlinInspectionTest"
+.\gradlew.bat :godot-intellij-plugin:test --tests "*JavaInspectionTest"
+.\gradlew.bat :godot-intellij-plugin:test --tests "*ScalaInspectionTest"
+```
+
+One mode:
+
+```powershell
+.\gradlew.bat :godot-intellij-plugin:test --tests "*testExplicitFixture"
+.\gradlew.bat :godot-intellij-plugin:test --tests "*testInferredFixture"
+.\gradlew.bat :godot-intellij-plugin:test --tests "*testAutomaticFixture"
+```
+
+Compile the plugin:
 
 ```powershell
 .\gradlew.bat :godot-intellij-plugin:compileKotlin
 ```
 
-### Build the plugin zip
+Run the sandbox IDE:
 
 ```powershell
-.\gradlew.bat :godot-intellij-plugin:buildPlugin
+.\gradlew.bat :godot-intellij-plugin:runIde
 ```
 
-## Testing
+## Sandbox Rule
 
-There are no meaningful checked-in tests yet, so manual testing matters.
+When asked to open or launch the sandbox, reset its project/editor state
+first unless the user explicitly asks for a non-clean launch. Automated
+inspection tests do not require a sandbox reset.
 
-Good smoke checks:
+## Design Rules
 
-- `@Visible` on a `val`
-- `@Export` without `@Visible`
-- duplicate registered class names
-- invalid RPC channel setup
-- callable reference to an unregistered function
-- nested core-type copy mutation such as `transform.basis.x.x = 1.0`
-- helper-call copy mutation such as `transform.basis.x { y = 1.0 }`
-- wizard generation for Kotlin, Java, and Scala
-
-## Design Constraints
-
-Keep these constraints in mind:
-
-- keep the structure shallow and obvious
-- prefer simple services over clever infrastructure
-- keep project detection centralized
-- keep inspections as small adapters
-- keep analyzers pure and reusable
-- keep user-facing behavior stable unless a task explicitly asks otherwise
-- favor maintainability over feature sprawl
-
-If a change starts adding hidden state, duplicate sources of truth, or a new Gradle/IDE bridge, it is probably the wrong direction.
-
+- Follow KISS and YAGNI.
+- Keep the 3x3 matrix complete.
+- Keep the core-type copy suite separate.
+- Keep one source fixture per language and registration mode.
+- Keep inspection entry points small.
+- Put shared behavior in analyzers or `RegistrationPolicy`.
+- Prefer a failing precise test over a permissive test.
+- Do not use manual sandbox checking as a substitute for fixture tests.

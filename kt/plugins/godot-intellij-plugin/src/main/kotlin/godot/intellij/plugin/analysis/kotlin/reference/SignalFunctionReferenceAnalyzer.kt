@@ -1,15 +1,14 @@
 package godot.intellij.plugin.analysis.kotlin.reference
 
 import com.intellij.psi.util.parentOfType
+import godot.core.Signal
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.analysis.GodotProblem
 import godot.intellij.plugin.project.isOrInheritsType
-import godot.annotation.Register
-import godot.core.Signal
 import godot.intellij.plugin.quickfix.TargetFunctionNotRegisteredQuickFix
+import godot.intellij.plugin.registration.RegistrationPolicy
 import org.jetbrains.kotlin.idea.references.KtSimpleNameReference
 import org.jetbrains.kotlin.idea.references.mainReference
-import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.psi.KtCallableReferenceExpression
 import org.jetbrains.kotlin.psi.KtDotQualifiedExpression
 import org.jetbrains.kotlin.psi.KtNamedFunction
@@ -35,7 +34,7 @@ object SignalFunctionReferenceAnalyzer {
                 .mainReference
                 .resolve() as? KtNamedFunction
 
-            if (targetFunction != null && targetFunction.findAnnotation(Register::class.classId) == null) {
+            if (targetFunction != null && !RegistrationPolicy.registersFunction(targetFunction)) {
                 return listOf(
                     GodotProblem(
                         GodotPluginBundle.message("problem.signal.connection.connectedFunctionNotRegistered"),

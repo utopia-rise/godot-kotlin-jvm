@@ -52,12 +52,15 @@ During the sync step, the Gradle plugin scans the configured Godot project for e
 
 ## Class and member registration
 
-Contrary to what you might be used to from GDScript or C#, this binding requires you to explicitly define which classes
-and which members of those classes should be exposed to Godot.  
-This requires a bit more code but enables to properly define visibility across languages and restrict access to values 
-which you might not want to expose.  
-See the individual sections in the `user-guide` in this documentation to see how to register your [classes](https://godot-kotl.in/en/stable/user-guide/classes), [properties](https://godot-kotl.in/en/stable/user-guide/properties/), and [functions](https://godot-kotl.in/en/stable/user-guide/functions/) so
-you can use them from godot and other scripting languages.
+Unlike GDScript or C#, JVM declarations pass through a registration step
+before Godot can use them. The default behavior follows registration
+annotations and their implied meaning, which keeps the Godot-facing boundary
+intentional without requiring every annotation to be repeated.
+
+See the [registration reference](advanced/registration-logic.md) for the
+complete rules, or continue with the guides for
+[classes](classes.md), [properties](properties.md), and
+[functions](functions.md).
 
 ## Instance types and singletons
 

@@ -5,11 +5,11 @@ import com.intellij.codeInspection.ProblemDescriptor
 import com.intellij.openapi.project.Project
 import godot.annotation.Rpc
 import godot.intellij.plugin.GodotPluginBundle
-import org.jetbrains.kotlin.scripting.resolve.classId
 import org.jetbrains.kotlin.idea.references.mainReference
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.psi.KtCallableReferenceExpression
 import org.jetbrains.kotlin.psi.KtNamedFunction
+import org.jetbrains.kotlin.scripting.resolve.classId
 
 class TargetFunctionsRpcAnnotationHasRpcModeDisabled : LocalQuickFix {
     override fun getFamilyName(): String = GodotPluginBundle.message("quickFix.function.connectedFunctionsRpcAnnotationHasRpcModeDisabled.familyName")

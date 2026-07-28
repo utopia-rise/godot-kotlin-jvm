@@ -4,7 +4,6 @@ import com.intellij.codeInspection.ProblemHighlightType
 import godot.annotation.Rpc
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.analysis.GodotProblem
-import org.jetbrains.kotlin.scripting.resolve.classId
 import godot.intellij.plugin.quickfix.TransferModeIgnoresChannelQuickFix
 import godot.tools.common.constants.transferModeUnreliableOrdered
 import org.jetbrains.kotlin.idea.base.psi.kotlinFqName
@@ -13,6 +12,7 @@ import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.psi.KtAnnotated
 import org.jetbrains.kotlin.psi.KtNameReferenceExpression
 import org.jetbrains.kotlin.psi.psiUtil.getChildOfType
+import org.jetbrains.kotlin.scripting.resolve.classId
 
 object RpcAnnotationAnalyzer {
     private val transferModeIgnoresChannelQuickFix = TransferModeIgnoresChannelQuickFix()

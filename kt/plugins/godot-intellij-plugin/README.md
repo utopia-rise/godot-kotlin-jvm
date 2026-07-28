@@ -20,11 +20,14 @@ Java and Scala support are welcome when they naturally fit the same JVM-facing i
 Adds focused K2-only code insight for Godot Kotlin/JVM projects in IntelliJ IDEA.
 
 Features:
+
 - validates `@Script`, `@Visible`, `@Register`, `@Emit`, `@Export`, and `@Rpc` usage
+- highlights Godot script declarations as ineligible, candidates, or registered
 - validates common callable-reference usage for Godot signal, `call`, and `rpc` patterns
 - detects nested mutation through `@CoreTypeLocalCopy` getter results in simple assignment chains
 - offers quick fixes for common registration and mutability mistakes
 - creates new Godot Kotlin/JVM projects and modules from built-in templates
+
 <!-- Plugin description end -->
 
 ## Internal Structure
@@ -32,26 +35,27 @@ Features:
 The code is split into a few small layers:
 
 - root package:
-  - plugin wiring
-  - startup activity
-  - project-level indexing and registered-name caches
+    - plugin wiring
+    - startup activity
+    - project-level indexing and registered-name caches
 - `project/`:
-  - shared PSI helpers
-  - Godot root detection
-  - project-scope service
+    - shared PSI helpers
+    - Godot root detection
+    - project-scope service
 - `inspection/`:
-  - editor-facing inspections
-  - three entry points:
-    - `JvmInspection`
-    - `KotlinInspection`
-    - `CoreTypeCopyModificationInspection`
+    - editor-facing inspections
+    - language entry points:
+        - `JavaInspection`
+        - `KotlinInspection`
+        - `ScalaInspection`
+        - `CoreTypeCopyModificationInspection`
 - `analysis/`:
-  - small rule objects that return problems
-  - keeps rule logic out of inspection UI glue
+    - small rule objects that return problems
+    - keeps rule logic out of inspection UI glue
 - `quickfix/`:
-  - source edits for common fixes
+    - source edits for common fixes
 - `wizard/`:
-  - project/module creation flow
+    - project/module creation flow
 
 That split is meant to keep each file easy to scan:
 
@@ -72,7 +76,8 @@ Checks around `@Script`, including:
 
 Relevant files:
 
-- [JvmInspection.kt](src/main/kotlin/godot/intellij/plugin/inspection/JvmInspection.kt)
+- [JavaInspection.kt](src/main/kotlin/godot/intellij/plugin/inspection/JavaInspection.kt)
+- [ScalaInspection.kt](src/main/kotlin/godot/intellij/plugin/inspection/ScalaInspection.kt)
 - [GodotScriptAnalyzer.kt](src/main/kotlin/godot/intellij/plugin/analysis/jvm/GodotScriptAnalyzer.kt)
 
 ### Property and export checks
@@ -103,7 +108,8 @@ Checks around `@Register` and `@Rpc`, including:
 
 Relevant files:
 
-- [JvmInspection.kt](src/main/kotlin/godot/intellij/plugin/inspection/JvmInspection.kt)
+- [JavaInspection.kt](src/main/kotlin/godot/intellij/plugin/inspection/JavaInspection.kt)
+- [ScalaInspection.kt](src/main/kotlin/godot/intellij/plugin/inspection/ScalaInspection.kt)
 - [KotlinInspection.kt](src/main/kotlin/godot/intellij/plugin/inspection/KotlinInspection.kt)
 - [RegisterMethodAnalyzer.kt](src/main/kotlin/godot/intellij/plugin/analysis/jvm/RegisterMethodAnalyzer.kt)
 - [RegisterAnalyzer.kt](src/main/kotlin/godot/intellij/plugin/analysis/kotlin/RegisterAnalyzer.kt)
@@ -123,7 +129,8 @@ Relevant files:
 
 ### Core-type copy mutation check
 
-Dedicated inspection for the common Godot core-type pitfall where a getter returns a copy and code tries to mutate a nested member of that copy through either an assignment chain or a core-type helper call.
+Dedicated inspection for the common Godot core-type pitfall where a getter returns a copy and code tries to mutate a nested member of that copy through either
+an assignment chain or a core-type helper call.
 
 Example:
 

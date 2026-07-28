@@ -1,5 +1,6 @@
 <idea-plugin>
     <extensions defaultExtensionNs="com.intellij">
         <localInspection implementationClass="godot.intellij.plugin.inspection.ScalaInspection" language="Scala"/>
+        <annotator implementationClass="godot.intellij.plugin.highlighting.ScalaRegistrationHighlightAnnotator" language="Scala"/>
     </extensions>
 </idea-plugin>
