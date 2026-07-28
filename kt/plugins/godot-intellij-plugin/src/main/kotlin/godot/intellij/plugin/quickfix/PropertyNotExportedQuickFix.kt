@@ -5,10 +5,10 @@ import com.intellij.codeInspection.ProblemDescriptor
 import com.intellij.openapi.project.Project
 import godot.annotation.Export
 import godot.intellij.plugin.GodotPluginBundle
-import org.jetbrains.kotlin.scripting.resolve.classId
 import org.jetbrains.kotlin.idea.util.addAnnotation
 import org.jetbrains.kotlin.psi.KtModifierListOwner
 import org.jetbrains.kotlin.psi.KtProperty
+import org.jetbrains.kotlin.scripting.resolve.classId
 
 class PropertyNotExportedQuickFix : LocalQuickFix {
     override fun getFamilyName(): String = GodotPluginBundle.message("quickFix.property.notExported.familyName")

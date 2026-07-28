@@ -2,20 +2,20 @@ package godot.intellij.plugin.analysis.jvm
 
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiMethod
-import godot.annotation.Script
-import godot.annotation.Register
 import godot.common.constants.Constraints
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.analysis.GodotProblem
+import godot.intellij.plugin.registration.RegistrationPolicy
 import godot.tools.common.constants.lifecycleFunctions
 
 object RegisterMethodAnalyzer {
     fun analyze(method: PsiMethod): List<GodotProblem> {
         return buildList {
             if (
-                method.containingClass?.getAnnotation(Script::class.qualifiedName!!) != null &&
+                method.containingClass?.let(RegistrationPolicy::registersClass) == true &&
+                RegistrationPolicy.requiresGodotOverrideAnnotation(method) &&
                 lifecycleFunctions.any { it == method.name } &&
-                method.getAnnotation(Register::class.qualifiedName!!) == null
+                !RegistrationPolicy.registersFunction(method)
             ) {
                 add(
                     GodotProblem(
@@ -25,7 +25,7 @@ object RegisterMethodAnalyzer {
                 )
             }
 
-            if (method.getAnnotation(Register::class.qualifiedName!!) != null) {
+            if (RegistrationPolicy.registersFunction(method)) {
                 addAll(GenericRegistrationAnalyzer.analyze(method))
                 if (method.parameterList.parametersCount > Constraints.MAX_FUNCTION_ARG_COUNT) {
                     add(

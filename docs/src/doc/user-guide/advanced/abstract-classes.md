@@ -21,7 +21,6 @@ Abstract class definition:
 abstract class AbstractClassInheritanceParent: Node() {
 
     @Export
-    @Visible
     var registeredExportedPropertyInAbstractClass = false
 
     @Emit("blubb")
@@ -42,7 +41,6 @@ Child class definition:
 ```kotlin
 @Script
 class AbstractClassInheritanceChild: AbstractClassInheritanceParent() {
-    @Register
     override fun abstractFunction() {
         // some implementation
     }

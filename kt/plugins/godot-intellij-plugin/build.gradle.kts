@@ -1,10 +1,8 @@
-import org.jetbrains.changelog.Changelog
 import org.jetbrains.changelog.markdownToHTML
 import org.jetbrains.intellij.platform.gradle.IntelliJPlatformType
+import org.jetbrains.intellij.platform.gradle.TestFrameworkType
 import versioninfo.fullBuildVersion
 import versioninfo.isSnapshot
-
-extra["kotlin.stdlib.default.dependency"] = "false"
 
 plugins {
     // Java support
@@ -46,6 +44,9 @@ dependencies {
     implementation(project(":godot-bootstrap-library"))
     implementation(project(":godot-core-library"))
     compileOnly(kotlin("stdlib"))
+    testImplementation(project(":godot-api-library"))
+    testImplementation(project(":godot-extension-library"))
+    testImplementation("junit:junit:4.13.2")
 
     // https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin.html
     intellijPlatform {
@@ -55,6 +56,8 @@ dependencies {
         bundledPlugin("org.jetbrains.kotlin")
         plugin("org.intellij.scala", "2025.1.4")
 
+        testFramework(TestFrameworkType.Platform)
+        testFramework(TestFrameworkType.Plugin.Java)
         pluginVerifier()
         zipSigner()
     }
@@ -92,15 +95,15 @@ tasks {
 
         // Extract the <!-- Plugin description --> section from README.md and provide for the plugin's manifest
         pluginDescription.set(
-                File("$projectDir/README.md").readText().lines().run {
-                    val start = "<!-- Plugin description -->"
-                    val end = "<!-- Plugin description end -->"
+            File("$projectDir/README.md").readText().lines().run {
+                val start = "<!-- Plugin description -->"
+                val end = "<!-- Plugin description end -->"
 
-                    if (!containsAll(listOf(start, end))) {
-                        throw GradleException("Plugin description section not found in README.md:\n$start ... $end")
-                    }
-                    subList(indexOf(start) + 1, indexOf(end))
-                }.joinToString("\n").run { markdownToHTML(this) }
+                if (!containsAll(listOf(start, end))) {
+                    throw GradleException("Plugin description section not found in README.md:\n$start ... $end")
+                }
+                subList(indexOf(start) + 1, indexOf(end))
+            }.joinToString("\n").run { markdownToHTML(this) }
         )
     }
 
@@ -126,6 +129,10 @@ tasks {
     }
 
     test {
+        systemProperty(
+            "godot.intellij.fixture.root",
+            rootProject.projectDir.parentFile.resolve("harness/intellij-check").absolutePath
+        )
         jvmArgumentProviders += CommandLineArgumentProvider {
             listOf("-Didea.kotlin.plugin.use.k2=true")
         }

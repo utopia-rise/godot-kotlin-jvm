@@ -166,7 +166,6 @@ Checking if an object is an instance of a particular type can be done via the `i
 
 /// tab | Kotlin
 ```kotlin
-@Register
 override fun _ready() {
     val parent = getParent()
     if (parent is CollisionShape) {
@@ -181,7 +180,6 @@ override fun _ready() {
 
 /// tab | Java
 ```java
-@Register
 @Override
 public void _ready() {
     Node parent = getParent();
@@ -196,7 +194,6 @@ public void _ready() {
 
 /// tab | Scala
 ```scala
-@Register
 override def _ready(): Unit = {
   getParent() match {
     case collisionShape: CollisionShape =>
@@ -214,7 +211,6 @@ This also works for any type you define.
     If you are sure that an object is always an instance of some type, then you can take advantage of Kotlin's [contracts](https://kotlinlang.org/docs/reference/whatsnew13.html#contracts) feature. This allows you to avoid having nested `if`s.
 
     ```kotlin
-    @Register
     override fun _ready() {
         val parent = getParent()
         require(parent is CollisionShape)
@@ -254,7 +250,8 @@ The `@Script` annotation takes only one argument:
 
 ## Tool Mode
 
-Annotate your class with `@Tool` to make it a tool class (note that `@Script` is required for this annotation to take effect).
+Annotate your class with `@Tool` to make it a tool class. `@Tool` also
+selects the class for registration through its `@Script` meta-annotation.
 
 !!! Caution
     This is currently not implemented.

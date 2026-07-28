@@ -1,11 +1,10 @@
-package godot.inspection;
+package godot.inspection.explicit;
 
-import godot.annotation.Export;
-import godot.annotation.Script;
-import godot.annotation.Register;
-import godot.annotation.Visible;
-import godot.annotation.Emit;
-import godot.annotation.Tool;
+// Manual review mode: Explicit.
+// This same source is exercised by the IntelliJ CodeInsight fixture test.
+// Inline expectation comments describe the original Explicit baseline; the test owns mode-specific expectations.
+
+import godot.annotation.*;
 import godot.api.Node;
 import godot.core.Signal0;
 import godot.core.StringNames;
@@ -14,12 +13,12 @@ import godot.core.StringNames;
 
 // Expected red: `@Tool` requires the class itself to be registered.
 @Tool
-class JvmNotRegisteredButToolFixture extends Node {
+class JvmNotRegisteredButToolFixtureExplicit extends Node {
 }
 
 // Expected red on the class: it is not `@Script`, but it contains
 // registered properties, signals, and functions.
-class JvmNotRegisteredButMembersFixture extends Node {
+class JvmNotRegisteredButMembersFixtureExplicit extends Node {
     // Expected red via the containing class: registered property inside a
     // non-registered class.
     @Export
@@ -42,35 +41,35 @@ class JvmNotRegisteredButMembersFixture extends Node {
 // Expected red: `@Script` is present, but the class does not inherit a
 // Godot object type.
 @Script
-class JvmGodotScriptWithoutGodotBaseFixture {
+class JvmGodotScriptWithoutGodotBaseFixtureExplicit {
 }
 
 // Expected red: registered classes must expose exactly one parameterless
 // constructor, and this one only has a parameterized constructor.
 @Script
-class JvmGodotScriptWithoutDefaultConstructorFixture extends Node {
-    public JvmGodotScriptWithoutDefaultConstructorFixture(int number) {
+class JvmGodotScriptWithoutDefaultConstructorFixtureExplicit extends Node {
+    public JvmGodotScriptWithoutDefaultConstructorFixtureExplicit(int number) {
     }
 }
 
 // Expected red on both duplicate declarations: they register the same custom
 // Godot class name.
-@Script(className = "DuplicateJvmInspectionName")
-class JvmDuplicateRegisteredNameFixtureOne extends Node {
+@Script(className = "DuplicateJvmInspectionNameExplicit")
+class JvmDuplicateRegisteredNameFixtureOneExplicit extends Node {
 }
 
-@Script(className = "DuplicateJvmInspectionName")
-class JvmDuplicateRegisteredNameFixtureTwo extends Node {
+@Script(className = "DuplicateJvmInspectionNameExplicit")
+class JvmDuplicateRegisteredNameFixtureTwoExplicit extends Node {
 }
 
 // Expected red: generic classes cannot be registered.
 @Script
-class JvmGenericRegisteredClassFixture<T> extends Node {
+class JvmGenericRegisteredClassFixtureExplicit<T> extends Node {
 }
 
 // Method registration checks.
 @Script
-public class IdeJvmInspectionRedFixture extends Node {
+public class IdeJavaInspectionExplicit extends Node {
     // Expected red: notification callbacks like `_ready` must also carry
     // `@Register` inside a registered class.
     @Override

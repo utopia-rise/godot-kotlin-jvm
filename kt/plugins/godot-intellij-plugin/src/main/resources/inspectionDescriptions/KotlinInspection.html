@@ -1,20 +1,22 @@
 <html>
 <body>
-<p>Runs Kotlin-specific Godot Kotlin/JVM inspections.</p>
+<p>Checks Kotlin declarations used by Godot Kotlin/JVM registration.</p>
+
+<p>Current Kotlin checks include:</p>
+<ul>
+    <li>registered class inheritance, generics, parameterless constructors, and unique names</li>
+    <li>class, property, signal, and method selection for the configured registration mode</li>
+    <li><code>@Visible</code>, <code>@Export</code>, property type, nullability, and hint validation</li>
+    <li><code>@Emit</code> signal type and mutability validation</li>
+    <li><code>@Register</code>, lifecycle override, and method parameter validation</li>
+    <li><code>@Rpc</code> configuration validation</li>
+    <li>callable-reference validation for signals, <code>call</code>, and <code>rpc</code></li>
+</ul>
 
 <p>
-These checks operate on Kotlin PSI and K2 analysis to validate registration annotations,
-exported properties, RPC usage, signals, and callable references used in common Godot patterns.
+    The inspection uses Kotlin PSI and K2 analysis. Annotation selection follows the configured explicit,
+    inferred, or automatic annotation processing mode, including recursive meta-annotations where supported.
 </p>
-
-<p>Current checks include:</p>
-<ul>
-  <li><code>@Visible</code>, <code>@Export</code>, and property hint validation</li>
-  <li><code>@Register</code> validation</li>
-  <li><code>@Emit</code> validation</li>
-  <li><code>@Rpc</code> annotation validation</li>
-  <li>callable-reference validation for signal, <code>call</code>, and <code>rpc</code> usage</li>
-</ul>
 </body>
 </html>
 

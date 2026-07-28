@@ -8,12 +8,19 @@
     <extensions defaultExtensionNs="com.intellij">
         <projectService serviceImplementation="godot.intellij.plugin.GodotKotlinJvmProjectService"/>
         <projectService serviceImplementation="godot.intellij.plugin.GodotProjectScopeService"/>
+        <projectService serviceImplementation="godot.intellij.plugin.registration.RegistrationSettings"/>
+        <projectConfigurable
+                id="godot.kotlin.jvm.settings"
+                displayName="Godot Kotlin/JVM"
+                instance="godot.intellij.plugin.registration.RegistrationSettingsConfigurable"/>
         <postStartupActivity implementation="godot.intellij.plugin.GodotKotlinJvmProjectActivity"/>
         <newProjectWizard.generator implementation="godot.intellij.plugin.wizard.GodotNewProjectWizard"/>
         <notificationGroup id="Error message" displayType="STICKY_BALLOON" key="notification.group.error" isLogByDefault="true"/>
         <localInspection implementationClass="godot.intellij.plugin.inspection.JavaInspection" language="JAVA"/>
         <localInspection implementationClass="godot.intellij.plugin.inspection.KotlinInspection" language="kotlin"/>
         <localInspection implementationClass="godot.intellij.plugin.inspection.CoreTypeCopyModificationInspection" language="kotlin"/>
+        <annotator implementationClass="godot.intellij.plugin.highlighting.RegistrationHighlightAnnotator" language="JAVA"/>
+        <annotator implementationClass="godot.intellij.plugin.highlighting.RegistrationHighlightAnnotator" language="kotlin"/>
     </extensions>
 
     <extensions defaultExtensionNs="org.jetbrains.kotlin">

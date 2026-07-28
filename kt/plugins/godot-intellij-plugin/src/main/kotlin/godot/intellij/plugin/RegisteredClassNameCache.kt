@@ -5,6 +5,7 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiRecursiveElementWalkingVisitor
 import godot.intellij.plugin.project.getRegisteredClassName
+import godot.intellij.plugin.registration.RegistrationPolicy
 import org.jetbrains.kotlin.psi.KtClass
 
 class RegisteredClassNameCache {
@@ -12,27 +13,29 @@ class RegisteredClassNameCache {
 
     fun getContainersByName(registeredName: String): Set<RegisteredClassDataContainer> =
         fqNameToRegisteredName
-            .entries
-            .groupBy { it.value.registeredName }[registeredName]
-            ?.map { it.value }
-            ?.toSet()
-            ?: emptySet()
+            .values
+            .filterTo(mutableSetOf()) { container -> container.registeredName == registeredName }
 
     fun getContainerByFqName(fqName: String): RegisteredClassDataContainer? = fqNameToRegisteredName[fqName]
 
+    fun clear() {
+        fqNameToRegisteredName.clear()
+    }
+
     fun psiFileChanged(psiFile: PsiFile) {
+        removeFileEntries(psiFile)
         psiFile.accept(
             object : PsiRecursiveElementWalkingVisitor() {
                 override fun visitElement(element: PsiElement) {
                     super.visitElement(element)
 
                     val registeredClass = when (element) {
-                        is KtClass -> element.getRegisteredClassName()
+                        is KtClass -> element.takeIf(RegistrationPolicy::registersClass)?.getRegisteredClassName()
                             ?.let { (fqName, registeredName) ->
                                 Triple(fqName, registeredName, element.containingFile.virtualFile)
                             }
 
-                        is PsiClass -> element.getRegisteredClassName()
+                        is PsiClass -> element.takeIf(RegistrationPolicy::registersClass)?.getRegisteredClassName()
                             ?.let { (fqName, registeredName) ->
                                 Triple(fqName, registeredName, element.containingFile.virtualFile)
                             }
@@ -60,20 +63,12 @@ class RegisteredClassNameCache {
     }
 
     fun psiFileRemoved(psiFile: PsiFile) {
-        psiFile.accept(
-            object : PsiRecursiveElementWalkingVisitor() {
-                override fun visitElement(element: PsiElement) {
-                    super.visitElement(element)
+        removeFileEntries(psiFile)
+    }
 
-                    val fqName = when (element) {
-                        is KtClass -> element.fqName?.asString()
-                        is PsiClass -> element.qualifiedName
-                        else -> return
-                    }
-
-                    fqName?.let(fqNameToRegisteredName::remove)
-                }
-            }
-        )
+    private fun removeFileEntries(psiFile: PsiFile) {
+        fqNameToRegisteredName.entries.removeIf { (_, container) ->
+            container.vFile == psiFile.virtualFile
+        }
     }
 }

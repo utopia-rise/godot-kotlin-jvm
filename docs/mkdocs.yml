@@ -62,10 +62,11 @@ nav:
   - Getting Started:
       - Requirements: getting-started/requirements.md
       - Setting-up: getting-started/setting-up.md
-      - Your first Kotlin class: getting-started/your-first-class.md
+      - Your first class: getting-started/your-first-class.md
       - Compiling your project: getting-started/compiling-your-project.md
   - User guide:
     - API differences: user-guide/api-differences.md
+    - Registration reference: user-guide/advanced/registration-logic.md
     - Classes: user-guide/classes.md
     - Properties: user-guide/properties.md
     - Signals and Callables: user-guide/signals_and_callables.md
@@ -76,7 +77,6 @@ nav:
     - Consuming libraries: user-guide/consuming-libraries.md
     - Advanced:
       - Abstract classes: user-guide/advanced/abstract-classes.md
-      - Registration logic: user-guide/advanced/registration-logic.md
       - Cleanup operations: user-guide/advanced/cleanup-operations.md
       - Gradle plugin configuration: user-guide/advanced/gradle-plugin-configuration.md
       - Command-line and configuration arguments: user-guide/advanced/commandline-args-and-configuration.md
@@ -94,6 +94,7 @@ nav:
     - Test changes from branch: contribution/test-change-from-branch.md
     - Knowledge base:
         - Artifact differentiation: contribution/knowledge-base/artifact-differentiation.md
+        - Registration process: contribution/knowledge-base/registration-process.md
         - Registrar generation: contribution/knowledge-base/registrar-generation.md
         - Annotation placement across languages: contribution/knowledge-base/annotation-placement-across-languages.md
         - Reconstructing shapes from bytecode: contribution/knowledge-base/reconstructing-shapes-from-bytecode.md

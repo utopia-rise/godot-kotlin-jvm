@@ -14,6 +14,7 @@ class GodotProblem(
 
 fun ProblemsHolder.registerProblems(problems: Iterable<GodotProblem>) {
     problems.forEach {
+        if (!it.location.isValid || it.location.textLength == 0) return@forEach
         registerProblem(
             it.location,
             it.message,
@@ -22,3 +23,26 @@ fun ProblemsHolder.registerProblems(problems: Iterable<GodotProblem>) {
         )
     }
 }
+
+fun List<GodotProblem>.withPhysicalAnchor(sourceElement: PsiElement): List<GodotProblem> =
+    map { problem ->
+        if (problem.location.isPhysical) {
+            problem
+        } else {
+            val candidates = listOf(
+                sourceElement.navigationElement,
+                sourceElement.firstChild,
+                sourceElement,
+                problem.location.navigationElement,
+                problem.location
+            )
+            GodotProblem(
+                message = problem.message,
+                location = candidates.firstOrNull { candidate -> candidate?.isPhysical == true }
+                    ?: candidates.firstOrNull { candidate -> candidate?.isValid == true }
+                    ?: sourceElement,
+                quickFixes = problem.quickFixes,
+                highlightType = problem.highlightType
+            )
+        }
+    }

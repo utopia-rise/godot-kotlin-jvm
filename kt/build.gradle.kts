@@ -21,6 +21,12 @@ fun gradleWrapperCommand(vararg args: String): List<String> = when {
 subprojects {
     group = "com.utopia-rise"
     version = versionString
+
+    if (path != ":godot-intellij-plugin") {
+        pluginManager.withPlugin("org.jetbrains.kotlin.jvm") {
+            dependencies.add("implementation", dependencies.kotlin("stdlib"))
+        }
+    }
 }
 
 tasks {

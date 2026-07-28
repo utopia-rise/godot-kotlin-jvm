@@ -1,5 +1,7 @@
-Any property of a registered class can be registered as long as it is public, mutable and can be converted to a `Variant`.
-To register a property annotate it with `@Visible`.
+Any property of a registered class can be registered as long as it is public
+and can be converted to a `Variant`. Use `@Visible` when the property only
+needs to be registered. More specific annotations such as `@Export` and the
+property hints already imply that registration.
 
 /// tab | Kotlin
 ```kotlin
@@ -59,7 +61,6 @@ A property can be exported if it is a core type, a primitive or inherits from `g
 @Script
 class RotatingCube : Node3D() {
     @Export
-    @Visible
     var speed: Float = 2f
 }
 ```
@@ -70,7 +71,6 @@ class RotatingCube : Node3D() {
 @Script
 public class RotatingCube extends Node3D {
     @Export
-    @Visible
     public float speed = 2f;
 }
 ```
@@ -81,7 +81,6 @@ public class RotatingCube extends Node3D {
 @Script
 class RotatingCube extends Node3D {
   @Export
-  @Visible
   var speed: Float = 2f
 }
 ```
@@ -150,7 +149,6 @@ enum class Element { FIRE, WATER, EARTH }
 @Script
 class Spell : Node() {
     @Export
-    @Visible
     var element = Element.FIRE
 }
 ```
@@ -162,7 +160,6 @@ public enum Element { FIRE, WATER, EARTH }
 @Script
 public class Spell extends Node {
     @Export
-    @Visible
     public Element element = Element.FIRE;
 }
 ```
@@ -176,7 +173,6 @@ enum Element extends java.lang.Enum[Element] {
 @Script
 class Spell extends Node {
   @Export
-  @Visible
   var element: Element = Element.FIRE
 }
 ```
@@ -189,21 +185,18 @@ Use `BitField<MyEnum>` (from `godot.core`) when several enum values can be selec
 /// tab | Kotlin
 ```kotlin
 @Export
-@Visible
 var elements: BitField<Element> = BitField.of(Element.FIRE, Element.WATER)
 ```
 ///
 /// tab | Java
 ```java
 @Export
-@Visible
 public BitField<Element> elements = BitField.of(Element.FIRE, Element.WATER);
 ```
 ///
 /// tab | Scala
 ```scala
 @Export
-@Visible
 var elements: BitField[Element] = BitField.of(Element.FIRE, Element.WATER)
 ```
 ///
@@ -217,21 +210,18 @@ Any `Collection<MyEnum>` (`List`, `Set`, …) becomes a resizable list where eac
 /// tab | Kotlin
 ```kotlin
 @Export
-@Visible
 var elements = listOf(Element.FIRE)
 ```
 ///
 /// tab | Java
 ```java
 @Export
-@Visible
 public java.util.List<Element> elements = new java.util.ArrayList<>(java.util.List.of(Element.FIRE));
 ```
 ///
 /// tab | Scala
 ```scala
 @Export
-@Visible
 var elements: java.util.List[Element] = new java.util.ArrayList(java.util.List.of(Element.FIRE))
 ```
 ///

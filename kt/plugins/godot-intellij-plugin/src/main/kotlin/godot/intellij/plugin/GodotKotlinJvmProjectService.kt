@@ -9,41 +9,30 @@ import java.util.concurrent.atomic.AtomicBoolean
 
 class GodotKotlinJvmProjectService(val project: Project) : Disposable {
     private val registeredClassNameCache: MutableMap<Module, RegisteredClassNameCache> = mutableMapOf()
-    private val caches = listOf(registeredClassNameCache)
     private val started = AtomicBoolean(false)
-
-    private val indexer = listOf(
-        PsiTreeListener(::provideRegisteredClassNameCache)
-    )
+    private val registeredClassIndex = RegisteredClassIndex(::provideRegisteredClassNameCache)
 
     fun start() {
         if (!started.compareAndSet(false, true)) return
 
         DumbService.getInstance(project).runWhenSmart {
-            indexer.forEach { indexer ->
-                indexer.initialIndex(
-                    parentDisposable = this,
-                    project = project
-                )
-            }
+            registeredClassIndex.start(
+                parentDisposable = this,
+                project = project
+            )
         }
     }
 
     override fun dispose() {
-        indexer.forEach { indexer ->
-            indexer.dispose(project)
-        }
-        caches.forEach { cache ->
-            cache.clear()
-        }
+        registeredClassNameCache.clear()
     }
 
-    fun provideRegisteredClassNameCache(module: Module): RegisteredClassNameCache {
-        return registeredClassNameCache[module] ?: run {
-            val cache = RegisteredClassNameCache()
-            registeredClassNameCache[module] = cache
-            cache
-        }
+    fun provideRegisteredClassNameCache(module: Module): RegisteredClassNameCache =
+        registeredClassNameCache.getOrPut(module, ::RegisteredClassNameCache)
+
+    fun refreshRegistrationIndex() {
+        registeredClassNameCache.values.forEach(RegisteredClassNameCache::clear)
+        registeredClassIndex.refresh(project)
     }
 
     companion object {
