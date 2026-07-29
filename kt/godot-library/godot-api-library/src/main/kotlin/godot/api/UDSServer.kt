@@ -43,8 +43,8 @@ public open class UDSServer : SocketServer() {
    * any existing socket file before calling this method.
    */
   public final fun listen(path: String): Error {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(ptr, MethodBindings.listenPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to path)
+    TransferContext.callMethod(MethodBindings.listenPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -52,8 +52,8 @@ public open class UDSServer : SocketServer() {
    * If a connection is available, returns a StreamPeerUDS with the connection.
    */
   public final fun takeConnection(): StreamPeerUDS? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.takeConnectionPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.takeConnectionPtr)
     return (TransferContext.readReturnValue(OBJECT) as StreamPeerUDS?)
   }
 

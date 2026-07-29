@@ -15,7 +15,6 @@ import godot.common.interop.VoidPtr
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.PackedVector2Array
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
 import godot.core.Vector2
 import kotlin.Int
@@ -123,18 +122,18 @@ public open class ConvexPolygonShape2D : Shape2D() {
    * algorithm, removing all unneeded points. See [Geometry2D.convexHull] for details.
    */
   public final fun setPointCloud(pointCloud: PackedVector2Array): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to pointCloud)
-    TransferContext.callMethod(ptr, MethodBindings.setPointCloudPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_VECTOR2_ARRAY to pointCloud)
+    TransferContext.callMethod(MethodBindings.setPointCloudPtr)
   }
 
   public final fun setPoints(points: PackedVector2Array): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points)
-    TransferContext.callMethod(ptr, MethodBindings.setPointsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_VECTOR2_ARRAY to points)
+    TransferContext.callMethod(MethodBindings.setPointsPtr)
   }
 
   public final fun getPoints(): PackedVector2Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPointsPtr, PACKED_VECTOR2_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPointsPtr)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 

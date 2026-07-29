@@ -18,7 +18,6 @@ import godot.core.StringName
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING_NAME
@@ -87,35 +86,35 @@ public open class MeshInstance3D : GeometryInstance3D() {
   }
 
   public final fun setMesh(mesh: Mesh?): Unit {
-    TransferContext.writeArguments(OBJECT to mesh)
-    TransferContext.callMethod(ptr, MethodBindings.setMeshPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to mesh)
+    TransferContext.callMethod(MethodBindings.setMeshPtr)
   }
 
   public final fun getMesh(): Mesh? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMeshPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMeshPtr)
     return (TransferContext.readReturnValue(OBJECT) as Mesh?)
   }
 
   public final fun setSkeletonPath(skeletonPath: NodePath): Unit {
-    TransferContext.writeArguments(NODE_PATH to skeletonPath)
-    TransferContext.callMethod(ptr, MethodBindings.setSkeletonPathPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, NODE_PATH to skeletonPath)
+    TransferContext.callMethod(MethodBindings.setSkeletonPathPtr)
   }
 
   public final fun getSkeletonPath(): NodePath {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSkeletonPathPtr, NODE_PATH)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSkeletonPathPtr)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
   public final fun setSkin(skin: Skin?): Unit {
-    TransferContext.writeArguments(OBJECT to skin)
-    TransferContext.callMethod(ptr, MethodBindings.setSkinPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to skin)
+    TransferContext.callMethod(MethodBindings.setSkinPtr)
   }
 
   public final fun getSkin(): Skin? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSkinPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSkinPtr)
     return (TransferContext.readReturnValue(OBJECT) as Skin?)
   }
 
@@ -124,8 +123,8 @@ public open class MeshInstance3D : GeometryInstance3D() {
    * also [Resource.getRid], [SkinReference.getSkeleton], and [RenderingServer.instanceAttachSkeleton].
    */
   public final fun getSkinReference(): SkinReference? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSkinReferencePtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSkinReferencePtr)
     return (TransferContext.readReturnValue(OBJECT) as SkinReference?)
   }
 
@@ -134,8 +133,8 @@ public open class MeshInstance3D : GeometryInstance3D() {
    * See also [getSurfaceOverrideMaterial].
    */
   public final fun getSurfaceOverrideMaterialCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSurfaceOverrideMaterialCountPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSurfaceOverrideMaterialCountPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -148,8 +147,8 @@ public open class MeshInstance3D : GeometryInstance3D() {
    * [Mesh] resource, use [Mesh.surfaceSetMaterial] instead.
    */
   public final fun setSurfaceOverrideMaterial(surface: Int, material: Material?): Unit {
-    TransferContext.writeArguments(LONG to surface.toLong(), OBJECT to material)
-    TransferContext.callMethod(ptr, MethodBindings.setSurfaceOverrideMaterialPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to surface.toLong(), OBJECT to material)
+    TransferContext.callMethod(MethodBindings.setSurfaceOverrideMaterialPtr)
   }
 
   /**
@@ -161,8 +160,8 @@ public open class MeshInstance3D : GeometryInstance3D() {
    * [Mesh] resource, use [Mesh.surfaceGetMaterial] instead.
    */
   public final fun getSurfaceOverrideMaterial(surface: Int): Material? {
-    TransferContext.writeArguments(LONG to surface.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getSurfaceOverrideMaterialPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to surface.toLong())
+    TransferContext.callMethod(MethodBindings.getSurfaceOverrideMaterialPtr)
     return (TransferContext.readReturnValue(OBJECT) as Material?)
   }
 
@@ -175,8 +174,8 @@ public open class MeshInstance3D : GeometryInstance3D() {
    * Returns `null` if no material is active, including when [mesh] is `null`.
    */
   public final fun getActiveMaterial(surface: Int): Material? {
-    TransferContext.writeArguments(LONG to surface.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getActiveMaterialPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to surface.toLong())
+    TransferContext.callMethod(MethodBindings.getActiveMaterialPtr)
     return (TransferContext.readReturnValue(OBJECT) as Material?)
   }
 
@@ -185,8 +184,8 @@ public open class MeshInstance3D : GeometryInstance3D() {
    * calculated from the mesh geometry. It's mainly used for testing.
    */
   public final fun createTrimeshCollision(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.createTrimeshCollisionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.createTrimeshCollisionPtr)
   }
 
   /**
@@ -201,8 +200,8 @@ public open class MeshInstance3D : GeometryInstance3D() {
    */
   @JvmOverloads
   public final fun createConvexCollision(clean: Boolean = true, simplify: Boolean = false): Unit {
-    TransferContext.writeArguments(BOOL to clean, BOOL to simplify)
-    TransferContext.callMethod(ptr, MethodBindings.createConvexCollisionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to clean, BOOL to simplify)
+    TransferContext.callMethod(MethodBindings.createConvexCollisionPtr)
   }
 
   /**
@@ -213,16 +212,16 @@ public open class MeshInstance3D : GeometryInstance3D() {
   @JvmOverloads
   public final fun createMultipleConvexCollisions(settings: MeshConvexDecompositionSettings? =
       null): Unit {
-    TransferContext.writeArguments(OBJECT to settings)
-    TransferContext.callMethod(ptr, MethodBindings.createMultipleConvexCollisionsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to settings)
+    TransferContext.callMethod(MethodBindings.createMultipleConvexCollisionsPtr)
   }
 
   /**
    * Returns the number of blend shapes available. Produces an error if [mesh] is `null`.
    */
   public final fun getBlendShapeCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getBlendShapeCountPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getBlendShapeCountPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -231,8 +230,8 @@ public open class MeshInstance3D : GeometryInstance3D() {
    * this name exists, including when [mesh] is `null`.
    */
   public final fun findBlendShapeByName(name: StringName): Int {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(ptr, MethodBindings.findBlendShapeByNamePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to name)
+    TransferContext.callMethod(MethodBindings.findBlendShapeByNamePtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -241,8 +240,8 @@ public open class MeshInstance3D : GeometryInstance3D() {
    * an error if [mesh] is `null` or doesn't have a blend shape at that index.
    */
   public final fun getBlendShapeValue(blendShapeIdx: Int): Float {
-    TransferContext.writeArguments(LONG to blendShapeIdx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getBlendShapeValuePtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to blendShapeIdx.toLong())
+    TransferContext.callMethod(MethodBindings.getBlendShapeValuePtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -251,8 +250,8 @@ public open class MeshInstance3D : GeometryInstance3D() {
    * `null` or doesn't have a blend shape at that index.
    */
   public final fun setBlendShapeValue(blendShapeIdx: Int, `value`: Float): Unit {
-    TransferContext.writeArguments(LONG to blendShapeIdx.toLong(), DOUBLE to value.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setBlendShapeValuePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to blendShapeIdx.toLong(), DOUBLE to value.toDouble())
+    TransferContext.callMethod(MethodBindings.setBlendShapeValuePtr)
   }
 
   /**
@@ -260,8 +259,8 @@ public open class MeshInstance3D : GeometryInstance3D() {
    * the mesh geometry. It's mainly used for testing.
    */
   public final fun createDebugTangents(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.createDebugTangentsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.createDebugTangentsPtr)
   }
 
   /**
@@ -274,8 +273,8 @@ public open class MeshInstance3D : GeometryInstance3D() {
    */
   @JvmOverloads
   public final fun bakeMeshFromCurrentBlendShapeMix(existing: ArrayMesh? = null): ArrayMesh? {
-    TransferContext.writeArguments(OBJECT to existing)
-    TransferContext.callMethod(ptr, MethodBindings.bakeMeshFromCurrentBlendShapeMixPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to existing)
+    TransferContext.callMethod(MethodBindings.bakeMeshFromCurrentBlendShapeMixPtr)
     return (TransferContext.readReturnValue(OBJECT) as ArrayMesh?)
   }
 
@@ -290,8 +289,8 @@ public open class MeshInstance3D : GeometryInstance3D() {
    */
   @JvmOverloads
   public final fun bakeMeshFromCurrentSkeletonPose(existing: ArrayMesh? = null): ArrayMesh? {
-    TransferContext.writeArguments(OBJECT to existing)
-    TransferContext.callMethod(ptr, MethodBindings.bakeMeshFromCurrentSkeletonPosePtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to existing)
+    TransferContext.callMethod(MethodBindings.bakeMeshFromCurrentSkeletonPosePtr)
     return (TransferContext.readReturnValue(OBJECT) as ArrayMesh?)
   }
 

@@ -16,7 +16,6 @@ import godot.core.MethodStringName1
 import godot.core.Signal0
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
 import kotlin.Double
@@ -122,30 +121,30 @@ public open class SkeletonModifier3D : Node3D() {
    * Returns the parent [Skeleton3D] node if it exists. Otherwise, returns `null`.
    */
   public final fun getSkeleton(): Skeleton3D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSkeletonPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSkeletonPtr)
     return (TransferContext.readReturnValue(OBJECT) as Skeleton3D?)
   }
 
   public final fun setActive(active: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to active)
-    TransferContext.callMethod(ptr, MethodBindings.setActivePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to active)
+    TransferContext.callMethod(MethodBindings.setActivePtr)
   }
 
   public final fun isActive(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isActivePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isActivePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setInfluence(influence: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to influence.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setInfluencePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to influence.toDouble())
+    TransferContext.callMethod(MethodBindings.setInfluencePtr)
   }
 
   public final fun getInfluence(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getInfluencePtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getInfluencePtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 

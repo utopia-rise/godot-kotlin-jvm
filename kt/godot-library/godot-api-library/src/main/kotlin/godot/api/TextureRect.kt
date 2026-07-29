@@ -15,7 +15,6 @@ import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
 import kotlin.Long
@@ -91,57 +90,57 @@ public open class TextureRect : Control() {
   }
 
   public final fun setTexture(texture: Texture2D?): Unit {
-    TransferContext.writeArguments(OBJECT to texture)
-    TransferContext.callMethod(ptr, MethodBindings.setTexturePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to texture)
+    TransferContext.callMethod(MethodBindings.setTexturePtr)
   }
 
   public final fun getTexture(): Texture2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getTexturePtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getTexturePtr)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setExpandMode(expandMode: ExpandMode): Unit {
-    TransferContext.writeArguments(LONG to expandMode.value)
-    TransferContext.callMethod(ptr, MethodBindings.setExpandModePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to expandMode.value)
+    TransferContext.callMethod(MethodBindings.setExpandModePtr)
   }
 
   public final fun getExpandMode(): ExpandMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getExpandModePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getExpandModePtr)
     return ExpandMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setFlipH(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(ptr, MethodBindings.setFlipHPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enable)
+    TransferContext.callMethod(MethodBindings.setFlipHPtr)
   }
 
   public final fun isFlippedH(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isFlippedHPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isFlippedHPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFlipV(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(ptr, MethodBindings.setFlipVPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enable)
+    TransferContext.callMethod(MethodBindings.setFlipVPtr)
   }
 
   public final fun isFlippedV(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isFlippedVPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isFlippedVPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setStretchMode(stretchMode: StretchMode): Unit {
-    TransferContext.writeArguments(LONG to stretchMode.value)
-    TransferContext.callMethod(ptr, MethodBindings.setStretchModePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to stretchMode.value)
+    TransferContext.callMethod(MethodBindings.setStretchModePtr)
   }
 
   public final fun getStretchMode(): StretchMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getStretchModePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getStretchModePtr)
     return StretchMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

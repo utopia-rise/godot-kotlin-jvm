@@ -293,8 +293,8 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * function to define the specific behavior in the [_getCode] or [_getGlobalCode].
    */
   public final fun getOptionIndex(option: Int): Int {
-    TransferContext.writeArguments(LONG to option.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getOptionIndexPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to option.toLong())
+    TransferContext.callMethod(MethodBindings.getOptionIndexPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 

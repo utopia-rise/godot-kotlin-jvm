@@ -15,7 +15,6 @@ import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.DICTIONARY
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Any
 import kotlin.Int
@@ -83,8 +82,8 @@ public open class SyntaxHighlighter : Resource() {
    * ```
    */
   public final fun getLineSyntaxHighlighting(line: Int): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments(LONG to line.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getLineSyntaxHighlightingPtr, DICTIONARY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to line.toLong())
+    TransferContext.callMethod(MethodBindings.getLineSyntaxHighlightingPtr)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
@@ -95,8 +94,8 @@ public open class SyntaxHighlighter : Resource() {
    * cache.
    */
   public final fun updateCache(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.updateCachePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.updateCachePtr)
   }
 
   /**
@@ -105,16 +104,16 @@ public open class SyntaxHighlighter : Resource() {
    * Then calls overridable method [_clearHighlightingCache].
    */
   public final fun clearHighlightingCache(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.clearHighlightingCachePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.clearHighlightingCachePtr)
   }
 
   /**
    * Returns the associated [TextEdit] node.
    */
   public final fun getTextEdit(): TextEdit? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getTextEditPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getTextEditPtr)
     return (TransferContext.readReturnValue(OBJECT) as TextEdit?)
   }
 

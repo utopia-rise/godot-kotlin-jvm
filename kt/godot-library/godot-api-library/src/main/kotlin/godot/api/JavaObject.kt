@@ -41,8 +41,8 @@ public open class JavaObject : RefCounted() {
    * Returns the [JavaClass] that this object is an instance of.
    */
   public final fun getJavaClass(): JavaClass? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getJavaClassPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getJavaClassPtr)
     return (TransferContext.readReturnValue(OBJECT) as JavaClass?)
   }
 
@@ -50,8 +50,8 @@ public open class JavaObject : RefCounted() {
    * Returns `true` if the given [method] name exists in the object's Java methods.
    */
   public final fun hasJavaMethod(method: StringName): Boolean {
-    TransferContext.writeArguments(STRING_NAME to method)
-    TransferContext.callMethod(ptr, MethodBindings.hasJavaMethodPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to method)
+    TransferContext.callMethod(MethodBindings.hasJavaMethodPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

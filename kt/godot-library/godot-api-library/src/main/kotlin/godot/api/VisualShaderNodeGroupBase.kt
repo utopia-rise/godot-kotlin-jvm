@@ -16,7 +16,6 @@ import godot.core.MethodStringName2
 import godot.core.MethodStringName3
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import kotlin.Boolean
 import kotlin.Int
@@ -41,8 +40,8 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
    * (see [addInputPort]).
    */
   public final fun setInputs(inputs: String): Unit {
-    TransferContext.writeArguments(STRING to inputs)
-    TransferContext.callMethod(ptr, MethodBindings.setInputsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to inputs)
+    TransferContext.callMethod(MethodBindings.setInputsPtr)
   }
 
   /**
@@ -50,8 +49,8 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
    * `id,type,name;` (see [addInputPort]).
    */
   public final fun getInputs(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getInputsPtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getInputsPtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -60,8 +59,8 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
    * (see [addOutputPort]).
    */
   public final fun setOutputs(outputs: String): Unit {
-    TransferContext.writeArguments(STRING to outputs)
-    TransferContext.callMethod(ptr, MethodBindings.setOutputsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to outputs)
+    TransferContext.callMethod(MethodBindings.setOutputsPtr)
   }
 
   /**
@@ -69,8 +68,8 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
    * `id,type,name;` (see [addOutputPort]).
    */
   public final fun getOutputs(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getOutputsPtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getOutputsPtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -79,8 +78,8 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
    * within the shader.
    */
   public final fun isValidPortName(name: String): Boolean {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(ptr, MethodBindings.isValidPortNamePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to name)
+    TransferContext.callMethod(MethodBindings.isValidPortNamePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -92,24 +91,24 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
     type: Int,
     name: String,
   ): Unit {
-    TransferContext.writeArguments(LONG to id.toLong(), LONG to type.toLong(), STRING to name)
-    TransferContext.callMethod(ptr, MethodBindings.addInputPortPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to id.toLong(), LONG to type.toLong(), STRING to name)
+    TransferContext.callMethod(MethodBindings.addInputPortPtr)
   }
 
   /**
    * Removes the specified input port.
    */
   public final fun removeInputPort(id: Int): Unit {
-    TransferContext.writeArguments(LONG to id.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.removeInputPortPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to id.toLong())
+    TransferContext.callMethod(MethodBindings.removeInputPortPtr)
   }
 
   /**
    * Returns the number of input ports in use. Alternative for [getFreeInputPortId].
    */
   public final fun getInputPortCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getInputPortCountPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getInputPortCountPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -117,8 +116,8 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
    * Returns `true` if the specified input port exists.
    */
   public final fun hasInputPort(id: Int): Boolean {
-    TransferContext.writeArguments(LONG to id.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.hasInputPortPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to id.toLong())
+    TransferContext.callMethod(MethodBindings.hasInputPortPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -126,8 +125,8 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
    * Removes all previously specified input ports.
    */
   public final fun clearInputPorts(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.clearInputPortsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.clearInputPortsPtr)
   }
 
   /**
@@ -138,24 +137,24 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
     type: Int,
     name: String,
   ): Unit {
-    TransferContext.writeArguments(LONG to id.toLong(), LONG to type.toLong(), STRING to name)
-    TransferContext.callMethod(ptr, MethodBindings.addOutputPortPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to id.toLong(), LONG to type.toLong(), STRING to name)
+    TransferContext.callMethod(MethodBindings.addOutputPortPtr)
   }
 
   /**
    * Removes the specified output port.
    */
   public final fun removeOutputPort(id: Int): Unit {
-    TransferContext.writeArguments(LONG to id.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.removeOutputPortPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to id.toLong())
+    TransferContext.callMethod(MethodBindings.removeOutputPortPtr)
   }
 
   /**
    * Returns the number of output ports in use. Alternative for [getFreeOutputPortId].
    */
   public final fun getOutputPortCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getOutputPortCountPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getOutputPortCountPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -163,8 +162,8 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
    * Returns `true` if the specified output port exists.
    */
   public final fun hasOutputPort(id: Int): Boolean {
-    TransferContext.writeArguments(LONG to id.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.hasOutputPortPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to id.toLong())
+    TransferContext.callMethod(MethodBindings.hasOutputPortPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -172,48 +171,48 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
    * Removes all previously specified output ports.
    */
   public final fun clearOutputPorts(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.clearOutputPortsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.clearOutputPortsPtr)
   }
 
   /**
    * Renames the specified input port.
    */
   public final fun setInputPortName(id: Int, name: String): Unit {
-    TransferContext.writeArguments(LONG to id.toLong(), STRING to name)
-    TransferContext.callMethod(ptr, MethodBindings.setInputPortNamePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to id.toLong(), STRING to name)
+    TransferContext.callMethod(MethodBindings.setInputPortNamePtr)
   }
 
   /**
    * Sets the specified input port's type (see [VisualShaderNode.PortType]).
    */
   public final fun setInputPortType(id: Int, type: Int): Unit {
-    TransferContext.writeArguments(LONG to id.toLong(), LONG to type.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setInputPortTypePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to id.toLong(), LONG to type.toLong())
+    TransferContext.callMethod(MethodBindings.setInputPortTypePtr)
   }
 
   /**
    * Renames the specified output port.
    */
   public final fun setOutputPortName(id: Int, name: String): Unit {
-    TransferContext.writeArguments(LONG to id.toLong(), STRING to name)
-    TransferContext.callMethod(ptr, MethodBindings.setOutputPortNamePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to id.toLong(), STRING to name)
+    TransferContext.callMethod(MethodBindings.setOutputPortNamePtr)
   }
 
   /**
    * Sets the specified output port's type (see [VisualShaderNode.PortType]).
    */
   public final fun setOutputPortType(id: Int, type: Int): Unit {
-    TransferContext.writeArguments(LONG to id.toLong(), LONG to type.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setOutputPortTypePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to id.toLong(), LONG to type.toLong())
+    TransferContext.callMethod(MethodBindings.setOutputPortTypePtr)
   }
 
   /**
    * Returns a free input port ID which can be used in [addInputPort].
    */
   public final fun getFreeInputPortId(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFreeInputPortIdPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getFreeInputPortIdPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -221,8 +220,8 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
    * Returns a free output port ID which can be used in [addOutputPort].
    */
   public final fun getFreeOutputPortId(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFreeOutputPortIdPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getFreeOutputPortIdPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 

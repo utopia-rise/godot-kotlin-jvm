@@ -23,7 +23,6 @@ import godot.core.Transform2D
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
 import godot.core.VariantParser.RECT2
@@ -67,13 +66,13 @@ public open class Shape2D internal constructor() : Resource() {
   }
 
   public final fun setCustomSolverBias(bias: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to bias.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setCustomSolverBiasPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to bias.toDouble())
+    TransferContext.callMethod(MethodBindings.setCustomSolverBiasPtr)
   }
 
   public final fun getCustomSolverBias(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCustomSolverBiasPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCustomSolverBiasPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -88,8 +87,8 @@ public open class Shape2D internal constructor() : Resource() {
     withShape: Shape2D,
     shapeXform: Transform2D,
   ): Boolean {
-    TransferContext.writeArguments(TRANSFORM2D to localXform, OBJECT to withShape, TRANSFORM2D to shapeXform)
-    TransferContext.callMethod(ptr, MethodBindings.collidePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, TRANSFORM2D to localXform, OBJECT to withShape, TRANSFORM2D to shapeXform)
+    TransferContext.callMethod(MethodBindings.collidePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -108,8 +107,8 @@ public open class Shape2D internal constructor() : Resource() {
     shapeXform: Transform2D,
     shapeMotion: Vector2,
   ): Boolean {
-    TransferContext.writeArguments(TRANSFORM2D to localXform, VECTOR2 to localMotion, OBJECT to withShape, TRANSFORM2D to shapeXform, VECTOR2 to shapeMotion)
-    TransferContext.callMethod(ptr, MethodBindings.collideWithMotionPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, TRANSFORM2D to localXform, VECTOR2 to localMotion, OBJECT to withShape, TRANSFORM2D to shapeXform, VECTOR2 to shapeMotion)
+    TransferContext.callMethod(MethodBindings.collideWithMotionPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -132,8 +131,8 @@ public open class Shape2D internal constructor() : Resource() {
     withShape: Shape2D,
     shapeXform: Transform2D,
   ): PackedVector2Array {
-    TransferContext.writeArguments(TRANSFORM2D to localXform, OBJECT to withShape, TRANSFORM2D to shapeXform)
-    TransferContext.callMethod(ptr, MethodBindings.collideAndGetContactsPtr, PACKED_VECTOR2_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, TRANSFORM2D to localXform, OBJECT to withShape, TRANSFORM2D to shapeXform)
+    TransferContext.callMethod(MethodBindings.collideAndGetContactsPtr)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
@@ -161,8 +160,8 @@ public open class Shape2D internal constructor() : Resource() {
     shapeXform: Transform2D,
     shapeMotion: Vector2,
   ): PackedVector2Array {
-    TransferContext.writeArguments(TRANSFORM2D to localXform, VECTOR2 to localMotion, OBJECT to withShape, TRANSFORM2D to shapeXform, VECTOR2 to shapeMotion)
-    TransferContext.callMethod(ptr, MethodBindings.collideWithMotionAndGetContactsPtr, PACKED_VECTOR2_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, TRANSFORM2D to localXform, VECTOR2 to localMotion, OBJECT to withShape, TRANSFORM2D to shapeXform, VECTOR2 to shapeMotion)
+    TransferContext.callMethod(MethodBindings.collideWithMotionAndGetContactsPtr)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
@@ -171,16 +170,16 @@ public open class Shape2D internal constructor() : Resource() {
    * specified [color]. The exact drawing method is specific for each shape and cannot be configured.
    */
   public final fun draw(canvasItem: RID, color: Color): Unit {
-    TransferContext.writeArguments(_RID to canvasItem, COLOR to color)
-    TransferContext.callMethod(ptr, MethodBindings.drawPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to canvasItem, COLOR to color)
+    TransferContext.callMethod(MethodBindings.drawPtr)
   }
 
   /**
    * Returns a [Rect2] representing the shapes boundary.
    */
   public final fun getRect(): Rect2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getRectPtr, RECT2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getRectPtr)
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 

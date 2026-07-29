@@ -13,7 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
-import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Suppress
 import kotlin.Unit
@@ -49,13 +48,13 @@ public open class CSGPrimitive3D internal constructor() : CSGShape3D() {
   }
 
   public final fun setFlipFaces(flipFaces: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to flipFaces)
-    TransferContext.callMethod(ptr, MethodBindings.setFlipFacesPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to flipFaces)
+    TransferContext.callMethod(MethodBindings.setFlipFacesPtr)
   }
 
   public final fun getFlipFaces(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFlipFacesPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getFlipFacesPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

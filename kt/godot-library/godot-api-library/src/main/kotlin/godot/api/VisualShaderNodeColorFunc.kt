@@ -14,7 +14,6 @@ import godot.core.GodotEnum
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -42,13 +41,13 @@ public open class VisualShaderNodeColorFunc : VisualShaderNode() {
   }
 
   public final fun setFunction(func: Function): Unit {
-    TransferContext.writeArguments(LONG to func.value)
-    TransferContext.callMethod(ptr, MethodBindings.setFunctionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to func.value)
+    TransferContext.callMethod(MethodBindings.setFunctionPtr)
   }
 
   public final fun getFunction(): Function {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFunctionPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getFunctionPtr)
     return Function.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

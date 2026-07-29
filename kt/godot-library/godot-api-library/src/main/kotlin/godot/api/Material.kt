@@ -14,7 +14,6 @@ import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.RID
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
 import kotlin.Int
@@ -106,24 +105,24 @@ public abstract class Material : Resource() {
   }
 
   public final fun setNextPass(nextPass: Material?): Unit {
-    TransferContext.writeArguments(OBJECT to nextPass)
-    TransferContext.callMethod(ptr, MethodBindings.setNextPassPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to nextPass)
+    TransferContext.callMethod(MethodBindings.setNextPassPtr)
   }
 
   public final fun getNextPass(): Material? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getNextPassPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getNextPassPtr)
     return (TransferContext.readReturnValue(OBJECT) as Material?)
   }
 
   public final fun setRenderPriority(priority: Int): Unit {
-    TransferContext.writeArguments(LONG to priority.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setRenderPriorityPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to priority.toLong())
+    TransferContext.callMethod(MethodBindings.setRenderPriorityPtr)
   }
 
   public final fun getRenderPriority(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getRenderPriorityPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getRenderPriorityPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -132,16 +131,16 @@ public abstract class Material : Resource() {
    * code, including all variants and internal shader code. See also [Shader.inspectNativeShaderCode].
    */
   public final fun inspectNativeShaderCode(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.inspectNativeShaderCodePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.inspectNativeShaderCodePtr)
   }
 
   /**
    * Creates a placeholder version of this resource ([PlaceholderMaterial]).
    */
   public final fun createPlaceholder(): Resource? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.createPlaceholderPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.createPlaceholderPtr)
     return (TransferContext.readReturnValue(OBJECT) as Resource?)
   }
 

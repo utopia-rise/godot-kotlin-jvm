@@ -15,7 +15,6 @@ import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.PackedInt64Array
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_INT_64_ARRAY
 import kotlin.Long
 import kotlin.Suppress
@@ -54,19 +53,19 @@ public open class OpenXRSpatialCapabilityConfigurationAruco :
    * **Note:** Only valid after this configuration was used to create a spatial context.
    */
   public final fun getEnabledComponents(): PackedInt64Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getEnabledComponentsPtr, PACKED_INT_64_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getEnabledComponentsPtr)
     return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY) as PackedInt64Array)
   }
 
   public final fun setArucoDict(arucoDict: ArucoDict): Unit {
-    TransferContext.writeArguments(LONG to arucoDict.value)
-    TransferContext.callMethod(ptr, MethodBindings.setArucoDictPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to arucoDict.value)
+    TransferContext.callMethod(MethodBindings.setArucoDictPtr)
   }
 
   public final fun getArucoDict(): ArucoDict {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getArucoDictPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getArucoDictPtr)
     return ArucoDict.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

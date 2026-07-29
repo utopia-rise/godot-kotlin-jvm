@@ -18,7 +18,6 @@ import godot.core.Rect2
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
 import godot.core.VariantParser.RECT2
@@ -66,16 +65,16 @@ public open class NavigationMeshSourceGeometryData2D : Resource() {
    * Clears the internal data.
    */
   public final fun clear(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.clearPtr)
   }
 
   /**
    * Returns `true` when parsed source geometry data exists.
    */
   public final fun hasData(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.hasDataPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.hasDataPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -84,16 +83,16 @@ public open class NavigationMeshSourceGeometryData2D : Resource() {
    */
   public final fun setTraversableOutlines(traversableOutlines: VariantArray<PackedVector2Array>):
       Unit {
-    TransferContext.writeArguments(ARRAY to traversableOutlines)
-    TransferContext.callMethod(ptr, MethodBindings.setTraversableOutlinesPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, ARRAY to traversableOutlines)
+    TransferContext.callMethod(MethodBindings.setTraversableOutlinesPtr)
   }
 
   /**
    * Returns all the traversable area outlines arrays.
    */
   public final fun getTraversableOutlines(): VariantArray<PackedVector2Array> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getTraversableOutlinesPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getTraversableOutlinesPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<PackedVector2Array>)
   }
 
@@ -102,16 +101,16 @@ public open class NavigationMeshSourceGeometryData2D : Resource() {
    */
   public final fun setObstructionOutlines(obstructionOutlines: VariantArray<PackedVector2Array>):
       Unit {
-    TransferContext.writeArguments(ARRAY to obstructionOutlines)
-    TransferContext.callMethod(ptr, MethodBindings.setObstructionOutlinesPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, ARRAY to obstructionOutlines)
+    TransferContext.callMethod(MethodBindings.setObstructionOutlinesPtr)
   }
 
   /**
    * Returns all the obstructed area outlines arrays.
    */
   public final fun getObstructionOutlines(): VariantArray<PackedVector2Array> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getObstructionOutlinesPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getObstructionOutlinesPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<PackedVector2Array>)
   }
 
@@ -121,8 +120,8 @@ public open class NavigationMeshSourceGeometryData2D : Resource() {
    */
   public final fun appendTraversableOutlines(traversableOutlines: VariantArray<PackedVector2Array>):
       Unit {
-    TransferContext.writeArguments(ARRAY to traversableOutlines)
-    TransferContext.callMethod(ptr, MethodBindings.appendTraversableOutlinesPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, ARRAY to traversableOutlines)
+    TransferContext.callMethod(MethodBindings.appendTraversableOutlinesPtr)
   }
 
   /**
@@ -131,24 +130,24 @@ public open class NavigationMeshSourceGeometryData2D : Resource() {
    */
   public final fun appendObstructionOutlines(obstructionOutlines: VariantArray<PackedVector2Array>):
       Unit {
-    TransferContext.writeArguments(ARRAY to obstructionOutlines)
-    TransferContext.callMethod(ptr, MethodBindings.appendObstructionOutlinesPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, ARRAY to obstructionOutlines)
+    TransferContext.callMethod(MethodBindings.appendObstructionOutlinesPtr)
   }
 
   /**
    * Adds the outline points of a shape as traversable area.
    */
   public final fun addTraversableOutline(shapeOutline: PackedVector2Array): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to shapeOutline)
-    TransferContext.callMethod(ptr, MethodBindings.addTraversableOutlinePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_VECTOR2_ARRAY to shapeOutline)
+    TransferContext.callMethod(MethodBindings.addTraversableOutlinePtr)
   }
 
   /**
    * Adds the outline points of a shape as obstructed area.
    */
   public final fun addObstructionOutline(shapeOutline: PackedVector2Array): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to shapeOutline)
-    TransferContext.callMethod(ptr, MethodBindings.addObstructionOutlinePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_VECTOR2_ARRAY to shapeOutline)
+    TransferContext.callMethod(MethodBindings.addObstructionOutlinePtr)
   }
 
   /**
@@ -156,8 +155,8 @@ public open class NavigationMeshSourceGeometryData2D : Resource() {
    * baking data.
    */
   public final fun merge(otherGeometry: NavigationMeshSourceGeometryData2D?): Unit {
-    TransferContext.writeArguments(OBJECT to otherGeometry)
-    TransferContext.callMethod(ptr, MethodBindings.mergePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to otherGeometry)
+    TransferContext.callMethod(MethodBindings.mergePtr)
   }
 
   /**
@@ -166,16 +165,16 @@ public open class NavigationMeshSourceGeometryData2D : Resource() {
    * process.
    */
   public final fun addProjectedObstruction(vertices: PackedVector2Array, carve: Boolean): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to vertices, BOOL to carve)
-    TransferContext.callMethod(ptr, MethodBindings.addProjectedObstructionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_VECTOR2_ARRAY to vertices, BOOL to carve)
+    TransferContext.callMethod(MethodBindings.addProjectedObstructionPtr)
   }
 
   /**
    * Clears all projected obstructions.
    */
   public final fun clearProjectedObstructions(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.clearProjectedObstructionsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.clearProjectedObstructionsPtr)
   }
 
   /**
@@ -189,8 +188,8 @@ public open class NavigationMeshSourceGeometryData2D : Resource() {
    * ```
    */
   public final fun setProjectedObstructions(projectedObstructions: VariantArray<Any?>): Unit {
-    TransferContext.writeArguments(ARRAY to projectedObstructions)
-    TransferContext.callMethod(ptr, MethodBindings.setProjectedObstructionsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, ARRAY to projectedObstructions)
+    TransferContext.callMethod(MethodBindings.setProjectedObstructionsPtr)
   }
 
   /**
@@ -203,8 +202,8 @@ public open class NavigationMeshSourceGeometryData2D : Resource() {
    * If `true` the projected shape will not be affected by addition offsets, e.g. agent radius.
    */
   public final fun getProjectedObstructions(): VariantArray<Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getProjectedObstructionsPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getProjectedObstructionsPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
@@ -214,8 +213,8 @@ public open class NavigationMeshSourceGeometryData2D : Resource() {
    * made.
    */
   public final fun getBounds(): Rect2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getBoundsPtr, RECT2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getBoundsPtr)
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 

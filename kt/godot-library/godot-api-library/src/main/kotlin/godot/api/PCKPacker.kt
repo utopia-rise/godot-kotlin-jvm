@@ -71,8 +71,8 @@ public open class PCKPacker : RefCounted() {
     key: String = "0000000000000000000000000000000000000000000000000000000000000000",
     encryptDirectory: Boolean = false,
   ): Error {
-    TransferContext.writeArguments(STRING to pckPath, LONG to alignment.toLong(), STRING to key, BOOL to encryptDirectory)
-    TransferContext.callMethod(ptr, MethodBindings.pckStartPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to pckPath, LONG to alignment.toLong(), STRING to key, BOOL to encryptDirectory)
+    TransferContext.callMethod(MethodBindings.pckStartPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -87,8 +87,8 @@ public open class PCKPacker : RefCounted() {
     sourcePath: String,
     encrypt: Boolean = false,
   ): Error {
-    TransferContext.writeArguments(STRING to targetPath, STRING to sourcePath, BOOL to encrypt)
-    TransferContext.callMethod(ptr, MethodBindings.addFilePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to targetPath, STRING to sourcePath, BOOL to encrypt)
+    TransferContext.callMethod(MethodBindings.addFilePtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -103,8 +103,8 @@ public open class PCKPacker : RefCounted() {
     `data`: PackedByteArray,
     encrypt: Boolean = false,
   ): Error {
-    TransferContext.writeArguments(STRING to targetPath, PACKED_BYTE_ARRAY to data, BOOL to encrypt)
-    TransferContext.callMethod(ptr, MethodBindings.addFileFromBufferPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to targetPath, PACKED_BYTE_ARRAY to data, BOOL to encrypt)
+    TransferContext.callMethod(MethodBindings.addFileFromBufferPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -114,8 +114,8 @@ public open class PCKPacker : RefCounted() {
    * `res://` prefix for [targetPath] is optional and stripped internally.
    */
   public final fun addFileRemoval(targetPath: String): Error {
-    TransferContext.writeArguments(STRING to targetPath)
-    TransferContext.callMethod(ptr, MethodBindings.addFileRemovalPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to targetPath)
+    TransferContext.callMethod(MethodBindings.addFileRemovalPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -129,8 +129,8 @@ public open class PCKPacker : RefCounted() {
    */
   @JvmOverloads
   public final fun flush(verbose: Boolean = false): Error {
-    TransferContext.writeArguments(BOOL to verbose)
-    TransferContext.callMethod(ptr, MethodBindings.flushPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to verbose)
+    TransferContext.callMethod(MethodBindings.flushPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

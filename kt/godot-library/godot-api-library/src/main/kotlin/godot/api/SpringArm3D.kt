@@ -16,7 +16,6 @@ import godot.core.RID
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser._RID
 import kotlin.Boolean
@@ -104,30 +103,30 @@ public open class SpringArm3D : Node3D() {
    * Returns the spring arm's current length.
    */
   public final fun getHitLength(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getHitLengthPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getHitLengthPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setLength(length: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to length.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setLengthPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to length.toDouble())
+    TransferContext.callMethod(MethodBindings.setLengthPtr)
   }
 
   public final fun getLength(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getLengthPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getLengthPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setShape(shape: Shape3D?): Unit {
-    TransferContext.writeArguments(OBJECT to shape)
-    TransferContext.callMethod(ptr, MethodBindings.setShapePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to shape)
+    TransferContext.callMethod(MethodBindings.setShapePtr)
   }
 
   public final fun getShape(): Shape3D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getShapePtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getShapePtr)
     return (TransferContext.readReturnValue(OBJECT) as Shape3D?)
   }
 
@@ -136,8 +135,8 @@ public open class SpringArm3D : Node3D() {
    * excluded from the collision check.
    */
   public final fun addExcludedObject(RID: RID): Unit {
-    TransferContext.writeArguments(_RID to RID)
-    TransferContext.callMethod(ptr, MethodBindings.addExcludedObjectPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to RID)
+    TransferContext.callMethod(MethodBindings.addExcludedObjectPtr)
   }
 
   /**
@@ -145,8 +144,8 @@ public open class SpringArm3D : Node3D() {
    * check.
    */
   public final fun removeExcludedObject(RID: RID): Boolean {
-    TransferContext.writeArguments(_RID to RID)
-    TransferContext.callMethod(ptr, MethodBindings.removeExcludedObjectPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to RID)
+    TransferContext.callMethod(MethodBindings.removeExcludedObjectPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -154,29 +153,29 @@ public open class SpringArm3D : Node3D() {
    * Clears the list of [PhysicsBody3D] objects excluded from the collision check.
    */
   public final fun clearExcludedObjects(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.clearExcludedObjectsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.clearExcludedObjectsPtr)
   }
 
   public final fun setCollisionMask(mask: Long): Unit {
-    TransferContext.writeArguments(LONG to mask)
-    TransferContext.callMethod(ptr, MethodBindings.setCollisionMaskPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to mask)
+    TransferContext.callMethod(MethodBindings.setCollisionMaskPtr)
   }
 
   public final fun getCollisionMask(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCollisionMaskPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCollisionMaskPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setMargin(margin: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to margin.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setMarginPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to margin.toDouble())
+    TransferContext.callMethod(MethodBindings.setMarginPtr)
   }
 
   public final fun getMargin(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMarginPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMarginPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 

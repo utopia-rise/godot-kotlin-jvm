@@ -16,7 +16,6 @@ import godot.core.MethodStringName2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
 import kotlin.Double
@@ -124,8 +123,8 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
   }
 
   public final fun setInputCount(inputCount: Int): Unit {
-    TransferContext.writeArguments(LONG to inputCount.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setInputCountPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to inputCount.toLong())
+    TransferContext.callMethod(MethodBindings.setInputCountPtr)
   }
 
   /**
@@ -134,16 +133,16 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
    * first.
    */
   public final fun setInputAsAutoAdvance(input: Int, enable: Boolean): Unit {
-    TransferContext.writeArguments(LONG to input.toLong(), BOOL to enable)
-    TransferContext.callMethod(ptr, MethodBindings.setInputAsAutoAdvancePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to input.toLong(), BOOL to enable)
+    TransferContext.callMethod(MethodBindings.setInputAsAutoAdvancePtr)
   }
 
   /**
    * Returns `true` if auto-advance is enabled for the given [input] index.
    */
   public final fun isInputSetAsAutoAdvance(input: Int): Boolean {
-    TransferContext.writeArguments(LONG to input.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.isInputSetAsAutoAdvancePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to input.toLong())
+    TransferContext.callMethod(MethodBindings.isInputSetAsAutoAdvancePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -152,16 +151,16 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
    * is looping.
    */
   public final fun setInputBreakLoopAtEnd(input: Int, enable: Boolean): Unit {
-    TransferContext.writeArguments(LONG to input.toLong(), BOOL to enable)
-    TransferContext.callMethod(ptr, MethodBindings.setInputBreakLoopAtEndPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to input.toLong(), BOOL to enable)
+    TransferContext.callMethod(MethodBindings.setInputBreakLoopAtEndPtr)
   }
 
   /**
    * Returns whether the animation breaks the loop at the end of the loop cycle for transition.
    */
   public final fun isInputLoopBrokenAtEnd(input: Int): Boolean {
-    TransferContext.writeArguments(LONG to input.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.isInputLoopBrokenAtEndPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to input.toLong())
+    TransferContext.callMethod(MethodBindings.isInputLoopBrokenAtEndPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -169,49 +168,49 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
    * If `true`, the destination animation is restarted when the animation transitions.
    */
   public final fun setInputReset(input: Int, enable: Boolean): Unit {
-    TransferContext.writeArguments(LONG to input.toLong(), BOOL to enable)
-    TransferContext.callMethod(ptr, MethodBindings.setInputResetPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to input.toLong(), BOOL to enable)
+    TransferContext.callMethod(MethodBindings.setInputResetPtr)
   }
 
   /**
    * Returns whether the animation restarts when the animation transitions from the other animation.
    */
   public final fun isInputReset(input: Int): Boolean {
-    TransferContext.writeArguments(LONG to input.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.isInputResetPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to input.toLong())
+    TransferContext.callMethod(MethodBindings.isInputResetPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setXfadeTime(time: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to time)
-    TransferContext.callMethod(ptr, MethodBindings.setXfadeTimePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to time)
+    TransferContext.callMethod(MethodBindings.setXfadeTimePtr)
   }
 
   public final fun getXfadeTime(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getXfadeTimePtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getXfadeTimePtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setXfadeCurve(curve: Curve?): Unit {
-    TransferContext.writeArguments(OBJECT to curve)
-    TransferContext.callMethod(ptr, MethodBindings.setXfadeCurvePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to curve)
+    TransferContext.callMethod(MethodBindings.setXfadeCurvePtr)
   }
 
   public final fun getXfadeCurve(): Curve? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getXfadeCurvePtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getXfadeCurvePtr)
     return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }
 
   public final fun setAllowTransitionToSelf(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(ptr, MethodBindings.setAllowTransitionToSelfPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enable)
+    TransferContext.callMethod(MethodBindings.setAllowTransitionToSelfPtr)
   }
 
   public final fun isAllowTransitionToSelf(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isAllowTransitionToSelfPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isAllowTransitionToSelfPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

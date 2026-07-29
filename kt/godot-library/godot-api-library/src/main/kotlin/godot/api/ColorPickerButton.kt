@@ -19,7 +19,6 @@ import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
 import kotlin.Suppress
@@ -119,13 +118,13 @@ public open class ColorPickerButton : Button() {
   }
 
   public final fun setPickColor(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(ptr, MethodBindings.setPickColorPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, COLOR to color)
+    TransferContext.callMethod(MethodBindings.setPickColorPtr)
   }
 
   public final fun getPickColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPickColorPtr, COLOR)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPickColorPtr)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
@@ -136,8 +135,8 @@ public open class ColorPickerButton : Button() {
    * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
   public final fun getPicker(): ColorPicker? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPickerPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPickerPtr)
     return (TransferContext.readReturnValue(OBJECT) as ColorPicker?)
   }
 
@@ -149,30 +148,30 @@ public open class ColorPickerButton : Button() {
    * you wish to hide it or any of its children, use their [Window.visible] property.
    */
   public final fun getPopup(): PopupPanel? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPopupPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPopupPtr)
     return (TransferContext.readReturnValue(OBJECT) as PopupPanel?)
   }
 
   public final fun setEditAlpha(show: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to show)
-    TransferContext.callMethod(ptr, MethodBindings.setEditAlphaPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to show)
+    TransferContext.callMethod(MethodBindings.setEditAlphaPtr)
   }
 
   public final fun isEditingAlpha(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isEditingAlphaPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isEditingAlphaPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setEditIntensity(show: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to show)
-    TransferContext.callMethod(ptr, MethodBindings.setEditIntensityPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to show)
+    TransferContext.callMethod(MethodBindings.setEditIntensityPtr)
   }
 
   public final fun isEditingIntensity(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isEditingIntensityPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isEditingIntensityPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

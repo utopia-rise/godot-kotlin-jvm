@@ -13,7 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Int
 import kotlin.NotImplementedError
@@ -83,40 +82,40 @@ public open class CurveXYZTexture : Texture2D() {
   }
 
   public final fun setWidth(width: Int): Unit {
-    TransferContext.writeArguments(LONG to width.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setWidthPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to width.toLong())
+    TransferContext.callMethod(MethodBindings.setWidthPtr)
   }
 
   public final fun setCurveX(curve: Curve?): Unit {
-    TransferContext.writeArguments(OBJECT to curve)
-    TransferContext.callMethod(ptr, MethodBindings.setCurveXPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to curve)
+    TransferContext.callMethod(MethodBindings.setCurveXPtr)
   }
 
   public final fun getCurveX(): Curve? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCurveXPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCurveXPtr)
     return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }
 
   public final fun setCurveY(curve: Curve?): Unit {
-    TransferContext.writeArguments(OBJECT to curve)
-    TransferContext.callMethod(ptr, MethodBindings.setCurveYPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to curve)
+    TransferContext.callMethod(MethodBindings.setCurveYPtr)
   }
 
   public final fun getCurveY(): Curve? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCurveYPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCurveYPtr)
     return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }
 
   public final fun setCurveZ(curve: Curve?): Unit {
-    TransferContext.writeArguments(OBJECT to curve)
-    TransferContext.callMethod(ptr, MethodBindings.setCurveZPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to curve)
+    TransferContext.callMethod(MethodBindings.setCurveZPtr)
   }
 
   public final fun getCurveZ(): Curve? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCurveZPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCurveZPtr)
     return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }
 

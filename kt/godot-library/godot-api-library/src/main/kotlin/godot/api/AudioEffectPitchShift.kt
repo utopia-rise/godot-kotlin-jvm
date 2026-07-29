@@ -15,7 +15,6 @@ import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
@@ -75,35 +74,35 @@ public open class AudioEffectPitchShift : AudioEffect() {
   }
 
   public final fun setPitchScale(rate: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to rate.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setPitchScalePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to rate.toDouble())
+    TransferContext.callMethod(MethodBindings.setPitchScalePtr)
   }
 
   public final fun getPitchScale(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPitchScalePtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPitchScalePtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setOversampling(amount: Int): Unit {
-    TransferContext.writeArguments(LONG to amount.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setOversamplingPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to amount.toLong())
+    TransferContext.callMethod(MethodBindings.setOversamplingPtr)
   }
 
   public final fun getOversampling(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getOversamplingPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getOversamplingPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setFftSize(size: FFTSize): Unit {
-    TransferContext.writeArguments(LONG to size.value)
-    TransferContext.callMethod(ptr, MethodBindings.setFftSizePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to size.value)
+    TransferContext.callMethod(MethodBindings.setFftSizePtr)
   }
 
   public final fun getFftSize(): FFTSize {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFftSizePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getFftSizePtr)
     return FFTSize.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

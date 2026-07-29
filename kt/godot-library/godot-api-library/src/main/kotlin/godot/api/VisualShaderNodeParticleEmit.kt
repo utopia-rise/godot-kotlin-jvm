@@ -14,7 +14,6 @@ import godot.core.GodotEnum
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -44,13 +43,13 @@ public open class VisualShaderNodeParticleEmit : VisualShaderNode() {
   }
 
   public final fun setFlags(flags: EmitFlags): Unit {
-    TransferContext.writeArguments(LONG to flags.value)
-    TransferContext.callMethod(ptr, MethodBindings.setFlagsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to flags.value)
+    TransferContext.callMethod(MethodBindings.setFlagsPtr)
   }
 
   public final fun getFlags(): EmitFlags {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFlagsPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getFlagsPtr)
     return EmitFlags.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

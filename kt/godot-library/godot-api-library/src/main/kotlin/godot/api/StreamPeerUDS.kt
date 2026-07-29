@@ -42,8 +42,8 @@ public open class StreamPeerUDS : StreamPeerSocket() {
    * [connectToHost] to use the specified [path] as the source address.
    */
   public final fun bind(path: String): Error {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(ptr, MethodBindings.bindPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to path)
+    TransferContext.callMethod(MethodBindings.bindPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -51,8 +51,8 @@ public open class StreamPeerUDS : StreamPeerSocket() {
    * Connects to the specified UNIX Domain Socket path. Returns [OK] on success.
    */
   public final fun connectToHost(path: String): Error {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(ptr, MethodBindings.connectToHostPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to path)
+    TransferContext.callMethod(MethodBindings.connectToHostPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -60,8 +60,8 @@ public open class StreamPeerUDS : StreamPeerSocket() {
    * Returns the socket path of this peer.
    */
   public final fun getConnectedPath(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getConnectedPathPtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getConnectedPathPtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 

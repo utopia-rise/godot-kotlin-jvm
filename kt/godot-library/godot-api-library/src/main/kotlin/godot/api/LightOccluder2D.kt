@@ -14,7 +14,6 @@ import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
 import kotlin.Int
@@ -70,35 +69,35 @@ public open class LightOccluder2D : Node2D() {
   }
 
   public final fun setOccluderPolygon(polygon: OccluderPolygon2D?): Unit {
-    TransferContext.writeArguments(OBJECT to polygon)
-    TransferContext.callMethod(ptr, MethodBindings.setOccluderPolygonPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to polygon)
+    TransferContext.callMethod(MethodBindings.setOccluderPolygonPtr)
   }
 
   public final fun getOccluderPolygon(): OccluderPolygon2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getOccluderPolygonPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getOccluderPolygonPtr)
     return (TransferContext.readReturnValue(OBJECT) as OccluderPolygon2D?)
   }
 
   public final fun setOccluderLightMask(mask: Int): Unit {
-    TransferContext.writeArguments(LONG to mask.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setOccluderLightMaskPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to mask.toLong())
+    TransferContext.callMethod(MethodBindings.setOccluderLightMaskPtr)
   }
 
   public final fun getOccluderLightMask(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getOccluderLightMaskPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getOccluderLightMaskPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setAsSdfCollision(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(ptr, MethodBindings.setAsSdfCollisionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enable)
+    TransferContext.callMethod(MethodBindings.setAsSdfCollisionPtr)
   }
 
   public final fun isSetAsSdfCollision(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isSetAsSdfCollisionPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isSetAsSdfCollisionPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

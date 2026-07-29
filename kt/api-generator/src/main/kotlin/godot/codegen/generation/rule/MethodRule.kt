@@ -118,6 +118,7 @@ class MethodRule : GodotApiRule<EnrichedMethodTask>(), BaseMethodeRule {
     }
 
     private fun FunSpec.Builder.generateWriteArgument(method: EnrichedMethod) {
+        val caller = if (method.isStatic) "0L,·0L" else "ptr,·objectID.id"
         val arguments = buildString {
             method.arguments.withIndex().forEach {
                 val index = it.index
@@ -136,14 +137,15 @@ class MethodRule : GodotApiRule<EnrichedMethodTask>(), BaseMethodeRule {
         if (method.isVararg) {
             val varargPrefix = if (method.arguments.isNotEmpty()) ",·" else ""
             addStatement(
-                "%T.writeArguments($arguments$varargPrefix*args.map·{·%M·to·it·}.toTypedArray())",
+                "%T.writeMethodArguments($caller,·$arguments$varargPrefix*args.map·{·%M·to·it·}.toTypedArray())",
                 Internal.transferContext,
                 *ktVariantClassNames,
                 VariantConverter.ANY
             )
         } else {
+            val callerAndArguments = if (arguments.isEmpty()) caller else "$caller,·$arguments"
             addStatement(
-                "%T.writeArguments($arguments)",
+                "%T.writeMethodArguments($callerAndArguments)",
                 Internal.transferContext,
                 *ktVariantClassNames
             )
@@ -151,13 +153,11 @@ class MethodRule : GodotApiRule<EnrichedMethodTask>(), BaseMethodeRule {
     }
 
     private fun FunSpec.Builder.generateMethodCall(method: EnrichedMethod, clazz: EnrichedClass) {
-        val ptr = if (method.isStatic) "0" else "ptr"
         addStatement(
-            "%T.callMethod($ptr,·%T.%M,·%M)",
+            "%T.callMethod(%T.%M)",
             Internal.transferContext,
             clazz.className.nestedClass(API.methodBindingsInnerClassName),
-            MemberName(API.`object`.packageName, "${method.name}Ptr"),
-            method.type.getVariantConverter()
+            MemberName(API.`object`.packageName, "${method.name}Ptr")
         )
     }
 
@@ -267,4 +267,3 @@ class OverLoadRule : GodotApiRule<EnrichedMethodTask>() {
         }
     }
 }
-

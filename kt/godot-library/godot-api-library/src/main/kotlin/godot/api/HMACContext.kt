@@ -83,8 +83,8 @@ public open class HMACContext : RefCounted() {
    * [finish] has been called.
    */
   public final fun start(hashType: HashingContext.HashType, key: PackedByteArray): Error {
-    TransferContext.writeArguments(LONG to hashType.value, PACKED_BYTE_ARRAY to key)
-    TransferContext.callMethod(ptr, MethodBindings.startPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to hashType.value, PACKED_BYTE_ARRAY to key)
+    TransferContext.callMethod(MethodBindings.startPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -93,8 +93,8 @@ public open class HMACContext : RefCounted() {
    * to append [data] to the message, but cannot be called until [start] has been called.
    */
   public final fun update(`data`: PackedByteArray): Error {
-    TransferContext.writeArguments(PACKED_BYTE_ARRAY to data)
-    TransferContext.callMethod(ptr, MethodBindings.updatePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_BYTE_ARRAY to data)
+    TransferContext.callMethod(MethodBindings.updatePtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -102,8 +102,8 @@ public open class HMACContext : RefCounted() {
    * Returns the resulting HMAC. If the HMAC failed, an empty [PackedByteArray] is returned.
    */
   public final fun finish(): PackedByteArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.finishPtr, PACKED_BYTE_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.finishPtr)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 

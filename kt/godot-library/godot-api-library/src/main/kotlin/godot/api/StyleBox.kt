@@ -19,7 +19,6 @@ import godot.core.Side
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.RECT2
 import godot.core.VariantParser.VECTOR2
@@ -137,8 +136,8 @@ public abstract class StyleBox : Resource() {
    * Returns the minimum size that this stylebox can be shrunk to.
    */
   public final fun getMinimumSize(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMinimumSizePtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMinimumSizePtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
@@ -146,24 +145,24 @@ public abstract class StyleBox : Resource() {
    * Sets the default value of the specified [Side] to [offset] pixels.
    */
   public final fun setContentMargin(margin: Side, offset: Float): Unit {
-    TransferContext.writeArguments(LONG to margin.value, DOUBLE to offset.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setContentMarginPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to margin.value, DOUBLE to offset.toDouble())
+    TransferContext.callMethod(MethodBindings.setContentMarginPtr)
   }
 
   /**
    * Sets the default margin to [offset] pixels for all sides.
    */
   public final fun setContentMarginAll(offset: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to offset.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setContentMarginAllPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to offset.toDouble())
+    TransferContext.callMethod(MethodBindings.setContentMarginAllPtr)
   }
 
   /**
    * Returns the default margin of the specified [Side].
    */
   public final fun getContentMargin(margin: Side): Float {
-    TransferContext.writeArguments(LONG to margin.value)
-    TransferContext.callMethod(ptr, MethodBindings.getContentMarginPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to margin.value)
+    TransferContext.callMethod(MethodBindings.getContentMarginPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -173,8 +172,8 @@ public abstract class StyleBox : Resource() {
    * Positive values reduce size inwards, unlike [Control]'s margin values.
    */
   public final fun getMargin(margin: Side): Float {
-    TransferContext.writeArguments(LONG to margin.value)
-    TransferContext.callMethod(ptr, MethodBindings.getMarginPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to margin.value)
+    TransferContext.callMethod(MethodBindings.getMarginPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -183,8 +182,8 @@ public abstract class StyleBox : Resource() {
    * `Vector2(style.get_margin(MARGIN_LEFT), style.get_margin(MARGIN_TOP))`.
    */
   public final fun getOffset(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getOffsetPtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getOffsetPtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
@@ -196,8 +195,8 @@ public abstract class StyleBox : Resource() {
    * [RenderingServer.canvasItemCreate].
    */
   public final fun draw(canvasItem: RID, rect: Rect2): Unit {
-    TransferContext.writeArguments(_RID to canvasItem, RECT2 to rect)
-    TransferContext.callMethod(ptr, MethodBindings.drawPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to canvasItem, RECT2 to rect)
+    TransferContext.callMethod(MethodBindings.drawPtr)
   }
 
   /**
@@ -205,8 +204,8 @@ public abstract class StyleBox : Resource() {
    * callback at this moment.
    */
   public final fun getCurrentItemDrawn(): CanvasItem? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCurrentItemDrawnPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCurrentItemDrawnPtr)
     return (TransferContext.readReturnValue(OBJECT) as CanvasItem?)
   }
 
@@ -214,8 +213,8 @@ public abstract class StyleBox : Resource() {
    * Test a position in a rectangle, return whether it passes the mask test.
    */
   public final fun testMask(point: Vector2, rect: Rect2): Boolean {
-    TransferContext.writeArguments(VECTOR2 to point, RECT2 to rect)
-    TransferContext.callMethod(ptr, MethodBindings.testMaskPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to point, RECT2 to rect)
+    TransferContext.callMethod(MethodBindings.testMaskPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

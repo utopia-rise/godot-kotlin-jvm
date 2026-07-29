@@ -40,8 +40,8 @@ public open class OpenXRSpatialComponentMesh2DList : OpenXRSpatialComponentData(
    * Returns the transform for positioning our mesh for the entity at this [index].
    */
   public final fun getTransform(index: Long): Transform3D {
-    TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(ptr, MethodBindings.getTransformPtr, TRANSFORM3D)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index)
+    TransferContext.callMethod(MethodBindings.getTransformPtr)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
@@ -49,8 +49,8 @@ public open class OpenXRSpatialComponentMesh2DList : OpenXRSpatialComponentData(
    * Returns the mesh vertices for the entity at this [index].
    */
   public final fun getVertices(snapshot: RID, index: Long): PackedVector2Array {
-    TransferContext.writeArguments(_RID to snapshot, LONG to index)
-    TransferContext.callMethod(ptr, MethodBindings.getVerticesPtr, PACKED_VECTOR2_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to snapshot, LONG to index)
+    TransferContext.callMethod(MethodBindings.getVerticesPtr)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
@@ -58,8 +58,8 @@ public open class OpenXRSpatialComponentMesh2DList : OpenXRSpatialComponentData(
    * Returns the mesh indices for the entity at this [index].
    */
   public final fun getIndices(snapshot: RID, index: Long): PackedInt32Array {
-    TransferContext.writeArguments(_RID to snapshot, LONG to index)
-    TransferContext.callMethod(ptr, MethodBindings.getIndicesPtr, PACKED_INT_32_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to snapshot, LONG to index)
+    TransferContext.callMethod(MethodBindings.getIndicesPtr)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 

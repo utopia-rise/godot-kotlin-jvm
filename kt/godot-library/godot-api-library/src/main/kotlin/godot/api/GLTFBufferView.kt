@@ -17,7 +17,6 @@ import godot.core.PackedByteArray
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DICTIONARY
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import kotlin.Any
@@ -126,8 +125,8 @@ public open class GLTFBufferView : Resource() {
    * returned as a [PackedByteArray].
    */
   public final fun loadBufferViewData(state: GLTFState?): PackedByteArray {
-    TransferContext.writeArguments(OBJECT to state)
-    TransferContext.callMethod(ptr, MethodBindings.loadBufferViewDataPtr, PACKED_BYTE_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to state)
+    TransferContext.callMethod(MethodBindings.loadBufferViewDataPtr)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
@@ -135,75 +134,75 @@ public open class GLTFBufferView : Resource() {
    * Serializes this GLTFBufferView instance into a [Dictionary].
    */
   public final fun toDictionary(): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.toDictionaryPtr, DICTIONARY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.toDictionaryPtr)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   public final fun getBuffer(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getBufferPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getBufferPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setBuffer(buffer: Int): Unit {
-    TransferContext.writeArguments(LONG to buffer.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setBufferPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to buffer.toLong())
+    TransferContext.callMethod(MethodBindings.setBufferPtr)
   }
 
   public final fun getByteOffset(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getByteOffsetPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getByteOffsetPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setByteOffset(byteOffset: Long): Unit {
-    TransferContext.writeArguments(LONG to byteOffset)
-    TransferContext.callMethod(ptr, MethodBindings.setByteOffsetPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to byteOffset)
+    TransferContext.callMethod(MethodBindings.setByteOffsetPtr)
   }
 
   public final fun getByteLength(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getByteLengthPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getByteLengthPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setByteLength(byteLength: Long): Unit {
-    TransferContext.writeArguments(LONG to byteLength)
-    TransferContext.callMethod(ptr, MethodBindings.setByteLengthPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to byteLength)
+    TransferContext.callMethod(MethodBindings.setByteLengthPtr)
   }
 
   public final fun getByteStride(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getByteStridePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getByteStridePtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setByteStride(byteStride: Long): Unit {
-    TransferContext.writeArguments(LONG to byteStride)
-    TransferContext.callMethod(ptr, MethodBindings.setByteStridePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to byteStride)
+    TransferContext.callMethod(MethodBindings.setByteStridePtr)
   }
 
   public final fun getIndices(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getIndicesPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getIndicesPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setIndices(indices: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to indices)
-    TransferContext.callMethod(ptr, MethodBindings.setIndicesPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to indices)
+    TransferContext.callMethod(MethodBindings.setIndicesPtr)
   }
 
   public final fun getVertexAttributes(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getVertexAttributesPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getVertexAttributesPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setVertexAttributes(isAttributes: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to isAttributes)
-    TransferContext.callMethod(ptr, MethodBindings.setVertexAttributesPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to isAttributes)
+    TransferContext.callMethod(MethodBindings.setVertexAttributesPtr)
   }
 
   public companion object {
@@ -274,8 +273,8 @@ public open class GLTFBufferView : Resource() {
      */
     @JvmStatic
     public final fun fromDictionary(dictionary: Dictionary<Any?, Any?>): GLTFBufferView? {
-      TransferContext.writeArguments(DICTIONARY to dictionary)
-      TransferContext.callMethod(0, MethodBindings.fromDictionaryPtr, OBJECT)
+      TransferContext.writeMethodArguments(0L, 0L, DICTIONARY to dictionary)
+      TransferContext.callMethod(MethodBindings.fromDictionaryPtr)
       return (TransferContext.readReturnValue(OBJECT) as GLTFBufferView?)
     }
   }

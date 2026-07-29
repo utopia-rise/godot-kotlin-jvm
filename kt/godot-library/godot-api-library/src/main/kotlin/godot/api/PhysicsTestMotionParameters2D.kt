@@ -20,7 +20,6 @@ import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.TRANSFORM2D
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
@@ -187,80 +186,80 @@ public open class PhysicsTestMotionParameters2D : RefCounted() {
   }
 
   public final fun getFrom(): Transform2D {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFromPtr, TRANSFORM2D)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getFromPtr)
     return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
   }
 
   public final fun setFrom(from: Transform2D): Unit {
-    TransferContext.writeArguments(TRANSFORM2D to from)
-    TransferContext.callMethod(ptr, MethodBindings.setFromPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, TRANSFORM2D to from)
+    TransferContext.callMethod(MethodBindings.setFromPtr)
   }
 
   public final fun getMotion(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMotionPtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMotionPtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setMotion(motion: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to motion)
-    TransferContext.callMethod(ptr, MethodBindings.setMotionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to motion)
+    TransferContext.callMethod(MethodBindings.setMotionPtr)
   }
 
   public final fun getMargin(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMarginPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMarginPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setMargin(margin: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to margin.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setMarginPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to margin.toDouble())
+    TransferContext.callMethod(MethodBindings.setMarginPtr)
   }
 
   public final fun isCollideSeparationRayEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isCollideSeparationRayEnabledPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isCollideSeparationRayEnabledPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCollideSeparationRayEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.setCollideSeparationRayEnabledPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enabled)
+    TransferContext.callMethod(MethodBindings.setCollideSeparationRayEnabledPtr)
   }
 
   public final fun getExcludeBodies(): VariantArray<RID> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getExcludeBodiesPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getExcludeBodiesPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<RID>)
   }
 
   public final fun setExcludeBodies(excludeList: VariantArray<RID>): Unit {
-    TransferContext.writeArguments(ARRAY to excludeList)
-    TransferContext.callMethod(ptr, MethodBindings.setExcludeBodiesPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, ARRAY to excludeList)
+    TransferContext.callMethod(MethodBindings.setExcludeBodiesPtr)
   }
 
   public final fun getExcludeObjects(): VariantArray<Long> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getExcludeObjectsPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getExcludeObjectsPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Long>)
   }
 
   public final fun setExcludeObjects(excludeList: VariantArray<Long>): Unit {
-    TransferContext.writeArguments(ARRAY to excludeList)
-    TransferContext.callMethod(ptr, MethodBindings.setExcludeObjectsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, ARRAY to excludeList)
+    TransferContext.callMethod(MethodBindings.setExcludeObjectsPtr)
   }
 
   public final fun isRecoveryAsCollisionEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isRecoveryAsCollisionEnabledPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isRecoveryAsCollisionEnabledPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setRecoveryAsCollisionEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.setRecoveryAsCollisionEnabledPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enabled)
+    TransferContext.callMethod(MethodBindings.setRecoveryAsCollisionEnabledPtr)
   }
 
   public companion object {

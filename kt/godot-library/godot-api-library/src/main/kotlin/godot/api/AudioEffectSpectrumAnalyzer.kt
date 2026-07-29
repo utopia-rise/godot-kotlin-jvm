@@ -15,7 +15,6 @@ import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import kotlin.Double
 import kotlin.Float
 import kotlin.Long
@@ -66,24 +65,24 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
   }
 
   public final fun setBufferLength(seconds: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to seconds.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setBufferLengthPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to seconds.toDouble())
+    TransferContext.callMethod(MethodBindings.setBufferLengthPtr)
   }
 
   public final fun getBufferLength(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getBufferLengthPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getBufferLengthPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFftSize(size: FFTSize): Unit {
-    TransferContext.writeArguments(LONG to size.value)
-    TransferContext.callMethod(ptr, MethodBindings.setFftSizePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to size.value)
+    TransferContext.callMethod(MethodBindings.setFftSizePtr)
   }
 
   public final fun getFftSize(): FFTSize {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFftSizePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getFftSizePtr)
     return FFTSize.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

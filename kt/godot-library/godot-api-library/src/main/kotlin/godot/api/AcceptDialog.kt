@@ -17,7 +17,6 @@ import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.StringName
 import godot.core.VariantParser.BOOL
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import kotlin.Boolean
@@ -128,8 +127,8 @@ public open class AcceptDialog : Window() {
    * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
   public final fun getOkButton(): Button? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getOkButtonPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getOkButtonPtr)
     return (TransferContext.readReturnValue(OBJECT) as Button?)
   }
 
@@ -140,30 +139,30 @@ public open class AcceptDialog : Window() {
    * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
   public final fun getLabel(): Label? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getLabelPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getLabelPtr)
     return (TransferContext.readReturnValue(OBJECT) as Label?)
   }
 
   public final fun setHideOnOk(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.setHideOnOkPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enabled)
+    TransferContext.callMethod(MethodBindings.setHideOnOkPtr)
   }
 
   public final fun getHideOnOk(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getHideOnOkPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getHideOnOkPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCloseOnEscape(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.setCloseOnEscapePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enabled)
+    TransferContext.callMethod(MethodBindings.setCloseOnEscapePtr)
   }
 
   public final fun getCloseOnEscape(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCloseOnEscapePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCloseOnEscapePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -184,8 +183,8 @@ public open class AcceptDialog : Window() {
     right: Boolean = false,
     action: String = "",
   ): Button? {
-    TransferContext.writeArguments(STRING to text, BOOL to right, STRING to action)
-    TransferContext.callMethod(ptr, MethodBindings.addButtonPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to text, BOOL to right, STRING to action)
+    TransferContext.callMethod(MethodBindings.addButtonPtr)
     return (TransferContext.readReturnValue(OBJECT) as Button?)
   }
 
@@ -196,8 +195,8 @@ public open class AcceptDialog : Window() {
    * You can use [removeButton] method to remove a button created with this method from the dialog.
    */
   public final fun addCancelButton(name: String): Button? {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(ptr, MethodBindings.addCancelButtonPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to name)
+    TransferContext.callMethod(MethodBindings.addCancelButtonPtr)
     return (TransferContext.readReturnValue(OBJECT) as Button?)
   }
 
@@ -207,8 +206,8 @@ public open class AcceptDialog : Window() {
    * will no longer emit this dialog's [signal custom_action] or [signal canceled] signals.
    */
   public final fun removeButton(button: Button?): Unit {
-    TransferContext.writeArguments(OBJECT to button)
-    TransferContext.callMethod(ptr, MethodBindings.removeButtonPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to button)
+    TransferContext.callMethod(MethodBindings.removeButtonPtr)
   }
 
   /**
@@ -216,40 +215,40 @@ public open class AcceptDialog : Window() {
    * accepted.
    */
   public final fun registerTextEnter(lineEdit: LineEdit?): Unit {
-    TransferContext.writeArguments(OBJECT to lineEdit)
-    TransferContext.callMethod(ptr, MethodBindings.registerTextEnterPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to lineEdit)
+    TransferContext.callMethod(MethodBindings.registerTextEnterPtr)
   }
 
   public final fun setText(text: String): Unit {
-    TransferContext.writeArguments(STRING to text)
-    TransferContext.callMethod(ptr, MethodBindings.setTextPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to text)
+    TransferContext.callMethod(MethodBindings.setTextPtr)
   }
 
   public final fun getText(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getTextPtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getTextPtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setAutowrap(autowrap: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to autowrap)
-    TransferContext.callMethod(ptr, MethodBindings.setAutowrapPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to autowrap)
+    TransferContext.callMethod(MethodBindings.setAutowrapPtr)
   }
 
   public final fun hasAutowrap(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.hasAutowrapPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.hasAutowrapPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setOkButtonText(text: String): Unit {
-    TransferContext.writeArguments(STRING to text)
-    TransferContext.callMethod(ptr, MethodBindings.setOkButtonTextPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to text)
+    TransferContext.callMethod(MethodBindings.setOkButtonTextPtr)
   }
 
   public final fun getOkButtonText(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getOkButtonTextPtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getOkButtonTextPtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 

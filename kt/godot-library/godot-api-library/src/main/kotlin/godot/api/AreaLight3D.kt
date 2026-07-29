@@ -15,7 +15,6 @@ import godot.common.interop.VoidPtr
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
@@ -164,35 +163,35 @@ public open class AreaLight3D : Light3D() {
   }
 
   public final fun setAreaTexture(texture: Texture2D?): Unit {
-    TransferContext.writeArguments(OBJECT to texture)
-    TransferContext.callMethod(ptr, MethodBindings.setAreaTexturePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to texture)
+    TransferContext.callMethod(MethodBindings.setAreaTexturePtr)
   }
 
   public final fun getAreaTexture(): Texture2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getAreaTexturePtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getAreaTexturePtr)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setAreaSize(areaSize: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to areaSize)
-    TransferContext.callMethod(ptr, MethodBindings.setAreaSizePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to areaSize)
+    TransferContext.callMethod(MethodBindings.setAreaSizePtr)
   }
 
   public final fun getAreaSize(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getAreaSizePtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getAreaSizePtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setAreaNormalizeEnergy(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(ptr, MethodBindings.setAreaNormalizeEnergyPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enable)
+    TransferContext.callMethod(MethodBindings.setAreaNormalizeEnergyPtr)
   }
 
   public final fun isAreaNormalizingEnergy(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isAreaNormalizingEnergyPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isAreaNormalizingEnergyPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

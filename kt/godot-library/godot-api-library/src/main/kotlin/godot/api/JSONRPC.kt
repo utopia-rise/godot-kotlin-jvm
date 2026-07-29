@@ -21,7 +21,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.CALLABLE
 import godot.core.VariantParser.DICTIONARY
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import kotlin.Any
 import kotlin.Boolean
@@ -54,8 +53,8 @@ public open class JSONRPC : Object() {
    * - [callback]: The callback which will handle the specified method.
    */
   public final fun setMethod(name: String, callback: Callable): Unit {
-    TransferContext.writeArguments(STRING to name, CALLABLE to callback)
-    TransferContext.callMethod(ptr, MethodBindings.setMethodPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to name, CALLABLE to callback)
+    TransferContext.callMethod(MethodBindings.setMethodPtr)
   }
 
   /**
@@ -71,14 +70,14 @@ public open class JSONRPC : Object() {
    */
   @JvmOverloads
   public final fun processAction(action: Any?, recurse: Boolean = false): Any? {
-    TransferContext.writeArguments(ANY to action, BOOL to recurse)
-    TransferContext.callMethod(ptr, MethodBindings.processActionPtr, ANY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, ANY to action, BOOL to recurse)
+    TransferContext.callMethod(MethodBindings.processActionPtr)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
   public final fun processString(action: String): String {
-    TransferContext.writeArguments(STRING to action)
-    TransferContext.callMethod(ptr, MethodBindings.processStringPtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to action)
+    TransferContext.callMethod(MethodBindings.processStringPtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -99,8 +98,8 @@ public open class JSONRPC : Object() {
     params: Any?,
     id: Any?,
   ): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments(STRING to method, ANY to params, ANY to id)
-    TransferContext.callMethod(ptr, MethodBindings.makeRequestPtr, DICTIONARY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to method, ANY to params, ANY to id)
+    TransferContext.callMethod(MethodBindings.makeRequestPtr)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
@@ -113,8 +112,8 @@ public open class JSONRPC : Object() {
    * - [id]: The ID of the request this response is targeted to.
    */
   public final fun makeResponse(result: Any?, id: Any?): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments(ANY to result, ANY to id)
-    TransferContext.callMethod(ptr, MethodBindings.makeResponsePtr, DICTIONARY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, ANY to result, ANY to id)
+    TransferContext.callMethod(MethodBindings.makeResponsePtr)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
@@ -127,8 +126,8 @@ public open class JSONRPC : Object() {
    * - [params]: An array or dictionary of parameters being passed to the method.
    */
   public final fun makeNotification(method: String, params: Any?): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments(STRING to method, ANY to params)
-    TransferContext.callMethod(ptr, MethodBindings.makeNotificationPtr, DICTIONARY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to method, ANY to params)
+    TransferContext.callMethod(MethodBindings.makeNotificationPtr)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
@@ -148,8 +147,8 @@ public open class JSONRPC : Object() {
     message: String,
     id: Any? = null,
   ): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments(LONG to code.toLong(), STRING to message, ANY to id)
-    TransferContext.callMethod(ptr, MethodBindings.makeResponseErrorPtr, DICTIONARY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to code.toLong(), STRING to message, ANY to id)
+    TransferContext.callMethod(MethodBindings.makeResponseErrorPtr)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 

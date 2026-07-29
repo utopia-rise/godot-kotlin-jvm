@@ -16,7 +16,6 @@ import godot.core.Signal1
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
 import kotlin.Suppress
@@ -53,8 +52,8 @@ public open class FoldableGroup : Resource() {
    * Returns the current expanded container.
    */
   public final fun getExpandedContainer(): FoldableContainer? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getExpandedContainerPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getExpandedContainerPtr)
     return (TransferContext.readReturnValue(OBJECT) as FoldableContainer?)
   }
 
@@ -64,19 +63,19 @@ public open class FoldableGroup : Resource() {
    * FoldableContainers.
    */
   public final fun getContainers(): VariantArray<FoldableContainer> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getContainersPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getContainersPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<FoldableContainer>)
   }
 
   public final fun setAllowFoldingAll(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.setAllowFoldingAllPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enabled)
+    TransferContext.callMethod(MethodBindings.setAllowFoldingAllPtr)
   }
 
   public final fun isAllowFoldingAll(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isAllowFoldingAllPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isAllowFoldingAllPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

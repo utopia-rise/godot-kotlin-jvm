@@ -13,7 +13,7 @@ thread_local static int stack_offset = -1;
 TransferContext::~TransferContext() = default;
 
 SharedBuffer* TransferContext::get_and_rewind_buffer(jni::Env& p_env) {
-    thread_local static SharedBuffer shared_buffer;
+    thread_local SharedBuffer shared_buffer;
 
     if (unlikely(!shared_buffer.is_init())) {
         jni::JObject buffer = wrapped.call_object_method(p_env, GET_BUFFER);
@@ -61,7 +61,7 @@ void TransferContext::write_object_data(jni::Env& p_env, uintptr_t ptr, ObjectID
     buffer->increment_position(encode_uint64(id, buffer->get_cursor()));
 }
 
-void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jlong j_method_ptr, jint expectedReturnType) {
+void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_method_ptr) {
     if (unlikely(stack_offset == -1)) {
         for (int i = 0; i < MAX_STACK_SIZE; i++) {
             variant_args_ptr[i] = &variant_args[i];
@@ -72,11 +72,27 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jlong
     jni::Env env {rawEnv};
 
     SharedBuffer* buffer {get_instance().get_and_rewind_buffer(env)};
+    uintptr_t receiver_ptr {static_cast<uintptr_t>(decode_uint64(buffer->get_cursor()))};
+#ifdef DEBUG_ENABLED
+    ObjectID receiver_id {decode_uint64(buffer->get_cursor() + PTR_SIZE)};
+#endif
+    buffer->increment_position(PTR_SIZE + LONG_SIZE);
+    Object* ptr {reinterpret_cast<Object*>(receiver_ptr)};
     uint32_t args_size {read_args_size(buffer)};
 
-    auto* ptr {reinterpret_cast<Object*>(static_cast<uintptr_t>(j_ptr))};
-
     MethodBind* method_bind {reinterpret_cast<MethodBind*>(static_cast<uintptr_t>(j_method_ptr))};
+
+#ifdef DEBUG_ENABLED
+    if (unlikely(!method_bind->is_static() && ptr != ObjectDB::get_instance(receiver_id))) {
+        buffer->rewind();
+        Variant return_value;
+        VariantToBuffer::write_variant(return_value, buffer);
+        String message {vformat("Cannot call method '%s' on a previously freed instance.", method_bind->get_name())};
+        JVM_ERR_PRINT("%s", message);
+        env.throw_new(message.utf8().get_data());
+        return;
+    }
+#endif
 
     JVM_DEV_ASSERT(
       args_size <= MAX_FUNCTION_ARG_COUNT,

@@ -18,7 +18,6 @@ import godot.core.VariantCallable
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.CALLABLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
 import kotlin.Long
@@ -43,8 +42,8 @@ public open class OpenXRFutureExtension : OpenXRExtensionWrapper() {
    * return a usable result after OpenXR has been initialized.
    */
   public final fun isActive(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isActivePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isActivePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -69,8 +68,8 @@ public open class OpenXRFutureExtension : OpenXRExtensionWrapper() {
   @JvmOverloads
   public final fun registerFuture(future: Long, onSuccess: Callable = VariantCallable()):
       OpenXRFutureResult? {
-    TransferContext.writeArguments(LONG to future, CALLABLE to onSuccess)
-    TransferContext.callMethod(ptr, MethodBindings.registerFuturePtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to future, CALLABLE to onSuccess)
+    TransferContext.callMethod(MethodBindings.registerFuturePtr)
     return (TransferContext.readReturnValue(OBJECT) as OpenXRFutureResult?)
   }
 
@@ -79,8 +78,8 @@ public open class OpenXRFutureExtension : OpenXRExtensionWrapper() {
    * an API that started an asynchronous function.
    */
   public final fun cancelFuture(future: Long): Unit {
-    TransferContext.writeArguments(LONG to future)
-    TransferContext.callMethod(ptr, MethodBindings.cancelFuturePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to future)
+    TransferContext.callMethod(MethodBindings.cancelFuturePtr)
   }
 
   public companion object {

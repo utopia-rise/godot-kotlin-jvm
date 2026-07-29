@@ -15,7 +15,6 @@ import godot.core.MethodStringName1
 import godot.core.MethodStringName2
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Double
 import kotlin.Float
@@ -50,13 +49,13 @@ public open class AudioStreamSynchronized : AudioStream() {
   }
 
   public final fun setStreamCount(streamCount: Int): Unit {
-    TransferContext.writeArguments(LONG to streamCount.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setStreamCountPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to streamCount.toLong())
+    TransferContext.callMethod(MethodBindings.setStreamCountPtr)
   }
 
   public final fun getStreamCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getStreamCountPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getStreamCountPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -64,16 +63,16 @@ public open class AudioStreamSynchronized : AudioStream() {
    * Set one of the synchronized streams, by index.
    */
   public final fun setSyncStream(streamIndex: Int, audioStream: AudioStream?): Unit {
-    TransferContext.writeArguments(LONG to streamIndex.toLong(), OBJECT to audioStream)
-    TransferContext.callMethod(ptr, MethodBindings.setSyncStreamPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to streamIndex.toLong(), OBJECT to audioStream)
+    TransferContext.callMethod(MethodBindings.setSyncStreamPtr)
   }
 
   /**
    * Get one of the synchronized streams, by index.
    */
   public final fun getSyncStream(streamIndex: Int): AudioStream? {
-    TransferContext.writeArguments(LONG to streamIndex.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getSyncStreamPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to streamIndex.toLong())
+    TransferContext.callMethod(MethodBindings.getSyncStreamPtr)
     return (TransferContext.readReturnValue(OBJECT) as AudioStream?)
   }
 
@@ -81,16 +80,16 @@ public open class AudioStreamSynchronized : AudioStream() {
    * Set the volume of one of the synchronized streams, by index.
    */
   public final fun setSyncStreamVolume(streamIndex: Int, volumeDb: Float): Unit {
-    TransferContext.writeArguments(LONG to streamIndex.toLong(), DOUBLE to volumeDb.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setSyncStreamVolumePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to streamIndex.toLong(), DOUBLE to volumeDb.toDouble())
+    TransferContext.callMethod(MethodBindings.setSyncStreamVolumePtr)
   }
 
   /**
    * Get the volume of one of the synchronized streams, by index.
    */
   public final fun getSyncStreamVolume(streamIndex: Int): Float {
-    TransferContext.writeArguments(LONG to streamIndex.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getSyncStreamVolumePtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to streamIndex.toLong())
+    TransferContext.callMethod(MethodBindings.getSyncStreamVolumePtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 

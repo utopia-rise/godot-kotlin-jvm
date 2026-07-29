@@ -15,7 +15,6 @@ import godot.core.MethodStringName1
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import kotlin.Any
@@ -107,13 +106,13 @@ public open class Shortcut : Resource() {
   }
 
   public final fun setEvents(events: VariantArray<Any?>): Unit {
-    TransferContext.writeArguments(ARRAY to events)
-    TransferContext.callMethod(ptr, MethodBindings.setEventsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, ARRAY to events)
+    TransferContext.callMethod(MethodBindings.setEventsPtr)
   }
 
   public final fun getEvents(): VariantArray<Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getEventsPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getEventsPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
@@ -121,8 +120,8 @@ public open class Shortcut : Resource() {
    * Returns whether [events] contains an [InputEvent] which is valid.
    */
   public final fun hasValidEvent(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.hasValidEventPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.hasValidEventPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -131,8 +130,8 @@ public open class Shortcut : Resource() {
    * compare events.
    */
   public final fun matchesEvent(event: InputEvent?): Boolean {
-    TransferContext.writeArguments(OBJECT to event)
-    TransferContext.callMethod(ptr, MethodBindings.matchesEventPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to event)
+    TransferContext.callMethod(MethodBindings.matchesEventPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -140,8 +139,8 @@ public open class Shortcut : Resource() {
    * Returns the shortcut's first valid [InputEvent] as a [String].
    */
   public final fun getAsText(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getAsTextPtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getAsTextPtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 

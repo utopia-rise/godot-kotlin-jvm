@@ -16,7 +16,6 @@ import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DICTIONARY
 import godot.core.VariantParser.DOUBLE
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Any
 import kotlin.Boolean
@@ -104,8 +103,8 @@ public open class GLTFCamera : Resource() {
    * Converts this GLTFCamera instance into a Godot [Camera3D] node.
    */
   public final fun toNode(): Camera3D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.toNodePtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.toNodePtr)
     return (TransferContext.readReturnValue(OBJECT) as Camera3D?)
   }
 
@@ -113,64 +112,64 @@ public open class GLTFCamera : Resource() {
    * Serializes this GLTFCamera instance into a [Dictionary].
    */
   public final fun toDictionary(): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.toDictionaryPtr, DICTIONARY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.toDictionaryPtr)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   public final fun getPerspective(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPerspectivePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPerspectivePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setPerspective(perspective: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to perspective)
-    TransferContext.callMethod(ptr, MethodBindings.setPerspectivePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to perspective)
+    TransferContext.callMethod(MethodBindings.setPerspectivePtr)
   }
 
   public final fun getFov(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFovPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getFovPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFov(fov: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to fov.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setFovPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to fov.toDouble())
+    TransferContext.callMethod(MethodBindings.setFovPtr)
   }
 
   public final fun getSizeMag(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSizeMagPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSizeMagPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSizeMag(sizeMag: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to sizeMag.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setSizeMagPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to sizeMag.toDouble())
+    TransferContext.callMethod(MethodBindings.setSizeMagPtr)
   }
 
   public final fun getDepthFar(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getDepthFarPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getDepthFarPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDepthFar(zdepthFar: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to zdepthFar.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setDepthFarPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to zdepthFar.toDouble())
+    TransferContext.callMethod(MethodBindings.setDepthFarPtr)
   }
 
   public final fun getDepthNear(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getDepthNearPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getDepthNearPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDepthNear(zdepthNear: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to zdepthNear.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setDepthNearPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to zdepthNear.toDouble())
+    TransferContext.callMethod(MethodBindings.setDepthNearPtr)
   }
 
   public companion object {
@@ -236,8 +235,8 @@ public open class GLTFCamera : Resource() {
      */
     @JvmStatic
     public final fun fromNode(cameraNode: Camera3D?): GLTFCamera? {
-      TransferContext.writeArguments(OBJECT to cameraNode)
-      TransferContext.callMethod(0, MethodBindings.fromNodePtr, OBJECT)
+      TransferContext.writeMethodArguments(0L, 0L, OBJECT to cameraNode)
+      TransferContext.callMethod(MethodBindings.fromNodePtr)
       return (TransferContext.readReturnValue(OBJECT) as GLTFCamera?)
     }
 
@@ -246,8 +245,8 @@ public open class GLTFCamera : Resource() {
      */
     @JvmStatic
     public final fun fromDictionary(dictionary: Dictionary<Any?, Any?>): GLTFCamera? {
-      TransferContext.writeArguments(DICTIONARY to dictionary)
-      TransferContext.callMethod(0, MethodBindings.fromDictionaryPtr, OBJECT)
+      TransferContext.writeMethodArguments(0L, 0L, DICTIONARY to dictionary)
+      TransferContext.callMethod(MethodBindings.fromDictionaryPtr)
       return (TransferContext.readReturnValue(OBJECT) as GLTFCamera?)
     }
   }

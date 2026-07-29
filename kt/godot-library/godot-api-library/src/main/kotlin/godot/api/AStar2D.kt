@@ -19,7 +19,6 @@ import godot.core.PackedVector2Array
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_INT_64_ARRAY
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
 import godot.core.VariantParser.VECTOR2
@@ -91,8 +90,8 @@ public open class AStar2D : RefCounted() {
    * Returns the next available point ID with no point associated to it.
    */
   public final fun getAvailablePointId(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getAvailablePointIdPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getAvailablePointIdPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -125,16 +124,16 @@ public open class AStar2D : RefCounted() {
     position: Vector2,
     weightScale: Float = 1.0f,
   ): Unit {
-    TransferContext.writeArguments(LONG to id, VECTOR2 to position, DOUBLE to weightScale.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.addPointPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to id, VECTOR2 to position, DOUBLE to weightScale.toDouble())
+    TransferContext.callMethod(MethodBindings.addPointPtr)
   }
 
   /**
    * Returns the position of the point associated with the given [id].
    */
   public final fun getPointPosition(id: Long): Vector2 {
-    TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(ptr, MethodBindings.getPointPositionPtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to id)
+    TransferContext.callMethod(MethodBindings.getPointPositionPtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
@@ -142,16 +141,16 @@ public open class AStar2D : RefCounted() {
    * Sets the [position] for the point with the given [id].
    */
   public final fun setPointPosition(id: Long, position: Vector2): Unit {
-    TransferContext.writeArguments(LONG to id, VECTOR2 to position)
-    TransferContext.callMethod(ptr, MethodBindings.setPointPositionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to id, VECTOR2 to position)
+    TransferContext.callMethod(MethodBindings.setPointPositionPtr)
   }
 
   /**
    * Returns the weight scale of the point associated with the given [id].
    */
   public final fun getPointWeightScale(id: Long): Float {
-    TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(ptr, MethodBindings.getPointWeightScalePtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to id)
+    TransferContext.callMethod(MethodBindings.getPointWeightScalePtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -161,24 +160,24 @@ public open class AStar2D : RefCounted() {
    * a neighboring point to this point.
    */
   public final fun setPointWeightScale(id: Long, weightScale: Float): Unit {
-    TransferContext.writeArguments(LONG to id, DOUBLE to weightScale.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setPointWeightScalePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to id, DOUBLE to weightScale.toDouble())
+    TransferContext.callMethod(MethodBindings.setPointWeightScalePtr)
   }
 
   /**
    * Removes the point associated with the given [id] from the points pool.
    */
   public final fun removePoint(id: Long): Unit {
-    TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(ptr, MethodBindings.removePointPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to id)
+    TransferContext.callMethod(MethodBindings.removePointPtr)
   }
 
   /**
    * Returns whether a point associated with the given [id] exists.
    */
   public final fun hasPoint(id: Long): Boolean {
-    TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(ptr, MethodBindings.hasPointPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to id)
+    TransferContext.callMethod(MethodBindings.hasPointPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -214,8 +213,8 @@ public open class AStar2D : RefCounted() {
    * ```
    */
   public final fun getPointConnections(id: Long): PackedInt64Array {
-    TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(ptr, MethodBindings.getPointConnectionsPtr, PACKED_INT_64_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to id)
+    TransferContext.callMethod(MethodBindings.getPointConnectionsPtr)
     return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY) as PackedInt64Array)
   }
 
@@ -223,19 +222,19 @@ public open class AStar2D : RefCounted() {
    * Returns an array of all point IDs.
    */
   public final fun getPointIds(): PackedInt64Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPointIdsPtr, PACKED_INT_64_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPointIdsPtr)
     return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY) as PackedInt64Array)
   }
 
   public final fun setNeighborFilterEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.setNeighborFilterEnabledPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enabled)
+    TransferContext.callMethod(MethodBindings.setNeighborFilterEnabledPtr)
   }
 
   public final fun isNeighborFilterEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isNeighborFilterEnabledPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isNeighborFilterEnabledPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -245,16 +244,16 @@ public open class AStar2D : RefCounted() {
    */
   @JvmOverloads
   public final fun setPointDisabled(id: Long, disabled: Boolean = true): Unit {
-    TransferContext.writeArguments(LONG to id, BOOL to disabled)
-    TransferContext.callMethod(ptr, MethodBindings.setPointDisabledPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to id, BOOL to disabled)
+    TransferContext.callMethod(MethodBindings.setPointDisabledPtr)
   }
 
   /**
    * Returns whether a point is disabled or not for pathfinding. By default, all points are enabled.
    */
   public final fun isPointDisabled(id: Long): Boolean {
-    TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(ptr, MethodBindings.isPointDisabledPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to id)
+    TransferContext.callMethod(MethodBindings.isPointDisabledPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -284,8 +283,8 @@ public open class AStar2D : RefCounted() {
     toId: Long,
     bidirectional: Boolean = true,
   ): Unit {
-    TransferContext.writeArguments(LONG to id, LONG to toId, BOOL to bidirectional)
-    TransferContext.callMethod(ptr, MethodBindings.connectPointsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to id, LONG to toId, BOOL to bidirectional)
+    TransferContext.callMethod(MethodBindings.connectPointsPtr)
   }
 
   /**
@@ -298,8 +297,8 @@ public open class AStar2D : RefCounted() {
     toId: Long,
     bidirectional: Boolean = true,
   ): Unit {
-    TransferContext.writeArguments(LONG to id, LONG to toId, BOOL to bidirectional)
-    TransferContext.callMethod(ptr, MethodBindings.disconnectPointsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to id, LONG to toId, BOOL to bidirectional)
+    TransferContext.callMethod(MethodBindings.disconnectPointsPtr)
   }
 
   /**
@@ -312,8 +311,8 @@ public open class AStar2D : RefCounted() {
     toId: Long,
     bidirectional: Boolean = true,
   ): Boolean {
-    TransferContext.writeArguments(LONG to id, LONG to toId, BOOL to bidirectional)
-    TransferContext.callMethod(ptr, MethodBindings.arePointsConnectedPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to id, LONG to toId, BOOL to bidirectional)
+    TransferContext.callMethod(MethodBindings.arePointsConnectedPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -321,8 +320,8 @@ public open class AStar2D : RefCounted() {
    * Returns the number of points currently in the points pool.
    */
   public final fun getPointCount(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPointCountPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPointCountPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -331,8 +330,8 @@ public open class AStar2D : RefCounted() {
    * [reserveSpace].
    */
   public final fun getPointCapacity(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPointCapacityPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPointCapacityPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -341,16 +340,16 @@ public open class AStar2D : RefCounted() {
    * of points at once, such as points on a grid.
    */
   public final fun reserveSpace(numNodes: Long): Unit {
-    TransferContext.writeArguments(LONG to numNodes)
-    TransferContext.callMethod(ptr, MethodBindings.reserveSpacePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to numNodes)
+    TransferContext.callMethod(MethodBindings.reserveSpacePtr)
   }
 
   /**
    * Clears all the points and segments.
    */
   public final fun clear(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.clearPtr)
   }
 
   /**
@@ -362,8 +361,8 @@ public open class AStar2D : RefCounted() {
    */
   @JvmOverloads
   public final fun getClosestPoint(toPosition: Vector2, includeDisabled: Boolean = false): Long {
-    TransferContext.writeArguments(VECTOR2 to toPosition, BOOL to includeDisabled)
-    TransferContext.callMethod(ptr, MethodBindings.getClosestPointPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to toPosition, BOOL to includeDisabled)
+    TransferContext.callMethod(MethodBindings.getClosestPointPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -393,8 +392,8 @@ public open class AStar2D : RefCounted() {
    * the segment to the given point.
    */
   public final fun getClosestPositionInSegment(toPosition: Vector2): Vector2 {
-    TransferContext.writeArguments(VECTOR2 to toPosition)
-    TransferContext.callMethod(ptr, MethodBindings.getClosestPositionInSegmentPtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to toPosition)
+    TransferContext.callMethod(MethodBindings.getClosestPositionInSegmentPtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
@@ -419,8 +418,8 @@ public open class AStar2D : RefCounted() {
     toId: Long,
     allowPartialPath: Boolean = false,
   ): PackedVector2Array {
-    TransferContext.writeArguments(LONG to fromId, LONG to toId, BOOL to allowPartialPath)
-    TransferContext.callMethod(ptr, MethodBindings.getPointPathPtr, PACKED_VECTOR2_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to fromId, LONG to toId, BOOL to allowPartialPath)
+    TransferContext.callMethod(MethodBindings.getPointPathPtr)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
@@ -476,8 +475,8 @@ public open class AStar2D : RefCounted() {
     toId: Long,
     allowPartialPath: Boolean = false,
   ): PackedInt64Array {
-    TransferContext.writeArguments(LONG to fromId, LONG to toId, BOOL to allowPartialPath)
-    TransferContext.callMethod(ptr, MethodBindings.getIdPathPtr, PACKED_INT_64_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to fromId, LONG to toId, BOOL to allowPartialPath)
+    TransferContext.callMethod(MethodBindings.getIdPathPtr)
     return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY) as PackedInt64Array)
   }
 

@@ -17,7 +17,6 @@ import godot.core.Signal0
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
@@ -148,35 +147,35 @@ public open class Timer : Node() {
   }
 
   public final fun setWaitTime(timeSec: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to timeSec)
-    TransferContext.callMethod(ptr, MethodBindings.setWaitTimePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to timeSec)
+    TransferContext.callMethod(MethodBindings.setWaitTimePtr)
   }
 
   public final fun getWaitTime(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getWaitTimePtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getWaitTimePtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setOneShot(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(ptr, MethodBindings.setOneShotPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enable)
+    TransferContext.callMethod(MethodBindings.setOneShotPtr)
   }
 
   public final fun isOneShot(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isOneShotPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isOneShotPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAutostart(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(ptr, MethodBindings.setAutostartPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enable)
+    TransferContext.callMethod(MethodBindings.setAutostartPtr)
   }
 
   public final fun hasAutostart(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.hasAutostartPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.hasAutostartPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -188,8 +187,8 @@ public open class Timer : Node() {
    */
   @JvmOverloads
   public final fun start(timeSec: Double = -1.0): Unit {
-    TransferContext.writeArguments(DOUBLE to timeSec)
-    TransferContext.callMethod(ptr, MethodBindings.startPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to timeSec)
+    TransferContext.callMethod(MethodBindings.startPtr)
   }
 
   /**
@@ -201,29 +200,29 @@ public open class Timer : Node() {
    * to manually emit the signal.
    */
   public final fun stop(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.stopPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.stopPtr)
   }
 
   public final fun setPaused(paused: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to paused)
-    TransferContext.callMethod(ptr, MethodBindings.setPausedPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to paused)
+    TransferContext.callMethod(MethodBindings.setPausedPtr)
   }
 
   public final fun isPaused(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isPausedPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isPausedPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setIgnoreTimeScale(ignore: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to ignore)
-    TransferContext.callMethod(ptr, MethodBindings.setIgnoreTimeScalePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to ignore)
+    TransferContext.callMethod(MethodBindings.setIgnoreTimeScalePtr)
   }
 
   public final fun isIgnoringTimeScale(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isIgnoringTimeScalePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isIgnoringTimeScalePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -231,25 +230,25 @@ public open class Timer : Node() {
    * Returns `true` if the timer is stopped or has not started.
    */
   public final fun isStopped(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isStoppedPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isStoppedPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getTimeLeft(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getTimeLeftPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getTimeLeftPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setTimerProcessCallback(callback: TimerProcessCallback): Unit {
-    TransferContext.writeArguments(LONG to callback.value)
-    TransferContext.callMethod(ptr, MethodBindings.setTimerProcessCallbackPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to callback.value)
+    TransferContext.callMethod(MethodBindings.setTimerProcessCallbackPtr)
   }
 
   public final fun getTimerProcessCallback(): TimerProcessCallback {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getTimerProcessCallbackPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getTimerProcessCallbackPtr)
     return TimerProcessCallback.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

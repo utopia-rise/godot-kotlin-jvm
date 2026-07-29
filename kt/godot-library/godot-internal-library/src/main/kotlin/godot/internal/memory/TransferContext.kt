@@ -17,11 +17,12 @@ object TransferContext {
             /**
              * String is the largest type you can send in a buffer, so the buffer size has to be proportional to it.
              * We add +12 to the size because we need 3 extra integers (4 bytes each): The VariantType, the long/short check and the size
-             * Finally we add another +4 because the buffer always starts with the number of arguments sent.
+             * Finally we add another +4 because the buffer starts with the number of arguments sent.
+             * Method calls additionally need +16 for the caller pointer and ObjectID.
              * In case, the size of the String become smaller than any other types, we force a value of at least 68 bytes.
              * 68 bytes is the size of the second largest CoreType: Projection (64 for the data, 4 for the VariantType)
              */
-            return (LongStringQueue.stringMaxSize + 12).coerceAtLeast(68) * Constraints.MAX_FUNCTION_ARG_COUNT + 4
+            return (LongStringQueue.stringMaxSize + 12).coerceAtLeast(68) * Constraints.MAX_FUNCTION_ARG_COUNT + 4 + 16
         }
 
     @PublishedApi
@@ -39,7 +40,17 @@ object TransferContext {
         }
     }
 
-    fun readSingleArgument(variantConverter: VariantConverter) = buffer.let {
+    fun writeMethodArguments(callerPtr: VoidPtr, callerId: Long, vararg values: Pair<VariantConverter, Any?>) = buffer.let {
+        it.rewind()
+        it.putLong(callerPtr)
+        it.putLong(callerId)
+        it.putInt(values.size)
+        for (value in values) {
+            value.first.toGodot(it, value.second)
+        }
+    }
+
+    fun readSetterArgument(variantConverter: VariantConverter) = buffer.let {
         it.rewind()
         val argsSize = it.getInt()
         if (GodotJvmBuildConfig.DEBUG) {
@@ -75,13 +86,7 @@ object TransferContext {
         type.toKotlin(it)
     }
 
-    fun callMethod(ptr: VoidPtr, methodPtr: VoidPtr, expectedReturnType: VariantConverter) {
-        icall(
-            ptr,
-            methodPtr,
-            expectedReturnType.id
-        )
-    }
+    fun callMethod(methodPtr: VoidPtr) = icall(methodPtr)
 
     @ExperimentalContracts
     inline fun unsafeRead(block: (ByteBuffer) -> Unit) {
@@ -94,5 +99,5 @@ object TransferContext {
         }
     }
 
-    private external fun icall(ptr: VoidPtr, methodPtr: VoidPtr, expectedReturnType: Int)
+    private external fun icall(methodPtr: VoidPtr)
 }

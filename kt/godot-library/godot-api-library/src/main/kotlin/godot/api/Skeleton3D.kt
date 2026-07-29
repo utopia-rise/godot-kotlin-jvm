@@ -29,7 +29,6 @@ import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.VariantParser.QUATERNION
@@ -171,8 +170,8 @@ public open class Skeleton3D : Node3D() {
    * characters.
    */
   public final fun addBone(name: String): Int {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(ptr, MethodBindings.addBonePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to name)
+    TransferContext.callMethod(MethodBindings.addBonePtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -181,8 +180,8 @@ public open class Skeleton3D : Node3D() {
    * exists.
    */
   public final fun findBone(name: String): Int {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(ptr, MethodBindings.findBonePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to name)
+    TransferContext.callMethod(MethodBindings.findBonePtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -190,8 +189,8 @@ public open class Skeleton3D : Node3D() {
    * Returns the name of the bone at index [boneIdx].
    */
   public final fun getBoneName(boneIdx: Int): String {
-    TransferContext.writeArguments(LONG to boneIdx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getBoneNamePtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to boneIdx.toLong())
+    TransferContext.callMethod(MethodBindings.getBoneNamePtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -199,16 +198,16 @@ public open class Skeleton3D : Node3D() {
    * Sets the bone name, [name], for the bone at [boneIdx].
    */
   public final fun setBoneName(boneIdx: Int, name: String): Unit {
-    TransferContext.writeArguments(LONG to boneIdx.toLong(), STRING to name)
-    TransferContext.callMethod(ptr, MethodBindings.setBoneNamePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to boneIdx.toLong(), STRING to name)
+    TransferContext.callMethod(MethodBindings.setBoneNamePtr)
   }
 
   /**
    * Returns the metadata with the given [key] for the bone at index [boneIdx].
    */
   public final fun getBoneMeta(boneIdx: Int, key: StringName): Any? {
-    TransferContext.writeArguments(LONG to boneIdx.toLong(), STRING_NAME to key)
-    TransferContext.callMethod(ptr, MethodBindings.getBoneMetaPtr, ANY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to boneIdx.toLong(), STRING_NAME to key)
+    TransferContext.callMethod(MethodBindings.getBoneMetaPtr)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
@@ -216,8 +215,8 @@ public open class Skeleton3D : Node3D() {
    * Returns the list of all metadata keys for the bone at index [boneIdx].
    */
   public final fun getBoneMetaList(boneIdx: Int): VariantArray<StringName> {
-    TransferContext.writeArguments(LONG to boneIdx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getBoneMetaListPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to boneIdx.toLong())
+    TransferContext.callMethod(MethodBindings.getBoneMetaListPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<StringName>)
   }
 
@@ -225,8 +224,8 @@ public open class Skeleton3D : Node3D() {
    * Returns `true` if the bone at index [boneIdx] has metadata with the given [key].
    */
   public final fun hasBoneMeta(boneIdx: Int, key: StringName): Boolean {
-    TransferContext.writeArguments(LONG to boneIdx.toLong(), STRING_NAME to key)
-    TransferContext.callMethod(ptr, MethodBindings.hasBoneMetaPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to boneIdx.toLong(), STRING_NAME to key)
+    TransferContext.callMethod(MethodBindings.hasBoneMetaPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -238,8 +237,8 @@ public open class Skeleton3D : Node3D() {
     key: StringName,
     `value`: Any?,
   ): Unit {
-    TransferContext.writeArguments(LONG to boneIdx.toLong(), STRING_NAME to key, ANY to value)
-    TransferContext.callMethod(ptr, MethodBindings.setBoneMetaPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to boneIdx.toLong(), STRING_NAME to key, ANY to value)
+    TransferContext.callMethod(MethodBindings.setBoneMetaPtr)
   }
 
   /**
@@ -248,8 +247,8 @@ public open class Skeleton3D : Node3D() {
    * It is useful to set it as a hint for the enum property.
    */
   public final fun getConcatenatedBoneNames(): StringName {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getConcatenatedBoneNamesPtr, STRING_NAME)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getConcatenatedBoneNamesPtr)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
@@ -260,8 +259,8 @@ public open class Skeleton3D : Node3D() {
    * **Note:** The parent bone returned will always be less than [boneIdx].
    */
   public final fun getBoneParent(boneIdx: Int): Int {
-    TransferContext.writeArguments(LONG to boneIdx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getBoneParentPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to boneIdx.toLong())
+    TransferContext.callMethod(MethodBindings.getBoneParentPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -272,16 +271,16 @@ public open class Skeleton3D : Node3D() {
    * **Note:** [parentIdx] must be less than [boneIdx].
    */
   public final fun setBoneParent(boneIdx: Int, parentIdx: Int): Unit {
-    TransferContext.writeArguments(LONG to boneIdx.toLong(), LONG to parentIdx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setBoneParentPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to boneIdx.toLong(), LONG to parentIdx.toLong())
+    TransferContext.callMethod(MethodBindings.setBoneParentPtr)
   }
 
   /**
    * Returns the number of bones in the skeleton.
    */
   public final fun getBoneCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getBoneCountPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getBoneCountPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -294,8 +293,8 @@ public open class Skeleton3D : Node3D() {
    * Use for invalidating caches in IK solvers and other nodes which process bones.
    */
   public final fun getVersion(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getVersionPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getVersionPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -304,8 +303,8 @@ public open class Skeleton3D : Node3D() {
    * reset.
    */
   public final fun unparentBoneAndRest(boneIdx: Int): Unit {
-    TransferContext.writeArguments(LONG to boneIdx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.unparentBoneAndRestPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to boneIdx.toLong())
+    TransferContext.callMethod(MethodBindings.unparentBoneAndRestPtr)
   }
 
   /**
@@ -313,8 +312,8 @@ public open class Skeleton3D : Node3D() {
    * [boneIdx].
    */
   public final fun getBoneChildren(boneIdx: Int): PackedInt32Array {
-    TransferContext.writeArguments(LONG to boneIdx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getBoneChildrenPtr, PACKED_INT_32_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to boneIdx.toLong())
+    TransferContext.callMethod(MethodBindings.getBoneChildrenPtr)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
@@ -324,8 +323,8 @@ public open class Skeleton3D : Node3D() {
    * Skeleton.
    */
   public final fun getParentlessBones(): PackedInt32Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getParentlessBonesPtr, PACKED_INT_32_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getParentlessBonesPtr)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
@@ -333,8 +332,8 @@ public open class Skeleton3D : Node3D() {
    * Returns the rest transform for a bone [boneIdx].
    */
   public final fun getBoneRest(boneIdx: Int): Transform3D {
-    TransferContext.writeArguments(LONG to boneIdx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getBoneRestPtr, TRANSFORM3D)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to boneIdx.toLong())
+    TransferContext.callMethod(MethodBindings.getBoneRestPtr)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
@@ -342,22 +341,22 @@ public open class Skeleton3D : Node3D() {
    * Sets the rest transform for bone [boneIdx].
    */
   public final fun setBoneRest(boneIdx: Int, rest: Transform3D): Unit {
-    TransferContext.writeArguments(LONG to boneIdx.toLong(), TRANSFORM3D to rest)
-    TransferContext.callMethod(ptr, MethodBindings.setBoneRestPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to boneIdx.toLong(), TRANSFORM3D to rest)
+    TransferContext.callMethod(MethodBindings.setBoneRestPtr)
   }
 
   /**
    * Returns the global rest transform for [boneIdx].
    */
   public final fun getBoneGlobalRest(boneIdx: Int): Transform3D {
-    TransferContext.writeArguments(LONG to boneIdx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getBoneGlobalRestPtr, TRANSFORM3D)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to boneIdx.toLong())
+    TransferContext.callMethod(MethodBindings.getBoneGlobalRestPtr)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   public final fun createSkinFromRestTransforms(): Skin? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.createSkinFromRestTransformsPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.createSkinFromRestTransformsPtr)
     return (TransferContext.readReturnValue(OBJECT) as Skin?)
   }
 
@@ -365,8 +364,8 @@ public open class Skeleton3D : Node3D() {
    * Binds the given Skin to the Skeleton.
    */
   public final fun registerSkin(skin: Skin?): SkinReference? {
-    TransferContext.writeArguments(OBJECT to skin)
-    TransferContext.callMethod(ptr, MethodBindings.registerSkinPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to skin)
+    TransferContext.callMethod(MethodBindings.registerSkinPtr)
     return (TransferContext.readReturnValue(OBJECT) as SkinReference?)
   }
 
@@ -374,16 +373,16 @@ public open class Skeleton3D : Node3D() {
    * Returns all bones in the skeleton to their rest poses.
    */
   public final fun localizeRests(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.localizeRestsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.localizeRestsPtr)
   }
 
   /**
    * Clear all the bones in this skeleton.
    */
   public final fun clearBones(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.clearBonesPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.clearBonesPtr)
   }
 
   /**
@@ -394,8 +393,8 @@ public open class Skeleton3D : Node3D() {
    * SkeletonModifier3D.modification_processed].
    */
   public final fun getBonePose(boneIdx: Int): Transform3D {
-    TransferContext.writeArguments(LONG to boneIdx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getBonePosePtr, TRANSFORM3D)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to boneIdx.toLong())
+    TransferContext.callMethod(MethodBindings.getBonePosePtr)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
@@ -403,8 +402,8 @@ public open class Skeleton3D : Node3D() {
    * Sets the pose transform, [pose], for the bone at [boneIdx].
    */
   public final fun setBonePose(boneIdx: Int, pose: Transform3D): Unit {
-    TransferContext.writeArguments(LONG to boneIdx.toLong(), TRANSFORM3D to pose)
-    TransferContext.callMethod(ptr, MethodBindings.setBonePosePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to boneIdx.toLong(), TRANSFORM3D to pose)
+    TransferContext.callMethod(MethodBindings.setBonePosePtr)
   }
 
   /**
@@ -412,8 +411,8 @@ public open class Skeleton3D : Node3D() {
    * describing a position local to the [Skeleton3D] node.
    */
   public final fun setBonePosePosition(boneIdx: Int, position: Vector3): Unit {
-    TransferContext.writeArguments(LONG to boneIdx.toLong(), VECTOR3 to position)
-    TransferContext.callMethod(ptr, MethodBindings.setBonePosePositionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to boneIdx.toLong(), VECTOR3 to position)
+    TransferContext.callMethod(MethodBindings.setBonePosePositionPtr)
   }
 
   /**
@@ -422,16 +421,16 @@ public open class Skeleton3D : Node3D() {
    * parent bones.
    */
   public final fun setBonePoseRotation(boneIdx: Int, rotation: Quaternion): Unit {
-    TransferContext.writeArguments(LONG to boneIdx.toLong(), QUATERNION to rotation)
-    TransferContext.callMethod(ptr, MethodBindings.setBonePoseRotationPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to boneIdx.toLong(), QUATERNION to rotation)
+    TransferContext.callMethod(MethodBindings.setBonePoseRotationPtr)
   }
 
   /**
    * Sets the pose scale of the bone at [boneIdx] to [scale].
    */
   public final fun setBonePoseScale(boneIdx: Int, scale: Vector3): Unit {
-    TransferContext.writeArguments(LONG to boneIdx.toLong(), VECTOR3 to scale)
-    TransferContext.callMethod(ptr, MethodBindings.setBonePoseScalePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to boneIdx.toLong(), VECTOR3 to scale)
+    TransferContext.callMethod(MethodBindings.setBonePoseScalePtr)
   }
 
   /**
@@ -439,8 +438,8 @@ public open class Skeleton3D : Node3D() {
    * coordinate space of the [Skeleton3D] node.
    */
   public final fun getBonePosePosition(boneIdx: Int): Vector3 {
-    TransferContext.writeArguments(LONG to boneIdx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getBonePosePositionPtr, VECTOR3)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to boneIdx.toLong())
+    TransferContext.callMethod(MethodBindings.getBonePosePositionPtr)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
@@ -449,8 +448,8 @@ public open class Skeleton3D : Node3D() {
    * bone with respect to the rotation of any parent bones.
    */
   public final fun getBonePoseRotation(boneIdx: Int): Quaternion {
-    TransferContext.writeArguments(LONG to boneIdx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getBonePoseRotationPtr, QUATERNION)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to boneIdx.toLong())
+    TransferContext.callMethod(MethodBindings.getBonePoseRotationPtr)
     return (TransferContext.readReturnValue(QUATERNION) as Quaternion)
   }
 
@@ -458,8 +457,8 @@ public open class Skeleton3D : Node3D() {
    * Returns the pose scale of the bone at [boneIdx].
    */
   public final fun getBonePoseScale(boneIdx: Int): Vector3 {
-    TransferContext.writeArguments(LONG to boneIdx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getBonePoseScalePtr, VECTOR3)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to boneIdx.toLong())
+    TransferContext.callMethod(MethodBindings.getBonePoseScalePtr)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
@@ -467,24 +466,24 @@ public open class Skeleton3D : Node3D() {
    * Sets the bone pose to rest for [boneIdx].
    */
   public final fun resetBonePose(boneIdx: Int): Unit {
-    TransferContext.writeArguments(LONG to boneIdx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.resetBonePosePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to boneIdx.toLong())
+    TransferContext.callMethod(MethodBindings.resetBonePosePtr)
   }
 
   /**
    * Sets all bone poses to rests.
    */
   public final fun resetBonePoses(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.resetBonePosesPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.resetBonePosesPtr)
   }
 
   /**
    * Returns whether the bone pose for the bone at [boneIdx] is enabled.
    */
   public final fun isBoneEnabled(boneIdx: Int): Boolean {
-    TransferContext.writeArguments(LONG to boneIdx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.isBoneEnabledPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to boneIdx.toLong())
+    TransferContext.callMethod(MethodBindings.isBoneEnabledPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -493,8 +492,8 @@ public open class Skeleton3D : Node3D() {
    */
   @JvmOverloads
   public final fun setBoneEnabled(boneIdx: Int, enabled: Boolean = true): Unit {
-    TransferContext.writeArguments(LONG to boneIdx.toLong(), BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.setBoneEnabledPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to boneIdx.toLong(), BOOL to enabled)
+    TransferContext.callMethod(MethodBindings.setBoneEnabledPtr)
   }
 
   /**
@@ -506,8 +505,8 @@ public open class Skeleton3D : Node3D() {
    * pose, use [signal SkeletonModifier3D.modification_processed].
    */
   public final fun getBoneGlobalPose(boneIdx: Int): Transform3D {
-    TransferContext.writeArguments(LONG to boneIdx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getBoneGlobalPosePtr, TRANSFORM3D)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to boneIdx.toLong())
+    TransferContext.callMethod(MethodBindings.getBoneGlobalPosePtr)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
@@ -519,56 +518,56 @@ public open class Skeleton3D : Node3D() {
    * will be applied, consider using [setBonePose] with precalculation.
    */
   public final fun setBoneGlobalPose(boneIdx: Int, pose: Transform3D): Unit {
-    TransferContext.writeArguments(LONG to boneIdx.toLong(), TRANSFORM3D to pose)
-    TransferContext.callMethod(ptr, MethodBindings.setBoneGlobalPosePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to boneIdx.toLong(), TRANSFORM3D to pose)
+    TransferContext.callMethod(MethodBindings.setBoneGlobalPosePtr)
   }
 
   /**
    * Force updates the bone transforms/poses for all bones in the skeleton.
    */
   public final fun forceUpdateAllBoneTransforms(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.forceUpdateAllBoneTransformsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.forceUpdateAllBoneTransformsPtr)
   }
 
   /**
    * Force updates the bone transform for the bone at [boneIdx] and all of its children.
    */
   public final fun forceUpdateBoneChildTransform(boneIdx: Int): Unit {
-    TransferContext.writeArguments(LONG to boneIdx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.forceUpdateBoneChildTransformPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to boneIdx.toLong())
+    TransferContext.callMethod(MethodBindings.forceUpdateBoneChildTransformPtr)
   }
 
   public final fun setMotionScale(motionScale: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to motionScale.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setMotionScalePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to motionScale.toDouble())
+    TransferContext.callMethod(MethodBindings.setMotionScalePtr)
   }
 
   public final fun getMotionScale(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMotionScalePtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMotionScalePtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setShowRestOnly(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.setShowRestOnlyPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enabled)
+    TransferContext.callMethod(MethodBindings.setShowRestOnlyPtr)
   }
 
   public final fun isShowRestOnly(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isShowRestOnlyPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isShowRestOnlyPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setModifierCallbackModeProcess(mode: ModifierCallbackModeProcess): Unit {
-    TransferContext.writeArguments(LONG to mode.value)
-    TransferContext.callMethod(ptr, MethodBindings.setModifierCallbackModeProcessPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to mode.value)
+    TransferContext.callMethod(MethodBindings.setModifierCallbackModeProcessPtr)
   }
 
   public final fun getModifierCallbackModeProcess(): ModifierCallbackModeProcess {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getModifierCallbackModeProcessPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getModifierCallbackModeProcessPtr)
     return ModifierCallbackModeProcess.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -579,16 +578,16 @@ public open class Skeleton3D : Node3D() {
    * uses the accumulated value to process the modification.
    */
   public final fun advance(delta: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to delta)
-    TransferContext.callMethod(ptr, MethodBindings.advancePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to delta)
+    TransferContext.callMethod(MethodBindings.advancePtr)
   }
 
   /**
    * Removes the global pose override on all bones in the skeleton.
    */
   public final fun clearBonesGlobalPoseOverride(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.clearBonesGlobalPoseOverridePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.clearBonesGlobalPoseOverridePtr)
   }
 
   /**
@@ -608,16 +607,16 @@ public open class Skeleton3D : Node3D() {
     amount: Float,
     persistent: Boolean = false,
   ): Unit {
-    TransferContext.writeArguments(LONG to boneIdx.toLong(), TRANSFORM3D to pose, DOUBLE to amount.toDouble(), BOOL to persistent)
-    TransferContext.callMethod(ptr, MethodBindings.setBoneGlobalPoseOverridePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to boneIdx.toLong(), TRANSFORM3D to pose, DOUBLE to amount.toDouble(), BOOL to persistent)
+    TransferContext.callMethod(MethodBindings.setBoneGlobalPoseOverridePtr)
   }
 
   /**
    * Returns the global pose override transform for [boneIdx].
    */
   public final fun getBoneGlobalPoseOverride(boneIdx: Int): Transform3D {
-    TransferContext.writeArguments(LONG to boneIdx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getBoneGlobalPoseOverridePtr, TRANSFORM3D)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to boneIdx.toLong())
+    TransferContext.callMethod(MethodBindings.getBoneGlobalPoseOverridePtr)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
@@ -627,19 +626,19 @@ public open class Skeleton3D : Node3D() {
    * transform of the bone.
    */
   public final fun getBoneGlobalPoseNoOverride(boneIdx: Int): Transform3D {
-    TransferContext.writeArguments(LONG to boneIdx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getBoneGlobalPoseNoOverridePtr, TRANSFORM3D)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to boneIdx.toLong())
+    TransferContext.callMethod(MethodBindings.getBoneGlobalPoseNoOverridePtr)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   public final fun setAnimatePhysicalBones(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.setAnimatePhysicalBonesPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enabled)
+    TransferContext.callMethod(MethodBindings.setAnimatePhysicalBonesPtr)
   }
 
   public final fun getAnimatePhysicalBones(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getAnimatePhysicalBonesPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getAnimatePhysicalBonesPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -647,8 +646,8 @@ public open class Skeleton3D : Node3D() {
    * Tells the [PhysicalBone3D] nodes in the Skeleton to stop simulating.
    */
   public final fun physicalBonesStopSimulation(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.physicalBonesStopSimulationPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.physicalBonesStopSimulationPtr)
   }
 
   /**
@@ -661,8 +660,8 @@ public open class Skeleton3D : Node3D() {
   @JvmOverloads
   public final fun physicalBonesStartSimulation(bones: VariantArray<StringName> =
       godot.core.variantArrayOf()): Unit {
-    TransferContext.writeArguments(ARRAY to bones)
-    TransferContext.callMethod(ptr, MethodBindings.physicalBonesStartSimulationPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, ARRAY to bones)
+    TransferContext.callMethod(MethodBindings.physicalBonesStartSimulationPtr)
   }
 
   /**
@@ -671,8 +670,8 @@ public open class Skeleton3D : Node3D() {
    * Works just like the [RigidBody3D] node.
    */
   public final fun physicalBonesAddCollisionException(exception: RID): Unit {
-    TransferContext.writeArguments(_RID to exception)
-    TransferContext.callMethod(ptr, MethodBindings.physicalBonesAddCollisionExceptionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to exception)
+    TransferContext.callMethod(MethodBindings.physicalBonesAddCollisionExceptionPtr)
   }
 
   /**
@@ -681,8 +680,8 @@ public open class Skeleton3D : Node3D() {
    * Works just like the [RigidBody3D] node.
    */
   public final fun physicalBonesRemoveCollisionException(exception: RID): Unit {
-    TransferContext.writeArguments(_RID to exception)
-    TransferContext.callMethod(ptr, MethodBindings.physicalBonesRemoveCollisionExceptionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to exception)
+    TransferContext.callMethod(MethodBindings.physicalBonesRemoveCollisionExceptionPtr)
   }
 
   /**

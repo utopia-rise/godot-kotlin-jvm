@@ -93,8 +93,8 @@ public object GDExtensionManager : Object() {
    */
   @JvmStatic
   public final fun loadExtension(path: String): LoadStatus {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(ptr, MethodBindings.loadExtensionPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to path)
+    TransferContext.callMethod(MethodBindings.loadExtensionPtr)
     return LoadStatus.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -108,8 +108,8 @@ public object GDExtensionManager : Object() {
    */
   @JvmStatic
   public final fun reloadExtension(path: String): LoadStatus {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(ptr, MethodBindings.reloadExtensionPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to path)
+    TransferContext.callMethod(MethodBindings.reloadExtensionPtr)
     return LoadStatus.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -119,8 +119,8 @@ public object GDExtensionManager : Object() {
    */
   @JvmStatic
   public final fun unloadExtension(path: String): LoadStatus {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(ptr, MethodBindings.unloadExtensionPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to path)
+    TransferContext.callMethod(MethodBindings.unloadExtensionPtr)
     return LoadStatus.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -130,8 +130,8 @@ public object GDExtensionManager : Object() {
    */
   @JvmStatic
   public final fun isExtensionLoaded(path: String): Boolean {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(ptr, MethodBindings.isExtensionLoadedPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to path)
+    TransferContext.callMethod(MethodBindings.isExtensionLoadedPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -140,8 +140,8 @@ public object GDExtensionManager : Object() {
    */
   @JvmStatic
   public final fun getLoadedExtensions(): PackedStringArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getLoadedExtensionsPtr, PACKED_STRING_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getLoadedExtensionsPtr)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
@@ -151,8 +151,8 @@ public object GDExtensionManager : Object() {
    */
   @JvmStatic
   public final fun getExtension(path: String): GDExtension? {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(ptr, MethodBindings.getExtensionPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to path)
+    TransferContext.callMethod(MethodBindings.getExtensionPtr)
     return (TransferContext.readReturnValue(OBJECT) as GDExtension?)
   }
 

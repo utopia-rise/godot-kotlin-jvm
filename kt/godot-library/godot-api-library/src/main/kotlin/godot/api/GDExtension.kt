@@ -39,8 +39,8 @@ public open class GDExtension : Resource() {
    * Returns `true` if this extension's library has been opened.
    */
   public final fun isLibraryOpen(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isLibraryOpenPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isLibraryOpenPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -49,8 +49,8 @@ public open class GDExtension : Resource() {
    * [InitializationLevel] enum).
    */
   public final fun getMinimumLibraryInitializationLevel(): InitializationLevel {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMinimumLibraryInitializationLevelPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMinimumLibraryInitializationLevelPtr)
     return InitializationLevel.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

@@ -82,8 +82,8 @@ public open class ZIPReader : RefCounted() {
    * Opens the zip archive at the given [path] and reads its file index.
    */
   public final fun `open`(path: String): Error {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(ptr, MethodBindings.openPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to path)
+    TransferContext.callMethod(MethodBindings.openPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -91,8 +91,8 @@ public open class ZIPReader : RefCounted() {
    * Closes the underlying resources used by this instance.
    */
   public final fun close(): Error {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.closePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.closePtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -102,8 +102,8 @@ public open class ZIPReader : RefCounted() {
    * Must be called after [open].
    */
   public final fun getFiles(): PackedStringArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFilesPtr, PACKED_STRING_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getFilesPtr)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
@@ -114,8 +114,8 @@ public open class ZIPReader : RefCounted() {
    */
   @JvmOverloads
   public final fun readFile(path: String, caseSensitive: Boolean = true): PackedByteArray {
-    TransferContext.writeArguments(STRING to path, BOOL to caseSensitive)
-    TransferContext.callMethod(ptr, MethodBindings.readFilePtr, PACKED_BYTE_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to path, BOOL to caseSensitive)
+    TransferContext.callMethod(MethodBindings.readFilePtr)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
@@ -126,8 +126,8 @@ public open class ZIPReader : RefCounted() {
    */
   @JvmOverloads
   public final fun fileExists(path: String, caseSensitive: Boolean = true): Boolean {
-    TransferContext.writeArguments(STRING to path, BOOL to caseSensitive)
-    TransferContext.callMethod(ptr, MethodBindings.fileExistsPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to path, BOOL to caseSensitive)
+    TransferContext.callMethod(MethodBindings.fileExistsPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -137,8 +137,8 @@ public open class ZIPReader : RefCounted() {
    */
   @JvmOverloads
   public final fun getCompressionLevel(path: String, caseSensitive: Boolean = true): Int {
-    TransferContext.writeArguments(STRING to path, BOOL to caseSensitive)
-    TransferContext.callMethod(ptr, MethodBindings.getCompressionLevelPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to path, BOOL to caseSensitive)
+    TransferContext.callMethod(MethodBindings.getCompressionLevelPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 

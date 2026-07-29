@@ -15,7 +15,6 @@ import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.PackedInt64Array
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_INT_64_ARRAY
 import kotlin.Long
 import kotlin.Suppress
@@ -54,19 +53,19 @@ public open class OpenXRSpatialCapabilityConfigurationAprilTag :
    * **Note:** Only valid after this configuration was used to create a spatial context.
    */
   public final fun getEnabledComponents(): PackedInt64Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getEnabledComponentsPtr, PACKED_INT_64_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getEnabledComponentsPtr)
     return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY) as PackedInt64Array)
   }
 
   public final fun setAprilDict(aprilDict: AprilTagDict): Unit {
-    TransferContext.writeArguments(LONG to aprilDict.value)
-    TransferContext.callMethod(ptr, MethodBindings.setAprilDictPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to aprilDict.value)
+    TransferContext.callMethod(MethodBindings.setAprilDictPtr)
   }
 
   public final fun getAprilDict(): AprilTagDict {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getAprilDictPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getAprilDictPtr)
     return AprilTagDict.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

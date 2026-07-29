@@ -33,8 +33,8 @@ public open class OpenXRSpatialComponentParentList : OpenXRSpatialComponentData(
    * Returns the RID for the parent entity at this [index].
    */
   public final fun getParent(index: Long): RID {
-    TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(ptr, MethodBindings.getParentPtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index)
+    TransferContext.callMethod(MethodBindings.getParentPtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 

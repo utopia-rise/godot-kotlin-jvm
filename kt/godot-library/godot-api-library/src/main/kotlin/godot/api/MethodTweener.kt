@@ -40,8 +40,8 @@ public open class MethodTweener : Tweener() {
    * there's no delay.
    */
   public final fun setDelay(delay: Double): MethodTweener {
-    TransferContext.writeArguments(DOUBLE to delay)
-    TransferContext.callMethod(ptr, MethodBindings.setDelayPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to delay)
+    TransferContext.callMethod(MethodBindings.setDelayPtr)
     return (TransferContext.readReturnValue(OBJECT) as MethodTweener)
   }
 
@@ -50,8 +50,8 @@ public open class MethodTweener : Tweener() {
    * transition is used from the [Tween] that contains this Tweener.
    */
   public final fun setTrans(trans: Tween.TransitionType): MethodTweener {
-    TransferContext.writeArguments(LONG to trans.value)
-    TransferContext.callMethod(ptr, MethodBindings.setTransPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to trans.value)
+    TransferContext.callMethod(MethodBindings.setTransPtr)
     return (TransferContext.readReturnValue(OBJECT) as MethodTweener)
   }
 
@@ -60,8 +60,8 @@ public open class MethodTweener : Tweener() {
    * the [Tween] that contains this Tweener.
    */
   public final fun setEase(ease: Tween.EaseType): MethodTweener {
-    TransferContext.writeArguments(LONG to ease.value)
-    TransferContext.callMethod(ptr, MethodBindings.setEasePtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to ease.value)
+    TransferContext.callMethod(MethodBindings.setEasePtr)
     return (TransferContext.readReturnValue(OBJECT) as MethodTweener)
   }
 

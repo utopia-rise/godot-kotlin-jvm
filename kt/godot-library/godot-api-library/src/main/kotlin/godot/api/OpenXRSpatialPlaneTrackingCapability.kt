@@ -40,8 +40,8 @@ public open class OpenXRSpatialPlaneTrackingCapability : OpenXRExtensionWrapper(
    * Returns `true` if plane tracking is supported by the current device.
    */
   public final fun isSupported(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isSupportedPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isSupportedPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -75,8 +75,8 @@ public open class OpenXRSpatialPlaneTrackingCapability : OpenXRExtensionWrapper(
     nextSnapshotQuery: OpenXRStructureBase? = null,
     userCallback: Callable = VariantCallable(),
   ): OpenXRFutureResult? {
-    TransferContext.writeArguments(_RID to spatialContext, ARRAY to componentData, OBJECT to nextSnapshotCreate, OBJECT to nextSnapshotQuery, CALLABLE to userCallback)
-    TransferContext.callMethod(ptr, MethodBindings.startEntityDiscoveryPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to spatialContext, ARRAY to componentData, OBJECT to nextSnapshotCreate, OBJECT to nextSnapshotQuery, CALLABLE to userCallback)
+    TransferContext.callMethod(MethodBindings.startEntityDiscoveryPtr)
     return (TransferContext.readReturnValue(OBJECT) as OpenXRFutureResult?)
   }
 

@@ -35,8 +35,8 @@ public open class OpenXRSpatialComponentBounded3DList : OpenXRSpatialComponentDa
    * Returns the center of our bounding box for the entity at this [index].
    */
   public final fun getCenterPose(index: Long): Transform3D {
-    TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(ptr, MethodBindings.getCenterPosePtr, TRANSFORM3D)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index)
+    TransferContext.callMethod(MethodBindings.getCenterPosePtr)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
@@ -44,8 +44,8 @@ public open class OpenXRSpatialComponentBounded3DList : OpenXRSpatialComponentDa
    * Returns the size of our bounding box for the entity at this [index].
    */
   public final fun getSize(index: Long): Vector3 {
-    TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(ptr, MethodBindings.getSizePtr, VECTOR3)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index)
+    TransferContext.callMethod(MethodBindings.getSizePtr)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 

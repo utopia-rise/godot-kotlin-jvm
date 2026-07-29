@@ -38,8 +38,8 @@ public open class OpenXRSpatialComponentPolygon2DList : OpenXRSpatialComponentDa
    * Returns the transform for positioning our polygon for the entity at this [index].
    */
   public final fun getTransform(index: Long): Transform3D {
-    TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(ptr, MethodBindings.getTransformPtr, TRANSFORM3D)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index)
+    TransferContext.callMethod(MethodBindings.getTransformPtr)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
@@ -47,8 +47,8 @@ public open class OpenXRSpatialComponentPolygon2DList : OpenXRSpatialComponentDa
    * Returns the polygon vertices for the entity at this [index].
    */
   public final fun getVertices(snapshot: RID, index: Long): PackedVector2Array {
-    TransferContext.writeArguments(_RID to snapshot, LONG to index)
-    TransferContext.callMethod(ptr, MethodBindings.getVerticesPtr, PACKED_VECTOR2_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to snapshot, LONG to index)
+    TransferContext.callMethod(MethodBindings.getVerticesPtr)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 

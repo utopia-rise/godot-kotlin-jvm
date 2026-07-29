@@ -48,7 +48,7 @@
       { "name" : "INSTANCE" }
     ],
     "methods" : [
-      { "name" : "icall", "parameterTypes" : ["long", "long", "int"] },
+      { "name" : "icall", "parameterTypes" : ["long"] },
       { "name" : "getBuffer", "parameterTypes" : [] }
 
     ]

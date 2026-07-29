@@ -13,7 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -42,13 +41,13 @@ public open class InputEventFromWindow internal constructor() : InputEvent() {
   }
 
   public final fun setWindowId(id: Long): Unit {
-    TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(ptr, MethodBindings.setWindowIdPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to id)
+    TransferContext.callMethod(MethodBindings.setWindowIdPtr)
   }
 
   public final fun getWindowId(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getWindowIdPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getWindowIdPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 

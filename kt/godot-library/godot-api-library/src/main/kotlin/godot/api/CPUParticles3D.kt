@@ -25,7 +25,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_COLOR_ARRAY
 import godot.core.VariantParser.PACKED_VECTOR3_ARRAY
@@ -1226,189 +1225,189 @@ public open class CPUParticles3D : GeometryInstance3D() {
   }
 
   public final fun setEmitting(emitting: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to emitting)
-    TransferContext.callMethod(ptr, MethodBindings.setEmittingPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to emitting)
+    TransferContext.callMethod(MethodBindings.setEmittingPtr)
   }
 
   public final fun setAmount(amount: Int): Unit {
-    TransferContext.writeArguments(LONG to amount.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setAmountPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to amount.toLong())
+    TransferContext.callMethod(MethodBindings.setAmountPtr)
   }
 
   public final fun setLifetime(secs: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to secs)
-    TransferContext.callMethod(ptr, MethodBindings.setLifetimePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to secs)
+    TransferContext.callMethod(MethodBindings.setLifetimePtr)
   }
 
   public final fun setOneShot(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(ptr, MethodBindings.setOneShotPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enable)
+    TransferContext.callMethod(MethodBindings.setOneShotPtr)
   }
 
   public final fun setPreProcessTime(secs: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to secs)
-    TransferContext.callMethod(ptr, MethodBindings.setPreProcessTimePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to secs)
+    TransferContext.callMethod(MethodBindings.setPreProcessTimePtr)
   }
 
   public final fun setExplosivenessRatio(ratio: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to ratio.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setExplosivenessRatioPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to ratio.toDouble())
+    TransferContext.callMethod(MethodBindings.setExplosivenessRatioPtr)
   }
 
   public final fun setRandomnessRatio(ratio: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to ratio.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setRandomnessRatioPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to ratio.toDouble())
+    TransferContext.callMethod(MethodBindings.setRandomnessRatioPtr)
   }
 
   public final fun setVisibilityAabb(aabb: AABB): Unit {
-    TransferContext.writeArguments(godot.core.VariantParser.AABB to aabb)
-    TransferContext.callMethod(ptr, MethodBindings.setVisibilityAabbPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, godot.core.VariantParser.AABB to aabb)
+    TransferContext.callMethod(MethodBindings.setVisibilityAabbPtr)
   }
 
   public final fun setLifetimeRandomness(random: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to random)
-    TransferContext.callMethod(ptr, MethodBindings.setLifetimeRandomnessPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to random)
+    TransferContext.callMethod(MethodBindings.setLifetimeRandomnessPtr)
   }
 
   public final fun setUseLocalCoordinates(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(ptr, MethodBindings.setUseLocalCoordinatesPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enable)
+    TransferContext.callMethod(MethodBindings.setUseLocalCoordinatesPtr)
   }
 
   public final fun setFixedFps(fps: Int): Unit {
-    TransferContext.writeArguments(LONG to fps.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setFixedFpsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to fps.toLong())
+    TransferContext.callMethod(MethodBindings.setFixedFpsPtr)
   }
 
   public final fun setFractionalDelta(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(ptr, MethodBindings.setFractionalDeltaPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enable)
+    TransferContext.callMethod(MethodBindings.setFractionalDeltaPtr)
   }
 
   public final fun setSpeedScale(scale: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to scale)
-    TransferContext.callMethod(ptr, MethodBindings.setSpeedScalePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to scale)
+    TransferContext.callMethod(MethodBindings.setSpeedScalePtr)
   }
 
   public final fun isEmitting(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isEmittingPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isEmittingPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getAmount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getAmountPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getAmountPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun getLifetime(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getLifetimePtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getLifetimePtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun getOneShot(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getOneShotPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getOneShotPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getPreProcessTime(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPreProcessTimePtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPreProcessTimePtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun getExplosivenessRatio(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getExplosivenessRatioPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getExplosivenessRatioPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getRandomnessRatio(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getRandomnessRatioPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getRandomnessRatioPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getVisibilityAabb(): AABB {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getVisibilityAabbPtr, godot.core.VariantParser.AABB)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getVisibilityAabbPtr)
     return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 
   public final fun getLifetimeRandomness(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getLifetimeRandomnessPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getLifetimeRandomnessPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun getUseLocalCoordinates(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getUseLocalCoordinatesPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getUseLocalCoordinatesPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getFixedFps(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFixedFpsPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getFixedFpsPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun getFractionalDelta(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFractionalDeltaPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getFractionalDeltaPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getSpeedScale(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSpeedScalePtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSpeedScalePtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setDrawOrder(order: DrawOrder): Unit {
-    TransferContext.writeArguments(LONG to order.value)
-    TransferContext.callMethod(ptr, MethodBindings.setDrawOrderPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to order.value)
+    TransferContext.callMethod(MethodBindings.setDrawOrderPtr)
   }
 
   public final fun getDrawOrder(): DrawOrder {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getDrawOrderPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getDrawOrderPtr)
     return DrawOrder.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setMesh(mesh: Mesh?): Unit {
-    TransferContext.writeArguments(OBJECT to mesh)
-    TransferContext.callMethod(ptr, MethodBindings.setMeshPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to mesh)
+    TransferContext.callMethod(MethodBindings.setMeshPtr)
   }
 
   public final fun getMesh(): Mesh? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMeshPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMeshPtr)
     return (TransferContext.readReturnValue(OBJECT) as Mesh?)
   }
 
   public final fun setUseFixedSeed(useFixedSeed: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to useFixedSeed)
-    TransferContext.callMethod(ptr, MethodBindings.setUseFixedSeedPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to useFixedSeed)
+    TransferContext.callMethod(MethodBindings.setUseFixedSeedPtr)
   }
 
   public final fun getUseFixedSeed(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getUseFixedSeedPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getUseFixedSeedPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSeed(seed: Long): Unit {
-    TransferContext.writeArguments(LONG to seed)
-    TransferContext.callMethod(ptr, MethodBindings.setSeedPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to seed)
+    TransferContext.callMethod(MethodBindings.setSeedPtr)
   }
 
   public final fun getSeed(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSeedPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSeedPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -1420,8 +1419,8 @@ public open class CPUParticles3D : GeometryInstance3D() {
    */
   @JvmOverloads
   public final fun restart(keepSeed: Boolean = false): Unit {
-    TransferContext.writeArguments(BOOL to keepSeed)
-    TransferContext.callMethod(ptr, MethodBindings.restartPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to keepSeed)
+    TransferContext.callMethod(MethodBindings.restartPtr)
   }
 
   /**
@@ -1435,8 +1434,8 @@ public open class CPUParticles3D : GeometryInstance3D() {
   @JvmOverloads
   public final fun requestParticlesProcess(processTime: Float, processTimeResidual: Float = 0.0f):
       Unit {
-    TransferContext.writeArguments(DOUBLE to processTime.toDouble(), DOUBLE to processTimeResidual.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.requestParticlesProcessPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to processTime.toDouble(), DOUBLE to processTimeResidual.toDouble())
+    TransferContext.callMethod(MethodBindings.requestParticlesProcessPtr)
   }
 
   /**
@@ -1444,41 +1443,41 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * current frame.
    */
   public final fun captureAabb(): AABB {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.captureAabbPtr, godot.core.VariantParser.AABB)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.captureAabbPtr)
     return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 
   public final fun setDirection(direction: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to direction)
-    TransferContext.callMethod(ptr, MethodBindings.setDirectionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR3 to direction)
+    TransferContext.callMethod(MethodBindings.setDirectionPtr)
   }
 
   public final fun getDirection(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getDirectionPtr, VECTOR3)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getDirectionPtr)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setSpread(degrees: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to degrees.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setSpreadPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to degrees.toDouble())
+    TransferContext.callMethod(MethodBindings.setSpreadPtr)
   }
 
   public final fun getSpread(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSpreadPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSpreadPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFlatness(amount: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setFlatnessPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to amount.toDouble())
+    TransferContext.callMethod(MethodBindings.setFlatnessPtr)
   }
 
   public final fun getFlatness(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFlatnessPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getFlatnessPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -1486,16 +1485,16 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * Sets the minimum value for the given parameter.
    */
   public final fun setParamMin(`param`: Parameter, `value`: Float): Unit {
-    TransferContext.writeArguments(LONG to param.value, DOUBLE to value.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setParamMinPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to param.value, DOUBLE to value.toDouble())
+    TransferContext.callMethod(MethodBindings.setParamMinPtr)
   }
 
   /**
    * Returns the minimum value range for the given parameter.
    */
   public final fun getParamMin(`param`: Parameter): Float {
-    TransferContext.writeArguments(LONG to param.value)
-    TransferContext.callMethod(ptr, MethodBindings.getParamMinPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to param.value)
+    TransferContext.callMethod(MethodBindings.getParamMinPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -1503,16 +1502,16 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * Sets the maximum value for the given parameter.
    */
   public final fun setParamMax(`param`: Parameter, `value`: Float): Unit {
-    TransferContext.writeArguments(LONG to param.value, DOUBLE to value.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setParamMaxPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to param.value, DOUBLE to value.toDouble())
+    TransferContext.callMethod(MethodBindings.setParamMaxPtr)
   }
 
   /**
    * Returns the maximum value range for the given parameter.
    */
   public final fun getParamMax(`param`: Parameter): Float {
-    TransferContext.writeArguments(LONG to param.value)
-    TransferContext.callMethod(ptr, MethodBindings.getParamMaxPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to param.value)
+    TransferContext.callMethod(MethodBindings.getParamMaxPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -1520,49 +1519,49 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * Sets the [Curve] of the parameter specified by [Parameter]. Should be a unit [Curve].
    */
   public final fun setParamCurve(`param`: Parameter, curve: Curve?): Unit {
-    TransferContext.writeArguments(LONG to param.value, OBJECT to curve)
-    TransferContext.callMethod(ptr, MethodBindings.setParamCurvePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to param.value, OBJECT to curve)
+    TransferContext.callMethod(MethodBindings.setParamCurvePtr)
   }
 
   /**
    * Returns the [Curve] of the parameter specified by [Parameter].
    */
   public final fun getParamCurve(`param`: Parameter): Curve? {
-    TransferContext.writeArguments(LONG to param.value)
-    TransferContext.callMethod(ptr, MethodBindings.getParamCurvePtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to param.value)
+    TransferContext.callMethod(MethodBindings.getParamCurvePtr)
     return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }
 
   public final fun setColor(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(ptr, MethodBindings.setColorPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, COLOR to color)
+    TransferContext.callMethod(MethodBindings.setColorPtr)
   }
 
   public final fun getColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getColorPtr, COLOR)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getColorPtr)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   public final fun setColorRamp(ramp: Gradient?): Unit {
-    TransferContext.writeArguments(OBJECT to ramp)
-    TransferContext.callMethod(ptr, MethodBindings.setColorRampPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to ramp)
+    TransferContext.callMethod(MethodBindings.setColorRampPtr)
   }
 
   public final fun getColorRamp(): Gradient? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getColorRampPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getColorRampPtr)
     return (TransferContext.readReturnValue(OBJECT) as Gradient?)
   }
 
   public final fun setColorInitialRamp(ramp: Gradient?): Unit {
-    TransferContext.writeArguments(OBJECT to ramp)
-    TransferContext.callMethod(ptr, MethodBindings.setColorInitialRampPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to ramp)
+    TransferContext.callMethod(MethodBindings.setColorInitialRampPtr)
   }
 
   public final fun getColorInitialRamp(): Gradient? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getColorInitialRampPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getColorInitialRampPtr)
     return (TransferContext.readReturnValue(OBJECT) as Gradient?)
   }
 
@@ -1570,193 +1569,193 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * Enables or disables the given particle flag.
    */
   public final fun setParticleFlag(particleFlag: ParticleFlags, enable: Boolean): Unit {
-    TransferContext.writeArguments(LONG to particleFlag.value, BOOL to enable)
-    TransferContext.callMethod(ptr, MethodBindings.setParticleFlagPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to particleFlag.value, BOOL to enable)
+    TransferContext.callMethod(MethodBindings.setParticleFlagPtr)
   }
 
   /**
    * Returns the enabled state of the given particle flag.
    */
   public final fun getParticleFlag(particleFlag: ParticleFlags): Boolean {
-    TransferContext.writeArguments(LONG to particleFlag.value)
-    TransferContext.callMethod(ptr, MethodBindings.getParticleFlagPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to particleFlag.value)
+    TransferContext.callMethod(MethodBindings.getParticleFlagPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setEmissionShape(shape: EmissionShape): Unit {
-    TransferContext.writeArguments(LONG to shape.value)
-    TransferContext.callMethod(ptr, MethodBindings.setEmissionShapePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to shape.value)
+    TransferContext.callMethod(MethodBindings.setEmissionShapePtr)
   }
 
   public final fun getEmissionShape(): EmissionShape {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getEmissionShapePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getEmissionShapePtr)
     return EmissionShape.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setEmissionSphereRadius(radius: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to radius.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setEmissionSphereRadiusPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to radius.toDouble())
+    TransferContext.callMethod(MethodBindings.setEmissionSphereRadiusPtr)
   }
 
   public final fun getEmissionSphereRadius(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getEmissionSphereRadiusPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getEmissionSphereRadiusPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setEmissionBoxExtents(extents: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to extents)
-    TransferContext.callMethod(ptr, MethodBindings.setEmissionBoxExtentsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR3 to extents)
+    TransferContext.callMethod(MethodBindings.setEmissionBoxExtentsPtr)
   }
 
   public final fun getEmissionBoxExtents(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getEmissionBoxExtentsPtr, VECTOR3)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getEmissionBoxExtentsPtr)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setEmissionPoints(array: PackedVector3Array): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to array)
-    TransferContext.callMethod(ptr, MethodBindings.setEmissionPointsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_VECTOR3_ARRAY to array)
+    TransferContext.callMethod(MethodBindings.setEmissionPointsPtr)
   }
 
   public final fun getEmissionPoints(): PackedVector3Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getEmissionPointsPtr, PACKED_VECTOR3_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getEmissionPointsPtr)
     return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
 
   public final fun setEmissionNormals(array: PackedVector3Array): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to array)
-    TransferContext.callMethod(ptr, MethodBindings.setEmissionNormalsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_VECTOR3_ARRAY to array)
+    TransferContext.callMethod(MethodBindings.setEmissionNormalsPtr)
   }
 
   public final fun getEmissionNormals(): PackedVector3Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getEmissionNormalsPtr, PACKED_VECTOR3_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getEmissionNormalsPtr)
     return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
 
   public final fun setEmissionColors(array: PackedColorArray): Unit {
-    TransferContext.writeArguments(PACKED_COLOR_ARRAY to array)
-    TransferContext.callMethod(ptr, MethodBindings.setEmissionColorsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_COLOR_ARRAY to array)
+    TransferContext.callMethod(MethodBindings.setEmissionColorsPtr)
   }
 
   public final fun getEmissionColors(): PackedColorArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getEmissionColorsPtr, PACKED_COLOR_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getEmissionColorsPtr)
     return (TransferContext.readReturnValue(PACKED_COLOR_ARRAY) as PackedColorArray)
   }
 
   public final fun setEmissionRingAxis(axis: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to axis)
-    TransferContext.callMethod(ptr, MethodBindings.setEmissionRingAxisPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR3 to axis)
+    TransferContext.callMethod(MethodBindings.setEmissionRingAxisPtr)
   }
 
   public final fun getEmissionRingAxis(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getEmissionRingAxisPtr, VECTOR3)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getEmissionRingAxisPtr)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setEmissionRingHeight(height: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to height.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setEmissionRingHeightPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to height.toDouble())
+    TransferContext.callMethod(MethodBindings.setEmissionRingHeightPtr)
   }
 
   public final fun getEmissionRingHeight(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getEmissionRingHeightPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getEmissionRingHeightPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setEmissionRingRadius(radius: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to radius.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setEmissionRingRadiusPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to radius.toDouble())
+    TransferContext.callMethod(MethodBindings.setEmissionRingRadiusPtr)
   }
 
   public final fun getEmissionRingRadius(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getEmissionRingRadiusPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getEmissionRingRadiusPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setEmissionRingInnerRadius(innerRadius: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to innerRadius.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setEmissionRingInnerRadiusPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to innerRadius.toDouble())
+    TransferContext.callMethod(MethodBindings.setEmissionRingInnerRadiusPtr)
   }
 
   public final fun getEmissionRingInnerRadius(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getEmissionRingInnerRadiusPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getEmissionRingInnerRadiusPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setEmissionRingConeAngle(coneAngle: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to coneAngle.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setEmissionRingConeAnglePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to coneAngle.toDouble())
+    TransferContext.callMethod(MethodBindings.setEmissionRingConeAnglePtr)
   }
 
   public final fun getEmissionRingConeAngle(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getEmissionRingConeAnglePtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getEmissionRingConeAnglePtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getGravity(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getGravityPtr, VECTOR3)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getGravityPtr)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setGravity(accelVec: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to accelVec)
-    TransferContext.callMethod(ptr, MethodBindings.setGravityPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR3 to accelVec)
+    TransferContext.callMethod(MethodBindings.setGravityPtr)
   }
 
   public final fun getSplitScale(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSplitScalePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSplitScalePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSplitScale(splitScale: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to splitScale)
-    TransferContext.callMethod(ptr, MethodBindings.setSplitScalePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to splitScale)
+    TransferContext.callMethod(MethodBindings.setSplitScalePtr)
   }
 
   public final fun getScaleCurveX(): Curve? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getScaleCurveXPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getScaleCurveXPtr)
     return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }
 
   public final fun setScaleCurveX(scaleCurve: Curve?): Unit {
-    TransferContext.writeArguments(OBJECT to scaleCurve)
-    TransferContext.callMethod(ptr, MethodBindings.setScaleCurveXPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to scaleCurve)
+    TransferContext.callMethod(MethodBindings.setScaleCurveXPtr)
   }
 
   public final fun getScaleCurveY(): Curve? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getScaleCurveYPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getScaleCurveYPtr)
     return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }
 
   public final fun setScaleCurveY(scaleCurve: Curve?): Unit {
-    TransferContext.writeArguments(OBJECT to scaleCurve)
-    TransferContext.callMethod(ptr, MethodBindings.setScaleCurveYPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to scaleCurve)
+    TransferContext.callMethod(MethodBindings.setScaleCurveYPtr)
   }
 
   public final fun getScaleCurveZ(): Curve? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getScaleCurveZPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getScaleCurveZPtr)
     return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }
 
   public final fun setScaleCurveZ(scaleCurve: Curve?): Unit {
-    TransferContext.writeArguments(OBJECT to scaleCurve)
-    TransferContext.callMethod(ptr, MethodBindings.setScaleCurveZPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to scaleCurve)
+    TransferContext.callMethod(MethodBindings.setScaleCurveZPtr)
   }
 
   /**
@@ -1764,8 +1763,8 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * [ParticleProcessMaterial].
    */
   public final fun convertFromParticles(particles: Node?): Unit {
-    TransferContext.writeArguments(OBJECT to particles)
-    TransferContext.callMethod(ptr, MethodBindings.convertFromParticlesPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to particles)
+    TransferContext.callMethod(MethodBindings.convertFromParticlesPtr)
   }
 
   public enum class DrawOrder(

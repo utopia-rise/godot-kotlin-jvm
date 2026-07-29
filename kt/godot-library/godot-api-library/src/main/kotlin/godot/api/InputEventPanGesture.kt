@@ -14,7 +14,6 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import kotlin.Suppress
@@ -75,13 +74,13 @@ public open class InputEventPanGesture : InputEventGesture() {
   }
 
   public final fun setDelta(delta: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to delta)
-    TransferContext.callMethod(ptr, MethodBindings.setDeltaPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to delta)
+    TransferContext.callMethod(MethodBindings.setDeltaPtr)
   }
 
   public final fun getDelta(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getDeltaPtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getDeltaPtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 

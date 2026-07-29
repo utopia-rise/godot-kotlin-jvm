@@ -23,7 +23,6 @@ import godot.core.Transform3D
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_INT_32_ARRAY
@@ -380,165 +379,165 @@ public open class GLTFNode : Resource() {
   }
 
   public final fun getOriginalName(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getOriginalNamePtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getOriginalNamePtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setOriginalName(originalName: String): Unit {
-    TransferContext.writeArguments(STRING to originalName)
-    TransferContext.callMethod(ptr, MethodBindings.setOriginalNamePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to originalName)
+    TransferContext.callMethod(MethodBindings.setOriginalNamePtr)
   }
 
   public final fun getParent(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getParentPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getParentPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setParent(parent: Int): Unit {
-    TransferContext.writeArguments(LONG to parent.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setParentPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to parent.toLong())
+    TransferContext.callMethod(MethodBindings.setParentPtr)
   }
 
   public final fun getHeight(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getHeightPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getHeightPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setHeight(height: Int): Unit {
-    TransferContext.writeArguments(LONG to height.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setHeightPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to height.toLong())
+    TransferContext.callMethod(MethodBindings.setHeightPtr)
   }
 
   public final fun getXform(): Transform3D {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getXformPtr, TRANSFORM3D)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getXformPtr)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   public final fun setXform(xform: Transform3D): Unit {
-    TransferContext.writeArguments(TRANSFORM3D to xform)
-    TransferContext.callMethod(ptr, MethodBindings.setXformPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, TRANSFORM3D to xform)
+    TransferContext.callMethod(MethodBindings.setXformPtr)
   }
 
   public final fun getMesh(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMeshPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMeshPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setMesh(mesh: Int): Unit {
-    TransferContext.writeArguments(LONG to mesh.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setMeshPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to mesh.toLong())
+    TransferContext.callMethod(MethodBindings.setMeshPtr)
   }
 
   public final fun getCamera(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCameraPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCameraPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setCamera(camera: Int): Unit {
-    TransferContext.writeArguments(LONG to camera.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setCameraPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to camera.toLong())
+    TransferContext.callMethod(MethodBindings.setCameraPtr)
   }
 
   public final fun getSkin(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSkinPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSkinPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setSkin(skin: Int): Unit {
-    TransferContext.writeArguments(LONG to skin.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setSkinPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to skin.toLong())
+    TransferContext.callMethod(MethodBindings.setSkinPtr)
   }
 
   public final fun getSkeleton(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSkeletonPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSkeletonPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setSkeleton(skeleton: Int): Unit {
-    TransferContext.writeArguments(LONG to skeleton.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setSkeletonPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to skeleton.toLong())
+    TransferContext.callMethod(MethodBindings.setSkeletonPtr)
   }
 
   public final fun getPosition(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPositionPtr, VECTOR3)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPositionPtr)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setPosition(position: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to position)
-    TransferContext.callMethod(ptr, MethodBindings.setPositionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR3 to position)
+    TransferContext.callMethod(MethodBindings.setPositionPtr)
   }
 
   public final fun getRotation(): Quaternion {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getRotationPtr, QUATERNION)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getRotationPtr)
     return (TransferContext.readReturnValue(QUATERNION) as Quaternion)
   }
 
   public final fun setRotation(rotation: Quaternion): Unit {
-    TransferContext.writeArguments(QUATERNION to rotation)
-    TransferContext.callMethod(ptr, MethodBindings.setRotationPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, QUATERNION to rotation)
+    TransferContext.callMethod(MethodBindings.setRotationPtr)
   }
 
   public final fun getScale(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getScalePtr, VECTOR3)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getScalePtr)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setScale(scale: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to scale)
-    TransferContext.callMethod(ptr, MethodBindings.setScalePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR3 to scale)
+    TransferContext.callMethod(MethodBindings.setScalePtr)
   }
 
   public final fun getChildren(): PackedInt32Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getChildrenPtr, PACKED_INT_32_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getChildrenPtr)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   public final fun setChildren(children: PackedInt32Array): Unit {
-    TransferContext.writeArguments(PACKED_INT_32_ARRAY to children)
-    TransferContext.callMethod(ptr, MethodBindings.setChildrenPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_INT_32_ARRAY to children)
+    TransferContext.callMethod(MethodBindings.setChildrenPtr)
   }
 
   /**
    * Appends the given child node index to the [children] array.
    */
   public final fun appendChildIndex(childIndex: Int): Unit {
-    TransferContext.writeArguments(LONG to childIndex.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.appendChildIndexPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to childIndex.toLong())
+    TransferContext.callMethod(MethodBindings.appendChildIndexPtr)
   }
 
   public final fun getLight(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getLightPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getLightPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setLight(light: Int): Unit {
-    TransferContext.writeArguments(LONG to light.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setLightPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to light.toLong())
+    TransferContext.callMethod(MethodBindings.setLightPtr)
   }
 
   public final fun getVisible(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getVisiblePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getVisiblePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setVisible(visible: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to visible)
-    TransferContext.callMethod(ptr, MethodBindings.setVisiblePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to visible)
+    TransferContext.callMethod(MethodBindings.setVisiblePtr)
   }
 
   /**
@@ -550,8 +549,8 @@ public open class GLTFNode : Resource() {
    * return value is `null`.
    */
   public final fun getAdditionalData(extensionName: StringName): Any? {
-    TransferContext.writeArguments(STRING_NAME to extensionName)
-    TransferContext.callMethod(ptr, MethodBindings.getAdditionalDataPtr, ANY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to extensionName)
+    TransferContext.callMethod(MethodBindings.getAdditionalDataPtr)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
@@ -563,8 +562,8 @@ public open class GLTFNode : Resource() {
    * extension name in the glTF file), and the second argument can be anything you want.
    */
   public final fun setAdditionalData(extensionName: StringName, additionalData: Any?): Unit {
-    TransferContext.writeArguments(STRING_NAME to extensionName, ANY to additionalData)
-    TransferContext.callMethod(ptr, MethodBindings.setAdditionalDataPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to extensionName, ANY to additionalData)
+    TransferContext.callMethod(MethodBindings.setAdditionalDataPtr)
   }
 
   /**
@@ -579,8 +578,8 @@ public open class GLTFNode : Resource() {
   @JvmOverloads
   public final fun getSceneNodePath(gltfState: GLTFState?, handleSkeletons: Boolean = true):
       NodePath {
-    TransferContext.writeArguments(OBJECT to gltfState, BOOL to handleSkeletons)
-    TransferContext.callMethod(ptr, MethodBindings.getSceneNodePathPtr, NODE_PATH)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to gltfState, BOOL to handleSkeletons)
+    TransferContext.callMethod(MethodBindings.getSceneNodePathPtr)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 

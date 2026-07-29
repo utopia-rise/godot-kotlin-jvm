@@ -36,8 +36,8 @@ public open class SubtweenTweener : Tweener() {
    * default there's no delay.
    */
   public final fun setDelay(delay: Double): SubtweenTweener {
-    TransferContext.writeArguments(DOUBLE to delay)
-    TransferContext.callMethod(ptr, MethodBindings.setDelayPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to delay)
+    TransferContext.callMethod(MethodBindings.setDelayPtr)
     return (TransferContext.readReturnValue(OBJECT) as SubtweenTweener)
   }
 

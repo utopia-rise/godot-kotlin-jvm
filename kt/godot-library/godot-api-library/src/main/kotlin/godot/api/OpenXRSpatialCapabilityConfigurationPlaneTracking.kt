@@ -36,8 +36,8 @@ public open class OpenXRSpatialCapabilityConfigurationPlaneTracking :
    * started). You can query these using the [OpenXRSpatialComponentMesh2DList] data object.
    */
   public final fun supportsMesh2d(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.supportsMesh2dPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.supportsMesh2dPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -46,8 +46,8 @@ public open class OpenXRSpatialCapabilityConfigurationPlaneTracking :
    * started). You can query these using the [OpenXRSpatialComponentPolygon2DList] data object.
    */
   public final fun supportsPolygons(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.supportsPolygonsPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.supportsPolygonsPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -57,8 +57,8 @@ public open class OpenXRSpatialCapabilityConfigurationPlaneTracking :
    * data object.
    */
   public final fun supportsLabels(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.supportsLabelsPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.supportsLabelsPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -68,8 +68,8 @@ public open class OpenXRSpatialCapabilityConfigurationPlaneTracking :
    * **Note:** Only valid after this configuration was used to create a spatial context.
    */
   public final fun getEnabledComponents(): PackedInt64Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getEnabledComponentsPtr, PACKED_INT_64_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getEnabledComponentsPtr)
     return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY) as PackedInt64Array)
   }
 

@@ -16,7 +16,6 @@ import godot.core.MethodStringName2
 import godot.core.RID
 import godot.core.StringName
 import godot.core.VariantCaster.ANY
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING_NAME
 import godot.core.asCachedStringName
@@ -58,13 +57,13 @@ public open class ShaderMaterial : Material() {
   }
 
   public final fun setShader(shader: Shader?): Unit {
-    TransferContext.writeArguments(OBJECT to shader)
-    TransferContext.callMethod(ptr, MethodBindings.setShaderPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to shader)
+    TransferContext.callMethod(MethodBindings.setShaderPtr)
   }
 
   public final fun getShader(): Shader? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getShaderPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getShaderPtr)
     return (TransferContext.readReturnValue(OBJECT) as Shader?)
   }
 
@@ -82,16 +81,16 @@ public open class ShaderMaterial : Material() {
    * [ShaderMaterial] when possible.
    */
   public final fun setShaderParameter(`param`: StringName, `value`: Any?): Unit {
-    TransferContext.writeArguments(STRING_NAME to param, ANY to value)
-    TransferContext.callMethod(ptr, MethodBindings.setShaderParameterPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to param, ANY to value)
+    TransferContext.callMethod(MethodBindings.setShaderParameterPtr)
   }
 
   /**
    * Returns the current value set for this material of a uniform in the shader.
    */
   public final fun getShaderParameter(`param`: StringName): Any? {
-    TransferContext.writeArguments(STRING_NAME to param)
-    TransferContext.callMethod(ptr, MethodBindings.getShaderParameterPtr, ANY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to param)
+    TransferContext.callMethod(MethodBindings.getShaderParameterPtr)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 

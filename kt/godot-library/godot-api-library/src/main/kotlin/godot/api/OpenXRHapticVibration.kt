@@ -14,7 +14,6 @@ import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import kotlin.Double
 import kotlin.Float
 import kotlin.Long
@@ -69,35 +68,35 @@ public open class OpenXRHapticVibration : OpenXRHapticBase() {
   }
 
   public final fun setDuration(duration: Long): Unit {
-    TransferContext.writeArguments(LONG to duration)
-    TransferContext.callMethod(ptr, MethodBindings.setDurationPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to duration)
+    TransferContext.callMethod(MethodBindings.setDurationPtr)
   }
 
   public final fun getDuration(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getDurationPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getDurationPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setFrequency(frequency: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to frequency.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setFrequencyPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to frequency.toDouble())
+    TransferContext.callMethod(MethodBindings.setFrequencyPtr)
   }
 
   public final fun getFrequency(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFrequencyPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getFrequencyPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAmplitude(amplitude: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to amplitude.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setAmplitudePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to amplitude.toDouble())
+    TransferContext.callMethod(MethodBindings.setAmplitudePtr)
   }
 
   public final fun getAmplitude(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getAmplitudePtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getAmplitudePtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 

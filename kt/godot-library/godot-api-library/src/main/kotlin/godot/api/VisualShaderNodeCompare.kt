@@ -14,7 +14,6 @@ import godot.core.GodotEnum
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -65,35 +64,35 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
   }
 
   public final fun setComparisonType(type: ComparisonType): Unit {
-    TransferContext.writeArguments(LONG to type.value)
-    TransferContext.callMethod(ptr, MethodBindings.setComparisonTypePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to type.value)
+    TransferContext.callMethod(MethodBindings.setComparisonTypePtr)
   }
 
   public final fun getComparisonType(): ComparisonType {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getComparisonTypePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getComparisonTypePtr)
     return ComparisonType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setFunction(func: Function): Unit {
-    TransferContext.writeArguments(LONG to func.value)
-    TransferContext.callMethod(ptr, MethodBindings.setFunctionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to func.value)
+    TransferContext.callMethod(MethodBindings.setFunctionPtr)
   }
 
   public final fun getFunction(): Function {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFunctionPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getFunctionPtr)
     return Function.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setCondition(condition: Condition): Unit {
-    TransferContext.writeArguments(LONG to condition.value)
-    TransferContext.callMethod(ptr, MethodBindings.setConditionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to condition.value)
+    TransferContext.callMethod(MethodBindings.setConditionPtr)
   }
 
   public final fun getCondition(): Condition {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getConditionPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getConditionPtr)
     return Condition.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

@@ -24,7 +24,6 @@ import godot.core.StringName
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.VECTOR2I
@@ -65,8 +64,8 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
    * Returns `true` if a cached texture exists for this name.
    */
   public final fun hasTexture(context: StringName, name: StringName): Boolean {
-    TransferContext.writeArguments(STRING_NAME to context, STRING_NAME to name)
-    TransferContext.callMethod(ptr, MethodBindings.hasTexturePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to context, STRING_NAME to name)
+    TransferContext.callMethod(MethodBindings.hasTexturePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -86,8 +85,8 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
     unique: Boolean,
     discardable: Boolean,
   ): RID {
-    TransferContext.writeArguments(STRING_NAME to context, STRING_NAME to name, LONG to dataFormat.value, LONG to usageBits, LONG to textureSamples.value, VECTOR2I to size, LONG to layers, LONG to mipmaps, BOOL to unique, BOOL to discardable)
-    TransferContext.callMethod(ptr, MethodBindings.createTexturePtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to context, STRING_NAME to name, LONG to dataFormat.value, LONG to usageBits, LONG to textureSamples.value, VECTOR2I to size, LONG to layers, LONG to mipmaps, BOOL to unique, BOOL to discardable)
+    TransferContext.callMethod(MethodBindings.createTexturePtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -102,8 +101,8 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
     view: RDTextureView?,
     unique: Boolean,
   ): RID {
-    TransferContext.writeArguments(STRING_NAME to context, STRING_NAME to name, OBJECT to format, OBJECT to view, BOOL to unique)
-    TransferContext.callMethod(ptr, MethodBindings.createTextureFromFormatPtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to context, STRING_NAME to name, OBJECT to format, OBJECT to view, BOOL to unique)
+    TransferContext.callMethod(MethodBindings.createTextureFromFormatPtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -118,8 +117,8 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
     viewName: StringName,
     view: RDTextureView?,
   ): RID {
-    TransferContext.writeArguments(STRING_NAME to context, STRING_NAME to name, STRING_NAME to viewName, OBJECT to view)
-    TransferContext.callMethod(ptr, MethodBindings.createTextureViewPtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to context, STRING_NAME to name, STRING_NAME to viewName, OBJECT to view)
+    TransferContext.callMethod(MethodBindings.createTextureViewPtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -127,8 +126,8 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
    * Returns a cached texture with this name.
    */
   public final fun getTexture(context: StringName, name: StringName): RID {
-    TransferContext.writeArguments(STRING_NAME to context, STRING_NAME to name)
-    TransferContext.callMethod(ptr, MethodBindings.getTexturePtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to context, STRING_NAME to name)
+    TransferContext.callMethod(MethodBindings.getTexturePtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -136,8 +135,8 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
    * Returns the texture format information with which a cached texture was created.
    */
   public final fun getTextureFormat(context: StringName, name: StringName): RDTextureFormat? {
-    TransferContext.writeArguments(STRING_NAME to context, STRING_NAME to name)
-    TransferContext.callMethod(ptr, MethodBindings.getTextureFormatPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to context, STRING_NAME to name)
+    TransferContext.callMethod(MethodBindings.getTextureFormatPtr)
     return (TransferContext.readReturnValue(OBJECT) as RDTextureFormat?)
   }
 
@@ -152,8 +151,8 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
     layers: Long,
     mipmaps: Long,
   ): RID {
-    TransferContext.writeArguments(STRING_NAME to context, STRING_NAME to name, LONG to layer, LONG to mipmap, LONG to layers, LONG to mipmaps)
-    TransferContext.callMethod(ptr, MethodBindings.getTextureSlicePtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to context, STRING_NAME to name, LONG to layer, LONG to mipmap, LONG to layers, LONG to mipmaps)
+    TransferContext.callMethod(MethodBindings.getTextureSlicePtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -169,8 +168,8 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
     mipmaps: Long,
     view: RDTextureView?,
   ): RID {
-    TransferContext.writeArguments(STRING_NAME to context, STRING_NAME to name, LONG to layer, LONG to mipmap, LONG to layers, LONG to mipmaps, OBJECT to view)
-    TransferContext.callMethod(ptr, MethodBindings.getTextureSliceViewPtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to context, STRING_NAME to name, LONG to layer, LONG to mipmap, LONG to layers, LONG to mipmaps, OBJECT to view)
+    TransferContext.callMethod(MethodBindings.getTextureSliceViewPtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -182,8 +181,8 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
     name: StringName,
     mipmap: Long,
   ): Vector2i {
-    TransferContext.writeArguments(STRING_NAME to context, STRING_NAME to name, LONG to mipmap)
-    TransferContext.callMethod(ptr, MethodBindings.getTextureSliceSizePtr, VECTOR2I)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to context, STRING_NAME to name, LONG to mipmap)
+    TransferContext.callMethod(MethodBindings.getTextureSliceSizePtr)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
@@ -191,8 +190,8 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
    * Frees all buffers related to this context.
    */
   public final fun clearContext(context: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to context)
-    TransferContext.callMethod(ptr, MethodBindings.clearContextPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to context)
+    TransferContext.callMethod(MethodBindings.clearContextPtr)
   }
 
   /**
@@ -203,8 +202,8 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
    */
   @JvmOverloads
   public final fun getColorTexture(msaa: Boolean = false): RID {
-    TransferContext.writeArguments(BOOL to msaa)
-    TransferContext.callMethod(ptr, MethodBindings.getColorTexturePtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to msaa)
+    TransferContext.callMethod(MethodBindings.getColorTexturePtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -215,8 +214,8 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
    */
   @JvmOverloads
   public final fun getColorLayer(layer: Long, msaa: Boolean = false): RID {
-    TransferContext.writeArguments(LONG to layer, BOOL to msaa)
-    TransferContext.callMethod(ptr, MethodBindings.getColorLayerPtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to layer, BOOL to msaa)
+    TransferContext.callMethod(MethodBindings.getColorLayerPtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -228,8 +227,8 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
    */
   @JvmOverloads
   public final fun getDepthTexture(msaa: Boolean = false): RID {
-    TransferContext.writeArguments(BOOL to msaa)
-    TransferContext.callMethod(ptr, MethodBindings.getDepthTexturePtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to msaa)
+    TransferContext.callMethod(MethodBindings.getDepthTexturePtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -240,8 +239,8 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
    */
   @JvmOverloads
   public final fun getDepthLayer(layer: Long, msaa: Boolean = false): RID {
-    TransferContext.writeArguments(LONG to layer, BOOL to msaa)
-    TransferContext.callMethod(ptr, MethodBindings.getDepthLayerPtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to layer, BOOL to msaa)
+    TransferContext.callMethod(MethodBindings.getDepthLayerPtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -253,8 +252,8 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
    */
   @JvmOverloads
   public final fun getVelocityTexture(msaa: Boolean = false): RID {
-    TransferContext.writeArguments(BOOL to msaa)
-    TransferContext.callMethod(ptr, MethodBindings.getVelocityTexturePtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to msaa)
+    TransferContext.callMethod(MethodBindings.getVelocityTexturePtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -263,8 +262,8 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
    */
   @JvmOverloads
   public final fun getVelocityLayer(layer: Long, msaa: Boolean = false): RID {
-    TransferContext.writeArguments(LONG to layer, BOOL to msaa)
-    TransferContext.callMethod(ptr, MethodBindings.getVelocityLayerPtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to layer, BOOL to msaa)
+    TransferContext.callMethod(MethodBindings.getVelocityLayerPtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -272,8 +271,8 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
    * Returns the render target associated with this buffers object.
    */
   public final fun getRenderTarget(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getRenderTargetPtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getRenderTargetPtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -281,8 +280,8 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
    * Returns the view count for the associated viewport.
    */
   public final fun getViewCount(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getViewCountPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getViewCountPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -291,8 +290,8 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
    * created by default.
    */
   public final fun getInternalSize(): Vector2i {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getInternalSizePtr, VECTOR2I)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getInternalSizePtr)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
@@ -300,8 +299,8 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
    * Returns the target size of the render buffer (size after upscaling).
    */
   public final fun getTargetSize(): Vector2i {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getTargetSizePtr, VECTOR2I)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getTargetSizePtr)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
@@ -309,8 +308,8 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
    * Returns the scaling mode used for upscaling.
    */
   public final fun getScaling3dMode(): RenderingServer.ViewportScaling3DMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getScaling3dModePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getScaling3dModePtr)
     return RenderingServer.ViewportScaling3DMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -319,8 +318,8 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
    * an FSR mode).
    */
   public final fun getFsrSharpness(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFsrSharpnessPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getFsrSharpnessPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -328,8 +327,8 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
    * Returns the applied 3D MSAA mode for this viewport.
    */
   public final fun getMsaa3d(): RenderingServer.ViewportMSAA {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMsaa3dPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMsaa3dPtr)
     return RenderingServer.ViewportMSAA.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -337,8 +336,8 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
    * Returns the number of MSAA samples used.
    */
   public final fun getTextureSamples(): RenderingDevice.TextureSamples {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getTextureSamplesPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getTextureSamplesPtr)
     return RenderingDevice.TextureSamples.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -346,8 +345,8 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
    * Returns the screen-space antialiasing method applied.
    */
   public final fun getScreenSpaceAa(): RenderingServer.ViewportScreenSpaceAA {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getScreenSpaceAaPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getScreenSpaceAaPtr)
     return RenderingServer.ViewportScreenSpaceAA.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -355,8 +354,8 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
    * Returns `true` if TAA is enabled.
    */
   public final fun getUseTaa(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getUseTaaPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getUseTaaPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -364,8 +363,8 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
    * Returns `true` if debanding is enabled.
    */
   public final fun getUseDebanding(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getUseDebandingPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getUseDebandingPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

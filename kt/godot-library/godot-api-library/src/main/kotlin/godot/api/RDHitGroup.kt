@@ -12,7 +12,6 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Suppress
 import kotlin.Unit
@@ -69,35 +68,35 @@ public open class RDHitGroup : RefCounted() {
   }
 
   public final fun setClosestHitShader(pMember: RDPipelineShader?): Unit {
-    TransferContext.writeArguments(OBJECT to pMember)
-    TransferContext.callMethod(ptr, MethodBindings.setClosestHitShaderPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to pMember)
+    TransferContext.callMethod(MethodBindings.setClosestHitShaderPtr)
   }
 
   public final fun getClosestHitShader(): RDPipelineShader? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getClosestHitShaderPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getClosestHitShaderPtr)
     return (TransferContext.readReturnValue(OBJECT) as RDPipelineShader?)
   }
 
   public final fun setAnyHitShader(pMember: RDPipelineShader?): Unit {
-    TransferContext.writeArguments(OBJECT to pMember)
-    TransferContext.callMethod(ptr, MethodBindings.setAnyHitShaderPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to pMember)
+    TransferContext.callMethod(MethodBindings.setAnyHitShaderPtr)
   }
 
   public final fun getAnyHitShader(): RDPipelineShader? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getAnyHitShaderPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getAnyHitShaderPtr)
     return (TransferContext.readReturnValue(OBJECT) as RDPipelineShader?)
   }
 
   public final fun setIntersectionShader(pMember: RDPipelineShader?): Unit {
-    TransferContext.writeArguments(OBJECT to pMember)
-    TransferContext.callMethod(ptr, MethodBindings.setIntersectionShaderPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to pMember)
+    TransferContext.callMethod(MethodBindings.setIntersectionShaderPtr)
   }
 
   public final fun getIntersectionShader(): RDPipelineShader? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getIntersectionShaderPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getIntersectionShaderPtr)
     return (TransferContext.readReturnValue(OBJECT) as RDPipelineShader?)
   }
 

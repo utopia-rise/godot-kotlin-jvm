@@ -22,7 +22,6 @@ import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR3
 import godot.core.VariantParser._RID
 import godot.core.Vector3
@@ -309,167 +308,167 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
   }
 
   public final fun setPathfindingAlgorithm(pathfindingAlgorithm: PathfindingAlgorithm): Unit {
-    TransferContext.writeArguments(LONG to pathfindingAlgorithm.value)
-    TransferContext.callMethod(ptr, MethodBindings.setPathfindingAlgorithmPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to pathfindingAlgorithm.value)
+    TransferContext.callMethod(MethodBindings.setPathfindingAlgorithmPtr)
   }
 
   public final fun getPathfindingAlgorithm(): PathfindingAlgorithm {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPathfindingAlgorithmPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPathfindingAlgorithmPtr)
     return PathfindingAlgorithm.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setPathPostprocessing(pathPostprocessing: PathPostProcessing): Unit {
-    TransferContext.writeArguments(LONG to pathPostprocessing.value)
-    TransferContext.callMethod(ptr, MethodBindings.setPathPostprocessingPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to pathPostprocessing.value)
+    TransferContext.callMethod(MethodBindings.setPathPostprocessingPtr)
   }
 
   public final fun getPathPostprocessing(): PathPostProcessing {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPathPostprocessingPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPathPostprocessingPtr)
     return PathPostProcessing.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setMap(map: RID): Unit {
-    TransferContext.writeArguments(_RID to map)
-    TransferContext.callMethod(ptr, MethodBindings.setMapPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to map)
+    TransferContext.callMethod(MethodBindings.setMapPtr)
   }
 
   public final fun getMap(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMapPtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMapPtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun setStartPosition(startPosition: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to startPosition)
-    TransferContext.callMethod(ptr, MethodBindings.setStartPositionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR3 to startPosition)
+    TransferContext.callMethod(MethodBindings.setStartPositionPtr)
   }
 
   public final fun getStartPosition(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getStartPositionPtr, VECTOR3)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getStartPositionPtr)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setTargetPosition(targetPosition: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to targetPosition)
-    TransferContext.callMethod(ptr, MethodBindings.setTargetPositionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR3 to targetPosition)
+    TransferContext.callMethod(MethodBindings.setTargetPositionPtr)
   }
 
   public final fun getTargetPosition(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getTargetPositionPtr, VECTOR3)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getTargetPositionPtr)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setNavigationLayers(navigationLayers: Long): Unit {
-    TransferContext.writeArguments(LONG to navigationLayers)
-    TransferContext.callMethod(ptr, MethodBindings.setNavigationLayersPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to navigationLayers)
+    TransferContext.callMethod(MethodBindings.setNavigationLayersPtr)
   }
 
   public final fun getNavigationLayers(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getNavigationLayersPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getNavigationLayersPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setMetadataFlags(flags: PathMetadataFlags): Unit {
-    TransferContext.writeArguments(LONG to flags.flag)
-    TransferContext.callMethod(ptr, MethodBindings.setMetadataFlagsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to flags.flag)
+    TransferContext.callMethod(MethodBindings.setMetadataFlagsPtr)
   }
 
   public final fun getMetadataFlags(): PathMetadataFlags {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMetadataFlagsPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMetadataFlagsPtr)
     return PathMetadataFlags(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setSimplifyPath(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.setSimplifyPathPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enabled)
+    TransferContext.callMethod(MethodBindings.setSimplifyPathPtr)
   }
 
   public final fun getSimplifyPath(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSimplifyPathPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSimplifyPathPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSimplifyEpsilon(epsilon: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to epsilon.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setSimplifyEpsilonPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to epsilon.toDouble())
+    TransferContext.callMethod(MethodBindings.setSimplifyEpsilonPtr)
   }
 
   public final fun getSimplifyEpsilon(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSimplifyEpsilonPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSimplifyEpsilonPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setIncludedRegions(regions: VariantArray<RID>): Unit {
-    TransferContext.writeArguments(ARRAY to regions)
-    TransferContext.callMethod(ptr, MethodBindings.setIncludedRegionsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, ARRAY to regions)
+    TransferContext.callMethod(MethodBindings.setIncludedRegionsPtr)
   }
 
   public final fun getIncludedRegions(): VariantArray<RID> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getIncludedRegionsPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getIncludedRegionsPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<RID>)
   }
 
   public final fun setExcludedRegions(regions: VariantArray<RID>): Unit {
-    TransferContext.writeArguments(ARRAY to regions)
-    TransferContext.callMethod(ptr, MethodBindings.setExcludedRegionsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, ARRAY to regions)
+    TransferContext.callMethod(MethodBindings.setExcludedRegionsPtr)
   }
 
   public final fun getExcludedRegions(): VariantArray<RID> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getExcludedRegionsPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getExcludedRegionsPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<RID>)
   }
 
   public final fun setPathReturnMaxLength(length: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to length.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setPathReturnMaxLengthPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to length.toDouble())
+    TransferContext.callMethod(MethodBindings.setPathReturnMaxLengthPtr)
   }
 
   public final fun getPathReturnMaxLength(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPathReturnMaxLengthPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPathReturnMaxLengthPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setPathReturnMaxRadius(radius: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to radius.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setPathReturnMaxRadiusPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to radius.toDouble())
+    TransferContext.callMethod(MethodBindings.setPathReturnMaxRadiusPtr)
   }
 
   public final fun getPathReturnMaxRadius(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPathReturnMaxRadiusPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPathReturnMaxRadiusPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setPathSearchMaxPolygons(maxPolygons: Int): Unit {
-    TransferContext.writeArguments(LONG to maxPolygons.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setPathSearchMaxPolygonsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to maxPolygons.toLong())
+    TransferContext.callMethod(MethodBindings.setPathSearchMaxPolygonsPtr)
   }
 
   public final fun getPathSearchMaxPolygons(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPathSearchMaxPolygonsPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPathSearchMaxPolygonsPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setPathSearchMaxDistance(distance: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to distance.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setPathSearchMaxDistancePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to distance.toDouble())
+    TransferContext.callMethod(MethodBindings.setPathSearchMaxDistancePtr)
   }
 
   public final fun getPathSearchMaxDistance(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPathSearchMaxDistancePtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPathSearchMaxDistancePtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 

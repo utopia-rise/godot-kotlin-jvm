@@ -39,8 +39,8 @@ public open class X509Certificate : Resource() {
    * Saves a certificate to the given [path] (should be a "*.crt" file).
    */
   public final fun save(path: String): Error {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(ptr, MethodBindings.savePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to path)
+    TransferContext.callMethod(MethodBindings.savePtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -48,8 +48,8 @@ public open class X509Certificate : Resource() {
    * Loads a certificate from [path] ("*.crt" file).
    */
   public final fun load(path: String): Error {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(ptr, MethodBindings.loadPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to path)
+    TransferContext.callMethod(MethodBindings.loadPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -58,8 +58,8 @@ public open class X509Certificate : Resource() {
    * invalid.
    */
   public final fun saveToString(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.saveToStringPtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.saveToStringPtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -67,8 +67,8 @@ public open class X509Certificate : Resource() {
    * Loads a certificate from the given [string].
    */
   public final fun loadFromString(string: String): Error {
-    TransferContext.writeArguments(STRING to string)
-    TransferContext.callMethod(ptr, MethodBindings.loadFromStringPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to string)
+    TransferContext.callMethod(MethodBindings.loadFromStringPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

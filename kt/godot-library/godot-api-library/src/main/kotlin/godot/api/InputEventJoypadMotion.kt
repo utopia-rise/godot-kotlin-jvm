@@ -15,7 +15,6 @@ import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import kotlin.Double
 import kotlin.Float
 import kotlin.Long
@@ -58,24 +57,24 @@ public open class InputEventJoypadMotion : InputEvent() {
   }
 
   public final fun setAxis(axis: JoyAxis): Unit {
-    TransferContext.writeArguments(LONG to axis.value)
-    TransferContext.callMethod(ptr, MethodBindings.setAxisPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to axis.value)
+    TransferContext.callMethod(MethodBindings.setAxisPtr)
   }
 
   public final fun getAxis(): JoyAxis {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getAxisPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getAxisPtr)
     return JoyAxis.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setAxisValue(axisValue: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to axisValue.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setAxisValuePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to axisValue.toDouble())
+    TransferContext.callMethod(MethodBindings.setAxisValuePtr)
   }
 
   public final fun getAxisValue(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getAxisValuePtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getAxisValuePtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 

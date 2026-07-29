@@ -21,7 +21,6 @@ import godot.core.Signal0
 import godot.core.Transform3D
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
@@ -115,37 +114,37 @@ public open class OpenXRPlaneTracker : OpenXRSpatialEntityTracker() {
   }
 
   public final fun setBoundsSize(boundsSize: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to boundsSize)
-    TransferContext.callMethod(ptr, MethodBindings.setBoundsSizePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to boundsSize)
+    TransferContext.callMethod(MethodBindings.setBoundsSizePtr)
   }
 
   public final fun getBoundsSize(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getBoundsSizePtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getBoundsSizePtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final
       fun setPlaneAlignment(planeAlignment: OpenXRSpatialComponentPlaneAlignmentList.PlaneAlignment):
       Unit {
-    TransferContext.writeArguments(LONG to planeAlignment.value)
-    TransferContext.callMethod(ptr, MethodBindings.setPlaneAlignmentPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to planeAlignment.value)
+    TransferContext.callMethod(MethodBindings.setPlaneAlignmentPtr)
   }
 
   public final fun getPlaneAlignment(): OpenXRSpatialComponentPlaneAlignmentList.PlaneAlignment {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPlaneAlignmentPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPlaneAlignmentPtr)
     return OpenXRSpatialComponentPlaneAlignmentList.PlaneAlignment.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setPlaneLabel(planeLabel: String): Unit {
-    TransferContext.writeArguments(STRING to planeLabel)
-    TransferContext.callMethod(ptr, MethodBindings.setPlaneLabelPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to planeLabel)
+    TransferContext.callMethod(MethodBindings.setPlaneLabelPtr)
   }
 
   public final fun getPlaneLabel(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPlaneLabelPtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPlaneLabelPtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -159,8 +158,8 @@ public open class OpenXRPlaneTracker : OpenXRSpatialEntityTracker() {
     vertices: PackedVector2Array,
     indices: PackedInt32Array = PackedInt32Array(),
   ): Unit {
-    TransferContext.writeArguments(TRANSFORM3D to origin, PACKED_VECTOR2_ARRAY to vertices, PACKED_INT_32_ARRAY to indices)
-    TransferContext.callMethod(ptr, MethodBindings.setMeshDataPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, TRANSFORM3D to origin, PACKED_VECTOR2_ARRAY to vertices, PACKED_INT_32_ARRAY to indices)
+    TransferContext.callMethod(MethodBindings.setMeshDataPtr)
   }
 
   /**
@@ -168,8 +167,8 @@ public open class OpenXRPlaneTracker : OpenXRSpatialEntityTracker() {
    * discovery logic.
    */
   public final fun clearMeshData(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.clearMeshDataPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.clearMeshDataPtr)
   }
 
   /**
@@ -177,8 +176,8 @@ public open class OpenXRPlaneTracker : OpenXRSpatialEntityTracker() {
    * these correctly.
    */
   public final fun getMeshOffset(): Transform3D {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMeshOffsetPtr, TRANSFORM3D)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMeshOffsetPtr)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
@@ -186,8 +185,8 @@ public open class OpenXRPlaneTracker : OpenXRSpatialEntityTracker() {
    * Gets a mesh created from either the mesh data or from our bounding size for this plane.
    */
   public final fun getMesh(): Mesh? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMeshPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMeshPtr)
     return (TransferContext.readReturnValue(OBJECT) as Mesh?)
   }
 
@@ -197,8 +196,8 @@ public open class OpenXRPlaneTracker : OpenXRSpatialEntityTracker() {
    */
   @JvmOverloads
   public final fun getShape(thickness: Float = 0.01f): Shape3D? {
-    TransferContext.writeArguments(DOUBLE to thickness.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.getShapePtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to thickness.toDouble())
+    TransferContext.callMethod(MethodBindings.getShapePtr)
     return (TransferContext.readReturnValue(OBJECT) as Shape3D?)
   }
 

@@ -17,7 +17,6 @@ import godot.core.StringName
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING_NAME
 import godot.core.asCachedStringName
 import kotlin.Boolean
@@ -147,90 +146,90 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
   }
 
   public final fun setAnimation(name: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(ptr, MethodBindings.setAnimationPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to name)
+    TransferContext.callMethod(MethodBindings.setAnimationPtr)
   }
 
   public final fun getAnimation(): StringName {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getAnimationPtr, STRING_NAME)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getAnimationPtr)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
   public final fun setPlayMode(mode: PlayMode): Unit {
-    TransferContext.writeArguments(LONG to mode.value)
-    TransferContext.callMethod(ptr, MethodBindings.setPlayModePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to mode.value)
+    TransferContext.callMethod(MethodBindings.setPlayModePtr)
   }
 
   public final fun getPlayMode(): PlayMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPlayModePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPlayModePtr)
     return PlayMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setAdvanceOnStart(advanceOnStart: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to advanceOnStart)
-    TransferContext.callMethod(ptr, MethodBindings.setAdvanceOnStartPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to advanceOnStart)
+    TransferContext.callMethod(MethodBindings.setAdvanceOnStartPtr)
   }
 
   public final fun isAdvanceOnStart(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isAdvanceOnStartPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isAdvanceOnStartPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setUseCustomTimeline(useCustomTimeline: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to useCustomTimeline)
-    TransferContext.callMethod(ptr, MethodBindings.setUseCustomTimelinePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to useCustomTimeline)
+    TransferContext.callMethod(MethodBindings.setUseCustomTimelinePtr)
   }
 
   public final fun isUsingCustomTimeline(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isUsingCustomTimelinePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isUsingCustomTimelinePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setTimelineLength(timelineLength: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to timelineLength)
-    TransferContext.callMethod(ptr, MethodBindings.setTimelineLengthPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to timelineLength)
+    TransferContext.callMethod(MethodBindings.setTimelineLengthPtr)
   }
 
   public final fun getTimelineLength(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getTimelineLengthPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getTimelineLengthPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setStretchTimeScale(stretchTimeScale: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to stretchTimeScale)
-    TransferContext.callMethod(ptr, MethodBindings.setStretchTimeScalePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to stretchTimeScale)
+    TransferContext.callMethod(MethodBindings.setStretchTimeScalePtr)
   }
 
   public final fun isStretchingTimeScale(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isStretchingTimeScalePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isStretchingTimeScalePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setStartOffset(startOffset: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to startOffset)
-    TransferContext.callMethod(ptr, MethodBindings.setStartOffsetPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to startOffset)
+    TransferContext.callMethod(MethodBindings.setStartOffsetPtr)
   }
 
   public final fun getStartOffset(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getStartOffsetPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getStartOffsetPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setLoopMode(loopMode: Animation.LoopMode): Unit {
-    TransferContext.writeArguments(LONG to loopMode.value)
-    TransferContext.callMethod(ptr, MethodBindings.setLoopModePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to loopMode.value)
+    TransferContext.callMethod(MethodBindings.setLoopModePtr)
   }
 
   public final fun getLoopMode(): Animation.LoopMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getLoopModePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getLoopModePtr)
     return Animation.LoopMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

@@ -87,8 +87,8 @@ public open class XRController3D : XRNode3D() {
    * these are the names of actions in the current action set.
    */
   public final fun isButtonPressed(name: StringName): Boolean {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(ptr, MethodBindings.isButtonPressedPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to name)
+    TransferContext.callMethod(MethodBindings.isButtonPressedPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -100,8 +100,8 @@ public open class XRController3D : XRNode3D() {
    * these are the names of actions in the current action set.
    */
   public final fun getInput(name: StringName): Any? {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(ptr, MethodBindings.getInputPtr, ANY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to name)
+    TransferContext.callMethod(MethodBindings.getInputPtr)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
@@ -113,8 +113,8 @@ public open class XRController3D : XRNode3D() {
    * these are the names of actions in the current action set.
    */
   public final fun getFloat(name: StringName): Float {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(ptr, MethodBindings.getFloatPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to name)
+    TransferContext.callMethod(MethodBindings.getFloatPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -126,8 +126,8 @@ public open class XRController3D : XRNode3D() {
    * these are the names of actions in the current action set.
    */
   public final fun getVector2(name: StringName): Vector2 {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(ptr, MethodBindings.getVector2Ptr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to name)
+    TransferContext.callMethod(MethodBindings.getVector2Ptr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
@@ -135,8 +135,8 @@ public open class XRController3D : XRNode3D() {
    * Returns the hand holding this controller, if known.
    */
   public final fun getTrackerHand(): XRPositionalTracker.TrackerHand {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getTrackerHandPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getTrackerHandPtr)
     return XRPositionalTracker.TrackerHand.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

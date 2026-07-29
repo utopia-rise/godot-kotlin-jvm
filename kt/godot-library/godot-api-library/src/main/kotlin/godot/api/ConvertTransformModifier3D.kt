@@ -16,7 +16,6 @@ import godot.core.MethodStringName2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.Vector3
 import kotlin.Boolean
 import kotlin.Double
@@ -78,16 +77,16 @@ public open class ConvertTransformModifier3D : BoneConstraint3D() {
    * Sets the operation of the remapping destination transform.
    */
   public final fun setApplyTransformMode(index: Int, transformMode: TransformMode): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to transformMode.value)
-    TransferContext.callMethod(ptr, MethodBindings.setApplyTransformModePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), LONG to transformMode.value)
+    TransferContext.callMethod(MethodBindings.setApplyTransformModePtr)
   }
 
   /**
    * Returns the operation of the remapping destination transform.
    */
   public final fun getApplyTransformMode(index: Int): TransformMode {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getApplyTransformModePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getApplyTransformModePtr)
     return TransformMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -95,16 +94,16 @@ public open class ConvertTransformModifier3D : BoneConstraint3D() {
    * Sets the axis of the remapping destination transform.
    */
   public final fun setApplyAxis(index: Int, axis: Vector3.Axis): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to axis.value)
-    TransferContext.callMethod(ptr, MethodBindings.setApplyAxisPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), LONG to axis.value)
+    TransferContext.callMethod(MethodBindings.setApplyAxisPtr)
   }
 
   /**
    * Returns the axis of the remapping destination transform.
    */
   public final fun getApplyAxis(index: Int): Vector3.Axis {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getApplyAxisPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getApplyAxisPtr)
     return Vector3.Axis.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -112,16 +111,16 @@ public open class ConvertTransformModifier3D : BoneConstraint3D() {
    * Sets the minimum value of the remapping destination range.
    */
   public final fun setApplyRangeMin(index: Int, rangeMin: Float): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), DOUBLE to rangeMin.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setApplyRangeMinPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), DOUBLE to rangeMin.toDouble())
+    TransferContext.callMethod(MethodBindings.setApplyRangeMinPtr)
   }
 
   /**
    * Returns the minimum value of the remapping destination range.
    */
   public final fun getApplyRangeMin(index: Int): Float {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getApplyRangeMinPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getApplyRangeMinPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -129,16 +128,16 @@ public open class ConvertTransformModifier3D : BoneConstraint3D() {
    * Sets the maximum value of the remapping destination range.
    */
   public final fun setApplyRangeMax(index: Int, rangeMax: Float): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), DOUBLE to rangeMax.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setApplyRangeMaxPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), DOUBLE to rangeMax.toDouble())
+    TransferContext.callMethod(MethodBindings.setApplyRangeMaxPtr)
   }
 
   /**
    * Returns the maximum value of the remapping destination range.
    */
   public final fun getApplyRangeMax(index: Int): Float {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getApplyRangeMaxPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getApplyRangeMaxPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -146,16 +145,16 @@ public open class ConvertTransformModifier3D : BoneConstraint3D() {
    * Sets the operation of the remapping source transform.
    */
   public final fun setReferenceTransformMode(index: Int, transformMode: TransformMode): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to transformMode.value)
-    TransferContext.callMethod(ptr, MethodBindings.setReferenceTransformModePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), LONG to transformMode.value)
+    TransferContext.callMethod(MethodBindings.setReferenceTransformModePtr)
   }
 
   /**
    * Returns the operation of the remapping source transform.
    */
   public final fun getReferenceTransformMode(index: Int): TransformMode {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getReferenceTransformModePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getReferenceTransformModePtr)
     return TransformMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -163,16 +162,16 @@ public open class ConvertTransformModifier3D : BoneConstraint3D() {
    * Sets the axis of the remapping source transform.
    */
   public final fun setReferenceAxis(index: Int, axis: Vector3.Axis): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to axis.value)
-    TransferContext.callMethod(ptr, MethodBindings.setReferenceAxisPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), LONG to axis.value)
+    TransferContext.callMethod(MethodBindings.setReferenceAxisPtr)
   }
 
   /**
    * Returns the axis of the remapping source transform.
    */
   public final fun getReferenceAxis(index: Int): Vector3.Axis {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getReferenceAxisPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getReferenceAxisPtr)
     return Vector3.Axis.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -180,16 +179,16 @@ public open class ConvertTransformModifier3D : BoneConstraint3D() {
    * Sets the minimum value of the remapping source range.
    */
   public final fun setReferenceRangeMin(index: Int, rangeMin: Float): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), DOUBLE to rangeMin.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setReferenceRangeMinPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), DOUBLE to rangeMin.toDouble())
+    TransferContext.callMethod(MethodBindings.setReferenceRangeMinPtr)
   }
 
   /**
    * Returns the minimum value of the remapping source range.
    */
   public final fun getReferenceRangeMin(index: Int): Float {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getReferenceRangeMinPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getReferenceRangeMinPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -197,16 +196,16 @@ public open class ConvertTransformModifier3D : BoneConstraint3D() {
    * Sets the maximum value of the remapping source range.
    */
   public final fun setReferenceRangeMax(index: Int, rangeMax: Float): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), DOUBLE to rangeMax.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setReferenceRangeMaxPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), DOUBLE to rangeMax.toDouble())
+    TransferContext.callMethod(MethodBindings.setReferenceRangeMaxPtr)
   }
 
   /**
    * Returns the maximum value of the remapping source range.
    */
   public final fun getReferenceRangeMax(index: Int): Float {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getReferenceRangeMaxPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getReferenceRangeMaxPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -218,16 +217,16 @@ public open class ConvertTransformModifier3D : BoneConstraint3D() {
    * If sets [enabled] to `false`, the extracted transform is absolute.
    */
   public final fun setRelative(index: Int, enabled: Boolean): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.setRelativePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), BOOL to enabled)
+    TransferContext.callMethod(MethodBindings.setRelativePtr)
   }
 
   /**
    * Returns `true` if the relative option is enabled in the setting at [index].
    */
   public final fun isRelative(index: Int): Boolean {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.isRelativePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.isRelativePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -242,16 +241,16 @@ public open class ConvertTransformModifier3D : BoneConstraint3D() {
    * transform. However, if set [setRelative] to `true`, the transform is relative to rest.
    */
   public final fun setAdditive(index: Int, enabled: Boolean): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.setAdditivePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), BOOL to enabled)
+    TransferContext.callMethod(MethodBindings.setAdditivePtr)
   }
 
   /**
    * Returns `true` if the additive option is enabled in the setting at [index].
    */
   public final fun isAdditive(index: Int): Boolean {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.isAdditivePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.isAdditivePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

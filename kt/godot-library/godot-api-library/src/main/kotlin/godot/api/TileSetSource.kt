@@ -50,8 +50,8 @@ public open class TileSetSource internal constructor() : Resource() {
    * Returns how many tiles this atlas source defines (not including alternative tiles).
    */
   public final fun getTilesCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getTilesCountPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getTilesCountPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -59,8 +59,8 @@ public open class TileSetSource internal constructor() : Resource() {
    * Returns the tile coordinates ID of the tile with index [index].
    */
   public final fun getTileId(index: Int): Vector2i {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getTileIdPtr, VECTOR2I)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getTileIdPtr)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
@@ -68,8 +68,8 @@ public open class TileSetSource internal constructor() : Resource() {
    * Returns if this atlas has a tile with coordinates ID [atlasCoords].
    */
   public final fun hasTile(atlasCoords: Vector2i): Boolean {
-    TransferContext.writeArguments(VECTOR2I to atlasCoords)
-    TransferContext.callMethod(ptr, MethodBindings.hasTilePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2I to atlasCoords)
+    TransferContext.callMethod(MethodBindings.hasTilePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -82,8 +82,8 @@ public open class TileSetSource internal constructor() : Resource() {
    * Returns -1 if there is not tile at the given coords.
    */
   public final fun getAlternativeTilesCount(atlasCoords: Vector2i): Int {
-    TransferContext.writeArguments(VECTOR2I to atlasCoords)
-    TransferContext.callMethod(ptr, MethodBindings.getAlternativeTilesCountPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2I to atlasCoords)
+    TransferContext.callMethod(MethodBindings.getAlternativeTilesCountPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -91,8 +91,8 @@ public open class TileSetSource internal constructor() : Resource() {
    * Returns the alternative ID for the tile with coordinates ID [atlasCoords] at index [index].
    */
   public final fun getAlternativeTileId(atlasCoords: Vector2i, index: Int): Int {
-    TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getAlternativeTileIdPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2I to atlasCoords, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getAlternativeTileIdPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -101,8 +101,8 @@ public open class TileSetSource internal constructor() : Resource() {
    * [alternativeTile].
    */
   public final fun hasAlternativeTile(atlasCoords: Vector2i, alternativeTile: Int): Boolean {
-    TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to alternativeTile.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.hasAlternativeTilePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2I to atlasCoords, LONG to alternativeTile.toLong())
+    TransferContext.callMethod(MethodBindings.hasAlternativeTilePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

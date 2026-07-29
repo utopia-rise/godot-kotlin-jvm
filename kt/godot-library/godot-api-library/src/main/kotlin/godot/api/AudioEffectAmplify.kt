@@ -13,7 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
-import godot.core.VariantParser.NIL
 import kotlin.Double
 import kotlin.Float
 import kotlin.NotImplementedError
@@ -59,24 +58,24 @@ public open class AudioEffectAmplify : AudioEffect() {
   }
 
   public final fun setVolumeDb(volume: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to volume.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setVolumeDbPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to volume.toDouble())
+    TransferContext.callMethod(MethodBindings.setVolumeDbPtr)
   }
 
   public final fun getVolumeDb(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getVolumeDbPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getVolumeDbPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVolumeLinear(volume: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to volume.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setVolumeLinearPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to volume.toDouble())
+    TransferContext.callMethod(MethodBindings.setVolumeLinearPtr)
   }
 
   public final fun getVolumeLinear(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getVolumeLinearPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getVolumeLinearPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 

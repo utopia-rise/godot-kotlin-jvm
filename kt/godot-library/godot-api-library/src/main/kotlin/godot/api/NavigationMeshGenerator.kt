@@ -17,7 +17,6 @@ import godot.core.MethodStringName3
 import godot.core.MethodStringName4
 import godot.core.VariantCallable
 import godot.core.VariantParser.CALLABLE
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Suppress
 import kotlin.Unit
@@ -91,8 +90,8 @@ public object NavigationMeshGenerator : Object() {
    */
   @JvmStatic
   public final fun bake(navigationMesh: NavigationMesh?, rootNode: Node?): Unit {
-    TransferContext.writeArguments(OBJECT to navigationMesh, OBJECT to rootNode)
-    TransferContext.callMethod(ptr, MethodBindings.bakePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to navigationMesh, OBJECT to rootNode)
+    TransferContext.callMethod(MethodBindings.bakePtr)
   }
 
   /**
@@ -100,8 +99,8 @@ public object NavigationMeshGenerator : Object() {
    */
   @JvmStatic
   public final fun clear(navigationMesh: NavigationMesh?): Unit {
-    TransferContext.writeArguments(OBJECT to navigationMesh)
-    TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to navigationMesh)
+    TransferContext.callMethod(MethodBindings.clearPtr)
   }
 
   /**
@@ -126,8 +125,8 @@ public object NavigationMeshGenerator : Object() {
     rootNode: Node?,
     callback: Callable = VariantCallable(),
   ): Unit {
-    TransferContext.writeArguments(OBJECT to navigationMesh, OBJECT to sourceGeometryData, OBJECT to rootNode, CALLABLE to callback)
-    TransferContext.callMethod(ptr, MethodBindings.parseSourceGeometryDataPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to navigationMesh, OBJECT to sourceGeometryData, OBJECT to rootNode, CALLABLE to callback)
+    TransferContext.callMethod(MethodBindings.parseSourceGeometryDataPtr)
   }
 
   /**
@@ -141,8 +140,8 @@ public object NavigationMeshGenerator : Object() {
     sourceGeometryData: NavigationMeshSourceGeometryData3D?,
     callback: Callable = VariantCallable(),
   ): Unit {
-    TransferContext.writeArguments(OBJECT to navigationMesh, OBJECT to sourceGeometryData, CALLABLE to callback)
-    TransferContext.callMethod(ptr, MethodBindings.bakeFromSourceGeometryDataPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to navigationMesh, OBJECT to sourceGeometryData, CALLABLE to callback)
+    TransferContext.callMethod(MethodBindings.bakeFromSourceGeometryDataPtr)
   }
 
   public object MethodBindings {

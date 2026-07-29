@@ -17,7 +17,6 @@ import godot.core.MethodStringName2
 import godot.core.MethodStringName5
 import godot.core.MethodStringName6
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import kotlin.Int
@@ -71,8 +70,8 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
     inBandwidth: Int = 0,
     outBandwidth: Int = 0,
   ): Error {
-    TransferContext.writeArguments(LONG to port.toLong(), LONG to maxClients.toLong(), LONG to maxChannels.toLong(), LONG to inBandwidth.toLong(), LONG to outBandwidth.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.createServerPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to port.toLong(), LONG to maxClients.toLong(), LONG to maxChannels.toLong(), LONG to inBandwidth.toLong(), LONG to outBandwidth.toLong())
+    TransferContext.callMethod(MethodBindings.createServerPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -101,8 +100,8 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
     outBandwidth: Int = 0,
     localPort: Int = 0,
   ): Error {
-    TransferContext.writeArguments(STRING to address, LONG to port.toLong(), LONG to channelCount.toLong(), LONG to inBandwidth.toLong(), LONG to outBandwidth.toLong(), LONG to localPort.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.createClientPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to address, LONG to port.toLong(), LONG to channelCount.toLong(), LONG to inBandwidth.toLong(), LONG to outBandwidth.toLong(), LONG to localPort.toLong())
+    TransferContext.callMethod(MethodBindings.createClientPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -115,8 +114,8 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
    * network load (which would otherwise be more taxing on the server).
    */
   public final fun createMesh(uniqueId: Int): Error {
-    TransferContext.writeArguments(LONG to uniqueId.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.createMeshPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to uniqueId.toLong())
+    TransferContext.callMethod(MethodBindings.createMeshPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -126,8 +125,8 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
    * **Note:** The [host] must have exactly one peer in the [ENetPacketPeer.STATE_CONNECTED] state.
    */
   public final fun addMeshPeer(peerId: Int, host: ENetConnection?): Error {
-    TransferContext.writeArguments(LONG to peerId.toLong(), OBJECT to host)
-    TransferContext.callMethod(ptr, MethodBindings.addMeshPeerPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to peerId.toLong(), OBJECT to host)
+    TransferContext.callMethod(MethodBindings.addMeshPeerPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -137,13 +136,13 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
    * `"192.168.1.1"`.
    */
   public final fun setBindIp(ip: String): Unit {
-    TransferContext.writeArguments(STRING to ip)
-    TransferContext.callMethod(ptr, MethodBindings.setBindIpPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to ip)
+    TransferContext.callMethod(MethodBindings.setBindIpPtr)
   }
 
   public final fun getHost(): ENetConnection? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getHostPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getHostPtr)
     return (TransferContext.readReturnValue(OBJECT) as ENetConnection?)
   }
 
@@ -151,8 +150,8 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
    * Returns the [ENetPacketPeer] associated to the given [id].
    */
   public final fun getPeer(id: Int): ENetPacketPeer? {
-    TransferContext.writeArguments(LONG to id.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getPeerPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to id.toLong())
+    TransferContext.callMethod(MethodBindings.getPeerPtr)
     return (TransferContext.readReturnValue(OBJECT) as ENetPacketPeer?)
   }
 

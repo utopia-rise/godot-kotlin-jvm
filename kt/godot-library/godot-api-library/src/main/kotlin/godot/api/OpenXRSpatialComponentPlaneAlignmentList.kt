@@ -32,8 +32,8 @@ public open class OpenXRSpatialComponentPlaneAlignmentList : OpenXRSpatialCompon
    * Returns the plane alignment for the parent entity at this [index].
    */
   public final fun getPlaneAlignment(index: Long): PlaneAlignment {
-    TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(ptr, MethodBindings.getPlaneAlignmentPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index)
+    TransferContext.callMethod(MethodBindings.getPlaneAlignmentPtr)
     return PlaneAlignment.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

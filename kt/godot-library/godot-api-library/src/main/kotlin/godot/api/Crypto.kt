@@ -114,8 +114,8 @@ public open class Crypto : RefCounted() {
    * Generates a [PackedByteArray] of cryptographically secure random bytes with given [size].
    */
   public final fun generateRandomBytes(size: Int): PackedByteArray {
-    TransferContext.writeArguments(LONG to size.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.generateRandomBytesPtr, PACKED_BYTE_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to size.toLong())
+    TransferContext.callMethod(MethodBindings.generateRandomBytesPtr)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
@@ -124,8 +124,8 @@ public open class Crypto : RefCounted() {
    * to [StreamPeerTLS.acceptStream].
    */
   public final fun generateRsa(size: Int): CryptoKey? {
-    TransferContext.writeArguments(LONG to size.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.generateRsaPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to size.toLong())
+    TransferContext.callMethod(MethodBindings.generateRsaPtr)
     return (TransferContext.readReturnValue(OBJECT) as CryptoKey?)
   }
 
@@ -164,8 +164,8 @@ public open class Crypto : RefCounted() {
     notBefore: String = "20140101000000",
     notAfter: String = "20340101000000",
   ): X509Certificate? {
-    TransferContext.writeArguments(OBJECT to key, STRING to issuerName, STRING to notBefore, STRING to notAfter)
-    TransferContext.callMethod(ptr, MethodBindings.generateSelfSignedCertificatePtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to key, STRING to issuerName, STRING to notBefore, STRING to notAfter)
+    TransferContext.callMethod(MethodBindings.generateSelfSignedCertificatePtr)
     return (TransferContext.readReturnValue(OBJECT) as X509Certificate?)
   }
 
@@ -177,8 +177,8 @@ public open class Crypto : RefCounted() {
     hash: PackedByteArray,
     key: CryptoKey?,
   ): PackedByteArray {
-    TransferContext.writeArguments(LONG to hashType.value, PACKED_BYTE_ARRAY to hash, OBJECT to key)
-    TransferContext.callMethod(ptr, MethodBindings.signPtr, PACKED_BYTE_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to hashType.value, PACKED_BYTE_ARRAY to hash, OBJECT to key)
+    TransferContext.callMethod(MethodBindings.signPtr)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
@@ -192,8 +192,8 @@ public open class Crypto : RefCounted() {
     signature: PackedByteArray,
     key: CryptoKey?,
   ): Boolean {
-    TransferContext.writeArguments(LONG to hashType.value, PACKED_BYTE_ARRAY to hash, PACKED_BYTE_ARRAY to signature, OBJECT to key)
-    TransferContext.callMethod(ptr, MethodBindings.verifyPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to hashType.value, PACKED_BYTE_ARRAY to hash, PACKED_BYTE_ARRAY to signature, OBJECT to key)
+    TransferContext.callMethod(MethodBindings.verifyPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -203,8 +203,8 @@ public open class Crypto : RefCounted() {
    * **Note:** The maximum size of accepted plaintext is limited by the key size.
    */
   public final fun encrypt(key: CryptoKey?, plaintext: PackedByteArray): PackedByteArray {
-    TransferContext.writeArguments(OBJECT to key, PACKED_BYTE_ARRAY to plaintext)
-    TransferContext.callMethod(ptr, MethodBindings.encryptPtr, PACKED_BYTE_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to key, PACKED_BYTE_ARRAY to plaintext)
+    TransferContext.callMethod(MethodBindings.encryptPtr)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
@@ -214,8 +214,8 @@ public open class Crypto : RefCounted() {
    * **Note:** The maximum size of accepted ciphertext is limited by the key size.
    */
   public final fun decrypt(key: CryptoKey?, ciphertext: PackedByteArray): PackedByteArray {
-    TransferContext.writeArguments(OBJECT to key, PACKED_BYTE_ARRAY to ciphertext)
-    TransferContext.callMethod(ptr, MethodBindings.decryptPtr, PACKED_BYTE_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to key, PACKED_BYTE_ARRAY to ciphertext)
+    TransferContext.callMethod(MethodBindings.decryptPtr)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
@@ -230,8 +230,8 @@ public open class Crypto : RefCounted() {
     key: PackedByteArray,
     msg: PackedByteArray,
   ): PackedByteArray {
-    TransferContext.writeArguments(LONG to hashType.value, PACKED_BYTE_ARRAY to key, PACKED_BYTE_ARRAY to msg)
-    TransferContext.callMethod(ptr, MethodBindings.hmacDigestPtr, PACKED_BYTE_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to hashType.value, PACKED_BYTE_ARRAY to key, PACKED_BYTE_ARRAY to msg)
+    TransferContext.callMethod(MethodBindings.hmacDigestPtr)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
@@ -245,8 +245,8 @@ public open class Crypto : RefCounted() {
    */
   public final fun constantTimeCompare(trusted: PackedByteArray, received: PackedByteArray):
       Boolean {
-    TransferContext.writeArguments(PACKED_BYTE_ARRAY to trusted, PACKED_BYTE_ARRAY to received)
-    TransferContext.callMethod(ptr, MethodBindings.constantTimeComparePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_BYTE_ARRAY to trusted, PACKED_BYTE_ARRAY to received)
+    TransferContext.callMethod(MethodBindings.constantTimeComparePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

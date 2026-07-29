@@ -55,8 +55,8 @@ public open class SceneState internal constructor() : RefCounted() {
    * Returns the resource path to the represented [PackedScene].
    */
   public final fun getPath(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPathPtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPathPtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -65,8 +65,8 @@ public open class SceneState internal constructor() : RefCounted() {
    * inherit from any scene.
    */
   public final fun getBaseSceneState(): SceneState? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getBaseSceneStatePtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getBaseSceneStatePtr)
     return (TransferContext.readReturnValue(OBJECT) as SceneState?)
   }
 
@@ -77,8 +77,8 @@ public open class SceneState internal constructor() : RefCounted() {
    * get_node_count() - 1]`.
    */
   public final fun getNodeCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getNodeCountPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getNodeCountPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -86,8 +86,8 @@ public open class SceneState internal constructor() : RefCounted() {
    * Returns the type of the node at [idx].
    */
   public final fun getNodeType(idx: Int): StringName {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getNodeTypePtr, STRING_NAME)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong())
+    TransferContext.callMethod(MethodBindings.getNodeTypePtr)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
@@ -95,8 +95,8 @@ public open class SceneState internal constructor() : RefCounted() {
    * Returns the name of the node at [idx].
    */
   public final fun getNodeName(idx: Int): StringName {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getNodeNamePtr, STRING_NAME)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong())
+    TransferContext.callMethod(MethodBindings.getNodeNamePtr)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
@@ -107,8 +107,8 @@ public open class SceneState internal constructor() : RefCounted() {
    */
   @JvmOverloads
   public final fun getNodePath(idx: Int, forParent: Boolean = false): NodePath {
-    TransferContext.writeArguments(LONG to idx.toLong(), BOOL to forParent)
-    TransferContext.callMethod(ptr, MethodBindings.getNodePathPtr, NODE_PATH)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong(), BOOL to forParent)
+    TransferContext.callMethod(MethodBindings.getNodePathPtr)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
@@ -116,8 +116,8 @@ public open class SceneState internal constructor() : RefCounted() {
    * Returns the path to the owner of the node at [idx], relative to the root node.
    */
   public final fun getNodeOwnerPath(idx: Int): NodePath {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getNodeOwnerPathPtr, NODE_PATH)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong())
+    TransferContext.callMethod(MethodBindings.getNodeOwnerPathPtr)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
@@ -125,8 +125,8 @@ public open class SceneState internal constructor() : RefCounted() {
    * Returns `true` if the node at [idx] is an [InstancePlaceholder].
    */
   public final fun isNodeInstancePlaceholder(idx: Int): Boolean {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.isNodeInstancePlaceholderPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong())
+    TransferContext.callMethod(MethodBindings.isNodeInstancePlaceholderPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -135,8 +135,8 @@ public open class SceneState internal constructor() : RefCounted() {
    * [InstancePlaceholder].
    */
   public final fun getNodeInstancePlaceholder(idx: Int): String {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getNodeInstancePlaceholderPtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong())
+    TransferContext.callMethod(MethodBindings.getNodeInstancePlaceholderPtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -145,8 +145,8 @@ public open class SceneState internal constructor() : RefCounted() {
    * with its child nodes and resources), or `null` if the node is not an instance.
    */
   public final fun getNodeInstance(idx: Int): PackedScene? {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getNodeInstancePtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong())
+    TransferContext.callMethod(MethodBindings.getNodeInstancePtr)
     return (TransferContext.readReturnValue(OBJECT) as PackedScene?)
   }
 
@@ -154,8 +154,8 @@ public open class SceneState internal constructor() : RefCounted() {
    * Returns the list of group names associated with the node at [idx].
    */
   public final fun getNodeGroups(idx: Int): PackedStringArray {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getNodeGroupsPtr, PACKED_STRING_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong())
+    TransferContext.callMethod(MethodBindings.getNodeGroupsPtr)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
@@ -166,8 +166,8 @@ public open class SceneState internal constructor() : RefCounted() {
    * argument used here and in other methods.
    */
   public final fun getNodeIndex(idx: Int): Int {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getNodeIndexPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong())
+    TransferContext.callMethod(MethodBindings.getNodeIndexPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -178,8 +178,8 @@ public open class SceneState internal constructor() : RefCounted() {
    * in the interval `[0, get_node_property_count() - 1]`.
    */
   public final fun getNodePropertyCount(idx: Int): Int {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getNodePropertyCountPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong())
+    TransferContext.callMethod(MethodBindings.getNodePropertyCountPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -187,8 +187,8 @@ public open class SceneState internal constructor() : RefCounted() {
    * Returns the name of the property at [propIdx] for the node at [idx].
    */
   public final fun getNodePropertyName(idx: Int, propIdx: Int): StringName {
-    TransferContext.writeArguments(LONG to idx.toLong(), LONG to propIdx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getNodePropertyNamePtr, STRING_NAME)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong(), LONG to propIdx.toLong())
+    TransferContext.callMethod(MethodBindings.getNodePropertyNamePtr)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
@@ -196,8 +196,8 @@ public open class SceneState internal constructor() : RefCounted() {
    * Returns the value of the property at [propIdx] for the node at [idx].
    */
   public final fun getNodePropertyValue(idx: Int, propIdx: Int): Any? {
-    TransferContext.writeArguments(LONG to idx.toLong(), LONG to propIdx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getNodePropertyValuePtr, ANY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong(), LONG to propIdx.toLong())
+    TransferContext.callMethod(MethodBindings.getNodePropertyValuePtr)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
@@ -208,8 +208,8 @@ public open class SceneState internal constructor() : RefCounted() {
    * interval `[0, get_connection_count() - 1]`.
    */
   public final fun getConnectionCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getConnectionCountPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getConnectionCountPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -217,8 +217,8 @@ public open class SceneState internal constructor() : RefCounted() {
    * Returns the path to the node that owns the signal at [idx], relative to the root node.
    */
   public final fun getConnectionSource(idx: Int): NodePath {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getConnectionSourcePtr, NODE_PATH)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong())
+    TransferContext.callMethod(MethodBindings.getConnectionSourcePtr)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
@@ -226,8 +226,8 @@ public open class SceneState internal constructor() : RefCounted() {
    * Returns the name of the signal at [idx].
    */
   public final fun getConnectionSignal(idx: Int): StringName {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getConnectionSignalPtr, STRING_NAME)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong())
+    TransferContext.callMethod(MethodBindings.getConnectionSignalPtr)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
@@ -236,8 +236,8 @@ public open class SceneState internal constructor() : RefCounted() {
    * the root node.
    */
   public final fun getConnectionTarget(idx: Int): NodePath {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getConnectionTargetPtr, NODE_PATH)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong())
+    TransferContext.callMethod(MethodBindings.getConnectionTargetPtr)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
@@ -245,8 +245,8 @@ public open class SceneState internal constructor() : RefCounted() {
    * Returns the method connected to the signal at [idx].
    */
   public final fun getConnectionMethod(idx: Int): StringName {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getConnectionMethodPtr, STRING_NAME)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong())
+    TransferContext.callMethod(MethodBindings.getConnectionMethodPtr)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
@@ -254,8 +254,8 @@ public open class SceneState internal constructor() : RefCounted() {
    * Returns the connection flags for the signal at [idx]. See [Object.ConnectFlags] constants.
    */
   public final fun getConnectionFlags(idx: Int): Int {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getConnectionFlagsPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong())
+    TransferContext.callMethod(MethodBindings.getConnectionFlagsPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -263,8 +263,8 @@ public open class SceneState internal constructor() : RefCounted() {
    * Returns the list of bound parameters for the signal at [idx].
    */
   public final fun getConnectionBinds(idx: Int): VariantArray<Any?> {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getConnectionBindsPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong())
+    TransferContext.callMethod(MethodBindings.getConnectionBindsPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
@@ -272,8 +272,8 @@ public open class SceneState internal constructor() : RefCounted() {
    * Returns the number of unbound parameters for the signal at [idx].
    */
   public final fun getConnectionUnbinds(idx: Int): Int {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getConnectionUnbindsPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to idx.toLong())
+    TransferContext.callMethod(MethodBindings.getConnectionUnbindsPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 

@@ -22,7 +22,6 @@ import godot.core.PackedByteArray
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DICTIONARY
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.STRING
@@ -222,90 +221,90 @@ public open class AudioStreamWAV : AudioStream() {
   }
 
   public final fun setData(`data`: PackedByteArray): Unit {
-    TransferContext.writeArguments(PACKED_BYTE_ARRAY to data)
-    TransferContext.callMethod(ptr, MethodBindings.setDataPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_BYTE_ARRAY to data)
+    TransferContext.callMethod(MethodBindings.setDataPtr)
   }
 
   public final fun getData(): PackedByteArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getDataPtr, PACKED_BYTE_ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getDataPtr)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   public final fun setFormat(format: Format): Unit {
-    TransferContext.writeArguments(LONG to format.value)
-    TransferContext.callMethod(ptr, MethodBindings.setFormatPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to format.value)
+    TransferContext.callMethod(MethodBindings.setFormatPtr)
   }
 
   public final fun getFormat(): Format {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFormatPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getFormatPtr)
     return Format.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setLoopMode(loopMode: LoopMode): Unit {
-    TransferContext.writeArguments(LONG to loopMode.value)
-    TransferContext.callMethod(ptr, MethodBindings.setLoopModePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to loopMode.value)
+    TransferContext.callMethod(MethodBindings.setLoopModePtr)
   }
 
   public final fun getLoopMode(): LoopMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getLoopModePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getLoopModePtr)
     return LoopMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setLoopBegin(loopBegin: Int): Unit {
-    TransferContext.writeArguments(LONG to loopBegin.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setLoopBeginPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to loopBegin.toLong())
+    TransferContext.callMethod(MethodBindings.setLoopBeginPtr)
   }
 
   public final fun getLoopBegin(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getLoopBeginPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getLoopBeginPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setLoopEnd(loopEnd: Int): Unit {
-    TransferContext.writeArguments(LONG to loopEnd.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setLoopEndPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to loopEnd.toLong())
+    TransferContext.callMethod(MethodBindings.setLoopEndPtr)
   }
 
   public final fun getLoopEnd(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getLoopEndPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getLoopEndPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setMixRate(mixRate: Int): Unit {
-    TransferContext.writeArguments(LONG to mixRate.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setMixRatePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to mixRate.toLong())
+    TransferContext.callMethod(MethodBindings.setMixRatePtr)
   }
 
   public final fun getMixRate(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMixRatePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMixRatePtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setStereo(stereo: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to stereo)
-    TransferContext.callMethod(ptr, MethodBindings.setStereoPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to stereo)
+    TransferContext.callMethod(MethodBindings.setStereoPtr)
   }
 
   public final fun isStereo(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isStereoPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isStereoPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setTags(tags: Dictionary<Any?, Any?>): Unit {
-    TransferContext.writeArguments(DICTIONARY to tags)
-    TransferContext.callMethod(ptr, MethodBindings.setTagsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DICTIONARY to tags)
+    TransferContext.callMethod(MethodBindings.setTagsPtr)
   }
 
   public final fun getTags(): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getTagsPtr, DICTIONARY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getTagsPtr)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
@@ -316,8 +315,8 @@ public open class AudioStreamWAV : AudioStream() {
    * **Note:** A `.wav` extension is automatically appended to [path] if it is missing.
    */
   public final fun saveToWav(path: String): Error {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(ptr, MethodBindings.saveToWavPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to path)
+    TransferContext.callMethod(MethodBindings.saveToWavPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -471,8 +470,8 @@ public open class AudioStreamWAV : AudioStream() {
     @JvmStatic
     public final fun loadFromBuffer(streamData: PackedByteArray, options: Dictionary<Any?, Any?> =
         Dictionary()): AudioStreamWAV? {
-      TransferContext.writeArguments(PACKED_BYTE_ARRAY to streamData, DICTIONARY to options)
-      TransferContext.callMethod(0, MethodBindings.loadFromBufferPtr, OBJECT)
+      TransferContext.writeMethodArguments(0L, 0L, PACKED_BYTE_ARRAY to streamData, DICTIONARY to options)
+      TransferContext.callMethod(MethodBindings.loadFromBufferPtr)
       return (TransferContext.readReturnValue(OBJECT) as AudioStreamWAV?)
     }
 
@@ -503,8 +502,8 @@ public open class AudioStreamWAV : AudioStream() {
     @JvmStatic
     public final fun loadFromFile(path: String, options: Dictionary<Any?, Any?> = Dictionary()):
         AudioStreamWAV? {
-      TransferContext.writeArguments(STRING to path, DICTIONARY to options)
-      TransferContext.callMethod(0, MethodBindings.loadFromFilePtr, OBJECT)
+      TransferContext.writeMethodArguments(0L, 0L, STRING to path, DICTIONARY to options)
+      TransferContext.callMethod(MethodBindings.loadFromFilePtr)
       return (TransferContext.readReturnValue(OBJECT) as AudioStreamWAV?)
     }
   }

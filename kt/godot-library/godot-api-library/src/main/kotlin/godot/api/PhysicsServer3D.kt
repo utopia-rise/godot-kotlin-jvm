@@ -26,7 +26,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.CALLABLE
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser.VECTOR3
@@ -828,8 +827,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun worldBoundaryShapeCreate(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.worldBoundaryShapeCreatePtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.worldBoundaryShapeCreatePtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -839,8 +838,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun separationRayShapeCreate(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.separationRayShapeCreatePtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.separationRayShapeCreatePtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -850,8 +849,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun sphereShapeCreate(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.sphereShapeCreatePtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.sphereShapeCreatePtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -861,8 +860,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun boxShapeCreate(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.boxShapeCreatePtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.boxShapeCreatePtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -872,8 +871,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun capsuleShapeCreate(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.capsuleShapeCreatePtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.capsuleShapeCreatePtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -883,8 +882,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun cylinderShapeCreate(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.cylinderShapeCreatePtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.cylinderShapeCreatePtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -894,8 +893,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun convexPolygonShapeCreate(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.convexPolygonShapeCreatePtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.convexPolygonShapeCreatePtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -905,8 +904,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun concavePolygonShapeCreate(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.concavePolygonShapeCreatePtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.concavePolygonShapeCreatePtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -916,8 +915,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun heightmapShapeCreate(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.heightmapShapeCreatePtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.heightmapShapeCreatePtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -931,8 +930,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun customShapeCreate(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.customShapeCreatePtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.customShapeCreatePtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -975,8 +974,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun shapeSetData(shape: RID, `data`: Any?): Unit {
-    TransferContext.writeArguments(_RID to shape, ANY to data)
-    TransferContext.callMethod(ptr, MethodBindings.shapeSetDataPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to shape, ANY to data)
+    TransferContext.callMethod(MethodBindings.shapeSetDataPtr)
   }
 
   /**
@@ -986,8 +985,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun shapeSetMargin(shape: RID, margin: Float): Unit {
-    TransferContext.writeArguments(_RID to shape, DOUBLE to margin.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.shapeSetMarginPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to shape, DOUBLE to margin.toDouble())
+    TransferContext.callMethod(MethodBindings.shapeSetMarginPtr)
   }
 
   /**
@@ -995,8 +994,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun shapeGetType(shape: RID): ShapeType {
-    TransferContext.writeArguments(_RID to shape)
-    TransferContext.callMethod(ptr, MethodBindings.shapeGetTypePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to shape)
+    TransferContext.callMethod(MethodBindings.shapeGetTypePtr)
     return ShapeType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -1007,8 +1006,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun shapeGetData(shape: RID): Any? {
-    TransferContext.writeArguments(_RID to shape)
-    TransferContext.callMethod(ptr, MethodBindings.shapeGetDataPtr, ANY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to shape)
+    TransferContext.callMethod(MethodBindings.shapeGetDataPtr)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
@@ -1019,8 +1018,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun shapeGetMargin(shape: RID): Float {
-    TransferContext.writeArguments(_RID to shape)
-    TransferContext.callMethod(ptr, MethodBindings.shapeGetMarginPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to shape)
+    TransferContext.callMethod(MethodBindings.shapeGetMarginPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -1031,8 +1030,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun spaceCreate(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.spaceCreatePtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.spaceCreatePtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -1041,8 +1040,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun spaceSetActive(space: RID, active: Boolean): Unit {
-    TransferContext.writeArguments(_RID to space, BOOL to active)
-    TransferContext.callMethod(ptr, MethodBindings.spaceSetActivePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to space, BOOL to active)
+    TransferContext.callMethod(MethodBindings.spaceSetActivePtr)
   }
 
   /**
@@ -1050,8 +1049,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun spaceIsActive(space: RID): Boolean {
-    TransferContext.writeArguments(_RID to space)
-    TransferContext.callMethod(ptr, MethodBindings.spaceIsActivePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to space)
+    TransferContext.callMethod(MethodBindings.spaceIsActivePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -1065,8 +1064,8 @@ public object PhysicsServer3D : Object() {
     `param`: SpaceParameter,
     `value`: Float,
   ): Unit {
-    TransferContext.writeArguments(_RID to space, LONG to param.value, DOUBLE to value.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.spaceSetParamPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to space, LONG to param.value, DOUBLE to value.toDouble())
+    TransferContext.callMethod(MethodBindings.spaceSetParamPtr)
   }
 
   /**
@@ -1074,8 +1073,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun spaceGetParam(space: RID, `param`: SpaceParameter): Float {
-    TransferContext.writeArguments(_RID to space, LONG to param.value)
-    TransferContext.callMethod(ptr, MethodBindings.spaceGetParamPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to space, LONG to param.value)
+    TransferContext.callMethod(MethodBindings.spaceGetParamPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -1085,8 +1084,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun spaceGetDirectState(space: RID): PhysicsDirectSpaceState3D? {
-    TransferContext.writeArguments(_RID to space)
-    TransferContext.callMethod(ptr, MethodBindings.spaceGetDirectStatePtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to space)
+    TransferContext.callMethod(MethodBindings.spaceGetDirectStatePtr)
     return (TransferContext.readReturnValue(OBJECT) as PhysicsDirectSpaceState3D?)
   }
 
@@ -1101,8 +1100,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun areaCreate(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.areaCreatePtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.areaCreatePtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -1111,8 +1110,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun areaSetSpace(area: RID, space: RID): Unit {
-    TransferContext.writeArguments(_RID to area, _RID to space)
-    TransferContext.callMethod(ptr, MethodBindings.areaSetSpacePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to area, _RID to space)
+    TransferContext.callMethod(MethodBindings.areaSetSpacePtr)
   }
 
   /**
@@ -1120,8 +1119,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun areaGetSpace(area: RID): RID {
-    TransferContext.writeArguments(_RID to area)
-    TransferContext.callMethod(ptr, MethodBindings.areaGetSpacePtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to area)
+    TransferContext.callMethod(MethodBindings.areaGetSpacePtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -1137,8 +1136,8 @@ public object PhysicsServer3D : Object() {
     transform: Transform3D = Transform3D(),
     disabled: Boolean = false,
   ): Unit {
-    TransferContext.writeArguments(_RID to area, _RID to shape, TRANSFORM3D to transform, BOOL to disabled)
-    TransferContext.callMethod(ptr, MethodBindings.areaAddShapePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to area, _RID to shape, TRANSFORM3D to transform, BOOL to disabled)
+    TransferContext.callMethod(MethodBindings.areaAddShapePtr)
   }
 
   /**
@@ -1151,8 +1150,8 @@ public object PhysicsServer3D : Object() {
     shapeIdx: Int,
     shape: RID,
   ): Unit {
-    TransferContext.writeArguments(_RID to area, LONG to shapeIdx.toLong(), _RID to shape)
-    TransferContext.callMethod(ptr, MethodBindings.areaSetShapePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to area, LONG to shapeIdx.toLong(), _RID to shape)
+    TransferContext.callMethod(MethodBindings.areaSetShapePtr)
   }
 
   /**
@@ -1164,8 +1163,8 @@ public object PhysicsServer3D : Object() {
     shapeIdx: Int,
     transform: Transform3D,
   ): Unit {
-    TransferContext.writeArguments(_RID to area, LONG to shapeIdx.toLong(), TRANSFORM3D to transform)
-    TransferContext.callMethod(ptr, MethodBindings.areaSetShapeTransformPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to area, LONG to shapeIdx.toLong(), TRANSFORM3D to transform)
+    TransferContext.callMethod(MethodBindings.areaSetShapeTransformPtr)
   }
 
   @JvmStatic
@@ -1174,8 +1173,8 @@ public object PhysicsServer3D : Object() {
     shapeIdx: Int,
     disabled: Boolean,
   ): Unit {
-    TransferContext.writeArguments(_RID to area, LONG to shapeIdx.toLong(), BOOL to disabled)
-    TransferContext.callMethod(ptr, MethodBindings.areaSetShapeDisabledPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to area, LONG to shapeIdx.toLong(), BOOL to disabled)
+    TransferContext.callMethod(MethodBindings.areaSetShapeDisabledPtr)
   }
 
   /**
@@ -1183,8 +1182,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun areaGetShapeCount(area: RID): Int {
-    TransferContext.writeArguments(_RID to area)
-    TransferContext.callMethod(ptr, MethodBindings.areaGetShapeCountPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to area)
+    TransferContext.callMethod(MethodBindings.areaGetShapeCountPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -1193,8 +1192,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun areaGetShape(area: RID, shapeIdx: Int): RID {
-    TransferContext.writeArguments(_RID to area, LONG to shapeIdx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.areaGetShapePtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to area, LONG to shapeIdx.toLong())
+    TransferContext.callMethod(MethodBindings.areaGetShapePtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -1203,8 +1202,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun areaGetShapeTransform(area: RID, shapeIdx: Int): Transform3D {
-    TransferContext.writeArguments(_RID to area, LONG to shapeIdx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.areaGetShapeTransformPtr, TRANSFORM3D)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to area, LONG to shapeIdx.toLong())
+    TransferContext.callMethod(MethodBindings.areaGetShapeTransformPtr)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
@@ -1213,8 +1212,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun areaRemoveShape(area: RID, shapeIdx: Int): Unit {
-    TransferContext.writeArguments(_RID to area, LONG to shapeIdx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.areaRemoveShapePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to area, LONG to shapeIdx.toLong())
+    TransferContext.callMethod(MethodBindings.areaRemoveShapePtr)
   }
 
   /**
@@ -1223,8 +1222,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun areaClearShapes(area: RID): Unit {
-    TransferContext.writeArguments(_RID to area)
-    TransferContext.callMethod(ptr, MethodBindings.areaClearShapesPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to area)
+    TransferContext.callMethod(MethodBindings.areaClearShapesPtr)
   }
 
   /**
@@ -1232,8 +1231,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun areaSetCollisionLayer(area: RID, layer: Long): Unit {
-    TransferContext.writeArguments(_RID to area, LONG to layer)
-    TransferContext.callMethod(ptr, MethodBindings.areaSetCollisionLayerPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to area, LONG to layer)
+    TransferContext.callMethod(MethodBindings.areaSetCollisionLayerPtr)
   }
 
   /**
@@ -1241,8 +1240,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun areaGetCollisionLayer(area: RID): Long {
-    TransferContext.writeArguments(_RID to area)
-    TransferContext.callMethod(ptr, MethodBindings.areaGetCollisionLayerPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to area)
+    TransferContext.callMethod(MethodBindings.areaGetCollisionLayerPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -1251,8 +1250,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun areaSetCollisionMask(area: RID, mask: Long): Unit {
-    TransferContext.writeArguments(_RID to area, LONG to mask)
-    TransferContext.callMethod(ptr, MethodBindings.areaSetCollisionMaskPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to area, LONG to mask)
+    TransferContext.callMethod(MethodBindings.areaSetCollisionMaskPtr)
   }
 
   /**
@@ -1260,8 +1259,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun areaGetCollisionMask(area: RID): Long {
-    TransferContext.writeArguments(_RID to area)
-    TransferContext.callMethod(ptr, MethodBindings.areaGetCollisionMaskPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to area)
+    TransferContext.callMethod(MethodBindings.areaGetCollisionMaskPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -1275,8 +1274,8 @@ public object PhysicsServer3D : Object() {
     `param`: AreaParameter,
     `value`: Any?,
   ): Unit {
-    TransferContext.writeArguments(_RID to area, LONG to param.value, ANY to value)
-    TransferContext.callMethod(ptr, MethodBindings.areaSetParamPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to area, LONG to param.value, ANY to value)
+    TransferContext.callMethod(MethodBindings.areaSetParamPtr)
   }
 
   /**
@@ -1284,8 +1283,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun areaSetTransform(area: RID, transform: Transform3D): Unit {
-    TransferContext.writeArguments(_RID to area, TRANSFORM3D to transform)
-    TransferContext.callMethod(ptr, MethodBindings.areaSetTransformPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to area, TRANSFORM3D to transform)
+    TransferContext.callMethod(MethodBindings.areaSetTransformPtr)
   }
 
   /**
@@ -1294,8 +1293,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun areaGetParam(area: RID, `param`: AreaParameter): Any? {
-    TransferContext.writeArguments(_RID to area, LONG to param.value)
-    TransferContext.callMethod(ptr, MethodBindings.areaGetParamPtr, ANY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to area, LONG to param.value)
+    TransferContext.callMethod(MethodBindings.areaGetParamPtr)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
@@ -1304,8 +1303,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun areaGetTransform(area: RID): Transform3D {
-    TransferContext.writeArguments(_RID to area)
-    TransferContext.callMethod(ptr, MethodBindings.areaGetTransformPtr, TRANSFORM3D)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to area)
+    TransferContext.callMethod(MethodBindings.areaGetTransformPtr)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
@@ -1314,8 +1313,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun areaAttachObjectInstanceId(area: RID, id: Long): Unit {
-    TransferContext.writeArguments(_RID to area, LONG to id)
-    TransferContext.callMethod(ptr, MethodBindings.areaAttachObjectInstanceIdPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to area, LONG to id)
+    TransferContext.callMethod(MethodBindings.areaAttachObjectInstanceIdPtr)
   }
 
   /**
@@ -1323,8 +1322,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun areaGetObjectInstanceId(area: RID): Long {
-    TransferContext.writeArguments(_RID to area)
-    TransferContext.callMethod(ptr, MethodBindings.areaGetObjectInstanceIdPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to area)
+    TransferContext.callMethod(MethodBindings.areaGetObjectInstanceIdPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -1350,8 +1349,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun areaSetMonitorCallback(area: RID, callback: Callable): Unit {
-    TransferContext.writeArguments(_RID to area, CALLABLE to callback)
-    TransferContext.callMethod(ptr, MethodBindings.areaSetMonitorCallbackPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to area, CALLABLE to callback)
+    TransferContext.callMethod(MethodBindings.areaSetMonitorCallbackPtr)
   }
 
   /**
@@ -1376,14 +1375,14 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun areaSetAreaMonitorCallback(area: RID, callback: Callable): Unit {
-    TransferContext.writeArguments(_RID to area, CALLABLE to callback)
-    TransferContext.callMethod(ptr, MethodBindings.areaSetAreaMonitorCallbackPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to area, CALLABLE to callback)
+    TransferContext.callMethod(MethodBindings.areaSetAreaMonitorCallbackPtr)
   }
 
   @JvmStatic
   public final fun areaSetMonitorable(area: RID, monitorable: Boolean): Unit {
-    TransferContext.writeArguments(_RID to area, BOOL to monitorable)
-    TransferContext.callMethod(ptr, MethodBindings.areaSetMonitorablePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to area, BOOL to monitorable)
+    TransferContext.callMethod(MethodBindings.areaSetMonitorablePtr)
   }
 
   /**
@@ -1391,8 +1390,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun areaSetRayPickable(area: RID, enable: Boolean): Unit {
-    TransferContext.writeArguments(_RID to area, BOOL to enable)
-    TransferContext.callMethod(ptr, MethodBindings.areaSetRayPickablePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to area, BOOL to enable)
+    TransferContext.callMethod(MethodBindings.areaSetRayPickablePtr)
   }
 
   /**
@@ -1405,8 +1404,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun bodyCreate(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.bodyCreatePtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.bodyCreatePtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -1415,8 +1414,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun bodySetSpace(body: RID, space: RID): Unit {
-    TransferContext.writeArguments(_RID to body, _RID to space)
-    TransferContext.callMethod(ptr, MethodBindings.bodySetSpacePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, _RID to space)
+    TransferContext.callMethod(MethodBindings.bodySetSpacePtr)
   }
 
   /**
@@ -1424,8 +1423,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun bodyGetSpace(body: RID): RID {
-    TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(ptr, MethodBindings.bodyGetSpacePtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body)
+    TransferContext.callMethod(MethodBindings.bodyGetSpacePtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -1434,8 +1433,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun bodySetMode(body: RID, mode: BodyMode): Unit {
-    TransferContext.writeArguments(_RID to body, LONG to mode.value)
-    TransferContext.callMethod(ptr, MethodBindings.bodySetModePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, LONG to mode.value)
+    TransferContext.callMethod(MethodBindings.bodySetModePtr)
   }
 
   /**
@@ -1443,8 +1442,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun bodyGetMode(body: RID): BodyMode {
-    TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(ptr, MethodBindings.bodyGetModePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body)
+    TransferContext.callMethod(MethodBindings.bodyGetModePtr)
     return BodyMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -1453,8 +1452,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun bodySetCollisionLayer(body: RID, layer: Long): Unit {
-    TransferContext.writeArguments(_RID to body, LONG to layer)
-    TransferContext.callMethod(ptr, MethodBindings.bodySetCollisionLayerPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, LONG to layer)
+    TransferContext.callMethod(MethodBindings.bodySetCollisionLayerPtr)
   }
 
   /**
@@ -1462,8 +1461,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun bodyGetCollisionLayer(body: RID): Long {
-    TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(ptr, MethodBindings.bodyGetCollisionLayerPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body)
+    TransferContext.callMethod(MethodBindings.bodyGetCollisionLayerPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -1472,8 +1471,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun bodySetCollisionMask(body: RID, mask: Long): Unit {
-    TransferContext.writeArguments(_RID to body, LONG to mask)
-    TransferContext.callMethod(ptr, MethodBindings.bodySetCollisionMaskPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, LONG to mask)
+    TransferContext.callMethod(MethodBindings.bodySetCollisionMaskPtr)
   }
 
   /**
@@ -1481,8 +1480,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun bodyGetCollisionMask(body: RID): Long {
-    TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(ptr, MethodBindings.bodyGetCollisionMaskPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body)
+    TransferContext.callMethod(MethodBindings.bodyGetCollisionMaskPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -1491,8 +1490,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun bodySetCollisionPriority(body: RID, priority: Float): Unit {
-    TransferContext.writeArguments(_RID to body, DOUBLE to priority.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.bodySetCollisionPriorityPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, DOUBLE to priority.toDouble())
+    TransferContext.callMethod(MethodBindings.bodySetCollisionPriorityPtr)
   }
 
   /**
@@ -1500,8 +1499,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun bodyGetCollisionPriority(body: RID): Float {
-    TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(ptr, MethodBindings.bodyGetCollisionPriorityPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body)
+    TransferContext.callMethod(MethodBindings.bodyGetCollisionPriorityPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -1517,8 +1516,8 @@ public object PhysicsServer3D : Object() {
     transform: Transform3D = Transform3D(),
     disabled: Boolean = false,
   ): Unit {
-    TransferContext.writeArguments(_RID to body, _RID to shape, TRANSFORM3D to transform, BOOL to disabled)
-    TransferContext.callMethod(ptr, MethodBindings.bodyAddShapePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, _RID to shape, TRANSFORM3D to transform, BOOL to disabled)
+    TransferContext.callMethod(MethodBindings.bodyAddShapePtr)
   }
 
   /**
@@ -1531,8 +1530,8 @@ public object PhysicsServer3D : Object() {
     shapeIdx: Int,
     shape: RID,
   ): Unit {
-    TransferContext.writeArguments(_RID to body, LONG to shapeIdx.toLong(), _RID to shape)
-    TransferContext.callMethod(ptr, MethodBindings.bodySetShapePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, LONG to shapeIdx.toLong(), _RID to shape)
+    TransferContext.callMethod(MethodBindings.bodySetShapePtr)
   }
 
   /**
@@ -1544,8 +1543,8 @@ public object PhysicsServer3D : Object() {
     shapeIdx: Int,
     transform: Transform3D,
   ): Unit {
-    TransferContext.writeArguments(_RID to body, LONG to shapeIdx.toLong(), TRANSFORM3D to transform)
-    TransferContext.callMethod(ptr, MethodBindings.bodySetShapeTransformPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, LONG to shapeIdx.toLong(), TRANSFORM3D to transform)
+    TransferContext.callMethod(MethodBindings.bodySetShapeTransformPtr)
   }
 
   @JvmStatic
@@ -1554,8 +1553,8 @@ public object PhysicsServer3D : Object() {
     shapeIdx: Int,
     disabled: Boolean,
   ): Unit {
-    TransferContext.writeArguments(_RID to body, LONG to shapeIdx.toLong(), BOOL to disabled)
-    TransferContext.callMethod(ptr, MethodBindings.bodySetShapeDisabledPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, LONG to shapeIdx.toLong(), BOOL to disabled)
+    TransferContext.callMethod(MethodBindings.bodySetShapeDisabledPtr)
   }
 
   /**
@@ -1563,8 +1562,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun bodyGetShapeCount(body: RID): Int {
-    TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(ptr, MethodBindings.bodyGetShapeCountPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body)
+    TransferContext.callMethod(MethodBindings.bodyGetShapeCountPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -1573,8 +1572,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun bodyGetShape(body: RID, shapeIdx: Int): RID {
-    TransferContext.writeArguments(_RID to body, LONG to shapeIdx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.bodyGetShapePtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, LONG to shapeIdx.toLong())
+    TransferContext.callMethod(MethodBindings.bodyGetShapePtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -1583,8 +1582,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun bodyGetShapeTransform(body: RID, shapeIdx: Int): Transform3D {
-    TransferContext.writeArguments(_RID to body, LONG to shapeIdx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.bodyGetShapeTransformPtr, TRANSFORM3D)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, LONG to shapeIdx.toLong())
+    TransferContext.callMethod(MethodBindings.bodyGetShapeTransformPtr)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
@@ -1593,8 +1592,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun bodyRemoveShape(body: RID, shapeIdx: Int): Unit {
-    TransferContext.writeArguments(_RID to body, LONG to shapeIdx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.bodyRemoveShapePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, LONG to shapeIdx.toLong())
+    TransferContext.callMethod(MethodBindings.bodyRemoveShapePtr)
   }
 
   /**
@@ -1602,8 +1601,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun bodyClearShapes(body: RID): Unit {
-    TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(ptr, MethodBindings.bodyClearShapesPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body)
+    TransferContext.callMethod(MethodBindings.bodyClearShapesPtr)
   }
 
   /**
@@ -1611,8 +1610,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun bodyAttachObjectInstanceId(body: RID, id: Long): Unit {
-    TransferContext.writeArguments(_RID to body, LONG to id)
-    TransferContext.callMethod(ptr, MethodBindings.bodyAttachObjectInstanceIdPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, LONG to id)
+    TransferContext.callMethod(MethodBindings.bodyAttachObjectInstanceIdPtr)
   }
 
   /**
@@ -1620,8 +1619,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun bodyGetObjectInstanceId(body: RID): Long {
-    TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(ptr, MethodBindings.bodyGetObjectInstanceIdPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body)
+    TransferContext.callMethod(MethodBindings.bodyGetObjectInstanceIdPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -1633,8 +1632,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun bodySetEnableContinuousCollisionDetection(body: RID, enable: Boolean): Unit {
-    TransferContext.writeArguments(_RID to body, BOOL to enable)
-    TransferContext.callMethod(ptr, MethodBindings.bodySetEnableContinuousCollisionDetectionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, BOOL to enable)
+    TransferContext.callMethod(MethodBindings.bodySetEnableContinuousCollisionDetectionPtr)
   }
 
   /**
@@ -1642,8 +1641,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun bodyIsContinuousCollisionDetectionEnabled(body: RID): Boolean {
-    TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(ptr, MethodBindings.bodyIsContinuousCollisionDetectionEnabledPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body)
+    TransferContext.callMethod(MethodBindings.bodyIsContinuousCollisionDetectionEnabledPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -1656,8 +1655,8 @@ public object PhysicsServer3D : Object() {
     `param`: BodyParameter,
     `value`: Any?,
   ): Unit {
-    TransferContext.writeArguments(_RID to body, LONG to param.value, ANY to value)
-    TransferContext.callMethod(ptr, MethodBindings.bodySetParamPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, LONG to param.value, ANY to value)
+    TransferContext.callMethod(MethodBindings.bodySetParamPtr)
   }
 
   /**
@@ -1666,8 +1665,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun bodyGetParam(body: RID, `param`: BodyParameter): Any? {
-    TransferContext.writeArguments(_RID to body, LONG to param.value)
-    TransferContext.callMethod(ptr, MethodBindings.bodyGetParamPtr, ANY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, LONG to param.value)
+    TransferContext.callMethod(MethodBindings.bodyGetParamPtr)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
@@ -1677,8 +1676,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun bodyResetMassProperties(body: RID): Unit {
-    TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(ptr, MethodBindings.bodyResetMassPropertiesPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body)
+    TransferContext.callMethod(MethodBindings.bodyResetMassPropertiesPtr)
   }
 
   /**
@@ -1690,8 +1689,8 @@ public object PhysicsServer3D : Object() {
     state: BodyState,
     `value`: Any?,
   ): Unit {
-    TransferContext.writeArguments(_RID to body, LONG to state.value, ANY to value)
-    TransferContext.callMethod(ptr, MethodBindings.bodySetStatePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, LONG to state.value, ANY to value)
+    TransferContext.callMethod(MethodBindings.bodySetStatePtr)
   }
 
   /**
@@ -1699,8 +1698,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun bodyGetState(body: RID, state: BodyState): Any? {
-    TransferContext.writeArguments(_RID to body, LONG to state.value)
-    TransferContext.callMethod(ptr, MethodBindings.bodyGetStatePtr, ANY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, LONG to state.value)
+    TransferContext.callMethod(MethodBindings.bodyGetStatePtr)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
@@ -1715,8 +1714,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun bodyApplyCentralImpulse(body: RID, impulse: Vector3): Unit {
-    TransferContext.writeArguments(_RID to body, VECTOR3 to impulse)
-    TransferContext.callMethod(ptr, MethodBindings.bodyApplyCentralImpulsePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, VECTOR3 to impulse)
+    TransferContext.callMethod(MethodBindings.bodyApplyCentralImpulsePtr)
   }
 
   /**
@@ -1735,8 +1734,8 @@ public object PhysicsServer3D : Object() {
     impulse: Vector3,
     position: Vector3 = Vector3(0, 0, 0),
   ): Unit {
-    TransferContext.writeArguments(_RID to body, VECTOR3 to impulse, VECTOR3 to position)
-    TransferContext.callMethod(ptr, MethodBindings.bodyApplyImpulsePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, VECTOR3 to impulse, VECTOR3 to position)
+    TransferContext.callMethod(MethodBindings.bodyApplyImpulsePtr)
   }
 
   /**
@@ -1748,8 +1747,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun bodyApplyTorqueImpulse(body: RID, impulse: Vector3): Unit {
-    TransferContext.writeArguments(_RID to body, VECTOR3 to impulse)
-    TransferContext.callMethod(ptr, MethodBindings.bodyApplyTorqueImpulsePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, VECTOR3 to impulse)
+    TransferContext.callMethod(MethodBindings.bodyApplyTorqueImpulsePtr)
   }
 
   /**
@@ -1760,8 +1759,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun bodyApplyCentralForce(body: RID, force: Vector3): Unit {
-    TransferContext.writeArguments(_RID to body, VECTOR3 to force)
-    TransferContext.callMethod(ptr, MethodBindings.bodyApplyCentralForcePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, VECTOR3 to force)
+    TransferContext.callMethod(MethodBindings.bodyApplyCentralForcePtr)
   }
 
   /**
@@ -1777,8 +1776,8 @@ public object PhysicsServer3D : Object() {
     force: Vector3,
     position: Vector3 = Vector3(0, 0, 0),
   ): Unit {
-    TransferContext.writeArguments(_RID to body, VECTOR3 to force, VECTOR3 to position)
-    TransferContext.callMethod(ptr, MethodBindings.bodyApplyForcePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, VECTOR3 to force, VECTOR3 to position)
+    TransferContext.callMethod(MethodBindings.bodyApplyForcePtr)
   }
 
   /**
@@ -1787,8 +1786,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun bodyApplyTorque(body: RID, torque: Vector3): Unit {
-    TransferContext.writeArguments(_RID to body, VECTOR3 to torque)
-    TransferContext.callMethod(ptr, MethodBindings.bodyApplyTorquePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, VECTOR3 to torque)
+    TransferContext.callMethod(MethodBindings.bodyApplyTorquePtr)
   }
 
   /**
@@ -1799,8 +1798,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun bodyAddConstantCentralForce(body: RID, force: Vector3): Unit {
-    TransferContext.writeArguments(_RID to body, VECTOR3 to force)
-    TransferContext.callMethod(ptr, MethodBindings.bodyAddConstantCentralForcePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, VECTOR3 to force)
+    TransferContext.callMethod(MethodBindings.bodyAddConstantCentralForcePtr)
   }
 
   /**
@@ -1816,8 +1815,8 @@ public object PhysicsServer3D : Object() {
     force: Vector3,
     position: Vector3 = Vector3(0, 0, 0),
   ): Unit {
-    TransferContext.writeArguments(_RID to body, VECTOR3 to force, VECTOR3 to position)
-    TransferContext.callMethod(ptr, MethodBindings.bodyAddConstantForcePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, VECTOR3 to force, VECTOR3 to position)
+    TransferContext.callMethod(MethodBindings.bodyAddConstantForcePtr)
   }
 
   /**
@@ -1826,8 +1825,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun bodyAddConstantTorque(body: RID, torque: Vector3): Unit {
-    TransferContext.writeArguments(_RID to body, VECTOR3 to torque)
-    TransferContext.callMethod(ptr, MethodBindings.bodyAddConstantTorquePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, VECTOR3 to torque)
+    TransferContext.callMethod(MethodBindings.bodyAddConstantTorquePtr)
   }
 
   /**
@@ -1837,8 +1836,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun bodySetConstantForce(body: RID, force: Vector3): Unit {
-    TransferContext.writeArguments(_RID to body, VECTOR3 to force)
-    TransferContext.callMethod(ptr, MethodBindings.bodySetConstantForcePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, VECTOR3 to force)
+    TransferContext.callMethod(MethodBindings.bodySetConstantForcePtr)
   }
 
   /**
@@ -1848,8 +1847,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun bodyGetConstantForce(body: RID): Vector3 {
-    TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(ptr, MethodBindings.bodyGetConstantForcePtr, VECTOR3)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body)
+    TransferContext.callMethod(MethodBindings.bodyGetConstantForcePtr)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
@@ -1860,8 +1859,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun bodySetConstantTorque(body: RID, torque: Vector3): Unit {
-    TransferContext.writeArguments(_RID to body, VECTOR3 to torque)
-    TransferContext.callMethod(ptr, MethodBindings.bodySetConstantTorquePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, VECTOR3 to torque)
+    TransferContext.callMethod(MethodBindings.bodySetConstantTorquePtr)
   }
 
   /**
@@ -1871,8 +1870,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun bodyGetConstantTorque(body: RID): Vector3 {
-    TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(ptr, MethodBindings.bodyGetConstantTorquePtr, VECTOR3)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body)
+    TransferContext.callMethod(MethodBindings.bodyGetConstantTorquePtr)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
@@ -1882,8 +1881,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun bodySetAxisVelocity(body: RID, axisVelocity: Vector3): Unit {
-    TransferContext.writeArguments(_RID to body, VECTOR3 to axisVelocity)
-    TransferContext.callMethod(ptr, MethodBindings.bodySetAxisVelocityPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, VECTOR3 to axisVelocity)
+    TransferContext.callMethod(MethodBindings.bodySetAxisVelocityPtr)
   }
 
   @JvmStatic
@@ -1892,14 +1891,14 @@ public object PhysicsServer3D : Object() {
     axis: BodyAxis,
     lock: Boolean,
   ): Unit {
-    TransferContext.writeArguments(_RID to body, LONG to axis.value, BOOL to lock)
-    TransferContext.callMethod(ptr, MethodBindings.bodySetAxisLockPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, LONG to axis.value, BOOL to lock)
+    TransferContext.callMethod(MethodBindings.bodySetAxisLockPtr)
   }
 
   @JvmStatic
   public final fun bodyIsAxisLocked(body: RID, axis: BodyAxis): Boolean {
-    TransferContext.writeArguments(_RID to body, LONG to axis.value)
-    TransferContext.callMethod(ptr, MethodBindings.bodyIsAxisLockedPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, LONG to axis.value)
+    TransferContext.callMethod(MethodBindings.bodyIsAxisLockedPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -1908,8 +1907,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun bodyAddCollisionException(body: RID, exceptedBody: RID): Unit {
-    TransferContext.writeArguments(_RID to body, _RID to exceptedBody)
-    TransferContext.callMethod(ptr, MethodBindings.bodyAddCollisionExceptionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, _RID to exceptedBody)
+    TransferContext.callMethod(MethodBindings.bodyAddCollisionExceptionPtr)
   }
 
   /**
@@ -1920,8 +1919,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun bodyRemoveCollisionException(body: RID, exceptedBody: RID): Unit {
-    TransferContext.writeArguments(_RID to body, _RID to exceptedBody)
-    TransferContext.callMethod(ptr, MethodBindings.bodyRemoveCollisionExceptionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, _RID to exceptedBody)
+    TransferContext.callMethod(MethodBindings.bodyRemoveCollisionExceptionPtr)
   }
 
   /**
@@ -1930,8 +1929,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun bodySetMaxContactsReported(body: RID, amount: Int): Unit {
-    TransferContext.writeArguments(_RID to body, LONG to amount.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.bodySetMaxContactsReportedPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, LONG to amount.toLong())
+    TransferContext.callMethod(MethodBindings.bodySetMaxContactsReportedPtr)
   }
 
   /**
@@ -1939,8 +1938,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun bodyGetMaxContactsReported(body: RID): Int {
-    TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(ptr, MethodBindings.bodyGetMaxContactsReportedPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body)
+    TransferContext.callMethod(MethodBindings.bodyGetMaxContactsReportedPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -1954,8 +1953,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun bodySetOmitForceIntegration(body: RID, enable: Boolean): Unit {
-    TransferContext.writeArguments(_RID to body, BOOL to enable)
-    TransferContext.callMethod(ptr, MethodBindings.bodySetOmitForceIntegrationPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, BOOL to enable)
+    TransferContext.callMethod(MethodBindings.bodySetOmitForceIntegrationPtr)
   }
 
   /**
@@ -1964,8 +1963,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun bodyIsOmittingForceIntegration(body: RID): Boolean {
-    TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(ptr, MethodBindings.bodyIsOmittingForceIntegrationPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body)
+    TransferContext.callMethod(MethodBindings.bodyIsOmittingForceIntegrationPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -1983,8 +1982,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun bodySetStateSyncCallback(body: RID, callable: Callable): Unit {
-    TransferContext.writeArguments(_RID to body, CALLABLE to callable)
-    TransferContext.callMethod(ptr, MethodBindings.bodySetStateSyncCallbackPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, CALLABLE to callable)
+    TransferContext.callMethod(MethodBindings.bodySetStateSyncCallbackPtr)
   }
 
   /**
@@ -2011,8 +2010,8 @@ public object PhysicsServer3D : Object() {
     callable: Callable,
     userdata: Any? = null,
   ): Unit {
-    TransferContext.writeArguments(_RID to body, CALLABLE to callable, ANY to userdata)
-    TransferContext.callMethod(ptr, MethodBindings.bodySetForceIntegrationCallbackPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, CALLABLE to callable, ANY to userdata)
+    TransferContext.callMethod(MethodBindings.bodySetForceIntegrationCallbackPtr)
   }
 
   /**
@@ -2020,8 +2019,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun bodySetRayPickable(body: RID, enable: Boolean): Unit {
-    TransferContext.writeArguments(_RID to body, BOOL to enable)
-    TransferContext.callMethod(ptr, MethodBindings.bodySetRayPickablePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, BOOL to enable)
+    TransferContext.callMethod(MethodBindings.bodySetRayPickablePtr)
   }
 
   /**
@@ -2036,8 +2035,8 @@ public object PhysicsServer3D : Object() {
     parameters: PhysicsTestMotionParameters3D,
     result: PhysicsTestMotionResult3D? = null,
   ): Boolean {
-    TransferContext.writeArguments(_RID to body, OBJECT to parameters, OBJECT to result)
-    TransferContext.callMethod(ptr, MethodBindings.bodyTestMotionPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, OBJECT to parameters, OBJECT to result)
+    TransferContext.callMethod(MethodBindings.bodyTestMotionPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -2047,8 +2046,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun bodyGetDirectState(body: RID): PhysicsDirectBodyState3D? {
-    TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(ptr, MethodBindings.bodyGetDirectStatePtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body)
+    TransferContext.callMethod(MethodBindings.bodyGetDirectStatePtr)
     return (TransferContext.readReturnValue(OBJECT) as PhysicsDirectBodyState3D?)
   }
 
@@ -2057,8 +2056,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun softBodyCreate(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.softBodyCreatePtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.softBodyCreatePtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -2069,8 +2068,8 @@ public object PhysicsServer3D : Object() {
   @JvmStatic
   public final fun softBodyUpdateRenderingServer(body: RID,
       renderingServerHandler: PhysicsServer3DRenderingServerHandler): Unit {
-    TransferContext.writeArguments(_RID to body, OBJECT to renderingServerHandler)
-    TransferContext.callMethod(ptr, MethodBindings.softBodyUpdateRenderingServerPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, OBJECT to renderingServerHandler)
+    TransferContext.callMethod(MethodBindings.softBodyUpdateRenderingServerPtr)
   }
 
   /**
@@ -2078,8 +2077,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun softBodySetSpace(body: RID, space: RID): Unit {
-    TransferContext.writeArguments(_RID to body, _RID to space)
-    TransferContext.callMethod(ptr, MethodBindings.softBodySetSpacePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, _RID to space)
+    TransferContext.callMethod(MethodBindings.softBodySetSpacePtr)
   }
 
   /**
@@ -2087,8 +2086,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun softBodyGetSpace(body: RID): RID {
-    TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(ptr, MethodBindings.softBodyGetSpacePtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body)
+    TransferContext.callMethod(MethodBindings.softBodyGetSpacePtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -2097,8 +2096,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun softBodySetMesh(body: RID, mesh: RID): Unit {
-    TransferContext.writeArguments(_RID to body, _RID to mesh)
-    TransferContext.callMethod(ptr, MethodBindings.softBodySetMeshPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, _RID to mesh)
+    TransferContext.callMethod(MethodBindings.softBodySetMeshPtr)
   }
 
   /**
@@ -2106,8 +2105,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun softBodyGetBounds(body: RID): AABB {
-    TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(ptr, MethodBindings.softBodyGetBoundsPtr, godot.core.VariantParser.AABB)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body)
+    TransferContext.callMethod(MethodBindings.softBodyGetBoundsPtr)
     return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 
@@ -2116,8 +2115,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun softBodySetCollisionLayer(body: RID, layer: Long): Unit {
-    TransferContext.writeArguments(_RID to body, LONG to layer)
-    TransferContext.callMethod(ptr, MethodBindings.softBodySetCollisionLayerPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, LONG to layer)
+    TransferContext.callMethod(MethodBindings.softBodySetCollisionLayerPtr)
   }
 
   /**
@@ -2125,8 +2124,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun softBodyGetCollisionLayer(body: RID): Long {
-    TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(ptr, MethodBindings.softBodyGetCollisionLayerPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body)
+    TransferContext.callMethod(MethodBindings.softBodyGetCollisionLayerPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -2135,8 +2134,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun softBodySetCollisionMask(body: RID, mask: Long): Unit {
-    TransferContext.writeArguments(_RID to body, LONG to mask)
-    TransferContext.callMethod(ptr, MethodBindings.softBodySetCollisionMaskPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, LONG to mask)
+    TransferContext.callMethod(MethodBindings.softBodySetCollisionMaskPtr)
   }
 
   /**
@@ -2144,8 +2143,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun softBodyGetCollisionMask(body: RID): Long {
-    TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(ptr, MethodBindings.softBodyGetCollisionMaskPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body)
+    TransferContext.callMethod(MethodBindings.softBodyGetCollisionMaskPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -2154,8 +2153,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun softBodyAddCollisionException(body: RID, bodyB: RID): Unit {
-    TransferContext.writeArguments(_RID to body, _RID to bodyB)
-    TransferContext.callMethod(ptr, MethodBindings.softBodyAddCollisionExceptionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, _RID to bodyB)
+    TransferContext.callMethod(MethodBindings.softBodyAddCollisionExceptionPtr)
   }
 
   /**
@@ -2163,8 +2162,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun softBodyRemoveCollisionException(body: RID, bodyB: RID): Unit {
-    TransferContext.writeArguments(_RID to body, _RID to bodyB)
-    TransferContext.callMethod(ptr, MethodBindings.softBodyRemoveCollisionExceptionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, _RID to bodyB)
+    TransferContext.callMethod(MethodBindings.softBodyRemoveCollisionExceptionPtr)
   }
 
   /**
@@ -2179,8 +2178,8 @@ public object PhysicsServer3D : Object() {
     state: BodyState,
     variant: Any?,
   ): Unit {
-    TransferContext.writeArguments(_RID to body, LONG to state.value, ANY to variant)
-    TransferContext.callMethod(ptr, MethodBindings.softBodySetStatePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, LONG to state.value, ANY to variant)
+    TransferContext.callMethod(MethodBindings.softBodySetStatePtr)
   }
 
   /**
@@ -2191,8 +2190,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun softBodyGetState(body: RID, state: BodyState): Any? {
-    TransferContext.writeArguments(_RID to body, LONG to state.value)
-    TransferContext.callMethod(ptr, MethodBindings.softBodyGetStatePtr, ANY)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, LONG to state.value)
+    TransferContext.callMethod(MethodBindings.softBodyGetStatePtr)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
@@ -2201,8 +2200,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun softBodySetTransform(body: RID, transform: Transform3D): Unit {
-    TransferContext.writeArguments(_RID to body, TRANSFORM3D to transform)
-    TransferContext.callMethod(ptr, MethodBindings.softBodySetTransformPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, TRANSFORM3D to transform)
+    TransferContext.callMethod(MethodBindings.softBodySetTransformPtr)
   }
 
   /**
@@ -2210,8 +2209,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun softBodySetRayPickable(body: RID, enable: Boolean): Unit {
-    TransferContext.writeArguments(_RID to body, BOOL to enable)
-    TransferContext.callMethod(ptr, MethodBindings.softBodySetRayPickablePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, BOOL to enable)
+    TransferContext.callMethod(MethodBindings.softBodySetRayPickablePtr)
   }
 
   /**
@@ -2220,8 +2219,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun softBodySetSimulationPrecision(body: RID, simulationPrecision: Int): Unit {
-    TransferContext.writeArguments(_RID to body, LONG to simulationPrecision.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.softBodySetSimulationPrecisionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, LONG to simulationPrecision.toLong())
+    TransferContext.callMethod(MethodBindings.softBodySetSimulationPrecisionPtr)
   }
 
   /**
@@ -2229,8 +2228,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun softBodyGetSimulationPrecision(body: RID): Int {
-    TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(ptr, MethodBindings.softBodyGetSimulationPrecisionPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body)
+    TransferContext.callMethod(MethodBindings.softBodyGetSimulationPrecisionPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -2239,8 +2238,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun softBodySetTotalMass(body: RID, totalMass: Float): Unit {
-    TransferContext.writeArguments(_RID to body, DOUBLE to totalMass.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.softBodySetTotalMassPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, DOUBLE to totalMass.toDouble())
+    TransferContext.callMethod(MethodBindings.softBodySetTotalMassPtr)
   }
 
   /**
@@ -2248,8 +2247,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun softBodyGetTotalMass(body: RID): Float {
-    TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(ptr, MethodBindings.softBodyGetTotalMassPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body)
+    TransferContext.callMethod(MethodBindings.softBodyGetTotalMassPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -2260,8 +2259,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun softBodySetLinearStiffness(body: RID, stiffness: Float): Unit {
-    TransferContext.writeArguments(_RID to body, DOUBLE to stiffness.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.softBodySetLinearStiffnessPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, DOUBLE to stiffness.toDouble())
+    TransferContext.callMethod(MethodBindings.softBodySetLinearStiffnessPtr)
   }
 
   /**
@@ -2269,8 +2268,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun softBodyGetLinearStiffness(body: RID): Float {
-    TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(ptr, MethodBindings.softBodyGetLinearStiffnessPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body)
+    TransferContext.callMethod(MethodBindings.softBodyGetLinearStiffnessPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -2279,8 +2278,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun softBodySetShrinkingFactor(body: RID, shrinkingFactor: Float): Unit {
-    TransferContext.writeArguments(_RID to body, DOUBLE to shrinkingFactor.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.softBodySetShrinkingFactorPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, DOUBLE to shrinkingFactor.toDouble())
+    TransferContext.callMethod(MethodBindings.softBodySetShrinkingFactorPtr)
   }
 
   /**
@@ -2288,8 +2287,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun softBodyGetShrinkingFactor(body: RID): Float {
-    TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(ptr, MethodBindings.softBodyGetShrinkingFactorPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body)
+    TransferContext.callMethod(MethodBindings.softBodyGetShrinkingFactorPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -2299,8 +2298,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun softBodySetPressureCoefficient(body: RID, pressureCoefficient: Float): Unit {
-    TransferContext.writeArguments(_RID to body, DOUBLE to pressureCoefficient.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.softBodySetPressureCoefficientPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, DOUBLE to pressureCoefficient.toDouble())
+    TransferContext.callMethod(MethodBindings.softBodySetPressureCoefficientPtr)
   }
 
   /**
@@ -2308,8 +2307,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun softBodyGetPressureCoefficient(body: RID): Float {
-    TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(ptr, MethodBindings.softBodyGetPressureCoefficientPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body)
+    TransferContext.callMethod(MethodBindings.softBodyGetPressureCoefficientPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -2319,8 +2318,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun softBodySetDampingCoefficient(body: RID, dampingCoefficient: Float): Unit {
-    TransferContext.writeArguments(_RID to body, DOUBLE to dampingCoefficient.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.softBodySetDampingCoefficientPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, DOUBLE to dampingCoefficient.toDouble())
+    TransferContext.callMethod(MethodBindings.softBodySetDampingCoefficientPtr)
   }
 
   /**
@@ -2328,8 +2327,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun softBodyGetDampingCoefficient(body: RID): Float {
-    TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(ptr, MethodBindings.softBodyGetDampingCoefficientPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body)
+    TransferContext.callMethod(MethodBindings.softBodyGetDampingCoefficientPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -2341,8 +2340,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun softBodySetDragCoefficient(body: RID, dragCoefficient: Float): Unit {
-    TransferContext.writeArguments(_RID to body, DOUBLE to dragCoefficient.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.softBodySetDragCoefficientPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, DOUBLE to dragCoefficient.toDouble())
+    TransferContext.callMethod(MethodBindings.softBodySetDragCoefficientPtr)
   }
 
   /**
@@ -2350,8 +2349,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun softBodyGetDragCoefficient(body: RID): Float {
-    TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(ptr, MethodBindings.softBodyGetDragCoefficientPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body)
+    TransferContext.callMethod(MethodBindings.softBodyGetDragCoefficientPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -2364,8 +2363,8 @@ public object PhysicsServer3D : Object() {
     pointIndex: Int,
     globalPosition: Vector3,
   ): Unit {
-    TransferContext.writeArguments(_RID to body, LONG to pointIndex.toLong(), VECTOR3 to globalPosition)
-    TransferContext.callMethod(ptr, MethodBindings.softBodyMovePointPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, LONG to pointIndex.toLong(), VECTOR3 to globalPosition)
+    TransferContext.callMethod(MethodBindings.softBodyMovePointPtr)
   }
 
   /**
@@ -2373,8 +2372,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun softBodyGetPointGlobalPosition(body: RID, pointIndex: Int): Vector3 {
-    TransferContext.writeArguments(_RID to body, LONG to pointIndex.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.softBodyGetPointGlobalPositionPtr, VECTOR3)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, LONG to pointIndex.toLong())
+    TransferContext.callMethod(MethodBindings.softBodyGetPointGlobalPositionPtr)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
@@ -2383,8 +2382,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun softBodyRemoveAllPinnedPoints(body: RID): Unit {
-    TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(ptr, MethodBindings.softBodyRemoveAllPinnedPointsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body)
+    TransferContext.callMethod(MethodBindings.softBodyRemoveAllPinnedPointsPtr)
   }
 
   /**
@@ -2399,8 +2398,8 @@ public object PhysicsServer3D : Object() {
     pointIndex: Int,
     pin: Boolean,
   ): Unit {
-    TransferContext.writeArguments(_RID to body, LONG to pointIndex.toLong(), BOOL to pin)
-    TransferContext.callMethod(ptr, MethodBindings.softBodyPinPointPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, LONG to pointIndex.toLong(), BOOL to pin)
+    TransferContext.callMethod(MethodBindings.softBodyPinPointPtr)
   }
 
   /**
@@ -2408,8 +2407,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun softBodyIsPointPinned(body: RID, pointIndex: Int): Boolean {
-    TransferContext.writeArguments(_RID to body, LONG to pointIndex.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.softBodyIsPointPinnedPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, LONG to pointIndex.toLong())
+    TransferContext.callMethod(MethodBindings.softBodyIsPointPinnedPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -2426,8 +2425,8 @@ public object PhysicsServer3D : Object() {
     pointIndex: Int,
     impulse: Vector3,
   ): Unit {
-    TransferContext.writeArguments(_RID to body, LONG to pointIndex.toLong(), VECTOR3 to impulse)
-    TransferContext.callMethod(ptr, MethodBindings.softBodyApplyPointImpulsePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, LONG to pointIndex.toLong(), VECTOR3 to impulse)
+    TransferContext.callMethod(MethodBindings.softBodyApplyPointImpulsePtr)
   }
 
   /**
@@ -2440,8 +2439,8 @@ public object PhysicsServer3D : Object() {
     pointIndex: Int,
     force: Vector3,
   ): Unit {
-    TransferContext.writeArguments(_RID to body, LONG to pointIndex.toLong(), VECTOR3 to force)
-    TransferContext.callMethod(ptr, MethodBindings.softBodyApplyPointForcePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, LONG to pointIndex.toLong(), VECTOR3 to force)
+    TransferContext.callMethod(MethodBindings.softBodyApplyPointForcePtr)
   }
 
   /**
@@ -2453,8 +2452,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun softBodyApplyCentralImpulse(body: RID, impulse: Vector3): Unit {
-    TransferContext.writeArguments(_RID to body, VECTOR3 to impulse)
-    TransferContext.callMethod(ptr, MethodBindings.softBodyApplyCentralImpulsePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, VECTOR3 to impulse)
+    TransferContext.callMethod(MethodBindings.softBodyApplyCentralImpulsePtr)
   }
 
   /**
@@ -2463,21 +2462,21 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun softBodyApplyCentralForce(body: RID, force: Vector3): Unit {
-    TransferContext.writeArguments(_RID to body, VECTOR3 to force)
-    TransferContext.callMethod(ptr, MethodBindings.softBodyApplyCentralForcePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to body, VECTOR3 to force)
+    TransferContext.callMethod(MethodBindings.softBodyApplyCentralForcePtr)
   }
 
   @JvmStatic
   public final fun jointCreate(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.jointCreatePtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.jointCreatePtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   @JvmStatic
   public final fun jointClear(joint: RID): Unit {
-    TransferContext.writeArguments(_RID to joint)
-    TransferContext.callMethod(ptr, MethodBindings.jointClearPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to joint)
+    TransferContext.callMethod(MethodBindings.jointClearPtr)
   }
 
   @JvmStatic
@@ -2488,8 +2487,8 @@ public object PhysicsServer3D : Object() {
     bodyB: RID,
     localB: Vector3,
   ): Unit {
-    TransferContext.writeArguments(_RID to joint, _RID to bodyA, VECTOR3 to localA, _RID to bodyB, VECTOR3 to localB)
-    TransferContext.callMethod(ptr, MethodBindings.jointMakePinPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to joint, _RID to bodyA, VECTOR3 to localA, _RID to bodyB, VECTOR3 to localB)
+    TransferContext.callMethod(MethodBindings.jointMakePinPtr)
   }
 
   /**
@@ -2501,8 +2500,8 @@ public object PhysicsServer3D : Object() {
     `param`: PinJointParam,
     `value`: Float,
   ): Unit {
-    TransferContext.writeArguments(_RID to joint, LONG to param.value, DOUBLE to value.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.pinJointSetParamPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to joint, LONG to param.value, DOUBLE to value.toDouble())
+    TransferContext.callMethod(MethodBindings.pinJointSetParamPtr)
   }
 
   /**
@@ -2510,8 +2509,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun pinJointGetParam(joint: RID, `param`: PinJointParam): Float {
-    TransferContext.writeArguments(_RID to joint, LONG to param.value)
-    TransferContext.callMethod(ptr, MethodBindings.pinJointGetParamPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to joint, LONG to param.value)
+    TransferContext.callMethod(MethodBindings.pinJointGetParamPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -2520,8 +2519,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun pinJointSetLocalA(joint: RID, localA: Vector3): Unit {
-    TransferContext.writeArguments(_RID to joint, VECTOR3 to localA)
-    TransferContext.callMethod(ptr, MethodBindings.pinJointSetLocalAPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to joint, VECTOR3 to localA)
+    TransferContext.callMethod(MethodBindings.pinJointSetLocalAPtr)
   }
 
   /**
@@ -2529,8 +2528,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun pinJointGetLocalA(joint: RID): Vector3 {
-    TransferContext.writeArguments(_RID to joint)
-    TransferContext.callMethod(ptr, MethodBindings.pinJointGetLocalAPtr, VECTOR3)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to joint)
+    TransferContext.callMethod(MethodBindings.pinJointGetLocalAPtr)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
@@ -2539,8 +2538,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun pinJointSetLocalB(joint: RID, localB: Vector3): Unit {
-    TransferContext.writeArguments(_RID to joint, VECTOR3 to localB)
-    TransferContext.callMethod(ptr, MethodBindings.pinJointSetLocalBPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to joint, VECTOR3 to localB)
+    TransferContext.callMethod(MethodBindings.pinJointSetLocalBPtr)
   }
 
   /**
@@ -2548,8 +2547,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun pinJointGetLocalB(joint: RID): Vector3 {
-    TransferContext.writeArguments(_RID to joint)
-    TransferContext.callMethod(ptr, MethodBindings.pinJointGetLocalBPtr, VECTOR3)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to joint)
+    TransferContext.callMethod(MethodBindings.pinJointGetLocalBPtr)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
@@ -2561,8 +2560,8 @@ public object PhysicsServer3D : Object() {
     bodyB: RID,
     hingeB: Transform3D,
   ): Unit {
-    TransferContext.writeArguments(_RID to joint, _RID to bodyA, TRANSFORM3D to hingeA, _RID to bodyB, TRANSFORM3D to hingeB)
-    TransferContext.callMethod(ptr, MethodBindings.jointMakeHingePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to joint, _RID to bodyA, TRANSFORM3D to hingeA, _RID to bodyB, TRANSFORM3D to hingeB)
+    TransferContext.callMethod(MethodBindings.jointMakeHingePtr)
   }
 
   /**
@@ -2574,8 +2573,8 @@ public object PhysicsServer3D : Object() {
     `param`: HingeJointParam,
     `value`: Float,
   ): Unit {
-    TransferContext.writeArguments(_RID to joint, LONG to param.value, DOUBLE to value.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.hingeJointSetParamPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to joint, LONG to param.value, DOUBLE to value.toDouble())
+    TransferContext.callMethod(MethodBindings.hingeJointSetParamPtr)
   }
 
   /**
@@ -2583,8 +2582,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun hingeJointGetParam(joint: RID, `param`: HingeJointParam): Float {
-    TransferContext.writeArguments(_RID to joint, LONG to param.value)
-    TransferContext.callMethod(ptr, MethodBindings.hingeJointGetParamPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to joint, LONG to param.value)
+    TransferContext.callMethod(MethodBindings.hingeJointGetParamPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -2597,8 +2596,8 @@ public object PhysicsServer3D : Object() {
     flag: HingeJointFlag,
     enabled: Boolean,
   ): Unit {
-    TransferContext.writeArguments(_RID to joint, LONG to flag.value, BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.hingeJointSetFlagPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to joint, LONG to flag.value, BOOL to enabled)
+    TransferContext.callMethod(MethodBindings.hingeJointSetFlagPtr)
   }
 
   /**
@@ -2606,8 +2605,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun hingeJointGetFlag(joint: RID, flag: HingeJointFlag): Boolean {
-    TransferContext.writeArguments(_RID to joint, LONG to flag.value)
-    TransferContext.callMethod(ptr, MethodBindings.hingeJointGetFlagPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to joint, LONG to flag.value)
+    TransferContext.callMethod(MethodBindings.hingeJointGetFlagPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -2619,8 +2618,8 @@ public object PhysicsServer3D : Object() {
     bodyB: RID,
     localRefB: Transform3D,
   ): Unit {
-    TransferContext.writeArguments(_RID to joint, _RID to bodyA, TRANSFORM3D to localRefA, _RID to bodyB, TRANSFORM3D to localRefB)
-    TransferContext.callMethod(ptr, MethodBindings.jointMakeSliderPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to joint, _RID to bodyA, TRANSFORM3D to localRefA, _RID to bodyB, TRANSFORM3D to localRefB)
+    TransferContext.callMethod(MethodBindings.jointMakeSliderPtr)
   }
 
   /**
@@ -2632,8 +2631,8 @@ public object PhysicsServer3D : Object() {
     `param`: SliderJointParam,
     `value`: Float,
   ): Unit {
-    TransferContext.writeArguments(_RID to joint, LONG to param.value, DOUBLE to value.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.sliderJointSetParamPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to joint, LONG to param.value, DOUBLE to value.toDouble())
+    TransferContext.callMethod(MethodBindings.sliderJointSetParamPtr)
   }
 
   /**
@@ -2641,8 +2640,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun sliderJointGetParam(joint: RID, `param`: SliderJointParam): Float {
-    TransferContext.writeArguments(_RID to joint, LONG to param.value)
-    TransferContext.callMethod(ptr, MethodBindings.sliderJointGetParamPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to joint, LONG to param.value)
+    TransferContext.callMethod(MethodBindings.sliderJointGetParamPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -2654,8 +2653,8 @@ public object PhysicsServer3D : Object() {
     bodyB: RID,
     localRefB: Transform3D,
   ): Unit {
-    TransferContext.writeArguments(_RID to joint, _RID to bodyA, TRANSFORM3D to localRefA, _RID to bodyB, TRANSFORM3D to localRefB)
-    TransferContext.callMethod(ptr, MethodBindings.jointMakeConeTwistPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to joint, _RID to bodyA, TRANSFORM3D to localRefA, _RID to bodyB, TRANSFORM3D to localRefB)
+    TransferContext.callMethod(MethodBindings.jointMakeConeTwistPtr)
   }
 
   /**
@@ -2667,8 +2666,8 @@ public object PhysicsServer3D : Object() {
     `param`: ConeTwistJointParam,
     `value`: Float,
   ): Unit {
-    TransferContext.writeArguments(_RID to joint, LONG to param.value, DOUBLE to value.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.coneTwistJointSetParamPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to joint, LONG to param.value, DOUBLE to value.toDouble())
+    TransferContext.callMethod(MethodBindings.coneTwistJointSetParamPtr)
   }
 
   /**
@@ -2676,8 +2675,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun coneTwistJointGetParam(joint: RID, `param`: ConeTwistJointParam): Float {
-    TransferContext.writeArguments(_RID to joint, LONG to param.value)
-    TransferContext.callMethod(ptr, MethodBindings.coneTwistJointGetParamPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to joint, LONG to param.value)
+    TransferContext.callMethod(MethodBindings.coneTwistJointGetParamPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -2686,8 +2685,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun jointGetType(joint: RID): JointType {
-    TransferContext.writeArguments(_RID to joint)
-    TransferContext.callMethod(ptr, MethodBindings.jointGetTypePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to joint)
+    TransferContext.callMethod(MethodBindings.jointGetTypePtr)
     return JointType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -2699,8 +2698,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun jointSetSolverPriority(joint: RID, priority: Int): Unit {
-    TransferContext.writeArguments(_RID to joint, LONG to priority.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.jointSetSolverPriorityPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to joint, LONG to priority.toLong())
+    TransferContext.callMethod(MethodBindings.jointSetSolverPriorityPtr)
   }
 
   /**
@@ -2711,8 +2710,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun jointGetSolverPriority(joint: RID): Int {
-    TransferContext.writeArguments(_RID to joint)
-    TransferContext.callMethod(ptr, MethodBindings.jointGetSolverPriorityPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to joint)
+    TransferContext.callMethod(MethodBindings.jointGetSolverPriorityPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -2721,8 +2720,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun jointDisableCollisionsBetweenBodies(joint: RID, disable: Boolean): Unit {
-    TransferContext.writeArguments(_RID to joint, BOOL to disable)
-    TransferContext.callMethod(ptr, MethodBindings.jointDisableCollisionsBetweenBodiesPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to joint, BOOL to disable)
+    TransferContext.callMethod(MethodBindings.jointDisableCollisionsBetweenBodiesPtr)
   }
 
   /**
@@ -2730,8 +2729,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun jointIsDisabledCollisionsBetweenBodies(joint: RID): Boolean {
-    TransferContext.writeArguments(_RID to joint)
-    TransferContext.callMethod(ptr, MethodBindings.jointIsDisabledCollisionsBetweenBodiesPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to joint)
+    TransferContext.callMethod(MethodBindings.jointIsDisabledCollisionsBetweenBodiesPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -2747,8 +2746,8 @@ public object PhysicsServer3D : Object() {
     bodyB: RID,
     localRefB: Transform3D,
   ): Unit {
-    TransferContext.writeArguments(_RID to joint, _RID to bodyA, TRANSFORM3D to localRefA, _RID to bodyB, TRANSFORM3D to localRefB)
-    TransferContext.callMethod(ptr, MethodBindings.jointMakeGeneric6dofPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to joint, _RID to bodyA, TRANSFORM3D to localRefA, _RID to bodyB, TRANSFORM3D to localRefB)
+    TransferContext.callMethod(MethodBindings.jointMakeGeneric6dofPtr)
   }
 
   /**
@@ -2761,8 +2760,8 @@ public object PhysicsServer3D : Object() {
     `param`: G6DOFJointAxisParam,
     `value`: Float,
   ): Unit {
-    TransferContext.writeArguments(_RID to joint, LONG to axis.value, LONG to param.value, DOUBLE to value.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.generic6dofJointSetParamPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to joint, LONG to axis.value, LONG to param.value, DOUBLE to value.toDouble())
+    TransferContext.callMethod(MethodBindings.generic6dofJointSetParamPtr)
   }
 
   /**
@@ -2774,8 +2773,8 @@ public object PhysicsServer3D : Object() {
     axis: Vector3.Axis,
     `param`: G6DOFJointAxisParam,
   ): Float {
-    TransferContext.writeArguments(_RID to joint, LONG to axis.value, LONG to param.value)
-    TransferContext.callMethod(ptr, MethodBindings.generic6dofJointGetParamPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to joint, LONG to axis.value, LONG to param.value)
+    TransferContext.callMethod(MethodBindings.generic6dofJointGetParamPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -2789,8 +2788,8 @@ public object PhysicsServer3D : Object() {
     flag: G6DOFJointAxisFlag,
     enable: Boolean,
   ): Unit {
-    TransferContext.writeArguments(_RID to joint, LONG to axis.value, LONG to flag.value, BOOL to enable)
-    TransferContext.callMethod(ptr, MethodBindings.generic6dofJointSetFlagPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to joint, LONG to axis.value, LONG to flag.value, BOOL to enable)
+    TransferContext.callMethod(MethodBindings.generic6dofJointSetFlagPtr)
   }
 
   /**
@@ -2802,8 +2801,8 @@ public object PhysicsServer3D : Object() {
     axis: Vector3.Axis,
     flag: G6DOFJointAxisFlag,
   ): Boolean {
-    TransferContext.writeArguments(_RID to joint, LONG to axis.value, LONG to flag.value)
-    TransferContext.callMethod(ptr, MethodBindings.generic6dofJointGetFlagPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to joint, LONG to axis.value, LONG to flag.value)
+    TransferContext.callMethod(MethodBindings.generic6dofJointGetFlagPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -2813,8 +2812,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun freeRid(rid: RID): Unit {
-    TransferContext.writeArguments(_RID to rid)
-    TransferContext.callMethod(ptr, MethodBindings.freeRidPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to rid)
+    TransferContext.callMethod(MethodBindings.freeRidPtr)
   }
 
   /**
@@ -2822,8 +2821,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun setActive(active: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to active)
-    TransferContext.callMethod(ptr, MethodBindings.setActivePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to active)
+    TransferContext.callMethod(MethodBindings.setActivePtr)
   }
 
   /**
@@ -2831,8 +2830,8 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun getProcessInfo(processInfo: ProcessInfo): Int {
-    TransferContext.writeArguments(LONG to processInfo.value)
-    TransferContext.callMethod(ptr, MethodBindings.getProcessInfoPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to processInfo.value)
+    TransferContext.callMethod(MethodBindings.getProcessInfoPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 

@@ -22,7 +22,6 @@ import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR3
@@ -216,30 +215,30 @@ public open class SoftBody3D : MeshInstance3D() {
    * Returns the internal [RID] used by the [PhysicsServer3D] for this body.
    */
   public final fun getPhysicsRid(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPhysicsRidPtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPhysicsRidPtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun setCollisionMask(collisionMask: Long): Unit {
-    TransferContext.writeArguments(LONG to collisionMask)
-    TransferContext.callMethod(ptr, MethodBindings.setCollisionMaskPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to collisionMask)
+    TransferContext.callMethod(MethodBindings.setCollisionMaskPtr)
   }
 
   public final fun getCollisionMask(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCollisionMaskPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCollisionMaskPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setCollisionLayer(collisionLayer: Long): Unit {
-    TransferContext.writeArguments(LONG to collisionLayer)
-    TransferContext.callMethod(ptr, MethodBindings.setCollisionLayerPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to collisionLayer)
+    TransferContext.callMethod(MethodBindings.setCollisionLayerPtr)
   }
 
   public final fun getCollisionLayer(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCollisionLayerPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCollisionLayerPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -248,8 +247,8 @@ public open class SoftBody3D : MeshInstance3D() {
    * [layerNumber] between 1 and 32.
    */
   public final fun setCollisionMaskValue(layerNumber: Int, `value`: Boolean): Unit {
-    TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
-    TransferContext.callMethod(ptr, MethodBindings.setCollisionMaskValuePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to layerNumber.toLong(), BOOL to value)
+    TransferContext.callMethod(MethodBindings.setCollisionMaskValuePtr)
   }
 
   /**
@@ -257,8 +256,8 @@ public open class SoftBody3D : MeshInstance3D() {
    * [layerNumber] between 1 and 32.
    */
   public final fun getCollisionMaskValue(layerNumber: Int): Boolean {
-    TransferContext.writeArguments(LONG to layerNumber.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getCollisionMaskValuePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to layerNumber.toLong())
+    TransferContext.callMethod(MethodBindings.getCollisionMaskValuePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -267,8 +266,8 @@ public open class SoftBody3D : MeshInstance3D() {
    * [layerNumber] between 1 and 32.
    */
   public final fun setCollisionLayerValue(layerNumber: Int, `value`: Boolean): Unit {
-    TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
-    TransferContext.callMethod(ptr, MethodBindings.setCollisionLayerValuePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to layerNumber.toLong(), BOOL to value)
+    TransferContext.callMethod(MethodBindings.setCollisionLayerValuePtr)
   }
 
   /**
@@ -276,30 +275,30 @@ public open class SoftBody3D : MeshInstance3D() {
    * [layerNumber] between 1 and 32.
    */
   public final fun getCollisionLayerValue(layerNumber: Int): Boolean {
-    TransferContext.writeArguments(LONG to layerNumber.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getCollisionLayerValuePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to layerNumber.toLong())
+    TransferContext.callMethod(MethodBindings.getCollisionLayerValuePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setParentCollisionIgnore(parentCollisionIgnore: NodePath): Unit {
-    TransferContext.writeArguments(NODE_PATH to parentCollisionIgnore)
-    TransferContext.callMethod(ptr, MethodBindings.setParentCollisionIgnorePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, NODE_PATH to parentCollisionIgnore)
+    TransferContext.callMethod(MethodBindings.setParentCollisionIgnorePtr)
   }
 
   public final fun getParentCollisionIgnore(): NodePath {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getParentCollisionIgnorePtr, NODE_PATH)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getParentCollisionIgnorePtr)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
   public final fun setDisableMode(mode: DisableMode): Unit {
-    TransferContext.writeArguments(LONG to mode.value)
-    TransferContext.callMethod(ptr, MethodBindings.setDisableModePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to mode.value)
+    TransferContext.callMethod(MethodBindings.setDisableModePtr)
   }
 
   public final fun getDisableMode(): DisableMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getDisableModePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getDisableModePtr)
     return DisableMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -307,8 +306,8 @@ public open class SoftBody3D : MeshInstance3D() {
    * Returns an array of nodes that were added as collision exceptions for this body.
    */
   public final fun getCollisionExceptions(): VariantArray<PhysicsBody3D> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCollisionExceptionsPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCollisionExceptionsPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<PhysicsBody3D>)
   }
 
@@ -316,92 +315,92 @@ public open class SoftBody3D : MeshInstance3D() {
    * Adds a body to the list of bodies that this body can't collide with.
    */
   public final fun addCollisionExceptionWith(body: Node): Unit {
-    TransferContext.writeArguments(OBJECT to body)
-    TransferContext.callMethod(ptr, MethodBindings.addCollisionExceptionWithPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to body)
+    TransferContext.callMethod(MethodBindings.addCollisionExceptionWithPtr)
   }
 
   /**
    * Removes a body from the list of bodies that this body can't collide with.
    */
   public final fun removeCollisionExceptionWith(body: Node): Unit {
-    TransferContext.writeArguments(OBJECT to body)
-    TransferContext.callMethod(ptr, MethodBindings.removeCollisionExceptionWithPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to body)
+    TransferContext.callMethod(MethodBindings.removeCollisionExceptionWithPtr)
   }
 
   public final fun setSimulationPrecision(simulationPrecision: Int): Unit {
-    TransferContext.writeArguments(LONG to simulationPrecision.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setSimulationPrecisionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to simulationPrecision.toLong())
+    TransferContext.callMethod(MethodBindings.setSimulationPrecisionPtr)
   }
 
   public final fun getSimulationPrecision(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSimulationPrecisionPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSimulationPrecisionPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setTotalMass(mass: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to mass.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setTotalMassPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to mass.toDouble())
+    TransferContext.callMethod(MethodBindings.setTotalMassPtr)
   }
 
   public final fun getTotalMass(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getTotalMassPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getTotalMassPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setLinearStiffness(linearStiffness: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to linearStiffness.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setLinearStiffnessPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to linearStiffness.toDouble())
+    TransferContext.callMethod(MethodBindings.setLinearStiffnessPtr)
   }
 
   public final fun getLinearStiffness(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getLinearStiffnessPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getLinearStiffnessPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setShrinkingFactor(shrinkingFactor: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to shrinkingFactor.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setShrinkingFactorPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to shrinkingFactor.toDouble())
+    TransferContext.callMethod(MethodBindings.setShrinkingFactorPtr)
   }
 
   public final fun getShrinkingFactor(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getShrinkingFactorPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getShrinkingFactorPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setPressureCoefficient(pressureCoefficient: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to pressureCoefficient.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setPressureCoefficientPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to pressureCoefficient.toDouble())
+    TransferContext.callMethod(MethodBindings.setPressureCoefficientPtr)
   }
 
   public final fun getPressureCoefficient(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPressureCoefficientPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPressureCoefficientPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDampingCoefficient(dampingCoefficient: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to dampingCoefficient.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setDampingCoefficientPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to dampingCoefficient.toDouble())
+    TransferContext.callMethod(MethodBindings.setDampingCoefficientPtr)
   }
 
   public final fun getDampingCoefficient(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getDampingCoefficientPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getDampingCoefficientPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDragCoefficient(dragCoefficient: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to dragCoefficient.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setDragCoefficientPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to dragCoefficient.toDouble())
+    TransferContext.callMethod(MethodBindings.setDragCoefficientPtr)
   }
 
   public final fun getDragCoefficient(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getDragCoefficientPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getDragCoefficientPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -409,8 +408,8 @@ public open class SoftBody3D : MeshInstance3D() {
    * Returns local translation of a vertex in the surface array.
    */
   public final fun getPointTransform(pointIndex: Int): Vector3 {
-    TransferContext.writeArguments(LONG to pointIndex.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getPointTransformPtr, VECTOR3)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to pointIndex.toLong())
+    TransferContext.callMethod(MethodBindings.getPointTransformPtr)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
@@ -422,8 +421,8 @@ public open class SoftBody3D : MeshInstance3D() {
    * impacts (use the "_force" functions otherwise).
    */
   public final fun applyImpulse(pointIndex: Int, impulse: Vector3): Unit {
-    TransferContext.writeArguments(LONG to pointIndex.toLong(), VECTOR3 to impulse)
-    TransferContext.callMethod(ptr, MethodBindings.applyImpulsePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to pointIndex.toLong(), VECTOR3 to impulse)
+    TransferContext.callMethod(MethodBindings.applyImpulsePtr)
   }
 
   /**
@@ -431,8 +430,8 @@ public open class SoftBody3D : MeshInstance3D() {
    * update.
    */
   public final fun applyForce(pointIndex: Int, force: Vector3): Unit {
-    TransferContext.writeArguments(LONG to pointIndex.toLong(), VECTOR3 to force)
-    TransferContext.callMethod(ptr, MethodBindings.applyForcePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to pointIndex.toLong(), VECTOR3 to force)
+    TransferContext.callMethod(MethodBindings.applyForcePtr)
   }
 
   /**
@@ -443,8 +442,8 @@ public open class SoftBody3D : MeshInstance3D() {
    * impacts (use the "_force" functions otherwise).
    */
   public final fun applyCentralImpulse(impulse: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to impulse)
-    TransferContext.callMethod(ptr, MethodBindings.applyCentralImpulsePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR3 to impulse)
+    TransferContext.callMethod(MethodBindings.applyCentralImpulsePtr)
   }
 
   /**
@@ -452,8 +451,8 @@ public open class SoftBody3D : MeshInstance3D() {
    * applied every physics update.
    */
   public final fun applyCentralForce(force: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to force)
-    TransferContext.callMethod(ptr, MethodBindings.applyCentralForcePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR3 to force)
+    TransferContext.callMethod(MethodBindings.applyCentralForcePtr)
   }
 
   /**
@@ -467,27 +466,27 @@ public open class SoftBody3D : MeshInstance3D() {
     attachmentPath: NodePath = NodePath(""),
     insertAt: Int = -1,
   ): Unit {
-    TransferContext.writeArguments(LONG to pointIndex.toLong(), BOOL to pinned, NODE_PATH to attachmentPath, LONG to insertAt.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setPointPinnedPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to pointIndex.toLong(), BOOL to pinned, NODE_PATH to attachmentPath, LONG to insertAt.toLong())
+    TransferContext.callMethod(MethodBindings.setPointPinnedPtr)
   }
 
   /**
    * Returns `true` if vertex is set to pinned.
    */
   public final fun isPointPinned(pointIndex: Int): Boolean {
-    TransferContext.writeArguments(LONG to pointIndex.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.isPointPinnedPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to pointIndex.toLong())
+    TransferContext.callMethod(MethodBindings.isPointPinnedPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setRayPickable(rayPickable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to rayPickable)
-    TransferContext.callMethod(ptr, MethodBindings.setRayPickablePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to rayPickable)
+    TransferContext.callMethod(MethodBindings.setRayPickablePtr)
   }
 
   public final fun isRayPickable(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isRayPickablePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isRayPickablePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

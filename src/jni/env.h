@@ -51,6 +51,8 @@ namespace jni {
 
         JClass find_class(const char* name);
 
+        void throw_new(const char* message);
+
         JObject new_string(const char* str);
         String from_jstring(JString str);
 

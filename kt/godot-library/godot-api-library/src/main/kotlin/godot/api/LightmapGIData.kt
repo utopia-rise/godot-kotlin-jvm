@@ -20,7 +20,6 @@ import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.RECT2
@@ -86,24 +85,24 @@ public open class LightmapGIData : Resource() {
   }
 
   public final fun setLightmapTextures(lightTextures: VariantArray<TextureLayered>): Unit {
-    TransferContext.writeArguments(ARRAY to lightTextures)
-    TransferContext.callMethod(ptr, MethodBindings.setLightmapTexturesPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, ARRAY to lightTextures)
+    TransferContext.callMethod(MethodBindings.setLightmapTexturesPtr)
   }
 
   public final fun getLightmapTextures(): VariantArray<TextureLayered> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getLightmapTexturesPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getLightmapTexturesPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<TextureLayered>)
   }
 
   public final fun setShadowmaskTextures(shadowmaskTextures: VariantArray<TextureLayered>): Unit {
-    TransferContext.writeArguments(ARRAY to shadowmaskTextures)
-    TransferContext.callMethod(ptr, MethodBindings.setShadowmaskTexturesPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, ARRAY to shadowmaskTextures)
+    TransferContext.callMethod(MethodBindings.setShadowmaskTexturesPtr)
   }
 
   public final fun getShadowmaskTextures(): VariantArray<TextureLayered> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getShadowmaskTexturesPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getShadowmaskTexturesPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<TextureLayered>)
   }
 
@@ -117,8 +116,8 @@ public open class LightmapGIData : Resource() {
    * lightmapper.
    */
   public final fun setUsesSphericalHarmonics(usesSphericalHarmonics: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to usesSphericalHarmonics)
-    TransferContext.callMethod(ptr, MethodBindings.setUsesSphericalHarmonicsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to usesSphericalHarmonics)
+    TransferContext.callMethod(MethodBindings.setUsesSphericalHarmonicsPtr)
   }
 
   /**
@@ -126,8 +125,8 @@ public open class LightmapGIData : Resource() {
    * [LightmapGI.directional].
    */
   public final fun isUsingSphericalHarmonics(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isUsingSphericalHarmonicsPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isUsingSphericalHarmonicsPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -140,16 +139,16 @@ public open class LightmapGIData : Resource() {
     sliceIndex: Int,
     subInstance: Int,
   ): Unit {
-    TransferContext.writeArguments(NODE_PATH to path, RECT2 to uvScale, LONG to sliceIndex.toLong(), LONG to subInstance.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.addUserPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, NODE_PATH to path, RECT2 to uvScale, LONG to sliceIndex.toLong(), LONG to subInstance.toLong())
+    TransferContext.callMethod(MethodBindings.addUserPtr)
   }
 
   /**
    * Returns the number of objects that are considered baked within this [LightmapGIData].
    */
   public final fun getUserCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getUserCountPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getUserCountPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -157,8 +156,8 @@ public open class LightmapGIData : Resource() {
    * Returns the [NodePath] of the baked object at index [userIdx].
    */
   public final fun getUserPath(userIdx: Int): NodePath {
-    TransferContext.writeArguments(LONG to userIdx.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getUserPathPtr, NODE_PATH)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to userIdx.toLong())
+    TransferContext.callMethod(MethodBindings.getUserPathPtr)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
@@ -166,18 +165,18 @@ public open class LightmapGIData : Resource() {
    * Clear all objects that are considered baked within this [LightmapGIData].
    */
   public final fun clearUsers(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.clearUsersPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.clearUsersPtr)
   }
 
   public final fun setLightTexture(lightTexture: TextureLayered?): Unit {
-    TransferContext.writeArguments(OBJECT to lightTexture)
-    TransferContext.callMethod(ptr, MethodBindings.setLightTexturePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to lightTexture)
+    TransferContext.callMethod(MethodBindings.setLightTexturePtr)
   }
 
   public final fun getLightTexture(): TextureLayered? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getLightTexturePtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getLightTexturePtr)
     return (TransferContext.readReturnValue(OBJECT) as TextureLayered?)
   }
 

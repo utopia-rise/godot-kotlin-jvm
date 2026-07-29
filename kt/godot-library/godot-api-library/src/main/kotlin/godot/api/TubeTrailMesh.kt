@@ -15,7 +15,6 @@ import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
 import kotlin.Double
@@ -137,90 +136,90 @@ public open class TubeTrailMesh : PrimitiveMesh() {
   }
 
   public final fun setRadius(radius: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to radius.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setRadiusPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to radius.toDouble())
+    TransferContext.callMethod(MethodBindings.setRadiusPtr)
   }
 
   public final fun getRadius(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getRadiusPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getRadiusPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRadialSteps(radialSteps: Int): Unit {
-    TransferContext.writeArguments(LONG to radialSteps.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setRadialStepsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to radialSteps.toLong())
+    TransferContext.callMethod(MethodBindings.setRadialStepsPtr)
   }
 
   public final fun getRadialSteps(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getRadialStepsPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getRadialStepsPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setSections(sections: Int): Unit {
-    TransferContext.writeArguments(LONG to sections.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setSectionsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to sections.toLong())
+    TransferContext.callMethod(MethodBindings.setSectionsPtr)
   }
 
   public final fun getSections(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSectionsPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSectionsPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setSectionLength(sectionLength: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to sectionLength.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setSectionLengthPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to sectionLength.toDouble())
+    TransferContext.callMethod(MethodBindings.setSectionLengthPtr)
   }
 
   public final fun getSectionLength(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSectionLengthPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSectionLengthPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSectionRings(sectionRings: Int): Unit {
-    TransferContext.writeArguments(LONG to sectionRings.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setSectionRingsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to sectionRings.toLong())
+    TransferContext.callMethod(MethodBindings.setSectionRingsPtr)
   }
 
   public final fun getSectionRings(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSectionRingsPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSectionRingsPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setCapTop(capTop: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to capTop)
-    TransferContext.callMethod(ptr, MethodBindings.setCapTopPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to capTop)
+    TransferContext.callMethod(MethodBindings.setCapTopPtr)
   }
 
   public final fun isCapTop(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isCapTopPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isCapTopPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCapBottom(capBottom: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to capBottom)
-    TransferContext.callMethod(ptr, MethodBindings.setCapBottomPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to capBottom)
+    TransferContext.callMethod(MethodBindings.setCapBottomPtr)
   }
 
   public final fun isCapBottom(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isCapBottomPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isCapBottomPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCurve(curve: Curve?): Unit {
-    TransferContext.writeArguments(OBJECT to curve)
-    TransferContext.callMethod(ptr, MethodBindings.setCurvePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to curve)
+    TransferContext.callMethod(MethodBindings.setCurvePtr)
   }
 
   public final fun getCurve(): Curve? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCurvePtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCurvePtr)
     return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }
 

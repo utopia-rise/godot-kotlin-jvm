@@ -45,8 +45,8 @@ public open class JavaClass : RefCounted() {
    * Returns the Java class name.
    */
   public final fun getJavaClassName(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getJavaClassNamePtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getJavaClassNamePtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -55,8 +55,8 @@ public open class JavaClass : RefCounted() {
    * same format as [Object.getMethodList].
    */
   public final fun getJavaMethodList(): VariantArray<Dictionary<Any?, Any?>> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getJavaMethodListPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getJavaMethodListPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
@@ -64,8 +64,8 @@ public open class JavaClass : RefCounted() {
    * Returns a [JavaClass] representing the Java parent class of this class.
    */
   public final fun getJavaParentClass(): JavaClass? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getJavaParentClassPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getJavaParentClassPtr)
     return (TransferContext.readReturnValue(OBJECT) as JavaClass?)
   }
 
@@ -73,8 +73,8 @@ public open class JavaClass : RefCounted() {
    * Returns `true` if the given [method] name exists in the object's Java methods.
    */
   public final fun hasJavaMethod(method: StringName): Boolean {
-    TransferContext.writeArguments(STRING_NAME to method)
-    TransferContext.callMethod(ptr, MethodBindings.hasJavaMethodPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to method)
+    TransferContext.callMethod(MethodBindings.hasJavaMethodPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

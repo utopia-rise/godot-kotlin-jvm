@@ -45,8 +45,8 @@ public open class RenderSceneData internal constructor() : Object() {
    * **Note:** If more than one view is rendered, this will return a centered transform.
    */
   public final fun getCamTransform(): Transform3D {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCamTransformPtr, TRANSFORM3D)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCamTransformPtr)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
@@ -56,8 +56,8 @@ public open class RenderSceneData internal constructor() : Object() {
    * **Note:** If more than one view is rendered, this will return a combined projection.
    */
   public final fun getCamProjection(): Projection {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCamProjectionPtr, PROJECTION)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCamProjectionPtr)
     return (TransferContext.readReturnValue(PROJECTION) as Projection)
   }
 
@@ -65,8 +65,8 @@ public open class RenderSceneData internal constructor() : Object() {
    * Returns the number of views being rendered.
    */
   public final fun getViewCount(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getViewCountPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getViewCountPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -75,8 +75,8 @@ public open class RenderSceneData internal constructor() : Object() {
    * camera transform and the eye transform.
    */
   public final fun getViewEyeOffset(view: Long): Vector3 {
-    TransferContext.writeArguments(LONG to view)
-    TransferContext.callMethod(ptr, MethodBindings.getViewEyeOffsetPtr, VECTOR3)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to view)
+    TransferContext.callMethod(MethodBindings.getViewEyeOffsetPtr)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
@@ -87,8 +87,8 @@ public open class RenderSceneData internal constructor() : Object() {
    * view is rendered, this will return a projection for the given view including the eye offset.
    */
   public final fun getViewProjection(view: Long): Projection {
-    TransferContext.writeArguments(LONG to view)
-    TransferContext.callMethod(ptr, MethodBindings.getViewProjectionPtr, PROJECTION)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to view)
+    TransferContext.callMethod(MethodBindings.getViewProjectionPtr)
     return (TransferContext.readReturnValue(PROJECTION) as Projection)
   }
 
@@ -96,8 +96,8 @@ public open class RenderSceneData internal constructor() : Object() {
    * Return the [RID] of the uniform buffer containing the scene data as a UBO.
    */
   public final fun getUniformBuffer(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getUniformBufferPtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getUniformBufferPtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 

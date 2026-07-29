@@ -13,7 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.RID
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser._RID
 import kotlin.Suppress
@@ -95,59 +94,59 @@ public open class World3D : Resource() {
   }
 
   public final fun getSpace(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSpacePtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSpacePtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun getNavigationMap(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getNavigationMapPtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getNavigationMapPtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun getScenario(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getScenarioPtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getScenarioPtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun setEnvironment(env: Environment?): Unit {
-    TransferContext.writeArguments(OBJECT to env)
-    TransferContext.callMethod(ptr, MethodBindings.setEnvironmentPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to env)
+    TransferContext.callMethod(MethodBindings.setEnvironmentPtr)
   }
 
   public final fun getEnvironment(): Environment? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getEnvironmentPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getEnvironmentPtr)
     return (TransferContext.readReturnValue(OBJECT) as Environment?)
   }
 
   public final fun setFallbackEnvironment(env: Environment?): Unit {
-    TransferContext.writeArguments(OBJECT to env)
-    TransferContext.callMethod(ptr, MethodBindings.setFallbackEnvironmentPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to env)
+    TransferContext.callMethod(MethodBindings.setFallbackEnvironmentPtr)
   }
 
   public final fun getFallbackEnvironment(): Environment? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFallbackEnvironmentPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getFallbackEnvironmentPtr)
     return (TransferContext.readReturnValue(OBJECT) as Environment?)
   }
 
   public final fun setCameraAttributes(attributes: CameraAttributes?): Unit {
-    TransferContext.writeArguments(OBJECT to attributes)
-    TransferContext.callMethod(ptr, MethodBindings.setCameraAttributesPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to attributes)
+    TransferContext.callMethod(MethodBindings.setCameraAttributesPtr)
   }
 
   public final fun getCameraAttributes(): CameraAttributes? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCameraAttributesPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCameraAttributesPtr)
     return (TransferContext.readReturnValue(OBJECT) as CameraAttributes?)
   }
 
   public final fun getDirectSpaceState(): PhysicsDirectSpaceState3D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getDirectSpaceStatePtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getDirectSpaceStatePtr)
     return (TransferContext.readReturnValue(OBJECT) as PhysicsDirectSpaceState3D?)
   }
 

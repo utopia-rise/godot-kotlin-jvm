@@ -15,7 +15,6 @@ import godot.core.MethodStringName1
 import godot.core.RID
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser._RID
 import kotlin.Suppress
 import kotlin.Unit
@@ -58,26 +57,26 @@ public open class RDPipelineShader : RefCounted() {
   }
 
   public final fun setShader(pMember: RID): Unit {
-    TransferContext.writeArguments(_RID to pMember)
-    TransferContext.callMethod(ptr, MethodBindings.setShaderPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to pMember)
+    TransferContext.callMethod(MethodBindings.setShaderPtr)
   }
 
   public final fun getShader(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getShaderPtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getShaderPtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final
       fun setSpecializationConstants(specializationConstants: VariantArray<RDPipelineSpecializationConstant>):
       Unit {
-    TransferContext.writeArguments(ARRAY to specializationConstants)
-    TransferContext.callMethod(ptr, MethodBindings.setSpecializationConstantsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, ARRAY to specializationConstants)
+    TransferContext.callMethod(MethodBindings.setSpecializationConstantsPtr)
   }
 
   public final fun getSpecializationConstants(): VariantArray<RDPipelineSpecializationConstant> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSpecializationConstantsPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSpecializationConstantsPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<RDPipelineSpecializationConstant>)
   }
 

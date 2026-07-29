@@ -67,8 +67,8 @@ public open class PackedDataContainerRef internal constructor() : RefCounted() {
    * Returns the size of the packed container (see [Array.size] and [Dictionary.size]).
    */
   public final fun size(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.sizePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.sizePtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 

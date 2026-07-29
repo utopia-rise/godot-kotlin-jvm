@@ -15,6 +15,7 @@
 
 constexpr const int BOOL_SIZE = 4;
 constexpr const int PTR_SIZE = 8;
+constexpr const int LONG_SIZE = 8;
 constexpr const int INT_SIZE = 4;
 
 class VariantToBuffer {
@@ -220,12 +221,14 @@ class BufferToVariant {
         }
     }
 
+public:
     static inline Object* to_godot_object(SharedBuffer* byte_buffer) {
-        auto ptr {static_cast<uintptr_t>(decode_uint64(byte_buffer->get_cursor()))};
+        uintptr_t ptr {static_cast<uintptr_t>(decode_uint64(byte_buffer->get_cursor()))};
         byte_buffer->increment_position(PTR_SIZE);
         return reinterpret_cast<Object*>(ptr);
     }
 
+private:
     static Variant read_object(SharedBuffer* byte_buffer) {
         return to_godot_object(byte_buffer);
     }

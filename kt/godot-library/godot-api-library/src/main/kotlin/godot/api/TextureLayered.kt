@@ -82,8 +82,8 @@ public abstract class TextureLayered : Texture() {
    * Returns the current format being used by this texture.
    */
   public final fun getFormat(): Image.Format {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFormatPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getFormatPtr)
     return Image.Format.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -92,8 +92,8 @@ public abstract class TextureLayered : Texture() {
    * cubemaps having special types.
    */
   public final fun getLayeredType(): LayeredType {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getLayeredTypePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getLayeredTypePtr)
     return LayeredType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -101,8 +101,8 @@ public abstract class TextureLayered : Texture() {
    * Returns the width of the texture in pixels. Width is typically represented by the X axis.
    */
   public final fun getWidth(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getWidthPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getWidthPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -110,8 +110,8 @@ public abstract class TextureLayered : Texture() {
    * Returns the height of the texture in pixels. Height is typically represented by the Y axis.
    */
   public final fun getHeight(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getHeightPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getHeightPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -119,8 +119,8 @@ public abstract class TextureLayered : Texture() {
    * Returns the number of referenced [Image]s.
    */
   public final fun getLayers(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getLayersPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getLayersPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -128,8 +128,8 @@ public abstract class TextureLayered : Texture() {
    * Returns `true` if the layers have generated mipmaps.
    */
   public final fun hasMipmaps(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.hasMipmapsPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.hasMipmapsPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -137,8 +137,8 @@ public abstract class TextureLayered : Texture() {
    * Returns an [Image] resource with the data from specified [layer].
    */
   public final fun getLayerData(layer: Int): Image? {
-    TransferContext.writeArguments(LONG to layer.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getLayerDataPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to layer.toLong())
+    TransferContext.callMethod(MethodBindings.getLayerDataPtr)
     return (TransferContext.readReturnValue(OBJECT) as Image?)
   }
 

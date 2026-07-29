@@ -16,7 +16,6 @@ import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
 import kotlin.Double
@@ -121,57 +120,57 @@ public open class PrismMesh : PrimitiveMesh() {
   }
 
   public final fun setLeftToRight(leftToRight: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to leftToRight.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setLeftToRightPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to leftToRight.toDouble())
+    TransferContext.callMethod(MethodBindings.setLeftToRightPtr)
   }
 
   public final fun getLeftToRight(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getLeftToRightPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getLeftToRightPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSize(size: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to size)
-    TransferContext.callMethod(ptr, MethodBindings.setSizePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR3 to size)
+    TransferContext.callMethod(MethodBindings.setSizePtr)
   }
 
   public final fun getSize(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSizePtr, VECTOR3)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSizePtr)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setSubdivideWidth(segments: Int): Unit {
-    TransferContext.writeArguments(LONG to segments.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setSubdivideWidthPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to segments.toLong())
+    TransferContext.callMethod(MethodBindings.setSubdivideWidthPtr)
   }
 
   public final fun getSubdivideWidth(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSubdivideWidthPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSubdivideWidthPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setSubdivideHeight(segments: Int): Unit {
-    TransferContext.writeArguments(LONG to segments.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setSubdivideHeightPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to segments.toLong())
+    TransferContext.callMethod(MethodBindings.setSubdivideHeightPtr)
   }
 
   public final fun getSubdivideHeight(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSubdivideHeightPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSubdivideHeightPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setSubdivideDepth(segments: Int): Unit {
-    TransferContext.writeArguments(LONG to segments.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setSubdivideDepthPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to segments.toLong())
+    TransferContext.callMethod(MethodBindings.setSubdivideDepthPtr)
   }
 
   public final fun getSubdivideDepth(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSubdivideDepthPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSubdivideDepthPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 

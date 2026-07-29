@@ -15,7 +15,6 @@ import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import kotlin.Double
 import kotlin.Float
 import kotlin.Long
@@ -103,46 +102,46 @@ public open class AudioEffectFilter : AudioEffect() {
   }
 
   public final fun setCutoff(freq: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to freq.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setCutoffPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to freq.toDouble())
+    TransferContext.callMethod(MethodBindings.setCutoffPtr)
   }
 
   public final fun getCutoff(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCutoffPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCutoffPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setResonance(amount: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setResonancePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to amount.toDouble())
+    TransferContext.callMethod(MethodBindings.setResonancePtr)
   }
 
   public final fun getResonance(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getResonancePtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getResonancePtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setGain(amount: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setGainPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to amount.toDouble())
+    TransferContext.callMethod(MethodBindings.setGainPtr)
   }
 
   public final fun getGain(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getGainPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getGainPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDb(amount: FilterDB): Unit {
-    TransferContext.writeArguments(LONG to amount.value)
-    TransferContext.callMethod(ptr, MethodBindings.setDbPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to amount.value)
+    TransferContext.callMethod(MethodBindings.setDbPtr)
   }
 
   public final fun getDb(): FilterDB {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getDbPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getDbPtr)
     return FilterDB.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

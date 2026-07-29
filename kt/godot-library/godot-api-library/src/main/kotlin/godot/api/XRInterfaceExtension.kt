@@ -25,7 +25,6 @@ import godot.core.Transform3D
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.RECT2
 import godot.core.VariantParser.RECT2I
 import godot.core.VariantParser.VECTOR2
@@ -293,20 +292,20 @@ public open class XRInterfaceExtension : XRInterface() {
   }
 
   public final fun getColorTexture(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getColorTexturePtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getColorTexturePtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun getDepthTexture(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getDepthTexturePtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getDepthTexturePtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun getVelocityTexture(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getVelocityTexturePtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getVelocityTexturePtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -327,8 +326,8 @@ public open class XRInterfaceExtension : XRInterface() {
     upscale: Double,
     aspectRatio: Double,
   ): Unit {
-    TransferContext.writeArguments(_RID to renderTarget, RECT2 to srcRect, RECT2I to dstRect, BOOL to useLayer, LONG to layer, BOOL to applyLensDistortion, VECTOR2 to eyeCenter, DOUBLE to k1, DOUBLE to k2, DOUBLE to upscale, DOUBLE to aspectRatio)
-    TransferContext.callMethod(ptr, MethodBindings.addBlitPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to renderTarget, RECT2 to srcRect, RECT2I to dstRect, BOOL to useLayer, LONG to layer, BOOL to applyLensDistortion, VECTOR2 to eyeCenter, DOUBLE to k1, DOUBLE to k2, DOUBLE to upscale, DOUBLE to aspectRatio)
+    TransferContext.callMethod(MethodBindings.addBlitPtr)
   }
 
   /**
@@ -336,8 +335,8 @@ public open class XRInterfaceExtension : XRInterface() {
    * the interface.
    */
   public final fun getRenderTargetTexture(renderTarget: RID): RID {
-    TransferContext.writeArguments(_RID to renderTarget)
-    TransferContext.callMethod(ptr, MethodBindings.getRenderTargetTexturePtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to renderTarget)
+    TransferContext.callMethod(MethodBindings.getRenderTargetTexturePtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 

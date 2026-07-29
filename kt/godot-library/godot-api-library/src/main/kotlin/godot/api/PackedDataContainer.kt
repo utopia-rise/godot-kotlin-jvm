@@ -72,8 +72,8 @@ public open class PackedDataContainer : Resource() {
    * **Note:** Subsequent calls to this method will overwrite the existing data.
    */
   public final fun pack(`value`: Any?): Error {
-    TransferContext.writeArguments(ANY to value)
-    TransferContext.callMethod(ptr, MethodBindings.packPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, ANY to value)
+    TransferContext.callMethod(MethodBindings.packPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -81,8 +81,8 @@ public open class PackedDataContainer : Resource() {
    * Returns the size of the packed container (see [Array.size] and [Dictionary.size]).
    */
   public final fun size(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.sizePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.sizePtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 

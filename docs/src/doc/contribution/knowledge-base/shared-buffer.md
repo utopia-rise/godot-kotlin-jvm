@@ -18,8 +18,8 @@ utility of the Godot Engine. On the Kotlin side, we just reimplement them from s
 
 To avoid unnecessary locks, we create one buffer for each thread that works with both C++ and the JVM.
 That way, one thread doesn't need to wait for another to finish its job with the buffer.
-The buffer currently has a size of 8 KB by default. The reason for that is that we allow strings
-up to 512 bytes in size and up to 16 parameters for a registered Kotlin function.
+The buffer size is derived from the maximum inline string size and the maximum of 16 function arguments.
+It also reserves 4 bytes for the argument count and another 16 bytes for an object method call's caller pointer and `ObjectID`.
 
 ## Strings
 
@@ -31,8 +31,18 @@ Other dynamic types like `Array` and `Dictionary` are not an issue as only their
 
 ## Buffer structure
 
-The first value of the buffer is always an `Int` that indicates the number of variables to read.
+Regular argument lists begin with an `Int` that indicates the number of variables to read.
 Each variable starts with another integer (the *ordinal*) indicating its type then followed by the relevant data of that type.
+
+Object method calls use a distinct layout because the receiver is not a method argument:
+
+```text
+[caller pointer: Long][caller ObjectID: Long][argument count: Int][arguments...]
+```
+
+The native `icall` reader consumes the caller pointer and `ObjectID` directly before reading the regular argument list.
+
+Objects sent from Kotlin to C++ use only their pointer. A null Kotlin object is encoded as a pointer of `0` (`nullptr`). Only an object method call's receiver includes an `ObjectID`, which `icall` checks against `ObjectDB` in debug builds.
 
 The table below shows how each type is mapped to its ordinal number, giving a meaning to the passed data:
 

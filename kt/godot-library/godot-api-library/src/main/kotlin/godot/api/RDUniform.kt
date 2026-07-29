@@ -16,7 +16,6 @@ import godot.core.RID
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser._RID
 import kotlin.Int
 import kotlin.Long
@@ -57,24 +56,24 @@ public open class RDUniform : RefCounted() {
   }
 
   public final fun setUniformType(pMember: RenderingDevice.UniformType): Unit {
-    TransferContext.writeArguments(LONG to pMember.value)
-    TransferContext.callMethod(ptr, MethodBindings.setUniformTypePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to pMember.value)
+    TransferContext.callMethod(MethodBindings.setUniformTypePtr)
   }
 
   public final fun getUniformType(): RenderingDevice.UniformType {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getUniformTypePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getUniformTypePtr)
     return RenderingDevice.UniformType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setBinding(pMember: Int): Unit {
-    TransferContext.writeArguments(LONG to pMember.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setBindingPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to pMember.toLong())
+    TransferContext.callMethod(MethodBindings.setBindingPtr)
   }
 
   public final fun getBinding(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getBindingPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getBindingPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -83,24 +82,24 @@ public open class RDUniform : RefCounted() {
    * uniform is passed to a shader.
    */
   public final fun addId(id: RID): Unit {
-    TransferContext.writeArguments(_RID to id)
-    TransferContext.callMethod(ptr, MethodBindings.addIdPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to id)
+    TransferContext.callMethod(MethodBindings.addIdPtr)
   }
 
   /**
    * Unbinds all ids currently bound to the uniform.
    */
   public final fun clearIds(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.clearIdsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.clearIdsPtr)
   }
 
   /**
    * Returns an array of all ids currently bound to the uniform.
    */
   public final fun getIds(): VariantArray<RID> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getIdsPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getIdsPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<RID>)
   }
 

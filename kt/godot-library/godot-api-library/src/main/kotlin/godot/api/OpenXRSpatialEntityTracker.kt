@@ -17,7 +17,6 @@ import godot.core.RID
 import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser._RID
 import kotlin.Long
@@ -69,38 +68,38 @@ public open class OpenXRSpatialEntityTracker : XRPositionalTracker() {
    * Sets the spatial context used to create this tracker.
    */
   public final fun setSpatialContext(spatialContext: RID): Unit {
-    TransferContext.writeArguments(_RID to spatialContext)
-    TransferContext.callMethod(ptr, MethodBindings.setSpatialContextPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to spatialContext)
+    TransferContext.callMethod(MethodBindings.setSpatialContextPtr)
   }
 
   /**
    * Gets the spatial context used to create this [OpenXRSpatialEntityTracker].
    */
   public final fun getSpatialContext(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSpatialContextPtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSpatialContextPtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun setEntity(entity: RID): Unit {
-    TransferContext.writeArguments(_RID to entity)
-    TransferContext.callMethod(ptr, MethodBindings.setEntityPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to entity)
+    TransferContext.callMethod(MethodBindings.setEntityPtr)
   }
 
   public final fun getEntity(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getEntityPtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getEntityPtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun setSpatialTrackingState(spatialTrackingState: EntityTrackingState): Unit {
-    TransferContext.writeArguments(LONG to spatialTrackingState.value)
-    TransferContext.callMethod(ptr, MethodBindings.setSpatialTrackingStatePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to spatialTrackingState.value)
+    TransferContext.callMethod(MethodBindings.setSpatialTrackingStatePtr)
   }
 
   public final fun getSpatialTrackingState(): EntityTrackingState {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSpatialTrackingStatePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSpatialTrackingStatePtr)
     return EntityTrackingState.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -110,8 +109,8 @@ public open class OpenXRSpatialEntityTracker : XRPositionalTracker() {
    * See also [addNext] and [removeNext].
    */
   public final fun getNext(): OpenXRStructureBase? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getNextPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getNextPtr)
     return (TransferContext.readReturnValue(OBJECT) as OpenXRStructureBase?)
   }
 
@@ -122,16 +121,16 @@ public open class OpenXRSpatialEntityTracker : XRPositionalTracker() {
    * [removeNext].
    */
   public final fun addNext(next: OpenXRStructureBase?): Unit {
-    TransferContext.writeArguments(OBJECT to next)
-    TransferContext.callMethod(ptr, MethodBindings.addNextPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to next)
+    TransferContext.callMethod(MethodBindings.addNextPtr)
   }
 
   /**
    * Removes a [next] object previously added in [addNext] from the next-chain.
    */
   public final fun removeNext(next: OpenXRStructureBase?): Unit {
-    TransferContext.writeArguments(OBJECT to next)
-    TransferContext.callMethod(ptr, MethodBindings.removeNextPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to next)
+    TransferContext.callMethod(MethodBindings.removeNextPtr)
   }
 
   public enum class EntityTrackingState(

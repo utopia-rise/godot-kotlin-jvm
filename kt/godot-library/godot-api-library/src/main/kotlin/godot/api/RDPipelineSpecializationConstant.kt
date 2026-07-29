@@ -14,7 +14,6 @@ import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import kotlin.Any
 import kotlin.Long
 import kotlin.Suppress
@@ -61,24 +60,24 @@ public open class RDPipelineSpecializationConstant : RefCounted() {
   }
 
   public final fun setValue(`value`: Any?): Unit {
-    TransferContext.writeArguments(ANY to value)
-    TransferContext.callMethod(ptr, MethodBindings.setValuePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, ANY to value)
+    TransferContext.callMethod(MethodBindings.setValuePtr)
   }
 
   public final fun getValue(): Any? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getValuePtr, ANY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getValuePtr)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
   public final fun setConstantId(constantId: Long): Unit {
-    TransferContext.writeArguments(LONG to constantId)
-    TransferContext.callMethod(ptr, MethodBindings.setConstantIdPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to constantId)
+    TransferContext.callMethod(MethodBindings.setConstantIdPtr)
   }
 
   public final fun getConstantId(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getConstantIdPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getConstantIdPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 

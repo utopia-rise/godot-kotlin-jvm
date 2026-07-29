@@ -22,6 +22,7 @@ public:
     String get_name() const override;
     String get_type() const override;
     String get_extension() const override;
+    Vector<StackInfo> debug_get_current_stack_info() override;
     void get_recognized_extensions(List<String>* p_extensions) const override;
     bool handles_global_class_type(const String& p_type) const override;
 

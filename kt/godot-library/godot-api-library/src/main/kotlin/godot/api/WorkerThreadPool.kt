@@ -19,7 +19,6 @@ import godot.core.MethodStringName5
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.CALLABLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import kotlin.Boolean
 import kotlin.Int
@@ -144,8 +143,8 @@ public object WorkerThreadPool : Object() {
     highPriority: Boolean = false,
     description: String = "",
   ): Long {
-    TransferContext.writeArguments(CALLABLE to action, BOOL to highPriority, STRING to description)
-    TransferContext.callMethod(ptr, MethodBindings.addTaskPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, CALLABLE to action, BOOL to highPriority, STRING to description)
+    TransferContext.callMethod(MethodBindings.addTaskPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -156,8 +155,8 @@ public object WorkerThreadPool : Object() {
    */
   @JvmStatic
   public final fun isTaskCompleted(taskId: Long): Boolean {
-    TransferContext.writeArguments(LONG to taskId)
-    TransferContext.callMethod(ptr, MethodBindings.isTaskCompletedPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to taskId)
+    TransferContext.callMethod(MethodBindings.isTaskCompletedPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -177,8 +176,8 @@ public object WorkerThreadPool : Object() {
    */
   @JvmStatic
   public final fun waitForTaskCompletion(taskId: Long): Error {
-    TransferContext.writeArguments(LONG to taskId)
-    TransferContext.callMethod(ptr, MethodBindings.waitForTaskCompletionPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to taskId)
+    TransferContext.callMethod(MethodBindings.waitForTaskCompletionPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -193,8 +192,8 @@ public object WorkerThreadPool : Object() {
    */
   @JvmStatic
   public final fun getCallerTaskId(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCallerTaskIdPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCallerTaskIdPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -224,8 +223,8 @@ public object WorkerThreadPool : Object() {
     highPriority: Boolean = false,
     description: String = "",
   ): Long {
-    TransferContext.writeArguments(CALLABLE to action, LONG to elements.toLong(), LONG to tasksNeeded.toLong(), BOOL to highPriority, STRING to description)
-    TransferContext.callMethod(ptr, MethodBindings.addGroupTaskPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, CALLABLE to action, LONG to elements.toLong(), LONG to tasksNeeded.toLong(), BOOL to highPriority, STRING to description)
+    TransferContext.callMethod(MethodBindings.addGroupTaskPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -237,8 +236,8 @@ public object WorkerThreadPool : Object() {
    */
   @JvmStatic
   public final fun isGroupTaskCompleted(groupId: Long): Boolean {
-    TransferContext.writeArguments(LONG to groupId)
-    TransferContext.callMethod(ptr, MethodBindings.isGroupTaskCompletedPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to groupId)
+    TransferContext.callMethod(MethodBindings.isGroupTaskCompletedPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -251,8 +250,8 @@ public object WorkerThreadPool : Object() {
    */
   @JvmStatic
   public final fun getGroupProcessedElementCount(groupId: Long): Long {
-    TransferContext.writeArguments(LONG to groupId)
-    TransferContext.callMethod(ptr, MethodBindings.getGroupProcessedElementCountPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to groupId)
+    TransferContext.callMethod(MethodBindings.getGroupProcessedElementCountPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -261,8 +260,8 @@ public object WorkerThreadPool : Object() {
    */
   @JvmStatic
   public final fun waitForGroupTaskCompletion(groupId: Long): Unit {
-    TransferContext.writeArguments(LONG to groupId)
-    TransferContext.callMethod(ptr, MethodBindings.waitForGroupTaskCompletionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to groupId)
+    TransferContext.callMethod(MethodBindings.waitForGroupTaskCompletionPtr)
   }
 
   /**
@@ -271,8 +270,8 @@ public object WorkerThreadPool : Object() {
    */
   @JvmStatic
   public final fun getCallerGroupId(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCallerGroupIdPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCallerGroupIdPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 

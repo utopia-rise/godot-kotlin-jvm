@@ -13,7 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Long
 import kotlin.NotImplementedError
@@ -52,19 +51,19 @@ public open class OpenXRStructureBase : RefCounted() {
    * Returns the structure type (OpenXR `XrStructureType`) used for this structure.
    */
   public final fun getStructureType(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getStructureTypePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getStructureTypePtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setNext(entity: OpenXRStructureBase?): Unit {
-    TransferContext.writeArguments(OBJECT to entity)
-    TransferContext.callMethod(ptr, MethodBindings.setNextPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to entity)
+    TransferContext.callMethod(MethodBindings.setNextPtr)
   }
 
   public final fun getNext(): OpenXRStructureBase? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getNextPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getNextPtr)
     return (TransferContext.readReturnValue(OBJECT) as OpenXRStructureBase?)
   }
 

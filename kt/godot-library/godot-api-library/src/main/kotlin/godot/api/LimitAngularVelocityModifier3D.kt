@@ -16,7 +16,6 @@ import godot.core.MethodStringName2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import kotlin.Boolean
 import kotlin.Double
@@ -85,16 +84,16 @@ public open class LimitAngularVelocityModifier3D : SkeletonModifier3D() {
    * Sets the root bone name of the bone chain.
    */
   public final fun setRootBoneName(index: Int, boneName: String): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), STRING to boneName)
-    TransferContext.callMethod(ptr, MethodBindings.setRootBoneNamePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), STRING to boneName)
+    TransferContext.callMethod(MethodBindings.setRootBoneNamePtr)
   }
 
   /**
    * Returns the root bone name of the bone chain.
    */
   public final fun getRootBoneName(index: Int): String {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getRootBoneNamePtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getRootBoneNamePtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -102,16 +101,16 @@ public open class LimitAngularVelocityModifier3D : SkeletonModifier3D() {
    * Sets the root bone index of the bone chain.
    */
   public final fun setRootBone(index: Int, bone: Int): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to bone.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setRootBonePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), LONG to bone.toLong())
+    TransferContext.callMethod(MethodBindings.setRootBonePtr)
   }
 
   /**
    * Returns the root bone index of the bone chain.
    */
   public final fun getRootBone(index: Int): Int {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getRootBonePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getRootBonePtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -121,16 +120,16 @@ public open class LimitAngularVelocityModifier3D : SkeletonModifier3D() {
    * **Note:** End bone must be the root bone or a child of the root bone.
    */
   public final fun setEndBoneName(index: Int, boneName: String): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), STRING to boneName)
-    TransferContext.callMethod(ptr, MethodBindings.setEndBoneNamePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), STRING to boneName)
+    TransferContext.callMethod(MethodBindings.setEndBoneNamePtr)
   }
 
   /**
    * Returns the end bone name of the bone chain.
    */
   public final fun getEndBoneName(index: Int): String {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getEndBoneNamePtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getEndBoneNamePtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -138,27 +137,27 @@ public open class LimitAngularVelocityModifier3D : SkeletonModifier3D() {
    * Sets the end bone index of the bone chain.
    */
   public final fun setEndBone(index: Int, bone: Int): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to bone.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setEndBonePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), LONG to bone.toLong())
+    TransferContext.callMethod(MethodBindings.setEndBonePtr)
   }
 
   /**
    * Returns the end bone index of the bone chain.
    */
   public final fun getEndBone(index: Int): Int {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getEndBonePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getEndBonePtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setChainCount(count: Int): Unit {
-    TransferContext.writeArguments(LONG to count.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setChainCountPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to count.toLong())
+    TransferContext.callMethod(MethodBindings.setChainCountPtr)
   }
 
   public final fun getChainCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getChainCountPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getChainCountPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -166,29 +165,29 @@ public open class LimitAngularVelocityModifier3D : SkeletonModifier3D() {
    * Clear all chains.
    */
   public final fun clearChains(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.clearChainsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.clearChainsPtr)
   }
 
   public final fun setMaxAngularVelocity(angularVelocity: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to angularVelocity)
-    TransferContext.callMethod(ptr, MethodBindings.setMaxAngularVelocityPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to angularVelocity)
+    TransferContext.callMethod(MethodBindings.setMaxAngularVelocityPtr)
   }
 
   public final fun getMaxAngularVelocity(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMaxAngularVelocityPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMaxAngularVelocityPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setExclude(exclude: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to exclude)
-    TransferContext.callMethod(ptr, MethodBindings.setExcludePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to exclude)
+    TransferContext.callMethod(MethodBindings.setExcludePtr)
   }
 
   public final fun isExclude(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isExcludePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isExcludePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -198,8 +197,8 @@ public open class LimitAngularVelocityModifier3D : SkeletonModifier3D() {
    * activation.
    */
   public final fun reset(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.resetPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.resetPtr)
   }
 
   public companion object {

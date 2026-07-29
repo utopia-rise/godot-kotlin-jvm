@@ -15,7 +15,6 @@ import godot.core.MethodStringName1
 import godot.core.MethodStringName2
 import godot.core.Signal0
 import godot.core.StringName
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING_NAME
 import godot.core.asCachedStringName
@@ -62,14 +61,14 @@ public open class BoneMap : Resource() {
   }
 
   public final fun getProfile(): SkeletonProfile? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getProfilePtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getProfilePtr)
     return (TransferContext.readReturnValue(OBJECT) as SkeletonProfile?)
   }
 
   public final fun setProfile(profile: SkeletonProfile?): Unit {
-    TransferContext.writeArguments(OBJECT to profile)
-    TransferContext.callMethod(ptr, MethodBindings.setProfilePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to profile)
+    TransferContext.callMethod(MethodBindings.setProfilePtr)
   }
 
   /**
@@ -78,8 +77,8 @@ public open class BoneMap : Resource() {
    * In the retargeting process, the returned bone name is the bone name of the source skeleton.
    */
   public final fun getSkeletonBoneName(profileBoneName: StringName): StringName {
-    TransferContext.writeArguments(STRING_NAME to profileBoneName)
-    TransferContext.callMethod(ptr, MethodBindings.getSkeletonBoneNamePtr, STRING_NAME)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to profileBoneName)
+    TransferContext.callMethod(MethodBindings.getSkeletonBoneNamePtr)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
@@ -90,8 +89,8 @@ public open class BoneMap : Resource() {
    */
   public final fun setSkeletonBoneName(profileBoneName: StringName, skeletonBoneName: StringName):
       Unit {
-    TransferContext.writeArguments(STRING_NAME to profileBoneName, STRING_NAME to skeletonBoneName)
-    TransferContext.callMethod(ptr, MethodBindings.setSkeletonBoneNamePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to profileBoneName, STRING_NAME to skeletonBoneName)
+    TransferContext.callMethod(MethodBindings.setSkeletonBoneNamePtr)
   }
 
   /**
@@ -101,8 +100,8 @@ public open class BoneMap : Resource() {
    * In the retargeting process, the returned bone name is the bone name of the target skeleton.
    */
   public final fun findProfileBoneName(skeletonBoneName: StringName): StringName {
-    TransferContext.writeArguments(STRING_NAME to skeletonBoneName)
-    TransferContext.callMethod(ptr, MethodBindings.findProfileBoneNamePtr, STRING_NAME)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to skeletonBoneName)
+    TransferContext.callMethod(MethodBindings.findProfileBoneNamePtr)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 

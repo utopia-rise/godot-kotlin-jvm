@@ -24,7 +24,6 @@ import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DICTIONARY
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.TRANSFORM2D
@@ -156,28 +155,28 @@ public open class CameraFeed : RefCounted() {
    * Returns the unique ID for this feed.
    */
   public final fun getId(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getIdPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getIdPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun isActive(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isActivePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isActivePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setActive(active: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to active)
-    TransferContext.callMethod(ptr, MethodBindings.setActivePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to active)
+    TransferContext.callMethod(MethodBindings.setActivePtr)
   }
 
   /**
    * Returns the camera's name.
    */
   public final fun getName(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getNamePtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getNamePtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -185,16 +184,16 @@ public open class CameraFeed : RefCounted() {
    * Sets the camera's name.
    */
   public final fun setName(name: String): Unit {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(ptr, MethodBindings.setNamePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to name)
+    TransferContext.callMethod(MethodBindings.setNamePtr)
   }
 
   /**
    * Returns the position of camera on the device.
    */
   public final fun getPosition(): FeedPosition {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPositionPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPositionPtr)
     return FeedPosition.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -202,51 +201,51 @@ public open class CameraFeed : RefCounted() {
    * Sets the position of this camera.
    */
   public final fun setPosition(position: FeedPosition): Unit {
-    TransferContext.writeArguments(LONG to position.value)
-    TransferContext.callMethod(ptr, MethodBindings.setPositionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to position.value)
+    TransferContext.callMethod(MethodBindings.setPositionPtr)
   }
 
   public final fun getTransform(): Transform2D {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getTransformPtr, TRANSFORM2D)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getTransformPtr)
     return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
   }
 
   public final fun setTransform(transform: Transform2D): Unit {
-    TransferContext.writeArguments(TRANSFORM2D to transform)
-    TransferContext.callMethod(ptr, MethodBindings.setTransformPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, TRANSFORM2D to transform)
+    TransferContext.callMethod(MethodBindings.setTransformPtr)
   }
 
   /**
    * Sets RGB image for this feed.
    */
   public final fun setRgbImage(rgbImage: Image?): Unit {
-    TransferContext.writeArguments(OBJECT to rgbImage)
-    TransferContext.callMethod(ptr, MethodBindings.setRgbImagePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to rgbImage)
+    TransferContext.callMethod(MethodBindings.setRgbImagePtr)
   }
 
   /**
    * Sets YCbCr image for this feed.
    */
   public final fun setYcbcrImage(ycbcrImage: Image?): Unit {
-    TransferContext.writeArguments(OBJECT to ycbcrImage)
-    TransferContext.callMethod(ptr, MethodBindings.setYcbcrImagePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to ycbcrImage)
+    TransferContext.callMethod(MethodBindings.setYcbcrImagePtr)
   }
 
   /**
    * Sets Y and CbCr images for this feed.
    */
   public final fun setYcbcrImages(yImage: Image?, cbcrImage: Image?): Unit {
-    TransferContext.writeArguments(OBJECT to yImage, OBJECT to cbcrImage)
-    TransferContext.callMethod(ptr, MethodBindings.setYcbcrImagesPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to yImage, OBJECT to cbcrImage)
+    TransferContext.callMethod(MethodBindings.setYcbcrImagesPtr)
   }
 
   /**
    * Sets the feed as external feed provided by another library.
    */
   public final fun setExternal(width: Int, height: Int): Unit {
-    TransferContext.writeArguments(LONG to width.toLong(), LONG to height.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setExternalPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to width.toLong(), LONG to height.toLong())
+    TransferContext.callMethod(MethodBindings.setExternalPtr)
   }
 
   /**
@@ -254,8 +253,8 @@ public open class CameraFeed : RefCounted() {
    * texture to write data).
    */
   public final fun getTextureTexId(feedImageType: CameraServer.FeedImage): Long {
-    TransferContext.writeArguments(LONG to feedImageType.value)
-    TransferContext.callMethod(ptr, MethodBindings.getTextureTexIdPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to feedImageType.value)
+    TransferContext.callMethod(MethodBindings.getTextureTexIdPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -263,14 +262,14 @@ public open class CameraFeed : RefCounted() {
    * Returns feed image data type.
    */
   public final fun getDatatype(): FeedDataType {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getDatatypePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getDatatypePtr)
     return FeedDataType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun getFormats(): VariantArray<Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFormatsPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getFormatsPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
@@ -286,8 +285,8 @@ public open class CameraFeed : RefCounted() {
    * - `"copy"` will result in [FEED_YCBCR].
    */
   public final fun setFormat(index: Int, parameters: Dictionary<Any?, Any?>): Boolean {
-    TransferContext.writeArguments(LONG to index.toLong(), DICTIONARY to parameters)
-    TransferContext.callMethod(ptr, MethodBindings.setFormatPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), DICTIONARY to parameters)
+    TransferContext.callMethod(MethodBindings.setFormatPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

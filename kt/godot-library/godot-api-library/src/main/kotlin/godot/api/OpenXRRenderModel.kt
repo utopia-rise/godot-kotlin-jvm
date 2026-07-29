@@ -14,7 +14,6 @@ import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.RID
 import godot.core.Signal0
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser._RID
 import kotlin.String
@@ -60,20 +59,20 @@ public open class OpenXRRenderModel : Node3D() {
    * Returns the top level path related to this render model.
    */
   public final fun getTopLevelPath(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getTopLevelPathPtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getTopLevelPathPtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun getRenderModel(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getRenderModelPtr, _RID)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getRenderModelPtr)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun setRenderModel(renderModel: RID): Unit {
-    TransferContext.writeArguments(_RID to renderModel)
-    TransferContext.callMethod(ptr, MethodBindings.setRenderModelPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, _RID to renderModel)
+    TransferContext.callMethod(MethodBindings.setRenderModelPtr)
   }
 
   public companion object {

@@ -12,7 +12,6 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Suppress
 import kotlin.Unit
@@ -37,16 +36,16 @@ public open class SkeletonModification2DStackHolder : SkeletonModification2D() {
    */
   public final fun setHeldModificationStack(heldModificationStack: SkeletonModificationStack2D?):
       Unit {
-    TransferContext.writeArguments(OBJECT to heldModificationStack)
-    TransferContext.callMethod(ptr, MethodBindings.setHeldModificationStackPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to heldModificationStack)
+    TransferContext.callMethod(MethodBindings.setHeldModificationStackPtr)
   }
 
   /**
    * Returns the [SkeletonModificationStack2D] that this modification is holding.
    */
   public final fun getHeldModificationStack(): SkeletonModificationStack2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getHeldModificationStackPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getHeldModificationStackPtr)
     return (TransferContext.readReturnValue(OBJECT) as SkeletonModificationStack2D?)
   }
 

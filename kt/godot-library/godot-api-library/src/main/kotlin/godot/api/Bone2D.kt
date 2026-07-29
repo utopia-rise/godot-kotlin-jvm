@@ -18,7 +18,6 @@ import godot.core.Transform2D
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.TRANSFORM2D
 import kotlin.Boolean
 import kotlin.Double
@@ -90,13 +89,13 @@ public open class Bone2D : Node2D() {
   }
 
   public final fun setRest(rest: Transform2D): Unit {
-    TransferContext.writeArguments(TRANSFORM2D to rest)
-    TransferContext.callMethod(ptr, MethodBindings.setRestPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, TRANSFORM2D to rest)
+    TransferContext.callMethod(MethodBindings.setRestPtr)
   }
 
   public final fun getRest(): Transform2D {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getRestPtr, TRANSFORM2D)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getRestPtr)
     return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
   }
 
@@ -104,8 +103,8 @@ public open class Bone2D : Node2D() {
    * Resets the bone to the rest pose. This is equivalent to setting [Node2D.transform] to [rest].
    */
   public final fun applyRest(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.applyRestPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.applyRestPtr)
   }
 
   /**
@@ -113,8 +112,8 @@ public open class Bone2D : Node2D() {
    * to its parent.
    */
   public final fun getSkeletonRest(): Transform2D {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSkeletonRestPtr, TRANSFORM2D)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSkeletonRestPtr)
     return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
   }
 
@@ -122,8 +121,8 @@ public open class Bone2D : Node2D() {
    * Returns the node's index as part of the entire skeleton. See [Skeleton2D].
    */
   public final fun getIndexInSkeleton(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getIndexInSkeletonPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getIndexInSkeletonPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -133,8 +132,8 @@ public open class Bone2D : Node2D() {
    * automatically calculate these values and will print a warning.
    */
   public final fun setAutocalculateLengthAndAngle(autoCalculate: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to autoCalculate)
-    TransferContext.callMethod(ptr, MethodBindings.setAutocalculateLengthAndAnglePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to autoCalculate)
+    TransferContext.callMethod(MethodBindings.setAutocalculateLengthAndAnglePtr)
   }
 
   /**
@@ -143,8 +142,8 @@ public open class Bone2D : Node2D() {
    * autocalculate these values and will print a warning.
    */
   public final fun getAutocalculateLengthAndAngle(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getAutocalculateLengthAndAnglePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getAutocalculateLengthAndAnglePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -152,16 +151,16 @@ public open class Bone2D : Node2D() {
    * Sets the length of the bone in the [Bone2D].
    */
   public final fun setLength(length: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to length.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setLengthPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to length.toDouble())
+    TransferContext.callMethod(MethodBindings.setLengthPtr)
   }
 
   /**
    * Returns the length of the bone in the [Bone2D] node.
    */
   public final fun getLength(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getLengthPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getLengthPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -173,8 +172,8 @@ public open class Bone2D : Node2D() {
    * the bone shown by the gizmo, which is unaffected by the [Bone2D]'s [Node2D.transform].
    */
   public final fun setBoneAngle(angle: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to angle.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setBoneAnglePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to angle.toDouble())
+    TransferContext.callMethod(MethodBindings.setBoneAnglePtr)
   }
 
   /**
@@ -184,8 +183,8 @@ public open class Bone2D : Node2D() {
    * the bone shown by the gizmo, which is unaffected by the [Bone2D]'s [Node2D.transform].
    */
   public final fun getBoneAngle(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getBoneAnglePtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getBoneAnglePtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 

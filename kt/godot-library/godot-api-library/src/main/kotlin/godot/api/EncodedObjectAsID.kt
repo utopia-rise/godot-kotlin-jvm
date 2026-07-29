@@ -13,7 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -47,13 +46,13 @@ public open class EncodedObjectAsID : RefCounted() {
   }
 
   public final fun setObjectId(id: Long): Unit {
-    TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(ptr, MethodBindings.setObjectIdPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to id)
+    TransferContext.callMethod(MethodBindings.setObjectIdPtr)
   }
 
   public final fun getObjectId(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getObjectIdPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getObjectIdPtr)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 

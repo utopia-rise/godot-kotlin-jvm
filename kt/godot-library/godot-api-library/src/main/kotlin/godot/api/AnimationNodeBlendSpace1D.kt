@@ -19,7 +19,6 @@ import godot.core.StringName
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
@@ -157,24 +156,24 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     atIndex: Int = -1,
     name: StringName = StringName(""),
   ): Unit {
-    TransferContext.writeArguments(OBJECT to node, DOUBLE to pos.toDouble(), LONG to atIndex.toLong(), STRING_NAME to name)
-    TransferContext.callMethod(ptr, MethodBindings.addBlendPointPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, OBJECT to node, DOUBLE to pos.toDouble(), LONG to atIndex.toLong(), STRING_NAME to name)
+    TransferContext.callMethod(MethodBindings.addBlendPointPtr)
   }
 
   /**
    * Updates the position of the point at index [point] on the blend axis.
    */
   public final fun setBlendPointPosition(point: Int, pos: Float): Unit {
-    TransferContext.writeArguments(LONG to point.toLong(), DOUBLE to pos.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setBlendPointPositionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to point.toLong(), DOUBLE to pos.toDouble())
+    TransferContext.callMethod(MethodBindings.setBlendPointPositionPtr)
   }
 
   /**
    * Returns the position of the point at index [point].
    */
   public final fun getBlendPointPosition(point: Int): Float {
-    TransferContext.writeArguments(LONG to point.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getBlendPointPositionPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to point.toLong())
+    TransferContext.callMethod(MethodBindings.getBlendPointPositionPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -182,16 +181,16 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
    * Changes the [AnimationNode] referenced by the point at index [point].
    */
   public final fun setBlendPointNode(point: Int, node: AnimationRootNode?): Unit {
-    TransferContext.writeArguments(LONG to point.toLong(), OBJECT to node)
-    TransferContext.callMethod(ptr, MethodBindings.setBlendPointNodePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to point.toLong(), OBJECT to node)
+    TransferContext.callMethod(MethodBindings.setBlendPointNodePtr)
   }
 
   /**
    * Returns the [AnimationNode] referenced by the point at index [point].
    */
   public final fun getBlendPointNode(point: Int): AnimationRootNode? {
-    TransferContext.writeArguments(LONG to point.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getBlendPointNodePtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to point.toLong())
+    TransferContext.callMethod(MethodBindings.getBlendPointNodePtr)
     return (TransferContext.readReturnValue(OBJECT) as AnimationRootNode?)
   }
 
@@ -200,16 +199,16 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
    * point, a unique name will be generated automatically.
    */
   public final fun setBlendPointName(point: Int, name: StringName): Unit {
-    TransferContext.writeArguments(LONG to point.toLong(), STRING_NAME to name)
-    TransferContext.callMethod(ptr, MethodBindings.setBlendPointNamePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to point.toLong(), STRING_NAME to name)
+    TransferContext.callMethod(MethodBindings.setBlendPointNamePtr)
   }
 
   /**
    * Returns the name of the blend point at index [point].
    */
   public final fun getBlendPointName(point: Int): StringName {
-    TransferContext.writeArguments(LONG to point.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getBlendPointNamePtr, STRING_NAME)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to point.toLong())
+    TransferContext.callMethod(MethodBindings.getBlendPointNamePtr)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
@@ -218,8 +217,8 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
    * that name is found.
    */
   public final fun findBlendPointByName(name: StringName): Int {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(ptr, MethodBindings.findBlendPointByNamePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to name)
+    TransferContext.callMethod(MethodBindings.findBlendPointByNamePtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -227,16 +226,16 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
    * Removes the point at index [point] from the blend axis.
    */
   public final fun removeBlendPoint(point: Int): Unit {
-    TransferContext.writeArguments(LONG to point.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.removeBlendPointPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to point.toLong())
+    TransferContext.callMethod(MethodBindings.removeBlendPointPtr)
   }
 
   /**
    * Returns the number of points on the blend axis.
    */
   public final fun getBlendPointCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getBlendPointCountPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getBlendPointCountPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -245,95 +244,95 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
    * properties.
    */
   public final fun reorderBlendPoint(fromIndex: Int, toIndex: Int): Unit {
-    TransferContext.writeArguments(LONG to fromIndex.toLong(), LONG to toIndex.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.reorderBlendPointPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to fromIndex.toLong(), LONG to toIndex.toLong())
+    TransferContext.callMethod(MethodBindings.reorderBlendPointPtr)
   }
 
   public final fun setMinSpace(minSpace: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to minSpace.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setMinSpacePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to minSpace.toDouble())
+    TransferContext.callMethod(MethodBindings.setMinSpacePtr)
   }
 
   public final fun getMinSpace(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMinSpacePtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMinSpacePtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setMaxSpace(maxSpace: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to maxSpace.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setMaxSpacePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to maxSpace.toDouble())
+    TransferContext.callMethod(MethodBindings.setMaxSpacePtr)
   }
 
   public final fun getMaxSpace(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMaxSpacePtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMaxSpacePtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSnap(snap: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to snap.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setSnapPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to snap.toDouble())
+    TransferContext.callMethod(MethodBindings.setSnapPtr)
   }
 
   public final fun getSnap(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSnapPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSnapPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setValueLabel(text: String): Unit {
-    TransferContext.writeArguments(STRING to text)
-    TransferContext.callMethod(ptr, MethodBindings.setValueLabelPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to text)
+    TransferContext.callMethod(MethodBindings.setValueLabelPtr)
   }
 
   public final fun getValueLabel(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getValueLabelPtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getValueLabelPtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setBlendMode(mode: BlendMode): Unit {
-    TransferContext.writeArguments(LONG to mode.value)
-    TransferContext.callMethod(ptr, MethodBindings.setBlendModePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to mode.value)
+    TransferContext.callMethod(MethodBindings.setBlendModePtr)
   }
 
   public final fun getBlendMode(): BlendMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getBlendModePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getBlendModePtr)
     return BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setUseSync(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(ptr, MethodBindings.setUseSyncPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enable)
+    TransferContext.callMethod(MethodBindings.setUseSyncPtr)
   }
 
   public final fun isUsingSync(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isUsingSyncPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isUsingSyncPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSyncMode(syncMode: SyncMode): Unit {
-    TransferContext.writeArguments(LONG to syncMode.value)
-    TransferContext.callMethod(ptr, MethodBindings.setSyncModePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to syncMode.value)
+    TransferContext.callMethod(MethodBindings.setSyncModePtr)
   }
 
   public final fun getSyncMode(): SyncMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSyncModePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSyncModePtr)
     return SyncMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setCyclicLength(length: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to length)
-    TransferContext.callMethod(ptr, MethodBindings.setCyclicLengthPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to length)
+    TransferContext.callMethod(MethodBindings.setCyclicLengthPtr)
   }
 
   public final fun getCyclicLength(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCyclicLengthPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCyclicLengthPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 

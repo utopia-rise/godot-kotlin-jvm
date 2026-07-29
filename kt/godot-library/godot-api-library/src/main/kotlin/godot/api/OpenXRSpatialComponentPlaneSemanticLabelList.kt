@@ -32,8 +32,8 @@ public open class OpenXRSpatialComponentPlaneSemanticLabelList : OpenXRSpatialCo
    * Returns the plane semantic label for the parent entity at this [index].
    */
   public final fun getPlaneSemanticLabel(index: Long): PlaneSemanticLabel {
-    TransferContext.writeArguments(LONG to index)
-    TransferContext.callMethod(ptr, MethodBindings.getPlaneSemanticLabelPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index)
+    TransferContext.callMethod(MethodBindings.getPlaneSemanticLabelPtr)
     return PlaneSemanticLabel.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

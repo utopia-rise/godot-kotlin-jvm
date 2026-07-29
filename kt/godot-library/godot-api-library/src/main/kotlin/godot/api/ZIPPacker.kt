@@ -18,7 +18,6 @@ import godot.core.MethodStringName2
 import godot.core.MethodStringName3
 import godot.core.PackedByteArray
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.STRING
 import kotlin.Int
@@ -75,19 +74,19 @@ public open class ZIPPacker : RefCounted() {
   @JvmOverloads
   public final fun `open`(path: String, append: ZipAppend = ZIPPacker.ZipAppend.APPEND_CREATE):
       Error {
-    TransferContext.writeArguments(STRING to path, LONG to append.value)
-    TransferContext.callMethod(ptr, MethodBindings.openPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to path, LONG to append.value)
+    TransferContext.callMethod(MethodBindings.openPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setCompressionLevel(compressionLevel: Int): Unit {
-    TransferContext.writeArguments(LONG to compressionLevel.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setCompressionLevelPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to compressionLevel.toLong())
+    TransferContext.callMethod(MethodBindings.setCompressionLevelPtr)
   }
 
   public final fun getCompressionLevel(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCompressionLevelPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCompressionLevelPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -103,8 +102,8 @@ public open class ZIPPacker : RefCounted() {
     permissions: FileAccess.UnixPermissionFlags = FileAccess.UnixPermissionFlags(493),
     modifiedTime: Long = 0,
   ): Error {
-    TransferContext.writeArguments(STRING to path, LONG to permissions.flag, LONG to modifiedTime)
-    TransferContext.callMethod(ptr, MethodBindings.addDirectoryPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to path, LONG to permissions.flag, LONG to modifiedTime)
+    TransferContext.callMethod(MethodBindings.addDirectoryPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -120,8 +119,8 @@ public open class ZIPPacker : RefCounted() {
     permissions: FileAccess.UnixPermissionFlags = FileAccess.UnixPermissionFlags(420),
     modifiedTime: Long = 0,
   ): Error {
-    TransferContext.writeArguments(STRING to path, LONG to permissions.flag, LONG to modifiedTime)
-    TransferContext.callMethod(ptr, MethodBindings.startFilePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to path, LONG to permissions.flag, LONG to modifiedTime)
+    TransferContext.callMethod(MethodBindings.startFilePtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -131,8 +130,8 @@ public open class ZIPPacker : RefCounted() {
    * Needs to be called after [startFile].
    */
   public final fun writeFile(`data`: PackedByteArray): Error {
-    TransferContext.writeArguments(PACKED_BYTE_ARRAY to data)
-    TransferContext.callMethod(ptr, MethodBindings.writeFilePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, PACKED_BYTE_ARRAY to data)
+    TransferContext.callMethod(MethodBindings.writeFilePtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -142,8 +141,8 @@ public open class ZIPPacker : RefCounted() {
    * It will fail if there is no open file.
    */
   public final fun closeFile(): Error {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.closeFilePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.closeFilePtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -151,8 +150,8 @@ public open class ZIPPacker : RefCounted() {
    * Closes the underlying resources used by this instance.
    */
   public final fun close(): Error {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.closePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.closePtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

@@ -15,7 +15,6 @@ import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import kotlin.Double
 import kotlin.Float
 import kotlin.Long
@@ -154,35 +153,35 @@ public open class AudioStreamGenerator : AudioStream() {
   }
 
   public final fun setMixRate(hz: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to hz.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setMixRatePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to hz.toDouble())
+    TransferContext.callMethod(MethodBindings.setMixRatePtr)
   }
 
   public final fun getMixRate(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMixRatePtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMixRatePtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setMixRateMode(mode: AudioStreamGeneratorMixRate): Unit {
-    TransferContext.writeArguments(LONG to mode.value)
-    TransferContext.callMethod(ptr, MethodBindings.setMixRateModePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to mode.value)
+    TransferContext.callMethod(MethodBindings.setMixRateModePtr)
   }
 
   public final fun getMixRateMode(): AudioStreamGeneratorMixRate {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMixRateModePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMixRateModePtr)
     return AudioStreamGeneratorMixRate.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setBufferLength(seconds: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to seconds.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setBufferLengthPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to seconds.toDouble())
+    TransferContext.callMethod(MethodBindings.setBufferLengthPtr)
   }
 
   public final fun getBufferLength(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getBufferLengthPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getBufferLengthPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 

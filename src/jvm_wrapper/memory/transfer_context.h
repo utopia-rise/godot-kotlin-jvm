@@ -12,7 +12,7 @@ JVM_SINGLETON_WRAPPER(TransferContext, "godot.internal.memory.TransferContext") 
 
     INIT_JNI_BINDINGS(
         INIT_JNI_METHOD(GET_BUFFER, "getBuffer", "()Ljava/nio/ByteBuffer;")
-        INIT_NATIVE_METHOD("icall", "(JJI)V", TransferContext::icall)
+        INIT_NATIVE_METHOD("icall", "(J)V", TransferContext::icall)
     )
 
 public:
@@ -23,7 +23,7 @@ public:
     uint32_t read_args(jni::Env& p_env, Variant* args);
     void write_object_data(jni::Env& p_env, uintptr_t ptr, ObjectID id);
 
-    static void icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jlong j_method_ptr, jint expectedReturnType);
+    static void icall(JNIEnv* rawEnv, jobject instance, jlong j_method_ptr);
 
 private:
     SharedBuffer* get_and_rewind_buffer(jni::Env& p_env);

@@ -1,6 +1,7 @@
 #include "gdj_language.h"
 
 #include "gd_kotlin.h"
+#include "jvm_wrapper/bridge/godot_print_bridge.h"
 #include "jvm_wrapper/memory/memory_manager.h"
 #include "lifecycle/paths.h"
 #include "names.h"
@@ -64,6 +65,25 @@ String GdjLanguage::get_type() const {
 
 String GdjLanguage::get_extension() const {
     return GODOT_JVM_REGISTRATION_FILE_EXTENSION;
+}
+
+Vector<ScriptLanguage::StackInfo> GdjLanguage::debug_get_current_stack_info() {
+    thread_local bool is_capturing_stacktrace {false};
+    if (is_capturing_stacktrace) { return {}; }
+
+    is_capturing_stacktrace = true;
+    jni::Env env {jni::Jvm::current_env()};
+    String stacktrace {bridges::GodotPrintBridge::get_instance().get_jvm_stacktrace(env)};
+    is_capturing_stacktrace = false;
+
+    Vector<StackInfo> stack_info;
+    PackedStringArray frames {stacktrace.split("\n", false)};
+    for (const String& frame : frames) {
+        StackInfo info {};
+        info.func = frame.strip_edges();
+        stack_info.push_back(info);
+    }
+    return stack_info;
 }
 
 void GdjLanguage::get_recognized_extensions(List<String>* p_extensions) const {

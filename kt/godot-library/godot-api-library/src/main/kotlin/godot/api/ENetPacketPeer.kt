@@ -19,7 +19,6 @@ import godot.core.PackedByteArray
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.STRING
 import kotlin.Boolean
@@ -54,8 +53,8 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
    */
   @JvmOverloads
   public final fun peerDisconnect(`data`: Int = 0): Unit {
-    TransferContext.writeArguments(LONG to data.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.peerDisconnectPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to data.toLong())
+    TransferContext.callMethod(MethodBindings.peerDisconnectPtr)
   }
 
   /**
@@ -65,8 +64,8 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
    */
   @JvmOverloads
   public final fun peerDisconnectLater(`data`: Int = 0): Unit {
-    TransferContext.writeArguments(LONG to data.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.peerDisconnectLaterPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to data.toLong())
+    TransferContext.callMethod(MethodBindings.peerDisconnectLaterPtr)
   }
 
   /**
@@ -76,8 +75,8 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
    */
   @JvmOverloads
   public final fun peerDisconnectNow(`data`: Int = 0): Unit {
-    TransferContext.writeArguments(LONG to data.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.peerDisconnectNowPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to data.toLong())
+    TransferContext.callMethod(MethodBindings.peerDisconnectNowPtr)
   }
 
   /**
@@ -85,8 +84,8 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
    * intervals, however, this function may be called to ensure more frequent ping requests.
    */
   public final fun ping(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.pingPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.pingPtr)
   }
 
   /**
@@ -96,8 +95,8 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
    * The default ping interval is `500` milliseconds.
    */
   public final fun pingInterval(pingInterval: Int): Unit {
-    TransferContext.writeArguments(LONG to pingInterval.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.pingIntervalPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to pingInterval.toLong())
+    TransferContext.callMethod(MethodBindings.pingIntervalPtr)
   }
 
   /**
@@ -105,8 +104,8 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
    * disconnection and will timeout on its connection to the local host.
    */
   public final fun reset(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.resetPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.resetPtr)
   }
 
   /**
@@ -118,8 +117,8 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
     packet: PackedByteArray,
     flags: Int,
   ): Error {
-    TransferContext.writeArguments(LONG to channel.toLong(), PACKED_BYTE_ARRAY to packet, LONG to flags.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.sendPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to channel.toLong(), PACKED_BYTE_ARRAY to packet, LONG to flags.toLong())
+    TransferContext.callMethod(MethodBindings.sendPtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -149,8 +148,8 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
     acceleration: Int,
     deceleration: Int,
   ): Unit {
-    TransferContext.writeArguments(LONG to interval.toLong(), LONG to acceleration.toLong(), LONG to deceleration.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.throttleConfigurePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to interval.toLong(), LONG to acceleration.toLong(), LONG to deceleration.toLong())
+    TransferContext.callMethod(MethodBindings.throttleConfigurePtr)
   }
 
   /**
@@ -169,8 +168,8 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
     timeoutMin: Int,
     timeoutMax: Int,
   ): Unit {
-    TransferContext.writeArguments(LONG to timeout.toLong(), LONG to timeoutMin.toLong(), LONG to timeoutMax.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setTimeoutPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to timeout.toLong(), LONG to timeoutMin.toLong(), LONG to timeoutMax.toLong())
+    TransferContext.callMethod(MethodBindings.setTimeoutPtr)
   }
 
   /**
@@ -179,8 +178,8 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
    * receiving peer.
    */
   public final fun getPacketFlags(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPacketFlagsPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPacketFlagsPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -188,8 +187,8 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
    * Returns the IP address of this peer.
    */
   public final fun getRemoteAddress(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getRemoteAddressPtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getRemoteAddressPtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -197,8 +196,8 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
    * Returns the remote port of this peer.
    */
   public final fun getRemotePort(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getRemotePortPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getRemotePortPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -206,8 +205,8 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
    * Returns the requested [statistic] for this peer.
    */
   public final fun getStatistic(statistic: PeerStatistic): Double {
-    TransferContext.writeArguments(LONG to statistic.value)
-    TransferContext.callMethod(ptr, MethodBindings.getStatisticPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to statistic.value)
+    TransferContext.callMethod(MethodBindings.getStatisticPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
@@ -215,8 +214,8 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
    * Returns the current peer state.
    */
   public final fun getState(): PeerState {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getStatePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getStatePtr)
     return PeerState.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -224,8 +223,8 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
    * Returns the number of channels allocated for communication with peer.
    */
   public final fun getChannels(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getChannelsPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getChannelsPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -234,8 +233,8 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
    * valid).
    */
   public final fun isActive(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isActivePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isActivePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

@@ -18,7 +18,6 @@ import godot.core.MethodStringName4
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import kotlin.Any
 import kotlin.Boolean
@@ -114,28 +113,28 @@ public open class JSON : Resource() {
    */
   @JvmOverloads
   public final fun parse(jsonText: String, keepText: Boolean = false): Error {
-    TransferContext.writeArguments(STRING to jsonText, BOOL to keepText)
-    TransferContext.callMethod(ptr, MethodBindings.parsePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to jsonText, BOOL to keepText)
+    TransferContext.callMethod(MethodBindings.parsePtr)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun getData(): Any? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getDataPtr, ANY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getDataPtr)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
   public final fun setData(`data`: Any?): Unit {
-    TransferContext.writeArguments(ANY to data)
-    TransferContext.callMethod(ptr, MethodBindings.setDataPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, ANY to data)
+    TransferContext.callMethod(MethodBindings.setDataPtr)
   }
 
   /**
    * Return the text parsed by [parse] (requires passing `keep_text` to [parse]).
    */
   public final fun getParsedText(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getParsedTextPtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getParsedTextPtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -144,8 +143,8 @@ public open class JSON : Resource() {
    * failed.
    */
   public final fun getErrorLine(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getErrorLinePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getErrorLinePtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -154,8 +153,8 @@ public open class JSON : Resource() {
    * failed.
    */
   public final fun getErrorMessage(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getErrorMessagePtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getErrorMessagePtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -268,8 +267,8 @@ public open class JSON : Resource() {
       sortKeys: Boolean = true,
       fullPrecision: Boolean = false,
     ): String {
-      TransferContext.writeArguments(ANY to data, STRING to indent, BOOL to sortKeys, BOOL to fullPrecision)
-      TransferContext.callMethod(0, MethodBindings.stringifyPtr, STRING)
+      TransferContext.writeMethodArguments(0L, 0L, ANY to data, STRING to indent, BOOL to sortKeys, BOOL to fullPrecision)
+      TransferContext.callMethod(MethodBindings.stringifyPtr)
       return (TransferContext.readReturnValue(STRING) as String)
     }
 
@@ -279,8 +278,8 @@ public open class JSON : Resource() {
      */
     @JvmStatic
     public final fun parseString(jsonString: String): Any? {
-      TransferContext.writeArguments(STRING to jsonString)
-      TransferContext.callMethod(0, MethodBindings.parseStringPtr, ANY)
+      TransferContext.writeMethodArguments(0L, 0L, STRING to jsonString)
+      TransferContext.callMethod(MethodBindings.parseStringPtr)
       return (TransferContext.readReturnValue(ANY) as Any?)
     }
 
@@ -299,8 +298,8 @@ public open class JSON : Resource() {
     @JvmOverloads
     @JvmStatic
     public final fun fromNative(variant: Any?, fullObjects: Boolean = false): Any? {
-      TransferContext.writeArguments(ANY to variant, BOOL to fullObjects)
-      TransferContext.callMethod(0, MethodBindings.fromNativePtr, ANY)
+      TransferContext.writeMethodArguments(0L, 0L, ANY to variant, BOOL to fullObjects)
+      TransferContext.callMethod(MethodBindings.fromNativePtr)
       return (TransferContext.readReturnValue(ANY) as Any?)
     }
 
@@ -320,8 +319,8 @@ public open class JSON : Resource() {
     @JvmOverloads
     @JvmStatic
     public final fun toNative(json: Any?, allowObjects: Boolean = false): Any? {
-      TransferContext.writeArguments(ANY to json, BOOL to allowObjects)
-      TransferContext.callMethod(0, MethodBindings.toNativePtr, ANY)
+      TransferContext.writeMethodArguments(0L, 0L, ANY to json, BOOL to allowObjects)
+      TransferContext.callMethod(MethodBindings.toNativePtr)
       return (TransferContext.readReturnValue(ANY) as Any?)
     }
   }

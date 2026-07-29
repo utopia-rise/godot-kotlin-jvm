@@ -14,7 +14,6 @@ import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
-import godot.core.VariantParser.NIL
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmField
@@ -42,13 +41,13 @@ public open class Compositor : Resource() {
   }
 
   public final fun setCompositorEffects(compositorEffects: VariantArray<CompositorEffect>): Unit {
-    TransferContext.writeArguments(ARRAY to compositorEffects)
-    TransferContext.callMethod(ptr, MethodBindings.setCompositorEffectsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, ARRAY to compositorEffects)
+    TransferContext.callMethod(MethodBindings.setCompositorEffectsPtr)
   }
 
   public final fun getCompositorEffects(): VariantArray<CompositorEffect> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCompositorEffectsPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCompositorEffectsPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<CompositorEffect>)
   }
 

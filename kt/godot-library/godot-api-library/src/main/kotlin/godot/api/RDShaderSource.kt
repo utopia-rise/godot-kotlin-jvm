@@ -14,7 +14,6 @@ import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.MethodStringName2
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import kotlin.Long
 import kotlin.String
@@ -166,8 +165,8 @@ public open class RDShaderSource : RefCounted() {
    * remove the Godot-specific hint `#[compute]`.
    */
   public final fun setStageSource(stage: RenderingDevice.ShaderStage, source: String): Unit {
-    TransferContext.writeArguments(LONG to stage.value, STRING to source)
-    TransferContext.callMethod(ptr, MethodBindings.setStageSourcePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to stage.value, STRING to source)
+    TransferContext.callMethod(MethodBindings.setStageSourcePtr)
   }
 
   /**
@@ -176,19 +175,19 @@ public open class RDShaderSource : RefCounted() {
    * [sourceVertex].
    */
   public final fun getStageSource(stage: RenderingDevice.ShaderStage): String {
-    TransferContext.writeArguments(LONG to stage.value)
-    TransferContext.callMethod(ptr, MethodBindings.getStageSourcePtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to stage.value)
+    TransferContext.callMethod(MethodBindings.getStageSourcePtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setLanguage(language: RenderingDevice.ShaderLanguage): Unit {
-    TransferContext.writeArguments(LONG to language.value)
-    TransferContext.callMethod(ptr, MethodBindings.setLanguagePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to language.value)
+    TransferContext.callMethod(MethodBindings.setLanguagePtr)
   }
 
   public final fun getLanguage(): RenderingDevice.ShaderLanguage {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getLanguagePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getLanguagePtr)
     return RenderingDevice.ShaderLanguage.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

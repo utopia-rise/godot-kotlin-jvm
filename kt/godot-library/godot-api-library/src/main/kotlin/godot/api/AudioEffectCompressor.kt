@@ -14,7 +14,6 @@ import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.StringName
 import godot.core.VariantParser.DOUBLE
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING_NAME
 import godot.core.asCachedStringName
 import kotlin.Double
@@ -134,79 +133,79 @@ public open class AudioEffectCompressor : AudioEffect() {
   }
 
   public final fun setThreshold(threshold: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to threshold.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setThresholdPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to threshold.toDouble())
+    TransferContext.callMethod(MethodBindings.setThresholdPtr)
   }
 
   public final fun getThreshold(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getThresholdPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getThresholdPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRatio(ratio: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to ratio.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setRatioPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to ratio.toDouble())
+    TransferContext.callMethod(MethodBindings.setRatioPtr)
   }
 
   public final fun getRatio(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getRatioPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getRatioPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setGain(gain: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to gain.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setGainPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to gain.toDouble())
+    TransferContext.callMethod(MethodBindings.setGainPtr)
   }
 
   public final fun getGain(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getGainPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getGainPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAttackUs(attackUs: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to attackUs.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setAttackUsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to attackUs.toDouble())
+    TransferContext.callMethod(MethodBindings.setAttackUsPtr)
   }
 
   public final fun getAttackUs(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getAttackUsPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getAttackUsPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setReleaseMs(releaseMs: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to releaseMs.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setReleaseMsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to releaseMs.toDouble())
+    TransferContext.callMethod(MethodBindings.setReleaseMsPtr)
   }
 
   public final fun getReleaseMs(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getReleaseMsPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getReleaseMsPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setMix(mix: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to mix.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setMixPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, DOUBLE to mix.toDouble())
+    TransferContext.callMethod(MethodBindings.setMixPtr)
   }
 
   public final fun getMix(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMixPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getMixPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSidechain(sidechain: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to sidechain)
-    TransferContext.callMethod(ptr, MethodBindings.setSidechainPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING_NAME to sidechain)
+    TransferContext.callMethod(MethodBindings.setSidechainPtr)
   }
 
   public final fun getSidechain(): StringName {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSidechainPtr, STRING_NAME)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSidechainPtr)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 

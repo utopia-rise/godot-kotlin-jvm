@@ -16,7 +16,6 @@ import godot.core.GodotEnum
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector2
@@ -153,57 +152,57 @@ public open class PlaneMesh : PrimitiveMesh() {
   }
 
   public final fun setSize(size: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to size)
-    TransferContext.callMethod(ptr, MethodBindings.setSizePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR2 to size)
+    TransferContext.callMethod(MethodBindings.setSizePtr)
   }
 
   public final fun getSize(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSizePtr, VECTOR2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSizePtr)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setSubdivideWidth(subdivide: Int): Unit {
-    TransferContext.writeArguments(LONG to subdivide.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setSubdivideWidthPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to subdivide.toLong())
+    TransferContext.callMethod(MethodBindings.setSubdivideWidthPtr)
   }
 
   public final fun getSubdivideWidth(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSubdivideWidthPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSubdivideWidthPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setSubdivideDepth(subdivide: Int): Unit {
-    TransferContext.writeArguments(LONG to subdivide.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setSubdivideDepthPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to subdivide.toLong())
+    TransferContext.callMethod(MethodBindings.setSubdivideDepthPtr)
   }
 
   public final fun getSubdivideDepth(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSubdivideDepthPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSubdivideDepthPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setCenterOffset(offset: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to offset)
-    TransferContext.callMethod(ptr, MethodBindings.setCenterOffsetPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR3 to offset)
+    TransferContext.callMethod(MethodBindings.setCenterOffsetPtr)
   }
 
   public final fun getCenterOffset(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCenterOffsetPtr, VECTOR3)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getCenterOffsetPtr)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setOrientation(orientation: Orientation): Unit {
-    TransferContext.writeArguments(LONG to orientation.value)
-    TransferContext.callMethod(ptr, MethodBindings.setOrientationPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to orientation.value)
+    TransferContext.callMethod(MethodBindings.setOrientationPtr)
   }
 
   public final fun getOrientation(): Orientation {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getOrientationPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getOrientationPtr)
     return Orientation.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

@@ -17,7 +17,6 @@ import godot.core.MethodStringName1
 import godot.core.Rect2
 import godot.core.Signal0
 import godot.core.VariantParser.BOOL
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.RECT2
 import kotlin.Boolean
 import kotlin.Suppress
@@ -104,24 +103,24 @@ public open class VisibleOnScreenNotifier2D : Node2D() {
   }
 
   public final fun setRect(rect: Rect2): Unit {
-    TransferContext.writeArguments(RECT2 to rect)
-    TransferContext.callMethod(ptr, MethodBindings.setRectPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, RECT2 to rect)
+    TransferContext.callMethod(MethodBindings.setRectPtr)
   }
 
   public final fun getRect(): Rect2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getRectPtr, RECT2)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getRectPtr)
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 
   public final fun setShowRect(showRect: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to showRect)
-    TransferContext.callMethod(ptr, MethodBindings.setShowRectPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to showRect)
+    TransferContext.callMethod(MethodBindings.setShowRectPtr)
   }
 
   public final fun isShowingRect(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isShowingRectPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isShowingRectPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -133,8 +132,8 @@ public open class VisibleOnScreenNotifier2D : Node2D() {
    * instantiated, before the draw pass.
    */
   public final fun isOnScreen(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isOnScreenPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isOnScreenPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 

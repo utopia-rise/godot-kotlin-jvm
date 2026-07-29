@@ -21,7 +21,6 @@ import godot.core.NodePath
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
@@ -146,16 +145,16 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * Sets the root bone name of the bone chain.
    */
   public final fun setRootBoneName(index: Int, boneName: String): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), STRING to boneName)
-    TransferContext.callMethod(ptr, MethodBindings.setRootBoneNamePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), STRING to boneName)
+    TransferContext.callMethod(MethodBindings.setRootBoneNamePtr)
   }
 
   /**
    * Returns the root bone name of the bone chain.
    */
   public final fun getRootBoneName(index: Int): String {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getRootBoneNamePtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getRootBoneNamePtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -163,16 +162,16 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * Sets the root bone index of the bone chain.
    */
   public final fun setRootBone(index: Int, bone: Int): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to bone.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setRootBonePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), LONG to bone.toLong())
+    TransferContext.callMethod(MethodBindings.setRootBonePtr)
   }
 
   /**
    * Returns the root bone index of the bone chain.
    */
   public final fun getRootBone(index: Int): Int {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getRootBonePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getRootBonePtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -183,16 +182,16 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * tail must be extended by [setExtendEndBone] to jiggle the bone.
    */
   public final fun setEndBoneName(index: Int, boneName: String): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), STRING to boneName)
-    TransferContext.callMethod(ptr, MethodBindings.setEndBoneNamePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), STRING to boneName)
+    TransferContext.callMethod(MethodBindings.setEndBoneNamePtr)
   }
 
   /**
    * Returns the end bone name of the bone chain.
    */
   public final fun getEndBoneName(index: Int): String {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getEndBoneNamePtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getEndBoneNamePtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -200,16 +199,16 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * Sets the end bone index of the bone chain.
    */
   public final fun setEndBone(index: Int, bone: Int): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to bone.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setEndBonePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), LONG to bone.toLong())
+    TransferContext.callMethod(MethodBindings.setEndBonePtr)
   }
 
   /**
    * Returns the end bone index of the bone chain.
    */
   public final fun getEndBone(index: Int): Int {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getEndBonePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getEndBonePtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -221,16 +220,16 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * the simulated result.
    */
   public final fun setExtendEndBone(index: Int, enabled: Boolean): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.setExtendEndBonePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), BOOL to enabled)
+    TransferContext.callMethod(MethodBindings.setExtendEndBonePtr)
   }
 
   /**
    * Returns `true` if the end bone is extended to have a tail.
    */
   public final fun isEndBoneExtended(index: Int): Boolean {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.isEndBoneExtendedPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.isEndBoneExtendedPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -239,8 +238,8 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    */
   public final fun setEndBoneDirection(index: Int, boneDirection: SkeletonModifier3D.BoneDirection):
       Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to boneDirection.value)
-    TransferContext.callMethod(ptr, MethodBindings.setEndBoneDirectionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), LONG to boneDirection.value)
+    TransferContext.callMethod(MethodBindings.setEndBoneDirectionPtr)
   }
 
   /**
@@ -248,8 +247,8 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * `true`.
    */
   public final fun getEndBoneDirection(index: Int): SkeletonModifier3D.BoneDirection {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getEndBoneDirectionPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getEndBoneDirectionPtr)
     return SkeletonModifier3D.BoneDirection.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -257,16 +256,16 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * Sets the end bone tail length of the bone chain when [isEndBoneExtended] is `true`.
    */
   public final fun setEndBoneLength(index: Int, length: Float): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), DOUBLE to length.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setEndBoneLengthPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), DOUBLE to length.toDouble())
+    TransferContext.callMethod(MethodBindings.setEndBoneLengthPtr)
   }
 
   /**
    * Returns the end bone tail length of the bone chain when [isEndBoneExtended] is `true`.
    */
   public final fun getEndBoneLength(index: Int): Float {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getEndBoneLengthPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getEndBoneLengthPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -282,16 +281,16 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * In this case, only a change in the bone pose is considered to be a bone movement.
    */
   public final fun setCenterFrom(index: Int, centerFrom: CenterFrom): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to centerFrom.value)
-    TransferContext.callMethod(ptr, MethodBindings.setCenterFromPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), LONG to centerFrom.value)
+    TransferContext.callMethod(MethodBindings.setCenterFromPtr)
   }
 
   /**
    * Returns what the center originates from in the bone chain.
    */
   public final fun getCenterFrom(index: Int): CenterFrom {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getCenterFromPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getCenterFromPtr)
     return CenterFrom.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -299,16 +298,16 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * Sets the center node path of the bone chain.
    */
   public final fun setCenterNode(index: Int, nodePath: NodePath): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), NODE_PATH to nodePath)
-    TransferContext.callMethod(ptr, MethodBindings.setCenterNodePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), NODE_PATH to nodePath)
+    TransferContext.callMethod(MethodBindings.setCenterNodePtr)
   }
 
   /**
    * Returns the center node path of the bone chain.
    */
   public final fun getCenterNode(index: Int): NodePath {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getCenterNodePtr, NODE_PATH)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getCenterNodePtr)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
@@ -316,16 +315,16 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * Sets the center bone name of the bone chain.
    */
   public final fun setCenterBoneName(index: Int, boneName: String): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), STRING to boneName)
-    TransferContext.callMethod(ptr, MethodBindings.setCenterBoneNamePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), STRING to boneName)
+    TransferContext.callMethod(MethodBindings.setCenterBoneNamePtr)
   }
 
   /**
    * Returns the center bone name of the bone chain.
    */
   public final fun getCenterBoneName(index: Int): String {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getCenterBoneNamePtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getCenterBoneNamePtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -333,16 +332,16 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * Sets the center bone index of the bone chain.
    */
   public final fun setCenterBone(index: Int, bone: Int): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to bone.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setCenterBonePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), LONG to bone.toLong())
+    TransferContext.callMethod(MethodBindings.setCenterBonePtr)
   }
 
   /**
    * Returns the center bone index of the bone chain.
    */
   public final fun getCenterBone(index: Int): Int {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getCenterBonePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getCenterBonePtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -354,16 +353,16 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * list.
    */
   public final fun setRadius(index: Int, radius: Float): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), DOUBLE to radius.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setRadiusPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), DOUBLE to radius.toDouble())
+    TransferContext.callMethod(MethodBindings.setRadiusPtr)
   }
 
   /**
    * Returns the joint radius of the bone chain.
    */
   public final fun getRadius(index: Int): Float {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getRadiusPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getRadiusPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -380,16 +379,16 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * unintended rotation since [SpringBoneSimulator3D] does not factor in twisting forces.
    */
   public final fun setRotationAxis(index: Int, axis: SkeletonModifier3D.RotationAxis): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to axis.value)
-    TransferContext.callMethod(ptr, MethodBindings.setRotationAxisPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), LONG to axis.value)
+    TransferContext.callMethod(MethodBindings.setRotationAxisPtr)
   }
 
   /**
    * Returns the rotation axis of the bone chain.
    */
   public final fun getRotationAxis(index: Int): SkeletonModifier3D.RotationAxis {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getRotationAxisPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getRotationAxisPtr)
     return SkeletonModifier3D.RotationAxis.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -404,8 +403,8 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * [SkeletonModifier3D.ROTATION_AXIS_ALL].
    */
   public final fun setRotationAxisVector(index: Int, vector: Vector3): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), VECTOR3 to vector)
-    TransferContext.callMethod(ptr, MethodBindings.setRotationAxisVectorPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), VECTOR3 to vector)
+    TransferContext.callMethod(MethodBindings.setRotationAxisVectorPtr)
   }
 
   /**
@@ -417,8 +416,8 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * 0, 0)`.
    */
   public final fun getRotationAxisVector(index: Int): Vector3 {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getRotationAxisVectorPtr, VECTOR3)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getRotationAxisVectorPtr)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
@@ -426,16 +425,16 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * Sets the joint radius damping curve of the bone chain.
    */
   public final fun setRadiusDampingCurve(index: Int, curve: Curve?): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), OBJECT to curve)
-    TransferContext.callMethod(ptr, MethodBindings.setRadiusDampingCurvePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), OBJECT to curve)
+    TransferContext.callMethod(MethodBindings.setRadiusDampingCurvePtr)
   }
 
   /**
    * Returns the joint radius damping curve of the bone chain.
    */
   public final fun getRadiusDampingCurve(index: Int): Curve? {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getRadiusDampingCurvePtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getRadiusDampingCurvePtr)
     return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }
 
@@ -449,16 +448,16 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * list.
    */
   public final fun setStiffness(index: Int, stiffness: Float): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), DOUBLE to stiffness.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setStiffnessPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), DOUBLE to stiffness.toDouble())
+    TransferContext.callMethod(MethodBindings.setStiffnessPtr)
   }
 
   /**
    * Returns the stiffness force of the bone chain.
    */
   public final fun getStiffness(index: Int): Float {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getStiffnessPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getStiffnessPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -466,16 +465,16 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * Sets the stiffness force damping curve of the bone chain.
    */
   public final fun setStiffnessDampingCurve(index: Int, curve: Curve?): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), OBJECT to curve)
-    TransferContext.callMethod(ptr, MethodBindings.setStiffnessDampingCurvePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), OBJECT to curve)
+    TransferContext.callMethod(MethodBindings.setStiffnessDampingCurvePtr)
   }
 
   /**
    * Returns the stiffness force damping curve of the bone chain.
    */
   public final fun getStiffnessDampingCurve(index: Int): Curve? {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getStiffnessDampingCurvePtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getStiffnessDampingCurvePtr)
     return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }
 
@@ -486,16 +485,16 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * list.
    */
   public final fun setDrag(index: Int, drag: Float): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), DOUBLE to drag.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setDragPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), DOUBLE to drag.toDouble())
+    TransferContext.callMethod(MethodBindings.setDragPtr)
   }
 
   /**
    * Returns the drag force damping curve of the bone chain.
    */
   public final fun getDrag(index: Int): Float {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getDragPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getDragPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -503,16 +502,16 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * Sets the drag force damping curve of the bone chain.
    */
   public final fun setDragDampingCurve(index: Int, curve: Curve?): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), OBJECT to curve)
-    TransferContext.callMethod(ptr, MethodBindings.setDragDampingCurvePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), OBJECT to curve)
+    TransferContext.callMethod(MethodBindings.setDragDampingCurvePtr)
   }
 
   /**
    * Returns the drag force damping curve of the bone chain.
    */
   public final fun getDragDampingCurve(index: Int): Curve? {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getDragDampingCurvePtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getDragDampingCurvePtr)
     return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }
 
@@ -527,16 +526,16 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * list.
    */
   public final fun setGravity(index: Int, gravity: Float): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), DOUBLE to gravity.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setGravityPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), DOUBLE to gravity.toDouble())
+    TransferContext.callMethod(MethodBindings.setGravityPtr)
   }
 
   /**
    * Returns the gravity amount of the bone chain.
    */
   public final fun getGravity(index: Int): Float {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getGravityPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getGravityPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -544,16 +543,16 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * Sets the gravity amount damping curve of the bone chain.
    */
   public final fun setGravityDampingCurve(index: Int, curve: Curve?): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), OBJECT to curve)
-    TransferContext.callMethod(ptr, MethodBindings.setGravityDampingCurvePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), OBJECT to curve)
+    TransferContext.callMethod(MethodBindings.setGravityDampingCurvePtr)
   }
 
   /**
    * Returns the gravity amount damping curve of the bone chain.
    */
   public final fun getGravityDampingCurve(index: Int): Curve? {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getGravityDampingCurvePtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getGravityDampingCurvePtr)
     return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }
 
@@ -564,27 +563,27 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * The value is cached in each joint setting in the joint list.
    */
   public final fun setGravityDirection(index: Int, gravityDirection: Vector3): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), VECTOR3 to gravityDirection)
-    TransferContext.callMethod(ptr, MethodBindings.setGravityDirectionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), VECTOR3 to gravityDirection)
+    TransferContext.callMethod(MethodBindings.setGravityDirectionPtr)
   }
 
   /**
    * Returns the gravity direction of the bone chain.
    */
   public final fun getGravityDirection(index: Int): Vector3 {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getGravityDirectionPtr, VECTOR3)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getGravityDirectionPtr)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setSettingCount(count: Int): Unit {
-    TransferContext.writeArguments(LONG to count.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setSettingCountPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to count.toLong())
+    TransferContext.callMethod(MethodBindings.setSettingCountPtr)
   }
 
   public final fun getSettingCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSettingCountPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getSettingCountPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -592,24 +591,24 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * Clears all settings.
    */
   public final fun clearSettings(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.clearSettingsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.clearSettingsPtr)
   }
 
   /**
    * If [enabled] is `true`, the config can be edited individually for each joint.
    */
   public final fun setIndividualConfig(index: Int, enabled: Boolean): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.setIndividualConfigPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), BOOL to enabled)
+    TransferContext.callMethod(MethodBindings.setIndividualConfigPtr)
   }
 
   /**
    * Returns `true` if the config can be edited individually for each joint.
    */
   public final fun isConfigIndividual(index: Int): Boolean {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.isConfigIndividualPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.isConfigIndividualPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -617,8 +616,8 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * Returns the bone name at [joint] in the bone chain's joint list.
    */
   public final fun getJointBoneName(index: Int, joint: Int): String {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to joint.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getJointBoneNamePtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), LONG to joint.toLong())
+    TransferContext.callMethod(MethodBindings.getJointBoneNamePtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -626,8 +625,8 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * Returns the bone index at [joint] in the bone chain's joint list.
    */
   public final fun getJointBone(index: Int, joint: Int): Int {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to joint.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getJointBonePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), LONG to joint.toLong())
+    TransferContext.callMethod(MethodBindings.getJointBonePtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -648,16 +647,16 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
     joint: Int,
     axis: SkeletonModifier3D.RotationAxis,
   ): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to joint.toLong(), LONG to axis.value)
-    TransferContext.callMethod(ptr, MethodBindings.setJointRotationAxisPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), LONG to joint.toLong(), LONG to axis.value)
+    TransferContext.callMethod(MethodBindings.setJointRotationAxisPtr)
   }
 
   /**
    * Returns the rotation axis at [joint] in the bone chain's joint list.
    */
   public final fun getJointRotationAxis(index: Int, joint: Int): SkeletonModifier3D.RotationAxis {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to joint.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getJointRotationAxisPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), LONG to joint.toLong())
+    TransferContext.callMethod(MethodBindings.getJointRotationAxisPtr)
     return SkeletonModifier3D.RotationAxis.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -675,8 +674,8 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
     joint: Int,
     vector: Vector3,
   ): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to joint.toLong(), VECTOR3 to vector)
-    TransferContext.callMethod(ptr, MethodBindings.setJointRotationAxisVectorPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), LONG to joint.toLong(), VECTOR3 to vector)
+    TransferContext.callMethod(MethodBindings.setJointRotationAxisVectorPtr)
   }
 
   /**
@@ -688,8 +687,8 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * `Vector3(0, 0, 0)`.
    */
   public final fun getJointRotationAxisVector(index: Int, joint: Int): Vector3 {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to joint.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getJointRotationAxisVectorPtr, VECTOR3)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), LONG to joint.toLong())
+    TransferContext.callMethod(MethodBindings.getJointRotationAxisVectorPtr)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
@@ -702,16 +701,16 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
     joint: Int,
     radius: Float,
   ): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to joint.toLong(), DOUBLE to radius.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setJointRadiusPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), LONG to joint.toLong(), DOUBLE to radius.toDouble())
+    TransferContext.callMethod(MethodBindings.setJointRadiusPtr)
   }
 
   /**
    * Returns the radius at [joint] in the bone chain's joint list.
    */
   public final fun getJointRadius(index: Int, joint: Int): Float {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to joint.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getJointRadiusPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), LONG to joint.toLong())
+    TransferContext.callMethod(MethodBindings.getJointRadiusPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -724,16 +723,16 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
     joint: Int,
     stiffness: Float,
   ): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to joint.toLong(), DOUBLE to stiffness.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setJointStiffnessPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), LONG to joint.toLong(), DOUBLE to stiffness.toDouble())
+    TransferContext.callMethod(MethodBindings.setJointStiffnessPtr)
   }
 
   /**
    * Returns the stiffness force at [joint] in the bone chain's joint list.
    */
   public final fun getJointStiffness(index: Int, joint: Int): Float {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to joint.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getJointStiffnessPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), LONG to joint.toLong())
+    TransferContext.callMethod(MethodBindings.getJointStiffnessPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -746,16 +745,16 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
     joint: Int,
     drag: Float,
   ): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to joint.toLong(), DOUBLE to drag.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setJointDragPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), LONG to joint.toLong(), DOUBLE to drag.toDouble())
+    TransferContext.callMethod(MethodBindings.setJointDragPtr)
   }
 
   /**
    * Returns the drag force at [joint] in the bone chain's joint list.
    */
   public final fun getJointDrag(index: Int, joint: Int): Float {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to joint.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getJointDragPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), LONG to joint.toLong())
+    TransferContext.callMethod(MethodBindings.getJointDragPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -768,16 +767,16 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
     joint: Int,
     gravity: Float,
   ): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to joint.toLong(), DOUBLE to gravity.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setJointGravityPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), LONG to joint.toLong(), DOUBLE to gravity.toDouble())
+    TransferContext.callMethod(MethodBindings.setJointGravityPtr)
   }
 
   /**
    * Returns the gravity amount at [joint] in the bone chain's joint list.
    */
   public final fun getJointGravity(index: Int, joint: Int): Float {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to joint.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getJointGravityPtr, DOUBLE)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), LONG to joint.toLong())
+    TransferContext.callMethod(MethodBindings.getJointGravityPtr)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -790,16 +789,16 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
     joint: Int,
     gravityDirection: Vector3,
   ): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to joint.toLong(), VECTOR3 to gravityDirection)
-    TransferContext.callMethod(ptr, MethodBindings.setJointGravityDirectionPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), LONG to joint.toLong(), VECTOR3 to gravityDirection)
+    TransferContext.callMethod(MethodBindings.setJointGravityDirectionPtr)
   }
 
   /**
    * Returns the gravity direction at [joint] in the bone chain's joint list.
    */
   public final fun getJointGravityDirection(index: Int, joint: Int): Vector3 {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to joint.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getJointGravityDirectionPtr, VECTOR3)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), LONG to joint.toLong())
+    TransferContext.callMethod(MethodBindings.getJointGravityDirectionPtr)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
@@ -807,8 +806,8 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * Returns the joint count of the bone chain's joint list.
    */
   public final fun getJointCount(index: Int): Int {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getJointCountPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getJointCountPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -820,8 +819,8 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * [setCollisionPath].
    */
   public final fun setEnableAllChildCollisions(index: Int, enabled: Boolean): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.setEnableAllChildCollisionsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), BOOL to enabled)
+    TransferContext.callMethod(MethodBindings.setEnableAllChildCollisionsPtr)
   }
 
   /**
@@ -829,8 +828,8 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * [index] in the settings.
    */
   public final fun areAllChildCollisionsEnabled(index: Int): Boolean {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.areAllChildCollisionsEnabledPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.areAllChildCollisionsEnabledPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -843,8 +842,8 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
     collision: Int,
     nodePath: NodePath,
   ): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to collision.toLong(), NODE_PATH to nodePath)
-    TransferContext.callMethod(ptr, MethodBindings.setExcludeCollisionPathPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), LONG to collision.toLong(), NODE_PATH to nodePath)
+    TransferContext.callMethod(MethodBindings.setExcludeCollisionPathPtr)
   }
 
   /**
@@ -852,8 +851,8 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * collision list when [areAllChildCollisionsEnabled] is `true`.
    */
   public final fun getExcludeCollisionPath(index: Int, collision: Int): NodePath {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to collision.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getExcludeCollisionPathPtr, NODE_PATH)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), LONG to collision.toLong())
+    TransferContext.callMethod(MethodBindings.getExcludeCollisionPathPtr)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
@@ -862,8 +861,8 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * when [areAllChildCollisionsEnabled] is `true`.
    */
   public final fun setExcludeCollisionCount(index: Int, count: Int): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to count.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setExcludeCollisionCountPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), LONG to count.toLong())
+    TransferContext.callMethod(MethodBindings.setExcludeCollisionCountPtr)
   }
 
   /**
@@ -871,8 +870,8 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * [areAllChildCollisionsEnabled] is `true`.
    */
   public final fun getExcludeCollisionCount(index: Int): Int {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getExcludeCollisionCountPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getExcludeCollisionCountPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -881,8 +880,8 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * [areAllChildCollisionsEnabled] is `true`.
    */
   public final fun clearExcludeCollisions(index: Int): Unit {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.clearExcludeCollisionsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.clearExcludeCollisionsPtr)
   }
 
   /**
@@ -894,8 +893,8 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
     collision: Int,
     nodePath: NodePath,
   ): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to collision.toLong(), NODE_PATH to nodePath)
-    TransferContext.callMethod(ptr, MethodBindings.setCollisionPathPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), LONG to collision.toLong(), NODE_PATH to nodePath)
+    TransferContext.callMethod(MethodBindings.setCollisionPathPtr)
   }
 
   /**
@@ -903,8 +902,8 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * collision list when [areAllChildCollisionsEnabled] is `false`.
    */
   public final fun getCollisionPath(index: Int, collision: Int): NodePath {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to collision.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getCollisionPathPtr, NODE_PATH)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), LONG to collision.toLong())
+    TransferContext.callMethod(MethodBindings.getCollisionPathPtr)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
@@ -913,8 +912,8 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * [areAllChildCollisionsEnabled] is `false`.
    */
   public final fun setCollisionCount(index: Int, count: Int): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to count.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.setCollisionCountPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong(), LONG to count.toLong())
+    TransferContext.callMethod(MethodBindings.setCollisionCountPtr)
   }
 
   /**
@@ -922,8 +921,8 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * [areAllChildCollisionsEnabled] is `false`.
    */
   public final fun getCollisionCount(index: Int): Int {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getCollisionCountPtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.getCollisionCountPtr)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -932,29 +931,29 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * [areAllChildCollisionsEnabled] is `false`.
    */
   public final fun clearCollisions(index: Int): Unit {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.clearCollisionsPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to index.toLong())
+    TransferContext.callMethod(MethodBindings.clearCollisionsPtr)
   }
 
   public final fun setExternalForce(force: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to force)
-    TransferContext.callMethod(ptr, MethodBindings.setExternalForcePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, VECTOR3 to force)
+    TransferContext.callMethod(MethodBindings.setExternalForcePtr)
   }
 
   public final fun getExternalForce(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getExternalForcePtr, VECTOR3)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getExternalForcePtr)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setMutableBoneAxes(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.setMutableBoneAxesPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enabled)
+    TransferContext.callMethod(MethodBindings.setMutableBoneAxesPtr)
   }
 
   public final fun areBoneAxesMutable(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.areBoneAxesMutablePtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.areBoneAxesMutablePtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -966,8 +965,8 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * [signal SkeletonModifier3D.modification_processed] signal if it's condition changes significantly.
    */
   public final fun reset(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.resetPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.resetPtr)
   }
 
   /**

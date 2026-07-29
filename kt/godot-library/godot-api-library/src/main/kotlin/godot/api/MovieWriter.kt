@@ -13,7 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.Error
 import godot.core.MethodStringName1
 import godot.core.PackedStringArray
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.Vector2i
 import kotlin.Boolean
@@ -151,8 +150,8 @@ public abstract class MovieWriter : Object() {
      */
     @JvmStatic
     public final fun addWriter(writer: MovieWriter?): Unit {
-      TransferContext.writeArguments(OBJECT to writer)
-      TransferContext.callMethod(0, MethodBindings.addWriterPtr, NIL)
+      TransferContext.writeMethodArguments(0L, 0L, OBJECT to writer)
+      TransferContext.callMethod(MethodBindings.addWriterPtr)
     }
   }
 

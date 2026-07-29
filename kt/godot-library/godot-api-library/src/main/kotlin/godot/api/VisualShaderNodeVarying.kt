@@ -13,7 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import kotlin.Long
 import kotlin.String
@@ -55,24 +54,24 @@ public open class VisualShaderNodeVarying internal constructor() : VisualShaderN
   }
 
   public final fun setVaryingName(name: String): Unit {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(ptr, MethodBindings.setVaryingNamePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, STRING to name)
+    TransferContext.callMethod(MethodBindings.setVaryingNamePtr)
   }
 
   public final fun getVaryingName(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getVaryingNamePtr, STRING)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getVaryingNamePtr)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setVaryingType(type: VisualShader.VaryingType): Unit {
-    TransferContext.writeArguments(LONG to type.value)
-    TransferContext.callMethod(ptr, MethodBindings.setVaryingTypePtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, LONG to type.value)
+    TransferContext.callMethod(MethodBindings.setVaryingTypePtr)
   }
 
   public final fun getVaryingType(): VisualShader.VaryingType {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getVaryingTypePtr, LONG)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getVaryingTypePtr)
     return VisualShader.VaryingType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 

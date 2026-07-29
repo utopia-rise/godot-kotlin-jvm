@@ -16,7 +16,6 @@ import godot.core.Color
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.COLOR
-import godot.core.VariantParser.NIL
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmField
@@ -72,13 +71,13 @@ public open class VisualShaderNodeColorConstant : VisualShaderNodeConstant() {
   }
 
   public final fun setConstant(constant: Color): Unit {
-    TransferContext.writeArguments(COLOR to constant)
-    TransferContext.callMethod(ptr, MethodBindings.setConstantPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, COLOR to constant)
+    TransferContext.callMethod(MethodBindings.setConstantPtr)
   }
 
   public final fun getConstant(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getConstantPtr, COLOR)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getConstantPtr)
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 

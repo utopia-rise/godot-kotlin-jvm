@@ -16,7 +16,6 @@ import godot.core.Signal1
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
-import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
 import kotlin.Suppress
@@ -57,8 +56,8 @@ public open class ButtonGroup : Resource() {
    * Returns the current pressed button.
    */
   public final fun getPressedButton(): BaseButton? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getPressedButtonPtr, OBJECT)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getPressedButtonPtr)
     return (TransferContext.readReturnValue(OBJECT) as BaseButton?)
   }
 
@@ -67,19 +66,19 @@ public open class ButtonGroup : Resource() {
    * [BaseButton.buttonGroup]).
    */
   public final fun getButtons(): VariantArray<BaseButton> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getButtonsPtr, ARRAY)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.getButtonsPtr)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<BaseButton>)
   }
 
   public final fun setAllowUnpress(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.setAllowUnpressPtr, NIL)
+    TransferContext.writeMethodArguments(ptr, objectID.id, BOOL to enabled)
+    TransferContext.callMethod(MethodBindings.setAllowUnpressPtr)
   }
 
   public final fun isAllowUnpress(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isAllowUnpressPtr, BOOL)
+    TransferContext.writeMethodArguments(ptr, objectID.id)
+    TransferContext.callMethod(MethodBindings.isAllowUnpressPtr)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
