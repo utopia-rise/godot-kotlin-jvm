@@ -36,7 +36,8 @@ The items in this list are explicitly mentioned here as these will be implemente
 Also consider the [API Differences](user-guide/api-differences.md) section for general differences
 and limitations which will not be or cannot be adressed in the near forseable future or ever.
 
-- Only a default no arg constructor can be registered.
+- A public no-argument constructor is registered when present; constructors
+  with arguments are not exposed to Godot.
 - No tool mode (you can set it already in the `@Script` annotation but it has no effect yet).
 - No addon support, you cannot use Godot Kotlin/JVM to write plugins and addons yet (you can however [write libraries](develop-libraries/introduction.md) with godot specific code).
 - Web is currently not supported. See [Supported platforms](#supported-platforms) to see what platforms we currently support
@@ -64,11 +65,11 @@ While Kotlin and Godot supports a wide range of platforms, this module for the m
 
 The module uses semantic versioning for its own versions but adds a suffix for the supported Godot version:
 
-Full version: `0.17.0-4.7`
+Full version: `0.17.0-4.7.1`
 
 Module Version: `0.17.0`
 
-Supported Godot Version: `4.7`
+Supported Godot Version: `4.7.1`
 
 This module relies on a Kotlin *compiler plugin* for registering your classes and members to Godot. As the compiler API from Kotlin is not stable yet, each release still defines a minimum supported Kotlin version.
 

@@ -221,20 +221,24 @@ This also works for any type you define.
 
 ## Constructors
 
-Godot requires you to have a default constructor on your classes. These are automatically registered for you.  
-Registering constructor with arguments is currently not supported. But you can freely use them from Kotlin/Java/Scala
-just not from GDScript or any other non Godot Kotlin/JVM language.
+A script class does not need a default constructor to be registered. If it has
+a public constructor with no arguments, Godot registers that constructor for
+you. Godot does not register constructors with arguments, although you can use
+them normally from Kotlin, Java, or Scala.
 
 ### Instantiate script classes in GDScript
 
-From GDScript it is possible to create an instance of a registered JVM class using the default constructor:
+From GDScript, you can create an instance only when the registered JVM class
+has a public constructor with no arguments:
 
 ```gdscript
 var instance := YourJvmClass.new()
 ```
 
-Using other constructors is not possible. Only the default no arg constructor is registered.  
-But you can create the object and set the required properties after instantiation.
+Godot cannot call constructors with arguments. If a script has no public
+no-argument constructor, it is still registered, but Godot cannot instantiate
+it as a script. A concrete subclass with a public no-argument constructor can
+be instantiated normally.
 
 ## Customization
 

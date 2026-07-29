@@ -174,7 +174,7 @@ The available modes are:
   annotations remain useful as configuration.
 
 For the complete rules and examples in Kotlin, Java, and Scala, see the
-[registration reference](registration-logic.md). If you use the IntelliJ
+[registration guide](registration-logic.md). If you use the IntelliJ
 plugin, select the same mode under
 **Settings | Godot Kotlin/JVM | Annotation processing mode** so its
 inspections and highlighting match the Gradle build.

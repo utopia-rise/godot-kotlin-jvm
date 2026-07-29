@@ -135,7 +135,6 @@ The regular fixtures cover:
     - signals
     - functions
 - registered classes that do not inherit a Godot type
-- missing parameterless constructors on concrete registered classes
 - duplicate registered class names, reported on both declarations
 - generic registered classes
 - generic registered functions

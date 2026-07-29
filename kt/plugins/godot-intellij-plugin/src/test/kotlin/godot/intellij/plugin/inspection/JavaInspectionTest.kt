@@ -17,7 +17,6 @@ class JavaInspectionTest : CodeInsightFixtureTestBase() {
             error(GodotPluginBundle.message("problem.class.notRegistered.signals")),
             error(GodotPluginBundle.message("problem.class.notRegistered.functions")),
             error(GodotPluginBundle.message("problem.class.inheritance.notInheritingGodotObject")),
-            error(GodotPluginBundle.message("problem.class.constructor.parameterlessConstructorMissing")),
             error(GodotPluginBundle.message("problem.class.nameAlreadyRegistered"), 2),
             error(GodotPluginBundle.message("problem.general.cannotRegisterGenerics"), 2),
             error(GodotPluginBundle.message("problem.function.notificationFunctionNotRegistered")),
@@ -38,7 +37,6 @@ class JavaInspectionTest : CodeInsightFixtureTestBase() {
             error(GodotPluginBundle.message("problem.class.notRegistered.signals")),
             error(GodotPluginBundle.message("problem.class.notRegistered.functions")),
             error(GodotPluginBundle.message("problem.class.inheritance.notInheritingGodotObject")),
-            error(GodotPluginBundle.message("problem.class.constructor.parameterlessConstructorMissing")),
             error(GodotPluginBundle.message("problem.class.nameAlreadyRegistered"), 2),
             error(GodotPluginBundle.message("problem.general.cannotRegisterGenerics"), 2),
             error(GodotPluginBundle.message("problem.function.toManyParams", 16))
@@ -54,7 +52,6 @@ class JavaInspectionTest : CodeInsightFixtureTestBase() {
 
         assertProblems(
             problems,
-            error(GodotPluginBundle.message("problem.class.constructor.parameterlessConstructorMissing")),
             error(GodotPluginBundle.message("problem.class.nameAlreadyRegistered"), 2),
             error(GodotPluginBundle.message("problem.general.cannotRegisterGenerics"), 2),
             error(GodotPluginBundle.message("problem.function.toManyParams", 16))

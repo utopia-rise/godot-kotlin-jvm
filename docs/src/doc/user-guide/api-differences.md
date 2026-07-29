@@ -57,7 +57,7 @@ before Godot can use them. The default behavior follows registration
 annotations and their implied meaning, which keeps the Godot-facing boundary
 intentional without requiring every annotation to be repeated.
 
-See the [registration reference](advanced/registration-logic.md) for the
+See the [registration guide](advanced/registration-logic.md) for the
 complete rules, or continue with the guides for
 [classes](classes.md), [properties](properties.md), and
 [functions](functions.md).

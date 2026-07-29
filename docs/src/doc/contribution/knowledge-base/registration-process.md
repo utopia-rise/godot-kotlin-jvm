@@ -359,9 +359,9 @@ Godot-facing API would be generated.
 ### Class requirements
 
 - A registered class must inherit a Godot-compatible type.
-- A concrete class intended for Godot instantiation needs a public
-  parameterless constructor.
-- Abstract registered classes are exempt from instantiation.
+- A public parameterless constructor is optional. When present, the generated
+  registrar exposes it for Godot instantiation; constructors with parameters
+  remain JVM-only.
 - Registered names must be unique within the known JVM registration set.
 - Generic classes cannot be exposed as concrete Godot script types.
 
@@ -557,5 +557,5 @@ Kotlin, Java, Scala, and all three registration modes where applicable.
 ## Related documents
 
 - [Registrar generation](registrar-generation.md)
-- [Registration reference](../../user-guide/advanced/registration-logic.md)
+- [Registration guide](../../user-guide/advanced/registration-logic.md)
 - [Gradle plugin configuration](../../user-guide/advanced/gradle-plugin-configuration.md)

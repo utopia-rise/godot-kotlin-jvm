@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Godot-JVM** is a Godot engine module that enables Kotlin (and Java/Scala) as scripting languages. It is a hybrid C++/JVM project: the C++ side integrates with Godot's module system, and the Kotlin/Gradle side provides the runtime libraries and tooling for user projects.
 
-Current binding version: `0.17.0` targeting Godot `4.7`.
+Current binding version: `0.17.0` targeting Godot `4.7.1`.
 
 ## Engineering Principles
 
@@ -81,7 +81,7 @@ The `harness/tests/` directory is a full Godot project. It requires a built edit
 ### Testing Changes from a Feature Branch
 
 1. Publish locally (see above)
-2. Configure the user project's Gradle repositories to use `mavenLocal()` and use the exact snapshot version you published (e.g. `0.10.0-4.3.0-d68f299-SNAPSHOT`)
+2. Configure the user project's Gradle repositories to use `mavenLocal()` and use the exact snapshot version you published (e.g. `0.17.0-4.7.1-d68f299-SNAPSHOT`)
 3. Run with the dev build: `./bin/godot.linuxbsd.editor.dev.x86_64.jvm` (or platform equivalent)
 
 Full workflow: `docs/src/doc/contribution/test-change-from-branch.md`
@@ -186,6 +186,12 @@ Configured in Godot project settings:
 - **Godot API auto-generation** — `kt/godot-library/godot-api-library/` is fully generated. Any manual edits will be overwritten.
 - **Template generation** — Editing `.template` files without running `generate_templates.py` and rebuilding C++ will have no effect.
 - **Adding a new script language** — Requires: `JvmScript` C++ subclass + `ScriptLanguage` subclass + registration in `register_types.cpp` + entry in `JvmResourceFormatLoader`/`Saver`.
+
+### GDScript global scope sync commit
+
+When checking whether the `GD` singleton needs to be synchronized with GDScript global functions, compare Godot's `@GlobalScope` changes against this baseline:
+
+- Godot `4.7.1-stable`: `a13da4feb8d8aefc283c3763d33a2f170a18d541`
 
 ## CI/CD
 

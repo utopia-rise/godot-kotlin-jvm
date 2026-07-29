@@ -21,9 +21,11 @@ import godot.common.interop.nullptr
 import godot.common.util.DB2NEPER
 import godot.common.util.NEPER2DB
 import godot.common.util.TAU
+import godot.common.util.bezierDerivative as bezierDerivativeImpl
 import godot.common.util.fposmod
 import godot.common.util.isEqualApprox
 import godot.common.util.isZeroApprox
+import godot.common.util.snapped as snap
 import godot.common.util.toRealT
 import godot.core.Color
 import godot.core.Dictionary
@@ -401,6 +403,56 @@ object GD {
     fun atan2(y: Double, x: Double) = kotlin.math.atan2(y, x)
 
 
+    /** Returns the hyperbolic arc (also called inverse) sine of [x], returning a value in radians.
+     * Use it to get the angle from an angle's sine in hyperbolic space. */
+    @JvmStatic
+    fun asinh(x: Float) = kotlin.math.asinh(x)
+
+    /** Returns the hyperbolic arc (also called inverse) sine of [x], returning a value in radians.
+     * Use it to get the angle from an angle's sine in hyperbolic space. */
+    @JvmStatic
+    fun asinh(x: Double) = kotlin.math.asinh(x)
+
+    /** Returns the hyperbolic arc (also called inverse) cosine of [x], returning a value in radians.
+     * For values lower than 1, returns 0 to prevent a NaN result. */
+    @JvmStatic
+    fun acosh(x: Float) = if (x < 1f) 0f else kotlin.math.acosh(x)
+
+    /** Returns the hyperbolic arc (also called inverse) cosine of [x], returning a value in radians.
+     * For values lower than 1, returns 0 to prevent a NaN result. */
+    @JvmStatic
+    fun acosh(x: Double) = if (x < 1.0) 0.0 else kotlin.math.acosh(x)
+
+    /** Returns the hyperbolic arc (also called inverse) tangent of [x], returning a value in radians.
+     * Values less than or equal to -1 return negative infinity; values greater than or equal to 1 return positive infinity. */
+    @JvmStatic
+    fun atanh(x: Float) = when {
+        x <= -1f -> Float.NEGATIVE_INFINITY
+        x >= 1f -> Float.POSITIVE_INFINITY
+        else -> kotlin.math.atanh(x)
+    }
+
+    /** Returns the hyperbolic arc (also called inverse) tangent of [x], returning a value in radians.
+     * Values less than or equal to -1 return negative infinity; values greater than or equal to 1 return positive infinity. */
+    @JvmStatic
+    fun atanh(x: Double) = when {
+        x <= -1.0 -> Double.NEGATIVE_INFINITY
+        x >= 1.0 -> Double.POSITIVE_INFINITY
+        else -> kotlin.math.atanh(x)
+    }
+
+
+    /** Returns the derivative at [t] on a one-dimensional Bézier curve defined by [start], [control1], [control2], and [end]. */
+    @JvmStatic
+    fun bezierDerivative(start: Float, control1: Float, control2: Float, end: Float, t: Float) =
+        bezierDerivative(start.toDouble(), control1.toDouble(), control2.toDouble(), end.toDouble(), t.toDouble()).toFloat()
+
+    /** Returns the derivative at [t] on a one-dimensional Bézier curve defined by [start], [control1], [control2], and [end]. */
+    @JvmStatic
+    fun bezierDerivative(start: Double, control1: Double, control2: Double, end: Double, t: Double) =
+        bezierDerivativeImpl(start, control1, control2, end, t)
+
+
     /** Converts a 2D point expressed in the cartesian coordinate system (X and Y axis) to the polar coordinate system (a distance from the origin and an angle). */
     @JvmStatic
     fun cartesian2polar(x: Float, y: Float) = Vector2(sqrt(x * x + y * y), kotlin.math.atan2(y, x))
@@ -660,6 +712,20 @@ object GD {
     fun lerp(from: Vector3, to: Vector3, weight: Double) = from + (to - from) * weight
 
 
+    /** Returns the difference between the two angles (in radians), in the range of `[-PI, +PI]`.
+     * When [from] and [to] are opposite, returns `-PI` if [from] is smaller than [to], or `PI` otherwise. */
+    @JvmStatic
+    fun angleDifference(from: Float, to: Float) = angleDifference(from.toDouble(), to.toDouble()).toFloat()
+
+    /** Returns the difference between the two angles (in radians), in the range of `[-PI, +PI]`.
+     * When [from] and [to] are opposite, returns `-PI` if [from] is smaller than [to], or `PI` otherwise. */
+    @JvmStatic
+    fun angleDifference(from: Double, to: Double): Double {
+        val difference = fmod(to - from, TAU)
+        return fmod(2.0 * difference, TAU) - difference
+    }
+
+
     /** Linearly interpolates between two angles (in radians) by a normalized value.
      * Similar to lerp, but interpolates correctly when the angles wrap around TAU. */
     @JvmStatic
@@ -757,6 +823,24 @@ object GD {
      *  Use a negative delta value to move away. */
     @JvmStatic
     fun moveToward(from: Double, to: Double, delta: Double) = if (abs(to - from) <= delta) to else from + (to - from).sign * delta
+
+
+    /** Rotates [from] toward [to] by the [delta] amount. Will not go past [to].
+     * Similar to [moveToward], but interpolates correctly when the angles wrap around TAU.
+     * If [delta] is negative, this function will rotate away from [to], toward the opposite angle, and will not go past the opposite angle. */
+    @JvmStatic
+    fun rotateToward(from: Float, to: Float, delta: Float) =
+        rotateToward(from.toDouble(), to.toDouble(), delta.toDouble()).toFloat()
+
+    /** Rotates [from] toward [to] by the [delta] amount. Will not go past [to].
+     * Similar to [moveToward], but interpolates correctly when the angles wrap around TAU.
+     * If [delta] is negative, this function will rotate away from [to], toward the opposite angle, and will not go past the opposite angle. */
+    @JvmStatic
+    fun rotateToward(from: Double, to: Double, delta: Double): Double {
+        val difference = angleDifference(from, to)
+        val absDifference = abs(difference)
+        return from + delta.coerceIn(absDifference - kotlin.math.PI, absDifference) * if (difference >= 0.0) 1.0 else -1.0
+    }
 
 
     /** Returns the nearest larger power of 2 for integer value. */
@@ -881,6 +965,47 @@ object GD {
     /** Returns the hyperbolic sine of s in radians. */
     @JvmStatic
     fun sinh(s: Double) = kotlin.math.sinh(s)
+
+
+    /** Returns the multiple of [step] that is closest to [x]. */
+    @JvmStatic
+    fun snapped(x: Int, step: Int) = snap(x, step)
+
+    /** Returns the multiple of [step] that is closest to [x]. */
+    @JvmStatic
+    fun snapped(x: Long, step: Long) = if (step != 0L) {
+        (kotlin.math.floor(x.toDouble() / step.toDouble() + 0.5) * step).toLong()
+    } else {
+        x
+    }
+
+    /** Returns the multiple of [step] that is closest to [x]. */
+    @JvmStatic
+    fun snapped(x: Float, step: Float) = snap(x.toDouble(), step.toDouble()).toFloat()
+
+    /** Returns the multiple of [step] that is closest to [x]. */
+    @JvmStatic
+    fun snapped(x: Double, step: Double) = snap(x, step)
+
+    /** Returns the multiple of [step] that is closest to [x]. */
+    @JvmStatic
+    fun snappedf(x: Float, step: Float) = snapped(x, step)
+
+    /** Returns the multiple of [step] that is closest to [x]. */
+    @JvmStatic
+    fun snappedf(x: Double, step: Double) = snapped(x, step)
+
+    /** Returns the multiple of [step] that is closest to [x]. */
+    @JvmStatic
+    fun snappedi(x: Float, step: Int) = snap(x.toDouble(), step.toDouble()).toInt()
+
+    /** Returns the multiple of [step] that is closest to [x]. */
+    @JvmStatic
+    fun snappedi(x: Double, step: Long) = if (step != 0L) {
+        (kotlin.math.floor(x / step.toDouble() + 0.5) * step).toLong()
+    } else {
+        x.toLong()
+    }
 
 
     /** Returns a number smoothly interpolated between the from and to, based on the weight.
