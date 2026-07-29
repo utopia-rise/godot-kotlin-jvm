@@ -78,7 +78,7 @@ when the function has additional behavior. For example, `@Rpc` selects the
 function through its registration meta-annotation and configures its
 networking behavior at the same time.
 
-See the [registration reference](advanced/registration-logic.md#functions-and-godot-overrides)
+See the [registration guide](advanced/registration-logic.md#functions-and-godot-overrides)
 for how function selection changes between modes.
 
 

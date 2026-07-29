@@ -1,107 +1,31 @@
-# Registration reference
+# Registering scripts and members
 
-Registration defines the part of your JVM code that Godot can see. During the
-build, the registration processor selects compatible classes and members,
-validates them, and generates the glue code used by Godot.
+Before Godot can use a JVM class as a script, the class and the members you
+want to expose must be registered. In most projects, this only means adding a
+few annotations and building the project.
 
-The registration mode changes **how declarations are selected**. It does not
-change which types and declaration shapes Godot supports.
+## The usual workflow
 
-## The mental model
+The default registration mode is **Inferred**. It is the best starting point
+for a new project.
 
-Think of registration in three steps:
+1. Mark a Godot subclass with `@Script`.
+2. Use `@Export` for values you want to edit in the Inspector.
+3. Use `@Register` for ordinary functions that Godot, another script, or the
+   editor needs to call.
+4. Build the project after adding or changing a script, an Inspector property,
+   a signal, or a function that Godot calls.
 
-1. **Candidate:** could this declaration be represented by Godot?
-2. **Selection:** does the current registration mode select it?
-3. **Configuration:** do annotations change how the selected declaration is
-   exposed?
-
-For example, a public `Int` property is a valid candidate. `@Visible`,
-`@Export`, or automatic selection can make it registered, depending on the
-mode. `@IntRange` additionally configures its inspector widget.
-
-The same annotation can carry both selection and configuration meaning.
-`@Rpc`, for example, configures networking and is itself annotated with
-`@Register`, so inferred registration also selects the function.
-
-## Choosing a registration mode
-
-Configure the build in `build.gradle.kts`:
-
-```kotlin
-import godot.annotation.processor.classgraph.AnnotationProcessingMode
-
-godot {
-    annotationProcessingMode.set(AnnotationProcessingMode.Inferred)
-}
-```
-
-The default is `Inferred`. Replace it with `Explicit` or `Automatic` when
-needed.
-
-If you use the IntelliJ plugin, choose the same mode under
-**Settings | Godot Kotlin/JVM | Annotation processing mode**. The Gradle
-setting controls the build. The IDE setting controls inspections and
-registration highlighting, so the two should match.
-
-| Mode | Selection rule | Best fit |
-|---|---|---|
-| `Explicit` | Only direct registration annotations count | A fully annotated Godot-facing boundary |
-| `Inferred` | Direct and implied annotations count; signals and Godot overrides are recognized | Intentional registration without repetitive annotations |
-| `Automatic` | Every compatible declaration in a Godot script candidate is selected | Convention-based projects with minimal annotations |
-
-## What the registration annotations mean
-
-The main selection annotations are:
-
-| Declaration | Direct annotation |
-|---|---|
-| Class | `@Script` |
-| Property | `@Visible` |
-| Signal | `@Emit` |
-| Function | `@Register` |
-
-Other annotations build on them:
-
-- `@Export` is annotated with `@Visible`.
-- Property hints such as `@IntRange` are annotated with `@Export`.
-- `@Rpc` and `@Notification` are annotated with `@Register`.
-- Project-defined annotations can carry the same meta-annotations.
-
-Explicit mode only looks at annotations written directly on the declaration.
-Inferred mode follows this annotation chain recursively. Automatic mode
-selects compatible declarations by shape, while annotations still configure
-the result.
-
-## Explicit mode
-
-Explicit mode requires every selection annotation to be written directly:
-
-- `@Script` selects the class.
-- `@Visible` selects the property.
-- `@Export` exports the selected property to the inspector.
-- `@Emit` selects the signal.
-- `@Register` selects ordinary functions, lifecycle overrides, and RPC
-  functions.
-- `@IntRange` and `@Rpc` configure their declarations but do not select them
-  through their meta-annotations.
-
-These examples expose a script, an exported property, a signal, an ordinary
-function, a lifecycle callback, and an RPC function.
+For example:
 
 /// tab | Kotlin
 
 ```kotlin
-package com.yourcompany.game
+package com.example.game
 
-import godot.annotation.Emit
 import godot.annotation.Export
-import godot.annotation.IntRange
 import godot.annotation.Register
-import godot.annotation.Rpc
-import godot.annotation.RpcMode
 import godot.annotation.Script
-import godot.annotation.Visible
 import godot.api.Node
 import godot.core.signal1
 import godot.global.GD
@@ -109,27 +33,18 @@ import godot.global.GD
 @Script
 class Player : Node() {
     @Export
-    @Visible
-    @IntRange(min = 0, max = 100)
     var health = 100
 
-    @Emit("amount")
-    val damaged by signal1<Int>()
+    val healthChanged by signal1<Int>()
 
     @Register
     fun heal(amount: Int) {
         health = (health + amount).coerceAtMost(100)
+        healthChanged.emit(health)
     }
 
-    @Register
     override fun _ready() {
         GD.print("Player is ready")
-    }
-
-    @Rpc(rpcMode = RpcMode.ANY)
-    @Register
-    fun synchronizeHealth(value: Int) {
-        health = value
     }
 }
 ```
@@ -139,16 +54,11 @@ class Player : Node() {
 /// tab | Java
 
 ```java
-package com.yourcompany.game;
+package com.example.game;
 
-import godot.annotation.Emit;
 import godot.annotation.Export;
-import godot.annotation.IntRange;
 import godot.annotation.Register;
-import godot.annotation.Rpc;
-import godot.annotation.RpcMode;
 import godot.annotation.Script;
-import godot.annotation.Visible;
 import godot.api.Node;
 import godot.core.Signal1;
 import godot.global.GD;
@@ -156,29 +66,20 @@ import godot.global.GD;
 @Script
 public class Player extends Node {
     @Export
-    @Visible
-    @IntRange(min = 0, max = 100)
     public int health = 100;
 
-    @Emit
-    public final Signal1<Integer> damaged =
-        Signal1.create(this, "damaged");
+    public final Signal1<Integer> healthChanged =
+        Signal1.create(this, "health_changed");
 
     @Register
     public void heal(int amount) {
         health = Math.min(health + amount, 100);
+        healthChanged.emit(health);
     }
 
-    @Register
     @Override
     public void _ready() {
         GD.print("Player is ready");
-    }
-
-    @Rpc(rpcMode = RpcMode.ANY)
-    @Register
-    public void synchronizeHealth(int value) {
-        health = value;
     }
 }
 ```
@@ -188,11 +89,9 @@ public class Player extends Node {
 /// tab | Scala
 
 ```scala
-package com.yourcompany.game
+package com.example.game
 
-import godot.annotation.{
-  Emit, Export, IntRange, Register, Rpc, RpcMode, Script, Visible
-}
+import godot.annotation.{Export, Register, Script}
 import godot.api.Node
 import godot.core.Signal1
 import godot.global.GD
@@ -200,83 +99,133 @@ import godot.global.GD
 @Script
 class Player extends Node {
   @Export
-  @Visible
-  @IntRange(min = 0, max = 100)
   var health: Int = 100
 
-  @Emit
-  val damaged: Signal1[Integer] = Signal1.create(this, "damaged")
+  val healthChanged: Signal1[Integer] =
+    Signal1.create(this, "health_changed")
 
   @Register
   def heal(amount: Int): Unit = {
     health = Math.min(health + amount, 100)
+    healthChanged.emit(health)
   }
 
-  @Register
   override def _ready(): Unit = {
     GD.print("Player is ready")
-  }
-
-  @Rpc(rpcMode = RpcMode.ANY)
-  @Register
-  def synchronizeHealth(value: Int): Unit = {
-    health = value
   }
 }
 ```
 
 ///
 
-## Inferred mode
+After a successful Gradle build, attach the source file to a node in the
+editor in the same way that you would attach another script. The `health`
+property is available in the Inspector, `heal` is available to Godot, and
+`healthChanged` is available as a signal.
 
-Inferred mode keeps registration intentional while removing annotations whose
-meaning is already implied:
+You do not need to add `@Register` to Godot callbacks such as `_ready` in the
+default mode. Godot recognizes compatible overrides automatically.
 
-- `@Script` selects the class.
-- `@IntRange` implies `@Export`, which implies `@Visible`.
-- signal-shaped properties are recognized without `@Emit`.
-- ordinary project functions still need an effective `@Register`.
-- compatible Godot lifecycle overrides are recognized without `@Register`.
-- `@Rpc` implies `@Register`.
+## What each annotation is for
 
-Custom meta-annotations work the same way. An annotation carrying
-`@Register`, for example, selects a function without requiring a second
-annotation on that function.
+| What you want to do | Use |
+|---|---|
+| Make a class available as a Godot script | `@Script` |
+| Give a script class a custom Godot name | `@Script("PlayerCharacter")` |
+| Show and edit a property in the Inspector | `@Export` |
+| Choose an Inspector control, such as a range or file picker | A property hint such as `@IntRange` |
+| Let Godot call an ordinary function | `@Register` |
+| Configure a remote procedure call | `@Rpc` |
+| Give signal arguments readable names | `@Emit("amount")` |
+
+Property hints also export a property in the default mode. For example, this
+creates an Inspector slider without requiring a separate `@Export`:
 
 /// tab | Kotlin
 
 ```kotlin
-package com.yourcompany.game
-
 import godot.annotation.IntRange
+
+@IntRange(min = 0, max = 100)
+var health = 100
+```
+
+///
+
+/// tab | Java
+
+```java
+import godot.annotation.IntRange;
+
+@IntRange(min = 0, max = 100)
+public int health = 100;
+```
+
+///
+
+/// tab | Scala
+
+```scala
+import godot.annotation.IntRange
+
+@IntRange(min = 0, max = 100)
+var health: Int = 100
+```
+
+///
+
+Signals declared with the supported signal helpers are recognized
+automatically. Add `@Emit` only when you want to name their arguments:
+
+/// tab | Kotlin
+
+```kotlin
+import godot.annotation.Emit
+import godot.core.signal1
+
+@Emit("amount")
+val damaged by signal1<Int>()
+```
+
+///
+
+/// tab | Java
+
+```java
+import godot.annotation.Emit;
+import godot.core.Signal1;
+
+@Emit(parameters = {"amount"})
+public final Signal1<Integer> damaged = Signal1.create(this, "damaged");
+```
+
+///
+
+/// tab | Scala
+
+```scala
+import godot.annotation.Emit
+import godot.core.Signal1
+
+@Emit(parameters = Array("amount"))
+val damaged: Signal1[Integer] = Signal1.create(this, "damaged")
+```
+
+///
+
+## Functions and Godot overrides
+
+Use `@Register` on an ordinary function when it is part of your script's
+Godot-facing API:
+
+/// tab | Kotlin
+
+```kotlin
 import godot.annotation.Register
-import godot.annotation.Rpc
-import godot.annotation.RpcMode
-import godot.annotation.Script
-import godot.api.Node
-import godot.core.signal1
-import godot.global.GD
 
-@Script
-class Player : Node() {
-    @IntRange(min = 0, max = 100)
-    var health = 100
-
-    val damaged by signal1<Int>()
-
-    @Register
-    fun heal(amount: Int) {
-        health = (health + amount).coerceAtMost(100)
-    }
-
-    override fun _ready() {
-        GD.print("Player is ready")
-    }
-
-    @Rpc(rpcMode = RpcMode.ANY)
-    fun synchronizeHealth(value: Int) {
-        health = value
-    }
+@Register
+fun reset() {
+    health = 100
 }
 ```
 
@@ -285,39 +234,11 @@ class Player : Node() {
 /// tab | Java
 
 ```java
-package com.yourcompany.game;
-
-import godot.annotation.IntRange;
 import godot.annotation.Register;
-import godot.annotation.Rpc;
-import godot.annotation.RpcMode;
-import godot.annotation.Script;
-import godot.api.Node;
-import godot.core.Signal1;
-import godot.global.GD;
 
-@Script
-public class Player extends Node {
-    @IntRange(min = 0, max = 100)
-    public int health = 100;
-
-    public final Signal1<Integer> damaged =
-        Signal1.create(this, "damaged");
-
-    @Register
-    public void heal(int amount) {
-        health = Math.min(health + amount, 100);
-    }
-
-    @Override
-    public void _ready() {
-        GD.print("Player is ready");
-    }
-
-    @Rpc(rpcMode = RpcMode.ANY)
-    public void synchronizeHealth(int value) {
-        health = value;
-    }
+@Register
+public void reset() {
+    health = 100;
 }
 ```
 
@@ -326,84 +247,25 @@ public class Player extends Node {
 /// tab | Scala
 
 ```scala
-package com.yourcompany.game
+import godot.annotation.Register
 
-import godot.annotation.{IntRange, Register, Rpc, RpcMode, Script}
-import godot.api.Node
-import godot.core.Signal1
-import godot.global.GD
-
-@Script
-class Player extends Node {
-  @IntRange(min = 0, max = 100)
-  var health: Int = 100
-
-  val damaged: Signal1[Integer] = Signal1.create(this, "damaged")
-
-  @Register
-  def heal(amount: Int): Unit = {
-    health = Math.min(health + amount, 100)
-  }
-
-  override def _ready(): Unit = {
-    GD.print("Player is ready")
-  }
-
-  @Rpc(rpcMode = RpcMode.ANY)
-  def synchronizeHealth(value: Int): Unit = {
-    health = value
-  }
+@Register
+def reset(): Unit = {
+  health = 100
 }
 ```
 
 ///
 
-## Automatic mode
-
-Automatic mode selects compatible declarations inside Godot script
-candidates:
-
-- a compatible concrete Godot subclass needs no `@Script`.
-- compatible public properties are registered and exported.
-- signal-shaped properties are registered.
-- compatible public functions are registered.
-- Godot lifecycle overrides are registered.
-
-Annotations still configure behavior. Here `@IntRange` changes the inspector
-widget, while `@Rpc` configures networking.
+Godot callbacks are different. When a function overrides a Godot method, such
+as `_ready`, `_process`, or `_physicsProcess`, simply override it. Do not call
+these methods yourself; Godot calls them at the appropriate time.
 
 /// tab | Kotlin
 
 ```kotlin
-package com.yourcompany.game
-
-import godot.annotation.IntRange
-import godot.annotation.Rpc
-import godot.annotation.RpcMode
-import godot.api.Node
-import godot.core.signal1
-import godot.global.GD
-
-class Player : Node() {
-    var displayName = "Player"
-
-    @IntRange(min = 0, max = 100)
-    var health = 100
-
-    val damaged by signal1<Int>()
-
-    fun heal(amount: Int) {
-        health = (health + amount).coerceAtMost(100)
-    }
-
-    override fun _ready() {
-        GD.print("Player is ready")
-    }
-
-    @Rpc(rpcMode = RpcMode.ANY)
-    fun synchronizeHealth(value: Int) {
-        health = value
-    }
+override fun _process(delta: Double) {
+    // Update this node each frame.
 }
 ```
 
@@ -412,37 +274,9 @@ class Player : Node() {
 /// tab | Java
 
 ```java
-package com.yourcompany.game;
-
-import godot.annotation.IntRange;
-import godot.annotation.Rpc;
-import godot.annotation.RpcMode;
-import godot.api.Node;
-import godot.core.Signal1;
-import godot.global.GD;
-
-public class Player extends Node {
-    public String displayName = "Player";
-
-    @IntRange(min = 0, max = 100)
-    public int health = 100;
-
-    public final Signal1<Integer> damaged =
-        Signal1.create(this, "damaged");
-
-    public void heal(int amount) {
-        health = Math.min(health + amount, 100);
-    }
-
-    @Override
-    public void _ready() {
-        GD.print("Player is ready");
-    }
-
-    @Rpc(rpcMode = RpcMode.ANY)
-    public void synchronizeHealth(int value) {
-        health = value;
-    }
+@Override
+public void _process(double delta) {
+    // Update this node each frame.
 }
 ```
 
@@ -451,144 +285,179 @@ public class Player extends Node {
 /// tab | Scala
 
 ```scala
-package com.yourcompany.game
-
-import godot.annotation.{IntRange, Rpc, RpcMode}
-import godot.api.Node
-import godot.core.Signal1
-import godot.global.GD
-
-class Player extends Node {
-  var displayName: String = "Player"
-
-  @IntRange(min = 0, max = 100)
-  var health: Int = 100
-
-  val damaged: Signal1[Integer] = Signal1.create(this, "damaged")
-
-  def heal(amount: Int): Unit = {
-    health = Math.min(health + amount, 100)
-  }
-
-  override def _ready(): Unit = {
-    GD.print("Player is ready")
-  }
-
-  @Rpc(rpcMode = RpcMode.ANY)
-  def synchronizeHealth(value: Int): Unit = {
-    health = value
-  }
+override def _process(delta: Double): Unit = {
+  // Update this node each frame.
 }
 ```
 
 ///
 
-## Rules shared by every mode
+Use `@Rpc` when a function is intended for multiplayer. It provides the RPC
+settings and makes the function available in the default mode:
 
-The mode changes selection, not validity. A selected declaration must still
-follow the same registration rules:
-
-- A script must inherit a Godot type.
-- A concrete registered class needs exactly one public parameterless
-  constructor.
-- Registered class names must be unique.
-- Generic classes and generic registered functions are not supported.
-- Registered property and function types must be convertible to Godot
-  variants.
-- Registered functions can have at most 16 parameters.
-- Signal declarations must use a supported signal type.
-- Property hints must match the property type.
-
-Abstract Godot subclasses can form part of a script hierarchy without a
-parameterless constructor because Godot does not instantiate them directly.
-
-## Properties
-
-Registration and inspector export are related but distinct:
-
-- Registration exposes a property to Godot.
-- Export makes it editable in the inspector.
-- A property hint configures how the inspector edits it.
-
-In Explicit mode, write each required role directly:
+/// tab | Kotlin
 
 ```kotlin
+import godot.annotation.Rpc
+
+@Rpc
+fun setHealth(value: Int) {
+    health = value
+}
+```
+
+///
+
+/// tab | Java
+
+```java
+import godot.annotation.Rpc;
+
+@Rpc
+public void setHealth(int value) {
+    health = value;
+}
+```
+
+///
+
+/// tab | Scala
+
+```scala
+import godot.annotation.Rpc
+
+@Rpc
+def setHealth(value: Int): Unit = {
+  health = value
+}
+```
+
+///
+
+See [Functions](../functions.md), [Properties](../properties.md), and
+[Signals and callables](../signals_and_callables.md) for the available types
+and options.
+
+## Changing the registration mode
+
+Most projects should keep the default **Inferred** mode. Choose another mode
+only when its behaviour matches how your project is written.
+
+| Mode | When to use it | What to remember |
+|---|---|---|
+| `Inferred` | The normal choice | Add `@Script` and `@Register` where needed; exports, signals, callbacks, and RPCs are handled naturally. |
+| `Explicit` | You want every Godot-facing declaration marked directly | Add every required registration annotation yourself. |
+| `Automatic` | You deliberately want public compatible members exposed by default | Public properties and functions can become part of the Godot API without annotations. |
+
+Set a mode in `build.gradle.kts` only if you need a non-default mode. This
+configuration is the same for Kotlin, Java, and Scala projects:
+
+/// tab | Kotlin
+
+```kotlin
+import godot.annotation.processor.classgraph.AnnotationProcessingMode
+
+godot {
+    annotationProcessingMode.set(AnnotationProcessingMode.Explicit)
+}
+```
+
+///
+
+/// tab | Java
+
+```kotlin
+import godot.annotation.processor.classgraph.AnnotationProcessingMode
+
+godot {
+    annotationProcessingMode.set(AnnotationProcessingMode.Explicit)
+}
+```
+
+///
+
+/// tab | Scala
+
+```kotlin
+import godot.annotation.processor.classgraph.AnnotationProcessingMode
+
+godot {
+    annotationProcessingMode.set(AnnotationProcessingMode.Explicit)
+}
+```
+
+///
+
+In **Explicit** mode, annotations do not imply one another. An Inspector
+property therefore needs both `@Visible` and `@Export`; a range hint still
+only controls the Inspector widget:
+
+/// tab | Kotlin
+
+```kotlin
+import godot.annotation.Export
+import godot.annotation.IntRange
+import godot.annotation.Visible
+
 @Visible
 @Export
 @IntRange(min = 0, max = 100)
 var health = 100
 ```
 
-In Inferred mode, the hint supplies the whole annotation chain:
+///
 
-```kotlin
+/// tab | Java
+
+```java
+import godot.annotation.Export;
+import godot.annotation.IntRange;
+import godot.annotation.Visible;
+
+@Visible
+@Export
 @IntRange(min = 0, max = 100)
-var health = 100
+public int health = 100;
 ```
 
-In Automatic mode, a compatible property is registered and exported even
-without an annotation. A hint is only needed when you want its editor
-behavior.
+///
 
-## Signals
+/// tab | Scala
 
-Signal-shaped declarations are selected directly with `@Emit` in Explicit
-mode and recognized by their type in Inferred and Automatic modes.
+```scala
+import godot.annotation.{Export, IntRange, Visible}
 
-`@Emit` remains useful in every mode when you want to provide signal parameter
-names:
-
-```kotlin
-@Emit("amount")
-val damaged by signal1<Int>()
+@Visible
+@Export
+@IntRange(min = 0, max = 100)
+var health: Int = 100
 ```
 
-## Functions and Godot overrides
+///
 
-An ordinary project function needs `@Register` in Explicit and Inferred
-modes. Automatic mode selects compatible public functions.
+In **Automatic** mode, take care with public members. Prefer `Inferred` if you
+want to decide member by member what becomes visible to Godot.
 
-Godot lifecycle and virtual overrides are different: Inferred and Automatic
-modes recognize them from the inherited Godot method. Explicit mode requires
-`@Register` directly on the override.
+If you use the IntelliJ plugin, set the same mode in **Settings | Godot
+Kotlin/JVM | Annotation processing mode**. Gradle controls the actual build;
+the IDE setting keeps inspections and highlighting accurate.
 
-`@Rpc` and `@Notification` carry function intent. Their meta-annotation
-selects the function in Inferred mode. Automatic mode still requires
-`@Notification` to identify a notification handler; an arbitrary compatible
-method is not treated as one merely because it was selected automatically.
+## Before building
 
-## Inheritance and overrides
+When registration fails, check the following first:
 
-Registered parent members remain available in registered child classes. A
-child does not need to repeat an inherited declaration just to preserve it.
+- The script extends a Godot class such as `Node` or `Resource`.
+- A public constructor with no parameters is optional. When present, Godot can
+  instantiate the script; constructors with parameters are not exposed to
+  Godot.
+- Every registered script has a unique Godot name. Use
+  `@Script("AUniqueName")` if two classes share the same simple name.
+- Exposed properties and function parameters use Godot-supported types.
+- Registered classes and functions are not generic.
 
-```kotlin
-@Script
-open class Actor : Node() {
-    @Register
-    open fun takeDamage(amount: Int) {
-    }
-}
+Build again after adding, removing, renaming, or changing an exported property,
+signal, function that Godot calls, or script class. Changing only code inside
+an existing method does not require any additional registration steps.
 
-@Script
-class Player : Actor() {
-    override fun takeDamage(amount: Int) {
-        GD.print("Player took $amount damage")
-    }
-}
-```
-
-The closest declaration in the hierarchy wins:
-
-- a child override wins over its parent
-- a class member wins over an interface member
-- an inherited declaration is reused only when nothing closer replaces it
-
-## Related documentation
-
-- [Classes](../classes.md)
-- [Properties](../properties.md)
-- [Signals and callables](../signals_and_callables.md)
-- [Functions](../functions.md)
-- [Gradle plugin configuration](gradle-plugin-configuration.md)
-- [Registration process knowledge base](../../contribution/knowledge-base/registration-process.md)
+For project-wide settings such as registration names and `.gdj` files from
+dependencies, see [Gradle plugin configuration](gradle-plugin-configuration.md).

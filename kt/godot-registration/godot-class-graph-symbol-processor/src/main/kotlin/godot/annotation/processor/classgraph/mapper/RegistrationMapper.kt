@@ -163,7 +163,7 @@ class RegistrationMapper(
                 scriptClass.parent = classInfo.superclass?.let(typeMapper::mapClass) as? GodotClass
                 scriptClass.interfaces = classInfo.directSuperInterfaces().map(::getOrCreateInterface)
                 scriptClass.constructors = classInfo.declaredConstructorInfo.orEmpty()
-                    .filter { constructor -> constructor.isPublic }
+                    .filter { constructor -> constructor.isPublic && constructor.parameterInfo.isEmpty() }
                     .map { constructor ->
                         RegisteredConstructor(
                             parameterTypes = constructor.parameterInfo.map(typeMapper::mapParameter),

@@ -93,14 +93,6 @@ object GodotScriptAnalyzer {
                 )
             }
 
-            if (isRegistered && !ktClass.isAbstract() && !ktClass.hasParameterlessConstructor()) {
-                add(
-                    GodotProblem(
-                        GodotPluginBundle.message("problem.class.constructor.parameterlessConstructorMissing"),
-                        ktClass.nameIdentifier ?: ktClass.navigationElement
-                    )
-                )
-            }
         }
     }
 
@@ -163,14 +155,6 @@ object GodotScriptAnalyzer {
                     add(
                         GodotProblem(
                             GodotPluginBundle.message("problem.class.inheritance.notInheritingGodotObject"),
-                            psiClass.nameIdentifier ?: psiClass.navigationElement
-                        )
-                    )
-                }
-                if (!psiClass.isAbstract && !psiClass.hasParameterlessConstructor()) {
-                    add(
-                        GodotProblem(
-                            GodotPluginBundle.message("problem.class.constructor.parameterlessConstructorMissing"),
                             psiClass.nameIdentifier ?: psiClass.navigationElement
                         )
                     )
@@ -245,15 +229,6 @@ object GodotScriptAnalyzer {
                 arrayOf(ClassAlreadyRegisteredQuickFix(registeredName))
             )
         }
-    }
-
-    private fun KtClass.hasParameterlessConstructor(): Boolean {
-        val constructors = listOfNotNull(primaryConstructor) + secondaryConstructors
-        return constructors.isEmpty() || constructors.any { constructor -> constructor.valueParameters.isEmpty() }
-    }
-
-    private fun PsiClass.hasParameterlessConstructor(): Boolean {
-        return constructors.isEmpty() || constructors.any { constructor -> !constructor.hasParameters() }
     }
 
     private fun PsiElement.registeredFqNamesInContainingFile(registeredName: String): Set<String> {

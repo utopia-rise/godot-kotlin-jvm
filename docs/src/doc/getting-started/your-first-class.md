@@ -98,7 +98,7 @@ automatically.
 The [signals and callables](../user-guide/signals_and_callables.md) guide is
 a good next step once this class works. For complete control over which
 declarations Godot sees, read the
-[registration reference](../user-guide/advanced/registration-logic.md).
+[registration guide](../user-guide/advanced/registration-logic.md).
 
 ## Final project structure
 
