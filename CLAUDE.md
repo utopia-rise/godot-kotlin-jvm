@@ -187,6 +187,12 @@ Configured in Godot project settings:
 - **Template generation** — Editing `.template` files without running `generate_templates.py` and rebuilding C++ will have no effect.
 - **Adding a new script language** — Requires: `JvmScript` C++ subclass + `ScriptLanguage` subclass + registration in `register_types.cpp` + entry in `JvmResourceFormatLoader`/`Saver`.
 
+### GDScript global scope sync commit
+
+When checking whether the `GD` singleton needs to be synchronized with GDScript global functions, compare Godot's `@GlobalScope` changes against this baseline:
+
+- Godot `4.7.1-stable`: `a13da4feb8d8aefc283c3763d33a2f170a18d541`
+
 ## CI/CD
 
 Workflows in `.github/workflows/`. The canonical Godot version and JDK version (17) are defined in `trigger_on_push_master.yml`. Build matrix: Android, iOS, Linux, macOS, Windows × editor/template_release targets.

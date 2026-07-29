@@ -30,7 +30,7 @@ There are two methods for distributing JVM bytecode produced by the Kotlin compi
     So the developer does not have to worry about their user installing a JRE. The JVM is already embedded in your game executable.
 2.  Dynamic Library using GraalVM Native Image: please read more about this in our [documentation page](https://godot-kotl.in/en/stable/user-guide/advanced/graal-vm-native-image/).
 
-Just write your game scripts like you would for [GDScript](https://docs.godotengine.org/en/4.2/getting_started/scripting/gdscript/gdscript_basics.html)
+Just write your game scripts like you would for [GDScript](https://docs.godotengine.org/en/4.7/getting_started/scripting/gdscript/gdscript_basics.html)
 or for [C#](https://docs.godotengine.org/en/3.1/getting_started/scripting/c_sharp/) but with all the syntactic sugar of Kotlin.
 
 ## Important Notes
