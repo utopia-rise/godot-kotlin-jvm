@@ -133,7 +133,7 @@ cd kt/
 ### Data Flow (User Code → Runtime)
 
 ```
-User writes @GodotScript Kotlin code
+User writes @Script Kotlin code
   → Kotlin compiler + ClassGraph bytecode processor
   → registrar-generator produces registration glue
   → godot-gradle-plugin packages godot-bootstrap.jar + main.jar

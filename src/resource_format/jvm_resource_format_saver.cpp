@@ -5,8 +5,6 @@
 #include "script/jvm_script_manager.h"
 
 #include <core/io/file_access.h>
-#include <core/object/callable_mp.h>
-#include <core/object/message_queue.h>
 
 void JvmResourceFormatSaver::get_recognized_extensions(const Ref<Resource>& p_resource, List<String>* p_extensions) const {
     if (recognize(p_resource)) {
@@ -45,9 +43,7 @@ Error JvmResourceFormatSaver::save(const Ref<Resource>& p_resource, const String
 
 #ifdef TOOLS_ENABLED
     if (extension == GODOT_KOTLIN_SCRIPT_EXTENSION || extension == GODOT_JAVA_SCRIPT_EXTENSION || extension == GODOT_SCALA_SCRIPT_EXTENSION) {
-        MessageQueue::get_singleton()->push_callable(
-          callable_mp(jvm_script.ptr(), &JvmScript::invalidate_source)
-        );
+        jvm_script->set_last_source_modified_time(FileAccess::get_modified_time(p_path));
     }
 #endif
 

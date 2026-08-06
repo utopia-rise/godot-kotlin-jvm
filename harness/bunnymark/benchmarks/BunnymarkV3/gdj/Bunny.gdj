@@ -3,7 +3,6 @@
 
 registeredName = Bunny
 fqName = godot.benchmark.bunnymark.v3.Bunny
-relativeSourcePath = src/main/kotlin/godot/benchmark/bunnymark/v3/Bunny.kt
 baseType = Sprite2D
 supertypes = [
     godot.Sprite2D,

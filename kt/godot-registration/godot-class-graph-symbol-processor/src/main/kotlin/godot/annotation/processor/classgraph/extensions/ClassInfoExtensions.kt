@@ -10,7 +10,6 @@ import godot.registration.model.types.TYPE_JAVA_OBJECT
 import godot.registration.model.types.Type
 import io.github.classgraph.ClassInfo
 import io.github.classgraph.MethodInfo
-import java.io.File
 
 fun ClassInfo.isGodotCompatibleClass(): Boolean =
     hasAnnotation(GodotBaseType::class.java.name) ||
@@ -50,32 +49,6 @@ fun ClassInfo.sourceProjectName(settings: ProcessorSettings): String {
     return classpathElementName
         ?.replace(" ", "_")
         ?: settings.projectName
-}
-
-fun ClassInfo.godotProjectRelativeSourcePath(settings: ProcessorSettings): String {
-    if (sourceProjectName(settings) != settings.projectName) {
-        return ""
-    }
-
-    val sourceFile = sourceFile ?: return ""
-    val sourceFilePath = File(sourceFile)
-    val sourcePath = if (sourceFilePath.isAbsolute) {
-        sourceFilePath.canonicalFile
-    } else {
-        val packagePath = packageName.replace('.', File.separatorChar)
-        settings.userSourceRoots
-            .asSequence()
-            .map { it.resolve(packagePath).resolve(sourceFile) }
-            .firstOrNull(File::isFile)
-            ?.canonicalFile
-            ?: return ""
-    }
-
-    return try {
-        "res://${sourcePath.relativeTo(settings.godotProjectDirectory).invariantSeparatorsPath}"
-    } catch (_: IllegalArgumentException) {
-        ""
-    }
 }
 
 fun MethodInfo.overridesGodotBaseMethod(owner: ClassInfo): Boolean =

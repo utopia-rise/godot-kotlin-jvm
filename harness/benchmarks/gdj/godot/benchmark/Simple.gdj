@@ -3,7 +3,6 @@
 
 registeredName = Simple
 fqName = godot.benchmark.Simple
-relativeSourcePath = src/main/kotlin/godot/benchmark/Simple.kt
 baseType = Object
 supertypes = [
     godot.Object,

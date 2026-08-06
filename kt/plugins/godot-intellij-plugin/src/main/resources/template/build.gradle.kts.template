@@ -1,6 +1,4 @@
-import godot.registrar.generator.settings.RegisteredNameMode
-import godot.registrar.generator.settings.RegistrationFileLayoutMode
-//import godot.registrar.generator.settings.RegistrationFileIndentation
+import godot.annotation.processor.classgraph.AnnotationProcessingMode
 import godot.gradle.GodotLanguage
 
 plugins {
@@ -14,18 +12,11 @@ repositories {
 godot {
     // --------- Setup ---------
     languages.set(setOf(GODOT_LANGUAGES))
+    annotationProcessingMode.set(AnnotationProcessingMode.Inferred)
     godotProjectDirectory.set(file(".")) // only change this if the Godot project root is not this Gradle project directory
-    registrationFilesDirectory.set(file("gdj")) // defaults to <godotProjectDirectory>/gdj
-
-    registrationFilesLayoutMode.set(RegistrationFileLayoutMode.FLAT)
-    registrationNameMode.set(RegisteredNameMode.SIMPLE_NAME)
-    //registrationFilesIndentation.set(RegistrationFileIndentation.SPACE)
 
     // Enable to mark this Gradle project as a reusable library rather than a runnable Godot project.
     //isLibrary.set(true)
-
-    // Disable .gdj registration file handling while keeping class scanning and registrar generation enabled.
-    //disableGdj.set(true)
 
     // Enable coroutines integration with Godot signal/lifecycle callbacks.
     //isGodotCoroutinesEnabled.set(true)

@@ -95,6 +95,7 @@ nav:
     - Knowledge base:
         - Artifact differentiation: contribution/knowledge-base/artifact-differentiation.md
         - Registration process: contribution/knowledge-base/registration-process.md
+        - JAR and script reloading: contribution/knowledge-base/jar-script-reloading.md
         - Registrar generation: contribution/knowledge-base/registrar-generation.md
         - Annotation placement across languages: contribution/knowledge-base/annotation-placement-across-languages.md
         - Reconstructing shapes from bytecode: contribution/knowledge-base/reconstructing-shapes-from-bytecode.md

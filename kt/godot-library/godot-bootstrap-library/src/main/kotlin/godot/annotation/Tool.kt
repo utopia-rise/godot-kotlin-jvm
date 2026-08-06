@@ -1,9 +1,10 @@
 package godot.annotation
 
 /**
- * Mark a class as tool class.
+ * Marks a class as a tool class.
  *
- * The class needs to have the @[Script] annotation added as well
+ * In inferred registration mode, this also selects the class through its
+ * [Script] meta-annotation. Explicit mode requires a direct [Script] annotation.
  */
 @Script
 @Target(AnnotationTarget.CLASS, AnnotationTarget.ANNOTATION_CLASS)

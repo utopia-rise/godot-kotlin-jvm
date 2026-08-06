@@ -10,7 +10,7 @@ KtClass::KtClass(jni::Env& p_env, jni::JObject p_wrapped) :
     LOCAL_FRAME(5);
     registered_class_name = get_registered_name(p_env);
     fqdn = get_fqdn(p_env);
-    source_file_path = get_source_file_path(p_env);
+    source_file_name = get_source_file_name(p_env);
     base_godot_class = get_base_godot_class(p_env);
     is_abstract = wrapped.call_boolean_method(p_env, IS_ABSTRACT);
     fetch_handled_notifications(p_env);
@@ -63,8 +63,8 @@ String KtClass::get_fqdn(jni::Env& env) {
     return env.from_jstring(jni::JString((jstring) ret.obj));
 }
 
-String KtClass::get_source_file_path(jni::Env& env) {
-    jni::JObject ret = wrapped.call_object_method(env, GET_SOURCE_FILE_PATH);
+String KtClass::get_source_file_name(jni::Env& env) {
+    jni::JObject ret = wrapped.call_object_method(env, GET_SOURCE_FILE_NAME);
     return env.from_jstring(jni::JString((jstring) ret.obj));
 }
 

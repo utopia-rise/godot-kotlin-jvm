@@ -52,6 +52,7 @@ import godot.core.Vector4i
 import godot.core.variantArrayOf
 
 typealias KotlinExportAlias = String
+typealias KotlinVector2ExportAlias = Vector2
 
 @Script
 class KotlinExport : Node() {
@@ -75,6 +76,9 @@ class KotlinExport : Node() {
 	@Export
 	@Visible
 	var intValue = 1
+
+	@Export
+	val lazyIntValue: Int by lazy { 42 }
 
 	@Export
 	@Visible
@@ -161,6 +165,9 @@ class KotlinExport : Node() {
 	@Export
 	@Visible
 	var vector2 = Vector2(1, 2)
+
+	@Export
+	var vector2Alias: KotlinVector2ExportAlias = Vector2(3, 4)
 
 	@Export
 	@Visible

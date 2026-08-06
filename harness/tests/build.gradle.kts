@@ -1,5 +1,5 @@
 import godot.gradle.GodotLanguage
-import godot.registrar.generator.settings.RegistrationFileLayoutMode
+import godot.registrar.generator.RegistrationFileLayoutMode
 import org.jetbrains.kotlin.konan.target.HostManager
 
 plugins {

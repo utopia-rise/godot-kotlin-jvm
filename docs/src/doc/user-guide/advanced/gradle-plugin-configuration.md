@@ -15,8 +15,8 @@ The plugin also works well with Gradle performance features such as parallel exe
 ```kotlin
 import godot.annotation.processor.classgraph.AnnotationProcessingMode
 import godot.gradle.GodotLanguage
-import godot.registrar.generator.settings.RegisteredNameMode
-import godot.registrar.generator.settings.RegistrationFileLayoutMode
+import godot.registrar.generator.RegisteredNameMode
+import godot.registrar.generator.RegistrationFileLayoutMode
 
 godot {
     languages.set(setOf(GodotLanguage.KOTLIN))
@@ -251,7 +251,7 @@ Values:
 Example:
 
 ```kotlin
-import godot.registrar.generator.settings.RegistrationFileLayoutMode
+import godot.registrar.generator.RegistrationFileLayoutMode
 
 godot {
     registrationFilesLayoutMode.set(RegistrationFileLayoutMode.HIERARCHICAL)
@@ -274,7 +274,7 @@ Default:
 Example:
 
 ```kotlin
-import godot.registrar.generator.settings.RegistrationFileIndentation
+import godot.registrar.generator.RegistrationFileIndentation
 
 godot {
     registrationFilesIndentation.set(RegistrationFileIndentation.TAB)
@@ -294,7 +294,7 @@ Values:
 Example:
 
 ```kotlin
-import godot.registrar.generator.settings.RegisteredNameMode
+import godot.registrar.generator.RegisteredNameMode
 
 godot {
     registrationNameMode.set(RegisteredNameMode.FQ_NAME)

@@ -73,9 +73,8 @@ available to Godot after a successful build.
 
 The registration task receives:
 
-- the user source roots
 - the compiled user classpath
-- the Godot project directory
+- the compiled output roots that identify project-owned classes
 - the project name
 - the selected annotation-processing mode
 
@@ -102,6 +101,11 @@ Language identification uses the source-file extension stored in bytecode:
 An unknown language is skipped with a warning because the processor cannot
 safely guess how its bytecode maps back to source-level properties and
 signals.
+
+For a project class, the source file name without its extension must match the
+class's simple name. Godot combines that file name with the source package to
+associate the source resource with the compiled class by fully qualified name.
+The registrar does not reconstruct or store a source path.
 
 ## Stage 3: reconstructing a logical class
 
@@ -423,7 +427,7 @@ language-specific bytecode interpretation.
 For each registered class it generates a registrar that records:
 
 - the registered class name
-- source path
+- source file name for language identification, without a reconstructed path
 - registered supertypes
 - Godot base type
 - abstract/concrete state
@@ -450,6 +454,25 @@ the user project artifacts. At runtime:
 
 The registration mode is a build-time selection policy. Runtime code consumes
 the resulting registrar and does not re-evaluate the annotations.
+
+In the editor, scripts loaded from `.kt`, `.java`, `.scala`, or `.gdj` files are
+tracked as physical resources without keeping them alive. Each source resource
+caches its last parsed FQCN and file modification time. A JAR reload checks all
+live physical resources but rereads and reparses only sources whose modification
+time changed.
+
+The reload first removes the previous `KtClass` from every physical script and
+builds temporary FQCN and registered-name maps from their current contents. Each
+new JAR class then claims the matching physical script, reuses a script with the
+same registered name, or creates a virtual `jvm://` script. The persistent FQCN
+map therefore describes the current JAR assignment, while parsed source FQCNs
+remain local cache values. Scripts absent from the new JAR are retained by the
+registered-name map only while a node, placeholder, or another owner still
+references them.
+
+This allows an attached empty or invalid source file to become associated after
+valid source is written and the project is built, regardless of whether the
+source or JAR reload happens first.
 
 ## Inheritance behavior
 

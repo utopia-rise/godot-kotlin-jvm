@@ -1,20 +1,16 @@
 package godot
 
 import godot.annotation.Export
-import godot.annotation.GodotScript
-import godot.annotation.Register
-import godot.annotation.Visible
+import godot.annotation.Script
 import godot.global.GD
 import godot.api.Node
 
-@GodotScript
+@Script
 class HelloWorld : Node() {
 
     @Export
-    @Visible
     var helloString =  "Godot"
 
-    @Register
     override fun _ready() {
         GD.print("Hello $helloString !")
     }

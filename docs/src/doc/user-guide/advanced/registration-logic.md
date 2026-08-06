@@ -123,6 +123,27 @@ editor in the same way that you would attach another script. The `health`
 property is available in the Inspector, `heal` is available to Godot, and
 `healthChanged` is available as a signal.
 
+### Source file naming
+
+Godot automatically associates a project source file with its compiled JVM
+class from the package declaration and the source file name. The file name,
+without its extension, must therefore match the simple name of the script
+class:
+
+```text
+Player.kt    -> class Player
+Player.java  -> class Player
+Player.scala -> class Player
+```
+
+For example, `Player.kt` may declare `com.example.game.Player`, but a file
+named `Character.kt` cannot be automatically associated with that class.
+Keep one attachable script class in each source file.
+
+This source-loading rule is separate from the `Automatic` annotation
+processing mode described below. It applies whenever Godot automatically
+links a `.kt`, `.java`, or `.scala` project resource to its compiled class.
+
 You do not need to add `@Register` to Godot callbacks such as `_ready` in the
 default mode. Godot recognizes compatible overrides automatically.
 

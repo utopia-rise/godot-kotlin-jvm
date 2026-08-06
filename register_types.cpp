@@ -1,9 +1,11 @@
 #ifdef TOOLS_ENABLED
 #include "kotlin_editor_export_plugin.h"
 #include "src/editor/godot_kotlin_jvm_editor.h"
+#include "src/editor/jvm_syntax_highlighter.h"
 
 #include <editor/editor_node.h>
 #include <editor/export/editor_export.h>
+#include <editor/script/script_editor_plugin.h>
 #endif
 
 #include "gd_kotlin.h"
@@ -29,6 +31,10 @@ static void export_plugin_init() {
     Ref<KotlinEditorExportPlugin> export_plugin;
     export_plugin.instantiate();
     EditorExport::get_singleton()->add_export_plugin(export_plugin);
+
+    Ref<JvmStandardSyntaxHighlighter> syntax_highlighter;
+    syntax_highlighter.instantiate();
+    ScriptEditor::get_singleton()->register_syntax_highlighter(syntax_highlighter);
 }
 
 static EditorPlugin* godot_kotlin_jvm_editor_plugin_creator_func() {
@@ -64,6 +70,7 @@ void initialize_kotlin_jvm_module(ModuleInitializationLevel p_level) {
 
 #ifdef TOOLS_ENABLED
     if (p_level == MODULE_INITIALIZATION_LEVEL_EDITOR) {
+        GDREGISTER_INTERNAL_CLASS(JvmStandardSyntaxHighlighter);
         EditorNode::add_init_callback(export_plugin_init);
         EditorPlugins::add_create_func(godot_kotlin_jvm_editor_plugin_creator_func);
     }

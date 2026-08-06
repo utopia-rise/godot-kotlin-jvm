@@ -1,8 +1,8 @@
 # godot-registration
 
-Tooling that turns compiled user code annotated with `@Script`, `@Register`,
-`@Notification`, `@Visible`, and `@Emit` into the registrar source and `.gdj` registration files Godot
-needs at runtime.
+Tooling that turns compiled user code selected by `@Script`, `@Register`,
+`@Notification`, `@Visible`, and `@Emit` into registrar source. It also
+generates `.gdj` registration files for registered classes supplied by external dependencies.
 
 This directory is an umbrella Gradle module. During development its three child modules are separate jars;
 when published, they are shadow-merged into one self-contained `godot-registration` fat jar consumed by the
@@ -14,7 +14,7 @@ Godot Gradle plugin.
 compiled user bytecode
   -> [godot-class-graph-symbol-processor]  front-end: ClassGraph scan -> registration model
   -> [godot-registration-model]            shared model + sanity checks
-  -> [godot-registrar-generator]           model -> registrar Kotlin source + .gdj files
+  -> [godot-registrar-generator]           model -> registrar Kotlin source
 ```
 
 The Gradle plugin task
@@ -25,7 +25,8 @@ orchestrates the whole flow.
 2. `ModelCheck.check(allRegisteredClasses, logger, registeredNameProvider?)` validates the model.
 3. `RegistrarGenerator.generateRegistrarFilesUsingRegisteredClasses(...)` writes generated registrar source
    and the `ClassRegistrar` service file.
-4. The Gradle task optionally stages `.gdj` files through `RegistrationFileGenerator`.
+4. For external dependencies, the Gradle task optionally stages `.gdj` files through
+   `RegistrationFileGenerator`.
 
 ## Submodules
 

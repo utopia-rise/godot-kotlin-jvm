@@ -3,7 +3,6 @@
 
 registeredName = BunnymarkV1DrawTexture
 fqName = godot.benchmark.bunnymark.BunnymarkV1DrawTexture
-relativeSourcePath = src/main/kotlin/godot/benchmark/bunnymark/BunnymarkV1DrawTexture.kt
 baseType = Node2D
 supertypes = [
     godot.Node2D,

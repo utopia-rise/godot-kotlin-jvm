@@ -12,7 +12,8 @@ Just like GDScript, you can directly attach Kotlin, Java, and Scala files from t
 The limitations are the following:
 
 - The source file must be inside both the Godot project and a configured Gradle source set.
-- Only the first registered class in a source file is usable as that file's script resource.
+- The source file name, without its extension, must match the simple name of the script class.
+- Keep one attachable script class in each source file.
 - The registered class information is available after a successful build. Before then, Godot keeps a best-effort source placeholder.
 
 Use the source file directly for project classes.

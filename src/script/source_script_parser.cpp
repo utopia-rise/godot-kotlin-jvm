@@ -1,12 +1,36 @@
 #include "source_script_parser.h"
 
+#include "language/names.h"
 #include "logging.h"
+
+#include <core/io/file_access.h>
+
+Error read_source_script_file(const String& p_path, String& r_content) {
+    Error err;
+    const Ref<FileAccess> file_access {FileAccess::open(p_path, FileAccess::READ, &err)};
+    JVM_ERR_FAIL_COND_V_MSG(err != OK, err, "Cannot open file '" + p_path + "'.");
+
+    const String source = file_access->get_as_utf8_string();
+    if (!source.is_valid_string()) { ERR_FAIL_V(ERR_INVALID_DATA); }
+
+    r_content = source;
+    return OK;
+}
 
 namespace {
 constexpr const char* PACKAGE_KEYWORD = "package";
 constexpr const char* CLASS_KEYWORD = "class";
-constexpr const char* REGISTER_CLASS_ANNOTATION = "@Script";
-constexpr const char* TOOL_CLASS_ANNOTATION = "@Tool";
+
+StringName get_gdj_fq_name(const String& source) {
+    for (const String& line : source.split("\n")) {
+        const int separator = line.find("=");
+        if (separator < 0 || line.left(separator).strip_edges() != "fqName") { continue; }
+
+        const String fq_name = line.substr(separator + 1).strip_edges();
+        return fq_name.is_empty() ? StringName() : StringName(fq_name);
+    }
+    return {};
+}
 
 _FORCE_INLINE_ bool is_end_of_source(const String& source, int index) {
     return index >= source.length();
@@ -166,48 +190,6 @@ String get_package_name(const String& source, int& r_register_class_search_start
     return source.substr(package_index, package_end_index - package_index);
 }
 
-void skip_annotation_arguments(const String& source, int annotation_index, const String& annotation, int& r_class_search_index) {
-    int current_index = annotation_index + annotation.length();
-    skip_non_code(source, current_index);
-
-    if (is_end_of_source(source, current_index) || source[current_index] != U'(') {
-        r_class_search_index = current_index;
-        return;
-    }
-
-    int depth = 0;
-    while (!is_end_of_source(source, current_index)) {
-        char32_t current_character = source[current_index];
-        if (current_character == U'(') {
-            ++depth;
-        } else if (current_character == U'"') {
-            ++current_index;
-            while (!is_end_of_source(source, current_index)) {
-                if (source[current_index] == U'"' && source[current_index - 1] != U'\\') {
-                    break;
-                }
-                ++current_index;
-            }
-
-            if (is_end_of_source(source, current_index)) {
-                JVM_LOG_WARNING("Cannot parse @Script argument, found unclosed string literal");
-                r_class_search_index = source.length();
-                return;
-            }
-        } else if (current_character == U')') {
-            --depth;
-            if (depth == 0) {
-                ++current_index;
-                break;
-            }
-        }
-        ++current_index;
-    }
-
-    skip_non_code(source, current_index);
-    r_class_search_index = current_index;
-}
-
 String find_class_name(const String& source, int search_start, const String& expected_name = {}) {
     static String class_keyword {CLASS_KEYWORD};
     int class_keyword_index = find_token(source, search_start, class_keyword, true);
@@ -230,51 +212,26 @@ String find_class_name(const String& source, int search_start, const String& exp
 } // namespace
 
 #ifdef TOOLS_ENABLED
-StringName parse_source_script_info(const String& p_source_code, const String& p_source_path) {
+StringName parse_source_script_fqname(const String& p_source_code, const String& p_source_path) {
     if (p_source_code.is_empty()) { return {}; }
+    if (p_source_path.get_extension().to_lower() == GODOT_JVM_REGISTRATION_FILE_EXTENSION) {
+        return get_gdj_fq_name(p_source_code);
+    }
 
-    static String register_class_annotation {REGISTER_CLASS_ANNOTATION};
-    static String tool_class_annotation {TOOL_CLASS_ANNOTATION};
     int class_search_start = 0;
-
-    // Read the package first and keep the returned index as the starting point for class discovery.
     String package_name = get_package_name(p_source_code, class_search_start);
-
-    // Prefer the explicit Godot script annotation and use the class declaration following it.
-    int annotation_index = find_token(p_source_code, class_search_start, register_class_annotation, true);
-    String class_name;
-    if (annotation_index != -1) {
-        int annotated_class_search_start = 0;
-        skip_annotation_arguments(p_source_code, annotation_index, register_class_annotation, annotated_class_search_start);
-        class_name = find_class_name(p_source_code, annotated_class_search_start);
+    const String file_class_name = p_source_path.get_file().get_basename();
+    if (file_class_name.is_empty() || find_class_name(p_source_code, class_search_start, file_class_name).is_empty()) {
+        return {};
     }
 
-    // In inferred mode, repeat that search for @Tool when @Script is absent.
-    if (class_name.is_empty()) {
-        annotation_index = find_token(p_source_code, class_search_start, tool_class_annotation, true);
-        if (annotation_index != -1) {
-            int annotated_class_search_start = 0;
-            skip_annotation_arguments(p_source_code, annotation_index, tool_class_annotation, annotated_class_search_start);
-            class_name = find_class_name(p_source_code, annotated_class_search_start);
-        }
-    }
-
-    // In auto mode, use the source file name as the class name.
-    if (class_name.is_empty()) {
-        const String file_class_name = p_source_path.get_file().get_basename();
-        if (!file_class_name.is_empty()) {
-            class_name = file_class_name;
-        }
-    }
-
-    if (class_name.is_empty()) { return {}; }
-
-    // Rebuild the fully qualified name from the discovered class and optional package.
-    const String fq_name = package_name.is_empty() ? class_name : vformat("%s.%s", package_name, class_name);
+    const String fq_name = package_name.is_empty()
+                             ? file_class_name
+                             : vformat("%s.%s", package_name, file_class_name);
     return StringName(fq_name);
 }
 #else
-StringName parse_source_script_info(const String& p_source_code, const String& p_source_path) {
+StringName parse_source_script_fqname(const String& p_source_code, const String& p_source_path) {
     if (p_source_code.is_empty()) { return {}; }
 
     (void)p_source_path;

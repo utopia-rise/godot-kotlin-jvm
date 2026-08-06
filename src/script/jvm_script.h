@@ -14,6 +14,9 @@ class JvmScript : public Script {
     friend class JvmScriptManager;
 
 protected:
+#ifdef TOOLS_ENABLED
+    bool editor_can_reload_from_file() override { return true; }
+#endif
     KtClass* kotlin_class;
     String source;
 
@@ -41,6 +44,7 @@ public:
     void set_source_code(const String& p_code) override;
     void set_path(const String& p_path, bool p_take_over) override;
     void set_path_cache(const String& p_path) override;
+    void reload_from_file() override;
     Error reload(bool p_keep_state) override;
     bool has_method(const StringName& p_method) const override;
     MethodInfo get_method_info(const StringName& p_method) const override;
@@ -64,16 +68,18 @@ public:
 private:
     HashSet<PlaceHolderScriptInstance*> placeholders;
     HashMap<StringName, Variant> exported_members_default_value_cache;
-    uint64_t last_time_source_modified = 0;
+    StringName last_physical_fqdn;
+    uint64_t last_source_modified_time = 0;
     bool export_dirty_flag = true;
 
     void _placeholder_erased(PlaceHolderScriptInstance* p_placeholder) override;
+    void move_placeholders_to(JvmScript* p_script);
+    void update_source_sync_warning();
 
 public:
     PlaceHolderScriptInstance* placeholder_instance_create(Object* p_this) override;
-    uint64_t get_last_time_source_modified();
-    void set_last_time_source_modified(uint64_t p_time);
-    void invalidate_source();
+    uint64_t get_last_source_modified_time() const;
+    void set_last_source_modified_time(uint64_t p_time);
     void get_script_exported_property_list(List<PropertyInfo>* p_list) const;
 
     Vector<DocData::ClassDoc> get_documentation() const override;
@@ -84,6 +90,9 @@ public:
 #endif
 
 protected:
+#ifdef TOOLS_ENABLED
+    void _notification(int p_what);
+#endif
     static void _bind_methods();
 };
 

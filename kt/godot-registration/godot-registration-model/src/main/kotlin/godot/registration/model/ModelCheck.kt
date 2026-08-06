@@ -12,6 +12,7 @@ import godot.registration.model.checks.RegisteredNameUniquenessCheck
 import godot.registration.model.checks.RpcCheck
 import godot.registration.model.checks.SignalTypeCheck
 import godot.registration.model.checks.SourceClassCheck
+import godot.registration.model.checks.SourceFileNameCheck
 import godot.registration.model.logging.Logger
 import godot.registration.model.types.ScriptClass
 
@@ -36,6 +37,7 @@ object ModelCheck {
 
             SignalTypeCheck(logger, registeredClasses).execute(),
             SourceClassCheck(logger, registeredClasses).execute(),
+            SourceFileNameCheck(logger, registeredClasses).execute(),
 
             PropertyTypeCheck(logger, registeredClasses).execute(),
             PropertyHintCountCheck(logger, registeredClasses).execute(),

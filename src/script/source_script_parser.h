@@ -1,9 +1,11 @@
 #ifndef GODOT_JVM_SOURCE_SCRIPT_PARSER_H
 #define GODOT_JVM_SOURCE_SCRIPT_PARSER_H
 
+#include <core/error/error_list.h>
 #include <core/string/ustring.h>
 #include <core/string/string_name.h>
 
-StringName parse_source_script_info(const String& p_source_code, const String& p_source_path);
+Error read_source_script_file(const String& p_path, String& r_content);
+StringName parse_source_script_fqname(const String& p_source_code, const String& p_source_path);
 
 #endif // GODOT_JVM_SOURCE_SCRIPT_PARSER_H
