@@ -80,11 +80,10 @@ Now trigger a build:
 ./gradlew build
 ```
 
-After the build, attach the generated `.gdj` file to a node as you would
-attach a GDScript. By default, registration files are generated in the
-project's `gdj/` directory. See
-[registration files](../user-guide/api-differences.md#registration-files-gdj)
-for details.
+After the build, attach the source file (`Player.kt`, `Player.java`, or
+`Player.scala`) to a node as you would attach a GDScript. Its filename, without
+the extension, must match the simple name of the script class: `Player.kt`
+declares `Player`.
 
 If you rebuild while the editor is open, your classes are reloaded
 automatically.

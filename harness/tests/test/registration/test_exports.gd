@@ -7,7 +7,7 @@ func test_reenabled_core_exports_are_registered_across_languages() -> void:
     var scene: Node = EXPORT_INSPECTOR_SCENE.instantiate()
     add_child(scene)
 
-    _assert_reenabled_exports(scene.get_node(^"KotlinExportNode"))
+    _assert_reenabled_exports(scene.get_node(^"KotlinExportNode"), true)
     _assert_reenabled_exports(scene.get_node(^"JavaExportNode"))
     _assert_reenabled_exports(scene.get_node(^"ScalaExportNode"))
 
@@ -15,8 +15,15 @@ func test_reenabled_core_exports_are_registered_across_languages() -> void:
     await get_tree().process_frame
 
 
-func _assert_reenabled_exports(instance: Object) -> void:
+func _assert_reenabled_exports(instance: Object, expect_lazy_export := false) -> void:
     var property_map := _property_map(instance)
+
+    if expect_lazy_export:
+        _assert_exported_property(property_map, "lazy_int_value", TYPE_INT)
+        assert_that(instance.get("lazy_int_value")).is_equal(42)
+
+        _assert_exported_property(property_map, "vector2_alias", TYPE_VECTOR2)
+        assert_that(instance.get("vector2_alias")).is_equal(Vector2(3, 4))
 
     _assert_exported_property(property_map, "vector2i", TYPE_VECTOR2I)
     assert_that(instance.get("vector2i")).is_equal(Vector2i(1, 2))

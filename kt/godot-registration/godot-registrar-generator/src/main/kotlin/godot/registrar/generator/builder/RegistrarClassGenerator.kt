@@ -100,7 +100,7 @@ class RegistrarClassGenerator(
             .add("return register(\n")
             .indent()
             .add("%S,\n", registeredClassName)
-            .add("%S,\n", registeredClass.sourceFilePath)
+            .add("%S,\n", registeredClass.sourceFileName)
             .add("listOf($registeredSupertypes),\n")
             .add("%S,\n", registeredClass.baseGodotClassName())
             .add("%L,\n", registeredClass.isAbstract)

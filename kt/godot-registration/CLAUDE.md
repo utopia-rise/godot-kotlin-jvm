@@ -125,7 +125,7 @@ Thin one-field configuration wrappers were removed from the registered-member mo
 `ScriptFamily` is the common interface for things that can appear in a script class ancestry graph:
 
 - `ScriptClass`: user-authored Kotlin/Java/Scala class. It carries constructors, signals, properties,
-  functions, `customName`, `sourceProjectName`, `isRegistered`, `isAbstract`, and `isTool`.
+  functions, `customName`, `sourceProjectName`, `sourceFileName`, `isRegistered`, `isAbstract`, and `isTool`.
 - `GodotBaseClass`: built-in Godot API class. It carries no registered members, but it keeps its built-in
   `parent` chain so checks can recognize `Button -> Node` and `NavigationMesh -> RefCounted`.
 - `ScriptInterface`: user-authored interface. It contributes registered functions and can inherit other

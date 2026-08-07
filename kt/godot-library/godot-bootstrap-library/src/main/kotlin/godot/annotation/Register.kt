@@ -1,11 +1,12 @@
 package godot.annotation
 
 /**
- * Registeres a function in godot so it can be called through another language or from godot
+ * Registers an ordinary function in Godot so it can be called from another language or script.
  *
- * **Note:** Engine functions like `_ready` also need to be annotated with this annotation in order to work
+ * In inferred registration mode, compatible overrides of Godot functions such as `_ready`
+ * are registered from their base-class declaration and do not need this annotation.
  *
- * Also you can only register functions that receive and return either primitives, Objects derived from Godot classes or Objects wrapped in `Variant`
+ * Functions must use parameters and a return type that can be converted to a `Variant`.
  */
 @Target(AnnotationTarget.FUNCTION, AnnotationTarget.ANNOTATION_CLASS)
 @Retention(AnnotationRetention.RUNTIME)

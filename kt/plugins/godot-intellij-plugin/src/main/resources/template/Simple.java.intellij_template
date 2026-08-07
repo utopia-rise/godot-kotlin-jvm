@@ -1,13 +1,11 @@
 package GROUP_ID;
 
-import godot.annotation.GodotScript;
-import godot.annotation.Register;
+import godot.annotation.Script;
 import godot.api.Node3D;
 import godot.global.GD;
 
-@GodotScript
+@Script
 public class SimpleJava extends Node3D {
-    @Register
     @Override
     public void _ready() {
         GD.print("Hello world!");

@@ -46,7 +46,7 @@ We do however provide you with some assistance:
 - You can configure how default registration names are computed:
 
 ```kotlin
-import godot.registrar.generator.settings.RegisteredNameMode
+import godot.registrar.generator.RegisteredNameMode
 
 godot {
     registrationNameMode.set(RegisteredNameMode.FQ_NAME)
@@ -82,7 +82,7 @@ By default, new dependency registration files are generated flat inside the conf
 If you prefer the `.gdj` files to mirror the package hierarchy, you can switch to hierarchical layout in your `build.gradle.kts`:
 
 ```kotlin
-import godot.registrar.generator.settings.RegistrationFileLayoutMode
+import godot.registrar.generator.RegistrationFileLayoutMode
 
 godot {
     registrationFilesLayoutMode.set(RegistrationFileLayoutMode.HIERARCHICAL)

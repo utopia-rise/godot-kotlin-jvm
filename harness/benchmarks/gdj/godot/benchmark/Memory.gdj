@@ -3,7 +3,6 @@
 
 registeredName = Memory
 fqName = godot.benchmark.Memory
-relativeSourcePath = src/main/kotlin/godot/benchmark/Memory.kt
 baseType = Object
 supertypes = [
     godot.Object,

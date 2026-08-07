@@ -3,7 +3,6 @@
 
 registeredName = BunnymarkV1Sprites
 fqName = godot.benchmark.bunnymark.BunnymarkV1Sprites
-relativeSourcePath = src/main/kotlin/godot/benchmark/bunnymark/BunnymarkV1Sprites.kt
 baseType = Node2D
 supertypes = [
     godot.Node2D,

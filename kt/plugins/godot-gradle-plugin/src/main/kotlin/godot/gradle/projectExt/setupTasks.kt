@@ -26,7 +26,6 @@ import godot.gradle.tasks.graal.ios.downloadIOSCapCacheFiles
 import godot.gradle.tasks.graal.ios.downloadIOSJdkStaticLibraries
 import godot.gradle.tasks.packageBootstrapJarTask
 import godot.gradle.tasks.packageMainJarTask
-import godot.tools.common.constants.godotRegistrationPackage
 import org.gradle.api.GradleException
 import org.gradle.api.Project
 import org.gradle.api.Task
@@ -34,8 +33,6 @@ import org.gradle.api.file.DuplicatesStrategy
 import org.gradle.api.tasks.bundling.Jar
 import org.gradle.api.tasks.SourceSetContainer
 import org.gradle.api.tasks.TaskProvider
-
-private const val legacyRegistrarServiceRelativePath = "META-INF/services/$godotRegistrationPackage.Registrar"
 
 private data class RegistrarGenerationTasks(
     val generateRegistrarFilesTask: TaskProvider<out Task>,
@@ -107,7 +104,7 @@ fun Project.setupTasks() {
                 return@with
             }
 
-            configureLegacyRegistrarServiceMigration()
+            val checkIgnoredScriptSourcesTask = checkIgnoredScriptSourcesTask()
 
             val classesTask = tasks.named("classes")
             val registrarGenerationTasks = setupRegistrarGenerationTasks(classesTask)
@@ -125,6 +122,7 @@ fun Project.setupTasks() {
                 androidPackagingTasks = androidPackagingTasks,
                 nativePackagingTasks = nativePackagingTasks,
                 copyTasks = copyTasks,
+                checkIgnoredScriptSourcesTask = checkIgnoredScriptSourcesTask,
             )
 
             setupCleanLifecycleTasks(copyTasks)
@@ -322,28 +320,12 @@ private fun Project.setupCopyTasks(
     )
 }
 
-private fun Project.configureLegacyRegistrarServiceMigration() {
-    val mainSourceSet = extensions
-        .getByType(SourceSetContainer::class.java)
-        .getByName("main")
-
-    mainSourceSet.resources.exclude(legacyRegistrarServiceRelativePath)
-
-    val legacyServiceFile = file("src/main/resources/$legacyRegistrarServiceRelativePath")
-    if (legacyServiceFile.isFile) {
-        logger.warn(
-            "Legacy service file detected at ${legacyServiceFile.relativeTo(projectDir).invariantSeparatorsPath}. " +
-                "It is now ignored because Registrar metadata is generated under build/. " +
-                "You can safely delete the legacy file from src/main/resources."
-        )
-    }
-}
-
 private fun Project.setupBuildLifecycleTasks(
     desktopPackagingTasks: DesktopPackagingTasks,
     androidPackagingTasks: AndroidPackagingTasks,
     nativePackagingTasks: NativePackagingTasks,
     copyTasks: CopyTasks,
+    checkIgnoredScriptSourcesTask: TaskProvider<out Task>,
 ) {
     tasks
         .withType(Jar::class.java)
@@ -357,7 +339,9 @@ private fun Project.setupBuildLifecycleTasks(
             )
         }
 
-    val buildTask = tasks.named("build")
+    val buildTask = tasks.named("build") { task ->
+        task.dependsOn(checkIgnoredScriptSourcesTask)
+    }
 
     tasks.named("buildRelease") { task ->
         task.dependsOn(buildTask)
@@ -365,6 +349,7 @@ private fun Project.setupBuildLifecycleTasks(
 
     tasks.named("fastBuild") { task ->
         task.dependsOn(
+            checkIgnoredScriptSourcesTask,
             copyTasks.generateGdIgnoreFilesTask,
             desktopPackagingTasks.packageBootstrapJarTask,
             desktopPackagingTasks.packageMainJarTask,
@@ -374,6 +359,7 @@ private fun Project.setupBuildLifecycleTasks(
 
     tasks.named("buildAndroid") { task ->
         task.dependsOn(
+            checkIgnoredScriptSourcesTask,
             androidPackagingTasks.createBootstrapDexJarTask,
             androidPackagingTasks.packageMainDexJarTask,
             copyTasks.copyAndroidArtifactsTask
@@ -382,6 +368,7 @@ private fun Project.setupBuildLifecycleTasks(
 
     tasks.named("buildAndroidRelease") { task ->
         task.dependsOn(
+            checkIgnoredScriptSourcesTask,
             androidPackagingTasks.createBootstrapDexJarTask,
             androidPackagingTasks.packageMainDexJarTask,
             copyTasks.copyAndroidArtifactsTask
@@ -389,19 +376,19 @@ private fun Project.setupBuildLifecycleTasks(
     }
 
     tasks.named("buildGraalNativeImage") { task ->
-        task.dependsOn(nativePackagingTasks.createGraalNativeImageTask, copyTasks.copyGraalArtifactsTask)
+        task.dependsOn(checkIgnoredScriptSourcesTask, nativePackagingTasks.createGraalNativeImageTask, copyTasks.copyGraalArtifactsTask)
     }
 
     tasks.named("buildGraalNativeImageRelease") { task ->
-        task.dependsOn(nativePackagingTasks.createGraalNativeImageTask, copyTasks.copyGraalArtifactsTask)
+        task.dependsOn(checkIgnoredScriptSourcesTask, nativePackagingTasks.createGraalNativeImageTask, copyTasks.copyGraalArtifactsTask)
     }
 
     tasks.named("buildIOS") { task ->
-        task.dependsOn(nativePackagingTasks.createIOSTask, copyTasks.copyIOSArtifactsTask)
+        task.dependsOn(checkIgnoredScriptSourcesTask, nativePackagingTasks.createIOSTask, copyTasks.copyIOSArtifactsTask)
     }
 
     tasks.named("buildIOSRelease") { task ->
-        task.dependsOn(nativePackagingTasks.createIOSTask, copyTasks.copyIOSArtifactsTask)
+        task.dependsOn(checkIgnoredScriptSourcesTask, nativePackagingTasks.createIOSTask, copyTasks.copyIOSArtifactsTask)
     }
 }
 
