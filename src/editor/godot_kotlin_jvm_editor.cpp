@@ -9,6 +9,7 @@
 
 #include <core/config/project_settings.h>
 #include <core/object/callable_mp.h>
+#include <editor/editor_node.h>
 #include <editor/settings/editor_settings.h>
 #include <editor/editor_interface.h>
 #include <editor/file_system/editor_file_system.h>
@@ -51,6 +52,51 @@ void GodotKotlinJvmEditor::on_filesystem_change() {
             GDKotlin::get_instance().initialize_up_to(GDKotlin::State::JVM_SCRIPTS_INITIALIZED);
         }
     }
+}
+
+void GodotKotlinJvmEditor::update_jvm_status(bool force) {
+    GDKotlin::State state = GDKotlin::get_instance().state;
+    if (!force && displayed_jvm_state == state) { return; }
+
+    displayed_jvm_state = state;
+
+    StringName icon;
+    String label;
+    switch (state) {
+        case GDKotlin::State::NOT_STARTED:
+            icon = SNAME("StatusError");
+            label = "JVM not started";
+            break;
+        case GDKotlin::State::JVM_LIBRARY_LOADED:
+            icon = SNAME("StatusWarning");
+            label = "JVM not started";
+            break;
+        case GDKotlin::State::JVM_STARTED:
+            icon = SNAME("StatusWarning");
+            label = "Bootstrap not loaded";
+            break;
+        case GDKotlin::State::BOOTSTRAP_LOADED:
+            icon = SNAME("StatusWarning");
+            label = "Core not initialized";
+            break;
+        case GDKotlin::State::CORE_LIBRARY_INITIALIZED:
+            icon = SNAME("StatusWarning");
+            label = "Engine types not initialized";
+            break;
+        case GDKotlin::State::ENGINE_TYPES_INITIALIZED:
+            icon = SNAME("StatusWarning");
+            label = "User code not loaded";
+            break;
+        case GDKotlin::State::JVM_SCRIPTS_INITIALIZED:
+            icon = SNAME("StatusSuccess");
+            label = "Ready";
+            break;
+        default:
+            return;
+    }
+
+    jvm_status_light->set_texture(EditorNode::get_singleton()->get_editor_theme()->get_icon(icon, SNAME("EditorIcons")));
+    jvm_status_light->set_tooltip_text("JVM status: " + label);
 }
 
 bool GodotKotlinJvmEditor::build() {
@@ -124,6 +170,10 @@ void GodotKotlinJvmEditor::_notification(int notification) {
             tool_bar_gradle_task_button->connect(SNAME("pressed"), callable_mp(this, &GodotKotlinJvmEditor::on_gradle_task_pressed));
             add_control_to_container(CustomControlContainer::CONTAINER_TOOLBAR, tool_bar_gradle_task_button);
 
+            jvm_status_light->set_stretch_mode(TextureRect::STRETCH_KEEP_ASPECT_CENTERED);
+            add_control_to_container(CustomControlContainer::CONTAINER_TOOLBAR, jvm_status_light);
+            update_jvm_status(true);
+
             editor_base_control->add_child(task_dialog);
             editor_base_control->add_child(about_dialog);
             editor_base_control->add_child(project_dialog);
@@ -136,6 +186,8 @@ void GodotKotlinJvmEditor::_notification(int notification) {
             break;
 
         case NOTIFICATION_PROCESS:
+            update_jvm_status();
+
             if (GradleTaskRunner::get_instance().is_task_started()) {
                 String log;
                 String error;
@@ -161,6 +213,7 @@ void GodotKotlinJvmEditor::_notification(int notification) {
             editor_base_control->remove_child(about_dialog);
             editor_base_control->remove_child(project_dialog);
             remove_tool_menu_item("Kotlin/JVM");
+            remove_control_from_container(CustomControlContainer::CONTAINER_TOOLBAR, jvm_status_light);
             remove_control_from_container(CustomControlContainer::CONTAINER_TOOLBAR, separator);
             remove_control_from_container(CustomControlContainer::CONTAINER_TOOLBAR, tool_bar_gradle_task_choice);
             remove_control_from_container(CustomControlContainer::CONTAINER_TOOLBAR, tool_bar_gradle_task_button);
@@ -174,6 +227,7 @@ GodotKotlinJvmEditor::GodotKotlinJvmEditor() :
   about_dialog(memnew(AboutDialog)),
   task_dialog(memnew(TaskDialog)),
   project_dialog(memnew(AcceptDialog)),
+  jvm_status_light(memnew(TextureRect)),
   tool_bar_gradle_task_button(memnew(Button)),
   tool_bar_gradle_task_choice(memnew(OptionButton)),
   separator(memnew(VSeparator)) {}
@@ -183,6 +237,7 @@ GodotKotlinJvmEditor::~GodotKotlinJvmEditor() {
     memdelete(about_dialog);
     memdelete(task_dialog);
     memdelete(project_dialog);
+    memdelete(jvm_status_light);
     memdelete(tool_bar_gradle_task_button);
     memdelete(tool_bar_gradle_task_choice);
     memdelete(separator);

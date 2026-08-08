@@ -13,6 +13,11 @@ inline String format_prefix{"Godot-JVM: "};
 #define JVM_LOG_VERBOSE(message, ...) print_verbose(JVM_STRING_FORMAT(message, ##__VA_ARGS__)) (void) 0
 #define JVM_LOG_WARNING(message, ...) WARN_PRINT(JVM_STRING_FORMAT(message, ##__VA_ARGS__))
 #define JVM_ERR_PRINT(message, ...) ERR_PRINT(JVM_STRING_FORMAT(message, ##__VA_ARGS__))
+#define JVM_WARN_FAIL_V_MSG(ret_var, message, ...) \
+    do {                                            \
+        JVM_LOG_WARNING(message, ##__VA_ARGS__);    \
+        return ret_var;                             \
+    } while (false)
 
 #ifdef TOOLS_ENABLED
 #define JVM_ERR_FAIL_MSG(message, ...) ERR_FAIL_EDMSG(JVM_STRING_FORMAT(message, ##__VA_ARGS__))

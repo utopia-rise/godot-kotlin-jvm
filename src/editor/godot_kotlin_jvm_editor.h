@@ -5,8 +5,10 @@
 
 #include "dialog/about_dialog.h"
 #include "dialog/build_dialog.h"
+#include "gd_kotlin.h"
 #include "scene/gui/option_button.h"
 #include "scene/gui/separator.h"
+#include "scene/gui/texture_rect.h"
 
 #include <editor/plugins/editor_plugin.h>
 
@@ -26,8 +28,11 @@ class GodotKotlinJvmEditor : public EditorPlugin {
     AcceptDialog* project_dialog;
 
     VSeparator* separator;
+    TextureRect* jvm_status_light;
     Button* tool_bar_gradle_task_button;
     OptionButton* tool_bar_gradle_task_choice;
+
+    GDKotlin::State displayed_jvm_state {GDKotlin::State::NOT_STARTED};
 
     GodotKotlinJvmEditor();
     ~GodotKotlinJvmEditor();
@@ -36,6 +41,7 @@ class GodotKotlinJvmEditor : public EditorPlugin {
     void on_menu_option_pressed(int option_id);
     void on_generate_project(bool erase_existing);
     void on_filesystem_change();
+    void update_jvm_status(bool force = false);
 
 protected:
     bool build() override;
