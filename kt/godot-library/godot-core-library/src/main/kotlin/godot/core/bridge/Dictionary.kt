@@ -50,7 +50,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
             }
 
             checkNotNull(valueVariantConverter) {
-                "Can't create a Dictionary with generic key ${valueClass}."
+                "Can't create a Dictionary with generic value ${valueClass}."
             }
         }
 

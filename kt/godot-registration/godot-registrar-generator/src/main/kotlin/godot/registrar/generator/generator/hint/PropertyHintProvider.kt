@@ -17,6 +17,7 @@ import godot.registration.model.hint.property.ColorNoAlphaHint
 import godot.registration.model.hint.property.EnumHint
 import godot.registration.model.hint.property.ExpEasingHint
 import godot.registration.model.hint.property.FileHint
+import godot.registration.model.hint.property.HintStringHint
 import godot.registration.model.hint.property.IntFlagHint
 import godot.registration.model.hint.property.MultilineTextHint
 import godot.registration.model.hint.property.PlaceHolderTextHint
@@ -69,7 +70,7 @@ object PropertyHintProvider {
     ): HintGenerator {
         val propertyHint = registeredProperty.propertyHint()
 
-        return when {
+        val generatedHint = when {
             registeredProperty.type.isCompatibleList() -> ArrayHintStringGenerator(
                 registeredProperty = registeredProperty,
                 elementHintString = registeredProperty.type.genericArguments
@@ -105,6 +106,11 @@ object PropertyHintProvider {
 
             else -> StaticHintGenerator(GodotPropertyHint.NONE, "")
         }
+
+        if (propertyHint is HintStringHint) {
+            return HintStringOverride(generatedHint, propertyHint.value)
+        }
+        return generatedHint
     }
 
     internal fun provide(

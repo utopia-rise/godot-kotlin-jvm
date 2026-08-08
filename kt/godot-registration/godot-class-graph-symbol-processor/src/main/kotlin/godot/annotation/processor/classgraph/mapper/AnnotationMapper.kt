@@ -6,6 +6,7 @@ import godot.annotation.DoubleRange
 import godot.annotation.ExpEasing
 import godot.annotation.File
 import godot.annotation.FloatRange
+import godot.annotation.HintString
 import godot.annotation.IntFlag
 import godot.annotation.MultilineText
 import godot.annotation.PlaceHolderText
@@ -13,6 +14,7 @@ import godot.registration.model.hint.property.ColorNoAlphaHint
 import godot.registration.model.hint.property.DirHint
 import godot.registration.model.hint.property.ExpEasingHint
 import godot.registration.model.hint.property.FileHint
+import godot.registration.model.hint.property.HintStringHint
 import godot.registration.model.hint.property.IntFlagHint
 import godot.registration.model.hint.property.MultilineTextHint
 import godot.registration.model.hint.property.PlaceHolderTextHint
@@ -33,6 +35,7 @@ object AnnotationMapper {
             MultilineText::class.java.name -> MultilineTextHint()
             PlaceHolderText::class.java.name -> PlaceHolderTextHint()
             ColorNoAlpha::class.java.name -> ColorNoAlphaHint()
+            HintString::class.java.name -> HintStringHint(annotationInfo.parameterValues.getValue("value") as String)
             IntRange::class.java.name -> annotationInfo.provideRangeHint(-1)
             LongRange::class.java.name -> annotationInfo.provideRangeHint(-1L)
             FloatRange::class.java.name -> annotationInfo.provideRangeHint(-1f)

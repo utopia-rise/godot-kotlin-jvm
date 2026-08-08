@@ -20,6 +20,7 @@ Error read_source_script_file(const String& p_path, String& r_content) {
 namespace {
 constexpr const char* PACKAGE_KEYWORD = "package";
 constexpr const char* CLASS_KEYWORD = "class";
+constexpr const char* SCRIPT_ANNOTATION = "@Script";
 
 StringName get_gdj_fq_name(const String& source) {
     for (const String& line : source.split("\n")) {
@@ -190,6 +191,46 @@ String get_package_name(const String& source, int& r_register_class_search_start
     return source.substr(package_index, package_end_index - package_index);
 }
 
+void skip_annotation_arguments(const String& source, int annotation_index, const String& annotation, int& r_class_search_index) {
+    int current_index = annotation_index + annotation.length();
+    skip_non_code(source, current_index);
+
+    if (is_end_of_source(source, current_index) || source[current_index] != U'(') {
+        r_class_search_index = current_index;
+        return;
+    }
+
+    int depth = 0;
+    while (!is_end_of_source(source, current_index)) {
+        const char32_t current_character = source[current_index];
+        if (current_character == U'(') {
+            ++depth;
+        } else if (current_character == U'"') {
+            ++current_index;
+            while (!is_end_of_source(source, current_index)) {
+                if (source[current_index] == U'"' && source[current_index - 1] != U'\\') { break; }
+                ++current_index;
+            }
+
+            if (is_end_of_source(source, current_index)) {
+                JVM_LOG_WARNING("Cannot parse @Script argument, found unclosed string literal");
+                r_class_search_index = source.length();
+                return;
+            }
+        } else if (current_character == U')') {
+            --depth;
+            if (depth == 0) {
+                ++current_index;
+                break;
+            }
+        }
+        ++current_index;
+    }
+
+    skip_non_code(source, current_index);
+    r_class_search_index = current_index;
+}
+
 String find_class_name(const String& source, int search_start, const String& expected_name = {}) {
     static String class_keyword {CLASS_KEYWORD};
     int class_keyword_index = find_token(source, search_start, class_keyword, true);
@@ -220,14 +261,28 @@ StringName parse_source_script_fqname(const String& p_source_code, const String&
 
     int class_search_start = 0;
     String package_name = get_package_name(p_source_code, class_search_start);
-    const String file_class_name = p_source_path.get_file().get_basename();
-    if (file_class_name.is_empty() || find_class_name(p_source_code, class_search_start, file_class_name).is_empty()) {
-        return {};
+    static String script_annotation {SCRIPT_ANNOTATION};
+
+    String class_name;
+    const int annotation_index = find_token(p_source_code, class_search_start, script_annotation, true);
+    if (annotation_index != -1) {
+        int annotated_class_search_start = 0;
+        skip_annotation_arguments(p_source_code, annotation_index, script_annotation, annotated_class_search_start);
+        class_name = find_class_name(p_source_code, annotated_class_search_start);
     }
 
+    if (class_name.is_empty()) {
+        const String file_class_name = p_source_path.get_file().get_basename();
+        if (!file_class_name.is_empty()) {
+            class_name = find_class_name(p_source_code, class_search_start, file_class_name);
+        }
+    }
+
+    if (class_name.is_empty()) { return {}; }
+
     const String fq_name = package_name.is_empty()
-                             ? file_class_name
-                             : vformat("%s.%s", package_name, file_class_name);
+                             ? class_name
+                             : vformat("%s.%s", package_name, class_name);
     return StringName(fq_name);
 }
 #else

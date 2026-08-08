@@ -78,7 +78,6 @@ public:
 
     void initialize_up_to(State target_state);
     void finalize_down_to(State target_state);
-    void display_initialization_error_hint(String cause, String hint);
     void validate_state();
 
 #ifdef TOOLS_ENABLED

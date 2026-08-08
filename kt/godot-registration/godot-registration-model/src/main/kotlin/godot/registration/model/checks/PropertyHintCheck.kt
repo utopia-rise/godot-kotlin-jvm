@@ -13,6 +13,7 @@ import godot.registration.model.hint.property.EnumHintStringHint
 import godot.registration.model.hint.property.EnumListHintStringHint
 import godot.registration.model.hint.property.ExpEasingHint
 import godot.registration.model.hint.property.FileHint
+import godot.registration.model.hint.property.HintStringHint
 import godot.registration.model.hint.property.IntFlagHint
 import godot.registration.model.hint.property.MultilineTextHint
 import godot.registration.model.hint.property.PlaceHolderTextHint
@@ -55,6 +56,7 @@ class PropertyHintCheck(logger: Logger, registeredClasses: List<ScriptClass>) : 
         val propertyType = registeredProperty.type
 
         return when (this) {
+            is HintStringHint -> true
             is RangeHint<*> -> propertyType.fqName in numericTypes
             is ExpEasingHint -> propertyType.fqName in fractionalTypes
             is FileHint, is DirHint, is MultilineTextHint, is PlaceHolderTextHint -> propertyType.fqName == stringType

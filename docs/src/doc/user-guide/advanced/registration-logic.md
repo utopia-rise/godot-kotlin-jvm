@@ -459,6 +459,10 @@ var health: Int = 100
 In **Automatic** mode, take care with public members. Prefer `Inferred` if you
 want to decide member by member what becomes visible to Godot.
 
+!!! note
+    In **Automatic** mode, the source filename must match the registered class
+    name. Otherwise, use `@Script` as you would in **Inferred** mode.
+
 If you use the IntelliJ plugin, set the same mode in **Settings | Godot
 Kotlin/JVM | Annotation processing mode**. Gradle controls the actual build;
 the IDE setting keeps inspections and highlighting accurate.

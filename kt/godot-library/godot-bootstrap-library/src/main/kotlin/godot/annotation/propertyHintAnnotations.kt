@@ -173,6 +173,16 @@ annotation class PlaceHolderText
 annotation class ColorNoAlpha
 
 /**
+ * Uses the given string as Godot's property hint string.
+ *
+ * The string must use the format expected by the property's Godot hint type.
+ */
+@Target(AnnotationTarget.FIELD, AnnotationTarget.ANNOTATION_CLASS)
+@Retention(AnnotationRetention.RUNTIME)
+@Export
+annotation class HintString(val value: String)
+
+/**
  * Can only be used on Image properties!
  */
 //@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD)
