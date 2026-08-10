@@ -46,6 +46,14 @@ void TypeManager::register_engine_singletons(jni::Env& p_env, jni::JObjectArray&
     }
 }
 
+void TypeManager::assign_script_to_class(jni::Env& p_env, int p_index, const godot::Ref<godot::JvmScript>& p_script) const {
+    jvalue args[2] = {
+      jni::to_jni_arg(p_index),
+      jni::to_jni_arg(p_script.ptr())
+    };
+    wrapped.call_void_method(p_env, ASSIGN_SCRIPT_TO_CLASS, args);
+}
+
 uintptr_t TypeManager::get_method_bind_ptr(JNIEnv* p_raw_env, jobject, jstring p_class_name, jstring p_method_name, jlong hash) {
     jni::Env env {p_raw_env};
     godot::StringName class_name {env.from_jstring(jni::JString(p_class_name))};

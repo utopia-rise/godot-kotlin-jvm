@@ -7,7 +7,7 @@
 
 #include <classes/object.hpp>
 
-JVM_INSTANCE_WRAPPER(KtPropertyInfo, "godot.core.KtPropertyInfo") {
+JVM_INSTANCE_WRAPPER(KtPropertyInfo, "godot.registration.KtPropertyInfo") {
     JVM_CLASS(KtPropertyInfo)
 
     // clang-format off
@@ -20,10 +20,10 @@ JVM_INSTANCE_WRAPPER(KtPropertyInfo, "godot.core.KtPropertyInfo") {
 
     INIT_JNI_BINDINGS(
         INIT_JNI_METHOD(GET_TYPE, "getType", "()I")
-        INIT_JNI_METHOD(GET_NAME, "getName", "()Ljava/lang/godot::String;")
-        INIT_JNI_METHOD(GET_CLASS_NAME, "getClassName", "()Ljava/lang/godot::String;")
+        INIT_JNI_METHOD(GET_NAME, "getName", "()Ljava/lang/String;")
+        INIT_JNI_METHOD(GET_CLASS_NAME, "getClassName", "()Ljava/lang/String;")
         INIT_JNI_METHOD(GET_HINT, "getHint", "()I")
-        INIT_JNI_METHOD(GET_HINT_STRING, "getHintString", "()Ljava/lang/godot::String;")
+        INIT_JNI_METHOD(GET_HINT_STRING, "getHintString", "()Ljava/lang/String;")
         INIT_JNI_METHOD(GET_USAGE, "getUsage", "()J")
     )
     // clang-format on
@@ -42,7 +42,7 @@ public:
     godot::PropertyInfo toPropertyInfo() const;
 };
 
-JVM_INSTANCE_WRAPPER(KtProperty, "godot.core.KtProperty") {
+JVM_INSTANCE_WRAPPER(KtProperty, "godot.registration.KtProperty") {
     JVM_CLASS(KtProperty)
 
     // clang-format off
@@ -51,7 +51,7 @@ JVM_INSTANCE_WRAPPER(KtProperty, "godot.core.KtProperty") {
     JNI_VOID_METHOD(CALL_SET)
 
     INIT_JNI_BINDINGS(
-        INIT_JNI_METHOD(GET_KT_PROPERTY_INFO, "getKtPropertyInfo", "()Lgodot/core/KtPropertyInfo;")
+        INIT_JNI_METHOD(GET_KT_PROPERTY_INFO, "getKtPropertyInfo", "()Lgodot/registration/KtPropertyInfo;")
         INIT_JNI_METHOD(CALL_GET, "callGet", "(Lgodot/core/KtObject;)V")
         INIT_JNI_METHOD(CALL_SET, "callSet", "(Lgodot/core/KtObject;)V")
     )

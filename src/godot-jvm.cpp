@@ -1,16 +1,18 @@
 #include "api/script/jvm_script_manager.h"
 #include "godot_jvm.h"
 #include "jvm/jni/env.h"
+#include "engine/dynamic_library.h"
+#include "jvm/lifecycle/jvm_manager.h"
 #include "jvm/wrapper/memory/long_string_queue.h"
 #include "jvm/wrapper/memory/memory_manager.h"
 #include "jvm/wrapper/memory/type_manager.h"
 #include "paths.h"
 #include "version.h"
 
-#include <core/config/project_settings.hpp>
-#include <core/io/file_access.hpp>
-#include <core/io/resource_loader.hpp>
-#include <main/main.hpp>
+#include <classes/engine.hpp>
+#include <classes/file_access.hpp>
+#include <classes/project_settings.hpp>
+#include <classes/resource_loader.hpp>
 
 using namespace godot;
 
@@ -32,7 +34,7 @@ bool GodotJvm::load_dynamic_lib() {
     String path_to_jvm_lib;
     switch (user_configuration.vm_type) {
         case jni::JvmType::JVM:
-            if (String embedded_jvm = get_path_to_embedded_jvm(); FileAccess::exists(embedded_jvm)) {
+            if (String embedded_jvm = get_path_to_embedded_jvm(); FileAccess::file_exists(embedded_jvm)) {
                 path_to_jvm_lib = embedded_jvm;
             }
 #ifdef TOOLS_ENABLED
@@ -76,7 +78,7 @@ bool GodotJvm::load_dynamic_lib() {
 
             break;
         case jni::JvmType::GRAAL_NATIVE_IMAGE:
-            if (String native_jvm = get_path_to_native_image(); FileAccess::exists(native_jvm)) {
+            if (String native_jvm = get_path_to_native_image(); FileAccess::file_exists(native_jvm)) {
                 path_to_jvm_lib = native_jvm;
             } else {
                 JVM_WARN_FAIL_V_MSG(
@@ -92,7 +94,7 @@ bool GodotJvm::load_dynamic_lib() {
             JVM_DEV_ASSERT(false, "Tried to load a VM that's neither the JVM nor Graal Native Image");
     }
 
-    if (OS::get_singleton()->open_dynamic_library(path_to_jvm_lib, jvm_dynamic_library_handle) != OK) {
+    if (godot_jvm_native::open_dynamic_library(path_to_jvm_lib, jvm_dynamic_library_handle) != OK) {
         JVM_WARN_FAIL_V_MSG(
           false,
           "Godot Kotlin/JVM module couldn't be fully initialized. Cause: %s. Possible solution: %s",
@@ -182,7 +184,7 @@ String GodotJvm::get_path_to_native_image() {
 #endif
 
 void GodotJvm::unload_dynamic_lib() {
-    if (OS::get_singleton()->close_dynamic_library(jvm_dynamic_library_handle) != OK) {
+    if (godot_jvm_native::close_dynamic_library(jvm_dynamic_library_handle) != OK) {
         JVM_ERR_FAIL_MSG("Failed to close the jvm dynamic library!");
     }
 }
@@ -190,11 +192,11 @@ void GodotJvm::unload_dynamic_lib() {
 
 void GodotJvm::fetch_user_configuration() {
     bool invalid_file_content = false;
-    bool configuration_file_exist = FileAccess::exists(JVM_CONFIGURATION_PATH);
+    bool configuration_file_exist = FileAccess::file_exists(JVM_CONFIGURATION_PATH);
 
     if (configuration_file_exist) {
         Ref<FileAccess> file_access = FileAccess::open(JVM_CONFIGURATION_PATH, FileAccess::READ);
-        String content = file_access->get_as_utf8_string();
+        String content = file_access->get_as_text();
 
         // The function is going to mutate the provided configuration with the valid values found in the file.
         // If some of the values parsed in the file are invalid, it will return true;
@@ -257,7 +259,7 @@ void GodotJvm::set_jvm_options() {
 
 #ifndef TOOLS_ENABLED
 
-#include <core/io/dir_access.hpp>
+#include <classes/dir_access.hpp>
 
 #ifdef __ANDROID__
 #include <unistd.h>
@@ -268,7 +270,7 @@ String GodotJvm::copy_new_file_to_user_dir(const String& file_name) {
     String file_user_path {String(USER_DIRECTORY) + file_name};
 
 #ifndef __ANDROID__
-    if (!FileAccess::exists(file_user_path) || FileAccess::get_md5(file_user_path) != FileAccess::get_md5(file_res_path)) {
+    if (!FileAccess::file_exists(file_user_path) || FileAccess::get_md5(file_user_path) != FileAccess::get_md5(file_res_path)) {
         JVM_LOG_VERBOSE("%s file has changed. Copying it from %s to %s.", file_name, file_res_path, file_user_path);
 #else
     // as per suggestion of https://developer.android.com/about/versions/14/behavior-changes-14#safer-dynamic-code-loading, we first delete existing files and then copy them again
@@ -300,7 +302,7 @@ bool GodotJvm::load_bootstrap() {
         constexpr const char* hint_text {"The export of the project might be invalid."};
 #endif
 
-        if (!FileAccess::exists(bootstrap_jar)) {
+        if (!FileAccess::file_exists(bootstrap_jar)) {
             if (Engine::get_singleton()->is_editor_hint()) {
                 // Most likely when starting a new project, there is no need to log it as an error or warning as long as the users doesn't run the game.
                 // We already have node warning if they try to attach a JVM script without building.
@@ -376,7 +378,7 @@ bool GodotJvm::load_user_code() {
         String user_code_path {copy_new_file_to_user_dir(USER_CODE_FILE)};
 #endif
 
-        if (!FileAccess::exists(user_code_path)) {
+        if (!FileAccess::file_exists(user_code_path)) {
             String message {"No main.jar detected at %s. No classes will be loaded. Build the gradle "
                             "project to load classes"};
 #ifdef TOOLS_ENABLED
@@ -389,7 +391,7 @@ bool GodotJvm::load_user_code() {
 
         JVM_LOG_VERBOSE("Loading usercode file at: %s", user_code_path);
         jar.instantiate();
-        jar->set_path(user_code_path, true);
+        jar->set_path(user_code_path);
 
         ClassLoader* user_class_loader = ClassLoader::create_instance(
           env,
@@ -402,7 +404,7 @@ bool GodotJvm::load_user_code() {
 
         bootstrap->init_jar(env, user_class_loader->get_wrapped());
         delete user_class_loader;
-        return FileAccess::exists(user_code_path);
+        return FileAccess::file_exists(user_code_path);
     }
 }
 

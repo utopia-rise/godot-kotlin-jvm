@@ -3,7 +3,7 @@
 #include "names.h"
 #include "api/script/language/scala_script.h"
 
-#include <core/io/resource_loader.hpp>
+#include <classes/resource_loader.hpp>
 
 using namespace godot;
 
@@ -11,9 +11,9 @@ constexpr const char* SCALA_TEMPLATE = PACKAGE_TEMPLATE
                                       "\n"
                                       "\n"
                                       "import " GODOT_KOTLIN_PACKAGE "." BASE_TEMPLATE "\n"
-                                      "import godot.annotation.{RegisterClass, RegisterFunction}\n"
+                                      "import godot.annotation.Script\n"
                                       "\n"
-                                      "@RegisterClass\n"
+                                      "@Script\n"
                                       "class " CLASS_TEMPLATE " extends " BASE_TEMPLATE " {\n"
                                       "\n"
                                       "    // Declare member variables here. Examples:\n"
@@ -21,14 +21,12 @@ constexpr const char* SCALA_TEMPLATE = PACKAGE_TEMPLATE
                                       "    // val b: String = \"text\";\n"
                                       "\n"
                                       "    // Called when the node enters the scene tree for the first time.\n"
-                                      "    @RegisterFunction\n"
                                       "    override def _ready(): Unit = {\n"
                                       "        \n"
                                       "    }\n"
                                       "\n"
                                       "    // Called every frame. 'delta' is the elapsed time since the previous frame.\n"
-                                      "    @RegisterFunction\n"
-                                      "    override def _process(double delta): Unit = {\n"
+                                      "    override def _process(delta: Double): Unit = {\n"
                                       "        \n"
                                       "    }\n"
                                       "}\n";
@@ -161,4 +159,12 @@ bool ScalaLanguage::_is_using_templates() {
 
 Object* ScalaLanguage::_create_script() const {
     return memnew(ScalaScript);
+}
+
+bool ScalaLanguage::_handles_global_class_type(const String& p_type) const {
+    return p_type == GODOT_SCALA_SCRIPT_NAME;
+}
+
+bool ScalaLanguage::_supports_builtin_mode() const {
+    return false;
 }

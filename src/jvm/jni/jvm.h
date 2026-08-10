@@ -4,7 +4,7 @@
 #include "env.h"
 #include "jni.h"
 
-#include <core/variant/type_info.h>
+#include <godot_cpp/core/binder_common.hpp>
 
 namespace jni {
     typedef jint(JNICALL* CreateJavaVM)(JavaVM**, void**, void*);

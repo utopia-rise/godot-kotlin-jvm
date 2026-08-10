@@ -10,14 +10,14 @@ ScriptLanguage* KotlinScript::_get_language() const {
 }
 
 #ifdef TOOLS_ENABLED
-void KotlinScript::_format_template(const String& p_path) {
+void KotlinScript::_format_template(const String& p_path) const {
     if (!source.contains(PACKAGE_TEMPLATE)) {
         return;
     }
 
     String package {p_path.replace("src/main/kotlin/", "")
                       .trim_prefix("res://")
-                      .trim_suffix(get_name() + "." + KotlinLanguage::get_instance()->get_extension())
+                      .trim_suffix(get_name() + "." + KotlinLanguage::get_instance()->_get_extension())
                       .trim_suffix("/")
                       .replace("/", ".")};
 

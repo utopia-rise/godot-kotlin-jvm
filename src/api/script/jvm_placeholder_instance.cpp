@@ -126,12 +126,14 @@ void JvmPlaceHolderInstance::get_property_state(GDExtensionScriptInstanceDataPtr
     for (int i = 0; i < property_count; ++i) {
         const GDExtensionPropertyInfo property_info = property_infos[i];
         if (property_info.usage & PROPERTY_USAGE_STORAGE) {
-            GDExtensionVariantPtr r_ret;
+            Variant temp_value;
+            GDExtensionVariantPtr r_ret = &temp_value;
             if (get(p_instance, property_info.name, r_ret)) {
                 p_add_func(property_info.name, r_ret, p_userdata);
             }
         }
     }
+    free_property_list(p_instance, property_infos, property_count);
 }
 
 const GDExtensionMethodInfo* JvmPlaceHolderInstance::get_method_list(GDExtensionScriptInstanceDataPtr p_instance, uint32_t* r_count) {
@@ -188,7 +190,14 @@ GDExtensionVariantType JvmPlaceHolderInstance::get_property_type(GDExtensionScri
     return GDExtensionVariantType::GDEXTENSION_VARIANT_TYPE_NIL;
 }
 
-GDExtensionBool JvmPlaceHolderInstance::validate_property(GDExtensionScriptInstanceDataPtr, GDExtensionPropertyInfo*) {}
+GDExtensionBool JvmPlaceHolderInstance::validate_property(GDExtensionScriptInstanceDataPtr, GDExtensionPropertyInfo*) {
+    // Per the GDExtensionScriptInstanceValidateProperty contract (see godot-cpp's Wrapped::validate_property_bind),
+    // the return value signals whether this call actually validated/mutated p_property, not merely whether the
+    // property is "valid". The placeholder instance has no script logic to run (it exists only while the JVM
+    // script hasn't been compiled/loaded yet) and mirrors master, which had no override for this at all — so
+    // there is nothing to mutate here. Returning false is the correct no-op: "not handled, use engine defaults".
+    return false;
+}
 
 GDExtensionBool JvmPlaceHolderInstance::has_method(GDExtensionScriptInstanceDataPtr p_instance, GDExtensionConstStringNamePtr p_name) {
     const StringName& parameter_name = *reinterpret_cast<const StringName*>(p_name);
@@ -239,11 +248,15 @@ void JvmPlaceHolderInstance::call(
             packed.append("This script can't be found in your JVM project. Don't forget to build it and use a valid "
                           "gdj/kt/java file.");
             *result = packed;
-        } else if (script_ref->get_last_time_source_modified() > JvmScriptManager::get_instance()->get_last_reload()) {
+        } else if (script_ref->get_last_source_modified_time() > JvmScriptManager::get_instance()->get_last_jar_modified_time()) {
             PackedStringArray packed {};
             packed.append("This script has been modified since the last time you built your project.");
             *result = packed;
+        } else {
+            *result = PackedStringArray();
         }
+        r_error->error = GDExtensionCallErrorType::GDEXTENSION_CALL_OK;
+        return;
     }
 
     r_error->error = GDExtensionCallErrorType::GDEXTENSION_CALL_ERROR_INVALID_METHOD;

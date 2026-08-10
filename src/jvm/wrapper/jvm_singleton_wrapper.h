@@ -54,7 +54,7 @@ public:
 
 template<class Derived, const char* FqName>
 bool JvmSingletonWrapper<Derived, FqName>::initialize(jni::Env& p_env, ClassLoader* class_loader) {
-    JVM_DEV_ASSERT(!_instance, godot::String(FqName) + " singleton is already initialized.");
+    JVM_DEV_ASSERT(!_instance, godot::String(FqName) + godot::String(" singleton is already initialized."));
 
     jni::JClass singleton_cls;
     if (class_loader) {
@@ -66,7 +66,7 @@ bool JvmSingletonWrapper<Derived, FqName>::initialize(jni::Env& p_env, ClassLoad
       singleton_cls.get_static_field_id(p_env, "INSTANCE", godot::vformat("L%s;", FqName).replace(".", "/").utf8().ptr());
     jni::JObject singleton_instance = singleton_cls.get_static_object_field(p_env, singleton_instance_field);
 
-    JVM_ERR_FAIL_COND_V_MSG(singleton_instance.is_null(), false, "Failed to retrieve " + godot::String(FqName) + " singleton");
+    JVM_ERR_FAIL_COND_V_MSG(singleton_instance.is_null(), false, godot::String("Failed to retrieve ") + godot::String(FqName) + godot::String(" singleton"));
 
     _instance = new Derived(p_env, singleton_instance);
 

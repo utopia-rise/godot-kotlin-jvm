@@ -89,7 +89,8 @@ namespace godot {
 
         static void update(JvmPlaceHolderInstanceData* p_instance_data, const List<PropertyInfo> &p_properties, const HashMap<StringName, Variant> &p_values);
     };
+} // namespace godot
 
 #endif // GODOT_JVM_JVM_PLACEHOLDER_INSTANCE_H
-}
-#endif
+
+#endif // TOOLS_ENABLED

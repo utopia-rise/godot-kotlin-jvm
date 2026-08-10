@@ -10,6 +10,7 @@
 #include "core/variant_allocator.h"
 
 #include <classes/os.hpp>
+#include <variant/signal.hpp>
 #include <variant/variant.hpp>
 
 constexpr const int BOOL_SIZE = 4;
@@ -232,15 +233,10 @@ class BufferToVariant {
     static godot::Variant read_signal(SharedBuffer* byte_buffer) {
         godot::Object* object {to_godot_object(byte_buffer)};
         const godot::StringName name {*read_pointer<godot::StringName>(byte_buffer)};
-        return Signal(object, name);
+        return godot::Signal(object, name);
     }
 
     static godot::Variant read_callable(SharedBuffer* byte_buffer) {
-        bool is_custom {static_cast<bool>(decode_uint32(byte_buffer->get_cursor()))};
-        byte_buffer->increment_position(BOOL_SIZE);
-
-        if (is_custom) { return godot::Callable(read_pointer<godot::CallableCustom>(byte_buffer)); }
-
         return *read_pointer<godot::Callable>(byte_buffer);
     }
 

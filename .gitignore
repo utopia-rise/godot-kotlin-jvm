@@ -12,3 +12,4 @@ libprotobuf/
 **/*.DS_Store
 
 /.claude/
+/.codex/

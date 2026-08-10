@@ -1,8 +1,11 @@
 #ifndef GODOT_JVM_KOTLIN_CALLABLE_CUSTOM_H
 #define GODOT_JVM_KOTLIN_CALLABLE_CUSTOM_H
 
-#include "core/variant/callable.h"
 #include "jvm/wrapper/jvm_instance_wrapper.h"
+
+#include <gdextension_interface.h>
+#include <variant/callable.hpp>
+#include <variant/callable_custom.hpp>
 
 JVM_INSTANCE_WRAPPER(LambdaCallable, "godot.core.LambdaCallable") {
     JVM_CLASS(LambdaCallable)
@@ -15,7 +18,7 @@ JVM_INSTANCE_WRAPPER(LambdaCallable, "godot.core.LambdaCallable") {
 
     INIT_JNI_BINDINGS(
         INIT_JNI_METHOD(INVOKE_NO_RETURN, "invokeNoReturn", "()V")
-        INIT_JNI_METHOD(INVOKE_WITH_RETURN, "invokeWithReturn", "()Ljava/lang/godot::Object;")
+        INIT_JNI_METHOD(INVOKE_WITH_RETURN, "invokeWithReturn", "()Ljava/lang/Object;")
         INIT_JNI_METHOD(GET_RETURN_VARIANT_TYPE, "getReturnVariantType", "()I")
         INIT_JNI_METHOD(ON_CANCEL, "onCancel", "()V")
     )
@@ -37,15 +40,15 @@ private:
     mutable bool has_been_called;
 };
 
-class KotlinCallableCustom : public CallableCustom {
+class KotlinCallableCustom : public godot::CallableCustom {
 public:
-    void call(const godot::Variant** p_arguments, int p_argcount, godot::Variant& r_return_value, Callable::CallError& r_call_error) const override;
+    void call(const godot::Variant** p_arguments, int p_argcount, godot::Variant& r_return_value, GDExtensionCallError& r_call_error) const override;
 
     uint32_t hash() const override;
     godot::String get_as_text() const override;
     CompareEqualFunc get_compare_equal_func() const override;
     CompareLessFunc get_compare_less_func() const override;
-    ObjectID get_object() const override;
+    godot::ObjectID get_object() const override;
 
     KotlinCallableCustom(jni::Env& p_env, jni::JObject p_wrapped, godot::Variant::Type return_type, int p_hash_code, bool p_has_on_destroy);
     ~KotlinCallableCustom();
@@ -53,8 +56,8 @@ public:
 private:
     LambdaCallable kt_callable;
 
-    static bool compare_equal(const CallableCustom* p_a, const CallableCustom* p_b);
-    static bool compare_less(const CallableCustom* p_a, const CallableCustom* p_b);
+    static bool compare_equal(const godot::CallableCustom* p_a, const godot::CallableCustom* p_b);
+    static bool compare_less(const godot::CallableCustom* p_a, const godot::CallableCustom* p_b);
 };
 
 #endif // GODOT_JVM_KOTLIN_CALLABLE_CUSTOM_H

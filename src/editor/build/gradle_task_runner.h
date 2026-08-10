@@ -4,9 +4,8 @@
 #ifndef GODOT_JVM_BUILD_MANAGER_H
 #define GODOT_JVM_BUILD_MANAGER_H
 
-#include <core/object/worker_thread_pool.h>
-#include <core/os/os.h>
-#include <core/os/thread.h>
+#include <classes/file_access.hpp>
+#include <variant/string.hpp>
 
 class GradleTaskRunner {
 public:
@@ -24,8 +23,8 @@ public:
     };
 
 private:
-    Ref<FileAccess> stdio;
-    Ref<FileAccess> stderr_io;
+    godot::Ref<godot::FileAccess> stdio;
+    godot::Ref<godot::FileAccess> stderr_io;
     int pid = -1;
 
     GradleTaskRunner() = default;
@@ -39,10 +38,10 @@ public:
     GradleTaskRunner(const GradleTaskRunner&) = delete;
     GradleTaskRunner& operator=(const GradleTaskRunner&) = delete;
 
-    Error run_task(int task_id, String& log, bool blocking);
+    godot::Error run_task(int task_id, godot::String& log, bool blocking);
     bool is_task_started();
     bool is_task_terminated();
-    void get_task_output(String& log, String& error);
+    void get_task_output(godot::String& log, godot::String& error);
 };
 
 #endif // GODOT_JVM_BUILD_MANAGER_H

@@ -2,7 +2,7 @@
 
 using namespace godot;
 
-namespace internal {
+namespace godot::internal {
     void convert_property_to_c(const ::godot::PropertyInfo& p_source, GDExtensionPropertyInfo* p_dest) {
         p_dest->type = static_cast<GDExtensionVariantType>(p_source.type);
         p_dest->name = p_source.name._native_ptr();
@@ -61,17 +61,18 @@ namespace internal {
             c_list[i].arguments = create_c_property_list(E.arguments);
             c_list[i].default_argument_count = E.default_arguments.size();
             c_list[i].default_arguments = create_c_default_arguments(E.default_arguments);
+            ++i;
         }
 
         return c_list;
     }
 
     void free_c_method_list(GDExtensionMethodInfo* p_list, uint32_t p_count) {
-        for (int i = 0; i < p_count; ++i) {
+        for (uint32_t i = 0; i < p_count; ++i) {
             memfree(p_list[i].arguments);
             memfree(p_list[i].default_arguments);
         }
 
         memfree(p_list);
     }
-}
+} // namespace godot::internal

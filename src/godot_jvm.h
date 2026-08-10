@@ -1,7 +1,9 @@
 #ifndef GODOT_JVM_GODOT_JVM_H
 #define GODOT_JVM_GODOT_JVM_H
 
+#include "api/resource_format/java_archive.h"
 #include "jvm/lifecycle/class_loader.h"
+#include "jvm/lifecycle/jvm_manager.h"
 #include "jvm/lifecycle/jvm_options.h"
 #include "jvm/lifecycle/jvm_user_configuration.h"
 #include "jvm/wrapper/bootstrap.h"

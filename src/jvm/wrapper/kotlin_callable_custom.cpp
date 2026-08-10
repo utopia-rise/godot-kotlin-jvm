@@ -44,7 +44,7 @@ LambdaCallable::LambdaCallable(jni::Env& p_env, jni::JObject p_wrapped, godot::V
     has_been_called = false;
 }
 
-void KotlinCallableCustom::call(const godot::Variant** p_arguments, int p_argcount, godot::Variant& r_return_value, Callable::CallError& r_call_error) const {
+void KotlinCallableCustom::call(const godot::Variant** p_arguments, int p_argcount, godot::Variant& r_return_value, GDExtensionCallError& r_call_error) const {
     jni::Env env {jni::Jvm::current_env()};
     kt_callable.invoke(env, p_arguments, p_argcount, r_return_value);
 }
@@ -57,19 +57,19 @@ godot::String KotlinCallableCustom::get_as_text() const {
     return "KotlinCallableCustom::invoke";
 }
 
-ObjectID KotlinCallableCustom::get_object() const {
-    return GodotJvm::get_instance().get_callable_middleman()->get_instance_id();
+godot::ObjectID KotlinCallableCustom::get_object() const {
+    return godot::ObjectID(godot::GodotJvm::get_instance().get_callable_middleman()->get_instance_id());
 }
 
-CallableCustom::CompareEqualFunc KotlinCallableCustom::get_compare_equal_func() const {
+godot::CallableCustom::CompareEqualFunc KotlinCallableCustom::get_compare_equal_func() const {
     return &KotlinCallableCustom::compare_equal;
 }
 
-CallableCustom::CompareLessFunc KotlinCallableCustom::get_compare_less_func() const {
+godot::CallableCustom::CompareLessFunc KotlinCallableCustom::get_compare_less_func() const {
     return &KotlinCallableCustom::compare_less;
 }
 
-bool KotlinCallableCustom::compare_equal(const CallableCustom* p_a, const CallableCustom* p_b) {
+bool KotlinCallableCustom::compare_equal(const godot::CallableCustom* p_a, const godot::CallableCustom* p_b) {
     auto a {dynamic_cast<const KotlinCallableCustom*>(p_a)};
     auto b {dynamic_cast<const KotlinCallableCustom*>(p_b)};
 
@@ -78,12 +78,12 @@ bool KotlinCallableCustom::compare_equal(const CallableCustom* p_a, const Callab
     return a->kt_callable.equals(b->kt_callable);
 }
 
-bool KotlinCallableCustom::compare_less(const CallableCustom* p_a, const CallableCustom* p_b) {
+bool KotlinCallableCustom::compare_less(const godot::CallableCustom* p_a, const godot::CallableCustom* p_b) {
     return !compare_equal(p_a, p_b) && p_a < p_b;
 }
 
 KotlinCallableCustom::KotlinCallableCustom(jni::Env& p_env, jni::JObject p_wrapped, godot::Variant::Type return_type, int p_hash_code, bool p_has_on_destroy) :
-  CallableCustom(),
+  godot::CallableCustom(),
   kt_callable(p_env, p_wrapped, return_type, p_hash_code, p_has_on_destroy) {}
 
 KotlinCallableCustom::~KotlinCallableCustom() {

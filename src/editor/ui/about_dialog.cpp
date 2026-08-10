@@ -5,11 +5,11 @@
 #include "engine/utilities.h"
 
 #include <classes/check_box.hpp>
-#include <classes/editor_interface.h>
-#include <classes/os.h>
-#include <classes/rich_text_label.h>
-#include <classes/v_box_container.h>
-#include <editor/settings/editor_settings.hpp>
+#include <classes/editor_interface.hpp>
+#include <classes/os.hpp>
+#include <classes/rich_text_label.hpp>
+#include <classes/v_box_container.hpp>
+#include <classes/editor_settings.hpp>
 
 using namespace godot;
 

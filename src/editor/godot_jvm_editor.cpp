@@ -1,6 +1,8 @@
 #include "godot_jvm_editor.h"
 
 #include "editor/build/gradle_task_runner.h"
+#include "editor/export/godot_jvm_editor_export_plugin.h"
+#include "editor/jvm_syntax_highlighter.h"
 #include "engine/utilities.h"
 #include "godot_jvm.h"
 #include "paths.h"
@@ -14,6 +16,8 @@
 #include <classes/file_access.hpp>
 #include <classes/popup_menu.hpp>
 #include <classes/project_settings.hpp>
+#include <classes/script_editor.hpp>
+#include <classes/theme.hpp>
 
 using namespace godot;
 
@@ -55,6 +59,51 @@ void GodotJvmEditor::on_filesystem_change() {
     }
 }
 
+void GodotJvmEditor::update_jvm_status(bool force) {
+    GodotJvm::State state = GodotJvm::get_instance().state;
+    if (!force && displayed_jvm_state == state) { return; }
+
+    displayed_jvm_state = state;
+
+    StringName icon;
+    String label;
+    switch (state) {
+        case GodotJvm::State::NOT_STARTED:
+            icon = SNAME("StatusError");
+            label = "JVM not started";
+            break;
+        case GodotJvm::State::JVM_LIBRARY_LOADED:
+            icon = SNAME("StatusWarning");
+            label = "JVM not started";
+            break;
+        case GodotJvm::State::JVM_STARTED:
+            icon = SNAME("StatusWarning");
+            label = "Bootstrap not loaded";
+            break;
+        case GodotJvm::State::BOOTSTRAP_LOADED:
+            icon = SNAME("StatusWarning");
+            label = "Core not initialized";
+            break;
+        case GodotJvm::State::CORE_LIBRARY_INITIALIZED:
+            icon = SNAME("StatusWarning");
+            label = "Engine types not initialized";
+            break;
+        case GodotJvm::State::ENGINE_TYPES_INITIALIZED:
+            icon = SNAME("StatusWarning");
+            label = "User code not loaded";
+            break;
+        case GodotJvm::State::JVM_SCRIPTS_INITIALIZED:
+            icon = SNAME("StatusSuccess");
+            label = "Ready";
+            break;
+        default:
+            return;
+    }
+
+    jvm_status_light->set_texture(get_editor_interface()->get_editor_theme()->get_icon(icon, SNAME("EditorIcons")));
+    jvm_status_light->set_tooltip_text("JVM status: " + label);
+}
+
 bool GodotJvmEditor::_build() {
     bool build_gradle_before_start = editor_settings->get_setting(BUILD_BEFORE_START);
 
@@ -68,11 +117,6 @@ bool GodotJvmEditor::_build() {
     return true;
 }
 
-GodotJvmEditor* GodotJvmEditor::get_instance() {
-    static GodotJvmEditor* instance {memnew(GodotJvmEditor)};
-    return instance;
-}
-
 void GodotJvmEditor::_notification(int notification) {
     Control* editor_base_control = get_editor_interface()->get_base_control();
     ProjectSettings* project_settings = ProjectSettings::get_singleton();
@@ -82,11 +126,16 @@ void GodotJvmEditor::_notification(int notification) {
             editor_scale = get_editor_interface()->get_editor_scale();
             editor_settings = get_editor_interface()->get_editor_settings();
 
+            if (!editor_settings->has_setting(BUILD_BEFORE_START)) { editor_settings->set_setting(BUILD_BEFORE_START, false); }
             editor_settings->set_initial_value(BUILD_BEFORE_START, false, false);
+
+            if (!editor_settings->has_setting(SHOW_INFO_ON_START)) { editor_settings->set_setting(SHOW_INFO_ON_START, true); }
             editor_settings->set_initial_value(SHOW_INFO_ON_START, true, false);
 
-            project_settings->get_setting(GRADLE_DIR, "res://");
+            if (!project_settings->has_setting(GRADLE_DIR)) { project_settings->set_setting(GRADLE_DIR, "res://"); }
             project_settings->add_property_info(PropertyInfo(Variant::STRING, GRADLE_DIR, PROPERTY_HINT_GLOBAL_DIR, ""));
+            project_settings->set_as_basic(GRADLE_DIR, true);
+            project_settings->set_initial_value(GRADLE_DIR, "res://");
 
             project_dialog->set_title("JVM project generation");
             project_dialog->set_text(generate_project);
@@ -103,9 +152,18 @@ void GodotJvmEditor::_notification(int notification) {
             about_pop_menu->add_item("About Godot Kotlin JVM", ABOUT);
             add_tool_submenu_item("Kotlin/JVM", about_pop_menu);
 
+            add_control_to_container(CustomControlContainer::CONTAINER_TOOLBAR, separator);
+
             tool_bar_gradle_task_choice->set_flat(true);
             tool_bar_gradle_task_choice->add_item("Build", GradleTaskRunner::Task::BUILD_DEBUG);
+            tool_bar_gradle_task_choice->add_item("Fast Build", GradleTaskRunner::Task::FAST_BUILD);
             tool_bar_gradle_task_choice->add_item("Build Release", GradleTaskRunner::Task::BUILD_RELEASE);
+            tool_bar_gradle_task_choice->add_item("Build Android", GradleTaskRunner::Task::BUILD_ANDROID_DEBUG);
+            tool_bar_gradle_task_choice->add_item("Build Android Release", GradleTaskRunner::Task::BUILD_ANDROID_RELEASE);
+            tool_bar_gradle_task_choice->add_item("Build iOS", GradleTaskRunner::Task::BUILD_IOS_DEBUG);
+            tool_bar_gradle_task_choice->add_item("Build iOS Release", GradleTaskRunner::Task::BUILD_IOS_RELEASE);
+            tool_bar_gradle_task_choice->add_item("Build Graal Native Image", GradleTaskRunner::Task::BUILD_GRAAL_NATIVE_IMAGE_DEBUG);
+            tool_bar_gradle_task_choice->add_item("Build Graal Native Image Release", GradleTaskRunner::Task::BUILD_GRAAL_NATIVE_IMAGE_RELEASE);
             tool_bar_gradle_task_choice->add_item("Generate JRE", GradleTaskRunner::Task::GENERATE_EMBEDDED_JVM);
             tool_bar_gradle_task_choice->select(GradleTaskRunner::Task::BUILD_DEBUG);
             tool_bar_gradle_task_choice->set_fit_to_longest_item(false);
@@ -117,6 +175,10 @@ void GodotJvmEditor::_notification(int notification) {
             tool_bar_gradle_task_button->connect(SNAME("pressed"), callable_mp(this, &GodotJvmEditor::on_gradle_task_pressed));
             add_control_to_container(CustomControlContainer::CONTAINER_TOOLBAR, tool_bar_gradle_task_button);
 
+            jvm_status_light->set_stretch_mode(TextureRect::STRETCH_KEEP_ASPECT_CENTERED);
+            add_control_to_container(CustomControlContainer::CONTAINER_TOOLBAR, jvm_status_light);
+            update_jvm_status(true);
+
             editor_base_control->add_child(task_dialog);
             editor_base_control->add_child(about_dialog);
             editor_base_control->add_child(project_dialog);
@@ -125,10 +187,23 @@ void GodotJvmEditor::_notification(int notification) {
               SNAME("filesystem_changed"),
               callable_mp(this, &GodotJvmEditor::on_filesystem_change)
             );
+            set_process(true);
+
+            // Instantiating these at NOTIFICATION_ENTER_TREE (once the engine has actually added
+            // this plugin to the tree) rather than eagerly during static extension registration —
+            // constructing UI-adjacent Wrapped objects that early crashes, since the editor's own
+            // subsystems (theme, doc, etc.) aren't ready yet at that point.
+            export_plugin.instantiate();
+            add_export_plugin(export_plugin);
+
+            syntax_highlighter.instantiate();
+            get_editor_interface()->get_script_editor()->register_syntax_highlighter(syntax_highlighter);
 
             break;
 
         case NOTIFICATION_PROCESS:
+            update_jvm_status();
+
             if (GradleTaskRunner::get_instance().is_task_started()) {
                 String log;
                 String error;
@@ -154,9 +229,17 @@ void GodotJvmEditor::_notification(int notification) {
             editor_base_control->remove_child(about_dialog);
             editor_base_control->remove_child(project_dialog);
             remove_tool_menu_item("Kotlin/JVM");
+            remove_control_from_container(CustomControlContainer::CONTAINER_TOOLBAR, jvm_status_light);
             remove_control_from_container(CustomControlContainer::CONTAINER_TOOLBAR, separator);
             remove_control_from_container(CustomControlContainer::CONTAINER_TOOLBAR, tool_bar_gradle_task_choice);
             remove_control_from_container(CustomControlContainer::CONTAINER_TOOLBAR, tool_bar_gradle_task_button);
+
+            remove_export_plugin(export_plugin);
+            export_plugin.unref();
+
+            get_editor_interface()->get_script_editor()->unregister_syntax_highlighter(syntax_highlighter);
+            syntax_highlighter.unref();
+
             break;
     }
 }
@@ -166,6 +249,7 @@ GodotJvmEditor::GodotJvmEditor() :
   about_dialog(memnew(AboutDialog)),
   task_dialog(memnew(TaskDialog)),
   project_dialog(memnew(AcceptDialog)),
+  jvm_status_light(memnew(TextureRect)),
   tool_bar_gradle_task_button(memnew(Button)),
   tool_bar_gradle_task_choice(memnew(OptionButton)),
   separator(memnew(VSeparator)) {}
@@ -175,6 +259,7 @@ GodotJvmEditor::~GodotJvmEditor() {
     memdelete(about_dialog);
     memdelete(task_dialog);
     memdelete(project_dialog);
+    memdelete(jvm_status_light);
     memdelete(tool_bar_gradle_task_button);
     memdelete(tool_bar_gradle_task_choice);
     memdelete(separator);

@@ -11,7 +11,7 @@ uintptr_t PackedInt64ArrayBridge::engine_convert_to_godot(JNIEnv* p_raw_env, job
 
     jint size {arr.length(env)};
 
-    godot::Vector<int64_t> vec;
+    godot::PackedInt64Array vec;
     vec.resize(size);
     arr.get_array_elements(env, reinterpret_cast<jlong*>(vec.ptrw()), size);
 

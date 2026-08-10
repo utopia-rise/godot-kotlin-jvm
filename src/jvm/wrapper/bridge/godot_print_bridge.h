@@ -13,16 +13,16 @@ namespace bridges {
 
         // clang-format off
         INIT_JNI_BINDINGS(
-            INIT_NATIVE_METHOD("print", "(Ljava/lang/godot::String;)V", GodotPrintBridge::print)
-            INIT_NATIVE_METHOD("printRich", "(Ljava/lang/godot::String;)V", GodotPrintBridge::print_rich)
-            INIT_NATIVE_METHOD("printVerbose", "(Ljava/lang/godot::String;)V", GodotPrintBridge::print_verbose2)
-            INIT_NATIVE_METHOD("printErr", "(Ljava/lang/godot::String;)V", GodotPrintBridge::print_err)
-            INIT_NATIVE_METHOD("printRaw", "(Ljava/lang/godot::String;)V", GodotPrintBridge::print_raw)
-            INIT_NATIVE_METHOD("pushError", "(Ljava/lang/godot::String;)V", GodotPrintBridge::push_error)
-            INIT_NATIVE_METHOD("pushWarning", "(Ljava/lang/godot::String;)V", GodotPrintBridge::push_warning)
+            INIT_NATIVE_METHOD("print", "(Ljava/lang/String;)V", GodotPrintBridge::print)
+            INIT_NATIVE_METHOD("printRich", "(Ljava/lang/String;)V", GodotPrintBridge::print_rich)
+            INIT_NATIVE_METHOD("printVerbose", "(Ljava/lang/String;)V", GodotPrintBridge::print_verbose2)
+            INIT_NATIVE_METHOD("printErr", "(Ljava/lang/String;)V", GodotPrintBridge::print_err)
+            INIT_NATIVE_METHOD("printRaw", "(Ljava/lang/String;)V", GodotPrintBridge::print_raw)
+            INIT_NATIVE_METHOD("pushError", "(Ljava/lang/String;)V", GodotPrintBridge::push_error)
+            INIT_NATIVE_METHOD("pushWarning", "(Ljava/lang/String;)V", GodotPrintBridge::push_warning)
 
-            INIT_JNI_METHOD(GET_EXCEPTION_STACKTRACE, "getExceptionStackTrace", "(Ljava/lang/Throwable;)Ljava/lang/godot::String;")
-            INIT_JNI_METHOD(GET_STACKTRACE, "getCurrentStacktrace", "()Ljava/lang/godot::String;")
+            INIT_JNI_METHOD(GET_EXCEPTION_STACKTRACE, "getExceptionStackTrace", "(Ljava/lang/Throwable;)Ljava/lang/String;")
+            INIT_JNI_METHOD(GET_STACKTRACE, "getCurrentStacktrace", "()Ljava/lang/String;")
           )
         // clang-format on
 

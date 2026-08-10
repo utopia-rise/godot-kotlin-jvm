@@ -11,52 +11,61 @@
 
 #include <classes/ref_counted.hpp>
 #include <templates/hash_map.hpp>
+#include <templates/hash_set.hpp>
 
-JVM_INSTANCE_WRAPPER(KtClass, "godot.core.KtClass") {
+namespace godot {
+    class JvmScript;
+}
+
+JVM_INSTANCE_WRAPPER(KtClass, "godot.registration.KtClass") {
     JVM_CLASS(KtClass)
 
     // clang-format off
     JNI_OBJECT_METHOD(GET_REGISTERED_NAME)
     JNI_OBJECT_METHOD(GET_FQDN)
-    JNI_OBJECT_METHOD(GET_COMPILATION_TIME_RELATIVE_REGISTRATION_FILE_PATH)
+    JNI_OBJECT_METHOD(GET_SOURCE_FILE_NAME)
     JNI_OBJECT_METHOD(GET_REGISTERED_SUPERTYPES)
+    JNI_BOOLEAN_METHOD(IS_ABSTRACT)
     JNI_OBJECT_METHOD(GET_BASE_GODOT_CLASS)
     JNI_OBJECT_METHOD(GET_FUNCTIONS)
     JNI_OBJECT_METHOD(GET_PROPERTIES)
     JNI_OBJECT_METHOD(GET_SIGNAL_INFOS)
     JNI_OBJECT_METHOD(GET_CONSTRUCTOR)
-    JNI_BOOLEAN_METHOD(GET_HAS_NOTIFICATION)
+    JNI_OBJECT_METHOD(GET_HANDLED_NOTIFICATIONS)
     JNI_VOID_METHOD(DO_NOTIFICATION)
 
     INIT_JNI_BINDINGS(
-        INIT_JNI_METHOD(GET_REGISTERED_NAME, "getRegisteredName", "()Ljava/lang/godot::String;")
-        INIT_JNI_METHOD(GET_FQDN, "getFqdn", "()Ljava/lang/godot::String;")
-        INIT_JNI_METHOD(GET_COMPILATION_TIME_RELATIVE_REGISTRATION_FILE_PATH, "getCompilationTimeRelativeRegistrationFilePath", "()Ljava/lang/godot::String;")
-        INIT_JNI_METHOD(GET_REGISTERED_SUPERTYPES, "getRegisteredSupertypes", "()[Ljava/lang/godot::String;")
-        INIT_JNI_METHOD(GET_BASE_GODOT_CLASS, "getBaseGodotClass", "()Ljava/lang/godot::String;")
-        INIT_JNI_METHOD(GET_FUNCTIONS, "getFunctions", "()[Lgodot/core/KtFunction;")
-        INIT_JNI_METHOD(GET_PROPERTIES, "getProperties", "()[Lgodot/core/KtProperty;")
-        INIT_JNI_METHOD(GET_SIGNAL_INFOS, "getSignalInfos", "()[Lgodot/core/KtSignalInfo;")
-        INIT_JNI_METHOD(GET_CONSTRUCTOR, "getConstructor", "()Lgodot/core/KtConstructor;")
-        INIT_JNI_METHOD(GET_HAS_NOTIFICATION, "getHasNotification", "()Z")
+        INIT_JNI_METHOD(GET_REGISTERED_NAME, "getRegisteredName", "()Ljava/lang/String;")
+        INIT_JNI_METHOD(GET_FQDN, "getFqdn", "()Ljava/lang/String;")
+        INIT_JNI_METHOD(GET_SOURCE_FILE_NAME, "getSourceFileName", "()Ljava/lang/String;")
+        INIT_JNI_METHOD(GET_REGISTERED_SUPERTYPES, "getRegisteredSupertypes", "()[Ljava/lang/String;")
+        INIT_JNI_METHOD(IS_ABSTRACT, "isAbstract", "()Z")
+        INIT_JNI_METHOD(GET_BASE_GODOT_CLASS, "getBaseGodotClass", "()Ljava/lang/String;")
+        INIT_JNI_METHOD(GET_FUNCTIONS, "getFunctions", "()[Lgodot/registration/KtFunction;")
+        INIT_JNI_METHOD(GET_PROPERTIES, "getProperties", "()[Lgodot/registration/KtProperty;")
+        INIT_JNI_METHOD(GET_SIGNAL_INFOS, "getSignalInfos", "()[Lgodot/registration/KtSignalInfo;")
+        INIT_JNI_METHOD(GET_CONSTRUCTOR, "getConstructor", "()Lgodot/registration/KtConstructor;")
+        INIT_JNI_METHOD(GET_HANDLED_NOTIFICATIONS, "getHandledNotifications", "()[I")
         INIT_JNI_METHOD(DO_NOTIFICATION, "doNotification", "(Lgodot/core/KtObject;)V")
     )
 
-    friend class JvmScript;
+    friend class godot::JvmScript;
     // clang-format on
 
 public:
     godot::StringName registered_class_name;
     godot::StringName fqdn;
-    godot::StringName compilation_time_relative_registration_file_path;
+    godot::String source_file_name;
     godot::Vector<godot::StringName> registered_supertypes;
     godot::StringName base_godot_class;
+    bool is_abstract;
 
     explicit KtClass(jni::Env & p_env, jni::JObject p_wrapped);
 
     ~KtClass();
 
     KtObject* create_instance(jni::Env & env, godot::Object * p_owner);
+    bool can_instantiate() const;
 
     KtFunction* get_method(const godot::StringName& methodName);
 
@@ -81,17 +90,17 @@ private:
     godot::HashMap<godot::StringName, KtProperty*> properties;
     godot::HashMap<godot::StringName, KtSignalInfo*> signal_infos;
     KtConstructor* kt_constructor;
-    bool _has_notification;
+    godot::HashSet<int> handled_notifications;
 
     godot::String get_registered_name(jni::Env & env);
 
     godot::String get_fqdn(jni::Env & env);
 
-    godot::String get_compilation_time_relative_registration_file_path(jni::Env & env);
+    godot::String get_source_file_name(jni::Env & env);
 
     godot::StringName get_base_godot_class(jni::Env & env);
 
-    bool get_has_notification(jni::Env & env);
+    void fetch_handled_notifications(jni::Env & env);
 
     void fetch_registered_supertypes(jni::Env & env);
 
