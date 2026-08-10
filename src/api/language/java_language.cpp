@@ -11,10 +11,9 @@ constexpr const char* JAVA_TEMPLATE = PACKAGE_TEMPLATE
   "\n"
   "\n"
   "import " GODOT_KOTLIN_PACKAGE "." BASE_TEMPLATE ";\n"
-  "import godot.annotation.RegisterClass;\n"
-  "import godot.annotation.RegisterFunction;\n"
+  "import godot.annotation.Script;\n"
   "\n"
-  "@RegisterClass\n"
+  "@Script\n"
   "public class " CLASS_TEMPLATE " extends " BASE_TEMPLATE " {\n"
   "\n"
   "    // Declare member variables here. Examples:\n"
@@ -22,14 +21,12 @@ constexpr const char* JAVA_TEMPLATE = PACKAGE_TEMPLATE
   "    // private String b = \"text\";\n"
   "\n"
   "    // Called when the node enters the scene tree for the first time.\n"
-  "    @RegisterFunction\n"
   "    @Override\n"
   "    public void _ready() {\n"
   "        \n"
   "    }\n"
   "\n"
   "    // Called every frame. 'delta' is the elapsed time since the previous frame.\n"
-  "    @RegisterFunction\n"
   "    @Override\n"
   "    public void _process(double delta) {\n"
   "        \n"
@@ -60,8 +57,8 @@ PackedStringArray JavaLanguage::_get_recognized_extensions() const {
     return extensions;
 }
 
-Vector<String> JavaLanguage::get_reserved_words() const {
-    return {
+PackedStringArray JavaLanguage::_get_reserved_words() const {
+    static PackedStringArray reserved_words {
         "abstract",
         "assert",
         "boolean",
@@ -172,4 +169,12 @@ bool JavaLanguage::_is_using_templates() {
 
 Object* JavaLanguage::_create_script() const {
     return memnew(JavaScript);
+}
+
+bool JavaLanguage::_handles_global_class_type(const String& p_type) const {
+    return p_type == GODOT_JAVA_SCRIPT_NAME;
+}
+
+bool JavaLanguage::_supports_builtin_mode() const {
+    return false;
 }

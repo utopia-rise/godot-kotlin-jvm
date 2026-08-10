@@ -2,6 +2,8 @@
 
 #include "types.h"
 
+using namespace godot;
+
 namespace jni {
 
 

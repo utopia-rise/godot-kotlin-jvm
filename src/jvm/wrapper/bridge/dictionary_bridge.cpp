@@ -22,28 +22,26 @@ uintptr_t DictionaryBridge::engine_call_constructor_typed(JNIEnv* p_raw_env, job
 
     auto key_variant_type = args[0].operator uint32_t();
     auto key_engine_type_index {args[1].operator int64_t()};
-    auto key_user_type_index {args[2].operator int64_t()};
+    auto key_user_type_script = godot::Ref(bridges::from_uint_to_ptr<godot::JvmScript>(args[2].operator int64_t()));
 
     auto value_variant_type = args[3].operator uint32_t();
     auto value_engine_type_index {args[4].operator int64_t()};
-    auto value_user_type_index {args[5].operator int64_t()};
+    auto value_user_type_script = godot::Ref(bridges::from_uint_to_ptr<godot::JvmScript>(args[5].operator int64_t()));
 
     godot::StringName key_base_class_name;
     godot::Variant key_script;
-    if (key_user_type_index != -1) {
-        godot::Ref<NamedScript> kotlin_script {JvmScriptManager::get_instance()->get_named_script_from_index(key_user_type_index)};
-        key_base_class_name = kotlin_script->get_instance_base_type();
-        key_script = kotlin_script;
+    if (key_user_type_script.is_valid()) {
+        key_base_class_name = key_user_type_script->get_instance_base_type();
+        key_script = key_user_type_script;
     } else if (key_engine_type_index != -1) {
         key_base_class_name = TypeManager::get_instance().get_engine_type_for_index(key_engine_type_index);
     }
 
     godot::StringName value_base_class_name;
     godot::Variant value_script;
-    if (value_user_type_index != -1) {
-        godot::Ref<NamedScript> kotlin_script {JvmScriptManager::get_instance()->get_named_script_from_index(value_user_type_index)};
-        value_base_class_name = kotlin_script->get_instance_base_type();
-        value_script = kotlin_script;
+    if (value_user_type_script.is_valid()) {
+        value_base_class_name = value_user_type_script->get_instance_base_type();
+        value_script = value_user_type_script;
     } else if (value_engine_type_index != -1) {
         value_base_class_name = TypeManager::get_instance().get_engine_type_for_index(value_engine_type_index);
     }
@@ -67,10 +65,9 @@ void DictionaryBridge::engine_call_duplicate(JNIEnv* p_raw_env, jobject p_instan
 
 void DictionaryBridge::engine_call_duplicate_deep(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
-    Variant args[1] = {};
+    godot::Variant args[1] = {};
     TransferContext::get_instance().read_args(env, args);
-    ResourceDeepDuplicateMode mode = args[0].operator ResourceDeepDuplicateMode();
-    Variant variant = from_uint_to_ptr<Dictionary>(p_raw_ptr)->duplicate_deep(mode);
+    godot::Variant variant = from_uint_to_ptr<godot::Dictionary>(p_raw_ptr)->duplicate_deep(args[0].operator int64_t());
     TransferContext::get_instance().write_return_value(env, variant);
 }
 

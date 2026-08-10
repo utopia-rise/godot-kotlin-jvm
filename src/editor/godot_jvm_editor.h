@@ -1,6 +1,7 @@
 #ifndef GODOT_JVM_GODOT_JVM_EDITOR_H
 #define GODOT_JVM_GODOT_JVM_EDITOR_H
 
+#include "godot_jvm.h"
 #include "ui/about_dialog.h"
 #include "ui/task_dialog.h"
 
@@ -8,9 +9,13 @@
 #include <classes/editor_plugin.hpp>
 #include <classes/editor_settings.hpp>
 #include <classes/option_button.hpp>
+#include <classes/texture_rect.hpp>
 #include <classes/v_separator.hpp>
 
 namespace godot {
+    class GodotJvmEditorExportPlugin;
+    class JvmStandardSyntaxHighlighter;
+
     class GodotJvmEditor : public EditorPlugin {
         GDCLASS(GodotJvmEditor, EditorPlugin)
         friend class BuildManager;
@@ -27,8 +32,14 @@ namespace godot {
         AcceptDialog* project_dialog;
 
         VSeparator* separator;
+        TextureRect* jvm_status_light;
         Button* tool_bar_gradle_task_button;
         OptionButton* tool_bar_gradle_task_choice;
+
+        GodotJvm::State displayed_jvm_state {GodotJvm::State::NOT_STARTED};
+
+        Ref<GodotJvmEditorExportPlugin> export_plugin;
+        Ref<JvmStandardSyntaxHighlighter> syntax_highlighter;
 
         GodotJvmEditor();
         ~GodotJvmEditor();
@@ -37,12 +48,12 @@ namespace godot {
         void on_menu_option_pressed(int option_id);
         void on_generate_project(bool erase_existing);
         void on_filesystem_change();
+        void update_jvm_status(bool force = false);
 
     protected:
         static void _bind_methods();
 
     public:
-        static GodotJvmEditor* get_instance();
         inline static float editor_scale = 1.0f;
         inline static Ref<EditorSettings> editor_settings;
 

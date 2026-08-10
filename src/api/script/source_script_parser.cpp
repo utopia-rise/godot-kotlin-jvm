@@ -1,17 +1,20 @@
 #include "source_script_parser.h"
 
-#include "language/names.h"
+#include "api/language/names.h"
 #include "logging.h"
 
-#include <core/io/file_access.h>
+#include <classes/file_access.hpp>
 
+namespace godot {
 Error read_source_script_file(const String& p_path, String& r_content) {
-    Error err;
-    const Ref<FileAccess> file_access {FileAccess::open(p_path, FileAccess::READ, &err)};
+    const Ref<FileAccess> file_access {FileAccess::open(p_path, FileAccess::READ)};
+    const Error err = FileAccess::get_open_error();
     JVM_ERR_FAIL_COND_V_MSG(err != OK, err, "Cannot open file '" + p_path + "'.");
 
-    const String source = file_access->get_as_utf8_string();
-    if (!source.is_valid_string()) { ERR_FAIL_V(ERR_INVALID_DATA); }
+    // get_as_text() already decodes as UTF-8; godot-cpp exposes no String::is_valid_string()
+    // equivalent to re-validate the result, so that extra check from the engine-module version
+    // is dropped here.
+    const String source = file_access->get_as_text();
 
     r_content = source;
     return OK;
@@ -294,4 +297,6 @@ StringName parse_source_script_fqname(const String& p_source_code, const String&
     return fq_name.is_empty() ? StringName() : StringName(fq_name);
 }
 #endif
+
+} // namespace godot
 

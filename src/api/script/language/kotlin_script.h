@@ -3,8 +3,9 @@
 
 #include "api/script/jvm_script.h"
 
-    class KotlinScript : public SourceScript {
-        GDCLASS(KotlinScript, SourceScript);
+namespace godot {
+    class KotlinScript : public JvmScript {
+        GDCLASS(KotlinScript, JvmScript);
 
     public:
         KotlinScript() = default;
@@ -13,7 +14,7 @@
         ScriptLanguage* _get_language() const override;
 
 #ifdef TOOLS_ENABLED
-        void _format_template(const String& p_path) override;
+        void _format_template(const String& p_path) const override;
 #endif
 
     protected:

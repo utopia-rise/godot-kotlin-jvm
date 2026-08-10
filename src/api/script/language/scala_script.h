@@ -4,8 +4,8 @@
 #include "api/script/jvm_script.h"
 
 namespace godot {
-    class ScalaScript : public SourceScript {
-        GDCLASS(ScalaScript, SourceScript);
+    class ScalaScript : public JvmScript {
+        GDCLASS(ScalaScript, JvmScript);
 
     public:
         ScalaScript() = default;
@@ -14,7 +14,7 @@ namespace godot {
         ScriptLanguage* _get_language() const override;
 
 #ifdef TOOLS_ENABLED
-        void _format_template(const String& p_path) override;
+        void _format_template(const String& p_path) const override;
 #endif
 
     protected:

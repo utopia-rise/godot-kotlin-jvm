@@ -1,208 +1,247 @@
 #include "jvm_script_manager.h"
-#include <classes/resource_loader.hpp>
+
+#include "api/language/names.h"
+#include "api/script/language/gdj_script.h"
+#include "api/script/language/java_script.h"
+#include "api/script/language/kotlin_script.h"
+#include "api/script/language/scala_script.h"
+#include "jvm/wrapper/memory/type_manager.h"
+
+#include <classes/file_access.hpp>
 #include <classes/time.hpp>
-#include "paths.h"
+#include <variant/utility_functions.hpp>
+#include "engine/utilities.h"
 
 using namespace godot;
 
-void JvmScriptManager::create_and_update_scripts(Vector<KtClass*>& classes) {
-#if defined(DEBUG_ENABLED) && !defined(TOOLS_ENABLED)
-    JVM_ERR_FAIL_COND_MSG(named_scripts.size() != 0, "JVM scripts are being initialized more than once.");
-#endif
+JvmScriptManager* JvmScriptManager::singleton = nullptr;
+
+namespace {
+Ref<JvmScript> create_script_for_extension(const String& p_extension) {
+    const String extension = p_extension.to_lower();
+    if (extension == GODOT_KOTLIN_SCRIPT_EXTENSION) {
+        Ref<KotlinScript> script;
+        script.instantiate();
+        return script;
+    } else if (extension == GODOT_JAVA_SCRIPT_EXTENSION) {
+        Ref<JavaScript> script;
+        script.instantiate();
+        return script;
+    } else if (extension == GODOT_SCALA_SCRIPT_EXTENSION) {
+        Ref<ScalaScript> script;
+        script.instantiate();
+        return script;
+    } else if (extension == GODOT_JVM_REGISTRATION_FILE_EXTENSION) {
+        Ref<GdjScript> script;
+        script.instantiate();
+        return script;
+    } else {
+        JVM_ERR_FAIL_V_MSG({}, vformat("Unsupported JVM script extension: %s", extension));
+    }
+    return {};
+}
+} // namespace
+
+JvmScriptManager* JvmScriptManager::get_instance() {
+    if (!singleton) { singleton = memnew(JvmScriptManager); }
+    return singleton;
+}
+
+void JvmScriptManager::finalize() {
+    JvmScriptManager* manager = singleton;
+    singleton = nullptr;
+    memdelete(manager);
+}
+
+Ref<JvmScript> JvmScriptManager::get_script_from_fqdn(const StringName& p_fqdn) const {
+    if (const HashMap<StringName, Ref<WeakRef>>::ConstIterator script = fqdn_to_script.find(p_fqdn)) {
+        return script->value->get_ref();
+    }
+    return {};
+}
+
+void JvmScriptManager::set_script_for_fqdn(const StringName& p_fqdn, JvmScript* p_script) {
+    // godot-cpp's WeakRef exposes no set_obj(); UtilityFunctions::weakref() is the only
+    // GDExtension-accessible way to construct a populated WeakRef.
+    fqdn_to_script[p_fqdn] = UtilityFunctions::weakref(p_script);
+}
+
+Ref<JvmScript> JvmScriptManager::get_script_from_registered_name(const StringName& p_name) const {
+    const HashMap<StringName, Ref<JvmScript>>::ConstIterator script = registered_name_to_script.find(p_name);
+    return script ? script->value : Ref<JvmScript>();
+}
+
+Ref<JvmScript> JvmScriptManager::create_virtual_script(KtClass* p_kotlin_class) {
+    const String extension = p_kotlin_class->source_file_name.is_empty()
+      ? GODOT_JVM_REGISTRATION_FILE_EXTENSION
+      : p_kotlin_class->source_file_name.get_extension().to_lower();
+    Ref<JvmScript> script = create_script_for_extension(extension);
+    script->take_over_path(String(GODOT_JVM_VIRTUAL_PATH_PREFIX) + String(p_kotlin_class->registered_class_name) + "." + extension);
+    script->kotlin_class = p_kotlin_class;
+
+    registered_name_to_script[p_kotlin_class->registered_class_name] = script;
+    set_script_for_fqdn(p_kotlin_class->fqdn, script.ptr());
+    JVM_DEV_VERBOSE("JVM Script created: %s", p_kotlin_class->registered_class_name);
+    return script;
+}
 
 #ifdef TOOLS_ENABLED
-    last_reload = Time::get_singleton()->get_unix_time_from_system();
+void JvmScriptManager::update_script(JvmScript* p_script, KtClass* p_kotlin_class) {
+    p_script->kotlin_class = p_kotlin_class;
+    p_script->export_dirty_flag = true;
+    registered_name_to_script[p_kotlin_class->registered_class_name] = Ref<JvmScript>(p_script);
+    set_script_for_fqdn(p_kotlin_class->fqdn, p_script);
+}
+#endif
 
-    // Clear all containers and keeping a cache for comparison.
-    HashMap<StringName, Ref<NamedScript>> named_script_cache = named_scripts_map;
-    named_scripts.clear();
-    named_scripts_map.clear();
+void JvmScriptManager::initialize_scripts(const Vector<KtClass*>& p_classes) {
+#ifdef TOOLS_ENABLED
+    last_jar_modified_time = static_cast<uint64_t>(Time::get_singleton()->get_unix_time_from_system());
+    registered_name_to_script.clear();
+    fqdn_to_class_index.clear();
 
+    for (const KeyValue<StringName, Ref<WeakRef>>& entry : fqdn_to_script) {
+        Ref<JvmScript> script = entry.value->get_ref();
+        if (script.is_valid()) {
+            delete script->kotlin_class;
+            script->kotlin_class = nullptr;
+        }
+    }
 #endif
 
     JVM_DEV_LOG("Loading JVM Scripts...");
-
-    // ####NAMED SCRIPT#######
-    for (KtClass* kotlin_class : classes) {
-        String script_name = kotlin_class->registered_class_name;
-        String script_path = RES_DIRECTORY + kotlin_class->compilation_time_relative_registration_file_path;
-
-        Ref<NamedScript> named_script;
+    jni::Env env {jni::Jvm::current_env()};
+    int class_index = 0;
+    for (KtClass* kotlin_class : p_classes) {
+        Ref<JvmScript> script;
 #ifdef TOOLS_ENABLED
-        // First check if the scripts already exist
-        if (named_script_cache.has(script_name)) {
-            named_script = named_script_cache[script_name];
-
-            delete named_script->kotlin_class;
-            named_script->kotlin_class = kotlin_class;
-
-            named_script_cache.erase(script_name);
-            named_scripts.push_back(named_script);
-            named_scripts_map[script_name] = named_script;
-
-            named_script->export_dirty_flag = true;
-            named_script->take_over_path(script_path);
-
-            JVM_DEV_VERBOSE("JVM Script updated: %s", script_name);
-        } else {
+        fqdn_to_class_index[kotlin_class->fqdn] = class_index;
+        script = get_script_from_fqdn(kotlin_class->fqdn);
+        if (script.is_valid()) {
+            update_script(script.ptr(), kotlin_class);
+        } else
 #endif
-            named_script = Ref<NamedScript>(ResourceLoader::get_singleton()->load(script_path));
-            named_script->kotlin_class = kotlin_class;
-
-            JVM_DEV_VERBOSE("JVM Script created: %s", script_name);
-#ifdef TOOLS_ENABLED
+        {
+            script = create_virtual_script(kotlin_class);
         }
-#endif
+        TypeManager::get_instance().assign_script_to_class(env, class_index++, script);
     }
 
 #ifdef TOOLS_ENABLED
-    // Only scripts left in the cache are the ones that have been removed or placeholders without associated KtClass
-    // We simply remove their kotlin_class if they got one.
-    for (const KeyValue<StringName, Ref<NamedScript>>& keyValue : named_script_cache) {
-        Ref<NamedScript> named_script {keyValue.value};
-        StringName name {keyValue.key};
-        if (named_script->kotlin_class) {
-            JVM_DEV_VERBOSE("JVM Script deleted: %s", named_script->kotlin_class->registered_class_name);
-            delete named_script->kotlin_class;
-            named_script->kotlin_class = nullptr;
-        }
-
-        // We only add them back if placeholders are in use in the editor. That way they can be updated if back in the next reload.
-        // Without that a separate Script instance would be created and nodes not updated.
-        // Otherwise, we let the named_script die.
-        if (!named_script->placeholders.is_empty()) {
-            named_scripts.push_back(named_script);
-            named_scripts_map[name] = named_script;
-            named_script->export_dirty_flag = true;
-        }
+    Vector<StringName> dead_fqdns;
+    for (const KeyValue<StringName, Ref<WeakRef>>& entry : fqdn_to_script) {
+        if (entry.value->get_ref().get_type() == Variant::NIL) { dead_fqdns.append(entry.key); }
     }
+    for (const StringName& fqdn : dead_fqdns) { fqdn_to_script.erase(fqdn); }
+    callable_mp(this, &JvmScriptManager::update_all_scripts).call_deferred();
 #endif
-
-
-
-    // ####SOURCE SCRIPT#######
-#ifdef TOOLS_ENABLED
-    HashMap<StringName, KtClass*> new_fqdn_to_kt_class;
-#endif
-    HashMap<StringName, KtClass*>& fqdn_to_kt_class_ref =
-#ifdef TOOLS_ENABLED
-            new_fqdn_to_kt_class
-#else
-            fqdn_to_kt_class
-#endif
-    ;
-
-#ifdef TOOLS_ENABLED
-    for (const Ref<WeakRef>& weak_ref: source_scripts) {
-        if (auto* source_script {Object::cast_to<SourceScript>(weak_ref->get_ref()) }) {
-            source_script->kotlin_class = nullptr;
-        }
-    }
-#endif
-
-    for (KtClass* kotlin_class : classes) {
-        fqdn_to_kt_class_ref[kotlin_class->fqdn] = kotlin_class;
-
-#ifdef TOOLS_ENABLED
-
-        if (Ref<WeakRef>* weak_ref {source_scripts_map.getptr(kotlin_class->fqdn)}) {
-            if (auto* source_script {Object::cast_to<SourceScript>(weak_ref->ptr()->get_ref())}) {
-                source_script->kotlin_class = kotlin_class;
-            }
-        }
-
-#endif
-    }
-
-#ifdef TOOLS_ENABLED
-    fqdn_to_kt_class = new_fqdn_to_kt_class;
-
-    // We have to delay the call to update_script_exports. The engine is not fully initialized and scripts can cause undefined behaviors.
-    callable_mp(this, &JvmScriptManager::update_all_scripts).bind(last_reload).call_deferred();
-#endif
-
     JVM_DEV_LOG("JVM scripts are now loaded.");
 }
 
-Ref<NamedScript> JvmScriptManager::get_named_script_from_index(int p_index) const {
-    // No check. Meant to be a fast operation
-    return named_scripts[p_index];
-}
-
-Ref<NamedScript> JvmScriptManager::get_named_script_from_source_script(Ref<SourceScript> p_source_script) const {
-    String path = p_source_script->get_functional_name();
-
-    if (fqdn_to_name_map.has(path)) {
-        StringName name = fqdn_to_name_map[path];
-        return named_scripts_map[name];
-    }
-    return {};
-}
-
-Ref<NamedScript> JvmScriptManager::get_script_from_name(const StringName& name) const {
-    if (HashMap<StringName, Ref<NamedScript>>::ConstIterator element = named_scripts_map.find(name)) {
-        return element->value;
-    }
-    return {};
-}
-
-Ref<SourceScript> JvmScriptManager::get_script_from_fqdn(const StringName& p_fqdn) const {
-    if (HashMap<StringName, Ref<WeakRef>>::ConstIterator element = source_scripts_map.find(p_fqdn)) {
-        return Ref<SourceScript>(element->value->get_ref());
-    }
-    return {};
-}
-
-
 #ifdef TOOLS_ENABLED
-void JvmScriptManager::update_all_scripts(uint64_t update_time) {
-    for (const Ref<NamedScript>& named_script : named_scripts) {
-        JvmScript* ptr = named_script.ptr();
-        ptr->update_script_exports();
-        ptr->set_last_time_source_modified(update_time);
-    }
-
-    for (const Ref<WeakRef>& weak_ref: source_scripts) {
-        if (auto* source_script {Object::cast_to<SourceScript>(weak_ref->get_ref()) }) {
-            source_script->update_script_exports();
-            source_script->set_last_time_source_modified(update_time);
-        }
+void JvmScriptManager::update_all_scripts() {
+    for (const KeyValue<StringName, Ref<JvmScript>>& entry : registered_name_to_script) {
+        entry.value->update_script_exports();
+        entry.value->update_source_sync_warning();
     }
 }
 
-void JvmScriptManager::invalidate_source(const Ref<SourceScript>& source_script) {
-    if (source_script.is_null()) { return; }
-
-    double last_modified = Time::get_singleton()->get_unix_time_from_system();
-
-    // If the jvm_script is already in cache, it means the Godot editor has reloaded it because the sources have changed.
-    source_script->set_last_time_source_modified(last_modified);
-
-    // Update the .gdj if it exists.
-    Ref<NamedScript> named_script = JvmScriptManager::get_instance()->get_named_script_from_source_script(source_script);
-    if (named_script.is_valid()) { named_script->set_last_time_source_modified(last_modified); }
-}
-
-double JvmScriptManager::get_last_reload() const {
-    return last_reload;
-}
+uint64_t JvmScriptManager::get_last_jar_modified_time() const { return last_jar_modified_time; }
 #endif
 
-void JvmScriptManager::finalize() {
-    JvmScriptManager* singleton = get_instance();
+Ref<JvmScript> JvmScriptManager::create_and_bind_physical_script(const String& p_path, const StringName& p_fqdn) {
+    Ref<JvmScript> script;
+    if (!p_fqdn.is_empty()) {
+        script = get_script_from_fqdn(p_fqdn);
+        if (script.is_valid()) {
+#ifdef TOOLS_ENABLED
+            const String existing_path = script->get_path();
+            if (!existing_path.begins_with(GODOT_JVM_VIRTUAL_PATH_PREFIX) && existing_path != p_path && FileAccess::file_exists(existing_path)) {
+                JVM_ERR_FAIL_V_MSG({}, vformat(
+                  "JVM script %s is already associated with physical file %s and cannot also use %s.",
+                  p_fqdn,
+                  existing_path,
+                  p_path
+                ));
+            }
+#endif
+        }
+    }
 
-    singleton->named_scripts.clear();
-    singleton->named_scripts_map.clear();
-    singleton->name_to_fqdn_map.clear();
-    singleton->fqdn_to_name_map.clear();
-    singleton->source_scripts.clear();
-    singleton->source_scripts_map.clear();
-
-    singleton->fqdn_to_kt_class.clear();
-    memdelete(singleton);
+#ifdef TOOLS_ENABLED
+    if (script.is_null()) { script = create_script_for_extension(p_path.get_extension()); }
+    script->last_physical_fqdn = p_fqdn;
+    if (!p_fqdn.is_empty()) { set_script_for_fqdn(p_fqdn, script.ptr()); }
+#endif
+    return script;
 }
 
-JvmScriptManager* JvmScriptManager::get_instance() {
-    static JvmScriptManager* instance {memnew(JvmScriptManager)};
-    return instance;
+#ifdef TOOLS_ENABLED
+void JvmScriptManager::replace_virtual_script(JvmScript* p_physical_script, JvmScript* p_virtual_script) {
+    p_physical_script->kotlin_class = p_virtual_script->kotlin_class;
+    p_virtual_script->kotlin_class = nullptr;
+    p_physical_script->export_dirty_flag = true;
+    p_virtual_script->move_placeholders_to(p_physical_script);
+
+    const StringName fqdn = p_physical_script->last_physical_fqdn;
+    registered_name_to_script[p_physical_script->kotlin_class->registered_class_name] = Ref<JvmScript>(p_physical_script);
+    set_script_for_fqdn(fqdn, p_physical_script);
+
+    const HashMap<StringName, int>::ConstIterator class_index = fqdn_to_class_index.find(fqdn);
+    if (class_index) {
+        jni::Env env {jni::Jvm::current_env()};
+        TypeManager::get_instance().assign_script_to_class(env, class_index->value, Ref<JvmScript>(p_physical_script));
+    }
 }
+
+void JvmScriptManager::update_physical_script(JvmScript* p_script, const StringName& p_fqdn) {
+    if (p_script->last_physical_fqdn == p_fqdn
+        && (p_fqdn.is_empty() || get_script_from_fqdn(p_fqdn).ptr() == p_script)) {
+        return;
+    }
+
+    if (!p_script->last_physical_fqdn.is_empty() && get_script_from_fqdn(p_script->last_physical_fqdn).ptr() == p_script) {
+        fqdn_to_script.erase(p_script->last_physical_fqdn);
+    }
+
+    if (p_script->kotlin_class && p_script->kotlin_class->fqdn != p_fqdn) {
+        KtClass* kotlin_class = p_script->kotlin_class;
+        p_script->kotlin_class = nullptr;
+        const HashMap<StringName, int>::ConstIterator class_index = fqdn_to_class_index.find(kotlin_class->fqdn);
+        Ref<JvmScript> virtual_script = create_virtual_script(kotlin_class);
+        if (class_index) {
+            jni::Env env {jni::Jvm::current_env()};
+            TypeManager::get_instance().assign_script_to_class(env, class_index->value, virtual_script);
+        }
+    }
+
+    p_script->last_physical_fqdn = p_fqdn;
+    if (p_fqdn.is_empty()) { return; }
+
+    Ref<JvmScript> existing = get_script_from_fqdn(p_fqdn);
+    if (existing.is_valid() && existing.ptr() != p_script
+        && !existing->get_path().begins_with(GODOT_JVM_VIRTUAL_PATH_PREFIX)
+        && FileAccess::file_exists(existing->get_path())) {
+        ERR_PRINT(vformat(
+          "JVM script %s is already associated with physical file %s and cannot also use %s.",
+          p_fqdn,
+          existing->get_path(),
+          p_script->get_path()
+        ));
+        return;
+    }
+    if (existing.is_valid() && existing.ptr() != p_script && existing->kotlin_class
+        && existing->get_path().begins_with(GODOT_JVM_VIRTUAL_PATH_PREFIX)) {
+        replace_virtual_script(p_script, existing.ptr());
+    } else {
+        set_script_for_fqdn(p_fqdn, p_script);
+    }
+}
+
+void JvmScriptManager::untrack_physical_script(JvmScript* p_script) {
+    if (singleton && !p_script->last_physical_fqdn.is_empty()
+        && singleton->get_script_from_fqdn(p_script->last_physical_fqdn).ptr() == p_script) {
+        singleton->fqdn_to_script.erase(p_script->last_physical_fqdn);
+    }
+}
+#endif

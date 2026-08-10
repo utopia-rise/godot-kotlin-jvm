@@ -6,9 +6,30 @@
 #include <variant/variant.hpp>
 
 
-inline godot::String format_prefix{"Godot-JVM: "};
+// A raw pointer, not an eager `inline godot::String` global: constructing a godot::String calls
+// into godot-cpp's GDExtension interface function pointers, which aren't populated until
+// godot_jvm_library_init() runs GDExtensionBinding::InitObject(). An eager global of the String
+// itself would run as a CRT dynamic initializer at DLL-load time, before that happens, crashing
+// the load (Windows error 1114 / DLL initialization routine failed). A pointer, by contrast, is
+// constant-initialized (nullptr is a constant expression) — no CRT entry, safe pre-init.
+inline godot::String* format_prefix_instance = nullptr;
 
-#define JVM_STRING_FORMAT(message, ...)  godot::vformat(format_prefix + message,  ##__VA_ARGS__)
+// Call once from godot_jvm_library_init(), after GDExtensionBinding::InitObject has run — see
+// format_prefix_instance above. Deliberately not a lazy magic-static in format_prefix() itself:
+// every JVM_LOG_*/JVM_ERR_* call would then pay a guard-check for a value that only ever needs
+// setting once, for the lifetime of the whole extension.
+inline void configure_logging() {
+    format_prefix_instance = new godot::String("Godot-JVM: ");
+}
+
+inline const godot::String& format_prefix() {
+    return *format_prefix_instance;
+}
+
+// message is wrapped in godot::String(...) explicitly: godot::String has overloads for operator+
+// taking both `const String&` and `const StringName&`, so adding a raw string literal directly is
+// ambiguous (equally valid implicit conversion to either type).
+#define JVM_STRING_FORMAT(message, ...)  godot::vformat(format_prefix() + godot::String(message),  ##__VA_ARGS__)
 
 #define JVM_LOG_INFO(message, ...) godot::print_line(JVM_STRING_FORMAT(message, ##__VA_ARGS__))
 #define JVM_LOG_VERBOSE(message, ...) godot::print_verbose(JVM_STRING_FORMAT(message, ##__VA_ARGS__))

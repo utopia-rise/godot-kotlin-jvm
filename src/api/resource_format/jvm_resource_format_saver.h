@@ -5,10 +5,14 @@
 
 namespace godot {
     class JvmResourceFormatSaver : public ResourceFormatSaver {
+        GDCLASS(JvmResourceFormatSaver, ResourceFormatSaver);
+
+    protected:
+        static void _bind_methods() {}
+
     public:
         JvmResourceFormatSaver() = default;
         JvmResourceFormatSaver(const JvmResourceFormatSaver&) = delete;
-        void operator=(const JvmResourceFormatSaver&) = delete;
 
         PackedStringArray _get_recognized_extensions(const Ref<Resource>& p_resource) const override;
         bool _recognize(const Ref<Resource>& p_resource) const override;

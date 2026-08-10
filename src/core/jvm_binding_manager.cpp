@@ -26,7 +26,7 @@ void JvmBindingManager::_instance_binding_free_callback(void* p_token, void* p_i
 
     JvmBinding* binding = reinterpret_cast<JvmBinding*>(p_binding);
     godot::Object* object = reinterpret_cast<godot::Object*>(p_instance);
-    if (!object->is_ref_counted()) { MemoryManager::get_instance().queue_dead_object(binding->get_object_id()); }
+    if (!is_ref_counted(object)) { MemoryManager::get_instance().queue_dead_object(binding->get_object_id()); }
     godot::memdelete(binding);
 }
 

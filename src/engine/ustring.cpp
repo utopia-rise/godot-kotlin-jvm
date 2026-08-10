@@ -3,7 +3,7 @@
 #include <classes/translation_server.hpp>
 #include <classes/translation_domain.hpp>
 
-using namespace godot;
+namespace godot {
 
 static constexpr const char* GODOT_EDITOR_DOMAIN = "godot.editor";
 
@@ -43,3 +43,5 @@ String RTR(const String& p_text, const String& p_context) {
 
     return p_text;
 }
+
+} // namespace godot

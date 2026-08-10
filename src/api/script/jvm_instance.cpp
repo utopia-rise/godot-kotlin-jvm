@@ -1,5 +1,7 @@
 #include "jvm_instance.h"
 
+#include "jvm/wrapper/memory/memory_manager.h"
+
 using namespace godot;
 
 GDExtensionBool JvmInstance::set(GDExtensionScriptInstanceDataPtr p_instance, GDExtensionConstStringNamePtr p_name, GDExtensionConstVariantPtr p_value) {
@@ -145,12 +147,14 @@ void JvmInstance::get_property_state(GDExtensionScriptInstanceDataPtr p_instance
     for (int i = 0; i < property_count; ++i) {
         const GDExtensionPropertyInfo property_info = property_infos[i];
         if (property_info.usage & PROPERTY_USAGE_STORAGE) {
-            GDExtensionVariantPtr r_ret;
+            Variant temp_value;
+            GDExtensionVariantPtr r_ret = &temp_value;
             if (get(p_instance, property_info.name, r_ret)) {
                 p_add_func(property_info.name, r_ret, p_userdata);
             }
         }
     }
+    free_property_list(p_instance, property_infos, property_count);
 }
 
 //TODO: Do the conversion within ktClass
@@ -206,7 +210,10 @@ GDExtensionBool JvmInstance::validate_property(GDExtensionScriptInstanceDataPtr 
         const Variant* args[arg_count] = {&property_arg};
         function->invoke(env, kt_object, args, arg_count, ret_var);
         internal::convert_property_to_c(PropertyInfo::from_dict(property_arg), p_property);
+        return true;
     }
+
+    return false;
 }
 
 GDExtensionBool JvmInstance::has_method(GDExtensionScriptInstanceDataPtr p_instance, GDExtensionConstStringNamePtr p_name) {
@@ -275,6 +282,7 @@ void JvmInstance::to_string(GDExtensionScriptInstanceDataPtr p_instance, GDExten
         function->invoke(env, kt_object, nullptr, arg_count, ret);
         *r_is_valid = true;
         *reinterpret_cast<String*>(r_out) = ret;
+        return;
     }
     *r_is_valid = false;
 }
@@ -393,6 +401,8 @@ JvmInstance::JvmInstanceData* JvmInstance::create_instance_data(jni::Env& p_env,
         // The reference is changed to a weak one so the JVM instance can be collected if it is not referenced anymore on the JVM side.
         p_kt_object->swap_to_weak_unsafe(p_env);
     }
+
+    return instance_data;
 }
 
 #ifdef TOOLS_ENABLED

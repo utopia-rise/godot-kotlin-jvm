@@ -8,9 +8,10 @@
 
 #include <jni.h>
 
-#include <classes/mutex.hpp>
 #include <templates/hash_set.hpp>
 #include <templates/local_vector.hpp>
+
+#include <mutex>
 
 // clang-format off
 JVM_SINGLETON_WRAPPER(MemoryManager, "godot.internal.memory.MemoryManager") {
@@ -30,10 +31,17 @@ JVM_SINGLETON_WRAPPER(MemoryManager, "godot.internal.memory.MemoryManager") {
         INIT_NATIVE_METHOD("releaseBinding", "(J)V", MemoryManager::release_binding)
       )
 
-    godot::Mutex dead_objects_mutex;
+    // std::mutex, not godot::Mutex: the latter is a RefCounted-derived GDExtension proxy class
+    // (only exists so scripts can hold a Mutex object) and requires memnew()/Ref<>::instantiate()
+    // like any other Wrapped-derived class — a bare member here would hit the same "created
+    // without binding callbacks" crash as the JSON bug. This is purely internal C++ state, never
+    // exposed to GDScript, so a plain std::mutex is both correct and lighter-weight. Master's
+    // equivalent uses engine-internal Mutex (core/os/mutex.h) — a different, non-Wrapped type
+    // with the same name, not applicable here.
+    std::mutex dead_objects_mutex;
     godot::LocalVector<godot::ObjectID> dead_objects;
 
-    godot::Mutex to_demote_mutex;
+    std::mutex to_demote_mutex;
     godot::HashSet<::godot::JvmInstance::JvmInstanceData*> to_demote_objects;
 
     static bool check_instance(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jlong instance_id);
@@ -43,7 +51,7 @@ JVM_SINGLETON_WRAPPER(MemoryManager, "godot.internal.memory.MemoryManager") {
 
 public:
     void direct_object_deletion(jni::Env& p_env, godot::Object* obj);
-    void queue_dead_object(godot::Object* obj);
+    void queue_dead_object(godot::ObjectID p_object_id);
     void queue_demotion(::godot::JvmInstance::JvmInstanceData* script_instance);
     void cancel_demotion(::godot::JvmInstance::JvmInstanceData* script_instance);
     void try_promotion(::godot::JvmInstance::JvmInstanceData* script_instance);

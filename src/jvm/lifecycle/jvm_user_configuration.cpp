@@ -4,9 +4,15 @@
 
 bool JvmUserConfiguration::parse_configuration_json(const godot::String& json_string, JvmUserConfiguration& json_config) {
     bool is_invalid = false;
-    godot::JSON json;
-    godot::Error error = json.parse(json_string);
-    godot::Variant result = json.get_data();
+    // JSON extends Resource (-> RefCounted -> Object -> Wrapped), so it must be created via
+    // memnew() — Ref<>::instantiate() does that internally. A plain stack-local godot::JSON json;
+    // skips that and never registers the object's GDExtension instance-binding callbacks, which
+    // is exactly the "Godot Object created without binding callbacks. Did you forget to use
+    // memnew()?" crash this was causing.
+    godot::Ref<godot::JSON> json;
+    json.instantiate();
+    godot::Error error = json->parse(json_string);
+    godot::Variant result = json->get_data();
 
     if (error != godot::OK || result.get_type() != godot::Variant::DICTIONARY) {
         JVM_ERR_FAIL_V_MSG(true, "Error parsing Godot Kotlin configuration file! Falling back to default configuration");
@@ -96,7 +102,7 @@ bool JvmUserConfiguration::parse_configuration_json(const godot::String& json_st
             json_config.max_string_size = size;
         } else {
             is_invalid = true;
-            JVM_LOG_WARNING("Invalid Maximum godot::String Size value in configuration file: %s. It will be ignored", size);
+            JVM_LOG_WARNING("Invalid Maximum String Size value in configuration file: %s. It will be ignored", size);
         }
         json_dict.erase(MAX_STRING_SIZE_JSON_IDENTIFIER);
     }
@@ -185,17 +191,15 @@ godot::String JvmUserConfiguration::export_configuration_to_json(const JvmUserCo
 }
 
 godot::Error split_argument(const godot::String& cmd_arg, godot::String& identifier, godot::String& value) {
-    godot::PackedStringArray jvm_debug_split {cmd_arg.split("=")};
-
-    if (jvm_debug_split.size() == 2) {
-        identifier = jvm_debug_split[0];
-        value = jvm_debug_split[1];
-    } else if (jvm_debug_split.size() == 1) {
-        identifier = jvm_debug_split[0];
+    int split_position = cmd_arg.find("=");
+    if (split_position == -1) {
+        identifier = cmd_arg;
         value = "";
-    } else {
-        JVM_ERR_FAIL_V_MSG(godot::Error::ERR_PARSE_ERROR, "Can't parse command-line argument: %s", cmd_arg);
+        return godot::OK;
     }
+
+    identifier = cmd_arg.substr(0, split_position);
+    value = cmd_arg.substr(split_position + 1, cmd_arg.length());
     return godot::OK;
 }
 
@@ -211,7 +215,7 @@ bool get_cmd_bool_or_default(const godot::String& value, bool default_if_empty) 
     }
 }
 
-void JvmUserConfiguration::parse_command_line(const godot::List<godot::String>& args, godot::HashMap<godot::String, godot::Variant>& configuration_map) {
+void JvmUserConfiguration::parse_command_line(const godot::PackedStringArray& args, godot::HashMap<godot::String, godot::Variant>& configuration_map) {
     // We use a HashMap instead of JvmUserConfiguration so we can still make the difference between a
     // JvmUserConfiguration default value and the absence of the matching command line argument. Knowing this is
     // essential when merging with the json configuration later.
@@ -266,14 +270,20 @@ void JvmUserConfiguration::parse_command_line(const godot::List<godot::String>& 
             if (value.is_valid_int() && size >= -1) {
                 configuration_map[MAX_STRING_SIZE_CMD_IDENTIFIER] = size;
             } else {
-                JVM_LOG_WARNING("Invalid Maximum godot::String Size value in configuration file: %s. It will be ignored", size);
+                JVM_LOG_WARNING("Invalid Maximum String Size value in configuration file: %s. It will be ignored", size);
             }
         } else if (identifier == DISABLE_GC_CMD_IDENTIFIER) {
             configuration_map[DISABLE_GC_CMD_IDENTIFIER] = get_cmd_bool_or_default(value, TRUE_STRING);
         } else if (identifier == JVM_ARGUMENTS_CMD_IDENTIFIER) {
             godot::Array arr {};
-            for(godot::String jvm_arg: value.split(" ")){
-                arr.append(arg);
+            // Support both comma-separated and space-separated values.
+            // Space separation requires quoting at shell level, e.g.:
+            // --jvm-custom-args="-Xmx4g -Xms4g"
+            for (godot::String jvm_arg : value.replace(",", " ").split(" ", false)) {
+                godot::String stripped_jvm_arg = jvm_arg.strip_edges();
+                if (!stripped_jvm_arg.is_empty()) {
+                    arr.append(stripped_jvm_arg);
+                }
             }
             configuration_map[JVM_ARGUMENTS_CMD_IDENTIFIER] = arr;
         }
@@ -300,7 +310,7 @@ void JvmUserConfiguration::merge_with_command_line(JvmUserConfiguration& json_co
         // Will be overridden if the actual argument is used.
         json_config.use_debug = true;
     }
-    replace_json_value_by_cmd_value(cmd_map, json_config.use_debug, DEBUG_PORT_CMD_IDENTIFIER);
+    replace_json_value_by_cmd_value(cmd_map, json_config.use_debug, USE_DEBUG_CMD_IDENTIFIER);
     replace_json_value_by_cmd_value(cmd_map, json_config.jvm_jmx_port, JMX_PORT_CMD_IDENTIFIER);
     replace_json_value_by_cmd_value(cmd_map, json_config.max_string_size, MAX_STRING_SIZE_CMD_IDENTIFIER);
     replace_json_value_by_cmd_value(cmd_map, json_config.disable_gc, DISABLE_GC_CMD_IDENTIFIER);

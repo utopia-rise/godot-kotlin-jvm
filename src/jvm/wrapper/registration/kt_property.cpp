@@ -32,7 +32,7 @@ godot::PropertyInfo KtPropertyInfo::toPropertyInfo() const {
     info.class_name = class_name;
     info.hint = hint;
     info.hint_string = hint_string;
-    info.usage = usage | PropertyUsageFlags::PROPERTY_USAGE_SCRIPT_VARIABLE;
+    info.usage = usage | godot::PropertyUsageFlags::PROPERTY_USAGE_SCRIPT_VARIABLE;
     return info;
 }
 

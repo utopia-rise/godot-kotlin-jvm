@@ -1,9 +1,12 @@
 #ifdef TOOLS_ENABLED
 #include "editor/godot_jvm_editor.h"
-#include "kotlin_editor_export_plugin.h"
+#include "editor/export/godot_jvm_editor_export_plugin.h"
+#include "editor/jvm_syntax_highlighter.h"
 
-#include <classes/editor_node.hpp>
-#include <classes/export/editor_export.hpp>
+#include <classes/editor_export_plugin.hpp>
+#include <classes/editor_interface.hpp>
+#include <classes/editor_plugin_registration.hpp>
+#include <classes/script_editor.hpp>
 #endif
 
 #include "api/language/gdj_language.h"
@@ -16,63 +19,86 @@
 #include "api/resource_format/jvm_resource_format_saver.h"
 #include "api/script/jvm_script.h"
 #include "api/script/jvm_script_manager.h"
+#include "api/script/language/gdj_script.h"
+#include "api/script/language/java_script.h"
+#include "api/script/language/kotlin_script.h"
+#include "api/script/language/scala_script.h"
+#include "core/variant_allocator.h"
 #include "godot_jvm.h"
+#include "logging.h"
 #include "register_types.h"
 
 #include <classes/engine.hpp>
-#include <classes/resource_format_loader.hpp.hpp>
+#include <classes/resource_format_loader.hpp>
+#include <classes/resource_loader.hpp>
+#include <classes/resource_saver.hpp>
 
 Ref<JvmResourceFormatLoader> resource_format_loader;
 Ref<JvmResourceFormatSaver> resource_format_saver;
 Ref<JavaArchiveFormatLoader> java_archive_format_loader;
 
-#ifdef TOOLS_ENABLED
-static void export_plugin_init() {
-    Ref<KotlinEditorExportPlugin> export_plugin;
-    export_plugin.instantiate();
-    EditorExport::get_singleton()->add_export_plugin(export_plugin);
-
-    Ref<JvmStandardSyntaxHighlighter> syntax_highlighter;
-    syntax_highlighter.instantiate();
-    ScriptEditor::get_singleton()->register_syntax_highlighter(syntax_highlighter);
-}
-
-static EditorPlugin* godot_kotlin_jvm_editor_plugin_creator_func() {
-    return GodotJvmEditor::get_instance();
-}
-#endif
-
 void initialize_godot_jvm_library(ModuleInitializationLevel p_level) {
-#ifdef TOOLS_ENABLED
-    if (Engine::get_singleton()->is_project_manager_hint()) { return; }
-#endif
-
     if (p_level == MODULE_INITIALIZATION_LEVEL_SERVERS) {
+        // Configure phase: one-time setup for globals that need godot-cpp's GDExtension interface
+        // to be ready (populated by GDExtensionBinding::InitObject, already run by this point —
+        // this function is only ever reached via that object's registered initializer callback)
+        // but must NOT run any earlier, e.g. as an eager static/global constructor at DLL-load
+        // time. Must stay first in this function, before anything below could log or allocate a
+        // Variant.
+        configure_logging();
+        VariantAllocator::configure();
+
         GDREGISTER_ABSTRACT_CLASS(JvmScript);
         GDREGISTER_CLASS(GdjScript);
         GDREGISTER_CLASS(KotlinScript);
         GDREGISTER_CLASS(JavaScript);
         GDREGISTER_CLASS(ScalaScript);
 
-        ScriptServer::register_language(GdjLanguage::get_instance());
-        ScriptServer::register_language(KotlinLanguage::get_instance());
-        ScriptServer::register_language(JavaLanguage::get_instance());
-        ScriptServer::register_language(ScalaLanguage::get_instance());
+        // Required for the engine's ScriptLanguageExtension virtual dispatch
+        // (_get_extension/_get_name/_get_type/etc.) to find these overrides at all — without a
+        // ClassDB registration, the engine's `_gdvirtual_*_call` thunks have no bound implementation
+        // to call and fall through to "must be overridden" errors, even though the C++ vtable itself
+        // is correctly overridden.
+        GDREGISTER_ABSTRACT_CLASS(JvmLanguage);
+        GDREGISTER_INTERNAL_CLASS(GdjLanguage);
+        GDREGISTER_INTERNAL_CLASS(KotlinLanguage);
+        GDREGISTER_INTERNAL_CLASS(JavaLanguage);
+        GDREGISTER_INTERNAL_CLASS(ScalaLanguage);
+
+        Engine::get_singleton()->register_script_language(GdjLanguage::get_instance());
+        Engine::get_singleton()->register_script_language(KotlinLanguage::get_instance());
+        Engine::get_singleton()->register_script_language(JavaLanguage::get_instance());
+        Engine::get_singleton()->register_script_language(ScalaLanguage::get_instance());
+    }
+
+    // ResourceLoader/ResourceSaver aren't registered as engine singletons yet at SERVERS level
+    // (Engine::get_singleton_object("ResourceLoader") returns null there) — SCENE level is the
+    // earliest point they're guaranteed to exist for a GDExtension.
+    if (p_level == MODULE_INITIALIZATION_LEVEL_SCENE) {
+        // Required for these classes' virtual overrides (_load/_save/_get_recognized_extensions/etc.)
+        // to be found by the engine's dispatch — same requirement as the ScriptLanguageExtension
+        // classes above.
+        GDREGISTER_INTERNAL_CLASS(JvmResourceFormatLoader);
+        GDREGISTER_INTERNAL_CLASS(JvmResourceFormatSaver);
+        GDREGISTER_INTERNAL_CLASS(JavaArchiveFormatLoader);
 
         resource_format_loader.instantiate();
-        ResourceLoader::add_resource_format_loader(resource_format_loader);
+        ResourceLoader::get_singleton()->add_resource_format_loader(resource_format_loader);
         resource_format_saver.instantiate();
-        ResourceSaver::add_resource_format_saver(resource_format_saver);
+        ResourceSaver::get_singleton()->add_resource_format_saver(resource_format_saver);
 
         java_archive_format_loader.instantiate();
-        ResourceLoader::add_resource_format_loader(java_archive_format_loader);
+        ResourceLoader::get_singleton()->add_resource_format_loader(java_archive_format_loader);
     }
 
 #ifdef TOOLS_ENABLED
     if (p_level == MODULE_INITIALIZATION_LEVEL_EDITOR) {
         GDREGISTER_INTERNAL_CLASS(JvmStandardSyntaxHighlighter);
-        EditorNode::add_init_callback(export_plugin_init);
-        EditorPlugins::add_create_func(godot_kotlin_jvm_editor_plugin_creator_func);
+        // EditorPlugins::add_by_type<T>() creates the plugin via ClassDB::instantiate(T::get_class_static())
+        // internally, so T must be registered first.
+        GDREGISTER_INTERNAL_CLASS(GodotJvmEditor);
+        GDREGISTER_INTERNAL_CLASS(GodotJvmEditorExportPlugin);
+        EditorPlugins::add_by_type<GodotJvmEditor>();
     }
 #endif
 }
@@ -81,31 +107,35 @@ void uninitialize_godot_jvm_library(ModuleInitializationLevel p_level) {
 
     if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) { return; }
 
-    ResourceLoader::remove_resource_format_loader((java_archive_format_loader));
-    ResourceLoader::remove_resource_format_loader((resource_format_loader));
-    ResourceSaver::remove_resource_format_saver(resource_format_saver);
+    ResourceLoader::get_singleton()->remove_resource_format_loader((java_archive_format_loader));
+    ResourceLoader::get_singleton()->remove_resource_format_loader((resource_format_loader));
+    ResourceSaver::get_singleton()->remove_resource_format_saver(resource_format_saver);
     java_archive_format_loader.unref();
     resource_format_loader.unref();
     resource_format_saver.unref();
 
     JavaLanguage* java_language {JavaLanguage::get_instance()};
-    ScriptServer::unregister_language(java_language);
+    Engine::get_singleton()->unregister_script_language(java_language);
     memdelete(java_language);
 
     KotlinLanguage* kotlin_language {KotlinLanguage::get_instance()};
-    ScriptServer::unregister_language(kotlin_language);
+    Engine::get_singleton()->unregister_script_language(kotlin_language);
     memdelete(kotlin_language);
 
     ScalaLanguage* scala_language {ScalaLanguage::get_instance()};
-    ScriptServer::unregister_language(scala_language);
+    Engine::get_singleton()->unregister_script_language(scala_language);
     memdelete(scala_language);
 
     JvmLanguage* jvm_language {GdjLanguage::get_instance()};
-    ScriptServer::unregister_language(jvm_language);
+    Engine::get_singleton()->unregister_script_language(jvm_language);
     memdelete(jvm_language);
 }
 
 
+extern "C" {
+// Godot resolves this by its plain (non-mangled) name via GetProcAddress/dlsym, matching
+// entry_symbol in jvm.gdextension — without extern "C" it's exported C++-mangled and Godot's
+// lookup fails with "procedure not found".
 GDExtensionBool GDE_EXPORT
 godot_jvm_library_init(GDExtensionInterfaceGetProcAddress p_get_proc_address, GDExtensionClassLibraryPtr p_library, GDExtensionInitialization *r_initialization) {
     GDExtensionBinding::InitObject init_obj(p_get_proc_address, p_library, r_initialization);
@@ -115,4 +145,5 @@ godot_jvm_library_init(GDExtensionInterfaceGetProcAddress p_get_proc_address, GD
     init_obj.set_minimum_library_initialization_level(MODULE_INITIALIZATION_LEVEL_SERVERS);
 
     return init_obj.init();
+}
 }

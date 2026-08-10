@@ -4,8 +4,22 @@
 
 const int MAX_STACK_SIZE = MAX_FUNCTION_ARG_COUNT * 8;
 
-thread_local static godot::Variant variant_args[MAX_STACK_SIZE]; // NOLINT(cert-err58-cpp)
+// Namespace-scope `thread_local` with a non-trivial constructor (godot::Variant's) requires
+// per-thread dynamic initialization, which MSVC wires through a CRT TLS callback run on thread
+// attach — a mechanism that isn't reliably invoked for a DLL loaded dynamically via LoadLibrary
+// (which is how Godot loads a GDExtension), and can fail the load outright (Windows error 1114).
+// A function-local thread_local static sidesteps that: its lazy, guard-checked initialization
+// runs as ordinary code at first call, not via the TLS callback table.
+static godot::Variant* variant_args() {
+    thread_local static godot::Variant args[MAX_STACK_SIZE]; // NOLINT(cert-err58-cpp)
+    return args;
+}
+
 thread_local static const godot::Variant* variant_args_ptr[MAX_STACK_SIZE];
+// Cached result of variant_args(), set once per thread below — trivial (raw pointer), so this
+// costs nothing to declare thread_local, and lets the icall() steady-state path skip re-paying
+// variant_args()'s guard check on every single call.
+thread_local static godot::Variant* variant_args_base = nullptr;
 thread_local static int stack_offset = -1;
 
 TransferContext::~TransferContext() = default;
@@ -59,10 +73,13 @@ void TransferContext::write_object_data(jni::Env& p_env, uintptr_t ptr, godot::O
     buffer->increment_position(encode_uint64(id, buffer->get_cursor()));
 }
 
-void TransferContext::icall(JNIEnv* rawEnv, jobject, jlong j_ptr, jlong j_method_ptr, jint expectedReturnType) {
+void TransferContext::icall(JNIEnv* rawEnv, jobject, jlong j_method_ptr) {
     if (unlikely(stack_offset == -1)) {
+        // The only place variant_args()'s guard-checked thread_local init actually runs, once per
+        // thread — everything below this block reads the cached variant_args_base instead.
+        variant_args_base = variant_args();
         for (int i = 0; i < MAX_STACK_SIZE; i++) {
-            variant_args_ptr[i] = &variant_args[i];
+            variant_args_ptr[i] = &variant_args_base[i];
         }
         stack_offset = 0;
     }
@@ -70,9 +87,19 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject, jlong j_ptr, jlong j_method
     jni::Env env {rawEnv};
 
     SharedBuffer* buffer {get_instance().get_and_rewind_buffer(env)};
-    uint32_t args_size {read_args_size(buffer)};
 
-    auto* ptr {reinterpret_cast<godot::Object*>(static_cast<uintptr_t>(j_ptr))};
+    // The receiver pointer (and, in debug builds, its ObjectID) is written directly into the
+    // buffer by Kotlin's TransferContext.writeMethodArguments() before this call — matching
+    // master exactly — not passed as a separate native argument.
+    uintptr_t receiver_ptr {static_cast<uintptr_t>(decode_uint64(buffer->get_cursor()))};
+    // Master's debug-mode freed-instance check (comparing against ObjectDB::get_instance(receiver_id))
+    // has no godot-cpp equivalent — ObjectDB is engine-internal and unavailable to GDExtensions.
+    // Documented open follow-up in GDEXTENSION_DIVERGENCES.md; the ID bytes are still consumed
+    // here to keep the buffer cursor aligned with what Kotlin wrote.
+    buffer->increment_position(PTR_SIZE + PTR_SIZE);
+    auto* ptr {reinterpret_cast<godot::Object*>(receiver_ptr)};
+
+    uint32_t args_size {read_args_size(buffer)};
 
     godot::MethodBind* method_bind {reinterpret_cast<godot::MethodBind*>(static_cast<uintptr_t>(j_method_ptr))};
 
@@ -101,7 +128,7 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject, jlong j_ptr, jlong j_method
         buffer->rewind();
         VariantToBuffer::write_variant(ret_value, buffer);
     } else {
-        godot::Variant* args {variant_args + stack_offset};
+        godot::Variant* args {variant_args_base + stack_offset};
         read_args_to_array(buffer, args, args_size);
 
         const godot::Variant** args_ptr {variant_args_ptr + stack_offset};

@@ -35,7 +35,7 @@ void ProjectGenerator::generate_jvm_files(bool erase_existing) {
         {
             // Its own scope so the FileAccess is automatically closed.
             Ref<FileAccess> file = FileAccess::open(file_location, FileAccess::WRITE);
-            if (file->get_error() != OK) {
+            if (FileAccess::get_open_error() != OK) {
                 JVM_LOG_WARNING("Cannot save template file '" + file_location + "'.");
             } else if (file_is_binary[i]) {
                 PackedByteArray file_content = marshall->base64_to_raw(file_contents[i]);

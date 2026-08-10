@@ -1,23 +1,76 @@
 #ifdef TOOLS_ENABLED
 
-#include "kotlin_editor_export_plugin.h"
+#include "godot_jvm_editor_export_plugin.h"
 
 #include "api/language/names.h"
-#include "api/script/jvm_script_manager.h"
-#include "godot_jvm.h"
-#include "lifecycle/jvm_user_configuration.h"
-#include "lifecycle/paths.h"
-#include "api/script/jvm_script_manager.h"
 #include "api/script/source_script_parser.h"
+#include "godot_jvm.h"
+#include "jvm/lifecycle/jvm_user_configuration.h"
+#include "logging.h"
+#include "paths.h"
 
-#include <core/config/project_settings.hpp>
-#include <core/io/file_access.hpp>
+#include <classes/dir_access.hpp>
+#include <classes/file_access.hpp>
+#include <classes/project_settings.hpp>
+#include <templates/vector.hpp>
+
+using namespace godot;
 
 static constexpr const char* graal_feature {"export-graal-native-image"};
 static constexpr const char* all_jvm_feature {"export-all-jvm"};
 static constexpr const char* ios_jdk_version {"21"};
 
-void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, bool p_debug, const String& p_path, int p_flags) {
+namespace {
+    // godot-cpp's DirAccess exposes no recursive-copy equivalent to the engine-internal
+    // DirAccess::copy_dir master relied on, so we walk the tree ourselves with the exposed
+    // list_dir_begin/get_next/copy/make_dir_recursive API.
+    Error copy_directory_recursive(const String& from, const String& to) {
+        Ref<DirAccess> dir_access {DirAccess::open(from)};
+        if (dir_access.is_null()) { return DirAccess::get_open_error(); }
+
+        Error error = dir_access->make_dir_recursive(to);
+        if (error != OK) { return error; }
+
+        error = dir_access->list_dir_begin();
+        if (error != OK) { return error; }
+
+        for (String entry = dir_access->get_next(); !entry.is_empty(); entry = dir_access->get_next()) {
+            if (entry == "." || entry == "..") { continue; }
+
+            String from_entry {from.path_join(entry)};
+            String to_entry {to.path_join(entry)};
+
+            Error sub_error;
+            if (dir_access->current_is_dir()) {
+                sub_error = copy_directory_recursive(from_entry, to_entry);
+            } else {
+                sub_error = dir_access->copy(from_entry, to_entry);
+            }
+
+            if (sub_error != OK) {
+                dir_access->list_dir_end();
+                return sub_error;
+            }
+        }
+        dir_access->list_dir_end();
+        return OK;
+    }
+
+    // godot-cpp's EditorExportPreset exposes get_exclude_filter() but no setter, so master's approach
+    // of registering these paths in the preset's exclude filter isn't reachable from a GDExtension.
+    // We get the same functional result (these paths never end up in the exported pck) by skipping
+    // them from within _export_file instead.
+    bool should_skip_export(const String& p_path) {
+        if (p_path == JVM_CONFIGURATION_PATH) { return true; }
+        if (p_path.begins_with(String(BUILD_DIRECTORY) + "/")) { return true; }
+        if (p_path.begins_with(String(RES_DIRECTORY) + JVM_DIRECTORY) && p_path.find("jre-") != -1 && p_path.get_extension() == "jar") {
+            return true;
+        }
+        return false;
+    }
+} // namespace
+
+void GodotJvmEditorExportPlugin::_export_begin(const PackedStringArray& p_features, bool p_debug, const String& p_path, uint32_t p_flags) {
     JVM_LOG_INFO("Beginning Godot-Jvm specific exports.");
 
     // Add mandatory jars to pck
@@ -45,14 +98,14 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
                 // on macos the embedded jre needs to be added as a plugin file
                 if (is_arm64) {
                     String jre_path {String(RES_DIRECTORY).path_join(MACOS_EMBEDDED_JRE_ARM_DIRECTORY)};
-                    if (!DirAccess::exists(jre_path)) {
+                    if (!DirAccess::dir_exists_absolute(jre_path)) {
                         JVM_ERR_FAIL_MSG("JRE does not exist at %s! make sure you've created an embedded JRE using jlink!", jre_path);
                     }
                     add_macos_plugin_file(jre_path);
                 }
                 if (is_x64) {
                     String jre_path {String(RES_DIRECTORY).path_join(MACOS_EMBEDDED_JRE_AMD_DIRECTORY)};
-                    if (!DirAccess::exists(jre_path)) {
+                    if (!DirAccess::dir_exists_absolute(jre_path)) {
                         JVM_ERR_FAIL_MSG("JRE does not exist at %s! make sure you've created an embedded JRE using jlink!", jre_path);
                     }
                     add_macos_plugin_file(jre_path);
@@ -96,10 +149,7 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
                 }
 
                 // copy the jre to res
-                Error error;
-                Ref<DirAccess> dir_access {DirAccess::open(jre_dir, &error)};
-                if (error != OK) { JVM_ERR_FAIL_MSG("Cannot open directory %s", jre_dir); }
-                if (dir_access->copy_dir(jre_dir, target_dir) != OK) {
+                if (copy_directory_recursive(jre_dir, target_dir) != OK) {
                     JVM_ERR_FAIL_MSG(
                       "Cannot copy %s folder to export folder, please make sure you created a JRE directory at the "
                       "root of your project using jlink for the platform you want to export.",
@@ -153,56 +203,33 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
     }
 
     for (const String& file_to_add : files_to_add) {
-        if (!FileAccess::exists(file_to_add)) {
+        if (!FileAccess::file_exists(file_to_add)) {
             JVM_ERR_FAIL_MSG("File can't be found, it won't be exported: %s", file_to_add);
         }
         add_file(file_to_add, FileAccess::get_file_as_bytes(file_to_add), false);
         JVM_LOG_INFO("Exporting %s", file_to_add);
     }
 
-    _add_exclude_filter_preset();
-
     JVM_LOG_INFO("Finished Godot-Jvm specific exports.");
 }
 
-void KotlinEditorExportPlugin::_generate_export_configuration_file(jni::JvmType vm_type) {
+void GodotJvmEditorExportPlugin::_generate_export_configuration_file(jni::JvmType vm_type) {
     JvmUserConfiguration configuration = GodotJvm::get_instance().get_configuration(); // Copy
     configuration.vm_type = vm_type; // We only need to change the vm type
 
-    const char32_t* json_string {JvmUserConfiguration::export_configuration_to_json(configuration).get_data()};
-    Vector<uint8_t> json_bytes;
-    for (int i = 0; json_string[i] != '\0'; ++i) {
-        json_bytes.push_back(json_string[i]);
-    }
-
-    add_file(JVM_CONFIGURATION_PATH, json_bytes, false);
+    add_file(JVM_CONFIGURATION_PATH, JvmUserConfiguration::export_configuration_to_json(configuration).to_utf8_buffer(), false);
 }
 
-void KotlinEditorExportPlugin::_add_exclude_filter_preset() {
-    // only add our configuration file to the exclude filter if it is not already present
-    if (!get_export_preset()->get_exclude_filter().contains(JVM_CONFIGURATION_PATH)) {
-        // we manually add the configuration file to the exclude filter to prevent it from being added multiple times
-        // this could happen if a user adds json files globally with the include filter `*.json` for example
-        // it also seems that json files are added by default now, which also triggers this issue
-        get_export_preset()->set_exclude_filter(get_export_preset()->get_exclude_filter() + "," + JVM_CONFIGURATION_PATH);
-    }
-
-    if (const String build_dir = String {BUILD_DIRECTORY}.path_join("*"); !get_export_preset()->get_exclude_filter().contains(build_dir)) {
-        // exclude build folder
-        get_export_preset()->set_exclude_filter(get_export_preset()->get_exclude_filter() + "," + build_dir);
-    }
-
-    if (const String jre_jars = String {"res://"} + JVM_DIRECTORY + "jre-*/**/*.jar"; !get_export_preset()->get_exclude_filter().contains(jre_jars)) {
-        // exclude any jars in the embedded jre
-        get_export_preset()->set_exclude_filter(get_export_preset()->get_exclude_filter() + "," + jre_jars);
-    }
-}
-
-String KotlinEditorExportPlugin::get_name() const {
+String GodotJvmEditorExportPlugin::_get_name() const {
     return "Godot Kotlin/Jvm";
 }
 
-void KotlinEditorExportPlugin::_export_file(const String& p_path, const String& p_type, const HashSet<String>& p_features) {
+void GodotJvmEditorExportPlugin::_export_file(const String& p_path, const String& p_type, const PackedStringArray& p_features) {
+    if (should_skip_export(p_path)) {
+        skip();
+        return;
+    }
+
     String ext = p_path.get_extension();
     if (ext == GODOT_KOTLIN_SCRIPT_EXTENSION || ext == GODOT_JAVA_SCRIPT_EXTENSION
         || ext == GODOT_SCALA_SCRIPT_EXTENSION || ext == GODOT_JVM_REGISTRATION_FILE_EXTENSION) {
@@ -210,8 +237,7 @@ void KotlinEditorExportPlugin::_export_file(const String& p_path, const String& 
         // The remap boolean ensures that the original file is not kept for the export.
 
         String source_code;
-        Error error;
-        error = read_source_script_file(p_path, source_code);
+        Error error = read_source_script_file(p_path, source_code);
         if (error != OK) {
             JVM_LOG_WARNING(vformat("Failed to read source %s", p_path));
             return;

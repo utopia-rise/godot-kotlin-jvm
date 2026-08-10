@@ -12,6 +12,7 @@ PackedStringArray JvmResourceFormatSaver::_get_recognized_extensions(const Ref<R
     extensions.push_back(GODOT_KOTLIN_SCRIPT_EXTENSION);
     extensions.push_back(GODOT_JVM_REGISTRATION_FILE_EXTENSION);
     extensions.push_back(GODOT_JAVA_SCRIPT_EXTENSION);
+    extensions.push_back(GODOT_SCALA_SCRIPT_EXTENSION);
     return extensions;
 }
 
@@ -22,10 +23,6 @@ bool JvmResourceFormatSaver::_recognize(const Ref<Resource>& p_resource) const {
 Error JvmResourceFormatSaver::_save(const Ref<Resource>& p_resource, const String& p_path, uint32_t p_flags) {
     Ref<JvmScript> jvm_script = p_resource;
     ERR_FAIL_COND_V(jvm_script.is_null(), ERR_INVALID_PARAMETER);
-
-#ifdef TOOLS_ENABLED
-    jvm_script->_format_template(p_path);
-#endif
 
     String extension = p_path.get_extension();
     if (!FileAccess::file_exists(p_path) && extension == GODOT_JVM_REGISTRATION_FILE_EXTENSION) {
@@ -46,9 +43,8 @@ Error JvmResourceFormatSaver::_save(const Ref<Resource>& p_resource, const Strin
     }
 
 #ifdef TOOLS_ENABLED
-    if (extension == GODOT_KOTLIN_SCRIPT_EXTENSION || extension == GODOT_JAVA_SCRIPT_EXTENSION) {
-        callable_mp(JvmScriptManager::get_instance(), &JvmScriptManager::invalidate_source).bind(Ref<SourceScript>(jvm_script))
-          .call_deferred();
+    if (extension == GODOT_KOTLIN_SCRIPT_EXTENSION || extension == GODOT_JAVA_SCRIPT_EXTENSION || extension == GODOT_SCALA_SCRIPT_EXTENSION) {
+        jvm_script->set_last_source_modified_time(FileAccess::get_modified_time(p_path));
     }
 #endif
 

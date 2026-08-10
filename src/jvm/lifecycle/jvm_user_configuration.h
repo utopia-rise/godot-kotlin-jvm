@@ -4,6 +4,7 @@
 #include "jvm/jni/jvm.h"
 
 #include <variant/typed_array.hpp>
+#include <variant/packed_string_array.hpp>
 #include <templates/hash_map.hpp>
 
 // JSON IDENTIFIER
@@ -43,7 +44,7 @@ struct JvmUserConfiguration {
 
     bool use_debug {false};
     int32_t jvm_debug_port {5005};
-    String jvm_debug_address {"*"};
+    godot::String jvm_debug_address {"*"};
     bool wait_for_debugger {true};
 
     int32_t jvm_jmx_port {-1};
@@ -61,7 +62,7 @@ struct JvmUserConfiguration {
     static bool parse_configuration_json(const godot::String& json_string, JvmUserConfiguration& json_config);
     static godot::String export_configuration_to_json(const JvmUserConfiguration& configuration);
 
-    static void parse_command_line(const godot::List<godot::String>& args, godot::HashMap<godot::String, godot::Variant>& configuration_map);
+    static void parse_command_line(const godot::PackedStringArray& args, godot::HashMap<godot::String, godot::Variant>& configuration_map);
 
     static void merge_with_command_line(JvmUserConfiguration& json_config, const godot::HashMap<godot::String, godot::Variant>& cmd_map);
     static void sanitize_and_log_configuration(JvmUserConfiguration& config);

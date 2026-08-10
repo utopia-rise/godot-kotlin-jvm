@@ -47,7 +47,7 @@ JVM_INSTANCE_WRAPPER(KtFunction, "godot.registration.KtFunction") {
     INIT_JNI_BINDINGS(
         INIT_JNI_METHOD(GET_FUNCTION_INFO, "getFunctionInfo", "()Lgodot/registration/KtFunctionInfo;")
         INIT_JNI_METHOD(INVOKE, "invoke", "(Lgodot/core/KtObject;)V")
-        INIT_JNI_METHOD(INVOKE_WITH_RETURN, "invokeWithReturn", "(Lgodot/core/KtObject;)Ljava/lang/godot::Object;")
+        INIT_JNI_METHOD(INVOKE_WITH_RETURN, "invokeWithReturn", "(Lgodot/core/KtObject;)Ljava/lang/Object;")
     )
     // clang-format on
 

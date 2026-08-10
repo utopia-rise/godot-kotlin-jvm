@@ -1,9 +1,11 @@
 {
   "enabled_classes": [
     "Object",
-    "Mutex",
     "RefCounted",
     "Node",
+    "Mutex",
+
+    "GlobalConstants",
 
     "FileAccess",
     "DirAccess",
@@ -11,6 +13,7 @@
     "Resource",
     "ResourceUID",
     "ResourceLoader",
+    "ResourceSaver",
     "ResourceFormatLoader",
     "ResourceFormatSaver",
 
@@ -19,31 +22,26 @@
     "ScriptLanguage",
     "ScriptLanguageExtension",
 
-    "Thread",
-
     "MultiplayerAPI",
     "MultiplayerPeer",
 
     "OS",
-    "Json",
+    "JSON",
     "Time",
     "Engine",
-    "ProjectSetting",
+    "ProjectSettings",
     "Marshalls",
 
-    "EditorNode",
     "EditorInterface",
     "EditorPlugin",
     "EditorSettings",
+    "EditorSyntaxHighlighter",
+    "EditorFileSystem",
 
-    "EditorExport",
-    "EditorExportPreset",
     "EditorExportPlatform",
     "EditorExportPlugin",
 
-    "Control",
     "Button",
-    "VScrollBar",
     "AcceptDialog",
     "PopupMenu",
     "CheckBox",
@@ -53,8 +51,15 @@
     "VSeparator",
     "OptionButton",
     "VBoxContainer",
+    "VScrollBar",
     "RichTextLabel",
+    "TextEdit",
+    "TextureRect",
+    "Texture2D",
+    "Theme",
     "TranslationServer",
-    "TranslationDomain"
+    "TranslationDomain",
+    "WeakRef",
+    "ScriptEditor"
   ]
 }

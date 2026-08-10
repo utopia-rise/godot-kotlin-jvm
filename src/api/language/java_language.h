@@ -4,11 +4,15 @@
 #include "jvm_language.h"
 namespace godot {
     class JavaLanguage : public JvmLanguage {
+        GDCLASS(JavaLanguage, JvmLanguage);
+
+    protected:
+        static void _bind_methods() {}
+
     public:
         JavaLanguage() = default;
         ~JavaLanguage() override = default;
         JavaLanguage(const JavaLanguage&) = delete;
-        void operator=(const JavaLanguage&) = delete;
 
         static JavaLanguage* get_instance();
 
@@ -16,8 +20,11 @@ namespace godot {
         String _get_type() const override;
         String _get_extension() const override;
         PackedStringArray _get_recognized_extensions() const override;
+        bool _handles_global_class_type(const String& p_type) const override;
 
         Object* _create_script() const override;
+
+        bool _supports_builtin_mode() const override;
 
         PackedStringArray _get_reserved_words() const override;
         bool _is_control_flow_keyword(const String& p_keyword) const override;

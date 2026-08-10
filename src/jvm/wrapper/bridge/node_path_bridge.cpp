@@ -5,6 +5,7 @@
 #include "jvm/wrapper/memory/transfer_context.h"
 
 using namespace bridges;
+using namespace godot;
 
 uintptr_t NodePathBridge::engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance) {
     return reinterpret_cast<uintptr_t>(VariantAllocator::alloc(NodePath()));
@@ -26,7 +27,7 @@ uintptr_t NodePathBridge::engine_call_constructor_node_path(JNIEnv* p_raw_env, j
 
 void NodePathBridge::engine_call_path(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
-    godot::Variant variant = from_uint_to_ptr<NodePath>(p_raw_ptr)->operator godot::String();
+    godot::Variant variant = godot::String(*from_uint_to_ptr<NodePath>(p_raw_ptr));
     TransferContext::get_instance().write_return_value(env, variant);
 }
 
