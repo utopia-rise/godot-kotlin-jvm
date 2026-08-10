@@ -8,11 +8,15 @@
 
 namespace godot {
     class JavaArchiveFormatLoader : public ResourceFormatLoader {
+        GDCLASS(JavaArchiveFormatLoader, ResourceFormatLoader);
+
+    protected:
+        static void _bind_methods() {}
+
     public:
         JavaArchiveFormatLoader() = default;
         ~JavaArchiveFormatLoader() = default;
         JavaArchiveFormatLoader(const JavaArchiveFormatLoader&) = delete;
-        void operator=(const JavaArchiveFormatLoader&) = delete;
 
         PackedStringArray _get_recognized_extensions() const override;
         String _get_resource_type(const String& p_path) const override;

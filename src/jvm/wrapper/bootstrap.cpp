@@ -20,7 +20,7 @@ void Bootstrap::load_classes(JNIEnv* p_env, jobject p_this, jobjectArray p_class
     j_object.delete_local_ref(env);
     jni_classes.delete_local_ref(env);
 
-    JvmScriptManager::get_instance()->initialize_scripts(classes);
+    godot::JvmScriptManager::get_instance()->initialize_scripts(classes);
 }
 
 void Bootstrap::register_engine_type(JNIEnv* p_env, jobject p_this, jobjectArray p_classes_names, jobjectArray p_singleton_names) {

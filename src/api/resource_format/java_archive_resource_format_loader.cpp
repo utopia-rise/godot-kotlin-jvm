@@ -52,7 +52,7 @@ int64_t JavaArchiveFormatLoader::_get_resource_uid(const String& p_path) const {
     String ext = p_path.get_extension().to_lower();
     int64_t id = ResourceUID::INVALID_ID;
     if(ext == "jar" || ext == "dex"){
-        id = (int64_t) hash64(p_path + String(UUID_HASH_SEED));
+        id = (int64_t) hash64(p_path + String(JAVA_ARCHIVE_UUID_HASH_SEED));
         id &= 0x7FFFFFFFFFFFFFFF;
     }
     return id;

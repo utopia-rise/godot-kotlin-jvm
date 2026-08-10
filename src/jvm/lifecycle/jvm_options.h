@@ -8,12 +8,14 @@
 #include <jni.h>
 
 class JvmManager;
-class GodotJvm;
+namespace godot {
+    class GodotJvm;
+}
 
 
 class JvmOptions {
     friend class JvmManager;
-    friend class GodotJvm;
+    friend class godot::GodotJvm;
 
 #ifdef __ANDROID__
     int version {JNI_VERSION_1_6};

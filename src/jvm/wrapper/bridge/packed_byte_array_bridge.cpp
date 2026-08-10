@@ -377,7 +377,7 @@ uintptr_t PackedByteArrayBridge::engine_convert_to_godot(JNIEnv* p_raw_env, jobj
 
     jint size {arr.length(env)};
 
-    godot::Vector<uint8_t> vec;
+    godot::PackedByteArray vec;
     vec.resize(size);
     arr.get_array_elements(env, reinterpret_cast<jbyte*>(vec.ptrw()), size);
 

@@ -1,6 +1,9 @@
 #include "jvm_language.h"
 
 #include "engine/ustring.h"
+#include "api/script/jvm_script.h"
+
+#include <classes/resource_loader.hpp>
 
 using namespace godot;
 
@@ -30,6 +33,19 @@ String JvmLanguage::_validate_path(const String& p_path) const {
             ;
     }
     return "";
+}
+
+Dictionary JvmLanguage::_get_global_class_name(const String& p_path) const {
+    Ref<JvmScript> script = ResourceLoader::get_singleton()->load(p_path);
+    if (script.is_null() || !script->_is_valid()) { return {}; }
+
+    Dictionary result;
+    Ref<Script> base_script = script->_get_base_script();
+    result["base_type"] = base_script.is_valid() ? base_script->get_global_name() : script->_get_instance_base_type();
+    result["is_abstract"] = script->_is_abstract();
+    result["is_tool"] = script->_is_tool();
+    result["name"] = script->_get_global_name();
+    return result;
 }
 
 // Dummy Implementations

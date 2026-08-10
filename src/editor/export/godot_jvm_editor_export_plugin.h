@@ -10,6 +10,11 @@
 
 namespace godot {
     class GodotJvmEditorExportPlugin : public EditorExportPlugin {
+        GDCLASS(GodotJvmEditorExportPlugin, EditorExportPlugin);
+
+    protected:
+        static void _bind_methods() {}
+
     public:
         void _export_begin(const PackedStringArray& p_features, bool p_is_debug, const String& p_path, uint32_t p_flags) override;
         // Source files editions

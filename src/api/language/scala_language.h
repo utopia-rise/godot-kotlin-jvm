@@ -5,11 +5,15 @@
 
 namespace godot {
     class ScalaLanguage : public JvmLanguage {
+        GDCLASS(ScalaLanguage, JvmLanguage);
+
+    protected:
+        static void _bind_methods() {}
+
     public:
         ScalaLanguage() = default;
         ~ScalaLanguage() override = default;
         ScalaLanguage(const ScalaLanguage&) = delete;
-        void operator=(const ScalaLanguage&) = delete;
 
         static ScalaLanguage* get_instance();
 
@@ -17,8 +21,11 @@ namespace godot {
         String _get_type() const override;
         String _get_extension() const override;
         PackedStringArray _get_recognized_extensions() const override;
+        bool _handles_global_class_type(const String& p_type) const override;
 
         Object* _create_script() const override;
+
+        bool _supports_builtin_mode() const override;
 
         PackedStringArray _get_reserved_words() const override;
         bool _is_control_flow_keyword(const String& p_keyword) const override;

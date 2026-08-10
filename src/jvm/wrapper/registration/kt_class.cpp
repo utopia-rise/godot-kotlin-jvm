@@ -5,14 +5,14 @@
 
 KtClass::KtClass(jni::Env& p_env, jni::JObject p_wrapped) :
   JvmInstanceWrapper(p_env, p_wrapped),
-  kt_constructor {nullptr},
-  _has_notification() {
+  kt_constructor {nullptr} {
     LOCAL_FRAME(4);
     registered_class_name = get_registered_name(p_env);
     fqdn = get_fqdn(p_env);
-    compilation_time_relative_registration_file_path = get_compilation_time_relative_registration_file_path(p_env);
+    source_file_name = get_source_file_name(p_env);
     base_godot_class = get_base_godot_class(p_env);
-    _has_notification = get_has_notification(p_env);
+    is_abstract = wrapped.call_boolean_method(p_env, IS_ABSTRACT);
+    fetch_handled_notifications(p_env);
 }
 
 KtClass::~KtClass() {
@@ -58,9 +58,13 @@ godot::String KtClass::get_fqdn(jni::Env& env) {
     return env.from_jstring(jni::JString((jstring) ret.obj));
 }
 
-godot::String KtClass::get_compilation_time_relative_registration_file_path(jni::Env& env) {
-    jni::JObject ret = wrapped.call_object_method(env, GET_COMPILATION_TIME_RELATIVE_REGISTRATION_FILE_PATH);
+godot::String KtClass::get_source_file_name(jni::Env& env) {
+    jni::JObject ret = wrapped.call_object_method(env, GET_SOURCE_FILE_NAME);
     return env.from_jstring(jni::JString((jstring) ret.obj));
+}
+
+bool KtClass::can_instantiate() const {
+    return !is_abstract && kt_constructor != nullptr;
 }
 
 godot::StringName KtClass::get_base_godot_class(jni::Env& env) {
@@ -68,8 +72,14 @@ godot::StringName KtClass::get_base_godot_class(jni::Env& env) {
     return {env.from_jstring(jni::JString((jstring) ret.obj))};
 }
 
-bool KtClass::get_has_notification(jni::Env& env) {
-    return static_cast<bool>(wrapped.call_boolean_method(env, GET_HAS_NOTIFICATION));
+void KtClass::fetch_handled_notifications(jni::Env& env) {
+    jni::JIntArray notifications {wrapped.call_object_method(env, GET_HANDLED_NOTIFICATIONS)};
+    const int count = notifications.length(env);
+    godot::Vector<jint> values;
+    values.resize(count);
+    notifications.get_array_elements(env, values.ptrw(), count);
+    for (int i = 0; i < count; ++i) { handled_notifications.insert(values[i]); }
+    notifications.delete_local_ref(env);
 }
 
 void KtClass::fetch_registered_supertypes(jni::Env& env) {
@@ -144,7 +154,7 @@ const godot::Dictionary KtClass::get_rpc_config() {
 }
 
 void KtClass::do_notification(jni::Env& env, KtObject* p_instance, int p_notification, bool p_reversed) {
-    if (!_has_notification) { return; }
+    if (!handled_notifications.has(p_notification)) { return; }
 
     godot::Variant notification = p_notification;
     godot::Variant reversed = p_reversed;

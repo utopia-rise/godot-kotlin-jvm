@@ -140,13 +140,14 @@ void MemoryManager::sync_memory(jni::Env& p_env) {
 
 void MemoryManager::clean_up(jni::Env& p_env) {
     JVM_LOG_VERBOSE("Cleaning JVM Memory...");
+    sync_memory(p_env);
     wrapped.call_void_method(p_env, CLEAN_UP);
     JVM_LOG_VERBOSE("JVM Memory cleaned!");
 }
 
-void MemoryManager::queue_dead_object(godot::Object* obj) {
+void MemoryManager::queue_dead_object(godot::ObjectID p_object_id) {
     dead_objects_mutex.lock();
-    dead_objects.push_back(godot::ObjectID(obj->get_instance_id()));
+    dead_objects.push_back(p_object_id);
     dead_objects_mutex.unlock();
 }
 

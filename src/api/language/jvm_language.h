@@ -5,6 +5,11 @@
 
 namespace godot {
     class JvmLanguage : public ScriptLanguageExtension {
+        GDCLASS(JvmLanguage, ScriptLanguageExtension);
+
+    protected:
+        static void _bind_methods() {}
+
     public:
         Dictionary _validate(
           const String &p_script,
@@ -15,6 +20,7 @@ namespace godot {
           bool p_validate_safe_lines
         ) const override;
         String _validate_path(const String& p_path) const override;
+        Dictionary _get_global_class_name(const String& p_path) const override;
 
         // Dummy Implementations
         bool _supports_documentation() const override;

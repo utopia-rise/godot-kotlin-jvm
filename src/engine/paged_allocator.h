@@ -54,6 +54,9 @@ namespace godot {
         mutable SpinLock spin_lock;
 
     public:
+        // Precondition: configure() must already have been called (not done automatically here —
+        // see PagedAllocator() below for why construction is deliberately inert). Calling this
+        // unconfigured underflows allocs_available and indexes available_pool out of bounds.
         template<typename... Args>
         T* alloc(Args&&... p_args) {
             if constexpr (thread_safe) { spin_lock.lock(); }
@@ -76,7 +79,7 @@ namespace godot {
             allocs_available--;
             T* alloc = available_pool[allocs_available >> page_shift][allocs_available & page_mask];
             if constexpr (thread_safe) { spin_lock.unlock(); }
-            memnew_placement(alloc, T(p_args...));
+            memnew_placement(alloc, T{p_args...});
             return alloc;
         }
 
@@ -96,6 +99,16 @@ namespace godot {
         void delete_allocation(T* p_mem) { free(p_mem); }
 
     private:
+        // Caller must already hold spin_lock (if thread_safe) and guarantee page_size == 0 —
+        // deliberately does none of configure()'s ERR_FAIL_COND validation, since it's only
+        // ever invoked internally right after that invariant is confirmed. Pure local integer
+        // math, no interface calls.
+        void _configure_unlocked(uint32_t p_page_size) {
+            page_size = nearest_power_of_2_templated(p_page_size);
+            page_mask = page_size - 1;
+            page_shift = get_shift_from_power_of_2(page_size);
+        }
+
         void _reset(bool p_allow_unfreed) {
             if (!p_allow_unfreed || !std::is_trivially_destructible_v<T>) {
                 ERR_FAIL_COND(allocs_available < pages_allocated * page_size);
@@ -132,15 +145,23 @@ namespace godot {
             if constexpr (thread_safe) { spin_lock.lock(); }
             ERR_FAIL_COND(page_pool != nullptr); // Safety check.
             ERR_FAIL_COND(p_page_size == 0);
-            page_size = nearest_power_of_2_templated(p_page_size);
-            page_mask = page_size - 1;
-            page_shift = get_shift_from_power_of_2(page_size);
+            _configure_unlocked(p_page_size);
             if constexpr (thread_safe) { spin_lock.unlock(); }
         }
 
-        // Power of 2 recommended because of alignment with OS page sizes.
-        // Even if element is bigger, it's still a multiple and gets rounded to amount of pages.
-        PagedAllocator(uint32_t p_page_size = DEFAULT_PAGE_SIZE) { configure(p_page_size); }
+        // Trivial on purpose: every member already has a constant (zero/nullptr) default member
+        // initializer above, so a defaulted constructor needs no CRT dynamic initializer at all —
+        // safe to exist in static/global storage before any code has run, including before a
+        // GDExtension's own entry point. The original upstream engine copy this is based on
+        // (see file header) instead configures unconditionally in its constructor, which is fine
+        // there since engine core statics never race extension load order — but doing the same
+        // here as an eager GDExtension global crashes the DLL load (the constructor's
+        // ERR_FAIL_COND calls into godot-cpp interface function pointers that don't exist yet).
+        // Callers using this as an eager GDExtension global must call configure() explicitly
+        // once — e.g. from the extension's own initializer, after GDExtensionBinding::InitObject
+        // has run — before the first alloc(). Deliberately not done lazily inside alloc() itself:
+        // that would cost a branch on every single call forever just to cover a one-time setup.
+        PagedAllocator() = default;
 
         ~PagedAllocator() {
             if constexpr (thread_safe) { spin_lock.lock(); }

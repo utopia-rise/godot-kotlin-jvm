@@ -10,9 +10,9 @@ JVM_SINGLETON_WRAPPER(LongStringQueue, "godot.internal.memory.LongStringQueue") 
     JNI_VOID_METHOD(SET_STRING_MAX_SIZE)
 
     INIT_JNI_BINDINGS(
-        INIT_JNI_METHOD(QUEUE_STRING, "queueString", "(Ljava/lang/godot::String;)V")
+        INIT_JNI_METHOD(QUEUE_STRING, "queueString", "(Ljava/lang/String;)V")
         INIT_JNI_METHOD(SET_STRING_MAX_SIZE, "setStringMaxSize", "(I)V")
-        INIT_NATIVE_METHOD("sendStringToCPP", "(Ljava/lang/godot::String;)V", LongStringQueue::send_string_to_cpp)
+        INIT_NATIVE_METHOD("sendStringToCPP", "(Ljava/lang/String;)V", LongStringQueue::send_string_to_cpp)
     )
     // clang-format on
 

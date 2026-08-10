@@ -86,25 +86,8 @@ Object* GdjLanguage::_create_script() const {
     return memnew(GdjScript);
 }
 
-Dictionary GdjLanguage::_get_global_class_name(const String& p_path) const {
-    Dictionary ret;
-    if (p_path.begins_with(ENTRY_DIRECTORY) || !p_path.ends_with(GODOT_JVM_REGISTRATION_FILE_EXTENSION)) {
-        return ret;
-    }
-
-    ret["is_abstract"] = false;
-    ret["is_tool"] = false;
-
-    String script_name = JvmScript::get_script_file_name(p_path);
-    Ref<NamedScript> named_script = JvmScriptManager::get_instance()->get_script_from_name(script_name);
-    if (!named_script.is_null() && named_script.is_valid()) {
-        ret["base_type"] = named_script->get_base_script().is_null()
-                           ? named_script->get_instance_base_type()
-                           : named_script->get_base_script()->get_global_name();
-        ret["name"] = named_script->get_global_name();
-    }
-
-    return ret;
+bool GdjLanguage::_supports_builtin_mode() const {
+    return false;
 }
 
 PackedStringArray GdjLanguage::_get_reserved_words() const {
@@ -132,11 +115,11 @@ PackedStringArray GdjLanguage::_get_comment_delimiters() const {
     return delimiters;
 }
 
-Vector<String> GdjLanguage::get_doc_comment_delimiters() const {return {};}
+PackedStringArray GdjLanguage::_get_doc_comment_delimiters() const { return {}; }
 
-Vector<String> GdjLanguage::get_string_delimiters() const {return {};}
+PackedStringArray GdjLanguage::_get_string_delimiters() const { return {}; }
 
-Ref<Script> GdjLanguage::make_template(const String& p_template, const String& p_class_name, const String& p_base_class_name) const {
+Ref<Script> GdjLanguage::_make_template(const String& p_template, const String& p_class_name, const String& p_base_class_name) const {
     Ref<GdjScript> gdj_script;
     gdj_script.instantiate();
     String processed_template {

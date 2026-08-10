@@ -13,6 +13,12 @@ JVM_SINGLETON_WRAPPER(TransferContext, "godot.internal.memory.TransferContext") 
 
     INIT_JNI_BINDINGS(
         INIT_JNI_METHOD(GET_BUFFER, "getBuffer", "()Ljava/nio/ByteBuffer;")
+        // Must match the real Kotlin declaration exactly: `private external fun icall(methodPtr:
+        // VoidPtr)` in TransferContext.kt — a single Long, unchanged from master. The receiver
+        // pointer/ID are written directly into the shared buffer by Kotlin's
+        // writeMethodArguments() before this is called, not passed as extra native arguments; an
+        // earlier version of this binding declared "(JJI)V" (extra jlong + jint), which doesn't
+        // match any real Kotlin method and made JNI's RegisterNatives fail at JVM startup.
         INIT_NATIVE_METHOD("icall", "(J)V", TransferContext::icall)
     )
 

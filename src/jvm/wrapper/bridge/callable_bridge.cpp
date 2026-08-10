@@ -3,8 +3,12 @@
 #include "bridges_utils.h"
 #include "constraints.h"
 #include "core/variant_allocator.h"
+#include "engine/utilities.h"
 #include "jvm/wrapper/kotlin_callable_custom.h"
 #include "jvm/wrapper/memory/transfer_context.h"
+
+#include <classes/object.hpp>
+#include <variant/array.hpp>
 
 using namespace bridges;
 
@@ -37,6 +41,29 @@ uintptr_t CallableBridge::engine_call_constructor_kt_custom_callable(
     ));
 }
 
+void CallableBridge::engine_call_constructor_cancellable(
+  JNIEnv* p_raw_env,
+  jobject p_instance,
+  jobject p_kt_custom_callable_instance,
+  jint p_variant_type_ordinal,
+  jint p_hash_code,
+  jboolean p_has_on_destroy
+) {
+    jni::Env env {p_raw_env};
+
+    godot::Variant args[1] = {};
+    TransferContext::get_instance().read_args(env, args);
+    godot::Signal signal = args[0].operator godot::Signal();
+
+    godot::Callable callable {memnew(
+      KotlinCallableCustom(env, p_kt_custom_callable_instance, static_cast<godot::Variant::Type>(p_variant_type_ordinal), p_hash_code, p_has_on_destroy)
+    )};
+
+    // Signals owned by a Node can only be connected on the main thread. godot-cpp doesn't expose
+    // Object::call_thread_safe, so unlike master we can't force the connect() call onto the main thread here.
+    signal.connect(callable, godot::Object::CONNECT_ONE_SHOT);
+}
+
 uintptr_t CallableBridge::engine_call_copy_constructor(JNIEnv* p_raw_env, jobject p_instance) {
     jni::Env env {p_raw_env};
     godot::Variant args[1] = {};
@@ -50,12 +77,13 @@ void CallableBridge::engine_call_bind(JNIEnv* p_raw_env, jobject p_instance, jlo
     godot::Variant args[MAX_FUNCTION_ARG_COUNT];
     uint32_t args_size {TransferContext::get_instance().read_args(env, args)};
 
-    const godot::Variant* args_ptr[MAX_FUNCTION_ARG_COUNT];
+    // godot-cpp exposes no pointer-array bindp(); build an Array and go through bindv() instead.
+    godot::Array bind_args;
     for (uint32_t i = 0; i < args_size; ++i) {
-        args_ptr[i] = &args[i];
+        bind_args.push_back(args[i]);
     }
 
-    godot::Variant result = from_uint_to_ptr<godot::Callable>(p_raw_ptr)->bindp(args_ptr, args_size);
+    godot::Variant result = from_uint_to_ptr<godot::Callable>(p_raw_ptr)->bindv(bind_args);
     TransferContext::get_instance().write_return_value(env, result);
 }
 
@@ -74,14 +102,14 @@ void CallableBridge::engine_call_call(JNIEnv* p_raw_env, jobject p_instance, jlo
     godot::Variant args[MAX_FUNCTION_ARG_COUNT];
     uint32_t args_size {TransferContext::get_instance().read_args(env, args)};
 
-    const godot::Variant* args_ptr[MAX_FUNCTION_ARG_COUNT];
+    // godot-cpp exposes no pointer-array callp()/Callable::CallError; build an Array and go
+    // through callv() instead, which reports failures internally rather than via an out-param.
+    godot::Array call_args;
     for (uint32_t i = 0; i < args_size; ++i) {
-        args_ptr[i] = &args[i];
+        call_args.push_back(args[i]);
     }
 
-    godot::Variant result;
-    godot::Callable::CallError error;
-    from_uint_to_ptr<godot::Callable>(p_raw_ptr)->callp(args_ptr, args_size, result, error);
+    godot::Variant result = from_uint_to_ptr<godot::Callable>(p_raw_ptr)->callv(call_args);
     TransferContext::get_instance().write_return_value(env, result);
 }
 
@@ -91,12 +119,29 @@ void CallableBridge::engine_call_call_deferred(JNIEnv* p_raw_env, jobject p_inst
     godot::Variant args[MAX_FUNCTION_ARG_COUNT];
     uint32_t args_size {TransferContext::get_instance().read_args(env, args)};
 
-    const godot::Variant* args_ptr[MAX_FUNCTION_ARG_COUNT];
-    for (uint32_t i = 0; i < args_size; ++i) {
-        args_ptr[i] = &args[i];
+    // godot-cpp's call_deferred() is a variadic template with no pointer-array/Array overload,
+    // so the runtime argument count has to be unpacked by hand.
+    const godot::Callable& callable = *from_uint_to_ptr<godot::Callable>(p_raw_ptr);
+    switch (args_size) {
+        case 0: callable.call_deferred(); break;
+        case 1: callable.call_deferred(args[0]); break;
+        case 2: callable.call_deferred(args[0], args[1]); break;
+        case 3: callable.call_deferred(args[0], args[1], args[2]); break;
+        case 4: callable.call_deferred(args[0], args[1], args[2], args[3]); break;
+        case 5: callable.call_deferred(args[0], args[1], args[2], args[3], args[4]); break;
+        case 6: callable.call_deferred(args[0], args[1], args[2], args[3], args[4], args[5]); break;
+        case 7: callable.call_deferred(args[0], args[1], args[2], args[3], args[4], args[5], args[6]); break;
+        case 8: callable.call_deferred(args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7]); break;
+        case 9: callable.call_deferred(args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8]); break;
+        case 10: callable.call_deferred(args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8], args[9]); break;
+        case 11: callable.call_deferred(args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8], args[9], args[10]); break;
+        case 12: callable.call_deferred(args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8], args[9], args[10], args[11]); break;
+        case 13: callable.call_deferred(args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8], args[9], args[10], args[11], args[12]); break;
+        case 14: callable.call_deferred(args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8], args[9], args[10], args[11], args[12], args[13]); break;
+        case 15: callable.call_deferred(args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8], args[9], args[10], args[11], args[12], args[13], args[14]); break;
+        case 16: callable.call_deferred(args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8], args[9], args[10], args[11], args[12], args[13], args[14], args[15]); break;
+        default: JVM_ERR_FAIL_MSG("call_deferred: too many arguments"); break;
     }
-
-    from_uint_to_ptr<godot::Callable>(p_raw_ptr)->call_deferredp(args_ptr, args_size);
 }
 
 void CallableBridge::engine_call_callv(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {

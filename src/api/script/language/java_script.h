@@ -3,8 +3,9 @@
 
 #include "api/script/jvm_script.h"
 
-class JavaScript : public SourceScript {
-    GDCLASS(JavaScript, SourceScript);
+namespace godot {
+class JavaScript : public JvmScript {
+    GDCLASS(JavaScript, JvmScript);
 
     public:
         JavaScript() = default;
@@ -13,7 +14,7 @@ class JavaScript : public SourceScript {
         ScriptLanguage* _get_language() const override;
 
 #ifdef TOOLS_ENABLED
-        void _format_template(const String& p_path) override;
+        void _format_template(const String& p_path) const override;
 #endif
 
     protected:

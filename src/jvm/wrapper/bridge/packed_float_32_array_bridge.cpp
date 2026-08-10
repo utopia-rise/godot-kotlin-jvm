@@ -10,7 +10,7 @@ uintptr_t PackedFloat32ArrayBridge::engine_convert_to_godot(JNIEnv* p_raw_env, j
 
     jint size {arr.length(env)};
 
-    godot::Vector<float> vec;
+    godot::PackedFloat32Array vec;
     vec.resize(size);
     arr.get_array_elements(env, reinterpret_cast<jfloat*>(vec.ptrw()), size);
 

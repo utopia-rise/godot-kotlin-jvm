@@ -1,9 +1,11 @@
 #include "jvm_manager.h"
 
+#include "engine/dynamic_library.h"
 #include "jvm/wrapper/bootstrap.h"
 #include "jvm/wrapper/bridge/callable_bridge.h"
 #include "jvm/wrapper/bridge/dictionary_bridge.h"
 #include "jvm/wrapper/bridge/godot_print_bridge.h"
+#include "jvm/wrapper/bridge/lambda_callable_bridge.h"
 #include "jvm/wrapper/bridge/node_path_bridge.h"
 #include "jvm/wrapper/bridge/packed_array_bridge.h"
 #include "jvm/wrapper/bridge/packed_byte_array_bridge.h"
@@ -26,6 +28,8 @@
 #include <locale>
 
 #ifdef __ANDROID__
+// TODO: needs a GDExtension-appropriate Android JVM discovery mechanism; godot-cpp exposes no platform/android
+// headers or get_jni_env equivalent. This Godot-engine-internal header is unavailable to GDExtensions.
 #include <platform/android/thread_jandroid.h>
 #endif
 
@@ -34,7 +38,7 @@ typedef jint(JNICALL* CreateJavaVM)(JavaVM**, void**, void*);
 CreateJavaVM get_create_jvm_function(void* lib_handle) {
 #ifdef DYNAMIC_JVM
     void* createJavaVMSymbolHandle;
-    if (godot::OS::get_singleton()->get_dynamic_library_symbol_handle(lib_handle, "JNI_CreateJavaVM", createJavaVMSymbolHandle) != OK) {
+    if (godot_jvm_native::get_dynamic_library_symbol_handle(lib_handle, "JNI_CreateJavaVM", createJavaVMSymbolHandle) != godot::OK) {
         return nullptr;
     }
     return reinterpret_cast<CreateJavaVM>(createJavaVMSymbolHandle);
@@ -43,6 +47,7 @@ CreateJavaVM get_create_jvm_function(void* lib_handle) {
 #else
     // Sanity check in case we mess up preprocessors
     JVM_DEV_ASSERT(false, "Current configuration doesn't provide a way to create a JVM!");
+    return nullptr;
 #endif
 }
 
@@ -104,7 +109,6 @@ bool JvmManager::initialize_jvm_wrappers(jni::Env& p_env, ClassLoader* class_loa
             && KtFunctionInfo::initialize(p_env, class_loader)
             && KtFunction::initialize(p_env, class_loader)
             && KtClass::initialize(p_env, class_loader)
-            && LambdaCallable::initialize(p_env, class_loader)
             && TransferContext::initialize(p_env, class_loader)
             && TypeManager::initialize(p_env, class_loader)
             && LongStringQueue::initialize(p_env, class_loader)
@@ -170,6 +174,8 @@ void JvmManager::finalize_jvm_wrappers(jni::Env& p_env, ClassLoader* class_loade
 void JvmManager::close_jvm() {
 #if defined DYNAMIC_JVM || defined STATIC_JVM
     JVM_LOG_VERBOSE("Shutting down JVM ...");
+    // Intentionally never reached — DestroyJavaVM is unsafe to call in this context; matches master's behavior.
+    return;
     jni::Jvm::destroy();
 #endif
 }
