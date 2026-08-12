@@ -20,8 +20,7 @@ namespace godot {
 
     protected:
         KtClass* kotlin_class;
-        // mutable: written from _set_path_cache(), which the engine (and Resource::_set_path_cache)
-        // requires to be const.
+        // mutable: written from _set_path_cache(), which the engine (and Resource::_set_path_cache) requires to be const.
         mutable String source;
 
         Object* _object_create() const;
@@ -54,8 +53,13 @@ namespace godot {
         TypedArray<Dictionary> _get_script_method_list() const override;
         TypedArray<Dictionary> _get_script_property_list() const override;
         TypedArray<StringName> _get_members() const override;
+        Dictionary _get_constants() const override;
         void get_script_exported_property_list(List<PropertyInfo>* p_list) const;
         Variant _get_rpc_config() const override;
+
+        // Dummy implementations: no real static-method introspection, and export-list refresh outside the editor is handled by update_script_exports() (TOOLS_ENABLED only, below).
+        bool _has_static_method(const StringName& p_method) const override;
+        void _update_exports() override;
 
     private:
         void _get_script_property_info_list(List<PropertyInfo>* p_list) const;
@@ -94,9 +98,7 @@ namespace godot {
         void _placeholder_erased(void* p_placeholder) override;
         virtual void _format_template(const String& p_path) const;
 
-        // Real Resource virtual, invoked by the engine whenever this resource's path is
-        // assigned/cached (mirrors master's per-language Script::set_path() override trigger
-        // point, which GDExtension's ScriptExtension has no direct equivalent for).
+        // Real Resource virtual, invoked by the engine whenever this resource's path is assigned/cached (mirrors master's per-language Script::set_path() override trigger point, which GDExtension's ScriptExtension has no direct equivalent for).
         void _set_path_cache(const String& p_path) const override;
 #endif
 

@@ -14,6 +14,7 @@
 #include "api/language/jvm_language.h"
 #include "api/language/kotlin_language.h"
 #include "api/language/scala_language.h"
+#include "api/resource_format/java_archive.h"
 #include "api/resource_format/java_archive_resource_format_loader.h"
 #include "api/resource_format/jvm_resource_format_loader.h"
 #include "api/resource_format/jvm_resource_format_saver.h"
@@ -39,12 +40,7 @@ Ref<JavaArchiveFormatLoader> java_archive_format_loader;
 
 void initialize_godot_jvm_library(ModuleInitializationLevel p_level) {
     if (p_level == MODULE_INITIALIZATION_LEVEL_SERVERS) {
-        // Configure phase: one-time setup for globals that need godot-cpp's GDExtension interface
-        // to be ready (populated by GDExtensionBinding::InitObject, already run by this point —
-        // this function is only ever reached via that object's registered initializer callback)
-        // but must NOT run any earlier, e.g. as an eager static/global constructor at DLL-load
-        // time. Must stay first in this function, before anything below could log or allocate a
-        // Variant.
+        // Configure phase: one-time setup for globals that need godot-cpp's GDExtension interface to be ready (populated by GDExtensionBinding::InitObject, already run by this point — this function is only ever reached via that object's registered...
         configure_logging();
         VariantAllocator::configure();
 
@@ -53,12 +49,9 @@ void initialize_godot_jvm_library(ModuleInitializationLevel p_level) {
         GDREGISTER_CLASS(KotlinScript);
         GDREGISTER_CLASS(JavaScript);
         GDREGISTER_CLASS(ScalaScript);
+        // JvmScriptManager::get_instance() does memnew(JvmScriptManager) — same memnew()-requires-ClassDB-registration requirement as everything else here.
+        GDREGISTER_INTERNAL_CLASS(JvmScriptManager);
 
-        // Required for the engine's ScriptLanguageExtension virtual dispatch
-        // (_get_extension/_get_name/_get_type/etc.) to find these overrides at all — without a
-        // ClassDB registration, the engine's `_gdvirtual_*_call` thunks have no bound implementation
-        // to call and fall through to "must be overridden" errors, even though the C++ vtable itself
-        // is correctly overridden.
         GDREGISTER_ABSTRACT_CLASS(JvmLanguage);
         GDREGISTER_INTERNAL_CLASS(GdjLanguage);
         GDREGISTER_INTERNAL_CLASS(KotlinLanguage);
@@ -71,16 +64,12 @@ void initialize_godot_jvm_library(ModuleInitializationLevel p_level) {
         Engine::get_singleton()->register_script_language(ScalaLanguage::get_instance());
     }
 
-    // ResourceLoader/ResourceSaver aren't registered as engine singletons yet at SERVERS level
-    // (Engine::get_singleton_object("ResourceLoader") returns null there) — SCENE level is the
-    // earliest point they're guaranteed to exist for a GDExtension.
+    // ResourceLoader/ResourceSaver aren't registered as engine singletons yet at SERVERS level (Engine::get_singleton_object("ResourceLoader") returns null there) — SCENE level is the earliest point they're guaranteed to exist for a GDExtension.
     if (p_level == MODULE_INITIALIZATION_LEVEL_SCENE) {
-        // Required for these classes' virtual overrides (_load/_save/_get_recognized_extensions/etc.)
-        // to be found by the engine's dispatch — same requirement as the ScriptLanguageExtension
-        // classes above.
         GDREGISTER_INTERNAL_CLASS(JvmResourceFormatLoader);
         GDREGISTER_INTERNAL_CLASS(JvmResourceFormatSaver);
         GDREGISTER_INTERNAL_CLASS(JavaArchiveFormatLoader);
+        GDREGISTER_INTERNAL_CLASS(JavaArchive);
 
         resource_format_loader.instantiate();
         ResourceLoader::get_singleton()->add_resource_format_loader(resource_format_loader);
@@ -94,8 +83,7 @@ void initialize_godot_jvm_library(ModuleInitializationLevel p_level) {
 #ifdef TOOLS_ENABLED
     if (p_level == MODULE_INITIALIZATION_LEVEL_EDITOR) {
         GDREGISTER_INTERNAL_CLASS(JvmStandardSyntaxHighlighter);
-        // EditorPlugins::add_by_type<T>() creates the plugin via ClassDB::instantiate(T::get_class_static())
-        // internally, so T must be registered first.
+        // Actual ScriptEditor::register_syntax_highlighter() call lives in GodotJvmEditor::_notification(NOTIFICATION_ENTER_TREE) — ScriptEditor isn't guaranteed to exist yet at MODULE_INITIALIZATION_LEVEL_EDITOR (crashes with a null-pointer acces...
         GDREGISTER_INTERNAL_CLASS(GodotJvmEditor);
         GDREGISTER_INTERNAL_CLASS(GodotJvmEditorExportPlugin);
         EditorPlugins::add_by_type<GodotJvmEditor>();
@@ -133,9 +121,7 @@ void uninitialize_godot_jvm_library(ModuleInitializationLevel p_level) {
 
 
 extern "C" {
-// Godot resolves this by its plain (non-mangled) name via GetProcAddress/dlsym, matching
-// entry_symbol in jvm.gdextension — without extern "C" it's exported C++-mangled and Godot's
-// lookup fails with "procedure not found".
+// Godot resolves this by its plain (non-mangled) name via GetProcAddress/dlsym, matching entry_symbol in jvm.gdextension — without extern "C" it's exported C++-mangled and Godot's lookup fails with "procedure not found".
 GDExtensionBool GDE_EXPORT
 godot_jvm_library_init(GDExtensionInterfaceGetProcAddress p_get_proc_address, GDExtensionClassLibraryPtr p_library, GDExtensionInitialization *r_initialization) {
     GDExtensionBinding::InitObject init_obj(p_get_proc_address, p_library, r_initialization);

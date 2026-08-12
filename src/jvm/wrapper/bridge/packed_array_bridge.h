@@ -18,8 +18,7 @@
 #include <variant/typed_array.hpp>
 
 namespace bridges {
-    // Variant only has conversions to/from the concrete Packed*Array types, not godot-cpp's
-    // generic Vector<T> — map each bridge's element type to its real backing Packed*Array type.
+    // Variant only has conversions to/from the concrete Packed*Array types, not godot-cpp's generic Vector<T> — map each bridge's element type to its real backing Packed*Array type.
     template<typename T>
     struct PackedArrayTypeTrait;
     template<>
@@ -63,8 +62,7 @@ namespace bridges {
         using type = godot::PackedVector4Array;
     };
 
-    // PackedByteArray has no to_byte_array() of its own (it already is bytes); every other
-    // Packed*Array type exposes one returning a real PackedByteArray copy.
+    // PackedByteArray has no to_byte_array() of its own (it already is bytes); every other Packed*Array type exposes one returning a real PackedByteArray copy.
     inline godot::PackedByteArray packed_array_to_byte_array(const godot::PackedByteArray& p_array) {
         return p_array;
     }
@@ -190,12 +188,12 @@ namespace bridges {
         godot::Variant args[1] = {};
         TransferContext::get_instance().read_args(env, args);
 
-        godot::TypedArray<T> array {args[0].operator godot::Array()};
+        godot::Array array {args[0].operator godot::Array()};
         auto* ret {VariantAllocator::alloc(PackedType())};
         int64_t size {array.size()};
         ret->resize(size);
         for (int64_t i = 0; i < size; ++i) {
-            (*ret)[i] = array[i];
+            (*ret)[i] = static_cast<T>(array[i]);
         }
         return reinterpret_cast<uintptr_t>(ret);
     }

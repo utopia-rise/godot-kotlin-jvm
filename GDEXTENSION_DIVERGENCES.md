@@ -51,6 +51,30 @@ notes. Two items are still open decisions, not yet acted on — see "Open follow
   `"Object"`). The real equivalent is the differently-named `get_class()` (confirmed: it ptrcalls
   the engine's own `get_class` method-bind). Fixed in `src/core/jvm_binding.cpp`.
 
+- **Calling a built-in engine method from `TransferContext::icall` (game-mode-only bug, fixed)**:
+  master's `TransferContext::icall` casts the cached pointer to the engine's real `MethodBind*` and
+  calls `->call(Object*, ...)` — a genuine C++ virtual call, since master's `MethodBind` is the
+  engine's own class. The port copied this pattern verbatim, but `ClassDB::classdb_get_method_bind`
+  on the GDExtension side returns an opaque `GDExtensionMethodBindPtr` handle with **no C++ object
+  behind it at all** — reinterpret-casting it to `godot::MethodBind*` and calling through it is
+  undefined behavior (it happened to run once before corrupting memory and crashing on the next use
+  of the bogus return `Variant`). The only correct way to invoke it is
+  `internal::gdextension_interface_object_method_bind_call(method_bind, raw_object_ptr, args,
+  arg_count, &ret, &error)` — passing the raw `GDExtensionObjectPtr`, no godot-cpp wrapper needed at
+  all. This went unnoticed for a long time because it only triggers when a script instance calls a
+  built-in method on itself (e.g. `Label.setText()` from `_ready()`), and `_ready()` never runs for
+  ordinary scene nodes in editor mode — only in exported/game-mode runs. Fixed in
+  `src/jvm/wrapper/memory/transfer_context.cpp`.
+- **Pre-existing scene node script instantiation sent the wrapper's address, not the raw pointer
+  (game-mode-only bug, fixed)**: for a script attached to an already-existing scene node,
+  `KtConstructor::create_instance` (`src/jvm/wrapper/registration/kt_constructor.cpp`) passed
+  `to_jni_arg(p_owner)` to Kotlin as the instance's "native self pointer" — `p_owner` being the
+  godot-cpp *wrapper* `Object*`, whose address has nothing to do with the real engine object. Master
+  has no such distinction (its `Object*` already *is* the raw engine pointer), so this only affects
+  the port. Kotlin stores whatever it's given and hands it straight back on every subsequent
+  self-call, so every such call decoded a wrapper address as if it were the raw `GodotObject*` — the
+  fix is to pass `p_owner->_owner` instead. Same "only exercised in game mode" blind spot as above.
+
 ## Variant / Callable / packed-array bridging
 
 - **Packed array backing type**: master could use the generic `Vector<T>` directly as bridge
@@ -191,5 +215,129 @@ notes. Two items are still open decisions, not yet acted on — see "Open follow
   by this pass.
 - **`TransferContext::icall` debug-mode safety check**: master decoded the receiver's `ObjectID`
   and checked liveness before dereferencing, throwing a clean JVM exception on a freed object
-  instead of dereferencing a dangling pointer. The redesigned `icall` (now cached-`MethodBind`-based)
-  never restored this check. Not yet fixed.
+  instead of dereferencing a dangling pointer. The redesigned `icall` (now
+  `gdextension_interface_object_method_bind_call`-based, see below) never restored this check. Not
+  yet fixed.
+- **Editor-mode heap corruption on `Object::_extension` (fixed)**: the root cause was
+  `JvmPlaceHolderInstance::call()` reusing the public `get_script()` ABI callback internally.
+  That callback correctly returns a raw `GDExtensionObjectPtr`, but the caller reinterpreted it as
+  a godot-cpp `JvmScript*` wrapper and constructed a `Ref<JvmScript>` from it. The resulting
+  reference operation read a bogus `_owner` and could reference or destroy unrelated engine
+  memory. The fix uses the wrapper already held by `JvmPlaceHolderInstanceData::script`. A debugger
+  run through the delayed `EditorNode::gather_resources()`/`_get_configuration_warnings` path
+  confirmed the wrapper and raw pointers differ and that the loaded `GDExtension` object's
+  `_extension` remained null before and after the callback. The investigation history follows;
+  its JVM heap-race conclusion was disproven by this pointer-path finding.
+
+  Discovered while chasing a separate, now-fixed game-mode crash. The engine's own
+  `GDExtension` singleton (the descriptor for our loaded `jvm.gdextension`) gets a corrupted
+  `Object::_extension` field — should always be null for this built-in class — causing a
+  jump-to-invalid-memory crash inside `RefCounted::reference()`. **Confirmed 100% reproducible**:
+  triggered every time by opening Project Settings > Extensions tab (`TabBar::gui_input` →
+  `ProjectSettingsGDExtension::_update_extension_tree` → `GDExtensionManager::get_extension`,
+  `core/extension/gdextension_manager.cpp:247`) — a plain headless/scripted launch never reproduces
+  it because nothing generates that tab-click UI event. Caught live with a breakpoint one line
+  *before* the crashing statement (`gdextension_manager.cpp:247`, right before `return E->value;`
+  calls `reference()`): `_extension` is already corrupted at that point, so the actual corrupting
+  write happens earlier, not during this call. A raw memory dump at the corrupted `_extension`
+  pointer shows a mixed pattern — the first 8 bytes decode as a plausible real pointer (matching the
+  struct's own `library` field elsewhere), followed by all-zero padding, then clearly-garbage values
+  (tiny "function pointers" like `0x90`, `0x34`, `0x11` that no real code address could ever be) —
+  consistent with either an undersized allocation read past its end, or (more likely, given the two
+  confirmed wrong/dangling-raw-pointer bugs found in the same session, see above) a stale pointer
+  from one of our own objects aliasing this engine object's memory after being freed. Leading
+  hypothesis, not yet confirmed: this happens during **hot-reload** of the `.dll` — the editor
+  detects the file changed on disk and reloads the extension live, destroying/recreating engine-side
+  `GDExtension`/`ObjectGDExtension` state; if one of our own objects is freed with a stale pointer
+  around the same time, it could land on that freshly-recycled memory. Fits the "always crashes
+  when the user opens it, sometimes when launched fresh via automation" pattern, since the DLL was
+  rebuilt/redeployed repeatedly during this session.
+  **Ruled out by direct bisection**: the entire `GodotJvm` state machine (`src/godot_jvm.h`'s
+  `initialize_up_to()` levels — `JVM_STARTED`/`BOOTSTRAP_LOADED`/`CORE_LIBRARY_INITIALIZED`/
+  `ENGINE_TYPES_INITIALIZED`/`JVM_SCRIPTS_INITIALIZED`) is **not** the cause. Tested by temporarily
+  capping `GdjLanguage::_init()`'s target state at each level (also had to temporarily neutralize
+  `GodotJvmEditor::on_filesystem_change()`, which independently re-escalates to the full level on
+  the filesystem-changed signal that always fires once at startup — otherwise every test silently
+  ran at full level regardless of the cap) and, at each level, evaluating
+  `GDExtensionManager::get_singleton()->gdextension_map`'s entry directly in the debugger — no UI
+  interaction needed at all, since the corruption is already present before any UI event, as
+  established above. `_extension` was already corrupted at `JVM_SCRIPTS_INITIALIZED` (full),
+  `CORE_LIBRARY_INITIALIZED`, and `JVM_STARTED` (the lowest level reachable at all — the first
+  `SET_LOADING_STATE` macro step always runs unconditionally regardless of requested target).
+  Whatever corrupts this memory runs **unconditionally**, independent of JVM lifecycle state.
+  **Pinned down by bisecting `register_types.cpp` itself** (same technique — no UI interaction,
+  just evaluate `GDExtensionManager::get_singleton()->gdextension_map`'s entry directly in the
+  debugger after each rebuild): the entire `MODULE_INITIALIZATION_LEVEL_EDITOR` block (our own
+  `GodotJvmEditor` plugin, export plugin, syntax highlighter — none of it) is **not** the cause;
+  disabling it entirely, corruption persisted. The entire `MODULE_INITIALIZATION_LEVEL_SCENE` block
+  **is** — disabling it entirely, `_extension` came back `NULL` (healthy) for the first time.
+  Narrowed further within that block: `JavaArchiveFormatLoader`/`JavaArchive` (JAR loading) is
+  *not* the cause — disabled, corruption persisted. **`JvmResourceFormatLoader` alone reproduces
+  it, and disabling only it (everything else enabled) eliminates it** — confirmed both directions,
+  so it's necessary and sufficient on its own.
+  **Narrowed further to invocation, not registration**: with the loader registered completely
+  normally but temporarily made to never match anything (`_get_recognized_extensions()` returns
+  empty, `_handles_type()` returns false — present but the editor never calls `_load()` on it for
+  the scene's `.kt`/`.java`/`.scala` files), `_extension` stayed `NULL`. So it's specifically the
+  editor *invoking* `_load()` while opening `main.tscn`'s scripts, not the mere registration.
+  **Narrowed further inside `_load()` itself** by progressively short-circuiting it earlier and
+  earlier and rebuilding each time: healthy with `_load()` doing nothing at all; healthy after just
+  `read_source_script_file()`; healthy after `parse_source_script_fqname()` +
+  `create_and_bind_physical_script()` + `set_source_code()` + `set_last_source_modified_time()` —
+  **only when `JvmScriptManager::update_physical_script()` (the last call in `_load()`, `src/api/
+  script/jvm_script_manager.cpp:197`) runs does the corruption appear.**
+  Attempted to narrow further with live single-stepping (breaking at `update_physical_script`'s
+  entry for each of the 3 scripts in turn) but hit a tooling wall: checking the corrupted object
+  requires being paused in an *engine* stack frame (cross-module symbol resolution in the LLDB
+  expression evaluator fails for our own DLL's symbols and vice versa), so confirming the corrupted
+  object's state requires stepping out through several frames back into engine code after every
+  single step inside our own function — slow, and made the exact moment of corruption during the
+  third (Scala) load ambiguous (one breakpoint hit had an unexpectedly null script/empty fqdn,
+  possibly an unrelated resource, not confirmed). What is confirmed: individually, after the first
+  (Java) and second (Kotlin) scripts' `update_physical_script()` calls completed, `_extension` was
+  still `NULL` — corruption appears sometime after that, during or after the Scala load.
+  **One specific hypothesis tested and disproven**: disabled only the `set_script_for_fqdn(p_fqdn,
+  p_script)` call in `update_physical_script()`'s plain `else` branch (the one both the Java and
+  Kotlin calls were observed taking) while leaving everything else — including every other call
+  site of `set_script_for_fqdn`/`UtilityFunctions::weakref()` — untouched. Corruption persisted, so
+  that specific call isn't the (sole) cause.
+  **Redid the per-script live-debugger check properly** (previous attempt's third result was
+  ambiguous) — confirmed all three scripts (Java, Kotlin, Scala) take the *identical* plain `else`
+  code path (none hit `replace_virtual_script()` or the JNI reassignment branch), ruling both of
+  those out as the cause for any of the three individual calls. Went further and checked
+  immediately after all three `update_physical_script()` calls *and* all three
+  `_placeholder_instance_create()` calls (editor mode uses placeholders, not real instances, since
+  `_can_instantiate()` returns false under `Engine::is_editor_hint()`) — every one of these
+  individually confirmed healthy. The corruption only appears sometime *after* all of that, during
+  the general "let it run for a bit" window — confirmed by catching it live during a *second*
+  `Object::get_property_list()` call from `EditorNode::gather_resources()` (populating the Scene
+  dock's resource list on scene open, an entirely different call site than script loading).
+  **Disproven intermediate conclusion:** this was initially attributed to a cross-thread heap race.
+  At the moment corruption was caught live, the corrupted `ObjectGDExtension` struct's function
+  pointers (`create_instance2`, `get_virtual_call_data`, `recreate_instance`) pointed into
+  `jvm.dll` — the actual Java HotSpot VM's native library — at vtables for `ParseGenerator`,
+  `UncommonTrapCallGenerator`, `PredictedCallGenerator`: internal class names from HotSpot's C2 JIT
+  compiler. The JVM's own background JIT-compilation thread is writing its internal data into a
+  heap block the engine still holds as `GDExtension::_extension` — i.e., a genuine heap-buffer
+  overflow (source not yet identified) whose *victim* is whatever happens to be adjacent in memory
+  that particular run (explaining why every corrupted dump this session showed a different
+  unrelated vtable — `RichTextLabel::ItemTable`, `JavaScript`, `spv::Instruction`, now JIT-compiler
+  internals — pure chance of heap layout, not a fixed target), and whose *timing* is asynchronous
+  (explaining why every single-threaded, single-stepped check immediately after a specific call
+  came back healthy — the corrupting write happens on a separate thread, not synchronously in our
+  own call sequence, so it can't be pinned to one line by single-stepping the main thread).
+  Retroactively explains why disabling `update_physical_script()` earlier "fixed" it: not because
+  that code is the bug, but because skipping it means less class-binding work happens overall, so
+  the JVM's background compiler thread has less queued up and the race window is less likely to be
+  hit that particular run — consistent with a timing-dependent race, not a deterministic cause.
+  **Stopped the single-step bisection here** (per explicit instruction to stop once out of options
+  for the technique in use) — a cross-thread race needs a heap-corruption detector (Application
+  Verifier's heap checks, or an ASan build covering both the JVM's native allocations and our own)
+  to catch the actual overflow at the moment either side writes past a buffer; further single-
+  stepping the main thread cannot reliably catch it.
+  One suspect was investigated and ruled out: `MemoryManager`'s
+  `if (ref->unreference()) { memdelete(ref); }` pattern (`memory_manager.cpp`) looked wrong at first
+  (`ref` is the godot-cpp wrapper, not the raw object) but is actually correct — godot-cpp's own
+  `memdelete<T>` is template-specialized for `Wrapped`-derived types to call
+  `gdextension_interface_object_destroy(p_class->_owner)` rather than freeing the wrapper directly
+  (`godot-cpp/include/godot_cpp/core/memory.hpp:113-116`), matching this exact idiom.

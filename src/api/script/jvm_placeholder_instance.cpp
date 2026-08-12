@@ -30,8 +30,7 @@ GDExtensionBool JvmPlaceHolderInstance::set(GDExtensionScriptInstanceDataPtr p_i
 
     if (values.has(parameter_name)) {
         Variant defval = script->get_property_default_value(parameter_name);
-        // The evaluate function ensures that a NIL variant is equal to e.g. an empty Resource.
-        // Simply doing defval == parameter_value does not do this.
+        // The evaluate function ensures that a NIL variant is equal to e.g. an empty Resource. Simply doing defval == parameter_value does not do this.
         Variant result;
         bool valid;
         Variant::evaluate(Variant::OP_EQUAL, defval, parameter_value, result, valid);
@@ -85,21 +84,13 @@ GDExtensionBool JvmPlaceHolderInstance::get(GDExtensionScriptInstanceDataPtr p_i
 
 const GDExtensionPropertyInfo* JvmPlaceHolderInstance::get_property_list(GDExtensionScriptInstanceDataPtr p_instance, uint32_t* r_count) {
     auto* instance_data = reinterpret_cast<JvmPlaceHolderInstanceData*>(p_instance);
-    Ref<Script> script = instance_data->script;
-    List<PropertyInfo>& properties = instance_data->properties;
 
-    List<PropertyInfo> result_properties;
-
-    for (const PropertyInfo& property : properties) {
-        result_properties.push_back(property);
-    }
-
-    return internal::create_c_property_list(properties, r_count);
+    // create_c_property_list()/free_c_property_list() (godot-cpp) stash this pointer and memdelete() it later in free_property_list() below — it must be a fresh memnew() copy, not the address of instance_data->properties itself, which is a per...
+    List<PropertyInfo>* properties_copy = memnew(List<PropertyInfo>(instance_data->properties));
+    return internal::create_c_property_list(properties_copy, r_count);
 }
 
 void JvmPlaceHolderInstance::free_property_list(GDExtensionScriptInstanceDataPtr p_instance, const GDExtensionPropertyInfo* p_list, uint32_t) {
-    auto* instance_data = reinterpret_cast<JvmPlaceHolderInstanceData*>(p_instance);
-    instance_data->properties.clear();
     internal::free_c_property_list(const_cast<GDExtensionPropertyInfo*>(p_list));
 }
 
@@ -116,7 +107,8 @@ GDExtensionBool JvmPlaceHolderInstance::property_get_revert(GDExtensionScriptIns
 }
 
 GDExtensionObjectPtr JvmPlaceHolderInstance::get_owner(GDExtensionScriptInstanceDataPtr p_instance) {
-    return reinterpret_cast<JvmPlaceHolderInstanceData*>(p_instance)->owner;
+    // The engine expects the raw object pointer here, not our godot-cpp wrapper.
+    return reinterpret_cast<JvmPlaceHolderInstanceData*>(p_instance)->owner->_owner;
 }
 
 //TODO: Remove when https://github.com/godotengine/godot/pull/105896 is released
@@ -191,11 +183,7 @@ GDExtensionVariantType JvmPlaceHolderInstance::get_property_type(GDExtensionScri
 }
 
 GDExtensionBool JvmPlaceHolderInstance::validate_property(GDExtensionScriptInstanceDataPtr, GDExtensionPropertyInfo*) {
-    // Per the GDExtensionScriptInstanceValidateProperty contract (see godot-cpp's Wrapped::validate_property_bind),
-    // the return value signals whether this call actually validated/mutated p_property, not merely whether the
-    // property is "valid". The placeholder instance has no script logic to run (it exists only while the JVM
-    // script hasn't been compiled/loaded yet) and mirrors master, which had no override for this at all — so
-    // there is nothing to mutate here. Returning false is the correct no-op: "not handled, use engine defaults".
+    // Per the GDExtensionScriptInstanceValidateProperty contract (see godot-cpp's Wrapped::validate_property_bind), the return value signals whether this call actually validated/mutated p_property, not merely whether the property is "valid". T...
     return false;
 }
 
@@ -242,7 +230,8 @@ void JvmPlaceHolderInstance::call(
     auto* result = reinterpret_cast<Variant*>(r_return);
 
     if (parameter_method == SNAME("_get_configuration_warnings")) {
-        Ref<JvmScript> script_ref = reinterpret_cast<JvmScript*>(get_script(p_instance));
+        // get_script() returns a raw ABI pointer; Ref needs the stored godot-cpp wrapper.
+        Ref<JvmScript> script_ref = reinterpret_cast<JvmPlaceHolderInstanceData*>(p_instance)->script;
         if (!script_ref->_is_valid()) {
             PackedStringArray packed {};
             packed.append("This script can't be found in your JVM project. Don't forget to build it and use a valid "
@@ -279,7 +268,8 @@ GDExtensionBool JvmPlaceHolderInstance::refcount_decremented(GDExtensionScriptIn
 }
 
 GDExtensionObjectPtr JvmPlaceHolderInstance::get_script(GDExtensionScriptInstanceDataPtr p_instance) {
-    return reinterpret_cast<JvmPlaceHolderInstanceData*>(p_instance)->script.ptr();
+    // The engine expects the raw object pointer here, not our godot-cpp wrapper.
+    return reinterpret_cast<JvmPlaceHolderInstanceData*>(p_instance)->script.ptr()->_owner;
 }
 
 GDExtensionBool JvmPlaceHolderInstance::set_fallback(GDExtensionScriptInstanceDataPtr p_instance, GDExtensionConstStringNamePtr p_name, GDExtensionConstVariantPtr p_value) {
@@ -350,7 +340,8 @@ GDExtensionBool JvmPlaceHolderInstance::get_fallback(GDExtensionScriptInstanceDa
 }
 
 GDExtensionScriptLanguagePtr JvmPlaceHolderInstance::get_language(GDExtensionScriptInstanceDataPtr p_instance) {
-    return reinterpret_cast<JvmPlaceHolderInstanceData*>(p_instance)->language;
+    // The engine expects the raw language pointer here, not our godot-cpp wrapper.
+    return reinterpret_cast<JvmPlaceHolderInstanceData*>(p_instance)->language->_owner;
 }
 
 void JvmPlaceHolderInstance::free(GDExtensionScriptInstanceDataPtr p_instance) {
@@ -402,7 +393,7 @@ void JvmPlaceHolderInstance::update(
     }
 
     Object* owner = p_instance_data->owner;
-    if (owner && internal::gdextension_interface_object_get_script_instance(owner, p_instance_data->language) == p_instance_data) {
+    if (owner && internal::gdextension_interface_object_get_script_instance(owner->_owner, p_instance_data->language->_owner) == p_instance_data) {
         owner->notify_property_list_changed();
     }
     //change notify

@@ -17,7 +17,6 @@ namespace godot {
             KtObject* kt_object;
             KtClass* kt_class;
             Ref<JvmScript> script;
-            List<PropertyInfo> property_list;
             List<MethodInfo> method_list;
             SafeFlag to_demote_flag;
             bool delete_flag;
