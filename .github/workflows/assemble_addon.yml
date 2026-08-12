@@ -1,0 +1,49 @@
+name: Assemble addon
+on:
+  workflow_call:
+    inputs:
+      godot-kotlin-jvm-version:
+        type: string
+
+jobs:
+  package-addon:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/download-artifact@v7
+        with:
+          name: debug_linux_x86_64
+          path: addon
+      - uses: actions/download-artifact@v7
+        with:
+          name: release_linux_x86_64
+          path: addon
+      - uses: actions/download-artifact@v7
+        with:
+          name: debug_windows_x86_64
+          path: addon
+      - uses: actions/download-artifact@v7
+        with:
+          name: release_windows_x86_64
+          path: addon
+      - uses: actions/download-artifact@v7
+        with:
+          name: debug_macos_universal
+          path: addon
+      - uses: actions/download-artifact@v7
+        with:
+          name: release_macos_universal
+          path: addon
+      - name: Create addon archive
+        shell: bash
+        run: |
+          mkdir -p package/addons
+          cp -R harness/tests/addons/jvm package/addons/jvm
+          rm -rf package/addons/jvm/libs
+          cp -R addon/jvm/libs package/addons/jvm/libs
+          cd package
+          zip -q -9 -r godot-kotlin-jvm_addon_${{ inputs.godot-kotlin-jvm-version }}.zip addons
+      - uses: actions/upload-artifact@v7
+        with:
+          name: godot-kotlin-jvm_addon_${{ inputs.godot-kotlin-jvm-version }}.zip
+          path: package/godot-kotlin-jvm_addon_${{ inputs.godot-kotlin-jvm-version }}.zip

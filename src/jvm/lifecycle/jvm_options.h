@@ -17,7 +17,7 @@ class JvmOptions {
     friend class JvmManager;
     friend class godot::GodotJvm;
 
-#ifdef __ANDROID__
+#ifdef ANDROID_ENABLED
     int version {JNI_VERSION_1_6};
 #else
     int version {JNI_VERSION_1_8};

@@ -261,7 +261,7 @@ void GodotJvm::set_jvm_options() {
 
 #include <classes/dir_access.hpp>
 
-#ifdef __ANDROID__
+#ifdef ANDROID_ENABLED
 #include <unistd.h>
 #endif
 
@@ -269,7 +269,7 @@ String GodotJvm::copy_new_file_to_user_dir(const String& file_name) {
     String file_res_path {String(RES_DIRECTORY) + file_name};
     String file_user_path {String(USER_DIRECTORY) + file_name};
 
-#ifndef __ANDROID__
+#ifndef ANDROID_ENABLED
     if (!FileAccess::file_exists(file_user_path) || FileAccess::get_md5(file_user_path) != FileAccess::get_md5(file_res_path)) {
         JVM_LOG_VERBOSE("%s file has changed. Copying it from %s to %s.", file_name, file_res_path, file_user_path);
 #else
@@ -282,7 +282,7 @@ String GodotJvm::copy_new_file_to_user_dir(const String& file_name) {
         Ref<DirAccess> dir_access {DirAccess::open(USER_DIRECTORY)};
         dir_access->make_dir(JVM_DIRECTORY);
         dir_access->copy(file_res_path, file_user_path);
-#ifndef __ANDROID__
+#ifndef ANDROID_ENABLED
     }
 #endif
 

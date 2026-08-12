@@ -56,12 +56,9 @@ sources = [
     Glob("src/jvm/wrapper/registration/*.cpp"),
     ]
 
-# godot-cpp only defines TOOLS_ENABLED for target == "editor" (unlike the old
-# module build, which also had it for "template_debug"). Several of the
-# relocated editor sources (about_dialog.cpp, task_dialog.cpp) have no
-# #ifdef TOOLS_ENABLED guard of their own, so only compile the editor sources
-# for "editor" to avoid pulling in editor-only UI code unguarded.
-if env["target"] == "editor":
+# The debug library includes the editor integration needed by Godot projects.
+if env["target"] in ["template_debug", "editor"]:
+    env.Append(CPPDEFINES=["TOOLS_ENABLED", "JVM_EDITOR_ENABLED"])
     sources.append(Glob("src/editor/*.cpp"))
     sources.append(Glob("src/editor/project/*.cpp"))
     sources.append(Glob("src/editor/build/*.cpp"))
@@ -84,6 +81,7 @@ if env["platform"] != "android":
 # plain rebuild keeps that test project's extension up to date without a manual copy step.
 target_path = ARGUMENTS.pop("target_path", "harness/tests/addons/jvm/libs/")
 target_name = ARGUMENTS.pop("target_name", "godot.jvm")
+env["SHLIBPREFIX"] = ""
 
 if env["platform"] == "macos":
     library = env.SharedLibrary(

@@ -277,7 +277,7 @@ namespace bridges {
         godot::Variant args[1] = {};
         TransferContext::get_instance().read_args(env, args);
         godot::Variant ret = from_uint_to_ptr<PackedType>(p_raw_ptr)->has(args[0].operator T());
-        TransferContext::get_instance().read_return_value(env, ret);
+        TransferContext::get_instance().write_return_value(env, ret);
     }
 
     template<class Derived, class T, const char* fq_name>
@@ -306,7 +306,8 @@ namespace bridges {
         godot::Variant args[2] = {};
         TransferContext::get_instance().read_args(env, args);
 
-        godot::Variant ret = from_uint_to_ptr<PackedType>(p_raw_ptr)->rfind(args[0].operator T(), args->operator int());
+        godot::Variant ret = from_uint_to_ptr<PackedType>(p_raw_ptr)->rfind(args[0].operator T(), args[1].operator int());
+        TransferContext::get_instance().write_return_value(env, ret);
     }
 
     template<class Derived, class T, const char* fq_name>

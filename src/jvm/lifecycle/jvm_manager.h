@@ -6,9 +6,9 @@
 #include "jvm_options.h"
 #include "jvm_user_configuration.h"
 
-#if defined WINDOWS_ENABLED || defined X11_ENABLED || defined MACOS_ENABLED
+#if defined WINDOWS_ENABLED || defined LINUX_ENABLED || defined MACOS_ENABLED
 #define DYNAMIC_JVM
-#elif defined __ANDROID__
+#elif defined ANDROID_ENABLED
 #define PROVIDED_JVM
 #elif defined IOS_ENABLED
 #define STATIC_JVM

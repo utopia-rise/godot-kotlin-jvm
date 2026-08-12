@@ -14,7 +14,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  create-windows-editor-zip:
+  create-windows-library-zip:
     # does not need to run on windows -> only packs a zip
     runs-on: ubuntu-latest
     name: ${{ matrix.name }}
@@ -22,28 +22,30 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - name: Create editor zip release
+          - name: Create release library zip
             target: release
             arch: x86_64
 
-          - name: Create editor zip debug
+          - name: Create debug library zip
             target: debug
             arch: x86_64
     steps:
-      - name: Download ${{ matrix.target }} editor
-        uses: actions/download-artifact@v4
+      - name: Download ${{ matrix.target }} library
+        uses: actions/download-artifact@v7
         with:
-          name: editor_${{ matrix.target }}_windows_${{ matrix.arch }}
-          path: godot-kotlin-jvm_editor_windows_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}
+          name: ${{ matrix.target }}_windows_${{ matrix.arch }}
+          path: godot-kotlin-jvm_gdextension_windows_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}
 
-      - name: Create windows editor zip
+      - name: Create Windows library zip
         run: |
-          cd godot-kotlin-jvm_editor_windows_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}
-          zip -r godot-kotlin-jvm_editor_windows_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip *
+          mkdir -p package/addons
+          cp -R godot-kotlin-jvm_gdextension_windows_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}/jvm package/addons/jvm
+          cd package
+          zip -r ../godot-kotlin-jvm_gdextension_windows_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip addons
         shell: bash
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
-          name: godot-kotlin-jvm_editor_windows_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip
-          path: godot-kotlin-jvm_editor_windows_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}/godot-kotlin-jvm_editor_windows_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip
+          name: godot-kotlin-jvm_gdextension_windows_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip
+          path: godot-kotlin-jvm_gdextension_windows_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip

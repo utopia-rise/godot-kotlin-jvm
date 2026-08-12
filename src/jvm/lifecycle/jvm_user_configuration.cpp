@@ -330,7 +330,7 @@ void JvmUserConfiguration::sanitize_and_log_configuration(JvmUserConfiguration& 
         JVM_LOG_WARNING("Custom JVM arguments are provided, they can causes the JVM to not properly start if invalid: %s", config.jvm_args);
     }
 
-#ifdef __ANDROID__
+#ifdef ANDROID_ENABLED
     if (config.vm_type == jni::JvmType::NONE) {
         config.vm_type = jni::JvmType::ART;
         JVM_LOG_INFO("You are running on Android. VM automatically set to ART");

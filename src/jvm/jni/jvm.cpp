@@ -20,7 +20,7 @@ namespace jni {
 
     void Jvm::attach() {
         JNIEnv* r_env;
-#ifdef __ANDROID__
+#ifdef ANDROID_ENABLED
         jint result = _instance->vm->AttachCurrentThread(&r_env, nullptr);
 #else
         jint result = _instance->vm->AttachCurrentThread((void**) &r_env, nullptr);

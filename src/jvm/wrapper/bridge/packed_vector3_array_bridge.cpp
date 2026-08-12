@@ -9,7 +9,7 @@ uintptr_t PackedVector3ArrayBridge::engine_convert_to_godot(JNIEnv* p_raw_env, j
     jni::JFloatArray arr {p_array};
 
     jint float_size = arr.length(env);
-    uint64_t vector_size = float_size / 2;
+    uint64_t vector_size = float_size / 3;
 
     godot::PackedVector3Array* vector_packed = VariantAllocator::alloc(godot::PackedVector3Array());
     vector_packed->resize(vector_size);
@@ -24,7 +24,7 @@ jfloatArray PackedVector3ArrayBridge::engine_convert_to_jvm(JNIEnv* p_raw_env, j
     godot::PackedVector3Array* vector_packed {from_uint_to_ptr<godot::PackedVector3Array>(p_raw_ptr)};
 
     uint64_t vector_size = vector_packed->size();
-    jint float_size = vector_size * 2;
+    jint float_size = vector_size * 3;
 
     jni::JFloatArray arr {env, float_size};
     const godot::Vector3* ptr = vector_packed->ptr();
