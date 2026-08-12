@@ -3,10 +3,13 @@
 #include "api/language/gdj_language.h"
 #include "api/script/jvm_script_manager.h"
 #include "classes/engine.hpp"
+#include "core/instance_creator.h"
+#include "core/jvm_binding_manager.h"
 #include "jvm/wrapper/memory/memory_manager.h"
 #include "jvm_instance.h"
 #include "jvm_placeholder_instance.h"
 #include <classes/node.hpp>
+#include <core/object.hpp>
 
 using namespace godot;
 
@@ -30,22 +33,29 @@ Object* JvmScript::_object_create() const {
     );
 #endif
 
-    Object* owner {ClassDB::instantiate(kotlin_class->base_godot_class)};
+    // Not godot::ClassDB::instantiate(): that forwards to the script-facing ClassDB singleton, which boxes a RefCounted result in a Ref<RefCounted> inside a Variant — converting that straight to Object* and letting the Variant go out of scope...
+    GodotObject* raw_owner {InstanceCreator::instantiate(kotlin_class->base_godot_class)};
     JVM_ERR_FAIL_COND_V_MSG(
-      owner == nullptr,
+      raw_owner == nullptr,
       nullptr,
       "Cannot instantiate JVM script %s: failed to instantiate base Godot class %s.",
       kotlin_class->registered_class_name,
       kotlin_class->base_godot_class
     );
 
-    // Object::set_script() makes the engine call back into this script's _instance_create() and attach the
-    // resulting ScriptInstance to `owner`, which is the GDExtension equivalent of master's manual
-    // _instance_create<true>(owner) + owner->set_script_instance(instance) sequence. godot-cpp does expose a
-    // lower-level `object_set_script_instance` GDExtension interface function (added in Godot 4.5, see
-    // godot-cpp/gdextension/gdextension_interface.h) for attaching a pre-built instance directly, but using it
-    // here would duplicate what set_script() already does for us, so we keep this simpler call.
-    owner->set_script(this);
+    // Establishes the object's real refcount (if any) and our own binding before anything else touches it — see JvmBindingManager::set_instance_binding()'s own comment.
+    JvmBindingManager::set_instance_binding(raw_owner);
+    Object* owner = internal::get_object_instance_binding(raw_owner);
+
+    // Attaching directly via object_set_script_instance, not owner->set_script(this): set_script() re-enters the engine's can-instantiate/placeholder decision, and _can_instantiate() is unconditionally false in the editor (see below) — that re...
+    void* instance {_instance_create(owner)};
+    JVM_ERR_FAIL_COND_V_MSG(
+      instance == nullptr,
+      nullptr,
+      "Cannot instantiate JVM script %s: failed to create script instance.",
+      kotlin_class->registered_class_name
+    );
+    internal::gdextension_interface_object_set_script_instance(raw_owner, instance);
     return owner;
 }
 
@@ -97,7 +107,7 @@ StringName JvmScript::_get_global_name() const {
 
 void* JvmScript::_instance_create(Object* p_this) const {
     //TODO: Check if creator when set_script_instance is implemented in engine.
-    JvmBindingManager::get_instance_binding(p_this);
+    JvmBindingManager::get_instance_binding(p_this->_owner);
 
 #ifdef DEBUG_ENABLED
     JVM_ERR_FAIL_COND_V_MSG(!_is_valid(), nullptr, "Invalid script %s was attempted to be used. Make sure you have properly built your project.", get_path());
@@ -256,10 +266,24 @@ TypedArray<StringName> JvmScript::_get_members() const {
     return ret;
 }
 
+Dictionary JvmScript::_get_constants() const {
+    return {};
+}
+
 // Variant is of type Dictionary
 Variant JvmScript::_get_rpc_config() const {
     if (_is_valid()) { return kotlin_class->get_rpc_config(); }
     return Dictionary();
+}
+
+bool JvmScript::_has_static_method(const StringName& p_method) const {
+    return false;
+}
+
+void JvmScript::_update_exports() {
+#ifdef TOOLS_ENABLED
+    update_script_exports();
+#endif
 }
 
 #ifdef TOOLS_ENABLED
@@ -366,8 +390,8 @@ void JvmScript::update_script_exports() const {
     ERR_FAIL_NULL(tmp_object);
     auto* instance_data = reinterpret_cast<JvmInstance::JvmInstanceData*>(
       internal::gdextension_interface_object_get_script_instance(
-        tmp_object,
-        _get_language()
+        tmp_object->_owner,
+        _get_language()->_owner
       )
     );
 
@@ -609,8 +633,7 @@ NamedScript::~NamedScript() {
 
 StringName NamedScript::_get_global_name() const {
     if (_is_valid()) { return kotlin_class->registered_class_name; }
-    // Scripts are either (valid and loaded from .jar) or (placeholders and loaded from path scripts)
-    // Even in the case of an invalid file, we can then use its path to find the right name.
+    // Scripts are either (valid and loaded from .jar) or (placeholders and loaded from path scripts) Even in the case of an invalid file, we can then use its path to find the right name.
     String path = get_path();
     return get_script_file_name(path);
 }

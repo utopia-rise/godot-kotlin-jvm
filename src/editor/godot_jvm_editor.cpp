@@ -40,7 +40,7 @@ void GodotJvmEditor::on_generate_project(bool erase_existing) {
 
 void GodotJvmEditor::on_gradle_task_pressed() {
     if (GradleTaskRunner::get_instance().is_task_started()) { return; }
-    task_dialog->make_appear();
+    task_dialog_make_appear(task_dialog);
     String log;
 
     GradleTaskRunner::get_instance().run_task(tool_bar_gradle_task_choice->get_selected_id(), log, false);
@@ -132,8 +132,19 @@ void GodotJvmEditor::_notification(int notification) {
             if (!editor_settings->has_setting(SHOW_INFO_ON_START)) { editor_settings->set_setting(SHOW_INFO_ON_START, true); }
             editor_settings->set_initial_value(SHOW_INFO_ON_START, true, false);
 
+            about_dialog = create_about_dialog(editor_settings, editor_scale);
+            task_dialog = create_task_dialog(editor_scale);
+
             if (!project_settings->has_setting(GRADLE_DIR)) { project_settings->set_setting(GRADLE_DIR, "res://"); }
-            project_settings->add_property_info(PropertyInfo(Variant::STRING, GRADLE_DIR, PROPERTY_HINT_GLOBAL_DIR, ""));
+            // Not PropertyInfo's own operator Dictionary(): that always includes a "usage" key, which add_property_info() explicitly doesn't support (ProjectSettings::_add_property_info_bind warns and ignores it otherwise) — build the dictionary with...
+            {
+                Dictionary gradle_dir_property_info;
+                gradle_dir_property_info["name"] = GRADLE_DIR;
+                gradle_dir_property_info["type"] = Variant::STRING;
+                gradle_dir_property_info["hint"] = PROPERTY_HINT_GLOBAL_DIR;
+                gradle_dir_property_info["hint_string"] = "";
+                project_settings->add_property_info(gradle_dir_property_info);
+            }
             project_settings->set_as_basic(GRADLE_DIR, true);
             project_settings->set_initial_value(GRADLE_DIR, "res://");
 
@@ -179,8 +190,9 @@ void GodotJvmEditor::_notification(int notification) {
             add_control_to_container(CustomControlContainer::CONTAINER_TOOLBAR, jvm_status_light);
             update_jvm_status(true);
 
-            editor_base_control->add_child(task_dialog);
+            editor_base_control->add_child(task_dialog.dialog);
             editor_base_control->add_child(about_dialog);
+            show_about_dialog_if_configured(about_dialog, editor_settings);
             editor_base_control->add_child(project_dialog);
 
             get_editor_interface()->get_resource_filesystem()->connect(
@@ -189,10 +201,7 @@ void GodotJvmEditor::_notification(int notification) {
             );
             set_process(true);
 
-            // Instantiating these at NOTIFICATION_ENTER_TREE (once the engine has actually added
-            // this plugin to the tree) rather than eagerly during static extension registration —
-            // constructing UI-adjacent Wrapped objects that early crashes, since the editor's own
-            // subsystems (theme, doc, etc.) aren't ready yet at that point.
+            // Instantiating these at NOTIFICATION_ENTER_TREE (once the engine has actually added this plugin to the tree) rather than eagerly during static extension registration — constructing UI-adjacent Wrapped objects that early crashes, since the...
             export_plugin.instantiate();
             add_export_plugin(export_plugin);
 
@@ -208,7 +217,7 @@ void GodotJvmEditor::_notification(int notification) {
                 String log;
                 String error;
                 GradleTaskRunner::get_instance().get_task_output(log, error);
-                task_dialog->update_state(log + error);
+                task_dialog_update_state(task_dialog, log + error);
 
                 if (!log.is_empty()) {
                     // We are streaming the output, we use the regular Godot print to avoid spamming the JVM prefix.
@@ -217,7 +226,7 @@ void GodotJvmEditor::_notification(int notification) {
                 if (!error.is_empty()) { JVM_ERR_FAIL_MSG(error); }
 
                 if (GradleTaskRunner::get_instance().is_task_terminated()) {
-                    task_dialog->stop();
+                    task_dialog_stop(task_dialog);
                     get_editor_interface()->get_resource_filesystem()->scan();
                     JVM_LOG_INFO("Gradle Task terminated");
                 }
@@ -225,7 +234,7 @@ void GodotJvmEditor::_notification(int notification) {
             break;
 
         case NOTIFICATION_EXIT_TREE:
-            editor_base_control->remove_child(task_dialog);
+            editor_base_control->remove_child(task_dialog.dialog);
             editor_base_control->remove_child(about_dialog);
             editor_base_control->remove_child(project_dialog);
             remove_tool_menu_item("Kotlin/JVM");
@@ -246,8 +255,6 @@ void GodotJvmEditor::_notification(int notification) {
 
 GodotJvmEditor::GodotJvmEditor() :
   about_pop_menu(memnew(PopupMenu)),
-  about_dialog(memnew(AboutDialog)),
-  task_dialog(memnew(TaskDialog)),
   project_dialog(memnew(AcceptDialog)),
   jvm_status_light(memnew(TextureRect)),
   tool_bar_gradle_task_button(memnew(Button)),
@@ -257,7 +264,7 @@ GodotJvmEditor::GodotJvmEditor() :
 GodotJvmEditor::~GodotJvmEditor() {
     GradleTaskRunner::get_instance().cleanup();
     memdelete(about_dialog);
-    memdelete(task_dialog);
+    memdelete(task_dialog.dialog);
     memdelete(project_dialog);
     memdelete(jvm_status_light);
     memdelete(tool_bar_gradle_task_button);

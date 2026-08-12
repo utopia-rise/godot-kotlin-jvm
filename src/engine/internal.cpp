@@ -1,5 +1,7 @@
 #include "internal.h"
 
+#include <templates/local_vector.hpp>
+
 using namespace godot;
 
 namespace godot::internal {
@@ -12,7 +14,7 @@ namespace godot::internal {
         p_dest->usage = p_source.usage;
     }
 
-    GDExtensionPropertyInfo* create_c_property_list(const std::vector<::godot::PropertyInfo> &plist_cpp) {
+    GDExtensionPropertyInfo* create_c_property_list(const ::godot::LocalVector<::godot::PropertyInfo> &plist_cpp) {
         const uint32_t plist_size = plist_cpp.size();
         auto* plist = reinterpret_cast<GDExtensionPropertyInfo*>(memalloc(sizeof(GDExtensionPropertyInfo) * plist_size));
         uint32_t i = 0;
@@ -23,7 +25,7 @@ namespace godot::internal {
         return plist;
     }
 
-    GDExtensionVariantPtr* create_c_default_arguments(const std::vector<godot::Variant>& p_list) {
+    GDExtensionVariantPtr* create_c_default_arguments(const ::godot::LocalVector<godot::Variant>& p_list) {
         const uint32_t clist_size = p_list.size();
         auto* clist = reinterpret_cast<GDExtensionVariantPtr*>(memalloc(sizeof(GDExtensionVariantPtr) * clist_size));
         uint32_t i = 0;

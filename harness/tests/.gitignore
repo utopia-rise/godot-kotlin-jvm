@@ -11,4 +11,5 @@ graal/godot-kotlin-graal-jni-config.json
 /.godot/
 /test_output.txt
 /jvm/
+/addons/jvm/libs/
 /reports

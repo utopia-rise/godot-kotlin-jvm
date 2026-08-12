@@ -10,6 +10,8 @@
 #include "core/variant_allocator.h"
 
 #include <classes/os.hpp>
+#include <classes/wrapped.hpp>
+#include <core/object.hpp>
 #include <variant/signal.hpp>
 #include <variant/variant.hpp>
 
@@ -94,11 +96,12 @@ class VariantToBuffer {
         }
 
         // Create a binding if it doesn't exist yet.
-        godot::JvmBinding* binding = godot::JvmBindingManager::get_instance_binding(ptr);
+        godot::JvmBinding* binding = godot::JvmBindingManager::get_instance_binding(ptr->_owner);
         int constructorID = binding->get_constructor_id();
 
+        // The JVM only ever deals in raw engine pointers, never godot-cpp's wrapper pointers (see to_godot_object() below, and JvmBindingManager, for the other side of this contract).
         des->increment_position(encode_uint32(constructorID, des->get_cursor()));
-        des->increment_position(encode_uint64(reinterpret_cast<uintptr_t>(ptr), des->get_cursor()));
+        des->increment_position(encode_uint64(reinterpret_cast<uintptr_t>(ptr->_owner), des->get_cursor()));
         des->increment_position(encode_uint64(ptr->get_instance_id(), des->get_cursor()));
     }
 
@@ -223,7 +226,8 @@ class BufferToVariant {
     static inline godot::Object* to_godot_object(SharedBuffer* byte_buffer) {
         auto ptr {static_cast<uintptr_t>(decode_uint64(byte_buffer->get_cursor()))};
         byte_buffer->increment_position(PTR_SIZE);
-        return reinterpret_cast<godot::Object*>(ptr);
+        // ptr is the raw engine pointer (see append_object() above) — go through get_object_instance_binding to get the corresponding godot-cpp wrapper.
+        return godot::internal::get_object_instance_binding(reinterpret_cast<godot::GodotObject*>(ptr));
     }
 
     static godot::Variant read_object(SharedBuffer* byte_buffer) {

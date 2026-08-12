@@ -11,17 +11,18 @@ GDExtensionBool JvmInstance::set(GDExtensionScriptInstanceDataPtr p_instance, GD
 
     jni::LocalFrame localFrame(1000);
     jni::Env env {jni::Jvm::current_env()};
+    Variant value {p_value};
 
     if (KtProperty* ktProperty {kt_class->get_property(*reinterpret_cast<const StringName*>(p_name))}) {
-        ktProperty->call_set(env, kt_object, p_value);
+        ktProperty->call_set(env, kt_object, value);
         return true;
     }
 
     if (KtFunction* function {kt_class->get_method(SNAME("_set"))}) {
         Variant ret;
         const int arg_count = 2;
-        Variant name = p_name;
-        const Variant* args[arg_count] {&name, reinterpret_cast<const Variant*>(p_value)};
+        Variant name {*reinterpret_cast<const StringName*>(p_name)};
+        const Variant* args[arg_count] {&name, &value};
         function->invoke(env, kt_object, args, arg_count, ret);
         return true;
     }
@@ -69,10 +70,9 @@ const GDExtensionPropertyInfo* JvmInstance::get_property_list(GDExtensionScriptI
     KtClass* kt_class = instance_data->kt_class;
     KtObject* kt_object = instance_data->kt_object;
 
-    List<PropertyInfo>& properties = instance_data->property_list;
-    JVM_ERR_FAIL_COND_V_MSG(!properties.is_empty(), nullptr, "Internal error, property list was not freed by engine");
-
-    kt_class->get_property_list(&properties);
+    // The property-list bridge owns this freshly allocated list and frees it later.
+    List<PropertyInfo>* properties = memnew(List<PropertyInfo>);
+    kt_class->get_property_list(properties);
     jni::Env env {jni::Jvm::current_env()};
 
     if (KtFunction* function {kt_class->get_method(SNAME("_get_property_list"))}) {
@@ -80,7 +80,7 @@ const GDExtensionPropertyInfo* JvmInstance::get_property_list(GDExtensionScriptI
         function->invoke(env, kt_object, {}, 0, ret_var);
         Array ret_array = ret_var;
         for (int i = 0; i < ret_array.size(); ++i) {
-            properties.push_back(PropertyInfo::from_dict(ret_array.get(i)));
+            properties->push_back(PropertyInfo::from_dict(ret_array.get(i)));
         }
     }
 
@@ -88,8 +88,6 @@ const GDExtensionPropertyInfo* JvmInstance::get_property_list(GDExtensionScriptI
 }
 
 void JvmInstance::free_property_list(GDExtensionScriptInstanceDataPtr p_instance, const GDExtensionPropertyInfo* p_list, uint32_t p_count) {
-    auto* instance_data = reinterpret_cast<JvmInstanceData*>(p_instance);
-    instance_data->property_list.clear();
     internal::free_c_property_list(const_cast<GDExtensionPropertyInfo*>(p_list));
 }
 
@@ -137,7 +135,8 @@ GDExtensionBool JvmInstance::property_get_revert(GDExtensionScriptInstanceDataPt
 }
 
 GDExtensionObjectPtr JvmInstance::get_owner(GDExtensionScriptInstanceDataPtr p_instance) {
-    return reinterpret_cast<JvmInstanceData*>(p_instance)->owner;
+    // The engine expects the raw object pointer here, not our godot-cpp wrapper.
+    return reinterpret_cast<JvmInstanceData*>(p_instance)->owner->_owner;
 }
 
 //TODO: Remove when https://github.com/godotengine/godot/pull/105896 is released
@@ -254,6 +253,7 @@ void JvmInstance::call(
         auto* arguments = reinterpret_cast<const Variant* const*>(p_args);
         Variant& r_ret = *reinterpret_cast<Variant*>(r_return);
         function->invoke(env, kt_object, const_cast<const Variant**>(arguments), static_cast<int>(p_argument_count), r_ret);
+        r_error->error = GDExtensionCallErrorType::GDEXTENSION_CALL_OK;
     } else {
         r_error->error = GDExtensionCallErrorType::GDEXTENSION_CALL_ERROR_INVALID_METHOD;
     }
@@ -297,8 +297,7 @@ void JvmInstance::refcount_incremented(GDExtensionScriptInstanceDataPtr p_instan
     int refcount = ref->get_reference_count();
 
     if (refcount > 1 && kt_object->is_ref_weak()) {
-        // The JVM holds a reference to that object already, if the counter is greater than 1, it means the native side holds a reference as well.
-        // The reference is changed to a strong one so the JVM instance is not collected if it is not referenced anymore on the JVM side.
+        // The JVM holds a reference to that object already, if the counter is greater than 1, it means the native side holds a reference as well. The reference is changed to a strong one so the JVM instance is not collected if it is not referenced...
         MemoryManager::get_instance().try_promotion(instance_data);
     }
 }
@@ -312,8 +311,7 @@ GDExtensionBool JvmInstance::refcount_decremented(GDExtensionScriptInstanceDataP
     int refcount = ref->get_reference_count();
 
     if (refcount == 1) {
-        // The JVM holds a reference to that object already, if the counter is equal to 1, it means the JVM is the only side with a reference to the object.
-        // The reference is changed to a weak one so the JVM instance can be collected if it is not referenced anymore on the JVM side.
+        // The JVM holds a reference to that object already, if the counter is equal to 1, it means the JVM is the only side with a reference to the object. The reference is changed to a weak one so the JVM instance can be collected if it is not re...
         if (!instance_data->to_demote_flag.is_set()) {
             MemoryManager::get_instance().queue_demotion(instance_data);
             instance_data->to_demote_flag.set();
@@ -324,7 +322,8 @@ GDExtensionBool JvmInstance::refcount_decremented(GDExtensionScriptInstanceDataP
 }
 
 GDExtensionObjectPtr JvmInstance::get_script(GDExtensionScriptInstanceDataPtr p_instance) {
-    return reinterpret_cast<JvmInstanceData*>(p_instance)->script.ptr();
+    // The engine expects the raw object pointer here, not our godot-cpp wrapper.
+    return reinterpret_cast<JvmInstanceData*>(p_instance)->script.ptr()->_owner;
 }
 
 GDExtensionBool JvmInstance::set_fallback(GDExtensionScriptInstanceDataPtr p_instance, GDExtensionConstStringNamePtr p_name, GDExtensionConstVariantPtr p_value) {
@@ -337,7 +336,8 @@ GDExtensionBool JvmInstance::get_fallback(GDExtensionScriptInstanceDataPtr p_ins
 }
 
 GDExtensionScriptLanguagePtr JvmInstance::get_language(GDExtensionScriptInstanceDataPtr p_instance) {
-    return reinterpret_cast<JvmInstanceData*>(p_instance)->script->_get_language();
+    // The engine compares this raw language pointer with object_get_script_instance() results.
+    return reinterpret_cast<JvmInstanceData*>(p_instance)->script->_get_language()->_owner;
 }
 
 void JvmInstance::free(GDExtensionScriptInstanceDataPtr p_instance) {
@@ -348,7 +348,7 @@ void JvmInstance::free(GDExtensionScriptInstanceDataPtr p_instance) {
     if (instance_data->delete_flag) {
         kt_object->script_instance_removed(
           env,
-          JvmBindingManager::get_instance_binding(instance_data->owner)->get_constructor_id()
+          JvmBindingManager::get_instance_binding(instance_data->owner->_owner)->get_constructor_id()
         );
     }
     if (instance_data->to_demote_flag.is_set()) {
@@ -397,8 +397,7 @@ JvmInstance::JvmInstanceData* JvmInstance::create_instance_data(jni::Env& p_env,
     int refcount = ref->get_reference_count();
 
     if (refcount == 1 && !p_kt_object->is_ref_weak()) {
-        // The JVM holds a reference to that object already, if the counter is equal to 1, it means the JVM is the only side with a reference to the object.
-        // The reference is changed to a weak one so the JVM instance can be collected if it is not referenced anymore on the JVM side.
+        // The JVM holds a reference to that object already, if the counter is equal to 1, it means the JVM is the only side with a reference to the object. The reference is changed to a weak one so the JVM instance can be collected if it is not re...
         p_kt_object->swap_to_weak_unsafe(p_env);
     }
 

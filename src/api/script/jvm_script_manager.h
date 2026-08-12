@@ -7,6 +7,8 @@
 
 namespace godot {
     class JvmScriptManager : public Object {
+        GDCLASS(JvmScriptManager, Object);
+
         static JvmScriptManager* singleton;
 
         HashMap<StringName, Ref<JvmScript>> registered_name_to_script;
@@ -24,12 +26,14 @@ namespace godot {
         void update_all_scripts();
 #endif
 
+    protected:
+        static void _bind_methods() {}
+
     public:
         JvmScriptManager() = default;
         ~JvmScriptManager() = default;
 
         JvmScriptManager(const JvmScriptManager&) = delete;
-        void operator=(const JvmScriptManager&) = delete;
         JvmScriptManager& operator=(JvmScriptManager&&) noexcept = delete;
         JvmScriptManager(JvmScriptManager&&) noexcept = delete;
 

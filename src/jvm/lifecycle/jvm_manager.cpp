@@ -5,7 +5,6 @@
 #include "jvm/wrapper/bridge/callable_bridge.h"
 #include "jvm/wrapper/bridge/dictionary_bridge.h"
 #include "jvm/wrapper/bridge/godot_print_bridge.h"
-#include "jvm/wrapper/bridge/lambda_callable_bridge.h"
 #include "jvm/wrapper/bridge/node_path_bridge.h"
 #include "jvm/wrapper/bridge/packed_array_bridge.h"
 #include "jvm/wrapper/bridge/packed_byte_array_bridge.h"
@@ -28,8 +27,7 @@
 #include <locale>
 
 #ifdef __ANDROID__
-// TODO: needs a GDExtension-appropriate Android JVM discovery mechanism; godot-cpp exposes no platform/android
-// headers or get_jni_env equivalent. This Godot-engine-internal header is unavailable to GDExtensions.
+// TODO: needs a GDExtension-appropriate Android JVM discovery mechanism; godot-cpp exposes no platform/android headers or get_jni_env equivalent. This Godot-engine-internal header is unavailable to GDExtensions.
 #include <platform/android/thread_jandroid.h>
 #endif
 
@@ -76,9 +74,7 @@ bool JvmManager::initialize_or_get_jvm(void* lib_handle, JvmUserConfiguration& u
     JVM_ERR_FAIL_COND_V_MSG(func == nullptr, false, "Failed to obtain JNI_CreateJavaVM symbol from dynamic library!");
     jint result {func(&java_vm, reinterpret_cast<void**>(&jni_env), &args)};
 
-    // Set std::local::global to value it was before creating JVM.
-    // See https://github.com/utopia-rise/godot-kotlin-jvm/issues/166
-    // and https://github.com/utopia-rise/godot-kotlin-jvm/issues/170
+    // Set std::local::global to value it was before creating JVM. See https://github.com/utopia-rise/godot-kotlin-jvm/issues/166 and https://github.com/utopia-rise/godot-kotlin-jvm/issues/170
 
     std::locale::global(global);
 
@@ -113,9 +109,9 @@ bool JvmManager::initialize_jvm_wrappers(jni::Env& p_env, ClassLoader* class_loa
             && TypeManager::initialize(p_env, class_loader)
             && LongStringQueue::initialize(p_env, class_loader)
             && MemoryManager::initialize(p_env, class_loader)
+            && LambdaContainer::initialize(p_env, class_loader)
             && bridges::GodotPrintBridge::initialize(p_env, class_loader)
             && bridges::CallableBridge::initialize(p_env, class_loader)
-            && bridges::LambdaCallableBridge::initialize(p_env, class_loader)
             && bridges::DictionaryBridge::initialize(p_env, class_loader)
             && bridges::StringNameBridge::initialize(p_env, class_loader)
             && bridges::NodePathBridge::initialize(p_env, class_loader)
@@ -143,9 +139,9 @@ void JvmManager::finalize_jvm_wrappers(jni::Env& p_env, ClassLoader* class_loade
     TypeManager::finalize(p_env, class_loader);
     LongStringQueue::finalize(p_env, class_loader);
     MemoryManager::finalize(p_env, class_loader);
+    LambdaContainer::finalize(p_env, class_loader);
     bridges::GodotPrintBridge::finalize(p_env, class_loader);
     bridges::CallableBridge::finalize(p_env, class_loader);
-    bridges::LambdaCallableBridge::finalize(p_env, class_loader);
     bridges::DictionaryBridge::finalize(p_env, class_loader);
     bridges::StringNameBridge::finalize(p_env, class_loader);
     bridges::NodePathBridge::finalize(p_env, class_loader);

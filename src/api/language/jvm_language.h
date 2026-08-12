@@ -25,8 +25,28 @@ namespace godot {
         // Dummy Implementations
         bool _supports_documentation() const override;
         Error _open_in_external_editor(const Ref<Script>& p_script, int p_line, int p_col) override;
+        bool _overrides_external_editor() override;
 
         String _auto_indent_code(const String &p_code, int32_t p_from_line, int32_t p_to_line) const override;
+
+        // GdExtension requires these to be explicitly overridden somewhere in the class hierarchy or it fatals ("Required virtual method must be overridden before calling") — GdjLanguage provides real implementations and overrides these again; Kot...
+        void _init() override;
+        void _frame() override;
+        void _finish() override;
+        void _thread_enter() override;
+        void _thread_exit() override;
+        TypedArray<Dictionary> _debug_get_current_stack_info() override;
+        Dictionary _debug_get_stack_level_locals(int32_t p_level, int32_t p_max_subitems, int32_t p_max_depth) override;
+        Dictionary _debug_get_stack_level_members(int32_t p_level, int32_t p_max_subitems, int32_t p_max_depth) override;
+        Dictionary _debug_get_globals(int32_t p_max_subitems, int32_t p_max_depth) override;
+        void _reload_all_scripts() override;
+        void _add_global_constant(const StringName& p_name, const Variant& p_value) override;
+        void _add_named_global_constant(const StringName& p_name, const Variant& p_value) override;
+
+        // Dummy Implementations (matches master exactly — these are empty no-ops there too).
+        TypedArray<Dictionary> _get_public_functions() const override;
+        Dictionary _get_public_constants() const override;
+        TypedArray<Dictionary> _get_public_annotations() const override;
     };
 }
 #endif// KOTLIN_JVM_LANGUAGE_H

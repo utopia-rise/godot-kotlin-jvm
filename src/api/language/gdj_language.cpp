@@ -3,6 +3,7 @@
 #include "api/script/jvm_script_manager.h"
 #include "api/script/language/gdj_script.h"
 #include "godot_jvm.h"
+#include "jvm/wrapper/bridge/godot_print_bridge.h"
 #include "jvm/wrapper/memory/memory_manager.h"
 #include "names.h"
 #include "paths.h"
@@ -54,6 +55,30 @@ void GdjLanguage::_thread_enter() {
 
 void GdjLanguage::_thread_exit() {
     jni::Jvm::detach();
+}
+
+TypedArray<Dictionary> GdjLanguage::_debug_get_current_stack_info() {
+    if (unlikely(GodotJvm::get_instance().state < GodotJvm::State::CORE_LIBRARY_INITIALIZED)) { return {}; }
+
+    // Guards against the recursion this is otherwise prone to: an error hit while building the stacktrace ends up back in Godot's error-printing path, which asks for the current stack info again to attach it to that very error.
+    thread_local bool is_capturing_stacktrace {false};
+    if (is_capturing_stacktrace) { return {}; }
+
+    is_capturing_stacktrace = true;
+    jni::Env env {jni::Jvm::current_env()};
+    String stacktrace {bridges::GodotPrintBridge::get_instance().get_jvm_stacktrace(env)};
+    is_capturing_stacktrace = false;
+
+    TypedArray<Dictionary> stack_info;
+    PackedStringArray frames {stacktrace.split("\n", false)};
+    for (const String& frame : frames) {
+        Dictionary info;
+        info["file"] = "";
+        info["func"] = frame.strip_edges();
+        info["line"] = 0;
+        stack_info.push_back(info);
+    }
+    return stack_info;
 }
 
 String GdjLanguage::_get_name() const {

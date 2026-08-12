@@ -25,9 +25,7 @@ godot::StringName KtFunction::get_name() const {
 }
 
 int KtFunction::get_parameter_count() const {
-    // No "getParameterCount" JNI method exists on the real Kotlin KtFunction (never did — that
-    // JNI binding was a porting mistake, not a Kotlin-side gap). The argument count is already
-    // known locally from the getArguments() array fetched into method_info in the constructor.
+    // No "getParameterCount" JNI method exists on the real Kotlin KtFunction (never did — that JNI binding was a porting mistake, not a Kotlin-side gap). The argument count is already known locally from the getArguments() array fetched into me...
     return method_info->arguments.size();
 }
 
@@ -84,11 +82,9 @@ KtFunctionInfo::~KtFunctionInfo() {
 godot::MethodInfo KtFunctionInfo::to_method_info() const {
     godot::MethodInfo methodInfo;
     methodInfo.name = name;
-    std::vector<godot::PropertyInfo> pInfoList;
     for (auto argument : arguments) {
-        pInfoList.push_back(argument->toPropertyInfo());
+        methodInfo.arguments.push_back(argument->toPropertyInfo());
     }
-    methodInfo.arguments = pInfoList;
     methodInfo.return_val = return_val->toPropertyInfo();
     return methodInfo;
 }

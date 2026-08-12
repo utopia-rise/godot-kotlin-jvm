@@ -4,7 +4,14 @@
 
 #include "api/language/names.h"
 
+#include <classes/editor_interface.hpp>
+#include <classes/editor_settings.hpp>
+#include <classes/script.hpp>
+#include <classes/script_editor.hpp>
+#include <classes/script_extension.hpp>
+#include <classes/script_language_extension.hpp>
 #include <classes/text_edit.hpp>
+#include <core/object.hpp>
 
 using namespace godot;
 
@@ -16,28 +23,27 @@ namespace {
     inline bool is_identifier_char(char32_t c) {
         return is_identifier_start(c) || (c >= '0' && c <= '9');
     }
-} // namespace
 
-// Hand-maintained keyword list covering Kotlin, Java and Scala (see the header-level note on why
-// this isn't sourced from each ScriptLanguage's reserved word list like master's implementation did).
-const HashSet<String>& JvmStandardSyntaxHighlighter::get_keywords() {
-    static const HashSet<String> keywords {
-        // Common / Kotlin
-        "val", "var", "fun", "class", "object", "interface", "package", "import", "return", "if", "else",
-        "when", "for", "while", "do", "break", "continue", "is", "as", "in", "null", "true", "false", "this",
-        "super", "try", "catch", "finally", "throw", "override", "private", "protected", "public", "internal",
-        "companion", "init", "constructor", "enum", "sealed", "data", "abstract", "final", "open", "lateinit",
-        "annotation", "vararg", "out", "inline", "reified", "suspend", "typealias", "by", "get", "set",
-        // Java / Scala shared
-        "new", "static", "void", "extends", "implements", "throws", "int", "long", "double", "float", "boolean",
-        "char", "byte", "short", "instanceof", "case", "match", "trait", "extends", "with", "def", "yield",
-        "implicit", "lazy"
-    };
-    return keywords;
+    // Matches master's own delimiter format: "begin end" (space-separated), or just "begin" for a to-end-of-line region — same parsing EditorStandardSyntaxHighlighter::_update_cache() does.
+    void parse_delimiters(const PackedStringArray& delimiters, const Color& color, Vector<SyntaxRegion>& out) {
+        for (const String& delimiter : delimiters) {
+            String begin = delimiter.get_slicec(' ', 0);
+            String end = delimiter.get_slice_count(" ") > 1 ? delimiter.get_slicec(' ', 1) : String();
+            out.push_back({begin, end, end.is_empty(), color});
+        }
+    }
+
+    // Returns the first region (in priority order) whose begin marker matches the line at p_index.
+    const SyntaxRegion* match_region(const Vector<SyntaxRegion>& regions, const String& line, int64_t p_index) {
+        for (const SyntaxRegion& region : regions) {
+            if (line.substr(p_index, region.begin.length()) == region.begin) { return &region; }
+        }
+        return nullptr;
+    }
 }
 
 String JvmStandardSyntaxHighlighter::_get_name() const {
-    return "Godot Kotlin/JVM";
+    return "Godot-JVM";
 }
 
 PackedStringArray JvmStandardSyntaxHighlighter::_get_supported_languages() const {
@@ -50,6 +56,35 @@ Ref<EditorSyntaxHighlighter> JvmStandardSyntaxHighlighter::_create() const {
     return result;
 }
 
+void JvmStandardSyntaxHighlighter::_update_cache() {
+    keywords.clear();
+    regions.clear();
+
+    // Fallback palette in case EditorSettings is ever unavailable; overwritten below otherwise.
+    keyword_color = Color(0.45f, 0.62f, 0.91f);
+    Color comment_color(0.5f, 0.5f, 0.5f);
+    Color string_color(0.92f, 0.72f, 0.42f);
+    default_color = Color(0.85f, 0.85f, 0.85f);
+
+    if (Ref<EditorSettings> settings = EditorInterface::get_singleton()->get_editor_settings(); settings.is_valid()) {
+        keyword_color = settings->get_setting("text_editor/theme/highlighting/keyword_color");
+        comment_color = settings->get_setting("text_editor/theme/highlighting/comment_color");
+        string_color = settings->get_setting("text_editor/theme/highlighting/string_color");
+    }
+
+    // No `_get_edited_resource()`/`_set_script_language()` in godot-cpp (unlike master's base class), so the currently-focused script tab is the closest available signal for "which language is this highlighter instance highlighting."
+    Ref<Script> script = EditorInterface::get_singleton()->get_script_editor()->get_current_script();
+    auto* script_ext = script.is_valid() ? Object::cast_to<ScriptExtension>(script.ptr()) : nullptr;
+    auto* lang = script_ext ? Object::cast_to<ScriptLanguageExtension>(script_ext->_get_language()) : nullptr;
+    if (lang == nullptr) { return; }
+
+    for (const String& keyword : lang->_get_reserved_words()) {
+        keywords.insert(keyword);
+    }
+    parse_delimiters(lang->_get_comment_delimiters(), comment_color, regions);
+    parse_delimiters(lang->_get_string_delimiters(), string_color, regions);
+}
+
 Dictionary JvmStandardSyntaxHighlighter::_get_line_syntax_highlighting(int32_t p_line) const {
     Dictionary color_map;
 
@@ -59,16 +94,6 @@ Dictionary JvmStandardSyntaxHighlighter::_get_line_syntax_highlighting(int32_t p
     String line = text_edit->get_line(p_line);
     int64_t length = line.length();
 
-    // Simplified fixed palette: EditorSyntaxHighlighter has no direct access to the editor theme's
-    // script color scheme from here, unlike master's engine-internal base class which pulled it
-    // automatically. See the header-level note for the full list of simplifications.
-    static const Color keyword_color(0.45f, 0.62f, 0.91f);
-    static const Color comment_color(0.5f, 0.5f, 0.5f);
-    static const Color string_color(0.92f, 0.72f, 0.42f);
-    static const Color default_color(0.85f, 0.85f, 0.85f);
-
-    const HashSet<String>& keywords = get_keywords();
-
     auto set_color_at = [&](int64_t column, const Color& color) {
         Dictionary entry;
         entry["color"] = color;
@@ -77,41 +102,16 @@ Dictionary JvmStandardSyntaxHighlighter::_get_line_syntax_highlighting(int32_t p
 
     int64_t i = 0;
     while (i < length) {
+        if (const SyntaxRegion* region = match_region(regions, line, i)) {
+            set_color_at(i, region->color);
+            if (region->line_only) { break; }
+            int64_t end = line.find(region->end, i + region->begin.length());
+            i = end == -1 ? length : end + region->end.length();
+            if (i < length) { set_color_at(i, default_color); }
+            continue;
+        }
+
         char32_t c = line[i];
-
-        // Line comment: rest of the line.
-        if (c == '/' && i + 1 < length && line[i + 1] == '/') {
-            set_color_at(i, comment_color);
-            break;
-        }
-
-        // Block comment start. NOTE: state is not tracked across lines, so a block comment left open
-        // at the end of a line will not continue to be highlighted on the following lines.
-        if (c == '/' && i + 1 < length && line[i + 1] == '*') {
-            int64_t start = i;
-            int64_t end = line.find("*/", i + 2);
-            set_color_at(start, comment_color);
-            if (end == -1) { break; }
-            i = end + 2;
-            if (i < length) { set_color_at(i, default_color); }
-            continue;
-        }
-
-        // String literal.
-        if (c == '"') {
-            int64_t start = i;
-            int64_t j = i + 1;
-            while (j < length && line[j] != '"') {
-                if (line[j] == '\\') { j++; }
-                j++;
-            }
-            set_color_at(start, string_color);
-            i = j < length ? j + 1 : length;
-            if (i < length) { set_color_at(i, default_color); }
-            continue;
-        }
-
-        // Identifier / keyword.
         if (is_identifier_start(c)) {
             int64_t start = i;
             int64_t j = i + 1;
