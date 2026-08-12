@@ -54,9 +54,29 @@ Error JvmLanguage::_open_in_external_editor(const Ref<Script>& p_script, int p_l
     return Error::ERR_UNAVAILABLE;
 }
 
+bool JvmLanguage::_overrides_external_editor() {
+    return false;
+}
+
 String JvmLanguage::_auto_indent_code(const String &p_code, int32_t p_from_line, int32_t p_to_line) const {
     return p_code;
 }
+
+void JvmLanguage::_init() {}
+void JvmLanguage::_frame() {}
+void JvmLanguage::_finish() {}
+void JvmLanguage::_thread_enter() {}
+void JvmLanguage::_thread_exit() {}
+TypedArray<Dictionary> JvmLanguage::_debug_get_current_stack_info() { return {}; }
+Dictionary JvmLanguage::_debug_get_stack_level_locals(int32_t, int32_t, int32_t) { return {}; }
+Dictionary JvmLanguage::_debug_get_stack_level_members(int32_t, int32_t, int32_t) { return {}; }
+Dictionary JvmLanguage::_debug_get_globals(int32_t, int32_t) { return {}; }
+void JvmLanguage::_reload_all_scripts() {}
+void JvmLanguage::_add_global_constant(const StringName&, const Variant&) {}
+void JvmLanguage::_add_named_global_constant(const StringName&, const Variant&) {}
+TypedArray<Dictionary> JvmLanguage::_get_public_functions() const { return {}; }
+Dictionary JvmLanguage::_get_public_constants() const { return {}; }
+TypedArray<Dictionary> JvmLanguage::_get_public_annotations() const { return {}; }
 
 // TODO: Dummy to make reloading work again because of https://github.com/godotengine/godot/issues/104540. Should still be truly implemented at some point
 bool JvmLanguage::_supports_documentation() const {

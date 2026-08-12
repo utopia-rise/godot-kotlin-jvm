@@ -2,23 +2,18 @@
 
 #include "api/script/jvm_instance.h"
 
+#include <core/object.hpp>
+
 const int MAX_STACK_SIZE = MAX_FUNCTION_ARG_COUNT * 8;
 
-// Namespace-scope `thread_local` with a non-trivial constructor (godot::Variant's) requires
-// per-thread dynamic initialization, which MSVC wires through a CRT TLS callback run on thread
-// attach — a mechanism that isn't reliably invoked for a DLL loaded dynamically via LoadLibrary
-// (which is how Godot loads a GDExtension), and can fail the load outright (Windows error 1114).
-// A function-local thread_local static sidesteps that: its lazy, guard-checked initialization
-// runs as ordinary code at first call, not via the TLS callback table.
+// Namespace-scope `thread_local` with a non-trivial constructor (godot::Variant's) requires per-thread dynamic initialization, which MSVC wires through a CRT TLS callback run on thread attach — a mechanism that isn't reliably invoked for a...
 static godot::Variant* variant_args() {
     thread_local static godot::Variant args[MAX_STACK_SIZE]; // NOLINT(cert-err58-cpp)
     return args;
 }
 
 thread_local static const godot::Variant* variant_args_ptr[MAX_STACK_SIZE];
-// Cached result of variant_args(), set once per thread below — trivial (raw pointer), so this
-// costs nothing to declare thread_local, and lets the icall() steady-state path skip re-paying
-// variant_args()'s guard check on every single call.
+// Cached result of variant_args(), set once per thread below — trivial (raw pointer), so this costs nothing to declare thread_local, and lets the icall() steady-state path skip re-paying variant_args()'s guard check on every single call.
 thread_local static godot::Variant* variant_args_base = nullptr;
 thread_local static int stack_offset = -1;
 
@@ -75,8 +70,7 @@ void TransferContext::write_object_data(jni::Env& p_env, uintptr_t ptr, godot::O
 
 void TransferContext::icall(JNIEnv* rawEnv, jobject, jlong j_method_ptr) {
     if (unlikely(stack_offset == -1)) {
-        // The only place variant_args()'s guard-checked thread_local init actually runs, once per
-        // thread — everything below this block reads the cached variant_args_base instead.
+        // The only place variant_args()'s guard-checked thread_local init actually runs, once per thread — everything below this block reads the cached variant_args_base instead.
         variant_args_base = variant_args();
         for (int i = 0; i < MAX_STACK_SIZE; i++) {
             variant_args_ptr[i] = &variant_args_base[i];
@@ -88,27 +82,22 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject, jlong j_method_ptr) {
 
     SharedBuffer* buffer {get_instance().get_and_rewind_buffer(env)};
 
-    // The receiver pointer (and, in debug builds, its ObjectID) is written directly into the
-    // buffer by Kotlin's TransferContext.writeMethodArguments() before this call — matching
-    // master exactly — not passed as a separate native argument.
+    // The receiver pointer (and, in debug builds, its ObjectID) is written directly into the buffer by Kotlin's TransferContext.writeMethodArguments() before this call — matching master exactly — not passed as a separate native argument.
     uintptr_t receiver_ptr {static_cast<uintptr_t>(decode_uint64(buffer->get_cursor()))};
-    // Master's debug-mode freed-instance check (comparing against ObjectDB::get_instance(receiver_id))
-    // has no godot-cpp equivalent — ObjectDB is engine-internal and unavailable to GDExtensions.
-    // Documented open follow-up in GDEXTENSION_DIVERGENCES.md; the ID bytes are still consumed
-    // here to keep the buffer cursor aligned with what Kotlin wrote.
+    // Master's debug-mode freed-instance check (comparing against ObjectDB::get_instance(receiver_id)) has no godot-cpp equivalent — ObjectDB is engine-internal and unavailable to GDExtensions. Documented open follow-up in GDEXTENSION_DIVERGEN...
     buffer->increment_position(PTR_SIZE + PTR_SIZE);
-    auto* ptr {reinterpret_cast<godot::Object*>(receiver_ptr)};
+    // receiver_ptr is the raw engine pointer the JVM was given. Unlike master (where MethodBind is the engine's real class and ->call(Object*, ...) is a genuine C++ virtual call), a GDExtensionMethodBindPtr is an opaque engine handle with no C...
+    GDExtensionObjectPtr ptr {reinterpret_cast<GDExtensionObjectPtr>(receiver_ptr)};
 
     uint32_t args_size {read_args_size(buffer)};
 
-    godot::MethodBind* method_bind {reinterpret_cast<godot::MethodBind*>(static_cast<uintptr_t>(j_method_ptr))};
+    GDExtensionMethodBindPtr method_bind {reinterpret_cast<GDExtensionMethodBindPtr>(static_cast<uintptr_t>(j_method_ptr))};
 
+    // A GDExtensionMethodBindPtr is an opaque engine handle with no exposed name/class accessors, unlike master's real MethodBind — the assert message can no longer name the offending method.
     JVM_DEV_ASSERT(
       args_size <= MAX_FUNCTION_ARG_COUNT,
-      "Cannot have more than %s arguments for method call but tried to call method \"%s::%s\" with %s args",
+      "Cannot have more than %s arguments for a method call but tried to call with %s args",
       MAX_FUNCTION_ARG_COUNT,
-      method_bind->get_instance_class(),
-      method_bind->get_name(),
       args_size
     );
 
@@ -123,7 +112,15 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject, jlong j_method_ptr) {
             args_ptr[i] = &args[i];
         }
 
-        const godot::Variant& ret_value {method_bind->call(ptr, reinterpret_cast<GDExtensionConstVariantPtr*>(args_ptr), args_size, r_error)};
+        godot::Variant ret_value;
+        godot::internal::gdextension_interface_object_method_bind_call(
+          method_bind,
+          ptr,
+          reinterpret_cast<GDExtensionConstVariantPtr*>(args_ptr),
+          args_size,
+          &ret_value,
+          &r_error
+        );
 
         buffer->rewind();
         VariantToBuffer::write_variant(ret_value, buffer);
@@ -134,7 +131,15 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject, jlong j_method_ptr) {
         const godot::Variant** args_ptr {variant_args_ptr + stack_offset};
 
         stack_offset += args_size;
-        const godot::Variant& ret_value {method_bind->call(ptr, reinterpret_cast<GDExtensionConstVariantPtr*>(args_ptr), args_size, r_error)};
+        godot::Variant ret_value;
+        godot::internal::gdextension_interface_object_method_bind_call(
+          method_bind,
+          ptr,
+          reinterpret_cast<GDExtensionConstVariantPtr*>(args_ptr),
+          args_size,
+          &ret_value,
+          &r_error
+        );
         // Remove Variants so memory can be freed immediately after method call.
         for (uint32_t i = 0; i < args_size; i++) {
             args[i] = godot::Variant();
@@ -148,8 +153,8 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject, jlong j_method_ptr) {
 #ifdef DEBUG_ENABLED
     JVM_ERR_FAIL_COND_MSG(
       r_error.error != GDExtensionCallErrorType::GDEXTENSION_CALL_OK,
-      "Call to method %s failed.",
-      method_bind->get_name()
+      "Call to method bind failed with error %s.",
+      static_cast<int>(r_error.error)
     );
 #endif
 }

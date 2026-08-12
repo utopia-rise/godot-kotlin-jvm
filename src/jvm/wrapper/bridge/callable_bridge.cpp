@@ -8,6 +8,7 @@
 #include "jvm/wrapper/memory/transfer_context.h"
 
 #include <classes/object.hpp>
+#include <core/object.hpp>
 #include <variant/array.hpp>
 
 using namespace bridges;
@@ -16,27 +17,25 @@ uintptr_t CallableBridge::engine_call_constructor(JNIEnv* p_raw_env, jobject p_i
     return reinterpret_cast<uintptr_t>(VariantAllocator::alloc(godot::Callable()));
 }
 
-uintptr_t CallableBridge::engine_call_constructor_object_string_name(JNIEnv* p_raw_env, jobject p_instance) {
-    jni::Env env {p_raw_env};
-    godot::Variant args[2] = {};
-    TransferContext::get_instance().read_args(env, args);
-    return reinterpret_cast<uintptr_t>(
-      VariantAllocator::alloc(godot::Callable(args[0].operator godot::Object*(), args[1].operator godot::StringName()))
-    );
+uintptr_t CallableBridge::engine_call_constructor_object_string_name(JNIEnv* p_raw_env, jobject p_instance, jlong object_ptr, jlong method_name_ptr) {
+    // object_ptr is the raw engine pointer — go through get_object_instance_binding to get the corresponding godot-cpp wrapper.
+    auto* obj {godot::internal::get_object_instance_binding(reinterpret_cast<godot::GodotObject*>(object_ptr))};
+    auto* name {reinterpret_cast<godot::StringName*>(method_name_ptr)};
+    return reinterpret_cast<uintptr_t>(VariantAllocator::alloc(godot::Callable(obj, *name)));
 }
 
-uintptr_t CallableBridge::engine_call_constructor_kt_custom_callable(
+uintptr_t CallableBridge::engine_call_constructor_lambda_callable(
   JNIEnv* p_raw_env,
   jobject p_instance,
-  jobject p_kt_custom_callable_instance,
+  jobject p_lambda_container,
   jint p_variant_type_ordinal,
-  jint p_hash_code,
-  jboolean p_has_on_destroy
+  jint p_hash_code
 ) {
     jni::Env env {p_raw_env};
+    // has_on_destroy is always false here — matches master exactly. It's only ever true for the "cancellable" one-shot-signal-connection case below, not the general lambda-callable case; neither Kotlin call site passes it explicitly (there is...
     return reinterpret_cast<uintptr_t>(VariantAllocator::alloc(
       godot::Callable(memnew(
-        KotlinCallableCustom(env, p_kt_custom_callable_instance, static_cast<godot::Variant::Type>(p_variant_type_ordinal), p_hash_code, p_has_on_destroy)
+        KotlinCallableCustom(env, p_lambda_container, static_cast<godot::Variant::Type>(p_variant_type_ordinal), p_hash_code, false)
       ))
     ));
 }
@@ -46,8 +45,7 @@ void CallableBridge::engine_call_constructor_cancellable(
   jobject p_instance,
   jobject p_kt_custom_callable_instance,
   jint p_variant_type_ordinal,
-  jint p_hash_code,
-  jboolean p_has_on_destroy
+  jint p_hash_code
 ) {
     jni::Env env {p_raw_env};
 
@@ -56,11 +54,10 @@ void CallableBridge::engine_call_constructor_cancellable(
     godot::Signal signal = args[0].operator godot::Signal();
 
     godot::Callable callable {memnew(
-      KotlinCallableCustom(env, p_kt_custom_callable_instance, static_cast<godot::Variant::Type>(p_variant_type_ordinal), p_hash_code, p_has_on_destroy)
+      KotlinCallableCustom(env, p_kt_custom_callable_instance, static_cast<godot::Variant::Type>(p_variant_type_ordinal), p_hash_code, true)
     )};
 
-    // Signals owned by a Node can only be connected on the main thread. godot-cpp doesn't expose
-    // Object::call_thread_safe, so unlike master we can't force the connect() call onto the main thread here.
+    // Signals owned by a Node can only be connected on the main thread. godot-cpp doesn't expose Object::call_thread_safe, so unlike master we can't force the connect() call onto the main thread here.
     signal.connect(callable, godot::Object::CONNECT_ONE_SHOT);
 }
 
@@ -87,23 +84,13 @@ void CallableBridge::engine_call_bind(JNIEnv* p_raw_env, jobject p_instance, jlo
     TransferContext::get_instance().write_return_value(env, result);
 }
 
-void CallableBridge::engine_call_bindv(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    jni::Env env {p_raw_env};
-    godot::Variant args[1] = {};
-    TransferContext::get_instance().read_args(env, args);
-
-    godot::Variant result = from_uint_to_ptr<godot::Callable>(p_raw_ptr)->bindv(args[0]);
-    TransferContext::get_instance().write_return_value(env, result);
-}
-
 void CallableBridge::engine_call_call(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
 
     godot::Variant args[MAX_FUNCTION_ARG_COUNT];
     uint32_t args_size {TransferContext::get_instance().read_args(env, args)};
 
-    // godot-cpp exposes no pointer-array callp()/Callable::CallError; build an Array and go
-    // through callv() instead, which reports failures internally rather than via an out-param.
+    // godot-cpp exposes no pointer-array callp()/Callable::CallError; build an Array and go through callv() instead, which reports failures internally rather than via an out-param.
     godot::Array call_args;
     for (uint32_t i = 0; i < args_size; ++i) {
         call_args.push_back(args[i]);
@@ -119,8 +106,7 @@ void CallableBridge::engine_call_call_deferred(JNIEnv* p_raw_env, jobject p_inst
     godot::Variant args[MAX_FUNCTION_ARG_COUNT];
     uint32_t args_size {TransferContext::get_instance().read_args(env, args)};
 
-    // godot-cpp's call_deferred() is a variadic template with no pointer-array/Array overload,
-    // so the runtime argument count has to be unpacked by hand.
+    // godot-cpp's call_deferred() is a variadic template with no pointer-array/Array overload, so the runtime argument count has to be unpacked by hand.
     const godot::Callable& callable = *from_uint_to_ptr<godot::Callable>(p_raw_ptr);
     switch (args_size) {
         case 0: callable.call_deferred(); break;
@@ -142,15 +128,6 @@ void CallableBridge::engine_call_call_deferred(JNIEnv* p_raw_env, jobject p_inst
         case 16: callable.call_deferred(args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8], args[9], args[10], args[11], args[12], args[13], args[14], args[15]); break;
         default: JVM_ERR_FAIL_MSG("call_deferred: too many arguments"); break;
     }
-}
-
-void CallableBridge::engine_call_callv(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    jni::Env env {p_raw_env};
-    godot::Variant args[1] = {};
-    TransferContext::get_instance().read_args(env, args);
-
-    godot::Variant result = from_uint_to_ptr<godot::Callable>(p_raw_ptr)->callv(args[0]);
-    TransferContext::get_instance().write_return_value(env, result);
 }
 
 void CallableBridge::engine_call_get_bound_arguments(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {

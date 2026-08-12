@@ -2,6 +2,7 @@
 
 #include "godot_jvm.h"
 #include "jvm/wrapper/memory/transfer_context.h"
+#include "logging.h"
 
 KtClass::KtClass(jni::Env& p_env, jni::JObject p_wrapped) :
   JvmInstanceWrapper(p_env, p_wrapped),

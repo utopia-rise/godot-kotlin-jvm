@@ -2,6 +2,8 @@
 #define GODOT_JVM_UTILITIES_H
 
 #include <classes/object.hpp>
+#include <classes/wrapped.hpp>
+#include <godot.hpp>
 #include <variant/string_name.hpp>
 
 
@@ -11,6 +13,10 @@
 _ALWAYS_INLINE_ bool is_ref_counted(godot::Object* obj) {
     //https://github.com/godotengine/godot/blob/1f787b63a54b74a5238653883fe1a531200b675e/core/object/object_id.h#L44
     return (obj->get_instance_id() & (uint64_t(1) << 63)) != 0;
+}
+
+_ALWAYS_INLINE_ bool is_ref_counted(godot::GodotObject* obj) {
+    return (godot::internal::gdextension_interface_object_get_instance_id(obj) & (uint64_t(1) << 63)) != 0;
 }
 
 #endif // GODOT_JVM_UTILITIES_H

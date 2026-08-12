@@ -5,20 +5,23 @@
 #include "core/variant_allocator.h"
 #include "engine/utilities.h"
 
+#include <core/object.hpp>
+
 static godot::LocalVector<uint64_t> ids;
 static godot::LocalVector<uintptr_t> pointers;
 static godot::LocalVector<uint32_t> variant_types;
 
 bool MemoryManager::check_instance(JNIEnv*, jobject, jlong p_raw_ptr, jlong instance_id) {
-    auto* instance {reinterpret_cast<godot::Object*>(static_cast<uintptr_t>(p_raw_ptr))};
-    return instance == godot::ObjectDB::get_instance(static_cast<godot::ObjectID>(static_cast<uint64_t>(instance_id)));
+    // p_raw_ptr is the raw engine pointer the JVM was given; ObjectDB::get_instance() returns a godot-cpp wrapper, so compare against its raw ->_owner rather than the wrapper itself.
+    godot::Object* instance {godot::ObjectDB::get_instance(static_cast<godot::ObjectID>(static_cast<uint64_t>(instance_id)))};
+    return instance != nullptr && instance->_owner == reinterpret_cast<godot::GodotObject*>(static_cast<uintptr_t>(p_raw_ptr));
 }
 
 void MemoryManager::release_binding(JNIEnv*, jobject, jlong instance_id) {
     godot::Object* obj = godot::ObjectDB::get_instance(static_cast<godot::ObjectID>(static_cast<uint64_t>(instance_id)));
     if (obj == nullptr) { return; }
 
-    ::godot::JvmBindingManager::free_binding(obj);
+    ::godot::JvmBindingManager::free_binding(obj->_owner);
     if (is_ref_counted(obj)) {
         auto* ref = reinterpret_cast<godot::RefCounted*>(obj);
         if (ref->unreference()) { memdelete(ref); }
@@ -131,7 +134,7 @@ void MemoryManager::sync_memory(jni::Env& p_env) {
 
     for (uint64_t id : ids) {
         godot::RefCounted* ref = reinterpret_cast<godot::RefCounted*>(godot::ObjectDB::get_instance(static_cast<godot::ObjectID>(id)));
-        ::godot::JvmBindingManager::free_binding(ref);
+        ::godot::JvmBindingManager::free_binding(ref->_owner);
         if (ref->unreference()) { memdelete(ref); }
     }
 

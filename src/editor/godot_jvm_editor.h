@@ -26,8 +26,9 @@ namespace godot {
         };
 
         PopupMenu* about_pop_menu;
-        AboutDialog* about_dialog;
-        TaskDialog* task_dialog;
+        // Built in NOTIFICATION_ENTER_TREE, not the constructor: both read editor_settings/ editor_scale below, which are only populated once this plugin has actually entered the tree — constructing them any earlier crashes on a null editor_settin...
+        AcceptDialog* about_dialog {nullptr};
+        TaskDialogControls task_dialog {};
 
         AcceptDialog* project_dialog;
 

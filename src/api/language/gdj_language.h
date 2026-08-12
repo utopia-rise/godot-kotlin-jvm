@@ -23,6 +23,8 @@ namespace godot {
         void _thread_enter() override;
         void _thread_exit() override;
 
+        TypedArray<Dictionary> _debug_get_current_stack_info() override;
+
         String _get_name() const override;
         String _get_type() const override;
         String _get_extension() const override;

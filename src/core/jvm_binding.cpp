@@ -1,11 +1,15 @@
 #include "jvm/wrapper/memory/type_manager.h"
 #include "jvm_binding.h"
 
+#include <classes/object.hpp>
+#include <godot.hpp>
+
 using namespace godot;
 
-void JvmBinding::init(Object* p_object) {
-    object_id = p_object->get_instance_id();
-    StringName class_name {p_object->get_class()};
+void JvmBinding::init_from_class_name(ObjectID p_object_id, const StringName& p_class_name) {
+    object_id = p_object_id;
+
+    StringName class_name = p_class_name;
     do {
         if (!TypeManager::get_instance().java_engine_type_constructor_for_type_exists(class_name)) {
             class_name = ClassDB::get_parent_class(class_name);
@@ -14,6 +18,19 @@ void JvmBinding::init(Object* p_object) {
         }
     } while (class_name != StringName());
     constructor_id = TypeManager::get_instance().get_java_engine_type_constructor_index_for_type(class_name);
+}
+
+void JvmBinding::init(GodotObject* p_engine_object) {
+    const ObjectID id {internal::gdextension_interface_object_get_instance_id(p_engine_object)};
+
+    StringName class_name;
+    internal::gdextension_interface_object_get_class_name(
+      p_engine_object,
+      internal::library,
+      static_cast<GDExtensionUninitializedStringNamePtr>(class_name._native_ptr())
+    );
+
+    init_from_class_name(id, class_name);
 }
 
 int JvmBinding::get_constructor_id() const{
