@@ -1,0 +1,44 @@
+name: Download Godot
+description: Downloads an official Godot editor for GDExtension tests.
+inputs:
+  version:
+    required: true
+  platform:
+    required: true
+  destination:
+    required: true
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      run: |
+        set -euo pipefail
+        mkdir -p "${{ inputs.destination }}"
+        base="https://github.com/godotengine/godot-builds/releases/download/${{ inputs.version }}"
+        case "${{ inputs.platform }}" in
+          linux)
+            archive="Godot_v${{ inputs.version }}_linux.x86_64.zip"
+            output="godot.linuxbsd.editor.x86_64"
+            ;;
+          windows)
+            archive="Godot_v${{ inputs.version }}_win64.exe.zip"
+            output="godot.windows.editor.x86_64.exe"
+            ;;
+          macos)
+            archive="Godot_v${{ inputs.version }}_macos.universal.zip"
+            output="godot.macos.editor.universal"
+            ;;
+          *)
+            echo "Unsupported platform: ${{ inputs.platform }}" >&2
+            exit 1
+            ;;
+        esac
+        curl --fail --location "$base/$archive" --output godot.zip
+        unzip -q godot.zip -d godot-download
+        if [ "${{ inputs.platform }}" = macos ]; then
+          mv godot-download/Godot.app "${{ inputs.destination }}/Godot.app"
+          ln -s Godot.app/Contents/MacOS/Godot "${{ inputs.destination }}/$output"
+        else
+          mv "$(find godot-download -type f -name 'Godot*' | head -n 1)" "${{ inputs.destination }}/$output"
+          chmod +x "${{ inputs.destination }}/$output"
+        fi

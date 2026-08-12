@@ -20,7 +20,7 @@ jobs:
           echo "Setup done"
     outputs: # defined here explicitly, so it only needs to be defined here. All other workflows can just reference it
       godot-kotlin-jvm-version: "0.17.0-4.7.2"
-      godot-version: "36a04fe528e63567203b28d0e8b27591ddee7915"
+      godot-version: "4.7.2-stable"
       build-version: "0.17.0"
       jvm-version: "17"
 
@@ -34,6 +34,7 @@ jobs:
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
 
   build-android:
+    if: ${{ false }}
     name: 🤖 Build Android
     uses: ./.github/workflows/build_android.yml
     needs:
@@ -44,6 +45,7 @@ jobs:
       build-version: ${{ needs.setup-build-variables.outputs['build-version'] }}
 
   build-ios:
+    if: ${{ false }}
     name: 🍏 Build iOS
     uses: ./.github/workflows/build_ios.yml
     needs:
@@ -76,6 +78,7 @@ jobs:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
 
   assemble-android:
+    if: ${{ false }}
     name: 🤖 Assemble android
     uses: ./.github/workflows/assemble_android.yml
     needs:
@@ -90,7 +93,6 @@ jobs:
     uses: ./.github/workflows/assemble_macos.yml
     needs:
       - setup-build-variables
-      - build-jvm
       - build-macos
     with:
       godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
@@ -98,6 +100,7 @@ jobs:
       build-version: ${{ needs.setup-build-variables.outputs['build-version'] }}
 
   assemble-ios:
+    if: ${{ false }}
     name: 🍏 Assemble ios
     uses: ./.github/workflows/assemble_ios.yml
     needs:
@@ -113,7 +116,6 @@ jobs:
     uses: ./.github/workflows/assemble_linux.yml
     needs:
       - setup-build-variables
-      - build-jvm
       - build-linux
     with:
       godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
@@ -125,24 +127,19 @@ jobs:
     uses: ./.github/workflows/assemble_windows.yml
     needs:
       - setup-build-variables
-      - build-jvm
       - build-windows
     with:
       godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       build-version: ${{ needs.setup-build-variables.outputs['build-version'] }}
 
-  assemble-export-templates:
-    name: 🤖+🍏+🐧+🍎+🪟 Assemble export templates
-    uses: ./.github/workflows/assemble_export_templates.yml
+  assemble-addon:
+    name: 🤖+🍏+🐧+🍎+🪟 Assemble addon
+    uses: ./.github/workflows/assemble_addon.yml
     needs:
       - setup-build-variables
-      - assemble-android
-      - assemble-ios # export templates need to be packed into xcode project
-      - build-linux # uploads finished export template directly
-      - assemble-macos # export templates need to be packed into app
-      - build-windows # uploads finished export template directly
+      - build-linux
+      - assemble-macos
+      - build-windows
     with:
       godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
-      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
-      build-version: ${{ needs.setup-build-variables.outputs['build-version'] }}

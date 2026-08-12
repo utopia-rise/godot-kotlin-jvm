@@ -20,10 +20,6 @@ jobs:
     strategy:
       matrix:
         include:
-          - name: dev tests
-            target: dev
-            jvm-target: debug
-            build-task: build
           - name: release tests
             target: release
             jvm-target: release
@@ -31,35 +27,44 @@ jobs:
 
     steps:
       - name: Clone Godot JVM module.
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
-      - uses: actions/setup-java@v4
+      - uses: ./.github/actions/download-godot
+        with:
+          version: 4.7.1-stable
+          platform: macos
+          destination: harness/tests/bin
+
+      - uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: ${{ inputs.jvm-version }}
 
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
+        uses: gradle/actions/setup-gradle@v6
         with:
+          cache-provider: basic
           cache-read-only: ${{ github.ref != 'refs/heads/master' }}
 
-      - name: Download macos editor ${{ matrix.target }}
-        uses: actions/download-artifact@v4
+      - name: Download macos editor library
+        uses: actions/download-artifact@v7
         with:
-          name: editor_${{ matrix.target }}_macos_universal
-          path: './harness/tests/bin'
+          name: debug_macos_universal
+          path: './harness/tests/addons'
 
-      - name: Download macos export template
-        uses: actions/download-artifact@v4
+      - name: Download macos export library
+        uses: actions/download-artifact@v7
         with:
-          name: export_template_all_macos
-          path: "./"
+          name: release_macos_universal
+          path: './harness/tests/addons'
 
       - name: Prepare export
         run: |
           chmod +x harness/tests/bin/godot.*
           mkdir -p harness/tests/export
-          mv export_template_all_macos.zip harness/tests/export_template_all_macos.zip
+          curl --fail --location https://github.com/godotengine/godot-builds/releases/download/4.7.1-stable/Godot_v4.7.1-stable_export_templates.tpz --output templates.tpz
+          unzip -q templates.tpz -d templates
+          mv templates/templates/macos.zip harness/tests/export_template_all_macos.zip
 
       - name: Build tests project
         run: |
@@ -71,15 +76,7 @@ jobs:
           jlink --add-modules java.base,java.logging --output jvm/jre-arm64-macos
           mkdir jvm/jre-amd64-macos #create a fake jre dir for amd64 so the export is happy. The test will run on arm anyways
 
-      - name: Export tests debug
-        if: ${{ matrix.jvm-target == 'debug' }}
-        run: |
-          cd harness/tests/
-          ./gradlew exportDebug
-        timeout-minutes: 30
-
       - name: Export tests release
-        if: ${{ matrix.jvm-target == 'release' }}
         run: |
           cd harness/tests/
           ./gradlew exportRelease

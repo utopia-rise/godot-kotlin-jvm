@@ -184,8 +184,6 @@ tasks {
         description = "Imports the Godot project after rebuilding JVM registrations."
         dependsOn(build)
 
-        isIgnoreExitValue = true
-
         environment("JAVA_HOME", System.getProperty("java.home"))
         workingDir = projectDir
 

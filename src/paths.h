@@ -38,7 +38,7 @@ static constexpr const char* IOS_USER_CODE_FILE {""};
 static constexpr const char* IOS_GRAAL_NATIVE_IMAGE_FILE {"usercode.a"};
 static constexpr const char* IOS_RELATIVE_JVM_LIB_PATH {""};
 
-#ifdef X11_ENABLED
+#ifdef LINUX_ENABLED
 #ifdef __arm64__
 static constexpr const char* HOST_EMBEDDED_JRE_DIRECTORY {LINUX_EMBEDDED_JRE_ARM_DIRECTORY};
 #else
@@ -74,7 +74,7 @@ static constexpr const char* USER_CODE_FILE {DESKTOP_USER_CODE_FILE};
 static constexpr const char* GRAAL_NATIVE_IMAGE_FILE {MACOS_GRAAL_NATIVE_IMAGE_FILE};
 static constexpr const char* RELATIVE_JVM_LIB_PATH {MACOS_RELATIVE_JVM_LIB_PATH};
 
-#elif __ANDROID__
+#elif ANDROID_ENABLED
 
 // TODO: needs a GDExtension-appropriate Android JVM discovery mechanism; godot-cpp exposes no platform/android
 // headers or get_jni_env equivalent. These Godot-engine-internal headers are unavailable to GDExtensions.

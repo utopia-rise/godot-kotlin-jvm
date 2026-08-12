@@ -20,32 +20,36 @@ jobs:
     strategy:
       matrix:
         include:
-          - name: dev tests
-            target: dev
+          - name: debug tests
+            extension-target: debug
             build-task: build
-          - name: release tests
-            target: release
-            build-task: buildRelease
 
     steps:
       - name: Clone Godot JVM module.
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
-      - uses: actions/setup-java@v4
+      - uses: ./.github/actions/download-godot
+        with:
+          version: 4.7.1-stable
+          platform: macos
+          destination: harness/tests/bin
+
+      - uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: ${{ inputs.jvm-version }}
 
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
+        uses: gradle/actions/setup-gradle@v6
         with:
+          cache-provider: basic
           cache-read-only: ${{ github.ref != 'refs/heads/master' }}
 
-      - name: Download macos editor ${{ matrix.target }}
-        uses: actions/download-artifact@v4
+      - name: Download macos editor library
+        uses: actions/download-artifact@v7
         with:
-          name: editor_${{ matrix.target }}_macos_universal
-          path: './harness/tests/bin'
+          name: ${{ matrix.extension-target }}_macos_universal
+          path: './harness/tests/addons'
 
       - name: Build tests project
         run: |
