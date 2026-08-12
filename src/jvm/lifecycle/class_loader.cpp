@@ -2,7 +2,7 @@
 
 #include "jvm/jni/methods.h"
 
-#ifdef __ANDROID__
+#ifdef ANDROID_ENABLED
 #include <sys/stat.h>
 #endif
 
@@ -18,7 +18,7 @@ ClassLoader::~ClassLoader() {
     wrapped.delete_global_ref(env);
 }
 
-#ifndef __ANDROID__
+#ifndef ANDROID_ENABLED
 jni::JObject to_java_url(jni::Env& env, const godot::String& bootstrapJar) {
     jni::JClass cls {env.find_class("java/io/File")};
     jni::MethodID ctor {cls.get_constructor_method_id(env, "(Ljava/lang/String;)V")};
@@ -36,7 +36,7 @@ jni::JObject to_java_url(jni::Env& env, const godot::String& bootstrapJar) {
 #endif
 
 ClassLoader* ClassLoader::create_instance(jni::Env& env, const godot::String& full_jar_path, const jni::JObject& p_parent_loader) {
-#ifdef __ANDROID__
+#ifdef ANDROID_ENABLED
     // mark file as read only. Needed since android 14: https://developer.android.com/about/versions/14/behavior-changes-14#safer-dynamic-code-loading
     chmod(full_jar_path.utf8().get_data(), S_IRUSR | S_IRGRP | S_IROTH);
 

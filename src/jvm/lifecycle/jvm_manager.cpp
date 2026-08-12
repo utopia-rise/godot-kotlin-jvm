@@ -26,7 +26,7 @@
 
 #include <locale>
 
-#ifdef __ANDROID__
+#ifdef ANDROID_ENABLED
 // TODO: needs a GDExtension-appropriate Android JVM discovery mechanism; godot-cpp exposes no platform/android headers or get_jni_env equivalent. This Godot-engine-internal header is unavailable to GDExtensions.
 #include <platform/android/thread_jandroid.h>
 #endif
