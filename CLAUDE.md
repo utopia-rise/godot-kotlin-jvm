@@ -8,6 +8,25 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Current binding version: `0.17.0` targeting Godot `4.7.2`.
 
+## godot-cpp fork
+
+The `godot-cpp` submodule points at
+[`utopia-rise/godot-cpp`](https://github.com/utopia-rise/godot-cpp), branch
+`godot-jvm` (not upstream `godotengine/godot-cpp` directly, and not the
+fork's `master`). This branch carries patches for bugs found in godot-cpp
+itself that upstream hasn't fixed yet.
+
+**Every time a commit is added to `godot-jvm` in the `godot-cpp` fork**:
+
+1. Push the commit to `utopia-rise/godot-cpp` on the `godot-jvm` branch.
+2. Update the submodule pointer in this repo (`git -C godot-cpp` checkout of
+   the new commit, then `git add godot-cpp`).
+3. Append an entry to [`godot-cpp-divergence.md`](godot-cpp-divergence.md)
+   with the commit hash and a brief explanation of what it does and why.
+4. Re-read this section — it must stay accurate as the fork evolves (e.g. if
+   the branch is ever rebased onto a newer upstream tag, update the tag
+   named above).
+
 ## Engineering Principles
 
 - **Avoid needless helpers** — Keep trivial single-use code inline. Extract a helper only when it has multiple call sites or its body is substantial enough to make the caller clearer.

@@ -6,6 +6,7 @@
 
 *.obj
 *.o
+*.os
 *.d
 __pycache__
 libprotobuf/
