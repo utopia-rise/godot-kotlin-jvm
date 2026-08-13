@@ -56,9 +56,7 @@ sources = [
     Glob("src/jvm/wrapper/registration/*.cpp"),
     ]
 
-# The debug library includes the editor integration needed by Godot projects.
-if env["target"] in ["template_debug", "editor"]:
-    env.Append(CPPDEFINES=["TOOLS_ENABLED", "JVM_EDITOR_ENABLED"])
+if env["target"] == "editor":
     sources.append(Glob("src/editor/*.cpp"))
     sources.append(Glob("src/editor/project/*.cpp"))
     sources.append(Glob("src/editor/build/*.cpp"))

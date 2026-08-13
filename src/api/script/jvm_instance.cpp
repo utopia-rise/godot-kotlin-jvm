@@ -34,7 +34,7 @@ GDExtensionBool JvmInstance::get(GDExtensionScriptInstanceDataPtr p_instance, GD
     auto* instance_data = reinterpret_cast<JvmInstanceData*>(p_instance);
     KtClass* kt_class = instance_data->kt_class;
     KtObject* kt_object = instance_data->kt_object;
-    Object* owner = instance_data->owner;
+    GodotObject* owner = instance_data->owner;
     const StringName& parameter_name = *reinterpret_cast<const StringName*>(p_name);
     Variant& r_return = *reinterpret_cast<Variant*>(r_ret);
 
@@ -50,7 +50,7 @@ GDExtensionBool JvmInstance::get(GDExtensionScriptInstanceDataPtr p_instance, GD
 
     KtSignalInfo* kt_signal {kt_class->get_signal(parameter_name)};
     if (kt_signal) {
-        r_return = Signal(owner, parameter_name);
+        r_return = make_signal(owner, parameter_name);
         return true;
     }
 
@@ -136,7 +136,7 @@ GDExtensionBool JvmInstance::property_get_revert(GDExtensionScriptInstanceDataPt
 
 GDExtensionObjectPtr JvmInstance::get_owner(GDExtensionScriptInstanceDataPtr p_instance) {
     // The engine expects the raw object pointer here, not our godot-cpp wrapper.
-    return reinterpret_cast<JvmInstanceData*>(p_instance)->owner->_owner;
+    return reinterpret_cast<JvmInstanceData*>(p_instance)->owner;
 }
 
 //TODO: Remove when https://github.com/godotengine/godot/pull/105896 is released
@@ -290,11 +290,9 @@ void JvmInstance::to_string(GDExtensionScriptInstanceDataPtr p_instance, GDExten
 void JvmInstance::refcount_incremented(GDExtensionScriptInstanceDataPtr p_instance) {
     auto* instance_data = reinterpret_cast<JvmInstanceData*>(p_instance);
     KtObject* kt_object = instance_data->kt_object;
-    Object* owner = instance_data->owner;
 
-    // This function should only be called when we know the object is a RefCounted. We directly reinterpret the pointer to it
-    auto* ref = reinterpret_cast<RefCounted*>(owner);
-    int refcount = ref->get_reference_count();
+    // This function should only ever be called for a RefCounted, so the count can be read straight off the raw pointer.
+    int refcount = raw_ref_counted::get_reference_count(instance_data->owner);
 
     if (refcount > 1 && kt_object->is_ref_weak()) {
         // The JVM holds a reference to that object already, if the counter is greater than 1, it means the native side holds a reference as well. The reference is changed to a strong one so the JVM instance is not collected if it is not referenced...
@@ -304,11 +302,9 @@ void JvmInstance::refcount_incremented(GDExtensionScriptInstanceDataPtr p_instan
 
 GDExtensionBool JvmInstance::refcount_decremented(GDExtensionScriptInstanceDataPtr p_instance) {
     auto* instance_data = reinterpret_cast<JvmInstanceData*>(p_instance);
-    Object* owner = instance_data->owner;
 
-    // This function should only be called when we know the object is a RefCounted. We directly reinterpret the pointer to it
-    auto* ref = reinterpret_cast<RefCounted*>(owner);
-    int refcount = ref->get_reference_count();
+    // This function should only ever be called for a RefCounted, so the count can be read straight off the raw pointer.
+    int refcount = raw_ref_counted::get_reference_count(instance_data->owner);
 
     if (refcount == 1) {
         // The JVM holds a reference to that object already, if the counter is equal to 1, it means the JVM is the only side with a reference to the object. The reference is changed to a weak one so the JVM instance can be collected if it is not re...
@@ -348,7 +344,7 @@ void JvmInstance::free(GDExtensionScriptInstanceDataPtr p_instance) {
     if (instance_data->delete_flag) {
         kt_object->script_instance_removed(
           env,
-          JvmBindingManager::get_instance_binding(instance_data->owner->_owner)->get_constructor_id()
+          JvmBindingManager::get_instance_binding(instance_data->owner)->get_constructor_id()
         );
     }
     if (instance_data->to_demote_flag.is_set()) {
@@ -368,8 +364,7 @@ void JvmInstance::promote_reference(JvmInstance::JvmInstanceData* instance_data)
 }
 
 void JvmInstance::demote_reference(JvmInstance::JvmInstanceData* instance_data) {
-    auto* ref = reinterpret_cast<RefCounted*>(instance_data->owner);
-    int refcount = ref->get_reference_count();
+    int refcount = raw_ref_counted::get_reference_count(instance_data->owner);
 
     KtObject* kt_object = instance_data->kt_object;
 
@@ -381,7 +376,7 @@ void JvmInstance::demote_reference(JvmInstance::JvmInstanceData* instance_data) 
     instance_data->to_demote_flag.clear();
 }
 
-JvmInstance::JvmInstanceData* JvmInstance::create_instance_data(jni::Env& p_env, Object* p_owner, KtObject* p_kt_object, const JvmScript* p_script) {
+JvmInstance::JvmInstanceData* JvmInstance::create_instance_data(jni::Env& p_env, GodotObject* p_owner, KtObject* p_kt_object, const JvmScript* p_script) {
     JvmInstanceData* instance_data = memnew(JvmInstanceData);
     instance_data->owner = p_owner;
     instance_data->kt_object = p_kt_object;
@@ -390,11 +385,9 @@ JvmInstance::JvmInstanceData* JvmInstance::create_instance_data(jni::Env& p_env,
     instance_data->to_demote_flag.set_to(false);
     instance_data->delete_flag = true;
 
-    auto* ref = Object::cast_to<RefCounted>(p_owner);
+    if (!is_ref_counted(p_owner)) { return instance_data; }
 
-    if (!ref) { return instance_data; }
-
-    int refcount = ref->get_reference_count();
+    int refcount = raw_ref_counted::get_reference_count(p_owner);
 
     if (refcount == 1 && !p_kt_object->is_ref_weak()) {
         // The JVM holds a reference to that object already, if the counter is equal to 1, it means the JVM is the only side with a reference to the object. The reference is changed to a weak one so the JVM instance can be collected if it is not re...

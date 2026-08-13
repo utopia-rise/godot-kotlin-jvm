@@ -34,7 +34,7 @@ namespace jni {
         Jvm(Jvm&&) noexcept = delete;
 
         static void initialize(JavaVM* p_vm, JvmType p_type, jint p_version);
-        static void destroy();
+        static bool destroy();
 
         static void attach();
         static void detach();

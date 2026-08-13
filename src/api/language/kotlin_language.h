@@ -8,7 +8,8 @@ namespace godot {
         GDCLASS(KotlinLanguage, JvmLanguage);
 
     protected:
-        static void _bind_methods() {}
+        // Must stay distinct from JvmLanguage::_bind_methods -- see the comment there.
+        static void _bind_methods() { (void)get_class_static(); }
 
     public:
         KotlinLanguage() = default;

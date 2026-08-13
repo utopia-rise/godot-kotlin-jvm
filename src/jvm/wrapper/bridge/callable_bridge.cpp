@@ -18,10 +18,11 @@ uintptr_t CallableBridge::engine_call_constructor(JNIEnv* p_raw_env, jobject p_i
 }
 
 uintptr_t CallableBridge::engine_call_constructor_object_string_name(JNIEnv* p_raw_env, jobject p_instance, jlong object_ptr, jlong method_name_ptr) {
-    // object_ptr is the raw engine pointer — go through get_object_instance_binding to get the corresponding godot-cpp wrapper.
-    auto* obj {godot::internal::get_object_instance_binding(reinterpret_cast<godot::GodotObject*>(object_ptr))};
+    // object_ptr is the raw engine pointer, and make_callable() issues the same engine constructor godot-cpp's
+    // Callable(Object*, StringName) does — without materializing the wrapper it would only read `_owner` off.
+    auto* obj {reinterpret_cast<godot::GodotObject*>(object_ptr)};
     auto* name {reinterpret_cast<godot::StringName*>(method_name_ptr)};
-    return reinterpret_cast<uintptr_t>(VariantAllocator::alloc(godot::Callable(obj, *name)));
+    return reinterpret_cast<uintptr_t>(VariantAllocator::alloc(make_callable(obj, *name)));
 }
 
 uintptr_t CallableBridge::engine_call_constructor_lambda_callable(

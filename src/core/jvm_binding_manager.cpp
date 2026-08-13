@@ -11,32 +11,6 @@
 
 using namespace godot;
 
-namespace {
-    // RefCounted::init_ref()/reference() (see godot-cpp's generated ref_counted.cpp) only ever use _owner internally — the wrapper object itself is never touched — so there's no need to materialize a godot-cpp wrapper here at all; call the sam...
-    bool call_ref_counted_bool_method(GodotObject* p_object, GDExtensionMethodBindPtr p_method_bind) {
-        CHECK_METHOD_BIND_RET(p_method_bind, false);
-        return internal::_call_native_mb_ret<int8_t>(p_method_bind, p_object);
-    }
-
-    GDExtensionMethodBindPtr ref_counted_method_bind(const char* p_method_name) {
-        return internal::gdextension_interface_classdb_get_method_bind(
-          StringName("RefCounted")._native_ptr(),
-          StringName(p_method_name)._native_ptr(),
-          2240911060
-        );
-    }
-
-    bool init_ref(GodotObject* p_object) {
-        static GDExtensionMethodBindPtr bind = ref_counted_method_bind("init_ref");
-        return call_ref_counted_bool_method(p_object, bind);
-    }
-
-    bool reference(GodotObject* p_object) {
-        static GDExtensionMethodBindPtr bind = ref_counted_method_bind("reference");
-        return call_ref_counted_bool_method(p_object, bind);
-    }
-} // namespace
-
 GDExtensionInstanceBindingCallbacks JvmBindingManager::_instance_binding_callbacks = {
   &_instance_binding_create_callback,
   &_instance_binding_free_callback,
@@ -66,7 +40,7 @@ JvmBinding* JvmBindingManager::set_instance_binding(GodotObject* p_object) {
     bool is_rc = is_ref_counted(p_object);
     if (is_rc) {
         // p_object was just constructed via InstanceCreator, so its refcount is genuinely 0 here — init_ref() (not reference()) is required: reference() refuses to increment a true-zero, never-initialized count (it's meant for objects that already...
-        init_ref(p_object);
+        raw_ref_counted::init_ref(p_object);
     }
 
     // Attach via the growable get_instance_binding mechanism, not the engine's raw one-shot object_set_instance_binding: that one asserts if binding slot 0 is already occupied, which it always is once godot-cpp's own wrapper binding exists for...
@@ -84,7 +58,7 @@ JvmBinding* JvmBindingManager::get_instance_binding(GodotObject* p_object) {
       reinterpret_cast<JvmBinding*>(internal::gdextension_interface_object_get_instance_binding(p_object, &GodotJvm::get_instance(), &_instance_binding_callbacks));
 
     if (is_ref_counted(p_object) && !binding->test_and_set_incremented()) {
-        reference(p_object);
+        raw_ref_counted::reference(p_object);
     }
     return binding;
 }

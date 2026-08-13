@@ -22,8 +22,9 @@ jobs:
           - artifact: release
             target: template_release
             output: release
+          # Must match build_macos.yml's debug matrix entry, which builds target=editor.
           - artifact: debug
-            target: template_debug
+            target: editor
             output: debug
     steps:
       - uses: actions/download-artifact@v7

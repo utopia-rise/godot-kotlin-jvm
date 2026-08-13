@@ -23,7 +23,9 @@ namespace godot {
         // mutable: written from _set_path_cache(), which the engine (and Resource::_set_path_cache) requires to be const.
         mutable String source;
 
-        Object* _object_create() const;
+        GodotObject* _object_create() const;
+        // The raw-pointer implementation behind _instance_create(); see its definition for why they are split.
+        void* create_jvm_instance(GodotObject* p_raw_owner) const;
 
     public:
         JvmScript();
