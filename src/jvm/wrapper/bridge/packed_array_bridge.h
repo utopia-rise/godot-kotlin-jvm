@@ -188,7 +188,10 @@ namespace bridges {
         godot::Variant args[1] = {};
         TransferContext::get_instance().read_args(env, args);
 
-        godot::Array array {args[0].operator godot::Array()};
+        // Brace-init here would resolve to Array's std::initializer_list<Variant> constructor instead of its
+        // copy/move constructor, since Array converts implicitly to Variant -- wrapping the whole source array
+        // as a single nested element rather than copying its contents. Use copy-initialization instead.
+        godot::Array array = args[0].operator godot::Array();
         auto* ret {VariantAllocator::alloc(PackedType())};
         int64_t size {array.size()};
         ret->resize(size);

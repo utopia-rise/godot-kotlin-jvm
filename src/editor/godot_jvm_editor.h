@@ -39,6 +39,14 @@ namespace godot {
 
         Ref<GodotJvmEditorExportPlugin> export_plugin;
         Ref<JvmStandardSyntaxHighlighter> syntax_highlighter;
+        // Deliberately an instance member, not static: a static Ref's destructor only runs at true process exit(),
+        // after Main::cleanup() has already torn down the engine's method-bind tables, and unreference()-ing an
+        // EditorSettings at that point dereferences a stale method-bind pointer into freed memory (confirmed with a
+        // live debugger: SIGSEGV inside RefCounted::unreference(), called from this Ref's static destructor after
+        // exit()). As an instance member it destructs with the object itself, when the engine deletes this plugin
+        // during "deinit extensions EDITOR" -- well before that teardown -- so it never had to be static in the
+        // first place: every use of it below goes through `this`, never a bare class-name access.
+        Ref<EditorSettings> editor_settings;
 
         GodotJvmEditor();
         ~GodotJvmEditor();
@@ -54,7 +62,6 @@ namespace godot {
 
     public:
         inline static float editor_scale = 1.0f;
-        inline static Ref<EditorSettings> editor_settings;
 
         GodotJvmEditor(const GodotJvmEditor&) = delete;
 
