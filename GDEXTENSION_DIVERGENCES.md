@@ -202,6 +202,79 @@ notes. Two items are still open decisions, not yet acted on — see "Open follow
   godot-cpp's `EditorExportPreset` only exposes a getter — achieved the same practical effect via
   a per-file `should_skip_export()`/`skip()` check inside `_export_file()` instead.
 
+## Instance bindings outliving the library (shutdown segfault, fixed)
+
+- **Never materialize a godot-cpp wrapper for an engine-owned object you only need to identify.**
+  master had no such concept: an `Object*` there *is* the engine object. In the port, every way of
+  turning a raw pointer or `ObjectID` into a `godot::Object*` — `ObjectDB::get_instance()`,
+  `internal::get_object_instance_binding()`, any godot-cpp API returning an `Object*` — goes through
+  `object_get_instance_binding`, which **permanently attaches godot-cpp's instance binding to that
+  object**. Godot only clears instance bindings on editor hot-reload
+  (`GDExtension::clear_instance_bindings()`); on shutdown it just unloads the library. Anything
+  destroyed after that point (`Main::cleanup()` closes libraries inside
+  `memdelete(gdextension_manager)`, which runs *before* `memdelete(_time)`, `ObjectDB::cleanup()`
+  and `ResourceCache::clear()`) then reaches `Object::~Object()`, calls its binding's
+  `free_callback` — which lives in unmapped memory — and the process segfaults on exit with no
+  backtrace (the JVM has replaced Godot's unhandled-exception filter, so the crash handler never
+  prints).
+  The concrete offender was `MemoryManager::release_binding()`/`sync_memory()`/`check_instance()`
+  (`src/jvm/wrapper/memory/memory_manager.cpp`) resolving their `ObjectID` with
+  `godot::ObjectDB::get_instance()`. Perversely, `release_binding()`'s entire job is to *drop* the
+  object's binding, and it created a fresh one on the way in. The victim in the test harness was the
+  engine's `GDExtensionManager` singleton, whose leftover binding crashed the whole `runGDTests` run
+  at exit even though all 111 tests passed. Fixed by resolving the id with
+  `internal::gdextension_interface_object_get_instance_from_id()` and doing every subsequent step on
+  the raw `GodotObject*`: `object_free_instance_binding` (already wrapped as
+  `JvmBindingManager::free_binding`), the `RefCounted::unreference` method bind, and
+  `object_destroy`. The shared raw-`RefCounted` call helpers (`ref_counted_method_bind`,
+  `call_ref_counted_bool_method`), previously private to `jvm_binding_manager.cpp`, moved to
+  `src/engine/utilities.h`.
+  `KtObject::get_singleton()` (`src/jvm/wrapper/registration/kt_object.cpp`) had the same latent
+  problem via `Engine::get_singleton()->get_singleton(name)` — it now uses
+  `internal::gdextension_interface_global_get_singleton()`, which is exactly what that binding
+  ptrcalls anyway, minus the wrapper. Same class of bug would hit `Time`, `ResourceUID` and `IP`,
+  all of which Godot destroys after unloading extensions.
+- **Standing rule that fell out of this: the JVM runtime path is wrapper-free; only the skeleton uses
+  godot-cpp.** Engine-facing virtuals, registration, editor plugin and resource loaders keep using
+  godot-cpp normally — but anything an object flows through at runtime (creation, refcounting,
+  freeing, calling, Variant marshalling) works on `GodotObject*`. `JvmInstance::JvmInstanceData::owner`
+  is a raw `GodotObject*`; refcount reads go through `raw_ref_counted::get_reference_count()`
+  (`src/engine/utilities.h`) instead of `reinterpret_cast<RefCounted*>(owner)->get_reference_count()`;
+  `is_ref_counted()` has no `Object*` overload at all, so a caller holding a wrapper must spell out
+  `->_owner`. `JvmScript::_instance_create(Object*)` stays as godot-cpp's virtual but only unwraps
+  once and delegates to `create_jvm_instance(GodotObject*)`; `_object_create()` returns a raw pointer
+  and `_new()` builds its `Variant` with `make_object_variant()`. This removed the last wrapper
+  materialization for JVM-created objects — they now carry only our own `JvmBinding`.
+  Two helpers exist because godot-cpp's constructors take a wrapper purely to read `_owner` off it
+  (`variant.cpp:189`, `signal.cpp:105`): `make_object_variant()` and `make_signal()` issue the same
+  engine constructor with the raw pointer.
+  Deliberately still wrapper-based, all editor-only: `JvmPlaceHolderInstanceData::owner` (it really
+  calls `notify_property_list_changed()`), the two `Object::cast_to<ScriptExtension>`, and
+  `jvm_script.cpp`'s `cast_to<Node>`. Note `Variant::get_validated_object()` is
+  `ObjectDB::get_instance()` under the hood (`variant.cpp:516`) and so creates a binding too — the one
+  use, in `jvm_placeholder_instance.cpp`, is editor-only.
+  The shared-buffer marshalling is included: `append_object()` used to take a `godot::Object*`, which
+  is what made `Variant::operator Object*()` fire implicitly — it resolves the raw pointer, discards
+  it, and builds a wrapper (`variant.cpp:439`) that `append_object` then unwrapped again via
+  `->_owner`. It now takes a `GodotObject*`, fed by `variant_to_raw_object()` (the first half of that
+  operator, and nothing more). `to_godot_object()` became `to_raw_object()` and simply returns the
+  pointer the buffer already holds; `read_object()`/`read_signal()` build their values with
+  `make_object_variant()`/`make_signal()`, `write_signal()` uses `Signal::get_object_id()` instead of
+  `get_object()`, and `CallableBridge::engine_call_constructor_object_string_name()` uses
+  `make_callable()`. Since godot-cpp's conversion operator is a member of its own `Variant` and can be
+  neither replaced nor deleted, the only durable defence is to never declare a `godot::Object*`
+  parameter on this path — that is why `is_ref_counted()` has no such overload either.
+  Residual, harmless: `ERR_PRINT`s of the form `BUG: Unreferenced static string to 0: KotlinScript`
+  used to appear at exit and are now gone. They were **ours**, not godot-cpp's: `SNAME()` in
+  `src/engine/utilities.h` copied the upstream engine macro verbatim, including its
+  `StringName(m_arg, true)` static flag. That flag promises the engine the name lives until
+  `StringName::cleanup()`, which is false for a function-local static inside an unloadable library —
+  and since `static_count` lives on the shared refcounted `StringName` data rather than on our
+  instance, marking a common name like `Script` or `_set` static made the engine report the BUG for
+  its *own* later release of that name too. Dropping the flag keeps the caching (one hash per call
+  site) without the false lifetime promise. Only the `SNAME()`s that actually executed ever appeared,
+  since function-local statics initialize lazily.
+
 ## Open follow-up (not yet acted on)
 
 - **`KtFunction::get_parameter_count()`**: the C++ side (`kt_function.h/.cpp`) is wired up, but

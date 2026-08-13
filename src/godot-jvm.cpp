@@ -16,10 +16,6 @@
 
 using namespace godot;
 
-#define DISPLAY_ERROR(cause, hint)                  \
-    display_initialization_error_hint(cause, hint); \
-    JVM_ERR_FAIL_V_MSG(false, cause)
-
 GodotJvm& GodotJvm::get_instance() {
     static GodotJvm instance;
     return instance;
@@ -115,6 +111,7 @@ String GodotJvm::get_path_to_native_image() {
     return ProjectSettings::get_singleton()->globalize_path(GRAAL_NATIVE_IMAGE_FILE);
 }
 
+#ifdef TOOLS_ENABLED
 String GodotJvm::get_path_to_environment_jvm() {
     String javaHome {OS::get_singleton()->get_environment("JAVA_HOME")};
     if (javaHome.is_empty()) { return {}; }
@@ -163,6 +160,7 @@ String GDKotlin::get_path_to_java_executable() {
 
     return {};
 }
+#endif
 
 #else
 
@@ -391,8 +389,10 @@ bool GodotJvm::load_user_code() {
         }
 
         JVM_LOG_VERBOSE("Loading usercode file at: %s", user_code_path);
+#ifdef TOOLS_ENABLED
         jar.instantiate();
         jar->set_path(user_code_path);
+#endif
 
         ClassLoader* user_class_loader = ClassLoader::create_instance(
           env,
@@ -484,10 +484,17 @@ void GodotJvm::finalize_down_to(State target_state) {
     UNSET_LOADING_STATE(finalize_core_library(), BOOTSTRAP_LOADED, target_state)
     UNSET_LOADING_STATE(unload_boostrap(), JVM_STARTED, target_state)
 #ifdef DYNAMIC_JVM
-    UNSET_LOADING_STATE(JvmManager::close_jvm(), JVM_LIBRARY_LOADED, target_state)
+    if (state > State::JVM_LIBRARY_LOADED) {
+        if (!JvmManager::close_jvm()) { return; }
+        state = State::JVM_LIBRARY_LOADED;
+        if (State::JVM_LIBRARY_LOADED == target_state) { return; }
+    }
     UNSET_LOADING_STATE(unload_dynamic_lib(), NOT_STARTED, target_state)
 #else
-    UNSET_LOADING_STATE(JvmManager::close_jvm(), NOT_STARTED, target_state)
+    if (state > State::NOT_STARTED) {
+        if (!JvmManager::close_jvm()) { return; }
+        state = State::NOT_STARTED;
+    }
 #endif
 }
 
@@ -502,14 +509,6 @@ void GodotJvm::reload_user_code() {
 
 Object* GodotJvm::get_callable_middleman() const {
     return callable_middleman;
-}
-
-void GodotJvm::display_initialization_error_hint(String cause, String hint) {
-    String warning {"Godot Kotlin/JVM module couldn't be fully initialized.\n"
-                    "Java and Kotlin scripts will still appear in the editor but won't be functional.\n"
-                    "The cause was:\n"};
-    String pre_hint {"\nOne possible solution is:\n"};
-    OS::get_singleton()->alert(warning + cause + pre_hint + hint, "Kotlin/JVM module initialization error");
 }
 
 void GodotJvm::validate_state() {

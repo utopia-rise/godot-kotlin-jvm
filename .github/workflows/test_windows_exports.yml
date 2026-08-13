@@ -86,3 +86,17 @@ jobs:
           cd harness/tests/
           ./gradlew runExportedGDTests
         timeout-minutes: 30
+
+      # DIAGNOSTIC (temporary): the JVM's own crash handler (HotSpot) installs a top-level SEH
+      # filter that takes priority over Godot's, so a native crash never reaches Godot's own
+      # handler and the log shows nothing beyond the exit code. HotSpot writes its own native
+      # crash report (hs_err_pid<PID>.log) to the process's working directory by default -- which
+      # is harness/tests/ here (Exec.workingDir = projectDir), not harness/tests/export/. Upload it
+      # so the actual faulting frame is visible without needing a local repro.
+      - name: Upload JVM crash report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: windows-exports-hs-err
+          path: harness/tests/hs_err_pid*.log
+          if-no-files-found: ignore

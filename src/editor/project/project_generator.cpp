@@ -9,7 +9,6 @@
 #include <classes/project_settings.hpp>
 
 using namespace godot;
->>>>>>> 616b14ddb (Continue conversion)
 
 constexpr const int permissions = FileAccess::UnixPermissionFlags::UNIX_READ_OTHER | FileAccess::UnixPermissionFlags::UNIX_WRITE_OTHER
                                   | FileAccess::UnixPermissionFlags::UNIX_READ_GROUP | FileAccess::UnixPermissionFlags::UNIX_WRITE_GROUP

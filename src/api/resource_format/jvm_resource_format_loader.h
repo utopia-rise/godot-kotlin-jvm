@@ -20,8 +20,6 @@ namespace godot {
         bool _handles_type(const StringName& p_type) const override;
         Variant _load(const String& p_path, const String& p_original_path, bool p_use_sub_threads, int32_t p_cache_mode) const override;
         int64_t _get_resource_uid(const String& p_path) const override;
-
-        static Error read_all_file_utf8(const String& p_path, String& r_content);
     };
 }
 #endif// GODOT_JVM_KT_RESOURCE_LOADER_H

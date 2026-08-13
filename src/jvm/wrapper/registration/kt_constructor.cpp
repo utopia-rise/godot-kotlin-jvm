@@ -5,10 +5,13 @@
 
 KtConstructor::KtConstructor(jni::Env& p_env, jni::JObject p_wrapped) : JvmInstanceWrapper(p_env, p_wrapped) {}
 
-KtObject* KtConstructor::create_instance(jni::Env& p_env, godot::Object* p_owner) {
-    uint64_t id = p_owner->get_instance_id();
-    // p_owner is the godot-cpp wrapper; its address is not the engine's raw object pointer. Kotlin stores whatever we pass here as its "native pointer" and hands it straight back on later self-calls (TransferContext::icall), which decodes it a...
-    jvalue args[2] = {jni::to_jni_arg(p_owner->_owner), jni::to_jni_arg(id)};
+// Takes the raw engine pointer rather than the godot-cpp wrapper, because that pointer is exactly what has to reach
+// Kotlin: it stores whatever we pass as its "native pointer" and hands it straight back on every later self-call
+// (TransferContext::icall), which decodes it as a real GodotObject*. A wrapper's address has nothing to do with the
+// engine object's. Nothing else here needs a wrapper either.
+KtObject* KtConstructor::create_instance(jni::Env& p_env, godot::GodotObject* p_owner) {
+    uint64_t id = godot::internal::gdextension_interface_object_get_instance_id(p_owner);
+    jvalue args[2] = {jni::to_jni_arg(p_owner), jni::to_jni_arg(id)};
     jni::JObject j_kt_object = wrapped.call_object_method(p_env, CONSTRUCT, args);
     return memnew(KtObject(p_env, j_kt_object, is_ref_counted(p_owner)));
 }

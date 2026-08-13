@@ -18,7 +18,7 @@ jobs:
       - id: set-matrix
         run: |
           MATRIX='{"include":[
-            {"name":"Build debug","cache-name":"debug_windows_x86_64","target":"template_debug","should-clean":false,"scons-flags":""},
+            {"name":"Build debug","cache-name":"debug_windows_x86_64","target":"editor","should-clean":false,"scons-flags":""},
             {"name":"Build release","cache-name":"release_windows_x86_64","target":"template_release","should-clean":true,"scons-flags":""}
           ]}'
           echo "matrix=$(echo $MATRIX | jq -c '.')" >> $GITHUB_OUTPUT

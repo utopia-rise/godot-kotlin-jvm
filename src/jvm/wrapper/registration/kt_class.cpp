@@ -7,7 +7,7 @@
 KtClass::KtClass(jni::Env& p_env, jni::JObject p_wrapped) :
   JvmInstanceWrapper(p_env, p_wrapped),
   kt_constructor {nullptr} {
-    LOCAL_FRAME(4);
+    LOCAL_FRAME(5);
     registered_class_name = get_registered_name(p_env);
     fqdn = get_fqdn(p_env);
     source_file_name = get_source_file_name(p_env);
@@ -23,7 +23,7 @@ KtClass::~KtClass() {
     delete kt_constructor;
 }
 
-KtObject* KtClass::create_instance(jni::Env& env, godot::Object* p_owner) {
+KtObject* KtClass::create_instance(jni::Env& env, godot::GodotObject* p_owner) {
 #ifdef DEBUG_ENABLED
     JVM_ERR_FAIL_COND_V_MSG(kt_constructor == nullptr, nullptr, "Cannot find constructor for class %s", registered_class_name);
 #endif

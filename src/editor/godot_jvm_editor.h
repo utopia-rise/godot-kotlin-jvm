@@ -18,8 +18,6 @@ namespace godot {
 
     class GodotJvmEditor : public EditorPlugin {
         GDCLASS(GodotJvmEditor, EditorPlugin)
-        friend class BuildManager;
-
         enum KOTLIN_JVM_MENU_OPTIONS {
             GENERATE_PROJECT,
             ABOUT

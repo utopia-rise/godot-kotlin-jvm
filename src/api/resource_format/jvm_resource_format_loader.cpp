@@ -45,21 +45,6 @@ bool JvmResourceFormatLoader::_handles_type(const StringName& p_type) const {
            || p_type == SNAME(GODOT_SCALA_SCRIPT_NAME);
 }
 
-Error JvmResourceFormatLoader::read_all_file_utf8(const String& p_path, String& r_content) {
-    Vector<uint8_t> source_file;
-    Ref<FileAccess> file_access {FileAccess::open(p_path, FileAccess::READ)};
-    Error err = FileAccess::get_open_error();
-    JVM_ERR_FAIL_COND_V_MSG(err != OK, err, "Cannot open file '" + p_path + "'.");
-
-    // get_as_text() already decodes as UTF-8; godot-cpp exposes no String::is_valid_string()
-    // equivalent to re-validate the result, so that extra check from the engine-module version
-    // is dropped here.
-    const String source = file_access->get_as_text();
-
-    r_content = source;
-    return OK;
-}
-
 Variant JvmResourceFormatLoader::_load(const String& p_path, const String& p_original_path, bool p_use_sub_threads, int32_t p_cache_mode) const {
     if (p_path.begins_with(GODOT_JVM_VIRTUAL_PATH_PREFIX)) {
         Ref<JvmScript> virtual_script = JvmScriptManager::get_instance()->get_script_from_registered_name(JvmScript::get_script_file_name(p_path));

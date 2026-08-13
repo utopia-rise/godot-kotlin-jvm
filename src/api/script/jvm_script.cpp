@@ -14,15 +14,12 @@
 using namespace godot;
 
 Variant JvmScript::_new() {
-    Object* obj = _object_create();
-    if (obj) {
-        return Variant(obj);
-    }
+    if (GodotObject* obj = _object_create()) { return make_object_variant(obj); }
 
     JVM_ERR_FAIL_V_MSG({}, vformat("Cannot instantiate JVM script %s", kotlin_class->registered_class_name));
 }
 
-Object* JvmScript::_object_create() const {
+GodotObject* JvmScript::_object_create() const {
     JVM_ERR_FAIL_COND_V_MSG(kotlin_class == nullptr, nullptr, "Cannot instantiate JVM script: no KtClass is associated with this script resource.");
 #ifdef DEBUG_ENABLED
     JVM_ERR_FAIL_COND_V_MSG(
@@ -45,10 +42,9 @@ Object* JvmScript::_object_create() const {
 
     // Establishes the object's real refcount (if any) and our own binding before anything else touches it — see JvmBindingManager::set_instance_binding()'s own comment.
     JvmBindingManager::set_instance_binding(raw_owner);
-    Object* owner = internal::get_object_instance_binding(raw_owner);
 
     // Attaching directly via object_set_script_instance, not owner->set_script(this): set_script() re-enters the engine's can-instantiate/placeholder decision, and _can_instantiate() is unconditionally false in the editor (see below) — that re...
-    void* instance {_instance_create(owner)};
+    void* instance {create_jvm_instance(raw_owner)};
     JVM_ERR_FAIL_COND_V_MSG(
       instance == nullptr,
       nullptr,
@@ -56,7 +52,7 @@ Object* JvmScript::_object_create() const {
       kotlin_class->registered_class_name
     );
     internal::gdextension_interface_object_set_script_instance(raw_owner, instance);
-    return owner;
+    return raw_owner;
 }
 
 bool JvmScript::_can_instantiate() const {
@@ -105,9 +101,15 @@ StringName JvmScript::_get_global_name() const {
     return _is_valid() ? kotlin_class->registered_class_name : StringName();
 }
 
+// The engine-facing virtual: godot-cpp's dispatch glue hands us a wrapper here, so unwrap once at the boundary and
+// keep the runtime path raw from then on.
 void* JvmScript::_instance_create(Object* p_this) const {
+    return create_jvm_instance(p_this->_owner);
+}
+
+void* JvmScript::create_jvm_instance(GodotObject* p_raw_owner) const {
     //TODO: Check if creator when set_script_instance is implemented in engine.
-    JvmBindingManager::get_instance_binding(p_this->_owner);
+    JvmBindingManager::get_instance_binding(p_raw_owner);
 
 #ifdef DEBUG_ENABLED
     JVM_ERR_FAIL_COND_V_MSG(!_is_valid(), nullptr, "Invalid script %s was attempted to be used. Make sure you have properly built your project.", get_path());
@@ -115,7 +117,7 @@ void* JvmScript::_instance_create(Object* p_this) const {
 #endif
 
     jni::Env env = jni::Jvm::current_env();
-    KtObject* wrapped = kotlin_class->create_instance(env, p_this);
+    KtObject* wrapped = kotlin_class->create_instance(env, p_raw_owner);
 
 #ifdef DEBUG_ENABLED
     if (unlikely(!wrapped)) { return nullptr; }// Error already throw by create_instance()
@@ -123,7 +125,7 @@ void* JvmScript::_instance_create(Object* p_this) const {
 
     JvmInstance::JvmInstanceData* instance_data = JvmInstance::create_instance_data(
       env,
-      p_this,
+      p_raw_owner,
       wrapped,
       this
     );
@@ -386,11 +388,11 @@ void JvmScript::update_script_exports() const {
         return;
     }
 
-    Object* tmp_object = _object_create();
+    GodotObject* tmp_object = _object_create();
     ERR_FAIL_NULL(tmp_object);
     auto* instance_data = reinterpret_cast<JvmInstance::JvmInstanceData*>(
       internal::gdextension_interface_object_get_script_instance(
-        tmp_object->_owner,
+        tmp_object,
         _get_language()->_owner
       )
     );
