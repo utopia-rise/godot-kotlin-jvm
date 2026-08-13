@@ -167,11 +167,11 @@ void JvmManager::finalize_jvm_wrappers(jni::Env& p_env, ClassLoader* class_loade
     KtClass::finalize(p_env, class_loader);
 }
 
-void JvmManager::close_jvm() {
+bool JvmManager::close_jvm() {
 #if defined DYNAMIC_JVM || defined STATIC_JVM
     JVM_LOG_VERBOSE("Shutting down JVM ...");
-    // Intentionally never reached — DestroyJavaVM is unsafe to call in this context; matches master's behavior.
-    return;
-    jni::Jvm::destroy();
+    return jni::Jvm::destroy();
+#else
+    return true;
 #endif
 }

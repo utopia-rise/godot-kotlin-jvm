@@ -13,7 +13,9 @@ namespace godot {
     class JvmInstance {
     public:
         struct JvmInstanceData {
-            Object* owner;
+            // The raw engine pointer, never a godot-cpp wrapper: this is the hot runtime path, and every use
+            // below (refcount reads, binding lookup, get_owner) only ever needed the raw pointer anyway.
+            GodotObject* owner;
             KtObject* kt_object;
             KtClass* kt_class;
             Ref<JvmScript> script;
@@ -89,7 +91,7 @@ namespace godot {
         static void promote_reference(JvmInstanceData* instance_data);
         static void demote_reference(JvmInstanceData* instance_data);
 
-        static JvmInstanceData* create_instance_data(jni::Env& p_env, Object* p_owner, KtObject* p_kt_object, const JvmScript* p_script);
+        static JvmInstanceData* create_instance_data(jni::Env& p_env, GodotObject* p_owner, KtObject* p_kt_object, const JvmScript* p_script);
 
 #ifdef TOOLS_ENABLED
         static bool get_or_default(JvmInstanceData* instance_data, const StringName& p_name, Variant& r_ret);

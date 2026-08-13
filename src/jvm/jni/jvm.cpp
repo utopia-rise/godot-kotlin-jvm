@@ -12,10 +12,15 @@ namespace jni {
         _instance = new Jvm(p_vm, p_type, p_version);
     }
 
-    void Jvm::destroy() {
-        _instance->vm->DetachCurrentThread();
-        _instance->vm->DestroyJavaVM();
+    bool Jvm::destroy() {
+        if (_instance == nullptr) { return true; }
+
+        if (env != nullptr) { detach(); }
+        if (_instance->vm->DestroyJavaVM() != JNI_OK) { return false; }
+
+        delete _instance;
         _instance = nullptr;
+        return true;
     }
 
     void Jvm::attach() {

@@ -61,8 +61,10 @@ fun bundledBinDirectories(): List<File> = listOf(
 fun resolveBundledBinaries(): List<File> =
     bundledBinDirectories().flatMap { directory -> (directory.listFiles() ?: emptyArray()).toList() }
 
-fun provideEditorExecutable(): File =
-    resolveBundledBinaries()
+fun provideEditorExecutable(): File = System.getenv("GODOT_EDITOR")
+    ?.let(::File)
+    ?.takeIf(File::isFile)
+    ?: resolveBundledBinaries()
         .also { println("[${it.joinToString()}]") }
         .firstOrNull { it.name.startsWith("godot.") && it.name.contains("editor") && !it.name.contains("console") }
         .also { println("Godot executable selected: $it") }
@@ -184,6 +186,8 @@ tasks {
         description = "Imports the Godot project after rebuilding JVM registrations."
         dependsOn(build)
 
+        isIgnoreExitValue = true
+
         environment("JAVA_HOME", System.getProperty("java.home"))
         workingDir = projectDir
 
@@ -193,13 +197,13 @@ tasks {
             commandLine(
                 "cmd",
                 "/c",
-                "$editorExecutable --headless --import --quiet",
+                "$editorExecutable --headless --import",
             )
         } else {
             commandLine(
                 "bash",
                 "-c",
-                "$editorExecutable --headless --import --quiet",
+                "$editorExecutable --headless --import",
             )
         }
     }

@@ -19,7 +19,7 @@ public:
     static bool initialize_or_get_jvm(void* lib_handle, JvmUserConfiguration& user_configuration, JvmOptions& jvm_options);
     static bool initialize_jvm_wrappers(jni::Env& p_env, ClassLoader* class_loader);
     static void finalize_jvm_wrappers(jni::Env& p_env, ClassLoader* class_loader);
-    static void close_jvm();
+    static bool close_jvm();
 };
 
 #endif// GODOT_JVM_JVM_MANAGER_H

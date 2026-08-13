@@ -9,8 +9,9 @@ uint16_t LongStringQueue::max_string_size = 512;
 // outright (Windows error 1114). A function-local thread_local static avoids that: its lazy,
 // guard-checked initialization runs as ordinary code at first call, not via the TLS callback table.
 static godot::List<godot::String>& string_queue() {
-    thread_local static godot::List<godot::String> queue; // NOLINT(cert-err58-cpp)
-    return queue;
+    thread_local godot::List<godot::String>* queue {nullptr};
+    if (unlikely(!queue)) { queue = memnew(godot::List<godot::String>); }
+    return *queue;
 }
 
 void LongStringQueue::set_string_max_size(jni::Env& p_env, int max_size) {

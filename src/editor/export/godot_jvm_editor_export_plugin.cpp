@@ -21,6 +21,19 @@ static constexpr const char* all_jvm_feature {"export-all-jvm"};
 static constexpr const char* ios_jdk_version {"21"};
 
 namespace {
+    // Export presets configure their output path as a bare project-root-relative path (e.g.
+    // "./export/tests.exe" in export_presets.cfg), which Godot passes straight through to
+    // _export_begin()'s p_path unresolved — neither res://-prefixed nor an OS-absolute path.
+    // DirAccess::copy()/make_dir_recursive() resolve such a bare relative argument against the
+    // *calling DirAccess instance's own current directory*, not the process's CWD. Since the
+    // instance here is opened on the source (res://jvm/jre-...), passing a bare relative
+    // destination sends the copy into a subdirectory of the source instead of next to the
+    // exported binary. Normalizing to an absolute OS path removes the ambiguity outright.
+    String to_absolute_path(const String& p_path) {
+        if (p_path.is_absolute_path()) { return p_path; }
+        return ProjectSettings::get_singleton()->globalize_path(String(RES_DIRECTORY) + p_path.trim_prefix("./"));
+    }
+
     // godot-cpp's DirAccess exposes no recursive-copy equivalent to the engine-internal
     // DirAccess::copy_dir master relied on, so we walk the tree ourselves with the exposed
     // list_dir_begin/get_next/copy/make_dir_recursive API.
@@ -118,7 +131,7 @@ void GodotJvmEditorExportPlugin::_export_begin(const PackedStringArray& p_featur
             } else if (is_linux_export || is_windows_export) {
                 // on windows and linux the embedded jre can be added as a normal export dir
                 String jre_dir {RES_DIRECTORY};
-                String target_dir {p_path.get_base_dir()};
+                String target_dir {to_absolute_path(p_path.get_base_dir())};
 
                 if (is_arm64) {
                     if (is_linux_export) {

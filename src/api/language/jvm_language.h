@@ -8,7 +8,14 @@ namespace godot {
         GDCLASS(JvmLanguage, ScriptLanguageExtension);
 
     protected:
-        static void _bind_methods() {}
+        // Deliberately not an empty body, and the same applies to every subclass: GDCLASS only calls
+        // register_virtuals() when a class's _bind_methods differs *by address* from its parent's, and
+        // linkers fold byte-identical functions together (MSVC /OPT:ICF, GCC -fipa-icf at -O2). Two empty
+        // bodies in a parent/child pair therefore collapse to one address in optimized builds and silently
+        // drop every virtual override -- which showed up as "Required virtual method
+        // GdjLanguage::_get_extension must be overridden" in template_release only. Referencing the
+        // class's own static name keeps each body distinct.
+        static void _bind_methods() { (void)get_class_static(); }
 
     public:
         Dictionary _validate(
