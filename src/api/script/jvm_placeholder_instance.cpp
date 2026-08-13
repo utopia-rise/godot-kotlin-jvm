@@ -16,6 +16,19 @@ static bool is_placeholder_fallback_enabled(const Ref<Script>& p_script) {
     return false;
 }
 
+// The engine's PlaceHolderScriptInstance::get() only claims a property when
+// Script::get_property_default_value() reports that a default actually exists — that bool is what
+// makes unknown names fall through to Object, which is how Object::get("script") ends up returning
+// the real Script. godot-cpp's Script::get_property_default_value() drops that bool, so ask the
+// ScriptExtension virtuals directly to recover it.
+static bool try_get_property_default_value(const Ref<Script>& p_script, const StringName& p_name, Variant& r_value) {
+    auto* script_extension = Object::cast_to<ScriptExtension>(p_script.ptr());
+    if (!script_extension || !script_extension->_has_property_default_value(p_name)) { return false; }
+
+    r_value = script_extension->_get_property_default_value(p_name);
+    return true;
+}
+
 GDExtensionBool JvmPlaceHolderInstance::set(GDExtensionScriptInstanceDataPtr p_instance, GDExtensionConstStringNamePtr p_name, GDExtensionConstVariantPtr p_value) {
     auto* instance_data = reinterpret_cast<JvmPlaceHolderInstanceData*>(p_instance);
     Ref<Script> script = instance_data->script;
@@ -73,9 +86,12 @@ GDExtensionBool JvmPlaceHolderInstance::get(GDExtensionScriptInstanceDataPtr p_i
         return true;
     }
 
-    if (!is_placeholder_fallback_enabled(script)) {
-        Variant defval = script->get_property_default_value(parameter_name);
-        *result = defval;
+    // Claiming every remaining name here (rather than only those the script has a default for) makes
+    // the placeholder answer "script" itself with a null Variant, so Object::get("script") reports no
+    // script at all. Scenes re-packed from an editor-instantiated tree — which is what the export
+    // TSCN->SCN conversion does — then see the script property as equal to its null default and drop
+    // it, silently stripping every script from the exported scene.
+    if (!is_placeholder_fallback_enabled(script) && try_get_property_default_value(script, parameter_name, *result)) {
         return true;
     }
 

@@ -134,7 +134,10 @@ fun findExportedExecutable(): File? {
     val exportedExecutable = when {
         HostManager.hostIsMingw -> exportedFiles.firstOrNull { it.name.endsWith(".console.exe") }
         HostManager.hostIsMac -> exportedFiles.firstOrNull { it.name.endsWith(".app") }
-        else -> exportedFiles.firstOrNull { it.name.contains("x86_64") }
+        // The GDExtension shared library sits next to the exported binary and also carries the
+        // architecture in its name, so matching on "x86_64" alone can select it instead of the
+        // executable (directory order decides) -- running a .so exits with SIGSEGV and no output.
+        else -> exportedFiles.firstOrNull { it.isFile && it.name.contains("x86_64") && it.extension != "so" }
     } ?: exportedFiles.firstOrNull { it.name.endsWith(".exe") }
 
     return if (exportedExecutable?.name?.endsWith(".app") == true) {
