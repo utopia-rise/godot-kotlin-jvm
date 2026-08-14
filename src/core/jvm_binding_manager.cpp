@@ -40,6 +40,8 @@ JvmBinding* JvmBindingManager::set_instance_binding(GodotObject* p_object) {
     bool is_rc = is_ref_counted(p_object);
     if (is_rc) {
         // p_object was just constructed via InstanceCreator, so its refcount is genuinely 0 here — init_ref() (not reference()) is required: reference() refuses to increment a true-zero, never-initialized count (it's meant for objects that already...
+        // Must be dropped if InstanceCreator ever moves to classdb_construct_object3, which returns RefCounted
+        // instances already at refcount 1 — see the note there.
         raw_ref_counted::init_ref(p_object);
     }
 
