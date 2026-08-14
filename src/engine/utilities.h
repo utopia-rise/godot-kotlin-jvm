@@ -24,6 +24,7 @@ namespace raw_engine {
     inline GDExtensionMethodBindPtr reference_bind {nullptr};
     inline GDExtensionMethodBindPtr unreference_bind {nullptr};
     inline GDExtensionMethodBindPtr reference_count_bind {nullptr};
+    inline GDExtensionMethodBindPtr notification_bind {nullptr};
     inline GDExtensionVariantFromTypeConstructorFunc variant_from_object {nullptr};
     inline GDExtensionTypeFromVariantConstructorFunc object_from_variant {nullptr};
     inline GDExtensionPtrConstructor signal_constructor {nullptr};
@@ -45,6 +46,11 @@ namespace raw_engine {
         reference_bind = ref_counted_bind("reference", 2240911060);
         unreference_bind = ref_counted_bind("unreference", 2240911060);
         reference_count_bind = ref_counted_bind("get_reference_count", 3905245786);
+        notification_bind = godot::internal::gdextension_interface_classdb_get_method_bind(
+          godot::Object::get_class_static()._native_ptr(),
+          godot::StringName("notification")._native_ptr(),
+          4023243586
+        );
 
         variant_from_object = godot::internal::gdextension_interface_get_variant_from_type_constructor(GDEXTENSION_VARIANT_TYPE_OBJECT);
         object_from_variant = godot::internal::gdextension_interface_get_variant_to_type_constructor(GDEXTENSION_VARIANT_TYPE_OBJECT);
@@ -56,6 +62,7 @@ namespace raw_engine {
         ERR_FAIL_NULL_MSG(reference_bind, "Failed to resolve RefCounted::reference.");
         ERR_FAIL_NULL_MSG(unreference_bind, "Failed to resolve RefCounted::unreference.");
         ERR_FAIL_NULL_MSG(reference_count_bind, "Failed to resolve RefCounted::get_reference_count.");
+        ERR_FAIL_NULL_MSG(notification_bind, "Failed to resolve Object::notification.");
         ERR_FAIL_NULL_MSG(variant_from_object, "Failed to resolve the Object-to-Variant constructor.");
         ERR_FAIL_NULL_MSG(object_from_variant, "Failed to resolve the Variant-to-Object constructor.");
         ERR_FAIL_NULL_MSG(signal_constructor, "Failed to resolve the Signal(Object, StringName) constructor.");
@@ -86,6 +93,18 @@ namespace raw_ref_counted {
 
     _ALWAYS_INLINE_ int32_t get_reference_count(godot::GodotObject* p_object) {
         return godot::internal::_call_native_mb_ret<int64_t>(raw_engine::reference_count_bind, p_object);
+    }
+}
+
+// The engine creates objects unpostinitialized (see InstanceCreator::instantiate) and expects whoever
+// constructed them to deliver NOTIFICATION_POSTINITIALIZE, which is what godot-cpp's memnew() does via
+// Wrapped::_postinitialize(). Issued from the raw pointer here for the same reason as the refcount calls
+// above: taking an Object* would attach a godot-cpp instance binding we do not want.
+namespace raw_object {
+    _ALWAYS_INLINE_ void notification(godot::GodotObject* p_object, int32_t p_what, bool p_reversed = false) {
+        int64_t what {p_what};
+        int8_t reversed {static_cast<int8_t>(p_reversed)};
+        godot::internal::_call_native_mb_no_ret(raw_engine::notification_bind, p_object, &what, &reversed);
     }
 }
 
