@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What This Project Is
 
-**Godot-JVM** is a Godot engine module that enables Kotlin (and Java/Scala) as scripting languages. It is a hybrid C++/JVM project: the C++ side integrates with Godot's module system, and the Kotlin/Gradle side provides the runtime libraries and tooling for user projects.
+**Godot-JVM** is a GDExtension-based JVM binding that enables Kotlin, Java, and Scala as scripting languages. It is a hybrid C++/JVM project: the C++ side integrates with Godot through GDExtension, and the Kotlin/Gradle side provides the runtime libraries and tooling for user projects.
 
 Current binding version: `0.17.1` targeting Godot `4.7.2`.
 
@@ -36,7 +36,7 @@ itself that upstream hasn't fixed yet.
 
 ## Prerequisites
 
-- **JDK 17+** required for building IDE/Gradle plugins (JDK 11+ for runtime-only builds)
+- **JDK 17+** required for building, running, and developing Godot-JVM projects
 - Use **Adoptium/Eclipse Temurin** JDK — Microsoft JDK causes IDE plugin build failures (known issue [microsoft/openjdk#339](https://github.com/microsoft/openjdk/issues/339)). If you must use Microsoft JDK, manually create the `Packages` folder inside `JAVA_HOME`.
 - `JAVA_HOME` must be set
 - Standard Godot build deps: SCons, Python, C++ compiler
@@ -45,9 +45,9 @@ itself that upstream hasn't fixed yet.
 
 The project has two independent build systems that must both be built.
 
-### C++ Module (SCons)
+### Native GDExtension (SCons)
 
-This module lives as a submodule at `modules/kotlin_jvm/` inside the Godot source tree. All SCons commands run from the **Godot source root**.
+Run SCons commands from this repository's root. They build the native GDExtension library.
 
 ```bash
 scons platform=linuxbsd target=editor             # Linux editor
@@ -81,7 +81,7 @@ Run after modifying any `.template` or `.godot_template` files under `kt/plugins
 python generate_templates.py
 ```
 
-This converts templates into base64-encoded C++ headers at `src/editor/project/templates.h` (split into 8KB chunks to avoid C++ header size limits), then rebuild the C++ module.
+This converts templates into base64-encoded C++ headers at `src/editor/project/templates.h` (split into 8KB chunks to avoid C++ header size limits), then rebuild the native GDExtension.
 
 ## Testing
 
@@ -125,8 +125,8 @@ cd kt/
 
 ### C++ Layer (`src/`)
 
-- **`src/gd_kotlin.h/cpp`** — `GDKotlin` singleton; owns the module state machine (`uninitialized → project_discovered → jvm_started → project_loaded → ...`). Many operations gate on correct state — check here first when debugging startup issues.
-- **`register_types.cpp`** — Module entry point; registers `JvmScript` types, script languages, resource loaders/savers with Godot.
+- **`src/gd_kotlin.h/cpp`** — `GDKotlin` singleton; owns the runtime state machine (`uninitialized → project_discovered → jvm_started → project_loaded → ...`). Many operations gate on correct state — check here first when debugging startup issues.
+- **`register_types.cpp`** — GDExtension entry point; registers `JvmScript` types, script languages, resource loaders/savers with Godot.
 - **`src/lifecycle/`** — JVM startup (`jvm_manager`), class loader management, project settings parsing.
 - **`src/jvm_wrapper/`** — JNI bridges, type conversion, per-thread shared buffer communication.
 - **`src/script/`** — Script types: `JvmScript` (abstract base), `KotlinScript`, `JavaScriptLanguage`, `GdjScript`, `ScalaScript`.
@@ -145,21 +145,21 @@ cd kt/
 - **`godot-registration/godot-registration-model/`** — The validated IR shared between processor and generator. Owns the registration model and its sanity checks; an instance existing means it is valid.
 - **`godot-registration/godot-registrar-generator/`** — Back-end: consumes models from the processor and generates registration glue code. No validation.
 - **`api-generator/`** — Reads Godot's `api.json`, generates all Kotlin bindings in `godot-api-library/`. Run in CI when Godot API changes.
-- **`plugins/godot-gradle-plugin/`** — Applied to all user Godot-Kotlin projects; orchestrates compile → symbol processing → registrar generation → JAR packaging.
+- **`plugins/godot-gradle-plugin/`** — Applied to all user Godot-JVM projects; orchestrates compile → symbol processing → registrar generation → JAR packaging.
 - **`plugins/godot-intellij-plugin/`** — IntelliJ IDEA integration (code insight, run configs, templates).
 - **`common/`**, **`tools-common/`** — Shared utilities across subprojects.
 
 ### Data Flow (User Code → Runtime)
 
 ```
-User writes @Script Kotlin code
+User writes @Script Kotlin, Java, or Scala code
   → Kotlin compiler + ClassGraph bytecode processor
   → registrar-generator produces registration glue
   → godot-gradle-plugin packages godot-bootstrap.jar + main.jar
   → JvmResourceFormatLoader loads JARs in editor
   → C++ jvm_manager starts embedded JVM
   → Bootstrap initializes user classes via JNI reflection
-  → GDKotlin binding manager maps Kotlin objects ↔ Godot nodes
+  → GDKotlin binding manager maps JVM objects ↔ Godot nodes
 ```
 
 ### JAR Artifacts

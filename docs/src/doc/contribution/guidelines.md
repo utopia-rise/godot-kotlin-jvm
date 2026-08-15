@@ -1,8 +1,8 @@
 ## General
 
-We are working with the Code Owners feature of GitHub. This means each piece of code in our module has a maintainer who
+We are working with the Code Owners feature of GitHub. This means each piece of code in this project has a maintainer who
 is the "Owner" of said code.
-This maintainer is usually the one who implemented it or has the most knowledge about that particular part of the module.
+This maintainer is usually the one who implemented it or has the most knowledge about that particular part of the project.
 General code may not have a specific "Owner". In this case the fallback is: all Maintainers.
 
 ## Before contributing

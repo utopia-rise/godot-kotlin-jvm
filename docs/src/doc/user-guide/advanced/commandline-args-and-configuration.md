@@ -1,5 +1,5 @@
 The following arguments can be either used in the command line or the `godot_kotlin_configuration.json` file at the root
-of the project to customize the behaviour of the Godot Kotlin/JVM binding.
+of the project to customize the behaviour of the Godot-JVM binding.
 
 !!! info
     Note that in case the same argument is used in both JSON and command-line, the command-line argument got the priority.

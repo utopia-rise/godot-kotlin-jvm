@@ -1,20 +1,7 @@
-!!!note warning
-    In order for your exported game to work, you need our custom export templates. Download them from the corresponding [GitHub release](https://github.com/utopia-rise/godot-kotlin-jvm/releases). 
+To export your game, use the official export templates that match the Godot editor version supported by your Godot-JVM release. Ensure the `addons/jvm` directory, including `jvm.gdextension`, is part of your project before exporting. Godot reads this manifest to include the native JVM library for the selected export target.
 
-
-To export your game, you need to add our export templates to Godot. After you've downloaded them, open the export template manager in Godot and select `Install from File`:
-
-![Open export template manager](../assets/img/open_export_template_manager.png)
-![Select install from file](../assets/img/export_template_manager_install_from_file.png)
-![Select tpz](../assets/img/export_template_manager_select_tpz.png)
-
-After the export templates have been added, you can export your game. Your game `jar` will be included in `pck`.
+After the templates have been installed, you can export your game. Your game `jar` will be included in `pck`.
 On desktop platforms, this also copies the JRE folder of your project in the exported game folder.
-
-!!!warning
-    The official export templates from Godot will not work! You have to use our export templates or build your own!
-    Note that because this is not an official build, the template manager will fail to find a link to our templates and display a warning.
-    You can simply ignore it. Downloading our templates from the Godot editor is currently not possible, we opened a [proposal](godotengine/godot-proposals#10894) for it.
 
 
 ## Requirements

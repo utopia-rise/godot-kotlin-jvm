@@ -464,7 +464,7 @@ want to decide member by member what becomes visible to Godot.
     name. Otherwise, use `@Script` as you would in **Inferred** mode.
 
 If you use the IntelliJ plugin, set the same mode in **Settings | Godot
-Kotlin/JVM | Annotation processing mode**. Gradle controls the actual build;
+Godot-JVM | Annotation processing mode**. Gradle controls the actual build;
 the IDE setting keeps inspections and highlighting accurate.
 
 ## Before building

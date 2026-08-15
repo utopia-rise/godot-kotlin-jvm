@@ -91,7 +91,7 @@ godot {
 
 Rule:
 
-- must be at least JDK `11`
+- must be at least JDK `17`
 
 ### `kotlinVersion`
 
@@ -111,7 +111,7 @@ godot {
 
 Rules:
 
-- must be at least `2.3.20` for the current Godot Kotlin/JVM release
+- must be at least `2.3.20` for the current Godot-JVM release
 - if you keep the default, the Godot plugin applies Kotlin `2.3.20` automatically
 - if you override it, you should also apply `org.jetbrains.kotlin.jvm` explicitly with the same version before `com.utopia-rise.godot-kotlin-jvm`
 
@@ -176,7 +176,7 @@ The available modes are:
 For the complete rules and examples in Kotlin, Java, and Scala, see the
 [registration guide](registration-logic.md). If you use the IntelliJ
 plugin, select the same mode under
-**Settings | Godot Kotlin/JVM | Annotation processing mode** so its
+**Settings | Godot-JVM | Annotation processing mode** so its
 inspections and highlighting match the Gradle build.
 
 ## Godot project layout and registration output
@@ -307,7 +307,7 @@ These settings affect how the project is packaged and which optional runtime hel
 
 ### `isLibrary`
 
-Marks the project as a reusable Godot Kotlin/JVM library instead of a runnable Godot project.
+Marks the project as a reusable Godot-JVM library instead of a runnable Godot project.
 
 Example:
 
