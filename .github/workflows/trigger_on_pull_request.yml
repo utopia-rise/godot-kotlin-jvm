@@ -6,6 +6,74 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # Path-change gates. A pure-doc PR (or one only touching e.g. the api-generator)
+  # shouldn't trigger the native gdextension build/assemble/test chain, and vice versa.
+  detect-native-changes:
+    name: 🔍 Detect native/Kotlin-library changes
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.detect.outputs.changed }}
+    steps:
+      - name: Clone Godot JVM module.
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: Detect changes
+        id: detect
+        uses: ./.github/actions/detect-path-changes
+        with:
+          # Native gdextension source, the godot-cpp binding, and the Kotlin-side
+          # runtime libraries + their shared "common"/"tools-common" builds. Tests
+          # need this same set (native binary + kotlin libraries), so this gate
+          # doubles as the test-run gate below.
+          paths: |
+            src
+            godot-cpp
+            SConstruct
+            platform
+            kt/godot-library
+            kt/godot-registration
+            kt/common
+            kt/tools-common
+
+  detect-api-generator-changes:
+    name: 🔍 Detect API generator changes
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.detect.outputs.changed }}
+    steps:
+      - name: Clone Godot JVM module.
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: Detect changes
+        id: detect
+        uses: ./.github/actions/detect-path-changes
+        with:
+          paths: |
+            kt/api-generator
+            kt/common
+            kt/tools-common
+
+  detect-ide-plugin-changes:
+    name: 🔍 Detect IDE plugin changes
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.detect.outputs.changed }}
+    steps:
+      - name: Clone Godot JVM module.
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: Detect changes
+        id: detect
+        uses: ./.github/actions/detect-path-changes
+        with:
+          paths: |
+            kt/plugins/godot-intellij-plugin
+            kt/common
+            kt/tools-common
+
   setup-build-variables:
     # Fake job to define outputs which can be used in the other jobs
     name: 🛠️ Setup build variables
@@ -24,9 +92,14 @@ jobs:
     uses: ./.github/workflows/build_jvm.yml
     needs:
       - setup-build-variables
+      - detect-api-generator-changes
+      - detect-ide-plugin-changes
+    if: needs.detect-api-generator-changes.outputs.changed == 'true' || needs.detect-ide-plugin-changes.outputs.changed == 'true'
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
+      run-api-generator: ${{ needs.detect-api-generator-changes.outputs.changed == 'true' }}
+      run-ide-plugin: ${{ needs.detect-ide-plugin-changes.outputs.changed == 'true' }}
 
   build-android:
     if: ${{ false }}
@@ -53,6 +126,8 @@ jobs:
     uses: ./.github/workflows/build_linux.yml
     needs:
       - setup-build-variables
+      - detect-native-changes
+    if: needs.detect-native-changes.outputs.changed == 'true'
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
 
@@ -61,6 +136,8 @@ jobs:
     uses: ./.github/workflows/build_macos.yml
     needs:
       - setup-build-variables
+      - detect-native-changes
+    if: needs.detect-native-changes.outputs.changed == 'true'
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
 
@@ -69,6 +146,8 @@ jobs:
     uses: ./.github/workflows/build_windows.yml
     needs:
       - setup-build-variables
+      - detect-native-changes
+    if: needs.detect-native-changes.outputs.changed == 'true'
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
 
