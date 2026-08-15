@@ -20,7 +20,6 @@ void remove_optional_block(String& content, const String& name) {
     const String end_marker = "// END_OPTIONAL_" + name;
     const int begin = content.find(begin_marker);
     const int end = content.find(end_marker, begin);
-
     if (begin != -1 && end != -1) {
         content = content.left(begin) + content.substr(end + end_marker.length());
     }
@@ -54,7 +53,7 @@ void ProjectGenerator::generate_jvm_files(bool erase_existing) {
             } else {
                 String file_content =
                   marshall->base64_to_utf8(file_contents[i])
-                    .replace(VERSION_TEMPLATE, GODOT_KOTLIN_VERSION)
+                    .replace(VERSION_TEMPLATE, GODOT_JVM_VERSION)
                     .replace(PROJECT_NAME_TEMPLATE, ProjectSettings::get_singleton()->get_setting("application/config/name"))
                     .replace("GODOT_LANGUAGES", "GodotLanguage.KOTLIN, GodotLanguage.JAVA, GodotLanguage.SCALA");
                 remove_optional_block(file_content, "ANDROID");
@@ -69,5 +68,3 @@ void ProjectGenerator::generate_jvm_files(bool erase_existing) {
     memdelete(marshall);
     JVM_LOG_INFO("JVM project files generated.");
 }
-
-#endif// TOOLS_ENABLED

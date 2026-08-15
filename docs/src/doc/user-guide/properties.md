@@ -120,7 +120,7 @@ Below is a list of currently implemented type hints:
 | `HintString`      | Any                        | value: String                                                         | Sets Godot's hint string. You are responsible for using the format expected by Godot.                                                            |
 
 !!! note
-    It's not easy to track changes to these property hints on the Godot project. If one is missing or not working as expected, please file an [issue on GitHub](https://github.com/utopia-rise/godot-kotlin-jvm/issues).
+    It's not easy to track changes to these property hints on the Godot project. If one is missing or not working as expected, please file an [issue on GitHub](https://github.com/utopia-rise/godot-jvm/issues).
 
 ## Enums, bitfields and enum lists
 

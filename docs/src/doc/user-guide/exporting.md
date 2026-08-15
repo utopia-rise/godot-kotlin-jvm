@@ -1,4 +1,4 @@
-To export your game, use the official export templates that match the Godot editor version supported by your Godot-JVM release. Ensure the `addons/jvm` directory, including `jvm.gdextension`, is part of your project before exporting. Godot reads this manifest to include the native JVM library for the selected export target.
+To export your game, use the official export templates that match your Godot editor version. Godot must meet the minimum version required by your Godot-JVM release. Ensure the `addons/jvm` directory, including `jvm.gdextension`, is part of your project before exporting. Godot reads this manifest to include the native JVM library for the selected export target.
 
 After the templates have been installed, you can export your game. Your game `jar` will be included in `pck`.
 On desktop platforms, this also copies the JRE folder of your project in the exported game folder.

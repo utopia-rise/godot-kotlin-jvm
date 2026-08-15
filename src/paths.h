@@ -8,7 +8,7 @@ static constexpr const char* USER_DIRECTORY {"user://"};
 static constexpr const char* RES_DIRECTORY {"res://"};
 
 static constexpr const char* BUILD_DIRECTORY {"res://build"};
-static constexpr const char* JVM_CONFIGURATION_PATH {"res://godot_kotlin_configuration.json"};
+static constexpr const char* JVM_CONFIGURATION_PATH {"res://godot_jvm_configuration.json"};
 
 static constexpr const char* DESKTOP_BOOTSTRAP_FILE {JVM_DIRECTORY "godot-bootstrap.jar"};
 static constexpr const char* DESKTOP_USER_CODE_FILE {JVM_DIRECTORY "main.jar"};

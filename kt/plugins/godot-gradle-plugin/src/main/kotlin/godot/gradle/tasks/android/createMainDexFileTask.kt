@@ -94,7 +94,7 @@ fun Project.createMainDexFileTask(
 
     return tasks.register("createMainDexFile", CreateMainDexFileTask::class.java) {
         with(it) {
-            group = "godot-kotlin-jvm"
+            group = "godot-jvm"
             description = "Converts the main.jar to an android dex file. Needed for android builds only"
 
             dependsOn(

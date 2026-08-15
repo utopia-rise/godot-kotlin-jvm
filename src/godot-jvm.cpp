@@ -10,6 +10,7 @@
 #include "version.h"
 
 #include <classes/engine.hpp>
+#include <classes/dir_access.hpp>
 #include <classes/file_access.hpp>
 #include <classes/project_settings.hpp>
 #include <classes/resource_loader.hpp>
@@ -79,7 +80,7 @@ bool GodotJvm::load_dynamic_lib() {
             } else {
                 JVM_WARN_FAIL_V_MSG(
                   false,
-                  "Godot Kotlin/JVM module couldn't be fully initialized. Cause: %s. Possible solution: %s",
+                  "Godot-JVM module couldn't be fully initialized. Cause: %s. Possible solution: %s",
                   "Couldn't open Graal Native Image.",
                   "Make sure you have built your JVM project with Graal native image enabled in your gradle build."
                 );
@@ -93,7 +94,7 @@ bool GodotJvm::load_dynamic_lib() {
     if (godot_jvm_native::open_dynamic_library(path_to_jvm_lib, jvm_dynamic_library_handle) != OK) {
         JVM_WARN_FAIL_V_MSG(
           false,
-          "Godot Kotlin/JVM module couldn't be fully initialized. Cause: %s. Possible solution: %s",
+          "Godot-JVM module couldn't be fully initialized. Cause: %s. Possible solution: %s",
           "Failed to load the jvm dynamic library from path: " + path_to_jvm_lib,
           "Make sure you use a valid JVM 11+ with proper read access."
         );
@@ -111,24 +112,25 @@ String GodotJvm::get_path_to_native_image() {
     return ProjectSettings::get_singleton()->globalize_path(GRAAL_NATIVE_IMAGE_FILE);
 }
 
-#ifdef TOOLS_ENABLED
 String GodotJvm::get_path_to_environment_jvm() {
     String javaHome {OS::get_singleton()->get_environment("JAVA_HOME")};
     if (javaHome.is_empty()) { return {}; }
 
     String jvm_library = javaHome.path_join(RELATIVE_JVM_LIB_PATH);
-    return FileAccess::exists(jvm_library) ? jvm_library : String {};
+    return FileAccess::file_exists(jvm_library) ? jvm_library : String {};
 }
 
-String GDKotlin::get_path_to_java_executable() {
+String GodotJvm::get_path_to_java_executable() {
 #ifdef MACOS_ENABLED
-    List<String> arguments {"-v", "11+"};
+    Array arguments;
+    arguments.push_back("-v");
+    arguments.push_back("11+");
     String macos_java_home;
     int exit_code;
     if (OS::get_singleton()->execute("/usr/libexec/java_home", arguments, &macos_java_home, &exit_code, true) == OK
         && exit_code == 0) {
         String jvm_library = macos_java_home.strip_edges().path_join(RELATIVE_JVM_LIB_PATH);
-        if (FileAccess::exists(jvm_library)) { return jvm_library; }
+        if (FileAccess::file_exists(jvm_library)) { return jvm_library; }
     }
 #endif
 
@@ -140,13 +142,12 @@ String GDKotlin::get_path_to_java_executable() {
     constexpr const char* path_separator {":"};
 #endif
 
-    Vector<String> path_entries = OS::get_singleton()->get_environment("PATH").split(path_separator, false);
+    PackedStringArray path_entries = String(OS::get_singleton()->get_environment("PATH")).split(path_separator, false);
     for (const String& path_entry : path_entries) {
         String java_executable = path_entry.strip_edges().trim_prefix("\"").trim_suffix("\"").path_join(java_executable_name);
-        if (!FileAccess::exists(java_executable)) { continue; }
+        if (!FileAccess::file_exists(java_executable)) { continue; }
 
-        Ref<DirAccess> dir_access = DirAccess::create(DirAccess::ACCESS_FILESYSTEM);
-        if (dir_access.is_null()) { continue; }
+        Ref<DirAccess> dir_access = DirAccess::open(java_executable.get_base_dir());
         while (dir_access->is_link(java_executable)) {
             String link_target = dir_access->read_link(java_executable);
             java_executable = link_target.is_absolute_path()
@@ -155,13 +156,11 @@ String GDKotlin::get_path_to_java_executable() {
         }
 
         String jvm_library = java_executable.get_base_dir().get_base_dir().path_join(RELATIVE_JVM_LIB_PATH);
-        if (FileAccess::exists(jvm_library)) { return jvm_library; }
+        if (FileAccess::file_exists(jvm_library)) { return jvm_library; }
     }
 
     return {};
 }
-#endif
-
 #else
 
 String GodotJvm::get_path_to_embedded_jvm() {
@@ -309,7 +308,7 @@ bool GodotJvm::load_bootstrap() {
             }
             JVM_WARN_FAIL_V_MSG(
               false,
-              "Godot Kotlin/JVM module couldn't be fully initialized. Cause: %s. Possible solution: %s",
+              "Godot-JVM module couldn't be fully initialized. Cause: %s. Possible solution: %s",
               "No godot-bootstrap.jar found!",
               hint_text
             );
@@ -325,18 +324,18 @@ bool GodotJvm::load_bootstrap() {
     if (Bootstrap::initialize(env, bootstrap_class_loader)) {
         bootstrap = Bootstrap::create_instance(env, bootstrap_class_loader);
         String version = bootstrap->get_version(env);
-        if (version != String(GODOT_KOTLIN_VERSION)) {
+        if (version != String(GODOT_JVM_VERSION)) {
             JVM_ERR_FAIL_V_MSG(
               false,
-              "Godot Kotlin/JVM module couldn't be fully initialized. Cause: %s. Possible solution: %s",
-              vformat("Version mismatch! C++ module is : %s / Jar is : %s.", GODOT_KOTLIN_VERSION, version),
+              "Godot-JVM module couldn't be fully initialized. Cause: %s. Possible solution: %s",
+              vformat("Version mismatch! C++ module is : %s / Jar is : %s.", GODOT_JVM_VERSION, version),
               "Check if your build.gradle file use the same version as the editor."
             );
         }
     } else {
         JVM_WARN_FAIL_V_MSG(
           false,
-          "Godot Kotlin/JVM module couldn't be fully initialized. Cause: %s. Possible solution: %s",
+          "Godot-JVM module couldn't be fully initialized. Cause: %s. Possible solution: %s",
           "The boostrap.jar is invalid and can't be loaded.",
           "Check if your build.gradle file use the same version as the editor."
         );
@@ -352,7 +351,7 @@ bool GodotJvm::initialize_core_library() {
     if (!JvmManager::initialize_jvm_wrappers(env, bootstrap_class_loader)) {
         JVM_WARN_FAIL_V_MSG(
           false,
-          "Godot Kotlin/JVM module couldn't be fully initialized. Cause: %s. Possible solution: %s",
+          "Godot-JVM module couldn't be fully initialized. Cause: %s. Possible solution: %s",
           "The boostrap.jar is invalid and can't be loaded.",
           "Check if your build.gradle file use the same version as the editor."
         );

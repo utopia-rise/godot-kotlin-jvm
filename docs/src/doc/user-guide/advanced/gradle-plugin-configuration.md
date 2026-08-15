@@ -1,6 +1,6 @@
 # Gradle plugin configuration
 
-This page is the reference for configuring `com.utopia-rise.godot-kotlin-jvm`.
+This page is the reference for configuring `com.utopia-rise.godot-jvm`.
 
 Most settings live in the `godot { ... }` block in `build.gradle.kts`.
 Two related topics also live here because users usually look for them alongside plugin setup:
@@ -113,14 +113,14 @@ Rules:
 
 - must be at least `2.3.20` for the current Godot-JVM release
 - if you keep the default, the Godot plugin applies Kotlin `2.3.20` automatically
-- if you override it, you should also apply `org.jetbrains.kotlin.jvm` explicitly with the same version before `com.utopia-rise.godot-kotlin-jvm`
+- if you override it, you should also apply `org.jetbrains.kotlin.jvm` explicitly with the same version before `com.utopia-rise.godot-jvm`
 
 Example with explicit override:
 
 ```kotlin
 plugins {
     kotlin("jvm") version "2.2.21"
-    id("com.utopia-rise.godot-kotlin-jvm") version "YOUR_GODOT_KOTLIN_VERSION"
+    id("com.utopia-rise.godot-jvm") version "YOUR_GODOT_JVM_VERSION"
 }
 
 godot {

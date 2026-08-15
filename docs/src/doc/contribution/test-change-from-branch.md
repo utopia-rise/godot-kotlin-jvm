@@ -7,12 +7,12 @@ To test a branch in your own project, build its Gradle artifacts locally and rep
     If you republish changes locally under the same snapshot version, Gradle may keep using cached plugin artifacts. Rerun your project build with `--refresh-dependencies` (for example, `./gradlew --refresh-dependencies build`) to use the republished artifacts.
 
 1. Ensure `JAVA_HOME` is set. JDK 17 or newer is required.
-2. Download the Godot-JVM addon release for the branch's supported Godot version and extract it into your project's root. Confirm that `addons/jvm/jvm.gdextension` exists.
+2. Download the Godot-JVM addon release for the branch's minimum supported Godot version and extract it into your project's root. Confirm that `addons/jvm/jvm.gdextension` exists.
 3. Clone this repository and switch to the branch you want to test:
 
     ```bash
-    git clone --recurse-submodules git@github.com:utopia-rise/godot-kotlin-jvm.git
-    cd godot-kotlin-jvm
+    git clone --recurse-submodules git@github.com:utopia-rise/godot-jvm.git
+    cd godot-jvm
     git checkout <branch-name>
     ```
 

@@ -5,7 +5,7 @@ import org.jetbrains.kotlin.konan.target.HostManager
 plugins {
     // no need to apply kotlin jvm plugin. Our plugin already applies the correct version for you
 //    kotlin("jvm") version "1.7.10"
-    id("com.utopia-rise.godot-kotlin-jvm")
+    id("com.utopia-rise.godot-jvm")
 }
 
 repositories {

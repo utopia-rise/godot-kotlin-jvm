@@ -12,7 +12,7 @@
 #include <classes/v_box_container.hpp>
 #include <variant/callable_method_pointer.hpp>
 
-// Builds the "About Godot Kotlin JVM" dialog as a plain AcceptDialog rather than a custom subclass — AcceptDialog is already a registered engine class, so this needs no GDCLASS/ GDREGISTER_INTERNAL_CLASS at all. Special behavior (checkbox...
+// Builds the "About Godot-JVM" dialog as a plain AcceptDialog rather than a custom subclass — AcceptDialog is already a registered engine class, so this needs no GDCLASS/ GDREGISTER_INTERNAL_CLASS at all. Special behavior (checkbox...
 
 namespace {
     // Anonymous namespace, not `inline`: each translation unit including this header gets its own private copy — the standard idiom for header-local helpers, no ODR concern either way.
@@ -29,7 +29,7 @@ inline godot::AcceptDialog* create_about_dialog(const godot::Ref<godot::EditorSe
     using namespace godot;
 
     AcceptDialog* dialog {memnew(AcceptDialog)};
-    dialog->set_title("About Godot Kotlin JVM");
+    dialog->set_title("About Godot-JVM");
 
     VBoxContainer* about_vbox {memnew(VBoxContainer)};
     dialog->add_child(about_vbox);

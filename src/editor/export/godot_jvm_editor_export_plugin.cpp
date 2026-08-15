@@ -126,7 +126,7 @@ void GodotJvmEditorExportPlugin::_export_begin(const PackedStringArray& p_featur
 
                 if (!is_arm64 && !is_x64) {
                     JVM_ERR_FAIL_MSG("This desktop architecture is not supported for export. Only arm64 and x86_64 are "
-                                     "supported by Godot Kotlin/JVM!");
+                                     "supported by Godot-JVM!");
                 }
             } else if (is_linux_export || is_windows_export) {
                 // on windows and linux the embedded jre can be added as a normal export dir
@@ -155,7 +155,7 @@ void GodotJvmEditorExportPlugin::_export_begin(const PackedStringArray& p_featur
                 }
                 if (!is_arm64 && !is_x64) {
                     JVM_ERR_FAIL_MSG("This desktop architecture is not supported for export. Only arm64 and x86_64 are "
-                                     "supported by Godot Kotlin/JVM!");
+                                     "supported by Godot-JVM!");
                 }
                 if (jre_dir.is_empty() || target_dir.is_empty()) {
                     JVM_ERR_FAIL_MSG("Could not find a jre directory for the current export configuration");
@@ -170,7 +170,7 @@ void GodotJvmEditorExportPlugin::_export_begin(const PackedStringArray& p_featur
                     );
                 }
             } else {
-                JVM_ERR_FAIL_MSG("Current desktop export target platform is not supported by Godot Kotlin/JVM! Only "
+                JVM_ERR_FAIL_MSG("Current desktop export target platform is not supported by Godot-JVM! Only "
                                  "supported desktop targets are linux, macos and windows");
             }
         }
@@ -188,7 +188,7 @@ void GodotJvmEditorExportPlugin::_export_begin(const PackedStringArray& p_featur
             }
         }
 
-        // add Godot Kotlin/JVM configuration file based on export targets
+        // Add the Godot-JVM configuration file based on export targets.
         if (export_all) {
             _generate_export_configuration_file(GodotJvm::get_instance().get_configuration().vm_type);
         } else if (export_jvm) {
@@ -212,7 +212,7 @@ void GodotJvmEditorExportPlugin::_export_begin(const PackedStringArray& p_featur
         );
         add_apple_embedded_platform_project_static_lib(ProjectSettings::get_singleton()->globalize_path(base_ios_build_dir.path_join(IOS_GRAAL_NATIVE_IMAGE_FILE)));
     } else {
-        JVM_ERR_FAIL_MSG("Godot Kotlin/JVM doesn't handle this platform");
+        JVM_ERR_FAIL_MSG("Godot-JVM doesn't handle this platform");
     }
 
     for (const String& file_to_add : files_to_add) {
@@ -234,7 +234,7 @@ void GodotJvmEditorExportPlugin::_generate_export_configuration_file(jni::JvmTyp
 }
 
 String GodotJvmEditorExportPlugin::_get_name() const {
-    return "Godot Kotlin/Jvm";
+    return "Godot-JVM";
 }
 
 void GodotJvmEditorExportPlugin::_export_file(const String& p_path, const String& p_type, const PackedStringArray& p_features) {
