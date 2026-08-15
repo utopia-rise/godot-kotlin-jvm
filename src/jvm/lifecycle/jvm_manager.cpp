@@ -74,7 +74,7 @@ bool JvmManager::initialize_or_get_jvm(void* lib_handle, JvmUserConfiguration& u
     JVM_ERR_FAIL_COND_V_MSG(func == nullptr, false, "Failed to obtain JNI_CreateJavaVM symbol from dynamic library!");
     jint result {func(&java_vm, reinterpret_cast<void**>(&jni_env), &args)};
 
-    // Set std::local::global to value it was before creating JVM. See https://github.com/utopia-rise/godot-kotlin-jvm/issues/166 and https://github.com/utopia-rise/godot-kotlin-jvm/issues/170
+    // Set std::local::global to value it was before creating JVM. See https://github.com/utopia-rise/godot-jvm/issues/166 and https://github.com/utopia-rise/godot-jvm/issues/170
 
     std::locale::global(global);
 

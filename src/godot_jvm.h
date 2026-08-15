@@ -54,6 +54,7 @@ namespace godot {
         void unload_dynamic_lib();
 #ifdef TOOLS_ENABLED
         static godot::String get_path_to_environment_jvm();
+        static godot::String get_path_to_java_executable();
 #endif
         static String get_path_to_embedded_jvm();
         static String get_path_to_native_image();

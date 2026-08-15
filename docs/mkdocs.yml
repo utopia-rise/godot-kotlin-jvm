@@ -1,8 +1,8 @@
 site_name: Godot-JVM
 docs_dir: src/doc
 
-repo_name: 'utopia-rise/godot-kotlin-jvm'
-repo_url: 'https://github.com/utopia-rise/godot-kotlin-jvm'
+repo_name: 'utopia-rise/godot-jvm'
+repo_url: 'https://github.com/utopia-rise/godot-jvm'
 
 theme:
   name: material

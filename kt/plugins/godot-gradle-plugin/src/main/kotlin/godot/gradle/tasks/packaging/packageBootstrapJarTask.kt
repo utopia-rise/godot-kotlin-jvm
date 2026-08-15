@@ -13,7 +13,7 @@ fun Project.packageBootstrapJarTask(): TaskProvider<out Task> {
 
     return tasks.register("packageBootstrapJar", ShadowJar::class.java) {
         with(it) {
-            group = "godot-kotlin-jvm"
+            group = "godot-jvm"
             description = "Creates a fat jar containing everything needed to load and run the main.jar"
 
             archiveBaseName.set("godot-bootstrap")

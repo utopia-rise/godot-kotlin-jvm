@@ -2,7 +2,7 @@ name: 🐧 Assemble Linux
 on:
   workflow_call:
     inputs:
-      godot-kotlin-jvm-version:
+      godot-jvm-version:
         type: string
       godot-version:
         type: string
@@ -33,12 +33,12 @@ jobs:
         uses: actions/download-artifact@v7
         with:
           name: ${{ matrix.target }}_linux_${{ matrix.arch }}
-          path: godot-kotlin-jvm_gdextension_linuxbsd_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}
+          path: godot-jvm_gdextension_linuxbsd_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-jvm-version }}
 
       - name: Assemble Linux library
         run: |
           mkdir -p package/addons
-          cp -R godot-kotlin-jvm_gdextension_linuxbsd_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}/jvm package/addons/jvm
+          cp -R godot-jvm_gdextension_linuxbsd_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-jvm-version }}/jvm package/addons/jvm
         shell: bash
 
       # Upload the raw "addons" folder rather than a pre-made zip: actions/upload-artifact always
@@ -48,5 +48,5 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v7
         with:
-          name: godot-kotlin-jvm_gdextension_linuxbsd_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}
+          name: godot-jvm_gdextension_linuxbsd_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-jvm-version }}
           path: package

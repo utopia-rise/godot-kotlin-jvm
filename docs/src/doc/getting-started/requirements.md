@@ -6,13 +6,17 @@
 
 ## Java
 
-To use this module at least JDK 17 is needed. You need the JDK, not just the JRE, and its `bin` directory must be available through `PATH` before running the custom Godot editor. `JAVA_HOME` is also supported as a fallback.
+To use Godot-JVM, at least JDK 17 is needed. You need the JDK, not only the JRE, and the `JAVA_HOME` environment variable must be set before running the project.
 
 ### Mac
 
 You can install Java via [homebrew](https://brew.sh/). Once you installed it, you can run `brew install openjdk@21` to install the LTS version of Java from openjdk. If you want to pick a different version, you can run `brew search jdk`.
 
-The editor also uses macOS's `java_home` tool, so a JDK installed normally on macOS can be found when the editor is started from the GUI.
+!!! warning
+    On macOS apps started from the GUI cannot see environment variables from bash or zsh, only command line apps can. Set environment variable using launchctl.
+    ```shell
+    launchctl setenv JAVA_HOME pathtoyourjava
+    ```
 
 ### Linux
 
@@ -32,8 +36,8 @@ We also recommend installing our [IntelliJ IDEA plugin](https://plugins.jetbrain
 
 ## Godot Editor
 
-You need our custom engine build from the latest [GitHub releases](https://github.com/utopia-rise/godot-kotlin-jvm/releases) to be able to use this project. If you need other modules you can also [build it yourself](../contribution/setup.md).
+Download an official Godot editor version that meets your Godot-JVM release's minimum version from the [Godot download page](https://godotengine.org/download/). Download `godot-jvm_addon_<version>.zip` from the [GitHub releases](https://github.com/utopia-rise/godot-jvm/releases) page and extract it into the root of your project. Confirm that the addon manifest is at `addons/jvm/jvm.gdextension` before opening the project.
 
 ## Exporting
 
-You need our custom export templates for your exported games to work with the JVM. Have a look at the [Exporting](../user-guide/exporting.md) documentation.
+Use the official Godot export templates that match your editor. The addon manifest selects the native JVM library for each export target. See [Exporting](../user-guide/exporting.md) for JVM-specific export requirements.

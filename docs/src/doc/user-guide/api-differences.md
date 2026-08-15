@@ -262,7 +262,7 @@ For example, `load()` is available but `preload()` is not.
 ## Additional functions
 
 For comfort, some objects got some additional functions to enjoy some Kotlin syntax sugar.
-You can find them all [in this folder](https://github.com/utopia-rise/godot-kotlin-jvm/tree/master/kt/godot-library/src/main/kotlin/godot/extensions).
+You can find them all [in this folder](https://github.com/utopia-rise/godot-jvm/tree/master/kt/godot-library/src/main/kotlin/godot/extensions).
 
 ## Notifications
 

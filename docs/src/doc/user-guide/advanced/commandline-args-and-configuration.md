@@ -1,4 +1,4 @@
-The following arguments can be either used in the command line or the `godot_kotlin_configuration.json` file at the root
+The following arguments can be either used in the command line or the `godot_jvm_configuration.json` file at the root
 of the project to customize the behaviour of the Godot-JVM binding.
 
 !!! info

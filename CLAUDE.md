@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Godot-JVM** is a GDExtension-based JVM binding that enables Kotlin, Java, and Scala as scripting languages. It is a hybrid C++/JVM project: the C++ side integrates with Godot through GDExtension, and the Kotlin/Gradle side provides the runtime libraries and tooling for user projects.
 
-Current binding version: `0.17.0` targeting Godot `4.7.2`.
+Current binding version: `1.0.0` targeting Godot `4.7.2`.
 
 ## godot-cpp fork
 
@@ -100,7 +100,7 @@ The `harness/tests/` directory is a full Godot project. It requires a built edit
 ### Testing Changes from a Feature Branch
 
 1. Publish locally (see above)
-2. Configure the user project's Gradle repositories to use `mavenLocal()` and use the exact snapshot version you published (e.g. `0.17.0-4.7.1-d68f299-SNAPSHOT`)
+2. Configure the user project's Gradle repositories to use `mavenLocal()` and use the exact snapshot version you published (e.g. `1.0.0-d68f299-SNAPSHOT`)
 3. Run with the dev build: `./bin/godot.linuxbsd.editor.dev.x86_64.jvm` (or platform equivalent)
 
 Full workflow: `docs/src/doc/contribution/test-change-from-branch.md`

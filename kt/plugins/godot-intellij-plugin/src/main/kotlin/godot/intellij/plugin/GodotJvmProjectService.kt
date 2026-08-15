@@ -7,7 +7,7 @@ import com.intellij.openapi.project.DumbService
 import com.intellij.openapi.project.Project
 import java.util.concurrent.atomic.AtomicBoolean
 
-class GodotKotlinJvmProjectService(val project: Project) : Disposable {
+class GodotJvmProjectService(val project: Project) : Disposable {
     private val registeredClassNameCache: MutableMap<Module, RegisteredClassNameCache> = mutableMapOf()
     private val started = AtomicBoolean(false)
     private val registeredClassIndex = RegisteredClassIndex(::provideRegisteredClassNameCache)
@@ -36,6 +36,6 @@ class GodotKotlinJvmProjectService(val project: Project) : Disposable {
     }
 
     companion object {
-        fun getInstance(module: Module): GodotKotlinJvmProjectService = module.project.service()
+        fun getInstance(module: Module): GodotJvmProjectService = module.project.service()
     }
 }

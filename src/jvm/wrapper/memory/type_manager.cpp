@@ -65,7 +65,7 @@ uintptr_t TypeManager::get_method_bind_ptr(JNIEnv* p_raw_env, jobject, jstring p
     JVM_ERR_FAIL_COND_V_MSG(
       !bind,
       0,
-      "Method %s from Class %s doesn't exist. Check that your JVM Godot-Kotlin library matches this Godot version.",
+      "Method %s from Class %s doesn't exist. Check that your Godot-JVM library matches this Godot version.",
       method_name,
       class_name
     );

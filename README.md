@@ -5,7 +5,7 @@
 <img src=".README/logo.png" width="30%" height="30%">
 </p>
 
-[![GitHub](https://img.shields.io/github/license/utopia-rise/godot-kotlin-jvm?style=for-the-badge)](LICENSE)
+[![GitHub](https://img.shields.io/github/license/utopia-rise/godot-jvm?style=for-the-badge)](LICENSE)
 [![Discord](https://img.shields.io/discord/675058327088136212?style=for-the-badge&label=Discord)](https://discord.gg/zpb5Ru7v9x)
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fgodot-kotl.in%2Fen%2Fstable%2F&style=for-the-badge&label=Documentation)](https://godot-kotl.in/en/stable/)
 
@@ -34,9 +34,9 @@ or for [C#](https://docs.godotengine.org/en/3.1/getting_started/scripting/c_shar
 
 ## Important Notes
 
-This version of the binding is currently in **Beta**! While you can fully use the binding, please note that there might still be breaking API changes. We welcome any suggestions you have for improving the project and its API.
+Godot-JVM 1.0.0 is the first stable release. We welcome suggestions for improving the project and its API.
 
-Download the addon archive from the [GitHub releases page](https://github.com/utopia-rise/godot-kotlin-jvm/releases) and extract it into your project's root directory. The resulting layout must contain `addons/jvm/jvm.gdextension`. Open the project with the official Godot editor version supported by the release.
+Download the addon archive from the [GitHub releases page](https://github.com/utopia-rise/godot-jvm/releases) and extract it into your project's root directory. The resulting layout must contain `addons/jvm/jvm.gdextension`. Open the project with the release's minimum Godot version or newer.
 
 ## Documentation
 

@@ -1,7 +1,7 @@
 extends GdUnitTestSuite
 
 
-func test_call_function_in_godot_kotlin_jvm_dependency():
+func test_call_function_in_godot_jvm_dependency():
 	var library_test_script = load("res://scripts/third-party-library/godot/tests/library/Simple.gdj")
 	var library_test = library_test_script.new()
 
