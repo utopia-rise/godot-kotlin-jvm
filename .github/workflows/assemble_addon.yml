@@ -34,16 +34,18 @@ jobs:
         with:
           name: release_macos_universal
           path: addon
-      - name: Create addon archive
+      - name: Assemble addon
         shell: bash
         run: |
           mkdir -p package/addons
           cp -R harness/tests/addons/jvm package/addons/jvm
           rm -rf package/addons/jvm/libs
           cp -R addon/jvm/libs package/addons/jvm/libs
-          cd package
-          zip -q -9 -r godot-kotlin-jvm_addon_${{ inputs.godot-kotlin-jvm-version }}.zip addons
+      # Upload the raw "addons" folder rather than a pre-made zip: actions/upload-artifact always
+      # wraps whatever it's given in its own zip, so uploading a zip here results in a zip nested
+      # inside that zip once a human downloads the artifact. The actual release-asset zip gets made
+      # once, at the point deploy_godot.yml attaches it to the GitHub release.
       - uses: actions/upload-artifact@v7
         with:
-          name: godot-kotlin-jvm_addon_${{ inputs.godot-kotlin-jvm-version }}.zip
-          path: package/godot-kotlin-jvm_addon_${{ inputs.godot-kotlin-jvm-version }}.zip
+          name: godot-kotlin-jvm_addon_${{ inputs.godot-kotlin-jvm-version }}
+          path: package

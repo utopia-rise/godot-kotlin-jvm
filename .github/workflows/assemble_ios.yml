@@ -16,10 +16,12 @@ jobs:
       - uses: actions/download-artifact@v7
         with:
           pattern: '*_ios_*'
-          path: libraries
+          path: package/libraries
           merge-multiple: true
-      - run: zip -q -9 -r godot-kotlin-jvm_gdextension_ios.zip libraries
+      # Upload the raw folder rather than a pre-made zip: actions/upload-artifact always wraps
+      # whatever it's given in its own zip, so uploading a zip here results in a zip nested inside
+      # that zip once a human downloads the artifact.
       - uses: actions/upload-artifact@v7
         with:
-          name: godot-kotlin-jvm_gdextension_ios.zip
-          path: godot-kotlin-jvm_gdextension_ios.zip
+          name: godot-kotlin-jvm_gdextension_ios
+          path: package

@@ -35,16 +35,18 @@ jobs:
           name: ${{ matrix.target }}_linux_${{ matrix.arch }}
           path: godot-kotlin-jvm_gdextension_linuxbsd_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}
 
-      - name: Create Linux library zip
+      - name: Assemble Linux library
         run: |
           mkdir -p package/addons
           cp -R godot-kotlin-jvm_gdextension_linuxbsd_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}/jvm package/addons/jvm
-          cd package
-          zip -r ../godot-kotlin-jvm_gdextension_linuxbsd_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip addons
         shell: bash
 
+      # Upload the raw "addons" folder rather than a pre-made zip: actions/upload-artifact always
+      # wraps whatever it's given in its own zip, so uploading a zip here results in a zip nested
+      # inside that zip once a human downloads the artifact. The actual release-asset zip gets made
+      # once, at the point deploy_godot.yml attaches it to the GitHub release.
       - name: Upload artifact
         uses: actions/upload-artifact@v7
         with:
-          name: godot-kotlin-jvm_gdextension_linuxbsd_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip
-          path: godot-kotlin-jvm_gdextension_linuxbsd_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip
+          name: godot-kotlin-jvm_gdextension_linuxbsd_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}
+          path: package
