@@ -1,9 +1,10 @@
 #include "jvm_script.h"
 
+#include "engine/godot_object.h"
+
 #include "api/language/gdj_language.h"
 #include "api/script/jvm_script_manager.h"
 #include "classes/engine.hpp"
-#include "core/instance_creator.h"
 #include "core/jvm_binding_manager.h"
 #include "jvm/wrapper/memory/memory_manager.h"
 #include "jvm_instance.h"
@@ -14,7 +15,7 @@
 using namespace godot;
 
 Variant JvmScript::_new() {
-    if (GodotObject* obj = _object_create()) { return make_object_variant(obj); }
+    if (GodotObject* obj = _object_create()) { return RawObject(obj).to_variant(); }
 
     JVM_ERR_FAIL_V_MSG({}, vformat("Cannot instantiate JVM script %s", kotlin_class->registered_class_name));
 }
@@ -31,7 +32,7 @@ GodotObject* JvmScript::_object_create() const {
 #endif
 
     // Not godot::ClassDB::instantiate(): that forwards to the script-facing ClassDB singleton, which boxes a RefCounted result in a Ref<RefCounted> inside a Variant — converting that straight to Object* and letting the Variant go out of scope...
-    GodotObject* raw_owner {InstanceCreator::instantiate(kotlin_class->base_godot_class)};
+    GodotObject* raw_owner {RawObject::instantiate(kotlin_class->base_godot_class)};
     JVM_ERR_FAIL_COND_V_MSG(
       raw_owner == nullptr,
       nullptr,
@@ -101,10 +102,11 @@ StringName JvmScript::_get_global_name() const {
     return _is_valid() ? kotlin_class->registered_class_name : StringName();
 }
 
-// The engine-facing virtual: godot-cpp's dispatch glue hands us a wrapper here, so unwrap once at the boundary and
-// keep the runtime path raw from then on.
-void* JvmScript::_instance_create(Object* p_this) const {
-    return create_jvm_instance(p_this->_owner);
+// Receives the raw engine pointer rather than an Object *: godot-cpp's generator is patched to expose this virtual
+// that way (see VIRTUAL_RAW_OBJECT_ARGS there), because decoding an Object * would build and permanently register a
+// C++ wrapper for every object a JVM script is ever attached to, only for us to unwrap it again on the next line.
+void* JvmScript::_instance_create(GodotObject* p_for_object) const {
+    return create_jvm_instance(p_for_object);
 }
 
 void* JvmScript::create_jvm_instance(GodotObject* p_raw_owner) const {
@@ -320,11 +322,11 @@ StringName JvmScript::_get_doc_class_name() const {
     return class_name;
 }
 
-void* JvmScript::_placeholder_instance_create(Object* p_this) const {
+void* JvmScript::_placeholder_instance_create(GodotObject* p_for_object) const {
     JvmPlaceHolderInstance::JvmPlaceHolderInstanceData* placeholder_data = memnew(JvmPlaceHolderInstance::JvmPlaceHolderInstanceData);
     placeholder_data->language = GdjLanguage::get_instance();
     placeholder_data->script = Ref<Script>(this);
-    placeholder_data->owner = p_this;
+    placeholder_data->owner = p_for_object;
 
     GDExtensionScriptInstancePtr placeholder = internal::gdextension_interface_script_instance_create3(
       &JvmPlaceHolderInstance::jvm_placeholder_script_instance_info,
@@ -351,9 +353,10 @@ void JvmScript::move_placeholders_to(JvmScript* p_script) {
         if (!placeholder->owner) { continue; }
 
         HashMap<StringName, Variant> values = placeholder->values;
-        placeholder->owner->set_script(Ref<Script>(p_script));
+        Object* owner {placeholder->owner.to_wrapper()};
+        owner->set_script(Ref<Script>(p_script));
         for (const KeyValue<StringName, Variant>& value : values) {
-            placeholder->owner->set(value.key, value.value);
+            owner->set(value.key, value.value);
         }
     }
 }
@@ -369,7 +372,7 @@ void JvmScript::set_last_source_modified_time(uint64_t p_time) {
 
 void JvmScript::update_source_sync_warning() {
     for (const KeyValue<GDExtensionScriptInstancePtr, JvmPlaceHolderInstance::JvmPlaceHolderInstanceData*>& placeholder : placeholders) {
-        if (Node* node = Object::cast_to<Node>(placeholder.value->owner)) {
+        if (Node* node = Object::cast_to<Node>(placeholder.value->owner.to_wrapper())) {
             node->update_configuration_warnings();
         }
     }

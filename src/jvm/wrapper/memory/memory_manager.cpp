@@ -3,7 +3,7 @@
 #include "api/script/jvm_script_manager.h"
 #include "core/jvm_binding_manager.h"
 #include "core/variant_allocator.h"
-#include "engine/utilities.h"
+#include "engine/godot_object.h"
 
 #include <core/object.hpp>
 
@@ -24,7 +24,7 @@ namespace {
     }
 
     void unreference_and_destroy(godot::GodotObject* p_object) {
-        if (raw_ref_counted::unreference(p_object)) { godot::internal::gdextension_interface_object_destroy(p_object); }
+        if (godot::RawObject(p_object).unreference()) { godot::internal::gdextension_interface_object_destroy(p_object); }
     }
 } // namespace
 
@@ -39,7 +39,7 @@ void MemoryManager::release_binding(JNIEnv*, jobject, jlong instance_id) {
     if (obj == nullptr) { return; }
 
     ::godot::JvmBindingManager::free_binding(obj);
-    if (is_ref_counted(obj)) { unreference_and_destroy(obj); }
+    if (godot::RawObject(obj).is_ref_counted()) { unreference_and_destroy(obj); }
 }
 
 void MemoryManager::unref_native_core_types(JNIEnv* p_raw_env, jobject, jobject p_ptr_array, jobject p_var_type_array) {
