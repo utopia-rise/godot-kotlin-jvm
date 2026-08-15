@@ -6,7 +6,7 @@
 
 ## Java
 
-To use this module at least JDK 11 is needed. You need the JDK, not just the JRE, and its `bin` directory must be available through `PATH` before running the custom Godot editor. `JAVA_HOME` is also supported as a fallback.
+To use this module at least JDK 17 is needed. You need the JDK, not just the JRE, and its `bin` directory must be available through `PATH` before running the custom Godot editor. `JAVA_HOME` is also supported as a fallback.
 
 ### Mac
 

@@ -1,4 +1,4 @@
-site_name: Godot Kotlin/JVM
+site_name: Godot-JVM
 docs_dir: src/doc
 
 repo_name: 'utopia-rise/godot-kotlin-jvm'
@@ -89,7 +89,6 @@ nav:
     - General: contribution/general.md
     - Guidelines: contribution/guidelines.md
     - Setup: contribution/setup.md
-    - Build with C# support: contribution/build-with-csharp-support.md
     - Support for other JVM-based languages: contribution/support-for-other-jvm-based-languages.md
     - Test changes from branch: contribution/test-change-from-branch.md
     - Knowledge base:

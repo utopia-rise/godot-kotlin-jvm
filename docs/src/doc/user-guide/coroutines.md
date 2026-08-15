@@ -1,7 +1,7 @@
 ## Using coroutines in Godot
 
 !!! info
-    Coroutines support in Godot Kotlin/JVM is currently Kotlin-only. Java and Scala can interoperate with Kotlin wrappers, but the coroutine helpers documented here are designed for Kotlin.
+    Coroutines support in Godot-JVM is currently Kotlin-only. Java and Scala can interoperate with Kotlin wrappers, but the coroutine helpers documented here are designed for Kotlin.
 
 Coroutines are an opt-in feature that require an additional import in Kotlin. 
 We follow the same logic and keep them separated from the main library. 
