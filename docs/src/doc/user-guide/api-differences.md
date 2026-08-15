@@ -1,6 +1,6 @@
 # Registration files and attaching scripts
 
-Godot Kotlin/JVM uses source files for classes declared in the current Godot project and registration files for classes contributed by external dependencies.
+Godot-JVM uses source files for classes declared in the current Godot project and registration files for classes contributed by external dependencies.
 
 - Project classes are attached through their `.kt`, `.java`, or `.scala` source file.
 - Dependency classes have no source file inside the Godot project. The Gradle plugin generates a `.gdj` registration file for each usable registered dependency class so it can be attached in the editor.
@@ -237,7 +237,7 @@ dictionary.set("foo", dictionaryValue)
 
 ## Enums and constants
 
-Godot enums are mapped to Kotlin enums, the generated enum exposes a `value` property that represents the value in Godot. Constants in Godot classes that represent an enum value (such as `Node.PAUSE_MODE_INHERIT`) are not present in this module, please use the generated enum instead (`Node.PauseMode.INHERIT`).
+Godot enums are mapped to Kotlin enums, and the generated enum exposes a `value` property that represents the value in Godot. Constants in Godot classes that represent an enum value (such as `Node.PAUSE_MODE_INHERIT`) are not present in this binding; use the generated enum instead (`Node.PauseMode.INHERIT`).
 
 ## Renamed symbols
 

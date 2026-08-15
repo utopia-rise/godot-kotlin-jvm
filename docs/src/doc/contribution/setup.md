@@ -1,116 +1,58 @@
-To build our module, you need the same dependencies as the ones described in the
-[official Godot documentation](https://docs.godotengine.org/en/stable/development/compiling/index.html).
-Before building the engine, we invite you to read this document until the end.
+To build the Godot-JVM GDExtension, install the standard native build dependencies for your platform: SCons, Python, a C++ compiler, and a JDK. You do not need a Godot source checkout to build or test the extension.
 
-Make sure that Java is installed and its `PATH` set in your system as well (**at least Java 11 is needed**).
+Make sure Java is installed and that `JAVA_HOME` is set (**JDK 17 or newer is required for project development**).
 
 !!! note
-    To check if Java is installed on your platform, open a terminal and type the following command:
+    To check whether `JAVA_HOME` is set, open a terminal and run:
+
     ```bash
     echo $JAVA_HOME
     ```
-    If the command outputs a directory path, then Java is installed on your system. Otherwise, we strongly suggest you
-    to install the JDK using [winget](https://learn.microsoft.com/en-us/windows/package-manager/winget/), [chocolatey](https://chocolatey.org/), [SDKMAN!](https://sdkman.io/), or another package manager on windows, [homebrew](https://brew.sh/) on macos or your distributions package manager on linux.
 
 !!! warning
-    The microsoft jdk is known for causing issues on windows while building code for our IDE plugin. The issue is the same as described in [this issue](https://github.com/microsoft/openjdk/issues/339).    
-    Either use a different jvm vendor like [Adoptium temurin](https://adoptium.net/temurin/releases/) or create the folder `Packages` manually in the `JAVA_HOME` folder: `'C:\Program Files\Microsoft\jdk-21.0.6.7-hotspot\Packages` in order to build our module.
+    The Microsoft JDK is known to cause issues when building the IDE plugin on Windows. Use [Adoptium Temurin](https://adoptium.net/temurin/releases/) or create the `Packages` directory in `JAVA_HOME`, for example `C:\Program Files\Microsoft\jdk-21.0.6.7-hotspot\Packages`.
 
-Once you have all the necessary dependencies, proceed to do the following:
+## Build the native library
 
-1. Clone Godot's repository with the stable tag you want to develop for. Notice that the branch tag must be
-aligned to the current binding's version (e.g., current version `0.17.0-4.7.1`, we need Godot at `4.7.1`).
+1. Clone the repository and its `godot-cpp` submodule:
 
-```bash
-git clone git@github.com:godotengine/godot.git --branch 4.7.1-stable --recursive
-```
+    ```bash
+    git clone --recurse-submodules git@github.com:utopia-rise/godot-kotlin-jvm.git
+    cd godot-kotlin-jvm
+    ```
 
-2. In the `godot` directory, run the following command:
-```bash
-git submodule add git@github.com:utopia-rise/godot-kotlin-jvm.git modules/kotlin_jvm
-```
+2. Build the native library for the editor. This writes it to the harness addon's `libs` directory by default:
 
-3. Once the [git submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules) is added, change your directory to `godot`, and build the engine with our module:
-```bash
-scons platform=linuxbsd # your target platform (windows, macos, ...)
-```
+    ```bash
+    scons platform=linux target=editor
+    ```
 
-4. Build the sample following these steps:
-    1. Navigate to `<module-root>/harness/tests`
-    2. Create an embedded Java Virtual Machine:
-        - For `amd64` systems:
-          - `jlink --add-modules java.base,java.logging --output jvm/jre-amd64-<platform ex. linux>`
-        - For `arm64` (macOS with **Apple Silicon** chips) systems:
-          - `jlink --add-modules java.base,java.logging --output jvm/jre-arm64-<platform ex. macos>`
-        - If you want to remote debug add module `jdk.jdwp.agent` to command.
-        - If you want to enable `jmx`, add `jdk.management.agent` to command.
-    3. Then build the project using the Gradle wrapper.
-        - Windows: `gradlew build`
-        - Unix: `./gradlew build`
+    Replace `linux` with your target platform. Use `target=template_release` to build the release library used by exported projects.
 
-5. To run the engine, run `godot.linuxbsd.editor.x86_64` (or the equivalent of your platform) located in the `bin` folder of `godot`.
+3. Build the Kotlin artifacts:
 
-6. To debug your JVM code, you should start Godot with command line `--jvm-debug-port=XXXX`, where `XXXX`
-stands for the JMX port of you choice.
-You can then set up [remote debug configuration in Intellij IDEA](https://www.jetbrains.com/help/idea/tutorial-remote-debug.html).
+    ```bash
+    cd kt
+    ./gradlew build
+    ```
 
+## Run the harness project
 
-## Publishing locally
+The harness is an ordinary Godot project. Its addon is located at `harness/tests/addons/jvm` and its `jvm.gdextension` manifest loads the library built in the previous section.
 
-To publish our artifacts locally, you'll need to run the following command:
-```bash
-./gradlew publishArtifactsToMavenLocal
-```
+1. Download the official Godot editor version supported by the branch and place it in `harness/tests/bin`.
+2. Create an embedded JRE for the host platform:
 
-Check in you maven local repository what is the version you've just published, doing the following:
+    ```bash
+    cd harness/tests
+    jlink --add-modules java.base,java.logging --output jvm/jre-amd64-linux
+    ```
 
-```bash
-ls ~/.m2/repository/com/utopia-rise/godot-gradle-plugin
-```
+3. Build and run the tests:
 
-The version should look something like this: `0.17.0-4.7.1-c8df371-SNAPSHOT`.
+    ```bash
+    ./gradlew build
+    ./gradlew runGDTests
+    ```
 
-Your test project should use `mavenLocal()` in its Gradle repositories and use the exact snapshot version you published from your local `~/.m2/repository/com/utopia-rise/godot-gradle-plugin/` folder.
-
-Use the following minimal `settings.gradle.kts` setup:
-
-```kotlin
-pluginManagement {
-    repositories {
-        mavenLocal()
-        mavenCentral()
-        gradlePluginPortal()
-        google()
-    }
-}
-
-rootProject.name = "your-project-name"
-```
-
-!!! warning
-    If you republish local changes under the same snapshot version, Gradle may reuse cached plugin artifacts. Rerun the consuming project with `--refresh-dependencies` (for example `./gradlew --refresh-dependencies build`) to force it to pick up the republished local artifacts.
-
-## Important notes
-
-When you build a sample, it generates a `godot-bootstrap.jar` in `build/libs`.
-This JAR is needed by the engine to function correctly. You need to copy this jar to `<godot-root>/bin`.
-If you want to automate that, consider using the following Gradle task in the samples `build.gradle.kts` - but, please,
-**don't commit it**!
-
-```kt
-afterEvaluate {
-    tasks {
-        val bootstrapJar = getByName("bootstrapJar")
-        val copyBootstrapJar by creating(Copy::class.java) {
-            group = "godot-jvm"
-            from(bootstrapJar)
-            destinationDir = File("${projectDir.absolutePath}/../../../../bin/")
-            dependsOn(bootstrapJar)
-            println(File("${projectDir.absolutePath}/../../../../bin/").absolutePath)
-        }
-        build.get().dependsOn(copyBootstrapJar)
-    }
-}
-```
-
-If you build the libs from `<module-root>/kt` then this copy task is already present and executed automatically for you.
+Use the official Godot editor to open the harness project when testing in the editor.

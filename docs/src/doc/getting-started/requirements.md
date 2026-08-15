@@ -6,7 +6,7 @@
 
 ## Java
 
-To use this module at least JDK 11 is needed, note you will need the JDK not just the JRE, and the environment variable `JAVA_HOME` to be present before being able to run the custom godot editor.
+To use Godot-JVM, at least JDK 17 is needed. You need the JDK, not only the JRE, and the `JAVA_HOME` environment variable must be set before running the project.
 
 ### Mac
 
@@ -36,8 +36,8 @@ We also recommend installing our [IntelliJ IDEA plugin](https://plugins.jetbrain
 
 ## Godot Editor
 
-You need our custom engine build from the latest [GitHub releases](https://github.com/utopia-rise/godot-kotlin-jvm/releases) to be able to use this project. If you need other modules you can also [build it yourself](../contribution/setup.md).
+Download the official Godot editor version supported by your Godot-JVM release from the [Godot download page](https://godotengine.org/download/). Download the addon archive from the [GitHub releases](https://github.com/utopia-rise/godot-kotlin-jvm/releases) page and extract it into the root of your project. Confirm that the addon manifest is at `addons/jvm/jvm.gdextension` before opening the project.
 
 ## Exporting
 
-You need our custom export templates for your exported games to work with the JVM. Have a look at the [Exporting](../user-guide/exporting.md) documentation.
+Use the official Godot export templates that match your editor. The addon manifest selects the native JVM library for each export target. See [Exporting](../user-guide/exporting.md) for JVM-specific export requirements.

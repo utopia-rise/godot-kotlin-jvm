@@ -447,7 +447,7 @@ The Gradle plugin compiles the generated registrar code and packages it with
 the user project artifacts. At runtime:
 
 1. the JVM bootstrap discovers the generated registrars
-2. each registrar describes its class to the Godot JVM bridge
+2. each registrar describes its class to the Godot-JVM bridge
 3. Godot creates script instances through the registered constructor
 4. generated bindings route property, signal, function, RPC, and notification
    operations between Godot and the JVM
@@ -503,7 +503,7 @@ godot {
 ```
 
 The IntelliJ plugin stores its inspection mode as project editor state. Set it
-under **Settings | Godot Kotlin/JVM | Annotation processing mode**.
+under **Settings | Godot-JVM | Annotation processing mode**.
 
 These settings currently have separate owners. Keep them on the same value:
 

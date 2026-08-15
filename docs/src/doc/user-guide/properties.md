@@ -94,7 +94,7 @@ A default value can **only** contain compile time constants and only references 
 
 ## Type hint registration
 
-This module provides a plethora of annotations for defining property type hints.
+This binding provides a plethora of annotations for defining property type hints.
 These annotations controls how Godot display the property in the inspector.
 Each property hint annotation can only be added to certain types of properties.
 Using the wrong annotation will make the compilation fail. These will only take effect if the property is exported.

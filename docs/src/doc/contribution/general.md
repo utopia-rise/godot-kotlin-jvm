@@ -1,12 +1,12 @@
 We encourage you to contribute to the project if you want. Even if you don't have any idea how
-the module works or if it seems overwhelming at first, we're here to help you getting started.
+the project works or if it seems overwhelming at first, we're here to help you getting started.
 
 ## Keywords
 
 The following keywords are used throughout the contribution documentation:
 
 - `godot-root`: root dir in which the godot engine is cloned into
-- `module-dir`: root dir of our module
+- `project-dir`: repository root
 
 ## Discussions
 

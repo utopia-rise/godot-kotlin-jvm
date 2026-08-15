@@ -1,5 +1,5 @@
-# Godot Kotlin/JVM
-## Kotlin/JVM binding for the Godot Game Engine
+# Godot-JVM
+## JVM binding for the Godot Game Engine
 
 <p align="center">
 <img src=".README/logo.png" width="30%" height="30%">
@@ -11,11 +11,10 @@
 
 ## Overview
 
-This is a [**Kotlin**](https://kotlinlang.org) language binding for the [**Godot**](https://godotengine.org/) game engine.
-It is built as a module (like the C# binding) to interact with **Godot**'s core internally.
+This is a JVM language binding for the [**Godot**](https://godotengine.org/) game engine. It supports [**Kotlin**](https://kotlinlang.org), Java, and Scala.
+It is distributed as a GDExtension addon. Install the addon in a Godot project to use these languages with the official Godot editor and export templates.
 
-The binding provides you Godot API's as [Kotlin classes](https://godot-kotl.in/en/stable/getting-started/your-first-class/),
-so you can write your game logic completely in Kotlin.
+The binding provides Godot APIs for Kotlin, Java, and Scala, so you can write your game logic in the JVM language that fits your project.
 
 You can find project examples in those repositories:
 
@@ -37,7 +36,7 @@ or for [C#](https://docs.godotengine.org/en/3.1/getting_started/scripting/c_shar
 
 This version of the binding is currently in **Beta**! While you can fully use the binding, please note that there might still be breaking API changes. We welcome any suggestions you have for improving the project and its API.
 
-To be able to use this binding, you need to download our custom editor build and export templates from the [GitHub releases page](https://github.com/utopia-rise/godot-kotlin-jvm/releases)! The official godot binaries will NOT work!
+Download the addon archive from the [GitHub releases page](https://github.com/utopia-rise/godot-kotlin-jvm/releases) and extract it into your project's root directory. The resulting layout must contain `addons/jvm/jvm.gdextension`. Open the project with the official Godot editor version supported by the release.
 
 ## Documentation
 
