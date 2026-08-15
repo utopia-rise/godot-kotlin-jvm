@@ -3,7 +3,7 @@
 #include "bridges_utils.h"
 #include "constraints.h"
 #include "core/variant_allocator.h"
-#include "engine/utilities.h"
+#include "engine/godot_object.h"
 #include "jvm/wrapper/kotlin_callable_custom.h"
 #include "jvm/wrapper/memory/transfer_context.h"
 
@@ -22,7 +22,7 @@ uintptr_t CallableBridge::engine_call_constructor_object_string_name(JNIEnv* p_r
     // Callable(Object*, StringName) does — without materializing the wrapper it would only read `_owner` off.
     auto* obj {reinterpret_cast<godot::GodotObject*>(object_ptr)};
     auto* name {reinterpret_cast<godot::StringName*>(method_name_ptr)};
-    return reinterpret_cast<uintptr_t>(VariantAllocator::alloc(make_callable(obj, *name)));
+    return reinterpret_cast<uintptr_t>(VariantAllocator::alloc(godot::RawObject(obj).to_callable(*name)));
 }
 
 uintptr_t CallableBridge::engine_call_constructor_lambda_callable(

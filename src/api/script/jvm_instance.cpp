@@ -1,5 +1,7 @@
 #include "jvm_instance.h"
 
+#include "engine/godot_object.h"
+
 #include "jvm/wrapper/memory/memory_manager.h"
 
 using namespace godot;
@@ -50,7 +52,7 @@ GDExtensionBool JvmInstance::get(GDExtensionScriptInstanceDataPtr p_instance, GD
 
     KtSignalInfo* kt_signal {kt_class->get_signal(parameter_name)};
     if (kt_signal) {
-        r_return = make_signal(owner, parameter_name);
+        r_return = RawObject(owner).to_signal(parameter_name);
         return true;
     }
 
@@ -292,7 +294,7 @@ void JvmInstance::refcount_incremented(GDExtensionScriptInstanceDataPtr p_instan
     KtObject* kt_object = instance_data->kt_object;
 
     // This function should only ever be called for a RefCounted, so the count can be read straight off the raw pointer.
-    int refcount = raw_ref_counted::get_reference_count(instance_data->owner);
+    int refcount = RawObject(instance_data->owner).get_reference_count();
 
     if (refcount > 1 && kt_object->is_ref_weak()) {
         // The JVM holds a reference to that object already, if the counter is greater than 1, it means the native side holds a reference as well. The reference is changed to a strong one so the JVM instance is not collected if it is not referenced...
@@ -304,7 +306,7 @@ GDExtensionBool JvmInstance::refcount_decremented(GDExtensionScriptInstanceDataP
     auto* instance_data = reinterpret_cast<JvmInstanceData*>(p_instance);
 
     // This function should only ever be called for a RefCounted, so the count can be read straight off the raw pointer.
-    int refcount = raw_ref_counted::get_reference_count(instance_data->owner);
+    int refcount = RawObject(instance_data->owner).get_reference_count();
 
     if (refcount == 1) {
         // The JVM holds a reference to that object already, if the counter is equal to 1, it means the JVM is the only side with a reference to the object. The reference is changed to a weak one so the JVM instance can be collected if it is not re...
@@ -364,7 +366,7 @@ void JvmInstance::promote_reference(JvmInstance::JvmInstanceData* instance_data)
 }
 
 void JvmInstance::demote_reference(JvmInstance::JvmInstanceData* instance_data) {
-    int refcount = raw_ref_counted::get_reference_count(instance_data->owner);
+    int refcount = RawObject(instance_data->owner).get_reference_count();
 
     KtObject* kt_object = instance_data->kt_object;
 
@@ -385,9 +387,9 @@ JvmInstance::JvmInstanceData* JvmInstance::create_instance_data(jni::Env& p_env,
     instance_data->to_demote_flag.set_to(false);
     instance_data->delete_flag = true;
 
-    if (!is_ref_counted(p_owner)) { return instance_data; }
+    if (!RawObject(p_owner).is_ref_counted()) { return instance_data; }
 
-    int refcount = raw_ref_counted::get_reference_count(p_owner);
+    int refcount = RawObject(p_owner).get_reference_count();
 
     if (refcount == 1 && !p_kt_object->is_ref_weak()) {
         // The JVM holds a reference to that object already, if the counter is equal to 1, it means the JVM is the only side with a reference to the object. The reference is changed to a weak one so the JVM instance can be collected if it is not re...

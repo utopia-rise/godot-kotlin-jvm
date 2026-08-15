@@ -4,6 +4,8 @@
 #define GODOT_JVM_JVM_PLACEHOLDER_INSTANCE_H
 
 #include <classes/script.hpp>
+
+#include "engine/godot_object.h"
 #include <classes/script_language.hpp>
 #include <core/property_info.hpp>
 #include <gdextension_interface.h>
@@ -14,7 +16,7 @@ namespace godot {
     class JvmPlaceHolderInstance {
     public:
         struct JvmPlaceHolderInstanceData {
-            Object *owner = nullptr;
+            RawObject owner;
             List<PropertyInfo> properties;
             HashMap<StringName, Variant> values;
             HashMap<StringName, Variant> constants;

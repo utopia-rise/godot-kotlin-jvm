@@ -36,7 +36,7 @@ namespace godot {
         bool _inherits_script(const Ref<Script>& p_script) const override;
         Ref<Script> _get_base_script() const override;
         StringName _get_instance_base_type() const override;
-        void* _instance_create(Object* p_this) const override;
+        void* _instance_create(GodotObject* p_for_object) const override;
         bool _has_source_code() const override;
         String _get_source_code() const override;
         void _set_source_code(const String& p_code) override;
@@ -86,7 +86,7 @@ namespace godot {
 
     public:
         bool _editor_can_reload_from_file() override;
-        void* _placeholder_instance_create(Object* p_this) const override;
+        void* _placeholder_instance_create(GodotObject* p_for_object) const override;
         uint64_t get_last_source_modified_time() const;
         void set_last_source_modified_time(uint64_t p_time);
         void update_source_sync_warning();
