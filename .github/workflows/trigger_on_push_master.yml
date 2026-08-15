@@ -1,10 +1,7 @@
 name: Master pipeline
 on:
-  push:
-    branches:
-      - master
   schedule:
-      - cron: '0 0 * * 1' # run once a week on monday midnight to prevent the cache from being cleared
+      - cron: '0 6 * * *' # run every day at 6am to prevent the cache from being cleared
 
 concurrency:
   group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-trigger_on_push_master
