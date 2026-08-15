@@ -123,7 +123,7 @@ The above command(s) will create three empty files. As next step, type the follo
 command on the terminal:
 
 ```shell
-gradle wrapper --gradle-version=8.1
+gradle wrapper --gradle-version=9.0.0
 ```
 
 After running the above command, the user should have the wrapper setup ready to be used.
