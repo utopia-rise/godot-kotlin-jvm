@@ -85,9 +85,12 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject, jlong j_method_ptr) {
 
     SharedBuffer* buffer {get_instance().get_and_rewind_buffer(env)};
 
-    // The receiver pointer (and, in debug builds, its ObjectID) is written directly into the buffer by Kotlin's TransferContext.writeMethodArguments() before this call — matching master exactly — not passed as a separate native argument.
+    // The receiver pointer and ObjectID are written directly into the buffer by Kotlin's
+    // TransferContext.writeMethodArguments() before this call.
     uintptr_t receiver_ptr {static_cast<uintptr_t>(decode_uint64(buffer->get_cursor()))};
-    // Master's debug-mode freed-instance check (comparing against ObjectDB::get_instance(receiver_id)) has no godot-cpp equivalent — ObjectDB is engine-internal and unavailable to GDExtensions. Documented open follow-up in GDEXTENSION_DIVERGEN...
+#ifdef DEBUG_ENABLED
+    uint64_t receiver_id {decode_uint64(buffer->get_cursor() + PTR_SIZE)};
+#endif
     buffer->increment_position(PTR_SIZE + PTR_SIZE);
     // receiver_ptr is the raw engine pointer the JVM was given. Unlike master (where MethodBind is the engine's real class and ->call(Object*, ...) is a genuine C++ virtual call), a GDExtensionMethodBindPtr is an opaque engine handle with no C...
     GDExtensionObjectPtr ptr {reinterpret_cast<GDExtensionObjectPtr>(receiver_ptr)};
@@ -95,6 +98,18 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject, jlong j_method_ptr) {
     uint32_t args_size {read_args_size(buffer)};
 
     GDExtensionMethodBindPtr method_bind {reinterpret_cast<GDExtensionMethodBindPtr>(static_cast<uintptr_t>(j_method_ptr))};
+
+#ifdef DEBUG_ENABLED
+    if (unlikely(ptr != godot::internal::gdextension_interface_object_get_instance_from_id(static_cast<GDObjectInstanceID>(receiver_id)))) {
+        buffer->rewind();
+        godot::Variant return_value;
+        VariantToBuffer::write_variant(return_value, buffer);
+        constexpr const char* message = "Cannot call a method on a previously freed instance.";
+        JVM_ERR_PRINT("%s", message);
+        env.throw_new(message);
+        return;
+    }
+#endif
 
     // A GDExtensionMethodBindPtr is an opaque engine handle with no exposed name/class accessors, unlike master's real MethodBind — the assert message can no longer name the offending method.
     JVM_DEV_ASSERT(
