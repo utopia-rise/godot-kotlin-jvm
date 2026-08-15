@@ -3,7 +3,7 @@
 #include "jvm_placeholder_instance.h"
 
 #include "engine/internal.h"
-#include "engine/utilities.h"
+#include "engine/godot_object.h"
 #include "jvm_script_manager.h"
 
 using namespace godot;
@@ -124,7 +124,7 @@ GDExtensionBool JvmPlaceHolderInstance::property_get_revert(GDExtensionScriptIns
 
 GDExtensionObjectPtr JvmPlaceHolderInstance::get_owner(GDExtensionScriptInstanceDataPtr p_instance) {
     // The engine expects the raw object pointer here, not our godot-cpp wrapper.
-    return reinterpret_cast<JvmPlaceHolderInstanceData*>(p_instance)->owner->_owner;
+    return reinterpret_cast<JvmPlaceHolderInstanceData*>(p_instance)->owner;
 }
 
 //TODO: Remove when https://github.com/godotengine/godot/pull/105896 is released
@@ -408,9 +408,9 @@ void JvmPlaceHolderInstance::update(
         to_remove.pop_front();
     }
 
-    Object* owner = p_instance_data->owner;
-    if (owner && internal::gdextension_interface_object_get_script_instance(owner->_owner, p_instance_data->language->_owner) == p_instance_data) {
-        owner->notify_property_list_changed();
+    RawObject owner {p_instance_data->owner};
+    if (owner && internal::gdextension_interface_object_get_script_instance(owner, p_instance_data->language->_owner) == p_instance_data) {
+        owner.notify_property_list_changed();
     }
     //change notify
 

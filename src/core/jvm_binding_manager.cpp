@@ -1,6 +1,6 @@
 #include "jvm_binding_manager.h"
 
-#include "engine/utilities.h"
+#include "engine/godot_object.h"
 #include "godot_jvm.h"
 #include "jvm/wrapper/memory/memory_manager.h"
 
@@ -37,12 +37,12 @@ void JvmBindingManager::_instance_binding_free_callback(void* p_token, void* p_i
 JvmBinding* JvmBindingManager::set_instance_binding(GodotObject* p_object) {
     // Godot being weird. Call this function only if the JVM is the creator of the object, otherwise it will crash in case the object has any other bindings.
 
-    bool is_rc = is_ref_counted(p_object);
+    bool is_rc = RawObject(p_object).is_ref_counted();
     if (is_rc) {
-        // p_object was just constructed via InstanceCreator, so its refcount is genuinely 0 here — init_ref() (not reference()) is required: reference() refuses to increment a true-zero, never-initialized count (it's meant for objects that already...
-        // Must be dropped if InstanceCreator ever moves to classdb_construct_object3, which returns RefCounted
-        // instances already at refcount 1 — see the note there.
-        raw_ref_counted::init_ref(p_object);
+        // p_object was just constructed via RawObject::instantiate(), so its refcount is genuinely 0 here — init_ref() (not reference()) is required: reference() refuses to increment a true-zero, never-initialized count (it's meant for objects that already...
+        // Must be dropped if RawObject::instantiate() ever moves to classdb_construct_object3, which returns
+        // RefCounted instances already at refcount 1 — see the note there.
+        RawObject(p_object).init_ref();
     }
 
     // Attach via the growable get_instance_binding mechanism, not the engine's raw one-shot object_set_instance_binding: that one asserts if binding slot 0 is already occupied, which it always is once godot-cpp's own wrapper binding exists for...
@@ -59,8 +59,8 @@ JvmBinding* JvmBindingManager::get_instance_binding(GodotObject* p_object) {
     JvmBinding* binding =
       reinterpret_cast<JvmBinding*>(internal::gdextension_interface_object_get_instance_binding(p_object, &GodotJvm::get_instance(), &_instance_binding_callbacks));
 
-    if (is_ref_counted(p_object) && !binding->test_and_set_incremented()) {
-        raw_ref_counted::reference(p_object);
+    if (RawObject(p_object).is_ref_counted() && !binding->test_and_set_incremented()) {
+        RawObject(p_object).reference();
     }
     return binding;
 }
