@@ -43,7 +43,7 @@ jobs:
         uses: gradle/actions/setup-gradle@v6
         with:
           cache-provider: basic
-          cache-read-only: ${{ github.ref != 'refs/heads/master' }}
+          cache-read-only: false
 
       - name: Download linux editor library
         uses: actions/download-artifact@v7
