@@ -17,8 +17,8 @@ Make sure Java is installed and that `JAVA_HOME` is set (**JDK 17 or newer is re
 1. Clone the repository and its `godot-cpp` submodule:
 
     ```bash
-    git clone --recurse-submodules git@github.com:utopia-rise/godot-kotlin-jvm.git
-    cd godot-kotlin-jvm
+    git clone --recurse-submodules git@github.com:utopia-rise/godot-jvm.git
+    cd godot-jvm
     ```
 
 2. Build the native library for the editor. This writes it to the harness addon's `libs` directory by default:

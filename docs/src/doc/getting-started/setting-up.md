@@ -46,7 +46,7 @@ is running, open the `Settings` and select the `Plugins` entry. From this view, 
 
 Type `Godot-JVM` into the search bar, and our plugin will be shown as follows.
 
-![Godot-JVM plugin](../assets/img/idea-plugin/plugin-godot-kotlin.png)
+![Godot-JVM plugin](../assets/img/idea-plugin/plugin-godot-jvm.png)
 
 Click the `Install` button and wait for the IDE to download the plugin. Once the downloading
 process is complete, press the `OK` button on the bottom-right. The IDE will prompt a new
@@ -134,7 +134,7 @@ and paste the following content:
 ```kotlin
 plugins {
     kotlin("jvm") version "$kotlinVersion"
-    id("com.utopia-rise.godot-kotlin-jvm") version "$godotKotlinVersion"
+    id("com.utopia-rise.godot-jvm") version "$godotJvmVersion"
 }
 
 repositories {
@@ -144,7 +144,7 @@ repositories {
 ///
 
 !!! note 
-    Please replace `$kotlinVersion` and `$godotkotlinVersion` to the appropriate version you want to use.
+    Please replace `$kotlinVersion` and `$godotJvmVersion` with the versions you want to use.
 
 The snippet above uses our Gradle plugin. Without the plugin, the user has to manually define all needed
 dependencies, manually register the classes, signals, properties, functions and manually create and copy

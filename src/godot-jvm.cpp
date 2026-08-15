@@ -45,7 +45,7 @@ bool GodotJvm::load_dynamic_lib() {
 #ifdef MACOS_ENABLED
                 JVM_WARN_FAIL_V_MSG(
                   false,
-                  "Godot Kotlin/JVM module couldn't be fully initialized. Cause: %s. Possible solution: %s",
+                  "Godot-JVM module couldn't be fully initialized. Cause: %s. Possible solution: %s",
                   "The environment variable JAVA_HOME is not found and there is no embedded JRE.",
                   "Make sure the JAVA_HOME environment variable is set or add an embedded JRE to your project using "
                   "jlink.\n"
@@ -55,7 +55,7 @@ bool GodotJvm::load_dynamic_lib() {
 #else
                 JVM_WARN_FAIL_V_MSG(
                   false,
-                  "Godot Kotlin/JVM module couldn't be fully initialized. Cause: %s. Possible solution: %s",
+                  "Godot-JVM module couldn't be fully initialized. Cause: %s. Possible solution: %s",
                   "The environment variable JAVA_HOME is not found and there is no embedded JRE.",
                   "Make sure the JAVA_HOME environment variable is set or add an embedded JRE to your project using "
                   "jlink."
@@ -75,7 +75,7 @@ bool GodotJvm::load_dynamic_lib() {
             } else {
                 JVM_WARN_FAIL_V_MSG(
                   false,
-                  "Godot Kotlin/JVM module couldn't be fully initialized. Cause: %s. Possible solution: %s",
+                  "Godot-JVM module couldn't be fully initialized. Cause: %s. Possible solution: %s",
                   "Couldn't open Graal Native Image.",
                   "Make sure you have built your JVM project with Graal native image enabled in your gradle build."
                 );
@@ -89,7 +89,7 @@ bool GodotJvm::load_dynamic_lib() {
     if (godot_jvm_native::open_dynamic_library(path_to_jvm_lib, jvm_dynamic_library_handle) != OK) {
         JVM_WARN_FAIL_V_MSG(
           false,
-          "Godot Kotlin/JVM module couldn't be fully initialized. Cause: %s. Possible solution: %s",
+          "Godot-JVM module couldn't be fully initialized. Cause: %s. Possible solution: %s",
           "Failed to load the jvm dynamic library from path: " + path_to_jvm_lib,
           "Make sure you use a valid JVM 11+ with proper read access."
         );
@@ -262,7 +262,7 @@ bool GodotJvm::load_bootstrap() {
             }
             JVM_WARN_FAIL_V_MSG(
               false,
-              "Godot Kotlin/JVM module couldn't be fully initialized. Cause: %s. Possible solution: %s",
+              "Godot-JVM module couldn't be fully initialized. Cause: %s. Possible solution: %s",
               "No godot-bootstrap.jar found!",
               hint_text
             );
@@ -278,18 +278,18 @@ bool GodotJvm::load_bootstrap() {
     if (Bootstrap::initialize(env, bootstrap_class_loader)) {
         bootstrap = Bootstrap::create_instance(env, bootstrap_class_loader);
         String version = bootstrap->get_version(env);
-        if (version != String(GODOT_KOTLIN_VERSION)) {
+        if (version != String(GODOT_JVM_VERSION)) {
             JVM_ERR_FAIL_V_MSG(
               false,
-              "Godot Kotlin/JVM module couldn't be fully initialized. Cause: %s. Possible solution: %s",
-              vformat("Version mismatch! C++ module is : %s / Jar is : %s.", GODOT_KOTLIN_VERSION, version),
+              "Godot-JVM module couldn't be fully initialized. Cause: %s. Possible solution: %s",
+              vformat("Version mismatch! C++ module is : %s / Jar is : %s.", GODOT_JVM_VERSION, version),
               "Check if your build.gradle file use the same version as the editor."
             );
         }
     } else {
         JVM_WARN_FAIL_V_MSG(
           false,
-          "Godot Kotlin/JVM module couldn't be fully initialized. Cause: %s. Possible solution: %s",
+          "Godot-JVM module couldn't be fully initialized. Cause: %s. Possible solution: %s",
           "The boostrap.jar is invalid and can't be loaded.",
           "Check if your build.gradle file use the same version as the editor."
         );
@@ -305,7 +305,7 @@ bool GodotJvm::initialize_core_library() {
     if (!JvmManager::initialize_jvm_wrappers(env, bootstrap_class_loader)) {
         JVM_WARN_FAIL_V_MSG(
           false,
-          "Godot Kotlin/JVM module couldn't be fully initialized. Cause: %s. Possible solution: %s",
+          "Godot-JVM module couldn't be fully initialized. Cause: %s. Possible solution: %s",
           "The boostrap.jar is invalid and can't be loaded.",
           "Check if your build.gradle file use the same version as the editor."
         );

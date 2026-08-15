@@ -2,10 +2,8 @@ name: Deploy release
 on:
   push:
     tags:
-      - '\d+.\d+.\d+-\d+.\d+-SNAPSHOT'
-      - '\d+.\d+.\d+-\d+.\d+.\d+-SNAPSHOT'
-      - '\d+.\d+.\d+-\d+.\d+'
-      - '\d+.\d+.\d+-\d+.\d+.\d+'
+      - '1.0.0'
+      - '1.0.0-dev*'
 
 concurrency:
   group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-trigger_on_tag
@@ -26,9 +24,9 @@ jobs:
       - run: |
           echo "Setup done"
     outputs: # defined here explicitly, so it only needs to be defined here. All other workflows can just reference it
-      godot-kotlin-jvm-version: "0.17.0-4.7.2"
+      godot-jvm-version: ${{ github.ref_name }}
       godot-version: "4.7.2-stable"
-      build-version: "0.17.0"
+      build-version: ${{ github.ref_name }}
       jvm-version: "17"
 
   build-jvm:
@@ -103,7 +101,7 @@ jobs:
       - build-jvm
       - build-macos
     with:
-      godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
+      godot-jvm-version: ${{ needs.setup-build-variables.outputs['godot-jvm-version'] }}
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       build-version: ${{ needs.setup-build-variables.outputs['build-version'] }}
 
@@ -115,7 +113,7 @@ jobs:
       - setup-build-variables
       - build-ios
     with:
-      godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
+      godot-jvm-version: ${{ needs.setup-build-variables.outputs['godot-jvm-version'] }}
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       build-version: ${{ needs.setup-build-variables.outputs['build-version'] }}
 
@@ -127,7 +125,7 @@ jobs:
       - build-jvm
       - build-linux
     with:
-      godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
+      godot-jvm-version: ${{ needs.setup-build-variables.outputs['godot-jvm-version'] }}
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       build-version: ${{ needs.setup-build-variables.outputs['build-version'] }}
 
@@ -139,7 +137,7 @@ jobs:
       - build-jvm
       - build-windows
     with:
-      godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
+      godot-jvm-version: ${{ needs.setup-build-variables.outputs['godot-jvm-version'] }}
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       build-version: ${{ needs.setup-build-variables.outputs['build-version'] }}
 
@@ -152,7 +150,7 @@ jobs:
       - assemble-macos
       - build-windows
     with:
-      godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
+      godot-jvm-version: ${{ needs.setup-build-variables.outputs['godot-jvm-version'] }}
 
   deploy-godot:
     name: 🚀 Deploy godot artifacts to Github
@@ -165,7 +163,7 @@ jobs:
       - assemble-windows
       - assemble-addon
     with:
-      godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
+      godot-jvm-version: ${{ needs.setup-build-variables.outputs['godot-jvm-version'] }}
     secrets: inherit # needed so that this sub workflow can also access github secrets for this workflow
 
   deploy-jvm:
@@ -176,13 +174,13 @@ jobs:
       - build-jvm
       - deploy-godot # we define an explicit dependency on the github upload in case something goes wrong there. Github release purging is easier than from maven central and the likes
     with:
-      godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
-      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
+      godot-jvm-version: ${{ needs.setup-build-variables.outputs['godot-jvm-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
     secrets: inherit # needed so that this sub workflow can also access github secrets for this workflow
 
   deploy-docs:
     name: 🚀 Deploy Docs
+    if: ${{ !contains(github.ref_name, '-dev') }}
     uses: ./.github/workflows/deploy_docs.yml
     needs: # only if all deployments are successful we want to deploy the docs
       - deploy-godot

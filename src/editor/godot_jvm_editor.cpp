@@ -160,7 +160,7 @@ void GodotJvmEditor::_notification(int notification) {
             about_pop_menu->hide();
             about_pop_menu->connect(SNAME("id_pressed"), callable_mp(this, &GodotJvmEditor::on_menu_option_pressed));
             about_pop_menu->add_item("Generate JVM project", GENERATE_PROJECT);
-            about_pop_menu->add_item("About Godot Kotlin JVM", ABOUT);
+            about_pop_menu->add_item("About Godot-JVM", ABOUT);
             add_tool_submenu_item("Kotlin/JVM", about_pop_menu);
 
             add_control_to_container(CustomControlContainer::CONTAINER_TOOLBAR, separator);

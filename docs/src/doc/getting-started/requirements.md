@@ -36,7 +36,7 @@ We also recommend installing our [IntelliJ IDEA plugin](https://plugins.jetbrain
 
 ## Godot Editor
 
-Download the official Godot editor version supported by your Godot-JVM release from the [Godot download page](https://godotengine.org/download/). Download the addon archive from the [GitHub releases](https://github.com/utopia-rise/godot-kotlin-jvm/releases) page and extract it into the root of your project. Confirm that the addon manifest is at `addons/jvm/jvm.gdextension` before opening the project.
+Download an official Godot editor version that meets your Godot-JVM release's minimum version from the [Godot download page](https://godotengine.org/download/). Download `godot-jvm_addon_<version>.zip` from the [GitHub releases](https://github.com/utopia-rise/godot-jvm/releases) page and extract it into the root of your project. Confirm that the addon manifest is at `addons/jvm/jvm.gdextension` before opening the project.
 
 ## Exporting
 

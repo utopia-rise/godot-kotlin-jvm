@@ -43,7 +43,7 @@ void ProjectGenerator::generate_jvm_files(bool erase_existing) {
             } else {
                 String file_content =
                   marshall->base64_to_utf8(file_contents[i])
-                    .replace(VERSION_TEMPLATE, GODOT_KOTLIN_VERSION)
+                    .replace(VERSION_TEMPLATE, GODOT_JVM_VERSION)
                     .replace(PROJECT_NAME_TEMPLATE, ProjectSettings::get_singleton()->get_setting("application/config/name"));
                 file->store_string(file_content);
             }

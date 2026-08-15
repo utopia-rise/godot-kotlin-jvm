@@ -91,9 +91,9 @@ jobs:
         run: |
           cd harness/tests/export
           hdiutil attach tests.dmg
-          cp -a /Volumes/Godot\ Kotlin\ Tests/Godot\ Kotlin\ Tests.app Godot\ Kotlin\ Tests.app
-          hdiutil detach /Volumes/Godot\ Kotlin\ Tests
-          cp -a ../jvm/jre-arm64-macos Godot\ Kotlin\ Tests.app/Contents/PlugIns/
+          cp -a /Volumes/Godot-JVM\ Tests/Godot-JVM\ Tests.app Godot-JVM\ Tests.app
+          hdiutil detach /Volumes/Godot-JVM\ Tests
+          cp -a ../jvm/jre-arm64-macos Godot-JVM\ Tests.app/Contents/PlugIns/
 
       - name: Run Tests
         run: |

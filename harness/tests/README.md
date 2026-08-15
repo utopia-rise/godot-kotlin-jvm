@@ -1,4 +1,4 @@
-# Unit tests for Godot Kotlin/JVM
+# Unit tests for Godot-JVM
 
 ## Setup instructions
 ### Gradle task

@@ -25,8 +25,11 @@ jobs:
           # Native gdextension source, the godot-cpp binding, and the Kotlin-side
           # runtime libraries + their shared "common"/"tools-common" builds. Tests
           # need this same set (native binary + kotlin libraries), so this gate
-          # doubles as the test-run gate below.
+          # doubles as the test-run gate below. CI workflow and action changes
+          # also need a real run so they cannot pass with every build skipped.
           paths: |
+            .github/actions
+            .github/workflows
             src
             godot-cpp
             SConstruct
@@ -82,9 +85,9 @@ jobs:
       - run: |
           echo "Setup done"
     outputs: # defined here explicitly, so it only needs to be defined here. All other workflows can just reference it
-      godot-kotlin-jvm-version: "0.17.0-4.7.2"
+      godot-jvm-version: "1.0.0"
       godot-version: "4.7.2-stable"
-      build-version: "0.17.0"
+      build-version: "1.0.0"
       jvm-version: "17"
 
   build-jvm:
@@ -169,7 +172,7 @@ jobs:
       - setup-build-variables
       - build-macos
     with:
-      godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
+      godot-jvm-version: ${{ needs.setup-build-variables.outputs['godot-jvm-version'] }}
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       build-version: ${{ needs.setup-build-variables.outputs['build-version'] }}
 
@@ -181,7 +184,7 @@ jobs:
       - setup-build-variables
       - build-ios
     with:
-      godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
+      godot-jvm-version: ${{ needs.setup-build-variables.outputs['godot-jvm-version'] }}
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       build-version: ${{ needs.setup-build-variables.outputs['build-version'] }}
 
@@ -192,7 +195,7 @@ jobs:
       - setup-build-variables
       - build-linux
     with:
-      godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
+      godot-jvm-version: ${{ needs.setup-build-variables.outputs['godot-jvm-version'] }}
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       build-version: ${{ needs.setup-build-variables.outputs['build-version'] }}
 
@@ -203,7 +206,7 @@ jobs:
       - setup-build-variables
       - build-windows
     with:
-      godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
+      godot-jvm-version: ${{ needs.setup-build-variables.outputs['godot-jvm-version'] }}
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       build-version: ${{ needs.setup-build-variables.outputs['build-version'] }}
 
@@ -216,7 +219,7 @@ jobs:
       - assemble-macos
       - build-windows
     with:
-      godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
+      godot-jvm-version: ${{ needs.setup-build-variables.outputs['godot-jvm-version'] }}
 
   test-linux:
     name: 🐧 Test Linux
