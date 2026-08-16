@@ -10,7 +10,7 @@ The following annotations are implemented based on https://github.com/godotengin
 /**
  * Can only be used on Int properties!
  */
-@Target(AnnotationTarget.FIELD, AnnotationTarget.ANNOTATION_CLASS)
+@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD, AnnotationTarget.ANNOTATION_CLASS)
 @Retention(AnnotationRetention.RUNTIME)
 @Export
 annotation class IntRange(
@@ -28,7 +28,7 @@ annotation class IntRange(
 /**
  * Can only be used on Long properties!
  */
-@Target(AnnotationTarget.FIELD, AnnotationTarget.ANNOTATION_CLASS)
+@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD, AnnotationTarget.ANNOTATION_CLASS)
 @Retention(AnnotationRetention.RUNTIME)
 @Export
 annotation class LongRange(
@@ -46,7 +46,7 @@ annotation class LongRange(
 /**
  * Can only be used on Float properties!
  */
-@Target(AnnotationTarget.FIELD, AnnotationTarget.ANNOTATION_CLASS)
+@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD, AnnotationTarget.ANNOTATION_CLASS)
 @Retention(AnnotationRetention.RUNTIME)
 @Export
 annotation class FloatRange(
@@ -64,7 +64,7 @@ annotation class FloatRange(
 /**
  * Can only be used on Double properties!
  */
-@Target(AnnotationTarget.FIELD, AnnotationTarget.ANNOTATION_CLASS)
+@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD, AnnotationTarget.ANNOTATION_CLASS)
 @Retention(AnnotationRetention.RUNTIME)
 @Export
 annotation class DoubleRange(
@@ -82,7 +82,7 @@ annotation class DoubleRange(
 /**
  * Can only be used on Float and Double properties!
  */
-@Target(AnnotationTarget.FIELD, AnnotationTarget.ANNOTATION_CLASS)
+@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD, AnnotationTarget.ANNOTATION_CLASS)
 @Retention(AnnotationRetention.RUNTIME)
 @Export
 annotation class ExpEasing(val attenuation: Boolean = false, val isPositiveOnly: Boolean = true)
@@ -99,7 +99,7 @@ annotation class ExpEasing(val attenuation: Boolean = false, val isPositiveOnly:
  *
  * Can only be used on Int properties!
  */
-@Target(AnnotationTarget.FIELD, AnnotationTarget.ANNOTATION_CLASS)
+@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD, AnnotationTarget.ANNOTATION_CLASS)
 @Retention(AnnotationRetention.RUNTIME)
 @Export
 annotation class IntFlag(vararg val names: String)
@@ -135,7 +135,7 @@ annotation class IntFlag(vararg val names: String)
 /**
  * Can only be used on String properties!
  */
-@Target(AnnotationTarget.FIELD, AnnotationTarget.ANNOTATION_CLASS)
+@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD, AnnotationTarget.ANNOTATION_CLASS)
 @Retention(AnnotationRetention.RUNTIME)
 @Export
 annotation class File(vararg val extensions: String = [], val global: Boolean = false)
@@ -143,7 +143,7 @@ annotation class File(vararg val extensions: String = [], val global: Boolean = 
 /**
  * Can only be used on String properties!
  */
-@Target(AnnotationTarget.FIELD, AnnotationTarget.ANNOTATION_CLASS)
+@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD, AnnotationTarget.ANNOTATION_CLASS)
 @Retention(AnnotationRetention.RUNTIME)
 @Export
 annotation class Dir(val global: Boolean = false)
@@ -151,7 +151,7 @@ annotation class Dir(val global: Boolean = false)
 /**
  * Can only be used on String properties!
  */
-@Target(AnnotationTarget.FIELD, AnnotationTarget.ANNOTATION_CLASS)
+@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD, AnnotationTarget.ANNOTATION_CLASS)
 @Retention(AnnotationRetention.RUNTIME)
 @Export
 annotation class MultilineText
@@ -159,7 +159,7 @@ annotation class MultilineText
 /**
  * Can only be used on String properties!
  */
-@Target(AnnotationTarget.FIELD, AnnotationTarget.ANNOTATION_CLASS)
+@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD, AnnotationTarget.ANNOTATION_CLASS)
 @Retention(AnnotationRetention.RUNTIME)
 @Export
 annotation class PlaceHolderText
@@ -167,7 +167,7 @@ annotation class PlaceHolderText
 /**
  * Can only be used on Color properties!
  */
-@Target(AnnotationTarget.FIELD, AnnotationTarget.ANNOTATION_CLASS)
+@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD, AnnotationTarget.ANNOTATION_CLASS)
 @Retention(AnnotationRetention.RUNTIME)
 @Export
 annotation class ColorNoAlpha
@@ -177,7 +177,7 @@ annotation class ColorNoAlpha
  *
  * The string must use the format expected by the property's Godot hint type.
  */
-@Target(AnnotationTarget.FIELD, AnnotationTarget.ANNOTATION_CLASS)
+@Target(AnnotationTarget.PROPERTY, AnnotationTarget.FIELD, AnnotationTarget.ANNOTATION_CLASS)
 @Retention(AnnotationRetention.RUNTIME)
 @Export
 annotation class HintString(val value: String)

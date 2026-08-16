@@ -102,7 +102,10 @@ class KotlinJvmLanguage : JvmLanguage() {
             addAll(it.annotationInfo)
             addAll(kotlinSyntheticPropertyAnnotations(it, index))
         }
-        getter?.let { addAll(it.annotationInfo) }
+        getter?.let {
+            addAll(it.annotationInfo)
+            addAll(kotlinSyntheticPropertyAnnotations(it, index))
+        }
         setter?.let { addAll(it.annotationInfo) }
     }.distinctBy(AnnotationInfo::toString)
 
@@ -123,6 +126,11 @@ class KotlinJvmLanguage : JvmLanguage() {
 
     private fun kotlinSyntheticPropertyAnnotations(propertyName: String, index: ClassShapeIndex): Collection<AnnotationInfo> {
         val methodName = $$"$${getterName(propertyName)}$annotations"
+        return index.methodsByName[methodName]?.firstOrNull()?.annotationInfo ?: emptyList()
+    }
+
+    private fun kotlinSyntheticPropertyAnnotations(getter: MethodInfo, index: ClassShapeIndex): Collection<AnnotationInfo> {
+        val methodName = getter.name + "$" + "annotations"
         return index.methodsByName[methodName]?.firstOrNull()?.annotationInfo ?: emptyList()
     }
 }

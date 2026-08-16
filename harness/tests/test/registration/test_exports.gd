@@ -22,6 +22,21 @@ func _assert_reenabled_exports(instance: Object, expect_lazy_export := false) ->
         _assert_exported_property(property_map, "lazy_int_value", TYPE_INT)
         assert_that(instance.get("lazy_int_value")).is_equal(42)
 
+        _assert_kotlin_delegate_property(property_map, instance, "observable_visible_int_value", 110, 111, false)
+        _assert_kotlin_delegate_property(property_map, instance, "observable_export_int_value", 10, 11, true)
+        _assert_kotlin_delegate_property(property_map, instance, "vetoable_visible_int_value", 120, 121, false)
+        _assert_kotlin_delegate_property(property_map, instance, "vetoable_export_int_value", 20, 21, true)
+        _assert_kotlin_delegate_property(property_map, instance, "not_null_visible_int_value", 130, 131, false)
+        _assert_kotlin_delegate_property(property_map, instance, "not_null_export_int_value", 30, 31, true)
+        _assert_kotlin_delegate_property(property_map, instance, "custom_delegate_visible_int_value", 140, 141, false)
+        _assert_kotlin_delegate_property(property_map, instance, "custom_delegate_export_int_value", 40, 41, true)
+        _assert_kotlin_delegate_property(property_map, instance, "static_delegate_visible_int_value", 160, 161, false)
+        _assert_kotlin_delegate_property(property_map, instance, "static_delegate_export_int_value", 60, 61, true)
+        _assert_kotlin_delegate_property(property_map, instance, "delegated_property_reference_visible_int_value", 170, 171, false)
+        _assert_kotlin_delegate_property(property_map, instance, "delegated_property_reference_export_int_value", 70, 71, true)
+        _assert_kotlin_delegate_property(property_map, instance, "computed_visible_int_value", 180, 181, false)
+        _assert_kotlin_delegate_property(property_map, instance, "computed_export_int_value", 80, 81, true)
+
         _assert_exported_property(property_map, "vector2_alias", TYPE_VECTOR2)
         assert_that(instance.get("vector2_alias")).is_equal(Vector2(3, 4))
 
@@ -41,6 +56,13 @@ func _assert_reenabled_exports(instance: Object, expect_lazy_export := false) ->
     assert_that(instance.get("packed_vector4_array").size()).is_equal(0)
 
 
+func _assert_kotlin_delegate_property(property_map: Dictionary, instance: Object, property_name: String, initial_value: int, assigned_value: int, is_exported: bool) -> void:
+    _assert_registered_property(property_map, property_name, TYPE_INT, is_exported)
+    assert_that(instance.get(property_name)).is_equal(initial_value)
+    instance.set(property_name, assigned_value)
+    assert_that(instance.get(property_name)).is_equal(assigned_value)
+
+
 func _property_map(instance: Object) -> Dictionary:
     var properties := {}
     for property: Dictionary in instance.get_property_list():
@@ -49,14 +71,24 @@ func _property_map(instance: Object) -> Dictionary:
 
 
 func _assert_exported_property(property_map: Dictionary, property_name: String, variant_type: int) -> void:
+    _assert_registered_property(property_map, property_name, variant_type, true)
+
+
+func _assert_registered_property(property_map: Dictionary, property_name: String, variant_type: int, is_exported: bool) -> void:
     assert_bool(property_map.has(property_name))\
-        .override_failure_message("Expected exported property '%s' to be present in the inspector property list" % property_name)\
+        .override_failure_message("Expected registered property '%s' to be present in the property list" % property_name)\
         .is_true()
 
     var property: Dictionary = property_map[property_name]
     assert_that(property["type"])\
-        .override_failure_message("Expected exported property '%s' to keep its Variant type" % property_name)\
+        .override_failure_message("Expected registered property '%s' to keep its Variant type" % property_name)\
         .is_equal(variant_type)
-    assert_bool((property["usage"] & PROPERTY_USAGE_EDITOR) != 0)\
-        .override_failure_message("Expected exported property '%s' to remain marked as an editor-visible export" % property_name)\
-        .is_true()
+    var is_editor_export := (property["usage"] & PROPERTY_USAGE_EDITOR) != 0
+    if is_exported:
+        assert_bool(is_editor_export)\
+            .override_failure_message("Expected property '%s' to remain marked as an editor-visible export" % property_name)\
+            .is_true()
+    else:
+        assert_bool(is_editor_export)\
+            .override_failure_message("Expected visible property '%s' not to be exported to the editor" % property_name)\
+            .is_false()

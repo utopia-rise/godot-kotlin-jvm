@@ -8,6 +8,8 @@ import godot.annotation.File
 import godot.annotation.FloatRange
 import godot.annotation.HintString
 import godot.annotation.IntFlag
+import godot.annotation.IntRange
+import godot.annotation.LongRange
 import godot.annotation.MultilineText
 import godot.annotation.PlaceHolderText
 import godot.registration.model.hint.property.ColorNoAlphaHint

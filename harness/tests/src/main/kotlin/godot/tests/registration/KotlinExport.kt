@@ -50,9 +50,45 @@ import godot.core.Vector3i
 import godot.core.Vector4
 import godot.core.Vector4i
 import godot.core.variantArrayOf
+import kotlin.properties.Delegates
+import kotlin.properties.ReadWriteProperty
+import kotlin.reflect.KProperty
 
 typealias KotlinExportAlias = String
 typealias KotlinVector2ExportAlias = Vector2
+
+private val visibleNotNullIntDelegate = Delegates.notNull<Int>()
+private val exportNotNullIntDelegate = Delegates.notNull<Int>()
+
+private class ExportIntDelegate(initialValue: Int) : ReadWriteProperty<KotlinExport, Int> {
+	private var value = initialValue
+
+	override fun getValue(thisRef: KotlinExport, property: KProperty<*>): Int = value
+
+	override fun setValue(thisRef: KotlinExport, property: KProperty<*>, value: Int) {
+		this.value = value
+	}
+}
+
+private object StaticExportIntDelegate : ReadWriteProperty<KotlinExport, Int> {
+	private var value = 60
+
+	override fun getValue(thisRef: KotlinExport, property: KProperty<*>): Int = value
+
+	override fun setValue(thisRef: KotlinExport, property: KProperty<*>, value: Int) {
+		this.value = value
+	}
+}
+
+private object StaticVisibleIntDelegate : ReadWriteProperty<KotlinExport, Int> {
+	private var value = 160
+
+	override fun getValue(thisRef: KotlinExport, property: KProperty<*>): Int = value
+
+	override fun setValue(thisRef: KotlinExport, property: KProperty<*>, value: Int) {
+		this.value = value
+	}
+}
 
 @Script
 class KotlinExport : Node() {
@@ -79,6 +115,62 @@ class KotlinExport : Node() {
 
 	@Export
 	val lazyIntValue: Int by lazy { 42 }
+
+	@Visible
+	var observableVisibleIntValue: Int by Delegates.observable(110) { _, _, _ -> }
+
+	@Export
+	var observableExportIntValue: Int by Delegates.observable(10) { _, _, _ -> }
+
+	@Visible
+	var vetoableVisibleIntValue: Int by Delegates.vetoable(120) { _, _, _ -> true }
+
+	@Export
+	var vetoableExportIntValue: Int by Delegates.vetoable(20) { _, _, _ -> true }
+
+	@Visible
+	var notNullVisibleIntValue: Int by visibleNotNullIntDelegate
+
+	@Export
+	var notNullExportIntValue: Int by exportNotNullIntDelegate
+
+	@Visible
+	var customDelegateVisibleIntValue: Int by ExportIntDelegate(140)
+
+	@Export
+	var customDelegateExportIntValue: Int by ExportIntDelegate(40)
+
+	@Visible
+	var staticDelegateVisibleIntValue: Int by StaticVisibleIntDelegate
+
+	@Export
+	var staticDelegateExportIntValue: Int by StaticExportIntDelegate
+
+	private var delegatedPropertyVisibleBackingValue = 170
+	private var delegatedPropertyExportBackingValue = 70
+
+	@Visible
+	var delegatedPropertyReferenceVisibleIntValue: Int by this::delegatedPropertyVisibleBackingValue
+
+	@Export
+	var delegatedPropertyReferenceExportIntValue: Int by this::delegatedPropertyExportBackingValue
+
+	private var computedPropertyVisibleBackingValue = 180
+	private var computedPropertyExportBackingValue = 80
+
+	@Visible
+	var computedVisibleIntValue: Int
+		get() = computedPropertyVisibleBackingValue
+		set(value) {
+			computedPropertyVisibleBackingValue = value
+		}
+
+	@IntRange(0, 200)
+	var computedExportIntValue: Int
+		get() = computedPropertyExportBackingValue
+		set(value) {
+			computedPropertyExportBackingValue = value
+		}
 
 	@Export
 	@Visible
@@ -324,6 +416,9 @@ class KotlinExport : Node() {
 	var packedColorArray = PackedColorArray()
 
 	init {
+		notNullVisibleIntValue = 130
+		notNullExportIntValue = 30
+
 		stringToIntDictionary["one"] = 1
 		stringToIntDictionary["two"] = 2
 
