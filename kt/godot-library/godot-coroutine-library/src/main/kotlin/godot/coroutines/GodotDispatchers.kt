@@ -13,6 +13,10 @@ import kotlin.concurrent.withLock
 import kotlin.coroutines.CoroutineContext
 import godot.api.Thread as GodotThread
 
+private const val TASKS_INITIAL_CAPACITY = 16
+private val taskLock = ReentrantLock()
+private val finishedTaskIds = ArrayDeque<Long>(TASKS_INITIAL_CAPACITY)
+
 object GodotDispatchers {
 
     val MainThread: CoroutineDispatcher = GodotMainThreadCoroutineDispatcher
@@ -44,55 +48,71 @@ object GodotDispatchers {
     }
 
     private object GodotThreadPoolCoroutineDispatcher : CoroutineDispatcher() {
-        private const val MIN_SIZE = 64
+        private class PendingTask {
+            private var taskId: Long? = null
+            private var callableFinished = false
 
-        val lock = ReentrantLock()
-        val currentTasks = HashMap<Runnable, Long>(MIN_SIZE)
-        val terminatedTasks = ArrayList<Long>(MIN_SIZE)
+            fun register(taskId: Long) {
+                taskLock.withLock {
+                    this.taskId = taskId
+                    if (callableFinished) {
+                        finishedTaskIds.addLast(taskId)
+                    }
+                }
+            }
+
+            fun finish() {
+                taskLock.withLock {
+                    callableFinished = true
+                    taskId?.let(finishedTaskIds::addLast)
+                }
+            }
+        }
 
         init {
-            // Schedule to clear remaining tasks when Godot terminates..
-            MemoryManager.registerCallback(true, ::clearCompletedTasks)
+            MemoryManager.registerCallback(true, ::flushCompletedTasks)
         }
 
         override fun dispatch(context: CoroutineContext, block: Runnable) {
+            clearCompletedTasks()
+
+            val task = PendingTask()
             val callable = {
                 try {
                     block.run()
                 } finally {
-                    lock.withLock {
-                        val id = currentTasks.remove(block)!!
-                        terminatedTasks.add(id)
-                    }
+                    task.finish()
                 }
             }.asCallable()
 
-            val taskID = WorkerThreadPool.addTask(callable)
+            task.register(WorkerThreadPool.addTask(callable))
+        }
 
-            val tasksToClear = lock.withLock {
-                currentTasks[block] = taskID
-                terminatedTasks.toTypedArray().also {
-                    terminatedTasks.clear()
-                }
+        private fun clearCompletedTasks() {
+            val taskIds = taskLock.withLock {
+                finishedTaskIds.toList().also { finishedTaskIds.clear() }
             }
 
-            tasksToClear.forEach {
-                /**
-                 *  It's mandatory in Godot to call this method at some point after adding a task to clean up memory.
-                 *  We cannot wait immediately after adding the task because it would block the thread doing the dispatching, but we can do it after the task has been confirmed completed.
-                 *  It would also be wasteful to allocate a separate thread to poll and check task completions so instead we do process the list of complete tasks right after a regular dispatch.
-                 */
-                WorkerThreadPool.waitForTaskCompletion(it)
+            taskIds.forEach {
+                if (WorkerThreadPool.isTaskCompleted(it)) {
+                    WorkerThreadPool.waitForTaskCompletion(it)
+                } else {
+                    taskLock.withLock { finishedTaskIds.addLast(it) }
+                }
             }
         }
 
+        private fun flushCompletedTasks() {
+            while (true) {
+                val taskIds = taskLock.withLock {
+                    if (finishedTaskIds.isEmpty()) {
+                        return
+                    }
+                    finishedTaskIds.toList().also { finishedTaskIds.clear() }
+                }
 
-        private fun clearCompletedTasks() {
-            // Warning, this method is only supposed to be called when Godot terminates!
-            terminatedTasks.forEach {
-                WorkerThreadPool.waitForTaskCompletion(it)
+                taskIds.forEach(WorkerThreadPool::waitForTaskCompletion)
             }
-            terminatedTasks.clear()
         }
     }
 
