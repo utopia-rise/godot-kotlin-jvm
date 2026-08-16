@@ -64,47 +64,34 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
             } else if (is_linux_export || is_windows_export) {
                 // on windows and linux the embedded jre can be added as a normal export dir
                 String jre_dir {RES_DIRECTORY};
-                String target_dir {p_path.get_base_dir()};
 
                 if (is_arm64) {
                     if (is_linux_export) {
                         jre_dir = jre_dir.path_join(LINUX_EMBEDDED_JRE_ARM_DIRECTORY);
-                        target_dir = target_dir.path_join(LINUX_EMBEDDED_JRE_ARM_DIRECTORY);
                     }
                     if (is_windows_export) {
                         jre_dir = jre_dir.path_join(WINDOWS_EMBEDDED_JRE_ARM_DIRECTORY);
-                        target_dir = target_dir.path_join(WINDOWS_EMBEDDED_JRE_ARM_DIRECTORY);
                     }
                 }
                 if (is_x64) {
                     if (is_linux_export) {
                         jre_dir = jre_dir.path_join(LINUX_EMBEDDED_JRE_AMD_DIRECTORY);
-                        target_dir = target_dir.path_join(LINUX_EMBEDDED_JRE_AMD_DIRECTORY);
                     }
                     if (is_windows_export) {
                         jre_dir = jre_dir.path_join(WINDOWS_EMBEDDED_JRE_AMD_DIRECTORY);
-                        target_dir = target_dir.path_join(WINDOWS_EMBEDDED_JRE_AMD_DIRECTORY);
                     }
                 }
                 if (!is_arm64 && !is_x64) {
                     JVM_ERR_FAIL_MSG("This desktop architecture is not supported for export. Only arm64 and x86_64 are "
                                      "supported by Godot Kotlin/JVM!");
                 }
-                if (jre_dir.is_empty() || target_dir.is_empty()) {
+                if (jre_dir.is_empty()) {
                     JVM_ERR_FAIL_MSG("Could not find a jre directory for the current export configuration");
                 }
-
-                // copy the jre to res
-                Error error;
-                Ref<DirAccess> dir_access {DirAccess::open(jre_dir, &error)};
-                if (error != OK) { JVM_ERR_FAIL_MSG("Cannot open directory %s", jre_dir); }
-                if (dir_access->copy_dir(jre_dir, target_dir) != OK) {
-                    JVM_ERR_FAIL_MSG(
-                      "Cannot copy %s folder to export folder, please make sure you created a JRE directory at the "
-                      "root of your project using jlink for the platform you want to export.",
-                      jre_dir
-                    );
+                if (!DirAccess::exists(jre_dir)) {
+                    JVM_ERR_FAIL_MSG("JRE does not exist at %s! make sure you've created an embedded JRE using jlink!", jre_dir);
                 }
+                add_shared_object(jre_dir, Vector<String>(), JVM_DIRECTORY);
             } else {
                 JVM_ERR_FAIL_MSG("Current desktop export target platform is not supported by Godot Kotlin/JVM! Only "
                                  "supported desktop targets are linux, macos and windows");
