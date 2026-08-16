@@ -83,7 +83,7 @@ func _assert_registered_property(property_map: Dictionary, property_name: String
     assert_that(property["type"])\
         .override_failure_message("Expected registered property '%s' to keep its Variant type" % property_name)\
         .is_equal(variant_type)
-    var is_editor_export := (property["usage"] & PROPERTY_USAGE_EDITOR) != 0
+    var is_editor_export: bool = (property["usage"] & PROPERTY_USAGE_EDITOR) != 0
     if is_exported:
         assert_bool(is_editor_export)\
             .override_failure_message("Expected property '%s' to remain marked as an editor-visible export" % property_name)\

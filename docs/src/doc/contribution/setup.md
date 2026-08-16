@@ -7,10 +7,12 @@ Make sure that Java is installed and its `PATH` set in your system as well (**at
 !!! note
     To check if Java is installed on your platform, open a terminal and type the following command:
     ```bash
-    echo $JAVA_HOME
+    java -version
     ```
-    If the command outputs a directory path, then Java is installed on your system. Otherwise, we strongly suggest you
+    If the command prints a Java version, then Java is available on your system. Otherwise, we strongly suggest you
     to install the JDK using [winget](https://learn.microsoft.com/en-us/windows/package-manager/winget/), [chocolatey](https://chocolatey.org/), [SDKMAN!](https://sdkman.io/), or another package manager on windows, [homebrew](https://brew.sh/) on macos or your distributions package manager on linux.
+
+    Building this module still requires `JAVA_HOME` to point to the JDK.
 
 !!! warning
     The microsoft jdk is known for causing issues on windows while building code for our IDE plugin. The issue is the same as described in [this issue](https://github.com/microsoft/openjdk/issues/339).    
