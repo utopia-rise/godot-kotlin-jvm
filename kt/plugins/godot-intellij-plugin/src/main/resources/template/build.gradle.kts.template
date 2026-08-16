@@ -28,15 +28,15 @@ godot {
 
     // BEGIN_OPTIONAL_ANDROID
     // --------- Android ---------
-    d8ToolPath.set(File("D8_TOOL_PATH"))
-    androidCompileSdkDirectory.set(File("ANDROID_COMPILE_SDK_DIR"))
+    d8ToolPath.set("D8_TOOL_PATH")
+    androidCompileSdkDirectory.set("ANDROID_COMPILE_SDK_DIR")
     //androidMinApiLevel.set(21)
     // END_OPTIONAL_ANDROID
 
     // BEGIN_OPTIONAL_GRAAL
     // --------- Graal / iOS ---------
-    graalVmHomeDirectory.set(File("GRAAL_VM_DIR"))
-    windowsDeveloperVcVarsPath.set(File("WINDOWS_DEVELOPER_VS_VARS_PATH"))
+    graalVmHomeDirectory.set("GRAAL_VM_DIR")
+    windowsDeveloperVcVarsPath.set("WINDOWS_DEVELOPER_VS_VARS_PATH")
     //additionalGraalJniConfigurationFiles.set(arrayOf("my-jni-configuration-file.json"))
     //additionalGraalReflectionConfigurationFiles.set(arrayOf("my-reflection-configuration-file.json"))
     //additionalGraalResourceConfigurationFiles.set(arrayOf("my-resource-configuration-file.json"))

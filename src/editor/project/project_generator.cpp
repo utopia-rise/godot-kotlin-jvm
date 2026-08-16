@@ -14,6 +14,17 @@ constexpr const int permissions = FileAccess::UnixPermissionFlags::UNIX_READ_OTH
                                   | FileAccess::UnixPermissionFlags::UNIX_READ_OWNER | FileAccess::UnixPermissionFlags::UNIX_WRITE_OWNER
                                   | FileAccess::UnixPermissionFlags::UNIX_EXECUTE_OWNER;
 
+void remove_optional_block(String& content, const String& name) {
+    const String begin_marker = "// BEGIN_OPTIONAL_" + name;
+    const String end_marker = "// END_OPTIONAL_" + name;
+    const int begin = content.find(begin_marker);
+    const int end = content.find(end_marker, begin);
+
+    if (begin != -1 && end != -1) {
+        content = content.left(begin) + content.substr(end + end_marker.length());
+    }
+}
+
 void ProjectGenerator::generate_jvm_files(bool erase_existing) {
     JVM_LOG_INFO("Generating JVM project files...");
 
@@ -41,7 +52,10 @@ void ProjectGenerator::generate_jvm_files(bool erase_existing) {
             } else {
                 String file_content = marshall->base64_to_utf8(file_contents[i])
                                         .replace(VERSION_TEMPLATE, GODOT_KOTLIN_VERSION)
-                                        .replace(PROJECT_NAME_TEMPLATE, GLOBAL_GET("application/config/name"));
+                                        .replace(PROJECT_NAME_TEMPLATE, GLOBAL_GET("application/config/name"))
+                                        .replace("GODOT_LANGUAGES", "GodotLanguage.KOTLIN, GodotLanguage.JAVA, GodotLanguage.SCALA");
+                remove_optional_block(file_content, "ANDROID");
+                remove_optional_block(file_content, "GRAAL");
                 file->store_string(file_content);
             }
         }

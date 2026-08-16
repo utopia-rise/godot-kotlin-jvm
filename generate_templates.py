@@ -4,11 +4,12 @@ import os
 # Define maximum length for each chunk
 MAX_CHUNK_SIZE = 8 * 1024  # 8KB
 
-def encode_file_to_base64(file_path):
+def encode_file_to_base64(file_path, is_binary):
     """Encode the content of a file to a Base64 string."""
     with open(file_path, 'rb') as file:
         file_content = file.read()
-        file_content = file_content.replace(b'\r\n', b'\n').replace(b'\r', b'\n')
+        if not is_binary:
+            file_content = file_content.replace(b'\r\n', b'\n').replace(b'\r', b'\n')
         encoded_content = base64.b64encode(file_content).decode('utf-8')
     return encoded_content
 
@@ -37,7 +38,8 @@ def generate_header_from_files(directory, header_file):
 
                 # Compute relative path
                 relative_path = os.path.relpath(os.path.join(root, file_name), directory)
-                encoded_content = encode_file_to_base64(os.path.join(root, file_name))
+                is_binary = file_name.endswith('.jar.template')
+                encoded_content = encode_file_to_base64(os.path.join(root, file_name), is_binary)
 
                 # Split the encoded content into chunks
                 chunks = split_string_into_chunks(encoded_content, MAX_CHUNK_SIZE)
@@ -50,7 +52,7 @@ def generate_header_from_files(directory, header_file):
 
                 file_names.append(name_var_name)
                 file_contents.append(file_var_name)
-                file_is_binary.append('true' if '.jar' in file_name else 'false')
+                file_is_binary.append('true' if is_binary else 'false')
 
                 # Write the file name constant
                 header.write(f'constexpr const char* {name_var_name} = R"({final_file_name})";\n')
