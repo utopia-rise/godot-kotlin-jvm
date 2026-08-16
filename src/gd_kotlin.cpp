@@ -8,8 +8,10 @@
 #include "version.h"
 
 #include <core/config/project_settings.h>
+#include <core/io/dir_access.h>
 #include <core/io/file_access.h>
 #include <core/io/resource_loader.h>
+
 GDKotlin& GDKotlin::get_instance() {
     static GDKotlin instance;
     return instance;
@@ -28,33 +30,27 @@ bool GDKotlin::load_dynamic_lib() {
                 path_to_jvm_lib = embedded_jvm;
             }
 #ifdef TOOLS_ENABLED
-            else if (String environment_jvm = get_path_to_environment_jvm();
-                     !environment_jvm.is_empty() && FileAccess::exists(environment_jvm)) {
-                JVM_LOG_WARNING(
-                  "Godot-JVM: You really should embed a JRE in your project with jlink! See the "
-                  "documentation if you don't know how to do that"
-                );
-                path_to_jvm_lib = environment_jvm;
-            } else {
-#ifdef MACOS_ENABLED
-                JVM_WARN_FAIL_V_MSG(
-                  false,
-                  "Godot Kotlin/JVM module couldn't be fully initialized. Cause: %s. Possible solution: %s",
-                  "The environment variable JAVA_HOME is not found and there is no embedded JRE.",
-                  "Make sure the JAVA_HOME environment variable is set or add an embedded JRE to your project using "
-                  "jlink.\n"
-                  "If you launched the editor through a double click on Godot.app, also make sure that JAVA_HOME is "
-                  "set through launchctl: `launchctl setenv JAVA_HOME </path/to/jdk>`"
-                );
-#else
-                JVM_WARN_FAIL_V_MSG(
-                  false,
-                  "Godot Kotlin/JVM module couldn't be fully initialized. Cause: %s. Possible solution: %s",
-                  "The environment variable JAVA_HOME is not found and there is no embedded JRE.",
-                  "Make sure the JAVA_HOME environment variable is set or add an embedded JRE to your project using "
-                  "jlink."
-                );
-#endif
+            else {
+                String dynamic_jvm = get_path_to_java_executable();
+                if (dynamic_jvm.is_empty()) {
+                    dynamic_jvm = get_path_to_environment_jvm();
+                }
+
+                if (!dynamic_jvm.is_empty()) {
+                    JVM_LOG_WARNING(
+                      "Godot-JVM: You really should embed a JRE in your project with jlink! See the "
+                      "documentation if you don't know how to do that"
+                    );
+                    path_to_jvm_lib = dynamic_jvm;
+                } else {
+                    JVM_WARN_FAIL_V_MSG(
+                      false,
+                      "Godot Kotlin/JVM module couldn't be fully initialized. Cause: %s. Possible solution: %s",
+                      "No embedded JRE or usable Java installation was found.",
+                      "Make sure a JDK 11+ is available through JAVA_HOME or PATH, or add an embedded JRE to your "
+                      "project using jlink."
+                    );
+                }
             }
 #else
             else {
@@ -103,8 +99,50 @@ String GDKotlin::get_path_to_native_image() {
 
 String GDKotlin::get_path_to_environment_jvm() {
     String javaHome {OS::get_singleton()->get_environment("JAVA_HOME")};
-    if (javaHome.is_empty()) { return javaHome; }
-    return javaHome.path_join(RELATIVE_JVM_LIB_PATH);
+    if (javaHome.is_empty()) { return {}; }
+
+    String jvm_library = javaHome.path_join(RELATIVE_JVM_LIB_PATH);
+    return FileAccess::exists(jvm_library) ? jvm_library : String {};
+}
+
+String GDKotlin::get_path_to_java_executable() {
+#ifdef MACOS_ENABLED
+    List<String> arguments {"-v", "11+"};
+    String macos_java_home;
+    int exit_code;
+    if (OS::get_singleton()->execute("/usr/libexec/java_home", arguments, &macos_java_home, &exit_code, true) == OK
+        && exit_code == 0) {
+        String jvm_library = macos_java_home.strip_edges().path_join(RELATIVE_JVM_LIB_PATH);
+        if (FileAccess::exists(jvm_library)) { return jvm_library; }
+    }
+#endif
+
+#ifdef WINDOWS_ENABLED
+    constexpr const char* java_executable_name {"java.exe"};
+    constexpr const char* path_separator {";"};
+#else
+    constexpr const char* java_executable_name {"java"};
+    constexpr const char* path_separator {":"};
+#endif
+
+    Vector<String> path_entries = OS::get_singleton()->get_environment("PATH").split(path_separator, false);
+    for (const String& path_entry : path_entries) {
+        String java_executable = path_entry.strip_edges().trim_prefix("\"").trim_suffix("\"").path_join(java_executable_name);
+        if (!FileAccess::exists(java_executable)) { continue; }
+
+        Ref<DirAccess> dir_access = DirAccess::create(DirAccess::ACCESS_FILESYSTEM);
+        while (dir_access->is_link(java_executable)) {
+            String link_target = dir_access->read_link(java_executable);
+            java_executable = link_target.is_absolute_path()
+                              ? link_target
+                              : java_executable.get_base_dir().path_join(link_target).simplify_path();
+        }
+
+        String jvm_library = java_executable.get_base_dir().get_base_dir().path_join(RELATIVE_JVM_LIB_PATH);
+        if (FileAccess::exists(jvm_library)) { return jvm_library; }
+    }
+
+    return {};
 }
 
 #else

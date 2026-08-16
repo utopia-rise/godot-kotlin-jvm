@@ -51,6 +51,7 @@ private:
     void unload_dynamic_lib();
 #ifdef TOOLS_ENABLED
     static String get_path_to_environment_jvm();
+    static String get_path_to_java_executable();
 #endif
     static String get_path_to_embedded_jvm();
     static String get_path_to_native_image();

@@ -6,17 +6,13 @@
 
 ## Java
 
-To use this module at least JDK 11 is needed, note you will need the JDK not just the JRE, and the environment variable `JAVA_HOME` to be present before being able to run the custom godot editor.
+To use this module at least JDK 11 is needed. You need the JDK, not just the JRE, and its `bin` directory must be available through `PATH` before running the custom Godot editor. `JAVA_HOME` is also supported as a fallback.
 
 ### Mac
 
 You can install Java via [homebrew](https://brew.sh/). Once you installed it, you can run `brew install openjdk@21` to install the LTS version of Java from openjdk. If you want to pick a different version, you can run `brew search jdk`.
 
-!!! warning
-    On macOS apps started from the GUI cannot see environment variables from bash or zsh, only command line apps can. Set environment variable using launchctl.
-    ```shell
-    launchctl setenv JAVA_HOME pathtoyourjava
-    ```
+The editor also uses macOS's `java_home` tool, so a JDK installed normally on macOS can be found when the editor is started from the GUI.
 
 ### Linux
 
