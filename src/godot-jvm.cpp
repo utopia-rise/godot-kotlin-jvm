@@ -122,13 +122,12 @@ String GodotJvm::get_path_to_environment_jvm() {
 
 String GodotJvm::get_path_to_java_executable() {
 #ifdef MACOS_ENABLED
-    Array arguments;
+    PackedStringArray arguments;
     arguments.push_back("-v");
     arguments.push_back("11+");
-    String macos_java_home;
-    int exit_code;
-    if (OS::get_singleton()->execute("/usr/libexec/java_home", arguments, &macos_java_home, &exit_code, true) == OK
-        && exit_code == 0) {
+    Array output;
+    if (OS::get_singleton()->execute("/usr/libexec/java_home", arguments, output, true) == 0 && !output.is_empty()) {
+        String macos_java_home = output[0];
         String jvm_library = macos_java_home.strip_edges().path_join(RELATIVE_JVM_LIB_PATH);
         if (FileAccess::file_exists(jvm_library)) { return jvm_library; }
     }
