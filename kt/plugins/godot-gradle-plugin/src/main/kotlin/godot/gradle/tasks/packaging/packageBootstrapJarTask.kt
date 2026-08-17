@@ -1,6 +1,7 @@
 package godot.gradle.tasks
 
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+import godot.gradle.projectExt.isRelease
 import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.tasks.SourceSetContainer
@@ -21,6 +22,10 @@ fun Project.packageBootstrapJarTask(): TaskProvider<out Task> {
             configurations.add(this@packageBootstrapJarTask.configurations.getByName("bootstrap"))
             configurations.add(this@packageBootstrapJarTask.configurations.getByName(mainSourceSet.runtimeClasspathConfigurationName))
             archiveVersion.set("") // otherwise the version is appended to the name and our export plugin cannot find it anymore
+
+            if (isRelease) {
+                minimize()
+            }
         }
     }
 }
