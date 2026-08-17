@@ -50,7 +50,7 @@ fun Project.createGraalNativeImageTask(
             inputs.dir(libsDirectory)
             inputs.dir(graalDirectory)
             inputs.property("graalVmHomeDirectory", graalVmHomeDirectory)
-            inputs.property("windowsDeveloperVcVarsPath", windowsDeveloperVcVarsPath)
+            inputs.property("windowsDeveloperVcVarsPath", windowsDeveloperVcVarsPath.orElse(""))
             inputs.property("isGraalNativeImageVerboseEnabled", isVerboseEnabled)
             inputs.property("additionalGraalJniConfigurationFiles", additionalJniConfigurationFiles)
             inputs.property("additionalGraalReflectionConfigurationFiles", additionalReflectionConfigurationFiles)

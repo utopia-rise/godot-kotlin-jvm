@@ -22,14 +22,9 @@ jobs:
         id: detect
         uses: ./.github/actions/detect-path-changes
         with:
-          # Native gdextension source, the godot-cpp binding, and the Kotlin-side
-          # runtime libraries + their shared "common"/"tools-common" builds. Tests
-          # need this same set (native binary + kotlin libraries), so this gate
-          # doubles as the test-run gate below. CI workflow and action changes
-          # also need a real run so they cannot pass with every build skipped.
+          # Native gdextension source and Kotlin runtime libraries. CI/CD and
+          # Gradle/test-harness changes have their own gate below.
           paths: |
-            .github/actions
-            .github/workflows
             src
             godot-cpp
             SConstruct
@@ -38,6 +33,28 @@ jobs:
             kt/godot-registration
             kt/common
             kt/tools-common
+
+  detect-ci-cd-tests-changes:
+    name: 🔍 Detect CI/CD/tests changes
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.detect.outputs.changed }}
+    steps:
+      - name: Clone Godot JVM module.
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: Detect changes
+        id: detect
+        uses: ./.github/actions/detect-path-changes
+        with:
+          paths: |
+            .github
+            kt/gradle
+            kt/settings.gradle.kts
+            kt/build.gradle.kts
+            kt/plugins/godot-gradle-plugin
+            harness/tests
 
   detect-api-generator-changes:
     name: 🔍 Detect API generator changes
@@ -97,7 +114,8 @@ jobs:
       - setup-build-variables
       - detect-api-generator-changes
       - detect-ide-plugin-changes
-    if: needs.detect-api-generator-changes.outputs.changed == 'true' || needs.detect-ide-plugin-changes.outputs.changed == 'true'
+      - detect-ci-cd-tests-changes
+    if: needs.detect-api-generator-changes.outputs.changed == 'true' || needs.detect-ide-plugin-changes.outputs.changed == 'true' || needs.detect-ci-cd-tests-changes.outputs.changed == 'true'
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
@@ -130,7 +148,8 @@ jobs:
     needs:
       - setup-build-variables
       - detect-native-changes
-    if: needs.detect-native-changes.outputs.changed == 'true'
+      - detect-ci-cd-tests-changes
+    if: needs.detect-native-changes.outputs.changed == 'true' || needs.detect-ci-cd-tests-changes.outputs.changed == 'true'
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
 
@@ -140,7 +159,8 @@ jobs:
     needs:
       - setup-build-variables
       - detect-native-changes
-    if: needs.detect-native-changes.outputs.changed == 'true'
+      - detect-ci-cd-tests-changes
+    if: needs.detect-native-changes.outputs.changed == 'true' || needs.detect-ci-cd-tests-changes.outputs.changed == 'true'
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
 
@@ -150,7 +170,8 @@ jobs:
     needs:
       - setup-build-variables
       - detect-native-changes
-    if: needs.detect-native-changes.outputs.changed == 'true'
+      - detect-ci-cd-tests-changes
+    if: needs.detect-native-changes.outputs.changed == 'true' || needs.detect-ci-cd-tests-changes.outputs.changed == 'true'
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
 

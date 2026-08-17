@@ -26,6 +26,13 @@
     ]
   },
   {
+    "name":"java.lang.Thread",
+    "methods":[
+      {"name":"currentThread","parameterTypes":[] },
+      {"name":"setContextClassLoader","parameterTypes":["java.lang.ClassLoader"] }
+    ]
+  },
+  {
     "name" : "java.lang.String",
     "fields" : [
       { "name" : "value" },

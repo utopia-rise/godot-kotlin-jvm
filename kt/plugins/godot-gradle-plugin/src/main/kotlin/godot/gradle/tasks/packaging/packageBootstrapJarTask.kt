@@ -23,9 +23,8 @@ fun Project.packageBootstrapJarTask(): TaskProvider<out Task> {
             configurations.add(this@packageBootstrapJarTask.configurations.getByName(mainSourceSet.runtimeClasspathConfigurationName))
             archiveVersion.set("") // otherwise the version is appended to the name and our export plugin cannot find it anymore
 
-            if (isRelease) {
-                minimize()
-            }
+            // Bootstrap is loaded reflectively by the native Godot runtime, so Shadow's
+            // release minimization incorrectly removes godot.runtime.Bootstrap.
         }
     }
 }

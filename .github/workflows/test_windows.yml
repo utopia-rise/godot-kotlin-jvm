@@ -39,6 +39,19 @@ jobs:
           distribution: temurin
           java-version: ${{ inputs.jvm-version }}
 
+      - uses: graalvm/setup-graalvm@v1
+        with:
+          java-version: '21'
+          distribution: graalvm-community
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Locate Visual Studio native-image environment
+        shell: pwsh
+        run: |
+          $vcVars = Get-ChildItem 'C:\Program Files\Microsoft Visual Studio' -Filter vcvars64.bat -Recurse | Select-Object -First 1
+          if ($null -eq $vcVars) { throw 'Could not find Visual Studio vcvars64.bat' }
+          "VC_VARS_PATH=$($vcVars.FullName)" >> $env:GITHUB_ENV
+
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v6
         with:
@@ -56,13 +69,24 @@ jobs:
           name: ${{ matrix.extension-target }}_windows_x86_64
           path: './harness/tests/addons'
 
-      - name: Build tests project
-        run: |
-          harness/tests/gradlew -p harness/tests/ ${{ matrix.build-task }}
+      - name: Build JVM tests project
+        run: harness/tests/gradlew -p harness/tests/ ${{ matrix.build-task }}
 
-      - name: Run Tests
+      - name: Build Graal native image
+        run: harness/tests/gradlew -p harness/tests/ buildGraalNativeImage
+
+      - name: Import test project
+        run: harness/tests/gradlew -p harness/tests/ importResources
+
+      - name: Run JVM tests
         run: |
           cd harness/tests/
           jlink --add-modules java.base,java.logging --output jvm/jre-amd64-windows
           ./gradlew runGDTests
+        timeout-minutes: 30
+
+      - name: Run Graal native-image tests
+        run: |
+          cd harness/tests/
+          ./gradlew runGraalGDTests
         timeout-minutes: 30

@@ -154,7 +154,7 @@ fun requireExportedExecutable(): File =
 fun registerExportTask(name: String, exportFlag: String, description: String) = tasks.register<Exec>(name) {
     group = "verification"
     this.description = description
-    dependsOn("importResources", "prepareHostExportTemplates")
+    dependsOn("prepareHostExportTemplates")
 
     environment("JAVA_HOME", System.getProperty("java.home"))
     workingDir = projectDir
@@ -169,6 +169,25 @@ fun registerExportTask(name: String, exportFlag: String, description: String) = 
         exportFlag,
         currentExportTarget(),
     )
+}
+
+fun registerGraalTestTask(
+    name: String,
+    description: String,
+    executableProvider: () -> File,
+    useProjectPathOverride: Boolean,
+    scriptArgs: List<String>,
+) = tasks.register<Exec>(name) {
+    group = "verification"
+    this.description = description
+
+    setupTestExecution {
+        TestExecutionCommand(
+            executable = executableProvider().absolutePath,
+            useProjectPathOverride = useProjectPathOverride,
+            scriptArgs = scriptArgs,
+        )
+    }
 }
 
 tasks {
@@ -215,9 +234,7 @@ tasks {
 
     register<Exec>("runGDTests") {
         group = "verification"
-        description = "Runs GDUnit tests from the source Godot project."
-
-        dependsOn(importResources)
+        description = "Runs GDUnit tests from the source Godot project. Requires build and importResources first."
 
         setupTestExecution {
             TestExecutionCommand(
@@ -235,9 +252,24 @@ tasks {
             )
         }
     }
+    registerGraalTestTask(
+        name = "runGraalGDTests",
+        description = "Runs GDUnit tests in the editor using GraalVM Native Image. Requires build, importResources, and buildGraalNativeImage first.",
+        executableProvider = ::provideEditorExecutable,
+        useProjectPathOverride = true,
+        scriptArgs = listOf(
+            "--jvm-vm-type=graal_native_image",
+            "-s",
+            "res://addons/gdUnit4/bin/GdUnitCmdTool.gd",
+            "-a",
+            "test",
+            "-c",
+            "--ignoreHeadlessMode",
+        ),
+    )
     register<Exec>("runExportedGDTests") {
         group = "verification"
-        description = "Runs GDUnit tests from the exported package."
+        description = "Runs GDUnit tests from the exported package. Requires exportDebug or exportRelease first."
 
         setupTestExecution {
             TestExecutionCommand(
@@ -247,6 +279,13 @@ tasks {
             )
         }
     }
+    registerGraalTestTask(
+        name = "runExportedGraalGDTests",
+        description = "Runs GDUnit tests from the exported package using GraalVM Native Image. Requires buildGraalNativeImage and exportDebug or exportRelease first.",
+        executableProvider = ::requireExportedExecutable,
+        useProjectPathOverride = false,
+        scriptArgs = listOf("--jvm-vm-type=graal_native_image"),
+    )
 }
 
 data class TestExecutionCommand(

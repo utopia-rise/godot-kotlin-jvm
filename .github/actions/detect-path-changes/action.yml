@@ -40,7 +40,7 @@ runs:
         EVENT_ACTION: ${{ github.event.action }}
         PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
         BEFORE_SHA: ${{ github.event.before }}
-        HEAD_SHA: ${{ github.sha }}
+        HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
       run: |
         set -euo pipefail
 
