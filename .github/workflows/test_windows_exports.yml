@@ -40,6 +40,19 @@ jobs:
           distribution: temurin
           java-version: ${{ inputs.jvm-version }}
 
+      - uses: graalvm/setup-graalvm@v1
+        with:
+          java-version: '21'
+          distribution: graalvm-community
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Locate Visual Studio native-image environment
+        shell: pwsh
+        run: |
+          $vcVars = Get-ChildItem 'C:\Program Files\Microsoft Visual Studio' -Filter vcvars64.bat -Recurse | Select-Object -First 1
+          if ($null -eq $vcVars) { throw 'Could not find Visual Studio vcvars64.bat' }
+          "VC_VARS_PATH=$($vcVars.FullName)" >> $env:GITHUB_ENV
+
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v6
         with:
@@ -71,9 +84,14 @@ jobs:
           Move-Item templates/templates/windows_${{ matrix.jvm-target }}_x86_64.exe harness/tests/godot.windows.template_${{ matrix.jvm-target }}.x86_64.exe
           Move-Item templates/templates/windows_${{ matrix.jvm-target }}_x86_64_console.exe harness/tests/godot.windows.template_${{ matrix.jvm-target }}.x86_64.console.exe
 
-      - name: Build tests project
-        run: |
-          harness/tests/gradlew -p harness/tests/ ${{ matrix.build-task }}
+      - name: Build JVM tests project
+        run: harness/tests/gradlew -p harness/tests/ ${{ matrix.build-task }}
+
+      - name: Build Graal native image
+        run: harness/tests/gradlew -p harness/tests/ buildGraalNativeImage
+
+      - name: Import test project
+        run: harness/tests/gradlew -p harness/tests/ importResources
 
       - name: Create JRE
         run: |
@@ -86,10 +104,12 @@ jobs:
           ./gradlew exportRelease
         timeout-minutes: 30
 
-      - name: Run Tests
-        run: |
-          cd harness/tests/
-          ./gradlew runExportedGDTests
+      - name: Run JVM exported tests
+        run: cd harness/tests/; ./gradlew runExportedGDTests
+        timeout-minutes: 30
+
+      - name: Run Graal native-image exported tests
+        run: cd harness/tests/; ./gradlew runExportedGraalGDTests
         timeout-minutes: 30
 
       # DIAGNOSTIC (temporary): the JVM's own crash handler (HotSpot) installs a top-level SEH

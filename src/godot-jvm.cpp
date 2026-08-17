@@ -410,8 +410,10 @@ bool GodotJvm::load_user_code() {
 void GodotJvm::unload_user_code() {
     jni::Env env {jni::Jvm::current_env()};
 
-    // reset context classloader to bootstrap
-    bootstrap_class_loader->set_as_context_loader(env);
+    // Graal native images include bootstrap directly, so no bootstrap classloader is created.
+    if (bootstrap_class_loader != nullptr) {
+        bootstrap_class_loader->set_as_context_loader(env);
+    }
 
     bootstrap->finish(env);
     jar.unref();

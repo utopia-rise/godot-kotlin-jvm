@@ -1,7 +1,6 @@
 package godot.gradle.tasks
 
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-import godot.gradle.projectExt.isRelease
 import org.gradle.api.GradleException
 import org.gradle.api.Project
 import org.gradle.api.Task
@@ -22,10 +21,6 @@ fun Project.packageMainJarTask(
             archiveVersion.set("")
             archiveClassifier.set("")
             configurations.clear()
-
-            if (isRelease) {
-                minimize()
-            }
 
             dependsOn(userClassesTask)
             dependsOn(generatedRegistrarJarTask)

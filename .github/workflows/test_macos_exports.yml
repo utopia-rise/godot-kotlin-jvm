@@ -40,6 +40,12 @@ jobs:
           distribution: temurin
           java-version: ${{ inputs.jvm-version }}
 
+      - uses: graalvm/setup-graalvm@v1
+        with:
+          java-version: '21'
+          distribution: graalvm-community
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v6
         with:
@@ -71,9 +77,14 @@ jobs:
           unzip -q templates.tpz -d templates
           mv templates/templates/macos.zip harness/tests/export_template_all_macos.zip
 
-      - name: Build tests project
-        run: |
-          harness/tests/gradlew -p harness/tests/ ${{ matrix.build-task }}
+      - name: Build JVM tests project
+        run: harness/tests/gradlew -p harness/tests/ ${{ matrix.build-task }}
+
+      - name: Build Graal native image
+        run: harness/tests/gradlew -p harness/tests/ buildGraalNativeImage
+
+      - name: Import test project
+        run: harness/tests/gradlew -p harness/tests/ importResources
 
       - name: Create JRE
         run: |
@@ -95,8 +106,10 @@ jobs:
           hdiutil detach /Volumes/Godot-JVM\ Tests
           cp -a ../jvm/jre-arm64-macos Godot-JVM\ Tests.app/Contents/PlugIns/
 
-      - name: Run Tests
-        run: |
-          cd harness/tests/
-          ./gradlew runExportedGDTests
+      - name: Run JVM exported tests
+        run: cd harness/tests/; ./gradlew runExportedGDTests
+        timeout-minutes: 30
+
+      - name: Run Graal native-image exported tests
+        run: cd harness/tests/; ./gradlew runExportedGraalGDTests
         timeout-minutes: 30
