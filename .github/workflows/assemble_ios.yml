@@ -4,10 +4,6 @@ on:
     inputs:
       godot-jvm-version:
         type: string
-      godot-version:
-        type: string
-      build-version:
-        type: string
 
 jobs:
   package-ios-libraries:

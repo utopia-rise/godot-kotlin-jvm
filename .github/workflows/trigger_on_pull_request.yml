@@ -102,9 +102,8 @@ jobs:
       - run: |
           echo "Setup done"
     outputs: # defined here explicitly, so it only needs to be defined here. All other workflows can just reference it
-      godot-jvm-version: "1.0.0"
-      godot-version: "4.7.2-stable"
-      build-version: "1.0.0"
+      godot-jvm-version: "1.0.0-dev2"
+      godot-version: "4.7.1-stable"
       jvm-version: "17"
 
   build-jvm:
@@ -117,7 +116,6 @@ jobs:
       - detect-ci-cd-tests-changes
     if: needs.detect-api-generator-changes.outputs.changed == 'true' || needs.detect-ide-plugin-changes.outputs.changed == 'true' || needs.detect-ci-cd-tests-changes.outputs.changed == 'true'
     with:
-      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
       run-api-generator: ${{ needs.detect-api-generator-changes.outputs.changed == 'true' }}
       run-ide-plugin: ${{ needs.detect-ide-plugin-changes.outputs.changed == 'true' }}
@@ -129,9 +127,7 @@ jobs:
     needs:
       - setup-build-variables
     with:
-      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
-      build-version: ${{ needs.setup-build-variables.outputs['build-version'] }}
 
   build-ios:
     if: ${{ false }}
@@ -139,8 +135,6 @@ jobs:
     uses: ./.github/workflows/build_ios.yml
     needs:
       - setup-build-variables
-    with:
-      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
 
   build-linux:
     name: 🐧 Build Linux
@@ -150,8 +144,6 @@ jobs:
       - detect-native-changes
       - detect-ci-cd-tests-changes
     if: needs.detect-native-changes.outputs.changed == 'true' || needs.detect-ci-cd-tests-changes.outputs.changed == 'true'
-    with:
-      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
 
   build-macos:
     name: 🍎 Build macOS
@@ -161,8 +153,6 @@ jobs:
       - detect-native-changes
       - detect-ci-cd-tests-changes
     if: needs.detect-native-changes.outputs.changed == 'true' || needs.detect-ci-cd-tests-changes.outputs.changed == 'true'
-    with:
-      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
 
   build-windows:
     name: 🪟 Build Windows
@@ -172,8 +162,6 @@ jobs:
       - detect-native-changes
       - detect-ci-cd-tests-changes
     if: needs.detect-native-changes.outputs.changed == 'true' || needs.detect-ci-cd-tests-changes.outputs.changed == 'true'
-    with:
-      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
 
   assemble-android:
     if: ${{ false }}
@@ -183,7 +171,6 @@ jobs:
       - setup-build-variables
       - build-android
     with:
-      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
 
   assemble-macos:
@@ -194,8 +181,6 @@ jobs:
       - build-macos
     with:
       godot-jvm-version: ${{ needs.setup-build-variables.outputs['godot-jvm-version'] }}
-      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
-      build-version: ${{ needs.setup-build-variables.outputs['build-version'] }}
 
   assemble-ios:
     if: ${{ false }}
@@ -206,8 +191,6 @@ jobs:
       - build-ios
     with:
       godot-jvm-version: ${{ needs.setup-build-variables.outputs['godot-jvm-version'] }}
-      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
-      build-version: ${{ needs.setup-build-variables.outputs['build-version'] }}
 
   assemble-linux:
     name: 🐧 Assemble linux
@@ -217,8 +200,6 @@ jobs:
       - build-linux
     with:
       godot-jvm-version: ${{ needs.setup-build-variables.outputs['godot-jvm-version'] }}
-      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
-      build-version: ${{ needs.setup-build-variables.outputs['build-version'] }}
 
   assemble-windows:
     name: 🪟 Assemble windows
@@ -228,8 +209,6 @@ jobs:
       - build-windows
     with:
       godot-jvm-version: ${{ needs.setup-build-variables.outputs['godot-jvm-version'] }}
-      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
-      build-version: ${{ needs.setup-build-variables.outputs['build-version'] }}
 
   assemble-addon:
     name: 🤖+🍏+🐧+🍎+🪟 Assemble addon
@@ -251,7 +230,6 @@ jobs:
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
-      build-version: ${{ needs.setup-build-variables.outputs['build-version'] }}
 
   test-macos:
     name: 🍎 Test Macos
@@ -262,7 +240,6 @@ jobs:
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
-      build-version: ${{ needs.setup-build-variables.outputs['build-version'] }}
 
   test-windows:
     name: 🪟 Test Windows
@@ -273,7 +250,6 @@ jobs:
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
-      build-version: ${{ needs.setup-build-variables.outputs['build-version'] }}
 
   test-linux-exports:
     name: 🐧 Test Linux Exports
@@ -284,7 +260,6 @@ jobs:
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
-      build-version: ${{ needs.setup-build-variables.outputs['build-version'] }}
 
   test-macos-exports:
     name: 🍎 Test Macos Exports
@@ -295,7 +270,6 @@ jobs:
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
-      build-version: ${{ needs.setup-build-variables.outputs['build-version'] }}
 
   test-windows-exports:
     name: 🪟 Test Windows Exports
@@ -306,4 +280,3 @@ jobs:
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
-      build-version: ${{ needs.setup-build-variables.outputs['build-version'] }}

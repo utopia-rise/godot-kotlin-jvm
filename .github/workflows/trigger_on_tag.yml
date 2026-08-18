@@ -3,7 +3,7 @@ on:
   push:
     tags:
       - '1.0.0'
-      - '1.0.0-dev*'
+      - '1.0.0-dev2'
 
 concurrency:
   group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-trigger_on_tag
@@ -25,8 +25,6 @@ jobs:
           echo "Setup done"
     outputs: # defined here explicitly, so it only needs to be defined here. All other workflows can just reference it
       godot-jvm-version: ${{ github.ref_name }}
-      godot-version: "4.7.2-stable"
-      build-version: ${{ github.ref_name }}
       jvm-version: "17"
 
   build-android:
@@ -36,9 +34,7 @@ jobs:
     needs:
       - setup-build-variables
     with:
-      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
-      build-version: ${{ needs.setup-build-variables.outputs['build-version'] }}
 
   build-ios:
     if: ${{ false }}
@@ -46,32 +42,24 @@ jobs:
     uses: ./.github/workflows/build_ios.yml
     needs:
       - setup-build-variables
-    with:
-      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
 
   build-linux:
     name: 🐧 Build Linux
     uses: ./.github/workflows/build_linux.yml
     needs:
       - setup-build-variables
-    with:
-      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
 
   build-macos:
     name: 🍎 Build macOS
     uses: ./.github/workflows/build_macos.yml
     needs:
       - setup-build-variables
-    with:
-      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
 
   build-windows:
     name: 🪟 Build Windows
     uses: ./.github/workflows/build_windows.yml
     needs:
       - setup-build-variables
-    with:
-      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
 
   assemble-android:
     if: ${{ false }}
@@ -81,7 +69,6 @@ jobs:
       - setup-build-variables
       - build-android
     with:
-      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
 
   assemble-macos:
@@ -92,8 +79,6 @@ jobs:
       - build-macos
     with:
       godot-jvm-version: ${{ needs.setup-build-variables.outputs['godot-jvm-version'] }}
-      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
-      build-version: ${{ needs.setup-build-variables.outputs['build-version'] }}
 
   assemble-ios:
     if: ${{ false }}
@@ -104,8 +89,6 @@ jobs:
       - build-ios
     with:
       godot-jvm-version: ${{ needs.setup-build-variables.outputs['godot-jvm-version'] }}
-      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
-      build-version: ${{ needs.setup-build-variables.outputs['build-version'] }}
 
   assemble-linux:
     name: 🐧 Assemble linux
@@ -115,8 +98,6 @@ jobs:
       - build-linux
     with:
       godot-jvm-version: ${{ needs.setup-build-variables.outputs['godot-jvm-version'] }}
-      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
-      build-version: ${{ needs.setup-build-variables.outputs['build-version'] }}
 
   assemble-windows:
     name: 🪟 Assemble windows
@@ -126,8 +107,6 @@ jobs:
       - build-windows
     with:
       godot-jvm-version: ${{ needs.setup-build-variables.outputs['godot-jvm-version'] }}
-      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
-      build-version: ${{ needs.setup-build-variables.outputs['build-version'] }}
 
   assemble-addon:
     name: 🤖+🍏+🐧+🍎+🪟 Assemble addon

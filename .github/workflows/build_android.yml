@@ -2,11 +2,7 @@ name: Android Builds
 on:
   workflow_call:
     inputs:
-      godot-version:
-        type: string
       jvm-version:
-        type: string
-      build-version:
         type: string
 
 jobs:
