@@ -2,8 +2,6 @@ name: ☕ Jvm Builds
 on:
   workflow_call:
     inputs:
-      godot-version:
-        type: string
       jvm-version:
         type: string
       run-api-generator:

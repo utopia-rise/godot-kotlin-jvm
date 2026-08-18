@@ -147,6 +147,7 @@ String GodotJvm::get_path_to_java_executable() {
         if (!FileAccess::file_exists(java_executable)) { continue; }
 
         Ref<DirAccess> dir_access = DirAccess::open(java_executable.get_base_dir());
+        if (dir_access.is_null()) { continue; }
         while (dir_access->is_link(java_executable)) {
             String link_target = dir_access->read_link(java_executable);
             java_executable = link_target.is_absolute_path()

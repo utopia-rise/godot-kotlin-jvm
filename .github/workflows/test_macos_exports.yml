@@ -6,8 +6,6 @@ on:
         type: string
       jvm-version:
         type: string
-      build-version:
-        type: string
 
 concurrency:
   group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-macos_exports_tests
@@ -31,7 +29,7 @@ jobs:
 
       - uses: ./.github/actions/download-godot
         with:
-          version: 4.7.1-stable
+          version: ${{ inputs.godot-version }}
           platform: macos
           destination: harness/tests/bin
 
@@ -73,7 +71,7 @@ jobs:
         run: |
           chmod +x harness/tests/bin/godot.*
           mkdir -p harness/tests/export
-          curl --fail --location https://github.com/godotengine/godot-builds/releases/download/4.7.1-stable/Godot_v4.7.1-stable_export_templates.tpz --output templates.tpz
+          curl --fail --location https://github.com/godotengine/godot-builds/releases/download/${{ inputs.godot-version }}/Godot_v${{ inputs.godot-version }}_export_templates.tpz --output templates.tpz
           unzip -q templates.tpz -d templates
           mv templates/templates/macos.zip harness/tests/export_template_all_macos.zip
 

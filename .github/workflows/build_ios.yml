@@ -1,9 +1,6 @@
 name: iOS Builds
 on:
   workflow_call:
-    inputs:
-      godot-version:
-        type: string
 
 jobs:
   ios-template:
