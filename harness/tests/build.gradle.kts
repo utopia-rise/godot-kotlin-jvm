@@ -18,8 +18,9 @@ godot {
     isGodotCoroutinesEnabled.set(true)
 
 
-    d8ToolPath.set("${System.getenv("ANDROID_SDK_ROOT")}/build-tools/37.0.0/d8")
-    androidCompileSdkDirectory.set("${System.getenv("ANDROID_SDK_ROOT")}/platforms/android-36.1/")
+    val androidSdkRoot = System.getenv("ANDROID_SDK_ROOT")
+    d8ToolPath.set(System.getenv("ANDROID_D8") ?: "$androidSdkRoot/build-tools/37.0.0/d8")
+    androidCompileSdkDirectory.set(System.getenv("ANDROID_COMPILE_SDK_DIRECTORY") ?: "$androidSdkRoot/platforms/android-36.1/")
 
     graalVmHomeDirectory.set(System.getenv("GRAALVM_HOME"))
     additionalGraalResourceConfigurationFiles.set(
@@ -171,6 +172,27 @@ fun registerExportTask(name: String, exportFlag: String, description: String) = 
     )
 }
 
+fun registerAndroidExportTask(name: String, exportFlag: String, description: String) = tasks.register<Exec>(name) {
+    group = "verification"
+    this.description = description
+    dependsOn("buildAndroid")
+
+    environment("JAVA_HOME", System.getProperty("java.home"))
+    workingDir = projectDir
+
+    doFirst {
+        projectDir.resolve("export").ensureEmptyDirectory()
+    }
+
+    commandLine(
+        provideEditorExecutable().absolutePath,
+        "--headless",
+        exportFlag,
+        "tests_android",
+        "export/tests.apk",
+    )
+}
+
 fun registerGraalTestTask(
     name: String,
     description: String,
@@ -231,6 +253,7 @@ tasks {
     }
     val exportDebug = registerExportTask("exportDebug", "--export-debug", "Exports the tests for the current host OS in debug mode")
     val exportRelease = registerExportTask("exportRelease", "--export-release", "Exports the tests for the current host OS in release mode")
+    val exportAndroidDebug = registerAndroidExportTask("exportAndroidDebug", "--export-debug", "Exports the tests as an Android debug APK")
 
     register<Exec>("runGDTests") {
         group = "verification"

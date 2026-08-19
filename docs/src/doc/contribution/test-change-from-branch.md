@@ -46,3 +46,40 @@ To test a branch in your own project, build its Gradle artifacts locally and rep
 
 7. Find the published snapshot version in `~/.m2/repository/com/utopia-rise/godot-gradle-plugin/` and use that exact version in your project.
 8. Build the project, then open or run it with the official Godot editor version supported by the branch.
+
+## Test an Android export
+
+Android ships the GDExtension as a Godot Android v2 plugin AAR. The native library is built first for each Android ABI, then the Kotlin plugin, libraries, and `jvm.gdextension` configuration are packaged together in the AAR:
+
+```text
+C++ → libgodot_jvm.so (debug/release × ABI)
+Kotlin + .so files + jvm.gdextension → godot-jvm-<variant>.aar
+AAR → your-project/addons/jvm/libs/android/<variant>/
+Godot Gradle export → APK
+```
+
+From the Godot-JVM repository root, build the Android native libraries. The default output is the local staging directory `build/android/`:
+
+```bash
+scons platform=android target=template_debug arch=arm64
+scons platform=android target=template_release arch=arm64
+scons platform=android target=template_debug arch=x86_64
+scons platform=android target=template_release arch=x86_64
+```
+
+Package them into the Android plugin AARs:
+
+```bash
+./kt/gradlew -p kt :android-plugin:assemble
+```
+
+Copy the resulting AARs into the addon in the project being tested:
+
+```bash
+mkdir -p /absolute/path/to/your-project/addons/jvm/libs/android/debug
+mkdir -p /absolute/path/to/your-project/addons/jvm/libs/android/release
+cp kt/android-plugin/build/outputs/aar/godot-jvm-debug.aar /absolute/path/to/your-project/addons/jvm/libs/android/debug/
+cp kt/android-plugin/build/outputs/aar/godot-jvm-release.aar /absolute/path/to/your-project/addons/jvm/libs/android/release/
+```
+
+In Godot, install the Android build template and enable **Gradle Build > Use Gradle Build** in the Android export preset. Build your project with `buildAndroid` (or `buildAndroidRelease`) before exporting so its JVM code is converted to DEX. The exported APK chooses the matching debug or release AAR automatically.

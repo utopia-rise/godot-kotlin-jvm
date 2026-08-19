@@ -1,6 +1,12 @@
 /cmake-build-debug
 /cmake-build-release
 /build
+/android-plugin/.gradle
+/android-plugin/build
+/kt/android-plugin/build
+/build/android
+/harness/tests/addons/jvm/bin
+/harness/tests/addons/jvm/libs/android
 /bin
 **/.idea
 

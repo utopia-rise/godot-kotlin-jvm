@@ -42,29 +42,33 @@ GDExtensionBool JvmPlaceHolderInstance::set(GDExtensionScriptInstanceDataPtr p_i
     }
 
     if (values.has(parameter_name)) {
-        Variant defval = script->get_property_default_value(parameter_name);
-        // The evaluate function ensures that a NIL variant is equal to e.g. an empty Resource. Simply doing defval == parameter_value does not do this.
-        Variant result;
-        bool valid;
-        Variant::evaluate(Variant::OP_EQUAL, defval, parameter_value, result, valid);
-        bool equals = result;
-        if (valid && equals) {
-            values.erase(parameter_name);
-            return true;
+        Variant default_value;
+        if (try_get_property_default_value(script, parameter_name, default_value)) {
+            // The evaluate function ensures that a NIL variant is equal to e.g. an empty Resource. Simply doing default_value == parameter_value does not do this.
+            Variant result;
+            bool valid;
+            Variant::evaluate(Variant::OP_EQUAL, default_value, parameter_value, result, valid);
+            if (valid && result.operator bool()) {
+                values.erase(parameter_name);
+                return true;
+            }
         }
         values[parameter_name] = parameter_value;
         return true;
     }
 
-    Variant defval = script->get_property_default_value(parameter_name);
-    Variant result;
-    bool valid;
-    Variant::evaluate(Variant::OP_EQUAL, defval, parameter_value, result, valid);
-    bool equals = result;
-    if (valid && equals) {
-        values[parameter_name] = parameter_value;
+    Variant default_value;
+    if (try_get_property_default_value(script, parameter_name, default_value)) {
+        Variant result;
+        bool valid;
+        Variant::evaluate(Variant::OP_EQUAL, default_value, parameter_value, result, valid);
+        if (valid && !result.operator bool()) {
+            values[parameter_name] = parameter_value;
+        }
+        return true;
     }
-    return true;
+
+    return false;
 }
 
 GDExtensionBool JvmPlaceHolderInstance::get(GDExtensionScriptInstanceDataPtr p_instance, GDExtensionConstStringNamePtr p_name, GDExtensionVariantPtr r_ret) {
@@ -380,7 +384,7 @@ void JvmPlaceHolderInstance::update(
         StringName n = E.name;
         new_values.insert(n);
 
-        if (!values.has(n) || values[n].get_type() != E.type) {
+        if (!values.has(n) || (E.type != Variant::NIL && values[n].get_type() != E.type)) {
             if (p_values.has(n)) {
                 values[n] = p_values[n];
             }
@@ -396,9 +400,9 @@ void JvmPlaceHolderInstance::update(
             to_remove.push_back(E.key);
         }
 
-        Variant defval = script->get_property_default_value(E.key);
-        //remove because it's the same as the default value
-        if (defval == E.value) {
+        Variant default_value;
+        // Remove because it is the same as the default value.
+        if (try_get_property_default_value(script, E.key, default_value) && default_value == E.value) {
             to_remove.push_back(E.key);
         }
     }

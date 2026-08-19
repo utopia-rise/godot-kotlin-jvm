@@ -21,12 +21,12 @@ add_compile_definitions(LINUX_ENABLED)
 
 
 # Project
-file(GLOB_RECURSE SOURCES src/*.c**)
-file(GLOB_RECURSE HEADERS src/*.h**)
+file(GLOB_RECURSE SOURCES cpp/*.c**)
+file(GLOB_RECURSE HEADERS cpp/*.h**)
 
 add_library(${PROJECT_NAME} SHARED ${SOURCES} ${HEADERS})
 
-include_directories(src)
+include_directories(cpp)
 include_directories(
         SYSTEM
         godot-cpp/include

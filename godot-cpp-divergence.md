@@ -27,7 +27,7 @@ loaded at runtime — passes through them. Decoding an `Object *` parameter
 runs `PtrToArg<T *>::convert()`, which calls `get_object_instance_binding()`
 and therefore builds, and permanently registers, a godot-cpp wrapper for an
 object this module already tracks itself (see `RawObject` in
-`src/engine/godot_object.h`); `JvmScript` unwrapped it again on the very next
+`cpp/engine/godot_object.h`); `JvmScript` unwrapped it again on the very next
 line.
 
 Nothing else in godot-cpp needed changing: `GodotObject` is `typedef void`,

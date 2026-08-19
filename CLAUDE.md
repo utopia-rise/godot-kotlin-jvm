@@ -81,7 +81,7 @@ Run after modifying any `.template` or `.godot_template` files under `kt/plugins
 python generate_templates.py
 ```
 
-This converts templates into base64-encoded C++ headers at `src/editor/project/templates.h` (split into 8KB chunks to avoid C++ header size limits), then rebuild the native GDExtension.
+This converts templates into base64-encoded C++ headers at `cpp/editor/project/templates.h` (split into 8KB chunks to avoid C++ header size limits), then rebuild the native GDExtension.
 
 ## Testing
 
@@ -123,17 +123,17 @@ cd kt/
 
 ## Architecture
 
-### C++ Layer (`src/`)
+### C++ Layer (`cpp/`)
 
-- **`src/gd_kotlin.h/cpp`** — `GDKotlin` singleton; owns the runtime state machine (`uninitialized → project_discovered → jvm_started → project_loaded → ...`). Many operations gate on correct state — check here first when debugging startup issues.
+- **`cpp/gd_kotlin.h/cpp`** — `GDKotlin` singleton; owns the runtime state machine (`uninitialized → project_discovered → jvm_started → project_loaded → ...`). Many operations gate on correct state — check here first when debugging startup issues.
 - **`register_types.cpp`** — GDExtension entry point; registers `JvmScript` types, script languages, resource loaders/savers with Godot.
-- **`src/lifecycle/`** — JVM startup (`jvm_manager`), class loader management, project settings parsing.
-- **`src/jvm_wrapper/`** — JNI bridges, type conversion, per-thread shared buffer communication.
-- **`src/script/`** — Script types: `JvmScript` (abstract base), `KotlinScript`, `JavaScriptLanguage`, `GdjScript`, `ScalaScript`.
-- **`src/language/`** — `ScriptLanguage` implementations (`KotlinLanguage`, `JavaLanguage`, etc.) registered as Godot editor language options.
-- **`src/binding/`** — Binding manager; maps Godot objects to JVM instances, synchronizes lifecycle.
-- **`src/editor/`** — Editor plugin, Gradle task dialog, project generation from templates.
-- **`src/resource_format/`** — `JvmResourceFormatLoader`/`Saver` for JAR files.
+- **`cpp/jvm/lifecycle/`** — JVM startup (`jvm_manager`), class loader management, project settings parsing.
+- **`cpp/jvm/wrapper/`** — JNI bridges, type conversion, per-thread shared buffer communication.
+- **`cpp/api/script/`** — Script types: `JvmScript` (abstract base), `KotlinScript`, `JavaScriptLanguage`, `GdjScript`, `ScalaScript`.
+- **`cpp/api/language/`** — `ScriptLanguage` implementations (`KotlinLanguage`, `JavaLanguage`, etc.) registered as Godot editor language options.
+- **`cpp/core/`** — Binding manager; maps Godot objects to JVM instances, synchronizes lifecycle.
+- **`cpp/editor/`** — Editor plugin, Gradle task dialog, project generation from templates.
+- **`cpp/api/resource_format/`** — `JvmResourceFormatLoader`/`Saver` for JAR files.
 
 ### Kotlin/JVM Layer (`kt/`)
 
@@ -148,6 +148,12 @@ cd kt/
 - **`plugins/godot-gradle-plugin/`** — Applied to all user Godot-JVM projects; orchestrates compile → symbol processing → registrar generation → JAR packaging.
 - **`plugins/godot-intellij-plugin/`** — IntelliJ IDEA integration (code insight, run configs, templates).
 - **`common/`**, **`tools-common/`** — Shared utilities across subprojects.
+
+### Android plugin (`kt/android-plugin/`)
+
+- Packages the Android native GDExtension libraries and `jvm.gdextension` into debug/release Godot Android v2 plugin AARs.
+- Its Kotlin entry point loads `libgodot_jvm.so` and passes Android's existing `JavaVM` to the native extension through JNI.
+- Build it after all Android ABIs with `./kt/gradlew -p kt :android-plugin:assemble`.
 
 ### Data Flow (User Code → Runtime)
 

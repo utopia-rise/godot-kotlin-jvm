@@ -27,8 +27,7 @@
 #include <locale>
 
 #ifdef ANDROID_ENABLED
-// TODO: needs a GDExtension-appropriate Android JVM discovery mechanism; godot-cpp exposes no platform/android headers or get_jni_env equivalent. This Godot-engine-internal header is unavailable to GDExtensions.
-#include <platform/android/thread_jandroid.h>
+#include "jvm/android/android_jvm_context.h"
 #endif
 
 typedef jint(JNICALL* CreateJavaVM)(JavaVM**, void**, void*);
@@ -83,8 +82,12 @@ bool JvmManager::initialize_or_get_jvm(void* lib_handle, JvmUserConfiguration& u
 
 #elif defined PROVIDED_JVM
     JVM_LOG_VERBOSE("Retrieving existing JVM ...");
-    jni::Env env {get_jni_env()};
-    java_vm = env.get_jvm();
+    java_vm = AndroidJvmContext::get_java_vm();
+    JVM_ERR_FAIL_COND_V_MSG(
+      java_vm == nullptr,
+      false,
+      "Android JVM context was not provided. Make sure the Godot-JVM Android plugin AAR is enabled."
+    );
 #else
     // Sanity check in case we mess up preprocessors
     JVM_DEV_ASSERT(java_vm, "Current configuration doesn't allow to create or fetch a JVM.");

@@ -2,6 +2,10 @@ name: Assemble Android
 on:
   workflow_call:
     inputs:
+      godot-jvm-version:
+        type: string
+      godot-version:
+        type: string
       jvm-version:
         type: string
 
@@ -9,15 +13,32 @@ jobs:
   package-android-libraries:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: ${{ inputs.jvm-version }}
       - uses: actions/download-artifact@v7
         with:
           pattern: '*_android_*'
-          path: package/libraries
+          path: native
           merge-multiple: true
+      - name: Build Android plugin AARs
+        shell: bash
+        env:
+          GODOT_VERSION: ${{ inputs.godot-version }}
+        run: |
+          godot_maven_version="${GODOT_VERSION%-stable}.stable"
+          ./kt/gradlew -p kt :android-plugin:assemble \
+            -PgodotVersion="$godot_maven_version" \
+            -PnativeLibrariesDir="$PWD/native/jvm/bin"
+          mkdir -p package/addons/jvm/libs/android/debug package/addons/jvm/libs/android/release
+          cp kt/android-plugin/build/outputs/aar/godot-jvm-debug.aar package/addons/jvm/libs/android/debug/
+          cp kt/android-plugin/build/outputs/aar/godot-jvm-release.aar package/addons/jvm/libs/android/release/
       # Upload the raw folder rather than a pre-made zip: actions/upload-artifact always wraps
       # whatever it's given in its own zip, so uploading a zip here results in a zip nested inside
       # that zip once a human downloads the artifact.
       - uses: actions/upload-artifact@v7
         with:
-          name: godot-jvm_gdextension_android
+          name: godot-jvm_gdextension_android_${{ inputs.godot-jvm-version }}
           path: package

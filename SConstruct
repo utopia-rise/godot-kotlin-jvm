@@ -12,7 +12,7 @@ env = SConscript("godot-cpp/SConstruct")
 java_home = os.environ["JAVA_HOME"]
 
 # Generate templates when building the engine.
-generate_templates.generate_header_from_files("kt/plugins/godot-intellij-plugin/src/main/resources/template", "src/editor/project/templates.h")
+generate_templates.generate_header_from_files("kt/plugins/godot-intellij-plugin/src/main/resources/template", "cpp/editor/project/templates.h")
 
 # Add those directory manually, so we can skip the godot_cpp directory when including headers in C++ files
 source_path = [
@@ -38,30 +38,33 @@ else:
 # - LINKFLAGS are for linking flags
 
 # tweak this if you want to use different folders, or more folders, to store your source code in.
-env.Append(CPPPATH=["src/"])
+env.Append(CPPPATH=["cpp/"])
 sources = [
-    Glob("src/*.cpp"),
-    Glob("src/api/language/*.cpp"),
-    Glob("src/api/resource_format/*.cpp"),
-    Glob("src/api/script/*.cpp"),
-    Glob("src/api/script/language/*.cpp"),
-    Glob("src/core/*.cpp"),
-    Glob("src/engine/*.cpp"),
-    Glob("src/jvm/*.cpp"),
-    Glob("src/jvm/jni/*.cpp"),
-    Glob("src/jvm/lifecycle/*.cpp"),
-    Glob("src/jvm/wrapper/*.cpp"),
-    Glob("src/jvm/wrapper/bridge/*.cpp"),
-    Glob("src/jvm/wrapper/memory/*.cpp"),
-    Glob("src/jvm/wrapper/registration/*.cpp"),
+    Glob("cpp/*.cpp"),
+    Glob("cpp/api/language/*.cpp"),
+    Glob("cpp/api/resource_format/*.cpp"),
+    Glob("cpp/api/script/*.cpp"),
+    Glob("cpp/api/script/language/*.cpp"),
+    Glob("cpp/core/*.cpp"),
+    Glob("cpp/engine/*.cpp"),
+    Glob("cpp/jvm/*.cpp"),
+    Glob("cpp/jvm/jni/*.cpp"),
+    Glob("cpp/jvm/lifecycle/*.cpp"),
+    Glob("cpp/jvm/wrapper/*.cpp"),
+    Glob("cpp/jvm/wrapper/bridge/*.cpp"),
+    Glob("cpp/jvm/wrapper/memory/*.cpp"),
+    Glob("cpp/jvm/wrapper/registration/*.cpp"),
     ]
 
 if env["target"] == "editor":
-    sources.append(Glob("src/editor/*.cpp"))
-    sources.append(Glob("src/editor/project/*.cpp"))
-    sources.append(Glob("src/editor/build/*.cpp"))
-    sources.append(Glob("src/editor/ui/*.cpp"))
-    sources.append(Glob("src/editor/export/*.cpp"))
+    sources.append(Glob("cpp/editor/*.cpp"))
+    sources.append(Glob("cpp/editor/project/*.cpp"))
+    sources.append(Glob("cpp/editor/build/*.cpp"))
+    sources.append(Glob("cpp/editor/ui/*.cpp"))
+    sources.append(Glob("cpp/editor/export/*.cpp"))
+
+if env["platform"] == "android":
+    sources.append(Glob("cpp/jvm/android/*.cpp"))
 
 # Android
 if env["platform"] != "android":
@@ -77,11 +80,23 @@ if env["platform"] != "android":
 # Mirrors utopia-rise/fmod-gdextension's demo/addons layout: the harness/tests Godot project
 # (harness/tests/addons/jvm/) picks the library straight up via its .gdextension manifest, so a
 # plain rebuild keeps that test project's extension up to date without a manual copy step.
-target_path = ARGUMENTS.pop("target_path", "harness/tests/addons/jvm/libs/")
+default_target_path = "build/android/" if env["platform"] == "android" else "harness/tests/addons/jvm/libs/"
+target_path = ARGUMENTS.pop("target_path", default_target_path)
 target_name = ARGUMENTS.pop("target_name", "godot.jvm")
 env["SHLIBPREFIX"] = ""
 
-if env["platform"] == "macos":
+if env["platform"] == "android":
+    android_abi = {
+        "arm64": "arm64-v8a",
+        "x86_64": "x86_64",
+    }[env["arch"]]
+    android_variant = "debug" if env["target"] == "template_debug" else "release"
+    env["SHLIBPREFIX"] = "lib"
+    library = env.SharedLibrary(
+        "{}{}/{}/godot_jvm".format(target_path, android_variant, android_abi),
+        source=sources,
+    )
+elif env["platform"] == "macos":
     library = env.SharedLibrary(
         "{}{}/{}.{}.{}.framework/{}.{}.{}".format(
             target_path, env["platform"], target_name, env["platform"], env["target"],

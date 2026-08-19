@@ -41,6 +41,9 @@ func _process(_delta: float) -> void:
 			GdUnitSignals.instance().gdunit_event.emit(GdUnitSessionStart.new())
 			set_process(false)
 			await _executor.run_and_wait(_test_cases)
+			# Android's emulator renderer can stop presenting before _process runs again.
+			# Report the completed result from this coroutine, without waiting for another frame.
+			print("GODOT_JVM_TEST_RESULT:%s" % ("PASS" if get_exit_code() == RETURN_SUCCESS else "FAIL"))
 			_state = STOP
 			set_process(true)
 			GdUnitSignals.instance().gdunit_event.emit(GdUnitSessionClose.new())
@@ -51,6 +54,9 @@ func _process(_delta: float) -> void:
 
 func quit(code: int) -> void:
 	_state = EXIT
+	# Android's emulator renderer can stop presenting after the tests finish.
+	# Emit the result before awaiting another frame so CI can still observe it.
+	print("GODOT_JVM_TEST_RESULT:%s" % ("PASS" if code == RETURN_SUCCESS else "FAIL"))
 	await get_tree().process_frame
 	await get_tree().physics_frame
 	if _reporter != null:

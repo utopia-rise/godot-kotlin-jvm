@@ -75,12 +75,6 @@ static constexpr const char* GRAAL_NATIVE_IMAGE_FILE {MACOS_GRAAL_NATIVE_IMAGE_F
 static constexpr const char* RELATIVE_JVM_LIB_PATH {MACOS_RELATIVE_JVM_LIB_PATH};
 
 #elif ANDROID_ENABLED
-
-// TODO: needs a GDExtension-appropriate Android JVM discovery mechanism; godot-cpp exposes no platform/android
-// headers or get_jni_env equivalent. These Godot-engine-internal headers are unavailable to GDExtensions.
-#include <platform/android/java_godot_wrapper.h>
-#include <platform/android/os_android.h>
-
 static constexpr const char* BOOTSTRAP_FILE {ANDROID_BOOTSTRAP_FILE};
 static constexpr const char* USER_CODE_FILE {ANDROID_USER_CODE_FILE};
 static constexpr const char* GRAAL_NATIVE_IMAGE_FILE {ANDROID_GRAAL_NATIVE_IMAGE_FILE};

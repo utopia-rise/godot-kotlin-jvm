@@ -17,7 +17,7 @@ jobs:
           echo "Setup done"
     outputs: # defined here explicitly, so it only needs to be defined here. All other workflows can just reference it
       godot-jvm-version: "1.0.0-dev2"
-      godot-version: "4.7.1-stable"
+      godot-version: "4.7.2-stable"
       jvm-version: "17"
 
   build-jvm:
@@ -29,7 +29,6 @@ jobs:
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
 
   build-android:
-    if: ${{ false }}
     name: 🤖 Build Android
     uses: ./.github/workflows/build_android.yml
     needs:
@@ -63,13 +62,14 @@ jobs:
       - setup-build-variables
 
   assemble-android:
-    if: ${{ false }}
     name: 🤖 Assemble android
     uses: ./.github/workflows/assemble_android.yml
     needs:
       - setup-build-variables
       - build-android
     with:
+      godot-jvm-version: ${{ needs.setup-build-variables.outputs['godot-jvm-version'] }}
+      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
 
   assemble-macos:
@@ -114,6 +114,7 @@ jobs:
     uses: ./.github/workflows/assemble_addon.yml
     needs:
       - setup-build-variables
+      - assemble-android
       - build-linux
       - assemble-macos
       - build-windows

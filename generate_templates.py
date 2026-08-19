@@ -84,5 +84,5 @@ def generate_header_from_files(directory, header_file):
 
 if __name__ == "__main__":
     directory = "kt/plugins/godot-intellij-plugin/src/main/resources/template"  # Change this to your relative directory
-    header_file = "src/editor/project/templates.h"  # Output header file name
+    header_file = "cpp/editor/project/templates.h"  # Output header file name
     generate_header_from_files(directory, header_file)

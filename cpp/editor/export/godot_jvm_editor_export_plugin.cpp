@@ -73,8 +73,12 @@ namespace {
     // of registering these paths in the preset's exclude filter isn't reachable from a GDExtension.
     // We get the same functional result (these paths never end up in the exported pck) by skipping
     // them from within _export_file instead.
-    bool should_skip_export(const String& p_path) {
+    bool should_skip_export(const String& p_path, const PackedStringArray& p_features) {
         if (p_path == JVM_CONFIGURATION_PATH) { return true; }
+        // Android loads this descriptor from the Godot-JVM AAR. Exporting the project copy as
+        // well makes Godot try to load it a second time from the pck, where its native-library
+        // paths do not exist.
+        if (p_features.has("android") && p_path == "res://addons/jvm/jvm.gdextension") { return true; }
         if (p_path.begins_with(String(BUILD_DIRECTORY) + "/")) { return true; }
         if (p_path.begins_with(String(RES_DIRECTORY) + JVM_DIRECTORY) && p_path.find("jre-") != -1 && p_path.get_extension() == "jar") {
             return true;
@@ -82,6 +86,14 @@ namespace {
         return false;
     }
 } // namespace
+
+bool GodotJvmEditorExportPlugin::_supports_platform(const Ref<EditorExportPlatform>& p_platform) const {
+    return p_platform.is_valid() && p_platform->get_os_name() == "Android";
+}
+
+PackedStringArray GodotJvmEditorExportPlugin::_get_android_libraries(const Ref<EditorExportPlatform>&, bool p_debug) const {
+    return {p_debug ? "jvm/libs/android/debug/godot-jvm-debug.aar" : "jvm/libs/android/release/godot-jvm-release.aar"};
+}
 
 void GodotJvmEditorExportPlugin::_export_begin(const PackedStringArray& p_features, bool p_debug, const String& p_path, uint32_t p_flags) {
     JVM_LOG_INFO("Beginning Godot-Jvm specific exports.");
@@ -238,7 +250,7 @@ String GodotJvmEditorExportPlugin::_get_name() const {
 }
 
 void GodotJvmEditorExportPlugin::_export_file(const String& p_path, const String& p_type, const PackedStringArray& p_features) {
-    if (should_skip_export(p_path)) {
+    if (should_skip_export(p_path, p_features)) {
         skip();
         return;
     }

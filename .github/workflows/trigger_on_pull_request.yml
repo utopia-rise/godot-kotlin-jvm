@@ -25,7 +25,8 @@ jobs:
           # Native gdextension source and Kotlin runtime libraries. CI/CD and
           # Gradle/test-harness changes have their own gate below.
           paths: |
-            src
+            cpp
+            kt/android-plugin
             godot-cpp
             SConstruct
             platform
@@ -103,7 +104,7 @@ jobs:
           echo "Setup done"
     outputs: # defined here explicitly, so it only needs to be defined here. All other workflows can just reference it
       godot-jvm-version: "1.0.0-dev2"
-      godot-version: "4.7.1-stable"
+      godot-version: "4.7.2-stable"
       jvm-version: "17"
 
   build-jvm:
@@ -121,11 +122,13 @@ jobs:
       run-ide-plugin: ${{ needs.detect-ide-plugin-changes.outputs.changed == 'true' }}
 
   build-android:
-    if: ${{ false }}
     name: 🤖 Build Android
     uses: ./.github/workflows/build_android.yml
     needs:
       - setup-build-variables
+      - detect-native-changes
+      - detect-ci-cd-tests-changes
+    if: needs.detect-native-changes.outputs.changed == 'true' || needs.detect-ci-cd-tests-changes.outputs.changed == 'true'
     with:
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
 
@@ -164,13 +167,14 @@ jobs:
     if: needs.detect-native-changes.outputs.changed == 'true' || needs.detect-ci-cd-tests-changes.outputs.changed == 'true'
 
   assemble-android:
-    if: ${{ false }}
     name: 🤖 Assemble android
     uses: ./.github/workflows/assemble_android.yml
     needs:
       - setup-build-variables
       - build-android
     with:
+      godot-jvm-version: ${{ needs.setup-build-variables.outputs['godot-jvm-version'] }}
+      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
 
   assemble-macos:
@@ -215,6 +219,8 @@ jobs:
     uses: ./.github/workflows/assemble_addon.yml
     needs:
       - setup-build-variables
+      - assemble-android
+      - build-linux
       - build-linux
       - assemble-macos
       - build-windows
@@ -277,6 +283,17 @@ jobs:
     needs:
       - setup-build-variables
       - build-windows
+    with:
+      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
+      jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
+
+  test-android-exports:
+    name: 🤖 Test Android Exports
+    uses: ./.github/workflows/test_android_exports.yml
+    needs:
+      - setup-build-variables
+      - assemble-android
+      - build-linux
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}

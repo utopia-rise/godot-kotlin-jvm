@@ -1,0 +1,106 @@
+name: 🤖 Android Export Tests
+on:
+  workflow_call:
+    inputs:
+      godot-version:
+        type: string
+      jvm-version:
+        type: string
+
+concurrency:
+  group: ci-${{ github.actor }}-${{ github.head_ref || github.run_number }}-${{ github.ref }}-android_exports_tests
+  cancel-in-progress: true
+
+jobs:
+  test-android-exports:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: ./.github/actions/download-godot
+        with:
+          version: ${{ inputs.godot-version }}
+          platform: linux
+          destination: harness/tests/bin
+
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: ${{ inputs.jvm-version }}
+
+      - uses: android-actions/setup-android@v3
+
+      - name: Install Android build dependencies
+        run: |
+          yes | sdkmanager --licenses >/dev/null
+          sdkmanager "platforms;android-36.1" "build-tools;37.0.0"
+
+      - uses: gradle/actions/setup-gradle@v6
+        with:
+          cache-read-only: false
+          cache-cleanup: always
+          gradle-home-cache-excludes: |
+            wrapper/dists
+            caches/*/generated-gradle-jars
+            daemon
+            notifications
+
+      - name: Download Linux editor library
+        uses: actions/download-artifact@v7
+        with:
+          name: debug_linux_x86_64
+          path: harness/tests/addons
+
+      - name: Download Android addon
+        uses: actions/download-artifact@v7
+        with:
+          pattern: godot-jvm_gdextension_android_*
+          path: harness/tests
+          merge-multiple: true
+
+      - name: Prepare Android export template
+        run: |
+          chmod +x harness/tests/bin/godot.*
+          curl --fail --location https://github.com/godotengine/godot-builds/releases/download/${{ inputs.godot-version }}/Godot_v${{ inputs.godot-version }}_export_templates.tpz --output templates.tpz
+          unzip -q templates.tpz -d templates
+          cp templates/templates/android_source.zip harness/tests/android_source.zip
+          mkdir -p harness/tests/android/build/build
+          unzip -q -o harness/tests/android_source.zip -d harness/tests/android/build/build
+          printf 'res://android_source.zip [%s]\n' "$(md5sum harness/tests/android_source.zip | cut -d ' ' -f 1)" > harness/tests/android/build/.build_version
+          touch harness/tests/android/build/build/.gdignore
+
+      - name: Build JVM tests project
+        run: harness/tests/gradlew -p harness/tests/ build
+
+      - name: Export Android tests
+        run: harness/tests/gradlew -p harness/tests/ exportAndroidDebug
+        timeout-minutes: 30
+
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      - name: Run exported tests on an emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        timeout-minutes: 20
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          force-avd-creation: false
+          emulator-boot-timeout: 300
+          emulator-options: -no-snapshot-load -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -camera-front none
+          disable-animations: true
+          script: bash .github/scripts/test_android_emulator.sh
+
+      - name: Upload Android emulator logs
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: android-emulator-logs
+          path: android-emulator.log
+          if-no-files-found: ignore

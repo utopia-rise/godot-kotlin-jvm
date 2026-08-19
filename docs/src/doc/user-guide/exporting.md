@@ -71,7 +71,13 @@ Don't forget to remove them when writing an uninstaller for your game.
 !!! warning
     If you plan to export your game to android, make sure the libraries you use, are actually compatible with android.
 
-In order to build for Android, use the dedicated `buildAndroid` or `buildAndroidRelease` Gradle task.
+The Godot-JVM addon includes a Godot Android v2 plugin AAR. The AAR contains the Android GDExtension libraries and a small Java entry point that gives the extension access to Android's existing ART virtual machine. You do not need to install a JRE on the device.
+
+Android exports require Godot's Gradle build:
+
+1. Install the Android build template from **Project > Install Android Build Template**.
+2. Enable **Gradle Build > Use Gradle Build** in the Android export preset.
+3. Build the JVM project with `buildAndroid` or `buildAndroidRelease` before exporting.
 
 /// tab | build.gradke.kts
 ```kt
@@ -82,11 +88,12 @@ godot {
 ```
 ///
 
-On Android, we do not embed a JVM, we use the existing VM provided by the OS. In order for your game to load the necessary JAR files,
-they need to be converted into `.dex` format. Our Gradle plugin will handle this for you but it requires that you have the android build tools installed (you can easily install and update them with the SDK manager in Android Studio or by installing the Android plugin in Intellij and using the SDK manager there).
+The project JARs must still be converted to `.dex` format. The Godot-JVM Gradle plugin handles this, but it requires the Android SDK build tools. Install them with Android Studio's SDK manager and set `ANDROID_SDK_ROOT`.
 
 !!! warning
     Ensure you have the build tools version 35 or newer installed!
+
+During export, Godot adds `addons/jvm/libs/android/debug/godot-jvm-debug.aar` or `addons/jvm/libs/android/release/godot-jvm-release.aar` automatically. If either file is missing, reinstall a complete Godot-JVM addon release before exporting.
 
 ### Configuration
 While our gradle plugin is able to automatically find the newest installed build tools (if the env variable `ANDROID_SDK_ROOT` is properly set), it sometimes is required to manually set the build tools version. This can be done optionally like so:

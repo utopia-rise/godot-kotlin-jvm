@@ -16,6 +16,8 @@ namespace godot {
         static void _bind_methods() {}
 
     public:
+        bool _supports_platform(const Ref<EditorExportPlatform>& p_platform) const override;
+        PackedStringArray _get_android_libraries(const Ref<EditorExportPlatform>& p_platform, bool p_debug) const override;
         void _export_begin(const PackedStringArray& p_features, bool p_is_debug, const String& p_path, uint32_t p_flags) override;
         // Source files editions
         void _export_file(const String& p_path, const String& p_type, const PackedStringArray& p_features) override;
