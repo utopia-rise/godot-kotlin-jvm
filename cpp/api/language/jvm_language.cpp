@@ -74,6 +74,7 @@ Dictionary JvmLanguage::_debug_get_globals(int32_t, int32_t) { return {}; }
 void JvmLanguage::_reload_all_scripts() {}
 void JvmLanguage::_add_global_constant(const StringName&, const Variant&) {}
 void JvmLanguage::_add_named_global_constant(const StringName&, const Variant&) {}
+void JvmLanguage::_remove_named_global_constant(const StringName&) {}
 TypedArray<Dictionary> JvmLanguage::_get_public_functions() const { return {}; }
 Dictionary JvmLanguage::_get_public_constants() const { return {}; }
 TypedArray<Dictionary> JvmLanguage::_get_public_annotations() const { return {}; }

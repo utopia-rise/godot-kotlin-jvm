@@ -49,6 +49,7 @@ namespace godot {
         void _reload_all_scripts() override;
         void _add_global_constant(const StringName& p_name, const Variant& p_value) override;
         void _add_named_global_constant(const StringName& p_name, const Variant& p_value) override;
+        void _remove_named_global_constant(const StringName& p_name) override;
 
         // Dummy Implementations (matches master exactly — these are empty no-ops there too).
         TypedArray<Dictionary> _get_public_functions() const override;

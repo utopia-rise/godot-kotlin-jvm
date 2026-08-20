@@ -73,7 +73,11 @@ jobs:
           mkdir -p harness/tests/export
           curl --fail --location https://github.com/godotengine/godot-builds/releases/download/${{ inputs.godot-version }}/Godot_v${{ inputs.godot-version }}_export_templates.tpz --output templates.tpz
           unzip -q templates.tpz -d templates
-          mv templates/templates/macos.zip harness/tests/export_template_all_macos.zip
+          template_version="${{ inputs.godot-version }}"
+          template_version="${template_version//-/.}"
+          template_directory="$HOME/Library/Application Support/Godot/export_templates/$template_version"
+          mkdir -p "$template_directory"
+          mv templates/templates/macos.zip "$template_directory/macos.zip"
 
       - name: Build JVM tests project
         run: harness/tests/gradlew -p harness/tests/ ${{ matrix.build-task }}

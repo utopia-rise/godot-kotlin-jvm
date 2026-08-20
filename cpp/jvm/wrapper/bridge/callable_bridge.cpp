@@ -58,8 +58,16 @@ void CallableBridge::engine_call_constructor_cancellable(
       KotlinCallableCustom(env, p_kt_custom_callable_instance, static_cast<godot::Variant::Type>(p_variant_type_ordinal), p_hash_code, true)
     )};
 
-    // Signals owned by a Node can only be connected on the main thread. godot-cpp doesn't expose Object::call_thread_safe, so unlike master we can't force the connect() call onto the main thread here.
-    signal.connect(callable, godot::Object::CONNECT_ONE_SHOT);
+    // Signal::get_object() materializes a godot-cpp wrapper. The id path stays raw instead.
+    godot::RawObject owner {godot::RawObject::from_instance_id(signal.get_object_id())};
+    if (owner.is_null()) {
+        return;
+    }
+    if (owner.is_class(SNAME("Node"))) {
+        owner.call_thread_safe(SNAME("connect"), signal.get_name(), callable, static_cast<int64_t>(godot::Object::CONNECT_ONE_SHOT));
+    } else {
+        signal.connect(callable, godot::Object::CONNECT_ONE_SHOT);
+    }
 }
 
 uintptr_t CallableBridge::engine_call_copy_constructor(JNIEnv* p_raw_env, jobject p_instance) {

@@ -33,6 +33,20 @@ jobs:
           platform: linux
           destination: harness/tests/bin
 
+      - uses: ./.github/actions/download-godot
+        with:
+          version: ${{ inputs.godot-version }}
+          platform: linux
+          destination: harness/tests/bin
+          template: debug
+
+      - uses: ./.github/actions/download-godot
+        with:
+          version: ${{ inputs.godot-version }}
+          platform: linux
+          destination: harness/tests/bin
+          template: release
+
       - uses: actions/setup-java@v5
         with:
           distribution: temurin
@@ -71,9 +85,6 @@ jobs:
         run: |
           chmod +x harness/tests/bin/godot.*
           mkdir -p harness/tests/export
-          curl --fail --location https://github.com/godotengine/godot-builds/releases/download/${{ inputs.godot-version }}/Godot_v${{ inputs.godot-version }}_export_templates.tpz --output templates.tpz
-          unzip -q templates.tpz -d templates
-          mv templates/templates/linux_${{ matrix.jvm-target }}.x86_64 harness/tests/godot.linuxbsd.template_${{ matrix.jvm-target }}.x86_64
 
       - name: Build JVM tests project
         run: harness/tests/gradlew -p harness/tests/ ${{ matrix.build-task }}

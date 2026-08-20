@@ -13,8 +13,6 @@ namespace godot {
     class JvmInstance {
     public:
         struct JvmInstanceData {
-            // The raw engine pointer, never a godot-cpp wrapper: this is the hot runtime path, and every use
-            // below (refcount reads, binding lookup, get_owner) only ever needed the raw pointer anyway.
             GodotObject* owner;
             KtObject* kt_object;
             KtClass* kt_class;
@@ -59,7 +57,7 @@ namespace godot {
         static void free(GDExtensionScriptInstanceDataPtr p_instance);
 
     public:
-        static constexpr const GDExtensionScriptInstanceInfo3 jvm_script_instance_info = {
+        static constexpr GDExtensionScriptInstanceInfo3 jvm_script_instance_info = {
           .set_func = &JvmInstance::set,
           .get_func = &JvmInstance::get,
           .get_property_list_func = &JvmInstance::get_property_list,

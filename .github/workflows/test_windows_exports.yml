@@ -33,6 +33,20 @@ jobs:
           platform: windows
           destination: harness/tests/bin
 
+      - uses: ./.github/actions/download-godot
+        with:
+          version: ${{ inputs.godot-version }}
+          platform: windows
+          destination: harness/tests/bin
+          template: debug
+
+      - uses: ./.github/actions/download-godot
+        with:
+          version: ${{ inputs.godot-version }}
+          platform: windows
+          destination: harness/tests/bin
+          template: release
+
       - uses: actions/setup-java@v5
         with:
           distribution: temurin
@@ -77,10 +91,6 @@ jobs:
       - name: Prepare export
         run: |
           mkdir -p harness/tests/export
-          curl.exe --fail --location https://github.com/godotengine/godot-builds/releases/download/${{ inputs.godot-version }}/Godot_v${{ inputs.godot-version }}_export_templates.tpz --output templates.tpz
-          Expand-Archive templates.tpz templates
-          Move-Item templates/templates/windows_${{ matrix.jvm-target }}_x86_64.exe harness/tests/godot.windows.template_${{ matrix.jvm-target }}.x86_64.exe
-          Move-Item templates/templates/windows_${{ matrix.jvm-target }}_x86_64_console.exe harness/tests/godot.windows.template_${{ matrix.jvm-target }}.x86_64.console.exe
 
       - name: Build JVM tests project
         run: harness/tests/gradlew -p harness/tests/ ${{ matrix.build-task }}

@@ -10,6 +10,8 @@
 #include <variant/string_name.hpp>
 #include <variant/variant.hpp>
 
+#include <array>
+
 namespace godot {
 
     // A raw engine object pointer, plus the operations that belong to it.
@@ -89,6 +91,10 @@ namespace godot {
             return (get_instance_id() & (uint64_t(1) << 63)) != 0;
         }
 
+        _ALWAYS_INLINE_ bool is_class(const StringName& p_class_name) const {
+            return internal::_call_native_mb_ret<int8_t>(raw_engine::is_class_bind, _ptr, p_class_name._native_ptr());
+        }
+
         // --- lifecycle -----------------------------------------------------------------------------------------
 
         _ALWAYS_INLINE_ void notification(int32_t p_what, bool p_reversed = false) const {
@@ -103,6 +109,32 @@ namespace godot {
 
         _ALWAYS_INLINE_ void set_script_instance(GDExtensionScriptInstancePtr p_script_instance) const {
             internal::gdextension_interface_object_set_script_instance(_ptr, p_script_instance);
+        }
+
+    private:
+        template <typename... Args>
+        _ALWAYS_INLINE_ void call_vararg(GDExtensionMethodBindPtr p_bind, const StringName& p_method, const Args&... p_args) const {
+            Variant args[] {p_method, p_args...};
+            std::array<GDExtensionConstVariantPtr, sizeof...(Args) + 1> args_ptr;
+            for (size_t i = 0; i < args_ptr.size(); ++i) {
+                args_ptr[i] = args[i]._native_ptr();
+            }
+            Variant result;
+            GDExtensionCallError error;
+            internal::gdextension_interface_object_method_bind_call(
+              p_bind,
+              _ptr,
+              args_ptr.data(),
+              args_ptr.size(),
+              result._native_ptr(),
+              &error
+            );
+        }
+
+    public:
+        template <typename... Args>
+        _ALWAYS_INLINE_ void call_thread_safe(const StringName& p_method, const Args&... p_args) const {
+            call_vararg(raw_engine::call_thread_safe_bind, p_method, p_args...);
         }
 
         // --- refcounting ---------------------------------------------------------------------------------------

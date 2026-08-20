@@ -19,7 +19,8 @@ godot {
 
 
     val androidSdkRoot = System.getenv("ANDROID_SDK_ROOT")
-    d8ToolPath.set(System.getenv("ANDROID_D8") ?: "$androidSdkRoot/build-tools/37.0.0/d8")
+    val d8Executable = if (HostManager.hostIsMingw) "d8.bat" else "d8"
+    d8ToolPath.set(System.getenv("ANDROID_D8") ?: "$androidSdkRoot/build-tools/37.0.0/$d8Executable")
     androidCompileSdkDirectory.set(System.getenv("ANDROID_COMPILE_SDK_DIRECTORY") ?: "$androidSdkRoot/platforms/android-36.1/")
 
     graalVmHomeDirectory.set(System.getenv("GRAALVM_HOME"))
@@ -83,50 +84,6 @@ fun File.ensureEmptyDirectory() {
     mkdirs()
 }
 
-fun findWindowsBundledBinary(target: String, consoleWrapper: Boolean): File? {
-    val expectedPrefix = "godot.windows.template_${target}.x86_64.jvm."
-
-    return resolveBundledBinaries().firstOrNull { file ->
-        file.name.startsWith(expectedPrefix) && when {
-            consoleWrapper -> file.name.endsWith(".console.exe")
-            else -> file.name.endsWith(".exe") && !file.name.endsWith(".console.exe")
-        }
-    }
-}
-
-fun ensureWindowsExportTemplate(target: String, consoleWrapper: Boolean = false) {
-    if (!HostManager.hostIsMingw) {
-        return
-    }
-
-    val destinationName = buildString {
-        append("godot.windows.template_${target}.x86_64")
-        if (consoleWrapper) {
-            append(".console")
-        }
-        append(".exe")
-    }
-    val destination = projectDir.resolve(destinationName)
-    if (destination.exists()) {
-        return
-    }
-
-    // Each CI export job only provides the template for the target it builds
-    // (debug for "dev tests", release for "release tests"). If the other target's
-    // template isn't present, skip it instead of failing the whole prepare step -
-    // the export only uses the template matching its target.
-    val source = findWindowsBundledBinary(target, consoleWrapper)
-    if (source == null) {
-        logger.lifecycle(
-            "Skipping Windows ${target} export ${if (consoleWrapper) "console wrapper" else "template"}: " +
-                "not present in the local bin directories.",
-        )
-        return
-    }
-
-    source.copyTo(destination, overwrite = true)
-}
-
 fun findExportedExecutable(): File? {
     val exportedFiles = projectDir.resolve("export").listFiles()?.toList().orEmpty()
     println("Test executables: [${exportedFiles.joinToString()}]")
@@ -155,7 +112,6 @@ fun requireExportedExecutable(): File =
 fun registerExportTask(name: String, exportFlag: String, description: String) = tasks.register<Exec>(name) {
     group = "verification"
     this.description = description
-    dependsOn("prepareHostExportTemplates")
 
     environment("JAVA_HOME", System.getProperty("java.home"))
     workingDir = projectDir
@@ -213,18 +169,6 @@ fun registerGraalTestTask(
 }
 
 tasks {
-    val prepareHostExportTemplates = register("prepareHostExportTemplates") {
-        group = "verification"
-        description = "Ensures export presets can find the host export templates in a project-local path."
-
-        doLast {
-            ensureWindowsExportTemplate("debug")
-            ensureWindowsExportTemplate("release")
-            ensureWindowsExportTemplate("debug", consoleWrapper = true)
-            ensureWindowsExportTemplate("release", consoleWrapper = true)
-        }
-    }
-
     val importResources = register<Exec>("importResources") {
         group = "verification"
         description = "Imports the Godot project after rebuilding JVM registrations."

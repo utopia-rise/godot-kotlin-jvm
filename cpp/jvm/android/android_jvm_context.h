@@ -5,7 +5,6 @@
 
 class AndroidJvmContext {
 public:
-    static bool initialize(JNIEnv* p_env);
     static JavaVM* get_java_vm();
 };
 
