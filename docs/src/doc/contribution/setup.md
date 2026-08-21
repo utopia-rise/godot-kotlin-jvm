@@ -21,10 +21,10 @@ Make sure that Java is installed and its `PATH` set in your system as well (**at
 Once you have all the necessary dependencies, proceed to do the following:
 
 1. Clone Godot's repository with the stable tag you want to develop for. Notice that the branch tag must be
-aligned to the current binding's version (e.g., current version `0.17.0-4.7.1`, we need Godot at `4.7.1`).
+aligned to the current binding's version (e.g., current version `0.17.1-4.7.2`, we need Godot at `4.7.2`).
 
 ```bash
-git clone git@github.com:godotengine/godot.git --branch 4.7.1-stable --recursive
+git clone git@github.com:godotengine/godot.git --branch 4.7.2-stable --recursive
 ```
 
 2. In the `godot` directory, run the following command:
@@ -70,7 +70,7 @@ Check in you maven local repository what is the version you've just published, d
 ls ~/.m2/repository/com/utopia-rise/godot-gradle-plugin
 ```
 
-The version should look something like this: `0.17.0-4.7.1-c8df371-SNAPSHOT`.
+The version should look something like this: `0.17.1-4.7.2-c8df371-SNAPSHOT`.
 
 Your test project should use `mavenLocal()` in its Gradle repositories and use the exact snapshot version you published from your local `~/.m2/repository/com/utopia-rise/godot-gradle-plugin/` folder.
 

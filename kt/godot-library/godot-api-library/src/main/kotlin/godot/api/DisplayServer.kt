@@ -3015,7 +3015,7 @@ public object DisplayServer : Object() {
 
   /**
    * Returns the scale factor of the specified screen by index. Returns `1.0` if [screen] is
-   * invalid.
+   * invalid. See also [screenGetMaxScale].
    *
    * **Note:** One of the following constants can be used as [screen]: [SCREEN_OF_MAIN_WINDOW],
    * [SCREEN_PRIMARY], [SCREEN_WITH_MOUSE_FOCUS], or [SCREEN_WITH_KEYBOARD_FOCUS].
@@ -3050,12 +3050,10 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the greatest scale factor of all screens.
+   * Returns the greatest scale factor of all screens. See also [screenGetScale].
    *
-   * **Note:** On macOS returned value is `2.0` if there is at least one hiDPI (Retina) screen in
-   * the system, and `1.0` in all other cases.
-   *
-   * **Note:** This method is implemented only on macOS.
+   * **Note:** On macOS, the returned value is `2.0` if there is at least one hiDPI (Retina) screen
+   * in the system, and `1.0` in all other cases.
    */
   @JvmStatic
   public final fun screenGetMaxScale(): Float {
