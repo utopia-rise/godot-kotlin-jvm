@@ -11,7 +11,7 @@ In order to test a change from a specific branch in your own project, you'll nee
 
 1. Ensure the `JAVA_HOME` env variable is set. At least jdk 17 is required.
 2. Check against which godot branch/tag the branch is built against. (`Check the Godot-JVM version you are branching from`)
-3. Check out Godot: `git clone git@github.com:godotengine/godot.git --branch 4.7.1-stable --recursive`
+3. Check out Godot: `git clone git@github.com:godotengine/godot.git --branch 4.7.2-stable --recursive`
 4. Move into the godot root: `cd godot`
 5. Check out our module: `git submodule add git@github.com:utopia-rise/godot-kotlin-jvm.git modules/kotlin_jvm`
 6. Move into the kotlin root of our module: `cd modules/kotlin_jvm/kt`
@@ -33,7 +33,7 @@ In order to test a change from a specific branch in your own project, you'll nee
     rootProject.name = "your-project-name"
     ```
 12. Check the version name which you've built: `ls ~/.m2/repository/com/utopia-rise/godot-gradle-plugin/`
-    It should be something like: `0.17.0-4.7.1-d68f299-SNAPSHOT`
+    It should be something like: `0.17.1-4.7.2-d68f299-SNAPSHOT`
 13. Use that exact snapshot version in your project.
 14. Build your project
 15. Run your project with the editor binary you've built in step 10
