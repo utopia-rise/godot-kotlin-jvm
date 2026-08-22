@@ -64,7 +64,7 @@ While Kotlin and Godot support a wide range of platforms, Godot-JVM currently su
 
 Godot-JVM uses semantic versioning. Godot is versioned independently as a minimum supported version.
 
-Version: `1.0.0-dev2`
+Version: `1.0.0-dev3`
 
 Minimum Godot Version: `4.7.2`
 
