@@ -1,3 +1,7 @@
+---
+description: Create, build, and attach your first Kotlin, Java, or Scala Godot-JVM script class.
+---
+
 # Your first class
 
 Let's create a class that prints a message when its node enters the scene

@@ -1,3 +1,7 @@
+---
+description: Learn how Godot-JVM scripts, core types, and APIs differ from GDScript and the native Godot API.
+---
+
 # Registration files and attaching scripts
 
 Godot-JVM uses source files for classes declared in the current Godot project and registration files for classes contributed by external dependencies.

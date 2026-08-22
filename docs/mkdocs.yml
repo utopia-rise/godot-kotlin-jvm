@@ -1,4 +1,7 @@
 site_name: Godot-JVM
+site_description: Kotlin, Java, and Scala bindings for the Godot game engine.
+site_author: Utopia Rise
+site_url: !ENV [READTHEDOCS_CANONICAL_URL, 'https://godot-jvm.dev/en/stable/']
 docs_dir: src/doc
 
 repo_name: 'utopia-rise/godot-jvm'

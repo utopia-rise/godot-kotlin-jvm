@@ -10,8 +10,26 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  create-or-update-maintenance-branch:
+    name: Create or Update maintenance branch
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Update minor maintenance branch
+        if: ${{ !contains(github.ref_name, '-dev') && !contains(github.ref_name, '-snapshot') }}
+        shell: bash
+        run: |
+          maintenance_branch="${GITHUB_REF_NAME%.*}"
+          git push origin "HEAD:refs/heads/$maintenance_branch"
+
   create-draft-release:
     name: 📝 Create draft release
+    needs: create-or-update-maintenance-branch
     uses: ./.github/workflows/deploy_create_draft_release.yml
     secrets: inherit # needed so that this sub workflow can also access github secrets for this workflow
 

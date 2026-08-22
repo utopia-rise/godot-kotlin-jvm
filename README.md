@@ -7,7 +7,7 @@
 
 [![GitHub](https://img.shields.io/github/license/utopia-rise/godot-jvm?style=for-the-badge)](LICENSE)
 [![Discord](https://img.shields.io/discord/675058327088136212?style=for-the-badge&label=Discord)](https://discord.gg/zpb5Ru7v9x)
-[![Website](https://img.shields.io/website?url=https%3A%2F%2Fgodot-kotl.in%2Fen%2Fstable%2F&style=for-the-badge&label=Documentation)](https://godot-kotl.in/en/stable/)
+[![Website](https://img.shields.io/website?url=https%3A%2F%2Fgodot-jvm.dev%2Fen%2Fstable%2F&style=for-the-badge&label=Documentation)](https://godot-jvm.dev/en/stable/)
 
 ## Overview
 
@@ -27,7 +27,7 @@ There are two methods for distributing JVM bytecode produced by the Kotlin compi
 
 1.  A classic JAR file: your code will be packed into a `.jar` file, which is then executed by an embedded JVM.
     So the developer does not have to worry about their user installing a JRE. The JVM is already embedded in your game executable.
-2.  Dynamic Library using GraalVM Native Image: please read more about this in our [documentation page](https://godot-kotl.in/en/stable/user-guide/advanced/graal-vm-native-image/).
+2.  Dynamic Library using GraalVM Native Image: please read more about this in our [documentation page](https://godot-jvm.dev/en/stable/user-guide/advanced/graal-vm-native-image/).
 
 Just write your game scripts like you would for [GDScript](https://docs.godotengine.org/en/4.7/getting_started/scripting/gdscript/gdscript_basics.html)
 or for [C#](https://docs.godotengine.org/en/3.1/getting_started/scripting/c_sharp/) but with all the syntactic sugar of Kotlin.
@@ -40,7 +40,7 @@ Download the addon archive from the [GitHub releases page](https://github.com/ut
 
 ## Documentation
 
-The documentation can be found [here](https://godot-kotl.in). It's a work in progress, and we would love your input to
+The documentation can be found [here](https://godot-jvm.dev). It's a work in progress, and we would love your input to
 make it even better!
 
 ## Developer Discussion & Contribution
@@ -48,8 +48,8 @@ make it even better!
 Join us on our [Discord](https://discord.gg/zpb5Ru7v9x) server to ask questions and work together
 with a friendly community.
 
-If you want to contribute to the project, please read through the [contribution guidelines](https://godot-kotl.in/en/stable/contribution/guidelines/)
-and the [setup](https://godot-kotl.in/en/stable/contribution/setup/) sections.
+If you want to contribute to the project, please read through the [contribution guidelines](https://godot-jvm.dev/en/stable/contribution/guidelines/)
+and the [setup](https://godot-jvm.dev/en/stable/contribution/setup/) sections.
 
 ## Partners
 

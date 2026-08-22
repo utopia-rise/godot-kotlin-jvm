@@ -1,3 +1,7 @@
+---
+description: Set up a Godot-JVM project with the Godot editor, IntelliJ IDEA project wizard, or Gradle.
+---
+
 # Setting-up
 
 This page illustrates how to set up a project with Godot-JVM. Currently, there are
@@ -156,3 +160,5 @@ If you want to examples of what a JVM Godot project looks like, you can check th
 
 - [Minimal project template](https://github.com/utopia-rise/godot-kotlin-project-template)
 - [GDQuest 3D demo converted to Kotlin](https://github.com/utopia-rise/godot-kotlin-3d-demo)
+
+After setup, create [your first Godot-JVM class](your-first-class.md).

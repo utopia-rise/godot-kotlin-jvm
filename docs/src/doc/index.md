@@ -1,12 +1,15 @@
 ---
 hide:
   - navigation
+description: Build Godot games and applications with Kotlin, Java, or Scala using Godot-JVM, a JVM GDExtension binding.
 ---
 
 
 [![GitHub](https://img.shields.io/github/license/utopia-rise/godot-jvm?style=flat-square)](LICENSE)
 
-**Godot-JVM** is a GDExtension JVM binding that lets you write game or application logic in Kotlin, Java, or Scala.
+# Godot-JVM: Kotlin, Java, and Scala bindings for Godot
+
+Godot-JVM is a GDExtension JVM binding that lets you write game or application logic in Kotlin, Java, or Scala. To get started, [set up a Godot-JVM project](getting-started/setting-up.md).
 
 ## State
 
@@ -34,8 +37,6 @@ The items in this list are explicitly mentioned here as these will be implemente
 Also consider the [API Differences](user-guide/api-differences.md) section for general differences
 and limitations which will not be or cannot be adressed in the near forseable future or ever.
 
-- A public no-argument constructor is registered when present; constructors
-  with arguments are not exposed to Godot.
 - No tool mode (you can set it already in the `@Script` annotation but it has no effect yet).
 - No addon support, you cannot use Godot-JVM to write plugins and addons yet (you can however [write libraries](develop-libraries/introduction.md) with godot specific code).
 - Web is currently not supported. See [Supported platforms](#supported-platforms) to see what platforms we currently support

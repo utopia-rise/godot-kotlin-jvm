@@ -220,7 +220,7 @@ void JvmUserConfiguration::parse_command_line(const godot::PackedStringArray& ar
     // JvmUserConfiguration default value and the absence of the matching command line argument. Knowing this is
     // essential when merging with the json configuration later.
 
-    // Keep in sync with https://godot-kotl.in/en/latest/advanced/commandline-args/
+    // Keep in sync with https://godot-jvm.dev/en/latest/advanced/commandline-args/
     for (const auto& arg : args) {
         godot::String identifier;
         godot::String value;
