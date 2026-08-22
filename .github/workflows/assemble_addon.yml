@@ -36,7 +36,7 @@ jobs:
           path: addon
       - uses: actions/download-artifact@v7
         with:
-          name: godot-jvm_gdextension_android_${{ inputs.godot-jvm-version }}
+          name: godot-jvm-gdextension-android-${{ inputs.godot-jvm-version }}
           path: android
       - name: Assemble addon
         shell: bash
@@ -52,5 +52,5 @@ jobs:
       # once, at the point deploy_godot.yml attaches it to the GitHub release.
       - uses: actions/upload-artifact@v7
         with:
-          name: godot-jvm_addon_${{ inputs.godot-jvm-version }}
+          name: godot-jvm-addon-${{ inputs.godot-jvm-version }}
           path: package

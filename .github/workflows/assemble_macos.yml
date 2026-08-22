@@ -62,5 +62,5 @@ jobs:
       # once, at the point deploy_godot.yml attaches it to the GitHub release.
       - uses: actions/upload-artifact@v7
         with:
-          name: godot-jvm_gdextension_macos_universal_${{ matrix.target }}_${{ inputs.godot-jvm-version }}
+          name: godot-jvm-gdextension-macos-universal-${{ matrix.target }}-${{ inputs.godot-jvm-version }}
           path: package

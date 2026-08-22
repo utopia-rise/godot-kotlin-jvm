@@ -19,5 +19,5 @@ jobs:
       # that zip once a human downloads the artifact.
       - uses: actions/upload-artifact@v7
         with:
-          name: godot-jvm_gdextension_ios
+          name: godot-jvm-gdextension-ios
           path: package

@@ -55,7 +55,7 @@ jobs:
       - name: Download Android addon
         uses: actions/download-artifact@v7
         with:
-          pattern: godot-jvm_gdextension_android_*
+          pattern: godot-jvm-gdextension-android-*
           path: harness/tests
           merge-multiple: true
 

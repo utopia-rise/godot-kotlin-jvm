@@ -77,7 +77,7 @@ The current latest release requires at least Kotlin version `2.3.20`.
 
 ## Install the addon
 
-Download the `godot-jvm_addon_<version>.zip` archive for your release from [GitHub releases](https://github.com/utopia-rise/godot-jvm/releases) and extract it into your project's root directory. The archive provides `addons/jvm`, including the `jvm.gdextension` manifest and native libraries for supported platforms.
+Download the `godot-jvm-addon-<version>.zip` archive for your release from [GitHub releases](https://github.com/utopia-rise/godot-jvm/releases) and extract it into your project's root directory. The archive provides `addons/jvm`, including the `jvm.gdextension` manifest and native libraries for supported platforms.
 
 Open the project with Godot `4.7.2` or newer. Use the matching official export templates when exporting your project.
 

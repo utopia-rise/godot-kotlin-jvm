@@ -40,5 +40,5 @@ jobs:
       # that zip once a human downloads the artifact.
       - uses: actions/upload-artifact@v7
         with:
-          name: godot-jvm_gdextension_android_${{ inputs.godot-jvm-version }}
+          name: godot-jvm-gdextension-android-${{ inputs.godot-jvm-version }}
           path: package

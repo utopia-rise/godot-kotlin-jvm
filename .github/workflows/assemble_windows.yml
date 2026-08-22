@@ -30,12 +30,12 @@ jobs:
         uses: actions/download-artifact@v7
         with:
           name: ${{ matrix.target }}_windows_${{ matrix.arch }}
-          path: godot-jvm_gdextension_windows_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-jvm-version }}
+          path: godot-jvm-gdextension-windows-${{ matrix.arch }}-${{ matrix.target }}-${{ inputs.godot-jvm-version }}
 
       - name: Assemble Windows library
         run: |
           mkdir -p package/addons
-          cp -R godot-jvm_gdextension_windows_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-jvm-version }}/jvm package/addons/jvm
+          cp -R godot-jvm-gdextension-windows-${{ matrix.arch }}-${{ matrix.target }}-${{ inputs.godot-jvm-version }}/jvm package/addons/jvm
         shell: bash
 
       # Upload the raw "addons" folder rather than a pre-made zip: actions/upload-artifact always
@@ -45,5 +45,5 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v7
         with:
-          name: godot-jvm_gdextension_windows_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-jvm-version }}
+          name: godot-jvm-gdextension-windows-${{ matrix.arch }}-${{ matrix.target }}-${{ inputs.godot-jvm-version }}
           path: package
