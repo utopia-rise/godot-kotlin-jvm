@@ -1,25 +1,36 @@
-In order to test a change from a specific branch in your own project, you'll need to follow the following steps:
+To test a branch in your own project, build its Gradle artifacts locally and replace the native library in the project's Godot-JVM addon.
 
 !!! warning
-    Before following these steps, make sure you've done a proper backup of your project! Things can and will break! So ensure you can easily rollback all changes applied to your project
-
-!!! info
-    Building the project from source, requires that you've setup your system to be able to build godot. [Follow the official documentation](https://docs.godotengine.org/en/stable/contributing/development/compiling/index.html) for the setup of your system! 
+    Back up your project before testing unreleased changes.
 
 !!! warning
-    If you republish changes locally under the same snapshot version, Gradle may keep using cached plugin artifacts in your demo project. In that case, rerun your demo build with `--refresh-dependencies` (for example `./gradlew --refresh-dependencies build`) so the republished local artifacts are picked up.
+    If you republish changes locally under the same snapshot version, Gradle may keep using cached plugin artifacts. Rerun your project build with `--refresh-dependencies` (for example, `./gradlew --refresh-dependencies build`) to use the republished artifacts.
 
-1. Ensure the `JAVA_HOME` env variable is set. At least jdk 17 is required.
-2. Check against which godot branch/tag the branch is built against. (`Check the Godot-JVM version you are branching from`)
-3. Check out Godot: `git clone git@github.com:godotengine/godot.git --branch 4.7.2-stable --recursive`
-4. Move into the godot root: `cd godot`
-5. Check out our module: `git submodule add git@github.com:utopia-rise/godot-kotlin-jvm.git modules/kotlin_jvm`
-6. Move into the kotlin root of our module: `cd modules/kotlin_jvm/kt`
-7. Check out the branch you want: `git checkout <branch_name>`
-8. Locally deploy our module: `./gradlew publishArtifactsToMavenLocal`
-9. Move back to the godot root: `cd ../../..`
-10. Build godot: `scons debug_symbols=yes dev_build=yes`
-11. Make sure your project's `settings.gradle.kts` contains:
+1. Ensure `JAVA_HOME` is set. JDK 17 or newer is required.
+2. Download the Godot-JVM addon release for the branch's minimum supported Godot version and extract it into your project's root. Confirm that `addons/jvm/jvm.gdextension` exists.
+3. Clone this repository and switch to the branch you want to test:
+
+    ```bash
+    git clone --recurse-submodules git@github.com:utopia-rise/godot-jvm.git
+    cd godot-jvm
+    git checkout <branch-name>
+    ```
+
+4. Publish the branch's Gradle artifacts locally:
+
+    ```bash
+    cd kt
+    ./gradlew publishArtifactsToMavenLocal
+    ```
+
+5. Build the native GDExtension directly into your project's addon. Run this from the repository root and replace the platform and absolute project path as needed:
+
+    ```bash
+    scons platform=linux target=editor target_path=/absolute/path/to/your-project/addons/jvm/libs/
+    ```
+
+6. Configure your project's `settings.gradle.kts` to use `mavenLocal()`:
+
     ```kotlin
     pluginManagement {
         repositories {
@@ -32,9 +43,43 @@ In order to test a change from a specific branch in your own project, you'll nee
 
     rootProject.name = "your-project-name"
     ```
-12. Check the version name which you've built: `ls ~/.m2/repository/com/utopia-rise/godot-gradle-plugin/`
-    It should be something like: `0.17.1-4.7.2-d68f299-SNAPSHOT`
-13. Use that exact snapshot version in your project.
-14. Build your project
-15. Run your project with the editor binary you've built in step 10
-    You can find that binary in the godot root in the `bin` folder, and it should look something like this: `godot.macos.editor.dev.arm64`
+
+7. Find the published snapshot version in `~/.m2/repository/com/utopia-rise/godot-gradle-plugin/` and use that exact version in your project.
+8. Build the project, then open or run it with the official Godot editor version supported by the branch.
+
+## Test an Android export
+
+Android ships the GDExtension as a Godot Android v2 plugin AAR. The native library is built first for each Android ABI, then the Kotlin plugin, libraries, and `jvm.gdextension` configuration are packaged together in the AAR:
+
+```text
+C++ → libgodot_jvm.so (debug/release × ABI)
+Kotlin + .so files + jvm.gdextension → godot-jvm-<variant>.aar
+AAR → your-project/addons/jvm/libs/android/<variant>/
+Godot Gradle export → APK
+```
+
+From the Godot-JVM repository root, build the Android native libraries. The default output is the local staging directory `build/android/`:
+
+```bash
+scons platform=android target=template_debug arch=arm64
+scons platform=android target=template_release arch=arm64
+scons platform=android target=template_debug arch=x86_64
+scons platform=android target=template_release arch=x86_64
+```
+
+Package them into the Android plugin AARs:
+
+```bash
+./kt/gradlew -p kt :android-plugin:assemble
+```
+
+Copy the resulting AARs into the addon in the project being tested:
+
+```bash
+mkdir -p /absolute/path/to/your-project/addons/jvm/libs/android/debug
+mkdir -p /absolute/path/to/your-project/addons/jvm/libs/android/release
+cp kt/android-plugin/build/outputs/aar/godot-jvm-debug.aar /absolute/path/to/your-project/addons/jvm/libs/android/debug/
+cp kt/android-plugin/build/outputs/aar/godot-jvm-release.aar /absolute/path/to/your-project/addons/jvm/libs/android/release/
+```
+
+In Godot, install the Android build template and enable **Gradle Build > Use Gradle Build** in the Android export preset. Build your project with `buildAndroid` (or `buildAndroidRelease`) before exporting so its JVM code is converted to DEX. The exported APK chooses the matching debug or release AAR automatically.

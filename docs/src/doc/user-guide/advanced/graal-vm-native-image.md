@@ -16,7 +16,7 @@ godot {
 }
 ```
 
-In order to use the generated native-image, you can pass `--java-vm-type=graal` argument to engine, or simply change `godot_kotlin_configuration.json` to set vm_type to `graal_native_image`.
+In order to use the generated native-image, you can pass `--java-vm-type=graal` argument to engine, or simply change `godot_jvm_configuration.json` to set vm_type to `graal_native_image`.
 
 ## Reflection, libraries and JNI with native image
 

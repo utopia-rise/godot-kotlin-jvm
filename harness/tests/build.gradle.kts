@@ -5,7 +5,7 @@ import org.jetbrains.kotlin.konan.target.HostManager
 plugins {
     // no need to apply kotlin jvm plugin. Our plugin already applies the correct version for you
 //    kotlin("jvm") version "1.7.10"
-    id("com.utopia-rise.godot-kotlin-jvm")
+    id("com.utopia-rise.godot-jvm")
 }
 
 repositories {
@@ -18,8 +18,10 @@ godot {
     isGodotCoroutinesEnabled.set(true)
 
 
-    d8ToolPath.set("${System.getenv("ANDROID_SDK_ROOT")}/build-tools/37.0.0/d8")
-    androidCompileSdkDirectory.set("${System.getenv("ANDROID_SDK_ROOT")}/platforms/android-36.1/")
+    val androidSdkRoot = System.getenv("ANDROID_SDK_ROOT")
+    val d8Executable = if (HostManager.hostIsMingw) "d8.bat" else "d8"
+    d8ToolPath.set(System.getenv("ANDROID_D8") ?: "$androidSdkRoot/build-tools/37.0.0/$d8Executable")
+    androidCompileSdkDirectory.set(System.getenv("ANDROID_COMPILE_SDK_DIRECTORY") ?: "$androidSdkRoot/platforms/android-36.1/")
 
     graalVmHomeDirectory.set(System.getenv("GRAALVM_HOME"))
     additionalGraalResourceConfigurationFiles.set(
@@ -61,8 +63,10 @@ fun bundledBinDirectories(): List<File> = listOf(
 fun resolveBundledBinaries(): List<File> =
     bundledBinDirectories().flatMap { directory -> (directory.listFiles() ?: emptyArray()).toList() }
 
-fun provideEditorExecutable(): File =
-    resolveBundledBinaries()
+fun provideEditorExecutable(): File = System.getenv("GODOT_EDITOR")
+    ?.let(::File)
+    ?.takeIf(File::isFile)
+    ?: resolveBundledBinaries()
         .also { println("[${it.joinToString()}]") }
         .firstOrNull { it.name.startsWith("godot.") && it.name.contains("editor") && !it.name.contains("console") }
         .also { println("Godot executable selected: $it") }
@@ -80,50 +84,6 @@ fun File.ensureEmptyDirectory() {
     mkdirs()
 }
 
-fun findWindowsBundledBinary(target: String, consoleWrapper: Boolean): File? {
-    val expectedPrefix = "godot.windows.template_${target}.x86_64.jvm."
-
-    return resolveBundledBinaries().firstOrNull { file ->
-        file.name.startsWith(expectedPrefix) && when {
-            consoleWrapper -> file.name.endsWith(".console.exe")
-            else -> file.name.endsWith(".exe") && !file.name.endsWith(".console.exe")
-        }
-    }
-}
-
-fun ensureWindowsExportTemplate(target: String, consoleWrapper: Boolean = false) {
-    if (!HostManager.hostIsMingw) {
-        return
-    }
-
-    val destinationName = buildString {
-        append("godot.windows.template_${target}.x86_64")
-        if (consoleWrapper) {
-            append(".console")
-        }
-        append(".exe")
-    }
-    val destination = projectDir.resolve(destinationName)
-    if (destination.exists()) {
-        return
-    }
-
-    // Each CI export job only provides the template for the target it builds
-    // (debug for "dev tests", release for "release tests"). If the other target's
-    // template isn't present, skip it instead of failing the whole prepare step -
-    // the export only uses the template matching its target.
-    val source = findWindowsBundledBinary(target, consoleWrapper)
-    if (source == null) {
-        logger.lifecycle(
-            "Skipping Windows ${target} export ${if (consoleWrapper) "console wrapper" else "template"}: " +
-                "not present in the local bin directories.",
-        )
-        return
-    }
-
-    source.copyTo(destination, overwrite = true)
-}
-
 fun findExportedExecutable(): File? {
     val exportedFiles = projectDir.resolve("export").listFiles()?.toList().orEmpty()
     println("Test executables: [${exportedFiles.joinToString()}]")
@@ -132,7 +92,10 @@ fun findExportedExecutable(): File? {
     val exportedExecutable = when {
         HostManager.hostIsMingw -> exportedFiles.firstOrNull { it.name.endsWith(".console.exe") }
         HostManager.hostIsMac -> exportedFiles.firstOrNull { it.name.endsWith(".app") }
-        else -> exportedFiles.firstOrNull { it.name.contains("x86_64") }
+        // The GDExtension shared library sits next to the exported binary and also carries the
+        // architecture in its name, so matching on "x86_64" alone can select it instead of the
+        // executable (directory order decides) -- running a .so exits with SIGSEGV and no output.
+        else -> exportedFiles.firstOrNull { it.isFile && it.name.contains("x86_64") && it.extension != "so" }
     } ?: exportedFiles.firstOrNull { it.name.endsWith(".exe") }
 
     return if (exportedExecutable?.name?.endsWith(".app") == true) {
@@ -149,7 +112,6 @@ fun requireExportedExecutable(): File =
 fun registerExportTask(name: String, exportFlag: String, description: String) = tasks.register<Exec>(name) {
     group = "verification"
     this.description = description
-    dependsOn("importResources", "prepareHostExportTemplates")
 
     environment("JAVA_HOME", System.getProperty("java.home"))
     workingDir = projectDir
@@ -166,19 +128,47 @@ fun registerExportTask(name: String, exportFlag: String, description: String) = 
     )
 }
 
-tasks {
-    val prepareHostExportTemplates = register("prepareHostExportTemplates") {
-        group = "verification"
-        description = "Ensures export presets can find the host export templates in a project-local path."
+fun registerAndroidExportTask(name: String, exportFlag: String, description: String) = tasks.register<Exec>(name) {
+    group = "verification"
+    this.description = description
+    dependsOn("buildAndroid")
 
-        doLast {
-            ensureWindowsExportTemplate("debug")
-            ensureWindowsExportTemplate("release")
-            ensureWindowsExportTemplate("debug", consoleWrapper = true)
-            ensureWindowsExportTemplate("release", consoleWrapper = true)
-        }
+    environment("JAVA_HOME", System.getProperty("java.home"))
+    workingDir = projectDir
+
+    doFirst {
+        projectDir.resolve("export").ensureEmptyDirectory()
     }
 
+    commandLine(
+        provideEditorExecutable().absolutePath,
+        "--headless",
+        exportFlag,
+        "tests_android",
+        "export/tests.apk",
+    )
+}
+
+fun registerGraalTestTask(
+    name: String,
+    description: String,
+    executableProvider: () -> File,
+    useProjectPathOverride: Boolean,
+    scriptArgs: List<String>,
+) = tasks.register<Exec>(name) {
+    group = "verification"
+    this.description = description
+
+    setupTestExecution {
+        TestExecutionCommand(
+            executable = executableProvider().absolutePath,
+            useProjectPathOverride = useProjectPathOverride,
+            scriptArgs = scriptArgs,
+        )
+    }
+}
+
+tasks {
     val importResources = register<Exec>("importResources") {
         group = "verification"
         description = "Imports the Godot project after rebuilding JVM registrations."
@@ -195,24 +185,23 @@ tasks {
             commandLine(
                 "cmd",
                 "/c",
-                "$editorExecutable --headless --import --quiet",
+                "$editorExecutable --headless --import",
             )
         } else {
             commandLine(
                 "bash",
                 "-c",
-                "$editorExecutable --headless --import --quiet",
+                "$editorExecutable --headless --import",
             )
         }
     }
     val exportDebug = registerExportTask("exportDebug", "--export-debug", "Exports the tests for the current host OS in debug mode")
     val exportRelease = registerExportTask("exportRelease", "--export-release", "Exports the tests for the current host OS in release mode")
+    val exportAndroidDebug = registerAndroidExportTask("exportAndroidDebug", "--export-debug", "Exports the tests as an Android debug APK")
 
     register<Exec>("runGDTests") {
         group = "verification"
-        description = "Runs GDUnit tests from the source Godot project."
-
-        dependsOn(importResources)
+        description = "Runs GDUnit tests from the source Godot project. Requires build and importResources first."
 
         setupTestExecution {
             TestExecutionCommand(
@@ -230,9 +219,24 @@ tasks {
             )
         }
     }
+    registerGraalTestTask(
+        name = "runGraalGDTests",
+        description = "Runs GDUnit tests in the editor using GraalVM Native Image. Requires build, importResources, and buildGraalNativeImage first.",
+        executableProvider = ::provideEditorExecutable,
+        useProjectPathOverride = true,
+        scriptArgs = listOf(
+            "--jvm-vm-type=graal_native_image",
+            "-s",
+            "res://addons/gdUnit4/bin/GdUnitCmdTool.gd",
+            "-a",
+            "test",
+            "-c",
+            "--ignoreHeadlessMode",
+        ),
+    )
     register<Exec>("runExportedGDTests") {
         group = "verification"
-        description = "Runs GDUnit tests from the exported package."
+        description = "Runs GDUnit tests from the exported package. Requires exportDebug or exportRelease first."
 
         setupTestExecution {
             TestExecutionCommand(
@@ -242,6 +246,13 @@ tasks {
             )
         }
     }
+    registerGraalTestTask(
+        name = "runExportedGraalGDTests",
+        description = "Runs GDUnit tests from the exported package using GraalVM Native Image. Requires buildGraalNativeImage and exportDebug or exportRelease first.",
+        executableProvider = ::requireExportedExecutable,
+        useProjectPathOverride = false,
+        scriptArgs = listOf("--jvm-vm-type=graal_native_image"),
+    )
 }
 
 data class TestExecutionCommand(

@@ -1,8 +1,24 @@
+---
+description: Set up a Godot-JVM project with the Godot editor, IntelliJ IDEA project wizard, or Gradle.
+---
+
 # Setting-up
 
-This page illustrates how to set-up a project with Godot/Kotlin JVM. Currently, there are
+This page illustrates how to set up a project with Godot-JVM. Currently, there are
 three ways to create a new project: [directly from the Godot editor](#setting-up-using-the-godot-editor),  [using a custom IntelliJ IDEA plugin](#setting-up-using-intellij-idea-project-wizard)
 or [manually](#setting-up-manually).
+
+## Install the addon
+
+Download the Godot-JVM release archive and extract it into the root of your Godot project. The archive already starts with the `addons` directory, so preserve its directory structure. The extension manifest must be located at:
+
+```
+<project root>/addons/jvm/jvm.gdextension
+```
+
+Open the project in Godot, then select **Project > Project Settings > GDExtension**. Confirm that `res://addons/jvm/jvm.gdextension` is listed and enabled.
+
+![Installed Godot-JVM GDExtension](../assets/img/gdextension-installed.png)
 
 ## Setting-up using the Godot editor.
 
@@ -16,6 +32,10 @@ The following choice will appear:
 
 After this action, all required files should be generated, and you can safely import your project in your IDE.
 
+Once the JVM files have been generated, use **Build > Run Gradle** in the Godot editor to build the project. The JVM status indicator changes from yellow to green when the build completes successfully.
+
+![Run Gradle and JVM status indicator](../assets/img/run-gradle-ready.png)
+
 ## Setting-up using IntelliJ IDEA project wizard
 
 This is the recommended solution as it creates the entire project in one action and import it in your IDE.
@@ -23,14 +43,14 @@ It's done via IntelliJ's project wizard (the user needs to install our IntelliJ 
 
 ### Installing IntelliJ IDEA's plugin
 
-To install our plugin to create new projects for Godot/Kotlin JVM, run your local copy of IntelliJ IDEA. When the editor
+To install our plugin to create new projects for Godot-JVM, run your local copy of IntelliJ IDEA. When the editor
 is running, open the `Settings` and select the `Plugins` entry. From this view, select `Marketplace` on the top-bar.
 
 ![Plugins View](../assets/img/idea-plugin/plugins-view.png)
 
-Type `godot kotlin` into the search bar, and our plugin will be shown as follows.
+Type `Godot-JVM` into the search bar, and our plugin will be shown as follows.
 
-![Godot Kotlin Plugin](../assets/img/idea-plugin/plugin-godot-kotlin.png)
+![Godot-JVM plugin](../assets/img/idea-plugin/plugin-godot-jvm.png)
 
 Click the `Install` button and wait for the IDE to download the plugin. Once the downloading
 process is complete, press the `OK` button on the bottom-right. The IDE will prompt a new
@@ -43,7 +63,7 @@ To create a new project, please refer to the following instructions:
 
 1. Open IntelliJ IDEA
 2. Create a new project clicking on `New Project`
-3. In the `New Project` window, select `Godot Kotlin JVM`.
+3. In the `New Project` window, select `Godot-JVM`.
 4. Fill out the package fields as necessary
 5. (Optional) Select the builds that your project is interested in, such as Android or iOS.
 
@@ -67,7 +87,7 @@ on the right-bottom will appear. To proceed forward, click on `Load Gradle Proje
 
     Pressing the button allows the IDE to create source files, where the user can create new scripts.
 
-    ??? info "'GodotKotlinJvm is setting up' bar?"
+    ??? info "The setup progress bar"
         Notice that the loading process takes a bit, so, a pop-up bar will appear on top of a file's
         content. During this process, the IDE is building file inidices and it is linking the required
         dependencies. The bar will disappear automatically when the process is done.
@@ -107,7 +127,7 @@ The above command(s) will create three empty files. As next step, type the follo
 command on the terminal:
 
 ```shell
-gradle wrapper --gradle-version=8.1
+gradle wrapper --gradle-version=9.0.0
 ```
 
 After running the above command, the user should have the wrapper setup ready to be used.
@@ -118,7 +138,7 @@ and paste the following content:
 ```kotlin
 plugins {
     kotlin("jvm") version "$kotlinVersion"
-    id("com.utopia-rise.godot-kotlin-jvm") version "$godotKotlinVersion"
+    id("com.utopia-rise.godot-jvm") version "$godotJvmVersion"
 }
 
 repositories {
@@ -128,7 +148,7 @@ repositories {
 ///
 
 !!! note 
-    Please replace `$kotlinVersion` and `$godotkotlinVersion` to the appropriate version you want to use.
+    Please replace `$kotlinVersion` and `$godotJvmVersion` with the versions you want to use.
 
 The snippet above uses our Gradle plugin. Without the plugin, the user has to manually define all needed
 dependencies, manually register the classes, signals, properties, functions and manually create and copy
@@ -140,3 +160,5 @@ If you want to examples of what a JVM Godot project looks like, you can check th
 
 - [Minimal project template](https://github.com/utopia-rise/godot-kotlin-project-template)
 - [GDQuest 3D demo converted to Kotlin](https://github.com/utopia-rise/godot-kotlin-3d-demo)
+
+After setup, create [your first Godot-JVM class](your-first-class.md).

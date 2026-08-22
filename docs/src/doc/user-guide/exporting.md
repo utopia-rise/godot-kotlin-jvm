@@ -1,20 +1,7 @@
-!!!note warning
-    In order for your exported game to work, you need our custom export templates. Download them from the corresponding [GitHub release](https://github.com/utopia-rise/godot-kotlin-jvm/releases). 
+To export your game, use the official export templates that match your Godot editor version. Godot must meet the minimum version required by your Godot-JVM release. Ensure the `addons/jvm` directory, including `jvm.gdextension`, is part of your project before exporting. Godot reads this manifest to include the native JVM library for the selected export target.
 
-
-To export your game, you need to add our export templates to Godot. After you've downloaded them, open the export template manager in Godot and select `Install from File`:
-
-![Open export template manager](../assets/img/open_export_template_manager.png)
-![Select install from file](../assets/img/export_template_manager_install_from_file.png)
-![Select tpz](../assets/img/export_template_manager_select_tpz.png)
-
-After the export templates have been added, you can export your game. Your game `jar` will be included in `pck`.
+After the templates have been installed, you can export your game. Your game `jar` will be included in `pck`.
 On desktop platforms, this also copies the JRE folder of your project in the exported game folder.
-
-!!!warning
-    The official export templates from Godot will not work! You have to use our export templates or build your own!
-    Note that because this is not an official build, the template manager will fail to find a link to our templates and display a warning.
-    You can simply ignore it. Downloading our templates from the Godot editor is currently not possible, we opened a [proposal](godotengine/godot-proposals#10894) for it.
 
 
 ## Requirements
@@ -84,7 +71,13 @@ Don't forget to remove them when writing an uninstaller for your game.
 !!! warning
     If you plan to export your game to android, make sure the libraries you use, are actually compatible with android.
 
-In order to build for Android, use the dedicated `buildAndroid` or `buildAndroidRelease` Gradle task.
+The Godot-JVM addon includes a Godot Android v2 plugin AAR. The AAR contains the Android GDExtension libraries and a small Java entry point that gives the extension access to Android's existing ART virtual machine. You do not need to install a JRE on the device.
+
+Android exports require Godot's Gradle build:
+
+1. Install the Android build template from **Project > Install Android Build Template**.
+2. Enable **Gradle Build > Use Gradle Build** in the Android export preset.
+3. Build the JVM project with `buildAndroid` or `buildAndroidRelease` before exporting.
 
 /// tab | build.gradke.kts
 ```kt
@@ -95,11 +88,12 @@ godot {
 ```
 ///
 
-On Android, we do not embed a JVM, we use the existing VM provided by the OS. In order for your game to load the necessary JAR files,
-they need to be converted into `.dex` format. Our Gradle plugin will handle this for you but it requires that you have the android build tools installed (you can easily install and update them with the SDK manager in Android Studio or by installing the Android plugin in Intellij and using the SDK manager there).
+The project JARs must still be converted to `.dex` format. The Godot-JVM Gradle plugin handles this, but it requires the Android SDK build tools. Install them with Android Studio's SDK manager and set `ANDROID_SDK_ROOT`.
 
 !!! warning
     Ensure you have the build tools version 35 or newer installed!
+
+During export, Godot adds `addons/jvm/libs/android/debug/godot-jvm-debug.aar` or `addons/jvm/libs/android/release/godot-jvm-release.aar` automatically. If either file is missing, reinstall a complete Godot-JVM addon release before exporting.
 
 ### Configuration
 While our gradle plugin is able to automatically find the newest installed build tools (if the env variable `ANDROID_SDK_ROOT` is properly set), it sometimes is required to manually set the build tools version. This can be done optionally like so:

@@ -10,7 +10,7 @@ dependencies {
 }
 ```
 
-# Godot Kotlin/JVM libraries
+# Godot-JVM libraries
 
 Can also be used the same way as for regular Gradle projects:
 
@@ -37,4 +37,3 @@ configured root directory for registration files:
 ```
 
 The folder structure configuration is the same as you configured for your own project, just inside the `<library_name>/` directory for each external project.
-Have a look at the available options in the [classes user-guide](classes.md#registration-files)
