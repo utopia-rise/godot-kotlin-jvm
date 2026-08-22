@@ -3,13 +3,15 @@ site_description: Kotlin, Java, and Scala bindings for the Godot game engine.
 site_author: Utopia Rise
 site_url: !ENV [READTHEDOCS_CANONICAL_URL, 'https://godot-jvm.dev/en/stable/']
 docs_dir: src/doc
+hooks:
+  - logo_assets.py
 
 repo_name: 'utopia-rise/godot-jvm'
 repo_url: 'https://github.com/utopia-rise/godot-jvm'
 
 theme:
   name: material
-  favicon: assets/img/favicon.ico
+  favicon: logo/favicon.ico
   palette:
     - media: "(prefers-color-scheme)"
       primary: deep purple
@@ -28,7 +30,7 @@ theme:
       toggle:
         icon: material/brightness-4
         name: Switch to system preference
-  logo: assets/img/logo.png
+  logo: logo/logo.png
   font:
     code: JetBrains Mono
   features:
@@ -58,6 +60,7 @@ extra_javascript:
   - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js
   - js/init.js
 extra_css:
+  - css/logo.css
   - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css
 
 nav:
@@ -99,8 +102,6 @@ nav:
         - Registration process: contribution/knowledge-base/registration-process.md
         - JAR and script reloading: contribution/knowledge-base/jar-script-reloading.md
         - Registrar generation: contribution/knowledge-base/registrar-generation.md
-        - Annotation placement across languages: contribution/knowledge-base/annotation-placement-across-languages.md
-        - Reconstructing shapes from bytecode: contribution/knowledge-base/reconstructing-shapes-from-bytecode.md
         - Signal and callable generation: contribution/knowledge-base/signals-and-callables-generation.md
         - Shared buffer: contribution/knowledge-base/shared-buffer.md
         - Memory management: contribution/knowledge-base/memory-management.md

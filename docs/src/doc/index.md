@@ -5,7 +5,7 @@ description: Build Godot games and applications with Kotlin, Java, or Scala usin
 ---
 
 
-[![GitHub](https://img.shields.io/github/license/utopia-rise/godot-jvm?style=flat-square)](LICENSE)
+[![GitHub](https://img.shields.io/github/license/utopia-rise/godot-jvm?style=flat-square)](https://github.com/utopia-rise/godot-jvm/blob/master/LICENSE)
 
 # Godot-JVM: Kotlin, Java, and Scala bindings for Godot
 

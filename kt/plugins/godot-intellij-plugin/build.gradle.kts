@@ -76,6 +76,20 @@ intellijPlatform {
 }
 
 tasks {
+    processResources {
+        val logoDirectory = rootProject.projectDir.parentFile.resolve("logo")
+
+        from(logoDirectory) {
+            include("godot-jvm-mascot.svg")
+            rename("godot-jvm-mascot.svg", "pluginIcon.svg")
+            into("META-INF")
+        }
+        from(logoDirectory) {
+            include("godot-jvm-mascot.svg")
+            rename("godot-jvm-mascot.svg", "pluginIcon_small.svg")
+        }
+    }
+
     runIde {
         jvmArgs("-Xmx2000m")
 
